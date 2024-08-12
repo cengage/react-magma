@@ -176,11 +176,12 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     React.useEffect(() => {
       if (props.value) {
-        setChosenDate(setDateFromConsumer(props.value));
         setFocusedDate(
           setDateFromConsumer(props.value) || setDefaultFocusedDate()
         );
+        setChosenDate(setDateFromConsumer(props.value));
       }
+      if (props.value === null) setChosenDate(undefined);
     }, [props.value]);
 
     function showHelperInformation() {
@@ -432,6 +433,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             onBlur={handleInputBlur}
             onFocus={handleInputFocus}
             onKeyDown={handleInputKeyDown}
+            onDateChange={handleDateChange}
             placeholder={placeholder ? placeholder : dateFormat.toLowerCase()}
             type={InputType.text}
             value={inputValue}
