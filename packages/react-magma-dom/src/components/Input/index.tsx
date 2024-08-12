@@ -108,6 +108,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           maxLength={maxLengthNum}
           onChange={handleChange}
           onClear={handleClear}
+          onDateChange={props.onDateChange}
           ref={ref}
           testId={testId}
           value={value}
