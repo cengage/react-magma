@@ -118,6 +118,10 @@ export interface InputBaseProps
    */
   onIconKeyDown?: (event) => void;
   /**
+   * Action that will synchronize chosenDate with input value
+   */
+  onDateChange?: (event) => void;
+  /**
    * @internal
    */
   testId?: string;
@@ -571,6 +575,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       onClear,
       onIconClick,
       onIconKeyDown,
+      onDateChange,
       inputLength,
       inputSize,
       inputStyle,
@@ -613,6 +618,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     function handleClearInput() {
       onClear && typeof onClear === 'function' && onClear();
       setValue('');
+      onDateChange && typeof onDateChange === 'function' && onDateChange(null);
       inputRef.current.focus();
     }
 
@@ -622,6 +628,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
         props.onChange(event);
 
       setValue(event.target.value);
+      if (!event.target.value && onDateChange && typeof onDateChange === 'function') onDateChange(null);
     }
 
     const passwordBtnWidth = () => {
