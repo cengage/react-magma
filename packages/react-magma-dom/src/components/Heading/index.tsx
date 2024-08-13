@@ -27,6 +27,7 @@ export interface HeadingProps extends TypographyProps<HTMLHeadingElement> {
    * @default TypographyContextVariant.default
    */
   contextVariant?: TypographyContextVariant;
+  focusHappy?: boolean;
   isInverse?: boolean;
   /**
    * Number to indicate which level heading will render (e.g. h1, h2 etc.)
@@ -44,8 +45,15 @@ export interface HeadingProps extends TypographyProps<HTMLHeadingElement> {
 
 export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
   (props, ref) => {
-    const { level, testId, visualStyle, children, contextVariant, ...other } =
-      props;
+    const {
+      focusHappy,
+      level,
+      testId,
+      visualStyle,
+      children,
+      contextVariant,
+      ...other
+    } = props;
     const theme = React.useContext(ThemeContext);
 
     const stylesFromLevel = {
@@ -59,14 +67,23 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
 
     const headingElement = `h${level}`;
 
+    const focusThis = React.useRef<any>();
+
+    setTimeout(() => {
+      if (focusThis) {
+        focusThis.current.focus();
+      }
+    }, 1);
+
     return (
       <TypographyComponent
         {...other}
         as={headingElement}
         contextVariant={contextVariant}
         data-testid={testId}
+        tabIndex={focusHappy ? -1 : null}
         isInverse={useIsInverse(props.isInverse)}
-        ref={ref}
+        ref={focusHappy ? focusThis : ref}
         visualStyle={visualStyle ? visualStyle : stylesFromLevel[level]}
         theme={theme}
       >

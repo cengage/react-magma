@@ -49,10 +49,6 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   header?: React.ReactNode;
   /**
-   * The reference of the modal header
-   */
-  headerRef?: React.Ref<any>;
-  /**
    * If true, closing the modal handled on the consumer side
    * @default false
    */
@@ -172,6 +168,8 @@ const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
     margin: ${props => props.theme.spaceScale.spacing08} auto;
   }
 `;
+
+const StyledWrapper = styled.div<ModalProps>``;
 
 const ModalHeader = styled.div<ModalProps & { theme?: ThemeInterface }>`
   padding: ${props => props.theme.spaceScale.spacing05}
@@ -338,7 +336,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       closeButtonSize,
       containerStyle,
       containerTransition = { slideTop: true },
-      headerRef,
       isBackgroundClickDisabled,
       isEscKeyDownDisabled,
       header,
@@ -367,7 +364,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
     return isModalOpen
       ? ReactDOM.createPortal(
-          <div ref={headerRef ? headerRef : focusTrapElement}>
+          <StyledWrapper ref={focusTrapElement}>
             <Global
               styles={css`
                 html {
@@ -452,7 +449,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               unmountOnExit
               theme={theme}
             />
-          </div>,
+          </StyledWrapper>,
           document.getElementsByTagName('body')[0]
         )
       : null;

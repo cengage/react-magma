@@ -477,9 +477,8 @@ export const CloseModalWithConfirmation = () => {
   );
 };
 
-export const HeaderRef = () => {
+export const customHeader = () => {
   const [showModal, setShowModal] = React.useState(false);
-  const headerRef = React.useRef<HTMLHeadingElement>();
 
   const onModalShow = () => {
     setShowModal(true);
@@ -489,13 +488,25 @@ export const HeaderRef = () => {
     setShowModal(false);
   };
 
-  console.log(headerRef);
-
   return (
     <>
-      <Modal headerRef={headerRef} onClose={onModalClose} isOpen={showModal}>
-        <Heading ref={headerRef} level={4}>
-          Title
+      <Modal onClose={onModalClose} isOpen={showModal}>
+        <Heading
+          level={4}
+          focusHappy
+          style={{
+            margin: '-20px 0px 20px -20px',
+            padding: '20px',
+            background: '#3a3a3a',
+            borderRadius: '4px',
+            color: 'white',
+            width: 'calc(100% - 2px)',
+            textTransform: 'uppercase',
+            fontWeight: '900',
+            fontStyle: 'italic',
+          }}
+        >
+          Custom Header
         </Heading>
         <ButtonGroup>
           <Button onClick={onModalClose}>Close</Button>
