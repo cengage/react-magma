@@ -78,7 +78,7 @@ export const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
     return (
       <TypographyComponent
         {...other}
-        as={headingElement}
+        as={headingElement as any}
         contextVariant={contextVariant}
         data-testid={testId}
         tabIndex={focusHappy ? -1 : null}

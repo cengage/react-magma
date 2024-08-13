@@ -169,9 +169,7 @@ const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
   }
 `;
 
-const StyledWrapper = styled.div<ModalProps>``;
-
-const ModalHeader = styled.div<ModalProps & { theme?: ThemeInterface }>`
+const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
   padding: ${props => props.theme.spaceScale.spacing05}
     ${props => props.theme.spaceScale.spacing05} 0
     ${props => props.theme.spaceScale.spacing05};
@@ -364,7 +362,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
     return isModalOpen
       ? ReactDOM.createPortal(
-          <StyledWrapper ref={focusTrapElement}>
+          <div ref={focusTrapElement}>
             <Global
               styles={css`
                 html {
@@ -449,7 +447,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               unmountOnExit
               theme={theme}
             />
-          </StyledWrapper>,
+          </div>,
           document.getElementsByTagName('body')[0]
         )
       : null;

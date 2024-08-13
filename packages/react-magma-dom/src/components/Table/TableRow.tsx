@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import {
   TableContext,
   TableRowColor,
@@ -17,8 +17,7 @@ import {
 } from '../IndeterminateCheckbox';
 import { transparentize } from 'polished';
 import { NorthIcon, SortDoubleArrowIcon, SouthIcon } from 'react-magma-icons';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 /**
  * @children required
@@ -49,8 +48,6 @@ export interface TableRowProps
    */
   testId?: string;
 }
-
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 function buildTableRowBackground(props) {
   if (props.isInverse) {
@@ -93,7 +90,7 @@ function buildTableRowColor(props) {
   return 'inherit';
 }
 
-const StyledTableRow = typedStyled.tr<{
+const StyledTableRow = styled.tr<{
   color?: string;
   hasHoverStyles?: boolean;
   hasZebraStripes?: boolean;
@@ -145,7 +142,7 @@ const StyledTableRow = typedStyled.tr<{
     `};
 `;
 
-const SortButton = typedStyled.button<{
+const SortButton = styled.button<{
   density?: TableDensity;
   isInverse?: boolean;
   textAlign?: TableCellAlign;
@@ -183,7 +180,7 @@ const SortButton = typedStyled.button<{
   }
 `;
 
-const SortIconWrapper = typedStyled.span`
+const SortIconWrapper = styled.span`
   position: relative;
   top: ${props => props.theme.spaceScale.spacing01};
 `;

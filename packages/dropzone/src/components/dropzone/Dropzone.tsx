@@ -5,7 +5,7 @@
  * `{...file}` WILL NOT COPY ALL OF THE FILE PROPERTIES
  */
 
-import React from 'react';
+import React, { useImperativeHandle } from 'react';
 import {
   useDropzone,
   DropzoneOptions,
@@ -28,15 +28,13 @@ import {
   ThemeInterface,
   useGenerateId,
   useIsInverse,
+  styled,
 } from 'react-magma-dom';
 
 import { CloudUploadIcon } from 'react-magma-icons';
 import { Preview } from './Preview';
 import { FilePreview, FileError } from './FilePreview';
 import { transparentize } from 'polished';
-import styled, { CreateStyled } from '@emotion/styled';
-
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export interface OnSendFileProps {
   file: FilePreview;
@@ -132,7 +130,7 @@ export interface DropzoneProps
   thumbnails?: boolean;
 }
 
-const Container = typedStyled(Flex)<
+const Container = styled(Flex)<
   DropzoneRootProps &
     FlexProps & {
       dragState?: DragState;
@@ -171,7 +169,7 @@ const Container = typedStyled(Flex)<
   transition: ${({ noDrag }) => `border ${noDrag ? 0 : '.24s'} ease-in-out`};
 `;
 
-const HelperMessage = typedStyled.span<{ isInverse?: boolean }>`
+const HelperMessage = styled.span<{ isInverse?: boolean }>`
   color: ${({ theme, isInverse }) =>
     isInverse ? theme.colors.neutral100 : theme.colors.neutral700};
   display: block;
@@ -179,7 +177,7 @@ const HelperMessage = typedStyled.span<{ isInverse?: boolean }>`
   margin: -8px 0 16px 0;
 `;
 
-const Wrapper = typedStyled.div<{ isInverse?: boolean }>`
+const Wrapper = styled.div<{ isInverse?: boolean }>`
   color: ${({ theme, isInverse }) =>
     isInverse ? theme.colors.neutral100 : theme.colors.neutral700};
   margin: 0 0 24px 0;
@@ -255,6 +253,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       isDragActive,
       isDragReject,
       open,
+      inputRef,
     } = useDropzone({
       noClick: true,
       disabled,
@@ -265,6 +264,11 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       onDrop,
       noDrag,
     });
+
+    useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(
+      ref,
+      () => inputRef.current
+    );
 
     const inputProps = getInputProps({ id });
 
@@ -425,7 +429,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
             tabIndex={-1}
           >
             <input
-              ref={ref}
+              ref={inputRef}
               type={inputProps.type}
               accept={inputProps.accept}
               autoComplete={inputProps.autoComplete}
@@ -435,6 +439,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
               onClick={inputProps.onClick}
               style={inputProps.style}
               tabIndex={inputProps.tabIndex}
+              data-testid="file-input"
             />
             {noDrag ? (
               <Flex xs behavior={FlexBehavior.item}>

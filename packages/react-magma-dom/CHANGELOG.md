@@ -1,5 +1,35 @@
 ## 4.4.0
 
+## 4.5.0-next.13
+
+### Patch Changes
+
+- 756d3437a: fix(datePicker): Fix date picker clearing functionality
+
+## 4.5.0-next.12
+
+### Patch Changes
+
+- e99e480ab: fix(Select/Multiselect): Fix console errors
+
+## 4.5.0-next.11
+
+### Patch Changes
+
+- e43932d45: fix(Modal): Background overlay issue on nested modals
+
+## 4.5.0-next.10
+
+### Minor Changes
+
+- ae668a3e5: Updating emotion to v11
+
+## 4.5.0-next.9
+
+### Patch Changes
+
+- e24db7ab4: fix(datePicker): Fix date picker calendar table role issue
+
 ## 4.5.0-next.8
 
 ### Minor Changes

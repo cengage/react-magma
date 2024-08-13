@@ -9,8 +9,7 @@ import { TypographyVisualStyle } from '../Typography';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 interface HelperInformationProps {
   isInverse?: boolean;
@@ -18,16 +17,14 @@ interface HelperInformationProps {
   onClose?: (event?: React.SyntheticEvent) => void;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-const List = typedStyled.ul`
+const List = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
   text-align: left;
 `;
 
-const Item = typedStyled.li`
+const Item = styled.li`
   display: flex;
   list-style: none;
   margin-bottom: 12px;
@@ -47,7 +44,7 @@ const Item = typedStyled.li`
   }
 `;
 
-const KeyboardShortcutButtonWrapper = typedStyled.span<{
+const KeyboardShortcutButtonWrapper = styled.span<{
   isInverse?: boolean;
 }>`
   background: ${props =>
@@ -73,7 +70,7 @@ const StyledNavContainer = styled.div`
   justify-content: space-between;
   padding: 2px;
 `;
-const StyledContent = typedStyled.div<{
+const StyledContent = styled.div<{
   isInverse?: boolean;
 }>`
   z-index: 9999;
@@ -88,7 +85,7 @@ const StyledContent = typedStyled.div<{
   }
 `;
 
-const StyledDescription = typedStyled.p`
+const StyledDescription = styled.p`
   font-family: ${props => props.theme.bodyFont};
   margin: 0;
 `;
