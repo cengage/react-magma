@@ -8,9 +8,8 @@
 
 ### Patch Changes
 
-- e99e480ab: fix(Select/Multiselect): Fix console errors
 - e43932d45: fix(Modal): Background overlay now displays as expected for nested modals
-- e24db7ab4: fix(datePicker): Fix date picker calendar table role issue
+- e24db7ab4: fix(DatePicker): Remove role="presentation" from calendar
 - 65d417254: fix(ProgressBar): Add support for custom colors
 - 636fa3060: fix(NativeSelect): Update arrow placement, arrow color and border color when disabled
 - da14eec4f: fix(Modal): Remove unnecessary `aria-describedBy=“modal”`. Add `ariaLabel` prop so that Modals without headers can customize the `aria-label` instead of defaulting to `aria-label="modal"` which is not correct for a11y standards.
