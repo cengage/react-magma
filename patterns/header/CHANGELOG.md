@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.0.0
+
+### Minor Changes
+
+- 5f16d2018: Updating emotion to v11
+
 ## 10.0.0-next.2
 
 ### Minor Changes

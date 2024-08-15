@@ -1,5 +1,39 @@
 # Change Log
 
+## 5.0.7
+
+### Patch Changes
+
+- 5f16d2018: Update Charts examples
+- 5f16d2018: chore: Resync dev branch
+- 5f16d2018: fix(Drawer): Update site navigation storybook example
+- 5f16d2018: storybook(TimePicker): Update clear time example
+- 5f16d2018: Add Toast warning
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+- Updated dependencies [5f16d2018]
+  - @react-magma/charts@8.0.0
+  - react-magma-dom@4.5.0
+  - @react-magma/dropzone@8.0.0
+  - @cengage-patterns/header@10.0.0
+  - @react-magma/schema-renderer@8.0.0
+
 ## 5.0.7-next.9
 
 ### Patch Changes

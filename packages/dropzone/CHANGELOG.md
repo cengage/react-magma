@@ -1,5 +1,15 @@
 # Change Log
 
+## 8.0.0
+
+### Minor Changes
+
+- 5f16d2018: Updating emotion to v11
+
+### Patch Changes
+
+- 5f16d2018: fix(Dropzone): Open file browse on button click
+
 ## 8.0.0-next.3
 
 ### Patch Changes
