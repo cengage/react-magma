@@ -1,3 +1,23 @@
+
+## 4.5.0
+
+### Minor Changes
+
+- ae668a3e5: chore: Updating emotion to v11
+- 9e38e9e7f: feat(Stepper): New Stepper component. Displays step based content for use in multi-step interfaces.
+
+### Patch Changes
+
+- e43932d45: fix(Modal): Background overlay now displays as expected for nested modals
+- e24db7ab4: fix(DatePicker): Remove role="presentation" from calendar
+- 65d417254: fix(ProgressBar): Add support for custom colors
+- 636fa3060: fix(NativeSelect): Update arrow placement, arrow color and border color when disabled
+- da14eec4f: fix(Modal): Remove unnecessary `aria-describedBy=“modal”`. Add `ariaLabel` prop so that Modals without headers can customize the `aria-label` instead of defaulting to `aria-label="modal"` which is not correct for a11y standards.
+- cd101c769: fix(Hyperlink): Support Icons and toggling underline styling
+- 9f1e0956a: fix(Input): Add `inputWrapperStyle` prop to allow more flexibility with Input widths
+- ec35223de: build(deps): bump tar from 6.1.11 to 6.2.1
+- 506904fd8: build(deps): bump express from 4.18.1 to 4.19.2
+
 ## 4.4.0
 
 ### Minor Changes

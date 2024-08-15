@@ -1,13 +1,18 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@1.6.0/schema.json",
-  "changelog": ["@changesets/cli/changelog", {"repo": "cengage/react-magma"}],
-  "commit": false,
-  "linked": [],
-  "access": "public",
-  "baseBranch": "build/improvements",
-  "updateInternalDependencies": "patch",
-  "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
-    "onlyUpdatePeerDependentsWhenOutOfRange": true
-  },
-  "ignore": []
+    "$schema": "https://unpkg.com/@changesets/config@1.6.0/schema.json",
+    "changelog": [
+        "@changesets/cli/changelog",
+        {
+            "repo": "cengage/react-magma"
+        }
+    ],
+    "commit": false,
+    "linked": [],
+    "access": "public",
+    "baseBranch": "build/improvements",
+    "updateInternalDependencies": "patch",
+    "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
+        "onlyUpdatePeerDependentsWhenOutOfRange": true
+    },
+    "ignore": []
 }

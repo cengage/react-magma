@@ -5,16 +5,13 @@ import { I18nContext } from '../../i18n';
 import { Tooltip } from '../Tooltip';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { NativeSelect } from '../NativeSelect';
+import { NativeSelect } from '../..';
 import { NavButton, PaginationProps } from './';
 import { useGenerateId } from '../../utils';
 import { Spacer } from '../Spacer';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { transparentize } from 'polished';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
-
-const typedStyled = styled as CreateStyled<ThemeInterface>;
+import styled from '@emotion/styled';
 
 function buildLabelColor(props) {
   if (props.isInverse) {
@@ -29,7 +26,7 @@ function buildLabelColor(props) {
   return props.theme.colors.neutral700;
 }
 
-const StyledWrapper = typedStyled.div<{
+const StyledWrapper = styled.div<{
   disabled?: boolean;
   isInverse?: boolean;
 }>`

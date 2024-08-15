@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Global, css } from '@emotion/core';
+import { Global, css } from '@emotion/react';
 import { ThemeContext } from '../ThemeContext';
 import { useIsInverse } from '../../inverse';
 
@@ -53,7 +53,7 @@ function getStyles(theme, isInverse: boolean) {
 
       &:hover,
       &:focus {
-        color: ${isInverse ? theme.colors.primary100 : theme.colors.primary400};
+        color: ${isInverse ? theme.colors.neutral100 : theme.colors.primary700};
       }
       &:focus {
         outline: 2px solid

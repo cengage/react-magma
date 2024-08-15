@@ -1,5 +1,31 @@
 # Change Log
 
+## 8.0.0-next.3
+
+### Patch Changes
+
+- bf5537baa: fix(Dropzone): Open file browse on button click
+
+## 8.0.0-next.2
+
+### Minor Changes
+
+- ae668a3e5: Updating emotion to v11
+
+## 8.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [9e38e9e7f]
+  - react-magma-dom@4.5.0-next.7
+
+## 7.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [9f1e0956a]
+  - react-magma-dom@4.4.1-next.0
+
 ## 7.0.0
 
 ## 7.0.0-next.1

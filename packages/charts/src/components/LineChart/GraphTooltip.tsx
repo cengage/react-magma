@@ -7,11 +7,9 @@ import {
   ThemeInterface,
 } from 'react-magma-dom';
 
-import styled, { CreateStyled } from '@emotion/styled';
+import styled from '@emotion/styled';
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-const StyledGraphTooltip = typedStyled(StyledTooltip)`
+const StyledGraphTooltip = styled(StyledTooltip)`
   background: ${(props: any) => props.theme.colors.neutral100};
   border: 1px solid ${(props: any) => props.theme.colors.neutral300};
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
@@ -33,7 +31,7 @@ const StyledGraphTooltip = typedStyled(StyledTooltip)`
   }
 `;
 
-const TooltipColorSwatch = typedStyled.span`
+const TooltipColorSwatch = styled.span`
   background: ${(props: any) => props.color};
   border: ${(props: any) => (props.color ? 'none' : '3px solid black')};
   border-radius: 4px;

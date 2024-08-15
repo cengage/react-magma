@@ -14,8 +14,9 @@ The CarbonChart component is a wrapper for the [Carbon Design System Simple Char
 
 <Alert variant="warning">
   <strong>Important!</strong> CarbonChart is imported from{' '}
-  <inlineCode>@react-magma/charts</inlineCode> which must be installed as a peer
-  dependency.
+  <inlineCode>@react-magma/charts</inlineCode> which must be installed as a peer dependency.
+  <br/><br/>
+  In addition, you must manually import the styles:<br/><inlineCode>import '@react-magma/charts/dist/charts.css';</inlineCode>
 </Alert>
 
 We currently support the following chart types:
@@ -37,6 +38,8 @@ Area charts share similarities with line charts, distinguished by the filled are
 import React from 'react';
 import { Card } from 'react-magma-dom';
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
 
 export function Example() {
   const dataSet = [
@@ -123,6 +126,8 @@ export function Example() {
 import React from 'react';
 import { Card } from 'react-magma-dom';
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
 
 export function Example() {
   const dataSet = [
@@ -185,6 +190,8 @@ Line charts depict data at regular intervals, connecting the points with lines. 
 import React from 'react';
 import { Card } from 'react-magma-dom';
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
 
 export function Example() {
   const dataSet = [
@@ -317,14 +324,14 @@ export function Example() {
 }
 ```
 
-
-
 ## Pie Chart
 
 ```typescript
 import React from 'react';
 import { Card } from 'react-magma-dom';
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
 
 export function Example() {
   const dataSet = [

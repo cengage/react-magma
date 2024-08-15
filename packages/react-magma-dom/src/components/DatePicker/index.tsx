@@ -21,8 +21,7 @@ import { omit, useGenerateId, Omit, useForkedRef } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { transparentize } from 'polished';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 export interface DatePickerProps
   extends Omit<
@@ -117,13 +116,11 @@ export interface DatePickerProps
   onInputFocus?: (event: React.FocusEvent) => void;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
 const DatePickerContainer = styled.div`
   position: relative;
 `;
 
-const DatePickerCalendar = typedStyled.div<{
+const DatePickerCalendar = styled.div<{
   opened: boolean;
   isInverse?: boolean;
 }>`
@@ -179,11 +176,12 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     React.useEffect(() => {
       if (props.value) {
-        setChosenDate(setDateFromConsumer(props.value));
         setFocusedDate(
           setDateFromConsumer(props.value) || setDefaultFocusedDate()
         );
+        setChosenDate(setDateFromConsumer(props.value));
       }
+      if (props.value === null) setChosenDate(undefined);
     }, [props.value]);
 
     function showHelperInformation() {
@@ -435,6 +433,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             onBlur={handleInputBlur}
             onFocus={handleInputFocus}
             onKeyDown={handleInputKeyDown}
+            onDateChange={handleDateChange}
             placeholder={placeholder ? placeholder : dateFormat.toLowerCase()}
             type={InputType.text}
             value={inputValue}

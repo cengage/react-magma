@@ -5,7 +5,7 @@ import { FormGroupContext } from '../FormGroup';
 import { InputMessage } from '../Input/InputMessage';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 // Using the base `styled` from `emotion` until import mapping is fixed: https://github.com/emotion-js/emotion/pull/1220
 // import styled from '../../theme/styled';
 import styled from '@emotion/styled';
