@@ -212,6 +212,110 @@ export function Example() {
 }
 ```
 
+## Modal Header Ref
+
+The modal headerRef prop allows access to a header element within the Modal. This is helpful for when a custom header is needed as it provides the ability to focus on load.
+
+```tsx
+import React from 'react';
+import {
+  Button,
+  ButtonColor,
+  IconButton,
+  Flex,
+  FlexBehavior,
+  FlexDirection,
+  FlexJustify,
+  FlexAlignItems,
+  magma,
+  Modal,
+  ModalSize,
+  Paragraph,
+  VisuallyHidden,
+  ButtonGroup,
+  ButtonGroupAlignment,
+} from 'react-magma-dom';
+import { CheckIcon } from 'react-magma-icons';
+
+export function Example() {
+  const [showModal, setShowModal] = React.useState(false);
+  const [showDefaultModal, setShowDefaultModal] = React.useState(false);
+  const [customHeadingRef, setCustomHeadingRef] = React.useState(
+    React.useRef<any>()
+  );
+
+  const handleGetHeaderRef = ref => {
+    setCustomHeadingRef(ref);
+  };
+
+  const onModalShow = () => {
+    setShowModal(true);
+  };
+
+  const onModalClose = () => {
+    setShowModal(false);
+  };
+
+  const onModalShowDefault = () => {
+    setShowDefaultModal(true);
+  };
+
+  const onModalCloseDefault = () => {
+    setShowDefaultModal(false);
+  };
+
+  const onHeadingFocus = () => {
+    customHeadingRef.current.focus();
+  };
+
+  return (
+    <>
+      <Modal
+        onClose={onModalClose}
+        isOpen={showModal}
+        headerRef={handleGetHeaderRef}
+        style={{ padding: '20px' }}
+      >
+        <Flex
+          behavior={FlexBehavior.container}
+          direction={FlexDirection.column}
+          alignItems={FlexAlignItems.center}
+          justify={FlexJustify.center}
+          spacing={2}
+          wrap={FlexWrap.nowrap}
+        >
+          <IconButton
+            style={{ background: magma.colors.success }}
+            icon={<CheckIcon />}
+          />
+          <h2 ref={customHeadingRef} tabIndex={-1}>
+            Add Links to Cengage Content
+          </h2>
+          <Paragraph>
+            Your LMS course is now integrated with Cengage. Select specific
+            Cengage activities to provide students with direct links. Or, add
+            just one link to your entire course. You can return to select more
+            content later.
+          </Paragraph>
+          <ButtonGroup>
+            <Button onClick={onHeadingFocus} color={ButtonColor.subtle}>
+              Focus Heading
+            </Button>
+            <Button onClick={onModalClose} color={ButtonColor.subtle}>
+              Close
+            </Button>
+          </ButtonGroup>
+        </Flex>
+      </Modal>
+
+      <ButtonGroup>
+        <Button onClick={onModalShow}>Show Custom Heading Modal</Button>
+      </ButtonGroup>
+    </>
+  );
+}
+```
+
 ## Hide Close Button
 
 The close button can be hidden by using the `isCloseButtonHidden` prop. If this prop is used, it is mandatory to provide another way to close the modal.
