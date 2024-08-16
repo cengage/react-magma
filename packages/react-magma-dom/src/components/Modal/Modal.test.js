@@ -997,7 +997,7 @@ describe('Modal', () => {
       expect(getByTestId('closeButton')).toHaveFocus();
     });
 
-    it('headerRef prop allows a custom header to be focused on load, then should loses focus after other Modal elements are looped through', async () => {
+    it('headerRef prop allows a custom header to be focused on load, then should lose focus after other Modal elements are looped through', async () => {
       const headerRef = React.createRef();
 
       const handleFocus = () => {
