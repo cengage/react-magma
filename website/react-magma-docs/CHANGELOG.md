@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.8-next.1
+
+### Patch Changes
+
+- 26db2ae5c: fix(Drawer): Fixed drawer appearing open at lower screen resolutions for the doc site navigation.
+
 ## 5.0.8-next.0
 
 ### Patch Changes
