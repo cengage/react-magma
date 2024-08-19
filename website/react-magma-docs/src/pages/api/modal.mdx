@@ -150,6 +150,8 @@ the first actionable element.
 
 If the modal does not use the `header` prop, you must use the `ariaLabel` prop to ensure the correct aria properties are in place.
 
+When a reference to the header is needed, use the `headerRef` prop.
+
 ```tsx
 import React from 'react';
 import {
@@ -164,82 +166,10 @@ import {
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const [showModalHeader, setShowModalHeader] = React.useState(false);
+  const [showModalHeaderRef, setShowModalHeaderRef] = React.useState(false);
   const buttonRef = React.useRef();
   const headerButtonRef = React.useRef();
 
-  return (
-    <>
-      <Modal
-        ariaLabel="customAriaLabel"
-        size={ModalSize.small}
-        onClose={() => {
-          setShowModal(false);
-          buttonRef.current.focus();
-        }}
-        isOpen={showModal}
-      >
-        <Paragraph noTopMargin>This modal has no header.</Paragraph>
-        <ButtonGroup alignment={ButtonGroupAlignment.center}>
-          <Button onClick={() => setShowModal(false)}>OK</Button>
-        </ButtonGroup>
-      </Modal>
-      <Modal
-        header="This modal has a header"
-        size={ModalSize.small}
-        onClose={() => {
-          setShowModalHeader(false);
-          headerButtonRef.current.focus();
-        }}
-        isOpen={showModalHeader}
-      >
-        <Paragraph noTopMargin>This modal has no header.</Paragraph>
-        <ButtonGroup alignment={ButtonGroupAlignment.center}>
-          <Button onClick={() => setShowModalHeader(false)}>OK</Button>
-        </ButtonGroup>
-      </Modal>
-      <ButtonGroup>
-        <Button onClick={() => setShowModal(true)} ref={buttonRef}>
-          Show Modal with no header
-          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
-        </Button>
-        <Button onClick={() => setShowModalHeader(true)} ref={headerButtonRef}>
-          Show Modal with header
-          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
-        </Button>
-      </ButtonGroup>
-    </>
-  );
-}
-```
-
-## Modal Header Ref
-
-The modal headerRef prop allows access to a header element within the Modal. This is helpful for when a custom header is needed as it provides the ability to focus on load.
-
-```tsx
-import React from 'react';
-import {
-  Button,
-  ButtonColor,
-  IconButton,
-  Flex,
-  FlexBehavior,
-  FlexDirection,
-  FlexJustify,
-  FlexAlignItems,
-  magma,
-  Modal,
-  ModalSize,
-  Paragraph,
-  VisuallyHidden,
-  ButtonGroup,
-  ButtonGroupAlignment,
-} from 'react-magma-dom';
-import { CheckIcon } from 'react-magma-icons';
-
-export function Example() {
-  const [showModal, setShowModal] = React.useState(false);
-  const [showDefaultModal, setShowDefaultModal] = React.useState(false);
   const [customHeadingRef, setCustomHeadingRef] = React.useState(
     React.useRef<any>()
   );
@@ -271,8 +201,37 @@ export function Example() {
   return (
     <>
       <Modal
-        onClose={onModalClose}
+        ariaLabel="customAriaLabel"
+        size={ModalSize.small}
+        onClose={() => {
+          setShowModal(false);
+          buttonRef.current.focus();
+        }}
         isOpen={showModal}
+      >
+        <Paragraph noTopMargin>This modal has no header.</Paragraph>
+        <ButtonGroup alignment={ButtonGroupAlignment.center}>
+          <Button onClick={() => setShowModal(false)}>OK</Button>
+        </ButtonGroup>
+      </Modal>
+      <Modal
+        header="This modal has a header"
+        size={ModalSize.small}
+        onClose={() => {
+          setShowModalHeader(false);
+          headerButtonRef.current.focus();
+        }}
+        isOpen={showModalHeader}
+      >
+        <Paragraph noTopMargin>This modal has no header.</Paragraph>
+        <ButtonGroup alignment={ButtonGroupAlignment.center}>
+          <Button onClick={() => setShowModalHeader(false)}>OK</Button>
+        </ButtonGroup>
+      </Modal>
+
+      <Modal
+        onClose={() => setShowModalHeaderRef(false)}
+        isOpen={showModalHeaderRef}
         headerRef={handleGetHeaderRef}
         style={{ padding: '20px' }}
       >
@@ -284,9 +243,15 @@ export function Example() {
           spacing={2}
           wrap={FlexWrap.nowrap}
         >
-          <IconButton
-            style={{ background: magma.colors.success }}
-            icon={<CheckIcon />}
+          <CheckIcon
+            style={{
+              background: magma.colors.success,
+              color: magma.colors.neutral100,
+              width: '36px',
+              height: '36px',
+              padding: '8px',
+              borderRadius: '50%',
+            }}
           />
           <h2 ref={customHeadingRef} tabIndex={-1}>
             Add Links to Cengage Content
@@ -301,7 +266,10 @@ export function Example() {
             <Button onClick={onHeadingFocus} color={ButtonColor.subtle}>
               Focus Heading
             </Button>
-            <Button onClick={onModalClose} color={ButtonColor.subtle}>
+            <Button
+              onClick={() => setShowModalHeaderRef(false)}
+              color={ButtonColor.subtle}
+            >
               Close
             </Button>
           </ButtonGroup>
@@ -309,7 +277,20 @@ export function Example() {
       </Modal>
 
       <ButtonGroup>
-        <Button onClick={onModalShow}>Show Custom Heading Modal</Button>
+        <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+          Show Modal with no header
+          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        </Button>
+        <Button onClick={() => setShowModalHeader(true)} ref={headerButtonRef}>
+          Show Modal with header
+          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        </Button>
+        <Button
+          style={{ marginLeft: '0' }}
+          onClick={() => setShowModalHeaderRef(true)}
+        >
+          Show Modal with headerRef
+        </Button>
       </ButtonGroup>
     </>
   );
