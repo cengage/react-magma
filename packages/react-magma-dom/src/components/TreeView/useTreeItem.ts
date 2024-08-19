@@ -251,12 +251,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     }
   }, [initialExpandedItemsNeedUpdate]);
 
-  React.useEffect(() => {
-    if (initialExpandedItemsNeedUpdate) {
-      updateInitialExpanded();
-    }
-  }, [initialExpandedItemsNeedUpdate]);
-
   const updateCheckedStatusFromChild = (
     index: number,
     status: IndeterminateCheckboxStatus,
@@ -477,7 +471,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       )
         ? childrenCheckedStatus[0]
         : IndeterminateCheckboxStatus.indeterminate;
-
       const updateItemStatus = getUpdatedSelectedItems(
         selectedItems,
         itemId,

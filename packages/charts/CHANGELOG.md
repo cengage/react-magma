@@ -19,37 +19,6 @@
 
 - 9f43ba1e6: fix(CarbonCharts): Minify styles
 
-## 8.0.0
-
-### Minor Changes
-
-- 5f16d2018: Updating emotion to v11
-
-### Patch Changes
-
-- 5f16d2018: fix(CarbonCharts): Minify styles
-- 5f16d2018: chore: Deprecate LineChart
-- 5f16d2018: fix(CarbonCharts): Remove exports & remove highlight import
-
-## 8.0.0-next.5
-
-### Minor Changes
-
-- ae668a3e5: Updating emotion to v11
-
-## 8.0.0-next.4
-
-### Patch Changes
-
-- Updated dependencies [9e38e9e7f]
-  - react-magma-dom@4.5.0-next.7
-
-## 7.0.1-next.3
-
-### Patch Changes
-
-- 9f43ba1e6: fix(CarbonCharts): Minify styles
-
 ## 7.0.1-next.2
 
 ### Patch Changes
