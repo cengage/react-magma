@@ -9,6 +9,7 @@ import {
 
 import styled from '@emotion/styled';
 
+
 const StyledGraphTooltip = styled(StyledTooltip)`
   background: ${(props: any) => props.theme.colors.neutral100};
   border: 1px solid ${(props: any) => props.theme.colors.neutral300};

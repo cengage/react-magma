@@ -75,7 +75,7 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   itemDepth?: number;
   /**
    * TODO: improve functionality (issue #1305)
-   * @internal
+   * @internal 
    * If true, element is disabled
    * @default false
    */
