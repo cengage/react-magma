@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.7-next.11
+
+### Patch Changes
+
+- a89964cc0: chore(Drawer): Reverting changes until Manually sync main -> dev (4.5.0) #1371 is complete.
+
 ## 5.0.7-next.10
 
 ### Patch Changes
