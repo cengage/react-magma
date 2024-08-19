@@ -1,12 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Tooltip should render the tooltip component, positioned top by default 1`] = `
-.emotion-0 {
+.emotion-1 {
   background: #454545;
   border-radius: 8px;
   color: #FFFFFF;
   font-size: 12px;
   font-family: "Work Sans",Helvetica,sans-serif;
+  -webkit-letter-spacing: .32px;
+  -moz-letter-spacing: .32px;
+  -ms-letter-spacing: .32px;
   letter-spacing: .32px;
   line-height: 16px;
   font-weight: 500;
@@ -16,40 +19,40 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   z-index: 999;
 }
 
-.emotion-0[data-popper-placement='top'] {
+.emotion-1[data-popper-placement='top'] {
   margin-bottom: 14px;
 }
 
-.emotion-0[data-popper-placement='top']>span:last-child {
+.emotion-1[data-popper-placement='top'] > span:last-child {
   bottom: 10px;
 }
 
-.emotion-0[data-popper-placement='bottom'] {
+.emotion-1[data-popper-placement='bottom'] {
   margin-top: 14px;
 }
 
-.emotion-0[data-popper-placement='bottom']>span:last-child {
+.emotion-1[data-popper-placement='bottom'] > span:last-child {
   top: 10px;
 }
 
-.emotion-0[data-popper-placement='left'] {
+.emotion-1[data-popper-placement='left'] {
   margin-right: 14px;
 }
 
-.emotion-0[data-popper-placement='left']>span:last-child {
+.emotion-1[data-popper-placement='left'] > span:last-child {
   right: 10px;
 }
 
-.emotion-0[data-popper-placement='right'] {
+.emotion-1[data-popper-placement='right'] {
   margin-left: 14px;
 }
 
-.emotion-0[data-popper-placement='right']>span:last-child {
+.emotion-1[data-popper-placement='right'] > span:last-child {
   left: 10px;
 }
 
-.emotion-2.emotion-2,
-.emotion-2.emotion-2:before {
+.emotion-0.emotion-0,
+.emotion-0.emotion-0:before {
   display: block;
   height: 8px;
   position: absolute;
@@ -57,21 +60,23 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   z-index: -1;
 }
 
-.emotion-2.emotion-2::before {
+.emotion-0.emotion-0::before {
   content: '';
   -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
   background: #454545;
 }
 
-.emotion-0 {
+.emotion-1 {
   background: #454545;
   border-radius: 8px;
   color: #FFFFFF;
   font-size: 12px;
   font-family: "Work Sans",Helvetica,sans-serif;
+  -webkit-letter-spacing: .32px;
+  -moz-letter-spacing: .32px;
+  -ms-letter-spacing: .32px;
   letter-spacing: .32px;
   line-height: 16px;
   font-weight: 500;
@@ -81,40 +86,40 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   z-index: 999;
 }
 
-.emotion-0[data-popper-placement='top'] {
+.emotion-1[data-popper-placement='top'] {
   margin-bottom: 14px;
 }
 
-.emotion-0[data-popper-placement='top']>span:last-child {
+.emotion-1[data-popper-placement='top'] > span:last-child {
   bottom: 10px;
 }
 
-.emotion-0[data-popper-placement='bottom'] {
+.emotion-1[data-popper-placement='bottom'] {
   margin-top: 14px;
 }
 
-.emotion-0[data-popper-placement='bottom']>span:last-child {
+.emotion-1[data-popper-placement='bottom'] > span:last-child {
   top: 10px;
 }
 
-.emotion-0[data-popper-placement='left'] {
+.emotion-1[data-popper-placement='left'] {
   margin-right: 14px;
 }
 
-.emotion-0[data-popper-placement='left']>span:last-child {
+.emotion-1[data-popper-placement='left'] > span:last-child {
   right: 10px;
 }
 
-.emotion-0[data-popper-placement='right'] {
+.emotion-1[data-popper-placement='right'] {
   margin-left: 14px;
 }
 
-.emotion-0[data-popper-placement='right']>span:last-child {
+.emotion-1[data-popper-placement='right'] > span:last-child {
   left: 10px;
 }
 
-.emotion-2.emotion-2,
-.emotion-2.emotion-2:before {
+.emotion-0.emotion-0,
+.emotion-0.emotion-0:before {
   display: block;
   height: 8px;
   position: absolute;
@@ -122,17 +127,16 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   z-index: -1;
 }
 
-.emotion-2.emotion-2::before {
+.emotion-0.emotion-0::before {
   content: '';
   -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
   background: #454545;
 }
 
 <div
-  class="emotion-0 emotion-1"
+  class="emotion-1"
   data-popper-escaped="true"
   data-popper-placement="top"
   data-popper-reference-hidden="true"
@@ -141,7 +145,7 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
 >
   Test Content
   <span
-    class="emotion-2 emotion-3"
+    class="emotion-0"
     style="position: absolute; left: 0px; transform: translate(0px, 0px);"
   />
 </div>

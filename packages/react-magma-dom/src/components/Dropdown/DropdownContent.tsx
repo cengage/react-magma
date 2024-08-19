@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css } from '@emotion/react';
+import { css } from '@emotion/core';
 import { Card } from '../Card';
 import {
   DropdownContext,
@@ -8,7 +8,8 @@ import {
 } from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 /**
  * @children required
@@ -22,7 +23,9 @@ export interface DropdownContentProps
   testId?: string;
 }
 
-const StyledCard = styled(Card)<{
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledCard = typedStyled(Card)<{
   alignment?: DropdownAlignment;
   dropDirection?: DropdownDropDirection;
   isInverse?: boolean;
@@ -51,6 +54,7 @@ const StyledCard = styled(Card)<{
       props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
+    }
     outline-offset: 0;
   }
 

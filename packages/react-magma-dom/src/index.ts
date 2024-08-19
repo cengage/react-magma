@@ -1,9 +1,3 @@
-import { ThemeInterface } from './theme/magma';
-
-declare module '@emotion/react' {
-  export interface Theme extends ThemeInterface {}
-}
-
 export { Alert, AlertProps } from './components/Alert';
 export { AlertVariant } from './components/AlertBase';
 export { Announce, AnnounceProps } from './components/Announce';
@@ -119,11 +113,7 @@ export {
   HideAtBreakpointDisplayType,
   HideAtBreakpointProps,
 } from './components/HideAtBreakpoint';
-export {
-  Hyperlink,
-  HyperlinkIconPosition,
-  HyperlinkProps,
-} from './components/Hyperlink';
+export { Hyperlink, HyperlinkIconPosition, HyperlinkProps } from './components/Hyperlink';
 export {
   IconButton,
   ButtonIconPosition,
@@ -255,7 +245,7 @@ export {
 export { magma, ThemeInterface } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';
 export { ThemeContext } from './theme/ThemeContext';
-export { default as styled } from '@emotion/styled';
+export { default as styled } from './theme/styled';
 export { I18nContext } from './i18n';
 export { defaultI18n } from './i18n/default';
 export { I18nInterface } from './i18n/interface';

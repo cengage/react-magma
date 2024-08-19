@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css } from '@emotion/react';
+import { css } from '@emotion/core';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 import { BlockQuoteProps } from '.';
@@ -56,7 +56,7 @@ export const blockQuoteStyles = props => css`
   `}
 `;
 
-const StyledBlockQuoteItem = styled(TypographyComponent)<any>`
+const StyledBlockQuoteItem = styled(TypographyComponent)`
   ${blockQuoteStyles}
 `;
 

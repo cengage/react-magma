@@ -25,7 +25,8 @@ import { CustomScatterDataComponent } from './CustomPointComponent';
 import { CustomAxisComponent } from './CustomAxisComponent';
 import { LegendButton } from './LegendButton';
 
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export type LineChartAxisStyle = VictoryAxisProps['style'];
 export type DataGetterPropType = VictoryLineProps['x'];
@@ -103,7 +104,7 @@ export interface LineChartProps<T extends ChartDataOptions> {
   y?: keyof T;
 }
 
-const LineChartContainer = styled.div`
+const LineChartContainer = typedStyled.div`
   max-height: 600px;
   max-width: 800px;
   svg {
@@ -111,13 +112,13 @@ const LineChartContainer = styled.div`
   }
 `;
 
-const VictoryChartContainer = styled.div``;
+const VictoryChartContainer = typedStyled.div``;
 
-const DataLegendsContainer = styled.div`
+const DataLegendsContainer = typedStyled.div`
   padding-bottom: 24px;
 `;
 
-const DataLegendsDescription = styled.p`
+const DataLegendsDescription = typedStyled.p`
   color: ${(props: any) => props.theme.colors.neutral};
   font-size: ${(props: any) => props.theme.typeScale.size02.fontSize};
 `;

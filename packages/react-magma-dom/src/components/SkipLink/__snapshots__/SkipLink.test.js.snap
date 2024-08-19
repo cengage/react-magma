@@ -24,9 +24,12 @@ exports[`SkipLink should render the skip link component 1`] = `
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
   -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -71,11 +74,11 @@ exports[`SkipLink should render the skip link component 1`] = `
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -87,11 +90,11 @@ exports[`SkipLink should render the skip link component 1`] = `
 
 .emotion-1:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%, -50%) scale(0);
-  -moz-transform: translate(-50%, -50%) scale(0);
-  -ms-transform: translate(-50%, -50%) scale(0);
-  transform: translate(-50%, -50%) scale(0);
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
@@ -130,9 +133,12 @@ exports[`SkipLink should render the skip link component 1`] = `
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -ms-flex-pack: center;
   -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-letter-spacing: inherit;
+  -moz-letter-spacing: inherit;
+  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -177,11 +183,11 @@ exports[`SkipLink should render the skip link component 1`] = `
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
+  -webkit-transform: translate(-50%,-50%) scale(1);
+  -ms-transform: translate(-50%,-50%) scale(1);
+  transform: translate(-50%,-50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
+  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
@@ -193,11 +199,11 @@ exports[`SkipLink should render the skip link component 1`] = `
 
 .emotion-1:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%, -50%) scale(0);
-  -moz-transform: translate(-50%, -50%) scale(0);
-  -ms-transform: translate(-50%, -50%) scale(0);
-  transform: translate(-50%, -50%) scale(0);
+  -webkit-transform: translate(-50%,-50%) scale(0);
+  -ms-transform: translate(-50%,-50%) scale(0);
+  transform: translate(-50%,-50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
+  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 

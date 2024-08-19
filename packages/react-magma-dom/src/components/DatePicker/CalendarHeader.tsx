@@ -10,14 +10,17 @@ import { enUS } from 'date-fns/locale';
 import { useForkedRef, usePrevious } from '../../utils';
 import { i18nFormat as format } from './utils';
 import { I18nContext } from '../../i18n';
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 interface CalendarHeaderProps {
   focusHeader?: boolean;
   isInverse?: boolean;
 }
 
-const CalendarHeaderContainer = styled.div`
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const CalendarHeaderContainer = typedStyled.div`
   align-items: center;
   display: flex;
   padding: ${props => props.theme.spaceScale.spacing10} 0
@@ -25,14 +28,14 @@ const CalendarHeaderContainer = styled.div`
   margin-top: -${props => props.theme.spaceScale.spacing01};
 `;
 
-const CalendarIconButton = styled.div<{ next?: boolean }>`
+const CalendarIconButton = typedStyled.div<{ next?: boolean }>`
   flex-grow: 0;
   flex-width: 10%;
   flex-basis: 10%;
   order: ${props => (props.next ? 2 : 0)};
 `;
 
-const CalendarHeaderText = styled.div<{ isInverse?: boolean }>`
+const CalendarHeaderText = typedStyled.div<{ isInverse?: boolean }>`
   caption-side: initial;
   color: ${props =>
     props.isInverse

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { XOR } from '../../utils';
-import { css } from '@emotion/react';
+import { css } from '@emotion/core';
 import { transparentize } from 'polished';
 
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -105,7 +105,7 @@ export const ToggleButtonStyles = props => css`
   }
 `;
 
-const StyledToggleButtonIcon = styled(IconButton)<any>`
+const StyledToggleButtonIcon = styled(IconButton)`
   ${ToggleButtonStyles}
   min-width: auto;
   width: ${props => (!props.hasLabel ? setIconWidth : '')};
@@ -114,7 +114,7 @@ const StyledToggleButtonIcon = styled(IconButton)<any>`
   }
 `;
 
-const StyledToggleButtonText = styled(Button)<any>`
+const StyledToggleButtonText = styled(Button)`
   ${ToggleButtonStyles}
 `;
 

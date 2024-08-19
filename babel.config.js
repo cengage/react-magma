@@ -1,7 +1,7 @@
 module.exports = function (api) {
   api.cache(true)
   return {
-    plugins: [['@emotion', { autoLabel: "always" }]],
+    plugins: [['emotion', { autoLabel: true }]],
     env: {
       test: {
         plugins: ['dynamic-import-node'],

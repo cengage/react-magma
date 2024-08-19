@@ -26,8 +26,8 @@
     "lint": "eslint ./src"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
+    "@emotion/core": "^10.1.1",
+    "@emotion/styled": "^10.0.27",
     "react": "^16.0.0 || ^17.0.0",
     "react-dom": "^16.0.0 || ^17.0.0",
     "react-magma-dom": "^3.7.0-next.0",
@@ -38,11 +38,11 @@
     "react-dropzone": "11.3.2"
   },
   "devDependencies": {
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
-    "react": "^16.0.0 || ^17.0.0",
-    "react-dom": "^16.0.0 || ^17.0.0",
-    "react-magma-dom": "^3.7.0-next.0",
+    "@emotion/core": "^10.1.1",
+    "@emotion/styled": "^10.0.27",
+    "react": "^16.10.0",
+    "react-dom": "^16.10.0",
+    "react-magma-dom": "^3.8.0",
     "react-magma-icons": "2.3.6"
   }
 }

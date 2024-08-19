@@ -6,7 +6,8 @@ import { CalendarContext } from './CalendarContext';
 import { I18nContext } from '../../i18n';
 import { i18nFormat as format } from './utils';
 import { transparentize } from 'polished';
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 interface CalendarDayProps {
   day: Date;
@@ -14,6 +15,8 @@ interface CalendarDayProps {
   isInverse?: boolean;
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
 }
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 function buildCalendarDayBackground(props) {
   if (props.isInverse) {
@@ -48,7 +51,7 @@ function buildCalendarDayColor(props) {
   return props.theme.colors.neutral;
 }
 
-const CalendarDayCell = styled.td<{
+const CalendarDayCell = typedStyled.td<{
   isInverse?: boolean;
 }>`
   border: 1px solid
@@ -68,7 +71,7 @@ const CalendarDayCell = styled.td<{
   width: ${props => props.theme.spaceScale.spacing09};
 `;
 
-const CalendarDayInner = styled.button<{
+const CalendarDayInner = typedStyled.button<{
   isChosen?: boolean;
   isFocused?: boolean;
   isInverse?: boolean;
@@ -120,12 +123,12 @@ const CalendarDayInner = styled.button<{
   }
 `;
 
-const EmptyCell = styled.td`
+const EmptyCell = typedStyled.td`
   border: 0;
   padding: 0;
 `;
 
-const TodayIndicator = styled.span<{
+const TodayIndicator = typedStyled.span<{
   isInverse?: boolean;
 }>`
   border-left: 8px solid

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css } from '@emotion/react';
+import { css } from '@emotion/core';
 import isPropValid from '@emotion/is-prop-valid';
 import { transparentize } from 'polished';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -17,7 +17,10 @@ import { ProgressRing } from '../ProgressRing';
 import { useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export const VARIANT_ICON: {
   [name: string]: React.FunctionComponent<IconProps>;
@@ -165,7 +168,7 @@ export function buildLinkHoverColor(props) {
   }
 }
 
-const StyledAlert = styled.div<AlertBaseProps>`
+const StyledAlert = typedStyled.div<AlertBaseProps>`
   align-items: stretch;
   animation: ${props =>
     props.isExiting
@@ -259,7 +262,7 @@ const StyledAlert = styled.div<AlertBaseProps>`
   }
 `;
 
-const StyledAlertInner = styled.div<AlertBaseProps>`
+const StyledAlertInner = typedStyled.div<AlertBaseProps>`
   background: ${buildAlertBackground};
   border: 1px solid ${buildAlertBorder};
   border-radius: ${props => props.theme.borderRadius};
@@ -278,7 +281,7 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
     `}
 `;
 
-const AlertContents = styled.div<{
+const AlertContents = typedStyled.div<{
   additionalContent?: React.ReactNode;
   isDismissible?: boolean;
 }>`
@@ -297,7 +300,7 @@ const AlertContents = styled.div<{
   }
 `;
 
-export const AdditionalContentWrapper = styled.div`
+export const AdditionalContentWrapper = typedStyled.div`
   flex: 1 0 auto;
   justify-content: flex-end;
   display: flex;
@@ -311,7 +314,7 @@ const IconWrapperStyles = css`
   margin-right: 1px;
 `;
 
-const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
+const IconWrapper = typedStyled.span<{ isToast?: boolean; theme: any }>`
   ${IconWrapperStyles}
   padding: 0 ${props => props.theme.spaceScale.spacing03} 0 ${props =>
     props.theme.spaceScale.spacing04};
@@ -324,14 +327,14 @@ const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
   }
 `;
 
-const ProgressRingWrapper = styled.div`
+const ProgressRingWrapper = typedStyled.div`
   margin-top: 6px;
   position: absolute;
   top: auto;
   right: ${props => props.theme.spaceScale.spacing02};
 `;
 
-const DismissibleIconWrapper = styled.span<AlertBaseProps>`
+const DismissibleIconWrapper = typedStyled.span<AlertBaseProps>`
   ${IconWrapperStyles}
   margin-left: ${props =>
     props.additionalContent ? props.theme.spaceScale.spacing03 : ''};
@@ -343,7 +346,7 @@ const shouldForwardProp = prop => {
   return isPropValid(prop) || whitelistProps.includes(prop);
 };
 
-const DismissButton = styled(IconButton, { shouldForwardProp })<{
+const DismissButton = typedStyled(IconButton, { shouldForwardProp })<{
   alertVariant?: AlertVariant;
   isInverse?: boolean;
   isToast?: boolean;

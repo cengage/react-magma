@@ -8,6 +8,6 @@
     "noImplicitReturns": false,
     "noImplicitThis": false, 
     "strictFunctionTypes": false,
-    "strictNullChecks":  false,
+    "strictNullChecks":  false
   }
 }

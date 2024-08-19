@@ -1,5 +1,5 @@
 import React from 'react';
-import { css, keyframes } from '@emotion/react';
+import { css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 import FocusLock from 'react-focus-lock';
 import { Logo } from '../Logo';

@@ -9,13 +9,16 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { useTreeItem } from './useTreeItem';
 import { TreeViewContext } from './TreeViewContext';
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 export interface TreeViewProps
   extends Omit<React.HTMLAttributes<HTMLUListElement>, 'children'>,
     UseTreeViewProps {}
 
-const StyledTreeView = styled.ul<TreeViewProps>`
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledTreeView = typedStyled.ul<TreeViewProps>`
   padding: 0;
   margin: 0;
   color: ${props =>

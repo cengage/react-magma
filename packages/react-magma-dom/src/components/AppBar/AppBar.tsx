@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { InverseContext, useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
 
 /**
  * @children required
@@ -29,6 +29,8 @@ export interface AppBarProps extends React.HTMLAttributes<HTMLDivElement> {
   theme?: ThemeInterface;
 }
 
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
 export enum AppBarPosition {
   absolute = 'absolute',
   fixed = 'fixed',
@@ -37,7 +39,7 @@ export enum AppBarPosition {
   sticky = 'sticky',
 }
 
-const StyledHeader = styled.header<{
+const StyledHeader = typedStyled.header<{
   isCompact?: boolean;
   isInverse?: boolean;
   position: AppBarPosition;

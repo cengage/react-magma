@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Global, css } from '@emotion/react';
+import { Global, css } from '@emotion/core';
 import { ThemeContext } from '../ThemeContext';
 import { useIsInverse } from '../../inverse';
 

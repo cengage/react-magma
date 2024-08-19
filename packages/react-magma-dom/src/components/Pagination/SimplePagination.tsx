@@ -11,8 +11,10 @@ import { useGenerateId } from '../../utils';
 import { Spacer } from '../Spacer';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { transparentize } from 'polished';
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 function buildLabelColor(props) {
   if (props.isInverse) {
@@ -27,7 +29,7 @@ function buildLabelColor(props) {
   return props.theme.colors.neutral700;
 }
 
-const StyledWrapper = styled.div<{
+const StyledWrapper = typedStyled.div<{
   disabled?: boolean;
   isInverse?: boolean;
 }>`

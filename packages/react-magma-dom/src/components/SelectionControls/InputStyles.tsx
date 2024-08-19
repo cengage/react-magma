@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from '@emotion/core';
 
 export const DisplayInputStyles = props => css`
   align-items: center;

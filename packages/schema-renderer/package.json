@@ -21,8 +21,8 @@
   },
   "peerDependencies": {
     "@data-driven-forms/react-form-renderer": "^3.6.0",
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
+    "@emotion/core": "^10.1.1",
+    "@emotion/styled": "^10.0.27",
     "date-fns": "^2.12.0",
     "downshift": "^5.4.5",
     "react": "^16.10.0 || ^17.0.0",
@@ -34,8 +34,8 @@
   "module": "dist/react-magma-schema-renderer.esm.js",
   "devDependencies": {
     "@data-driven-forms/react-form-renderer": "^3.6.0",
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
+    "@emotion/core": "^10.1.1",
+    "@emotion/styled": "^10.0.27",
     "date-fns": "^2.16.1",
     "downshift": "^5.4.5",
     "react": "^16.10.0",
