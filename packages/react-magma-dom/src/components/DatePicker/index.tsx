@@ -119,7 +119,7 @@ export interface DatePickerProps
 
 const typedStyled = styled as CreateStyled<ThemeInterface>;
 
-const DatePickerContainer = styled.div`
+const DatePickerContainer = typedStyled.div`
   position: relative;
 `;
 
