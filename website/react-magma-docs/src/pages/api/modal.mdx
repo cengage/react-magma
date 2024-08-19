@@ -169,6 +169,7 @@ export function Example() {
   const [showModalHeaderRef, setShowModalHeaderRef] = React.useState(false);
   const buttonRef = React.useRef();
   const headerButtonRef = React.useRef();
+  const headerRefButtonRef = React.useRef();
 
   const [customHeadingRef, setCustomHeadingRef] = React.useState(
     React.useRef<any>()
@@ -184,14 +185,6 @@ export function Example() {
 
   const onModalClose = () => {
     setShowModal(false);
-  };
-
-  const onModalShowDefault = () => {
-    setShowDefaultModal(true);
-  };
-
-  const onModalCloseDefault = () => {
-    setShowDefaultModal(false);
   };
 
   const onHeadingFocus = () => {
@@ -230,7 +223,10 @@ export function Example() {
       </Modal>
 
       <Modal
-        onClose={() => setShowModalHeaderRef(false)}
+        onClose={() => {
+          setShowModalHeaderRef(false);
+          headerRefButtonRef.current.focus();
+        }}
         isOpen={showModalHeaderRef}
         headerRef={handleGetHeaderRef}
         style={{ padding: '20px' }}
@@ -254,13 +250,12 @@ export function Example() {
             }}
           />
           <h2 ref={customHeadingRef} tabIndex={-1}>
-            Add Links to Cengage Content
+            Add Links to Your Content
           </h2>
           <Paragraph>
-            Your LMS course is now integrated with Cengage. Select specific
-            Cengage activities to provide students with direct links. Or, add
-            just one link to your entire course. You can return to select more
-            content later.
+            Your course is now integrated. Select specific activities to provide
+            students with direct links. Or, add just one link to your entire
+            course. You can return to select more content later.
           </Paragraph>
           <ButtonGroup>
             <Button onClick={onHeadingFocus} color={ButtonColor.subtle}>
@@ -288,6 +283,7 @@ export function Example() {
         <Button
           style={{ marginLeft: '0' }}
           onClick={() => setShowModalHeaderRef(true)}
+          ref={headerRefButtonRef}
         >
           Show Modal with headerRef
         </Button>
