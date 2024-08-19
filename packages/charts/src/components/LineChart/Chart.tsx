@@ -20,7 +20,7 @@ import {
   Tooltip,
   TypographyVisualStyle,
   useDescendants,
-  styled
+  styled,
 } from 'react-magma-dom';
 
 interface BaseChartProps {
