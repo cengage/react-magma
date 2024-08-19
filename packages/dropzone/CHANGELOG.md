@@ -21,6 +21,7 @@
 
 ## 7.0.0
 
+## 7.0.0
 - Updated dependencies [9f1e0956a]
   - react-magma-dom@4.4.1-next.0
 
