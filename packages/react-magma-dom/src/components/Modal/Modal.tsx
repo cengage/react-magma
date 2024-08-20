@@ -49,6 +49,10 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   header?: React.ReactNode;
   /**
+   * Function that returns reference for the header
+   */
+  headerRef?: (headerRef: React.Ref<any>) => void;
+  /**
    * If true, closing the modal handled on the consumer side
    * @default false
    */
@@ -224,11 +228,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const [currentTarget, setCurrentTarget] = React.useState(null);
     const [modalCount, setModalCount] = React.useState<number>(0);
 
-    const focusTrapElement = useFocusLock(
-      isModalOpen,
-      props.header ? headingRef : null,
-      bodyRef
-    );
+    const focusTrapElement = useFocusLock(isModalOpen, headingRef, bodyRef);
 
     const prevOpen = usePrevious(props.isOpen);
 
@@ -242,6 +242,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         setIsModalOpen(false);
       } else if (!prevOpen && props.isOpen) {
         setIsModalOpen(true);
+        if (props.headerRef && typeof props.headerRef === 'function') {
+          props.headerRef(headingRef);
+        }
       } else if (prevOpen && !props.isOpen && isModalOpen) {
         handleClose();
       }
