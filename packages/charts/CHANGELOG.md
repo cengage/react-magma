@@ -1,5 +1,12 @@
 # @react-magma/charts
 
+## 9.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [fdf2dc929]
+  - react-magma-dom@4.6.0-next.0
+
 ## 8.0.0-next.5
 
 ### Minor Changes

@@ -1,3 +1,8 @@
+## 4.6.0-next.0
+
+### Minor Changes
+
+- fdf2dc929: feat(Modal): New `headerRef` prop that returns a reference to the header element
 
 ## 4.5.0
 

@@ -1,5 +1,12 @@
 # Change Log
 
+## 9.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [fdf2dc929]
+  - react-magma-dom@4.6.0-next.0
+
 ## 8.0.0
 
 ### Minor Changes
@@ -11,6 +18,7 @@
 - 5f16d2018: fix(Dropzone): Open file browse on button click
 
 ## 7.0.0
+
 - Updated dependencies [9f1e0956a]
   - react-magma-dom@4.4.1-next.0
 
