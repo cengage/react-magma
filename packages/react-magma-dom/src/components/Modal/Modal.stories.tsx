@@ -476,6 +476,100 @@ export const CloseModalWithConfirmation = () => {
   );
 };
 
+export const HeaderReference = () => {
+  const [showModal, setShowModal] = React.useState(false);
+  const [showDefaultModal, setShowDefaultModal] = React.useState(false);
+  const [customHeadingRef, setCustomHeadingRef] = React.useState(
+    React.useRef<any>()
+  );
+
+  const handleGetHeaderRef = ref => {
+    setCustomHeadingRef(ref);
+  };
+
+  const onModalShow = () => {
+    setShowModal(true);
+  };
+
+  const onModalClose = () => {
+    setShowModal(false);
+  };
+
+  const onModalShowDefault = () => {
+    setShowDefaultModal(true);
+  };
+
+  const onModalCloseDefault = () => {
+    setShowDefaultModal(false);
+  };
+
+  const onHeadingFocus = () => {
+    customHeadingRef?.current?.focus();
+  };
+
+  return (
+    <>
+      {/* Custom Heading */}
+      <Modal
+        onClose={onModalClose}
+        isOpen={showModal}
+        headerRef={handleGetHeaderRef}
+      >
+        <h3 ref={customHeadingRef} tabIndex={-1}>
+          Custom header using h3
+        </h3>
+        <Paragraph>
+          Wicked pissah dolor sit amet, consectetur adipisicing elit. Blandit
+          sagittae Suspendisse mus fah daze, candle pin Market Basket P-town. Id
+          labore, TD Gahden consectetur morbi consectetur sketchy ad. Adipiscing
+          postea kid kid. Dis dolor scriptorem frickin auctor eros Bunker Hill
+          parturient. Suspendisse penatibus roast beef Bunker Hill.
+          Orange Line, blandit consectetur nam cu no eget ne, clicker. Mauris
+          vestibulum, augue Downtown Crossing, lectus half moon lorem.
+          Scelerisque sketchy wicked smaht carriage down Cape no.
+        </Paragraph>
+        <ButtonGroup>
+          <Button onClick={onHeadingFocus} color={ButtonColor.subtle}>
+            Focus Heading
+          </Button>
+          <Button onClick={onModalClose}>Close</Button>
+        </ButtonGroup>
+      </Modal>
+
+      {/* Default Heading */}
+      <Modal
+        onClose={onModalCloseDefault}
+        isOpen={showDefaultModal}
+        headerRef={handleGetHeaderRef}
+        header="I am a default magma header"
+      >
+        <Paragraph>
+          Wicked pissah dolor sit amet, consectetur adipisicing elit. Pike,
+          sketchy sagittae, parturient est Fenway Park venenatis quo graeci
+          stet. Habeo vehicula vis cum sed lectus pretium. Packie, Freedom
+          Trail, Vivamus phaedrum pahk cah Green Monstah Southie Newbury Street.
+          Gravida dis placerat sketchy carriage. Eum splendide Big Dig, Boston
+          Tea Party Charles sagittae wicked pissah packie. Ipsum id scrod,
+          sagittae I-90 chowdah frickin. Est ipsum rutrum, vis erat, ridens.
+        </Paragraph>
+        <ButtonGroup>
+          <Button onClick={onHeadingFocus} color={ButtonColor.subtle}>
+            Focus Heading
+          </Button>
+          <Button onClick={onModalCloseDefault}>Close</Button>
+        </ButtonGroup>
+      </Modal>
+
+      <ButtonGroup>
+        <Button onClick={onModalShow}>Show Custom Heading Modal</Button>
+        <Button onClick={onModalShowDefault}>
+          Show Modal with Default Heading
+        </Button>
+      </ButtonGroup>
+    </>
+  );
+};
+
 export const Inverse = () => {
   const [showModal, setShowModal] = React.useState(false);
   const buttonRef = React.useRef<HTMLButtonElement>();
