@@ -179,18 +179,6 @@ export function Example() {
     setCustomHeadingRef(ref);
   };
 
-  const onModalShow = () => {
-    setShowModal(true);
-  };
-
-  const onModalClose = () => {
-    setShowModal(false);
-  };
-
-  const onHeadingFocus = () => {
-    customHeadingRef.current.focus();
-  };
-
   return (
     <>
       <Modal
@@ -250,15 +238,18 @@ export function Example() {
             }}
           />
           <h2 ref={customHeadingRef} tabIndex={-1}>
-            Add Links to Your Content
+            Confirmation header
           </h2>
           <Paragraph>
-            Your course is now integrated. Select specific activities to provide
-            students with direct links. Or, add just one link to your entire
-            course. You can return to select more content later.
+            With watermelon ostriches. Gourds utters at welding equipment a oink
+            oink haybine. Goose hammers cattle rats in crows. Blue berries
+            pigeons buzz and bean prairie dogs nails at est.
           </Paragraph>
           <ButtonGroup>
-            <Button onClick={onHeadingFocus} color={ButtonColor.subtle}>
+            <Button
+              onClick={() => customHeadingRef.current.focus()}
+              color={ButtonColor.subtle}
+            >
               Focus Heading
             </Button>
             <Button
