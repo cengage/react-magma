@@ -13,6 +13,7 @@
   "changesets": [
     "breadcrumbs-alignment",
     "docs-drawer",
+    "docs-drawerExample",
     "feat-modal-headerref",
     "sync"
   ]

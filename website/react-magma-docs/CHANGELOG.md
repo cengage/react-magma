@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.8-next.3
+
+### Patch Changes
+
+- f4be5a89d: fix(Drawer): Fix Drawer Navigation example
+
 ## 5.0.8-next.2
 
 ### Patch Changes
