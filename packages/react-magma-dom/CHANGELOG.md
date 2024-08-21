@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.6.0-next.1
+
+### Patch Changes
+
+- 48b7a5539: fix(Breadcrumbs): Fixed alignment issue between elements.
+
 ### Minor Changes
 
 - d48b8bbd4: feat(Modal): New `headerRef` prop that returns a reference to the header element
