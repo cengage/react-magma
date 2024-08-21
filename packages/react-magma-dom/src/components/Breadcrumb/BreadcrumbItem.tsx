@@ -20,7 +20,6 @@ export interface BreadcrumbItemProps
   to?: string;
 }
 
-
 const StyledItem = styled.li`
   list-style: none;
   margin: 0;
