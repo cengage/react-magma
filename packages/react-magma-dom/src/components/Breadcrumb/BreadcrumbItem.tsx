@@ -20,7 +20,6 @@ export interface BreadcrumbItemProps
   to?: string;
 }
 
-
 const StyledItem = styled.li`
   list-style: none;
   margin: 0;
@@ -29,6 +28,8 @@ const StyledItem = styled.li`
 `;
 
 const StyledSpan = styled.span<{ isInverse?: boolean }>`
+  align-items: center;
+  display: flex;
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
