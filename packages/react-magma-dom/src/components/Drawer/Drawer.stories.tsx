@@ -30,6 +30,7 @@ export const Default = args => {
         header="Drawer Title"
         onClose={() => setShowDrawer(false)}
         isOpen={showDrawer}
+        closeAriaLabel="Close drawer"
         {...args}
       >
         <p>This is a Drawer, doing Drawer things.</p>
@@ -55,6 +56,7 @@ export const SiteNavigation = args => {
         isOpen={showDrawer}
         position={DrawerPosition.right}
         ariaLabel="Site Navigation Drawer"
+        closeAriaLabel="Close Navigation Drawer"
       >
         <NavTabs orientation={TabsOrientation.vertical}>
           <NavTab to="#">One</NavTab>
