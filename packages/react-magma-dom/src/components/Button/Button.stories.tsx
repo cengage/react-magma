@@ -40,11 +40,7 @@ const Template: Story<ButtonProps> = args => (
       >
         Secondary
       </Button>
-      <Button
-        variant={ButtonVariant.link}
-        {...args}
-        color={ButtonColor.subtle}
-      >
+      <Button variant={ButtonVariant.link} {...args} color={ButtonColor.subtle}>
         Subtle
       </Button>
       <Button variant={ButtonVariant.link} {...args} color={ButtonColor.danger}>
@@ -268,6 +264,29 @@ export const All = () => {
           </ButtonGroup>
         </CardBody>
       </Card>
+    </>
+  );
+};
+
+export const LoadingButton = args => {
+  const [isLoading, setIsLoading] = React.useState(args.isLoading);
+  React.useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 4000);
+    }
+  }, [isLoading]);
+
+  return (
+    <>
+      <p>Click the button below to show the loading state</p>
+      <div role="status">Status: {isLoading ? 'Loading...' : 'Ready'}</div>
+      <ButtonGroup>
+        <Button {...args} isLoading={isLoading} onClick={() => setIsLoading(true)}>
+          Save
+        </Button>
+      </ButtonGroup>
     </>
   );
 };

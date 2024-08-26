@@ -139,11 +139,25 @@ import React from 'react';
 import { Button, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
+  const [isLoading, setIsLoading] = React.useState(false);
+  React.useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 4000);
+    }
+  }, [isLoading]);
+
   return (
-    <ButtonGroup>
-      <Button isLoading>Save</Button>
-      <Button isLoading={false}>Save</Button>
-    </ButtonGroup>
+    <>
+      <p>Click the button below to show the loading state</p>
+      <div role="status">Status: {isLoading ? 'Loading...' : 'Ready'}</div>
+      <ButtonGroup>
+        <Button isLoading={isLoading} onClick={() => setIsLoading(true)}>
+          Save
+        </Button>
+      </ButtonGroup>
+    </>
   );
 }
 ```
