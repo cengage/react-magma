@@ -11,9 +11,6 @@ exports.onCreateWebpackConfig = ({ actions, plugins }) => {
       alias: {
         path: require.resolve('path-browserify'),
       },
-      fallback: {
-        'object.assign/polyfill': require.resolve("object.assign/polyfill.js"),
-      }
     },
     module: {
       rules: [
