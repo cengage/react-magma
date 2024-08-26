@@ -21,6 +21,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonType, ButtonProps, ButtonSize, ButtonVariant } from '../Button';
 import { Spinner } from '../Spinner';
 import { I18nContext } from '../../i18n';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface StyledButtonProps extends ButtonProps {
   href?: string;
@@ -128,9 +129,6 @@ export const BaseStyledButton = styled.button`
 const SpinnerWrapper = styled.span`
   position: absolute;
   display: flex;
-  > span:last-child {
-    display: none;
-  }
 `;
 
 const ChildrenWrapper = styled.span<{ isLoading: boolean; testId?: string }>`
@@ -184,7 +182,7 @@ export const StyledButton = React.forwardRef<
             size={spinnerSize}
             noRole
           />
-          <span>{i18n.spinner.ariaLabel}</span>
+          <VisuallyHidden>{i18n.spinner.ariaLabel}</VisuallyHidden>
         </SpinnerWrapper>
       )}
       <ChildrenWrapper isLoading={isLoading} testId={`${testId}-children`}>

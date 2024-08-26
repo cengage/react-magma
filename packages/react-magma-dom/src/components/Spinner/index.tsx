@@ -82,7 +82,8 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
         }
         data-testid={testId}
         ref={ref}
-        role={noRole ? null : 'img'}
+        role={!noRole && 'img'}
+        aria-hidden={noRole}
         size={sizeString}
       />
     );
