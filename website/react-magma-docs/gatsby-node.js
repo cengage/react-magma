@@ -1,8 +1,7 @@
-const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const propertiesJson = require('react-magma-dom/dist/properties.json');
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+exports.onCreateWebpackConfig = ({ actions, plugins }) => {
   actions.setWebpackConfig({
     node: {
       fs: 'empty',
@@ -12,6 +11,9 @@ exports.onCreateWebpackConfig = ({ actions }) => {
       alias: {
         path: require.resolve('path-browserify'),
       },
+      fallback: {
+        'object.assign/polyfill': require.resolve("object.assign/polyfill.js"),
+      }
     },
     module: {
       rules: [
@@ -22,6 +24,9 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         },
       ],
     },
+    plugins: [
+      plugins.provide({ process: 'process', Buffer: ['buffer', 'Buffer'] })
+    ],
   });
 };
 
