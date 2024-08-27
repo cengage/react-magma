@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.6.0-next.2
+
+### Patch Changes
+
+- 1d1dd1d06: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
+
 ## 4.6.0-next.1
 
 ### Patch Changes
