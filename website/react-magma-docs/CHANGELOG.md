@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.8-next.5
+
+### Patch Changes
+
+- 78db20cc1: fix(ToggleButton): Improved accessibility for Toggle Button icon only examples.
+
 ## 5.0.8-next.4
 
 ### Patch Changes
