@@ -13,6 +13,7 @@ import { Card, CardBody } from '../Card';
 import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { ButtonGroup } from '../ButtonGroup';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 const Template: Story<ButtonProps> = args => (
   <>
@@ -281,9 +282,15 @@ export const LoadingButton = args => {
   return (
     <>
       <p>Click the button below to show the loading state</p>
-      <div role="status">Status: {isLoading ? 'Loading...' : 'Ready'}</div>
+      <VisuallyHidden>
+        <span role="status">{isLoading ? 'Loading...' : 'Ready'}</span>
+      </VisuallyHidden>
       <ButtonGroup>
-        <Button {...args} isLoading={isLoading} onClick={() => setIsLoading(true)}>
+        <Button
+          {...args}
+          isLoading={isLoading}
+          onClick={() => setIsLoading(true)}
+        >
           Save
         </Button>
       </ButtonGroup>

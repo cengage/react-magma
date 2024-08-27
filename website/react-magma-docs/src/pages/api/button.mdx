@@ -136,7 +136,7 @@ When a button is in a loading state, the label can be replaced with a loading sp
 
 ```tsx
 import React from 'react';
-import { Button, ButtonGroup } from 'react-magma-dom';
+import { Button, ButtonGroup, VisuallyHidden } from 'react-magma-dom';
 
 export function Example() {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -151,7 +151,9 @@ export function Example() {
   return (
     <>
       <p>Click the button below to show the loading state</p>
-      <div role="status">Status: {isLoading ? 'Loading...' : 'Ready'}</div>
+      <VisuallyHidden>
+        <span role="status">{isLoading ? 'Loading...' : 'Ready'}</span>
+      </VisuallyHidden>
       <ButtonGroup>
         <Button isLoading={isLoading} onClick={() => setIsLoading(true)}>
           Save
