@@ -83,6 +83,83 @@ export function Example() {
 }
 ```
 
+## Nested List
+
+```typescript
+import React from 'react';
+import { List, ListItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <List>
+      <ListItem>
+        Mammals
+        <List>
+          <ListItem>
+            Dogs
+            <List>
+              <ListItem>German Shepherd</ListItem>
+              <ListItem>Labrador Retriever</ListItem>
+              <ListItem>American Bully</ListItem>
+            </List>
+          </ListItem>
+          <ListItem>
+            Cats
+            <List>
+              <ListItem>Siamese</ListItem>
+              <ListItem>Persian</ListItem>
+              <ListItem>Bengal</ListItem>
+            </List>
+          </ListItem>
+        </List>
+      </ListItem>
+      <ListItem>
+        Reptiles
+        <List>
+          <ListItem>
+            Snakes
+            <List>
+              <ListItem>Python</ListItem>
+              <ListItem>Boa Constrictor</ListItem>
+              <ListItem>Corn Snake</ListItem>
+            </List>
+          </ListItem>
+          <ListItem>
+            Lizards
+            <List>
+              <ListItem>Geckos</ListItem>
+              <ListItem>Iguanas</ListItem>
+              <ListItem>Chameleons</ListItem>
+            </List>
+          </ListItem>
+        </List>
+      </ListItem>
+      <ListItem>
+        Birds
+        <List>
+          <ListItem>
+            Parrots
+            <List>
+              <ListItem>African Grey</ListItem>
+              <ListItem>Cockatiel</ListItem>
+              <ListItem>Budgerigar</ListItem>
+            </List>
+          </ListItem>
+          <ListItem>
+            Birds of Prey
+            <List>
+              <ListItem>Eagles</ListItem>
+              <ListItem>Hawks</ListItem>
+              <ListItem>Falcons</ListItem>
+            </List>
+          </ListItem>
+        </List>
+      </ListItem>
+    </List>
+  );
+}
+```
+
 ## Icon List
 
 An Icon `List` allows the user to use Magma Icons in place of bulleted or numeric characters.
