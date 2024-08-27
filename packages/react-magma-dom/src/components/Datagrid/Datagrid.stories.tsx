@@ -23,6 +23,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 1',
   },
   {
     id: 2,
@@ -30,6 +31,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 2',
   },
   {
     id: 3,
@@ -37,6 +39,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 3',
   },
   {
     id: 4,
@@ -44,6 +47,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 4',
   },
   {
     id: 5,
@@ -51,6 +55,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 5',
   },
   {
     id: 6,
@@ -58,6 +63,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 6',
   },
   {
     id: 7,
@@ -65,6 +71,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 7',
   },
   {
     id: 8,
@@ -72,6 +79,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 8',
   },
   {
     id: 9,
@@ -79,6 +87,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 9',
   },
   {
     id: 10,
@@ -86,6 +95,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 10',
   },
   {
     id: 11,
@@ -93,6 +103,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 11',
   },
   {
     id: 12,
@@ -100,6 +111,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 12',
   },
   {
     id: 13,
@@ -107,6 +119,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 13',
   },
   {
     id: 14,
@@ -114,6 +127,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 14',
   },
   {
     id: 15,
@@ -121,6 +135,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 15',
   },
   {
     id: 16,
@@ -128,6 +143,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 16',
   },
   {
     id: 17,
@@ -135,6 +151,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 17',
   },
   {
     id: 18,
@@ -142,6 +159,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 18',
   },
   {
     id: 19,
@@ -149,6 +167,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 19',
   },
   {
     id: 20,
@@ -156,6 +175,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 20',
   },
   {
     id: 21,
@@ -163,6 +183,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 21',
   },
   {
     id: 22,
@@ -170,6 +191,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 22',
   },
   {
     id: 23,
@@ -177,6 +199,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 23',
   },
   {
     id: 24,
@@ -184,6 +207,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 24',
   },
   {
     id: 25,
@@ -191,6 +215,7 @@ const rowsForPagination = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row 25',
   },
 ];
 
@@ -275,6 +300,7 @@ const coloredRows = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row danger',
   },
   {
     id: 2,
@@ -283,6 +309,7 @@ const coloredRows = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row info',
   },
   {
     id: 3,
@@ -291,6 +318,7 @@ const coloredRows = [
     col2: 'Lorem ipsum dolor',
     col3: 'Lorem ipsum dolor',
     col4: 'Lorem ipsum',
+    rowName: 'Row success',
   },
 ];
 
@@ -354,7 +382,7 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
       setSelectedDirection(direction);
       setPriceDirection(TableSortDirection.none);
       setStockDirection(TableSortDirection.none);
-    } else if (key === 'price'){
+    } else if (key === 'price') {
       if (
         sortConfig?.key === key &&
         priceDirection === TableSortDirection.ascending
@@ -364,7 +392,7 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
       setPriceDirection(direction);
       setSelectedDirection(TableSortDirection.none);
       setStockDirection(TableSortDirection.none);
-    } else if (key === 'stock'){
+    } else if (key === 'stock') {
       if (
         sortConfig?.key === key &&
         stockDirection === TableSortDirection.ascending
@@ -402,12 +430,12 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
     },
   ];
   const products = [
-    { id: 1, name: 'Cheese', price: 5, stock: 20 },
-    { id: 2, name: 'Milk', price: 5, stock: 32 },
-    { id: 3, name: 'Yogurt', price: 3, stock: 12 },
-    { id: 4, name: 'Heavy Cream', price: 10, stock: 9 },
-    { id: 5, name: 'Butter', price: 2, stock: 99 },
-    { id: 6, name: 'Sour Cream ', price: 4, stock: 86 },
+    { id: 1, name: 'Cheese', price: 5, stock: 20, rowName: 'Cheese' },
+    { id: 2, name: 'Milk', price: 5, stock: 32, rowName: 'Milk' },
+    { id: 3, name: 'Yogurt', price: 3, stock: 12, rowName: 'Yogurt' },
+    { id: 4, name: 'Heavy Cream', price: 10, stock: 9, rowName: 'Heavy Cream' },
+    { id: 5, name: 'Butter', price: 2, stock: 99, rowName: 'Butter' },
+    { id: 6, name: 'Sour Cream', price: 4, stock: 86, rowName: 'Sour Cream' },
   ];
 
   const [selectedItems, setSelectedItems] = React.useState([]);
@@ -447,7 +475,8 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
       }
     } else {
       let sortableItems = [...products];
-      const direction = sortConfig.key === 'price' ? priceDirection : stockDirection;
+      const direction =
+        sortConfig.key === 'price' ? priceDirection : stockDirection;
       sortableItems.sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
           return direction === TableSortDirection.ascending ? -1 : 1;
@@ -496,9 +525,9 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
         onRowSelect={handleRowSelect}
         onHeaderSelect={handleHeaderSelect}
         sortDirection={selectedDirection}
-        />
-        <Announce>
-          <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
+      />
+      <Announce>
+        <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
       </Announce>
     </>
   );
