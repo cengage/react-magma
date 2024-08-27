@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.6.0-next.3
+
+### Patch Changes
+
+- aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
+
 ## 4.6.0-next.2
 
 ### Patch Changes
