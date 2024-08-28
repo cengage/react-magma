@@ -1,5 +1,11 @@
 ## 4.6.0-next.0
 
+## 4.6.0-next.4
+
+### Patch Changes
+
+- 9214724b6: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
+
 ## 4.6.0-next.3
 
 ### Patch Changes

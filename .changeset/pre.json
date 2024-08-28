@@ -13,6 +13,7 @@
   "changesets": [
     "a11y-datagrid",
     "a11y-iconToggleBtn",
+    "a11y-navTabs",
     "a11y-pagination",
     "breadcrumbs-alignment",
     "docs-drawer",
