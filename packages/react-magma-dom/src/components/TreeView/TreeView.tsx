@@ -13,7 +13,7 @@ import styled from '@emotion/styled';
 
 export interface TreeViewProps
   extends Omit<React.HTMLAttributes<HTMLUListElement>, 'children'>,
-    UseTreeViewProps {}
+  UseTreeViewProps { }
 
 const StyledTreeView = styled.ul<TreeViewProps>`
   padding: 0;

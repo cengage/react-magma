@@ -57,6 +57,8 @@ export interface UseTreeViewProps {
    * Example: [ {itemId: 'item0', checkedStatus: IndeterminateCheckboxStatus.indeterminate}, {itemId: 'item0-child', checkedStatus: IndeterminateCheckboxStatus.checked} ]
    */
   onSelectedItemChange?: (selectedItems: Array<Object>) => void;
+  checkParents?: boolean;
+  checkChildren?: boolean;
   children?: React.ReactNode[];
 }
 
@@ -67,6 +69,8 @@ export function useTreeView(props: UseTreeViewProps) {
     onExpandedChange,
     initialExpandedItems,
     preselectedItems,
+    checkChildren = true,
+    checkParents = true,
     children,
   } = props;
 
@@ -153,6 +157,8 @@ export function useTreeView(props: UseTreeViewProps) {
     setInitialExpandedItemsNeedUpdate,
     selectedItemsChanged,
     setSelectedItemsChanged,
+    checkChildren,
+    checkParents
   };
 
   return { contextValue };
