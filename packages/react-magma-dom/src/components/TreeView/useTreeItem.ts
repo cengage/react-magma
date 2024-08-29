@@ -265,7 +265,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       setStatusUpdatedBy(StatusUpdatedByOptions.children);
       setChildrenCheckedStatus(prev => {
         const newChildrenCheckedStatus = [...prev];
-        newChildrenCheckedStatus[index] = status;
+        if (checkChildren)
+          newChildrenCheckedStatus[index] = status;
         return newChildrenCheckedStatus;
       });
     }
@@ -591,12 +592,14 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const multiSelectChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>
   ): void => {
-    if (hasOwnTreeItems) {
-      const childrenIds = !checkChildren ? [] : getChildrenItemIds(
+    if (!checkParents) {
+      setSelectedItemsChanged(true);
+    }
+    if (hasOwnTreeItems && checkChildren) {
+      const childrenIds = getChildrenItemIds(
         treeItemChildren,
         IndeterminateCheckboxStatus.checked
       );
-      // select/add children to selection
       if (event.target.checked) {
         updateParentCheckStatus(index, IndeterminateCheckboxStatus.checked);
         if (!arrayIncludesId(selectedItems, itemId)) {
