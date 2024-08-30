@@ -1,4 +1,18 @@
+## 3.9.0
 
+### Minor Changes
+
+- f30013877: feat(Stepper): Displays step based content for use in multi-step interfaces.
+
+### Patch Changes
+
+- f30013877: fix(Breadcrumbs): Fixed alignment issue between elements.
+- f30013877: fix(datePicker): Fix date picker calendar table role issue
+- f30013877: fix(datePicker): Fix date picker clearing functionality
+- f30013877: fix(Modal): Remove unnecessary `aria-describedBy=“modal”`. Add `ariaLabel` prop so that Modals without headers can customize the `aria-label` instead of defaulting to `aria-label="modal"` which is not correct for a11y standards.
+- f30013877: fix(NativeSelect): Update arrow placement, arrow color and border color when disabled
+- f30013877: fix(Modal): Background overlay issue on nested modals
+- f30013877: fix(ProgressBar): Add support for custom colors
 
 ## 3.8.0
 

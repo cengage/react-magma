@@ -1,5 +1,23 @@
 # Change Log
 
+## 5.0.10
+
+### Patch Changes
+
+- f30013877: fix(Drawer): Fixed drawer appearing open at lower screen resolutions for the doc site navigation.
+- f30013877: docs(Drawer): Fix Drawer examples
+- f30013877: fix(Drawer): Update site navigation storybook example
+- f30013877: storybook(TimePicker): Update clear time example
+- Updated dependencies [f30013877]
+- Updated dependencies [f30013877]
+- Updated dependencies [f30013877]
+- Updated dependencies [f30013877]
+- Updated dependencies [f30013877]
+- Updated dependencies [f30013877]
+- Updated dependencies [f30013877]
+- Updated dependencies [f30013877]
+  - react-magma-dom@3.9.0
+
 ## 5.0.6-next.0
 
 ### Patch Changes
