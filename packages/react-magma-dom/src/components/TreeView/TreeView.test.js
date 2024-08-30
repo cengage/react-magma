@@ -990,26 +990,31 @@ describe('TreeView', () => {
       const { getByTestId } = render(getTreeItemsMultiLevel({
         onSelectedItemChange,
         selectable: TreeViewSelectable.multi,
-        checkParents: false,
+        checkParents: true,
         checkChildren: false
       }));
 
       userEvent.click(getByTestId('item2-expand'));
       userEvent.click(getByTestId('item-child2.1-expand'));
-      const grandChildCheckbox = getByTestId('item-gchild2-checkbox');
+      userEvent.click(getByTestId('item-gchild2-expand'));
+      const grandChildCheckbox = getByTestId('item-ggchild1-checkbox');
       userEvent.click(grandChildCheckbox);
       expect(onSelectedItemChange).toHaveBeenCalledWith([
         {
-          itemId: 'item2',
+          itemId: 'item-ggchild1',
           checkedStatus: IndeterminateCheckboxStatus.checked
+        },
+        {
+          itemId: 'item-gchild2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate
         },
         {
           itemId: 'item-child2.1',
           checkedStatus: IndeterminateCheckboxStatus.indeterminate
         },
         {
-          itemId: 'item-gchild2',
-          checkedStatus: IndeterminateCheckboxStatus.checked
+          itemId: 'item2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate
         }
       ]);
     });
