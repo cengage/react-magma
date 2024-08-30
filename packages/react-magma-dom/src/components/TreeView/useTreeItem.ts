@@ -264,7 +264,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       setStatusUpdatedBy(StatusUpdatedByOptions.children);
       setChildrenCheckedStatus(prev => {
         const newChildrenCheckedStatus = [...prev];
-        if (checkChildren) newChildrenCheckedStatus[index] = status;
+        newChildrenCheckedStatus[index] = status;
         return newChildrenCheckedStatus;
       });
     }
@@ -282,7 +282,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
     const itemStatus =
       item?.checkedStatus ||
-      areArraysEqual(preselectedChildrenItems, childrenItemIds)
+        areArraysEqual(preselectedChildrenItems, childrenItemIds)
         ? IndeterminateCheckboxStatus.checked
         : IndeterminateCheckboxStatus.indeterminate;
 
