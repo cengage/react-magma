@@ -113,7 +113,7 @@ export {
   HideAtBreakpointDisplayType,
   HideAtBreakpointProps,
 } from './components/HideAtBreakpoint';
-export { Hyperlink, HyperlinkProps } from './components/Hyperlink';
+export { Hyperlink, HyperlinkIconPosition, HyperlinkProps } from './components/Hyperlink';
 export {
   IconButton,
   ButtonIconPosition,
@@ -173,6 +173,8 @@ export {
 } from './components/SkipLinkContent';
 export { Spacer, SpacerProps, SpacerAxis } from './components/Spacer';
 export { Spinner, SpinnerProps } from './components/Spinner';
+export { Stepper, StepperLayout, StepperProps } from './components/Stepper';
+export { Step, StepProps } from './components/Stepper/Step';
 export {
   Table,
   TableProps,

@@ -31,6 +31,8 @@ const StyledItem = styled.li`
 `;
 
 const StyledSpan = typedStyled.span<{ isInverse?: boolean }>`
+  align-items: center;
+  display: flex;
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100

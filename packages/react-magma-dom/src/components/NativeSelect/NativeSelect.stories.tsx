@@ -14,6 +14,7 @@ const Template: Story<NativeSelectProps> = args => (
     <option>Red</option>
     <option>Green</option>
     <option>Blue</option>
+    <option>Purple mountain majesty</option>
   </NativeSelect>
 );
 
@@ -40,6 +41,11 @@ export default {
     labelWidth: {
       control: {
         type: 'number',
+      },
+    },
+    errorMessage: {
+      control: {
+        type: 'text',
       },
     },
   },

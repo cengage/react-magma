@@ -243,3 +243,49 @@ WithTwoIcons.args = {
 WithTwoIcons.parameters = {
   controls: { exclude: ['isInverse', 'type', 'iconPosition'] },
 };
+
+export const NumberInput = args => {
+  const [inputVal, setInputVal] = React.useState(1);
+  const [hasError, setHasError] = React.useState(false);
+
+  function handleChange(event) {
+    setInputVal(event.target.value);
+  }
+
+  React.useEffect(() => {
+    if (inputVal > 40 || inputVal < 1) {
+      setHasError(true);
+    } else {
+      setHasError(false);
+    }
+  }, [inputVal]);
+
+  return (
+    <Card
+      style={{ width: '250px', padding: '12px' }}
+      isInverse={args.isInverse}
+    >
+      <Input
+        labelText="Number 1-40 with long long long long label"
+        inputWrapperStyle={{ width: '64px' }}
+        type={InputType.number}
+        errorMessage={hasError ? 'Please enter a number between 1 - 40' : null}
+        min={1}
+        max={40}
+        value={inputVal}
+        onChange={handleChange}
+        {...args}
+      />
+    </Card>
+  );
+};
+
+NumberInput.args = {
+  disabled: false,
+  helperMessage: 'Enter a number 1 - 40',
+  isClearable: false,
+};
+
+NumberInput.parameters = {
+  controls: { exclude: ['type', 'iconPosition', 'labelWidth'] },
+};

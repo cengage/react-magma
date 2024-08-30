@@ -144,8 +144,11 @@ export function Example() {
 ## Modal Header
 
 The modal header prop is optional. It can accept a node or a string, and will be rendered inside an H1.
+
 If there is a header passed in, the focus will be placed on the header when the modal opens. If not, the focus will be placed on
 the first actionable element.
+
+If the modal does not use the `header` prop, you must use the `ariaLabel` prop to ensure the correct aria properties are in place.
 
 ```tsx
 import React from 'react';
@@ -167,6 +170,7 @@ export function Example() {
   return (
     <>
       <Modal
+        ariaLabel="customAriaLabel"
         size={ModalSize.small}
         onClose={() => {
           setShowModal(false);

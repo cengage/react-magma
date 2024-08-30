@@ -18,6 +18,7 @@ import {
 import * as es from 'date-fns/locale/es';
 import { DatePicker } from '.';
 import { Modal } from '../Modal';
+import { ClearingTheDate } from './DatePicker.stories';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 
@@ -53,6 +54,63 @@ describe('Date Picker', () => {
       'value',
       format(defaultDate, 'MM/dd/yyyy')
     );
+  });
+
+  it('should render a Clear icon if isClearable prop is true', () => {
+    const valueDate = new Date('January 23, 2019');
+    const { getByTestId } = render(
+      <DatePicker value={valueDate} isClearable labelText="Date Picker Label" />
+    );
+
+    expect(getByTestId('clear-button')).toBeInTheDocument();
+  });
+
+  it('should clear input and Chosen Date value after clicking on isClearable X button', () => {
+    const labelText = 'Date Picker Label';
+    const now = new Date();
+    const day = format(now, 'dd')[0] === '0' ? format(now, 'dd')[1] : format(now, 'dd');
+    const chosenDate = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`
+    
+    const { getByText, getByTestId, getByLabelText } = render(
+      <ClearingTheDate labelText={labelText} />
+    );
+
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+
+    expect(getByText(day)).toBeInTheDocument();
+    fireEvent.click(getByText(day));
+
+    expect(getByText('Chosen Date:').nextSibling.innerHTML).toEqual(chosenDate);
+    
+    fireEvent.click(getByTestId('clear-button'));
+
+    expect(getByLabelText('Date Picker Label')).toHaveAttribute(
+      'value', '')
+    expect(getByText('Chosen Date:').nextSibling).not.toBeInTheDocument();
+  });
+
+  it('should clear input and Chosen Date value after clicking on Clear Date button', () => {
+    const labelText = 'Date Picker Label';
+    const now = new Date();
+    const day = format(now, 'dd')[0] === '0' ? format(now, 'dd')[1] : format(now, 'dd');
+    const chosenDate = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`
+    
+    const { getByText, getByTestId, getByLabelText } = render(
+      <ClearingTheDate labelText={labelText} />
+    );
+
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+
+    expect(getByText(day)).toBeInTheDocument();
+    fireEvent.click(getByText(day));
+
+    expect(getByText('Chosen Date:').nextSibling.innerHTML).toEqual(chosenDate);
+    
+    fireEvent.click(getByText('Clear Date').parentElement);
+
+    expect(getByLabelText('Date Picker Label')).toHaveAttribute(
+      'value', '')
+    expect(getByText('Chosen Date:').nextSibling).not.toBeInTheDocument();
   });
 
   it('should set the value to the date in the value prop', () => {
@@ -509,7 +567,6 @@ describe('Date Picker', () => {
       key: 'Escape',
       code: 27,
     });
-
     setTimeout(() => {
       expect(getByTestId('calendarContainer')).toHaveStyleRule(
         'display',

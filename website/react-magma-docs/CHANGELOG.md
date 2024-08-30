@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.6-next.0
+
+### Patch Changes
+
+- 37b77c252: chore: Sync dev-patch branch
+
 ## 5.0.5
 
 ### Patch Changes
