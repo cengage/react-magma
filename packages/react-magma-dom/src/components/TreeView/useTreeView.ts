@@ -58,12 +58,14 @@ export interface UseTreeViewProps {
    */
   onSelectedItemChange?: (selectedItems: Array<Object>) => void;
   /**
+   * Only affects if selectable mode is TreeViewSelectable.multi.
    * Determines if the parent checkbox will get selected when the user selects all its children checkboxes.
    * When checkParents is enabled, the TreeView displays the indeterminate state of the parent checkboxes too.
    * @default true
    */
   checkParents?: boolean;
   /**
+   * Only affects if selectable mode is TreeViewSelectable.multi.
    * Determines if the child checkboxes get selected when the user selects parent checkbox.
    * @default true
    */

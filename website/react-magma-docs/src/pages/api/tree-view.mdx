@@ -601,7 +601,7 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { TreeView, TreeItem, magma, TreeViewSelectable } from 'react-magma-dom';
+import { Toggle } from 'react-magma-dom';
 
 export function Example() {
   const [checkChildren, setCheckChildren] = React.useState(false);
@@ -612,12 +612,12 @@ export function Example() {
 
   return (
     <>
-      <Checkbox
+      <Toggle
         labelText="Check All Children on Parent Select"
         onChange={changeCheckChildren}
         checked={checkChildren}
       />
-      <Checkbox
+      <Toggle
         labelText="Check Parents on children select"
         onChange={changeCheckParents}
         checked={checkParents}

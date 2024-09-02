@@ -60,6 +60,14 @@ export default {
     },
     onExpandedChange: { action: 'expanded changed' },
     onSelectedItemChange: { action: 'selected item changed' },
+    checkParents: {
+      control: 'boolean',
+      defaultValue: true,
+    },
+    checkChildren: {
+      control: 'boolean',
+      defaultValue: true,
+    }
   },
 } as Meta;
 
@@ -809,7 +817,7 @@ FlatTree.parameters = { controls: { exclude: ['isInverse'] } };
 
 export const ParentsAndChildrenNotAutoChecked = args => {
   return <>
-    <TreeView {...args} selectable={TreeViewSelectable.multi}>
+    <TreeView {...args}>
       <TreeItem label="Mammals" itemId="Mammals">
         <TreeItem label="Dogs" itemId="Dogs">
           <TreeItem label="German Shepherd" itemId="German Shepherd" />
@@ -839,6 +847,5 @@ export const ParentsAndChildrenNotAutoChecked = args => {
 };
 
 ParentsAndChildrenNotAutoChecked.args = {
-  checkParents: false,
-  checkChildren: false
+  selectable: TreeViewSelectable.multi,
 }
