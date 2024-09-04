@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.8-next.6
+
+### Patch Changes
+
+- 63e206ef5: docs(Modal): Modal Heading example fixes
+
 ## 5.0.8-next.5
 
 ### Patch Changes
