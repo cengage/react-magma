@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.6.0-next.5
+
+### Patch Changes
+
+- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
+
 ## 4.6.0-next.4
 
 ### Patch Changes
