@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.6.0-next.6
+
+### Minor Changes
+
+- ca58152cb: Add support for `checkChildren`, `checkParents` props to TreeView
+
 ## 4.6.0-next.5
 
 ### Patch Changes

@@ -20,6 +20,7 @@
     "docs-drawer",
     "docs-drawerExample2",
     "feat-modal-headerref",
-    "sync"
+    "sync",
+    "treeViewProps"
   ]
 }
