@@ -150,13 +150,22 @@ the first actionable element.
 
 If the modal does not use the `header` prop, you must use the `ariaLabel` prop to ensure the correct aria properties are in place.
 
-When a reference to the header is needed, use the `headerRef` prop.
+When a reference to the header is needed, use the headerRef prop. When using a custom header, you must also use `tabIndex={-1}` property.
 
 ```tsx
 import React from 'react';
 import {
   Button,
+  ButtonColor,
   Modal,
+  Flex,
+  FlexBehavior,
+  FlexDirection,
+  FlexAlignItems,
+  FlexJustify,
+  FlexWrap,
+  CheckIcon,
+  magma,
   ModalSize,
   Paragraph,
   VisuallyHidden,
@@ -204,7 +213,7 @@ export function Example() {
         }}
         isOpen={showModalHeader}
       >
-        <Paragraph noTopMargin>This modal has no header.</Paragraph>
+        <Paragraph noTopMargin>This modal has a header.</Paragraph>
         <ButtonGroup alignment={ButtonGroupAlignment.center}>
           <Button onClick={() => setShowModalHeader(false)}>OK</Button>
         </ButtonGroup>
