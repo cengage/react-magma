@@ -1715,6 +1715,7 @@ describe('TreeView', () => {
           userEvent.tab();
           expect(item1).toHaveFocus();
         });
+
       });
 
       describe('keyboard navigation', () => {
