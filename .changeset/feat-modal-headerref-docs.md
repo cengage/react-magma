@@ -1,5 +1,5 @@
 ---
-'react-magma-dom': minor
+'react-magma-docs': patch
 ---
 
-feat(Modal): Fixed codesandbox omissions in the doc example of Modal Header.
+docs(Modal): Modal Heading example fixes
