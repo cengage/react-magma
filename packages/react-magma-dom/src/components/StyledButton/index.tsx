@@ -20,6 +20,8 @@ import {
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonType, ButtonProps, ButtonSize, ButtonVariant } from '../Button';
 import { Spinner } from '../Spinner';
+import { I18nContext } from '../../i18n';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface StyledButtonProps extends ButtonProps {
   href?: string;
@@ -149,6 +151,7 @@ export const StyledButton = React.forwardRef<
     isLoading,
   } = props;
   const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
 
   const spinnerColor =
     isInverse && variant === ButtonVariant.link
@@ -177,7 +180,9 @@ export const StyledButton = React.forwardRef<
             testId={`${testId}-spinner`}
             color={spinnerColor}
             size={spinnerSize}
+            noRole
           />
+          <VisuallyHidden>{i18n.spinner.ariaLabel}</VisuallyHidden>
         </SpinnerWrapper>
       )}
       <ChildrenWrapper isLoading={isLoading} testId={`${testId}-children`}>
