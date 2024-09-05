@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.8-next.7
+
+### Patch Changes
+
+- 31ee96f73: docs(Modal): Modal Heading icon example fix
+
 ## 5.0.8-next.6
 
 ### Patch Changes
