@@ -131,6 +131,7 @@ export const ClearingTheDate = args => {
       <DatePicker
         {...args}
         onDateChange={handleDateChange}
+        onChange={() => {}}
         value={chosenDate}
         isClearable
       />
