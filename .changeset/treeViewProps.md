@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-Add support for `checkChildren`, `checkParents` props to TreeView
+feat(TreeView): Add support for `checkChildren` and `checkParents` props

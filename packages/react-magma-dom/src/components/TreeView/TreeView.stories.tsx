@@ -67,7 +67,7 @@ export default {
     checkChildren: {
       control: 'boolean',
       defaultValue: true,
-    }
+    },
   },
 } as Meta;
 
@@ -603,7 +603,12 @@ export const DefaultIcon = args => {
             style={{ background: magma.colors.info100 }}
           />
           <TreeItem
-            icon={<EmergencyIcon style={{ color: magma.colors.danger500 }} aria-hidden={true} />}
+            icon={
+              <EmergencyIcon
+                style={{ color: magma.colors.danger500 }}
+                aria-hidden={true}
+              />
+            }
             itemId="5"
             label={<>I have an icon too</>}
           >
@@ -636,7 +641,6 @@ export const FirstItemLeaf = args => {
 
     setSelectedItems(selected);
     setIndeterminateItems(indet);
-    console.log('onSelection', items);
   }
 
   return (
@@ -676,7 +680,10 @@ export const FirstItemLeaf = args => {
 FirstItemLeaf.args = {
   initialExpandedItems: ['item1', 'item2', 'item-child2'],
   preselectedItems: [
-    { itemId: 'item-gchild2', checkedStatus: IndeterminateCheckboxStatus.checked },
+    {
+      itemId: 'item-gchild2',
+      checkedStatus: IndeterminateCheckboxStatus.checked,
+    },
   ],
 };
 
@@ -694,7 +701,6 @@ export const FirstItemBranch = args => {
     setSelectedItems(selected);
     setIndeterminateItems(indet);
     setTotal(items.length);
-    console.log('onSelection', items);
   }
 
   return (
@@ -816,36 +822,68 @@ FlatTree.args = {
 FlatTree.parameters = { controls: { exclude: ['isInverse'] } };
 
 export const ParentsAndChildrenNotAutoChecked = args => {
-  return <>
-    <TreeView {...args}>
-      <TreeItem label="Mammals" itemId="Mammals">
-        <TreeItem label="Dogs" itemId="Dogs">
-          <TreeItem label="German Shepherd" itemId="German Shepherd" />
-          <TreeItem label="Labrador Retriever" itemId="Labrador Retriever" />
-          <TreeItem label="American Bully" itemId="American Bully" />
+  const [selectedItems, setSelectedItems] = React.useState(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
+
+  function onSelection(items) {
+    const selected = createTags(items).selected;
+    const indet = createTags(items).indeterminate;
+
+    setSelectedItems(selected);
+    setIndeterminateItems(indet);
+  }
+
+  return (
+    <>
+      <TreeView {...args} onSelectedItemChange={onSelection}>
+        <TreeItem label="Mammals" itemId="Mammals">
+          <TreeItem label="Dogs" itemId="Dogs">
+            <TreeItem label="German Shepherd" itemId="German Shepherd" />
+            <TreeItem label="Labrador Retriever" itemId="Labrador Retriever" />
+            <TreeItem label="American Bully" itemId="American Bully" />
+          </TreeItem>
+          <TreeItem label="Cats" itemId="Cats">
+            <TreeItem label="Siamese" itemId="Siamese" />
+            <TreeItem label="Persian" itemId="Persian" />
+            <TreeItem label="Bengal" itemId="Bengal" />
+          </TreeItem>
         </TreeItem>
-        <TreeItem label="Cats" itemId="Cats">
-          <TreeItem label="Siamese" itemId="Siamese" />
-          <TreeItem label="Persian" itemId="Persian" />
-          <TreeItem label="Bengal" itemId="Bengal" />
+        <TreeItem label="Birds" itemId="Birds">
+          <TreeItem label="Parrots" itemId="Parrots">
+            <TreeItem label="African Grey" itemId="African Grey" />
+            <TreeItem label="Cockatiel" itemId="Cockatiel" />
+            <TreeItem label="Budgerigar" itemId="Budgerigar" />
+          </TreeItem>
+          <TreeItem label="Birds of Prey" itemId="Birds of Prey">
+            <TreeItem label="Eagles" itemId="Eagles" />
+            <TreeItem label="Hawks" itemId="Hawks" />
+            <TreeItem label="Falcons" itemId="Falcons" />
+          </TreeItem>
         </TreeItem>
-      </TreeItem>
-      <TreeItem label="Birds" itemId="Birds">
-        <TreeItem label="Parrots" itemId="Parrots">
-          <TreeItem label="African Grey" itemId="African Grey" />
-          <TreeItem label="Cockatiel" itemId="Cockatiel" />
-          <TreeItem label="Budgerigar" itemId="Budgerigar" />
-        </TreeItem>
-        <TreeItem label="Birds of Prey" itemId="Birds of Prey">
-          <TreeItem label="Eagles" itemId="Eagles" />
-          <TreeItem label="Hawks" itemId="Hawks" />
-          <TreeItem label="Falcons" itemId="Falcons" />
-        </TreeItem>
-      </TreeItem>
-      <TreeItem label="Amphibians" itemId="Amphibians" />
-    </TreeView></>
+        <TreeItem label="Amphibians" itemId="Amphibians" />
+      </TreeView>
+      {args.selectable !== TreeViewSelectable.off && (
+        <>
+          <p>Selected: {selectedItems}</p>
+          {args.selectable === TreeViewSelectable.multi && (
+            <p>Indeterminate: {indeterminateItems}</p>
+          )}
+        </>
+      )}
+    </>
+  );
 };
 
 ParentsAndChildrenNotAutoChecked.args = {
+  checkParents: false,
+  checkChildren: false,
+  ariaLabel: 'Independent Tree',
   selectable: TreeViewSelectable.multi,
-}
+  testId: 'independentTree',
+};
+
+ParentsAndChildrenNotAutoChecked.parameters = {
+  controls: {
+    exclude: ['isInverse', 'initialExpandedItems', 'ariaLabelledBy'],
+  },
+};
