@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.6.0-next.7
+
+### Patch Changes
+
+- 84a8a17d6: fix(DatePicker): Fix error when using both onChange and onDateChange
+
 ## 4.6.0-next.6
 
 ### Minor Changes
