@@ -17,6 +17,7 @@
     "a11y-navTabs",
     "a11y-pagination",
     "breadcrumbs-alignment",
+    "datePicker-onChange",
     "docs-drawer",
     "docs-drawerExample2",
     "feat-modal-headerref-docs",
