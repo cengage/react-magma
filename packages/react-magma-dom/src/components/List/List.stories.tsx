@@ -58,17 +58,45 @@ export default {
   },
 } as Meta;
 
-export const Default = args => {
+export const Simple = args => {
+  return (
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <List {...args}>
+          <ListItem>English: Hello</ListItem>
+          <ListItem>Spanish: Hola</ListItem>
+          <ListItem>French: Bonjour</ListItem>
+          <ListItem>German: Hallo</ListItem>
+          <ListItem>Italian: Ciao</ListItem>
+          <ListItem>Portuguese: Olá</ListItem>
+        </List>
+      </CardBody>
+    </Card>
+  );
+};
+Simple.args = {
+  spacingStyle: magma.spaceScale.spacing07,
+  isOrdered: false,
+  isReversed: false,
+  isInverse: false,
+  visualStyle: TypographyVisualStyle.headingMedium,
+  listType: ulListType.square,
+};
+Simple.parameters = {
+  controls: { exclude: ['iconAlign'] },
+};
+
+export const UnorderedList = args => {
   return (
     <Card isInverse={args.isInverse}>
       <CardBody>
         <List {...args}>
           <ListItem>
             Mammals
-            <List>
+            <List isOrdered={args.isOrdered}>
               <ListItem>
                 Dogs
-                <List>
+                <List isOrdered={args.isOrdered}>
                   <ListItem>German Shepherd</ListItem>
                   <ListItem>Labrador Retriever</ListItem>
                   <ListItem>American Bully</ListItem>
@@ -76,7 +104,7 @@ export const Default = args => {
               </ListItem>
               <ListItem>
                 Cats
-                <List>
+                <List isOrdered={args.isOrdered}>
                   <ListItem>Siamese</ListItem>
                   <ListItem>Persian</ListItem>
                   <ListItem>Bengal</ListItem>
@@ -86,10 +114,10 @@ export const Default = args => {
           </ListItem>
           <ListItem>
             Reptiles
-            <List>
+            <List isOrdered={args.isOrdered}>
               <ListItem>
                 Snakes
-                <List>
+                <List isOrdered={args.isOrdered}>
                   <ListItem>Python</ListItem>
                   <ListItem>Boa Constrictor</ListItem>
                   <ListItem>Corn Snake</ListItem>
@@ -97,7 +125,7 @@ export const Default = args => {
               </ListItem>
               <ListItem>
                 Lizards
-                <List>
+                <List isOrdered={args.isOrdered}>
                   <ListItem>Geckos</ListItem>
                   <ListItem>Iguanas</ListItem>
                   <ListItem>Chameleons</ListItem>
@@ -107,10 +135,10 @@ export const Default = args => {
           </ListItem>
           <ListItem>
             Birds
-            <List>
+            <List isOrdered={args.isOrdered}>
               <ListItem>
                 Parrots
-                <List>
+                <List isOrdered={args.isOrdered}>
                   <ListItem>African Grey</ListItem>
                   <ListItem>Cockatiel</ListItem>
                   <ListItem>Budgerigar</ListItem>
@@ -118,7 +146,7 @@ export const Default = args => {
               </ListItem>
               <ListItem>
                 Birds of Prey
-                <List>
+                <List isOrdered={args.isOrdered}>
                   <ListItem>Eagles</ListItem>
                   <ListItem>Hawks</ListItem>
                   <ListItem>Falcons</ListItem>
@@ -131,11 +159,81 @@ export const Default = args => {
     </Card>
   );
 };
-
-Default.args = {
+UnorderedList.args = {
   spacingStyle: magma.spaceScale.spacing04,
+  isOrdered: false,
 };
-Default.parameters = { controls: { exclude: ['visualStyle', 'iconAlign'] } };
+UnorderedList.parameters = {
+  controls: { exclude: ['visualStyle', 'iconAlign'] },
+};
+
+export const OrderedList = args => {
+  return (
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <List {...args} listType={olListType.uppercaseRoman}>
+          <ListItem>
+            Fruits
+            <List
+              isOrdered={args.isOrdered}
+              listType={olListType.lowercaseRoman}
+            >
+              <ListItem>Apples</ListItem>
+              <ListItem>Bananas</ListItem>
+              <ListItem>Oranges</ListItem>
+            </List>
+          </ListItem>
+          <ListItem>
+            Vegetables
+            <List
+              isOrdered={args.isOrdered}
+              listType={olListType.lowercaseRoman}
+            >
+              <ListItem>
+                Leafy greens
+                <List
+                  isOrdered={args.isOrdered}
+                  listType={olListType.lowercase}
+                >
+                  <ListItem>Spinach</ListItem>
+                  <ListItem>Kale</ListItem>
+                </List>
+              </ListItem>
+              <ListItem>
+                Root vegetables
+                <List
+                  isOrdered={args.isOrdered}
+                  listType={olListType.lowercase}
+                >
+                  <ListItem>Carrots</ListItem>
+                  <ListItem>Potatoes</ListItem>
+                </List>
+              </ListItem>
+            </List>
+          </ListItem>
+          <ListItem>
+            Dairy
+            <List
+              isOrdered={args.isOrdered}
+              listType={olListType.lowercaseRoman}
+            >
+              <ListItem>Milk</ListItem>
+              <ListItem>Cheese</ListItem>
+            </List>
+          </ListItem>
+        </List>
+      </CardBody>
+    </Card>
+  );
+};
+OrderedList.args = {
+  spacingStyle: magma.spaceScale.spacing04,
+  isOrdered: true,
+  hasStart: 10,
+};
+OrderedList.parameters = {
+  controls: { exclude: ['visualStyle', 'iconAlign', 'listType'] },
+};
 
 export const WithLinks = args => {
   return (

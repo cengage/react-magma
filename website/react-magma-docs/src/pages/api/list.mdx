@@ -19,53 +19,6 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 By default `List` uses an unorganized markup `<ul>`.
 
-```typescript
-import React from 'react';
-import { List, ListItem } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <List>
-      <ListItem>List content</ListItem>
-      <ListItem>List content</ListItem>
-      <ListItem>List content</ListItem>
-      <ListItem>List content</ListItem>
-      <ListItem>List content</ListItem>
-    </List>
-  );
-}
-```
-
-## Ordered List
-
-Another method of `List` is the ordered list `<ol>`. There are several methods of showing ordered list items.
-
-The `hasStart` prop permits the user to define a specific letter or number from which the list items descend.
-
-If the `isReversed` prop is used, the order changes from ascending to descending numbers or letters.
-
-Ordered `type` allows for changing the bulleted items from a number to lowercase letters, uppercase letters, lowercase Roman numerals, or uppercase Roman numerals.
-
-```typescript
-import React from 'react';
-import { List, ListItem } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <List isOrdered>
-      <ListItem>Ordered List content</ListItem>
-      <ListItem>Ordered List content</ListItem>
-      <ListItem>Ordered List content</ListItem>
-      <ListItem>Ordered List content</ListItem>
-      <ListItem>Ordered List content</ListItem>
-    </List>
-  );
-}
-```
-
-## Description
-
-The `description` prop is a boolean which changes a nested list item into a styled paragraph.
 
 ```typescript
 import React from 'react';
@@ -74,45 +27,6 @@ import { List, ListItem } from 'react-magma-dom';
 export function Example() {
   return (
     <List>
-      <ListItem>
-        List content
-        <ListItem description>Here is a description list item</ListItem>
-      </ListItem>
-    </List>
-  );
-}
-```
-
-## Nested List
-
-```typescript
-import React from 'react';
-import { List, ListItem } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <List>
-      <ListItem>
-        Mammals
-        <List>
-          <ListItem>
-            Dogs
-            <List>
-              <ListItem>German Shepherd</ListItem>
-              <ListItem>Labrador Retriever</ListItem>
-              <ListItem>American Bully</ListItem>
-            </List>
-          </ListItem>
-          <ListItem>
-            Cats
-            <List>
-              <ListItem>Siamese</ListItem>
-              <ListItem>Persian</ListItem>
-              <ListItem>Bengal</ListItem>
-            </List>
-          </ListItem>
-        </List>
-      </ListItem>
       <ListItem>
         Reptiles
         <List>
@@ -160,66 +74,182 @@ export function Example() {
 }
 ```
 
+## Ordered List
+
+Another method of `List` is the ordered list `<ol>`. There are several methods of showing ordered list items.
+
+- The `hasStart` prop permits the user to define a specific letter or number from which the list items descend.
+- The `isReversed` prop changes the order from ascending to descending numbers or letters.
+- The `listType` prop allows for changing the bulleted items from a number to lowercase letters, uppercase letters, lowercase Roman numerals, or uppercase Roman numerals.
+
+```typescript
+import React from 'react';
+import { List, ListItem, olListType } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <List isOrdered listType={olListType.uppercaseRoman} hasStart="3" isReversed>
+      <ListItem>
+        Fruits
+        <List
+          isOrdered
+          listType={olListType.lowercaseRoman}
+        >
+          <ListItem>Apples</ListItem>
+          <ListItem>Bananas</ListItem>
+          <ListItem>Oranges</ListItem>
+        </List>
+      </ListItem>
+      <ListItem>
+        Vegetables
+        <List
+          isOrdered
+          listType={olListType.lowercaseRoman}
+        >
+          <ListItem>
+            Leafy greens
+            <List
+              isOrdered
+              listType={olListType.lowercase}
+            >
+              <ListItem>Spinach</ListItem>
+              <ListItem>Kale</ListItem>
+            </List>
+          </ListItem>
+          <ListItem>
+            Root vegetables
+            <List
+              isOrdered
+              listType={olListType.lowercase}
+            >
+              <ListItem>Carrots</ListItem>
+              <ListItem>Potatoes</ListItem>
+            </List>
+          </ListItem>
+        </List>
+      </ListItem>
+      <ListItem>
+        Dairy
+        <List
+          isOrdered
+          listType={olListType.lowercaseRoman}
+        >
+          <ListItem>Milk</ListItem>
+          <ListItem>Cheese</ListItem>
+        </List>
+      </ListItem>
+    </List>
+  );
+}
+```
+
+## Description
+
+The `description` prop is a boolean which changes a nested list item into a styled paragraph.
+
+```typescript
+import React from 'react';
+import { List, ListItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <List>
+      <ListItem>
+        Mammals
+        <List>
+          <ListItem>
+            Dogs
+            <List>
+              <ListItem>
+                German Shepherd
+                <ListItem description>
+                  Courageous, energetic, loyal
+                </ListItem>
+              </ListItem>
+              <ListItem>
+                Labrador Retriever
+                <ListItem description>
+                  Friendly, outgoing, high-spirited
+                </ListItem>
+              </ListItem>
+              <ListItem>
+                American Bully
+                <ListItem description>
+                  Strong, athletic, affectionate
+                </ListItem>
+              </ListItem>
+            </List>
+          </ListItem>
+          <ListItem>Cats</ListItem>
+        </List>
+      </ListItem>
+    </List>
+  );
+}
+```
+
 ## Icon List
 
 An Icon `List` allows the user to use Magma Icons in place of bulleted or numeric characters.
 
-Included within this feature are `iconAlign` which changes vertical alignment.
+- `iconSize` will toggle between three size states with medium being default.
+- `iconAlign` changes the vertical alignment.
+- `iconBackground` and `iconColor` change both the background and icon colors.
 
-`iconBackground` and `iconColor` change both the background and icon colors.
-
-`iconSize` will toggle between three size states with medium being default.
-
-### Default Icon size
+### Icon sizes
 
 ```typescript
 import React from 'react';
-import { List, ListItem } from 'react-magma-dom';
-import { EmailIcon } from 'react-magma-icons';
+import { List, ListItem, IconSizes } from 'react-magma-dom';
+import { InboxIcon, DraftsIcon, DeleteIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
-    <List spacingStyle="spacing02">
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-    </List>
+    <>
+      <List iconSize={IconSizes.small} spacingStyle="spacing02">
+        <ListItem icon={<InboxIcon />}>Inbox</ListItem>
+        <ListItem icon={<DraftsIcon />}>Drafts</ListItem>
+        <ListItem icon={<DeleteIcon />}>Trash</ListItem>
+      </List>
+      <br/>
+      <List spacingStyle="spacing02">
+        <ListItem icon={<InboxIcon />}>Inbox</ListItem>
+        <ListItem icon={<DraftsIcon />}>Drafts</ListItem>
+        <ListItem icon={<DeleteIcon />}>Trash</ListItem>
+      </List>
+      <br/>
+      <List iconSize={IconSizes.large} spacingStyle="spacing02">
+        <ListItem icon={<InboxIcon />}>Inbox</ListItem>
+        <ListItem icon={<DraftsIcon />}>Drafts</ListItem>
+        <ListItem icon={<DeleteIcon />}>Trash</ListItem>
+      </List>
+    </>
   );
 }
 ```
 
-### Small Icon size
+### Icon Alignment
 
 ```typescript
 import React from 'react';
-import { List, ListItem } from 'react-magma-dom';
+import { List, ListItem, IconAlignment, magma } from 'react-magma-dom';
 import { EmailIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
-    <List iconSize="small" spacingStyle="spacing02">
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-    </List>
-  );
-}
-```
-
-### Large Icon size
-
-```typescript
-import React from 'react';
-import { List, ListItem } from 'react-magma-dom';
-import { EmailIcon } from 'react-magma-icons';
-
-export function Example() {
-  return (
-    <List iconSize="large" spacingStyle="spacing02">
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-    </List>
+    <>
+      <List iconAlign={IconAlignment.top} spacingStyle="spacing02">
+        <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+        <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+        <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+      </List>
+      <br />
+      <List iconAlign={IconAlignment.center} spacingStyle="spacing02">
+        <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+        <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+        <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
+      </List>
+    </>
   );
 }
 ```
@@ -255,42 +285,6 @@ export function Example() {
       >
         Icon List content
       </ListItem>
-    </List>
-  );
-}
-```
-
-### Icon Alignment top
-
-```typescript
-import React from 'react';
-import { List, ListItem } from 'react-magma-dom';
-import { EmailIcon } from 'react-magma-icons';
-
-export function Example() {
-  return (
-    <List iconAlign="top" spacingStyle="spacing02">
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-    </List>
-  );
-}
-```
-
-### Icon Alignment center
-
-```typescript
-import React from 'react';
-import { List, ListItem } from 'react-magma-dom';
-import { EmailIcon } from 'react-magma-icons';
-
-export function Example() {
-  return (
-    <List iconAlign="center" spacingStyle="spacing02">
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
-      <ListItem icon={<EmailIcon />}>Icon List content</ListItem>
     </List>
   );
 }

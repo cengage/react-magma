@@ -10,6 +10,9 @@ import styled from '@emotion/styled';
  * @children required
  */
 export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Boolean which changes a nested list item into a styled paragraph.
+   */
   description?: boolean;
   /**
    * Allows an ordered list to start at a determined value of a letter or number.
