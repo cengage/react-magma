@@ -26,6 +26,7 @@
     "fix-modal-headerref-docs",
     "sync",
     "thirty-cherries-sort",
-    "treeViewProps"
+    "treeViewProps",
+    "treeview-docs"
   ]
 }
