@@ -363,20 +363,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       />
     );
 
-    const modalBackDrop = (
-      <ModalBackdrop
-        data-testid="modal-backdrop"
-        isExiting={isExiting}
-        onMouseDown={
-          isBackgroundClickDisabled ? event => event.preventDefault() : null
-        }
-        fade
-        isOpen={isModalOpen}
-        unmountOnExit
-        theme={theme}
-      />
-    );
-
     return isModalOpen
       ? ReactDOM.createPortal(
           <div ref={focusTrapElement}>
@@ -398,7 +384,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 isBackgroundClickDisabled ? null : handleModalOnMouseDown
               }
               role="dialog"
-              style={containerStyle}
+              style={containerStyle || (modalCount >= 2 && { zIndex: '999' })}
               theme={theme}
               isOpen={isModalOpen}
               {...containerTransition}
@@ -450,9 +436,21 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                   </CloseBtn>
                 )}
               </ModalContent>
-              {modalCount >= 2 && modalBackDrop}
             </ModalContainer>
-            {modalCount <= 1 && modalBackDrop}
+            <ModalBackdrop
+              data-testid="modal-backdrop"
+              isExiting={isExiting}
+              onMouseDown={
+                isBackgroundClickDisabled
+                  ? event => event.preventDefault()
+                  : null
+              }
+              fade
+              isOpen={isModalOpen}
+              style={modalCount >= 2 && { zIndex: '998' }}
+              unmountOnExit
+              theme={theme}
+            />
           </div>,
           document.getElementsByTagName('body')[0]
         )
