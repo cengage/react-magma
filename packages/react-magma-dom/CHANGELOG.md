@@ -1,5 +1,11 @@
 ## 4.6.0-next.0
 
+## 4.6.0-next.8
+
+### Patch Changes
+
+- 3b3a2d79a: chore: Update @emotion dependency
+
 ## 4.6.0-next.7
 
 ### Patch Changes
