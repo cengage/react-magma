@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { css } from '@emotion/react';
-import { getListDisplay, ListProps } from './';
+import { ListProps } from './';
 import { magma } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
@@ -13,6 +13,14 @@ export interface ListItemProps
   extends ListProps,
     React.HTMLAttributes<HTMLDivElement> {
   /**
+   * Boolean which changes a list item into a styled paragraph.
+   */
+  description?: boolean;
+  /**
+   * For use with inline icons within list items.
+   */
+  icon?: React.ReactElement<any> | React.ReactElement<any>[];
+  /**
    * Option for changing icon background with all Magma colors.
    */
   iconBackground?: keyof typeof magma.colors;
@@ -20,6 +28,13 @@ export interface ListItemProps
    * Option for changing icon color with all Magma colors.
    */
   iconColor?: keyof typeof magma.colors;
+}
+
+function getListDisplay(props) {
+  if (props.icon) {
+    return 'grid';
+  }
+  return 'list-item';
 }
 
 const IconStyles = props => css`
@@ -34,11 +49,13 @@ const StyledListItem = styled.li<any>`
   display: ${props => getListDisplay(props)};
   margin: 0;
   padding: 0;
-  margin-left: ${props => props.icon ? 'inherit' : '1.1em'};
-  color: ${props => props.description && !props.isInverse
-    ? props.theme.colors.neutral
-    : 'inherit'};
-  list-style-type: ${props => props.icon || props.description ? 'none' : 'inherit'};
+  margin-left: ${props => (props.icon ? 'inherit' : '1.1em')};
+  color: ${props =>
+    props.description && !props.isInverse
+      ? props.theme.colors.neutral
+      : 'inherit'};
+  list-style-type: ${props =>
+    props.icon || props.description ? 'none' : 'inherit'};
 `;
 
 const StyledIcon = styled.span<any>`
@@ -68,6 +85,7 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
           icon={icon}
           iconAlign={iconAlign}
           isInverse={isInverse}
+          ref={ref}
           theme={theme}
           testId={testId}
         >
