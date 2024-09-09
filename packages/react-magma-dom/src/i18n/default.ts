@@ -276,6 +276,11 @@ export const defaultI18n: I18nInterface = {
   spinner: {
     ariaLabel: 'Loading',
   },
+  stepper: {
+    completionLabel: 'All steps completed',
+    stepLabel: 'Step',
+    stepOfLabel: 'of',
+  },
   table: {
     pagination: {
       ofLabel: 'of',
@@ -283,6 +288,13 @@ export const defaultI18n: I18nInterface = {
       previousAriaLabel: 'Previous page',
       rowsPerPageLabel: 'Rows per page',
     },
+    selectable: {
+      sortButtonAriaLabel: 'Sort rows',
+      selectAllRowsAriaLabel: 'Select all rows',
+      selectRowAriaLabel: 'Select row',
+      deselectAllRowsAriaLabel: 'Deselect all rows',
+      deselectRowAriaLabel: 'Deselect row',
+    }
   },
   tabs: {
     horizontalTabsInstructions:

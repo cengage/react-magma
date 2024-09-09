@@ -1,19 +1,18 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { convertStyleValueToString, useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { transparentize } from 'polished';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The color variant of the progress bar
    * @default ProgressBarColor.primary
    */
-  color?: ProgressBarColor;
+  color?: ProgressBarColor | string;
   /**
    * The height of the progress bar. Can be a string or number; if number is provided height is in px
    * @default 8
@@ -51,26 +50,32 @@ export enum ProgressBarColor {
   success = 'success',
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
 function buildProgressBarBackground(props) {
   if (props.isInverse) {
-    switch (props.color) {
-      case 'danger':
-        return props.theme.colors.danger200;
-      case 'success':
-        return props.theme.colors.success200;
-      default:
-        return props.theme.colors.tertiary;
+    if (
+      typeof props.color === 'string' &&
+      !Object.values(ProgressBarColor).includes(props.color)
+    ) {
+      return props.color;
+    } else if (props.color === ProgressBarColor.primary) {
+      return props.theme.colors.tertiary;
+    } else if (props.color === ProgressBarColor.danger) {
+      return props.theme.colors.danger200;
+    } else if (props.color === ProgressBarColor.success) {
+      return props.theme.colors.success200;
     }
   }
-  switch (props.color) {
-    case 'danger':
-      return props.theme.colors.danger;
-    case 'success':
-      return props.theme.colors.success;
-    default:
-      return props.theme.colors.primary;
+  if (
+    typeof props.color === 'string' &&
+    !Object.values(ProgressBarColor).includes(props.color)
+  ) {
+    return props.color;
+  } else if (props.color === ProgressBarColor.primary) {
+    return props.theme.colors.primary;
+  } else if (props.color === ProgressBarColor.danger) {
+    return props.theme.colors.danger;
+  } else if (props.color === ProgressBarColor.success) {
+    return props.theme.colors.success;
   }
 }
 
@@ -79,7 +84,7 @@ const Container = styled.div<{ isLoadingIndicator?: boolean }>`
   display: ${props => (props.isLoadingIndicator ? 'block' : 'flex')};
 `;
 
-const Track = typedStyled.div<ProgressBarProps>`
+const Track = styled.div<ProgressBarProps>`
   background: ${props =>
     props.isInverse
       ? transparentize(0.75, props.theme.colors.neutral900)
@@ -136,14 +141,14 @@ const Bar = styled.div<ProgressBarProps>`
     `}
 `;
 
-const Percentage = typedStyled.span`
+const Percentage = styled.span`
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   margin-left: ${props => props.theme.spaceScale.spacing03};
 `;
 
-const TopPercentage = typedStyled.div`
+const TopPercentage = styled.div`
   font-size: ${props => props.theme.typeScale.size05.fontSize};
   line-height: ${props => props.theme.typeScale.size05.lineHeight};
   margin-bottom: ${props => props.theme.spaceScale.spacing03};
@@ -153,7 +158,7 @@ const TopPercentage = typedStyled.div`
 export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
   (props, ref) => {
     const {
-      color,
+      color = ProgressBarColor.primary,
       height,
       id: defaultId,
       isAnimated,

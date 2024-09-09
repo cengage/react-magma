@@ -2,4 +2,4 @@
 'react-magma-docs': patch
 ---
 
-chore: Resync dev branch
+docs(Drawer): Fix Drawer examples

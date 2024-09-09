@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 /**
  * @children required
@@ -92,8 +91,6 @@ interface TableContextInterface {
   isSortableBySelected?: boolean;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
 export const TableContext = React.createContext<TableContextInterface>({
   density: TableDensity.normal,
   hasHoverStyles: false,
@@ -106,7 +103,7 @@ export const TableContext = React.createContext<TableContextInterface>({
   selectedItems: [],
 });
 
-export const TableContainer = typedStyled.div<{
+export const TableContainer = styled.div<{
   minWidth: number;
   hasSquareCorners?: boolean;
   isInverse?: boolean;
@@ -126,7 +123,7 @@ export const TableContainer = typedStyled.div<{
   }
 `;
 
-export const StyledTable = typedStyled.table<{
+export const StyledTable = styled.table<{
   isInverse?: boolean;
   minWidth: number;
 }>`
@@ -178,6 +175,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isInverse: isInverse,
           isSelectable,
           isSortableBySelected,
+          rowCount
         }}
       >
         <TableContainer

@@ -9,7 +9,7 @@ import {
 } from './useAccordion';
 import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
-import styled, { CreateStyled } from '@emotion/styled';
+import styled from '@emotion/styled';
 
 /**
  * @children required
@@ -97,9 +97,8 @@ export type AccordionProps =
   | AccordionMultipleControlledProps
   | AccordionSingleControlledProps;
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
-const StyledAccordion = typedStyled.div<AccordionProps>`
+const StyledAccordion = styled.div<AccordionProps>`
   background: transparent;
   border-bottom: 1px solid
     ${props =>

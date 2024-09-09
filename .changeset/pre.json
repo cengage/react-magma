@@ -2,26 +2,29 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "@react-magma/charts": "6.0.0",
-    "@react-magma/dropzone": "6.0.0",
-    "react-magma-dom": "4.3.0",
-    "@react-magma/schema-renderer": "6.0.0",
-    "@cengage-patterns/header": "8.0.0",
-    "react-magma-docs": "5.0.5",
-    "react-magma-landing": "1.1.3"
+    "@react-magma/charts": "8.0.0",
+    "@react-magma/dropzone": "8.0.0",
+    "react-magma-dom": "4.5.0",
+    "@react-magma/schema-renderer": "8.0.0",
+    "@cengage-patterns/header": "10.0.0",
+    "react-magma-docs": "5.0.7",
+    "react-magma-landing": "1.1.4"
   },
   "changesets": [
-    "chore-sync",
-    "docs-styles",
-    "empty-monkeys-collect",
-    "hyperlink",
-    "input-wrapperStyle",
-    "landing-version",
-    "linechart-deprecate",
-    "modal-aria",
-    "old-pugs-fix",
-    "pink-kids-dance",
-    "strange-kangaroos-dream",
-    "toast-docs"
+    "a11y-datagrid",
+    "a11y-iconToggleBtn",
+    "a11y-loadingBtn",
+    "a11y-navTabs",
+    "a11y-pagination",
+    "breadcrumbs-alignment",
+    "datePicker-onChange",
+    "docs-drawer",
+    "docs-drawerExample2",
+    "feat-modal-headerref-docs",
+    "feat-modal-headerref",
+    "fix-modal-headerref-docs",
+    "sync",
+    "thirty-cherries-sort",
+    "treeViewProps"
   ]
 }

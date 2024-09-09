@@ -7,8 +7,7 @@ import { DropdownContext } from './Dropdown';
 import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
 import { useForkedRef } from '../../utils';
 import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 export interface DropdownExpandableMenuButtonProps
   extends AccordionButtonProps {
@@ -16,9 +15,7 @@ export interface DropdownExpandableMenuButtonProps
   testId?: string;
 }
 
-const typedStyled = styled as CreateStyled<ThemeInterface>;
-
-const StyledAccordionButton = typedStyled(AccordionButton)<{
+const StyledAccordionButton = styled(AccordionButton)<{
   expandableMenuButtonHasIcon?: boolean;
   icon?: React.ReactElement<IconProps>;
   isMenuItemContextDisabled?: boolean;

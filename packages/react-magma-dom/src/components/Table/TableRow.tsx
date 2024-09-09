@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import {
   TableContext,
   TableRowColor,
@@ -17,8 +17,8 @@ import {
 } from '../IndeterminateCheckbox';
 import { transparentize } from 'polished';
 import { NorthIcon, SortDoubleArrowIcon, SouthIcon } from 'react-magma-icons';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
+import { I18nContext } from '../../i18n';
 
 /**
  * @children required
@@ -45,12 +45,14 @@ export interface TableRowProps
   onTableRowSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   rowIndex?: number;
   /**
+   * Unique name to be used to identify row for screenreaders
+   */
+  rowName?: string;
+  /**
    * @internal
    */
   testId?: string;
 }
-
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 function buildTableRowBackground(props) {
   if (props.isInverse) {
@@ -93,7 +95,7 @@ function buildTableRowColor(props) {
   return 'inherit';
 }
 
-const StyledTableRow = typedStyled.tr<{
+const StyledTableRow = styled.tr<{
   color?: string;
   hasHoverStyles?: boolean;
   hasZebraStripes?: boolean;
@@ -145,7 +147,7 @@ const StyledTableRow = typedStyled.tr<{
     `};
 `;
 
-const SortButton = typedStyled.button<{
+const SortButton = styled.button<{
   density?: TableDensity;
   isInverse?: boolean;
   textAlign?: TableCellAlign;
@@ -183,7 +185,7 @@ const SortButton = typedStyled.button<{
   }
 `;
 
-const SortIconWrapper = typedStyled.span`
+const SortIconWrapper = styled.span`
   position: relative;
   top: ${props => props.theme.spaceScale.spacing01};
 `;
@@ -199,12 +201,14 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
       onHeaderRowSelect,
       onTableRowSelect,
       rowIndex,
+      rowName,
       onSort,
       testId,
       ...other
     } = props;
     const theme = React.useContext(ThemeContext);
     const tableContext = React.useContext(TableContext);
+    const i18n = React.useContext(I18nContext);
 
     let isHeaderRow = false;
 
@@ -297,7 +301,11 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
                 status={headerRowStatus}
                 isInverse={getIsCheckboxInverse()}
                 labelStyle={{ padding: 0 }}
-                labelText="Select all rows"
+                labelText={
+                  headerRowStatus === IndeterminateCheckboxStatus.unchecked
+                    ? i18n.table.selectable.selectAllRowsAriaLabel
+                    : i18n.table.selectable.deselectAllRowsAriaLabel
+                }
                 isTextVisuallyHidden
                 onChange={onHeaderRowSelect}
               />
@@ -311,7 +319,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   data-testid={`${testId || ''}-sort-button`}
-                  aria-label="Sort rows"
+                  aria-label={i18n.table.selectable.sortButtonAriaLabel}
                 >
                   <SortIconWrapper theme={theme}>{SortIcon}</SortIconWrapper>
                 </SortButton>
@@ -328,7 +336,11 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
               checked={isSelected}
               disabled={isSelectableDisabled}
               labelStyle={{ padding: 0 }}
-              labelText={`Select row ${rowIndex} of ${tableContext.rowCount}`}
+              labelText={
+                isSelected
+                  ? `${i18n.table.selectable.deselectRowAriaLabel} ${rowName || ''}`
+                  : `${i18n.table.selectable.selectRowAriaLabel} ${rowName || ''}`
+              }
               isTextVisuallyHidden
               isInverse={getIsCheckboxInverse()}
               onChange={onTableRowSelect}

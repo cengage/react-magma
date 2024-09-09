@@ -1,34 +1,71 @@
-## 4.4.0
+## 4.6.0-next.0
 
-## 4.4.1-next.4
+## 4.6.0-next.7
 
 ### Patch Changes
 
+- 84a8a17d6: fix(DatePicker): Fix error when using both onChange and onDateChange
+
+## 4.6.0-next.6
+
+### Minor Changes
+
+- ca58152cb: Add support for `checkChildren`, `checkParents` props to TreeView
+
+## 4.6.0-next.5
+
+### Patch Changes
+
+- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
+
+## 4.6.0-next.4
+
+### Patch Changes
+
+- 9214724b6: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
+
+## 4.6.0-next.3
+
+### Patch Changes
+
+- aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
+
+## 4.6.0-next.2
+
+### Patch Changes
+
+- 1d1dd1d06: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
+
+## 4.6.0-next.1
+
+### Patch Changes
+
+- 48b7a5539: fix(Breadcrumbs): Fixed alignment issue between elements.
+
+### Minor Changes
+
+- fdf2dc929: feat(Modal): New `headerRef` prop that returns a reference to the header element
+
+## 4.5.0
+
+### Minor Changes
+
+- ae668a3e5: chore: Updating emotion to v11
+- 9e38e9e7f: feat(Stepper): New Stepper component. Displays step based content for use in multi-step interfaces.
+
+### Patch Changes
+
+- e43932d45: fix(Modal): Background overlay now displays as expected for nested modals
+- e24db7ab4: fix(DatePicker): Remove role="presentation" from calendar
+- 65d417254: fix(ProgressBar): Add support for custom colors
+- 636fa3060: fix(NativeSelect): Update arrow placement, arrow color and border color when disabled
 - da14eec4f: fix(Modal): Remove unnecessary `aria-describedBy=“modal”`. Add `ariaLabel` prop so that Modals without headers can customize the `aria-label` instead of defaulting to `aria-label="modal"` which is not correct for a11y standards.
-
-## 4.4.1-next.3
-
-### Patch Changes
-
+- cd101c769: fix(Hyperlink): Support Icons and toggling underline styling
+- 9f1e0956a: fix(Input): Add `inputWrapperStyle` prop to allow more flexibility with Input widths
 - ec35223de: build(deps): bump tar from 6.1.11 to 6.2.1
-
-## 4.4.1-next.2
-
-### Patch Changes
-
 - 506904fd8: build(deps): bump express from 4.18.1 to 4.19.2
 
-## 4.4.1-next.1
-
-### Patch Changes
-
-- cd101c769: fix(Hyperlink): Support Icons and toggling underline styling
-
-## 4.4.1-next.0
-
-### Patch Changes
-
-- 9f1e0956a: fix(Input): Add `inputWrapperStyle` prop to allow more flexibility with Input widths
+## 4.4.0
 
 ### Minor Changes
 

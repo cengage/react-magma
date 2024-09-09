@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
-import { Pagination } from '.';
+import { Pagination, PaginationType } from '.';
 import { render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
 
@@ -126,8 +126,8 @@ describe('Pagination', () => {
     expect(handleChangePage).toHaveBeenCalled();
   });
 
-  it('Does not violate accessibility standards', () => {
-    const { container } = render(<Pagination count={4} />);
+  it('Does not violate accessibility standards for classic type', () => {
+    const { container } = render(<Pagination count={4} type={PaginationType.classic}/>);
 
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();

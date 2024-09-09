@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonVariant, ButtonType, ButtonSize, ButtonShape } from '../Button';
 import { IconButton } from '../IconButton';
@@ -9,7 +9,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { useForkedRef } from '../../utils';
 import { transparentize } from 'polished';
-import styled, { CreateStyled } from '@emotion/styled';
+import styled from '@emotion/styled';
 
 export enum InputSize {
   large = 'large',
@@ -118,6 +118,10 @@ export interface InputBaseProps
    */
   onIconKeyDown?: (event) => void;
   /**
+   * Action that will synchronize chosenDate with input value
+   */
+  onDateChange?: (event) => void;
+  /**
    * @internal
    */
   testId?: string;
@@ -152,8 +156,6 @@ export interface InputWrapperStylesProps {
   disabled?: boolean;
   inputSize?: InputSize;
 }
-
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   flex: 1 1 auto;
@@ -337,7 +339,7 @@ const StyledInput = styled.input<InputBaseStylesProps>`
   ${inputBaseStyles}
 `;
 
-const IconWrapper = typedStyled.span<{
+const IconWrapper = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   isClearable?: boolean;
@@ -573,6 +575,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       onClear,
       onIconClick,
       onIconKeyDown,
+      onDateChange,
       inputLength,
       inputSize,
       inputStyle,
@@ -615,6 +618,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     function handleClearInput() {
       onClear && typeof onClear === 'function' && onClear();
       setValue('');
+      onDateChange && typeof onDateChange === 'function' && onDateChange(null);
       inputRef.current.focus();
     }
 
@@ -624,6 +628,12 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
         props.onChange(event);
 
       setValue(event.target.value);
+      if (
+        !event.target.value &&
+        onDateChange &&
+        typeof onDateChange === 'function'
+      )
+        onDateChange(null);
     }
 
     const passwordBtnWidth = () => {

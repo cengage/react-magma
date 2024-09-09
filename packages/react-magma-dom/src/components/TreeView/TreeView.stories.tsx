@@ -60,6 +60,14 @@ export default {
     },
     onExpandedChange: { action: 'expanded changed' },
     onSelectedItemChange: { action: 'selected item changed' },
+    checkParents: {
+      control: 'boolean',
+      defaultValue: true,
+    },
+    checkChildren: {
+      control: 'boolean',
+      defaultValue: true,
+    }
   },
 } as Meta;
 
@@ -806,3 +814,38 @@ FlatTree.args = {
 };
 
 FlatTree.parameters = { controls: { exclude: ['isInverse'] } };
+
+export const ParentsAndChildrenNotAutoChecked = args => {
+  return <>
+    <TreeView {...args}>
+      <TreeItem label="Mammals" itemId="Mammals">
+        <TreeItem label="Dogs" itemId="Dogs">
+          <TreeItem label="German Shepherd" itemId="German Shepherd" />
+          <TreeItem label="Labrador Retriever" itemId="Labrador Retriever" />
+          <TreeItem label="American Bully" itemId="American Bully" />
+        </TreeItem>
+        <TreeItem label="Cats" itemId="Cats">
+          <TreeItem label="Siamese" itemId="Siamese" />
+          <TreeItem label="Persian" itemId="Persian" />
+          <TreeItem label="Bengal" itemId="Bengal" />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Birds" itemId="Birds">
+        <TreeItem label="Parrots" itemId="Parrots">
+          <TreeItem label="African Grey" itemId="African Grey" />
+          <TreeItem label="Cockatiel" itemId="Cockatiel" />
+          <TreeItem label="Budgerigar" itemId="Budgerigar" />
+        </TreeItem>
+        <TreeItem label="Birds of Prey" itemId="Birds of Prey">
+          <TreeItem label="Eagles" itemId="Eagles" />
+          <TreeItem label="Hawks" itemId="Hawks" />
+          <TreeItem label="Falcons" itemId="Falcons" />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Amphibians" itemId="Amphibians" />
+    </TreeView></>
+};
+
+ParentsAndChildrenNotAutoChecked.args = {
+  selectable: TreeViewSelectable.multi,
+}
