@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.8-next.10
+
+### Patch Changes
+
+- 5d58c31af: Revert "chore: Update @emotion dependency (#1419)"
+
 ## 5.0.8-next.9
 
 ### Patch Changes
