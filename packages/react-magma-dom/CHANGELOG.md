@@ -1,5 +1,11 @@
 ## 4.6.0-next.0
 
+## 4.6.0-next.9
+
+### Patch Changes
+
+- d4164cacb: fix(Modal): Modal disabled background click focus fix.
+
 ## 4.6.0-next.8
 
 ### Patch Changes
