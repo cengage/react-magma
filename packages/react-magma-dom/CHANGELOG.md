@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.6.0-next.10
+
+### Patch Changes
+
+- 6b413fb77: fix(List): Updated examples for List component
+
 ## 4.6.0-next.9
 
 ### Patch Changes
