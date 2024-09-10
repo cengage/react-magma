@@ -112,6 +112,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const ModalContainer = styled(Transition)<{
   theme: ThemeInterface;
+  modalCount?: number;
 }>`
   bottom: 0;
   left: 0;
@@ -119,7 +120,7 @@ const ModalContainer = styled(Transition)<{
   padding: ${props => props.theme.spaceScale.spacing03};
   right: 0;
   top: 0;
-  z-index: 998;
+  z-index: ${props => (props.modalCount >= 2 ? '999' : '998')};
 `;
 
 const ModalBackdrop = styled(Transition)<{
@@ -379,12 +380,13 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               aria-modal={true}
               data-testid={testId}
               id={id}
+              modalCount={modalCount}
               onClick={isBackgroundClickDisabled ? null : handleModalClick}
               onMouseDown={
                 isBackgroundClickDisabled ? null : handleModalOnMouseDown
               }
               role="dialog"
-              style={containerStyle || (modalCount >= 2 && { zIndex: '999' })}
+              style={containerStyle}
               theme={theme}
               isOpen={isModalOpen}
               {...containerTransition}
