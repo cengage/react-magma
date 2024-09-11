@@ -755,8 +755,14 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   const collapseFocusedNode = () => {
     if (hasOwnTreeItems) {
-      setExpanded(false);
-      focusSelf();
+      if (expanded) {
+        setExpanded(false);
+        focusSelf();
+      } else {
+        focusPrev();
+      }
+    } else {
+      focusPrev();
     }
   };
 
