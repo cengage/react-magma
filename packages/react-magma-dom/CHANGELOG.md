@@ -1,5 +1,11 @@
 ## 4.6.0-next.0
 
+## 4.6.0-next.11
+
+### Patch Changes
+
+- 11bedeff9: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
+
 ## 4.6.0-next.10
 
 ### Patch Changes
