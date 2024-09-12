@@ -44,6 +44,14 @@ const StyledLink = styled.a<{ isInverse?: boolean }>`
         ? props.theme.colors.neutral100
         : props.theme.colors.neutral700};
   }
+  &:focus {
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+    outline-offset: 2px;
+  }
 `;
 
 const StyledSpan = styled.span<{ isInverse?: boolean }>`
