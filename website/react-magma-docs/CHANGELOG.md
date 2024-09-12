@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.8-next.12
+
+### Patch Changes
+
+- 1243113e9: fix(Accordion): Fix focus issue with `Collapse All` and `Expand All` buttons
+
 ## 5.0.8-next.11
 
 ### Patch Changes
