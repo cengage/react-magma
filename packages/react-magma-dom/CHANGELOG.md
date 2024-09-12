@@ -1,5 +1,11 @@
 ## 4.6.0-next.0
 
+## 4.6.0-next.13
+
+### Patch Changes
+
+- 9d840d863: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
+
 ## 4.6.0-next.12
 
 ### Patch Changes
