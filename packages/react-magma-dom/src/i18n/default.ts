@@ -144,8 +144,9 @@ export const defaultI18n: I18nInterface = {
         displayValue: 'ESC',
         explanation: 'Return to the date input field.',
       },
-      questionMark: {
-        ariaLabel: 'Question Mark',
+      ctrlShiftAndQuestionMark: {
+        ariaLabel: 'Ctrl + Shift + Question Mark',
+        displayValue: 'CTRL+SHIFT+?',
         explanation: 'Open this panel.',
       },
     },
@@ -294,7 +295,7 @@ export const defaultI18n: I18nInterface = {
       selectRowAriaLabel: 'Select row',
       deselectAllRowsAriaLabel: 'Deselect all rows',
       deselectRowAriaLabel: 'Deselect row',
-    }
+    },
   },
   tabs: {
     horizontalTabsInstructions:

@@ -90,7 +90,9 @@ export function handleKeyPress(
 
     case '?':
       e.preventDefault();
-      showHelperInformation();
+      if (e.ctrlKey && e.shiftKey) {
+        showHelperInformation();
+      }
       break;
 
     default:

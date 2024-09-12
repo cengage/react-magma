@@ -841,9 +841,7 @@ describe('Date Picker', () => {
       expect(document.activeElement).toBe(container.querySelector('button'));
     });
 
-    // eslint-disable-next-line jest/no-disabled-tests
-    it.skip('?', async () => {
-      // TODO
+    it('?', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
       const { getByText, baseElement } = render(
@@ -857,6 +855,16 @@ describe('Date Picker', () => {
       fireEvent.keyDown(baseElement.querySelector('table'), {
         key: '?',
       });
+
+      expect(() => getByText(/keyboard shortcuts/i)).toThrow();
+
+      fireEvent.keyDown(baseElement.querySelector('table'), {
+        key: '?',
+        ctrlKey: true,
+        shiftKey: true,
+      });
+
+      expect(getByText(/keyboard shortcuts/i)).toBeInTheDocument();
     });
 
     it('Escape without focus', () => {

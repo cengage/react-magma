@@ -32,7 +32,7 @@ const Item = styled.li`
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   align-items: center;
   span {
-    flex: 0 0 100px;
+    flex: 0 0 130px;
     overflow: hidden;
     line-height: 28px;
     min-height: 36px;
@@ -220,13 +220,13 @@ export const HelperInformation: React.FunctionComponent<
             <KeyboardShortcutButtonWrapper
               role="img"
               theme={theme}
-              aria-label={i18n.datePicker.helpModal.questionMark.ariaLabel}
+              aria-label={i18n.datePicker.helpModal.ctrlShiftAndQuestionMark.ariaLabel}
               isInverse={isInverse}
             >
-              ?
+              {i18n.datePicker.helpModal.ctrlShiftAndQuestionMark.displayValue}
             </KeyboardShortcutButtonWrapper>
             <StyledDescription theme={theme}>
-              {i18n.datePicker.helpModal.questionMark.explanation}
+              {i18n.datePicker.helpModal.ctrlShiftAndQuestionMark.explanation}
             </StyledDescription>
           </Item>
         </List>

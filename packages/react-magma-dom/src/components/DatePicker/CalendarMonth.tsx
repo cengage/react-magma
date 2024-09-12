@@ -21,7 +21,6 @@ interface CalendarMonthProps {
   setDateFocused?: (value: boolean) => void;
 }
 
-
 const CalendarContainer = styled.div<{ isInverse?: boolean }>`
   background: ${props =>
     props.isInverse
@@ -196,8 +195,8 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
               </tbody>
             </Table>
             <Tooltip
-              content={'Keyboard instructions'}
-              tooltipStyle={{ position: 'fixed' }}
+              content={'Keyboard instructions\nctrl+shift+?'}
+              tooltipStyle={{ position: 'fixed', whiteSpace: 'pre-line' }}
             >
               <HelperButton theme={theme}>
                 <IconButton
