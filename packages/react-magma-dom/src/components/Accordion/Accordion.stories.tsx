@@ -25,7 +25,6 @@ import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { ButtonGroup } from '../ButtonGroup';
 
-
 export default {
   component: Accordion,
   title: 'Accordion',
@@ -98,15 +97,15 @@ ControlledNoMulti.args = {
 
 export const ExpandCollapseAll = args => {
   const [expandedIndex, setExpandedIndex] = React.useState([]);
-  const [disableExpandAll, setDisableExpandAll] = React.useState(false);
-  const [disableCollapseAll, setDisableCollapseAll] = React.useState(true);
 
-  const handleExpandAll = () => {
-    setExpandedIndex([0, 1, 2]);
-  };
+  const isAllExpanded = expandedIndex.length > 0;
 
-  const handleCollapseAll = () => {
-    setExpandedIndex([]);
+  const handleToggleAll = () => {
+    if (isAllExpanded) {
+      setExpandedIndex([]);
+    } else {
+      setExpandedIndex([0, 1, 2]);
+    }
   };
 
   const handleExpandedChange = index => {
@@ -117,27 +116,11 @@ export const ExpandCollapseAll = args => {
     }
   };
 
-  React.useEffect(() => {
-    if (expandedIndex.length === 0) {
-      setDisableCollapseAll(true);
-      setDisableExpandAll(false);
-    } else if (expandedIndex.length === 3) {
-      setDisableCollapseAll(false);
-      setDisableExpandAll(true);
-    } else {
-      setDisableCollapseAll(false);
-      setDisableExpandAll(false);
-    }
-  }, [expandedIndex]);
-
   return (
     <>
       <ButtonGroup size={ButtonSize.small} variant={ButtonVariant.solid}>
-        <Button disabled={disableExpandAll} onClick={handleExpandAll}>
-          Expand All
-        </Button>
-        <Button disabled={disableCollapseAll} onClick={handleCollapseAll}>
-          Collapse All
+        <Button onClick={handleToggleAll}>
+          {isAllExpanded ? 'Collapse All' : 'Expand All'}
         </Button>
       </ButtonGroup>
       <br />

@@ -16,7 +16,9 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 <PageContent componentName="accordion" type="api">
 
 <LeadParagraph>
-An accordion is a vertically stacked group of collapsible sections. An accordion is composed of grouped buttons and panels. When a user clicks an accordion button, its respective panel will hide or show.
+  An accordion is a vertically stacked group of collapsible sections. An
+  accordion is composed of grouped buttons and panels. When a user clicks an
+  accordion button, its respective panel will hide or show.
 </LeadParagraph>
 
 ## Basic Usage
@@ -123,15 +125,15 @@ import {
 
 export function Example() {
   const [expandedIndex, setExpandedIndex] = React.useState([]);
-  const [disableExpandAll, setDisableExpandAll] = React.useState(false);
-  const [disableCollapseAll, setDisableCollapseAll] = React.useState(true);
 
-  const handleExpandAll = () => {
-    setExpandedIndex([0, 1, 2]);
-  };
+  const isAllExpanded = expandedIndex.length > 0;
 
-  const handleCollapseAll = () => {
-    setExpandedIndex([]);
+  const handleToggleAll = () => {
+    if (isAllExpanded) {
+      setExpandedIndex([]);
+    } else {
+      setExpandedIndex([0, 1, 2]);
+    }
   };
 
   const handleExpandedChange = index => {
@@ -142,37 +144,15 @@ export function Example() {
     }
   };
 
-  React.useEffect(() => {
-    if (expandedIndex.length === 0) {
-      setDisableCollapseAll(true);
-      setDisableExpandAll(false);
-    } else if (expandedIndex.length === 3) {
-      setDisableCollapseAll(false);
-      setDisableExpandAll(true);
-    } else {
-      setDisableCollapseAll(false);
-      setDisableExpandAll(false);
-    }
-  }, [expandedIndex]);
-
   return (
     <>
       <ButtonGroup>
         <Button
-          disabled={disableExpandAll}
-          onClick={handleExpandAll}
+          onClick={handleToggleAll}
           size={ButtonSize.small}
           variant={ButtonVariant.solid}
         >
-          Expand All
-        </Button>
-        <Button
-          disabled={disableCollapseAll}
-          onClick={handleCollapseAll}
-          size={ButtonSize.small}
-          variant={ButtonVariant.solid}
-        >
-          Collapse All
+          {isAllExpanded ? 'Collapse All' : 'Expand All'}
         </Button>
       </ButtonGroup>
       <Spacer size="12" />
