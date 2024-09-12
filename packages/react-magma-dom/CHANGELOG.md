@@ -1,5 +1,11 @@
 ## 4.6.0-next.0
 
+## 4.6.0-next.14
+
+### Patch Changes
+
+- 616cbf9a0: fix(BreadCrumb): replace span with link to fix focus
+
 ## 4.6.0-next.13
 
 ### Patch Changes
