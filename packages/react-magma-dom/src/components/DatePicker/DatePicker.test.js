@@ -841,7 +841,7 @@ describe('Date Picker', () => {
       expect(document.activeElement).toBe(container.querySelector('button'));
     });
 
-    it('?', async () => {
+    it('Ctrl + Shift + ?', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
       const { getByText, baseElement } = render(
