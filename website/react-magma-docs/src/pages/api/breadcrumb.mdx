@@ -19,7 +19,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 The breadcrumb menu consists of two components: `Breadcrumb` and `BreadcrumbItem`. The `Breadcrumb` is the wrapper for the entire menu; the `BreadcrumbItem`
 should be used multiple times within it, and refers to each node in the menu. A `BreadcrumbItem` takes a `to` prop, which determines the href of that item. If that prop is left blank,
-the item will be rendered as a span and will have `aria-current="page"` on it. All items in a breadcrumb menu should have the `to` prop, except for the last one, which represents the current page.
+the item will be rendered as a non-clickable element with `aria-current="page"` on it. All items in a breadcrumb menu should have the `to` prop, except for the last one, which represents the current page.
 
 ```tsx
 import React from 'react';
