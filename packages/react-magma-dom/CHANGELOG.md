@@ -1,5 +1,11 @@
 ## 4.6.0-next.0
 
+## 4.6.0-next.12
+
+### Patch Changes
+
+- dc307446a: fix(Accordion): Fix screen scroll behavior during accordion navigation
+
 ## 4.6.0-next.11
 
 ### Patch Changes
