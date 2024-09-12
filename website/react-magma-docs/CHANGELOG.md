@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.8-next.13
+
+### Patch Changes
+
+- cbc680295: Update changelog text to alert adopters about the emotion update.
+
 ## 5.0.8-next.12
 
 ### Patch Changes
