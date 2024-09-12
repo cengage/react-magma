@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.0.8-next.11
+
+### Patch Changes
+
+- 9cff682a8: build: Fix package lock
+- Updated dependencies [11bedeff9]
+  - react-magma-dom@4.6.0-next.11
+
 ## 5.0.8-next.10
 
 ### Patch Changes
