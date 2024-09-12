@@ -2,8 +2,8 @@ import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
   CheckboxProps,
-  HiddenLabelText,
   HiddenInput,
+  HiddenLabelText,
   StyledFakeInput,
 } from '../Checkbox';
 import {
@@ -15,7 +15,7 @@ import { FormGroupContext } from '../FormGroup';
 import { InputMessage } from '../Input/InputMessage';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import { useGenerateId, Omit } from '../../utils';
+import { Omit, useGenerateId } from '../../utils';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { Announce } from '../Announce';
 import { I18nContext } from '../../i18n';
@@ -143,11 +143,14 @@ export const IndeterminateCheckbox = React.forwardRef<
 
   const isInverse = useIsInverse(props.isInverse);
 
+  const ariaCheckedValue = isIndeterminate ? 'mixed' : !isUnchecked;
+
   return (
     <>
       <StyledContainer style={containerStyle}>
         <HiddenInput
           {...other}
+          aria-checked={ariaCheckedValue}
           aria-describedby={describedBy}
           checked={isChecked}
           data-testid={testId}
