@@ -144,7 +144,7 @@ export const defaultI18n: I18nInterface = {
         displayValue: 'ESC',
         explanation: 'Return to the date input field.',
       },
-      ctrlShiftAndQuestionMark: {
+      questionMark: {
         ariaLabel: 'Ctrl + Shift + Question Mark',
         displayValue: 'CTRL+SHIFT+?',
         explanation: 'Open this panel.',

@@ -151,7 +151,7 @@ export interface I18nInterface {
         displayValue: string;
         explanation: string;
       };
-      ctrlShiftAndQuestionMark: {
+      questionMark: {
         ariaLabel: string;
         displayValue: string,
         explanation: string;

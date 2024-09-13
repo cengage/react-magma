@@ -220,13 +220,13 @@ export const HelperInformation: React.FunctionComponent<
             <KeyboardShortcutButtonWrapper
               role="img"
               theme={theme}
-              aria-label={i18n.datePicker.helpModal.ctrlShiftAndQuestionMark.ariaLabel}
+              aria-label={i18n.datePicker.helpModal.questionMark.ariaLabel}
               isInverse={isInverse}
             >
-              {i18n.datePicker.helpModal.ctrlShiftAndQuestionMark.displayValue}
+              {i18n.datePicker.helpModal.questionMark.displayValue}
             </KeyboardShortcutButtonWrapper>
             <StyledDescription theme={theme}>
-              {i18n.datePicker.helpModal.ctrlShiftAndQuestionMark.explanation}
+              {i18n.datePicker.helpModal.questionMark.explanation}
             </StyledDescription>
           </Item>
         </List>
