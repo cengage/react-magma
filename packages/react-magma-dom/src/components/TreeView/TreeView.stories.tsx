@@ -163,7 +163,7 @@ export const Complex = args => {
         <TreeView {...args} onSelectedItemChange={onSelection}>
           <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
             <TreeItem
-              icon={<ArticleIcon aria-hidden={true} />}
+              icon={<FolderIcon aria-hidden={true} />}
               label={<>Chapter 1: I love tiramisu jelly beans soufflé</>}
               itemId="pt1ch1"
               testId="pt1ch1"
