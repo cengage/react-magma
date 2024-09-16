@@ -111,7 +111,7 @@ export function Example() {
 
   function onSelection(items) {
     const selected = items
-      .filter((i) => i.checkedStatus === IndeterminateCheckboxStatus.checked)
+      .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
       .map((i, key) => (
         <Tag key={key} size={TagSize.small} color={TagColor.primary}>
           {i.itemId}
@@ -120,7 +120,7 @@ export function Example() {
 
     const indeterminate = items
       .filter(
-        (i) => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate
+        i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate
       )
       .map((i, key) => (
         <Tag key={key} size={TagSize.small} color={TagColor.default}>
@@ -219,7 +219,6 @@ export function Example() {
     </>
   );
 }
-
 ```
 
 ## Icons
@@ -523,11 +522,11 @@ export function Example() {
   >(undefined);
 
   function handleSelectedItemChange(event) {
-    setCurrentTreeEvent("Selected");
+    setCurrentTreeEvent('Selected');
   }
 
   function handleExpandedChange(event) {
-    setCurrentTreeEvent("Expanded");
+    setCurrentTreeEvent('Expanded');
   }
 
   return (
@@ -606,7 +605,6 @@ export function Example() {
     </Card>
   );
 }
-
 ```
 
 ## Custom Styles
