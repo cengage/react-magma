@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.8-next.14
+
+### Patch Changes
+
+- facc56d54: fix(TreeView): Fixed the Preselected for displaying checked items
+
 ## 5.0.8-next.13
 
 ### Patch Changes
