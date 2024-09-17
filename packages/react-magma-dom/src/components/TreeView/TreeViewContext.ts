@@ -31,6 +31,8 @@ export interface TreeViewContextInterface {
   setSelectedItemsChanged: React.Dispatch<React.SetStateAction<any>>;
   treeItemRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
   itemToFocus?: string;
+  checkParents: boolean;
+  checkChildren: boolean;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
@@ -47,4 +49,6 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   setPreselectedItemsNeedUpdate: () => {},
   setSelectedItems: () => {},
   setSelectedItemsChanged: () => {},
+  checkParents: true,
+  checkChildren: true,
 });

@@ -73,12 +73,16 @@ import React from 'react';
 import { NavTab, NavTabs } from 'react-magma-dom';
 export function Example() {
   // We support Link components from libraries such as react-router/reach-router/gatsby that use the `to` prop in place of `href`
-  const Link = ({ to, ...rest }) => <a href={to} {...rest} />;
+   const Link = ({ to, children, ...rest }) => (
+    <a href={to} {...rest}>
+      {children}
+    </a>
+  );
   return (
     <NavTabs aria-label="Sample Custom Component Navigation Tabs">
       <NavTab component={<Link to="./">Main page</Link>} />
       <NavTab component={<Link to="./">FAQ</Link>} />
-      <NavTab component={<Link to="./">About us</Link>} />
+      <NavTab isActive component={<Link to="./">About us</Link>} />
     </NavTabs>
   );
 }
@@ -268,7 +272,7 @@ import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <NavTabs aria-label="Icon Only Nav Tabs">
-      <NavTab aria-label="Email" icon={<EmailIcon isActive />} to="#" />
+      <NavTab aria-label="Email" icon={<EmailIcon />} to="#" isActive />
       <NavTab aria-label="Android" icon={<AndroidIcon />} to="#" />
       <NavTab aria-label="Notifications" icon={<NotificationsIcon />} to="#" />
     </NavTabs>

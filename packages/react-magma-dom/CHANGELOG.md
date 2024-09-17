@@ -1,28 +1,32 @@
-## 4.5.0
+
+## 4.6.0
 
 ### Minor Changes
 
-- 5f16d2018: Updating emotion to v11
-- 5f16d2018: feat(Stepper): New Stepper component. Displays step based content for use in multi-step interfaces.
+- ca58152cb: feat(TreeView): Add support for `checkChildren`, `checkParents` props
+- fdf2dc929: feat(Modal): New `headerRef` prop that returns a reference to the header element
 
 ### Patch Changes
 
-- 5f16d2018: fix(datePicker): Remove date picker calendar table role
-- 5f16d2018: fix(datePicker): Fix date picker clearing functionality
-- 5f16d2018: fix(Hyperlink): Support Icons and toggling underline styling
-- 5f16d2018: fix(Input): Add `inputWrapperStyle` prop to allow more flexibility with Input widths
-- 5f16d2018: fix(Modal): Remove unnecessary `aria-describedBy=“modal”`. Add `ariaLabel` prop so that Modals without headers can customize the `aria-label` instead of defaulting to `aria-label="modal"` which is not correct for a11y standards.
-- 5f16d2018: fix(NativeSelect): Update arrow placement, arrow color and border color when disabled
-- 5f16d2018: fix(Modal): Background overlay issue on nested modals
-- 5f16d2018: build(deps): bump express from 4.18.1 to 4.19.2
-- 5f16d2018: fix(ProgressBar): Add support for custom colors
-- 5f16d2018: build(deps): bump tar from 6.1.11 to 6.2.1
+- dc307446a: fix(Accordion): Fix screen scroll behavior during accordion navigation
+- 6b413fb77: fix(List): Updated support for nested items
+- d4164cacb: fix(Modal): Fix focus issue when using `isBackgroundClickDisabled`
+- 84a8a17d6: fix(DatePicker): Fix error when using both `onChange` and `onDateChange`
+- 48b7a5539: fix(Breadcrumbs): Fixed alignment issue between elements.
+- 616cbf9a0: fix(BreadCrumb): Improved accessibility by replace span with link to fix focus
+- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
+- aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
+- 9d840d863: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
+- 9214724b6: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
+- 1d1dd1d06: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
+- 11bedeff9: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
+- 3b3a2d79a: chore: Update @emotion dependency
 
 ## 4.5.0
 
 ### Minor Changes
 
-- ae668a3e5: chore: Updating emotion to v11
+- ae668a3e5: chore: Updating emotion to v11. **Note: adopters will need to upgrade** their packages to the following versions `"@emotion/react": "^11.13.0", "@emotion/styled": "^11.13.0"`. Notice that `@emotion/core` has been replaced with `@emotion/styled` and that's the only breaking change.
 - 9e38e9e7f: feat(Stepper): New Stepper component. Displays step based content for use in multi-step interfaces.
 
 ### Patch Changes

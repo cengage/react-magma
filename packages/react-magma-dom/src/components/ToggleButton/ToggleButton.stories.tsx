@@ -9,7 +9,6 @@ const Template: Story<ToggleButtonProps> = args => (
   <ToggleButton
     {...args}
     isChecked={args.isChecked}
-    aria-label="Check icon"
     icon={<CheckIcon />}
   />
 );
@@ -47,6 +46,7 @@ export default {
 export const Icon = Template.bind({});
 Icon.args = {
   isInverse: false,
+  'aria-label': 'Check'
 };
 
 export const Text = args => {
