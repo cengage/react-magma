@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(BreadCrumb): replace span with link to fix focus
+fix(BreadCrumb): Improved accessibility by replacing span with link to fix focus

@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(List): Updated examples for List component
+fix(List): Updated support for nested items

@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Modal): Modal disabled background click focus fix.
+fix(Modal): Fix focus issue when using `isBackgroundClickDisabled`
