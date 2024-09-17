@@ -88,13 +88,6 @@ export function handleKeyPress(
       iconRef.current.focus();
       break;
 
-    case '?':
-      e.preventDefault();
-      if (e.ctrlKey && e.shiftKey) {
-        showHelperInformation();
-      }
-      break;
-
     default:
       break;
   }

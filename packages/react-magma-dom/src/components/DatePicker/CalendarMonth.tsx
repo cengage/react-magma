@@ -195,8 +195,8 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
               </tbody>
             </Table>
             <Tooltip
-              content={'Keyboard instructions\nctrl+shift+?'}
-              tooltipStyle={{ position: 'fixed', whiteSpace: 'pre-line' }}
+              content={'Keyboard instructions'}
+              tooltipStyle={{ position: 'fixed' }}
             >
               <HelperButton theme={theme}>
                 <IconButton

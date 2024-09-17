@@ -325,10 +325,6 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         if (newChosenDate) {
           setFocusedDate(newChosenDate);
         }
-      } else {
-        if (event.ctrlKey && event.shiftKey && event.key === '?') {
-          showHelperInformation();
-        }
       }
     }
 

@@ -841,32 +841,6 @@ describe('Date Picker', () => {
       expect(document.activeElement).toBe(container.querySelector('button'));
     });
 
-    it('Ctrl + Shift + ?', async () => {
-      const defaultDate = new Date();
-      const labelText = 'Date picker label';
-      const { getByText, baseElement } = render(
-        <DatePicker defaultDate={defaultDate} labelText={labelText} />
-      );
-
-      fireEvent.focus(baseElement.querySelector('table'));
-
-      getByText(defaultDate.getDate().toString()).focus();
-
-      fireEvent.keyDown(baseElement.querySelector('table'), {
-        key: '?',
-      });
-
-      expect(() => getByText(/keyboard shortcuts/i)).toThrow();
-
-      fireEvent.keyDown(baseElement.querySelector('table'), {
-        key: '?',
-        ctrlKey: true,
-        shiftKey: true,
-      });
-
-      expect(getByText(/keyboard shortcuts/i)).toBeInTheDocument();
-    });
-
     it('Escape without focus', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
