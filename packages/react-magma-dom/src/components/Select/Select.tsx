@@ -183,18 +183,20 @@ export function Select<T>(props: SelectProps<T>) {
         style={inputStyle}
       >
         <SelectText data-testid="selectedItemText">{selectText}</SelectText>
-        {isClearable && selectedItem && (
-          <ClearIndicator
-            aria-label={clearIndicatorAriaLabel}
-            icon={<CloseIcon size={theme.iconSizes.xSmall} />}
-            onClick={defaultHandleClearIndicatorClick}
-            size={ButtonSize.small}
-            style={{ marginTop: '0', marginBottom: '0' }}
-            testId="clearIndicator"
-            variant={ButtonVariant.link}
-          />
-        )}
       </SelectTriggerButton>
+
+      {isClearable && selectedItem && (
+        <ClearIndicator
+          aria-label={clearIndicatorAriaLabel}
+          icon={<CloseIcon size={theme.iconSizes.xSmall} />}
+          onClick={defaultHandleClearIndicatorClick}
+          size={ButtonSize.small}
+          style={{ position: 'absolute', right: '2.75em', top: '51%' }}
+          testId="clearIndicator"
+          variant={ButtonVariant.link}
+        />
+      )}
+
       <ItemsList
         customComponents={customComponents}
         getItemProps={getItemProps}
