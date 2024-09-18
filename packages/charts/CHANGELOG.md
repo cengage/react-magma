@@ -1,16 +1,11 @@
 # @react-magma/charts
 
-## 8.0.0
-
-### Minor Changes
-
-- 5f16d2018: Updating emotion to v11
+## 9.0.0-next.0
 
 ### Patch Changes
 
-- 5f16d2018: fix(CarbonCharts): Minify styles
-- 5f16d2018: chore: Deprecate LineChart
-- 5f16d2018: fix(CarbonCharts): Remove exports & remove highlight import
+- Updated dependencies [fdf2dc929]
+  - react-magma-dom@4.6.0-next.0
 
 ## 8.0.0-next.5
 

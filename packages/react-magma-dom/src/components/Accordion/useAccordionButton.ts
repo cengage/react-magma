@@ -67,6 +67,10 @@ export function useAccordionButton(
   const handleKeyDown = (event: React.KeyboardEvent) => {
     const arrLength = buttonRefArray.current.length;
 
+    if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
+      event.preventDefault();
+    }
+    
     switch (event.key) {
       case 'ArrowDown': {
         index === arrLength - 1 ? focusFirst() : focusNext();

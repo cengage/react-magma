@@ -13,6 +13,7 @@ import { Card, CardBody } from '../Card';
 import { magma } from '../../theme/magma';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { ButtonGroup } from '../ButtonGroup';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 const Template: Story<ButtonProps> = args => (
   <>
@@ -40,11 +41,7 @@ const Template: Story<ButtonProps> = args => (
       >
         Secondary
       </Button>
-      <Button
-        variant={ButtonVariant.link}
-        {...args}
-        color={ButtonColor.subtle}
-      >
+      <Button variant={ButtonVariant.link} {...args} color={ButtonColor.subtle}>
         Subtle
       </Button>
       <Button variant={ButtonVariant.link} {...args} color={ButtonColor.danger}>
@@ -268,6 +265,35 @@ export const All = () => {
           </ButtonGroup>
         </CardBody>
       </Card>
+    </>
+  );
+};
+
+export const LoadingButton = args => {
+  const [isLoading, setIsLoading] = React.useState(args.isLoading);
+  React.useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 4000);
+    }
+  }, [isLoading]);
+
+  return (
+    <>
+      <p>Click the button below to show the loading state</p>
+      <VisuallyHidden>
+        <span role="status">{isLoading ? 'Loading...' : 'Ready'}</span>
+      </VisuallyHidden>
+      <ButtonGroup>
+        <Button
+          {...args}
+          isLoading={isLoading}
+          onClick={() => setIsLoading(true)}
+        >
+          Save
+        </Button>
+      </ButtonGroup>
     </>
   );
 };

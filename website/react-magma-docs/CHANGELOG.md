@@ -1,5 +1,102 @@
 # Change Log
 
+## 5.0.8-next.14
+
+### Patch Changes
+
+- facc56d54: fix(TreeView): Fixed the Preselected for displaying checked items
+
+## 5.0.8-next.13
+
+### Patch Changes
+
+- cbc680295: Update changelog text to alert adopters about the emotion update.
+
+## 5.0.8-next.12
+
+### Patch Changes
+
+- 1243113e9: fix(Accordion): Fix focus issue with `Collapse All` and `Expand All` buttons
+
+## 5.0.8-next.11
+
+### Patch Changes
+
+- 9cff682a8: build: Fix package lock
+- Updated dependencies [11bedeff9]
+  - react-magma-dom@4.6.0-next.11
+
+## 5.0.8-next.10
+
+### Patch Changes
+
+- 5d58c31af: Revert "chore: Update @emotion dependency (#1419)"
+
+## 5.0.8-next.9
+
+### Patch Changes
+
+- 5764ba3c3: docs(TreeView): Update TreeView example
+
+## 5.0.8-next.8
+
+### Patch Changes
+
+- 6a03750d4: build(deps): bump elliptic from 6.5.5 to 6.5.7
+
+## 5.0.8-next.7
+
+### Patch Changes
+
+- 31ee96f73: docs(Modal): Modal Heading icon example fix
+
+## 5.0.8-next.6
+
+### Patch Changes
+
+- 63e206ef5: docs(Modal): Modal Heading example fixes
+
+## 5.0.8-next.5
+
+### Patch Changes
+
+- 78db20cc1: fix(ToggleButton): Improved accessibility for Toggle Button icon only examples.
+
+## 5.0.8-next.4
+
+### Patch Changes
+
+- b57973339: docs(Drawer): Fix Drawer examples
+
+## 5.0.8-next.3
+
+### Patch Changes
+
+- f4be5a89d: fix(Drawer): Fix Drawer Navigation example
+
+## 5.0.8-next.2
+
+### Patch Changes
+
+- Updated dependencies [fdf2dc929]
+  - react-magma-dom@4.6.0-next.0
+  - @react-magma/charts@9.0.0-next.0
+  - @react-magma/dropzone@9.0.0-next.0
+  - @react-magma/schema-renderer@9.0.0-next.0
+  - @cengage-patterns/header@11.0.0-next.0
+
+## 5.0.8-next.1
+
+### Patch Changes
+
+- 26db2ae5c: fix(Drawer): Fixed drawer appearing open at lower screen resolutions for the doc site navigation.
+
+## 5.0.8-next.0
+
+### Patch Changes
+
+- e554ef776: chore: Manually sync main -> dev (4.5.0)
+
 ## 5.0.7
 
 ### Patch Changes
@@ -34,86 +131,6 @@
   - @cengage-patterns/header@10.0.0
   - @react-magma/schema-renderer@8.0.0
 
-## 5.0.7-next.9
-
-### Patch Changes
-
-- Updated dependencies [bf5537baa]
-  - @react-magma/dropzone@8.0.0-next.3
-
-## 5.0.7-next.8
-
-### Patch Changes
-
-- Updated dependencies [ae668a3e5]
-- Updated dependencies [ae668a3e5]
-- Updated dependencies [ae668a3e5]
-- Updated dependencies [ae668a3e5]
-  - @cengage-patterns/header@10.0.0-next.2
-  - @react-magma/charts@8.0.0-next.5
-  - react-magma-dom@4.5.0-next.10
-  - @react-magma/dropzone@8.0.0-next.2
-
-## 5.0.7-next.7
-
-### Patch Changes
-
-- Updated dependencies [9e38e9e7f]
-  - react-magma-dom@4.5.0-next.7
-  - @react-magma/charts@8.0.0-next.4
-  - @react-magma/dropzone@8.0.0-next.1
-  - @react-magma/schema-renderer@8.0.0-next.1
-  - @cengage-patterns/header@10.0.0-next.1
-
-## 5.0.7-next.6
-
-### Patch Changes
-
-- 2837cd4fb: storybook(TimePicker): Update clear time example
-
-## 5.0.7-next.5
-
-### Patch Changes
-
-- ad137c88e: fix(Drawer): Update site navigation storybook example
-
-## 5.0.7-next.4
-
-### Patch Changes
-
-- 9f43ba1e6: Update Charts examples
-- Updated dependencies [9f43ba1e6]
-  - @react-magma/charts@7.0.1-next.3
-
-## 5.0.7-next.3
-
-### Patch Changes
-
-- 0a0ca608b: docs: Fix `TypeError: styled.h1 is not a function` errors
-
-## 5.0.7-next.2
-
-### Patch Changes
-
-- 7118b03b3: Add Toast warning
-
-## 5.0.7-next.1
-
-### Patch Changes
-
-- Updated dependencies [9f1e0956a]
-  - react-magma-dom@4.4.1-next.0
-  - @react-magma/charts@7.0.1-next.0
-  - @react-magma/dropzone@7.0.1-next.0
-  - @react-magma/schema-renderer@7.0.1-next.0
-  - @cengage-patterns/header@9.0.1-next.0
-
-## 5.0.7-next.0
-
-### Patch Changes
-
-- ff8fe059d: chore: Resync dev branch
-
 ## 5.0.6
 
 ### Patch Changes
@@ -139,186 +156,6 @@
   - @react-magma/dropzone@7.0.0
   - @react-magma/schema-renderer@7.0.0
   - @cengage-patterns/header@9.0.0
-
-## 5.0.6-next.24
-
-### Patch Changes
-
-- Updated dependencies [63ba07d06]
-  - react-magma-dom@4.4.0-next.21
-
-## 5.0.6-next.23
-
-### Patch Changes
-
-- Updated dependencies [ad0c58ace]
-  - react-magma-dom@4.4.0-next.20
-
-## 5.0.6-next.22
-
-### Patch Changes
-
-- Updated dependencies [bb103295a]
-  - react-magma-dom@4.4.0-next.19
-
-## 5.0.6-next.21
-
-### Patch Changes
-
-- Updated dependencies [c4044956a]
-  - react-magma-dom@4.4.0-next.18
-
-## 5.0.6-next.20
-
-### Patch Changes
-
-- Updated dependencies [2dc651c9f]
-  - react-magma-dom@4.4.0-next.17
-
-## 5.0.6-next.19
-
-### Patch Changes
-
-- Updated dependencies [fac89e708]
-  - react-magma-dom@4.4.0-next.16
-
-## 5.0.6-next.18
-
-### Patch Changes
-
-- Updated dependencies [e39db7b0f]
-  - react-magma-dom@4.4.0-next.15
-
-## 5.0.6-next.17
-
-### Patch Changes
-
-- Updated dependencies [2f95d6072]
-  - react-magma-dom@4.4.0-next.14
-
-## 5.0.6-next.16
-
-### Patch Changes
-
-- Updated dependencies [cf3c10fda]
-  - react-magma-dom@4.4.0-next.13
-
-## 5.0.6-next.15
-
-### Patch Changes
-
-- Updated dependencies [b7ad3aa90]
-  - react-magma-dom@4.4.0-next.12
-
-## 5.0.6-next.14
-
-### Patch Changes
-
-- Updated dependencies [aff7e0a7e]
-  - react-magma-dom@4.4.0-next.11
-
-## 5.0.6-next.13
-
-### Patch Changes
-
-- Updated dependencies [c1ef7d0cb]
-  - react-magma-dom@4.4.0-next.10
-
-## 5.0.6-next.12
-
-### Patch Changes
-
-- Updated dependencies [e8a395ed1]
-  - react-magma-dom@4.4.0-next.9
-
-## 5.0.6-next.11
-
-### Patch Changes
-
-- Updated dependencies [5e88eddbd]
-  - react-magma-dom@4.4.0-next.8
-
-## 5.0.6-next.10
-
-### Patch Changes
-
-- Updated dependencies [dcaa44365]
-  - react-magma-dom@4.4.0-next.7
-
-## 5.0.6-next.9
-
-### Patch Changes
-
-- b10feaaba: chore: Fix storybook
-
-## 5.0.6-next.8
-
-### Patch Changes
-
-- Updated dependencies [a869e0993]
-  - react-magma-dom@4.4.0-next.6
-
-## 5.0.6-next.7
-
-### Patch Changes
-
-- Updated dependencies [61a5ea0c1]
-  - react-magma-dom@4.4.0-next.5
-
-## 5.0.6-next.6
-
-### Patch Changes
-
-- Updated dependencies [b9626a096]
-  - react-magma-dom@4.4.0-next.4
-
-## 5.0.6-next.5
-
-### Patch Changes
-
-- Updated dependencies [ede3d0f62]
-  - react-magma-dom@4.4.0-next.3
-
-## 5.0.6-next.4
-
-### Patch Changes
-
-- Updated dependencies [ab6ffd4ed]
-  - react-magma-dom@4.4.0-next.2
-  - @react-magma/charts@7.0.0-next.1
-  - @react-magma/dropzone@7.0.0-next.1
-  - @react-magma/schema-renderer@7.0.0-next.1
-  - @cengage-patterns/header@9.0.0-next.1
-
-## 5.0.6-next.3
-
-### Patch Changes
-
-- 731e9c217: build(deps): bump ip from 2.0.0 to 2.0.1
-
-## 5.0.6-next.2
-
-### Patch Changes
-
-- Updated dependencies [9a536bcda]
-  - react-magma-dom@4.3.1-next.1
-
-## 5.0.6-next.1
-
-### Patch Changes
-
-- Updated dependencies [3e14d4bd8]
-  - react-magma-dom@4.3.1-next.0
-  - @react-magma/charts@6.0.1-next.0
-  - @react-magma/dropzone@6.0.1-next.0
-  - @react-magma/schema-renderer@6.0.1-next.0
-  - @cengage-patterns/header@8.0.1-next.0
-
-## 5.0.6-next.0
-
-### Patch Changes
-
-- f54eb31c9: build: Resolve merge conflicts when pulling main -> dev (4.3.0)
 
 ## 5.0.5-next.9
 

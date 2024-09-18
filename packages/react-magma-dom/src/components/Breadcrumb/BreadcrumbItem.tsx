@@ -1,9 +1,9 @@
+import styled from '@emotion/styled';
 import * as React from 'react';
+import { ChevronRightIcon } from 'react-magma-icons';
+import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Hyperlink } from '../Hyperlink';
-import { useIsInverse } from '../../inverse';
-import { ChevronRightIcon } from 'react-magma-icons';
-import styled from '@emotion/styled';
 
 /**
  * @children required
@@ -15,7 +15,7 @@ export interface BreadcrumbItemProps
    */
   testId?: string;
   /**
-   * The href value of the link. If left blank, the breadcrumb item will render as a span with aria-current="page" on it.
+   * The URL for the link. If not provided, the breadcrumb item will display as a non-clickable element with aria-current="page".
    */
   to?: string;
 }
@@ -27,11 +27,36 @@ const StyledItem = styled.li`
   display: flex;
 `;
 
-const StyledSpan = styled.span<{ isInverse?: boolean }>`
+const StyledLink = styled.a<{ isInverse?: boolean }>`
+  align-items: center;
+  display: flex;
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
+  text-decoration: none;
+  cursor: default;
+  
+  &:hover,
+  &:focus {
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.neutral700};
+  }
+  &:focus {
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+    outline-offset: 2px;
+  }
+`;
+
+const StyledSpan = styled.span<{ isInverse?: boolean }>`
+  align-items: center;
+  display: flex;
 
   svg {
     margin: 0 ${props => props.theme.spaceScale.spacing02};
@@ -62,9 +87,17 @@ export const BreadcrumbItem = React.forwardRef<
           </StyledSpan>
         </>
       ) : (
-        <StyledSpan aria-current="page" isInverse={isInverse} theme={theme}>
-          {children}
-        </StyledSpan>
+        <>
+          <StyledLink
+            href=""
+            aria-current="page"
+            isInverse={isInverse}
+            theme={theme}
+            onClick={e => e.preventDefault()}
+          >
+            {children}
+          </StyledLink>
+        </>
       )}
     </StyledItem>
   );
