@@ -1,4 +1,24 @@
+## 4.6.0
 
+### Minor Changes
+
+- d48b8bbd4: feat(Modal): New `headerRef` prop that returns a reference to the header element
+- d48b8bbd4: feat(TreeView): Add support for `checkChildren` and `checkParents` props
+
+### Patch Changes
+
+- d48b8bbd4: fix(BreadCrumb): Improved accessibility by replacing span with link to fix focus
+- d48b8bbd4: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
+- d48b8bbd4: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
+- d48b8bbd4: fix(Button): Improved accessibility for `isLoading` state
+- d48b8bbd4: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
+- d48b8bbd4: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
+- d48b8bbd4: fix(Breadcrumbs): Fixed alignment issue between elements
+- d48b8bbd4: fix(DatePicker): Fix error when using both `onChange` and `onDateChange`
+- d48b8bbd4: fix(Accordion): Fix screen scroll behavior during accordion navigation
+- d48b8bbd4: fix(Modal): Fix focus issue when using `isBackgroundClickDisabled`
+- d48b8bbd4: fix(List): Updated support for nested items
+- d48b8bbd4: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
 
 ## 4.5.0
 

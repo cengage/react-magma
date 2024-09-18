@@ -1,5 +1,7 @@
 # Change Log
 
+## 11.0.0
+
 ## 11.0.0-next.0
 
 ### Patch Changes

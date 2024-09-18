@@ -1,5 +1,41 @@
 # Change Log
 
+## 5.0.8
+
+### Patch Changes
+
+- d48b8bbd4: fix(Accordion): Fix focus issue with `Collapse All` and `Expand All` buttons
+- d48b8bbd4: fix(ToggleButton): Improved accessibility for Toggle Button icon only examples.
+- d48b8bbd4: build: Fix package lock
+- d48b8bbd4: fix(Drawer): Fixed drawer appearing open at lower screen resolutions for the doc site navigation.
+- d48b8bbd4: docs(Drawer): Fix Drawer examples
+- d48b8bbd4: Update changelog text to alert adopters about the emotion update.
+- d48b8bbd4: docs(Modal): Modal Heading example fixes
+- d48b8bbd4: docs(Modal): Modal Heading icon example fix
+- d48b8bbd4: fix(TreeView): Fixed the Preselected items example
+- d48b8bbd4: chore: Manually sync main -> dev (4.5.0)
+- d48b8bbd4: build(deps): bump elliptic from 6.5.5 to 6.5.7
+- d48b8bbd4: docs(TreeView): Update TreeView example
+- Updated dependencies [d48b8bbd4]
+- Updated dependencies [d48b8bbd4]
+- Updated dependencies [d48b8bbd4]
+- Updated dependencies [d48b8bbd4]
+- Updated dependencies [d48b8bbd4]
+- Updated dependencies [d48b8bbd4]
+- Updated dependencies [d48b8bbd4]
+- Updated dependencies [d48b8bbd4]
+- Updated dependencies [d48b8bbd4]
+- Updated dependencies [d48b8bbd4]
+- Updated dependencies [d48b8bbd4]
+- Updated dependencies [d48b8bbd4]
+- Updated dependencies [d48b8bbd4]
+- Updated dependencies [d48b8bbd4]
+  - react-magma-dom@4.6.0
+  - @react-magma/charts@9.0.0
+  - @react-magma/dropzone@9.0.0
+  - @react-magma/schema-renderer@9.0.0
+  - @cengage-patterns/header@11.0.0
+
 ## 5.0.8-next.14
 
 ### Patch Changes
