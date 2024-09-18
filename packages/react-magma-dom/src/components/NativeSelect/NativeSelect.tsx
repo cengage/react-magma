@@ -51,7 +51,8 @@ const StyledNativeSelectWrapper = typedStyled.div<{
         : props.isInverse
         ? props.theme.colors.neutral100
         : props.theme.colors.neutral700};
-    margin: 0 ${props => props.theme.spaceScale.spacing03} 0 -${props => props.theme.spaceScale.spacing08};
+    margin: 0 ${props => props.theme.spaceScale.spacing03} 0 -${props =>
+  props.theme.spaceScale.spacing08};
     pointer-events: none;
     z-index: 1;
   }
@@ -83,10 +84,7 @@ const StyledNativeSelect = typedStyled.select<{
 }>`
   ${inputBaseStyles};
   height: 38px;
-<<<<<<< HEAD
   padding-right: ${props => props.theme.spaceScale.spacing08};
-=======
->>>>>>> dev-patch
   // Required for Windows && Chrome support
   background: inherit;
   > option {
@@ -95,11 +93,7 @@ const StyledNativeSelect = typedStyled.select<{
   }
 `;
 
-<<<<<<< HEAD
 const StyledFormFieldContainer = typedStyled(FormFieldContainer)<{
-=======
-const StyledFormFieldContainer = styled(FormFieldContainer)<{
->>>>>>> dev-patch
   additionalContent?: React.ReactNode;
   hasLabel?: boolean;
   labelPosition?: LabelPosition;
