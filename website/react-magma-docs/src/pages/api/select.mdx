@@ -1015,10 +1015,11 @@ we use internally.
 
 ```tsx
 import React from 'react';
-import { Select, styled } from 'react-magma-dom';
+import { Select } from 'react-magma-dom';
+import styled from '@emotion/styled';
 
 export function Example() {
-  const CustomStyledItem = styled('li')(props => ({
+  const CustomStyledItem = styled.li(props => ({
     alignSelf: 'center',
     background: props.isFocused ? props.theme.colors.neutral200 : 'transparent',
     lineHeight: '24px',
@@ -1026,12 +1027,12 @@ export function Example() {
     padding: '8px 16px',
   }));
 
-  const ContainerSpan = styled('span')(props => ({
+  const ContainerSpan = styled.span(props => ({
     display: 'flex',
     alignItems: 'center',
   }));
 
-  const Hex = styled('span')(props => ({
+  const Hex = styled.span(props => ({
     background: props.color,
     border: `2px solid ${props.theme.colors.neutral}`,
     borderRadius: props.theme.borderRadius,
@@ -1041,7 +1042,7 @@ export function Example() {
     width: '16px',
   }));
 
-  const Description = styled('div')(props => ({
+  const Description = styled.div(props => ({
     fontSize: '12px',
     color: props.theme.colors.neutral,
   }));
@@ -1144,10 +1145,7 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
   </inlineCode>
   ). However, in the production environment the types equate to numbers
   <br />
-  (eg: <inlineCode class="inverse">
-    ComboboxStateChangeTypes.InputKeyDownArrowDown = 0
-  </inlineCode>
-  ).
+  (eg: <inlineCode class="inverse">ComboboxStateChangeTypes.InputKeyDownArrowDown = 0</inlineCode>).
 </Alert>
 
 ### Select
