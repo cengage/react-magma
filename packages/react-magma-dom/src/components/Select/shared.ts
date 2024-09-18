@@ -34,9 +34,12 @@ export const StyledButton = styled.div`
   text-align: left;
 `;
 
-export const SelectText = styled.span`
-  flex-grow: 1;
+export const SelectText = styled.span<{ isClearable?: boolean }>`
   padding: 0 8px 0 4px;
+  width: ${props => (props.isClearable ? '95%' : '100%')};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const StyledCard = styled(Card)<{

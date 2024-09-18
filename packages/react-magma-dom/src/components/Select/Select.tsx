@@ -182,7 +182,7 @@ export function Select<T>(props: SelectProps<T>) {
         isInverse={isInverse}
         style={inputStyle}
       >
-        <SelectText data-testid="selectedItemText">{selectText}</SelectText>
+        <SelectText data-testid="selectedItemText" isClearable={isClearable}>{selectText}</SelectText>
       </SelectTriggerButton>
 
       {isClearable && selectedItem && (
@@ -190,8 +190,12 @@ export function Select<T>(props: SelectProps<T>) {
           aria-label={clearIndicatorAriaLabel}
           icon={<CloseIcon size={theme.iconSizes.xSmall} />}
           onClick={defaultHandleClearIndicatorClick}
+          isInverse={isInverse}
           size={ButtonSize.small}
-          style={{ position: 'absolute', right: '2.75em', top: '51%' }}
+          style={{ 
+            position: 'absolute', 
+            right: additionalContent && labelPosition === 'left' ? '5.75em' : '2.75em', 
+            bottom: (errorMessage || helperMessage) ? '2.55em' : '0.6em' }}
           testId="clearIndicator"
           variant={ButtonVariant.link}
         />
