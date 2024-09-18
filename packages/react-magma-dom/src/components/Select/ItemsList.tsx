@@ -1,33 +1,36 @@
 import React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
-import { StyledCard, StyledList, StyledItem } from './shared';
+import { StyledCard, StyledItem, StyledList } from './shared';
 import {
-  UseSelectGetMenuPropsOptions,
   UseSelectGetItemPropsOptions,
+  UseSelectGetMenuPropsOptions,
 } from 'downshift';
 import { instanceOfToBeCreatedItemObject } from '.';
 import {
   defaultComponents,
-  SelectComponents,
   ItemRenderOptions,
+  SelectComponents,
 } from './components';
 import { convertStyleValueToString } from '../../utils';
 import { Spinner } from '../Spinner';
 import styled from '@emotion/styled';
+import { ReferenceType } from '@floating-ui/react-dom';
 
 interface ItemsListProps<T> {
   customComponents?: SelectComponents<T>;
+  floatingStyles?: React.CSSProperties;
   getItemProps: (options?: UseSelectGetItemPropsOptions<T>) => any;
   getMenuProps: (options?: UseSelectGetMenuPropsOptions) => any;
   highlightedIndex?: number;
-  isOpen?: boolean;
   isInverse?: boolean;
+  isLoading?: boolean;
+  isOpen?: boolean;
   items: T[];
   itemToString: (item: T) => string;
   maxHeight?: number | string;
   menuStyle?: React.CSSProperties;
-  isLoading?: boolean;
+  setFloating?: (node: ReferenceType) => void;
 }
 
 const NoItemsMessage = styled.span<{
@@ -52,16 +55,18 @@ const LoadingWrapper = styled.span<{}>`
 export function ItemsList<T>(props: ItemsListProps<T>) {
   const {
     customComponents,
-    isOpen,
-    isInverse,
+    floatingStyles,
+    getItemProps,
     getMenuProps,
+    highlightedIndex,
+    isInverse,
     isLoading,
+    isOpen,
     items,
     itemToString,
-    highlightedIndex,
-    getItemProps,
     maxHeight,
     menuStyle,
+    setFloating,
   } = props;
 
   const theme = React.useContext(ThemeContext);
@@ -93,49 +98,55 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   }
 
   return (
-    <StyledCard
-      hasDropShadow
-      isInverse={isInverse}
-      isOpen={isOpen}
-      onKeyDown={handleEscape}
-      style={menuStyle}
-      theme={theme}
-    >
-      <StyledList isOpen={isOpen} {...getMenuProps()} maxHeight={heightString}>
-        {isOpen && hasItems ? (
-          items.map((item, index) => {
-            const itemString = instanceOfToBeCreatedItemObject(item)
-              ? item.label
-              : itemToString(item);
+    <div ref={setFloating} style={floatingStyles}>
+      <StyledCard
+        hasDropShadow
+        isInverse={isInverse}
+        isOpen={isOpen}
+        onKeyDown={handleEscape}
+        style={menuStyle}
+        theme={theme}
+      >
+        <StyledList
+          isOpen={isOpen}
+          {...getMenuProps()}
+          maxHeight={heightString}
+        >
+          {isOpen && hasItems ? (
+            items.map((item, index) => {
+              const itemString = instanceOfToBeCreatedItemObject(item)
+                ? item.label
+                : itemToString(item);
 
-            const { ref, ...otherDownshiftItemProps } = getItemProps({
-              item,
-              index,
-            });
+              const { ref, ...otherDownshiftItemProps } = getItemProps({
+                item,
+                index,
+              });
 
-            const key = `${itemString}${index}`;
+              const key = `${itemString}${index}`;
 
-            const itemProps: ItemRenderOptions<T> = {
-              isFocused: highlightedIndex === index,
-              isInverse,
-              itemRef: ref,
-              item,
-              itemString,
-              key,
-              theme,
-              ...otherDownshiftItemProps,
-            };
+              const itemProps: ItemRenderOptions<T> = {
+                isFocused: highlightedIndex === index,
+                isInverse,
+                itemRef: ref,
+                item,
+                itemString,
+                key,
+                theme,
+                ...otherDownshiftItemProps,
+              };
 
-            return <Item<T> {...itemProps} key={key} />;
-          })
-        ) : (
-          <StyledItem isInverse={isInverse} theme={theme} tabIndex={-1}>
-            <NoItemsMessage theme={theme} isInverse={isInverse}>
-              {isLoading ? <LoadingIndicator /> : i18n.emptyItemsListText}
-            </NoItemsMessage>
-          </StyledItem>
-        )}
-      </StyledList>
-    </StyledCard>
+              return <Item<T> {...itemProps} key={key} />;
+            })
+          ) : (
+            <StyledItem isInverse={isInverse} theme={theme} tabIndex={-1}>
+              <NoItemsMessage theme={theme} isInverse={isInverse}>
+                {isLoading ? <LoadingIndicator /> : i18n.emptyItemsListText}
+              </NoItemsMessage>
+            </StyledItem>
+          )}
+        </StyledList>
+      </StyledCard>
+    </div>
   );
 }

@@ -6,8 +6,8 @@ import { defaultComponents } from '../Select/components';
 import { SelectContainer } from '../Select/SelectContainer';
 import { ItemsList } from '../Select/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
-import { SelectedItemButton, IconWrapper } from '../Select/shared';
-import { useComboboxItems, defaultOnInputValueChange } from './shared';
+import { IconWrapper, SelectedItemButton } from '../Select/shared';
+import { defaultOnInputValueChange, useComboboxItems } from './shared';
 import { useForkedRef } from '../../utils';
 
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -19,10 +19,12 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   const [inputValue, setInputValue] = React.useState('');
   const {
     ariaDescribedBy,
+    arrowDropDirection,
     components: customComponents,
     defaultItems,
     disableCreateItem,
     errorMessage,
+    floatingStyles,
     hasError,
     hasPersistentMenu = false,
     helperMessage,
@@ -54,6 +56,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     onIsOpenChange,
     onItemCreated,
     onRemoveSelectedItem,
+    setReference,
+    setFloating,
     placeholder,
     toggleButtonRef,
   } = props;
@@ -377,6 +381,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     >
       <ComboboxInput
         ariaDescribedBy={ariaDescribedBy}
+        arrowDropDirection={arrowDropDirection}
         customComponents={customComponents}
         getComboboxProps={getComboboxProps}
         getInputProps={options => ({
@@ -403,6 +408,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         onInputKeyUp={onInputKeyUp}
         placeholder={selectedItems.length > 0 ? null : placeholder}
         selectedItems={selectedItemsContent}
+        setReference={setReference}
         toggleButtonRef={toggleButtonRef}
       >
         {isClearable && selectedItems?.length > 0 && (
@@ -420,6 +426,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       </ComboboxInput>
       <ItemsList
         customComponents={customComponents}
+        floatingStyles={floatingStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
@@ -429,7 +436,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         itemToString={itemToString}
         isLoading={isLoading && isTypeahead}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
-        menuStyle={menuStyle}
+        menuStyle={{ ...menuStyle, position: 'static' }}
+        setFloating={setFloating}
       />
     </SelectContainer>
   );

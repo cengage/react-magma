@@ -54,7 +54,7 @@ export const StyledCard = styled(Card)<{
       ? transparentize(0.5, props.theme.colors.tertiary)
       : props.theme.colors.neutral300};
   left: 4px;
-  margin-top: 4px;
+  margin: 4px 0;
   padding: 4px 0 0;
   position: absolute;
   right: 4px;

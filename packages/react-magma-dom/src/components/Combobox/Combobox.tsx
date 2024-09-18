@@ -7,7 +7,7 @@ import { SelectContainer } from '../Select/SelectContainer';
 import { ItemsList } from '../Select/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
 import { ButtonShape, ButtonSize, ButtonVariant } from '../Button';
-import { useComboboxItems, defaultOnInputValueChange } from './shared';
+import { defaultOnInputValueChange, useComboboxItems } from './shared';
 import { ComboboxProps } from '.';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
@@ -16,11 +16,13 @@ import { useForkedRef } from '../../utils';
 export function InternalCombobox<T>(props: ComboboxProps<T>) {
   const {
     ariaDescribedBy,
+    arrowDropDirection,
     components: customComponents,
     defaultItems,
     defaultSelectedItem,
     disableCreateItem,
     errorMessage,
+    floatingStyles,
     hasError,
     helperMessage,
     initialSelectedItem,
@@ -53,6 +55,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     onItemCreated,
     placeholder,
     selectedItem: passedInSelectedItem,
+    setFloating,
+    setReference,
     toggleButtonRef,
   } = props;
 
@@ -279,6 +283,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     >
       <ComboboxInput
         ariaDescribedBy={ariaDescribedBy}
+        arrowDropDirection={arrowDropDirection}
         customComponents={customComponents}
         disabled={disabled}
         getComboboxProps={getComboboxProps}
@@ -304,6 +309,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
         placeholder={placeholder}
+        setReference={setReference}
         toggleButtonRef={toggleButtonRef}
       >
         {isClearable && selectedItem && (
@@ -320,6 +326,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
       </ComboboxInput>
       <ItemsList
         customComponents={customComponents}
+        floatingStyles={floatingStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
@@ -329,7 +336,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         itemToString={itemToString}
         isLoading={isLoading && isTypeahead}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
-        menuStyle={menuStyle}
+        menuStyle={{ ...menuStyle, position: 'static' }}
+        setFloating={setFloating}
       />
     </SelectContainer>
   );

@@ -6,16 +6,23 @@ import {
   UseMultipleSelectionProps,
 } from 'downshift';
 import {
-  SelectOptions,
   instanceOfDefaultItemObject,
-  InternalSelectProps,
   InternalMultiProps,
+  InternalSelectProps,
+  SelectOptions,
 } from '../Select';
 import { InternalCombobox } from './Combobox';
 import { MultiCombobox } from './MultiCombobox';
-import { useGenerateId, XOR, Omit } from '../../utils';
+import { Omit, useGenerateId, XOR } from '../../utils';
 import { LabelPosition } from '../Label';
 import { useIsInverse } from '../../inverse';
+import {
+  autoUpdate,
+  flip,
+  Placement,
+  ReferenceType,
+  useFloating,
+} from '@floating-ui/react-dom';
 
 export interface ComboboxProps<T extends SelectOptions>
   extends Omit<UseComboboxProps<T>, 'items'>,
@@ -25,6 +32,14 @@ export interface ComboboxProps<T extends SelectOptions>
    */
   ariaDescribedBy?: string;
   /**
+   * Direction arrow icon in the select trigger button
+   */
+  arrowDropDirection?: Placement;
+  /**
+   * Style properties for the component container element
+   */
+  containerStyle?: React.CSSProperties;
+  /**
    * Default selectable options. Allows for uncontrolled component and internal creation of items. Can be an array of strings or objects
    */
   defaultItems?: T[];
@@ -33,6 +48,10 @@ export interface ComboboxProps<T extends SelectOptions>
    * @default false
    */
   disableCreateItem?: boolean;
+  /**
+   * Positioning styles to apply to the floating element
+   */
+  floatingStyles?: React.CSSProperties;
   /**
    * @internal
    */
@@ -59,6 +78,13 @@ export interface ComboboxProps<T extends SelectOptions>
    * Default selectable options. Can be an array of strings or objects
    */
   items?: T[];
+  /**
+   * When false, the selected item gets validated to ensure it's in the original `items` list.
+   * When using Combobox for typeahead with a large `items` list, set this boolean to true to allow the selected item to not be part of the original `items` list.
+   * In addition, when this is true and `isLoading` is used, the loading indicator will appear on the list instead of the input
+   * @default false
+   */
+  isTypeahead?: boolean;
   /**
    * Function passed in that transforms a newly created item to whatever format your items are in
    */
@@ -99,6 +125,14 @@ export interface ComboboxProps<T extends SelectOptions>
    */
   onItemCreated?: (newItem: T) => void;
   /**
+   * Callback to set the floating element (reactive).
+   */
+  setFloating?: (node: ReferenceType) => void;
+  /**
+   * Callback to set the reference element (reactive).
+   */
+  setReference?: (node: ReferenceType) => void;
+  /**
    * Reference to the toggle button element wrapping the input in the combobox
    */
   toggleButtonRef?: React.Ref<HTMLButtonElement>;
@@ -106,17 +140,6 @@ export interface ComboboxProps<T extends SelectOptions>
    * @internal
    */
   testId?: string;
-  /**
-   * Style properties for the component container element
-   */
-  containerStyle?: React.CSSProperties;
-  /**
-   * When false, the selected item gets validated to ensure it's in the original `items` list.
-   * When using Combobox for typeahead with a large `items` list, set this boolean to true to allow the selected item to not be part of the original `items` list.
-   * In addition, when this is true and `isLoading` is used, the loading indicator will appear on the list instead of the input
-   * @default false
-   */
-  isTypeahead?: boolean;
 }
 
 export interface MultiComboboxProps<T extends SelectOptions>
@@ -171,30 +194,45 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
 
   const isInverse = useIsInverse(props.isInverse);
 
+  const { floatingStyles, placement, refs } = useFloating({
+    middleware: [flip()],
+    whileElementsMounted: autoUpdate,
+  });
+
+  const customFloatingStyles = { ...floatingStyles, width: '100%' };
+
   return (
     <div style={containerStyle} data-testid={testId}>
       {isMulti && instanceOfMultiCombobox<T>(props) ? (
         <MultiCombobox
           ariaDescribedBy={descriptionId}
+          arrowDropDirection={placement}
           errorMessage={errorMessage}
+          floatingStyles={customFloatingStyles}
           hasError={hasError}
           helperMessage={helperMessage}
           isInverse={isInverse}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
           messageStyle={messageStyle}
+          setFloating={refs.setFloating}
+          setReference={refs.setReference}
           {...(props as MultiComboboxProps<T>)}
         />
       ) : (
         <InternalCombobox
           ariaDescribedBy={descriptionId}
+          arrowDropDirection={placement}
           errorMessage={errorMessage}
+          floatingStyles={customFloatingStyles}
           hasError={hasError}
           helperMessage={helperMessage}
           isInverse={isInverse}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
           messageStyle={messageStyle}
+          setFloating={refs.setFloating}
+          setReference={refs.setReference}
           {...(props as ComboboxProps<T>)}
         />
       )}

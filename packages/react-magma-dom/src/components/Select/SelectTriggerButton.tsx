@@ -1,8 +1,9 @@
 import React from 'react';
+import { Placement, ReferenceType } from '@floating-ui/react-dom';
 import {
   inputBaseStyles,
-  inputWrapperStyles,
   InputBaseStylesProps,
+  inputWrapperStyles,
   InputWrapperStylesProps,
 } from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
@@ -32,11 +33,13 @@ const ChildrenContainer = styled.div`
 
 interface SelectTriggerButtonInterface<T> {
   ariaDescribedBy?: string;
+  arrowDropDirection?: Placement;
   children: React.ReactNode | React.ReactNode[];
   customComponents?: SelectComponents<T>;
-  hasError?: boolean;
   disabled?: boolean;
+  hasError?: boolean;
   isInverse?: boolean;
+  setReference?: (node: ReferenceType) => void;
   style?: React.CSSProperties;
   toggleButtonProps: any;
   tabindex?: number;
@@ -45,37 +48,44 @@ interface SelectTriggerButtonInterface<T> {
 export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
   const {
     ariaDescribedBy,
+    arrowDropDirection,
     children,
     customComponents,
     hasError,
     disabled,
     isInverse,
+    setReference,
     style: passedInStyle,
     toggleButtonProps,
   } = props;
   const theme = React.useContext(ThemeContext);
 
-  const { DropdownIndicator } = defaultComponents<T>({
+  const { DropdownIndicator, DropUpIndicator } = defaultComponents<T>({
     ...customComponents,
   });
 
   const style = { ...passedInStyle, cursor: 'default' };
 
+  const isBottomPlacement: boolean =
+    typeof arrowDropDirection === 'string' && arrowDropDirection === 'bottom';
+
   return (
-    <StyledButton
-      {...toggleButtonProps}
-      aria-describedby={ariaDescribedBy}
-      data-testid="selectTriggerButton"
-      hasError={hasError}
-      disabled={disabled}
-      isInverse={isInverse}
-      role="button"
-      style={style}
-      theme={theme}
-      tabIndex={disabled ? undefined : 0}
-    >
-      <ChildrenContainer theme={theme}>{children}</ChildrenContainer>
-      <DropdownIndicator />
-    </StyledButton>
+    <div ref={setReference}>
+      <StyledButton
+        {...toggleButtonProps}
+        aria-describedby={ariaDescribedBy}
+        data-testid="selectTriggerButton"
+        disabled={disabled}
+        hasError={hasError}
+        isInverse={isInverse}
+        role="button"
+        style={style}
+        tabIndex={disabled ? undefined : 0}
+        theme={theme}
+      >
+        <ChildrenContainer theme={theme}>{children}</ChildrenContainer>
+        {isBottomPlacement ? <DropdownIndicator /> : <DropUpIndicator />}
+      </StyledButton>
+    </div>
   );
 }

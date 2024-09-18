@@ -16,9 +16,11 @@ export function Select<T>(props: SelectProps<T>) {
   const {
     additionalContent,
     ariaDescribedBy,
+    arrowDropDirection,
     components: customComponents,
     defaultSelectedItem,
     errorMessage,
+    floatingStyles,
     hasError,
     helperMessage,
     inputStyle,
@@ -45,6 +47,8 @@ export function Select<T>(props: SelectProps<T>) {
     messageStyle,
     placeholder,
     selectedItem: passedInSelectedItem,
+    setReference,
+    setFloating,
   } = props;
 
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
@@ -161,8 +165,8 @@ export function Select<T>(props: SelectProps<T>) {
   return (
     <SelectContainer
       additionalContent={additionalContent}
-      errorMessage={errorMessage}
       descriptionId={ariaDescribedBy}
+      errorMessage={errorMessage}
       getLabelProps={getLabelProps}
       helperMessage={helperMessage}
       isInverse={isInverse}
@@ -175,12 +179,14 @@ export function Select<T>(props: SelectProps<T>) {
     >
       <SelectTriggerButton
         ariaDescribedBy={ariaDescribedBy}
+        arrowDropDirection={arrowDropDirection}
         customComponents={customComponents}
-        toggleButtonProps={toggleButtonProps}
-        hasError={hasError}
         disabled={disabled}
+        hasError={hasError}
         isInverse={isInverse}
+        setReference={setReference}
         style={inputStyle}
+        toggleButtonProps={toggleButtonProps}
       >
         <SelectText data-testid="selectedItemText">{selectText}</SelectText>
         {isClearable && selectedItem && (
@@ -197,15 +203,17 @@ export function Select<T>(props: SelectProps<T>) {
       </SelectTriggerButton>
       <ItemsList
         customComponents={customComponents}
+        floatingStyles={floatingStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
-        isOpen={isOpen}
         isInverse={isInverse}
-        maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
+        isOpen={isOpen}
         items={items}
         itemToString={itemToString}
-        menuStyle={menuStyle}
+        maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
+        menuStyle={{ ...menuStyle, position: 'static' }}
+        setFloating={setFloating}
       />
     </SelectContainer>
   );

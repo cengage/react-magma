@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { IconButton, IconButtonProps } from '../IconButton';
 import { Spinner, SpinnerProps } from '../Spinner';
-import { IconProps, ArrowDropDownIcon } from 'react-magma-icons';
+import {
+  ArrowDropDownIcon,
+  ArrowDropUpIcon,
+  IconProps,
+} from 'react-magma-icons';
 import { StyledItem } from './shared';
 import { ThemeInterface } from '../../theme/magma';
 
@@ -38,6 +42,17 @@ export const DefaultDropdownIndicator = props => {
   );
 };
 
+export const DefaultDropUpIndicator = props => {
+  return (
+    <ArrowDropUpIcon
+      size={24}
+      style={{ flexShrink: 0 }}
+      testId="caretUp"
+      {...props}
+    />
+  );
+};
+
 export const DefaultLoadingIndicator = props => {
   return <Spinner testId="loadingIndicator" {...props} />;
 };
@@ -59,6 +74,7 @@ export function defaultComponents<T>(props: SelectComponents<T>) {
   return {
     ClearIndicator: DefaultClearIndicator,
     DropdownIndicator: DefaultDropdownIndicator,
+    DropUpIndicator: DefaultDropUpIndicator,
     LoadingIndicator: DefaultLoadingIndicator,
     Item: DefaultItem,
     ...props,

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { MultiSelectProps } from '.';
-import { useSelect, useMultipleSelection } from 'downshift';
+import { useMultipleSelection, useSelect } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
-import { SelectText, SelectedItemButton, IconWrapper } from './shared';
+import { IconWrapper, SelectedItemButton, SelectText } from './shared';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
@@ -14,8 +14,10 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
     additionalContent,
     ariaDescribedBy,
+    arrowDropDirection,
     components: customComponents,
     errorMessage,
+    floatingStyles,
     hasError,
     helperMessage,
     inputStyle,
@@ -39,6 +41,8 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     onKeyUp,
     onRemoveSelectedItem,
     placeholder,
+    setFloating,
+    setReference,
   } = props;
 
   function checkSelectedItemValidity(itemToCheck: T) {
@@ -176,11 +180,13 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     >
       <SelectTriggerButton
         ariaDescribedBy={ariaDescribedBy}
+        arrowDropDirection={arrowDropDirection}
         toggleButtonProps={toggleButtonProps}
         hasError={hasError}
         disabled={disabled}
         isInverse={isInverse}
         style={inputStyle}
+        setReference={setReference}
       >
         {selectedItems && selectedItems.length > 0 ? (
           selectedItems.map((multiSelectedItem, index) => {
@@ -218,6 +224,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       </SelectTriggerButton>
       <ItemsList
         customComponents={customComponents}
+        floatingStyles={floatingStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
@@ -226,7 +233,8 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         items={getFilteredItems(items)}
         itemToString={itemToString}
         maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
-        menuStyle={menuStyle}
+        menuStyle={{ ...menuStyle, position: 'static' }}
+        setFloating={setFloating}
       />
     </SelectContainer>
   );
