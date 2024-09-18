@@ -1,108 +1,24 @@
 ## 4.6.0
 
-## 4.6.0-next.14
+### Minor Changes
 
-### Patch Changes
-
-- 616cbf9a0: fix(BreadCrumb): replace span with link to fix focus
-
-## 4.6.0-next.13
-
-### Patch Changes
-
-- 9d840d863: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
-
-## 4.6.0-next.12
+- ca58152cb: feat(TreeView): Add support for `checkChildren`, `checkParents` props
+- fdf2dc929: feat(Modal): New `headerRef` prop that returns a reference to the header element
 
 ### Patch Changes
 
 - dc307446a: fix(Accordion): Fix screen scroll behavior during accordion navigation
-
-## 4.6.0-next.11
-
-### Patch Changes
-
-- 11bedeff9: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
-
-## 4.6.0-next.10
-
-### Patch Changes
-
-- 6b413fb77: fix(List): Updated examples for List component
-
-## 4.6.0-next.9
-
-### Patch Changes
-
-- d4164cacb: fix(Modal): Modal disabled background click focus fix.
-
-## 4.6.0-next.8
-
-### Patch Changes
-
-- 3b3a2d79a: chore: Update @emotion dependency
-
-## 4.6.0-next.7
-
-### Patch Changes
-
-- 84a8a17d6: fix(DatePicker): Fix error when using both onChange and onDateChange
-
-## 4.6.0-next.6
-
-### Minor Changes
-
-- ca58152cb: Add support for `checkChildren`, `checkParents` props to TreeView
-
-## 4.6.0-next.5
-
-### Patch Changes
-
-- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
-
-## 4.6.0-next.4
-
-### Patch Changes
-
-- 9214724b6: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
-
-## 4.6.0-next.3
-
-### Patch Changes
-
-- aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
-
-## 4.6.0-next.2
-
-### Patch Changes
-
-- 1d1dd1d06: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
-
-## 4.6.0-next.1
-
-### Patch Changes
-
+- 6b413fb77: fix(List): Updated support for nested items
+- d4164cacb: fix(Modal): Fix focus issue when using `isBackgroundClickDisabled`
+- 84a8a17d6: fix(DatePicker): Fix error when using both `onChange` and `onDateChange`
 - 48b7a5539: fix(Breadcrumbs): Fixed alignment issue between elements.
-
-### Minor Changes
-
-- d48b8bbd4: feat(Modal): New `headerRef` prop that returns a reference to the header element
-- d48b8bbd4: feat(TreeView): Add support for `checkChildren` and `checkParents` props
-
-### Patch Changes
-
-- d48b8bbd4: fix(BreadCrumb): Improved accessibility by replacing span with link to fix focus
-- d48b8bbd4: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
-- d48b8bbd4: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
-- d48b8bbd4: fix(Button): Improved accessibility for `isLoading` state
-- d48b8bbd4: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
-- d48b8bbd4: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
-- d48b8bbd4: fix(Breadcrumbs): Fixed alignment issue between elements
-- d48b8bbd4: fix(DatePicker): Fix error when using both `onChange` and `onDateChange`
-- d48b8bbd4: fix(Accordion): Fix screen scroll behavior during accordion navigation
-- d48b8bbd4: fix(Modal): Fix focus issue when using `isBackgroundClickDisabled`
-- d48b8bbd4: fix(List): Updated support for nested items
-- d48b8bbd4: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
+- 616cbf9a0: fix(BreadCrumb): Improved accessibility by replace span with link to fix focus
+- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
+- aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
+- 9d840d863: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
+- 9214724b6: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
+- 1d1dd1d06: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
+- 11bedeff9: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
 
 ## 4.5.0
 
@@ -160,34 +76,6 @@
 
 ## 4.2.0
 
-## 4.3.0-next.7
-
-### Patch Changes
-
-- 3fc9e50ca: fix(Modal): Fixed Storybook Inverse example.
-
-## 4.3.0-next.6
-
-### Patch Changes
-
-- 421b9091a: fix(Modal): Fixed bottom padding on the Modal header.
-
-## 4.3.0-next.5
-
-### Minor Changes
-
-- cfc20a479: feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove.
-- cfc20a479: feat(Select/NativeSelect): New `additionalContent` prop to provide the ability to add extra content inline with the label similar to the Input component.
-- cfc20a479: fix(Select/NativeSelect): Fixed alignment issues in Select regarding additional content icon. Fixed duplicate additional content in Native Select.
-
-### Patch Changes
-
-- 421b9091a: fix(Modal): Fixed bottom padding on the Modal header
-- 1fb88b6fc: fix: Updates to the expressive font styles for both desktop and mobile
-- fc3098851: build(deps): bump browserify-sign from 4.2.1 to 4.2.2
-
-## 4.2.0
-
 ### Minor Changes
 
 - de22be548: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level
@@ -206,94 +94,6 @@
 - de22be548: fix(Modal): Update padding so it's equal on all sides (16px small viewport or 24px for large)
 
 ## 4.1.1
-
-### Patch Changes
-
-- 89e7a8f13: fix(DropdownExpandableMenuListItem): Add `role="menuitem"`
-
-## 4.2.0-next.13
-
-### Patch Changes
-
-- 68276abaa: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
-
-## 4.2.0-next.12
-
-### Patch Changes
-
-- fa88fa7c5: fix(Dropdown): Fixes from QA review of the Dropdown Expandable sub component.
-
-## 4.2.0-next.11
-
-### Minor Changes
-
-- 77823fb11: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
-
-## 4.2.0-next.10
-
-### Patch Changes
-
-- 1c446c209: fix(PasswordInput): Update placement of Show/Hide button on Large input size
-
-## 4.2.0-next.9
-
-### Patch Changes
-
-- 1cf3809cc: fix(RadioGroup): Radio Group label is now a span to improve a11y
-
-## 4.2.0-next.8
-
-### Patch Changes
-
-- bc4104600: fix(StyledLabel/TabPanel): Update various labels and TabPanel content to be neutral700 (instead of neutral500)
-
-## 4.2.0-next.7
-
-### Patch Changes
-
-- caa2c7b6a: fix(DropdownContent): Handle `false` as child
-
-## 4.2.0-next.6
-
-### Patch Changes
-
-- 3001a5e35: fix(Modal): Update padding so it's equal on all sides (16px small viewport or 24px for large)
-
-## 4.2.0-next.5
-
-### Patch Changes
-
-- ab9229c81: fix(NativeSelect): Update NativeSelect height to match button sizes: 40px (instead of 42px)
-
-## 4.2.0-next.4
-
-### Patch Changes
-
-- 101f514b1: fix(Input): Update Input height to match button sizes: 40px (instead of 42px) and 56px (instead of 58px)
-
-## 4.2.0-next.3
-
-### Patch Changes
-
-- 8f1bcbe31: fix(DatePicker): Escape key only closes the panel
-
-## 4.2.0-next.2
-
-### Patch Changes
-
-- 9f2aa435d: fix(Table/DataGrid): Update Ascending (point up) and Descending (point down) arrows to match other design systems
-
-## 4.2.0-next.1
-
-### Patch Changes
-
-- b5f6189fa: fix(Select/Combobox/Dropdown/DatePicker): Added support for closing components that have menus with the escape key inside of modals while retaining an open modal state.
-
-## 4.2.0-next.0
-
-### Minor Changes
-
-- 9a09b8b55: feat(TablePagination): TablePagination component will hide rows per page select when no onRowsPerPageChange argument passed
 
 ### Patch Changes
 
