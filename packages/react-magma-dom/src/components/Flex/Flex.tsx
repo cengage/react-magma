@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 export enum FlexAlignContent {
   center = 'center',
@@ -117,8 +116,6 @@ export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   xl?: false | true | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12;
 }
-
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 function getWidth(size) {
   return `${Math.round((size / 12) * 10e7) / 10e5}%`;

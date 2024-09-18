@@ -803,12 +803,7 @@ describe('Dropdown', () => {
         code: 27,
       });
 
-      setTimeout(() => {
-        expect(getByTestId('dropdownContent')).toHaveStyleRule(
-          'display',
-          'none'
-        );
-      }, 500);
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
       expect(getByTestId('modal')).toBeInTheDocument();
     });
 

@@ -144,29 +144,56 @@ export function Example() {
 ## Modal Header
 
 The modal header prop is optional. It can accept a node or a string, and will be rendered inside an H1.
+
 If there is a header passed in, the focus will be placed on the header when the modal opens. If not, the focus will be placed on
 the first actionable element.
+
+If the modal does not use the `header` prop, you must use the `ariaLabel` prop to ensure the correct aria properties are in place.
+
+When a reference to the header is needed, use the headerRef prop. When using a custom header, you must also use `tabIndex={-1}` property.
 
 ```tsx
 import React from 'react';
 import {
   Button,
+  ButtonColor,
   Modal,
+  Flex,
+  FlexBehavior,
+  FlexDirection,
+  FlexAlignItems,
+  FlexJustify,
+  FlexWrap,
+  magma,
   ModalSize,
   Paragraph,
   VisuallyHidden,
   ButtonGroup,
   ButtonGroupAlignment,
 } from 'react-magma-dom';
+
+import { CheckIcon } from 'react-magma-icons';
+
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const [showModalHeader, setShowModalHeader] = React.useState(false);
+  const [showModalHeaderRef, setShowModalHeaderRef] = React.useState(false);
   const buttonRef = React.useRef();
   const headerButtonRef = React.useRef();
+  const headerRefButtonRef = React.useRef();
+
+  const [customHeadingRef, setCustomHeadingRef] = React.useState(
+    React.useRef<any>()
+  );
+
+  const handleGetHeaderRef = ref => {
+    setCustomHeadingRef(ref);
+  };
 
   return (
     <>
       <Modal
+        ariaLabel="customAriaLabel"
         size={ModalSize.small}
         onClose={() => {
           setShowModal(false);
@@ -188,11 +215,64 @@ export function Example() {
         }}
         isOpen={showModalHeader}
       >
-        <Paragraph noTopMargin>This modal has no header.</Paragraph>
+        <Paragraph noTopMargin>This modal has a header.</Paragraph>
         <ButtonGroup alignment={ButtonGroupAlignment.center}>
           <Button onClick={() => setShowModalHeader(false)}>OK</Button>
         </ButtonGroup>
       </Modal>
+
+      <Modal
+        onClose={() => {
+          setShowModalHeaderRef(false);
+          headerRefButtonRef.current.focus();
+        }}
+        isOpen={showModalHeaderRef}
+        headerRef={handleGetHeaderRef}
+        style={{ padding: '20px' }}
+      >
+        <Flex
+          behavior={FlexBehavior.container}
+          direction={FlexDirection.column}
+          alignItems={FlexAlignItems.center}
+          justify={FlexJustify.center}
+          spacing={2}
+          wrap={FlexWrap.nowrap}
+        >
+          <CheckIcon
+            style={{
+              background: magma.colors.success,
+              color: magma.colors.neutral100,
+              width: '36px',
+              height: '36px',
+              padding: '8px',
+              borderRadius: '50%',
+            }}
+          />
+          <h2 ref={customHeadingRef} tabIndex={-1}>
+            Confirmation header
+          </h2>
+          <Paragraph>
+            With watermelon ostriches. Gourds utters at welding equipment a oink
+            oink haybine. Goose hammers cattle rats in crows. Blue berries
+            pigeons buzz and bean prairie dogs nails at est.
+          </Paragraph>
+          <ButtonGroup>
+            <Button
+              onClick={() => customHeadingRef.current.focus()}
+              color={ButtonColor.subtle}
+            >
+              Focus Heading
+            </Button>
+            <Button
+              onClick={() => setShowModalHeaderRef(false)}
+              color={ButtonColor.subtle}
+            >
+              Close
+            </Button>
+          </ButtonGroup>
+        </Flex>
+      </Modal>
+
       <ButtonGroup>
         <Button onClick={() => setShowModal(true)} ref={buttonRef}>
           Show Modal with no header
@@ -201,6 +281,13 @@ export function Example() {
         <Button onClick={() => setShowModalHeader(true)} ref={headerButtonRef}>
           Show Modal with header
           <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        </Button>
+        <Button
+          style={{ marginLeft: '0' }}
+          onClick={() => setShowModalHeaderRef(true)}
+          ref={headerRefButtonRef}
+        >
+          Show Modal with headerRef
         </Button>
       </ButtonGroup>
     </>

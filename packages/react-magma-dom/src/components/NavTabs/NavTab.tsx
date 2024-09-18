@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { jsx } from '@emotion/core';
+import { jsx } from '@emotion/react';
 
 import { NavTabsContext } from './NavTabs';
 import {
@@ -13,9 +13,6 @@ import { TabsOrientation } from '../Tabs/shared';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { omit, useForkedRef, XOR } from '../../utils';
 
-/**
- * @children required
- */
 export interface BaseNavTabProps
   extends React.HTMLAttributes<HTMLAnchorElement> {
   /**
@@ -52,7 +49,7 @@ export interface BaseNavTabProps
 }
 
 export interface NavTabChildrenProps extends BaseNavTabProps {
-  children: JSX.Element | string;
+  children?: JSX.Element | string;
   /**
    * The href value of the tab link
    */
@@ -189,6 +186,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
         {component ? (
           <StyledCustomTab
             {...other}
+            aria-current={isActive ? 'page' : false}
             component={component}
             data-testid={testId}
             iconPosition={tabIconPosition}
@@ -209,6 +207,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
         ) : (
           <StyledTab
             {...other}
+            aria-current={isActive ? 'page' : false}
             ref={ref}
             data-testid={testId}
             href={to}

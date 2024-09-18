@@ -6,8 +6,7 @@ import { Label, LabelPosition } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 /**
  * Internal use only: Wrapper for all field components

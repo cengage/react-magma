@@ -10,8 +10,7 @@ import { VisuallyHidden } from '../VisuallyHidden';
 import { useIsInverse } from '../../inverse';
 import { FormFieldContainer } from '../FormFieldContainer';
 import { inputWrapperStyles } from '../InputBase';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 export interface TimePickerProps extends UseTimePickerProps {
   /**

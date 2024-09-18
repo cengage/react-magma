@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import { KeyboardIcon } from 'react-magma-icons';
 
 import { LineChart, LineChartProps } from './LineChart';
@@ -17,10 +17,10 @@ import {
   Tabs,
   TabsContainer,
   ThemeContext,
-  ThemeInterface,
   Tooltip,
   TypographyVisualStyle,
   useDescendants,
+  styled,
 } from 'react-magma-dom';
 
 import styled, { CreateStyled } from '@emotion/styled';
@@ -122,7 +122,11 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
     setIsKeyboardInstructionsOpen(prevOpen => !prevOpen);
   }
 
-  function handleKeyboardInstructionsButtonKeydown(event: { preventDefault?: any; key?: any; shiftKey?: any; }) {
+  function handleKeyboardInstructionsButtonKeydown(event: {
+    preventDefault?: any;
+    key?: any;
+    shiftKey?: any;
+  }) {
     const { key, shiftKey } = event;
 
     switch (key) {

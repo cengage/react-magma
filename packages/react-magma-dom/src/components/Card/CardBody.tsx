@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { CreateStyled } from '@emotion/styled';
+import styled from '@emotion/styled';
 import { CardProps } from '../Card';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';

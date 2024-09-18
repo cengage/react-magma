@@ -10,8 +10,7 @@ import { enUS } from 'date-fns/locale';
 import { useForkedRef, usePrevious } from '../../utils';
 import { i18nFormat as format } from './utils';
 import { I18nContext } from '../../i18n';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 interface CalendarHeaderProps {
   focusHeader?: boolean;

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 /**
  * @children required
@@ -178,6 +177,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isInverse: isInverse,
           isSelectable,
           isSortableBySelected,
+          rowCount,
         }}
       >
         <TableContainer

@@ -1,31 +1,140 @@
-## 3.8.0
+## 4.6.0-next.0
 
-### Minor Changes
-
-- fa9662d1c: feat(Tabs): Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI. Please note that this component is in beta. Use at your own risk.
-- fa9662d1c: feat(TreeView): New TreeView & TreeItem components
+## 4.6.0-next.14
 
 ### Patch Changes
 
-- fa9662d1c: chore: Update nvm to `v16.20.2`
-- fa9662d1c: fix(Search): Reset the value for clearable search when the X is clicked
-- fa9662d1c: fix(DatePicker): Date no longer disappears if user enters a valid date, then changes it to an invalid date.
-- fa9662d1c: fix(Badge): Fixes the Badge height for the label version. Both label and counter variants are now 24px in height.
-- fa9662d1c: fix(NativeSelect): Fixes the issue with pagination control, rows per page, on Table and Datagrid
-- fa9662d1c: fix(Datagrid): Fixed the state of pagination select not updating the new selected value.
-- fa9662d1c: feat(modal): Added new `isModalClosingControlledManually` property that allows handling closing the modal on the consumer side
-- fa9662d1c: fix(NativeSelect): Fix issue with data-testid
-- fa9662d1c: fix(TimePicker): Returns empty when backspace is pressed
-- fa9662d1c: feat(TimePicker): Added support for clearing Timepicker
-- fa9662d1c: build: Update references to \_styled
+- 616cbf9a0: fix(BreadCrumb): replace span with link to fix focus
 
-## 3.7.0
+## 4.6.0-next.13
+
+### Patch Changes
+
+- 9d840d863: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
+
+## 4.6.0-next.12
+
+### Patch Changes
+
+- dc307446a: fix(Accordion): Fix screen scroll behavior during accordion navigation
+
+## 4.6.0-next.11
+
+### Patch Changes
+
+- 11bedeff9: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
+
+## 4.6.0-next.10
+
+### Patch Changes
+
+- 6b413fb77: fix(List): Updated examples for List component
+
+## 4.6.0-next.9
+
+### Patch Changes
+
+- d4164cacb: fix(Modal): Modal disabled background click focus fix.
+
+## 4.6.0-next.8
+
+### Patch Changes
+
+- 3b3a2d79a: chore: Update @emotion dependency
+
+## 4.6.0-next.7
+
+### Patch Changes
+
+- 84a8a17d6: fix(DatePicker): Fix error when using both onChange and onDateChange
+
+## 4.6.0-next.6
 
 ### Minor Changes
 
-- dc443a912: feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove.
-- ef243baf1: feat(Select/NativeSelect): New `additionalContent` prop to provide the ability to add extra content inline with the label similar to the Input component.
-- 8f09b0e45: fix(Select/NativeSelect): Fixed alignment issues in Select regarding additional content icon. Fixed duplicate additional content in Native Select.
+- ca58152cb: Add support for `checkChildren`, `checkParents` props to TreeView
+
+## 4.6.0-next.5
+
+### Patch Changes
+
+- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
+
+## 4.6.0-next.4
+
+### Patch Changes
+
+- 9214724b6: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
+
+## 4.6.0-next.3
+
+### Patch Changes
+
+- aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
+
+## 4.6.0-next.2
+
+### Patch Changes
+
+- 1d1dd1d06: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
+
+## 4.6.0-next.1
+
+### Patch Changes
+
+- 48b7a5539: fix(Breadcrumbs): Fixed alignment issue between elements.
+
+### Minor Changes
+
+- fdf2dc929: feat(Modal): New `headerRef` prop that returns a reference to the header element
+
+## 4.5.0
+
+### Minor Changes
+
+- ae668a3e5: chore: Updating emotion to v11
+- 9e38e9e7f: feat(Stepper): New Stepper component. Displays step based content for use in multi-step interfaces.
+
+### Patch Changes
+
+- e43932d45: fix(Modal): Background overlay now displays as expected for nested modals
+- e24db7ab4: fix(DatePicker): Remove role="presentation" from calendar
+- 65d417254: fix(ProgressBar): Add support for custom colors
+- 636fa3060: fix(NativeSelect): Update arrow placement, arrow color and border color when disabled
+- da14eec4f: fix(Modal): Remove unnecessary `aria-describedBy=“modal”`. Add `ariaLabel` prop so that Modals without headers can customize the `aria-label` instead of defaulting to `aria-label="modal"` which is not correct for a11y standards.
+- cd101c769: fix(Hyperlink): Support Icons and toggling underline styling
+- 9f1e0956a: fix(Input): Add `inputWrapperStyle` prop to allow more flexibility with Input widths
+- ec35223de: build(deps): bump tar from 6.1.11 to 6.2.1
+- 506904fd8: build(deps): bump express from 4.18.1 to 4.19.2
+
+## 4.4.0
+
+### Minor Changes
+
+- 308563ced: feat(Tabs): Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI. Please note that this component is in beta. Use at your own risk.
+- 308563ced: feat(TreeView): New TreeView & TreeItem components
+
+### Patch Changes
+
+- 308563ced: chore: Update nvm to `v16.20.2`
+- 308563ced: fix(Search): Reset the value for clearable search when the X is clicked
+- 308563ced: fix(DatePicker): Date no longer disappears if user enters a valid date, then changes it to an invalid date.
+- 308563ced: fix(Badge): Fixes the Badge height for the label version. Both label and counter variants are now 24px in height.
+- 308563ced: fix(NativeSelect): Fixes the issue with pagination control, rows per page, on Table and Datagrid
+- 308563ced: fix(Datagrid): Fixed the state of pagination select not updating the new selected value.
+- 308563ced: feat(modal): Added new `isModalClosingControlledManually` property that allows handling closing the modal on the consumer side
+- 308563ced: fix(NativeSelect): Fix issue with data-testid
+- 308563ced: fix(TimePicker): Returns empty when backspace is pressed
+- 308563ced: feat(TimePicker): Added support for clearing Timepicker
+- 308563ced: build: Update references to \_styled
+
+## 4.3.0
+
+### Minor Changes
+
+- cfc20a479: feat(Paragraph): New `noTopMargin` and `noBottomMargin` props that allow customization of which margin to remove.
+- cfc20a479: feat(Select/NativeSelect): New `additionalContent` prop to provide the ability to add extra content inline with the label similar to the Input component.
+- cfc20a479: fix(Select/NativeSelect): Fixed alignment issues in Select regarding additional content icon. Fixed duplicate additional content in Native Select.
 
 ### Patch Changes
 
@@ -33,38 +142,34 @@
 - 1fb88b6fc: fix: Updates to the expressive font styles for both desktop and mobile
 - fc3098851: build(deps): bump browserify-sign from 4.2.1 to 4.2.2
 
-## 3.6.0
+## 4.2.0
 
 ### Minor Changes
 
-- 6cc99c6de: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
-- 6cc99c6de: feat(TablePagination): TablePagination component will hide rows per page select when no onRowsPerPageChange argument passed
+- de22be548: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level
+- de22be548: feat(TablePagination): TablePagination component will hide rows per page select when no onRowsPerPageChange argument passed
 
 ### Patch Changes
 
-- 6cc99c6de: fix(DropdownExpandableMenuListItem): Add `role="menuitem"`
-- 6cc99c6de: fix(DropdownContent): Handle `false` as child
-- 6cc99c6de: fix(DatePicker): Escape key only closes the panel
-- 6cc99c6de: fix(Dropdown): Fixes from QA review of the Dropdown Expandable sub component disabled states.
-- 6cc99c6de: feat(DropdownExpandableMenu): A new menu item display for the Dropdown component which enables expandable lists by one level.
-- 6cc99c6de: fix(StyledLabel/TabPanel): Update various labels and TabPanel content to be neutral700 (instead of neutral500)
-- 6cc99c6de: fix(Select/Combobox/Dropdown/DatePicker): Added support for closing components that have menus with the escape key inside of modals while retaining an open modal state.
-- 6cc99c6de: fix(PasswordInput): Update placement of Show/Hide button on Large input size
-- 6cc99c6de: fix(RadioGroup): Radio Group label is now a span to improve a11y
-- 6cc99c6de: fix(Input): Update Input height to match button sizes: 40px (instead of 42px) and 56px (instead of 58px)
-- 6cc99c6de: fix(NativeSelect): Update NativeSelect height to match button sizes: 40px (instead of 42px)
-- 6cc99c6de: fix(Table/DataGrid): Update Ascending (point up) and Descending (point down) arrows to match other design systems
-- 6cc99c6de: fix(Modal): Update padding so it's equal on all sides (16px small viewport or 24px for large)
+- de22be548: fix(DropdownContent): Handle `false` as child
+- de22be548: fix(StyledLabel/TabPanel): Update various labels and TabPanel content to be neutral700 (instead of neutral500)
+- de22be548: fix(Select/Combobox/Dropdown/DatePicker): Added support for closing components that have menus with the escape key inside of modals while retaining an open modal state.
+- de22be548: fix(PasswordInput): Update placement of Show/Hide button on Large input size
+- de22be548: fix(RadioGroup): Radio Group label is now a span to improve a11y
+- de22be548: fix(Input): Update Input height to match button sizes: 40px (instead of 42px) and 56px (instead of 58px)
+- de22be548: fix(NativeSelect): Update NativeSelect height to match button sizes: 40px (instead of 42px)
+- de22be548: fix(Table/DataGrid): Update Ascending (point up) and Descending (point down) arrows to match other design systems
+- de22be548: fix(Modal): Update padding so it's equal on all sides (16px small viewport or 24px for large)
 
-## 3.5.1
+## 4.1.1
 
 ### Patch Changes
 
-- e8c968bb8: fix(CharacterCounter): Add `ref` to Character Counter. Removes related test console warning.
-- 1c91ac394: fix(dropdown): Dropdowns without `DropdownMenuItem` will get focused on open.
-  Fixes issue where these dropdowns could not be closed on Escape in Safari, and should be readable by screenreaders.
+- 0d718be80: fix(Input Base): Fixed case where default value of `0` did not render the default value in the input field
+- 0d718be80: fix(Input/Textarea): Fix `maxLength` console warning regarding passing a boolean attribute
+- 0d718be80: docs(tabs): Update TabProps to remove `isActive`-- this component does not use it. Use `activeIndex` on the `TabsContainer` to indicate the active tab
 
-## 3.5.0
+## 4.1.0
 
 ### Minor Changes
 
@@ -82,6 +187,7 @@
 
   Please note that in the meantime, `maxLength` is still supported but will need to be changed to `maxCount` as future releases will remove `maxLength` and `hasCharacterCounter`.
 
+- caee2a755: fix(CharCounter): Update calculation for character length on rerender.
 - d0c69155a: fix(inputbase): Update icon/button position for inputs with two icons.
 - 6f53d1891: fix(Modal): Added support for closing individual nested modals with escape key.
 - 395aea21c: fix(Pagination): Spacing, Tooltip inverse state, and VoiceOver support fixes.
@@ -89,49 +195,33 @@
 - f487b936f: fix(alertbase): Update height for toasts in AlertBase
 - 4a10f8905: fix(select): Fix Multi Select placeholder text alignment
 
-## 3.4.0
+## 4.0.0
 
-**We accidentally skipped version 3.4.0. Please use 3.5.0 instead**
+### Major Changes
 
-## 3.3.0
-
-### Minor Changes
-
-- 17fc12212: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
-- 17fc12212: feat(toggleButton): New Toggle Button component.
-- 17fc12212: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
-  Deprecations: dropdownDropDirection prop is now deprecated
-
-### Patch Changes
-
-- 17fc12212: Set fallback font-family for all components.
-- 17fc12212: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
-- 17fc12212: chore: Fix broken build
-- 17fc12212: chore: Fixed warnings in the console.
-- 17fc12212: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
-- 17fc12212: fix(heading): Fix error that "Property 'css' is missing"
-- 17fc12212: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
-- 17fc12212: fix(toggleButton): Fix hover states
-
-## 3.5.0
+- c01c53838: chore: Update to React v17.0.2
 
 ### Minor Changes
 
-- 17fc12212: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
-- 17fc12212: feat(toggleButton): New Toggle Button component.
-- 17fc12212: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
-  Deprecations: dropdownDropDirection prop is now deprecated
+- 39ef67ade: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
+- f311f81e9: feat(toggleButton): New Toggle Button component.
+- ccacca490: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
+
+### Deprecations
+
+- `dropdownDropDirection` prop is now deprecated
 
 ### Patch Changes
 
-- 17fc12212: Set fallback font-family for all components.
-- 17fc12212: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
-- 17fc12212: chore: Fix broken build
-- 17fc12212: chore: Fixed warnings in the console.
-- 17fc12212: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
-- 17fc12212: fix(heading): Fix error that "Property 'css' is missing"
-- 17fc12212: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
-- 17fc12212: fix(toggleButton): Fix hover states
+- b276664cd: Set fallback `font-family` for all components.
+- f708b20dc: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
+- adba671f3: chore: Fix broken build
+- e91c72c88: chore: Fixed warnings in the console.
+- 9cb534ce8: fix(inputbase): Add optional width prop for InputBase - this affects and can be used in Input, PasswordInput, and Search
+- 4301b98c1: fix(heading): Fix error that `"Property 'css' is missing"`
+- d2956b5f1: chore: Update react-magma-icons to v3.0.0
+- 0a4f2f8ce: fix: Revert the change to hex values of secondaryColors (secondary500, secondary600 & secondary700)
+- 354a62232: fix(toggleButton): Fix hover states
 
 ## 3.2.1
 
@@ -152,7 +242,7 @@
 - 47015f38: feat(characterCounter): New Character Counter component.
 - 15bdd2d0: fix(characterCounter): Added dynamic aria-live states for screen readers based on the amount of text in the input.
 - 9daf9331: feat(combobox): `hasPersistentMenu` prop allows for the items list to stay visible after each selection on Multi Comboboxes
-  fix(combobox): Placeholder on Multi Comboboxes now disappears when at least one item is selected
+- fix(combobox): Placeholder on Multi Comboboxes now disappears when at least one item is selected
 - eb9ed1f3: feat(input): Added left label position capability for Combobox, DatePicker, Input, NativeSelect, PasswordInput, Textarea, and TimePicker. An additional prop of labelWidth has also been implemented for use in a column of Inputs for styling purposes.
 - 1893be73: feat(button): Subtle button
 
@@ -160,8 +250,8 @@
 
 - 34c2957a: fix(combobox): Combobox items have a default `type="button"` to prevent issues when used inside a form.
 - 85853eae: fix(MultiCombobox): Support for `isClearable` button for multi comboboxes. `isClearable` button supports `isInverse` for single and multi comboboxes.
-  feat(combobox): Add `isTypeahead` prop to allow `selectedItems` items that are not in `items`.
-  feat(combobod): Add `isLoading` prop to `ItemsList` to show a loading state
+- feat(combobox): Add `isTypeahead` prop to allow `selectedItems` items that are not in `items`.
+- feat(combobod): Add `isLoading` prop to `ItemsList` to show a loading state
 - 1110043a: fix(table): Add keyboard only focus to tables without a focusable element.
 - 2fe13d60: docs(table): Storybook example with adjustable number of rows
 - 95fc5ae7: chore(npm/node): Update versions
@@ -199,14 +289,6 @@
 - 663a334d: build(deps): bump terser from 4.8.0 to 4.8.1
 
 ## 3.1.0
-
-### Minor Changes
-
-- 04e0a5a8: Release 3.1.0
-
-## 3.0.0
-
-**NOTE: 3.0.0 was an accidental release. Please use 3.1.x and above**
 
 ### Major Changes
 
@@ -264,6 +346,10 @@
 - 3a27353aa: bug: Dropdowns/Selects are hidden when used inside other components.
 - 3a27353aa: fix(textarea): Textarea can now be cleared
 
+## 3.0.0
+
+**NOTE: 3.0.0 was an accidental release. Please use 3.1.x and above**
+
 ## 2.5.11
 
 ### Patch Changes
@@ -271,14 +357,6 @@
 - 72db207d: fix: adding in reference for list props within the index
 - 7ed798b5: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
 - a7e57b54: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
-
-## 2.5.10
-
-### Patch Changes
-
-- fdc6b27f: fix: adding in reference for list props within the index
-- fdc6b27f: fix(accordion.stories.tsx): fix Accordion expand collapse all story & change background to transparent
-- fdc6b27f: build(publish-next-yml): Add Deploy Dev Storybook to Netlify step to publish-next.
 
 ## 2.5.10
 
@@ -308,7 +386,7 @@
 
 ### Patch Changes
 
-This was an accidental release. Please skip this version and upgrade to to 2.5.10.
+This was an accidental release. Please skip this version and upgrade to 2.5.10.
 
 ## 2.5.8
 
@@ -325,10 +403,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - 4da10cb8: fix(Tabs): call onChange function when tab panel is changed by keyboard navigation
 - 1bbd5017: feat(tooltip): add an `open` prop for persistent tooltips
 - a23e8307: Fix: Added portal back into modal
-- c9907a67: feat: Inputs update
-
-  Removed top margin from helper and error messages related to inputs.
-
+- c9907a67: feat: Inputs update: Removed top margin from helper and error messages related to inputs.
 - fb4741bd: fix(dropdown): changed link color in dropdown to be dark gray instead of blue
 - 6cbb9cf2: feat(dropdown): add onOpen property to be called when dropdown opens
 - edbdda88: Release 2.5.7
@@ -356,6 +431,13 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - 8771bbfe: chore: update icons to 2.3.1
 - ab506800: change to dropdown for table pagination, change drop direction to 'up', and allow dropdown drop direction to be changed through props.
 
+## 2.5.4
+
+### Patch Changes
+
+- ae57efe9: fix date formatting for years under the year 1000
+- 5ccb1dc2: unmount accordion panel elements when accordion is closed
+
 ## 2.5.3
 
 ### Patch Changes
@@ -366,12 +448,11 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 
 ### Patch Changes
 
-- 4980c87a: - disable the clear and action buttons when the input is disabled
+- 4980c87a: disable the clear and action buttons when the input is disabled
 - ebdacccc: refactor(Dropdown): renamed handleMenuBlur to handleDropdownBlur
-- 8ee194d4: - extend TypographyProps for HeadingProps
-  - use Generic for TypographyProps
-- aea1e089: - fix(datepicker): keep close button below the helper information
-  - fix(datepicker): return focus to the previous element after closing helper information
+- 8ee194d4: extend TypographyProps for HeadingProps. Use Generic for TypographyProps
+- aea1e089: fix(datepicker): keep close button below the helper information
+- fix(datepicker): return focus to the previous element after closing helper information
 - 21c2ac2e: fix(time-picker): prevent time from switching to am when hour changes
 - 12380623: fix(input): add onClear function to be called when the input is cleared by clicking the clear button
 
@@ -387,18 +468,14 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - 3260fafb: Call onClose function when clicking outside of the dropdown menu
 - e12e00cf: fix(textarea): default width to 100%
 - 12d6d789: fix StyledButton: move creation of wrappers outside of StyledButton render function
-- 93ecc6c8: Feature/grid
-
-  CSS-Grid component for Magma. Grid styles can be applied as props to quickly and easily create a layout.
-
+- 93ecc6c8: Feature/grid: CSS-Grid component for Magma. Grid styles can be applied as props to quickly and easily create a layout.
 - c5cec3f6: Add useFocusLock hook to fix focus jumping around inside of a modal that has components re-rendered.
 
 ## 2.5.0
 
 ### Minor Changes
 
-- 8e3559c3: Refactor pagination component to use the new `usePagination` hook.
-  Create new `Datagrid` component as well as a new `useDataPagination` hook to handle datagrid data.
+- 8e3559c3: Refactor pagination component to use the new `usePagination` hook. Create new `Datagrid` component as well as a new `useDataPagination` hook to handle datagrid data.
 
 ### Patch Changes
 
@@ -410,19 +487,11 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 
 ### Minor Changes
 
-- f0a1882f: fix/controlled-toggle
+- f0a1882f: fix/controlled-toggle: Update `Toggle` to have controlled and uncontrolled variants akin to `Checkbox`
 
-  Update `Toggle` to have controlled and uncontrolled variants akin to `Checkbox`
+- 88e2daee: Feature/datagrid: Creating a `Datagrid` component with the options to have selectable rows and pagination. As a part of pagination for the `Datagrid` component there is now a `useDataPagination` hook that creates a `pagination` object with the data needed to build any of our pagination components.
 
-- 88e2daee: Feature/datagrid
-
-  Creating a `Datagrid` component with the options to have selectable rows and pagination.
-
-  As a part of pagination for the `Datagrid` component there is now a `useDataPagination` hook that creates a `pagination` object with the data needed to build any of our pagination components.
-
-- b7f7e431: feature/transitions: Add `Transition` component.
-
-  A reusable Transition components that allows teams to use the same standard transitions everywhere.
+- b7f7e431: feature/transitions: Add `Transition` component. A reusable Transition components that allows teams to use the same standard transitions everywhere.
 
   ```
   <Transition fade nudgeTop>
@@ -431,9 +500,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
   ```
 
 - c49cda0e: Add new transition component
-- 1ceb9951: Feature/accordion
-
-  Adding a new accordion component
+- 1ceb9951: Feature/accordion: Adding a new accordion component
 
 ### Patch Changes
 
@@ -448,11 +515,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 
 - d0a7687d: fix(input): fix issue with inline inputs rendering too wide (such as search box)
 
-### Patch Changes
-
-- d0a7687d: fix(input): fix issue with inline inputs rendering too wide (such as search box)
-
-### 2.3.9 (2021-03-24)
+### 2.3.9
 
 - chore: update to node 14, npm 7
 - fix(checkbox): switch to icon for unchecked state
@@ -463,21 +526,20 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - fix(Button): default to ButtonType.button
 - fix(icons): update remaining v1 icons
 
-### 2.3.8 (2021-03-01)
+### 2.3.8
 
 - fix: update dependencies accross packages
 - docs(checkbox): improve stories
 
-### 2.3.7 (2021-02-22)
+### 2.3.7
 
 - feat(icons): release v2.0.0
 
-### 2.3.6 (2021-02-18)
+### 2.3.6
 
 - Note: Version bump only for package react-magma-dom
--
 
-### 2.3.5 (2021-02-18)
+### 2.3.5
 
 - table: duplicate exports (1583413)
 - ci(stories): add remaining stories
@@ -493,13 +555,13 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - fix(label): add labelPosition enum
 - feature(table): add pagination
 
-### 2.3.4 (2021-01-25)
+### 2.3.4
 
 - ci(storybook): add storybook
 - chore: update contributing guide
 - fix(tooltip): improve positioning
 
-### 2.3.3 (2021-01-20)
+### 2.3.3
 
 - docs(theme): use magma theme in more places
 - feat(combobox): add isMulti XOR
@@ -509,7 +571,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - fix(hyperlink): extend Anchor
 - fix(theme): remove jsx pragma
 
-### 2.3.2 (2020-12-30)
+### 2.3.2
 
 - ci(actions): new github Actions
 - ci(actions): deploy to Netlify
@@ -522,7 +584,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - fix(combobox): support maxHeight
 - fix(combobox): support customComponents
 
-### [2.3.1-alpha.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.1-alpha.0) (2020-12-11)
+### [2.3.1-alpha.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.1-alpha.0)
 
 ### Bug Fixes
 
@@ -530,7 +592,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - **dropdown:** add interfaces with default props, testids ([65d15d7](https://github.com/cengage/react-magma/commit/65d15d70131cf45d40622f41e45bd96284729c10))
 - **tab:** handle click parameter names fixed ([70dc881](https://github.com/cengage/react-magma/commit/70dc881078a1823c7031eb973362eef369682dc3))
 
-## [2.3.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.0) (2020-12-08)
+## [2.3.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.0)
 
 ### Features
 

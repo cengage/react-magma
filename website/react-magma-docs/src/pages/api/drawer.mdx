@@ -17,7 +17,7 @@ Drawer accepts a position (top, right, bottom, or left)
 
 ```typescript
 import React from 'react';
-import { Button, Drawer, VisuallyHidden } from 'react-magma-dom';
+import { Button, Drawer, DrawerPosition, VisuallyHidden } from 'react-magma-dom';
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
@@ -25,10 +25,11 @@ export function Example() {
   return (
     <>
       <Drawer
+        closeAriaLabel="Close drawer"
         header="Drawer Title"
-        onClose={() => setShowDrawer(false)}
         isOpen={showDrawer}
-        position="bottom"
+        onClose={() => setShowDrawer(false)}
+        position={DrawerPosition.bottom}
       >
         <p>This is a Drawer, doing Drawer things.</p>
         <p>
@@ -49,10 +50,12 @@ export function Example() {
 ```typescript
 import React from 'react';
 import {
-  Drawer,
-  NavTabs,
-  NavTab,
   Button,
+  Drawer,
+  DrawerPosition,
+  NavTab,
+  NavTabs,
+  TabsOrientation,
   VisuallyHidden,
 } from 'react-magma-dom';
 export function Example() {
@@ -61,8 +64,10 @@ export function Example() {
   return (
     <>
       <Drawer
-        onClose={() => setShowDrawer(false)}
+        ariaLabel="drawer"
+        closeAriaLabel="Close drawer"
         isOpen={showDrawer}
+        onClose={() => setShowDrawer(false)}
         position={DrawerPosition.right}
       >
         <NavTabs orientation={TabsOrientation.vertical}>
@@ -88,6 +93,7 @@ import React from 'react';
 import {
   Button,
   Drawer,
+  DrawerPosition,
   VisuallyHidden,
   Card,
   CardBody,
@@ -100,11 +106,12 @@ export function Example() {
     <Card isInverse>
       <CardBody>
         <Drawer
+          closeAriaLabel="Close drawer"
           header="Drawer Title"
-          onClose={() => setShowDrawer(false)}
-          isOpen={showDrawer}
-          position="right"
           isInverse
+          isOpen={showDrawer}
+          onClose={() => setShowDrawer(false)}
+          position={DrawerPosition.right}
         >
           <p>This is a Drawer, doing Drawer things.</p>
           <p>
@@ -144,19 +151,18 @@ export function Example() {
     <I18nContext.Provider
       value={{
         ...defaultI18n,
-        example: 'example i18n',
+        modal: {
+          closeAriaLabel: 'Cerrar'
+        }
       }}
     >
       <Drawer
         header="Drawer Title"
-        onClose={() => setShowDrawer(false)}
         isOpen={showDrawer}
+        onClose={() => setShowDrawer(false)}
         position={DrawerPosition.bottom}
       >
         <p>override default i18n value:</p>
-        <p>
-          <Button>This is a button</Button>
-        </p>
       </Drawer>
       <Button onClick={() => setShowDrawer(true)}>
         Show Drawer
@@ -167,7 +173,7 @@ export function Example() {
 }
 ```
 
-# Drawer Props
+## Drawer Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 

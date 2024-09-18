@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { InverseContext, useIsInverse } from '../../inverse';
-import styled, { CreateStyled } from '@emotion/styled';
+import styled from '@emotion/styled';
 
 /**
  * @children required

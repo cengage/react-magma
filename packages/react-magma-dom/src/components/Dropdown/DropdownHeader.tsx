@@ -2,8 +2,7 @@ import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { DropdownContext } from './Dropdown';
 import { transparentize } from 'polished';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 /**
  * @children required

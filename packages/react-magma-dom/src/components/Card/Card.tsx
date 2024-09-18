@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
-import styled, { CreateStyled } from '@emotion/styled';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';

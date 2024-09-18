@@ -1,16 +1,24 @@
 # Change Log
 
-## 1.1.3-next.0
+## 1.1.4
 
 ### Patch Changes
 
-- dae489f77: build(deps-dev): bump axios from 0.21.1 to 1.6.0
+- 5f16d2018: build(deps-dev): bump axios from 0.21.1 to 0.28.0
+- 5f16d2018: fix: Remove card with version `^15.0.0`
+
+## 1.1.2
+
+### Patch Changes
+
+- 1238e8d: - Display latest version based on React compatibility
+  - Remove old versions from list that don't have docs sites
 
 ## 1.1.2-next.0
 
 ### Patch Changes
 
-- 4f4598514: - Display latest version based on React compatibility
+- a81b0728b: - Display latest version based on React compatibility
   - Remove old versions from list that don't have docs sites
 
 ## 1.1.1

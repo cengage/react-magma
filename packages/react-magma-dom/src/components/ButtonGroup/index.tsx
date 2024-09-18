@@ -1,9 +1,9 @@
 import * as React from 'react';
-import styled, { CreateStyled } from '@emotion/styled';
+import styled from '@emotion/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import {
   ButtonColor,
   ButtonSize,
@@ -82,9 +82,6 @@ export interface ButtonGroupContextInterface {
   textTransform?: ButtonTextTransform;
   isInverse?: boolean;
 }
-
-const typedStyled = styled as CreateStyled<ThemeInterface>;
- 
 
 export const ButtonGroupContext =
   React.createContext<ButtonGroupContextInterface>({});

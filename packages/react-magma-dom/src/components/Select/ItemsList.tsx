@@ -14,8 +14,7 @@ import {
 } from './components';
 import { convertStyleValueToString } from '../../utils';
 import { Spinner } from '../Spinner';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 interface ItemsListProps<T> {
   customComponents?: SelectComponents<T>;

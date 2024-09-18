@@ -25,8 +25,7 @@ import { CustomScatterDataComponent } from './CustomPointComponent';
 import { CustomAxisComponent } from './CustomAxisComponent';
 import { LegendButton } from './LegendButton';
 
-import styled, { CreateStyled } from '@emotion/styled';
-const typedStyled = styled as CreateStyled<ThemeInterface>;
+import styled from '@emotion/styled';
 
 export type LineChartAxisStyle = VictoryAxisProps['style'];
 export type DataGetterPropType = VictoryLineProps['x'];
@@ -54,6 +53,9 @@ export interface LineChartComponentProps {
   yAxis?: VictoryAxisProps;
 }
 
+/**
+ * @deprecated Please use CarbonChart instead
+ */
 // NOTE: These props are manually copied to line-chart.mdx
 export interface LineChartProps<T extends ChartDataOptions> {
   /**
@@ -328,7 +330,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
 
         if (focusedPointIndex !== undefined) {
           focusedPointIndex === pointRefArray.current.length - 1
-            ? (pointRefArray.current[0].current as HTMLButtonElement).focus()
+            ? (pointRefArray.current[0]?.current as HTMLButtonElement)?.focus()
             : (
                 pointRefArray.current[focusedPointIndex + 1]
                   .current as HTMLButtonElement

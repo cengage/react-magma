@@ -9,8 +9,7 @@ import { TypographyVisualStyle } from '../Typography';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 interface HelperInformationProps {
   isInverse?: boolean;
@@ -88,7 +87,7 @@ const StyledContent = typedStyled.div<{
   }
 `;
 
-const StyledDescription = typedStyled.p`
+const StyledDescription = styled.p`
   font-family: ${props => props.theme.bodyFont};
   margin: 0;
 `;

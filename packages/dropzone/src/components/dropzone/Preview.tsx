@@ -24,15 +24,12 @@ import {
   Transition,
   Spinner,
   useIsInverse,
+  styled,
 } from 'react-magma-dom';
 
 import { FileIcon } from './FileIcon';
 import { FilePreview } from './FilePreview';
 import { formatFileSize } from './utils';
-
-import styled, { CreateStyled } from '@emotion/styled';
-
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export interface PreviewProps extends Omit<FlexProps, 'behavior'> {
   accept?: string | string[];

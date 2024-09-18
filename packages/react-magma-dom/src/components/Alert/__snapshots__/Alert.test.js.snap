@@ -1,19 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Alert Dismissible should render a dismissible icon button with the warning variant 1`] = `
-.emotion-0 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-2 {
+.emotion-1 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -35,12 +23,9 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -63,8 +48,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 1;
   min-width: 0;
@@ -80,19 +65,19 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   width: auto;
 }
 
-.emotion-2:not(:disabled):focus {
+.emotion-1:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-2:not(:disabled):hover,
-.emotion-2:not(:disabled):focus {
+.emotion-1:not(:disabled):hover,
+.emotion-1:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-2:not(:disabled):after {
+.emotion-1:not(:disabled):after {
   background: #3942B0;
   border-radius: 50%;
   content: '';
@@ -102,54 +87,54 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-2:not(:disabled):active {
+.emotion-1:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-2:not(:disabled):active:after {
+.emotion-1:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-2 svg {
+.emotion-1 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-2:not(:disabled):hover {
+.emotion-1:not(:disabled):hover {
   background: none;
   color: inherit;
 }
 
-.emotion-2:focus:not(:disabled) {
+.emotion-1:focus:not(:disabled) {
   background: none;
   color: inherit;
   outline: 2px solid #0074B7;
-  outline-offset: 0 !important;
+  outline-offset: 0!important;
 }
 
-.emotion-2:not(:disabled):active {
+.emotion-1:not(:disabled):active {
   background: none;
   color: inherit;
 }
 
-.emotion-0 {
+.emotion-3 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -161,7 +146,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   align-items: center;
 }
 
-.emotion-2 {
+.emotion-1 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -183,12 +168,9 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   font-weight: 500;
   height: 40px;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
-  -webkit-letter-spacing: inherit;
-  -moz-letter-spacing: inherit;
-  -ms-letter-spacing: inherit;
   letter-spacing: inherit;
   line-height: 24px;
   margin: 0;
@@ -211,8 +193,8 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-pack: center;
-  -webkit-justify-content: center;
   -ms-flex-pack: center;
+  -webkit-justify-content: center;
   justify-content: center;
   line-height: 1;
   min-width: 0;
@@ -228,19 +210,19 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   width: auto;
 }
 
-.emotion-2:not(:disabled):focus {
+.emotion-1:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-2:not(:disabled):hover,
-.emotion-2:not(:disabled):focus {
+.emotion-1:not(:disabled):hover,
+.emotion-1:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-2:not(:disabled):after {
+.emotion-1:not(:disabled):after {
   background: #3942B0;
   border-radius: 50%;
   content: '';
@@ -250,56 +232,68 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   padding: 50%;
   position: absolute;
   top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+  -moz-transform: translate(-50%, -50%) scale(1);
+  -ms-transform: translate(-50%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
   -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
   transition: opacity 1s,transform 0.5s;
   width: 28px;
 }
 
-.emotion-2:not(:disabled):active {
+.emotion-1:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-2:not(:disabled):active:after {
+.emotion-1:not(:disabled):active:after {
   opacity: 0.4;
-  -webkit-transform: translate(-50%,-50%) scale(0);
-  -ms-transform: translate(-50%,-50%) scale(0);
-  transform: translate(-50%,-50%) scale(0);
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
   -webkit-transition: -webkit-transform 0s;
-  -webkit-transition: transform 0s;
   transition: transform 0s;
 }
 
-.emotion-2 svg {
+.emotion-1 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-2:not(:disabled):hover {
+.emotion-1:not(:disabled):hover {
   background: none;
   color: inherit;
 }
 
-.emotion-2:focus:not(:disabled) {
+.emotion-1:focus:not(:disabled) {
   background: none;
   color: inherit;
   outline: 2px solid #0074B7;
-  outline-offset: 0 !important;
+  outline-offset: 0!important;
 }
 
-.emotion-2:not(:disabled):active {
+.emotion-1:not(:disabled):active {
   background: none;
   color: inherit;
+}
+
+.emotion-3 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 
 <button
   aria-label="Close this message"
-  class="emotion-2 emotion-3"
+  class="emotion-0 emotion-1 emotion-2"
   color="primary"
   id="ignoreButton"
   shape="round"
@@ -307,7 +301,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 >
   <span
     aria-labelledby="ignoreButton"
-    class="emotion-0 emotion-1"
+    class="emotion-3 emotion-4"
     id="ignoreSvg"
   >
     <svg
@@ -330,50 +324,6 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 
 exports[`Alert Variants should render an alert with danger variant 1`] = `
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  margin-right: 1px;
-  padding: 0 8px 0 12px;
-}
-
-@media (max-width:600px) {
-  .emotion-0 {
-    padding: 0 8px;
-  }
-
-  .emotion-0 svg {
-    width: 20px;
-  }
-}
-
-.emotion-1 {
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  padding: 12px 0;
-}
-
-@media (max-width:600px) {
-  .emotion-1 {
-    padding-left: 0;
-  }
-}
-
-.emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -396,30 +346,27 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   position: relative;
 }
 
-@media (max-width:600px) {
-  .emotion-3 {
+@media (max-width: 600px) {
+  .emotion-0 {
     font-size: 14px;
-    -webkit-letter-spacing: .16px;
-    -moz-letter-spacing: .16px;
-    -ms-letter-spacing: .16px;
     letter-spacing: .16px;
     line-height: 20px;
   }
 }
 
-.emotion-3:focus {
+.emotion-0:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-3 a {
+.emotion-0 a {
   color: #7F1714;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-3 a:not([disabled]):focus,
-.emotion-3 a:not([disabled]):hover {
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 a:not([disabled]):hover {
   color: #D32821;
 }
 
@@ -433,53 +380,53 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
+}
+
+.emotion-4 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  margin-right: 1px;
+  padding: 0 8px 0 12px;
+}
+
+@media (max-width: 600px) {
+  .emotion-4 {
+    padding: 0 8px;
+  }
+
+  .emotion-4 svg {
+    width: 20px;
+  }
+}
+
+.emotion-6 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 12px 0;
+}
+
+@media (max-width: 600px) {
+  .emotion-6 {
+    padding-left: 0;
+  }
 }
 
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  margin-right: 1px;
-  padding: 0 8px 0 12px;
-}
-
-@media (max-width:600px) {
-  .emotion-0 {
-    padding: 0 8px;
-  }
-
-  .emotion-0 svg {
-    width: 20px;
-  }
-}
-
-.emotion-1 {
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  padding: 12px 0;
-}
-
-@media (max-width:600px) {
-  .emotion-1 {
-    padding-left: 0;
-  }
-}
-
-.emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -502,30 +449,27 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   position: relative;
 }
 
-@media (max-width:600px) {
-  .emotion-3 {
+@media (max-width: 600px) {
+  .emotion-0 {
     font-size: 14px;
-    -webkit-letter-spacing: .16px;
-    -moz-letter-spacing: .16px;
-    -ms-letter-spacing: .16px;
     letter-spacing: .16px;
     line-height: 20px;
   }
 }
 
-.emotion-3:focus {
+.emotion-0:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-3 a {
+.emotion-0 a {
   color: #7F1714;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-3 a:not([disabled]):focus,
-.emotion-3 a:not([disabled]):hover {
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 a:not([disabled]):hover {
   color: #D32821;
 }
 
@@ -539,19 +483,63 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
+}
+
+.emotion-4 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  margin-right: 1px;
+  padding: 0 8px 0 12px;
+}
+
+@media (max-width: 600px) {
+  .emotion-4 {
+    padding: 0 8px;
+  }
+
+  .emotion-4 svg {
+    width: 20px;
+  }
+}
+
+.emotion-6 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 12px 0;
+}
+
+@media (max-width: 600px) {
+  .emotion-6 {
+    padding-left: 0;
+  }
 }
 
 <div>
   <div
-    class="emotion-3"
+    class="emotion-0 emotion-1"
     id="auto-generated-id"
     tabindex="-1"
   >
     <div
-      class="emotion-2"
+      class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-0"
+        class="emotion-4 emotion-5"
       >
         <svg
           class="icon"
@@ -568,7 +556,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
         </svg>
       </span>
       <div
-        class="emotion-1"
+        class="emotion-6 emotion-7"
       >
         <span>
           Test Alert Text
@@ -580,7 +568,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 `;
 
 exports[`Alert Variants should render an alert with info variant 1`] = `
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -603,30 +591,27 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   position: relative;
 }
 
-@media (max-width:600px) {
-  .emotion-3 {
+@media (max-width: 600px) {
+  .emotion-0 {
     font-size: 14px;
-    -webkit-letter-spacing: .16px;
-    -moz-letter-spacing: .16px;
-    -ms-letter-spacing: .16px;
     letter-spacing: .16px;
     line-height: 20px;
   }
 }
 
-.emotion-3:focus {
+.emotion-0:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-3 a {
+.emotion-0 a {
   color: #004A75;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-3 a:not([disabled]):focus,
-.emotion-3 a:not([disabled]):hover {
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 a:not([disabled]):hover {
   color: #0074B7;
 }
 
@@ -642,7 +627,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   position: relative;
 }
 
-.emotion-0 {
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -658,17 +643,17 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   padding: 0 8px 0 12px;
 }
 
-@media (max-width:600px) {
-  .emotion-0 {
+@media (max-width: 600px) {
+  .emotion-4 {
     padding: 0 8px;
   }
 
-  .emotion-0 svg {
+  .emotion-4 svg {
     width: 20px;
   }
 }
 
-.emotion-1 {
+.emotion-6 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -680,13 +665,13 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   padding: 12px 0;
 }
 
-@media (max-width:600px) {
-  .emotion-1 {
+@media (max-width: 600px) {
+  .emotion-6 {
     padding-left: 0;
   }
 }
 
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -709,30 +694,27 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   position: relative;
 }
 
-@media (max-width:600px) {
-  .emotion-3 {
+@media (max-width: 600px) {
+  .emotion-0 {
     font-size: 14px;
-    -webkit-letter-spacing: .16px;
-    -moz-letter-spacing: .16px;
-    -ms-letter-spacing: .16px;
     letter-spacing: .16px;
     line-height: 20px;
   }
 }
 
-.emotion-3:focus {
+.emotion-0:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-3 a {
+.emotion-0 a {
   color: #004A75;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-3 a:not([disabled]):focus,
-.emotion-3 a:not([disabled]):hover {
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 a:not([disabled]):hover {
   color: #0074B7;
 }
 
@@ -748,7 +730,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   position: relative;
 }
 
-.emotion-0 {
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -764,17 +746,17 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   padding: 0 8px 0 12px;
 }
 
-@media (max-width:600px) {
-  .emotion-0 {
+@media (max-width: 600px) {
+  .emotion-4 {
     padding: 0 8px;
   }
 
-  .emotion-0 svg {
+  .emotion-4 svg {
     width: 20px;
   }
 }
 
-.emotion-1 {
+.emotion-6 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -786,23 +768,23 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   padding: 12px 0;
 }
 
-@media (max-width:600px) {
-  .emotion-1 {
+@media (max-width: 600px) {
+  .emotion-6 {
     padding-left: 0;
   }
 }
 
 <div>
   <div
-    class="emotion-3"
+    class="emotion-0 emotion-1"
     id="auto-generated-id"
     tabindex="-1"
   >
     <div
-      class="emotion-2"
+      class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-0"
+        class="emotion-4 emotion-5"
       >
         <svg
           class="icon"
@@ -819,7 +801,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
         </svg>
       </span>
       <div
-        class="emotion-1"
+        class="emotion-6 emotion-7"
       >
         <span>
           Test Alert Text
@@ -832,50 +814,6 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 exports[`Alert Variants should render an alert with warning variant 1`] = `
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  margin-right: 1px;
-  padding: 0 8px 0 12px;
-}
-
-@media (max-width:600px) {
-  .emotion-0 {
-    padding: 0 8px;
-  }
-
-  .emotion-0 svg {
-    width: 20px;
-  }
-}
-
-.emotion-1 {
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  padding: 12px 0;
-}
-
-@media (max-width:600px) {
-  .emotion-1 {
-    padding-left: 0;
-  }
-}
-
-.emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -898,30 +836,27 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   position: relative;
 }
 
-@media (max-width:600px) {
-  .emotion-3 {
+@media (max-width: 600px) {
+  .emotion-0 {
     font-size: 14px;
-    -webkit-letter-spacing: .16px;
-    -moz-letter-spacing: .16px;
-    -ms-letter-spacing: .16px;
     letter-spacing: .16px;
     line-height: 20px;
   }
 }
 
-.emotion-3:focus {
+.emotion-0:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-3 a {
+.emotion-0 a {
   color: #6E340E;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-3 a:not([disabled]):focus,
-.emotion-3 a:not([disabled]):hover {
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 a:not([disabled]):hover {
   color: #AD5115;
 }
 
@@ -935,53 +870,53 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
+}
+
+.emotion-4 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  margin-right: 1px;
+  padding: 0 8px 0 12px;
+}
+
+@media (max-width: 600px) {
+  .emotion-4 {
+    padding: 0 8px;
+  }
+
+  .emotion-4 svg {
+    width: 20px;
+  }
+}
+
+.emotion-6 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 12px 0;
+}
+
+@media (max-width: 600px) {
+  .emotion-6 {
+    padding-left: 0;
+  }
 }
 
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  margin-right: 1px;
-  padding: 0 8px 0 12px;
-}
-
-@media (max-width:600px) {
-  .emotion-0 {
-    padding: 0 8px;
-  }
-
-  .emotion-0 svg {
-    width: 20px;
-  }
-}
-
-.emotion-1 {
-  -webkit-align-self: center;
-  -ms-flex-item-align: center;
-  align-self: center;
-  -webkit-box-flex: 1;
-  -webkit-flex-grow: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  padding: 12px 0;
-}
-
-@media (max-width:600px) {
-  .emotion-1 {
-    padding-left: 0;
-  }
-}
-
-.emotion-3 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -1004,30 +939,27 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   position: relative;
 }
 
-@media (max-width:600px) {
-  .emotion-3 {
+@media (max-width: 600px) {
+  .emotion-0 {
     font-size: 14px;
-    -webkit-letter-spacing: .16px;
-    -moz-letter-spacing: .16px;
-    -ms-letter-spacing: .16px;
     letter-spacing: .16px;
     line-height: 20px;
   }
 }
 
-.emotion-3:focus {
+.emotion-0:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-3 a {
+.emotion-0 a {
   color: #6E340E;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-3 a:not([disabled]):focus,
-.emotion-3 a:not([disabled]):hover {
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 a:not([disabled]):hover {
   color: #AD5115;
 }
 
@@ -1041,19 +973,63 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   display: -ms-flexbox;
   display: flex;
   position: relative;
+}
+
+.emotion-4 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  margin-right: 1px;
+  padding: 0 8px 0 12px;
+}
+
+@media (max-width: 600px) {
+  .emotion-4 {
+    padding: 0 8px;
+  }
+
+  .emotion-4 svg {
+    width: 20px;
+  }
+}
+
+.emotion-6 {
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 12px 0;
+}
+
+@media (max-width: 600px) {
+  .emotion-6 {
+    padding-left: 0;
+  }
 }
 
 <div>
   <div
-    class="emotion-3"
+    class="emotion-0 emotion-1"
     id="auto-generated-id"
     tabindex="-1"
   >
     <div
-      class="emotion-2"
+      class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-0"
+        class="emotion-4 emotion-5"
       >
         <svg
           class="icon"
@@ -1070,7 +1046,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
         </svg>
       </span>
       <div
-        class="emotion-1"
+        class="emotion-6 emotion-7"
       >
         <span>
           Test Alert Text
@@ -1082,7 +1058,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 `;
 
 exports[`Alert should render an alert with default variant 1`] = `
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -1105,30 +1081,27 @@ exports[`Alert should render an alert with default variant 1`] = `
   position: relative;
 }
 
-@media (max-width:600px) {
-  .emotion-3 {
+@media (max-width: 600px) {
+  .emotion-0 {
     font-size: 14px;
-    -webkit-letter-spacing: .16px;
-    -moz-letter-spacing: .16px;
-    -ms-letter-spacing: .16px;
     letter-spacing: .16px;
     line-height: 20px;
   }
 }
 
-.emotion-3:focus {
+.emotion-0:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-3 a {
+.emotion-0 a {
   color: #004A75;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-3 a:not([disabled]):focus,
-.emotion-3 a:not([disabled]):hover {
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 a:not([disabled]):hover {
   color: #0074B7;
 }
 
@@ -1144,7 +1117,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   position: relative;
 }
 
-.emotion-0 {
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1160,17 +1133,17 @@ exports[`Alert should render an alert with default variant 1`] = `
   padding: 0 8px 0 12px;
 }
 
-@media (max-width:600px) {
-  .emotion-0 {
+@media (max-width: 600px) {
+  .emotion-4 {
     padding: 0 8px;
   }
 
-  .emotion-0 svg {
+  .emotion-4 svg {
     width: 20px;
   }
 }
 
-.emotion-1 {
+.emotion-6 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -1182,13 +1155,13 @@ exports[`Alert should render an alert with default variant 1`] = `
   padding: 12px 0;
 }
 
-@media (max-width:600px) {
-  .emotion-1 {
+@media (max-width: 600px) {
+  .emotion-6 {
     padding-left: 0;
   }
 }
 
-.emotion-3 {
+.emotion-0 {
   -webkit-align-items: stretch;
   -webkit-box-align: stretch;
   -ms-flex-align: stretch;
@@ -1211,30 +1184,27 @@ exports[`Alert should render an alert with default variant 1`] = `
   position: relative;
 }
 
-@media (max-width:600px) {
-  .emotion-3 {
+@media (max-width: 600px) {
+  .emotion-0 {
     font-size: 14px;
-    -webkit-letter-spacing: .16px;
-    -moz-letter-spacing: .16px;
-    -ms-letter-spacing: .16px;
     letter-spacing: .16px;
     line-height: 20px;
   }
 }
 
-.emotion-3:focus {
+.emotion-0:focus {
   outline: 2px solid #0074B7;
 }
 
-.emotion-3 a {
+.emotion-0 a {
   color: #004A75;
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
 }
 
-.emotion-3 a:not([disabled]):focus,
-.emotion-3 a:not([disabled]):hover {
+.emotion-0 a:not([disabled]):focus,
+.emotion-0 a:not([disabled]):hover {
   color: #0074B7;
 }
 
@@ -1250,7 +1220,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   position: relative;
 }
 
-.emotion-0 {
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1266,17 +1236,17 @@ exports[`Alert should render an alert with default variant 1`] = `
   padding: 0 8px 0 12px;
 }
 
-@media (max-width:600px) {
-  .emotion-0 {
+@media (max-width: 600px) {
+  .emotion-4 {
     padding: 0 8px;
   }
 
-  .emotion-0 svg {
+  .emotion-4 svg {
     width: 20px;
   }
 }
 
-.emotion-1 {
+.emotion-6 {
   -webkit-align-self: center;
   -ms-flex-item-align: center;
   align-self: center;
@@ -1288,23 +1258,23 @@ exports[`Alert should render an alert with default variant 1`] = `
   padding: 12px 0;
 }
 
-@media (max-width:600px) {
-  .emotion-1 {
+@media (max-width: 600px) {
+  .emotion-6 {
     padding-left: 0;
   }
 }
 
 <div>
   <div
-    class="emotion-3"
+    class="emotion-0 emotion-1"
     id="defaultVariant"
     tabindex="-1"
   >
     <div
-      class="emotion-2"
+      class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-0"
+        class="emotion-4 emotion-5"
       >
         <svg
           class="icon"
@@ -1321,7 +1291,7 @@ exports[`Alert should render an alert with default variant 1`] = `
         </svg>
       </span>
       <div
-        class="emotion-1"
+        class="emotion-6 emotion-7"
       >
         <span>
           Test Alert Text

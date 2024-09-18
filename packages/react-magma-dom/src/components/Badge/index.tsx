@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
-import styled, { CreateStyled } from '@emotion/styled';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { transparentize } from 'polished';
 import { ThemeInterface } from '../../theme/magma';
@@ -43,8 +43,6 @@ export enum BadgeVariant {
   counter = 'counter',
   label = 'label', // default
 }
-
-const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export function buildBadgeBackground(props) {
   if (props.isInverse) {

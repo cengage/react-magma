@@ -6,8 +6,7 @@ import { CalendarContext } from './CalendarContext';
 import { I18nContext } from '../../i18n';
 import { i18nFormat as format } from './utils';
 import { transparentize } from 'polished';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 interface CalendarDayProps {
   day: Date;

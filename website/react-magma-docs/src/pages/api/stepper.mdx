@@ -1,0 +1,880 @@
+---
+pageTitle: Stepper API
+title: Stepper
+props:
+  - StepperProps
+  - StepProps
+---
+
+import { LeadParagraph } from '../../components/LeadParagraph';
+
+<PageContent componentName="stepper" type="api">
+
+<LeadParagraph>
+  Stepper displays progressional multi-step content.
+</LeadParagraph>
+
+## Basic Usage
+
+The Stepper consists of two components, the `Stepper` which acts like a wrapper and `Step` that houses an optional `label`, and `secondaryLabel`.
+
+Throughout the series of `Step`s, the prop `currentStep` sets the appropriate styling between incomplete, active, and complete.
+
+```typescript
+import React from 'react';
+import {
+  Container,
+  Heading,
+  Stepper,
+  Step,
+  Button,
+  ButtonGroup,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Heading level={4} style={{ textAlign: 'center' }}>
+        Course Selector
+      </Heading>
+      <Stepper ariaLabel="progress" currentStep={currentStep}>
+        <Step label="Choose materials" />
+        <Step label="Additional details" />
+        <Step label="Confirm" />
+        <Step label="Finish" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+}
+```
+
+## Step label
+
+When using `layout` with `StepperLayout.summaryView`, the option to change the step label may be done with the `stepLabel` which takes a string and replaces the default "Step" label.
+
+```typescript
+import React from 'react';
+import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 3) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep >= 3) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper
+        ariaLabel="progress"
+        layout={StepperLayout.summaryView}
+        currentStep={currentStep}
+        stepLabel="Module"
+      >
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 3 ? handleFinish : handleOnNext}>
+            {currentStep >= 3 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+}
+```
+
+## Completed Step Description
+
+When using layout `StepperLayout.summaryView`, after all of the steps are complete, the `completedStepDescription` prop takes a string and changes the title.
+
+```typescript
+import React from 'react';
+import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(4);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper
+        ariaLabel="progress"
+        completedStepDescription="Steps Complete!"
+        layout={StepperLayout.summaryView}
+        currentStep={currentStep}
+      >
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+}
+```
+
+## Aria Label
+
+For proper accessibility usage, the `ariaLabel` prop takes a string to idenitify the `Stepper` to screenreaders appropriately.
+
+```typescript
+import React from 'react';
+import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(4);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper ariaLabel="progress" currentStep={currentStep}>
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+}
+```
+
+## Layout
+
+For alternative layouts, the `layout` prop hides either labels or shows just the summary view. By default, step labels will display if `layout` isn't used.
+
+#### Layout - Hide Labels
+
+```typescript
+import React from 'react';
+import {
+  StepperLayout,
+  Container,
+  Stepper,
+  Step,
+  Button,
+  ButtonGroup,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper
+        ariaLabel="progress"
+        layout={StepperLayout.hideLabels}
+        currentStep={currentStep}
+      >
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+}
+```
+
+#### Layout - Show Labels
+
+```typescript
+import React from 'react';
+import {
+  StepperLayout,
+  Container,
+  Stepper,
+  Step,
+  Button,
+  ButtonGroup,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper
+        ariaLabel="progress"
+        layout={StepperLayout.showLabels}
+        currentStep={currentStep}
+      >
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+}
+```
+
+#### Layout - Summary View
+
+```typescript
+import React from 'react';
+import {
+  StepperLayout,
+  Container,
+  Stepper,
+  Step,
+  Button,
+  ButtonGroup,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper
+        ariaLabel="progress"
+        layout={StepperLayout.summaryView}
+        currentStep={currentStep}
+      >
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+}
+```
+
+## Breakpoint Layout
+
+For responsive layouts, the `breakpoint` prop used along with `breakpointLayout` hides certain elements of the `Stepper` at a specified screen width. `breakpoint` takes a number for the screen width max and `breakpointLayout` hides either labels or shows just the summary view. By default, step labels will display if no responsive props are used.
+
+#### Breakpoint - Show Labels
+
+```typescript
+import React from 'react';
+import {
+  StepperLayout,
+  Container,
+  Stepper,
+  Step,
+  Button,
+  ButtonGroup,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper
+        ariaLabel="progress"
+        layout={StepperLayout.hideLabels}
+        breakpoint={1500}
+        breakpointLayout={StepperLayout.showLabels}
+        currentStep={currentStep}
+      >
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+}
+```
+
+#### Breakpoint - Hide Labels
+
+```typescript
+import React from 'react';
+import {
+  StepperLayout,
+  Container,
+  Stepper,
+  Step,
+  Button,
+  ButtonGroup,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper
+        ariaLabel="progress"
+        breakpoint={1500}
+        breakpointLayout={StepperLayout.hideLabels}
+        currentStep={currentStep}
+      >
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+}
+```
+
+#### Breakpoint - Summary View
+
+```typescript
+import React from 'react';
+import {
+  StepperLayout,
+  Container,
+  Stepper,
+  Step,
+  Button,
+  ButtonGroup,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <>
+      <Stepper
+        ariaLabel="progress"
+        breakpoint={1500}
+        breakpointLayout={StepperLayout.summaryView}
+        currentStep={currentStep}
+      >
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+}
+```
+
+## Error State
+
+When a `Step` is in the error state, use `hasError` on the `Step` to change the styling.
+
+```typescript
+import React from 'react';
+import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  return (
+    <>
+      <Stepper ariaLabel="progress" currentStep={2}>
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" hasError secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        <div>Step Content Three</div>{' '}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled>Previous</Button>
+          <Button disabled>Next</Button>
+        </ButtonGroup>
+      </Container>
+    </>
+  );
+}
+```
+
+## Inverse
+
+```typescript
+import React from 'react';
+import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <Container isInverse style={{ padding: '20px' }}>
+      <Stepper ariaLabel="progress" currentStep={currentStep} isInverse>
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Container
+        style={{
+          background: '#1A1E51',
+          borderRadius: '6px',
+          margin: '20px 0 0',
+          padding: '20px',
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Container style={{ padding: '20px 0' }}>
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Container>
+    </Container>
+  );
+}
+```
+
+## Step Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<StepProps />
+
+## Stepper Props
+
+**Any other props supplied will be provided to the wrapping `div` element.**
+
+<StepperProps />
+
+</PageContent>

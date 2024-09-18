@@ -17,8 +17,7 @@ import { IconButton } from '../IconButton';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
 
 /**
  * @children required
@@ -65,7 +64,7 @@ const StyledBanner = typedStyled.div<AlertProps>`
   }
 `;
 
-const BannerContents = typedStyled.div<{
+const BannerContents = styled.div<{
   additionalContent?: React.ReactNode;
   variant?: AlertVariant;
   isDismissible?: boolean;

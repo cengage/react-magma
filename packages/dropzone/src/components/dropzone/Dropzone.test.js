@@ -58,6 +58,22 @@ describe('File Uploader', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
+  it('browse file should open on button click', async () => {
+    const { getByRole, getByTestId } = render(<Dropzone testId="testId" />);
+
+    const fileInputClickFn = jest.fn();
+
+    const fileInput = getByTestId('file-input');
+
+    fileInput.click = fileInputClickFn;
+
+    userEvent.click(getByRole('button'));
+
+    await waitFor(() => {
+      expect(fileInputClickFn).toHaveBeenCalled();
+    });
+  });
+
   it('Does not violate accessibility standards', () => {
     jest.useRealTimers();
 
@@ -510,8 +526,7 @@ describe('File Uploader', () => {
       />
     );
 
-    const { getByTestId, getByLabelText, getByText, rerender } =
-      render(ui);
+    const { getByTestId, getByLabelText, getByText, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
     act(() => fireDrop(dropzone, data));

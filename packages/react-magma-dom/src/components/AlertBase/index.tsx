@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 import isPropValid from '@emotion/is-prop-valid';
 import { transparentize } from 'polished';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -17,10 +17,7 @@ import { ProgressRing } from '../ProgressRing';
 import { useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
-
-const typedStyled = styled as CreateStyled<ThemeInterface>;
+import styled from '@emotion/styled';
 
 export const VARIANT_ICON: {
   [name: string]: React.FunctionComponent<IconProps>;
@@ -281,7 +278,7 @@ const StyledAlertInner = typedStyled.div<AlertBaseProps>`
     `}
 `;
 
-const AlertContents = typedStyled.div<{
+const AlertContents = styled.div<{
   additionalContent?: React.ReactNode;
   isDismissible?: boolean;
 }>`
@@ -300,7 +297,7 @@ const AlertContents = typedStyled.div<{
   }
 `;
 
-export const AdditionalContentWrapper = typedStyled.div`
+export const AdditionalContentWrapper = styled.div`
   flex: 1 0 auto;
   justify-content: flex-end;
   display: flex;
@@ -317,7 +314,7 @@ const IconWrapperStyles = css`
 const IconWrapper = typedStyled.span<{ isToast?: boolean; theme: any }>`
   ${IconWrapperStyles}
   padding: 0 ${props => props.theme.spaceScale.spacing03} 0 ${props =>
-    props.theme.spaceScale.spacing04};
+  props.theme.spaceScale.spacing04};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     padding: 0 ${props => props.theme.spaceScale.spacing03};

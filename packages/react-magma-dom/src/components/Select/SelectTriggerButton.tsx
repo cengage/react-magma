@@ -7,10 +7,7 @@ import {
 } from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled, { CreateStyled } from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
-
-const typedStyled = styled as CreateStyled<ThemeInterface>;
+import styled from '@emotion/styled';
 
 const StyledButton = styled.div<InputBaseStylesProps & InputWrapperStylesProps>`
   ${inputBaseStyles}

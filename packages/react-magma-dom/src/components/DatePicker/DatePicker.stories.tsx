@@ -7,6 +7,7 @@ import { LabelPosition } from '../Label';
 import { Meta } from '@storybook/react/types-6-0';
 import { isValid } from 'date-fns';
 import { getDateFromString, inDateRange } from './utils';
+import { Button } from '../Button';
 
 const today: Date = new Date();
 
@@ -106,10 +107,49 @@ Inverse.args = {
   isInverse: true,
 };
 
+export const ClearingTheDate = args => {
+  const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
+    undefined
+  );
+
+  function handleDateChange(newChosenDate: Date) {
+    setChosenDate(newChosenDate);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Chosen Date: </strong>
+        {chosenDate && (
+          <span>
+            {`${
+              chosenDate.getMonth() + 1
+            }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+          </span>
+        )}
+      </p>
+      <DatePicker
+        {...args}
+        onDateChange={handleDateChange}
+        onChange={() => {}}
+        value={chosenDate}
+        isClearable
+      />
+      <br />
+      <Button onClick={() => handleDateChange(null)}>Clear Date</Button>
+    </div>
+  );
+};
+
 export const Events = args => {
   const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
     undefined
   );
+  const [changedValue, setChangedValue] = React.useState<string | Date>('');
+
+  function handleChange(value: string | Date, event: React.EventChangeHandler) {
+    setChangedValue(value);
+  }
 
   function handleDateChange(newChosenDate: Date) {
     setChosenDate(newChosenDate);
@@ -131,7 +171,7 @@ export const Events = args => {
   }
 
   return (
-    <div>
+    <>
       <p>
         <strong>Chosen Date: </strong>
         {chosenDate && (
@@ -142,12 +182,17 @@ export const Events = args => {
           </span>
         )}
       </p>
+      <p>
+        <strong>Changed Value: </strong>
+        {changedValue && <span>{changedValue}</span>}
+      </p>
       <DatePicker
         {...args}
         onDateChange={handleDateChange}
+        onChange={handleChange}
         errorMessage={hasErrorMessage()}
       />
-    </div>
+    </>
   );
 };
 

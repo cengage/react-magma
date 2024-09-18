@@ -260,12 +260,24 @@ export interface I18nInterface {
   spinner: {
     ariaLabel: string;
   };
+  stepper: {
+    completionLabel: string;
+    stepLabel: string;
+    stepOfLabel: string;
+  };
   table: {
     pagination: {
       ofLabel: string;
       nextAriaLabel: string;
       previousAriaLabel: string;
       rowsPerPageLabel: string;
+    };
+    selectable: {
+      sortButtonAriaLabel: string;
+      selectAllRowsAriaLabel: string;
+      selectRowAriaLabel: string;
+      deselectAllRowsAriaLabel: string;
+      deselectRowAriaLabel: string;
     };
   };
   tabs: {

@@ -2,7 +2,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "6.0.0",
+  "version": "11.0.0-next.0",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -19,27 +19,27 @@
     "lint": "eslint ./src"
   },
   "peerDependencies": {
-    "@emotion/core": "^10.1.1",
-    "@emotion/styled": "^10.0.27",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
     "@types/uuid": "^8.3.0",
     "date-fns": "^2.12.0",
     "downshift": "^5.4.5",
-    "react": "^16.10.0",
-    "react-dom": "^15.0.0 || ^16.0.0",
-    "react-magma-dom": "^3.7.0-next.0",
-    "react-magma-icons": "2.3.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-magma-dom": "^4.6.0-next.0",
+    "react-magma-icons": "^3.0.0",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
-    "@emotion/core": "^10.1.1",
-    "@emotion/styled": "^10.0.27",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
     "@types/uuid": "^8.3.0",
     "date-fns": "^2.16.1",
     "downshift": "^5.4.5",
-    "react": "^16.10.0",
-    "react-dom": "^16.10.0",
-    "react-magma-dom": "^3.8.0",
-    "react-magma-icons": "2.3.6",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-magma-dom": "^4.6.0-next.0",
+    "react-magma-icons": "^3.0.0",
     "uuid": "^8.3.0"
   },
   "name": "@cengage-patterns/header",

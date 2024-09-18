@@ -1,7 +1,10 @@
 import React from 'react';
 import { Card, CardBody } from '../Card';
-import { ProgressBar, ProgressBarProps, ProgressBarColor } from '.';
+import { ProgressBar, ProgressBarColor, ProgressBarProps } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { magma } from '../../theme/magma';
+import { Button } from '../Button';
+import { Input } from '../Input';
 
 const Template: Story<ProgressBarProps> = args => <ProgressBar {...args} />;
 
@@ -54,6 +57,69 @@ Inverse.args = {
   ...Default.args,
   isInverse: true,
 };
+
+export const CustomColor = args => {
+  const [colorIndex, setColorIndex] = React.useState(0);
+  const [color, setColor] = React.useState(null);
+  const [inverseColor, setInverseColor] = React.useState(null);
+  const [customColor, setCustomColor] = React.useState('#711E6E');
+
+  React.useEffect(() => {
+    setColor(magma.chartColors[colorIndex]);
+    setInverseColor(magma.chartColorsInverse[colorIndex]);
+  }, [colorIndex]);
+
+  function changeBarColor() {
+    if (colorIndex < 11) {
+      setColorIndex(colorIndex + 1);
+    } else if (colorIndex === 11) {
+      setColorIndex(0);
+    }
+  }
+
+  return (
+    <>
+    <Card>
+    <CardBody>
+      Chart Colors
+      <Card>
+        <CardBody>
+          <ProgressBar {...args} color={color} />
+        </CardBody>
+      </Card>
+      <br />
+      <Card isInverse>
+        <CardBody>
+          <ProgressBar {...args} color={inverseColor} isInverse />
+        </CardBody>
+      </Card>
+      <br />
+      <Button onClick={changeBarColor}>Next Color</Button>
+      </CardBody>
+      </Card>
+      <br />
+      <Card>
+        <CardBody>
+          Custom String Color
+          <ProgressBar {...args} color={customColor} />
+          <br />
+          <Input
+            value={customColor}
+            onChange={e => setCustomColor(e.target.value)}
+          />
+        </CardBody>
+      </Card>
+    </>
+  );
+};
+CustomColor.args = {
+  percentage: 50,
+  isInverse: false,
+  height: '20',
+  color: '#711E6E',
+};
+
+CustomColor.parameters = { controls: { exclude: ['isInverse', 'color'] } };
 
 Inverse.decorators = [
   Story => (

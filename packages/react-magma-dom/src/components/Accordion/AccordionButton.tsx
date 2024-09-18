@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled, { CreateStyled } from '@emotion/styled';
+import styled from '@emotion/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -62,7 +62,6 @@ const StyledButton = typedStyled.button<{
       props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
-    }
     outline-offset: 0;
   }
 
