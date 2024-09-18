@@ -1,98 +1,30 @@
-## 4.6.0-next.0
+## 4.6.0
 
-## 4.6.0-next.14
+### Minor Changes
 
-### Patch Changes
-
-- 616cbf9a0: fix(BreadCrumb): replace span with link to fix focus
-
-## 4.6.0-next.13
-
-### Patch Changes
-
-- 9d840d863: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
-
-## 4.6.0-next.12
+- ca58152cb: feat(TreeView): Add support for `checkChildren`, `checkParents` props
+- fdf2dc929: feat(Modal): New `headerRef` prop that returns a reference to the header element
 
 ### Patch Changes
 
 - dc307446a: fix(Accordion): Fix screen scroll behavior during accordion navigation
-
-## 4.6.0-next.11
-
-### Patch Changes
-
-- 11bedeff9: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
-
-## 4.6.0-next.10
-
-### Patch Changes
-
-- 6b413fb77: fix(List): Updated examples for List component
-
-## 4.6.0-next.9
-
-### Patch Changes
-
-- d4164cacb: fix(Modal): Modal disabled background click focus fix.
-
-## 4.6.0-next.8
-
-### Patch Changes
-
-- 3b3a2d79a: chore: Update @emotion dependency
-
-## 4.6.0-next.7
-
-### Patch Changes
-
-- 84a8a17d6: fix(DatePicker): Fix error when using both onChange and onDateChange
-
-## 4.6.0-next.6
-
-### Minor Changes
-
-- ca58152cb: Add support for `checkChildren`, `checkParents` props to TreeView
-
-## 4.6.0-next.5
-
-### Patch Changes
-
-- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
-
-## 4.6.0-next.4
-
-### Patch Changes
-
-- 9214724b6: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
-
-## 4.6.0-next.3
-
-### Patch Changes
-
-- aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
-
-## 4.6.0-next.2
-
-### Patch Changes
-
-- 1d1dd1d06: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
-
-## 4.6.0-next.1
-
-### Patch Changes
-
+- 6b413fb77: fix(List): Updated support for nested items
+- d4164cacb: fix(Modal): Fix focus issue when using `isBackgroundClickDisabled`
+- 84a8a17d6: fix(DatePicker): Fix error when using both `onChange` and `onDateChange`
 - 48b7a5539: fix(Breadcrumbs): Fixed alignment issue between elements.
-
-### Minor Changes
-
-- fdf2dc929: feat(Modal): New `headerRef` prop that returns a reference to the header element
+- 616cbf9a0: fix(BreadCrumb): Improved accessibility by replace span with link to fix focus
+- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
+- aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
+- 9d840d863: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
+- 9214724b6: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
+- 1d1dd1d06: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
+- 11bedeff9: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
 
 ## 4.5.0
 
 ### Minor Changes
 
-- ae668a3e5: chore: Updating emotion to v11. **Note: adopters will need to upgrade** their packages to the following versions `"@emotion/react": "^11.13.0", "@emotion/styled": "^11.13.0"`. Notice that `@emotion/core` has been replaced with `@emotion/styled` and that's the only breaking change.
+- ae668a3e5: chore: Updating emotion to v11
 - 9e38e9e7f: feat(Stepper): New Stepper component. Displays step based content for use in multi-step interfaces.
 
 ### Patch Changes
@@ -129,102 +61,6 @@
 - 308563ced: build: Update references to \_styled
 
 ## 4.3.0
-
-## 4.4.0-next.15
-
-### Minor Changes
-
-- e39db7b0f: feat(TreeView): TreeView & TreeItem updates
-
-## 4.4.0-next.14
-
-### Patch Changes
-
-- 2f95d6072: fix(TimePicker): Returns empty when backspace is pressed
-
-## 4.4.0-next.13
-
-### Minor Changes
-
-- cf3c10fda: feat(TreeView): TreeView & TreeItem updates
-
-## 4.4.0-next.12
-
-### Patch Changes
-
-- b7ad3aa90: chore: Update nvm to v16.20.2
-
-## 4.4.0-next.11
-
-### Patch Changes
-
-- aff7e0a7e: fix(Search): Reset the value for clearable search when the X is click…
-
-## 4.4.0-next.10
-
-### Patch Changes
-
-- c1ef7d0cb: build: Update references to \_styled
-
-## 4.4.0-next.9
-
-### Patch Changes
-
-- e8a395ed1: fix(Badge): Fixes the Badge height for the label version. Both label and counter variants are now 24px in height.
-
-## 4.4.0-next.8
-
-### Patch Changes
-
-- 5e88eddbd: feat(TimePicker): Added opportunity to clear Timepicker
-
-## 4.4.0-next.7
-
-### Minor Changes
-
-- dcaa44365: feat(TreeView): TreeView & TreeItem updates
-
-## 4.4.0-next.6
-
-### Patch Changes
-
-- a869e0993: fix(NativeSelect): Fixes the issue with pagination control, rows per page, on Table and Datagrid per ticket: https://github.com/cengage/react-magma/issues/1201
-
-## 4.4.0-next.5
-
-### Minor Changes
-
-- 61a5ea0c1: feat(TreeView): TreeView & TreeItem updates
-
-## 4.4.0-next.4
-
-### Minor Changes
-
-- b9626a096: feat(TreeView): TreeView & TreeItem updates
-
-## 4.4.0-next.3
-
-### Minor Changes
-
-- ede3d0f62: feat(Tabs): Please note that this component is in beta. Use at your own risk. Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI.
-
-## 4.4.0-next.2
-
-### Minor Changes
-
-- ab6ffd4ed: feat(TreeView): New TreeView & TreeItem components
-
-## 4.3.1-next.1
-
-### Patch Changes
-
-- 9a536bcda: feat(modal): Added new isModalClosingControlledManually property that allows handling closing the modal on the consumer side
-
-## 4.3.1-next.0
-
-### Patch Changes
-
-- 3e14d4bd8: fix(NativeSelect): Fix issue with data-testid
 
 ### Minor Changes
 
