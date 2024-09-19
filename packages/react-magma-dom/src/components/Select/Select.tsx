@@ -194,7 +194,7 @@ export function Select<T>(props: SelectProps<T>) {
           size={ButtonSize.small}
           style={{ 
             position: 'absolute', 
-            right: additionalContent && labelPosition === 'left' ? '5.75em' : '2.75em', 
+            right: additionalContent && (labelPosition === 'left' || isLabelVisuallyHidden) ? '5.25em' : '2.75em', 
             bottom: (errorMessage || helperMessage) ? '2.55em' : '0.6em' }}
           testId="clearIndicator"
           variant={ButtonVariant.link}
