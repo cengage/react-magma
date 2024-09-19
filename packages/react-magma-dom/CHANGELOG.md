@@ -1,5 +1,22 @@
 ## 3.8.0
 
+## 3.9.0-next.0
+
+### Minor Changes
+
+- 397f2263c: feat(Stepper): Additions to the Stepper component for accessibility compliance. The 'aria-current' attribute now reads 'step' when active, the DOM structure has been changed to a UL LI layout, and when labels are hidden, the screenreader sees the step state for each step label.
+- 397f2263c: feat(Stepper): Displays step based content for use in multi-step interfaces.
+
+### Patch Changes
+
+- 397f2263c: fix(datePicker): Fix date picker calendar table role issue
+- 397f2263c: fix(datePicker): Fix date picker clearing functionality
+- 397f2263c: fix(Modal): Remove unnecessary `aria-describedBy=“modal”`. Add `ariaLabel` prop so that Modals without headers can customize the `aria-label` instead of defaulting to `aria-label="modal"` which is not correct for a11y standards.
+- 397f2263c: fix(NativeSelect): Update arrow placement, arrow color and border color when disabled
+- 397f2263c: fix(Modal): Background overlay issue on nested modals
+- 397f2263c: fix(ProgressBar): Add support for custom colors
+- 397f2263c: fix(Select/Multiselect): Fix console errors
+
 ### Minor Changes
 
 - fa9662d1c: feat(Tabs): Two new components, `TabsScrollSpyContainer` and `TabScrollSpyPanel` allow for a unique `Tab` layout with a scroll-spy navigation UI. Please note that this component is in beta. Use at your own risk.
