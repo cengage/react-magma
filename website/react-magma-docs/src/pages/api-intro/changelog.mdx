@@ -5,6 +5,39 @@ order: 6
 
 <PageContent componentName="changelog" type="api_intro">
 
+## 3.9.0
+
+### Minor Changes
+
+- f30013877: feat(Stepper): Displays step based content for use in multi-step interfaces.
+  Patch Changes
+- f30013877: fix(Breadcrumbs): Fixed alignment issue between elements.
+- f30013877: fix(datePicker): Fix date picker calendar table role issue
+- f30013877: fix(datePicker): Fix date picker clearing functionality
+- f30013877: fix(Modal): Remove unnecessary aria-describedBy=“modal”. Add ariaLabel prop so that Modals without headers can customize the aria-label instead of defaulting to aria-label="modal" which is not correct for a11y standards.
+- f30013877: fix(NativeSelect): Update arrow placement, arrow color and border color when disabled
+- f30013877: fix(Modal): Background overlay issue on nested modals
+- f30013877: fix(ProgressBar): Add support for custom colors
+
+## 3.8.0
+
+### Minor Changes
+
+- fa9662d1c: feat(Tabs): Two new components, TabsScrollSpyContainer and TabScrollSpyPanel allow for a unique Tab layout with a scroll-spy navigation UI. Please note that this component is in beta. Use at your own risk.
+- fa9662d1c: feat(TreeView): New TreeView & TreeItem components
+  Patch Changes
+- fa9662d1c: chore: Update nvm to v16.20.2
+- fa9662d1c: fix(Search): Reset the value for clearable search when the X is clicked
+- fa9662d1c: fix(DatePicker): Date no longer disappears if user enters a valid date, then changes it to an invalid date.
+- fa9662d1c: fix(Badge): Fixes the Badge height for the label version. Both label and counter variants are now 24px in height.
+- fa9662d1c: fix(NativeSelect): Fixes the issue with pagination control, rows per page, on Table and Datagrid
+- fa9662d1c: fix(Datagrid): Fixed the state of pagination select not updating the new selected value.
+- fa9662d1c: feat(modal): Added new isModalClosingControlledManually property that allows handling closing the modal on the consumer side
+- fa9662d1c: fix(NativeSelect): Fix issue with data-testid
+- fa9662d1c: fix(TimePicker): Returns empty when backspace is pressed
+- fa9662d1c: feat(TimePicker): Added support for clearing Timepicker
+- fa9662d1c: build: Update references to \_styled
+
 ## 3.7.0
 
 ### Minor Changes
