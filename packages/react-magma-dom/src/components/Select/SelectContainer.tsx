@@ -29,6 +29,8 @@ export const SelectContainerElement = styled.div<{
 const InputMessageContainer = styled.div`
   flex-grow: 1;
   overflow: hidden;
+  padding: 0.25em;
+  margin: -0.25em;
 `;
 
 interface SelectContainerInterface<T> {
