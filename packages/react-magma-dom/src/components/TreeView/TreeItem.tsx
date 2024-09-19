@@ -10,7 +10,7 @@ import {
   useTreeItem,
   checkedStatusToBoolean,
 } from './useTreeItem';
-import { TreeViewSelectable } from './useTreeView';
+import { TreeViewSelectable } from './types';
 import {
   FolderIcon,
   ArticleIcon,
@@ -190,10 +190,8 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       isDisabled,
       label,
       labelStyle,
-      parentCheckedStatus,
       style,
       testId,
-      updateParentCheckStatus,
       topLevel,
       ...rest
     } = props;
@@ -219,7 +217,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       ref,
       selectedItems,
       setExpanded,
-      updateCheckedStatusFromChild,
     } = contextValue;
 
     const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
@@ -387,8 +384,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                         key: index,
                         itemDepth,
                         parentDepth,
-                        parentCheckedStatus: checkedStatus,
-                        updateParentCheckStatus: updateCheckedStatusFromChild,
                       })}
                     </ul>
                   </Transition>

@@ -1,8 +1,11 @@
 import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
-import { TreeViewSelectable } from './useTreeView';
+import { UseTreeViewProps } from './useTreeView';
+import { TreeViewSelectable } from './types';
 import React from 'react';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
+import { TreeViewItemInterface } from './TreeViewContext';
+import { TreeItem } from './TreeItem';
 
 export enum TreeNodeType {
   branch = 'branch',
@@ -92,11 +95,6 @@ export function getTreeItemWrapperCursor(
   return 'default';
 }
 
-// Returns boolean if itemsArray has itemId
-export function arrayIncludesId(itemsArray, itemId) {
-  return itemsArray?.some(item => item.itemId === itemId);
-}
-
 // Return an array of objects of all the enabled children ids recursively
 export function getChildrenItemIds(children, status = '') {
   let itemIds = [];
@@ -167,162 +165,6 @@ export function getChildrenItemIdsInTree(children) {
   return itemIds;
 }
 
-export function getAllParentIds(childrenArr, itemId, parentItemIds = []) {
-  for (const child of childrenArr) {
-    if (child.itemId === itemId) {
-      return parentItemIds; // Return the parentItemIds array if the itemId is found
-    }
-
-    if (child.children && child.children.length > 0) {
-      const updatedParentItemIds = [...parentItemIds, child.itemId];
-      const result = getAllParentIds(
-        child.children,
-        itemId,
-        updatedParentItemIds
-      );
-      if (result) {
-        return result; // Return the result if the itemId is found in the child's subtree
-      }
-    }
-  }
-
-  return null; // Return null if the itemId is not found
-}
-
-// Return the node of an itemId by traversing through the children
-export function findChildByItemId(children, itemId) {
-  if (!children) {
-    return null;
-  }
-
-  for (const child of children) {
-    if (child?.props?.itemId === itemId) {
-      return child;
-    }
-
-    if (child?.props?.children) {
-      const nestedChild = findChildByItemId([child?.props?.children], itemId);
-
-      if (nestedChild) {
-        return nestedChild;
-      }
-    }
-  }
-
-  return null;
-}
-
-// Return whether all the children are enabled
-export function getAllChildrenEnabled(children) {
-  return !children.some(child => child.props.isDisabled);
-}
-
-// Return an array that filters out the childrenIds & itemId from selectedItems
-// (used for deselecting indeterminate checkboxes)
-export function filterSelectedItems(selectedItems, childrenIds, itemId) {
-  const allItems = [...childrenIds, itemId];
-  const ids = allItems.map(item => item.itemId);
-  return selectedItems.filter(item => !ids.includes(item.itemId));
-}
-
-// Return an array of childrenIds that are missing from selectedItems
-export function getMissingChildrenIds(selectedItems, childrenIds) {
-  const selectedIds = selectedItems.map(item => item.itemId);
-  return childrenIds.filter(item => !selectedIds.includes(item.itemId));
-}
-
-// Return an array of statuses for all enabled children
-export function getChildrenCheckedStatus(childrenIds, status) {
-  return childrenIds.map(child =>
-    child.isDisabled ? IndeterminateCheckboxStatus.unchecked : status
-  );
-}
-
-// Return the length of enabled children
-export function getEnabledTreeItemChildrenLength(treeItemChildren) {
-  return treeItemChildren.reduce((count, child) => {
-    if (!child.props.isDisabled) {
-      return count + 1;
-    }
-    return count;
-  }, 0);
-}
-
-// Updates the checkedStatus of the itemId in selectedItems and returns the selectedItems
-export function getUpdatedSelectedItems(selectedItems, itemId, checkedStatus) {
-  const updatedItems = selectedItems.map(item => {
-    if (item.itemId === itemId) {
-      return { ...item, checkedStatus };
-    }
-    return item;
-  });
-
-  return updatedItems;
-}
-
-// Return an array of unique items from the previous state, initially selected items and the childrem item ids
-export function getUniqueSelectedItemsArray(itemArr0, itemArr1, itemArr2) {
-  const combinedArray = [...itemArr0, ...itemArr2, ...itemArr1];
-  const uniqueItemsMap = new Map();
-  for (const item of combinedArray) {
-    uniqueItemsMap.set(item.itemId, item);
-  }
-  return Array.from(uniqueItemsMap.values());
-}
-
-// Return items in both arrays
-export function findCommonItems(initialItemsArr, childrenItemsArr) {
-  const commonItems = [];
-
-  for (const initialItem of initialItemsArr) {
-    for (const childItem of childrenItemsArr) {
-      if (initialItem.itemId === childItem.itemId) {
-        commonItems.push(initialItem);
-        break;
-      }
-    }
-  }
-
-  return commonItems;
-}
-
-// Compares two arrays
-export function areArraysEqual(array1, array2) {
-  if (array1.length !== array2.length) {
-    return false;
-  }
-
-  for (let i = 0; i < array1.length; i++) {
-    const obj1 = array1[i];
-    const obj2 = array2[i];
-
-    const keys1 = Object.keys(obj1);
-    const keys2 = Object.keys(obj2);
-
-    if (keys1.length !== keys2.length) {
-      return false;
-    }
-
-    for (const key of keys1) {
-      if (obj1[key] !== obj2[key]) {
-        return false;
-      }
-    }
-  }
-
-  return true;
-}
-
-// Return the checkedStatus of an itemId
-export function getCheckedStatus(itemId, selectedItems) {
-  for (const item of selectedItems) {
-    if (item.itemId === itemId) {
-      return item.checkedStatus;
-    }
-  }
-  return null;
-}
-
 // Return first child that is a branch
 export function findFirstBranchNode(children) {
   for (const item of children) {
@@ -383,4 +225,107 @@ export function filterNullEntries(obj) {
     }
   }
   return {};
+}
+
+const getTreeViewData = (children: React.ReactNode[], parentId = null) => {
+  const treeItemChildren = React.Children.toArray(children).filter(
+    (child: React.ReactElement<any>) => child.type === TreeItem
+  ) as React.ReactElement[];
+
+  return treeItemChildren.map(({ props }) => [{ itemId: props.itemId, parentId, icon: props.icon, hasOwnTreeItems: Boolean(props.children) }, ...(props.children ? getTreeViewData(props.children, props.itemId) : [])]).flat();
+}
+
+
+const getChildrenIds = ({ items, itemId }: { items: TreeViewItemInterface[]; itemId: TreeViewItemInterface['itemId']; }) => {
+  return items.reduce((result, item) => {
+    if (item.parentId !== itemId) {
+      return result;
+    }
+
+    if (item.hasOwnTreeItems) {
+      return [...result, ...getChildrenIds({ items, itemId: item.itemId })];
+    }
+
+    return [...result, item.itemId];
+  }, [itemId])
+}
+
+const getChildrenUniqueStatuses = ({ items, itemId }: { items: TreeViewItemInterface[]; itemId: TreeViewItemInterface['itemId']; }) => {
+  const childrenAndItemIds = getChildrenIds({ items, itemId });
+  const leafs = items.filter((item) => {
+    return !item.hasOwnTreeItems && childrenAndItemIds.includes(item.itemId);
+  })
+  const uniqueStatuses = Array.from(new Set(leafs.map(item => item.checkedStatus ?? IndeterminateCheckboxStatus.unchecked)));
+
+  return uniqueStatuses.filter(checkedStatus => checkedStatus && checkedStatus !== IndeterminateCheckboxStatus.indeterminate)
+}
+
+const processInitialParentStatuses = ({ items }: { items: TreeViewItemInterface[]; }) => {
+  const itemsWithSelectedChildren = items.reduce((result, item) => {
+    if (!item.hasOwnTreeItems || item.checkedStatus !== IndeterminateCheckboxStatus.checked) {
+      return result;
+    }
+
+    return processChildrenSelection({items: result, itemId: item.itemId, checkedStatus: IndeterminateCheckboxStatus.checked});
+  }, items);
+
+  return itemsWithSelectedChildren.map((item) => {
+    if (!item.hasOwnTreeItems) {
+      return item;
+    }
+
+    const childrenUniqueStatuses = getChildrenUniqueStatuses({ items: itemsWithSelectedChildren, itemId: item.itemId });
+
+    const parentStatus = childrenUniqueStatuses.length > 1 ? IndeterminateCheckboxStatus.indeterminate : childrenUniqueStatuses[0]
+
+    return parentStatus ? { ...item, checkedStatus: parentStatus } : item
+  })
+}
+
+export const getInitialItems = ({ children, preselectedItems: rawPreselectedItems, checkParents, selectable }: Pick<UseTreeViewProps, 'children' | 'preselectedItems' | 'checkParents' | 'selectable'>) => {
+  const treeViewData = getTreeViewData(children);
+  const preselectedItems = rawPreselectedItems?.length && selectable === TreeViewSelectable.single ? [rawPreselectedItems[0]] : rawPreselectedItems;
+
+  const enhancedWithPreselectedItems = preselectedItems ? treeViewData.map((treeViewDataItem) => {
+    const preselectedItem = preselectedItems.find(({itemId}) => treeViewDataItem.itemId === itemId);
+
+    return preselectedItem ? { ...treeViewDataItem, checkedStatus: preselectedItem.checkedStatus } : treeViewDataItem
+  }) : treeViewData
+
+  return checkParents && preselectedItems ? processInitialParentStatuses({ items: enhancedWithPreselectedItems }) : enhancedWithPreselectedItems
+}
+
+export const selectSingle = ({items, itemId, checkedStatus}: { items: TreeViewItemInterface[]; itemId: TreeViewItemInterface['itemId']; checkedStatus: TreeViewItemInterface['checkedStatus'] }) => {
+  return items.map((item) => ({ ...item, checkedStatus: item.itemId === itemId ? checkedStatus : IndeterminateCheckboxStatus.unchecked }))
+}
+
+const processChildrenSelection = ({items, itemId, checkedStatus}: { items: TreeViewItemInterface[]; itemId: TreeViewItemInterface['itemId']; checkedStatus: TreeViewItemInterface['checkedStatus'] }) => {
+  const childrenAndItemIds = getChildrenIds({ items, itemId })
+
+  return items.map((item) => childrenAndItemIds.includes(item.itemId) ? { ...item, checkedStatus } : item)
+}
+
+const processParentsSelection = ({items, itemId, checkedStatus}: { items: TreeViewItemInterface[]; itemId: TreeViewItemInterface['itemId']; checkedStatus: TreeViewItemInterface['checkedStatus'] }) => {
+  const item = items.find(item => item.itemId === itemId);
+  const { parentId } = item;
+
+  if (parentId === null) {
+    return items;
+  }
+
+  const siblings = items.filter(item => item.parentId === parentId);
+  const isAllSiblingsHasTheSameStatus = siblings.every(item => (item.checkedStatus || IndeterminateCheckboxStatus.unchecked) === checkedStatus);
+  const parentStatus = isAllSiblingsHasTheSameStatus ? checkedStatus : IndeterminateCheckboxStatus.indeterminate;
+
+  const parent = items.find(item => item.itemId === parentId)
+
+  const nextItems = items.map(item => item.itemId === parent.itemId ? { ...item, checkedStatus: parentStatus } : item)
+
+  return processParentsSelection({items: nextItems, itemId: parent.itemId, checkedStatus: parentStatus })
+}
+
+export const selectMulti = ({items, itemId, checkedStatus, checkChildren, checkParents }: { items: TreeViewItemInterface[]; itemId: TreeViewItemInterface['itemId']; checkedStatus: TreeViewItemInterface['checkedStatus'] } & Pick<UseTreeViewProps, 'checkChildren' | 'checkParents'>) => {
+  const itemsWithProcessedItemSelection = items.map((item) => item.itemId === itemId ? { ...item, checkedStatus } : item)
+  const itemsWithProcessedChildrenSelection = checkChildren ? processChildrenSelection({ items: itemsWithProcessedItemSelection, itemId, checkedStatus }) : itemsWithProcessedItemSelection
+  return checkParents ? processParentsSelection({ items: itemsWithProcessedChildrenSelection, itemId, checkedStatus }) : itemsWithProcessedChildrenSelection;
 }
