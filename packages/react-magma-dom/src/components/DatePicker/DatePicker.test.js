@@ -854,24 +854,6 @@ describe('Date Picker', () => {
       expect(document.activeElement).toBe(container.querySelector('button'));
     });
 
-    // eslint-disable-next-line jest/no-disabled-tests
-    it.skip('?', async () => {
-      // TODO
-      const defaultDate = new Date();
-      const labelText = 'Date picker label';
-      const { getByText, baseElement } = render(
-        <DatePicker defaultDate={defaultDate} labelText={labelText} />
-      );
-
-      fireEvent.focus(baseElement.querySelector('table'));
-
-      getByText(defaultDate.getDate().toString()).focus();
-
-      fireEvent.keyDown(baseElement.querySelector('table'), {
-        key: '?',
-      });
-    });
-
     it('Escape without focus', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';

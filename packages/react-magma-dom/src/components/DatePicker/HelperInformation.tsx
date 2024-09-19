@@ -219,19 +219,6 @@ export const HelperInformation: React.FunctionComponent<
               {i18n.datePicker.helpModal.escape.explanation}
             </StyledDescription>
           </Item>
-          <Item theme={theme}>
-            <KeyboardShortcutButtonWrapper
-              role="img"
-              theme={theme}
-              aria-label={i18n.datePicker.helpModal.questionMark.ariaLabel}
-              isInverse={isInverse}
-            >
-              ?
-            </KeyboardShortcutButtonWrapper>
-            <StyledDescription theme={theme}>
-              {i18n.datePicker.helpModal.questionMark.explanation}
-            </StyledDescription>
-          </Item>
         </List>
       </StyledContent>
     </StyledPopup>
