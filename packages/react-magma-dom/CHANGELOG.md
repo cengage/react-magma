@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.6.1-next.0
+
+### Patch Changes
+
+- f45bdde78: fix(DatePicker): Remove shortcut to open `HelperInformation`.
+
 ### Minor Changes
 
 - ca58152cb: feat(TreeView): Add support for `checkChildren`, `checkParents` props
