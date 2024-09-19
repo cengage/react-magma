@@ -12,11 +12,12 @@ export const SelectContainerElement = styled.div<{
   labelPosition?: LabelPosition;
   labelWidth?: number;
 }>`
-  display: ${props =>
+  display: flex;
+  flex-direction: ${props =>
     props.labelPosition === LabelPosition.left ||
     (props.isLabelVisuallyHidden && LabelPosition.top)
-      ? 'flex'
-      : 'block'};
+      ? 'row'
+      : 'column'};
   position: relative;
   label {
     flex-basis: ${props =>
