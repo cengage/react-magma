@@ -56,22 +56,7 @@ export interface UseTreeViewProps {
    * Return an array of objects.
    * Example: [ {itemId: 'item0', checkedStatus: IndeterminateCheckboxStatus.indeterminate}, {itemId: 'item0-child', checkedStatus: IndeterminateCheckboxStatus.checked} ]
    */
-  onSelectedItemChange?: (
-    selectedItems: Array<TreeItemSelectedInterface>
-  ) => void;
-  /**
-   * Only affects if selectable mode is TreeViewSelectable.multi.
-   * Determines if the parent checkbox will get selected when the user selects all its children checkboxes.
-   * When checkParents is enabled, the TreeView displays the indeterminate state of the parent checkboxes too.
-   * @default true
-   */
-  checkParents?: boolean;
-  /**
-   * Only affects if selectable mode is TreeViewSelectable.multi.
-   * Determines if the child checkboxes get selected when the user selects parent checkbox.
-   * @default true
-   */
-  checkChildren?: boolean;
+  onSelectedItemChange?: (selectedItems: Array<Object>) => void;
   children?: React.ReactNode[];
 }
 
@@ -82,8 +67,6 @@ export function useTreeView(props: UseTreeViewProps) {
     onExpandedChange,
     initialExpandedItems,
     preselectedItems,
-    checkChildren = true,
-    checkParents = true,
     children,
   } = props;
 
@@ -170,8 +153,6 @@ export function useTreeView(props: UseTreeViewProps) {
     setInitialExpandedItemsNeedUpdate,
     selectedItemsChanged,
     setSelectedItemsChanged,
-    checkChildren,
-    checkParents,
   };
 
   return { contextValue };

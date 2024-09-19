@@ -4,7 +4,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 
-import { css } from '@emotion/react';
+import { css } from '@emotion/core';
 import {
   UseTreeItemProps,
   useTreeItem,

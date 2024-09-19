@@ -6,7 +6,8 @@ import { Label, LabelPosition } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 /**
  * Internal use only: Wrapper for all field components
@@ -100,7 +101,9 @@ export interface FormFieldContainerBaseProps {
   testId?: string;
 }
 
-const StyledFormFieldContainer = styled.div<{
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledFormFieldContainer = typedStyled.div<{
   isInverse?: boolean;
   labelPosition?: LabelPosition;
   labelWidth?: number;

@@ -176,7 +176,7 @@ describe('NativeSelect', () => {
     });
 
     it(`Should display an additional wrapper with additionalContent'`, () => {
-      const { queryByTestId } = render(
+      const { rerender, queryByTestId } = render(
         <NativeSelect
           labelPosition="left"
           testId={testId}
@@ -201,7 +201,7 @@ describe('NativeSelect', () => {
     });
 
     it(`Shouldn't display an additional wrapper without additionalContent'`, () => {
-      const { queryByTestId } = render(
+      const { rerender, queryByTestId } = render(
         <NativeSelect labelPosition="left" testId={testId} />
       );
       expect(

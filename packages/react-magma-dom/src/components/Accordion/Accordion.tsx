@@ -97,7 +97,6 @@ export type AccordionProps =
   | AccordionMultipleControlledProps
   | AccordionSingleControlledProps;
 
-
 const StyledAccordion = styled.div<AccordionProps>`
   background: transparent;
   border-bottom: 1px solid

@@ -1356,7 +1356,19 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with large size 1`] = `
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1401,19 +1413,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-4:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1432,12 +1444,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -1447,7 +1459,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1469,7 +1481,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   padding-right: 16px;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1514,19 +1538,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-4:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1545,12 +1569,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -1560,7 +1584,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1585,7 +1609,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0 emotion-1"
+    class="emotion-4 emotion-5"
     color="primary"
     id="testId"
     shape="fill"
@@ -1595,7 +1619,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
       class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-4 emotion-5"
+        class="emotion-0 emotion-1"
       >
         Test Text
       </span>
@@ -1618,7 +1642,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with medium size 1`] = `
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1663,19 +1699,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-4:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1694,12 +1730,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -1709,7 +1745,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1731,7 +1767,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   padding-right: 8px;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1776,19 +1824,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-4:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1807,12 +1855,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -1822,7 +1870,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1847,7 +1895,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0 emotion-1"
+    class="emotion-4 emotion-5"
     color="primary"
     id="testId"
     shape="fill"
@@ -1857,7 +1905,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
       class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-4 emotion-5"
+        class="emotion-0 emotion-1"
       >
         Test Text
       </span>
@@ -1880,7 +1928,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with small size 1`] = `
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1925,19 +1985,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-4:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -1956,12 +2016,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -1971,7 +2031,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -1993,7 +2053,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   padding-right: 4px;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2038,19 +2110,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-4:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -2069,12 +2141,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2084,7 +2156,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -2109,7 +2181,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0 emotion-1"
+    class="emotion-4 emotion-5"
     color="primary"
     id="testId"
     shape="fill"
@@ -2119,7 +2191,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
       class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-4 emotion-5"
+        class="emotion-0 emotion-1"
       >
         Test Text
       </span>
@@ -2142,7 +2214,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with updated color 1`] = `
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2187,19 +2271,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-4:not(:disabled):after {
   background: #707070;
   border-radius: 50%;
   content: '';
@@ -2218,12 +2302,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2233,7 +2317,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -2255,7 +2339,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   padding-right: 8px;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2300,19 +2396,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-4:not(:disabled):after {
   background: #707070;
   border-radius: 50%;
   content: '';
@@ -2331,12 +2427,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2346,7 +2442,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -2371,7 +2467,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0 emotion-1"
+    class="emotion-4 emotion-5"
     color="secondary"
     id="testId"
     shape="fill"
@@ -2381,7 +2477,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
       class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-4 emotion-5"
+        class="emotion-0 emotion-1"
       >
         Test Text
       </span>
@@ -2404,7 +2500,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with updated shape 1`] = `
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2449,19 +2557,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-4:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -2480,12 +2588,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2495,7 +2603,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -2517,7 +2625,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   padding-right: 8px;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2562,19 +2682,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-4:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -2593,12 +2713,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2608,7 +2728,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -2633,7 +2753,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0 emotion-1"
+    class="emotion-4 emotion-5"
     color="primary"
     id="testId"
     shape="fill"
@@ -2643,7 +2763,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
       class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-4 emotion-5"
+        class="emotion-0 emotion-1"
       >
         Test Text
       </span>
@@ -2666,7 +2786,23 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with updated text transform 1`] = `
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 .emotion-0 {
+  padding-right: 8px;
+}
+
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2711,19 +2847,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-4:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -2742,12 +2878,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2757,7 +2893,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -2779,7 +2915,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   padding-right: 8px;
 }
 
-.emotion-0 {
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2824,19 +2960,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-4:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -2855,12 +2991,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2870,7 +3006,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -2895,7 +3031,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0 emotion-1"
+    class="emotion-4 emotion-5"
     color="primary"
     id="testId"
     shape="fill"
@@ -2905,7 +3041,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
       class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-4 emotion-5"
+        class="emotion-0 emotion-1"
       >
         Test Text
       </span>
@@ -2928,7 +3064,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 `;
 
 exports[`IconButton Icon With Text Button Snapshot should render with updated variant 1`] = `
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2973,19 +3121,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-4:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -3004,12 +3152,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -3019,7 +3167,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -3041,7 +3189,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   padding-right: 8px;
 }
 
-.emotion-0 {
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3086,19 +3246,19 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   width: auto;
 }
 
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-0:not(:disabled):hover,
-.emotion-0:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
+.emotion-4:not(:disabled):after {
   background: #FFFFFF;
   border-radius: 50%;
   content: '';
@@ -3117,12 +3277,12 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   width: 28px;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -3132,7 +3292,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   transition: transform 0s;
 }
 
-.emotion-0 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -3157,7 +3317,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 <div>
   <button
     aria-label="Check Icon"
-    class="emotion-0 emotion-1"
+    class="emotion-4 emotion-5"
     color="primary"
     id="testId"
     shape="fill"
@@ -3167,7 +3327,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
       class="emotion-2 emotion-3"
     >
       <span
-        class="emotion-4 emotion-5"
+        class="emotion-0 emotion-1"
       >
         Test Text
       </span>

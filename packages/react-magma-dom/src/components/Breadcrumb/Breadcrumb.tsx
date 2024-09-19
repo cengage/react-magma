@@ -20,7 +20,6 @@ export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   testId?: string;
 }
 
-
 const StyledList = styled('ol', {
   shouldForwardProp: isPropValid,
 })<BreadcrumbProps>`

@@ -119,11 +119,7 @@ export {
   HideAtBreakpointDisplayType,
   HideAtBreakpointProps,
 } from './components/HideAtBreakpoint';
-export {
-  Hyperlink,
-  HyperlinkIconPosition,
-  HyperlinkProps,
-} from './components/Hyperlink';
+export { Hyperlink, HyperlinkIconPosition, HyperlinkProps } from './components/Hyperlink';
 export {
   IconButton,
   ButtonIconPosition,

@@ -132,8 +132,8 @@ export function Select<T>(props: SelectProps<T>) {
 
       onKeyDown && typeof onKeyDown === 'function' && onKeyDown?.(event);
     },
-    onKeyPress: (event: any) => onKeyPress?.(event),
-    onKeyUp: (event: any) => onKeyUp?.(event),
+    onKeyPress: (event: any) => onKeyPress(event),
+    onKeyUp: (event: any) => onKeyUp(event),
     onFocus,
     ref,
   });

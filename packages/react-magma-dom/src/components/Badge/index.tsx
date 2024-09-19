@@ -43,7 +43,6 @@ export enum BadgeVariant {
   label = 'label', // default
 }
 
-
 export function buildBadgeBackground(props) {
   if (props.isInverse) {
     switch (props.color) {

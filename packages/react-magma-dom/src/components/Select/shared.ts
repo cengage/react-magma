@@ -1,7 +1,10 @@
 import { inputBaseStyles } from '../InputBase';
 import { Card } from '../Card';
 import { transparentize } from 'polished';
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 function buildListHoverColor(props) {
   if (props.isFocused) {
@@ -39,7 +42,7 @@ export const SelectText = styled.span`
   padding: 0 8px 0 4px;
 `;
 
-export const StyledCard = styled(Card)<{
+export const StyledCard = typedStyled(Card)<{
   isOpen?: boolean;
   isInverse?: boolean;
 }>`
@@ -72,7 +75,7 @@ export const StyledList = styled('ul')<{ isOpen?: boolean; maxHeight: string }>`
   overflow-y: auto;
 `;
 
-export const StyledItem = styled('li')<{
+export const StyledItem = typedStyled('li')<{
   isInverse?: boolean;
   isFocused?: boolean;
 }>`
@@ -129,7 +132,7 @@ function buildSelectedItemButtonColor(props) {
   return props.theme.colors.neutral100;
 }
 
-export const SelectedItemButton = styled.button<{
+export const SelectedItemButton = typedStyled.button<{
   isInverse?: boolean;
   disabled?: boolean;
 }>`

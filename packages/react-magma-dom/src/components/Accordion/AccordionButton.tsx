@@ -37,10 +37,11 @@ const StyledButton = styled.button<{
 }>`
   background: transparent;
   border: 0;
-  border-top: 1px solid ${props =>
-    props.isInverse
-      ? transparentize(0.6, props.theme.colors.neutral100)
-      : props.theme.colors.neutral300};
+  border-top: 1px solid
+    ${props =>
+      props.isInverse
+        ? transparentize(0.6, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
@@ -56,10 +57,11 @@ const StyledButton = styled.button<{
   width: 100%;
 
   &:focus {
-    outline: 2px solid ${props =>
-      props.isInverse
-        ? props.theme.colors.focusInverse
-        : props.theme.colors.focus};
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
     outline-offset: 0;
   }
 
@@ -75,7 +77,7 @@ const StyledButton = styled.button<{
         props.isInverse
           ? transparentize(0.6, props.theme.colors.neutral100)
           : transparentize(0.4, props.theme.colors.neutral500)};
-    }    
+    }
   }
 
   svg {

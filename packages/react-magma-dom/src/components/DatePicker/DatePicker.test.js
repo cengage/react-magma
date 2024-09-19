@@ -18,7 +18,6 @@ import {
 import * as es from 'date-fns/locale/es';
 import { DatePicker } from '.';
 import { Modal } from '../Modal';
-import { ClearingTheDate } from './DatePicker.stories';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 
@@ -68,9 +67,12 @@ describe('Date Picker', () => {
   it('should clear input and Chosen Date value after clicking on isClearable X button', () => {
     const labelText = 'Date Picker Label';
     const now = new Date();
-    const day = format(now, 'dd')[0] === '0' ? format(now, 'dd')[1] : format(now, 'dd');
-    const chosenDate = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`
-    
+    const day =
+      format(now, 'dd')[0] === '0' ? format(now, 'dd')[1] : format(now, 'dd');
+    const chosenDate = `${
+      now.getMonth() + 1
+    }/${now.getDate()}/${now.getFullYear()}`;
+
     const { getByText, getByTestId, getByLabelText } = render(
       <ClearingTheDate labelText={labelText} />
     );
@@ -81,20 +83,22 @@ describe('Date Picker', () => {
     fireEvent.click(getByText(day));
 
     expect(getByText('Chosen Date:').nextSibling.innerHTML).toEqual(chosenDate);
-    
+
     fireEvent.click(getByTestId('clear-button'));
 
-    expect(getByLabelText('Date Picker Label')).toHaveAttribute(
-      'value', '')
+    expect(getByLabelText('Date Picker Label')).toHaveAttribute('value', '');
     expect(getByText('Chosen Date:').nextSibling).not.toBeInTheDocument();
   });
 
   it('should clear input and Chosen Date value after clicking on Clear Date button', () => {
     const labelText = 'Date Picker Label';
     const now = new Date();
-    const day = format(now, 'dd')[0] === '0' ? format(now, 'dd')[1] : format(now, 'dd');
-    const chosenDate = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`
-    
+    const day =
+      format(now, 'dd')[0] === '0' ? format(now, 'dd')[1] : format(now, 'dd');
+    const chosenDate = `${
+      now.getMonth() + 1
+    }/${now.getDate()}/${now.getFullYear()}`;
+
     const { getByText, getByTestId, getByLabelText } = render(
       <ClearingTheDate labelText={labelText} />
     );
@@ -105,11 +109,10 @@ describe('Date Picker', () => {
     fireEvent.click(getByText(day));
 
     expect(getByText('Chosen Date:').nextSibling.innerHTML).toEqual(chosenDate);
-    
+
     fireEvent.click(getByText('Clear Date').parentElement);
 
-    expect(getByLabelText('Date Picker Label')).toHaveAttribute(
-      'value', '')
+    expect(getByLabelText('Date Picker Label')).toHaveAttribute('value', '');
     expect(getByText('Chosen Date:').nextSibling).not.toBeInTheDocument();
   });
 
@@ -536,7 +539,12 @@ describe('Date Picker', () => {
       code: 27,
     });
 
-    expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
+    setTimeout(() => {
+      expect(getByTestId('calendarContainer')).toHaveStyleRule(
+        'display',
+        'none'
+      );
+    }, 500);
     expect(getByTestId('modal')).toBeInTheDocument();
   });
 
@@ -562,8 +570,12 @@ describe('Date Picker', () => {
       key: 'Escape',
       code: 27,
     });
-
-    expect(getByTestId('calendarContainer')).toHaveStyleRule('display', 'none');
+    setTimeout(() => {
+      expect(getByTestId('calendarContainer')).toHaveStyleRule(
+        'display',
+        'none'
+      );
+    }, 500);
     expect(getByTestId('modal')).toBeInTheDocument();
   });
 

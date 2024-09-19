@@ -205,13 +205,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             {...other}
           />
         ) : (
-          <StyledNav
-            aria-label="pagination"
-            {...other}
-            theme={theme}
-            data-testid={testId}
-            ref={ref}
-          >
+          <StyledNav {...other} theme={theme} data-testid={testId} ref={ref}>
             <StyledList>
               {pageButtons.map(
                 (
@@ -233,9 +227,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                   } else if (type === 'page') {
                     return (
                       <StyledListItem
-                        aria-current={
-                          ariaCurrent ? 'page' : Boolean(ariaCurrent)
-                        }
+                        aria-current={Boolean(ariaCurrent)}
                         key={index}
                       >
                         <PageButton

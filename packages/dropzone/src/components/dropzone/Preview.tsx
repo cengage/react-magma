@@ -24,13 +24,12 @@ import {
   Transition,
   Spinner,
   useIsInverse,
-  styled
+  styled,
 } from 'react-magma-dom';
 
 import { FileIcon } from './FileIcon';
 import { FilePreview } from './FilePreview';
 import { formatFileSize } from './utils';
-
 
 export interface PreviewProps extends Omit<FlexProps, 'behavior'> {
   accept?: string | string[];

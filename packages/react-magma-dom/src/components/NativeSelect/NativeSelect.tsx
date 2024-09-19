@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { css } from '@emotion/react';
+import { css } from '@emotion/core';
 import { inputBaseStyles, inputWrapperStyles } from '../InputBase';
 import {
   FormFieldContainer,
@@ -13,7 +13,7 @@ import { useGenerateId } from '../../utils';
 import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
 import { LabelPosition } from '../Label';
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
 
 /**
  * @children required
@@ -32,6 +32,8 @@ export interface NativeSelectProps
   testId?: string;
 }
 
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
 const StyledNativeSelectWrapper = styled.div<{
   disabled?: boolean;
   hasError?: boolean;
@@ -46,10 +48,8 @@ const StyledNativeSelectWrapper = styled.div<{
         ? transparentize(0.6, props.theme.colors.neutral100)
         : props.disabled
         ? transparentize(0.4, props.theme.colors.neutral500)
-        : props.isInverse
-        ? props.theme.colors.neutral100
-        : props.theme.colors.neutral700};
-    margin: 0 ${props => props.theme.spaceScale.spacing03} 0 -${props => props.theme.spaceScale.spacing08};
+        : 'inherit'};
+    margin: 0 0 0 -${props => props.theme.spaceScale.spacing06};
     pointer-events: none;
     z-index: 1;
   }
@@ -81,7 +81,6 @@ const StyledNativeSelect = styled.select<{
 }>`
   ${inputBaseStyles};
   height: 38px;
-  padding-right: ${props => props.theme.spaceScale.spacing08};
   // Required for Windows && Chrome support
   background: inherit;
   > option {
@@ -110,7 +109,7 @@ const StyledFormFieldContainer = styled(FormFieldContainer)<{
     `}
 `;
 
-const StyledAdditionalContentWrapper = styled.div`
+const StyledAdditionalContentWrapper = typedStyled.div`
   align-items: center;
   display: flex;
   label {

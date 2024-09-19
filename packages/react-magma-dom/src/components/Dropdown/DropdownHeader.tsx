@@ -2,7 +2,8 @@ import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { DropdownContext } from './Dropdown';
 import { transparentize } from 'polished';
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 /**
  * @children required
@@ -15,7 +16,9 @@ export interface DropdownHeaderProps
   testId?: string;
 }
 
-const StyledDiv = styled.div<{ isInverse?: boolean }>`
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledDiv = typedStyled.div<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
       ? transparentize(0.3, props.theme.colors.neutral100)

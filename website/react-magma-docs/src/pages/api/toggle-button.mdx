@@ -45,7 +45,7 @@ export function Example() {
 
 ## Types
 
-Toggle Buttons come in three formats. Icon only, text only, or text with an icon. `aria-label` prop is required for icon only buttons.
+Toggle Buttons come in three formats. Icon only, text only, or text with an icon.
 
 ```typescript
 import React from 'react';
@@ -57,7 +57,7 @@ export function Example() {
     <>
       <Flex behavior={FlexBehavior.container} spacing={1}>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="1" icon={<SettingsIcon />} aria-label="Settings" />
+          <ToggleButton value="1" icon={<SettingsIcon />} />
         </Flex>
         <Flex behavior={FlexBehavior.item}>
           <ToggleButton value="2">Text only</ToggleButton>
@@ -91,7 +91,6 @@ export function Example() {
             value="1"
             size={ButtonSize.small}
             icon={<SettingsIcon />}
-            aria-label="Settings"
           />
         </Flex>
         <Flex behavior={FlexBehavior.item}>
@@ -126,7 +125,7 @@ export function Example() {
     <>
       <Flex behavior={FlexBehavior.container} spacing={1}>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="1" disabled icon={<SettingsIcon />}  aria-label="Settings" />
+          <ToggleButton value="1" disabled icon={<SettingsIcon />} />
         </Flex>
         <Flex behavior={FlexBehavior.item}>
           <ToggleButton value="2" disabled>
@@ -156,7 +155,7 @@ export function Example() {
     <Container isInverse style={{ padding: '12px' }}>
       <Flex behavior={FlexBehavior.container} spacing={1}>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="1" isInverse icon={<SettingsIcon />}  aria-label="Settings" />
+          <ToggleButton value="1" isInverse icon={<SettingsIcon />} />
         </Flex>
         <Flex behavior={FlexBehavior.item}>
           <ToggleButton value="2" isInverse>

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { css } from '@emotion/react';
-import { ListProps } from './';
+import { css } from '@emotion/core';
+import { getListDisplay, ListProps } from './';
 import { magma } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';

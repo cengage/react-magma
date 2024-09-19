@@ -1,485 +1,208 @@
 # Change Log
 
-## 5.0.8-next.14
+## 5.0.6-next.0
 
 ### Patch Changes
 
-- facc56d54: fix(TreeView): Fixed the Preselected for displaying checked items
+- 37b77c252: chore: Sync dev-patch branch
 
-## 5.0.8-next.13
-
-### Patch Changes
-
-- cbc680295: Update changelog text to alert adopters about the emotion update.
-
-## 5.0.8-next.12
+## 5.0.5
 
 ### Patch Changes
 
-- 1243113e9: fix(Accordion): Fix focus issue with `Collapse All` and `Expand All` buttons
-
-## 5.0.8-next.11
-
-### Patch Changes
-
-- 9cff682a8: build: Fix package lock
-- Updated dependencies [11bedeff9]
-  - react-magma-dom@4.6.0-next.11
-
-## 5.0.8-next.10
-
-### Patch Changes
-
-- 5d58c31af: Revert "chore: Update @emotion dependency (#1419)"
-
-## 5.0.8-next.9
-
-### Patch Changes
-
-- 5764ba3c3: docs(TreeView): Update TreeView example
-
-## 5.0.8-next.8
-
-### Patch Changes
-
-- 6a03750d4: build(deps): bump elliptic from 6.5.5 to 6.5.7
-
-## 5.0.8-next.7
-
-### Patch Changes
-
-- 31ee96f73: docs(Modal): Modal Heading icon example fix
-
-## 5.0.8-next.6
-
-### Patch Changes
-
-- 63e206ef5: docs(Modal): Modal Heading example fixes
-
-## 5.0.8-next.5
-
-### Patch Changes
-
-- 78db20cc1: fix(ToggleButton): Improved accessibility for Toggle Button icon only examples.
-
-## 5.0.8-next.4
-
-### Patch Changes
-
-- b57973339: docs(Drawer): Fix Drawer examples
-
-## 5.0.8-next.3
-
-### Patch Changes
-
-- f4be5a89d: fix(Drawer): Fix Drawer Navigation example
-
-## 5.0.8-next.2
-
-### Patch Changes
-
-- Updated dependencies [fdf2dc929]
-  - react-magma-dom@4.6.0-next.0
-  - @react-magma/charts@9.0.0-next.0
-  - @react-magma/dropzone@9.0.0-next.0
-  - @react-magma/schema-renderer@9.0.0-next.0
-  - @cengage-patterns/header@11.0.0-next.0
-
-## 5.0.8-next.1
-
-### Patch Changes
-
-- 26db2ae5c: fix(Drawer): Fixed drawer appearing open at lower screen resolutions for the doc site navigation.
-
-## 5.0.8-next.0
-
-### Patch Changes
-
-- e554ef776: chore: Manually sync main -> dev (4.5.0)
-
-## 5.0.7
-
-### Patch Changes
-
-- 5f16d2018: Update Charts examples
-- 5f16d2018: chore: Resync dev branch
-- 5f16d2018: fix(Drawer): Update site navigation storybook example
-- 5f16d2018: storybook(TimePicker): Update clear time example
-- 5f16d2018: Add Toast warning
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-- Updated dependencies [5f16d2018]
-  - @react-magma/charts@8.0.0
-  - react-magma-dom@4.5.0
-  - @react-magma/dropzone@8.0.0
-  - @cengage-patterns/header@10.0.0
-  - @react-magma/schema-renderer@8.0.0
-
-## 5.0.6
-
-### Patch Changes
-
-- 308563ced: build(deps): bump ip from 2.0.0 to 2.0.1
-- 308563ced: chore: Fix storybook
-- Updated dependencies [308563ced]
-- Updated dependencies [308563ced]
-- Updated dependencies [308563ced]
-- Updated dependencies [308563ced]
-- Updated dependencies [308563ced]
-- Updated dependencies [308563ced]
-- Updated dependencies [308563ced]
-- Updated dependencies [308563ced]
-- Updated dependencies [308563ced]
-- Updated dependencies [308563ced]
-- Updated dependencies [308563ced]
-- Updated dependencies [308563ced]
-- Updated dependencies [308563ced]
-- Updated dependencies [308563ced]
-  - @react-magma/charts@7.0.0
-  - react-magma-dom@4.4.0
-  - @react-magma/dropzone@7.0.0
-  - @react-magma/schema-renderer@7.0.0
-  - @cengage-patterns/header@9.0.0
-
-## 5.0.5-next.9
-
-### Patch Changes
-
-- Updated dependencies [3fc9e50ca]
-  - react-magma-dom@4.3.0-next.7
-
-## 5.0.5-next.8
-
-### Patch Changes
-
-- Updated dependencies [421b9091a]
-  - react-magma-dom@4.3.0-next.6
-
-## 5.0.5-next.7
-
-### Patch Changes
-
-- Updated dependencies [8fa4252f4]
-  - react-magma-dom@4.3.0-next.5
-
-## 5.0.5-next.6
-
-### Patch Changes
-
-- 7f1d9b96c: fix(Select/NativeSelect): Update AdditionalContent CodeSandbox examples
-
-## 5.0.5-next.5
-
-### Patch Changes
-
-- Updated dependencies [1fb88b6fc]
-  - react-magma-dom@4.3.0-next.4
-
-## 5.0.5-next.4
-
-### Patch Changes
-
-- Updated dependencies [5e438ab0a]
-  - react-magma-dom@4.3.0-next.3
-
-## 5.0.5-next.3
-
-### Patch Changes
-
-- Updated dependencies [c47fc18b4]
-  - react-magma-dom@4.3.0-next.2
-  - @react-magma/charts@6.0.0-next.1
-  - @react-magma/dropzone@6.0.0-next.1
-  - @react-magma/schema-renderer@6.0.0-next.1
-  - @cengage-patterns/header@8.0.0-next.1
-
-## 5.0.5-next.2
-
-### Patch Changes
-
-- Updated dependencies [e6ca26b27]
-  - react-magma-dom@4.2.1-next.1
-
-## 5.0.5-next.1
-
-### Patch Changes
-
-- Updated dependencies [fc3098851]
-  - react-magma-dom@4.2.1-next.0
-  - @react-magma/charts@5.0.1-next.0
-  - @react-magma/dropzone@5.0.1-next.0
-  - @react-magma/schema-renderer@5.0.1-next.0
-  - @cengage-patterns/header@7.0.1-next.0
-
-## 5.0.5-next.0
-
-### Patch Changes
-
-- 408f3d5d0: build: Resolve merge conflicts when pulling main -> dev
-
-## 5.0.4
-
-### Patch Changes
-
-- de22be548: fix(Dropdown): Removing Dropdown password examples from docs and Storybook in lieu of future fix to UI bug pertaining to the show / hide button.
-- de22be548: fix(SubPageTabs): Fixed automatic browser scrolling from bottom of page, and fixed window.history manipulation
-- Updated dependencies [de22be548]
-- Updated dependencies [de22be548]
-- Updated dependencies [de22be548]
-- Updated dependencies [de22be548]
-- Updated dependencies [de22be548]
-- Updated dependencies [de22be548]
-- Updated dependencies [de22be548]
-- Updated dependencies [de22be548]
-- Updated dependencies [de22be548]
-- Updated dependencies [de22be548]
-- Updated dependencies [de22be548]
-  - react-magma-dom@4.2.0
-  - @react-magma/charts@5.0.0
-  - @react-magma/dropzone@5.0.0
-  - @react-magma/schema-renderer@5.0.0
-  - @cengage-patterns/header@7.0.0
-
-## 5.0.4-next.15
-
-### Patch Changes
-
-- Updated dependencies [89e7a8f13]
-  - react-magma-dom@4.2.0-next.14
-
-## 5.0.4-next.14
-
-### Patch Changes
-
-- f14ff0818: fix(Dropdown): Removing Dropdown password examples from docs and Storybook in lieu of future fix to UI bug pertaining to the show / hide button.
-
-## 5.0.4-next.13
-
-### Patch Changes
-
-- Updated dependencies [68276abaa]
-  - react-magma-dom@4.2.0-next.13
-
-## 5.0.4-next.12
-
-### Patch Changes
-
-- Updated dependencies [fa88fa7c5]
-  - react-magma-dom@4.2.0-next.12
-
-## 5.0.4-next.11
-
-### Patch Changes
-
-- Updated dependencies [77823fb11]
-  - react-magma-dom@4.2.0-next.11
-
-## 5.0.4-next.10
-
-### Patch Changes
-
-- Updated dependencies [1c446c209]
-  - react-magma-dom@4.2.0-next.10
-
-## 5.0.4-next.9
-
-### Patch Changes
-
-- Updated dependencies [1cf3809cc]
-  - react-magma-dom@4.2.0-next.9
-
-## 5.0.4-next.8
-
-### Patch Changes
-
-- Updated dependencies [bc4104600]
-  - react-magma-dom@4.2.0-next.8
-
-## 5.0.4-next.7
-
-### Patch Changes
-
-- Updated dependencies [caa2c7b6a]
-  - react-magma-dom@4.2.0-next.7
-
-## 5.0.4-next.6
-
-### Patch Changes
-
-- Updated dependencies [3001a5e35]
-  - react-magma-dom@4.2.0-next.6
-
-## 5.0.4-next.5
-
-### Patch Changes
-
-- Updated dependencies [ab9229c81]
-  - react-magma-dom@4.2.0-next.5
-
-## 5.0.4-next.4
-
-### Patch Changes
-
-- Updated dependencies [101f514b1]
-  - react-magma-dom@4.2.0-next.4
-
-## 5.0.4-next.3
-
-### Patch Changes
-
-- Updated dependencies [8f1bcbe31]
-  - react-magma-dom@4.2.0-next.3
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+- Updated dependencies [fa9662d1c]
+  - react-magma-dom@3.8.0
 
 ## 5.0.4-next.2
 
 ### Patch Changes
 
-- Updated dependencies [9f2aa435d]
-  - react-magma-dom@4.2.0-next.2
+- 825338660: build(deps): bump ip from 2.0.0 to 2.0.1
+- 825338660: chore: Fix storybook
+- 825338660: docs(TreeView): Update example with duplicate IDs
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+- Updated dependencies [825338660]
+  - @react-magma/charts@6.1.0-next.0
+  - react-magma-dom@3.7.0-next.1
 
 ## 5.0.4-next.1
 
 ### Patch Changes
 
-- Updated dependencies [b5f6189fa]
-  - react-magma-dom@4.2.0-next.1
+- 5b630cc0d: fix(Select/NativeSelect): Update AdditionalContent CodeSandbox examples
+- Updated dependencies [498c1fd5a]
+- Updated dependencies [dc443a912]
+- Updated dependencies [ef243baf1]
+- Updated dependencies [8f09b0e45]
+- Updated dependencies [cf4ba4d4b]
+- Updated dependencies [dfbee0b3a]
+- Updated dependencies [049a124db]
+  - react-magma-dom@3.7.0-next.0
+  - @react-magma/charts@4.0.0-next.0
+  - @react-magma/dropzone@4.0.0-next.0
+  - @react-magma/schema-renderer@4.0.0-next.0
+  - @cengage-patterns/header@6.0.0-next.0
 
 ## 5.0.4-next.0
 
 ### Patch Changes
 
-- Updated dependencies [9a09b8b55]
-  - react-magma-dom@4.2.0-next.0
-  - @react-magma/charts@5.0.0-next.0
-  - @react-magma/dropzone@5.0.0-next.0
-  - @react-magma/schema-renderer@5.0.0-next.0
-  - @cengage-patterns/header@7.0.0-next.0
+- c192e06ff: build: Resolve merge conflicts when pulling main -> dev
+
+## 5.0.4
+
+### Patch Changes
+
+- 6cc99c6de: fix(Dropdown): Removing Dropdown password examples from docs and Storybook in lieu of future fix to UI bug pertaining to the show / hide button.
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+- Updated dependencies [6cc99c6de]
+  - react-magma-dom@3.6.0
 
 ## 5.0.3
 
 ### Patch Changes
 
-- 0d718be80: Update typos
-- Updated dependencies [0d718be80]
-- Updated dependencies [0d718be80]
-- Updated dependencies [0d718be80]
-  - react-magma-dom@4.1.1
-  - @react-magma/charts@4.0.2
-  - @react-magma/dropzone@4.0.1
-  - @react-magma/schema-renderer@4.0.1
-  - @cengage-patterns/header@6.0.1
+- 82bf61bae: Update typos
+- 82bf61bae: Update Changelog
+- Updated dependencies [82bf61bae]
+- Updated dependencies [82bf61bae]
+- Updated dependencies [82bf61bae]
+- Updated dependencies [82bf61bae]
+  - react-magma-dom@3.5.1
+  - @react-magma/charts@2.0.2
+  - @react-magma/dropzone@2.0.2
+  - @react-magma/schema-renderer@2.0.2
+  - @cengage-patterns/header@4.0.2
+
+## 5.0.3-next.4
+
+### Patch Changes
+
+- 318a2f14a: Update typos
 
 ## 5.0.3-next.3
 
 ### Patch Changes
 
-- c7f957b3f: Update typos
+- Updated dependencies [7c8a9f5ad]
+  - react-magma-dom@3.5.1-next.2
 
 ## 5.0.3-next.2
 
 ### Patch Changes
 
-- Updated dependencies [f21d2ac2e]
-  - react-magma-dom@4.1.1-next.2
+- Updated dependencies [1fa916be0]
+  - react-magma-dom@3.5.1-next.1
 
 ## 5.0.3-next.1
 
 ### Patch Changes
 
-- Updated dependencies [df2934692]
-  - react-magma-dom@4.1.1-next.1
+- acbdef458: Update Changelog
 
 ## 5.0.3-next.0
 
 ### Patch Changes
 
-- Updated dependencies [871820e8d]
-  - react-magma-dom@4.1.1-next.0
-  - @react-magma/charts@4.0.2-next.0
-  - @react-magma/dropzone@4.0.1-next.0
-  - @react-magma/schema-renderer@4.0.1-next.0
-  - @cengage-patterns/header@6.0.1-next.0
+- 4f4598514: Fix routing in implementation and design component tabs
+- Updated dependencies [e8c968bb8]
+- Updated dependencies [4f4598514]
+- Updated dependencies [1c91ac394]
+  - react-magma-dom@3.5.1-next.0
+  - @react-magma/charts@2.0.2-next.0
+  - @react-magma/dropzone@2.0.2-next.0
+  - @react-magma/schema-renderer@2.0.2-next.0
+  - @cengage-patterns/header@4.0.2-next.0
 
 ## 5.0.2
 
 ### Patch Changes
 
-- 1238e8d: Update CHANGELOG
-- 1238e8d: Fix routing in implementation and design component tabs
-- Updated dependencies [1238e8d]
-  - @react-magma/charts@4.0.1
-
-## 5.0.2-next.1
-
-### Patch Changes
-
-- a81b0728b: Fix routing in implementation and design component tabs
-- Updated dependencies [a81b0728b]
-  - @react-magma/charts@4.0.1-next.0
-
-## 5.0.2-next.0
-
-### Patch Changes
-
-- d2dc9c154: Update CHANGELOG
-
-## 5.0.1
-
-### Patch Changes
-
-- 4a10f8905: Reorganize Select docs
-- 0894b08eb: Update ToggleButton and ToggleButtonGroup docs.
-- 108637df1: Update page layout. Move secondary navigation to the page.
-- 54e6ea1d8: fix(docs - datagrid): This resolves the missing example under "Selectable and Sortable" within the Datagrid API documentation.
-- 33548e7e5: docs: updated docs
-- 504763bd6: Update Grid docs. Add explanation for `as` prop.
-- fbc4b655f: Update the Theme page to include more details about theming, and remove theme section in the Custom Styles page.
-- 0ddda514c: Update Toast docs to include that messages should be 1-2 lines long.
-- 0b581a8cb: Update Tooltip docs to remove reference to old `trigger` prop.
-- Updated dependencies [c0a658b5a]
-- Updated dependencies [155f2de2c]
-- Updated dependencies [caee2a755]
-- Updated dependencies [35a33a7ae]
-- Updated dependencies [cca876b3a]
-- Updated dependencies [3d00dcc7e]
-- Updated dependencies [630bb5ab3]
-- Updated dependencies [8ffdf899b]
-- Updated dependencies [d0c69155a]
-- Updated dependencies [6f53d1891]
-- Updated dependencies [395aea21c]
-- Updated dependencies [6b6e0de20]
-- Updated dependencies [7066b5c84]
-- Updated dependencies [f487b936f]
-- Updated dependencies [92569a238]
-- Updated dependencies [4a10f8905]
-  - react-magma-dom@4.1.0
-  - @react-magma/charts@4.0.0
-  - @react-magma/dropzone@4.0.0
-  - @react-magma/schema-renderer@4.0.0
-  - @cengage-patterns/header@6.0.0
-
-## 5.0.1-next.23
-
-### Patch Changes
-
-- Updated dependencies [92569a238]
-  - react-magma-dom@4.1.0-next.15
+- 30026b18d: Reorganize Select docs
+- 30026b18d: Update ToggleButton and ToggleButtonGroup docs.
+- 30026b18d: Update page layout. Move secondary navigation to the page.
+- 30026b18d: fix(docs - datagrid): This resolves the missing example under "Selectable and Sortable" within the Datagrid API documentation.
+- 30026b18d: docs: updated docs
+- 30026b18d: Update Grid docs. Add explanation for `as` prop.
+- 30026b18d: Update the Theme page to include more details about theming, and remove theme section in the Custom Styles page.
+- 30026b18d: Update Toast docs to include that messages should be 1-2 lines long.
+- 30026b18d: Update Tooltip docs to remove reference to old `trigger` prop.
+- Updated dependencies [17fc12212]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [17fc12212]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [17fc12212]
+- Updated dependencies [30026b18d]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [17fc12212]
+- Updated dependencies [30026b18d]
+- Updated dependencies [17fc12212]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [30026b18d]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+- Updated dependencies [30026b18d]
+- Updated dependencies [17fc12212]
+- Updated dependencies [17fc12212]
+  - react-magma-dom@3.5.0
 
 ## 5.0.1-next.22
 
@@ -770,6 +493,9 @@
   - @react-magma/dropzone@3.0.0-next.0
   - @cengage-patterns/header@5.0.0-next.0
   - @react-magma/schema-renderer@3.0.0-next.0
+
+2daef3b51 (chore: enter prerelease mode)
+30026b18d (Release v3.4.0 (#1075))
 
 ## 4.0.6
 
