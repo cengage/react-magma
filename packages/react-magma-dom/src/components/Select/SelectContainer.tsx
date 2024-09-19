@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { ReferenceType } from '@floating-ui/react-dom';
 import { Label, LabelPosition } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { UseSelectGetLabelPropsOptions } from 'downshift';
@@ -47,7 +46,6 @@ interface SelectContainerInterface<T> {
   labelText: string;
   labelWidth?: number;
   messageStyle?: React.CSSProperties;
-  setReference?: (node: ReferenceType) => void;
 }
 
 const StyledAdditionalContentWrapper = styled.div<{
@@ -99,7 +97,6 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
     labelText,
     labelWidth,
     messageStyle,
-    setReference,
   } = props;
 
   const hasError = !!errorMessage;
@@ -141,48 +138,46 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
   }
 
   return (
-    <div ref={setReference}>
-      <SelectContainerElement
-        isLabelVisuallyHidden={isLabelVisuallyHidden}
-        labelPosition={labelPosition}
-        labelWidth={labelWidth}
-        data-testid="selectContainerElement"
-      >
-        <AdditionalContentWrapper labelPosition={labelPosition}>
-          <Label
-            {...getLabelProps()}
-            isInverse={isInverse}
-            labelPosition={labelPosition}
-            style={labelStyle}
-          >
-            {isLabelVisuallyHidden ? (
-              <VisuallyHidden>{labelText}</VisuallyHidden>
-            ) : (
-              labelText
-            )}
-          </Label>
-        </AdditionalContentWrapper>
-        <InputMessageContainer>
-          {children}
-          {!(
-            labelPosition === LabelPosition.left &&
-            !(errorMessage || helperMessage)
-          ) &&
-            (errorMessage || helperMessage) && (
-              <InputMessage
-                id={descriptionId}
-                isInverse={isInverse}
-                hasError={hasError}
-                style={messageStyle}
-              >
-                {(errorMessage || helperMessage) && (
-                  <>{errorMessage ? errorMessage : helperMessage}</>
-                )}
-              </InputMessage>
-            )}
-        </InputMessageContainer>
-        {additionalItemRightAlign()}
-      </SelectContainerElement>
-    </div>
+    <SelectContainerElement
+      isLabelVisuallyHidden={isLabelVisuallyHidden}
+      labelPosition={labelPosition}
+      labelWidth={labelWidth}
+      data-testid="selectContainerElement"
+    >
+      <AdditionalContentWrapper labelPosition={labelPosition}>
+        <Label
+          {...getLabelProps()}
+          isInverse={isInverse}
+          labelPosition={labelPosition}
+          style={labelStyle}
+        >
+          {isLabelVisuallyHidden ? (
+            <VisuallyHidden>{labelText}</VisuallyHidden>
+          ) : (
+            labelText
+          )}
+        </Label>
+      </AdditionalContentWrapper>
+      <InputMessageContainer>
+        {children}
+        {!(
+          labelPosition === LabelPosition.left &&
+          !(errorMessage || helperMessage)
+        ) &&
+          (errorMessage || helperMessage) && (
+            <InputMessage
+              id={descriptionId}
+              isInverse={isInverse}
+              hasError={hasError}
+              style={messageStyle}
+            >
+              {(errorMessage || helperMessage) && (
+                <>{errorMessage ? errorMessage : helperMessage}</>
+              )}
+            </InputMessage>
+          )}
+      </InputMessageContainer>
+      {additionalItemRightAlign()}
+    </SelectContainerElement>
   );
 }

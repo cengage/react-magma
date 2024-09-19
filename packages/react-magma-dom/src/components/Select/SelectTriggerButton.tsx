@@ -1,13 +1,14 @@
 import React from 'react';
 import {
   inputBaseStyles,
-  inputWrapperStyles,
   InputBaseStylesProps,
+  inputWrapperStyles,
   InputWrapperStylesProps,
 } from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
+import { ReferenceType } from '@floating-ui/react-dom';
 
 const StyledButton = styled.div<InputBaseStylesProps & InputWrapperStylesProps>`
   ${inputBaseStyles}
@@ -37,6 +38,7 @@ interface SelectTriggerButtonInterface<T> {
   disabled?: boolean;
   hasError?: boolean;
   isInverse?: boolean;
+  setReference?: (node: ReferenceType) => void;
   style?: React.CSSProperties;
   toggleButtonProps: any;
   tabindex?: number;
@@ -50,6 +52,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
     hasError,
     disabled,
     isInverse,
+    setReference,
     style: passedInStyle,
     toggleButtonProps,
   } = props;
@@ -62,20 +65,22 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
   const style = { ...passedInStyle, cursor: 'default' };
 
   return (
-    <StyledButton
-      {...toggleButtonProps}
-      aria-describedby={ariaDescribedBy}
-      data-testid="selectTriggerButton"
-      disabled={disabled}
-      hasError={hasError}
-      isInverse={isInverse}
-      role="button"
-      style={style}
-      tabIndex={disabled ? undefined : 0}
-      theme={theme}
-    >
-      <ChildrenContainer theme={theme}>{children}</ChildrenContainer>
-      <DropdownIndicator />
-    </StyledButton>
+    <div ref={setReference}>
+      <StyledButton
+        {...toggleButtonProps}
+        aria-describedby={ariaDescribedBy}
+        data-testid="selectTriggerButton"
+        disabled={disabled}
+        hasError={hasError}
+        isInverse={isInverse}
+        role="button"
+        style={style}
+        tabIndex={disabled ? undefined : 0}
+        theme={theme}
+      >
+        <ChildrenContainer theme={theme}>{children}</ChildrenContainer>
+        <DropdownIndicator />
+      </StyledButton>
+    </div>
   );
 }

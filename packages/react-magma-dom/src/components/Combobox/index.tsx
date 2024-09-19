@@ -17,6 +17,7 @@ import { Omit, useGenerateId, XOR } from '../../utils';
 import { LabelPosition } from '../Label';
 import { useIsInverse } from '../../inverse';
 import {
+  AlignedPlacement,
   autoUpdate,
   flip,
   ReferenceType,
@@ -192,6 +193,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
   const { floatingStyles, refs } = useFloating({
     middleware: [flip()],
     whileElementsMounted: autoUpdate,
+    placement: 'bottom-start' as AlignedPlacement,
   });
 
   const customFloatingStyles = { ...floatingStyles, width: '100%' };

@@ -5,7 +5,12 @@ import {
   useSelect,
   UseSelectProps,
 } from 'downshift';
-import { autoUpdate, flip, useFloating } from '@floating-ui/react-dom';
+import {
+  AlignedPlacement,
+  autoUpdate,
+  flip,
+  useFloating,
+} from '@floating-ui/react-dom';
 import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
 import { Select as InternalSelect } from './Select';
 import { MultiSelect } from './MultiSelect';
@@ -247,6 +252,7 @@ export function Select<T>(props: XORSelectProps<T>) {
   const { floatingStyles, refs } = useFloating({
     middleware: [flip()],
     whileElementsMounted: autoUpdate,
+    placement: 'bottom-start' as AlignedPlacement,
   });
 
   const customFloatingStyles = { ...floatingStyles, width: '100%' };

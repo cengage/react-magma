@@ -12,6 +12,7 @@ import {
 
 import { SelectedItemsWrapper } from '../Select/shared';
 import { transparentize } from 'polished';
+import { ReferenceType } from '@floating-ui/react-dom';
 
 const ComboBoxContainer = styled.div<{
   hasError?: boolean;
@@ -120,6 +121,7 @@ interface ComboboxInputProps<T> {
   onInputKeyUp?: (event: any) => void;
   placeholder?: string;
   selectedItems?: React.ReactNode;
+  setReference?: (node: ReferenceType) => void;
   toggleButtonRef?: React.Ref<HTMLButtonElement>;
 }
 
@@ -145,6 +147,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     onInputKeyUp,
     placeholder,
     selectedItems,
+    setReference,
     toggleButtonRef,
   } = props;
   const theme = React.useContext(ThemeContext);
@@ -191,6 +194,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
   };
 
   return (
+    <div ref={setReference}>
     <ComboBoxContainer
       {...getComboboxProps()}
       hasError={hasError}
@@ -235,5 +239,6 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
         />
       </InputContainer>
     </ComboBoxContainer>
+    </div>
   );
 }

@@ -53,7 +53,7 @@ export const StyledCard = styled(Card)<{
     props.isInverse
       ? transparentize(0.5, props.theme.colors.tertiary)
       : props.theme.colors.neutral300};
-  margin: 4px 0;
+  margin: 2px 0;
   padding: 4px 0 0;
 `;
 
