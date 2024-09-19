@@ -509,6 +509,34 @@ describe('Select', () => {
     expect(getByTestId('customClearIndicator')).toBeInTheDocument();
   });
 
+  it('should show drop down icon for trigger button', () => {
+    const dropDownTestId = 'caretDown';
+
+    const { getByTestId } = render(
+      <Select
+        items={items}
+        labelPosition={LabelPosition.left}
+        labelText={labelText}
+        arrowDropDirection={'bottom'}
+      />
+    );
+    expect(getByTestId(dropDownTestId)).toBeInTheDocument();
+  });
+
+  it('should show drop up icon for trigger button', () => {
+    const dropUpTestId = 'caretUp';
+
+    const { getByTestId } = render(
+      <Select
+        items={items}
+        labelPosition={LabelPosition.left}
+        labelText={labelText}
+        arrowDropDirection={'top'}
+      />
+    );
+    expect(getByTestId(dropUpTestId)).toBeInTheDocument();
+  });
+
   describe('additional content', () => {
     const helpLinkLabel = 'Learn more';
 

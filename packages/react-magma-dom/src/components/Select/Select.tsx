@@ -176,6 +176,7 @@ export function Select<T>(props: SelectProps<T>) {
       labelText={labelText}
       labelWidth={labelWidth}
       messageStyle={messageStyle}
+      setReference={setReference}
     >
       <SelectTriggerButton
         ariaDescribedBy={ariaDescribedBy}
@@ -184,7 +185,6 @@ export function Select<T>(props: SelectProps<T>) {
         disabled={disabled}
         hasError={hasError}
         isInverse={isInverse}
-        setReference={setReference}
         style={inputStyle}
         toggleButtonProps={toggleButtonProps}
       >

@@ -1,9 +1,8 @@
 import React from 'react';
-import { render, fireEvent, act } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { Combobox } from '.';
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
-import { Button } from '../Button';
 
 describe('Combobox', () => {
   const labelText = 'Label';
@@ -522,6 +521,34 @@ describe('Combobox', () => {
         );
         expect(queryByText(/loading.../i)).not.toBeInTheDocument();
         expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+      });
+
+      it('should show drop down icon for trigger button', () => {
+        const dropDownTestId = 'caretDown';
+
+        const { getByTestId } = render(
+          <Combobox
+            labelText={labelText}
+            items={items}
+            isLoading={false}
+            arrowDropDirection={'bottom'}
+          />
+        );
+        expect(getByTestId(dropDownTestId)).toBeInTheDocument();
+      });
+
+      it('should show drop up icon for trigger button', () => {
+        const dropDownTestId = 'caretUp';
+
+        const { getByTestId } = render(
+          <Combobox
+            labelText={labelText}
+            items={items}
+            isLoading={false}
+            arrowDropDirection={'top'}
+          />
+        );
+        expect(getByTestId(dropDownTestId)).toBeInTheDocument();
       });
     });
 

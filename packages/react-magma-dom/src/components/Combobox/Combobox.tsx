@@ -280,6 +280,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
       labelText={labelText}
       labelWidth={labelWidth}
       messageStyle={messageStyle}
+      setReference={setReference}
     >
       <ComboboxInput
         ariaDescribedBy={ariaDescribedBy}
@@ -309,7 +310,6 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
         placeholder={placeholder}
-        setReference={setReference}
         toggleButtonRef={toggleButtonRef}
       >
         {isClearable && selectedItem && (

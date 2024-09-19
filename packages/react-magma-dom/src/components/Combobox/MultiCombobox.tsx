@@ -378,6 +378,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       labelText={labelText}
       labelWidth={labelWidth}
       messageStyle={messageStyle}
+      setReference={setReference}
     >
       <ComboboxInput
         ariaDescribedBy={ariaDescribedBy}
@@ -408,7 +409,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         onInputKeyUp={onInputKeyUp}
         placeholder={selectedItems.length > 0 ? null : placeholder}
         selectedItems={selectedItemsContent}
-        setReference={setReference}
         toggleButtonRef={toggleButtonRef}
       >
         {isClearable && selectedItems?.length > 0 && (

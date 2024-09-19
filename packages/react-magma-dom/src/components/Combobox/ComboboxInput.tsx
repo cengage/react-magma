@@ -9,10 +9,10 @@ import {
   UseComboboxGetInputPropsOptions,
   UseComboboxGetToggleButtonPropsOptions,
 } from 'downshift';
+import { Placement } from '@floating-ui/react-dom';
 
 import { SelectedItemsWrapper } from '../Select/shared';
 import { transparentize } from 'polished';
-import { Placement, ReferenceType } from '@floating-ui/react-dom';
 
 const ComboBoxContainer = styled.div<{
   hasError?: boolean;
@@ -122,7 +122,6 @@ interface ComboboxInputProps<T> {
   onInputKeyUp?: (event: any) => void;
   placeholder?: string;
   selectedItems?: React.ReactNode;
-  setReference?: (node: ReferenceType) => void;
   toggleButtonRef?: React.Ref<HTMLButtonElement>;
 }
 
@@ -149,7 +148,6 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     onInputKeyUp,
     placeholder,
     selectedItems,
-    setReference,
     toggleButtonRef,
   } = props;
   const theme = React.useContext(ThemeContext);
@@ -200,58 +198,56 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     typeof arrowDropDirection === 'string' && arrowDropDirection === 'bottom';
 
   return (
-    <div ref={setReference}>
-      <ComboBoxContainer
-        {...getComboboxProps()}
+    <ComboBoxContainer
+      {...getComboboxProps()}
+      hasError={hasError}
+      disabled={disabled}
+      isInverse={isInverse}
+      theme={theme}
+    >
+      <InputContainer
+        {...getToggleButtonProps({
+          disabled,
+          ...(toggleButtonRef && { ref: toggleButtonRef }),
+        })}
         hasError={hasError}
         disabled={disabled}
+        isFocused={isFocused}
         isInverse={isInverse}
+        style={inputStyle}
         theme={theme}
+        ref={innerRef}
       >
-        <InputContainer
-          {...getToggleButtonProps({
-            disabled,
-            ...(toggleButtonRef && { ref: toggleButtonRef }),
-          })}
-          hasError={hasError}
-          disabled={disabled}
-          isFocused={isFocused}
-          isInverse={isInverse}
-          style={inputStyle}
-          theme={theme}
-          ref={innerRef}
-        >
-          <SelectedItemsWrapper>
-            {selectedItems}
-            <StyledInput
-              {...inputProps}
-              aria-describedby={ariaDescribedBy}
-              aria-invalid={hasError}
-              disabled={disabled}
-              isInverse={isInverse}
-              placeholder={placeholder}
-              theme={theme}
-            />
-          </SelectedItemsWrapper>
-          {children}
-          {isLoading && !isTypeahead && (
-            <LoadingIndicator
-              style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
-            />
-          )}
-          {isBottomPlacement ? (
-            <DropdownIndicator
-              aria-label="toggle menu"
-              color={dropdownIndicatorColor()}
-            />
-          ) : (
-            <DropUpIndicator
-              aria-label="toggle menu"
-              color={dropdownIndicatorColor()}
-            />
-          )}
-        </InputContainer>
-      </ComboBoxContainer>
-    </div>
+        <SelectedItemsWrapper>
+          {selectedItems}
+          <StyledInput
+            {...inputProps}
+            aria-describedby={ariaDescribedBy}
+            aria-invalid={hasError}
+            disabled={disabled}
+            isInverse={isInverse}
+            placeholder={placeholder}
+            theme={theme}
+          />
+        </SelectedItemsWrapper>
+        {children}
+        {isLoading && !isTypeahead && (
+          <LoadingIndicator
+            style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
+          />
+        )}
+        {isBottomPlacement ? (
+          <DropdownIndicator
+            aria-label="toggle menu"
+            color={dropdownIndicatorColor()}
+          />
+        ) : (
+          <DropUpIndicator
+            aria-label="toggle menu"
+            color={dropdownIndicatorColor()}
+          />
+        )}
+      </InputContainer>
+    </ComboBoxContainer>
   );
 }

@@ -1,9 +1,8 @@
 import React from 'react';
-import { render, fireEvent, act } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { Combobox as MultiCombobox } from '.';
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
-import { Button } from '../Button';
 
 describe('MultiCombobox', () => {
   const labelText = 'Label';
@@ -936,6 +935,34 @@ describe('MultiCombobox', () => {
 
     expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
     expect(renderedCombobox).not.toHaveAttribute('placeholder');
+  });
+
+  it('should show drop down icon for trigger button', () => {
+    const dropDownTestId = 'caretDown';
+
+    const { getByTestId } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        arrowDropDirection={'bottom'}
+      />
+    );
+    expect(getByTestId(dropDownTestId)).toBeInTheDocument();
+  });
+
+  it('should show drop up icon for trigger button', () => {
+    const dropDownTestId = 'caretUp';
+
+    const { getByTestId } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        arrowDropDirection={'top'}
+      />
+    );
+    expect(getByTestId(dropDownTestId)).toBeInTheDocument();
   });
 
   describe('hasPersistentMenu', () => {

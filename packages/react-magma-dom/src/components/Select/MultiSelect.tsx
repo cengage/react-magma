@@ -177,6 +177,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       labelWidth={labelWidth}
       isInverse={isInverse}
       messageStyle={messageStyle}
+      setReference={setReference}
     >
       <SelectTriggerButton
         ariaDescribedBy={ariaDescribedBy}
@@ -186,7 +187,6 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         disabled={disabled}
         isInverse={isInverse}
         style={inputStyle}
-        setReference={setReference}
       >
         {selectedItems && selectedItems.length > 0 ? (
           selectedItems.map((multiSelectedItem, index) => {
