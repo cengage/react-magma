@@ -19,7 +19,6 @@ import { useIsInverse } from '../../inverse';
 import {
   autoUpdate,
   flip,
-  Placement,
   ReferenceType,
   useFloating,
 } from '@floating-ui/react-dom';
@@ -31,10 +30,6 @@ export interface ComboboxProps<T extends SelectOptions>
    * Id of the element that describes the combobox input
    */
   ariaDescribedBy?: string;
-  /**
-   * Direction arrow icon in the select trigger button
-   */
-  arrowDropDirection?: Placement;
   /**
    * Style properties for the component container element
    */
@@ -194,7 +189,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
 
   const isInverse = useIsInverse(props.isInverse);
 
-  const { floatingStyles, placement, refs } = useFloating({
+  const { floatingStyles, refs } = useFloating({
     middleware: [flip()],
     whileElementsMounted: autoUpdate,
   });
@@ -206,7 +201,6 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
       {isMulti && instanceOfMultiCombobox<T>(props) ? (
         <MultiCombobox
           ariaDescribedBy={descriptionId}
-          arrowDropDirection={placement}
           errorMessage={errorMessage}
           floatingStyles={customFloatingStyles}
           hasError={hasError}
@@ -222,7 +216,6 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
       ) : (
         <InternalCombobox
           ariaDescribedBy={descriptionId}
-          arrowDropDirection={placement}
           errorMessage={errorMessage}
           floatingStyles={customFloatingStyles}
           hasError={hasError}

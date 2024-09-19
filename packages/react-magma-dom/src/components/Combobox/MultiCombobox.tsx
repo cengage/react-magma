@@ -19,7 +19,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   const [inputValue, setInputValue] = React.useState('');
   const {
     ariaDescribedBy,
-    arrowDropDirection,
     components: customComponents,
     defaultItems,
     disableCreateItem,
@@ -382,7 +381,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     >
       <ComboboxInput
         ariaDescribedBy={ariaDescribedBy}
-        arrowDropDirection={arrowDropDirection}
         customComponents={customComponents}
         getComboboxProps={getComboboxProps}
         getInputProps={options => ({

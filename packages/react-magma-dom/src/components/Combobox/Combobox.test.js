@@ -522,34 +522,6 @@ describe('Combobox', () => {
         expect(queryByText(/loading.../i)).not.toBeInTheDocument();
         expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
       });
-
-      it('should show drop down icon for trigger button', () => {
-        const dropDownTestId = 'caretDown';
-
-        const { getByTestId } = render(
-          <Combobox
-            labelText={labelText}
-            items={items}
-            isLoading={false}
-            arrowDropDirection={'bottom'}
-          />
-        );
-        expect(getByTestId(dropDownTestId)).toBeInTheDocument();
-      });
-
-      it('should show drop up icon for trigger button', () => {
-        const dropDownTestId = 'caretUp';
-
-        const { getByTestId } = render(
-          <Combobox
-            labelText={labelText}
-            items={items}
-            isLoading={false}
-            arrowDropDirection={'top'}
-          />
-        );
-        expect(getByTestId(dropDownTestId)).toBeInTheDocument();
-      });
     });
 
     describe('when isTypeahead is false,', () => {

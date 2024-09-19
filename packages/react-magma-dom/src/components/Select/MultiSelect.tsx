@@ -14,7 +14,6 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
     additionalContent,
     ariaDescribedBy,
-    arrowDropDirection,
     components: customComponents,
     errorMessage,
     floatingStyles,
@@ -181,7 +180,6 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     >
       <SelectTriggerButton
         ariaDescribedBy={ariaDescribedBy}
-        arrowDropDirection={arrowDropDirection}
         toggleButtonProps={toggleButtonProps}
         hasError={hasError}
         disabled={disabled}

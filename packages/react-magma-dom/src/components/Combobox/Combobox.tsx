@@ -16,7 +16,6 @@ import { useForkedRef } from '../../utils';
 export function InternalCombobox<T>(props: ComboboxProps<T>) {
   const {
     ariaDescribedBy,
-    arrowDropDirection,
     components: customComponents,
     defaultItems,
     defaultSelectedItem,
@@ -284,7 +283,6 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     >
       <ComboboxInput
         ariaDescribedBy={ariaDescribedBy}
-        arrowDropDirection={arrowDropDirection}
         customComponents={customComponents}
         disabled={disabled}
         getComboboxProps={getComboboxProps}

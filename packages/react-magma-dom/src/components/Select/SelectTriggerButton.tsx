@@ -1,14 +1,13 @@
 import React from 'react';
 import {
   inputBaseStyles,
-  InputBaseStylesProps,
   inputWrapperStyles,
+  InputBaseStylesProps,
   InputWrapperStylesProps,
 } from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
-import { Placement } from '@floating-ui/react-dom';
 
 const StyledButton = styled.div<InputBaseStylesProps & InputWrapperStylesProps>`
   ${inputBaseStyles}
@@ -33,7 +32,6 @@ const ChildrenContainer = styled.div`
 
 interface SelectTriggerButtonInterface<T> {
   ariaDescribedBy?: string;
-  arrowDropDirection?: Placement;
   children: React.ReactNode | React.ReactNode[];
   customComponents?: SelectComponents<T>;
   disabled?: boolean;
@@ -47,7 +45,6 @@ interface SelectTriggerButtonInterface<T> {
 export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
   const {
     ariaDescribedBy,
-    arrowDropDirection,
     children,
     customComponents,
     hasError,
@@ -58,14 +55,11 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
   } = props;
   const theme = React.useContext(ThemeContext);
 
-  const { DropdownIndicator, DropUpIndicator } = defaultComponents<T>({
+  const { DropdownIndicator } = defaultComponents<T>({
     ...customComponents,
   });
 
   const style = { ...passedInStyle, cursor: 'default' };
-
-  const isBottomPlacement: boolean =
-    typeof arrowDropDirection === 'string' && arrowDropDirection === 'bottom';
 
   return (
     <StyledButton
@@ -81,7 +75,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
       theme={theme}
     >
       <ChildrenContainer theme={theme}>{children}</ChildrenContainer>
-      {isBottomPlacement ? <DropdownIndicator /> : <DropUpIndicator />}
+      <DropdownIndicator />
     </StyledButton>
   );
 }

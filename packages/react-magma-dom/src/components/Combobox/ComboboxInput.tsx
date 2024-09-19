@@ -9,7 +9,6 @@ import {
   UseComboboxGetInputPropsOptions,
   UseComboboxGetToggleButtonPropsOptions,
 } from 'downshift';
-import { Placement } from '@floating-ui/react-dom';
 
 import { SelectedItemsWrapper } from '../Select/shared';
 import { transparentize } from 'polished';
@@ -100,7 +99,6 @@ const StyledInput = styled.input`
 
 interface ComboboxInputProps<T> {
   ariaDescribedBy?: string;
-  arrowDropDirection?: Placement;
   children?: React.ReactNode | React.ReactNode[];
   customComponents?: SelectComponents<T>;
   getComboboxProps: (options?: UseComboboxGetComboboxPropsOptions) => any;
@@ -128,7 +126,6 @@ interface ComboboxInputProps<T> {
 export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
   const {
     ariaDescribedBy,
-    arrowDropDirection,
     children,
     customComponents,
     getComboboxProps,
@@ -154,10 +151,9 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
 
   const [isFocused, setIsFocused] = React.useState<boolean>(false);
 
-  const { DropdownIndicator, DropUpIndicator, LoadingIndicator } =
-    defaultComponents<T>({
-      ...customComponents,
-    });
+  const { DropdownIndicator, LoadingIndicator } = defaultComponents<T>({
+    ...customComponents,
+  });
 
   function handleBlur(e: React.FocusEvent) {
     setIsFocused(false);
@@ -193,9 +189,6 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     }
     return theme.colors.neutral;
   };
-
-  const isBottomPlacement: boolean =
-    typeof arrowDropDirection === 'string' && arrowDropDirection === 'bottom';
 
   return (
     <ComboBoxContainer
@@ -236,17 +229,10 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
             style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
           />
         )}
-        {isBottomPlacement ? (
-          <DropdownIndicator
-            aria-label="toggle menu"
-            color={dropdownIndicatorColor()}
-          />
-        ) : (
-          <DropUpIndicator
-            aria-label="toggle menu"
-            color={dropdownIndicatorColor()}
-          />
-        )}
+        <DropdownIndicator
+          aria-label="toggle menu"
+          color={dropdownIndicatorColor()}
+        />
       </InputContainer>
     </ComboBoxContainer>
   );

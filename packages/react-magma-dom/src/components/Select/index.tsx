@@ -5,12 +5,7 @@ import {
   useSelect,
   UseSelectProps,
 } from 'downshift';
-import {
-  autoUpdate,
-  flip,
-  Placement,
-  useFloating,
-} from '@floating-ui/react-dom';
+import { autoUpdate, flip, useFloating } from '@floating-ui/react-dom';
 import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
 import { Select as InternalSelect } from './Select';
 import { MultiSelect } from './MultiSelect';
@@ -126,10 +121,6 @@ export interface SelectProps<T extends SelectOptions>
    * Id of the element that describes the select trigger button
    */
   ariaDescribedBy?: string;
-  /**
-   * Direction arrow icon in the select trigger button
-   */
-  arrowDropDirection?: Placement;
   /**
    * Positioning styles to apply to the floating element
    */
@@ -253,7 +244,7 @@ export function Select<T>(props: XORSelectProps<T>) {
 
   const isInverse = useIsInverse(props.isInverse);
 
-  const { floatingStyles, placement, refs } = useFloating({
+  const { floatingStyles, refs } = useFloating({
     middleware: [flip()],
     whileElementsMounted: autoUpdate,
   });
@@ -265,7 +256,6 @@ export function Select<T>(props: XORSelectProps<T>) {
       {isMulti && instanceOfMultiSelect<T>(props) ? (
         <MultiSelect
           ariaDescribedBy={descriptionId}
-          arrowDropDirection={placement}
           floatingStyles={customFloatingStyles}
           hasError={hasError}
           id={id}
@@ -280,7 +270,6 @@ export function Select<T>(props: XORSelectProps<T>) {
       ) : (
         <InternalSelect
           ariaDescribedBy={descriptionId}
-          arrowDropDirection={placement}
           errorMessage={errorMessage}
           floatingStyles={customFloatingStyles}
           hasError={hasError}

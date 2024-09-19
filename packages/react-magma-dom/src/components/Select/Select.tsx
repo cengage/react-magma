@@ -16,7 +16,6 @@ export function Select<T>(props: SelectProps<T>) {
   const {
     additionalContent,
     ariaDescribedBy,
-    arrowDropDirection,
     components: customComponents,
     defaultSelectedItem,
     errorMessage,
@@ -180,7 +179,6 @@ export function Select<T>(props: SelectProps<T>) {
     >
       <SelectTriggerButton
         ariaDescribedBy={ariaDescribedBy}
-        arrowDropDirection={arrowDropDirection}
         customComponents={customComponents}
         disabled={disabled}
         hasError={hasError}

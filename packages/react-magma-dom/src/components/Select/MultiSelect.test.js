@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, fireEvent, getByTestId, render } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import { Select as MultiSelect } from '.';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
@@ -546,36 +546,6 @@ describe('Select', () => {
     );
 
     expect(getByText(helperMessage)).toBeInTheDocument();
-  });
-
-  it('should show drop down icon for trigger button', () => {
-    const dropDownTestId = 'caretDown';
-
-    const { getByTestId } = render(
-      <MultiSelect
-        isMulti
-        labelText={labelText}
-        items={items}
-        arrowDropDirection={'bottom'}
-      />
-    );
-
-    expect(getByTestId(dropDownTestId)).toBeInTheDocument();
-  });
-
-  it('should show drop up icon for trigger button', () => {
-    const dropUpTestId = 'caretUp';
-
-    const { getByTestId } = render(
-      <MultiSelect
-        isMulti
-        labelText={labelText}
-        items={items}
-        arrowDropDirection={'top'}
-      />
-    );
-
-    expect(getByTestId(dropUpTestId)).toBeInTheDocument();
   });
 
   describe('events', () => {
