@@ -1,9 +1,10 @@
-import styled from '@emotion/styled';
 import * as React from 'react';
-import { ChevronRightIcon } from 'react-magma-icons';
-import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Hyperlink } from '../Hyperlink';
+import { useIsInverse } from '../../inverse';
+import { ChevronRightIcon } from 'react-magma-icons';
+import styled, { CreateStyled } from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 /**
  * @children required
@@ -20,14 +21,16 @@ export interface BreadcrumbItemProps
   to?: string;
 }
 
-const StyledItem = styled.li`
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
+const StyledItem = typedStyled.li`
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
 `;
 
-const StyledLink = styled.a<{ isInverse?: boolean }>`
+const StyledLink = typedStyled.a<{ isInverse?: boolean }>`
   align-items: center;
   display: flex;
   color: ${props =>
@@ -54,7 +57,7 @@ const StyledLink = styled.a<{ isInverse?: boolean }>`
   }
 `;
 
-const StyledSpan = styled.span<{ isInverse?: boolean }>`
+const StyledSpan = typedStyled.span<{ isInverse?: boolean }>`
   align-items: center;
   display: flex;
 
