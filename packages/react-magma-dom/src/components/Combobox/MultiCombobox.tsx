@@ -434,7 +434,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         itemToString={itemToString}
         isLoading={isLoading && isTypeahead}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
-        menuStyle={{ ...menuStyle, position: 'static' }}
+        menuStyle={menuStyle}
         setFloating={setFloating}
       />
     </SelectContainer>

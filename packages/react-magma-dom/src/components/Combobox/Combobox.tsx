@@ -334,7 +334,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         itemToString={itemToString}
         isLoading={isLoading && isTypeahead}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
-        menuStyle={{ ...menuStyle, position: 'static' }}
+        menuStyle={menuStyle}
         setFloating={setFloating}
       />
     </SelectContainer>

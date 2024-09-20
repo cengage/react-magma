@@ -210,7 +210,7 @@ export function Select<T>(props: SelectProps<T>) {
         items={items}
         itemToString={itemToString}
         maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
-        menuStyle={{ ...menuStyle, position: 'static' }}
+        menuStyle={menuStyle}
         setFloating={setFloating}
       />
     </SelectContainer>

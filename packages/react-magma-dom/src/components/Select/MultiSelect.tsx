@@ -231,7 +231,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         items={getFilteredItems(items)}
         itemToString={itemToString}
         maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
-        menuStyle={{ ...menuStyle, position: 'static' }}
+        menuStyle={menuStyle}
         setFloating={setFloating}
       />
     </SelectContainer>
