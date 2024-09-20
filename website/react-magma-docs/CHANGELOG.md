@@ -1,5 +1,28 @@
 # Change Log
 
+## 5.0.9-next.1
+
+### Patch Changes
+
+- Updated dependencies [f45bdde78]
+  - react-magma-dom@4.6.1-next.0
+  - @react-magma/charts@9.0.1-next.0
+  - @react-magma/dropzone@9.0.1-next.0
+  - @react-magma/schema-renderer@9.0.1-next.0
+  - @cengage-patterns/header@11.0.1-next.0
+
+## 5.0.9-next.0
+
+### Patch Changes
+
+- ce0dc00ca: chore: Manually sync main -> dev (4.6.0)
+
+## 5.0.8-next.14
+
+### Patch Changes
+
+- facc56d54: fix(TreeView): Fixed the Preselected for displaying checked items
+
 ## 5.0.8-next.13
 
 ### Patch Changes

@@ -1,80 +1,30 @@
-## 4.6.0-next.0
+## 4.6.0
 
-## 4.6.0-next.12
+## 4.6.1-next.0
+
+### Patch Changes
+
+- f45bdde78: fix(DatePicker): Remove shortcut to open `HelperInformation`.
+
+### Minor Changes
+
+- ca58152cb: feat(TreeView): Add support for `checkChildren`, `checkParents` props
+- fdf2dc929: feat(Modal): New `headerRef` prop that returns a reference to the header element
 
 ### Patch Changes
 
 - dc307446a: fix(Accordion): Fix screen scroll behavior during accordion navigation
-
-## 4.6.0-next.11
-
-### Patch Changes
-
-- 11bedeff9: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
-
-## 4.6.0-next.10
-
-### Patch Changes
-
-- 6b413fb77: fix(List): Updated examples for List component
-
-## 4.6.0-next.9
-
-### Patch Changes
-
-- d4164cacb: fix(Modal): Modal disabled background click focus fix.
-
-## 4.6.0-next.8
-
-### Patch Changes
-
-- 3b3a2d79a: chore: Update @emotion dependency
-
-## 4.6.0-next.7
-
-### Patch Changes
-
-- 84a8a17d6: fix(DatePicker): Fix error when using both onChange and onDateChange
-
-## 4.6.0-next.6
-
-### Minor Changes
-
-- ca58152cb: Add support for `checkChildren`, `checkParents` props to TreeView
-
-## 4.6.0-next.5
-
-### Patch Changes
-
-- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
-
-## 4.6.0-next.4
-
-### Patch Changes
-
-- 9214724b6: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
-
-## 4.6.0-next.3
-
-### Patch Changes
-
-- aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
-
-## 4.6.0-next.2
-
-### Patch Changes
-
-- 1d1dd1d06: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
-
-## 4.6.0-next.1
-
-### Patch Changes
-
+- 6b413fb77: fix(List): Updated support for nested items
+- d4164cacb: fix(Modal): Fix focus issue when using `isBackgroundClickDisabled`
+- 84a8a17d6: fix(DatePicker): Fix error when using both `onChange` and `onDateChange`
 - 48b7a5539: fix(Breadcrumbs): Fixed alignment issue between elements.
-
-### Minor Changes
-
-- fdf2dc929: feat(Modal): New `headerRef` prop that returns a reference to the header element
+- 616cbf9a0: fix(BreadCrumb): Improved accessibility by replace span with link to fix focus
+- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
+- aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
+- 9d840d863: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
+- 9214724b6: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
+- 1d1dd1d06: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
+- 11bedeff9: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
 
 ## 4.5.0
 
