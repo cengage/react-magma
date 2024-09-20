@@ -19,7 +19,7 @@ import { ReferenceType } from '@floating-ui/react-dom';
 
 interface ItemsListProps<T> {
   customComponents?: SelectComponents<T>;
-  floatingStyles?: React.CSSProperties;
+  floatingElementStyles?: React.CSSProperties;
   getItemProps: (options?: UseSelectGetItemPropsOptions<T>) => any;
   getMenuProps: (options?: UseSelectGetMenuPropsOptions) => any;
   highlightedIndex?: number;
@@ -55,7 +55,7 @@ const LoadingWrapper = styled.span<{}>`
 export function ItemsList<T>(props: ItemsListProps<T>) {
   const {
     customComponents,
-    floatingStyles,
+    floatingElementStyles,
     getItemProps,
     getMenuProps,
     highlightedIndex,
@@ -98,7 +98,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   }
 
   return (
-    <div ref={setFloating} style={{...floatingStyles, zIndex: '2'}}>
+    <div ref={setFloating} style={{...floatingElementStyles, zIndex: '2'}}>
       <StyledCard
         hasDropShadow
         isInverse={isInverse}

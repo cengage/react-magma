@@ -47,7 +47,7 @@ export interface ComboboxProps<T extends SelectOptions>
   /**
    * Positioning styles to apply to the floating element
    */
-  floatingStyles?: React.CSSProperties;
+  floatingElementStyles?: React.CSSProperties;
   /**
    * @internal
    */
@@ -192,11 +192,11 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
 
   const { floatingStyles, refs } = useFloating({
     middleware: [flip()],
-    whileElementsMounted: autoUpdate,
     placement: 'bottom-start' as AlignedPlacement,
+    whileElementsMounted: autoUpdate,
   });
 
-  const customFloatingStyles = { ...floatingStyles, width: '100%' };
+  const floatingElementStyles = { ...floatingStyles, width: '100%' };
 
   return (
     <div style={containerStyle} data-testid={testId}>
@@ -204,7 +204,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
         <MultiCombobox
           ariaDescribedBy={descriptionId}
           errorMessage={errorMessage}
-          floatingStyles={customFloatingStyles}
+          floatingElementStyles={floatingElementStyles}
           hasError={hasError}
           helperMessage={helperMessage}
           isInverse={isInverse}
@@ -219,7 +219,7 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
         <InternalCombobox
           ariaDescribedBy={descriptionId}
           errorMessage={errorMessage}
-          floatingStyles={customFloatingStyles}
+          floatingElementStyles={floatingElementStyles}
           hasError={hasError}
           helperMessage={helperMessage}
           isInverse={isInverse}

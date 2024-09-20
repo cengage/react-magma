@@ -19,7 +19,7 @@ export function Select<T>(props: SelectProps<T>) {
     components: customComponents,
     defaultSelectedItem,
     errorMessage,
-    floatingStyles,
+    floatingElementStyles,
     hasError,
     helperMessage,
     inputStyle,
@@ -201,7 +201,7 @@ export function Select<T>(props: SelectProps<T>) {
       </SelectTriggerButton>
       <ItemsList
         customComponents={customComponents}
-        floatingStyles={floatingStyles}
+        floatingElementStyles={floatingElementStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}

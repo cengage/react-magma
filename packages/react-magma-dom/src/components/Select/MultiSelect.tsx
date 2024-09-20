@@ -16,7 +16,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     ariaDescribedBy,
     components: customComponents,
     errorMessage,
-    floatingStyles,
+    floatingElementStyles,
     hasError,
     helperMessage,
     inputStyle,
@@ -222,7 +222,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       </SelectTriggerButton>
       <ItemsList
         customComponents={customComponents}
-        floatingStyles={floatingStyles}
+        floatingElementStyles={floatingElementStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}

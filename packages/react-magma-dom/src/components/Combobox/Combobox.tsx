@@ -21,7 +21,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     defaultSelectedItem,
     disableCreateItem,
     errorMessage,
-    floatingStyles,
+    floatingElementStyles,
     hasError,
     helperMessage,
     initialSelectedItem,
@@ -324,7 +324,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
       </ComboboxInput>
       <ItemsList
         customComponents={customComponents}
-        floatingStyles={floatingStyles}
+        floatingElementStyles={floatingElementStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}

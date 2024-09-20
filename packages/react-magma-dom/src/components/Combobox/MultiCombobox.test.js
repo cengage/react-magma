@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, fireEvent, render } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import { Combobox as MultiCombobox } from '.';
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';

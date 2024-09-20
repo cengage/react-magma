@@ -23,7 +23,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     defaultItems,
     disableCreateItem,
     errorMessage,
-    floatingStyles,
+    floatingElementStyles,
     hasError,
     hasPersistentMenu = false,
     helperMessage,
@@ -424,7 +424,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       </ComboboxInput>
       <ItemsList
         customComponents={customComponents}
-        floatingStyles={floatingStyles}
+        floatingElementStyles={floatingElementStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}

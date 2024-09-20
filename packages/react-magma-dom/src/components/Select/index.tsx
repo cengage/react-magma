@@ -129,7 +129,7 @@ export interface SelectProps<T extends SelectOptions>
   /**
    * Positioning styles to apply to the floating element
    */
-  floatingStyles?: React.CSSProperties;
+  floatingElementStyles?: React.CSSProperties;
   /**
    * @internal
    */
@@ -251,18 +251,18 @@ export function Select<T>(props: XORSelectProps<T>) {
 
   const { floatingStyles, refs } = useFloating({
     middleware: [flip()],
-    whileElementsMounted: autoUpdate,
     placement: 'bottom-start' as AlignedPlacement,
+    whileElementsMounted: autoUpdate,
   });
 
-  const customFloatingStyles = { ...floatingStyles, width: '100%' };
+  const floatingElementStyles = { ...floatingStyles, width: '100%' };
 
   return (
     <div style={containerStyle} data-testid={testId}>
       {isMulti && instanceOfMultiSelect<T>(props) ? (
         <MultiSelect
           ariaDescribedBy={descriptionId}
-          floatingStyles={customFloatingStyles}
+          floatingElementStyles={floatingElementStyles}
           hasError={hasError}
           id={id}
           isInverse={isInverse}
@@ -277,7 +277,7 @@ export function Select<T>(props: XORSelectProps<T>) {
         <InternalSelect
           ariaDescribedBy={descriptionId}
           errorMessage={errorMessage}
-          floatingStyles={customFloatingStyles}
+          floatingElementStyles={floatingElementStyles}
           hasError={hasError}
           helperMessage={helperMessage}
           id={id}
