@@ -4,7 +4,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { magma, ThemeInterface } from '../../theme/magma';
 import { TypographyVisualStyle, TypographyComponent } from '../Typography';
 import { InverseContext, useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
 
 /**
  * @children required
@@ -105,6 +105,8 @@ export function getListAlignment(props) {
   }
 }
 
+const typedStyled = styled as CreateStyled<ThemeInterface>;
+
 const ListStyles = props => css`
   margin: 0;
   padding: 0;
@@ -139,7 +141,7 @@ const ListStyles = props => css`
   }
 `;
 
-const StyledList = styled(TypographyComponent)`
+const StyledList = typedStyled(TypographyComponent)`
   ${ListStyles};
 `;
 
