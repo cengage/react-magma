@@ -246,6 +246,9 @@ export interface I18nInterface {
   select: {
     placeholder: string;
     clearIndicatorAriaLabel: string;
+    multi: {
+      clearIndicatorAriaLabel: string;
+    };
   };
   simplePagination: {
     ofLabel: string;
