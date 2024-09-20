@@ -101,7 +101,7 @@ function createControlledTags(items = [], api?: TreeViewApi) {
   const selected = items
     ?.filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
     .map((i, key) => (
-      <Tag key={key} size={TagSize.small} color={TagColor.primary} onClick={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+      <Tag key={key} size={TagSize.small} color={TagColor.primary} onDelete={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
         {i.itemId}
       </Tag>
     ));
@@ -109,7 +109,7 @@ function createControlledTags(items = [], api?: TreeViewApi) {
   const indeterminate = items
     ?.filter(i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate)
     .map((i, key) => (
-      <Tag key={key} size={TagSize.small} color={TagColor.default} onClick={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+      <Tag key={key} size={TagSize.small} color={TagColor.default} onDelete={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
         {i.itemId}
       </Tag>
     ));
@@ -420,6 +420,8 @@ Complex.args = {
     { itemId: 'pt2ch5.2', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt2ch5.3', checkedStatus: IndeterminateCheckboxStatus.checked },
   ],
+  checkParents: true,
+  checkChildren: true,
   testId: 'complex-example',
 };
 

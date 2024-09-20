@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { useDescendants } from '../../hooks/useDescendants';
 import { TreeItemSelectedInterface, TreeViewItemInterface } from './TreeViewContext';
-import {
-  findFirstBranchNode,
-  getChildrenItemIdsInTree,
-  getFirstItemInTree, getInitialItems, selectMulti, selectSingle,
-} from './utils';
+import { getInitialItems, selectMulti, selectSingle } from './utils';
 import { TreeViewSelectable } from './types';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
@@ -111,6 +107,24 @@ export function useTreeView(props: UseTreeViewProps) {
   
   const selectedItems = React.useMemo(() => {
     return items.filter((item) => item.checkedStatus === IndeterminateCheckboxStatus.checked)
+  }, [items]); 
+
+  const itemToFocus = React.useMemo(() => {
+    const firstNonUncheckedItem = items.find((item) => item.checkedStatus && item.checkedStatus !== IndeterminateCheckboxStatus.unchecked)
+    
+    if (firstNonUncheckedItem) {
+      return firstNonUncheckedItem.itemId;
+    }
+    
+    const [firstItem] = items;
+
+    if (selectable !== TreeViewSelectable.off) {
+      return firstItem?.itemId;
+    }
+    
+    const firstExpandableItem = items.find((item) => item.hasOwnTreeItems)
+
+    return firstExpandableItem ? firstExpandableItem.itemId : firstItem?.itemId;
   }, [items]);
   
   const initializationRef = React.useRef(true);
@@ -144,13 +158,17 @@ export function useTreeView(props: UseTreeViewProps) {
       
       return prevItems;
     });
-  }, [selectable])
+  }, [selectable, checkChildren, checkParents])
 
   React.useEffect(() => {
     if (apiRef) {
       apiRef.current = {
         selectItem,
         selectAll() {
+          if ([TreeViewSelectable.single, TreeViewSelectable.single].includes(selectable)) {
+            return;
+          }
+
           setItems(prevItems => {
             return prevItems.map(item => ({...item, checkedStatus: IndeterminateCheckboxStatus.checked }))
           })
@@ -167,7 +185,6 @@ export function useTreeView(props: UseTreeViewProps) {
   
   const [initialExpandedItemsNeedUpdate, setInitialExpandedItemsNeedUpdate] =
     React.useState(false);
-  const [itemToFocus, setItemToFocus] = React.useState(null);
 
   const [treeItemRefArray, registerTreeItem] = useDescendants();
 
@@ -175,38 +192,7 @@ export function useTreeView(props: UseTreeViewProps) {
     if (initialExpandedItems) {
       setInitialExpandedItemsNeedUpdate(true);
     }
-
-    getItemToFocusFirst();
   }, []);
-
-  function getItemToFocusFirst() {
-    let item = null;
-
-    if (children?.length > 0) {
-      const allChildrenInTree = getChildrenItemIdsInTree(children);
-      const firstBranchNode = findFirstBranchNode(children)?.props.itemId;
-      const firstItemSelected = getFirstItemInTree(selectedItems, children);
-      const firstNode = allChildrenInTree?.[0].itemId;
-
-      if (selectable === TreeViewSelectable.off) {
-        /*
-        If there is at least one node with a branch, focus is set on the first branch node.
-        If there are no nodes with branches, the first item is focused and the tree can be traversed
-      */
-        item = firstBranchNode || allChildrenInTree?.[0].itemId;
-      } else {
-        // Same behavior for Single and Multiple
-        if (selectedItems.length === 0) {
-          // If none of the nodes are selected before the tree receives focus, focus is set on the first node.
-          item = firstNode;
-        } else if (selectedItems.length > 0) {
-          // If one or more nodes are selected before the tree receives focus, focus is set on the first selected node.
-          item = firstItemSelected;
-        }
-      }
-    }
-    setItemToFocus(item);
-  }
 
   const contextValue = {
     hasIcons,

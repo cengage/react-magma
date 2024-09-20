@@ -165,57 +165,6 @@ export function getChildrenItemIdsInTree(children) {
   return itemIds;
 }
 
-// Return first child that is a branch
-export function findFirstBranchNode(children) {
-  for (const item of children) {
-    if (item.props?.children && item.props?.children) {
-      return item;
-    }
-    if (item.props?.children && item.props?.children.length === 0) {
-      const childResult = findFirstBranchNode(item.props?.children);
-      if (childResult) {
-        return childResult;
-      }
-    }
-  }
-  return null;
-}
-
-// Returns the first item in the tree from the array of selected items
-export function getFirstItemInTree(arr, children) {
-  // If there's only 1 item, return that one first
-  if (arr.length === 1) {
-    return arr[0]?.itemId;
-  }
-  
-  let allFoundItems = [];
-  
-  for (const item of arr) {
-    const foundItem = Array.isArray(children)
-      ? children.find(child => child.props?.itemId === item.itemId)
-      : children.props?.itemId === item.itemId;
-
-    if (foundItem) {
-      allFoundItems.push(foundItem.props?.itemId);
-    } else if (children.props?.children) {
-      const result = getFirstItemInTree(arr, children.props.children);
-      if (result) {
-        allFoundItems.push(result);
-      }
-    }
-  }
-
-  // After finding all the items, return the one that comes first on the tree (top to bottom)
-  if (allFoundItems.length === 1) {
-    return allFoundItems[0];
-  } else if (allFoundItems.length > 1) {
-    for (const ch of children) {
-      return allFoundItems.find(i => i === ch.props?.itemId);
-    }
-  }
-  return null;
-}
-
 // Return a treeItemRefArray object with no null children
 export function filterNullEntries(obj) {
   if (Array.isArray(obj.current)) {
@@ -292,7 +241,7 @@ export const getInitialItems = ({ children, preselectedItems: rawPreselectedItem
     return preselectedItem ? { ...treeViewDataItem, checkedStatus: preselectedItem.checkedStatus } : treeViewDataItem
   }) : treeViewData
 
-  return checkParents && preselectedItems ? processInitialParentStatuses({ items: enhancedWithPreselectedItems }) : enhancedWithPreselectedItems
+  return selectable === TreeViewSelectable.multi && checkParents && preselectedItems ? processInitialParentStatuses({ items: enhancedWithPreselectedItems }) : enhancedWithPreselectedItems
 }
 
 export const selectSingle = ({items, itemId, checkedStatus}: { items: TreeViewItemInterface[]; itemId: TreeViewItemInterface['itemId']; checkedStatus: TreeViewItemInterface['checkedStatus'] }) => {

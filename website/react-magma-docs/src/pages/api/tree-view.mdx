@@ -678,7 +678,7 @@ export function Example() {
 
 ## Update Selected Items From Outside
 
-Use the `apiRef` prop to change items selection from outside.
+Use the `apiRef` prop to change items selection from outside. It exposes these functions: `selectItem`, `selectAll`, `clearAll`
 
 ```typescript
 import React from 'react';
@@ -688,7 +688,7 @@ function createControlledTags(items = [], api?: TreeViewApi) {
   const selected = items && items
     .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
     .map((i, key) => (
-      <Tag key={key} size={TagSize.small} color={TagColor.primary} onClick={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+      <Tag key={key} size={TagSize.small} color={TagColor.primary} onDelete={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
         {i.itemId}
       </Tag>
     ));
@@ -696,7 +696,7 @@ function createControlledTags(items = [], api?: TreeViewApi) {
   const indeterminate = items && items
     .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate)
     .map((i, key) => (
-      <Tag key={key} size={TagSize.small} color={TagColor.default} onClick={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+      <Tag key={key} size={TagSize.small} color={TagColor.default} onDelete={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
         {i.itemId}
       </Tag>
     ));
