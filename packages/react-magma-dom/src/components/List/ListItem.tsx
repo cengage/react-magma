@@ -63,7 +63,7 @@ const StyledIcon = styled.span<any>`
 `;
 
 export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
-  (props, ref) => {
+  (props) => {
     const {
       children,
       description,
@@ -85,7 +85,6 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
           icon={icon}
           iconAlign={iconAlign}
           isInverse={isInverse}
-          ref={ref}
           theme={theme}
           testId={testId}
         >

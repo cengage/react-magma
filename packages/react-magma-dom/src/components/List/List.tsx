@@ -1,11 +1,10 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
 import { css } from '@emotion/core';
-
 import { ThemeContext } from '../../theme/ThemeContext';
 import { magma, ThemeInterface } from '../../theme/magma';
 import { TypographyVisualStyle, TypographyComponent } from '../Typography';
 import { InverseContext, useIsInverse } from '../../inverse';
+import styled from '@emotion/styled';
 
 /**
  * @children required
@@ -148,6 +147,7 @@ export const List = React.forwardRef<HTMLDivElement, ListProps>(
   (props, ref) => {
     const {
       children,
+      color,
       testId,
       hasStart,
       iconAlign,
