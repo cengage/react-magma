@@ -4,7 +4,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { magma, ThemeInterface } from '../../theme/magma';
 import { TypographyVisualStyle, TypographyComponent } from '../Typography';
 import { InverseContext, useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
+import { CreateStyled, styled } from '@emotion/styled';
 
 /**
  * @children required
@@ -57,6 +57,8 @@ export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
 
   visualStyle?: TypographyVisualStyle;
 }
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export enum IconSizes {
   small = 'small',
@@ -139,7 +141,7 @@ const ListStyles = props => css`
   }
 `;
 
-const StyledList = styled(TypographyComponent)`
+const StyledList = typedStyled(TypographyComponent)`
   ${ListStyles};
 `;
 
