@@ -282,7 +282,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
     const itemStatus =
       item?.checkedStatus ||
-        areArraysEqual(preselectedChildrenItems, childrenItemIds)
+      areArraysEqual(preselectedChildrenItems, childrenItemIds)
         ? IndeterminateCheckboxStatus.checked
         : IndeterminateCheckboxStatus.indeterminate;
 

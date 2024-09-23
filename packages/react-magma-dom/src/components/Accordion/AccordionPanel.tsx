@@ -41,8 +41,7 @@ export const AccordionPanel = React.forwardRef<
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
 
-  const { isExpanded, panelId } =
-    React.useContext(AccordionItemContext);
+  const { isExpanded, panelId } = React.useContext(AccordionItemContext);
 
   return (
     <Transition isOpen={isExpanded} collapse unmountOnExit>

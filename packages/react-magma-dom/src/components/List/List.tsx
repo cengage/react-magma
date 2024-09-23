@@ -139,7 +139,7 @@ const ListStyles = props => css`
   }
 `;
 
-const StyledList = styled(TypographyComponent)`
+const StyledList = styled(TypographyComponent)<any>`
   ${ListStyles};
 `;
 

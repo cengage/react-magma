@@ -56,7 +56,7 @@ export const blockQuoteStyles = props => css`
   `}
 `;
 
-const StyledBlockQuoteItem = styled(TypographyComponent)`
+const StyledBlockQuoteItem = styled(TypographyComponent)<any>`
   ${blockQuoteStyles}
 `;
 

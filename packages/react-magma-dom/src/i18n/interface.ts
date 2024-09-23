@@ -151,10 +151,6 @@ export interface I18nInterface {
         displayValue: string;
         explanation: string;
       };
-      questionMark: {
-        ariaLabel: string;
-        explanation: string;
-      };
     };
   };
   dropdown: {

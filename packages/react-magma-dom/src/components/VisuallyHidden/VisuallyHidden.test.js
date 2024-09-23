@@ -12,7 +12,7 @@ describe('VisuallyHidden', () => {
     );
 
     expect(container).toBeInTheDocument();
-    expect(getByText(TEXT)).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
+    expect(getByText(TEXT)).toHaveStyleRule('clip', 'rect(1px, 1px, 1px, 1px)');
     expect(getByText(TEXT)).toHaveStyleRule('height', '1px');
     expect(getByText(TEXT)).toHaveStyleRule('overflow', 'hidden');
   });

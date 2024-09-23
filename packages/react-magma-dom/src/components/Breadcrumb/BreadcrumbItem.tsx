@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Hyperlink } from '../Hyperlink';
@@ -39,7 +40,6 @@ const StyledLink = typedStyled.a<{ isInverse?: boolean }>`
       : props.theme.colors.neutral700};
   text-decoration: none;
   cursor: default;
-
   &:hover,
   &:focus {
     color: ${props =>

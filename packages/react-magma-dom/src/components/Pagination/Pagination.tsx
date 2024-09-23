@@ -140,7 +140,7 @@ export const NavButton = styled(IconButton)`
   width: ${BuildButtonSize};
 `;
 
-const StyledEllipsis = styled.li`
+const StyledEllipsis = styled.li<any>`
   align-items: center;
   display: flex;
   font-size: ${pageButtonTypeSize};

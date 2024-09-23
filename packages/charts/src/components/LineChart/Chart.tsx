@@ -122,7 +122,11 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
     setIsKeyboardInstructionsOpen(prevOpen => !prevOpen);
   }
 
-  function handleKeyboardInstructionsButtonKeydown(event: { preventDefault?: any; key?: any; shiftKey?: any; }) {
+  function handleKeyboardInstructionsButtonKeydown(event: {
+    preventDefault?: any;
+    key?: any;
+    shiftKey?: any;
+  }) {
     const { key, shiftKey } = event;
 
     switch (key) {

@@ -24,6 +24,7 @@ import {
   Transition,
   Spinner,
   useIsInverse,
+  styled,
 } from 'react-magma-dom';
 
 import { FileIcon } from './FileIcon';

@@ -959,12 +959,14 @@ describe('TreeView', () => {
 
     it('sets only child state as checked if checkParents is false and checkChildren is false', () => {
       const onSelectedItemChange = jest.fn();
-      const { getByTestId } = render(getTreeItemsMultiLevel({
-        onSelectedItemChange,
-        selectable: TreeViewSelectable.multi,
-        checkParents: false,
-        checkChildren: false
-      }));
+      const { getByTestId } = render(
+        getTreeItemsMultiLevel({
+          onSelectedItemChange,
+          selectable: TreeViewSelectable.multi,
+          checkParents: false,
+          checkChildren: false,
+        })
+      );
 
       userEvent.click(getByTestId('item1-expand'));
       const item1Checkbox = getByTestId('item-child1-checkbox');
@@ -972,19 +974,21 @@ describe('TreeView', () => {
       expect(onSelectedItemChange).toHaveBeenCalledWith([
         {
           itemId: 'item-child1',
-          checkedStatus: IndeterminateCheckboxStatus.checked
-        }
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
       ]);
     });
 
     it('sets child state as checked and parent indeterminate if checkParents is true and checkChildren is false', () => {
       const onSelectedItemChange = jest.fn();
-      const { getByTestId } = render(getTreeItemsMultiLevel({
-        onSelectedItemChange,
-        selectable: TreeViewSelectable.multi,
-        checkParents: true,
-        checkChildren: false
-      }));
+      const { getByTestId } = render(
+        getTreeItemsMultiLevel({
+          onSelectedItemChange,
+          selectable: TreeViewSelectable.multi,
+          checkParents: true,
+          checkChildren: false,
+        })
+      );
 
       userEvent.click(getByTestId('item2-expand'));
       userEvent.click(getByTestId('item-child2.1-expand'));
@@ -994,20 +998,20 @@ describe('TreeView', () => {
       expect(onSelectedItemChange).toHaveBeenCalledWith([
         {
           itemId: 'item-ggchild1',
-          checkedStatus: IndeterminateCheckboxStatus.checked
+          checkedStatus: IndeterminateCheckboxStatus.checked,
         },
         {
           itemId: 'item-gchild2',
-          checkedStatus: IndeterminateCheckboxStatus.indeterminate
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
         },
         {
           itemId: 'item-child2.1',
-          checkedStatus: IndeterminateCheckboxStatus.indeterminate
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
         },
         {
           itemId: 'item2',
-          checkedStatus: IndeterminateCheckboxStatus.indeterminate
-        }
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
       ]);
     });
   });
@@ -1640,7 +1644,6 @@ describe('TreeView', () => {
           userEvent.tab();
           expect(item1).toHaveFocus();
         });
-
       });
 
       describe('keyboard navigation', () => {

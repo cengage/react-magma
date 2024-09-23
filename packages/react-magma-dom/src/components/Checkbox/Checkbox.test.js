@@ -203,7 +203,7 @@ describe('Checkbox', () => {
 
     expect(getByLabelText(label)).toHaveStyleRule(
       'clip',
-      'rect(1px,1px,1px,1px)'
+      'rect(1px, 1px, 1px, 1px)'
     );
   });
 
@@ -248,13 +248,9 @@ describe('Checkbox', () => {
         <Checkbox testId={testId} onBlur={onBlurSpy} />
       );
 
-      fireEvent(
-        getByTestId(testId),
-        new MouseEvent('blur', {
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      const checkbox = getByTestId(testId);
+      checkbox.focus();
+      checkbox.blur();
 
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
@@ -278,13 +274,8 @@ describe('Checkbox', () => {
         <Checkbox testId={testId} onFocus={onFocusSpy} />
       );
 
-      fireEvent(
-        getByTestId(testId),
-        new MouseEvent('focus', {
-          bubbles: true,
-          cancelable: true,
-        })
-      );
+      const checkbox = getByTestId(testId);
+      checkbox.focus();
 
       expect(onFocusSpy).toHaveBeenCalledTimes(1);
     });

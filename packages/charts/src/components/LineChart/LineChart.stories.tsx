@@ -333,8 +333,9 @@ interface HistoryOfTexasInterface {
   label: string;
 }
 
-const HistoryOfTexasTemplate: Story<ChartProps<HistoryOfTexasInterface>> =
-  args => <Chart {...args} />;
+const HistoryOfTexasTemplate: Story<
+  ChartProps<HistoryOfTexasInterface>
+> = args => <Chart {...args} />;
 
 export const HistoryOfTexas = HistoryOfTexasTemplate.bind({});
 HistoryOfTexas.args = {

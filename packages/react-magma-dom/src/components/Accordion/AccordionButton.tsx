@@ -62,7 +62,6 @@ const StyledButton = typedStyled.button<{
       props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
-    }
     outline-offset: 0;
   }
 
