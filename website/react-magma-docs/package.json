@@ -2,10 +2,14 @@
   "name": "react-magma-docs",
   "description": "React Magma docs",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "5.0.6-next.1",
 =======
   "version": "5.0.9-next.1",
 >>>>>>> origin
+=======
+  "version": "5.0.10",
+>>>>>>> patch-3.x.x
   "private": true,
   "repository": {
     "type": "git",
@@ -16,13 +20,18 @@
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "7.10.4",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "@cengage-patterns/header": "7.0.0-next.0",
+=======
+    "@cengage-patterns/header": "6.0.0",
+>>>>>>> patch-3.x.x
     "@data-driven-forms/react-form-renderer": "^3.6.0",
     "@emotion/core": "^10.1.1",
     "@emotion/styled": "^10.0.27",
     "@emotion/styled-base": "^10.0.27",
     "@mdx-js/mdx": "^1.5.5",
     "@mdx-js/react": "^1.5.5",
+<<<<<<< HEAD
     "@react-magma/charts": "7.0.0-next.0",
     "@react-magma/dropzone": "5.0.0-next.0",
     "@react-magma/schema-renderer": "^5.0.0-next.0",
@@ -37,6 +46,11 @@
     "@react-magma/dropzone": "9.0.1-next.0",
     "@react-magma/schema-renderer": "^9.0.1-next.0",
 >>>>>>> origin
+=======
+    "@react-magma/charts": "6.1.0",
+    "@react-magma/dropzone": "4.0.0",
+    "@react-magma/schema-renderer": "^4.0.0",
+>>>>>>> patch-3.x.x
     "buble": "0.19.4",
     "buffer": "^6.0.3",
     "core-js": "^3.1.4",
@@ -51,11 +65,19 @@
     "gatsby-plugin-offline": "^4.15.0",
     "gatsby-plugin-react-helmet": "^4.15.0",
     "gatsby-plugin-react-svg": "^3.0.0",
+<<<<<<< HEAD
     "gatsby-plugin-sharp": "^3.0.0",
     "gatsby-remark-images": "^4.2.0",
     "gatsby-source-filesystem": "^3.0.0",
     "gatsby-transformer-sharp": "^3.0.0",
     "path-browserify": "^1.0.1",
+=======
+    "gatsby-plugin-sharp": "^2.4.3",
+    "gatsby-remark-images": "^3.1.42",
+    "gatsby-source-filesystem": "^2.1.46",
+    "gatsby-transformer-sharp": "^2.3.13",
+    "object.assign": "^4.1.5",
+>>>>>>> patch-3.x.x
     "prism-react-renderer": "^1.1.1",
     "process": "^0.11.10",
     "react": "^17.0.2",
@@ -67,7 +89,11 @@
     "react-helmet": "5.2.0",
     "react-live": "^2.2.1",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "react-magma-dom": "3.9.0-next.0",
+=======
+    "react-magma-dom": "3.9.0",
+>>>>>>> patch-3.x.x
     "react-magma-icons": "2.3.6",
     "react-select": "3.0.8",
 =======

@@ -76,7 +76,7 @@ function borderColors(props) {
   return props.theme.colors.neutral500;
 }
 
-const StyledNativeSelect = styled.select<{
+const StyledNativeSelect = typedStyled.select<{
   hasError?: boolean;
   isInverse?: boolean;
   theme: ThemeInterface;

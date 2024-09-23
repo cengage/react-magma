@@ -1,7 +1,7 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
 import { Modal } from '.';
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent, queryByText } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';

@@ -12,11 +12,14 @@ exports.onCreateWebpackConfig = ({ actions, plugins }) => {
         path: require.resolve('path-browserify'),
       },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       fallback: {
         'object.assign/polyfill': require.resolve("object.assign/polyfill.js"),
       }
 >>>>>>> origin
+=======
+>>>>>>> patch-3.x.x
     },
     module: {
       rules: [
