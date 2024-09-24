@@ -35,8 +35,8 @@ export const StyledButton = styled.div`
 `;
 
 export const SelectText = styled.span<{ isClearable?: boolean }>`
-  padding: 0 8px 0 4px;
-  width: ${props => (props.isClearable ? '95%' : '100%')};
+  padding-left: 4px;
+  padding-right: ${props => props.isClearable ? '2em' : '1.5em'};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -154,6 +154,7 @@ export const SelectedItemButton = styled.button<{
     ${props => props.theme.spaceScale.spacing03};
   position: relative;
   white-space: nowrap;
+  min-width: 0%;
 `;
 
 export const IconWrapper = styled.span`

@@ -29,9 +29,11 @@ export const SelectContainerElement = styled.div<{
 
 const InputMessageContainer = styled.div`
   flex-grow: 1;
-  overflow: hidden;
+  /* overflow: hidden; */
   padding: 0.25em;
   margin: -0.25em;
+  min-width: 0%;
+  position: relative;
 `;
 
 interface SelectContainerInterface<T> {
@@ -84,6 +86,11 @@ const StyledAdditionalContent = styled.div<{
         ? `0 0 0 ${props.theme.spaceScale.spacing03}`
         : ''};
   }
+`;
+
+const FormField = styled.form`
+  flex: 1 1 auto;
+  min-width: 0%;
 `;
 
 export function SelectContainer<T>(props: SelectContainerInterface<T>) {
@@ -162,8 +169,8 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
           )}
         </Label>
       </AdditionalContentWrapper>
-      <InputMessageContainer>
-        {children}
+      <FormField>
+        <InputMessageContainer>{children}</InputMessageContainer>
         {!(
           labelPosition === LabelPosition.left &&
           !(errorMessage || helperMessage)
@@ -180,7 +187,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
               )}
             </InputMessage>
           )}
-      </InputMessageContainer>
+      </FormField>
       {additionalItemRightAlign()}
     </SelectContainerElement>
   );

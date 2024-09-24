@@ -28,7 +28,7 @@ const ChildrenContainer = styled.div`
   flex-grow: 1;
   flex-wrap: wrap;
   min-height: ${props => props.theme.spaceScale.spacing09};
-  overflow: hidden;
+  min-width: 0%;
 `;
 
 interface SelectTriggerButtonInterface<T> {

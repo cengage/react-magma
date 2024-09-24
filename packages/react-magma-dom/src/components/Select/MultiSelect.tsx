@@ -271,12 +271,9 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
           testId="clearIndicator"
           style={{
             position: 'absolute',
-            right:
-              additionalContent &&
-              (labelPosition === 'left' || isLabelVisuallyHidden)
-                ? '5.25em'
-                : '2.75em',
-            bottom: errorMessage || helperMessage ? '2.55em' : '0.6em',
+            right: '2.75em',
+            top: '50%',
+            transform: 'translateY(-50%)'
           }}
         />
       )}
