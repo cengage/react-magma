@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.1
+
+### Minor Changes
+
+- c815b89ac: feat(TreeView): Add ability to change items selection outside
+
 ## 4.6.1-next.0
 
 ### Patch Changes

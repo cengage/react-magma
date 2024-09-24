@@ -12,6 +12,7 @@
   },
   "changesets": [
     "a11y-datePicker-shortcut",
-    "sync4-6"
+    "sync4-6",
+    "treeViewSelectItemsOutside"
   ]
 }
