@@ -170,7 +170,6 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   flex: 1 1 auto;
   align-items: center;
   display: flex;
-  flex-shrink: 0;
   position: relative;
   width: ${props.width || 'auto'};
   background-color: ${props.isInverse

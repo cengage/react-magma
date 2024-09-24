@@ -1,5 +1,29 @@
 ## 4.6.0
 
+## 4.7.0-next.4
+
+### Patch Changes
+
+- 482268a7e: fix(Input): Remove flex-shrink to allow inputs to shrink as needed.
+
+## 4.7.0-next.3
+
+### Patch Changes
+
+- a328ebe29: fix(Select): Fix the accessibility issue for `clearIndicator` inside `SelectTriggerButton`.
+
+## 4.7.0-next.2
+
+### Patch Changes
+
+- 5c3d7fce3: fix(search):Fix the disappearing focus on the button when loading
+
+## 4.7.0-next.1
+
+### Minor Changes
+
+- c815b89ac: feat(TreeView): Add ability to change items selection outside
+
 ## 4.6.1-next.0
 
 ### Patch Changes

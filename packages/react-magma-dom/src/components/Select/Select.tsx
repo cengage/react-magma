@@ -186,19 +186,27 @@ export function Select<T>(props: SelectProps<T>) {
         style={inputStyle}
         toggleButtonProps={toggleButtonProps}
       >
-        <SelectText data-testid="selectedItemText">{selectText}</SelectText>
-        {isClearable && selectedItem && (
-          <ClearIndicator
-            aria-label={clearIndicatorAriaLabel}
-            icon={<CloseIcon size={theme.iconSizes.xSmall} />}
-            onClick={defaultHandleClearIndicatorClick}
-            size={ButtonSize.small}
-            style={{ marginTop: '0', marginBottom: '0' }}
-            testId="clearIndicator"
-            variant={ButtonVariant.link}
-          />
-        )}
+        <SelectText data-testid="selectedItemText" isClearable={isClearable}>{selectText}</SelectText>
       </SelectTriggerButton>
+
+      {isClearable && selectedItem && (
+        <ClearIndicator
+          aria-label={clearIndicatorAriaLabel}
+          icon={<CloseIcon size={theme.iconSizes.xSmall} />}
+          onClick={defaultHandleClearIndicatorClick}
+          isInverse={isInverse}
+          size={ButtonSize.small}
+          style={{ 
+            position: 'absolute', 
+            right: '3.25em', 
+            top: '50%',
+            transform: 'translateY(-50%)'
+          }}
+          testId="clearIndicator"
+          variant={ButtonVariant.link}
+        />
+      )}
+
       <ItemsList
         customComponents={customComponents}
         floatingElementStyles={floatingElementStyles}
