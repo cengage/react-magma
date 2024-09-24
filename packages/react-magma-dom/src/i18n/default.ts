@@ -258,6 +258,10 @@ export const defaultI18n: I18nInterface = {
     placeholder: 'Select...',
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
+    multi: {
+      clearIndicatorAriaLabel:
+        'reset selection for {labelText}. {selectedItem} are selected',
+    },
   },
   simplePagination: {
     ofLabel: 'of',
