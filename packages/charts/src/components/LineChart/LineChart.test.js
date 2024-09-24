@@ -398,11 +398,9 @@ describe('Line Chart', () => {
         />
       );
 
-      userEvent.click(getByText(/chart/i, { selector: 'button' }));
-      userEvent.tab();
-      userEvent.tab();
-      userEvent.keyboard('{arrowdown}');
-      userEvent.keyboard('{arrowright}');
+      userEvent.click(getByText(/team 1/i));
+      userEvent.click(getByText(/team 1/i));
+      userEvent.tab({ shift: true });
 
       expect(getByLabelText(data[1].data[1].label)).toHaveFocus();
 

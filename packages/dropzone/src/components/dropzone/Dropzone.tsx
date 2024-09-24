@@ -5,7 +5,7 @@
  * `{...file}` WILL NOT COPY ALL OF THE FILE PROPERTIES
  */
 
-import React, { useImperativeHandle } from 'react';
+import React from 'react';
 import {
   useDropzone,
   DropzoneOptions,
@@ -28,7 +28,6 @@ import {
   ThemeInterface,
   useGenerateId,
   useIsInverse,
-  styled,
 } from 'react-magma-dom';
 
 import { CloudUploadIcon } from 'react-magma-icons';
@@ -256,7 +255,6 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       isDragActive,
       isDragReject,
       open,
-      inputRef,
     } = useDropzone({
       noClick: true,
       disabled,
@@ -267,13 +265,6 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       onDrop,
       noDrag,
     });
-
-    useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(
-      ref,
-      () => inputRef.current
-    );
-
-    const inputProps = getInputProps({ id });
 
     const dragState: DragState = errorMessage
       ? 'error'
@@ -431,19 +422,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
             testId={testId}
             tabIndex={-1}
           >
-            <input
-              ref={inputRef}
-              type={inputProps.type}
-              accept={inputProps.accept}
-              autoComplete={inputProps.autoComplete}
-              id={inputProps.id}
-              multiple={inputProps.multiple}
-              onChange={inputProps.onChange}
-              onClick={inputProps.onClick}
-              style={inputProps.style}
-              tabIndex={inputProps.tabIndex}
-              data-testid="file-input"
-            />
+            <input ref={ref} {...getInputProps({ id })} />
             {noDrag ? (
               <Flex xs behavior={FlexBehavior.item}>
                 <Button
