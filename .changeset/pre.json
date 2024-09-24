@@ -13,6 +13,7 @@
   "changesets": [
     "a11y-datePicker-shortcut",
     "a11y-search-loading",
+    "a11y-select-accessibility",
     "sync4-6",
     "treeViewSelectItemsOutside"
   ]

@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.3
+
+### Patch Changes
+
+- a328ebe29: fix(Select): Fix the accessibility issue for `clearIndicator` inside `SelectTriggerButton`.
+
 ## 4.7.0-next.2
 
 ### Patch Changes
