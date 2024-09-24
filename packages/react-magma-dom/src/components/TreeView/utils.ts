@@ -201,10 +201,10 @@ const getChildrenIds = ({ items, itemId }: { items: TreeViewItemInterface[]; ite
 
 const getChildrenUniqueStatuses = ({ items, itemId }: { items: TreeViewItemInterface[]; itemId: TreeViewItemInterface['itemId']; }) => {
   const childrenAndItemIds = getChildrenIds({ items, itemId });
-  const leafs = items.filter((item) => {
+  const leaves = items.filter((item) => {
     return !item.hasOwnTreeItems && childrenAndItemIds.includes(item.itemId);
   })
-  const uniqueStatuses = Array.from(new Set(leafs.map(item => item.checkedStatus ?? IndeterminateCheckboxStatus.unchecked)));
+  const uniqueStatuses = Array.from(new Set(leaves.map(item => item.checkedStatus ?? IndeterminateCheckboxStatus.unchecked)));
 
   return uniqueStatuses.filter(checkedStatus => checkedStatus && checkedStatus !== IndeterminateCheckboxStatus.indeterminate)
 }

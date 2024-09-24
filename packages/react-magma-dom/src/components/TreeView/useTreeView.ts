@@ -73,7 +73,7 @@ export interface UseTreeViewProps {
   children?: React.ReactNode[];
   /**
    * The ref object that allows TreeView manipulation.
-   * Available the next actions:
+   * Actions available:
    * selectItem({ itemId, checkedStatus }: Pick<TreeViewItemInterface, 'itemId' | 'checkedStatus'>): void - action that allows to change item selection, 
    * selectAll(): void - action that allows to select all items, 
    * clearAll(): void - action that allows to unselect all items.
@@ -110,21 +110,21 @@ export function useTreeView(props: UseTreeViewProps) {
   }, [items]); 
 
   const itemToFocus = React.useMemo(() => {
+    const [firstItem] = items;
+
+    if (selectable === TreeViewSelectable.off) {
+      const firstExpandableItem = items.find((item) => item.hasOwnTreeItems)
+
+      return firstExpandableItem ? firstExpandableItem.itemId : firstItem?.itemId;
+    }
+
     const firstNonUncheckedItem = items.find((item) => item.checkedStatus && item.checkedStatus !== IndeterminateCheckboxStatus.unchecked)
-    
+
     if (firstNonUncheckedItem) {
       return firstNonUncheckedItem.itemId;
     }
-    
-    const [firstItem] = items;
 
-    if (selectable !== TreeViewSelectable.off) {
-      return firstItem?.itemId;
-    }
-    
-    const firstExpandableItem = items.find((item) => item.hasOwnTreeItems)
-
-    return firstExpandableItem ? firstExpandableItem.itemId : firstItem?.itemId;
+    return firstItem?.itemId;
   }, [items]);
   
   const initializationRef = React.useRef(true);

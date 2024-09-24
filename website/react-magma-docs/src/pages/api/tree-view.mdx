@@ -508,6 +508,143 @@ export function Example() {
 }
 ```
 
+## Update Selected Items From Outside
+
+Use the `apiRef` prop to change items selection from outside. It exposes these functions: `selectItem`, `selectAll`, `clearAll`
+
+```typescript
+import React from 'react';
+import {
+ TreeView,
+ TreeItem,
+ Tag,
+ IndeterminateCheckboxStatus,
+ TreeViewSelectable,
+ ButtonGroup,
+ Button,
+ ButtonSize,
+ ButtonVariant,
+ TagSize,
+ TagColor,
+ TreeViewApi,
+ magma
+} from 'react-magma-dom';
+import { FolderIcon, ArticleIcon } from 'react-magma-icons';
+
+function createControlledTags(items = [], api?: TreeViewApi) {
+  const selected = items && items
+    .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
+    .map((i, key) => (
+      <Tag key={key} size={TagSize.small} color={TagColor.primary} onDelete={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+        {i.itemId}
+      </Tag>
+    ));
+
+  const indeterminate = items && items
+    .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate)
+    .map((i, key) => (
+      <Tag key={key} size={TagSize.small} color={TagColor.default} onDelete={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+        {i.itemId}
+      </Tag>
+    ));
+
+  return {
+    selected: selected || [],
+    indeterminate: indeterminate || [],
+  };
+}
+
+export function Example() {
+    const [selectedItems, setSelectedItems] = React.useState(null);
+  
+    const apiRef = React.useRef<TreeViewApi>(null);
+    
+    const { selected, indeterminate } = createControlledTags(selectedItems, apiRef.current);
+    
+    return (
+      <>
+        <Heading level={3} id="ah-textbook">
+          Gardner's Art through the ages
+        </Heading>
+        <TreeView ariaLabelledBy={'ah-textbook'} selectable={TreeViewSelectable.multi} apiRef={apiRef} onSelectedItemChange={setSelectedItems}>
+          <TreeItem
+            label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}
+            itemId="I-intro"
+          >
+            <TreeItem
+              label={<>Art History in the 21st Century</>}
+              itemId="I-21st-century"
+            >
+              <TreeItem
+                label={<>The Questions Art Historians Ask</>}
+                itemId="I-questions"
+              />
+              <TreeItem
+                label={<>The Words Art Historians Use</>}
+                itemId="I-words"
+              >
+                <TreeItem label={<>Vocabulary</>} itemId="I-vocab" />
+              </TreeItem>
+              <TreeItem
+                label={<>Art History and Other Disciplines</>}
+                itemId="I-other"
+              />
+            </TreeItem>
+            <TreeItem
+              label={<>Different Ways of Seeing</>}
+              itemId="I-different-ways"
+            />
+          </TreeItem>
+          <TreeItem label={<>1. ART IN THE STONE AGE</>} itemId="1-stone-age">
+            <TreeItem label={<>Paleolithic Art</>} itemId="1-paleolithic">
+              <TreeItem label={<>Africa</>} itemId="1-africa" />
+              <TreeItem label={<>Europe</>} itemId="1-europe" />
+            </TreeItem>
+            <TreeItem label={<>Neolithic Art</>} itemId="1-neolithic">
+              <TreeItem
+                label={<>Anatolia and Mesopotamia</>}
+                itemId="1-anatolia"
+              />
+              <TreeItem
+                label={<>Europe</>}
+                itemId="1-neolithic-europe"
+                isDisabled
+              />
+            </TreeItem>
+          </TreeItem>
+          <TreeItem
+            label={<>2. ANCIENT MESOPOTAMIA AND PERSIA</>}
+            itemId="2-ancient"
+          >
+            <TreeItem label={<>Mesopotamia</>} itemId="2-mesopotamia">
+              <TreeItem label={<>Sumer</>} itemId="2-sumer" />
+              <TreeItem label={<>Akkad</>} itemId="2-akkad" />
+              <TreeItem label={<>Third Dynasty of Ur</>} itemId="2-ur" />
+              <TreeItem label={<>Babylon</>} itemId="2-babylon" />
+              <TreeItem label={<>Elam</>} itemId="2-elam" />
+              <TreeItem label={<>Assyria</>} itemId="2-assyria" />
+              <TreeItem label={<>Neo-Babylonia</>} itemId="2-neo" />
+            </TreeItem>
+            <TreeItem label={<>Persia</>} itemId="2-persia">
+              <TreeItem label={<>Achaemenid Empire</>} itemId="2-achaemenid" />
+              <TreeItem label={<>Sasanian Empire</>} itemId="2-sasanian" />
+            </TreeItem>
+          </TreeItem>
+        </TreeView>
+        <br />
+        <>
+        <p>Selected: {selected}</p>
+        <p>Indeterminate: {indeterminate}</p>
+      </>
+        <ButtonGroup size={ButtonSize.small} variant={ButtonVariant.solid}>
+          <Button onClick={() => apiRef.current.selectAll()}>Select all</Button>
+          <Button onClick={() => apiRef.current.clearAll()}>Clear all</Button>
+        </ButtonGroup>
+      </>
+    );
+}
+```
+
 ## Change Events
 
 The following events are available: `onSelectedItemChange` and `onExpandedChange`.
@@ -672,269 +809,6 @@ export function Example() {
       </TreeView>
     </>
   );
-}
-```
-
-
-## Update Selected Items From Outside
-
-Use the `apiRef` prop to change items selection from outside. It exposes these functions: `selectItem`, `selectAll`, `clearAll`
-
-```typescript
-import React from 'react';
-import { TreeView, TreeItem, Tag, TreeViewApi, IndeterminateCheckboxStatus, TreeViewSelectable, magma } from 'react-magma-dom';
-
-function createControlledTags(items = [], api?: TreeViewApi) {
-  const selected = items && items
-    .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
-    .map((i, key) => (
-      <Tag key={key} size={TagSize.small} color={TagColor.primary} onDelete={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
-        {i.itemId}
-      </Tag>
-    ));
-
-  const indeterminate = items && items
-    .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate)
-    .map((i, key) => (
-      <Tag key={key} size={TagSize.small} color={TagColor.default} onDelete={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
-        {i.itemId}
-      </Tag>
-    ));
-
-  return {
-    selected: selected || [],
-    indeterminate: indeterminate || [],
-  };
-}
-
-export function Example() {
-    const [selectedItems, setSelectedItems] = React.useState(null);
-  
-    const apiRef = React.useRef<TreeViewApi>(null);
-    
-    const { selected, indeterminate } = createControlledTags(selectedItems, apiRef.current);
-    
-    return (
-      <>
-        <Card>
-          <TreeView selectable={TreeViewSelectable.multi} apiRef={apiRef} onSelectedItemChange={setSelectedItems}>
-            <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
-              <TreeItem
-                icon={<FolderIcon aria-hidden={true} />}
-                label={<>Chapter 1: I love tiramisu jelly beans soufflé</>}
-                itemId="pt1ch1"
-                testId="pt1ch1"
-              >
-                <TreeItem
-                  icon={<ArticleIcon aria-hidden={true} />}
-                  label={<>Section 1.1: Cake donut lemon drops gingerbread</>}
-                  itemId="pt1ch1.1"
-                />
-              </TreeItem>
-              <TreeItem
-                label={
-                  <>
-                    Chapter 2: Chocolate bar ice cream cake liquorice icing tart
-                  </>
-                }
-                itemId="pt1ch2"
-              />
-              <TreeItem
-                icon={<FolderIcon aria-hidden={true} />}
-                label={
-                  <>Chapter 3: Pudding jujubes icing fruitcake bonbon icing</>
-                }
-                itemId="pt1ch3"
-              >
-                <TreeItem
-                  icon={<ArticleIcon aria-hidden={true} />}
-                  label={
-                    <>
-                      Section 3.1: Topping pudding marshmallow caramels I love pie
-                    </>
-                  }
-                  itemId="pt1ch3.1"
-                />
-                <TreeItem
-                  icon={<ArticleIcon aria-hidden={true} />}
-                  label={
-                    <>
-                      Section 3.2: Tart sweet roll caramels candy canes sweet roll
-                    </>
-                  }
-                  itemId="pt1ch3.2"
-                />
-                <TreeItem
-                  icon={<ArticleIcon aria-hidden={true} />}
-                  label={
-                    <>
-                      Section 3.3: Tart sweet roll caramels candy canes sweet roll
-                    </>
-                  }
-                  itemId="pt1ch3.3"
-                />
-              </TreeItem>
-            </TreeItem>
-            <TreeItem
-              icon={<FolderIcon aria-hidden={true} />}
-              label={
-                <>
-                  Part 2: Candy powder carrot cake cotton candy marshmallow
-                  caramels croissant I love
-                </>
-              }
-              itemId="pt2"
-            >
-              <TreeItem
-                icon={<ArticleIcon aria-hidden={true} />}
-                label={
-                  <>
-                    Chapter 4: I love carrot cake sweet roll I love liquorice
-                    sweet
-                  </>
-                }
-                itemId="pt2ch4"
-              />
-              <TreeItem
-                icon={<FolderIcon aria-hidden={true} />}
-                label={
-                  <>
-                    Chapter 5: Wafer I love I love sesame snaps I love muffin
-                    dragée halvah
-                  </>
-                }
-                itemId="pt2ch5"
-              >
-                <TreeItem
-                  icon={<ArticleIcon aria-hidden={true} />}
-                  label={
-                    <>
-                      Section 5.1: Apple pie apple pie tart macaroon topping
-                      chocolate cake
-                    </>
-                  }
-                  itemId="pt2ch5.1"
-                >
-                  <TreeItem
-                    icon={<ArticleIcon aria-hidden={true} />}
-                    label={
-                      <>
-                        Section 5.1.1: Apple pie apple pie tart macaroon topping
-                        chocolate cake
-                      </>
-                    }
-                    itemId="pt2ch5.1.1"
-                  />
-                  <TreeItem
-                    icon={<ArticleIcon aria-hidden={true} />}
-                    label={
-                      <>
-                        Section 5.1.2: Apple pie apple pie tart macaroon topping
-                        chocolate cake
-                      </>
-                    }
-                    itemId="pt2ch5.1.2"
-                  />
-                </TreeItem>
-                <TreeItem
-                  icon={<ArticleIcon aria-hidden={true} />}
-                  label={
-                    <>
-                      Section 5.2: Jelly lollipop tart gummies pie croissant
-                      sesame snaps sesame snaps
-                    </>
-                  }
-                  itemId="pt2ch5.2"
-                />
-                <TreeItem
-                  icon={<ArticleIcon aria-hidden={true} />}
-                  label={
-                    <>
-                      Section 5.3: Bonbon chocolate bar lollipop lollipop I love
-                      chocolate cake cupcake soufflé pie
-                    </>
-                  }
-                  itemId="pt2ch5.3"
-                />
-              </TreeItem>
-              <TreeItem
-                icon={<ArticleIcon aria-hidden={true} />}
-                label={<>Chapter 6: Cupcake dragée I love cookie I love</>}
-                itemId="pt2ch6"
-              />
-            </TreeItem>
-            <TreeItem
-              icon={<FolderIcon aria-hidden={true} />}
-              label={
-                <>
-                  Part 3: Sugar plum halvah shortbread apple pie I love brownie
-                  gummi bears
-                </>
-              }
-              itemId="pt3"
-            >
-              <TreeItem
-                icon={<ArticleIcon aria-hidden={true} />}
-                label={
-                  <>
-                    Chapter 7: Cheesecake lollipop tootsie roll candy canes
-                    cupcake I love dessert liquorice
-                  </>
-                }
-                itemId="pt3ch7"
-              />
-              <TreeItem
-                icon={<ArticleIcon aria-hidden={true} />}
-                label={
-                  <>
-                    Chapter 8: Jelly pastry jelly-o topping cookie carrot cake
-                    shortbread
-                  </>
-                }
-                itemId="pt3ch8"
-              />
-              <TreeItem
-                icon={<ArticleIcon aria-hidden={true} />}
-                label={
-                  <>Chapter 9: Jelly beans sweet candy canes croissant bonbon.</>
-                }
-                itemId="pt3ch9"
-              />
-              <TreeItem
-                icon={<ArticleIcon aria-hidden={true} />}
-                label={
-                  <>
-                    Chapter 10: Wafer carrot cake powder candy canes sweet roll
-                    bear claw croissant cheesecake tart
-                  </>
-                }
-                itemId="pt3ch10"
-              />
-              <TreeItem
-                icon={<ArticleIcon aria-hidden={true} />}
-                label={
-                  <>
-                    Chapter 11: Apple pie chocolate cake tiramisu bonbon I love
-                    croissant. I love chupa chups croissant tiramisu toffee cake
-                    tart
-                  </>
-                }
-                itemId="pt3ch11"
-              />
-            </TreeItem>
-          </TreeView>
-        </Card>
-        <br />
-        <>
-        <p>Selected: {selected}</p>
-        <p>Indeterminate: {indeterminate}</p>
-      </>
-        <ButtonGroup size={ButtonSize.small} variant={ButtonVariant.solid}>
-          <Button onClick={() => apiRef.current.selectAll()}>Select all</Button>
-          <Button onClick={() => apiRef.current.clearAll()}>Clear all</Button>
-        </ButtonGroup>
-      </>
-    );
 }
 ```
 
