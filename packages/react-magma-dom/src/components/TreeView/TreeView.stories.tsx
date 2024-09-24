@@ -1,5 +1,5 @@
 import React from 'react';
-import { TreeView, TreeItem, TreeViewSelectable } from '.';
+import { TreeView, TreeItem, TreeViewSelectable, TreeViewApi } from '.';
 import { magma } from '../../theme/magma';
 
 import {
@@ -19,6 +19,8 @@ import {
   Flex,
   FlexBehavior,
   IndeterminateCheckboxStatus,
+  ButtonVariant,
+  ButtonGroup,
 } from '../..';
 import { ButtonSize } from '../Button';
 import { FlexAlignContent, FlexAlignItems } from '../Flex';
@@ -94,6 +96,30 @@ function createTags(items) {
   };
 }
 
+
+function createControlledTags(items = [], api?: TreeViewApi) {
+  const selected = items
+    ?.filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
+    .map((i, key) => (
+      <Tag key={key} size={TagSize.small} color={TagColor.primary} onDelete={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+        {i.itemId}
+      </Tag>
+    ));
+
+  const indeterminate = items
+    ?.filter(i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate)
+    .map((i, key) => (
+      <Tag key={key} size={TagSize.small} color={TagColor.default} onDelete={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+        {i.itemId}
+      </Tag>
+    ));
+
+  return {
+    selected,
+    indeterminate,
+  };
+}
+
 export const Simple = args => {
   const [selectedItems, setSelectedItems] = React.useState(null);
   const [indeterminateItems, setIndeterminateItems] = React.useState(null);
@@ -145,22 +171,16 @@ Simple.parameters = { controls: { exclude: ['isInverse'] } };
 
 export const Complex = args => {
   const [selectedItems, setSelectedItems] = React.useState(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
-  const [total, setTotal] = React.useState(selectedItems?.length || 0);
 
-  function onSelection(items) {
-    const selected = createTags(items).selected;
-    const indet = createTags(items).indeterminate;
+  const apiRef = React.useRef<TreeViewApi>(null);
 
-    setSelectedItems(selected);
-    setIndeterminateItems(indet);
-    setTotal(items.length);
-  }
+  const { selected, indeterminate } = createControlledTags(selectedItems, apiRef.current);
+  const total = selectedItems?.length || 0;
 
   return (
     <>
       <Card isInverse={args.isInverse}>
-        <TreeView {...args} onSelectedItemChange={onSelection}>
+        <TreeView {...args} apiRef={apiRef} onSelectedItemChange={setSelectedItems}>
           <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
             <TreeItem
               icon={<FolderIcon aria-hidden={true} />}
@@ -371,12 +391,16 @@ export const Complex = args => {
       {args.selectable !== TreeViewSelectable.off && (
         <>
           <p>{total} total</p>
-          <p>Selected: {selectedItems}</p>
+          <p>Selected: {selected}</p>
           {args.selectable === TreeViewSelectable.multi && (
-            <p>Indeterminate: {indeterminateItems}</p>
+            <p>Indeterminate: {indeterminate}</p>
           )}
         </>
       )}
+      <ButtonGroup size={ButtonSize.small} variant={ButtonVariant.solid}>
+        <Button onClick={() => apiRef.current?.selectAll()}>Select all</Button>
+        <Button onClick={() => apiRef.current?.clearAll()}>Clear all</Button>
+      </ButtonGroup>
     </>
   );
 };
@@ -396,6 +420,8 @@ Complex.args = {
     { itemId: 'pt2ch5.2', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt2ch5.3', checkedStatus: IndeterminateCheckboxStatus.checked },
   ],
+  checkParents: true,
+  checkChildren: true,
   testId: 'complex-example',
 };
 
