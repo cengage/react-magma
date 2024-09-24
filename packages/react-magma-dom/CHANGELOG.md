@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.4
+
+### Patch Changes
+
+- 482268a7e: fix(Input): Remove flex-shrink to allow inputs to shrink as needed.
+
 ## 4.7.0-next.3
 
 ### Patch Changes
