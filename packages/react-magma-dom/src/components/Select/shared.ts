@@ -37,9 +37,12 @@ export const StyledButton = styled.div`
   text-align: left;
 `;
 
-export const SelectText = styled.span`
-  flex-grow: 1;
-  padding: 0 8px 0 4px;
+export const SelectText = styled.span<{ isClearable?: boolean }>`
+  padding-left: 4px;
+  padding-right: ${props => props.isClearable ? '2.5em' : '1.5em'};
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const StyledCard = typedStyled(Card)<{
@@ -154,6 +157,7 @@ export const SelectedItemButton = typedStyled.button<{
     ${props => props.theme.spaceScale.spacing03};
   position: relative;
   white-space: nowrap;
+  min-width: 0%;
 `;
 
 export const IconWrapper = styled.span`
