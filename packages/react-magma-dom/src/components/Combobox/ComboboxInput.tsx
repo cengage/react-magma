@@ -195,50 +195,50 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
 
   return (
     <div ref={setReference}>
-    <ComboBoxContainer
-      {...getComboboxProps()}
-      hasError={hasError}
-      disabled={disabled}
-      isInverse={isInverse}
-      theme={theme}
-    >
-      <InputContainer
-        {...getToggleButtonProps({
-          disabled,
-          ...(toggleButtonRef && { ref: toggleButtonRef }),
-        })}
+      <ComboBoxContainer
+        {...getComboboxProps()}
         hasError={hasError}
         disabled={disabled}
-        isFocused={isFocused}
         isInverse={isInverse}
-        style={inputStyle}
         theme={theme}
-        ref={innerRef}
       >
-        <SelectedItemsWrapper>
-          {selectedItems}
-          <StyledInput
-            {...inputProps}
-            aria-describedby={ariaDescribedBy}
-            aria-invalid={hasError}
-            disabled={disabled}
-            isInverse={isInverse}
-            placeholder={placeholder}
-            theme={theme}
+        <InputContainer
+          {...getToggleButtonProps({
+            disabled,
+            ...(toggleButtonRef && { ref: toggleButtonRef }),
+          })}
+          hasError={hasError}
+          disabled={disabled}
+          isFocused={isFocused}
+          isInverse={isInverse}
+          style={inputStyle}
+          theme={theme}
+          ref={innerRef}
+        >
+          <SelectedItemsWrapper>
+            {selectedItems}
+            <StyledInput
+              {...inputProps}
+              aria-describedby={ariaDescribedBy}
+              aria-invalid={hasError}
+              disabled={disabled}
+              isInverse={isInverse}
+              placeholder={placeholder}
+              theme={theme}
+            />
+          </SelectedItemsWrapper>
+          {children}
+          {isLoading && !isTypeahead && (
+            <LoadingIndicator
+              style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
+            />
+          )}
+          <DropdownIndicator
+            aria-label="toggle menu"
+            color={dropdownIndicatorColor()}
           />
-        </SelectedItemsWrapper>
-        {children}
-        {isLoading && !isTypeahead && (
-          <LoadingIndicator
-            style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
-          />
-        )}
-        <DropdownIndicator
-          aria-label="toggle menu"
-          color={dropdownIndicatorColor()}
-        />
-      </InputContainer>
-    </ComboBoxContainer>
+        </InputContainer>
+      </ComboBoxContainer>
     </div>
   );
 }

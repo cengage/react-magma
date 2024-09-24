@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, act } from '@testing-library/react';
+import { act, fireEvent, getByTestId, render } from '@testing-library/react';
 import { Select as MultiSelect } from '.';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
@@ -546,6 +546,19 @@ describe('Select', () => {
     );
 
     expect(getByText(helperMessage)).toBeInTheDocument();
+  });
+
+  it('should have appropriate styles for items', () => {
+    const testId = 'items-list';
+
+    const { getByTestId } = render(
+      <MultiSelect isMulti items={items} labelText={labelText} />
+    );
+    expect(getByTestId(testId)).toHaveStyle('top: 0');
+    expect(getByTestId(testId)).toHaveStyle('left: 0');
+    expect(getByTestId(testId)).toHaveStyle('position: absolute');
+    expect(getByTestId(testId)).toHaveStyle('z-index: 2');
+    expect(getByTestId(testId)).toHaveStyle('width: 100%');
   });
 
   describe('events', () => {

@@ -8,7 +8,7 @@ import {
   ButtonVariant,
 } from '../Button';
 import { IconButton } from '../IconButton';
-import { ArrowDropUpIcon, ArrowDropDownIcon } from 'react-magma-icons';
+import { ArrowDropDownIcon, ArrowDropUpIcon } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { I18nContext } from '../../i18n';
 import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
@@ -87,7 +87,7 @@ export const DropdownSplitButton = React.forwardRef<
   }
 
   return (
-    <>
+    <div data-testid={'dropdownSplitButton-wrapper'} ref={context.setReference}>
       <Button
         {...other}
         id={resolvedContext.dropdownButtonId.current}
@@ -114,6 +114,6 @@ export const DropdownSplitButton = React.forwardRef<
         ref={ref}
         variant={variant}
       />
-    </>
+    </div>
   );
 });

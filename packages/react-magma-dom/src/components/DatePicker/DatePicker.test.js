@@ -1,19 +1,19 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
-  format,
-  subWeeks,
-  subDays,
-  startOfMonth,
-  startOfWeek,
-  subMonths,
+  addDays,
   addMonths,
   addWeeks,
-  addDays,
   endOfWeek,
-  isSameDay,
+  format,
   getDay,
+  isSameDay,
+  startOfMonth,
+  startOfWeek,
+  subDays,
+  subMonths,
+  subWeeks,
 } from 'date-fns';
 import * as es from 'date-fns/locale/es';
 import { DatePicker } from '.';
@@ -600,6 +600,21 @@ describe('Date Picker', () => {
 
     expect(onDateChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalled();
+  });
+
+  it('should have appropriate styles for date calendar wrapper', () => {
+    const testId = 'calendarContainer-wrapper';
+    const { getByLabelText, getByTestId } = render(
+      <DatePicker labelText="Date Picker Label" />
+    );
+
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+
+    expect(getByTestId(testId)).toBeInTheDocument();
+    expect(getByTestId(testId)).toHaveStyle('top: 0');
+    expect(getByTestId(testId)).toHaveStyle('left: 0');
+    expect(getByTestId(testId)).toHaveStyle('position: absolute');
+    expect(getByTestId(testId)).toHaveStyle('z-index: 998');
   });
 
   describe('on key down press', () => {

@@ -98,7 +98,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   }
 
   return (
-    <div ref={setFloating} style={{...floatingElementStyles, zIndex: '2'}}>
+    <div data-testid={'items-list'} ref={setFloating} style={{...floatingElementStyles, zIndex: '2'}}>
       <StyledCard
         hasDropShadow
         isInverse={isInverse}
