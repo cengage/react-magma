@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/react';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
@@ -46,6 +45,11 @@ export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   currentStep: number;
   /**
+   * Vertical orientation.
+   * @default false
+   */
+  isVertical?: boolean;
+  /**
    * Inverse styling.
    */
   isInverse?: boolean;
@@ -76,33 +80,43 @@ function buildSeparatorBackgroundColors(props) {
   }
 }
 
-const StyledStepper = styled.div`
+const StyledStepper = styled.div<{ isVertical?: boolean; hasLabels?: boolean }>`
   display: flex;
-  flex: 1;
-  flex-direction: column;
+  flex: ${props => (props.isVertical ? '0 0 auto' : 1)};
+  width: ${props => props.isVertical && props.hasLabels && '128px'};
+  flex-direction: ${props => !props.isVertical && 'column'};
 `;
 
-const StyledStepContent = styled.ol`
+const StyledStepContent = styled.ol<{ isVertical?: boolean }>`
   display: flex;
   margin: 0;
   padding: 0;
+  flex-direction: ${props => props.isVertical && 'column'};
 `;
 
-const StyledLiWrapper = styled.li<{ hasLabels?: boolean }>`
+const StyledLiWrapper = styled.li<{
+  hasLabels?: boolean;
+  isVertical?: boolean;
+}>`
   list-style-type: none;
-  ${props =>
-    props.hasLabels
-      ? css`
-          position: relative;
-          flex: 1;
-        `
-      : css`
-          display: contents;
-        `}
+  display: ${props => !props.isVertical && !props.hasLabels && 'contents'};
+  flex: ${props => !props.isVertical && 1};
+  position: relative;
+
+  min-height: ${props => props.isVertical && '64px'};
+  margin: 0;
 `;
+
+const isActiveLabels = props => {
+  return (
+    props.showLabelsLayout &&
+    (props.bothLabels || props.allStepsHaveLabels || props.secondaryLabel)
+  );
+};
 
 const StyledSeparator = styled.div<{
   isInverse?: boolean;
+  isVertical?: boolean;
   bothLabels?: boolean;
   allStepsHaveLabels?: boolean;
   secondaryLabel?: boolean;
@@ -111,25 +125,22 @@ const StyledSeparator = styled.div<{
   theme?: ThemeInterface;
 }>`
   background: ${buildSeparatorBackgroundColors};
-  width: ${props =>
-    props.showLabelsLayout &&
-    (props.bothLabels || props.allStepsHaveLabels || props.secondaryLabel)
-      ? 'calc(100% - 24px)'
-      : '100%'};
-  height: 2px;
-  top: 11px;
+  width: ${props => {
+    if (props.isVertical) {
+      return '2px';
+    }
+
+    return isActiveLabels(props) ? 'calc(100% - 24px)' : '100%';
+  }};
+
+  height: ${props => (props.isVertical ? 'calc(100% - 24px)' : '2px')};
+  top: ${props => (props.isVertical ? '24px' : '11px')};
   left: ${props =>
-    props.showLabelsLayout &&
-    (props.bothLabels || props.allStepsHaveLabels || props.secondaryLabel)
-      ? 'calc(50% + 12px)'
-      : ''};
+    props.isVertical ? '11px' : isActiveLabels(props) && 'calc(50% + 12px)'};
   position: ${props =>
-    props.showLabelsLayout &&
-    (props.bothLabels || props.allStepsHaveLabels || props.secondaryLabel)
-      ? 'absolute'
-      : 'relative'};
+    isActiveLabels(props) || props.isVertical ? 'absolute' : 'relative'};
   align-self: baseline;
-  transition: all 0.4s ease;
+  transition: background 0.4s ease;
 `;
 
 const StyledSummary = styled.div<{
@@ -138,7 +149,7 @@ const StyledSummary = styled.div<{
 }>`
   display: flex;
   flex-direction: column;
-  position:relative;
+  position: relative;
   font-size: ${props =>
     props.theme.typographyVisualStyles.bodySmall.desktop.fontSize};
   letter-spacing: ${props =>
@@ -163,11 +174,11 @@ const StyledSummary = styled.div<{
   div span {
     margin: 3px 0;
     span:first-child {
-      margin: 0
+      margin: 0;
     }
     span:last-child {
       margin: 4px 0 0 0;
-    } 
+    }
   }
 `;
 
@@ -183,6 +194,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       layout = StepperLayout.showLabels,
       stepLabel,
       isInverse: isInverseProp,
+      isVertical,
       testId,
       ...rest
     } = props;
@@ -275,6 +287,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
           const item = React.cloneElement(child, {
             isInverse,
             index,
+            isVertical,
             layout: summaryViewLayout
               ? StepperLayout.summaryView
               : hideLabelsLayout
@@ -291,6 +304,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                 <StyledSeparator
                   key={`separator-${index}`}
                   isInverse={isInverse}
+                  isVertical={isVertical}
                   bothLabels={allStepsHaveLabels && allStepsHaveSecondaryLabels}
                   allStepsHaveLabels={allStepsHaveLabels}
                   secondaryLabel={allStepsHaveSecondaryLabels}
@@ -309,6 +323,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                 showLabelsLayout &&
                 (allStepsHaveLabels || allStepsHaveSecondaryLabels)
               }
+              isVertical={isVertical}
             >
               {stepAndSeparator()}
             </StyledLiWrapper>
@@ -334,8 +349,20 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       props.completionLabel || i18n.stepper.completionLabel;
 
     return (
-      <StyledStepper {...rest} data-testid={testId} ref={ref}>
-        <StyledStepContent aria-label={ariaLabel} theme={theme}>
+      <StyledStepper
+        {...rest}
+        data-testid={testId}
+        ref={ref}
+        isVertical={isVertical}
+        hasLabels={
+          showLabelsLayout || summaryViewLayout
+        }
+      >
+        <StyledStepContent
+          aria-label={ariaLabel}
+          theme={theme}
+          isVertical={isVertical}
+        >
           {stepContent}
         </StyledStepContent>
         {summaryViewLayout && (

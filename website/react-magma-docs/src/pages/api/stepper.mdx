@@ -801,6 +801,97 @@ export function Example() {
 }
 ```
 
+## Vertical
+
+```typescript
+import React from 'react';
+import {
+  Container,
+  Stepper,
+  Step,
+  Button,
+  ButtonGroup,
+  Flex,
+  FlexBehavior,
+  FlexWrap,
+  FlexAlignItems,
+  FlexJustify,
+  FlexDirection,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <Flex
+      behavior={FlexBehavior.container}
+      wrap={FlexWrap.nowrap}
+      style={{ gap: '24px' }}
+    >
+      <Stepper ariaLabel="progress" currentStep={currentStep} isVertical>
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Flex
+        behavior={FlexBehavior.container}
+        alignItems={FlexAlignItems.stretch}
+        justify={FlexJustify.spaceBetween}
+        direction={FlexDirection.column}
+      >
+        <Container
+          style={{
+            background: '#F5F5F5',
+            borderRadius: '6px',
+            padding: '20px',
+            width: '100%',
+            flex: 10,
+          }}
+        >
+          {currentStep === 0 && <div>Step Content One</div>}
+          {currentStep === 1 && <div>Step Content Two</div>}
+          {currentStep === 2 && <div>Step Content Three</div>}
+          {currentStep === 3 && <div>Step Content Four</div>}
+          {currentStep === 4 && <div>Steps Completed</div>}
+        </Container>
+
+        <Flex
+          behavior={FlexBehavior.item}
+          style={{ padding: '20px 0', alignSelf: 'flex-end' }}
+        >
+          <ButtonGroup>
+            <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+              Previous
+            </Button>
+            <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+              {currentStep >= 4 ? 'Finish' : 'Next'}
+            </Button>
+          </ButtonGroup>
+        </Flex>
+      </Flex>
+    </Flex>
+  );
+}
+```
+
 ## Inverse
 
 ```typescript

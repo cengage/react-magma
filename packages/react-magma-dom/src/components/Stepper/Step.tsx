@@ -38,6 +38,10 @@ export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * @internal
    */
+  isVertical?: boolean;
+  /**
+   * @internal
+   */
   isInverse?: boolean;
   /**
    * @internal
@@ -130,13 +134,17 @@ export const HiddenLabelText = styled.span`
   ${HiddenStyles};
 `;
 
-const StyledStep = styled.div`
+const StyledStep = styled.div<{
+  isVertical?: boolean;
+}>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${props => !props.isVertical && 'column'};
   justify-content: center;
-  text-align: center;
+  text-align: ${props => !props.isVertical && 'center'};
   align-self: self-start;
-  align-items: center;
+  align-items: ${props => !props.isVertical && 'center'};
+  /* min-height: ${props => props.isVertical && '64px'}; */
+  /* gap: '8px'; */
 `;
 
 const StyledStepIndicator = styled.span<{
@@ -165,13 +173,13 @@ const StyledStepIndicator = styled.span<{
   }
 `;
 
-const StyledStepTextWrapper = styled.span`
+const StyledStepTextWrapper = styled.span<{ isVertical?: boolean }>`
   flex: 1;
   display: flex;
   align-self: center;
   flex-direction: column;
   position: relative;
-  margin: 6px 8px 0;
+  margin: ${props => (props.isVertical ? '2px 0 24px 8px' : '6px 8px 0')};
 `;
 
 const StyledLabel = styled.span<{
@@ -193,6 +201,7 @@ const StyledSecondaryLabel = styled.span<{
   isInverse?: boolean;
   secondaryLabel?: string;
   theme?: ThemeInterface;
+  isVertical?: boolean;
 }>`
   color: ${buildStepLabelColors};
   font-size: ${props =>
@@ -201,7 +210,8 @@ const StyledSecondaryLabel = styled.span<{
     props.theme.typographyVisualStyles.bodyXSmall.desktop.letterSpacing};
   line-height: ${props =>
     props.theme.typographyVisualStyles.bodyXSmall.desktop.lineHeight};
-  margin: 2px 12px 0 12px;
+  /* margin: 2px 12px 0 12px; */
+  margin: ${props => (props.isVertical ? '2px 0 0' : '2px 12px 0 12px')};
 `;
 
 export const Step = React.forwardRef<HTMLDivElement, StepProps>(
@@ -216,13 +226,19 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
       testId,
       isInverse: isInverseProp,
       stepStatus,
+      isVertical,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
     return (
-      <StyledStep {...rest} ref={ref} data-testid={testId}>
+      <StyledStep
+        {...rest}
+        ref={ref}
+        data-testid={testId}
+        isVertical={isVertical}
+      >
         <StyledStepIndicator
           hasError={hasError}
           isInverse={isInverse}
@@ -235,7 +251,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
           {hasError && <CrossIcon aria-hidden="true" />}
         </StyledStepIndicator>
 
-        <StyledStepTextWrapper>
+        <StyledStepTextWrapper isVertical={isVertical}>
           {layout !== StepperLayout.hideLabels &&
           layout !== StepperLayout.summaryView ? (
             <>
@@ -264,6 +280,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
                   isInverse={isInverse}
                   data-testid={testId && `${testId}-secondaryLabel`}
                   theme={theme}
+                  isVertical={isVertical}
                 >
                   {secondaryLabel}
                 </StyledSecondaryLabel>

@@ -6,7 +6,14 @@ import { Container } from '../Container';
 import { ButtonGroup } from '../ButtonGroup';
 import { InputType } from '../InputBase';
 import { Input } from '../Input';
-import { Flex, FlexAlignItems, FlexBehavior, FlexJustify } from '../Flex';
+import {
+  Flex,
+  FlexAlignItems,
+  FlexBehavior,
+  FlexDirection,
+  FlexJustify,
+  FlexWrap,
+} from '../Flex';
 import { LabelPosition } from '../Label';
 
 export default {
@@ -44,6 +51,10 @@ export default {
       control: 'text',
     },
     isInverse: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    isVertical: {
       control: 'boolean',
       defaultValue: false,
     },
@@ -99,59 +110,72 @@ const Template: Story<StepperProps> = args => {
   });
 
   return (
-    <>
+    <Flex
+      behavior={FlexBehavior.container}
+      wrap={args.isVertical ? FlexWrap.nowrap : FlexWrap.wrap}
+      style={{ gap: '24px' }}
+    >
       <Stepper currentStep={currentStep} {...args}>
         {step}
       </Stepper>
 
-      <Container
-        style={{
-          background: args.isInverse ? '#1A1E51' : '#F5F5F5',
-          borderRadius: '6px',
-          margin: '20px 0 0',
-          padding: '20px',
-        }}
-      >
-        <div>
-          {currentStep < numberOfSteps
-            ? `Item Content ${currentStep + 1}`
-            : `Items Completed`}
-        </div>
-      </Container>
-
       <Flex
         behavior={FlexBehavior.container}
-        alignItems={FlexAlignItems.center}
+        alignItems={
+          args.isVertical ? FlexAlignItems.stretch : FlexAlignItems.center
+        }
         justify={FlexJustify.spaceBetween}
-        style={{ paddingTop: '20px' }}
+        direction={FlexDirection.column}
       >
-        <Flex behavior={FlexBehavior.item}>
-          <Input
-            labelPosition={LabelPosition.left}
-            labelText="Step Amount"
-            value={numberOfSteps}
-            min={2}
-            max={20}
-            onChange={handleOnChange}
-            type={InputType.number}
-          />
-        </Flex>
-        <Flex behavior={FlexBehavior.item}>
-          <ButtonGroup>
-            <Button onClick={handleOnPrevious} disabled={currentStep === 0}>
-              Previous
-            </Button>
-            <Button
-              onClick={
-                currentStep < numberOfSteps ? handleOnNext : handleFinish
-              }
-            >
-              {currentStep < numberOfSteps ? 'Next' : 'Finish'}
-            </Button>
-          </ButtonGroup>
+        <Container
+          style={{
+            background: args.isInverse ? '#1A1E51' : '#F5F5F5',
+            borderRadius: '6px',
+            padding: '20px',
+            width: '100%',
+            flex: 10,
+          }}
+        >
+          <div>
+            {currentStep < numberOfSteps
+              ? `Item Content ${currentStep + 1}`
+              : `Items Completed`}
+          </div>
+        </Container>
+
+        <Flex
+          behavior={FlexBehavior.both}
+          justify={FlexJustify.spaceBetween}
+          style={{ paddingTop: '20px', flex: 1 }}
+        >
+          <Flex behavior={FlexBehavior.item}>
+            <Input
+              labelPosition={LabelPosition.left}
+              labelText="Step Amount"
+              value={numberOfSteps}
+              min={2}
+              max={20}
+              onChange={handleOnChange}
+              type={InputType.number}
+            />
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <ButtonGroup>
+              <Button onClick={handleOnPrevious} disabled={currentStep === 0}>
+                Previous
+              </Button>
+              <Button
+                onClick={
+                  currentStep < numberOfSteps ? handleOnNext : handleFinish
+                }
+              >
+                {currentStep < numberOfSteps ? 'Next' : 'Finish'}
+              </Button>
+            </ButtonGroup>
+          </Flex>
         </Flex>
       </Flex>
-    </>
+    </Flex>
   );
 };
 
@@ -175,7 +199,11 @@ const RealisticLabels: Story<StepperProps> = args => {
   };
 
   return (
-    <>
+    <Flex
+      behavior={FlexBehavior.container}
+      wrap={args.isVertical ? FlexWrap.nowrap : FlexWrap.wrap}
+      style={{ gap: '24px' }}
+    >
       <Stepper currentStep={currentStep} {...args}>
         <Step
           key={0}
@@ -203,38 +231,55 @@ const RealisticLabels: Story<StepperProps> = args => {
         />
       </Stepper>
 
-      <Container
-        style={{
-          background: '#F5F5F5',
-          borderRadius: '6px',
-          margin: '20px 0 0',
-          padding: '20px',
-        }}
+      <Flex
+        behavior={FlexBehavior.container}
+        alignItems={
+          args.isVertical ? FlexAlignItems.stretch : FlexAlignItems.center
+        }
+        justify={FlexJustify.spaceBetween}
+        direction={FlexDirection.column}
       >
-        {currentStep === 0 && <div>Fenway seating Content</div>}
-        {currentStep === 1 && <div>Guest information Content</div>}
-        {currentStep === 2 && <div>Yankees fans? Content</div>}
-        {currentStep === 3 && <div>MBTA and parking information Content</div>}
-        {currentStep === 4 && <div>Steps completed</div>}
-      </Container>
+        <Container
+          style={{
+            background: args.isInverse ? '#1A1E51' : '#F5F5F5',
+            borderRadius: '6px',
+            padding: '20px',
+            width: '100%',
+            flex: 10,
+          }}
+        >
+          {currentStep === 0 && <div>Fenway seating Content</div>}
+          {currentStep === 1 && <div>Guest information Content</div>}
+          {currentStep === 2 && <div>Yankees fans? Content</div>}
+          {currentStep === 3 && <div>MBTA and parking information Content</div>}
+          {currentStep === 4 && <div>Steps completed</div>}
+        </Container>
 
-      <Container style={{ padding: '20px 0' }}>
-        <ButtonGroup>
-          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
-            Previous
-          </Button>
-          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
-            {currentStep >= 4 ? 'Finish' : 'Next'}
-          </Button>
-        </ButtonGroup>
-      </Container>
-    </>
+        <Flex
+          behavior={FlexBehavior.item}
+          style={{ padding: '20px 0', alignSelf: 'flex-end' }}
+        >
+          <ButtonGroup>
+            <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+              Previous
+            </Button>
+            <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+              {currentStep >= 4 ? 'Finish' : 'Next'}
+            </Button>
+          </ButtonGroup>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 };
 
 const ErrorTemplate: Story<StepperProps> = args => {
   return (
-    <>
+    <Flex
+      behavior={FlexBehavior.container}
+      wrap={args.isVertical ? FlexWrap.nowrap : FlexWrap.wrap}
+      style={{ gap: '24px' }}
+    >
       <Stepper currentStep={2} {...args}>
         <Step key={0} label="First Item" secondaryLabel="Description One">
           Item Content One
@@ -254,32 +299,52 @@ const ErrorTemplate: Story<StepperProps> = args => {
           Item Content Four
         </Step>
       </Stepper>
-      <Container
-        style={{
-          background: args.isInverse ? '#1A1E51' : '#F5F5F5',
-          borderRadius: '6px',
-          margin: '20px 0 0',
-          padding: '20px',
-        }}
-      >
-        <div>Item Content Three</div>
-      </Container>
 
-      <Container style={{ padding: '20px 0' }}>
-        <ButtonGroup>
-          <Button disabled>Previous</Button>
-          <Button disabled>Next</Button>
-        </ButtonGroup>
-      </Container>
-    </>
+      <Flex
+        behavior={FlexBehavior.container}
+        alignItems={
+          args.isVertical ? FlexAlignItems.stretch : FlexAlignItems.center
+        }
+        justify={FlexJustify.spaceBetween}
+        direction={FlexDirection.column}
+      >
+        <Container
+          style={{
+            background: args.isInverse ? '#1A1E51' : '#F5F5F5',
+            borderRadius: '6px',
+            padding: '20px',
+            width: '100%',
+            flex: 10,
+          }}
+        >
+          <div>Item Content Three</div>
+        </Container>
+
+        <Flex
+          behavior={FlexBehavior.item}
+          style={{ padding: '20px 0', alignSelf: 'flex-end' }}
+        >
+          <ButtonGroup>
+            <Button disabled>Previous</Button>
+            <Button disabled>Next</Button>
+          </ButtonGroup>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 };
 
 export const Default = Template.bind({});
 Default.args = {};
 
+export const Vertical = Template.bind({});
+Vertical.args = {
+  ...Default.args,
+  isVertical: true,
+};
+
 export const RealWorldExample = RealisticLabels.bind({});
-RealisticLabels.args = {
+RealWorldExample.args = {
   stepLabel: 'Module',
 };
 
