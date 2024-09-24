@@ -143,8 +143,6 @@ const StyledStep = styled.div<{
   text-align: ${props => !props.isVertical && 'center'};
   align-self: self-start;
   align-items: ${props => !props.isVertical && 'center'};
-  /* min-height: ${props => props.isVertical && '64px'}; */
-  /* gap: '8px'; */
 `;
 
 const StyledStepIndicator = styled.span<{
@@ -210,7 +208,6 @@ const StyledSecondaryLabel = styled.span<{
     props.theme.typographyVisualStyles.bodyXSmall.desktop.letterSpacing};
   line-height: ${props =>
     props.theme.typographyVisualStyles.bodyXSmall.desktop.lineHeight};
-  /* margin: 2px 12px 0 12px; */
   margin: ${props => (props.isVertical ? '2px 0 0' : '2px 12px 0 12px')};
 `;
 
