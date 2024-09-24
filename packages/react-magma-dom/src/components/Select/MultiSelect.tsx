@@ -271,7 +271,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
           testId="clearIndicator"
           style={{
             position: 'absolute',
-            right: '2.75em',
+            right: '3.25em',
             top: '50%',
             transform: 'translateY(-50%)'
           }}

@@ -194,7 +194,7 @@ export function Select<T>(props: SelectProps<T>) {
           size={ButtonSize.small}
           style={{ 
             position: 'absolute', 
-            right: '2.75em', 
+            right: '3.25em', 
             top: '50%',
             transform: 'translateY(-50%)'
           }}

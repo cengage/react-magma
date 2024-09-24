@@ -36,7 +36,7 @@ export const StyledButton = styled.div`
 
 export const SelectText = styled.span<{ isClearable?: boolean }>`
   padding-left: 4px;
-  padding-right: ${props => props.isClearable ? '2em' : '1.5em'};
+  padding-right: ${props => props.isClearable ? '2.5em' : '1.5em'};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
