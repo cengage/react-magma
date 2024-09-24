@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.2
+
+### Patch Changes
+
+- 5c3d7fce3: fix(search):Fix the disappearing focus on the button when loading
+
 ## 4.7.0-next.1
 
 ### Minor Changes
