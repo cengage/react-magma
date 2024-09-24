@@ -74,7 +74,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     items,
     selectItem,
   } = React.useContext(TreeViewContext);
-
+  
   const treeViewItemData = React.useMemo(() => {
     return items.find(item => item.itemId === itemId);
   }, [itemId, items]);

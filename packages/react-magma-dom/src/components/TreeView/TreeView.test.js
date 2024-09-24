@@ -3145,4 +3145,123 @@ describe('TreeView', () => {
       expect(onSelectedItemChange).toHaveBeenCalledTimes(3);
     });
   });
+
+  describe('when controlled outside', () => {
+    it('should be able to select all and clear all outside of TreeView', () => {
+      const onSelectedItemChange = jest.fn();
+      const { getByTestId, debug } = render(
+        <TreeItemsMultiLevelControlledOutside onSelectedItemChange={onSelectedItemChange} />
+      );
+
+      expect(onSelectedItemChange).not.toHaveBeenCalled();
+
+      userEvent.click(getByTestId('select-all'));
+
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: "item0",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item1",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item-child1",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item2",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item-child2.1",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item-gchild2",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item-ggchild1",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item-ggchild2",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item-ggchild3",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item3",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item-child3",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+      
+      userEvent.click(getByTestId('clear-all'));
+
+      expect(onSelectedItemChange).toHaveBeenCalledWith([]);
+    });
+    
+    it('should be able to unselect item outside of TreeView', () => {
+      const onSelectedItemChange = jest.fn();
+      const { getByTestId, debug } = render(
+        <TreeItemsMultiLevelControlledOutside onSelectedItemChange={onSelectedItemChange} />
+      );
+
+      expect(onSelectedItemChange).not.toHaveBeenCalled();
+
+      userEvent.click(getByTestId('select-all'));
+      userEvent.click(getByTestId('item-ggchild2-tag'));
+
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: "item0",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item1",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item-child1",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item2",
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: "item-child2.1",
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: "item-gchild2",
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: "item-ggchild1",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item-ggchild3",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item3",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: "item-child3",
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+    });
+  });
 });
