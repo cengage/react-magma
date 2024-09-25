@@ -147,8 +147,14 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   };
 
   const handleClick = (event, itemId) => {
+    const isChecked = checkedStatus === IndeterminateCheckboxStatus.checked;
+
+    if (selectable === TreeViewSelectable.single && isChecked) {
+      return;
+    }
+
     if (selectable !== TreeViewSelectable.off) {
-      selectItem({ itemId, checkedStatus: checkedStatus === IndeterminateCheckboxStatus.checked ? IndeterminateCheckboxStatus.unchecked : IndeterminateCheckboxStatus.checked })
+      selectItem({ itemId, checkedStatus: isChecked ? IndeterminateCheckboxStatus.unchecked : IndeterminateCheckboxStatus.checked })
       onClick && typeof onClick === 'function' && onClick();
     }
   };

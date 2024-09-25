@@ -64,6 +64,19 @@ const StyledTreeItem = styled.li<{
   padding-inline-start: ${props =>
     calculateOffset(props.nodeType, props.depth)};
 
+  &:focus {
+    outline: none;
+
+    & > *:first-child {
+      outline-offset: -2px;
+      outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+}
+  }
+
   > div:first-of-type {
     background: ${props =>
       props.selected && props.isInverse
@@ -171,14 +184,6 @@ const StyledItemWrapper = styled.div<{
       props.selectable,
       props.nodeType
     )};
-  &:focus {
-    outline-offset: -2px;
-    outline: 2px solid
-      ${props =>
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
-  }
 `;
 
 export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
