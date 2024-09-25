@@ -185,7 +185,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     const filteredRefArray = filterNullEntries(treeItemRefArray);
     const curr = filteredRefArray['current'];
 
-    (curr?.[0].current as HTMLDivElement).focus();
+    (curr?.[0].current as HTMLDivElement).closest<HTMLElement>('[role=treeitem]').focus();
   };
 
   const focusNext = () => {
@@ -203,11 +203,11 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     }
 
     if (next) {
-      next.focus();
+      next.closest<HTMLElement>('[role=treeitem]').focus();
     } else {
       const nextNext = curr?.[focusIndex + 2]?.current as HTMLDivElement;
       if (nextNext) {
-        nextNext.focus();
+        nextNext.closest<HTMLElement>('[role=treeitem]').focus();
       } else {
         focusFirst();
       }
@@ -229,7 +229,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     }
 
     if (itemToFocus) {
-      itemToFocus.focus();
+      itemToFocus.closest<HTMLElement>('[role=treeitem]').focus();
     }
   };
 
@@ -239,7 +239,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
     (
       filteredRefArray['current']?.[arrLength - 1].current as HTMLDivElement
-    ).focus();
+    ).closest<HTMLElement>('[role=treeitem]').focus();
   };
 
   const focusSelf = () => {
@@ -247,7 +247,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     const curr = filteredRefArray['current'];
     focusIndex = getFocusIndex(curr);
 
-    (curr?.[focusIndex].current as HTMLDivElement).focus();
+    (curr?.[focusIndex].current as HTMLDivElement).closest<HTMLElement>('[role=treeitem]').focus();
   };
 
   const expandFocusedNode = () => {
@@ -283,6 +283,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       event.preventDefault();
       event.stopPropagation();
     }
+
+    const isChecked = checkedStatus === IndeterminateCheckboxStatus.checked;
 
     switch (event.key) {
       case 'ArrowDown': {
@@ -320,6 +322,9 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
           setExpanded(!expanded);
         } else if (selectable === TreeViewSelectable.single) {
+          if (isChecked) {
+            return;
+          }
           // In single-select it selects the focused node.
           selectItem({ itemId, checkedStatus: IndeterminateCheckboxStatus.checked })
         } else if (selectable === TreeViewSelectable.multi) {
@@ -336,6 +341,9 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           if (hasOwnTreeItems) {
             setExpanded(!expanded);
           } else {
+            if (isChecked) {
+              return;
+            }
             selectItem({ itemId, checkedStatus: IndeterminateCheckboxStatus.checked });
           }
         } else if (selectable === TreeViewSelectable.multi) {

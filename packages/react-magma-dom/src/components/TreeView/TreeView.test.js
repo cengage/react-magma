@@ -687,8 +687,17 @@ describe('TreeView', () => {
           })
         );
 
-        userEvent.click(getByTestId('item1-label'));
+        const item1 = getByTestId('item1');
+        const item1Label = getByTestId('item1-label');
+
+        userEvent.click(item1Label);
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(1)
         expect(onSelectedItemChange).toHaveBeenCalled();
+        expect(item1).toHaveAttribute('aria-selected', 'true');
+
+        userEvent.click(item1Label);
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
+        expect(item1).toHaveAttribute('aria-selected', 'true');
       });
 
       it('function gets called when it has a preselected item', () => {
@@ -1612,12 +1621,18 @@ describe('TreeView', () => {
           fireEvent.keyDown(item1wrapper, { key: 'Enter' });
 
           expect(item1).toHaveAttribute('aria-selected', 'true');
+          expect(onSelectedItemChange).toHaveBeenCalledTimes(1)
           expect(onSelectedItemChange).toHaveBeenCalledWith([
             {
               itemId: 'item1',
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
           ]);
+          
+          fireEvent.keyDown(item1wrapper, { key: 'Enter' });
+
+          expect(item1).toHaveAttribute('aria-selected', 'true');
+          expect(onSelectedItemChange).toHaveBeenCalledTimes(1)
         });
 
         it('should select the leaf item when pressing the Space key', () => {
@@ -1638,12 +1653,18 @@ describe('TreeView', () => {
           fireEvent.keyDown(item0wrapper, { key: ' ' });
 
           expect(item0).toHaveAttribute('aria-selected', 'true');
+          expect(onSelectedItemChange).toHaveBeenCalledTimes(1)
           expect(onSelectedItemChange).toHaveBeenCalledWith([
             {
               itemId: 'item0',
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
           ]);
+          
+          fireEvent.keyDown(item0wrapper, { key: ' ' });
+
+          expect(item0).toHaveAttribute('aria-selected', 'true');
+          expect(onSelectedItemChange).toHaveBeenCalledTimes(1)
         });
 
         it('should toggle expand the branch item when pressing the Space key', () => {

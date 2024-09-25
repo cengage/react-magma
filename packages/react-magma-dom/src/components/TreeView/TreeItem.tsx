@@ -317,7 +317,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           theme={theme}
           tabIndex={itemToFocus === itemId ? 0 : -1}
           onKeyDown={handleKeyDown}
-          ref={ref}
           onClick={event => {
             if (selectable===TreeViewSelectable.off && hasOwnTreeItems) {
               onExpandedClicked(event);
@@ -334,6 +333,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             selectable={selectable}
             style={style}
             theme={theme}
+            ref={ref}
           >
             {hasOwnTreeItems && (
               <StyledExpandWrapper
