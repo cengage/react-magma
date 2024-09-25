@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '../Button';
-import { Stepper, StepperProps, Step, StepperLayout } from './';
+import { Stepper, StepperProps, Step, StepperLayout, StepperOrientation } from './';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Container } from '../Container';
 import { ButtonGroup } from '../ButtonGroup';
@@ -54,9 +54,12 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
-    isVertical: {
-      control: 'boolean',
-      defaultValue: false,
+    orientation: {
+      control: {
+        type: 'select',
+        options: StepperOrientation,
+        defaultValue: StepperOrientation.horizontal,
+      }
     },
     testId: {
       control: 'text',
@@ -112,7 +115,7 @@ const Template: Story<StepperProps> = args => {
   return (
     <Flex
       behavior={FlexBehavior.container}
-      wrap={args.isVertical ? FlexWrap.nowrap : FlexWrap.wrap}
+      wrap={args.orientation === StepperOrientation.vertical ? FlexWrap.nowrap : FlexWrap.wrap}
       style={{ gap: '24px' }}
     >
       <Stepper currentStep={currentStep} {...args}>
@@ -122,7 +125,7 @@ const Template: Story<StepperProps> = args => {
       <Flex
         behavior={FlexBehavior.container}
         alignItems={
-          args.isVertical ? FlexAlignItems.stretch : FlexAlignItems.center
+          args.orientation === StepperOrientation.vertical ? FlexAlignItems.stretch : FlexAlignItems.center
         }
         justify={FlexJustify.spaceBetween}
         direction={FlexDirection.column}
@@ -201,7 +204,7 @@ const RealisticLabels: Story<StepperProps> = args => {
   return (
     <Flex
       behavior={FlexBehavior.container}
-      wrap={args.isVertical ? FlexWrap.nowrap : FlexWrap.wrap}
+      wrap={args.orientation === StepperOrientation.vertical ? FlexWrap.nowrap : FlexWrap.wrap}
       style={{ gap: '24px' }}
     >
       <Stepper currentStep={currentStep} {...args}>
@@ -234,7 +237,7 @@ const RealisticLabels: Story<StepperProps> = args => {
       <Flex
         behavior={FlexBehavior.container}
         alignItems={
-          args.isVertical ? FlexAlignItems.stretch : FlexAlignItems.center
+          args.orientation === StepperOrientation.vertical ? FlexAlignItems.stretch : FlexAlignItems.center
         }
         justify={FlexJustify.spaceBetween}
         direction={FlexDirection.column}
@@ -277,33 +280,35 @@ const ErrorTemplate: Story<StepperProps> = args => {
   return (
     <Flex
       behavior={FlexBehavior.container}
-      wrap={args.isVertical ? FlexWrap.nowrap : FlexWrap.wrap}
+      wrap={args.orientation === StepperOrientation.vertical ? FlexWrap.nowrap : FlexWrap.wrap}
       style={{ gap: '24px' }}
     >
-      <Stepper currentStep={2} {...args}>
-        <Step key={0} label="First Item" secondaryLabel="Description One">
-          Item Content One
-        </Step>
-        <Step key={1} label="Second Item" secondaryLabel="Description Two">
-          Item Content Two
-        </Step>
-        <Step
-          key={2}
-          label="Third Item"
-          hasError
-          secondaryLabel="Description Three"
-        >
-          Item Content Three
-        </Step>
-        <Step key={3} label="Fourth Item" secondaryLabel="Description Four">
-          Item Content Four
-        </Step>
-      </Stepper>
+      <Container style={{ width: '128px' }}>
+        <Stepper currentStep={2} {...args}>
+          <Step key={0} label="First Item" secondaryLabel="Description One">
+            Item Content One
+          </Step>
+          <Step key={1} label="Second Item" secondaryLabel="Description Two">
+            Item Content Two
+          </Step>
+          <Step
+            key={2}
+            label="Third Item"
+            hasError
+            secondaryLabel="Description Three"
+          >
+            Item Content Three
+          </Step>
+          <Step key={3} label="Fourth Item" secondaryLabel="Description Four">
+            Item Content Four
+          </Step>
+        </Stepper>
+      </Container>
 
       <Flex
         behavior={FlexBehavior.container}
         alignItems={
-          args.isVertical ? FlexAlignItems.stretch : FlexAlignItems.center
+          args.orientation === StepperOrientation.vertical ? FlexAlignItems.stretch : FlexAlignItems.center
         }
         justify={FlexJustify.spaceBetween}
         direction={FlexDirection.column}
@@ -340,7 +345,7 @@ Default.args = {};
 export const Vertical = Template.bind({});
 Vertical.args = {
   ...Default.args,
-  isVertical: true,
+  orientation: StepperOrientation.vertical,
 };
 
 export const RealWorldExample = RealisticLabels.bind({});

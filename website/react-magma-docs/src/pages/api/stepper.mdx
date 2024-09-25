@@ -817,6 +817,7 @@ import {
   FlexAlignItems,
   FlexJustify,
   FlexDirection,
+  StepperOrientation,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -844,7 +845,7 @@ export function Example() {
       wrap={FlexWrap.nowrap}
       style={{ gap: '24px' }}
     >
-      <Stepper ariaLabel="progress" currentStep={currentStep} isVertical>
+      <Stepper ariaLabel="progress" currentStep={currentStep} orientation={StepperOrientation.vertical}>
         <Step label="First Step" secondaryLabel="Description One" />
         <Step label="Second Step" secondaryLabel="Description Two" />
         <Step label="Third Step" secondaryLabel="Description Three" />

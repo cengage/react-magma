@@ -7,7 +7,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { useIsInverse } from '../../inverse';
 import { transparentize } from 'polished';
 import { HiddenStyles } from '../../utils/UtilityStyles';
-import { StepperLayout } from './Stepper';
+import { StepperLayout, StepperOrientation } from './Stepper';
 
 export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -38,7 +38,7 @@ export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * @internal
    */
-  isVertical?: boolean;
+  orientation?: StepperOrientation;
   /**
    * @internal
    */
@@ -135,14 +135,14 @@ export const HiddenLabelText = styled.span`
 `;
 
 const StyledStep = styled.div<{
-  isVertical?: boolean;
+  orientation: StepperOrientation;
 }>`
   display: flex;
-  flex-direction: ${props => !props.isVertical && 'column'};
+  flex-direction: ${props => props.orientation === StepperOrientation.horizontal && 'column'};
   justify-content: center;
-  text-align: ${props => !props.isVertical && 'center'};
+  text-align: ${props => props.orientation === StepperOrientation.horizontal && 'center'};
   align-self: self-start;
-  align-items: ${props => !props.isVertical && 'center'};
+  align-items: ${props => props.orientation === StepperOrientation.horizontal && 'center'};
 `;
 
 const StyledStepIndicator = styled.span<{
@@ -171,13 +171,13 @@ const StyledStepIndicator = styled.span<{
   }
 `;
 
-const StyledStepTextWrapper = styled.span<{ isVertical?: boolean }>`
+const StyledStepTextWrapper = styled.span<{ orientation?: StepperOrientation }>`
   flex: 1;
   display: flex;
   align-self: center;
   flex-direction: column;
   position: relative;
-  margin: ${props => (props.isVertical ? '2px 0 24px 8px' : '6px 8px 0')};
+  margin: ${props => (props.orientation === StepperOrientation.vertical ? '2px 0 24px 8px' : '6px 8px 0')};
 `;
 
 const StyledLabel = styled.span<{
@@ -199,7 +199,7 @@ const StyledSecondaryLabel = styled.span<{
   isInverse?: boolean;
   secondaryLabel?: string;
   theme?: ThemeInterface;
-  isVertical?: boolean;
+  orientation?: StepperOrientation;
 }>`
   color: ${buildStepLabelColors};
   font-size: ${props =>
@@ -208,7 +208,7 @@ const StyledSecondaryLabel = styled.span<{
     props.theme.typographyVisualStyles.bodyXSmall.desktop.letterSpacing};
   line-height: ${props =>
     props.theme.typographyVisualStyles.bodyXSmall.desktop.lineHeight};
-  margin: ${props => (props.isVertical ? '2px 0 0' : '2px 12px 0 12px')};
+  margin: ${props => (props.orientation === StepperOrientation.vertical ? '2px 0 0' : '2px 12px 0 12px')};
 `;
 
 export const Step = React.forwardRef<HTMLDivElement, StepProps>(
@@ -218,12 +218,12 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
       index,
       label,
       layout,
+      orientation = StepperOrientation.horizontal,
       secondaryLabel,
       stepLabel,
       testId,
       isInverse: isInverseProp,
       stepStatus,
-      isVertical,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
@@ -234,7 +234,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
         {...rest}
         ref={ref}
         data-testid={testId}
-        isVertical={isVertical}
+        orientation={orientation}
       >
         <StyledStepIndicator
           hasError={hasError}
@@ -248,7 +248,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
           {hasError && <CrossIcon aria-hidden="true" />}
         </StyledStepIndicator>
 
-        <StyledStepTextWrapper isVertical={isVertical}>
+        <StyledStepTextWrapper orientation={orientation}>
           {layout !== StepperLayout.hideLabels &&
           layout !== StepperLayout.summaryView ? (
             <>
@@ -277,7 +277,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
                   isInverse={isInverse}
                   data-testid={testId && `${testId}-secondaryLabel`}
                   theme={theme}
-                  isVertical={isVertical}
+                  orientation={orientation}
                 >
                   {secondaryLabel}
                 </StyledSecondaryLabel>

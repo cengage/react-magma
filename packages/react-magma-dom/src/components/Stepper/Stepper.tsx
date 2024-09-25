@@ -45,10 +45,9 @@ export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   currentStep: number;
   /**
-   * Vertical orientation.
-   * @default false
+   * Determines if the stepper is displayed vertically or horizontally
    */
-  isVertical?: boolean;
+  orientation?: StepperOrientation;
   /**
    * Inverse styling.
    */
@@ -63,6 +62,11 @@ export enum StepperLayout {
   showLabels = 'showLabels', //default
   hideLabels = 'hideLabels',
   summaryView = 'summaryView',
+}
+
+export enum StepperOrientation {
+  horizontal = 'horizontal', //default
+  vertical = 'vertical',
 }
 
 function buildSeparatorBackgroundColors(props) {
@@ -80,30 +84,29 @@ function buildSeparatorBackgroundColors(props) {
   }
 }
 
-const StyledStepper = styled.div<{ isVertical?: boolean; hasLabels?: boolean }>`
+const StyledStepper = styled.div<{ orientation?: StepperOrientation; hasLabels?: boolean }>`
   display: flex;
-  flex: ${props => (props.isVertical ? '0 0 auto' : 1)};
-  width: ${props => props.isVertical && props.hasLabels && '128px'};
-  flex-direction: ${props => !props.isVertical && 'column'};
+  flex: ${props => (props.orientation === StepperOrientation.vertical ? '0 0 auto' : 1)};
+  flex-direction: ${props => props.orientation === StepperOrientation.horizontal && 'column'};
 `;
 
-const StyledStepContent = styled.ol<{ isVertical?: boolean }>`
+const StyledStepContent = styled.ol<{ orientation?: StepperOrientation }>`
   display: flex;
   margin: 0;
   padding: 0;
-  flex-direction: ${props => props.isVertical && 'column'};
+  flex-direction: ${props => props.orientation === StepperOrientation.vertical && 'column'};
 `;
 
 const StyledLiWrapper = styled.li<{
   hasLabels?: boolean;
-  isVertical?: boolean;
+  orientation?: StepperOrientation;
 }>`
   list-style-type: none;
-  display: ${props => !props.isVertical && !props.hasLabels && 'contents'};
-  flex: ${props => !props.isVertical && 1};
+  display: ${props => props.orientation === StepperOrientation.horizontal && !props.hasLabels && 'contents'};
+  flex: ${props => props.orientation === StepperOrientation.horizontal && 1};
   position: relative;
 
-  min-height: ${props => props.isVertical && '64px'};
+  min-height: ${props => props.orientation === StepperOrientation.vertical && '64px'};
   margin: 0;
 `;
 
@@ -116,7 +119,7 @@ const isActiveLabels = props => {
 
 const StyledSeparator = styled.div<{
   isInverse?: boolean;
-  isVertical?: boolean;
+  orientation?: StepperOrientation;
   bothLabels?: boolean;
   allStepsHaveLabels?: boolean;
   secondaryLabel?: boolean;
@@ -126,19 +129,19 @@ const StyledSeparator = styled.div<{
 }>`
   background: ${buildSeparatorBackgroundColors};
   width: ${props => {
-    if (props.isVertical) {
+    if (props.orientation === StepperOrientation.vertical) {
       return '2px';
     }
 
     return isActiveLabels(props) ? 'calc(100% - 24px)' : '100%';
   }};
 
-  height: ${props => (props.isVertical ? 'calc(100% - 24px)' : '2px')};
-  top: ${props => (props.isVertical ? '24px' : '11px')};
+  height: ${props => (props.orientation === StepperOrientation.vertical ? 'calc(100% - 24px)' : '2px')};
+  top: ${props => (props.orientation === StepperOrientation.vertical ? '24px' : '11px')};
   left: ${props =>
-    props.isVertical ? '11px' : isActiveLabels(props) && 'calc(50% + 12px)'};
+    props.orientation === StepperOrientation.vertical ? '11px' : isActiveLabels(props) && 'calc(50% + 12px)'};
   position: ${props =>
-    isActiveLabels(props) || props.isVertical ? 'absolute' : 'relative'};
+    isActiveLabels(props) || props.orientation === StepperOrientation.vertical ? 'absolute' : 'relative'};
   align-self: baseline;
   transition: background 0.4s ease;
 `;
@@ -192,9 +195,9 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       children,
       currentStep,
       layout = StepperLayout.showLabels,
+      orientation = StepperOrientation.horizontal,
       stepLabel,
       isInverse: isInverseProp,
-      isVertical,
       testId,
       ...rest
     } = props;
@@ -270,6 +273,18 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       }
     }
 
+    const getLayout = () => {
+      if (orientation === StepperOrientation.vertical) {
+        return showLabelsLayout ? StepperLayout.showLabels : StepperLayout.hideLabels;
+      }
+
+      return summaryViewLayout
+      ? StepperLayout.summaryView
+      : hideLabelsLayout
+      ? StepperLayout.hideLabels
+      : StepperLayout.showLabels;
+    }
+
     const stepContent = React.Children.map(
       children,
       (
@@ -287,12 +302,8 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
           const item = React.cloneElement(child, {
             isInverse,
             index,
-            isVertical,
-            layout: summaryViewLayout
-              ? StepperLayout.summaryView
-              : hideLabelsLayout
-              ? StepperLayout.hideLabels
-              : StepperLayout.showLabels,
+            orientation,
+            layout: getLayout(),
             stepLabel: stepLabel || i18n.stepper.stepLabel,
             stepStatus: stepStatusStyles,
           });
@@ -304,7 +315,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                 <StyledSeparator
                   key={`separator-${index}`}
                   isInverse={isInverse}
-                  isVertical={isVertical}
+                  orientation={orientation}
                   bothLabels={allStepsHaveLabels && allStepsHaveSecondaryLabels}
                   allStepsHaveLabels={allStepsHaveLabels}
                   secondaryLabel={allStepsHaveSecondaryLabels}
@@ -323,7 +334,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                 showLabelsLayout &&
                 (allStepsHaveLabels || allStepsHaveSecondaryLabels)
               }
-              isVertical={isVertical}
+              orientation={orientation}
             >
               {stepAndSeparator()}
             </StyledLiWrapper>
@@ -353,7 +364,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
         {...rest}
         data-testid={testId}
         ref={ref}
-        isVertical={isVertical}
+        orientation={orientation}
         hasLabels={
           showLabelsLayout || summaryViewLayout
         }
@@ -361,11 +372,11 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
         <StyledStepContent
           aria-label={ariaLabel}
           theme={theme}
-          isVertical={isVertical}
+          orientation={orientation}
         >
           {stepContent}
         </StyledStepContent>
-        {summaryViewLayout && (
+        {summaryViewLayout && orientation === StepperOrientation.horizontal && (
           <StyledSummary
             data-testid={testId && `${testId}-stepper-summary`}
             isInverse={isInverse}
