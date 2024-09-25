@@ -19,6 +19,7 @@ export function Select<T>(props: SelectProps<T>) {
     components: customComponents,
     defaultSelectedItem,
     errorMessage,
+    floatingElementStyles,
     hasError,
     helperMessage,
     inputStyle,
@@ -45,6 +46,8 @@ export function Select<T>(props: SelectProps<T>) {
     messageStyle,
     placeholder,
     selectedItem: passedInSelectedItem,
+    setReference,
+    setFloating,
   } = props;
 
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
@@ -161,8 +164,8 @@ export function Select<T>(props: SelectProps<T>) {
   return (
     <SelectContainer
       additionalContent={additionalContent}
-      errorMessage={errorMessage}
       descriptionId={ariaDescribedBy}
+      errorMessage={errorMessage}
       getLabelProps={getLabelProps}
       helperMessage={helperMessage}
       isInverse={isInverse}
@@ -176,11 +179,12 @@ export function Select<T>(props: SelectProps<T>) {
       <SelectTriggerButton
         ariaDescribedBy={ariaDescribedBy}
         customComponents={customComponents}
-        toggleButtonProps={toggleButtonProps}
-        hasError={hasError}
         disabled={disabled}
+        hasError={hasError}
         isInverse={isInverse}
+        setReference={setReference}
         style={inputStyle}
+        toggleButtonProps={toggleButtonProps}
       >
         <SelectText data-testid="selectedItemText" isClearable={isClearable}>{selectText}</SelectText>
       </SelectTriggerButton>
@@ -205,15 +209,17 @@ export function Select<T>(props: SelectProps<T>) {
 
       <ItemsList
         customComponents={customComponents}
+        floatingElementStyles={floatingElementStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
-        isOpen={isOpen}
         isInverse={isInverse}
-        maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
+        isOpen={isOpen}
         items={items}
         itemToString={itemToString}
+        maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
         menuStyle={menuStyle}
+        setFloating={setFloating}
       />
     </SelectContainer>
   );

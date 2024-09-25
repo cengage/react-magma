@@ -1,9 +1,18 @@
 import * as React from 'react';
+import { useState } from 'react';
 import { useDescendants } from '../../hooks/useDescendants';
 import { resolveProps, useForkedRef } from '../../utils';
 import { useIsInverse } from '../../inverse';
 import { ButtonGroupContext } from '../ButtonGroup';
 import styled from '@emotion/styled';
+import {
+  AlignedPlacement,
+  autoUpdate,
+  flip,
+  offset,
+  useFloating,
+} from '@floating-ui/react-dom';
+import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
 
 export enum DropdownDropDirection {
   down = 'down', //default
@@ -33,6 +42,10 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default DropdownDropDirection.down
    */
   dropDirection?: DropdownDropDirection;
+  /**
+   * If true, the component will have inverse styling to better appear on a dark background
+   * @default false
+   */
   isInverse?: boolean;
   /**
    * Max-height of dropdown content
@@ -70,6 +83,7 @@ interface DropdownContextInterface {
   closeDropdown?: (event: React.SyntheticEvent | React.KeyboardEvent) => void;
   dropdownButtonId?: React.MutableRefObject<string>;
   dropDirection?: DropdownDropDirection;
+  floatingStyles?: React.CSSProperties;
   handleDropdownBlur?: (event: React.FocusEvent) => void;
   itemRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
   isFixedWidth?: boolean;
@@ -84,6 +98,8 @@ interface DropdownContextInterface {
   ) => void;
   setActiveItemIndex?: React.Dispatch<React.SetStateAction<number>>;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setFloating?: (node: ReferenceType) => void;
+  setReference?: (node: ReferenceType) => void;
   toggleRef?: any;
   width?: string;
 }
@@ -232,6 +248,37 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
     const isInverse = useIsInverse(resolvedProps.isInverse);
 
+    const [placement, setPlacement] = useState('bottom-start');
+
+    const changePlacement = (
+      dropDirection: string = DropdownDropDirection.down,
+      alignment: string = DropdownAlignment.start
+    ) => {
+      const placementMap = new Map([
+        ['up-start', 'top-start'],
+        ['up-end', 'top-end'],
+        ['right-start', 'right-start'],
+        ['right-end', 'right-end'],
+        ['down-end', 'bottom-end'],
+        ['left-start', 'left-start'],
+        ['left-end', 'left-end'],
+      ]);
+
+      const contentPosition = `${dropDirection}-${alignment}`;
+
+      setPlacement(placementMap.get(contentPosition) ?? 'bottom-start');
+    };
+
+    const { refs, floatingStyles } = useFloating({
+      middleware: [flip(), offset(2)],
+      placement: placement as AlignedPlacement,
+      whileElementsMounted: autoUpdate,
+    });
+
+    React.useEffect(() => {
+      changePlacement(dropDirection, alignment);
+    }, [dropDirection, alignment]);
+
     return (
       <DropdownContext.Provider
         value={{
@@ -240,6 +287,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
           closeDropdown,
           dropdownButtonId,
           dropDirection,
+          floatingStyles,
           handleDropdownBlur,
           itemRefArray,
           isFixedWidth: !!width,
@@ -251,6 +299,8 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
           registerDropdownMenuItem,
           setActiveItemIndex,
           setIsOpen,
+          setReference: refs.setReference,
+          setFloating: refs.setFloating,
           toggleRef,
           width: widthString,
         }}

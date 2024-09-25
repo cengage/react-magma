@@ -33,6 +33,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       messageStyle,
       testId,
       value,
+      setReference,
       ...other
     } = props;
 
@@ -110,6 +111,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           onClear={handleClear}
           onDateChange={props.onDateChange}
           ref={ref}
+          setReference={setReference}
           testId={testId}
           value={value}
         >

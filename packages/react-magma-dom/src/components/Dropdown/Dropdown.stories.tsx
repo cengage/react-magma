@@ -1,9 +1,9 @@
 import React from 'react';
 import {
   Dropdown,
-  DropdownProps,
-  DropdownDropDirection,
   DropdownAlignment,
+  DropdownDropDirection,
+  DropdownProps,
 } from './index';
 import { DropdownButton } from './DropdownButton';
 import { DropdownContent } from './DropdownContent';
@@ -14,9 +14,6 @@ import { DropdownMenuNavItem } from './DropdownMenuNavItem';
 import { DropdownSplitButton } from './DropdownSplitButton';
 import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
 import { Card, CardBody } from '../Card';
-import { Input } from '../Input';
-import { Checkbox } from '../Checkbox';
-import { PasswordInput } from '../PasswordInput';
 import {
   LocalPizzaIcon,
   LunchDiningIcon,
@@ -24,8 +21,8 @@ import {
   RestaurantMenuIcon,
   SettingsIcon,
 } from 'react-magma-icons';
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { Paragraph, Spacer } from '../..';
+import { Meta, Story } from '@storybook/react/types-6-0';
+import { Paragraph, Spacer, SpacerAxis } from '../..';
 import { ButtonGroup } from '../ButtonGroup';
 import { DropdownExpandableMenuButton } from './DropdownExpandableMenuButton';
 import { DropdownExpandableMenuItem } from './DropdownExpandableMenuItem';
@@ -532,5 +529,97 @@ export const ExpandableItemsWithIconsAndConsoleWarning = args => {
         <DropdownMenuItem icon={<LocalPizzaIcon />}>Pizza</DropdownMenuItem>
       </DropdownContent>
     </Dropdown>
+  );
+};
+
+export const FlippedItems = args => {
+  const sampleDropdown = (
+    dropDirection: DropdownDropDirection,
+    buttonName: string
+  ) => (
+    <Dropdown {...args} dropDirection={dropDirection}>
+      <DropdownButton>{buttonName}</DropdownButton>
+      <DropdownContent>
+        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number two </DropdownMenuItem>
+        <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number three </DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+
+  return (
+    <>
+      <div style={{ display: 'flex' }}>
+        <div style={{ flex: 1 }}>
+          <Paragraph>Vertical Overflow Down to Up</Paragraph>
+          <div
+            style={{
+              width: '400px',
+              height: '400px',
+              border: '2px solid black',
+              overflowY: 'scroll',
+            }}
+          >
+            <Spacer size={300} axis={SpacerAxis.vertical} />
+            <div style={{ textAlign: 'center' }}>
+              {sampleDropdown(DropdownDropDirection.down, 'down to up')}
+            </div>
+            <Spacer size={300} axis={SpacerAxis.vertical} />
+          </div>
+        </div>
+
+        <div style={{ flex: 2 }}>
+          <Paragraph>Horizontal Overflow Right to Left</Paragraph>
+          <div
+            style={{
+              width: '600px',
+              height: '200px',
+              border: '2px solid black',
+              overflowX: 'scroll',
+              paddingLeft: '250px',
+            }}
+          >
+            <Spacer size={900} axis={SpacerAxis.horizontal} />
+            {sampleDropdown(DropdownDropDirection.right, 'right to left')}
+          </div>
+        </div>
+      </div>
+      <div style={{ display: 'flex' }}>
+        <div style={{ flex: 1 }}>
+          <Paragraph>Vertical Overflow Up to Down</Paragraph>
+          <div
+            style={{
+              width: '400px',
+              height: '400px',
+              border: '2px solid black',
+              overflowY: 'scroll',
+            }}
+          >
+            <Spacer size={300} axis={SpacerAxis.vertical} />
+            <div style={{ textAlign: 'center' }}>
+              {sampleDropdown(DropdownDropDirection.up, 'up to down')}
+            </div>
+            <Spacer size={300} axis={SpacerAxis.vertical} />
+          </div>
+        </div>
+
+        <div style={{ flex: 2 }}>
+          <Paragraph>Horizontal Overflow Left to Right</Paragraph>
+          <div
+            style={{
+              width: '600px',
+              height: '200px',
+              border: '2px solid black',
+              overflowX: 'scroll',
+              paddingLeft: '250px',
+            }}
+          >
+            <Spacer size={900} axis={SpacerAxis.horizontal} />
+            {sampleDropdown(DropdownDropDirection.left, 'left to right')}
+          </div>
+        </div>
+      </div>
+    </>
   );
 };

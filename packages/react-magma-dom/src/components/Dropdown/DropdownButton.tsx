@@ -1,11 +1,11 @@
 import { css } from '@emotion/core';
 import * as React from 'react';
-import { IconButton, ButtonIconPosition } from '../IconButton';
+import { ButtonIconPosition, IconButton } from '../IconButton';
 import {
+  ArrowDropDownIcon,
   ArrowDropUpIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  ArrowDropDownIcon,
   IconProps,
 } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
@@ -131,19 +131,21 @@ export const DropdownButton = React.forwardRef<
     : ButtonIconPosition.right;
 
   return (
-    <StyledIconButton
-      {...other}
-      aria-expanded={context.isOpen}
-      aria-haspopup="true"
-      icon={icon}
-      iconPosition={iconPositionToUse}
-      id={context.dropdownButtonId.current}
-      isInverse={context.isInverse}
-      onClick={handleClick}
-      ref={ref}
-      theme={theme}
-    >
-      {children}
-    </StyledIconButton>
+    <div ref={context.setReference}>
+      <StyledIconButton
+        {...other}
+        aria-expanded={context.isOpen}
+        aria-haspopup="true"
+        icon={icon}
+        iconPosition={iconPositionToUse}
+        id={context.dropdownButtonId.current}
+        isInverse={context.isInverse}
+        onClick={handleClick}
+        ref={ref}
+        theme={theme}
+      >
+        {children}
+      </StyledIconButton>
+    </div>
   );
 });

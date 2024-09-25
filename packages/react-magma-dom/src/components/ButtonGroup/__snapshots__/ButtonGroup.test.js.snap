@@ -1122,17 +1122,18 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   width: auto;
   background: #FFFFFF;
   display: none;
-  left: 4px;
   max-height: 250px;
   opacity: 0;
   outline: 0;
   overflow-y: auto;
   padding: 8px 0;
-  position: absolute;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-  z-index: 2;
+}
+
+.emotion-16:focus {
+  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
@@ -1462,17 +1463,18 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   width: auto;
   background: #FFFFFF;
   display: none;
-  left: 4px;
   max-height: 250px;
   opacity: 0;
   outline: 0;
   overflow-y: auto;
   padding: 8px 0;
-  position: absolute;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-  z-index: 2;
+}
+
+.emotion-16:focus {
+  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
@@ -1534,55 +1536,61 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
     <div
       class="emotion-14 emotion-15"
     >
-      <button
-        aria-expanded="false"
-        aria-haspopup="true"
-        class="emotion-8 emotion-9 emotion-3"
-        color="primary"
-        id="2"
-        shape="fill"
-        type="button"
-      >
-        <span
-          class="emotion-0 emotion-1"
+      <div>
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="emotion-8 emotion-9 emotion-3"
+          color="primary"
+          id="2"
+          shape="fill"
+          type="button"
         >
           <span
             class="emotion-4 emotion-5"
           >
-            Dropdown 2
+            <span
+              class="emotion-13 emotion-14"
+            >
+              Dropdown 2
+            </span>
+            <svg
+              class="icon"
+              data-testid="caretDown"
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                fill-rule="evenodd"
+              />
+            </svg>
           </span>
-          <svg
-            class="icon"
-            data-testid="caretDown"
-            fill="currentColor"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </span>
-      </button>
+        </button>
+      </div>
       <div
-        class="emotion-13"
-        data-testid="dropdownContent"
-        tabindex="-1"
-        width="auto"
+        style="position: absolute; left: 0px; top: 0px; z-index: 2; transform: translate(0px, 0px);"
       >
         <div
-          aria-labelledby="2"
-          role="menu"
+          class="emotion-15 emotion-16 emotion-17"
+          data-testid="dropdownContent"
+          tabindex="-1"
+          width="auto"
         >
           <div
-            class="emotion-11 emotion-12"
-            role="menuitem"
-            tabindex="-1"
+            aria-labelledby="2"
+            role="menu"
           >
-            Menu item 2.1
+            <div
+              class="emotion-18 emotion-19"
+              role="menuitem"
+              tabindex="-1"
+            >
+              Menu item 2.1
+            </div>
           </div>
         </div>
       </div>
@@ -1590,55 +1598,61 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
     <div
       class="emotion-14 emotion-15"
     >
-      <button
-        aria-expanded="false"
-        aria-haspopup="true"
-        class="emotion-8 emotion-9 emotion-3"
-        color="primary"
-        id="3"
-        shape="fill"
-        type="button"
-      >
-        <span
-          class="emotion-0 emotion-1"
+      <div>
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="emotion-8 emotion-9 emotion-3"
+          color="primary"
+          id="3"
+          shape="fill"
+          type="button"
         >
           <span
             class="emotion-4 emotion-5"
           >
-            Dropdown 3
+            <span
+              class="emotion-13 emotion-14"
+            >
+              Dropdown 3
+            </span>
+            <svg
+              class="icon"
+              data-testid="caretDown"
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                fill-rule="evenodd"
+              />
+            </svg>
           </span>
-          <svg
-            class="icon"
-            data-testid="caretDown"
-            fill="currentColor"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </span>
-      </button>
+        </button>
+      </div>
       <div
-        class="emotion-13"
-        data-testid="dropdownContent"
-        tabindex="-1"
-        width="auto"
+        style="position: absolute; left: 0px; top: 0px; z-index: 2; transform: translate(0px, 0px);"
       >
         <div
-          aria-labelledby="3"
-          role="menu"
+          class="emotion-15 emotion-16 emotion-17"
+          data-testid="dropdownContent"
+          tabindex="-1"
+          width="auto"
         >
           <div
-            class="emotion-11 emotion-12"
-            role="menuitem"
-            tabindex="-1"
+            aria-labelledby="3"
+            role="menu"
           >
-            Menu item 3.1
+            <div
+              class="emotion-18 emotion-19"
+              role="menuitem"
+              tabindex="-1"
+            >
+              Menu item 3.1
+            </div>
           </div>
         </div>
       </div>
@@ -1944,17 +1958,18 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   width: auto;
   background: #FFFFFF;
   display: none;
-  left: 4px;
   max-height: 250px;
   opacity: 0;
   outline: 0;
   overflow-y: auto;
   padding: 8px 0;
-  position: absolute;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-  z-index: 2;
+}
+
+.emotion-16:focus {
+  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
@@ -2291,17 +2306,18 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   width: auto;
   background: #FFFFFF;
   display: none;
-  left: 4px;
   max-height: 250px;
   opacity: 0;
   outline: 0;
   overflow-y: auto;
   padding: 8px 0;
-  position: absolute;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-  z-index: 2;
+}
+
+.emotion-16:focus {
+  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
@@ -2363,55 +2379,61 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
     <div
       class="emotion-14 emotion-15"
     >
-      <button
-        aria-expanded="false"
-        aria-haspopup="true"
-        class="emotion-8 emotion-9 emotion-3"
-        color="primary"
-        id="2"
-        shape="fill"
-        type="button"
-      >
-        <span
-          class="emotion-0 emotion-1"
+      <div>
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="emotion-8 emotion-9 emotion-3"
+          color="primary"
+          id="2"
+          shape="fill"
+          type="button"
         >
           <span
             class="emotion-4 emotion-5"
           >
-            Dropdown 2
+            <span
+              class="emotion-13 emotion-14"
+            >
+              Dropdown 2
+            </span>
+            <svg
+              class="icon"
+              data-testid="caretDown"
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                fill-rule="evenodd"
+              />
+            </svg>
           </span>
-          <svg
-            class="icon"
-            data-testid="caretDown"
-            fill="currentColor"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </span>
-      </button>
+        </button>
+      </div>
       <div
-        class="emotion-13"
-        data-testid="dropdownContent"
-        tabindex="-1"
-        width="auto"
+        style="position: absolute; left: 0px; top: 0px; z-index: 2; transform: translate(0px, 0px);"
       >
         <div
-          aria-labelledby="2"
-          role="menu"
+          class="emotion-15 emotion-16 emotion-17"
+          data-testid="dropdownContent"
+          tabindex="-1"
+          width="auto"
         >
           <div
-            class="emotion-11 emotion-12"
-            role="menuitem"
-            tabindex="-1"
+            aria-labelledby="2"
+            role="menu"
           >
-            Menu item 2.1
+            <div
+              class="emotion-18 emotion-19"
+              role="menuitem"
+              tabindex="-1"
+            >
+              Menu item 2.1
+            </div>
           </div>
         </div>
       </div>
@@ -2419,55 +2441,61 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
     <div
       class="emotion-14 emotion-15"
     >
-      <button
-        aria-expanded="false"
-        aria-haspopup="true"
-        class="emotion-8 emotion-9 emotion-3"
-        color="primary"
-        id="3"
-        shape="fill"
-        type="button"
-      >
-        <span
-          class="emotion-0 emotion-1"
+      <div>
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="emotion-8 emotion-9 emotion-3"
+          color="primary"
+          id="3"
+          shape="fill"
+          type="button"
         >
           <span
             class="emotion-4 emotion-5"
           >
-            Dropdown 3
+            <span
+              class="emotion-13 emotion-14"
+            >
+              Dropdown 3
+            </span>
+            <svg
+              class="icon"
+              data-testid="caretDown"
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                fill-rule="evenodd"
+              />
+            </svg>
           </span>
-          <svg
-            class="icon"
-            data-testid="caretDown"
-            fill="currentColor"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </span>
-      </button>
+        </button>
+      </div>
       <div
-        class="emotion-13"
-        data-testid="dropdownContent"
-        tabindex="-1"
-        width="auto"
+        style="position: absolute; left: 0px; top: 0px; z-index: 2; transform: translate(0px, 0px);"
       >
         <div
-          aria-labelledby="3"
-          role="menu"
+          class="emotion-15 emotion-16 emotion-17"
+          data-testid="dropdownContent"
+          tabindex="-1"
+          width="auto"
         >
           <div
-            class="emotion-11 emotion-12"
-            role="menuitem"
-            tabindex="-1"
+            aria-labelledby="3"
+            role="menu"
           >
-            Menu item 3.1
+            <div
+              class="emotion-18 emotion-19"
+              role="menuitem"
+              tabindex="-1"
+            >
+              Menu item 3.1
+            </div>
           </div>
         </div>
       </div>
@@ -2812,17 +2840,18 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   width: auto;
   background: #FFFFFF;
   display: none;
-  left: 4px;
   max-height: 250px;
   opacity: 0;
   outline: 0;
   overflow-y: auto;
   padding: 8px 0;
-  position: absolute;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-  z-index: 2;
+}
+
+.emotion-16:focus {
+  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
@@ -3198,17 +3227,18 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   width: auto;
   background: #FFFFFF;
   display: none;
-  left: 4px;
   max-height: 250px;
   opacity: 0;
   outline: 0;
   overflow-y: auto;
   padding: 8px 0;
-  position: absolute;
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-  z-index: 2;
+}
+
+.emotion-16:focus {
+  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
@@ -3270,55 +3300,61 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
     <div
       class="emotion-14 emotion-15"
     >
-      <button
-        aria-expanded="false"
-        aria-haspopup="true"
-        class="emotion-8 emotion-9 emotion-3"
-        color="primary"
-        id="2"
-        shape="fill"
-        type="button"
-      >
-        <span
-          class="emotion-0 emotion-1"
+      <div>
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="emotion-8 emotion-9 emotion-3"
+          color="primary"
+          id="2"
+          shape="fill"
+          type="button"
         >
           <span
             class="emotion-4 emotion-5"
           >
-            Dropdown 2
+            <span
+              class="emotion-13 emotion-14"
+            >
+              Dropdown 2
+            </span>
+            <svg
+              class="icon"
+              data-testid="caretDown"
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                fill-rule="evenodd"
+              />
+            </svg>
           </span>
-          <svg
-            class="icon"
-            data-testid="caretDown"
-            fill="currentColor"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </span>
-      </button>
+        </button>
+      </div>
       <div
-        class="emotion-13"
-        data-testid="dropdownContent"
-        tabindex="-1"
-        width="auto"
+        style="position: absolute; left: 0px; top: 0px; z-index: 2; transform: translate(0px, 0px);"
       >
         <div
-          aria-labelledby="2"
-          role="menu"
+          class="emotion-15 emotion-16 emotion-17"
+          data-testid="dropdownContent"
+          tabindex="-1"
+          width="auto"
         >
           <div
-            class="emotion-11 emotion-12"
-            role="menuitem"
-            tabindex="-1"
+            aria-labelledby="2"
+            role="menu"
           >
-            Menu item 2.1
+            <div
+              class="emotion-18 emotion-19"
+              role="menuitem"
+              tabindex="-1"
+            >
+              Menu item 2.1
+            </div>
           </div>
         </div>
       </div>
@@ -3326,55 +3362,61 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
     <div
       class="emotion-14 emotion-15"
     >
-      <button
-        aria-expanded="false"
-        aria-haspopup="true"
-        class="emotion-8 emotion-9 emotion-3"
-        color="primary"
-        id="3"
-        shape="fill"
-        type="button"
-      >
-        <span
-          class="emotion-0 emotion-1"
+      <div>
+        <button
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="emotion-8 emotion-9 emotion-3"
+          color="primary"
+          id="3"
+          shape="fill"
+          type="button"
         >
           <span
             class="emotion-4 emotion-5"
           >
-            Dropdown 3
+            <span
+              class="emotion-13 emotion-14"
+            >
+              Dropdown 3
+            </span>
+            <svg
+              class="icon"
+              data-testid="caretDown"
+              fill="currentColor"
+              height="24"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                fill-rule="evenodd"
+              />
+            </svg>
           </span>
-          <svg
-            class="icon"
-            data-testid="caretDown"
-            fill="currentColor"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </span>
-      </button>
+        </button>
+      </div>
       <div
-        class="emotion-13"
-        data-testid="dropdownContent"
-        tabindex="-1"
-        width="auto"
+        style="position: absolute; left: 0px; top: 0px; z-index: 2; transform: translate(0px, 0px);"
       >
         <div
-          aria-labelledby="3"
-          role="menu"
+          class="emotion-15 emotion-16 emotion-17"
+          data-testid="dropdownContent"
+          tabindex="-1"
+          width="auto"
         >
           <div
-            class="emotion-11 emotion-12"
-            role="menuitem"
-            tabindex="-1"
+            aria-labelledby="3"
+            role="menu"
           >
-            Menu item 3.1
+            <div
+              class="emotion-18 emotion-19"
+              role="menuitem"
+              tabindex="-1"
+            >
+              Menu item 3.1
+            </div>
           </div>
         </div>
       </div>
