@@ -550,15 +550,6 @@ export const FlippedItems = args => {
 
   return (
     <>
-      <ButtonGroup
-        style={{ display: 'flex', marginTop: '200px', marginLeft: '150px' }}
-      >
-        {sampleDropdown(DropdownDropDirection.down, 'down')}
-        {sampleDropdown(DropdownDropDirection.left, 'left')}
-        {sampleDropdown(DropdownDropDirection.up, 'up')}
-        {sampleDropdown(DropdownDropDirection.right, 'right')}
-      </ButtonGroup>
-
       <div style={{ display: 'flex' }}>
         <div style={{ flex: 1 }}>
           <Paragraph>Vertical Overflow Down to Up</Paragraph>
