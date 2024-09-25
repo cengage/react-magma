@@ -277,7 +277,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
     React.useEffect(() => {
       changePlacement(dropDirection, alignment);
-    }, []);
+    }, [dropDirection, alignment]);
 
     return (
       <DropdownContext.Provider

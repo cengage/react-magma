@@ -131,7 +131,7 @@ export interface InputBaseProps
    */
   onDateChange?: (event) => void;
   /**
-   * Callback to set the reference element (reactive).
+   * @internal
    */
   setReference?: (node: ReferenceType) => void;
   /**
