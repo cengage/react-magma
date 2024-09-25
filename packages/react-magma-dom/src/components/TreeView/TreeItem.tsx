@@ -66,6 +66,19 @@ const StyledTreeItem = typedStyled.li<{
   padding-inline-start: ${props =>
     calculateOffset(props.nodeType, props.depth)};
 
+  &:focus {
+    outline: none;
+
+    & > *:first-child {
+      outline-offset: -2px;
+      outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+}
+  }
+
   > div:first-of-type {
     background: ${props =>
       props.selected && props.isInverse
@@ -173,14 +186,6 @@ const StyledItemWrapper = typedStyled.div<{
       props.selectable,
       props.nodeType
     )};
-  &:focus {
-    outline-offset: -2px;
-    outline: 2px solid
-      ${props =>
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
-  }
 `;
 
 export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
@@ -312,6 +317,13 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           selectableType={selectable}
           selected={selectedItem}
           theme={theme}
+          tabIndex={itemToFocus === itemId ? 0 : -1}
+          onKeyDown={handleKeyDown}
+          onClick={event => {
+            if (selectable===TreeViewSelectable.off && hasOwnTreeItems) {
+              onExpandedClicked(event);
+            }
+          }}
         >
           <StyledItemWrapper
             data-testid={`${testId || itemId}-itemwrapper`}
@@ -320,19 +332,10 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             isDisabled={isDisabled}
             isInverse={isInverse}
             nodeType={nodeType}
-            onClick={event => {
-              if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
-                onExpandedClicked(event);
-              }
-            }}
-            onKeyDown={e => {
-              handleKeyDown(e);
-            }}
-            ref={ref}
             selectable={selectable}
             style={style}
-            tabIndex={itemToFocus === itemId ? 0 : -1}
             theme={theme}
+            ref={ref}
           >
             {hasOwnTreeItems && (
               <StyledExpandWrapper
