@@ -136,7 +136,6 @@
     "prettier": "^2.2.1",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
-    "react-scripts": "^5.0.1",
     "react-test-renderer": "^15.0.0 || ^16.0.0",
     "regenerator-runtime": "^0.13.7",
     "shelljs": "^0.8.4",
@@ -144,8 +143,5 @@
     "tsdx": "^0.14.1",
     "typedoc": "^0.19.2",
     "typescript": "^3.9.7"
-  },
-  "devDependencies": {
-    "@nuxt/image": "^1.8.0"
   }
 }
