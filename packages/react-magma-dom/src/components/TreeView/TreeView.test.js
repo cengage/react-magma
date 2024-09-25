@@ -998,20 +998,20 @@ describe('TreeView', () => {
       expect(onSelectedItemChange).toHaveBeenCalledWith([
         {
           itemId: 'item-ggchild1',
-          checkedStatus: IndeterminateCheckboxStatus.checked,
+          checkedStatus: IndeterminateCheckboxStatus.checked
         },
         {
           itemId: 'item-gchild2',
-          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate
         },
         {
           itemId: 'item-child2.1',
-          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate
         },
         {
           itemId: 'item2',
-          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
-        },
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate
+        }
       ]);
     });
   });
