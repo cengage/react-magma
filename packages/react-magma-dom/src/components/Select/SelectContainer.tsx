@@ -40,8 +40,8 @@ interface SelectContainerInterface<T> {
   additionalContent?: React.ReactNode;
   children: React.ReactNode[];
   containerStyle?: React.CSSProperties;
-  errorMessage?: React.ReactNode;
   descriptionId?: string;
+  errorMessage?: React.ReactNode;
   getLabelProps: (options?: UseSelectGetLabelPropsOptions) => any;
   hasError?: boolean;
   helperMessage?: React.ReactNode;

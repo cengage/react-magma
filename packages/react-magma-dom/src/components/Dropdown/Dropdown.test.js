@@ -82,8 +82,6 @@ describe('Dropdown', () => {
     );
 
     expect(getByTestId('caretUp')).toBeInTheDocument();
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('top', 'auto');
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('bottom', '100%');
   });
 
   it('should render a dropleft', () => {
@@ -95,11 +93,6 @@ describe('Dropdown', () => {
     );
 
     expect(getByTestId('caretLeft')).toBeInTheDocument();
-    expect(getByTestId('dropdownContent')).toHaveStyleRule(
-      'top',
-      magma.spaceScale.spacing02
-    );
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('right', '100%');
     expect(getByTestId('dropdownButton')).toHaveStyleRule(
       'padding-left',
       magma.spaceScale.spacing03
@@ -115,11 +108,6 @@ describe('Dropdown', () => {
     );
 
     expect(getByTestId('caretRight')).toBeInTheDocument();
-    expect(getByTestId('dropdownContent')).toHaveStyleRule(
-      'top',
-      magma.spaceScale.spacing02
-    );
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('left', '100%');
     expect(getByTestId('dropdownButton')).toHaveStyleRule(
       'padding-right',
       magma.spaceScale.spacing03
@@ -155,36 +143,6 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownButton')).toHaveStyleRule(
       'padding-right',
       magma.spaceScale.spacing05
-    );
-  });
-
-  it('should render a right aligned menu', () => {
-    const { getByTestId } = render(
-      <Dropdown alignment="end">
-        <DropdownButton>Toggle me</DropdownButton>
-        <DropdownContent />
-      </Dropdown>
-    );
-
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('left', 'auto');
-    expect(getByTestId('dropdownContent')).toHaveStyleRule(
-      'right',
-      magma.spaceScale.spacing02
-    );
-  });
-
-  it('should render a top-aligned menu', () => {
-    const { getByTestId } = render(
-      <Dropdown alignment="end" dropDirection="right">
-        <DropdownButton>Toggle me</DropdownButton>
-        <DropdownContent />
-      </Dropdown>
-    );
-
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('top', 'auto');
-    expect(getByTestId('dropdownContent')).toHaveStyleRule(
-      'bottom',
-      magma.spaceScale.spacing02
     );
   });
 

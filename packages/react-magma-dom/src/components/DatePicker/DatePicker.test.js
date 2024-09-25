@@ -1,19 +1,19 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
-  format,
-  subWeeks,
-  subDays,
-  startOfMonth,
-  startOfWeek,
-  subMonths,
+  addDays,
   addMonths,
   addWeeks,
-  addDays,
   endOfWeek,
-  isSameDay,
+  format,
   getDay,
+  isSameDay,
+  startOfMonth,
+  startOfWeek,
+  subDays,
+  subMonths,
+  subWeeks,
 } from 'date-fns';
 import * as es from 'date-fns/locale/es';
 import { DatePicker } from '.';

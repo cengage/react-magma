@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { css } from '@emotion/react';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ButtonVariant, ButtonType, ButtonSize, ButtonShape } from '../Button';
+import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { ClearIcon, IconProps } from 'react-magma-icons';
 import { useIsInverse } from '../../inverse';
@@ -9,6 +9,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { I18nContext } from '../../i18n';
 import { useForkedRef } from '../../utils';
 import { transparentize } from 'polished';
+import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
 import styled from '@emotion/styled';
 
 export enum InputSize {
@@ -95,7 +96,15 @@ export interface InputBaseProps
    * Function to be called when the contents of input are cleared by clicking a clear button
    */
   onClear?: () => void;
+  /**
+   * If true, the component will have inverse styling to better appear on a dark background
+   * @default false
+   */
   isInverse?: boolean;
+  /**
+   * Boolean for whether this is a Password Input or not
+   */
+  isPasswordInput?: boolean;
   /**
    * For use in predictive search which moves the icon to the left
    */
@@ -124,6 +133,10 @@ export interface InputBaseProps
   /**
    * @internal
    */
+  setReference?: (node: ReferenceType) => void;
+  /**
+   * @internal
+   */
   testId?: string;
   /**
    * @internal
@@ -134,10 +147,6 @@ export interface InputBaseProps
    * @default InputType.text
    */
   type?: InputType;
-  /**
-   * Boolean for whether this is a Password Input or not
-   */
-  isPasswordInput?: boolean;
   /**
    * String to determine width of input, must be suffixed with "px", "rem", or "%""
    * @default "auto"
@@ -581,6 +590,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       inputWrapperStyle,
       testId,
       type,
+      setReference,
       ...other
     } = props;
 
@@ -651,146 +661,152 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     };
 
     return (
-      <InputContainer
-        style={inputWrapperStyle}
-        data-testid={`${testId}-wrapper`}
-      >
-        <InputWrapper
-          disabled={disabled}
-          iconPosition={iconPosition}
-          isInverse={props.isInverse}
-          inputSize={inputSize ? inputSize : InputSize.medium}
-          theme={theme}
-          style={containerStyle}
-          hasError={hasError}
-          isClearable={isClearable}
-          width={props.width}
+      <div ref={setReference}>
+        <InputContainer
+          style={inputWrapperStyle}
+          data-testid={`${testId}-wrapper`}
         >
-          <StyledInput
-            {...other}
-            aria-invalid={hasError}
+          <InputWrapper
             disabled={disabled}
-            data-testid={testId}
-            hasCharacterCounter={hasCharacterCounter}
             iconPosition={iconPosition}
+            isInverse={props.isInverse}
             inputSize={inputSize ? inputSize : InputSize.medium}
-            isClearable={
-              inputWrapperStyle?.width
-                ? isClearable
-                : isClearable && inputLength > 0
-            }
-            isInverse={useIsInverse(props.isInverse)}
-            isPredictive={isPredictive}
-            hasError={hasError}
-            ref={ref}
-            maxLength={maxLengthNum}
-            onChange={handleChange}
-            style={inputStyle}
             theme={theme}
-            type={type ? type : InputType.text}
-            value={value}
-          />
-          {icon && !onIconClick && (
-            <IconWrapper
-              aria-label={iconAriaLabel}
+            style={containerStyle}
+            hasError={hasError}
+            isClearable={isClearable}
+            width={props.width}
+          >
+            <StyledInput
+              {...other}
+              aria-invalid={hasError}
+              disabled={disabled}
+              data-testid={testId}
+              hasCharacterCounter={hasCharacterCounter}
               iconPosition={iconPosition}
               inputSize={inputSize ? inputSize : InputSize.medium}
-              isInverse={props.isInverse}
+              isClearable={
+                inputWrapperStyle?.width
+                  ? isClearable
+                  : isClearable && inputLength > 0
+              }
+              isInverse={useIsInverse(props.isInverse)}
               isPredictive={isPredictive}
+              hasError={hasError}
+              ref={ref}
+              maxLength={maxLengthNum}
+              onChange={handleChange}
+              style={inputStyle}
               theme={theme}
-              disabled={disabled}
-            >
-              {React.Children.only(
-                React.cloneElement(icon, {
-                  size: getIconSize(
-                    inputSize ? inputSize : InputSize.medium,
-                    theme,
-                    iconPosition
-                  ),
-                })
-              )}
-            </IconWrapper>
-          )}
-        </InputWrapper>
-        {isClearable && value !== '' && (
-          <IsClearableContainer
-            theme={theme}
-            iconPosition={iconPosition}
-            inputSize={inputSize}
-            onIconClick={onIconClick}
-            icon={icon}
-            hasChildren={!!children && !isPasswordInput}
-          >
-            <IconButton
-              aria-label={i18n.input.isClearableAriaLabel}
-              disabled={disabled}
-              icon={<ClearIcon />}
-              isInverse={props.isInverse}
-              onClick={handleClearInput}
-              onKeyDown={onIconKeyDown}
-              ref={iconRef}
-              shape={ButtonShape.fill}
-              size={
-                inputSize === InputSize.large
-                  ? ButtonSize.medium
-                  : ButtonSize.small
-              }
-              testId="clear-button"
-              type={ButtonType.button}
-              variant={ButtonVariant.link}
+              type={type ? type : InputType.text}
+              value={value}
             />
-          </IsClearableContainer>
-        )}
-        {onIconClick && (
-          <IconButtonContainer
-            iconPosition={iconPosition}
-            inputSize={
-              inputSize === InputSize.large ? InputSize.large : InputSize.medium
-            }
-            theme={theme}
-            isClickable={true}
-          >
-            <IconButton
-              aria-label={iconAriaLabel}
+            {icon && !onIconClick && (
+              <IconWrapper
+                aria-label={iconAriaLabel}
+                iconPosition={iconPosition}
+                inputSize={inputSize ? inputSize : InputSize.medium}
+                isInverse={props.isInverse}
+                isPredictive={isPredictive}
+                theme={theme}
+                disabled={disabled}
+              >
+                {React.Children.only(
+                  React.cloneElement(icon, {
+                    size: getIconSize(
+                      inputSize ? inputSize : InputSize.medium,
+                      theme,
+                      iconPosition
+                    ),
+                  })
+                )}
+              </IconWrapper>
+            )}
+          </InputWrapper>
+          {isClearable && value !== '' && (
+            <IsClearableContainer
+              theme={theme}
+              iconPosition={iconPosition}
+              inputSize={inputSize}
+              onIconClick={onIconClick}
               icon={icon}
-              isInverse={props.isInverse}
-              onClick={onIconClick}
-              onKeyDown={onIconKeyDown}
-              ref={iconRef}
-              disabled={disabled}
-              shape={ButtonShape.fill}
+              hasChildren={!!children && !isPasswordInput}
+            >
+              <IconButton
+                aria-label={i18n.input.isClearableAriaLabel}
+                disabled={disabled}
+                icon={<ClearIcon />}
+                isInverse={props.isInverse}
+                onClick={handleClearInput}
+                onKeyDown={onIconKeyDown}
+                ref={iconRef}
+                shape={ButtonShape.fill}
+                size={
+                  inputSize === InputSize.large
+                    ? ButtonSize.medium
+                    : ButtonSize.small
+                }
+                testId="clear-button"
+                type={ButtonType.button}
+                variant={ButtonVariant.link}
+              />
+            </IsClearableContainer>
+          )}
+          {onIconClick && (
+            <IconButtonContainer
+              iconPosition={iconPosition}
+              inputSize={
+                inputSize === InputSize.large
+                  ? InputSize.large
+                  : InputSize.medium
+              }
+              theme={theme}
+              isClickable={true}
+            >
+              <IconButton
+                aria-label={iconAriaLabel}
+                icon={icon}
+                isInverse={props.isInverse}
+                onClick={onIconClick}
+                onKeyDown={onIconKeyDown}
+                ref={iconRef}
+                disabled={disabled}
+                shape={ButtonShape.fill}
+                size={
+                  inputSize === InputSize.large
+                    ? ButtonSize.medium
+                    : ButtonSize.small
+                }
+                type={ButtonType.button}
+                variant={ButtonVariant.link}
+              />
+            </IconButtonContainer>
+          )}
+          {isPasswordInput ? (
+            <PasswordButtonContainer
               size={
                 inputSize === InputSize.large
-                  ? ButtonSize.medium
-                  : ButtonSize.small
+                  ? InputSize.large
+                  : InputSize.medium
               }
-              type={ButtonType.button}
-              variant={ButtonVariant.link}
-            />
-          </IconButtonContainer>
-        )}
-        {isPasswordInput ? (
-          <PasswordButtonContainer
-            size={
-              inputSize === InputSize.large ? InputSize.large : InputSize.medium
-            }
-            theme={theme}
-            buttonWidth={passwordBtnWidth()}
-          >
-            {children}
-          </PasswordButtonContainer>
-        ) : (
-          <IconButtonContainer
-            iconPosition={iconPosition}
-            inputSize={inputSize ? inputSize : InputSize.medium}
-            theme={theme}
-            isClickable={true}
-            hasChildren={true}
-          >
-            {children}
-          </IconButtonContainer>
-        )}
-      </InputContainer>
+              theme={theme}
+              buttonWidth={passwordBtnWidth()}
+            >
+              {children}
+            </PasswordButtonContainer>
+          ) : (
+            <IconButtonContainer
+              iconPosition={iconPosition}
+              inputSize={inputSize ? inputSize : InputSize.medium}
+              theme={theme}
+              isClickable={true}
+              hasChildren={true}
+            >
+              {children}
+            </IconButtonContainer>
+          )}
+        </InputContainer>
+      </div>
     );
   }
 );

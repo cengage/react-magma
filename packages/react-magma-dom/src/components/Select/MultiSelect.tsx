@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { instanceOfDefaultItemObject, MultiSelectProps } from '.';
-import { useSelect, useMultipleSelection } from 'downshift';
+import { useMultipleSelection, useSelect } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
-import { SelectText, SelectedItemButton, IconWrapper } from './shared';
+import { IconWrapper, SelectedItemButton, SelectText } from './shared';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
@@ -18,6 +18,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     ariaDescribedBy,
     components: customComponents,
     errorMessage,
+    floatingElementStyles,
     hasError,
     helperMessage,
     inputStyle,
@@ -41,6 +42,8 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     onKeyUp,
     onRemoveSelectedItem,
     placeholder,
+    setFloating,
+    setReference,
     isClearable,
   } = props;
 
@@ -222,6 +225,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         hasError={hasError}
         disabled={disabled}
         isInverse={isInverse}
+        setReference={setReference}
         style={inputStyle}
       >
         {selectedItems && selectedItems.length > 0 ? (
@@ -279,6 +283,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       )}
       <ItemsList
         customComponents={customComponents}
+        floatingElementStyles={floatingElementStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
@@ -288,6 +293,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         itemToString={itemToString}
         maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
         menuStyle={menuStyle}
+        setFloating={setFloating}
       />
     </SelectContainer>
   );
