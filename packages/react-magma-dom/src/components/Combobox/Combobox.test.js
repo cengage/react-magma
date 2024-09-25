@@ -463,19 +463,6 @@ describe('Combobox', () => {
     );
   });
 
-  it('should have appropriate styles for items', () => {
-    const testId = 'items-list';
-
-    const { getByTestId } = render(
-      <Combobox labelText={labelText} items={items} />
-    );
-    expect(getByTestId(testId)).toHaveStyle('top: 0');
-    expect(getByTestId(testId)).toHaveStyle('left: 0');
-    expect(getByTestId(testId)).toHaveStyle('position: absolute');
-    expect(getByTestId(testId)).toHaveStyle('z-index: 2');
-    expect(getByTestId(testId)).toHaveStyle('width: 100%');
-  });
-
   describe('isTypeahead', () => {
     describe('when isTypeahead is true,', () => {
       it('should be able to select an item that is not in the items list', () => {

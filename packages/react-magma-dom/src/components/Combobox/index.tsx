@@ -45,7 +45,7 @@ export interface ComboboxProps<T extends SelectOptions>
    */
   disableCreateItem?: boolean;
   /**
-   * Positioning styles to apply to the floating element
+   * @internal
    */
   floatingElementStyles?: React.CSSProperties;
   /**
@@ -121,11 +121,11 @@ export interface ComboboxProps<T extends SelectOptions>
    */
   onItemCreated?: (newItem: T) => void;
   /**
-   * Callback to set the floating element (reactive).
+   * @internal
    */
   setFloating?: (node: ReferenceType) => void;
   /**
-   * Callback to set the reference element (reactive).
+   * @internal
    */
   setReference?: (node: ReferenceType) => void;
   /**

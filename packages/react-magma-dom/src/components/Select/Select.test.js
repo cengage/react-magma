@@ -509,19 +509,6 @@ describe('Select', () => {
     expect(getByTestId('customClearIndicator')).toBeInTheDocument();
   });
 
-  it('should have appropriate styles for items', () => {
-    const testId = 'items-list';
-
-    const { getByTestId } = render(
-      <Select items={items} labelText={labelText} />
-    );
-    expect(getByTestId(testId)).toHaveStyle('top: 0');
-    expect(getByTestId(testId)).toHaveStyle('left: 0');
-    expect(getByTestId(testId)).toHaveStyle('position: absolute');
-    expect(getByTestId(testId)).toHaveStyle('z-index: 2');
-    expect(getByTestId(testId)).toHaveStyle('width: 100%');
-  });
-
   describe('additional content', () => {
     const helpLinkLabel = 'Learn more';
 

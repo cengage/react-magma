@@ -661,7 +661,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     };
 
     return (
-      <div data-testid={'inputContainer-wrapper'} ref={setReference}>
+      <div ref={setReference}>
         <InputContainer
           style={inputWrapperStyle}
           data-testid={`${testId}-wrapper`}

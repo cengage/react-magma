@@ -84,7 +84,6 @@ export const DropdownContent = React.forwardRef<
 
   return (
     <div
-      data-testid={'dropdownContent-wrapper'}
       ref={context.setFloating}
       style={{ ...context.floatingStyles, zIndex: '2' }}
     >

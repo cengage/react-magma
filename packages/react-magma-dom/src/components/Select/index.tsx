@@ -127,7 +127,7 @@ export interface SelectProps<T extends SelectOptions>
    */
   ariaDescribedBy?: string;
   /**
-   * Positioning styles to apply to the floating element
+   * @internal
    */
   floatingElementStyles?: React.CSSProperties;
   /**
@@ -163,11 +163,11 @@ export interface SelectProps<T extends SelectOptions>
    */
   onKeyUp?: (event: React.KeyboardEvent) => void;
   /**
-   * Callback to set the floating element (reactive).
+   * @internal
    */
   setFloating?: (node: ReferenceType) => void;
   /**
-   * Callback to set the reference element (reactive).
+   * @internal
    */
   setReference?: (node: ReferenceType) => void;
 }

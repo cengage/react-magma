@@ -74,7 +74,6 @@ describe('Dropdown', () => {
   });
 
   it('should render a dropup', () => {
-    const testId = 'dropdownContent-wrapper';
     const { getByTestId } = render(
       <Dropdown dropDirection="up">
         <DropdownButton>Toggle me</DropdownButton>
@@ -83,16 +82,9 @@ describe('Dropdown', () => {
     );
 
     expect(getByTestId('caretUp')).toBeInTheDocument();
-    expect(getByTestId('dropdownButton-wrapper')).toBeInTheDocument();
-    expect(getByTestId(testId)).toBeInTheDocument();
-    expect(getByTestId(testId)).toHaveStyle('top: 0');
-    expect(getByTestId(testId)).toHaveStyle('left: 0');
-    expect(getByTestId(testId)).toHaveStyle('position: absolute');
-    expect(getByTestId(testId)).toHaveStyle('z-index: 2');
   });
 
   it('should render a dropleft', () => {
-    const testId = 'dropdownContent-wrapper';
     const { getByTestId } = render(
       <Dropdown dropDirection="left">
         <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
@@ -101,12 +93,6 @@ describe('Dropdown', () => {
     );
 
     expect(getByTestId('caretLeft')).toBeInTheDocument();
-    expect(getByTestId('dropdownButton-wrapper')).toBeInTheDocument();
-    expect(getByTestId(testId)).toBeInTheDocument();
-    expect(getByTestId(testId)).toHaveStyle('top: 0');
-    expect(getByTestId(testId)).toHaveStyle('left: 0');
-    expect(getByTestId(testId)).toHaveStyle('position: absolute');
-    expect(getByTestId(testId)).toHaveStyle('z-index: 2');
     expect(getByTestId('dropdownButton')).toHaveStyleRule(
       'padding-left',
       magma.spaceScale.spacing03
@@ -114,7 +100,6 @@ describe('Dropdown', () => {
   });
 
   it('should render a dropright', () => {
-    const testId = 'dropdownContent-wrapper';
     const { getByTestId } = render(
       <Dropdown dropDirection="right">
         <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
@@ -123,12 +108,6 @@ describe('Dropdown', () => {
     );
 
     expect(getByTestId('caretRight')).toBeInTheDocument();
-    expect(getByTestId('dropdownButton-wrapper')).toBeInTheDocument();
-    expect(getByTestId(testId)).toBeInTheDocument();
-    expect(getByTestId(testId)).toHaveStyle('top: 0');
-    expect(getByTestId(testId)).toHaveStyle('left: 0');
-    expect(getByTestId(testId)).toHaveStyle('position: absolute');
-    expect(getByTestId(testId)).toHaveStyle('z-index: 2');
     expect(getByTestId('dropdownButton')).toHaveStyleRule(
       'padding-right',
       magma.spaceScale.spacing03
@@ -167,40 +146,6 @@ describe('Dropdown', () => {
     );
   });
 
-  it('should render a right aligned menu', () => {
-    const testId = 'dropdownContent-wrapper';
-    const { getByTestId } = render(
-      <Dropdown alignment="end">
-        <DropdownButton>Toggle me</DropdownButton>
-        <DropdownContent />
-      </Dropdown>
-    );
-
-    expect(getByTestId('dropdownButton-wrapper')).toBeInTheDocument();
-    expect(getByTestId(testId)).toBeInTheDocument();
-    expect(getByTestId(testId)).toHaveStyle('top: 0');
-    expect(getByTestId(testId)).toHaveStyle('left: 0');
-    expect(getByTestId(testId)).toHaveStyle('position: absolute');
-    expect(getByTestId(testId)).toHaveStyle('z-index: 2');
-  });
-
-  it('should render a top-aligned menu', () => {
-    const testId = 'dropdownContent-wrapper';
-    const { getByTestId } = render(
-      <Dropdown alignment="end" dropDirection="right">
-        <DropdownButton>Toggle me</DropdownButton>
-        <DropdownContent />
-      </Dropdown>
-    );
-
-    expect(getByTestId('dropdownButton-wrapper')).toBeInTheDocument();
-    expect(getByTestId(testId)).toBeInTheDocument();
-    expect(getByTestId(testId)).toHaveStyle('top: 0');
-    expect(getByTestId(testId)).toHaveStyle('left: 0');
-    expect(getByTestId(testId)).toHaveStyle('position: absolute');
-    expect(getByTestId(testId)).toHaveStyle('z-index: 2');
-  });
-
   it('should render a split dropdown', () => {
     const { getByTestId, container } = render(
       <Dropdown>
@@ -210,7 +155,6 @@ describe('Dropdown', () => {
     );
 
     expect(getByTestId('caretDown')).toBeInTheDocument();
-    expect(getByTestId('dropdownSplitButton-wrapper')).toBeInTheDocument();
     expect(container.querySelectorAll('button').length).toBe(2);
   });
 

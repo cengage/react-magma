@@ -251,8 +251,8 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const [placement, setPlacement] = useState('bottom-start');
 
     const changePlacement = (
-      dropDirection: string = 'down',
-      alignment: string = 'start'
+      dropDirection: string = DropdownDropDirection.down,
+      alignment: string = DropdownAlignment.start
     ) => {
       const placementMap = new Map([
         ['up-start', 'top-start'],

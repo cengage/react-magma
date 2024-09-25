@@ -87,7 +87,7 @@ export const DropdownSplitButton = React.forwardRef<
   }
 
   return (
-    <div data-testid={'dropdownSplitButton-wrapper'} ref={context.setReference}>
+    <div ref={context.setReference}>
       <Button
         {...other}
         id={resolvedContext.dropdownButtonId.current}

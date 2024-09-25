@@ -131,7 +131,7 @@ export const DropdownButton = React.forwardRef<
     : ButtonIconPosition.right;
 
   return (
-    <div data-testid={'dropdownButton-wrapper'} ref={context.setReference}>
+    <div ref={context.setReference}>
       <StyledIconButton
         {...other}
         aria-expanded={context.isOpen}

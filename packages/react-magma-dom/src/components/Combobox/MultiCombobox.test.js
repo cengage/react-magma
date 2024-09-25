@@ -937,19 +937,6 @@ describe('MultiCombobox', () => {
     expect(renderedCombobox).not.toHaveAttribute('placeholder');
   });
 
-  it('should have appropriate styles for items', () => {
-    const testId = 'items-list';
-
-    const { getByTestId } = render(
-      <MultiCombobox isMulti labelText={labelText} items={items} />
-    );
-    expect(getByTestId(testId)).toHaveStyle('top: 0');
-    expect(getByTestId(testId)).toHaveStyle('left: 0');
-    expect(getByTestId(testId)).toHaveStyle('position: absolute');
-    expect(getByTestId(testId)).toHaveStyle('z-index: 2');
-    expect(getByTestId(testId)).toHaveStyle('width: 100%');
-  });
-
   describe('hasPersistentMenu', () => {
     it('should keep the items list open', () => {
       const { getByLabelText, getByText } = render(

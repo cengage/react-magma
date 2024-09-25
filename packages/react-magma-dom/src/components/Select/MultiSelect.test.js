@@ -548,19 +548,6 @@ describe('Select', () => {
     expect(getByText(helperMessage)).toBeInTheDocument();
   });
 
-  it('should have appropriate styles for items', () => {
-    const testId = 'items-list';
-
-    const { getByTestId } = render(
-      <MultiSelect isMulti items={items} labelText={labelText} />
-    );
-    expect(getByTestId(testId)).toHaveStyle('top: 0');
-    expect(getByTestId(testId)).toHaveStyle('left: 0');
-    expect(getByTestId(testId)).toHaveStyle('position: absolute');
-    expect(getByTestId(testId)).toHaveStyle('z-index: 2');
-    expect(getByTestId(testId)).toHaveStyle('width: 100%');
-  });
-
   describe('events', () => {
     it('onBlur', () => {
       const onBlur = jest.fn();
