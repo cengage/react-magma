@@ -4,22 +4,11 @@
   "initialVersions": {
     "@react-magma/charts": "6.1.0",
     "@react-magma/dropzone": "4.0.0",
-    "react-magma-dom": "3.8.0",
+    "react-magma-dom": "3.9.0",
     "@react-magma/schema-renderer": "4.0.0",
     "@cengage-patterns/header": "6.0.0",
-    "react-magma-docs": "5.0.4",
+    "react-magma-docs": "5.0.6-next.0",
     "react-magma-landing": "1.1.3"
   },
-  "changesets": [
-    "datePicker-calendar-table-role",
-    "datePicker-clearing-the-date",
-    "dev-patch-chore",
-    "feat-stepper-a11y",
-    "feat-stepper",
-    "modal-aria",
-    "nativeSelect-arrow",
-    "nested-modal-bg-overlay",
-    "progressbar-color",
-    "select-multiselect-console-errors"
-  ]
+  "changesets": []
 }

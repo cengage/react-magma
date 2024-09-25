@@ -1,6 +1,5 @@
-## 3.8.0
 
-## 3.9.0-next.0
+## 3.9.0
 
 ### Minor Changes
 
@@ -16,6 +15,8 @@
 - 397f2263c: fix(Modal): Background overlay issue on nested modals
 - 397f2263c: fix(ProgressBar): Add support for custom colors
 - 397f2263c: fix(Select/Multiselect): Fix console errors
+
+## 3.8.0
 
 ### Minor Changes
 
