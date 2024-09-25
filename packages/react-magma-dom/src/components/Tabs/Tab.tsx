@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { css } from '@emotion/react';
+import { css } from '@emotion/core';
 import isPropValid from '@emotion/is-prop-valid';
 import { TabsIconPosition, TabsBorderPosition, TabsContext } from './Tabs';
 import { TabsOrientation } from './shared';
@@ -39,7 +39,7 @@ export const StyledTabsChild = styled('li', {
   orientation: TabsOrientation;
   theme: ThemeInterface;
 }>`
-  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   flex-grow: 0;
   flex-shrink: ${props => (props.isFullWidth ? '1' : '0')};
   height: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};

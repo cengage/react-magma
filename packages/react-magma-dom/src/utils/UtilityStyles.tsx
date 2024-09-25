@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from '@emotion/core';
 
 export const HiddenStyles = css`
   clip: rect(1px, 1px, 1px, 1px);

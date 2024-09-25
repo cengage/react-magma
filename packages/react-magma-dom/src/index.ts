@@ -1,6 +1,6 @@
 import { ThemeInterface } from './theme/magma';
 
-declare module '@emotion/react' {
+declare module '@emotion/core' {
   export interface Theme extends ThemeInterface {}
 }
 
@@ -119,7 +119,11 @@ export {
   HideAtBreakpointDisplayType,
   HideAtBreakpointProps,
 } from './components/HideAtBreakpoint';
-export { Hyperlink, HyperlinkIconPosition, HyperlinkProps } from './components/Hyperlink';
+export {
+  Hyperlink,
+  HyperlinkIconPosition,
+  HyperlinkProps,
+} from './components/Hyperlink';
 export {
   IconButton,
   ButtonIconPosition,
