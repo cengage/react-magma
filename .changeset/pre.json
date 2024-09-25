@@ -15,6 +15,7 @@
     "a11y-search-loading",
     "a11y-select-accessibility",
     "a11y-treeview-navigation",
+    "feat-select-combobox-dropdown-viewport",
     "inputwrapperstyles",
     "sync4-6",
     "treeViewSelectItemsOutside"

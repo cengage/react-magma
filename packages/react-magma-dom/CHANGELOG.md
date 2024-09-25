@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.6
+
+### Minor Changes
+
+- cdb304158: feat(Combobox, Select, Date picker, Dropdown): Update viewport detection/positioning
+
 ## 4.7.0-next.5
 
 ### Patch Changes
