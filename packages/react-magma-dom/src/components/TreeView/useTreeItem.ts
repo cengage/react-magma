@@ -273,8 +273,9 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     const curr = filteredRefArray['current'];
     const arrLength = curr.length;
 
-    if (['ArrowDown', 'ArrowUp', 'Home', 'End', ' '].includes(event.key)) {
+    if (['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft', 'Home', 'End', 'Enter', ' '].includes(event.key)) {
       event.preventDefault();
+      event.stopPropagation();
     }
 
     switch (event.key) {
