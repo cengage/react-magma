@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Hyperlink } from '../Hyperlink';

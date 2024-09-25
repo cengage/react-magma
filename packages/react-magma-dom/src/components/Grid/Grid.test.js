@@ -26,7 +26,7 @@ describe('Grid', () => {
     );
 
     expect(getByText(TEXT).parentElement).toHaveStyleRule('display', 'grid');
-    expect(getByText(TEXT)).toHaveStyleRule('grid-column', '1/6');
+    expect(getByText(TEXT)).toHaveStyleRule('grid-column', '1 / 6');
   });
 
   it('Does not violate accessibility standards', () => {
