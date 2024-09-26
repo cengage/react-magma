@@ -178,6 +178,10 @@ const StyledStepTextWrapper = styled.span<{ orientation?: StepperOrientation }>`
   flex-direction: column;
   position: relative;
   margin: ${props => (props.orientation === StepperOrientation.vertical ? '2px 0 24px 8px' : '6px 8px 0')};
+
+  &:last-child {
+    margin-bottom: ${props => props.orientation === StepperOrientation.vertical && 0}
+  }
 `;
 
 const StyledLabel = styled.span<{
