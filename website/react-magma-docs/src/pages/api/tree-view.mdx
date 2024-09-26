@@ -277,7 +277,7 @@ export function Example() {
       <TreeView
         ariaLabel="single-select-treeview"
         selectable={TreeViewSelectable.single}
-        initialExpandedItems={['initExpanded-Mammals', 'initExpanded-Cats']}
+        initialExpandedItems={['initExpanded-Cats']}
       >
         <TreeItem label="Mammals" itemId="initExpanded-Mammals">
           <TreeItem label="Dogs" itemId="initExpanded-Dogs">
@@ -441,7 +441,9 @@ export function Example() {
 
 ## Check Children & Check Parents
 
-In a multi-select tree view, the relationship between parents and children when you select an item is flexible depending on your needs. Using the props below, you can configure the component so that selecting an item has no cascading effect on any other item so they're truly independent, or the selection of a child or parent can automatically update surrounding items appropriately, including setting parents to an indeterminate state. By default, these props are set to true.
+In a multi-select tree view, the relationship between parents and children when you select an item is flexible depending on your needs. Using the props below, you can configure the component so that selecting an item has no cascading effect on any other item so they're truly independent, or the selection of a child or parent can automatically update surrounding items appropriately, including setting parents to an indeterminate state. 
+
+By default, the `checkChildren` and `checkParents` props are set to true.
 
 ```typescript
 import React from 'react';
@@ -462,12 +464,12 @@ export function Example() {
   return (
     <>
       <Toggle
-        labelText="Check Children when Parent item is selected"
+        labelText="Check children when parent item is selected"
         onChange={changeCheckChildren}
         checked={checkChildren}
       />
       <Toggle
-        labelText="Check Parents when children item is selected"
+        labelText="Check parents when child item is selected"
         onChange={changeCheckParents}
         checked={checkParents}
       />
@@ -522,13 +524,13 @@ import {
  TreeViewSelectable,
  ButtonGroup,
  Button,
+ ButtonColor,
  ButtonSize,
  ButtonVariant,
  TagSize,
  TagColor,
  TreeViewApi,
- Heading,
- magma
+ Heading
 } from 'react-magma-dom';
 import { FolderIcon, ArticleIcon } from 'react-magma-icons';
 
@@ -638,8 +640,8 @@ export function Example() {
         <p>Indeterminate: {indeterminate}</p>
       </>
         <ButtonGroup size={ButtonSize.small} variant={ButtonVariant.solid}>
-          <Button onClick={() => apiRef.current.selectAll()}>Select all</Button>
-          <Button onClick={() => apiRef.current.clearAll()}>Clear all</Button>
+          <Button onClick={() => apiRef.current.selectAll()} color={ButtonColor.secondary}>Select all</Button>
+          <Button onClick={() => apiRef.current.clearAll()} color={ButtonColor.secondary}>Clear all</Button>
         </ButtonGroup>
       </>
     );
