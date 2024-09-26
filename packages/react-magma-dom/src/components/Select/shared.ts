@@ -56,13 +56,8 @@ export const StyledCard = styled(Card)<{
     props.isInverse
       ? transparentize(0.5, props.theme.colors.tertiary)
       : props.theme.colors.neutral300};
-  left: 4px;
-  margin-top: 4px;
+  margin: 2px 0;
   padding: 4px 0 0;
-  position: absolute;
-  right: 4px;
-  top: auto;
-  z-index: 2;
 `;
 
 export const StyledList = styled('ul')<{ isOpen?: boolean; maxHeight: string }>`

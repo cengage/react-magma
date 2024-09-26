@@ -1,11 +1,11 @@
 import { css } from '@emotion/react';
 import * as React from 'react';
-import { IconButton, ButtonIconPosition } from '../IconButton';
+import { ButtonIconPosition, IconButton } from '../IconButton';
 import {
+  ArrowDropDownIcon,
   ArrowDropUpIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  ArrowDropDownIcon,
   IconProps,
 } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
@@ -122,7 +122,6 @@ export const DropdownButton = React.forwardRef<
     }
   }
 
-  // For the correct functionality of opening and closing in Safari
   function handleMouseDown(event: React.MouseEvent) {
     event.preventDefault();
   }
@@ -136,20 +135,22 @@ export const DropdownButton = React.forwardRef<
     : ButtonIconPosition.right;
 
   return (
-    <StyledIconButton
-      {...other}
-      aria-expanded={context.isOpen}
-      aria-haspopup="true"
-      icon={icon}
-      iconPosition={iconPositionToUse}
-      id={context.dropdownButtonId.current}
-      isInverse={context.isInverse}
-      onClick={handleClick}
-      onMouseDown={handleMouseDown}
-      ref={ref}
-      theme={theme}
-    >
-      {children}
-    </StyledIconButton>
+    <div ref={context.setReference}>
+      <StyledIconButton
+        {...other}
+        aria-expanded={context.isOpen}
+        aria-haspopup="true"
+        icon={icon}
+        iconPosition={iconPositionToUse}
+        id={context.dropdownButtonId.current}
+        isInverse={context.isInverse}
+        onClick={handleClick}
+        onMouseDown={handleMouseDown}
+        ref={ref}
+        theme={theme}
+      >
+        {children}
+      </StyledIconButton>
+    </div>
   );
 });

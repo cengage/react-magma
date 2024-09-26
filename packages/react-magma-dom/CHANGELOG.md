@@ -1,5 +1,23 @@
 ## 4.6.0
 
+## 4.7.0-next.7
+
+### Patch Changes
+
+- 24680b288: fix(TreeView): fix initial expanded items should expand all parents
+
+## 4.7.0-next.6
+
+### Minor Changes
+
+- cdb304158: feat(Combobox, Select, Date picker, Dropdown): Update viewport detection/positioning
+
+## 4.7.0-next.5
+
+### Patch Changes
+
+- 631d01024: fix(TreeView): Fix switching to Focus Mode inside `TreeView`.
+
 ## 4.7.0-next.4
 
 ### Patch Changes

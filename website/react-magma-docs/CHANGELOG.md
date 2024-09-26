@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.9-next.3
+
+### Patch Changes
+
+- 5b8791d89: docs(TreeView): Update examples
+
 ## 5.0.9-next.2
 
 ### Patch Changes
