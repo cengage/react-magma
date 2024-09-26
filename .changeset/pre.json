@@ -19,6 +19,7 @@
     "fix-initial-expanded-items-should-expand-all-parents",
     "inputwrapperstyles",
     "sync4-6",
+    "tree-initEx-docs",
     "treeViewSelectItemsOutside"
   ]
 }
