@@ -203,7 +203,7 @@ describe('Checkbox', () => {
 
     expect(getByLabelText(label)).toHaveStyleRule(
       'clip',
-      'rect(1px, 1px, 1px, 1px)'
+      'rect(1px,1px,1px,1px)'
     );
   });
 

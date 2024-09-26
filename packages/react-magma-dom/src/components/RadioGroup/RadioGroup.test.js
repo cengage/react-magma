@@ -44,7 +44,7 @@ describe('Radio Group', () => {
     );
     const label = getByText(labelText);
 
-    expect(label).toHaveStyleRule('clip', 'rect(1px, 1px, 1px, 1px)');
+    expect(label).toHaveStyleRule('clip', 'rect(1px,1px,1px,1px)');
   });
 
   it('should render a radio group with the aria-labelledby attribute', () => {

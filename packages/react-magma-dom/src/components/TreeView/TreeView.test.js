@@ -434,6 +434,14 @@ describe('TreeView', () => {
           'aria-checked',
           'true'
         );
+        expect(getByTestId('item-child2.2')).toHaveAttribute(
+          'aria-checked',
+          'true'
+        );
+        expect(getByTestId('item-child2.2')).toHaveAttribute(
+          'aria-checked',
+          'true'
+        );
         expect(getByTestId('item3')).toHaveAttribute('aria-checked', 'false');
 
         expect(getByTestId('item0')).not.toHaveAttribute('aria-selected');
@@ -998,20 +1006,20 @@ describe('TreeView', () => {
       expect(onSelectedItemChange).toHaveBeenCalledWith([
         {
           itemId: 'item-ggchild1',
-          checkedStatus: IndeterminateCheckboxStatus.checked
+          checkedStatus: IndeterminateCheckboxStatus.checked,
         },
         {
           itemId: 'item-gchild2',
-          checkedStatus: IndeterminateCheckboxStatus.indeterminate
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
         },
         {
           itemId: 'item-child2.1',
-          checkedStatus: IndeterminateCheckboxStatus.indeterminate
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
         },
         {
           itemId: 'item2',
-          checkedStatus: IndeterminateCheckboxStatus.indeterminate
-        }
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
       ]);
     });
   });
