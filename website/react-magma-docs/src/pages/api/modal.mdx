@@ -435,26 +435,33 @@ import {
   Combobox,
   Modal,
   ModalSize,
-  Paragraph,
-  useFocusLock,
+  Paragraph
 } from 'react-magma-dom';
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const [showConfirmationModal, setShowConfirmationModal] =
     React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
-  const focusTrapElement = useFocusLock(!showConfirmationModal && showModal);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const mainModalRef = React.useRef<HTMLDivElement>(null);
+  const confirmationModalRef = React.useRef<HTMLDivElement>(null);
+  const [mainHeaderRef, setmainHeaderRef] = React.useState(React.useRef<any>());
+
+  const handleGetHeaderRef = ref => {
+    setmainHeaderRef(ref);
+  };
 
   const closeTheModal = () => {
     setShowConfirmationModal(true);
+    confirmationModalRef.current && confirmationModalRef.current.focus();
   };
 
   const closeTheConfirmationModal = () => {
+    mainHeaderRef.current && mainHeaderRef.current.focus();
     setShowConfirmationModal(false);
   };
 
   const closeBothModals = () => {
-    buttonRef.current.focus();
+    buttonRef.current && buttonRef.current.focus();
     setShowConfirmationModal(false);
     setShowModal(false);
   };
@@ -469,7 +476,8 @@ export function Example() {
         isModalClosingControlledManually
         onClose={closeTheModal}
         isOpen={showModal}
-        ref={focusTrapElement}
+        ref={mainModalRef}
+        headerRef={handleGetHeaderRef}
       >
         <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
         <Paragraph>
@@ -493,6 +501,7 @@ export function Example() {
         isModalClosingControlledManually
         onClose={closeTheConfirmationModal}
         isOpen={showConfirmationModal}
+        ref={confirmationModalRef}
       >
         <Paragraph noTopMargin>Close the modal?</Paragraph>
         <ButtonGroup>

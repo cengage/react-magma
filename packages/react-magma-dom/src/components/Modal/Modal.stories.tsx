@@ -1,22 +1,21 @@
 import React from 'react';
+import { Modal, ModalSize, NativeSelect, Toggle, VisuallyHidden } from '../..';
 import { Button, ButtonColor } from '../Button';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { Combobox } from '../Combobox';
 import { Container } from '../Container';
 import { DatePicker } from '../DatePicker';
-import { Modal, ModalSize, NativeSelect, Toggle, VisuallyHidden } from '../..';
-import { Paragraph } from '../Paragraph';
-import { Radio } from '../Radio';
-import { RadioGroup } from '../RadioGroup';
-import { Spacer } from '../Spacer';
 import {
   Dropdown,
   DropdownButton,
   DropdownContent,
   DropdownMenuItem,
 } from '../Dropdown';
+import { Paragraph } from '../Paragraph';
+import { Radio } from '../Radio';
+import { RadioGroup } from '../RadioGroup';
 import { Select } from '../Select';
-import { useFocusLock } from '../..';
+import { Spacer } from '../Spacer';
 
 const info = {
   component: Modal,
@@ -440,19 +439,27 @@ export const CloseModalWithConfirmation = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [showConfirmationModal, setShowConfirmationModal] =
     React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
-  const focusTrapElement = useFocusLock(!showConfirmationModal && showModal);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const mainModalRef = React.useRef<HTMLDivElement>(null);
+  const confirmationModalRef = React.useRef<HTMLDivElement>(null);
+  const [mainHeaderRef, setmainHeaderRef] = React.useState(React.useRef<any>());
+
+  const handleGetHeaderRef = ref => {
+    setmainHeaderRef(ref);
+  };
 
   const closeTheModal = () => {
     setShowConfirmationModal(true);
+    confirmationModalRef.current?.focus();
   };
 
   const closeTheConfirmationModal = () => {
+    mainHeaderRef?.current?.focus();
     setShowConfirmationModal(false);
   };
 
   const closeBothModals = () => {
-    buttonRef.current.focus();
+    buttonRef.current?.focus();
     setShowConfirmationModal(false);
     setShowModal(false);
   };
@@ -467,7 +474,8 @@ export const CloseModalWithConfirmation = () => {
         isModalClosingControlledManually
         onClose={closeTheModal}
         isOpen={showModal}
-        ref={focusTrapElement}
+        ref={mainModalRef}
+        headerRef={handleGetHeaderRef}
       >
         <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
         <Paragraph>
@@ -491,6 +499,7 @@ export const CloseModalWithConfirmation = () => {
         isModalClosingControlledManually
         onClose={closeTheConfirmationModal}
         isOpen={showConfirmationModal}
+        ref={confirmationModalRef}
       >
         <Paragraph noTopMargin>Close the modal?</Paragraph>
         <ButtonGroup>
