@@ -278,3 +278,25 @@ export const selectMulti = ({items, itemId, checkedStatus, checkChildren, checkP
   const itemsWithProcessedChildrenSelection = checkChildren ? processChildrenSelection({ items: itemsWithProcessedItemSelection, itemId, checkedStatus }) : itemsWithProcessedItemSelection
   return checkParents ? processParentsSelection({ items: itemsWithProcessedChildrenSelection, itemId, checkedStatus }) : itemsWithProcessedChildrenSelection;
 }
+
+const getParentIds = ({ items, itemId, prevParentIds = []}: { items: TreeViewItemInterface[]; itemId: TreeViewItemInterface['itemId']; prevParentIds?: TreeViewItemInterface['itemId'][] }) => {
+  const item = items.find(item => item.itemId === itemId);
+  
+  if (!item) {
+    return prevParentIds;
+  }
+
+  const { parentId } = item;
+
+  return parentId ? getParentIds({ itemId: parentId, items, prevParentIds: [...prevParentIds, parentId]}) : prevParentIds;
+}
+
+export const getInitialExpandedIds = ({ items, initialExpandedItems }: { items: TreeViewItemInterface[]; } & Pick<UseTreeViewProps, 'initialExpandedItems'>) => {
+  if (!initialExpandedItems) {
+    return initialExpandedItems;
+  }
+  
+  return initialExpandedItems.reduce((result, itemId) => {
+    return [...result, itemId, ...getParentIds({ itemId, items })];
+  }, []);
+}
