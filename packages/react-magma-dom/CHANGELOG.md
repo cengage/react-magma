@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.7
+
+### Patch Changes
+
+- 24680b288: fix(TreeView): fix initial expanded items should expand all parents
+
 ## 4.7.0-next.6
 
 ### Minor Changes

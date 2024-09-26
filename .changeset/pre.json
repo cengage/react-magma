@@ -16,6 +16,7 @@
     "a11y-select-accessibility",
     "a11y-treeview-navigation",
     "feat-select-combobox-dropdown-viewport",
+    "fix-initial-expanded-items-should-expand-all-parents",
     "inputwrapperstyles",
     "sync4-6",
     "treeViewSelectItemsOutside"
