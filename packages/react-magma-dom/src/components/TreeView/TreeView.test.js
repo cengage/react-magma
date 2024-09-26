@@ -213,10 +213,10 @@ describe('TreeView', () => {
       expect(getByTestId('item3')).toHaveAttribute('aria-expanded', 'false');
     });
 
-    it('when child item is part of the array, that item is expanded', () => {
+    it('when child item is part of the array, that item is expanded including parents', () => {
       const { getByTestId } = render(
         getTreeItemsMultiLevel({
-          initialExpandedItems: ['item2', 'item-child2.1'],
+          initialExpandedItems: ['item-child2.1'],
         })
       );
 
