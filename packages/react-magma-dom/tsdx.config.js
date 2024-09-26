@@ -19,7 +19,7 @@ module.exports = {
         'react-select',
         '@emotion/core',
         '@emotion/styled',
-        '@emotion/styled/base',
+        '@emotion/styled-base',
         '@emotion/serialize',
         'prop-types',
         'react-fast-compare',
