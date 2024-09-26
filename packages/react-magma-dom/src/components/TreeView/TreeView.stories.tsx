@@ -408,7 +408,7 @@ export const Complex = args => {
 Complex.args = {
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Textbook tree',
-  initialExpandedItems: ['pt1', 'pt1ch1'],
+  initialExpandedItems: ['pt1', 'pt1ch1', 'pt2ch5.1'],
   preselectedItems: [
     { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },

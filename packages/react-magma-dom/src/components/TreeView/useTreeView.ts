@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useDescendants } from '../../hooks/useDescendants';
 import { TreeItemSelectedInterface, TreeViewItemInterface } from './TreeViewContext';
-import { getInitialItems, selectMulti, selectSingle } from './utils';
+import { getInitialExpandedIds, getInitialItems, selectMulti, selectSingle } from './utils';
 import { TreeViewSelectable } from './types';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
@@ -86,7 +86,7 @@ export function useTreeView(props: UseTreeViewProps) {
     selectable = TreeViewSelectable.single,
     onSelectedItemChange,
     onExpandedChange,
-    initialExpandedItems,
+    initialExpandedItems: rawInitialExpandedItems,
     preselectedItems,
     checkChildren = selectable !== TreeViewSelectable.single,
     checkParents = selectable !== TreeViewSelectable.single,
@@ -107,7 +107,11 @@ export function useTreeView(props: UseTreeViewProps) {
   
   const selectedItems = React.useMemo(() => {
     return items.filter((item) => item.checkedStatus === IndeterminateCheckboxStatus.checked)
-  }, [items]); 
+  }, [items]);
+
+  const initialExpandedItems = React.useMemo(() => {
+    return getInitialExpandedIds({ items, initialExpandedItems: rawInitialExpandedItems })
+  }, [items, rawInitialExpandedItems]); 
 
   const itemToFocus = React.useMemo(() => {
     const [firstItem] = items;
