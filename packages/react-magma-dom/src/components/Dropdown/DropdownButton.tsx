@@ -122,6 +122,7 @@ export const DropdownButton = React.forwardRef<
     }
   }
 
+  // Necessary for the proper opening and closing of the menu in Safari
   function handleMouseDown(event: React.MouseEvent) {
     event.preventDefault();
   }
