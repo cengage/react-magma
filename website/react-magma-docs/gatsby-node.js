@@ -19,10 +19,22 @@ exports.onCreateWebpackConfig = ({ actions, plugins }) => {
           include: /node_modules/,
           type: 'javascript/auto',
         },
+
+        {
+          test: /assert\.js$/,
+          include: /node_modules/,
+          resolve: {
+            alias: {
+              'object.assign/polyfill': require.resolve(
+                'object.assign/polyfill'
+              ),
+            },
+          },
+        },
       ],
     },
     plugins: [
-      plugins.provide({ process: 'process', Buffer: ['buffer', 'Buffer'] })
+      plugins.provide({ process: 'process', Buffer: ['buffer', 'Buffer'] }),
     ],
   });
 };
