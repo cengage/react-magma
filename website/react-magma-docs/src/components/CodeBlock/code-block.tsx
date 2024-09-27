@@ -1,5 +1,5 @@
-import React, { HTMLAttributes } from 'react';
 import { Language } from 'prism-react-renderer';
+import React, { HTMLAttributes } from 'react';
 import { CodeBlockContext } from './context';
 import { Example } from './examples';
 
@@ -27,6 +27,8 @@ export const CodeBlock = ({
   ...props
 }: CodeBlockProps) => {
   const language = props.className?.replace(/language-/, '') as Language;
+
+  if (!language) return <code>{props.children}</code>;
 
   return (
     <CodeBlockContext.Provider

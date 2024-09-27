@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   pathPrefix: process.env.PATH_PREFIX || '/',
   siteMetadata: {
@@ -7,7 +5,6 @@ module.exports = {
   },
   flags: {
     FAST_DEV: true,
-    FAST_REFRESH: false, //recommended for react >= 17.0.0
   },
   plugins: [
     {
@@ -18,7 +15,6 @@ module.exports = {
         },
       },
     },
-    'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -69,8 +65,16 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-mdx',
       options: {
+        extensions: ['.mdx', '.md'],
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-images',

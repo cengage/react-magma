@@ -1,18 +1,17 @@
-import {
-  Button,
-  ButtonSize,
-  ButtonColor,
-  ButtonVariant,
-  useIsInverse,
-  magma,
-} from 'react-magma-dom';
 import React, { HTMLAttributes, useEffect, useState } from 'react';
 import CodeSandboxer from 'react-codesandboxer';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import {
+  Button,
+  ButtonColor,
+  ButtonSize,
+  ButtonVariant,
+  magma,
+  useIsInverse,
+} from 'react-magma-dom';
 
 import styled from '@emotion/styled';
-
-const pkg = require('../../../package.json');
+import pkg from '../../../package.json'; // Ensure this line is correct
 
 function usePrevious<T>(value: T) {
   const ref = React.useRef<T>();
@@ -31,12 +30,13 @@ const CODESANDBOX_CSS_FILE = `
 `;
 const CODESANDBOX_INDEX_FILE = `
 import * as React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import App from './App';
 
-const rootElement = document.getElementById('root');
-render(<App />, rootElement);
+const domNode = document.getElementById('root');
+const root = createRoot(domNode);
+root.render(<App />);
 `;
 
 const CODESANDBOX_APP_FILE = `
@@ -90,7 +90,7 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
       name="react-magma-example"
       example={props.code}
       examplePath="does/not/do/anything/but/is/required.tsx"
-      pkgJSON={pkg}
+      pkgJSON={JSON.stringify(pkg)}
       gitInfo={{
         account: 'cengage',
         repository: 'react-magma',
@@ -121,10 +121,8 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
       }}
       template="create-react-app-typescript"
     >
-      {(props: { error: string; isDeploying: boolean; isLoading: boolean }) => {
-        const { error, isDeploying, isLoading } = props;
-        const deploying = isDeploying || isLoading || false;
-        if (error) console.log(error);
+      {({ isLoading }) => {
+        const deploying = isLoading || false;
 
         return (
           <Button

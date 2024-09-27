@@ -1,21 +1,20 @@
 /* eslint-disable complexity */
-import React from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { graphql, StaticQuery } from 'gatsby';
-import { Link } from 'gatsby';
-import { SubPageTabs } from '../SubPageTabs';
-import { convertTextToId } from '../../utils';
+import { graphql, Link, useStaticQuery } from 'gatsby';
+import PropTypes from 'prop-types';
+import React from 'react';
 import {
-  TabPanelsContainer,
-  TabPanel,
-  TabsContainer,
   magma,
-  NavTabs,
   NavTab,
+  NavTabs,
+  TabPanel,
+  TabPanelsContainer,
+  TabsContainer,
   useIsInverse,
 } from 'react-magma-dom';
+import { convertTextToId } from '../../utils';
 import { PANEL_WIDTH } from '../SlidingDrawer';
+import { SubPageTabs } from '../SubPageTabs';
 
 export const CONTENT_MAX_WIDTH = 1112;
 
@@ -119,203 +118,225 @@ function getDataNode(data, name) {
 export const PageContent = ({ children, componentName, type }) => {
   const isInverse = useIsInverse();
 
-  return (
-    <StaticQuery
-      query={graphql`
-        query SideNavQuery {
-          designComponentDocs: allMdx(
-            filter: {
-              fileAbsolutePath: { glob: "**/src/pages/design/**" }
-              frontmatter: { isPattern: { ne: true } }
-            }
-            sort: { order: ASC, fields: frontmatter___title }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          designPatternDocs: allMdx(
-            filter: {
-              fileAbsolutePath: { glob: "**/src/pages/design/**" }
-              frontmatter: { isPattern: { eq: true } }
-            }
-            sort: { order: ASC, fields: frontmatter___title }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          apiDocs: allMdx(
-            filter: { fileAbsolutePath: { glob: "**/src/pages/api/**" } }
-            sort: { order: ASC, fields: frontmatter___title }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          patternsDocs: allMdx(
-            filter: { fileAbsolutePath: { glob: "**/src/pages/patterns/**" } }
-            sort: { order: ASC, fields: frontmatter___title }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          designIntro: allMdx(
-            filter: {
-              fileAbsolutePath: { glob: "**/src/pages/design-intro/**" }
-            }
-            sort: { order: ASC, fields: frontmatter___order }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          apiIntro: allMdx(
-            filter: { fileAbsolutePath: { glob: "**/src/pages/api-intro/**" } }
-            sort: { order: ASC, fields: frontmatter___order }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          patternsIntro: allMdx(
-            filter: {
-              fileAbsolutePath: { glob: "**/src/pages/patterns-intro/**" }
-            }
-            sort: { order: ASC, fields: frontmatter___order }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
+  const data = useStaticQuery(graphql`
+    fragment navFields on MdxEdge {
+      node {
+        frontmatter {
+          title
+          isPattern
         }
-      `}
-      render={data => {
-        const apiDocs = getDataNode(data.apiDocs, componentName);
-        const designDocs = getDataNode(data.designComponentDocs, componentName);
-        const patternsDocs = getDataNode(data.patternsDocs, componentName);
-        const designPatternDocs = getDataNode(
-          data.designPatternDocs,
-          componentName
-        );
+        internal {
+          contentFilePath
+        }
+        fields {
+          slug
+        }
+        headings(depth: "h2") {
+          depth
+          value
+        }
+      }
+    }
+    query SideNavQuery {
+      designComponentDocs: allMdx(
+        filter: {
+          internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
+          frontmatter: { isPattern: { ne: true } }
+        }
+        sort: { frontmatter: { title: ASC } }
+      ) {
+        edges {
+          ...navFields
+        }
+      }
+      designPatternDocs: allMdx(
+        filter: {
+          internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
+          frontmatter: { isPattern: { eq: true } }
+        }
+        sort: { frontmatter: { title: ASC } }
+      ) {
+        edges {
+          ...navFields
+        }
+      }
+      apiDocs: allMdx(
+        filter: {
+          internal: { contentFilePath: { glob: "**/src/pages/api/**" } }
+        }
+        sort: { frontmatter: { title: ASC } }
+      ) {
+        edges {
+          ...navFields
+        }
+      }
+      patternsDocs: allMdx(
+        filter: {
+          internal: { contentFilePath: { glob: "**/src/pages/patterns/**" } }
+        }
+        sort: { frontmatter: { title: ASC } }
+      ) {
+        edges {
+          ...navFields
+        }
+      }
+      designIntro: allMdx(
+        filter: {
+          internal: { contentFilePath: { glob: "**/src/pages/design-intro/**" } }
+        }
+        sort: { frontmatter: { order: ASC } }
+      ) {
+        edges {
+          ...navFields
+        }
+      }
+      apiIntro: allMdx(
+        filter: {
+          internal: { contentFilePath: { glob: "**/src/pages/api-intro/**" } }
+        }
+        sort: { frontmatter: { order: ASC } }
+      ) {
+        edges {
+          ...navFields
+        }
+      }
+      patternsIntro: allMdx(
+        filter: {
+          internal: { contentFilePath: { glob: "**/src/pages/patterns-intro/**" } }
+        }
+        sort: { frontmatter: { order: ASC } }
+      ) {
+        edges {
+          ...navFields
+        }
+      }
+    }
+  `);
+  console.log(data);
+  const apiDocs = getDataNode(data.apiDocs, componentName);
+  const designDocs = getDataNode(data.designComponentDocs, componentName);
+  const patternsDocs = getDataNode(data.patternsDocs, componentName);
+  const designPatternDocs = getDataNode(
+    data.designPatternDocs,
+    componentName
+  );
 
-        const designIntro = getDataNode(data.designIntro, componentName);
-        const apiIntro = getDataNode(data.apiIntro, componentName);
-        const patternsIntro = getDataNode(data.patternsIntro, componentName);
+  const designIntro = getDataNode(data.designIntro, componentName);
+  const apiIntro = getDataNode(data.apiIntro, componentName);
+  const patternsIntro = getDataNode(data.patternsIntro, componentName);
 
-        const designLink = designDocs?.node.fields.slug;
-        const apiLink = apiDocs?.node.fields.slug;
-        const patternsLink = patternsDocs?.node.fields.slug;
-        const designPatternsLink = designPatternDocs?.node.fields.slug;
+  const designLink = designDocs?.node.fields.slug;
+  const apiLink = apiDocs?.node.fields.slug;
+  const patternsLink = patternsDocs?.node.fields.slug;
+  const designPatternsLink = designPatternDocs?.node.fields.slug;
 
-        const hasDocs = !!(
-          apiDocs ||
-          designDocs ||
-          patternsDocs ||
-          designPatternDocs
-        );
+  const hasDocs = !!(
+    apiDocs ||
+    designDocs ||
+    patternsDocs ||
+    designPatternDocs
+  );
 
-        const apiNavTabToLink = patternsDocs ? patternsLink : apiLink;
-        const designNavTabToLink = designPatternDocs
-          ? designPatternsLink
-          : designLink;
+  const apiNavTabToLink = patternsDocs ? patternsLink : apiLink;
+  const designNavTabToLink = designPatternDocs
+    ? designPatternsLink
+    : designLink;
 
-        const getPageData = () => {
-          if (designPatternDocs || patternsDocs) {
-            if (type === NAV_TABS.DESIGN) {
-              return designPatternDocs;
-            }
-            if (type === NAV_TABS.API) {
-              return patternsDocs;
-            }
-          }
-          if (apiDocs || designDocs) {
-            if (type === NAV_TABS.API) {
-              return apiDocs;
-            }
-            if (type === NAV_TABS.DESIGN) {
-              return designDocs;
-            }
-          }
-          if (designIntro || patternsIntro || apiIntro) {
-            if (type === NAV_TABS.API_INTRO) {
-              return apiIntro;
-            }
-            if (type === NAV_TABS.DESIGN_INTRO) {
-              return designIntro;
-            }
-            if (type === NAV_TABS.PATTERNS_INTRO) {
-              return patternsIntro;
-            }
-          }
-        };
+  const getPageData = () => {
+    if (designPatternDocs || patternsDocs) {
+      if (type === NAV_TABS.DESIGN) {
+        return designPatternDocs;
+      }
+      if (type === NAV_TABS.API) {
+        return patternsDocs;
+      }
+    }
+    if (apiDocs || designDocs) {
+      if (type === NAV_TABS.API) {
+        return apiDocs;
+      }
+      if (type === NAV_TABS.DESIGN) {
+        return designDocs;
+      }
+    }
+    if (designIntro || patternsIntro || apiIntro) {
+      if (type === NAV_TABS.API_INTRO) {
+        return apiIntro;
+      }
+      if (type === NAV_TABS.DESIGN_INTRO) {
+        return designIntro;
+      }
+      if (type === NAV_TABS.PATTERNS_INTRO) {
+        return patternsIntro;
+      }
+    }
+  };
 
-        return (
-          <>
-            {hasDocs ? (
-              <>
-                <StyledTabsContainer isInverse={isInverse}>
-                  <TabsWrapper>
-                    <StyledTabs aria-label="">
-                      {apiDocs || patternsDocs ? (
-                        <NavTab
-                          component={
-                            <Link to={apiNavTabToLink}>Implementation</Link>
-                          }
-                          isActive={type === NAV_TABS.API}
-                        />
-                      ) : (
-                        <></>
-                      )}
-                      {designDocs || designPatternDocs ? (
-                        <NavTab
-                          component={
-                            <Link to={designNavTabToLink}>Design</Link>
-                          }
-                          isActive={type === NAV_TABS.DESIGN}
-                        />
-                      ) : (
-                        <></>
-                      )}
-                    </StyledTabs>
-                  </TabsWrapper>
-
-                  <StyledTabPanelsContainer>
-                    <StyledTabPanel>
-                      <Content>{children}</Content>
-                      <PageNavigation>
-                        <SubPageTabs
-                          pageData={getPageData()}
-                          hasHorizontalNav={hasDocs}
-                        />
-                      </PageNavigation>
-                    </StyledTabPanel>
-                  </StyledTabPanelsContainer>
-                </StyledTabsContainer>
-              </>
-            ) : (
-              <div
-                style={{ display: 'flex', background: magma.colors.neutral100 }}
-              >
-                {PAGES_NO_NAV.includes(componentName) ? (
-                  <ContentOutsideDocs>{children}</ContentOutsideDocs>
+  return (
+    <>
+      {hasDocs ? (
+        <>
+          <StyledTabsContainer isInverse={isInverse}>
+            <TabsWrapper>
+              <StyledTabs aria-label="">
+                {apiDocs || patternsDocs ? (
+                  <NavTab
+                    component={
+                      <Link to={apiNavTabToLink}>Implementation</Link>
+                    }
+                    isActive={type === NAV_TABS.API}
+                  />
                 ) : (
-                  <Content>{children}</Content>
+                  <></>
                 )}
+                {designDocs || designPatternDocs ? (
+                  <NavTab
+                    component={
+                      <Link to={designNavTabToLink}>Design</Link>
+                    }
+                    isActive={type === NAV_TABS.DESIGN}
+                  />
+                ) : (
+                  <></>
+                )}
+              </StyledTabs>
+            </TabsWrapper>
 
+            <StyledTabPanelsContainer>
+              <StyledTabPanel>
+                <Content>{children}</Content>
                 <PageNavigation>
                   <SubPageTabs
                     pageData={getPageData()}
                     hasHorizontalNav={hasDocs}
                   />
                 </PageNavigation>
-              </div>
-            )}
-          </>
-        );
-      }}
-    />
+              </StyledTabPanel>
+            </StyledTabPanelsContainer>
+          </StyledTabsContainer>
+        </>
+      ) : (
+        <div
+          style={{
+            display: 'flex',
+            background: magma.colors.neutral100
+          }}
+        >
+          {PAGES_NO_NAV.includes(componentName) ? (
+            <ContentOutsideDocs>{children}</ContentOutsideDocs>
+          ) : (
+            <Content>{children}</Content>
+          )}
+
+          <PageNavigation>
+            <SubPageTabs
+              pageData={getPageData()}
+              hasHorizontalNav={hasDocs}
+            />
+          </PageNavigation>
+        </div>
+      )}
+    </>
   );
 };
 
