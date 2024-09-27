@@ -1,7 +1,6 @@
-import React from 'react';
-import Helmet from 'react-helmet';
 import styled from '@emotion/styled';
-import { magma, Container, Heading } from 'react-magma-dom';
+import React from 'react';
+import { Container, Heading, magma } from 'react-magma-dom';
 import { CONTENT_MAX_WIDTH } from '../PageContent';
 import { PANEL_WIDTH } from '../SlidingDrawer';
 
@@ -32,40 +31,30 @@ const HeadingWrapper = styled.div`
 `;
 
 export const LayoutComponent = props => {
-  const { children, heading, title } = props;
+  const { children, heading } = props;
 
   return (
-    <>
-      <Helmet
-        title={title ? `${title} - React Magma` : 'React Magma'}
-        meta={[
-          { name: 'description', content: 'Sample' },
-          { name: 'keywords', content: 'sample, something' },
-        ]}
-      >
-        <html lang="en" />
-      </Helmet>
-      <main>
-        {/* components have headings, main page doesn't */}
-        {heading ? (
-          <>
-            <StyledHeadingContainer>
-              <div style={{ background: magma.colors.neutral200 }}>
-                <HeadingWrapper>
-                  <Heading level={1}>{heading}</Heading>
-                </HeadingWrapper>
-              </div>
-            </StyledHeadingContainer>
-            <>{children}</>
-          </>
-        ) : (
-          <Container gutterWidth={0}>
-            <ContentSection className="content" style={{ marginTop: '40px' }}>
-              {children}
-            </ContentSection>
-          </Container>
-        )}
-      </main>
-    </>
+    <main>
+      {/* components have headings, main page doesn't */}
+      {heading ? (
+        <>
+          <StyledHeadingContainer>
+            <div style={{ background: magma.colors.neutral200 }}>
+              <HeadingWrapper>
+                <Heading level={1}>{heading}</Heading>
+              </HeadingWrapper>
+            </div>
+          </StyledHeadingContainer>
+          <>{children}</>
+        </>
+      ) : (
+        <Container gutterWidth={0}>
+          <ContentSection className="content" style={{ marginTop: '40px' }}>
+            {children}
+          </ContentSection>
+        </Container>
+      )}
+    </main>
   );
 };
+

@@ -1,8 +1,8 @@
-import Highlight, { defaultProps } from 'prism-react-renderer';
-import React, { useContext, MouseEvent } from 'react';
 import styled from '@emotion/styled';
-import { CodeBlockContext } from './context';
+import { Highlight } from "prism-react-renderer";
+import React, { MouseEvent, useContext } from 'react';
 import { magma, useIsInverse } from 'react-magma-dom';
+import { CodeBlockContext } from './context';
 import { magmaCode } from './magmaCode';
 import { magmaCodeDark } from './magmaCodeDark';
 
@@ -47,11 +47,11 @@ export const Editor = ({ ...props }: EditorProps) => {
 
   if (context.noCode) return null;
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const isInverse = useIsInverse();
 
   return (
     <Highlight
-      {...defaultProps}
       code={props.children}
       language={context.language}
       theme={isInverse ? magmaCodeDark : magmaCode}

@@ -1,19 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import styled from '@emotion/styled';
 import { MDXProvider } from '@mdx-js/react';
-import { SkipLinkContent, Heading, Alert, magma } from 'react-magma-dom';
-import { PageContent } from './PageContent';
+import { Link } from 'gatsby';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Alert, Heading, magma, SkipLinkContent } from 'react-magma-dom';
+import { ButtonProps } from '../components/ButtonProps';
+import { IconButtonProps } from '../components/IconButtonProps';
 import { convertTextToId } from '../utils';
+import { CodeBlock } from './CodeBlock';
+import { Divider } from './Divider';
 import './layout.css';
 import { LayoutComponent } from './LayoutComponent';
-import { SimplePropsTable } from './SimplePropsTable';
-import { Divider } from './Divider';
 import { NetlifyFooter } from './NetlifyFooter';
-import styled from '@emotion/styled';
-import { CodeBlock } from './CodeBlock';
-import { Link } from 'gatsby';
-import { IconButtonProps } from '../components/IconButtonProps';
-import { ButtonProps } from '../components/ButtonProps';
+import { PageContent } from './PageContent';
+import { SimplePropsTable } from './SimplePropsTable';
 
 const ContentArticle = styled.article`
   @media (max-width: 1025px) {
@@ -55,6 +55,15 @@ const SmartDocsHeading = props => {
     <PageHeading {...props} />
   );
 };
+
+export const Head = ({ title }) => (
+  <>
+    <title>{title ? `${title} - React Magma` : 'React Magma'}</title>
+    <meta name="description" content="Sample" />
+    <meta name="keywords" content="sample, something" />
+    <html lang="en" />
+  </>
+);
 
 export const Layout = ({ children, pageContext }) => {
   const title =
