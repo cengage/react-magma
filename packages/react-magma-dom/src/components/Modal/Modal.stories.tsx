@@ -296,7 +296,18 @@ export const NoHeaderOrFocusableContent = () => {
 export const ModalInAModal = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [showModal2, setShowModal2] = React.useState(false);
+  const [mainHeaderRef, setmainHeaderRef] = React.useState(React.useRef<any>());
+
   const buttonRef = React.useRef<HTMLButtonElement>();
+
+  const handleGetHeaderRef = ref => {
+    setmainHeaderRef(ref);
+  };
+
+  const closeModal2 = () => {
+    mainHeaderRef?.current?.focus();
+    setShowModal2(false);
+  };
 
   return (
     <>
@@ -307,6 +318,7 @@ export const ModalInAModal = () => {
           buttonRef.current.focus();
         }}
         isOpen={showModal}
+        headerRef={handleGetHeaderRef}
       >
         <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
         <Paragraph>
@@ -353,7 +365,7 @@ export const ModalInAModal = () => {
       <Modal
         size={ModalSize.small}
         header="Modal 2 Title"
-        onClose={() => setShowModal2(false)}
+        onClose={() => closeModal2()}
         isOpen={showModal2}
       >
         <Paragraph noTopMargin>This is modal 2</Paragraph>
