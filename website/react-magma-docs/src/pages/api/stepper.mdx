@@ -761,7 +761,7 @@ export function Example() {
 
 ## Orientation
 
-The `orientation` prop allows you to change the orientation of the `Stepper`. By default, the `Stepper` is displayed horizontally unless the `orientation` prop is specified.
+The `orientation` prop allows you to change the orientation of the `Stepper`. By default, the `Stepper` is displayed horizontally unless the `orientation` prop is specified. Vertical `Stepper` only supports `StepperLayout.showLabels` and `StepperLayout.hideLabels` layouts. If `StepperLayout.summaryView` is used with a vertical `Stepper`, it will be shown as `StepperLayout.hideLabels`.
 
 #### Vertical orientation
 
@@ -859,7 +859,7 @@ export function Example() {
 }
 ```
 
-#### Stepper inside a Dropdown
+## Stepper inside a Dropdown
 
 ```typescript
 import React from 'react';
@@ -940,7 +940,7 @@ export function Example() {
 
 ## Breakpoint Orientation
 
-For responsive layouts, the `breakpoint` prop can be used in combination with the `breakpointOrientation` prop to change the `Stepper`’s orientation based on screen width. The `breakpoint` prop sets a maximum screen width, and `breakpointOrientation` defines the desired orientation (horizontal or vertical) when the screen width is below the specified breakpoint. By default, the `Stepper` is displayed horizontally if no responsive props are used. It is recommended to use `breakpointOrientation` with `ResponsibleStepperContainer` for optimal behavior.
+For responsive layouts, the `breakpoint` prop can be used in combination with the `breakpointOrientation` prop to change the `Stepper`’s orientation based on screen width. The `breakpoint` prop sets a maximum screen width, and `breakpointOrientation` defines the desired orientation (horizontal or vertical) when the screen width is below the specified breakpoint. By default, the `Stepper` is displayed horizontally if no responsive props are used. It is recommended to use `breakpointOrientation` with `ResponsiveStepperContainer` for optimal behavior.
 
 ```typescript
 import React from 'react';
@@ -953,7 +953,7 @@ import {
   ButtonGroup,
   Flex,
   FlexBehavior,
-  ResponsibleStepperContainer,
+  ResponsiveStepperContainer,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -976,14 +976,12 @@ export function Example() {
   };
 
   return (
-    <ResponsibleStepperContainer
-      props={{
-        currentStep,
-        breakpoint: 1200,
-        breakpointOrientation: StepperOrientation.vertical,
-        breakpointLayout: StepperLayout.hideLabels,
-      }}
-      stepperContent={[
+    <ResponsiveStepperContainer
+      currentStep={currentStep}
+      breakpoint={1200}
+      breakpointOrientation={StepperOrientation.vertical}
+      breakpointLayout={StepperLayout.hideLabels}
+      steps={[
         <Step key={0} label="First Item" secondaryLabel="Description One">
           Item Content One
         </Step>,
@@ -1027,7 +1025,7 @@ export function Example() {
           </Button>
         </ButtonGroup>
       </Flex>
-    </ResponsibleStepperContainer>
+    </ResponsiveStepperContainer>
   );
 }
 ```

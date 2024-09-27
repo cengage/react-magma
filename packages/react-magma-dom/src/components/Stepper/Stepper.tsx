@@ -216,7 +216,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
     const {
       ariaLabel,
       breakpoint,
-      breakpointLayout,
+      breakpointLayout = StepperLayout.showLabels,
       breakpointOrientation = StepperOrientation.horizontal,
       children,
       currentStep,

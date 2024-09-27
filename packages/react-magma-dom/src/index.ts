@@ -190,7 +190,7 @@ export {
   StepperOrientation,
 } from './components/Stepper';
 export { Step, StepProps } from './components/Stepper/Step';
-export { ResponsibleStepperContainer } from './components/Stepper';
+export { ResponsiveStepperContainer } from './components/Stepper';
 export {
   Table,
   TableProps,

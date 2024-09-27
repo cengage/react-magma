@@ -143,6 +143,10 @@ const StyledStep = styled.div<{
   text-align: ${props => props.orientation === StepperOrientation.horizontal && 'center'};
   align-self: self-start;
   align-items: ${props => props.orientation === StepperOrientation.horizontal && 'center'};
+
+  &:last-child > span {
+    margin-bottom: ${props => props.orientation === StepperOrientation.vertical && 0}
+  }
 `;
 
 const StyledStepIndicator = styled.span<{
@@ -178,10 +182,6 @@ const StyledStepTextWrapper = styled.span<{ orientation?: StepperOrientation }>`
   flex-direction: column;
   position: relative;
   margin: ${props => (props.orientation === StepperOrientation.vertical ? '2px 0 24px 8px' : '6px 8px 0')};
-
-  &:last-child {
-    margin-bottom: ${props => props.orientation === StepperOrientation.vertical && 0}
-  }
 `;
 
 const StyledLabel = styled.span<{

@@ -14,7 +14,7 @@ import { InputType } from '../InputBase';
 import { Input } from '../Input';
 import { Flex, FlexBehavior, FlexJustify } from '../Flex';
 import { LabelPosition } from '../Label';
-import { ResponsibleStepperContainer } from './ResponsibleStepperContainer';
+import { ResponsiveStepperContainer } from './ResponsiveStepperContainer';
 import { Dropdown, DropdownButton, DropdownContent } from '../Dropdown';
 
 export default {
@@ -121,12 +121,10 @@ const Template: Story<StepperProps> = args => {
   });
 
   return (
-    <ResponsibleStepperContainer
-      props={{
-        currentStep,
-        ...args,
-      }}
-      stepperContent={step}
+    <ResponsiveStepperContainer
+      currentStep={currentStep}
+      steps={step}
+      {...args}
     >
       <Container
         style={{
@@ -175,7 +173,7 @@ const Template: Story<StepperProps> = args => {
           </ButtonGroup>
         </Flex>
       </Flex>
-    </ResponsibleStepperContainer>
+    </ResponsiveStepperContainer>
   );
 };
 
@@ -183,28 +181,34 @@ const InsideDropdownTemplate: Story<StepperProps> = args => {
   return (
     <Dropdown>
       <DropdownButton>Stepper</DropdownButton>
-      <DropdownContent style={{ 
-        whiteSpace: args.orientation === StepperOrientation.vertical ? 'nowrap' : 'normal',
-        maxHeight: 'fit-content',
-        padding: '1em',
-        }}>
-          <Stepper currentStep={2} {...args}>
+      <DropdownContent
+        style={{
+          maxHeight: 'fit-content',
+          padding: '1em',
+        }}
+      >
+        <ResponsiveStepperContainer
+          currentStep={2}
+          {...args}
+          steps={[
             <Step key={0} label="First Item" secondaryLabel="Description One">
               Item Content One
-            </Step>
+            </Step>,
             <Step key={1} label="Second Item" secondaryLabel="Description Two">
               Item Content Two
-            </Step>
+            </Step>,
             <Step key={2} label="Third Item" secondaryLabel="Description Three">
               Item Content Three
-            </Step>
+            </Step>,
             <Step key={3} label="Fourth Item" secondaryLabel="Description Four">
               Item Content Four
-            </Step>
+            </Step>,
             <Step key={4} label="Fifth Item" secondaryLabel="Description Five">
               Item Content Five
-            </Step>
-          </Stepper>
+            </Step>,
+          ]}
+        >
+        </ResponsiveStepperContainer>
       </DropdownContent>
     </Dropdown>
   );
@@ -230,12 +234,10 @@ const RealisticLabels: Story<StepperProps> = args => {
   };
 
   return (
-    <ResponsibleStepperContainer
-      props={{
-        currentStep,
-        ...args,
-      }}
-      stepperContent={[
+    <ResponsiveStepperContainer
+      currentStep={currentStep}
+      {...args}
+      steps={[
         <Step
           key={0}
           label="Fenway seating"
@@ -291,18 +293,16 @@ const RealisticLabels: Story<StepperProps> = args => {
           </Button>
         </ButtonGroup>
       </Flex>
-    </ResponsibleStepperContainer>
+    </ResponsiveStepperContainer>
   );
 };
 
 const ErrorTemplate: Story<StepperProps> = args => {
   return (
-    <ResponsibleStepperContainer
-      props={{
-        currentStep: 2,
-        ...args,
-      }}
-      stepperContent={[
+    <ResponsiveStepperContainer
+      currentStep={2}
+      {...args}
+      steps={[
         <Step key={0} label="First Item" secondaryLabel="Description One">
           Item Content One
         </Step>,
@@ -343,7 +343,7 @@ const ErrorTemplate: Story<StepperProps> = args => {
           <Button disabled>Next</Button>
         </ButtonGroup>
       </Flex>
-    </ResponsibleStepperContainer>
+    </ResponsiveStepperContainer>
   );
 };
 
