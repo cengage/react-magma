@@ -179,6 +179,11 @@ export const ModalContentUpdate = () => {
   const [showHidden, setShowHidden] = React.useState(false);
   const [goToNextPageEnabled, setGoToNextPageEnabled] = React.useState(true);
   const buttonRef = React.useRef<HTMLButtonElement>();
+  const [mainHeaderRef, setmainHeaderRef] = React.useState(React.useRef<any>());
+
+  const handleGetHeaderRef = ref => {
+    setmainHeaderRef(ref);
+  };
 
   const onModalShow = () => {
     setShowModal(true);
@@ -190,10 +195,12 @@ export const ModalContentUpdate = () => {
   };
 
   const goToPage1 = () => {
+    mainHeaderRef?.current?.focus();
     setPage(1);
   };
 
   const goToPage2 = () => {
+    mainHeaderRef?.current?.focus();
     setPage(2);
   };
 
@@ -207,7 +214,7 @@ export const ModalContentUpdate = () => {
 
   return (
     <>
-      <Modal header="Modal Title" onClose={onModalClose} isOpen={showModal}>
+      <Modal header="Modal Title" onClose={onModalClose} isOpen={showModal} headerRef={handleGetHeaderRef}>
         <div id="attachToMe">
           {page === 1 && (
             <>
