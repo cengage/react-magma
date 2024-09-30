@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.5
+
+### Patch Changes
+
+- cfe5026: fix: Remove card with version `^15.0.0`
+
 ## 1.1.3-next.0
 
 ### Patch Changes

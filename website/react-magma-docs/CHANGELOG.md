@@ -1,5 +1,34 @@
 # Change Log
 
+## 5.0.12
+
+### Patch Changes
+
+- cfe5026: fix(Accordion): Fix focus issue with `Collapse All` and `Expand All` buttons
+- cfe5026: fix(ToggleButton): Improved accessibility for Toggle Button icon only examples.
+- cfe5026: fix(Drawer): Fixed drawer appearing open at lower screen resolutions for the doc site navigation.
+- cfe5026: fix(Drawer): Fix Drawer Navigation example
+- cfe5026: docs(Drawer): Fix Drawer examples
+- cfe5026: fix(Drawer): Fixed drawer appearing open at lower screen resolutions for the doc site navigation.
+- cfe5026: fix(Drawer): Update site navigation storybook example
+- cfe5026: docs(Modal): Modal Heading example fixes
+- cfe5026: docs(Modal): Modal Heading icon example fix
+- cfe5026: fix(TreeView): Fixed the Preselected for displaying checked items
+- Updated dependencies [cfe5026]
+- Updated dependencies [cfe5026]
+- Updated dependencies [cfe5026]
+- Updated dependencies [cfe5026]
+- Updated dependencies [cfe5026]
+- Updated dependencies [cfe5026]
+- Updated dependencies [cfe5026]
+- Updated dependencies [cfe5026]
+- Updated dependencies [cfe5026]
+- Updated dependencies [cfe5026]
+- Updated dependencies [cfe5026]
+- Updated dependencies [cfe5026]
+- Updated dependencies [cfe5026]
+  - react-magma-dom@3.10.0
+
 ## 5.0.10
 
 ### Patch Changes

@@ -1,3 +1,23 @@
+## 3.10.0
+
+### Minor Changes
+
+- cfe5026: feat(Modal): New `headerRef` prop that returns a reference to the header element
+- cfe5026: Add support for `checkChildren`, `checkParents` props to TreeView
+
+### Patch Changes
+
+- cfe5026: fix(Breadcrumb): Improved accessibility by replacing span with link to fix focus
+- cfe5026: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
+- cfe5026: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
+- cfe5026: fix(Button): Improved accessibility for `isLoading` state
+- cfe5026: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
+- cfe5026: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
+- cfe5026: fix(DatePicker): Fix error when using both `onChange` and `onDateChange`
+- cfe5026: fix(Accordion): Fix screen scroll behavior during accordion navigation
+- cfe5026: fix(Modal): Modal disabled background click focus fix.
+- cfe5026: fix(List): Updated examples for List component
+- cfe5026: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
 
 ## 3.9.0
 
