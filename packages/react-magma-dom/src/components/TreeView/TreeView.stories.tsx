@@ -163,7 +163,7 @@ export const Complex = args => {
         <TreeView {...args} onSelectedItemChange={onSelection}>
           <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
             <TreeItem
-              icon={<ArticleIcon aria-hidden={true} />}
+              icon={<FolderIcon aria-hidden={true} />}
               label={<>Chapter 1: I love tiramisu jelly beans soufflé</>}
               itemId="pt1ch1"
               testId="pt1ch1"
@@ -641,7 +641,6 @@ export const FirstItemLeaf = args => {
 
     setSelectedItems(selected);
     setIndeterminateItems(indet);
-    console.log('onSelection', items);
   }
 
   return (
@@ -702,7 +701,6 @@ export const FirstItemBranch = args => {
     setSelectedItems(selected);
     setIndeterminateItems(indet);
     setTotal(items.length);
-    console.log('onSelection', items);
   }
 
   return (
@@ -824,9 +822,20 @@ FlatTree.args = {
 FlatTree.parameters = { controls: { exclude: ['isInverse'] } };
 
 export const ParentsAndChildrenNotAutoChecked = args => {
+  const [selectedItems, setSelectedItems] = React.useState(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
+
+  function onSelection(items) {
+    const selected = createTags(items).selected;
+    const indet = createTags(items).indeterminate;
+
+    setSelectedItems(selected);
+    setIndeterminateItems(indet);
+  }
+
   return (
     <>
-      <TreeView {...args}>
+      <TreeView {...args} onSelectedItemChange={onSelection}>
         <TreeItem label="Mammals" itemId="Mammals">
           <TreeItem label="Dogs" itemId="Dogs">
             <TreeItem label="German Shepherd" itemId="German Shepherd" />
@@ -853,10 +862,28 @@ export const ParentsAndChildrenNotAutoChecked = args => {
         </TreeItem>
         <TreeItem label="Amphibians" itemId="Amphibians" />
       </TreeView>
+      {args.selectable !== TreeViewSelectable.off && (
+        <>
+          <p>Selected: {selectedItems}</p>
+          {args.selectable === TreeViewSelectable.multi && (
+            <p>Indeterminate: {indeterminateItems}</p>
+          )}
+        </>
+      )}
     </>
   );
 };
 
 ParentsAndChildrenNotAutoChecked.args = {
+  checkParents: false,
+  checkChildren: false,
+  ariaLabel: 'Independent Tree',
   selectable: TreeViewSelectable.multi,
+  testId: 'independentTree',
+};
+
+ParentsAndChildrenNotAutoChecked.parameters = {
+  controls: {
+    exclude: ['isInverse', 'initialExpandedItems', 'ariaLabelledBy'],
+  },
 };

@@ -686,24 +686,24 @@ describe('TreeView', () => {
         expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
       });
 
-      // it('item is visually selected', () => {
-      //   const onSelectedItemChange = jest.fn();
-      //   const { getByTestId } = render(
-      //     getTreeItemsOneLevel({
-      //       onSelectedItemChange,
-      //       selectable: TreeViewSelectable.single,
-      //     })
-      //   );
+      it('item is visually selected', () => {
+        const onSelectedItemChange = jest.fn();
+        const { getByTestId } = render(
+          getTreeItemsOneLevel({
+            onSelectedItemChange,
+            selectable: TreeViewSelectable.single,
+          })
+        );
 
-      //   expect(getByTestId('item1-itemwrapper')).not.toHaveStyleRule(
-      //     'background'
-      //   );
-      //   userEvent.click(getByTestId('item1-label'));
+        expect(getByTestId('item1-itemwrapper')).not.toHaveStyleRule(
+          'background'
+        );
+        userEvent.click(getByTestId('item1-label'));
 
-      //   expect(getByTestId('item1-itemwrapper')).toHaveStyle(
-      //     `background: ${transparentize(0.92, magma.colors.neutral900)}`
-      //   );
-      // });
+        // expect(getByTestId('item1-itemwrapper')).toHaveStyle(
+        //   `background: ${transparentize(0.92, magma.colors.neutral900)}`
+        // );
+      });
     });
 
     describe('when set to TreeViewSelectable.multi,', () => {

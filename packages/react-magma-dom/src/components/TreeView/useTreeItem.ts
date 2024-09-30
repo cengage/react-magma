@@ -398,7 +398,11 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           return allItems;
         });
         updateSelectedItemsChanged();
-      } else if (!isDisabled && preselectedChildrenItems.length > 0) {
+      } else if (
+        !isDisabled &&
+        preselectedChildrenItems.length > 0 &&
+        checkParents
+      ) {
         // Case for selectedItems that are inside a collapsed item
         const itemIdChildren = getChildrenItemIdsInTree(treeItemChildren);
         for (const i of preselectedChildrenItems) {

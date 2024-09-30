@@ -3,7 +3,6 @@
 
 ### Minor Changes
 
-- 397f2263c: feat(Stepper): Additions to the Stepper component for accessibility compliance. The 'aria-current' attribute now reads 'step' when active, the DOM structure has been changed to a UL LI layout, and when labels are hidden, the screenreader sees the step state for each step label.
 - 397f2263c: feat(Stepper): Displays step based content for use in multi-step interfaces.
 
 ### Patch Changes
