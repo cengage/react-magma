@@ -79,7 +79,11 @@ export function buildButtonBackground(props) {
 
   if (props.disabled) {
     if (props.isInverse) {
-      if (props.color === 'secondary' || props.color === 'subtle' ||props.variant === 'link') {
+      if (
+        props.color === 'secondary' ||
+        props.color === 'subtle' ||
+        props.variant === 'link'
+      ) {
         return 'none';
       }
       return transparentize(0.7, props.theme.colors.neutral100);
@@ -109,6 +113,9 @@ export function buildButtonBackground(props) {
     if (props.color === 'subtle') {
       return 'none';
     }
+    if (props.color === 'success') {
+      return props.theme.colors.success500;
+    }
     return props.theme.colors.tertiary500;
   }
 
@@ -125,6 +132,8 @@ export function buildButtonBackground(props) {
       return props.theme.colors.danger;
     case 'subtle':
       return props.theme.colors.neutral100;
+    case 'success':
+      return props.theme.colors.success500;
     default:
       return props.theme.colors.primary;
   }
@@ -189,7 +198,11 @@ export function buildColor(props) {
 
   if (props.disabled) {
     if (props.isInverse) {
-      if (props.color === 'secondary' || props.color === 'subtle' || props.variant === 'link') {
+      if (
+        props.color === 'secondary' ||
+        props.color === 'subtle' ||
+        props.variant === 'link'
+      ) {
         return transparentize(0.7, props.theme.colors.neutral100);
       }
       return transparentize(0.6, props.theme.colors.neutral100);
@@ -199,6 +212,12 @@ export function buildColor(props) {
 
   if (props.isInverse) {
     if (props.color === 'subtle') {
+      return props.theme.colors.neutral100;
+    }
+    if (props.color === 'success') {
+      if (props.variant === 'link') {
+        return props.theme.colors.success300;
+      }
       return props.theme.colors.neutral100;
     }
     if (props.variant === 'link') {
@@ -221,10 +240,12 @@ export function buildColor(props) {
 
   if (props.variant === 'link') {
     switch (props.color) {
-      case 'danger': 
+      case 'danger':
         return props.theme.colors.danger500;
       case 'subtle':
         return props.theme.colors.neutral700;
+      case 'success':
+        return props.theme.colors.success500;
       default:
         return props.theme.colors.primary;
     }
@@ -257,6 +278,12 @@ export function buildFocusBackground(props) {
       return props.theme.colors.danger100;
     }
     return props.theme.colors.danger600;
+  }
+  if (props.color === 'success') {
+    if (props.variant === 'link') {
+      return props.theme.colors.success100;
+    }
+    return props.theme.colors.success600;
   }
   if (props.color === 'secondary') {
     if (props.isInverse) {
@@ -315,6 +342,9 @@ export function buildFocusColor(props) {
   }
 
   if (props.variant === 'link' && !props.isInverse) {
+    if (props.color === 'success') {
+      return props.theme.colors.success600;
+    }
     return props.theme.colors.primary;
   }
 
@@ -324,6 +354,8 @@ export function buildFocusColor(props) {
         return props.theme.colors.tertiary500;
       case 'marketing':
         return props.theme.colors.tertiary500;
+      case 'success':
+        return props.theme.colors.success300;
       case 'danger':
         return props.theme.colors.danger200;
       default:
@@ -332,6 +364,9 @@ export function buildFocusColor(props) {
   }
 
   if (props.variant === 'solid' && props.isInverse) {
+    if (props.color === 'success') {
+      return props.theme.colors.neutral100;
+    }
     return props.theme.colors.primary700;
   }
   return props.theme.colors.neutral100;
@@ -349,6 +384,8 @@ export function buildAfterBackground(props) {
         return props.theme.colors.primary;
       case 'danger':
         return props.theme.colors.danger;
+      case 'success':
+        return props.theme.colors.success;
       default:
         return props.theme.colors.primary;
     }
@@ -382,6 +419,15 @@ export function buildActiveBackground(props) {
     if (props.variant !== 'solid') {
       return props.theme.colors.danger200;
     }
+  }
+  if (props.color === 'success') {
+    if (props.variant === 'link') {
+      if (props.isInverse) {
+        return transparentize(0.5, props.theme.colors.neutral900);
+      }
+      return props.theme.colors.success200;
+    }
+    return props.theme.colors.success700;
   }
   if (props.color === 'secondary') {
     if ((props.variant === 'link' && props.isInverse) || props.isInverse) {
@@ -426,6 +472,13 @@ export function buildActiveColor(props) {
       return props.theme.colors.danger700;
     }
   }
+  if (props.color === 'success' && props.variant === 'link') {
+    if (props.isInverse) {
+      return props.theme.colors.success300;
+    }
+    return props.theme.colors.success700;
+  }
+
   if (props.color === 'secondary' && props.variant === 'solid') {
     if (props.isInverse) {
       return props.theme.colors.tertiary500;
@@ -445,6 +498,8 @@ export function buildActiveColor(props) {
     switch (props.color) {
       case 'danger':
         return props.theme.colors.neutral100;
+      case 'success':
+        return props.theme.colors.neutral100;
       default:
         return props.theme.colors.primary600;
     }
@@ -457,7 +512,6 @@ export function buildActiveColor(props) {
         return props.theme.colors.tertiary500;
       case 'marketing':
         return props.theme.colors.tertiary500;
-
       default:
         return props.theme.colors.neutral100;
     }
