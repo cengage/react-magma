@@ -1,0 +1,92 @@
+{
+  "targetDefaults": {
+    "build": {
+      "cache": true,
+      "dependsOn": [
+        {
+          "dependencies": true,
+          "target": "build"
+        }
+      ],
+      "outputs": [
+        "{projectRoot}/packages/react-magma-dom/dist",
+        "{projectRoot}/packages/charts/dist",
+        "{projectRoot}/packages/dropzone/dist",
+        "{projectRoot}/packages/schema-renderer/dist",
+        "{projectRoot}/website/react-magma-docs/public",
+        "{projectRoot}/website/react-magma-landing/dist",
+        "{projectRoot}/patterns/header/dist"
+      ]
+    },
+    "test": {
+      "cache": true,
+      "dependsOn": [],
+      "outputs": ["{projectRoot}/coverage"]
+    }
+  },
+  "projects": {
+    "react-magma-dom": {
+      "targets": {
+        "build": {
+          "cache": true,
+          "dependsOn": [],
+          "outputs": ["{projectRoot}/packages/react-magma-dom/dist"]
+        }
+      }
+    },
+    "charts": {
+      "targets": {
+        "build": {
+          "cache": true,
+          "dependsOn": ["react-magma-dom:build"],
+          "outputs": ["{projectRoot}/packages/charts/dist"]
+        }
+      }
+    },
+    "dropzone": {
+      "targets": {
+        "build": {
+          "cache": true,
+          "dependsOn": ["react-magma-dom:build"],
+          "outputs": ["{projectRoot}/packages/dropzone/dist"]
+        }
+      }
+    },
+    "schema-renderer": {
+      "targets": {
+        "build": {
+          "cache": true,
+          "dependsOn": ["react-magma-dom:build"],
+          "outputs": ["{projectRoot}/packages/schema-renderer/dist"]
+        }
+      }
+    },
+    "website/react-magma-docs": {
+      "targets": {
+        "build": {
+          "cache": true,
+          "dependsOn": ["react-magma-dom:build"],
+          "outputs": ["{projectRoot}/website/react-magma-docs/public"]
+        }
+      }
+    },
+    "website/react-magma-landing": {
+      "targets": {
+        "build": {
+          "cache": true,
+          "dependsOn": ["react-magma-dom:build"],
+          "outputs": ["{projectRoot}/website/react-magma-landing/dist"]
+        }
+      }
+    },
+    "patterns/header": {
+      "targets": {
+        "build": {
+          "cache": true,
+          "dependsOn": ["react-magma-dom:build"],
+          "outputs": ["{projectRoot}/patterns/header/dist"]
+        }
+      }
+    }
+  }
+}
