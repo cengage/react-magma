@@ -350,7 +350,7 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
-    userEvent.click(document.body);
+    fireEvent.blur(getByText('Toggle me'));
 
     act(jest.runAllTimers);
 
@@ -785,7 +785,7 @@ describe('Dropdown', () => {
         'block'
       );
 
-      userEvent.click(document.body);
+      fireEvent.blur(getByText('Toggle me'));
       act(jest.runAllTimers);
 
       expect(onClose).toHaveBeenCalled();

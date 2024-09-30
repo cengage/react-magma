@@ -77,10 +77,18 @@ export const DropdownSplitButton = React.forwardRef<
     }
   }
 
+  // Necessary for the proper opening and closing of the menu in Safari
+  function handleMouseDown(event: React.MouseEvent) {
+    event.preventDefault();
+  }
+
   const i18n = React.useContext(I18nContext);
 
   function buildIconButtonStyles(props) {
-    if (props.color === ButtonColor.secondary || props.color === ButtonColor.subtle) {
+    if (
+      props.color === ButtonColor.secondary ||
+      props.color === ButtonColor.subtle
+    ) {
       return '0';
     }
     return theme.spaceScale.spacing01;
@@ -107,6 +115,7 @@ export const DropdownSplitButton = React.forwardRef<
         icon={buttonIcon}
         isInverse={resolvedContext.isInverse}
         onClick={handleClick}
+        onMouseDown={handleMouseDown}
         shape={ButtonShape.rightCap}
         style={{
           marginLeft: buildIconButtonStyles(resolvedProps),
