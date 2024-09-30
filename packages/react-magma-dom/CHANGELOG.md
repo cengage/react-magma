@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.8
+
+### Patch Changes
+
+- d109847d8: fix(dropdown): Fix the dropdown closing on the second button click in `Safari`
+
 ## 4.7.0-next.7
 
 ### Patch Changes

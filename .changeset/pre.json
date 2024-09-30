@@ -15,6 +15,7 @@
     "a11y-search-loading",
     "a11y-select-accessibility",
     "a11y-treeview-navigation",
+    "dropdown-safari",
     "feat-select-combobox-dropdown-viewport",
     "fix-initial-expanded-items-should-expand-all-parents",
     "inputwrapperstyles",
