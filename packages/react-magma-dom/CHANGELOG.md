@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.9
+
+### Patch Changes
+
+- fbfd75e8b: fix(Modal): Fix modal losing focus order with dynamic content.
+
 ## 4.7.0-next.8
 
 ### Patch Changes
