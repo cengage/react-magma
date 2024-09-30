@@ -286,6 +286,7 @@ export const NoHeaderOrFocusableContent = () => {
           this. A modal should have something actionable inside it.
         </Paragraph>
       </Modal>
+      
       <Button onClick={onModalNoFocusShow} ref={buttonRef}>
         Show Modal with nothing focusable
       </Button>
