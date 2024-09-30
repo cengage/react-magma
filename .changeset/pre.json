@@ -17,6 +17,7 @@
     "a11y-treeview-navigation",
     "dropdown-safari",
     "feat-select-combobox-dropdown-viewport",
+    "feat-success-button",
     "fix-initial-expanded-items-should-expand-all-parents",
     "fix-modal-focuslock",
     "inputwrapperstyles",

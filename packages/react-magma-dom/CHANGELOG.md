@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.10
+
+### Minor Changes
+
+- e926d3ddf: feat(button): Add `success` button
+
 ## 4.7.0-next.9
 
 ### Patch Changes
