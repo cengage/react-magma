@@ -17,7 +17,12 @@ Drawer accepts a position (top, right, bottom, or left)
 
 ```typescript
 import React from 'react';
-import { Button, Drawer, DrawerPosition, VisuallyHidden } from 'react-magma-dom';
+import {
+  Button,
+  Drawer,
+  DrawerPosition,
+  VisuallyHidden,
+} from 'react-magma-dom';
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
@@ -152,8 +157,8 @@ export function Example() {
       value={{
         ...defaultI18n,
         modal: {
-          closeAriaLabel: 'Cerrar'
-        }
+          closeAriaLabel: 'Cerrar',
+        },
       }}
     >
       <Drawer

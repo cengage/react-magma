@@ -34,7 +34,7 @@ export interface NativeSelectProps
 
 const typedStyled = styled as CreateStyled<ThemeInterface>;
 
-const StyledNativeSelectWrapper = typedStyled.div<{
+const StyledNativeSelectWrapper = styled.div<{
   disabled?: boolean;
   hasError?: boolean;
   isInverse?: boolean;
@@ -92,7 +92,7 @@ const StyledNativeSelect = typedStyled.select<{
   }
 `;
 
-const StyledFormFieldContainer = typedStyled(FormFieldContainer)<{
+const StyledFormFieldContainer = styled(FormFieldContainer)<{
   additionalContent?: React.ReactNode;
   hasLabel?: boolean;
   labelPosition?: LabelPosition;

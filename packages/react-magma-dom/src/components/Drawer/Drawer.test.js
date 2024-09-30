@@ -87,7 +87,11 @@ describe('Drawer', () => {
   });
 
   it('Does not violate accessibility standards', async () => {
-    const { baseElement } = render(<Drawer isOpen ariaLabel="drawer">{TEXT}</Drawer>);
+    const { baseElement } = render(
+      <Drawer isOpen ariaLabel="drawer">
+        {TEXT}
+      </Drawer>
+    );
     const results = await axe(baseElement);
 
     return expect(results).toHaveNoViolations();

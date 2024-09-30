@@ -6,6 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
+import { Button } from '../Button';
 
 describe('Modal', () => {
   describe('a11y', () => {
@@ -994,6 +995,31 @@ describe('Modal', () => {
       userEvent.tab();
 
       expect(getByTestId('closeButton')).toHaveFocus();
+    });
+
+    it('headerRef prop allows a custom header to be focused on load, then should lose focus after other Modal elements are looped through', async () => {
+      const headerRef = React.createRef();
+
+      const handleFocus = () => {
+        headerRef?.current?.focus();
+      };
+
+      const { getByText } = render(
+        <Modal headerRef={handleFocus} isOpen={true}>
+          <h3 ref={headerRef} tabIndex={-1}>
+            Custom header using h3
+          </h3>
+          <Button>Focusable element</Button>
+        </Modal>
+      );
+
+      expect(getByText('Custom header using h3')).toHaveFocus();
+
+      userEvent.tab();
+
+      userEvent.tab();
+
+      expect(getByText('Custom header using h3')).not.toHaveFocus();
     });
 
     it('should not attempt to loop through the modal if there are no tabbable elements', () => {

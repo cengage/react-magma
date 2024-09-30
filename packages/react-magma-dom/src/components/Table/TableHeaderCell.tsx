@@ -94,10 +94,10 @@ const StyledTableHeaderCell = typedStyled.th<{
     `}
 
     ${props =>
-    props.width &&
-    css`
-      width: ${props.width};
-    `}
+      props.width &&
+      css`
+        width: ${props.width};
+      `}
 `;
 
 const SortButton = typedStyled.button<{
@@ -116,18 +116,9 @@ const SortButton = typedStyled.button<{
   justify-content: ${props =>
     props.textAlign === TableCellAlign.right ? 'flex-end' : 'flex-start'};
   margin: 0;
-  padding: ${props => buildCellPaddingStyle(props.density, props.theme)}};
+  padding: ${props => buildCellPaddingStyle(props.density, props.theme)};
   text-align: left;
   width: 100%;
-
-  &:focus {
-    outline: 2px solid
-      ${props =>
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
-    outline-offset: -2px;
-  }
 
   &:hover,
   &:focus {
@@ -143,6 +134,15 @@ const SortButton = typedStyled.button<{
           ? props.theme.colors.neutral100
           : props.theme.colors.neutral700};
     }
+  }
+
+  &:focus {
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+    outline-offset: -2px;
   }
 `;
 
