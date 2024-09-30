@@ -13,14 +13,24 @@ export function useFocusLock(
   const focusableItems = React.useRef<Array<HTMLElement>>([]);
 
   const updateFocusableItems = () => {
-    focusableItems.current = rootNode.current?.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
-    ) as unknown as Array<HTMLElement>;
+    focusableItems.current = Array.from(
+      rootNode.current?.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
+      ) || []
+    );
   };
 
   React.useEffect(() => {
     if (active) {
       updateFocusableItems();
+
+      const observer: MutationObserver = new MutationObserver(() => {
+        updateFocusableItems();
+      });
+
+      if (rootNode.current) {
+        observer.observe(rootNode.current, { childList: true, subtree: true });
+      }
 
       if (header && header.current) {
         header.current.focus();
@@ -32,22 +42,11 @@ export function useFocusLock(
         (body.current.firstChild as HTMLElement).setAttribute('tabIndex', '-1');
         (body.current.firstChild as HTMLElement).focus();
       }
+      return () => {
+        observer.disconnect();
+      };
     }
-  }, [active]);
-
-  React.useEffect(() => {
-    const observer: MutationObserver = new MutationObserver(() => {
-      updateFocusableItems();
-    });
-
-    updateFocusableItems();
-
-    rootNode.current &&
-      observer.observe(rootNode.current, { childList: true, subtree: true });
-    return () => {
-      observer.disconnect();
-    };
-  }, [rootNode]);
+  }, [active, header, body]);
 
   React.useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
@@ -102,7 +101,7 @@ export function useFocusLock(
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, [active, focusableItems]);
+  }, [active, focusableItems, header]);
 
   return rootNode;
 }
