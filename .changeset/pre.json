@@ -12,6 +12,7 @@
   },
   "changesets": [
     "a11y-datePicker-shortcut",
+    "a11y-dropdown-active-item",
     "a11y-search-loading",
     "a11y-select-accessibility",
     "a11y-treeview-navigation",

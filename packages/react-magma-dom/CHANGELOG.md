@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.11
+
+### Patch Changes
+
+- 1d1110dc3: fix(dropdown): Fix active index communication handled programmatically
+
 ## 4.7.0-next.10
 
 ### Minor Changes
