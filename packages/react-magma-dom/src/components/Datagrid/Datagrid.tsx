@@ -278,7 +278,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
 
     return (
       <>
-        <Table {...other} ref={ref}>
+        <Table {...other} ref={ref} aria-live="polite">
           <TableHead>
             <TableRow
               headerRowStatus={headerRowStatus}
@@ -308,6 +308,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
                 }
                 isSelectableDisabled={isSelectableDisabled}
                 onTableRowSelect={event => handleRowSelect(id, event)}
+                {...other}
               >
                 {columns.map(({ field, isRowHeader }: DatagridColumn) => {
                   return isRowHeader ? (

@@ -140,7 +140,7 @@ export const NavButton = styled(IconButton)`
   width: ${BuildButtonSize};
 `;
 
-const StyledEllipsis = styled.li`
+const StyledEllipsis = styled.li<any>`
   align-items: center;
   display: flex;
   font-size: ${pageButtonTypeSize};
@@ -205,7 +205,13 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             {...other}
           />
         ) : (
-          <StyledNav {...other} theme={theme} data-testid={testId} ref={ref}>
+          <StyledNav
+            aria-label="pagination"
+            {...other}
+            theme={theme}
+            data-testid={testId}
+            ref={ref}
+          >
             <StyledList>
               {pageButtons.map(
                 (
@@ -227,7 +233,9 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                   } else if (type === 'page') {
                     return (
                       <StyledListItem
-                        aria-current={Boolean(ariaCurrent)}
+                        aria-current={
+                          ariaCurrent ? 'page' : Boolean(ariaCurrent)
+                        }
                         key={index}
                       >
                         <PageButton

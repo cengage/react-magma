@@ -1,8 +1,7 @@
-const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 const propertiesJson = require('react-magma-dom/dist/properties.json');
 
-exports.onCreateWebpackConfig = ({ actions }) => {
+exports.onCreateWebpackConfig = ({ actions, plugins }) => {
   actions.setWebpackConfig({
     node: {
       fs: 'empty',
@@ -20,8 +19,23 @@ exports.onCreateWebpackConfig = ({ actions }) => {
           include: /node_modules/,
           type: 'javascript/auto',
         },
+
+        {
+          test: /assert\.js$/,
+          include: /node_modules/,
+          resolve: {
+            alias: {
+              'object.assign/polyfill': require.resolve(
+                'object.assign/polyfill'
+              ),
+            },
+          },
+        },
       ],
     },
+    plugins: [
+      plugins.provide({ process: 'process', Buffer: ['buffer', 'Buffer'] }),
+    ],
   });
 };
 

@@ -33,11 +33,13 @@ import {
 import { transparentize } from 'polished';
 import { TreeItemContext } from './TreeItemContext';
 import { TreeViewContext } from './TreeViewContext';
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
+
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 export interface TreeItemProps extends UseTreeItemProps {}
 
-const StyledTreeItem = styled.li<{
+const StyledTreeItem = typedStyled.li<{
   theme?: ThemeInterface;
   isInverse?: boolean;
   hasOwnTreeItems: boolean;
@@ -106,7 +108,7 @@ const StyledTreeItem = styled.li<{
     }
   `;
 
-const IconWrapper = styled.span<{
+const IconWrapper = typedStyled.span<{
   theme?: ThemeInterface;
   isDisabled?: boolean;
   isInverse?: boolean;
@@ -122,7 +124,7 @@ const IconWrapper = styled.span<{
   }
 `;
 
-const StyledLabelWrapper = styled.span<{
+const StyledLabelWrapper = typedStyled.span<{
   theme?: ThemeInterface;
   isDisabled?: boolean;
   isInverse?: boolean;
@@ -134,7 +136,7 @@ const StyledLabelWrapper = styled.span<{
   width: 100%;
 `;
 
-const StyledExpandWrapper = styled.div<{
+const StyledExpandWrapper = typedStyled.div<{
   theme?: ThemeInterface;
   isDisabled?: boolean;
   isInverse?: boolean;
@@ -149,13 +151,13 @@ const StyledExpandWrapper = styled.div<{
   height: ${props => props.theme.spaceScale.spacing06};
 `;
 
-const StyledCheckboxWrapper = styled.div<{ theme?: ThemeInterface }>`
+const StyledCheckboxWrapper = typedStyled.div<{ theme?: ThemeInterface }>`
   margin-right: ${props => props.theme.spaceScale.spacing03};
   vertical-align: middle;
   display: inline-flex;
 `;
 
-const StyledItemWrapper = styled.div<{
+const StyledItemWrapper = typedStyled.div<{
   theme?: ThemeInterface;
   selectable?: TreeViewSelectable;
   nodeType: TreeNodeType;
