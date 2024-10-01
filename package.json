@@ -9,8 +9,8 @@
     "url": "https://github.com/cengage/react-magma.git"
   },
   "engines": {
-    "npm": "8.19.4",
-    "node": "18.18.2"
+    "npm": ">=^7.3.0",
+    "node": ">=^14.21.3"
   },
   "scripts": {
     "pkg": "manypkg run",
