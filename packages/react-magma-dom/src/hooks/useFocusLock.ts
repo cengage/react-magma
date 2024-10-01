@@ -17,7 +17,14 @@ export function useFocusLock(
       rootNode.current?.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
       ) || []
-    );
+    ).filter((element): element is HTMLElement => {
+      const style = window.getComputedStyle(element);
+      return (
+        element instanceof HTMLElement &&
+        style.display !== 'none' &&
+        style.visibility !== 'hidden'
+      );
+    });
   };
 
   React.useEffect(() => {
