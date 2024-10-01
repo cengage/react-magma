@@ -135,17 +135,17 @@ export const HiddenLabelText = styled.span`
 `;
 
 const StyledStep = styled.div<{
-  orientation: StepperOrientation;
+  isVerticalOrientation: boolean;
 }>`
   display: flex;
-  flex-direction: ${props => props.orientation === StepperOrientation.horizontal && 'column'};
+  flex-direction: ${props => !props.isVerticalOrientation && 'column'};
   justify-content: center;
-  text-align: ${props => props.orientation === StepperOrientation.horizontal && 'center'};
+  text-align: ${props => !props.isVerticalOrientation && 'center'};
   align-self: self-start;
-  align-items: ${props => props.orientation === StepperOrientation.horizontal && 'center'};
+  align-items: ${props => !props.isVerticalOrientation && 'center'};
 
   &:last-child > span {
-    margin-bottom: ${props => props.orientation === StepperOrientation.vertical && 0}
+    margin-bottom: ${props => props.isVerticalOrientation && 0};
   }
 `;
 
@@ -175,13 +175,14 @@ const StyledStepIndicator = styled.span<{
   }
 `;
 
-const StyledStepTextWrapper = styled.span<{ orientation?: StepperOrientation }>`
+const StyledStepTextWrapper = styled.span<{ isVerticalOrientation?: boolean }>`
   flex: 1;
   display: flex;
   align-self: center;
   flex-direction: column;
   position: relative;
-  margin: ${props => (props.orientation === StepperOrientation.vertical ? '2px 0 24px 8px' : '6px 8px 0')};
+  margin: ${props =>
+    props.isVerticalOrientation ? '2px 0 24px 8px' : '6px 8px 0'};
 `;
 
 const StyledLabel = styled.span<{
@@ -203,7 +204,7 @@ const StyledSecondaryLabel = styled.span<{
   isInverse?: boolean;
   secondaryLabel?: string;
   theme?: ThemeInterface;
-  orientation?: StepperOrientation;
+  isVerticalOrientation?: boolean;
 }>`
   color: ${buildStepLabelColors};
   font-size: ${props =>
@@ -212,7 +213,8 @@ const StyledSecondaryLabel = styled.span<{
     props.theme.typographyVisualStyles.bodyXSmall.desktop.letterSpacing};
   line-height: ${props =>
     props.theme.typographyVisualStyles.bodyXSmall.desktop.lineHeight};
-  margin: ${props => (props.orientation === StepperOrientation.vertical ? '2px 0 0' : '2px 12px 0 12px')};
+  margin: ${props =>
+    props.isVerticalOrientation ? '2px 0 0' : '2px 12px 0 12px'};
 `;
 
 export const Step = React.forwardRef<HTMLDivElement, StepProps>(
@@ -232,13 +234,14 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
+    const isVerticalOrientation = orientation === StepperOrientation.vertical;
 
     return (
       <StyledStep
         {...rest}
         ref={ref}
         data-testid={testId}
-        orientation={orientation}
+        isVerticalOrientation={isVerticalOrientation}
       >
         <StyledStepIndicator
           hasError={hasError}
@@ -252,7 +255,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
           {hasError && <CrossIcon aria-hidden="true" />}
         </StyledStepIndicator>
 
-        <StyledStepTextWrapper orientation={orientation}>
+        <StyledStepTextWrapper isVerticalOrientation={isVerticalOrientation}>
           {layout !== StepperLayout.hideLabels &&
           layout !== StepperLayout.summaryView ? (
             <>
@@ -281,7 +284,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
                   isInverse={isInverse}
                   data-testid={testId && `${testId}-secondaryLabel`}
                   theme={theme}
-                  orientation={orientation}
+                  isVerticalOrientation={isVerticalOrientation}
                 >
                   {secondaryLabel}
                 </StyledSecondaryLabel>

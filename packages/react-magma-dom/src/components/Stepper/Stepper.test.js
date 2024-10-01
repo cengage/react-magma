@@ -701,7 +701,10 @@ describe('Stepper', () => {
           'step'
         );
 
-        expect(getByText(`Step completed, ${TEXT}-1`)).toHaveStyleRule('overflow', 'hidden');
+        expect(getByText(`Step completed, ${TEXT}-1`)).toHaveStyleRule(
+          'overflow',
+          'hidden'
+        );
         expect(getByText(`${TEXT}-2`)).toHaveStyleRule('overflow', 'hidden');
       });
     });

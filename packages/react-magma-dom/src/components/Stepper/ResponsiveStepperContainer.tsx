@@ -18,36 +18,34 @@ import {
   StepperOrientation,
   StepperProps,
 } from './Stepper';
-
-export interface ResponsiveStepperContainerProps extends StepperProps {
-  children?: React.ReactNode | React.ReactNode[];
-  steps: React.ReactNode | React.ReactNode[];
-  currentStep: number;
-}
+import { magma } from '../../theme/magma';
 
 export const ResponsiveStepperContainer: React.FunctionComponent<
   ResponsiveStepperContainerProps
 > = props => {
   const { children, steps, currentStep, ...rest } = props;
+  const {
+    breakpoint,
+    orientation,
+    layout,
+    breakpointOrientation,
+    breakpointLayout,
+  } = rest;
 
-  if (!rest.breakpoint) {
+  if (!breakpoint) {
     return (
       <Flex
         behavior={FlexBehavior.container}
         wrap={
-          rest.orientation === StepperOrientation.vertical
+          orientation === StepperOrientation.vertical
             ? FlexWrap.nowrap
             : FlexWrap.wrap
         }
         style={{
-          gap: '24px',
-          whiteSpace:
-            rest.orientation === StepperOrientation.vertical
-              ? 'nowrap'
-              : 'normal',
+          gap: magma.spaceScale.spacing06,
           minWidth:
-            rest.orientation === StepperOrientation.horizontal &&
-            rest.layout !== StepperLayout.showLabels &&
+            orientation === StepperOrientation.horizontal &&
+            layout !== StepperLayout.showLabels &&
             '25em',
         }}
       >
@@ -59,7 +57,7 @@ export const ResponsiveStepperContainer: React.FunctionComponent<
           <Flex
             behavior={FlexBehavior.container}
             alignItems={
-              rest.orientation === StepperOrientation.vertical
+              orientation === StepperOrientation.vertical
                 ? FlexAlignItems.stretch
                 : FlexAlignItems.center
             }
@@ -74,24 +72,20 @@ export const ResponsiveStepperContainer: React.FunctionComponent<
   }
 
   return (
-    <BreakpointsContainer breakpoints={{ medium: rest.breakpoint }}>
+    <BreakpointsContainer breakpoints={{ medium: breakpoint }}>
       <Breakpoint screenSize={BreakpointScreenSize.xs}>
         <Flex
           behavior={FlexBehavior.container}
           wrap={
-            rest.breakpointOrientation === StepperOrientation.vertical
+            breakpointOrientation === StepperOrientation.vertical
               ? FlexWrap.nowrap
               : FlexWrap.wrap
           }
           style={{
-            gap: '24px',
-            whiteSpace:
-              rest.breakpointOrientation === StepperOrientation.vertical
-                ? 'nowrap'
-                : 'normal',
+            gap: magma.spaceScale.spacing06,
             minWidth:
-              rest.breakpointOrientation === StepperOrientation.horizontal &&
-              rest.breakpointLayout !== StepperLayout.showLabels &&
+              breakpointOrientation === StepperOrientation.horizontal &&
+              breakpointLayout !== StepperLayout.showLabels &&
               '25em',
           }}
         >
@@ -103,7 +97,7 @@ export const ResponsiveStepperContainer: React.FunctionComponent<
             <Flex
               behavior={FlexBehavior.container}
               alignItems={
-                rest.breakpointOrientation === StepperOrientation.vertical
+                breakpointOrientation === StepperOrientation.vertical
                   ? FlexAlignItems.stretch
                   : FlexAlignItems.center
               }
@@ -119,19 +113,15 @@ export const ResponsiveStepperContainer: React.FunctionComponent<
         <Flex
           behavior={FlexBehavior.container}
           wrap={
-            rest.orientation === StepperOrientation.vertical
+            orientation === StepperOrientation.vertical
               ? FlexWrap.nowrap
               : FlexWrap.wrap
           }
           style={{
-            gap: '24px',
-            whiteSpace:
-              rest.orientation === StepperOrientation.vertical
-                ? 'nowrap'
-                : 'normal',
+            gap: magma.spaceScale.spacing06,
             minWidth:
-              rest.orientation === StepperOrientation.horizontal &&
-              rest.layout !== StepperLayout.showLabels &&
+              orientation === StepperOrientation.horizontal &&
+              layout !== StepperLayout.showLabels &&
               '25em',
           }}
         >
@@ -143,7 +133,7 @@ export const ResponsiveStepperContainer: React.FunctionComponent<
             <Flex
               behavior={FlexBehavior.container}
               alignItems={
-                rest.orientation === StepperOrientation.vertical
+                orientation === StepperOrientation.vertical
                   ? FlexAlignItems.stretch
                   : FlexAlignItems.center
               }
@@ -158,3 +148,9 @@ export const ResponsiveStepperContainer: React.FunctionComponent<
     </BreakpointsContainer>
   );
 };
+
+export interface ResponsiveStepperContainerProps extends StepperProps {
+  children?: React.ReactNode | React.ReactNode[];
+  steps: React.ReactNode | React.ReactNode[];
+  currentStep: number;
+}
