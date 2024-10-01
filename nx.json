@@ -2,21 +2,7 @@
   "targetDefaults": {
     "build": {
       "cache": true,
-      "dependsOn": [
-        {
-          "dependencies": true,
-          "target": "build"
-        }
-      ],
-      "outputs": [
-        "{projectRoot}/packages/react-magma-dom/dist",
-        "{projectRoot}/packages/charts/dist",
-        "{projectRoot}/packages/dropzone/dist",
-        "{projectRoot}/packages/schema-renderer/dist",
-        "{projectRoot}/website/react-magma-docs/public",
-        "{projectRoot}/website/react-magma-landing/dist",
-        "{projectRoot}/patterns/header/dist"
-      ]
+      "dependsOn": ["^build"]
     },
     "test": {
       "cache": true,

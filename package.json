@@ -9,8 +9,8 @@
     "url": "https://github.com/cengage/react-magma.git"
   },
   "engines": {
-    "npm": ">=^v10.7.0",
-    "node": ">=^18.20.4"
+    "npm": ">=v10.7.0",
+    "node": ">=18.20.4"
   },
   "workspaces": [
     "website/*",
@@ -29,15 +29,16 @@
     "test-watch": "jest --watch",
     "test-dom": "lerna run test --scope react-magma-dom -- --watch --coverage=false",
     "storybook": "NODE_OPTIONS='--max-old-space-size=4096' start-storybook -p 6006",
-    "build:docs": "lerna run build --scope react-magma-docs --stream --no-progress",
-    "build:lite": "lerna run build --ignore react-magma-docs --stream --no-progress",
-    "build": "lerna run build --stream --concurrency=6 --no-progress",
+    "build:docs": "lerna run build --scope react-magma-docs --no-progress",
+    "build:lite": "lerna run build --ignore react-magma-docs --concurrency=6 --no-progress",
+    "build": "lerna run build --concurrency=6 --no-progress",
     "build:landing": "node website/react-magma-landing/scripts/build.js",
     "build:storybook": "build-storybook",
     "lint": "lerna run lint",
     "develop": "npm run docs",
-    "docs": "lerna run --stream --scope react-magma-docs develop",
+    "docs": "lerna run --scope react-magma-docs develop",
     "clean": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes && rimraf node_modules",
+    "clean:docs": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes --scope react-magma-docs ",
     "cm": "git-cz",
     "cm-retry": "git-cz --retry",
     "check:spelling": "cspell --config=.cspell.json packages/**/*.{md,ts,js,mdx,tsx,jsx}",
