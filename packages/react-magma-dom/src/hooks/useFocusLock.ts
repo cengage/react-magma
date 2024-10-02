@@ -12,12 +12,20 @@ export function useFocusLock(
   const rootNode = React.useRef<HTMLElement>(null);
   const focusableItems = React.useRef<Array<HTMLElement>>([]);
 
+  // The filter is necessary for the proper functioning of focus in drawer-navigation or similar cases
   const updateFocusableItems = () => {
     focusableItems.current = Array.from(
       rootNode.current?.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
       ) || []
-    );
+    ).filter((element): element is HTMLElement => {
+      const style = window.getComputedStyle(element);
+      return (
+        element instanceof HTMLElement &&
+        style.display !== 'none' &&
+        style.visibility !== 'hidden'
+      );
+    });
   };
 
   React.useEffect(() => {
