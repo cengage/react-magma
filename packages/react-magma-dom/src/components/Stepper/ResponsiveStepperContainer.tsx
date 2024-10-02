@@ -20,7 +20,8 @@ import {
 } from './Stepper';
 import { magma } from '../../theme/magma';
 
-export interface ResponsiveStepperContainerPropsForDocs {
+export interface ResponsiveStepperContainerProps
+  extends Omit<StepperProps, 'currentStep'> {
   /**
    * @children
    */
@@ -163,6 +164,3 @@ export const ResponsiveStepperContainer: React.FunctionComponent<
     </BreakpointsContainer>
   );
 };
-
-export type ResponsiveStepperContainerProps =
-  ResponsiveStepperContainerPropsForDocs & StepperProps;

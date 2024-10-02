@@ -189,7 +189,6 @@ export {
   StepperProps,
   StepperOrientation,
   ResponsiveStepperContainerProps,
-  ResponsiveStepperContainerPropsForDocs,
 } from './components/Stepper';
 export { Step, StepProps } from './components/Stepper/Step';
 export { ResponsiveStepperContainer } from './components/Stepper';
