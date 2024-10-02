@@ -12,6 +12,7 @@ export function useFocusLock(
   const rootNode = React.useRef<HTMLElement>(null);
   const focusableItems = React.useRef<Array<HTMLElement>>([]);
 
+  // The filter is necessary for the proper functioning of focus in drawer-navigation or similar cases
   const updateFocusableItems = () => {
     focusableItems.current = Array.from(
       rootNode.current?.querySelectorAll(

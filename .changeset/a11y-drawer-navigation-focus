@@ -1,5 +1,0 @@
----
-'react-magma-dom': patch
----
-
-fix(drawer): Fixed trapped focus in the drawer
