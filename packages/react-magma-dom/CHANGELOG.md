@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.12
+
+### Patch Changes
+
+- 35d9507ad: fix(drawer): Fix trapped focus in the drawer
+
 ## 4.7.0-next.11
 
 ### Patch Changes
