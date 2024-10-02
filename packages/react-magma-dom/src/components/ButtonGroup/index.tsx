@@ -84,7 +84,6 @@ export interface ButtonGroupContextInterface {
 }
 
 const typedStyled = styled as CreateStyled<ThemeInterface>;
- 
 
 export const ButtonGroupContext =
   React.createContext<ButtonGroupContextInterface>({});

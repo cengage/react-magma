@@ -141,7 +141,7 @@ const StyledSummary = typedStyled.div<{
 }>`
   display: flex;
   flex-direction: column;
-  position:relative;
+  position: relative;
   font-size: ${props =>
     props.theme.typographyVisualStyles.bodySmall.desktop.fontSize};
   letter-spacing: ${props =>
@@ -166,11 +166,11 @@ const StyledSummary = typedStyled.div<{
   div span {
     margin: 3px 0;
     span:first-child {
-      margin: 0
+      margin: 0;
     }
     span:last-child {
       margin: 4px 0 0 0;
-    } 
+    }
   }
 `;
 

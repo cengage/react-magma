@@ -1,4 +1,3 @@
-
 import { inputBaseStyles } from '../InputBase';
 import { Card } from '../Card';
 import { transparentize } from 'polished';

@@ -345,7 +345,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
       props.onChange &&
         typeof props.onChange === 'function' &&
-        props.onChange(day.toISOString(), event);
+        props.onChange(day?.toISOString(), event);
 
       onDateChange(day);
       setFocusedDate(day);

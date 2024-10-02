@@ -272,6 +272,13 @@ export interface I18nInterface {
       previousAriaLabel: string;
       rowsPerPageLabel: string;
     };
+    selectable: {
+      sortButtonAriaLabel: string;
+      selectAllRowsAriaLabel: string;
+      selectRowAriaLabel: string;
+      deselectAllRowsAriaLabel: string;
+      deselectRowAriaLabel: string;
+    };
   };
   tabs: {
     horizontalTabsInstructions: string;

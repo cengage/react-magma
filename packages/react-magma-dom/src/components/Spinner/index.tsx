@@ -13,6 +13,11 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
   color?: string;
   isInverse?: boolean;
   /**
+   * Use when Spinner does not need the "img" role (ex: button loading state)
+   * @internal
+   */
+  noRole?: boolean;
+  /**
    * The height and width of the spinner.  Can be a string or number; if number is provided, the size is in px.
    * @default 16
    */
@@ -45,7 +50,14 @@ const StyledSpinner = styled.span<SpinnerProps>`
 
 export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
   (props, ref) => {
-    const { 'aria-label': ariaLabel, color, size, testId, ...other } = props;
+    const {
+      'aria-label': ariaLabel,
+      color,
+      noRole,
+      size,
+      testId,
+      ...other
+    } = props;
 
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
@@ -70,7 +82,8 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
         }
         data-testid={testId}
         ref={ref}
-        role="img"
+        role={!noRole && 'img'}
+        aria-hidden={noRole}
         size={sizeString}
       />
     );

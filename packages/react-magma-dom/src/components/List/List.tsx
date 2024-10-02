@@ -10,15 +10,10 @@ import styled from '@emotion/styled';
  * @children required
  */
 export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
-  description?: boolean;
   /**
    * Allows an ordered list to start at a determined value of a letter or number.
    */
   hasStart?: string;
-  /**
-   * For use with inline icons within list items.
-   */
-  icon?: React.ReactElement<any> | React.ReactElement<any>[];
   /**
    * Aligns the icon at the top, or center of each list item.
    * @default IconAlignment.center
@@ -110,13 +105,6 @@ export function getListAlignment(props) {
   }
 }
 
-export function getListDisplay(props) {
-  if (props.icon) {
-    return 'grid';
-  }
-  return 'list-item';
-}
-
 const ListStyles = props => css`
   margin: 0;
   padding: 0;
@@ -151,7 +139,7 @@ const ListStyles = props => css`
   }
 `;
 
-const StyledList = styled(TypographyComponent)`
+const StyledList = styled(TypographyComponent)<any>`
   ${ListStyles};
 `;
 
@@ -160,10 +148,8 @@ export const List = React.forwardRef<HTMLDivElement, ListProps>(
     const {
       children,
       color,
-      description,
       testId,
       hasStart,
-      icon,
       iconAlign,
       iconSize,
       isInverse: isInverseProp,
@@ -181,9 +167,7 @@ export const List = React.forwardRef<HTMLDivElement, ListProps>(
       <InverseContext.Provider value={{ isInverse }}>
         <StyledList
           as={isOrdered ? 'ol' : 'ul'}
-          data-testid={props.testId}
-          description={description}
-          icon={icon}
+          data-testid={testId}
           iconAlign={iconAlign}
           iconSize={iconSize}
           isInverse={isInverse}
@@ -193,9 +177,7 @@ export const List = React.forwardRef<HTMLDivElement, ListProps>(
           spacingStyle={magma.spaceScale[spacingStyle] || spacingStyle}
           start={hasStart}
           theme={theme}
-          visualStyle={
-            visualStyle ? visualStyle : TypographyVisualStyle.bodyMedium
-          }
+          visualStyle={visualStyle || TypographyVisualStyle.bodyMedium}
           {...rest}
         >
           {children}
