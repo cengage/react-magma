@@ -19,6 +19,7 @@
     "a11y-search-loading",
     "a11y-select-accessibility",
     "a11y-treeview-navigation",
+    "build-upgrade-lerna",
     "dropdown-safari",
     "feat-select-combobox-dropdown-viewport",
     "feat-success-button",

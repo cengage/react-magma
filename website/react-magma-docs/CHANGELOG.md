@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.9-next.6
+
+### Patch Changes
+
+- 8983e14e9: build(Lerna): update and add local caching for build and test commands`.
+
 ## 5.0.9-next.5
 
 ### Patch Changes
