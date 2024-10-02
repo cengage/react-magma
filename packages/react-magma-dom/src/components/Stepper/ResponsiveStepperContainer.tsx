@@ -20,6 +20,21 @@ import {
 } from './Stepper';
 import { magma } from '../../theme/magma';
 
+export interface ResponsiveStepperContainerPropsForDocs {
+  /**
+   * @children
+   */
+  children?: React.ReactNode;
+  /**
+   * Steps of the Stepper.
+   */
+  steps: React.ReactNode[];
+  /**
+   * Current step value.
+   */
+  currentStep: number;
+}
+
 export const ResponsiveStepperContainer: React.FunctionComponent<
   ResponsiveStepperContainerProps
 > = props => {
@@ -149,8 +164,5 @@ export const ResponsiveStepperContainer: React.FunctionComponent<
   );
 };
 
-export interface ResponsiveStepperContainerProps extends StepperProps {
-  children?: React.ReactNode | React.ReactNode[];
-  steps: React.ReactNode | React.ReactNode[];
-  currentStep: number;
-}
+export type ResponsiveStepperContainerProps =
+  ResponsiveStepperContainerPropsForDocs & StepperProps;
