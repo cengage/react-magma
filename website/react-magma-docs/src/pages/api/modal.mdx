@@ -393,30 +393,35 @@ export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const [showModal2, setShowModal2] = React.useState(false);
   const [mainHeaderRef, setmainHeaderRef] = React.useState(React.useRef<any>());
+  const buttonRef = React.useRef<HTMLButtonElement>();
 
   const handleGetHeaderRef = ref => {
     setmainHeaderRef(ref);
   };
 
+  const closeModal = () => {
+    setShowModal(false);
+    buttonRef.current && buttonRef.current.focus();
+  };
+
   const closeModal2 = () => {
-    mainHeaderRef.current.focus();
     setShowModal2(false);
+    mainHeaderRef.current && mainHeaderRef.current.focus();
   };
 
   return (
     <>
       <Modal
         header="Modal Title"
-        onClose={() => {
-          setShowModal(false);
-        }}
+        onClose={() => closeModal()}
         isOpen={showModal}
+        headerRef={handleGetHeaderRef}
       >
         <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
 
         <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
       </Modal>
-      <Button onClick={() => setShowModal(true)}>
+      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
         Show Modal
         <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
       </Button>
@@ -445,7 +450,7 @@ import {
   Combobox,
   Modal,
   ModalSize,
-  Paragraph
+  Paragraph,
 } from 'react-magma-dom';
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
