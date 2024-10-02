@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.9-next.4
+
+### Patch Changes
+
+- 0846b586f: fix(Modal): Fix nested modal example focus lock.
+
 ## 5.0.9-next.3
 
 ### Patch Changes
