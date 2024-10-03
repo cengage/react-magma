@@ -183,8 +183,15 @@ export {
 } from './components/SkipLinkContent';
 export { Spacer, SpacerProps, SpacerAxis } from './components/Spacer';
 export { Spinner, SpinnerProps } from './components/Spinner';
-export { Stepper, StepperLayout, StepperProps } from './components/Stepper';
+export {
+  Stepper,
+  StepperLayout,
+  StepperProps,
+  StepperOrientation,
+  ResponsiveStepperContainerProps,
+} from './components/Stepper';
 export { Step, StepProps } from './components/Stepper/Step';
+export { ResponsiveStepperContainer } from './components/Stepper';
 export {
   Table,
   TableProps,
