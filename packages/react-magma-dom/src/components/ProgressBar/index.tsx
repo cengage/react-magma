@@ -108,37 +108,39 @@ const Bar = styled.div<ProgressBarProps>`
   transition: width 0.3s;
   width: ${props => props.percentage}%;
 
-  ${props =>
-    props.isAnimated &&
-    css`
-      background-image: linear-gradient(
-        to right,
-        ${buildProgressBarBackground(props)} 0%,
-        rgba(255, 255, 255, 0.5) 20%,
-        ${buildProgressBarBackground(props)} 40%,
-        ${buildProgressBarBackground(props)} 100%
-      );
-      background-repeat: no-repeat;
-      background-size: 1800px 104px;
-      display: inline-block;
-      position: relative;
+  @media (prefers-reduced-motion: no-preference) {
+    ${props =>
+      props.isAnimated &&
+      css`
+        background-image: linear-gradient(
+          to right,
+          ${buildProgressBarBackground(props)} 0%,
+          rgba(255, 255, 255, 0.5) 20%,
+          ${buildProgressBarBackground(props)} 40%,
+          ${buildProgressBarBackground(props)} 100%
+        );
+        background-repeat: no-repeat;
+        background-size: 1800px 104px;
+        display: inline-block;
+        position: relative;
 
-      animation-duration: 1s;
-      animation-fill-mode: forwards;
-      animation-iteration-count: infinite;
-      animation-name: placeholderShimmer;
-      animation-timing-function: linear;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeholderShimmer;
+        animation-timing-function: linear;
 
-      @keyframes placeholderShimmer {
-        0% {
-          background-position: -600px 0;
+        @keyframes placeholderShimmer {
+          0% {
+            background-position: -600px 0;
+          }
+
+          100% {
+            background-position: 600px 0;
+          }
         }
-
-        100% {
-          background-position: 600px 0;
-        }
-      }
-    `}
+      `}
+  }
 `;
 
 const Percentage = styled.span`
