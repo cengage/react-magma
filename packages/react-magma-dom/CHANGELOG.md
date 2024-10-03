@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.13
+
+### Minor Changes
+
+- 68ff224cc: feat(Stepper): Add vertical orientation for `Stepper`.
+
 ## 4.7.0-next.12
 
 ### Patch Changes
