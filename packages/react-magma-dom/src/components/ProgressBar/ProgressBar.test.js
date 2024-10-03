@@ -118,10 +118,18 @@ describe('ProgressBar', () => {
     );
   });
 
-  it('should render the progress bar component shimmer animation', () => {
+  it('should render the progress bar component shimmer animation', async () => {
     const { container } = render(<ProgressBar percentage={50} isAnimated />);
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
+      'animation-name',
+      'placeholderShimmer',
+      {
+        media: 'prefers-reduced-motion: no-preference',
+      }
+    );
+
+    expect(container.querySelector('[role="progressbar"]')).not.toHaveStyleRule(
       'animation-name',
       'placeholderShimmer'
     );
