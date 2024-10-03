@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.14
+
+### Patch Changes
+
+- 7d8006fe1: fix(ProgressBar): Remove animation if the user has `prefers-reduced-motion` media query set.
+
 ## 4.7.0-next.13
 
 ### Minor Changes
