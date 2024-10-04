@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.0.9-next.7
+
+### Patch Changes
+
+- b49c69e63: fix(drawer): Corrected examples for a `drawer` component to ensure focus returns to the opening button after the `drawer` closes.
+
+  .
+
 ## 5.0.9-next.6
 
 ### Patch Changes

@@ -15,6 +15,7 @@
     "a11y-combobox-clear-focus",
     "a11y-datePicker-shortcut",
     "a11y-docs-Modal",
+    "a11y-docs-drawer-focus",
     "a11y-docs-img-empty-alts",
     "a11y-drawer-navigation-focus",
     "a11y-dropdown-active-item",
