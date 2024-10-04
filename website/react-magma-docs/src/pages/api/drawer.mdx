@@ -17,10 +17,16 @@ Drawer accepts a position (top, right, bottom, or left)
 
 ```typescript
 import React from 'react';
-import { Button, Drawer, DrawerPosition, VisuallyHidden } from 'react-magma-dom';
+import {
+  Button,
+  Drawer,
+  DrawerPosition,
+  VisuallyHidden,
+} from 'react-magma-dom';
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
 
   return (
     <>
@@ -28,7 +34,10 @@ export function Example() {
         closeAriaLabel="Close drawer"
         header="Drawer Title"
         isOpen={showDrawer}
-        onClose={() => setShowDrawer(false)}
+        onClose={() => {
+          setShowDrawer(false);
+          buttonRef.current.focus();
+        }}
         position={DrawerPosition.bottom}
       >
         <p>This is a Drawer, doing Drawer things.</p>
@@ -36,7 +45,7 @@ export function Example() {
           <Button>This is a button</Button>
         </p>
       </Drawer>
-      <Button onClick={() => setShowDrawer(true)}>
+      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
         Show Drawer
         <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
       </Button>
@@ -60,6 +69,7 @@ import {
 } from 'react-magma-dom';
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
 
   return (
     <>
@@ -67,7 +77,10 @@ export function Example() {
         ariaLabel="drawer"
         closeAriaLabel="Close drawer"
         isOpen={showDrawer}
-        onClose={() => setShowDrawer(false)}
+        onClose={() => {
+          setShowDrawer(false);
+          buttonRef.current.focus();
+        }}
         position={DrawerPosition.right}
       >
         <NavTabs orientation={TabsOrientation.vertical}>
@@ -77,7 +90,7 @@ export function Example() {
           <NavTab to="#">Four</NavTab>
         </NavTabs>
       </Drawer>
-      <Button onClick={() => setShowDrawer(true)}>
+      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
         Show Drawer
         <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
       </Button>
@@ -101,6 +114,7 @@ import {
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
 
   return (
     <Card isInverse>
@@ -110,7 +124,10 @@ export function Example() {
           header="Drawer Title"
           isInverse
           isOpen={showDrawer}
-          onClose={() => setShowDrawer(false)}
+          onClose={() => {
+            setShowDrawer(false);
+            buttonRef.current.focus();
+          }}
           position={DrawerPosition.right}
         >
           <p>This is a Drawer, doing Drawer things.</p>
@@ -118,7 +135,7 @@ export function Example() {
             <Button isInverse>This is a button</Button>
           </p>
         </Drawer>
-        <Button onClick={() => setShowDrawer(true)} isInverse>
+        <Button onClick={() => setShowDrawer(true)} ref={buttonRef} isInverse>
           Show Drawer
           <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
         </Button>
@@ -146,25 +163,29 @@ import { I18nContext, defaultI18n } from 'react-magma-dom';
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
 
   return (
     <I18nContext.Provider
       value={{
         ...defaultI18n,
         modal: {
-          closeAriaLabel: 'Cerrar'
-        }
+          closeAriaLabel: 'Cerrar',
+        },
       }}
     >
       <Drawer
         header="Drawer Title"
         isOpen={showDrawer}
-        onClose={() => setShowDrawer(false)}
+        onClose={() => {
+          setShowDrawer(false);
+          buttonRef.current.focus();
+        }}
         position={DrawerPosition.bottom}
       >
         <p>override default i18n value:</p>
       </Drawer>
-      <Button onClick={() => setShowDrawer(true)}>
+      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
         Show Drawer
         <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
       </Button>
