@@ -686,7 +686,9 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               iconPosition={iconPosition}
               inputSize={inputSize ? inputSize : InputSize.medium}
               isClearable={
-                inputWrapperStyle?.width
+                type === InputType.search
+                  ? isClearable
+                  : inputWrapperStyle?.width
                   ? isClearable
                   : isClearable && inputLength > 0
               }
