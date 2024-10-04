@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.15
+
+### Patch Changes
+
+- b3fcc32b1: fix(combobox): Fix focus issue after triggering the clear button
+
 ## 4.7.0-next.14
 
 ### Patch Changes

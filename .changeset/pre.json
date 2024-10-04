@@ -12,6 +12,7 @@
   },
   "changesets": [
     "a11y-Stepper-vertical-orientation",
+    "a11y-combobox-clear-focus",
     "a11y-datePicker-shortcut",
     "a11y-docs-Modal",
     "a11y-docs-img-empty-alts",
