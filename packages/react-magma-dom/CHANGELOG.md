@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.17
+
+### Patch Changes
+
+- 1da99002f: fix(search): Fix the overlapping content issue around the clear button
+
 ## 4.7.0-next.16
 
 ### Patch Changes
