@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { css } from '@emotion/react';
 import { ListProps } from './';
-import { magma } from '../../theme/magma';
+import { Colors } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
@@ -23,11 +23,11 @@ export interface ListItemProps
   /**
    * Option for changing icon background with all Magma colors.
    */
-  iconBackground?: keyof typeof magma.colors;
+  iconBackground?: keyof Colors;
   /**
    * Option for changing icon color with all Magma colors.
    */
-  iconColor?: keyof typeof magma.colors;
+  iconColor?: keyof Colors;
 }
 
 function getListDisplay(props) {
@@ -92,9 +92,9 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
           {icon && (
             <StyledIcon
               iconBackground={
-                magma.colors[iconBackground] || magma.colors.primary
+                theme.colors[iconBackground] || theme.colors.primary
               }
-              iconColor={magma.colors[iconColor] || magma.colors.neutral100}
+              iconColor={theme.colors[iconColor] || theme.colors.neutral100}
               theme={theme}
             >
               {icon}
