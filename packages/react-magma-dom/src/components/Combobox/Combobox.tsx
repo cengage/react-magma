@@ -240,7 +240,10 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     event.stopPropagation();
 
     if (inputRef.current) {
-      inputRef.current.focus();
+      const inputElement = inputRef.current.querySelector('input');
+      if (inputElement) {
+        inputElement.focus();
+      }
     }
 
     reset();
