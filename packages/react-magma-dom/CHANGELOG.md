@@ -1,5 +1,12 @@
 ## 4.6.0
 
+## 4.7.0-next.16
+
+### Patch Changes
+
+- ac6ff21bb: fix(BlockQuote): Fix border color respecting the `Theme` context.
+- ac6ff21bb: fix(ListItem): Fix icon colors respecting the `Theme` context.
+
 ## 4.7.0-next.15
 
 ### Patch Changes
