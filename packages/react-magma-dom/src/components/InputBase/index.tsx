@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
 import { transparentize } from 'polished';
 import * as React from 'react';
+import * as React from 'react';
 import { ClearIcon, IconProps } from 'react-magma-icons';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
@@ -152,6 +153,16 @@ export interface InputBaseProps
    * @default "auto"
    */
   width?: string;
+  /**
+   * Position within the component for the label to appear
+   * @default LabelPosition.top
+   */
+  labelPosition?: LabelPosition;
+  /**
+   * If true, label text will be hidden visually, but will still be read by assistive technology
+   * @default false
+   */
+  isLabelVisuallyHidden?: boolean;
 }
 
 export interface InputWrapperStylesProps {
@@ -563,6 +574,41 @@ function getIconSize(
   }
 }
 
+const isLeftOrHidden = ({
+  labelPosition,
+  isLabelVisuallyHidden,
+}: {
+  labelPosition?: LabelPosition;
+  isLabelVisuallyHidden?: boolean;
+}) => labelPosition === LabelPosition.left || isLabelVisuallyHidden;
+
+export const HelpLinkContainer = styled.span<{
+  labelPosition?: LabelPosition;
+  inputSize?: InputSize;
+  theme: ThemeInterface;
+  isLabelVisuallyHidden?: boolean;
+}>`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: ${props => (isLeftOrHidden(props) ? 'auto' : 'fit-content')};
+  margin-inline-start: ${props =>
+    isLeftOrHidden(props) ? `${props.theme.spaceScale.spacing03}` : 0};
+  transform: translate(
+    ${props => (isLeftOrHidden(props) ? '0' : '-100%')},
+    ${props =>
+      isLeftOrHidden(props)
+        ? '0'
+        : `calc(-100% - ${props.theme.spaceScale.spacing03})`}
+  );
+  svg {
+    height: ${props => getIconButtonSVGSize(props)};
+    width: ${props => getIconButtonSVGSize(props)};
+  }
+`;
+
 export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
   (props, forwardedRef) => {
     const {
@@ -591,6 +637,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       testId,
       type,
       setReference,
+      isLabelVisuallyHidden,
+      labelPosition,
       ...other
     } = props;
 
@@ -797,15 +845,14 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               {children}
             </PasswordButtonContainer>
           ) : (
-            <IconButtonContainer
-              iconPosition={iconPosition}
-              inputSize={inputSize ? inputSize : InputSize.medium}
+            <HelpLinkContainer
+              isLabelVisuallyHidden={isLabelVisuallyHidden || false}
+              inputSize={inputSize || InputSize.medium}
+              labelPosition={labelPosition || LabelPosition.top}
               theme={theme}
-              isClickable={true}
-              hasChildren={true}
             >
               {children}
-            </IconButtonContainer>
+            </HelpLinkContainer>
           )}
         </InputContainer>
       </div>
