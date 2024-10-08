@@ -69,7 +69,6 @@ export const checkedStatusToBoolean = (
 export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const {
     children,
-    isDisabled = false,
     itemDepth,
     itemId,
     onClick,
@@ -91,6 +90,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const treeViewItemData = React.useMemo(() => {
     return items.find((item) => item.itemId === itemId)
   }, [itemId, items])
+
+  const isDisabled = treeViewItemData?.isDisabled;
   
   const checkedStatus = React.useMemo(() => {
     return treeViewItemData?.checkedStatus ?? IndeterminateCheckboxStatus.unchecked
@@ -113,6 +114,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const generatedId = useGenerateId();
 
   React.useEffect(() => {
+    //
     if (!isDisabled && ownRef.current !== null) {
       registerTreeItem(treeItemRefArray, ownRef);
     }
@@ -127,7 +129,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   }, [initialExpandedItemsNeedUpdate]);
 
   const updateInitialExpanded = () => {
-    if (initialExpandedItems?.length !== 0 && !isDisabled) {
+    if (initialExpandedItems?.length !== 0) {
       const childrenItemIds = getChildrenItemIdsFlat(treeItemChildren);
       const allExpanded = [...initialExpandedItems, ...childrenItemIds];
       if (allExpanded?.some(item => item === itemId)) {
@@ -368,6 +370,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     selectedItems,
     setExpanded,
     treeItemChildren,
+    isDisabled,
   };
 
   return { contextValue, handleClick, handleKeyDown };

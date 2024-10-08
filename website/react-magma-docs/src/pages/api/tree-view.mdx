@@ -648,6 +648,116 @@ export function Example() {
 }
 ```
 
+## Disabling TreeView
+
+Use the `isDisabled` prop to disable all items inside TreeView
+
+```typescript
+import React from 'react';
+import {
+  TreeView,
+  TreeItem,
+  TreeViewSelectable,
+  Toggle,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <TreeView
+        ariaLabelledBy="animals-multi-checkparentschildren"
+        selectable={TreeViewSelectable.multi}
+        initialExpandedItems={['selectable-parrots 1', 'selectable-birds of Prey 1']}
+        isDisabled
+      >
+        <TreeItem label="Birds" itemId="selectable-birds">
+          <TreeItem label="Parrots" itemId="selectable-parrots 1">
+            <TreeItem label="African Grey" itemId="selectable-african Grey 1" />
+            <TreeItem label="Cockatiel" itemId="selectable-cockatiel 1" />
+            <TreeItem label="Budgerigar" itemId="selectable-budgerigar 1" />
+          </TreeItem>
+          <TreeItem label="Birds of Prey" itemId="selectable-birds of Prey 1">
+            <TreeItem label="Eagles" itemId="selectable-eagles 1" />
+            <TreeItem label="Hawks" itemId="selectable-hawks 1" />
+            <TreeItem label="Falcons" itemId="selectable-falcons 1" />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Aquatic Animals" itemId="selectable-aquatic Animals 1">
+          <TreeItem label="Fish" itemId="selectable-fish 1">
+            <TreeItem label="Goldfish" itemId="selectable-goldfish 1" />
+            <TreeItem label="Betta Fish" itemId="selectable-betta Fish 1" />
+            <TreeItem label="Guppies" itemId="selectable-guppies 1" />
+          </TreeItem>
+          <TreeItem label="Marine Mammals" itemId="selectable-marine Mammals 1">
+            <TreeItem label="Dolphins" itemId="selectable-dolphins 1" />
+            <TreeItem label="Whales" itemId="selectable-whales 1" />
+            <TreeItem label="Seals" itemId="selectable-seals 1" />
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+}
+```
+
+## Disabling items
+
+Pass the `isDisabled` prop to item inside `preselectedItems` prop to manage disabled state for the item
+
+```typescript
+import React from 'react';
+import {
+  TreeView,
+  TreeItem,
+  TreeViewSelectable,
+  Toggle,
+  IndeterminateCheckboxStatus,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <TreeView
+        ariaLabelledBy="animals-multi-checkparentschildren"
+        selectable={TreeViewSelectable.multi}
+        initialExpandedItems={['selectable-parrots 2', 'selectable-birds of Prey 2']}
+        preselectedItems={[
+            { itemId: 'selectable-cockatiel 2', checkedStatus: IndeterminateCheckboxStatus.unchecked, isDisabled: true },
+            { itemId: 'selectable-budgerigar 2', checkedStatus: IndeterminateCheckboxStatus.checked, isDisabled: false }
+        ]}
+     
+      >
+        <TreeItem label="Birds" itemId="selectable-birds 2">
+          <TreeItem label="Parrots" itemId="selectable-parrots 2">
+            <TreeItem label="African Grey" itemId="selectable-african Grey 2" />
+            <TreeItem label="Cockatiel" itemId="selectable-cockatiel 2" />
+            <TreeItem label="Budgerigar" itemId="selectable-budgerigar 2" />
+          </TreeItem>
+          <TreeItem label="Birds of Prey" itemId="selectable-birds of Prey 2">
+            <TreeItem label="Eagles" itemId="selectable-eagles 2" />
+            <TreeItem label="Hawks" itemId="selectable-hawks 2" />
+            <TreeItem label="Falcons" itemId="selectable-falcons 2" />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Aquatic Animals" itemId="selectable-aquatic Animals 2">
+          <TreeItem label="Fish" itemId="selectable-fish 2">
+            <TreeItem label="Goldfish" itemId="selectable-goldfish 2" />
+            <TreeItem label="Betta Fish" itemId="selectable-betta Fish 2" />
+            <TreeItem label="Guppies" itemId="selectable-guppies 2" />
+          </TreeItem>
+          <TreeItem label="Marine Mammals" itemId="selectable-marine Mammals 2">
+            <TreeItem label="Dolphins" itemId="selectable-dolphins 2" />
+            <TreeItem label="Whales" itemId="selectable-whales 2" />
+            <TreeItem label="Seals" itemId="selectable-seals 2" />
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+}
+```
+
+
 ## Change Events
 
 The following events are available: `onSelectedItemChange` and `onExpandedChange`.

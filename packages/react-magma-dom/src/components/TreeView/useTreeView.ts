@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useDescendants } from '../../hooks/useDescendants';
 import { TreeItemSelectedInterface, TreeViewItemInterface } from './TreeViewContext';
-import { getInitialExpandedIds, getInitialItems, selectMulti, selectSingle } from './utils';
+import { getInitialExpandedIds, getInitialItems, toggleMulti, selectSingle, toggleAllMulti } from './utils';
 import { TreeViewSelectable } from './types';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
@@ -79,6 +79,11 @@ export interface UseTreeViewProps {
    * clearAll(): void - action that allows to unselect all items.
    */
   apiRef?: React.MutableRefObject<TreeViewApi>,
+  /**
+   * If true, every item is disabled
+   * @default false
+   */
+  isDisabled?: boolean;
 }
 
 export function useTreeView(props: UseTreeViewProps) {
@@ -92,15 +97,16 @@ export function useTreeView(props: UseTreeViewProps) {
     checkParents = selectable !== TreeViewSelectable.single,
     children,
     apiRef,
+    isDisabled,
   } = props;
 
   const hasPreselectedItems = Boolean(preselectedItems);
 
   const [items, setItems] = React.useState(
-    () => getInitialItems({ children, preselectedItems, checkParents, selectable })
+    () => getInitialItems({ children, preselectedItems, checkParents, checkChildren, selectable, isDisabled })
   );
   const [hasIcons]  = React.useState(() => {
-    const initialItems = getInitialItems({ children, preselectedItems, checkParents, selectable })
+    const initialItems = getInitialItems({ children, preselectedItems, checkParents, checkChildren, selectable, isDisabled })
 
     return initialItems.some((item) => item.icon);
   });
@@ -146,23 +152,29 @@ export function useTreeView(props: UseTreeViewProps) {
     onSelectedItemChange && onSelectedItemChange(items.filter(({ checkedStatus }) => checkedStatus && checkedStatus !== IndeterminateCheckboxStatus.unchecked).map(({ itemId,  checkedStatus }) => ({ itemId,  checkedStatus })))
   }, [items, selectable, hasPreselectedItems])
 
-  const selectItem = React.useCallback(({ itemId, checkedStatus }: Pick<TreeViewItemInterface, 'itemId' | 'checkedStatus'>) => {
+  const selectItem = React.useCallback(({ itemId, checkedStatus }: Pick<TreeViewItemInterface, 'itemId'> & Partial<Pick<TreeViewItemInterface, 'checkedStatus'>>) => {
     if(selectable === TreeViewSelectable.off) {
+      return;
+    }
+
+    const item = items.find((item) => item.itemId === itemId);
+
+    if (item?.isDisabled) {
       return;
     }
 
     setItems(prevItems => {
       if(selectable === TreeViewSelectable.single) {
-        return selectSingle({ items: prevItems, itemId, checkedStatus });
+        return selectSingle({ items: prevItems, itemId, checkedStatus: checkedStatus ?? IndeterminateCheckboxStatus.checked });
       }
       
       if(selectable === TreeViewSelectable.multi) {
-        return selectMulti({ items: prevItems, itemId, checkedStatus, checkChildren, checkParents });
+        return toggleMulti({ items: prevItems, itemId, checkedStatus, checkChildren, checkParents });
       }
       
       return prevItems;
     });
-  }, [selectable, checkChildren, checkParents])
+  }, [selectable, checkChildren, checkParents, items])
 
   React.useEffect(() => {
     if (apiRef) {
@@ -174,13 +186,13 @@ export function useTreeView(props: UseTreeViewProps) {
           }
 
           setItems(prevItems => {
-            return prevItems.map(item => ({...item, checkedStatus: IndeterminateCheckboxStatus.checked }))
+            return toggleAllMulti({ items, checkedStatus: IndeterminateCheckboxStatus.checked, checkChildren, checkParents });
           })
         },
         
         clearAll() {
           setItems(prevItems => {
-            return prevItems.map(({ checkedStatus, ...itemWithoutCheckedStatus }) => itemWithoutCheckedStatus)
+            return toggleAllMulti({ items, checkedStatus: IndeterminateCheckboxStatus.unchecked, checkChildren, checkParents })
           })
         },
       };
