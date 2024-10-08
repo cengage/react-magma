@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.19
+
+### Patch Changes
+
+- 7adf69a9f: fix(.srories.): Remove `.stories.` files from the production bundle.
+
 ## 4.7.0-next.18
 
 ### Patch Changes

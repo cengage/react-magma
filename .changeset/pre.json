@@ -32,6 +32,7 @@
     "fix-initial-expanded-items-should-expand-all-parents",
     "fix-listItem-icons-color",
     "fix-modal-focuslock",
+    "fix-stories-files",
     "inputwrapperstyles",
     "search-clear-overlaps",
     "sync4-6",
