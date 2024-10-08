@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.18
+
+### Patch Changes
+
+- c0aecada5: fix(useFocusLock): Fix the `useFocusLock` hook if the first or last element is disabled.
+
 ## 4.7.0-next.17
 
 ### Patch Changes

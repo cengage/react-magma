@@ -23,6 +23,7 @@
     "a11y-search-loading",
     "a11y-select-accessibility",
     "a11y-treeview-navigation",
+    "a11y-useFocusLock-hook-disabled-elements",
     "build-upgrade-lerna",
     "dropdown-safari",
     "feat-select-combobox-dropdown-viewport",
