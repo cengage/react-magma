@@ -214,7 +214,12 @@ export const ModalContentUpdate = () => {
 
   return (
     <>
-      <Modal header="Modal Title" onClose={onModalClose} isOpen={showModal} headerRef={handleGetHeaderRef}>
+      <Modal
+        header="Modal Title"
+        onClose={onModalClose}
+        isOpen={showModal}
+        headerRef={handleGetHeaderRef}
+      >
         <div id="attachToMe">
           {page === 1 && (
             <>
@@ -536,6 +541,8 @@ export const HeaderReference = () => {
   const [customHeadingRef, setCustomHeadingRef] = React.useState(
     React.useRef<any>()
   );
+  const customButtonRef = React.useRef<HTMLButtonElement>();
+  const defaultButtonRef = React.useRef<HTMLButtonElement>();
 
   const handleGetHeaderRef = ref => {
     setCustomHeadingRef(ref);
@@ -547,6 +554,7 @@ export const HeaderReference = () => {
 
   const onModalClose = () => {
     setShowModal(false);
+    customButtonRef.current.focus();
   };
 
   const onModalShowDefault = () => {
@@ -555,6 +563,7 @@ export const HeaderReference = () => {
 
   const onModalCloseDefault = () => {
     setShowDefaultModal(false);
+    defaultButtonRef.current.focus();
   };
 
   const onHeadingFocus = () => {
@@ -615,8 +624,10 @@ export const HeaderReference = () => {
       </Modal>
 
       <ButtonGroup>
-        <Button onClick={onModalShow}>Show Custom Heading Modal</Button>
-        <Button onClick={onModalShowDefault}>
+        <Button onClick={onModalShow} ref={customButtonRef}>
+          Show Custom Heading Modal
+        </Button>
+        <Button onClick={onModalShowDefault} ref={defaultButtonRef}>
           Show Modal with Default Heading
         </Button>
       </ButtonGroup>
