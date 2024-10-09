@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.20
+
+### Patch Changes
+
+- 2157b4708: fix(CheckBox): Fix for unreadable labels in `CheckBox` for screen readers.
+
 ## 4.7.0-next.19
 
 ### Patch Changes

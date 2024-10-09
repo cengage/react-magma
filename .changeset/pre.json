@@ -12,6 +12,7 @@
   },
   "changesets": [
     "a11y-Stepper-vertical-orientation",
+    "a11y-checkBox-labels-not-read",
     "a11y-combobox-clear-focus",
     "a11y-datePicker-shortcut",
     "a11y-docs-Modal",
