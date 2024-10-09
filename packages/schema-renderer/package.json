@@ -44,7 +44,7 @@
     "react-magma-dom": "^4.7.0-next.17",
     "react-magma-icons": "^3.0.0",
     "tsdx": "^0.14.1",
-    "uuid": "^8.3.2"
+    "uuid": "^9.0.1"
   },
   "dependencies": {}
 }
