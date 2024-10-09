@@ -22,6 +22,7 @@
     "a11y-progressBar-animation",
     "a11y-search-loading",
     "a11y-select-accessibility",
+    "a11y-timePicker-shortcut",
     "a11y-treeview-navigation",
     "a11y-useFocusLock-hook-disabled-elements",
     "build-upgrade-lerna",

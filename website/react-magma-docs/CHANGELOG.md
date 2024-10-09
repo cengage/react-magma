@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.9-next.8
+
+### Patch Changes
+
+- 04f09e89d: fix(TimePicker): improve TimePicker internationalization example.
+
 ## 5.0.9-next.7
 
 ### Patch Changes
