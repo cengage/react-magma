@@ -1,16 +1,16 @@
-import * as React from 'react';
 import { css } from '@emotion/react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '../Button';
-import { IconButton } from '../IconButton';
+import styled from '@emotion/styled';
+import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
+import { transparentize } from 'polished';
+import * as React from 'react';
 import { ClearIcon, IconProps } from 'react-magma-icons';
+import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
-import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
-import { transparentize } from 'polished';
-import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
-import styled from '@emotion/styled';
+import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { IconButton } from '../IconButton';
 
 export enum InputSize {
   large = 'large',
@@ -187,7 +187,7 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
       ${props.isInverse
         ? props.theme.colors.focusInverse
         : props.theme.colors.focus};
-    outline-offset: 2px;
+    outline-offset: -1px;
   }
 
   ${props.hasError &&
