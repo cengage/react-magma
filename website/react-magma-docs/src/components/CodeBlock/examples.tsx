@@ -3,8 +3,8 @@ import React, { useContext, useState } from 'react';
 import {
   Actions,
   ActionsLeft,
-  CopyAction,
   CodeSandboxAction,
+  CopyAction,
   ExpandAction,
 } from './actions';
 import { CodeBlockContext } from './context';
