@@ -6,12 +6,14 @@ import { Input } from '../Input';
 import { InputType } from '../InputBase';
 import {
   addDays,
+  endOfDay,
   isAfter,
   isBefore,
   isMatch,
   isSameMonth,
   isValid,
   parse,
+  setHours,
   startOfDay,
 } from 'date-fns';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -359,8 +361,25 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           onDateChange,
           iconRef
         );
-        if (newChosenDate && isAfter(startOfDay(newChosenDate), minDate)) {
-          setFocusedDate(newChosenDate);
+        if (newChosenDate) {
+          if (minDate && maxDate) {
+            if (
+              isAfter(setHours(newChosenDate, 12), startOfDay(minDate)) &&
+              isBefore(setHours(newChosenDate, 12), endOfDay(maxDate))
+            ) {
+              setFocusedDate(newChosenDate);
+            }
+          } else if (minDate && !maxDate) {
+            if (isAfter(setHours(newChosenDate, 12), startOfDay(minDate))) {
+              setFocusedDate(newChosenDate);
+            }
+          } else if (maxDate && !minDate) {
+            if (isBefore(setHours(newChosenDate, 12), endOfDay(maxDate))) {
+              setFocusedDate(newChosenDate);
+            }
+          } else {
+            setFocusedDate(newChosenDate);
+          }
         }
       }
     }
@@ -379,7 +398,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
       onDateChange(day);
       setFocusedDate(
-        isAfter(startOfDay(day), minDate) ? day : setDefaultFocusedDate
+        isAfter(setHours(day, 12), minDate) ? day : setDefaultFocusedDate
       );
     }
 

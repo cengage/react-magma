@@ -169,18 +169,26 @@ describe('Date Picker', () => {
     expect(selectedDateButton).toHaveFocus();
 
     userEvent.keyboard('[ArrowLeft]');
-    userEvent.keyboard('[ArrowUp]');
-
-    expect(selectedDateButton).toHaveFocus();
-
-    userEvent.keyboard('[ArrowRight]');
 
     expect(selectedDateButton).not.toHaveFocus();
-    expect(getByText(12)).toHaveFocus();
+
+    const startDateButton = getByText(10);
+    expect(startDateButton).toBeInTheDocument();
+    expect(startDateButton).toHaveFocus();
+
+    userEvent.keyboard('[ArrowUp]');
+    userEvent.keyboard('[ArrowLeft]');
+
+    expect(startDateButton).toHaveFocus();
+    
+    userEvent.keyboard('[ArrowRight]');
+    
+    expect(startDateButton).not.toHaveFocus();
+    expect(selectedDateButton).toHaveFocus();
 
     userEvent.keyboard('[ArrowDown]');
 
-    expect(getByText(19)).toHaveFocus();
+    expect(getByText(18)).toHaveFocus();
   });
 
   it('should lock focus inside', () => {
