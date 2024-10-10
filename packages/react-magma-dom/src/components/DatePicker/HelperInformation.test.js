@@ -1,6 +1,7 @@
 import React from 'react';
 import { act, render, fireEvent } from '@testing-library/react';
 import { HelperInformation } from './HelperInformation';
+import userEvent from '@testing-library/user-event';
 
 describe('Calendar Month', () => {
   beforeEach(() => {
@@ -44,5 +45,23 @@ describe('Calendar Month', () => {
     });
 
     expect(onCloseSpy).toHaveBeenCalled();
+  });
+
+  it('should hold focus inside the helper information', () => {
+    const { getByLabelText } = render(
+      <HelperInformation isOpen={true} />
+    );
+
+    const button = getByLabelText('Close Calendar Widget');
+
+    userEvent.tab();
+
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveFocus();
+
+    userEvent.tab();
+    userEvent.tab();
+
+    expect(button).toHaveFocus();
   });
 });

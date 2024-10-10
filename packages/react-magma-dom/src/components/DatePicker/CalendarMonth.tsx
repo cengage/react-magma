@@ -154,7 +154,8 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
           <HelperInformation
             isOpen={context.helperInformationShown}
             isInverse={context.isInverse}
-            onClose={context.hideHelperInformation}
+            onReturnBack={context.hideHelperInformation}
+            onClose={context.onClose}
           />
         ) : (
           <MonthContainer
