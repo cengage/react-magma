@@ -1942,7 +1942,7 @@ describe('TreeView', () => {
         });
       });
 
-      it('parent should have correct checkbox state and toggle children selection when some disabled children are partially selected', () => {
+      it('parent should have indeterminate checkbox state and toggle children selection when some disabled children are partially selected', () => {
         const onSelectedItemChange = jest.fn();
         const { getByTestId, debug } = render(
           getTreeItemsWithDisabledChildren({
@@ -1986,7 +1986,7 @@ describe('TreeView', () => {
         ]);
       });
       
-      it('parent should have correct checkbox state and toggle children selection when all disabled children are not selected', () => {
+      it('parent should have unchecked checkbox state when all disabled children and all enabled children are not selected. parent should have indeterminate checkbox state when all disabled children are not selected and some enabled children are selected. parent should have indeterminate checkbox state when all disabled children are not selected and all enabled children are selected. and toggle children selection', () => {
         const onSelectedItemChange = jest.fn();
         const { getByTestId, debug } = render(
           getTreeItemsWithDisabledChildren({
@@ -2018,7 +2018,7 @@ describe('TreeView', () => {
         expect(onSelectedItemChange).toHaveBeenCalledWith([]);
       });
 
-      it('parent should have correct checkbox state and toggle children selection when all disabled children are selected', () => {
+      it('parent should have checked checkbox state when all disabled children are selected and all enabled children are selected. parent should have indeterminate checkbox state when all disabled children are selected and enabled children are partially selected. parent should have indeterminate checkbox state when all disabled children are selected and all enabled children are not selected. and toggle children selection', () => {
         const onSelectedItemChange = jest.fn();
         const { getByTestId, debug } = render(
           getTreeItemsWithDisabledChildren({
@@ -2077,7 +2077,7 @@ describe('TreeView', () => {
             preselectedItems: [
               { itemId: 'item-child1', checkedStatus: IndeterminateCheckboxStatus.unchecked, isDisabled: false },
               { itemId: 'item-child2', checkedStatus: IndeterminateCheckboxStatus.unchecked, isDisabled: false },
-              { itemId: 'item-child3', checkedStatus: IndeterminateCheckboxStatus.unchecked, isDisabled: true },
+              { itemId: 'item-child3', checkedStatus: IndeterminateCheckboxStatus.checked, isDisabled: true },
             ],
             initialExpandedItems: ['item1'],
             onSelectedItemChange

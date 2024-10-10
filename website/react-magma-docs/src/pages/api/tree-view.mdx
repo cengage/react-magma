@@ -650,7 +650,9 @@ export function Example() {
 
 ## Disabling TreeView
 
-Use the `isDisabled` prop to disable all items inside TreeView
+**Styling for disabled item may not be visible if the user is passing a node to the label.**
+
+Use the `isDisabled` prop to disable all items inside TreeView.
 
 ```typescript
 import React from 'react';
@@ -702,7 +704,7 @@ export function Example() {
 
 ## Disabling items
 
-Pass the `isDisabled` prop to item inside `preselectedItems` prop to manage disabled state for the item
+Pass the `isDisabled` prop to item inside `preselectedItems` prop to manage disabled state for the item.
 
 ```typescript
 import React from 'react';
@@ -734,7 +736,7 @@ export function Example() {
             <TreeItem label="Budgerigar" itemId="selectable-budgerigar 2" />
           </TreeItem>
           <TreeItem label="Birds of Prey" itemId="selectable-birds of Prey 2">
-            <TreeItem label="Eagles" itemId="selectable-eagles 2" />
+            <TreeItem label="Eagles" itemId="selectable-eagles 2" isDisabled />
             <TreeItem label="Hawks" itemId="selectable-hawks 2" />
             <TreeItem label="Falcons" itemId="selectable-falcons 2" />
           </TreeItem>

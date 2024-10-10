@@ -4,7 +4,7 @@ import { UseTreeViewProps } from './useTreeView';
 import { TreeViewSelectable } from './types';
 import React from 'react';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
-import { TreeViewItemInterface } from './TreeViewContext';
+import { TreeItemSelectedInterface, TreeViewItemInterface } from './TreeViewContext';
 import { TreeItem } from './TreeItem';
 
 export enum TreeNodeType {
@@ -408,4 +408,15 @@ export const getInitialExpandedIds = ({ items, initialExpandedItems }: { items: 
   return initialExpandedItems.reduce((result, itemId) => {
     return [...result, itemId, ...getParentIds({ itemId, items })];
   }, []);
+}
+
+export const isSelectedItemsChanged = (prevSelectedItems: TreeItemSelectedInterface[] | null, selectedItems: TreeItemSelectedInterface[]) => {
+  if (!prevSelectedItems && selectedItems) {
+    return true;
+  }
+  
+  const stringifiedPrevSelectedItems = JSON.stringify(prevSelectedItems);
+  const stringifiedSelectedItems = JSON.stringify(selectedItems);
+
+  return stringifiedPrevSelectedItems !== stringifiedSelectedItems;
 }

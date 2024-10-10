@@ -114,7 +114,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const generatedId = useGenerateId();
 
   React.useEffect(() => {
-    //
     if (!isDisabled && ownRef.current !== null) {
       registerTreeItem(treeItemRefArray, ownRef);
     }
