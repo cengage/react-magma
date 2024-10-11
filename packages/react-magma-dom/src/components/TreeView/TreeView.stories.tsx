@@ -277,6 +277,7 @@ export const Complex = args => {
                   </>
                 }
                 itemId="pt2ch5.1"
+                isDisabled
               >
                 <TreeItem
                   icon={<ArticleIcon aria-hidden={true} />}
@@ -287,6 +288,7 @@ export const Complex = args => {
                     </>
                   }
                   itemId="pt2ch5.1.1"
+                  isDisabled
                 />
                 <TreeItem
                   icon={<ArticleIcon aria-hidden={true} />}
@@ -413,15 +415,18 @@ Complex.args = {
     { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
     { itemId: 'pt2ch4', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'pt2ch5.1.1', checkedStatus: IndeterminateCheckboxStatus.checked },
     {
-      itemId: 'pt2ch5.1.1',
-      checkedStatus: IndeterminateCheckboxStatus.checked,
+      itemId: 'pt2ch5.1.2',
+      checkedStatus: IndeterminateCheckboxStatus.unchecked,
+      isDisabled: true,
     },
     { itemId: 'pt2ch5.2', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt2ch5.3', checkedStatus: IndeterminateCheckboxStatus.checked },
   ],
   checkParents: true,
   checkChildren: true,
+  isDisabled: false,
   testId: 'complex-example',
 };
 
