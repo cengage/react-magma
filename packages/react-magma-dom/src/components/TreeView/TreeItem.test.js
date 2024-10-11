@@ -75,12 +75,14 @@ describe('TreeItem', () => {
   describe('isDisabled', () => {
     it('the label is disabled', () => {
       const { getByTestId } = render(
-        <TreeItem
-          label={labelText}
-          testId={testId}
-          itemId={itemId}
-          isDisabled
-        />
+        <TreeView>
+          <TreeItem
+            label={labelText}
+            testId={testId}
+            itemId={itemId}
+            isDisabled
+          />
+        </TreeView>
       );
 
       expect(getByTestId(`${testId}-label`)).toHaveStyleRule(
