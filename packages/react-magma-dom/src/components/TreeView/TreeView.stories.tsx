@@ -511,9 +511,11 @@ Complex.args = {
     { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
     { itemId: 'pt2ch4', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'pt2ch5.1.1', checkedStatus: IndeterminateCheckboxStatus.checked },
     {
-      itemId: 'pt2ch5.1.1',
-      checkedStatus: IndeterminateCheckboxStatus.checked,
+      itemId: 'pt2ch5.1.2',
+      checkedStatus: IndeterminateCheckboxStatus.unchecked,
+      isDisabled: true,
     },
     {
       itemId: 'pt2ch5.1.2',

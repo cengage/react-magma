@@ -23,6 +23,7 @@ export interface TreeViewItemInterface {
   icon?: React.ReactNode;
   checkedStatus: IndeterminateCheckboxStatus;
   hasOwnTreeItems: boolean
+  isDisabled?: boolean
 }
 
 export interface TreeViewContextInterface {
