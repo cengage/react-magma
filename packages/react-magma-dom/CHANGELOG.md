@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.21
+
+### Minor Changes
+
+- 1caced455: feat(TreeView): Add support for isDisabled
+
 ## 4.7.0-next.20
 
 ### Patch Changes
