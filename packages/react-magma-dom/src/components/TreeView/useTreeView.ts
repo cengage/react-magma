@@ -215,7 +215,7 @@ export function useTreeView(props: UseTreeViewProps) {
       apiRef.current = {
         selectItem,
         selectAll() {
-          if ([TreeViewSelectable.single, TreeViewSelectable.single].includes(selectable)) {
+          if ([TreeViewSelectable.single, TreeViewSelectable.single].includes(selectable) || isDisabled) {
             return;
           }
 
@@ -225,13 +225,17 @@ export function useTreeView(props: UseTreeViewProps) {
         },
         
         clearAll() {
+          if (isDisabled) {
+            return;
+          }
+
           setItems(prevItems => {
             return toggleAllMulti({ items, checkedStatus: IndeterminateCheckboxStatus.unchecked, checkChildren, checkParents })
           })
         },
       };
     }  
-  }, [selectItem])
+  }, [selectItem, isDisabled])
   
   const [initialExpandedItemsNeedUpdate, setInitialExpandedItemsNeedUpdate] =
     React.useState(false);
