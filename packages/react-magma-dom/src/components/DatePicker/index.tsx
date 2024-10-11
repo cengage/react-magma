@@ -39,7 +39,6 @@ import {
   flip,
   useFloating,
 } from '@floating-ui/react-dom';
-import { useFocusLock } from '../../hooks/useFocusLock';
 
 export interface DatePickerProps
   extends Omit<
@@ -177,7 +176,6 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       React.useState<boolean>(false);
     const [calendarOpened, setCalendarOpened] = React.useState<boolean>(false);
     const [dateFocused, setDateFocused] = React.useState<boolean>(false);
-    const datePickerRef = useFocusLock(calendarOpened);
 
     const [focusedDate, setFocusedDate] = React.useState<Date>(
       setDateFromConsumer(props.value || props.defaultDate) ||
@@ -211,8 +209,8 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     }
 
     function hideHelperInformation() {
-      setHelperInformationShown(false);
       lastFocus.current.focus();
+      setHelperInformationShown(false);
     }
 
     function closeHelperInformation() {
@@ -506,7 +504,6 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
               style={{ ...floatingStyles, zIndex: '998' }}
             >
               <DatePickerCalendar
-                ref={datePickerRef}
                 data-testid="calendarContainer"
                 opened={calendarOpened}
                 isInverse={isInverse}
