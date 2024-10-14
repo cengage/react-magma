@@ -2,6 +2,7 @@ import { inputBaseStyles } from '../InputBase';
 import { Card } from '../Card';
 import { transparentize } from 'polished';
 import styled from '@emotion/styled';
+import { ThemeInterface } from '../../theme/magma';
 
 function buildListHoverColor(props) {
   if (props.isFocused) {
@@ -34,12 +35,24 @@ export const StyledButton = styled.div`
   text-align: left;
 `;
 
-export const SelectText = styled.span<{ isClearable?: boolean }>`
+export const SelectText = styled.span<{
+  isClearable?: boolean;
+  isShowPlaceholder?: boolean;
+  isInverse?: boolean;
+  theme?: ThemeInterface;
+}>`
   padding-left: 4px;
-  padding-right: ${props => props.isClearable ? '2.5em' : '1.5em'};
+  padding-right: ${props => (props.isClearable ? '2.5em' : '1.5em')};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: ${props => {
+    if (props.isShowPlaceholder) {
+      return props.isInverse
+        ? transparentize(0.3, props.theme.colors.neutral100)
+        : props.theme.colors.neutral500;
+    }
+  }};
 `;
 
 export const StyledCard = styled(Card)<{

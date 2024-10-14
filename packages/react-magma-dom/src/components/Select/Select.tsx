@@ -186,7 +186,15 @@ export function Select<T>(props: SelectProps<T>) {
         style={inputStyle}
         toggleButtonProps={toggleButtonProps}
       >
-        <SelectText data-testid="selectedItemText" isClearable={isClearable}>{selectText}</SelectText>
+        <SelectText
+          data-testid="selectedItemText"
+          isClearable={isClearable}
+          isShowPlaceholder={!selectedItem}
+          isInverse={isInverse}
+          theme={theme}
+        >
+          {selectText}
+        </SelectText>
       </SelectTriggerButton>
 
       {isClearable && selectedItem && (
@@ -196,11 +204,11 @@ export function Select<T>(props: SelectProps<T>) {
           onClick={defaultHandleClearIndicatorClick}
           isInverse={isInverse}
           size={ButtonSize.small}
-          style={{ 
-            position: 'absolute', 
-            right: '3.25em', 
+          style={{
+            position: 'absolute',
+            right: '3.25em',
             top: '50%',
-            transform: 'translateY(-50%)'
+            transform: 'translateY(-50%)',
           }}
           testId="clearIndicator"
           variant={ButtonVariant.link}
