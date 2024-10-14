@@ -106,8 +106,7 @@ export const defaultI18n: I18nInterface = {
   datePicker: {
     startOfWeek: 'sunday',
     calendarIconAriaLabel: 'Toggle Calendar Widget',
-    calendarOpenAnnounce:
-      'Calendar Widget is now open. Press the question mark key to get the keyboard shortcuts for changing dates. If you are using the NVDA screen reader, you may need to switch it to Focus Mode for proper interaction with the calendar.',
+    calendarOpenAnnounce: 'Calendar Widget is now open.',
     calendarCloseAriaLabel: 'Close Calendar Widget',
     previousMonthAriaLabel: 'Previous Month',
     nextMonthAriaLabel: 'Next Month',

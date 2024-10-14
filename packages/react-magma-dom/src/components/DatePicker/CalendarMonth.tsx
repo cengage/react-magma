@@ -182,6 +182,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
               onBlur={onCalendarTableBlur}
               onFocus={onCalendarTableFocus}
               theme={theme}
+              role="application"
             >
               <tbody>
                 <tr>{tableDaysHeaders}</tr>
