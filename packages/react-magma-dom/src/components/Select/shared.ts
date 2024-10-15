@@ -2,6 +2,7 @@ import { inputBaseStyles } from '../InputBase';
 import { Card } from '../Card';
 import { transparentize } from 'polished';
 import styled, { CreateStyled } from '@emotion/styled';
+import { css } from '@emotion/core';
 import { ThemeInterface } from '../../theme/magma';
 
 const typedStyled = styled as CreateStyled<ThemeInterface>;
@@ -37,12 +38,28 @@ export const StyledButton = styled.div`
   text-align: left;
 `;
 
-export const SelectText = styled.span<{ isClearable?: boolean }>`
+export const SelectText = styled.span<{
+  isClearable?: boolean;
+  isShowPlaceholder?: boolean;
+  isInverse?: boolean;
+  isDisabled?: boolean;
+  theme?: ThemeInterface;
+}>`
   padding-left: 4px;
-  padding-right: ${props => props.isClearable ? '2.5em' : '1.5em'};
+  padding-right: ${props => (props.isClearable ? '2.5em' : '1.5em')};
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: ${props => {
+    if (props.isShowPlaceholder) {
+      return props.isInverse
+        ? transparentize(0.3, props.theme.colors.neutral100)
+        : props.theme.colors.neutral500;
+    }
+  }};
+  ${props => props.isDisabled && props.isShowPlaceholder && css`
+    opacity: ${props.isInverse ? 0.4 : 0.6}
+  `}
 `;
 
 export const StyledCard = typedStyled(Card)<{
