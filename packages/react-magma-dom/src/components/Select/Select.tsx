@@ -191,6 +191,7 @@ export function Select<T>(props: SelectProps<T>) {
           isClearable={isClearable}
           isShowPlaceholder={!selectedItem}
           isInverse={isInverse}
+          isDisabled={disabled}
           theme={theme}
         >
           {selectText}

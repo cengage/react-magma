@@ -260,6 +260,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
           <SelectText
             isShowPlaceholder={true}
             isInverse={isInverse}
+            isDisabled={disabled}
             theme={theme}
           >
             {typeof placeholder === 'string'
