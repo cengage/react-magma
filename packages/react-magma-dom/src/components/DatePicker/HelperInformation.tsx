@@ -11,10 +11,12 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { useIsInverse } from '../../inverse';
 import styled, { CreateStyled } from '@emotion/styled';
 import { ThemeInterface } from '../../theme/magma';
+import { useFocusLock } from '../../hooks/useFocusLock';
 
 interface HelperInformationProps {
   isInverse?: boolean;
   isOpen?: boolean;
+  onReturnBack?: (event?: React.SyntheticEvent) => void;
   onClose?: (event?: React.SyntheticEvent) => void;
 }
 
@@ -98,11 +100,12 @@ export const HelperInformation: React.FunctionComponent<
 > = (props: HelperInformationProps) => {
   const i18n = React.useContext(I18nContext);
   const theme = React.useContext(ThemeContext);
+  const helperInformationRef = useFocusLock(true);
 
   const isInverse = useIsInverse(props.isInverse);
 
   return (
-    <StyledPopup>
+    <StyledPopup ref={helperInformationRef}>
       <StyledNavContainer>
         <IconButton
           icon={<ArrowBackIcon />}
@@ -110,7 +113,7 @@ export const HelperInformation: React.FunctionComponent<
           size={ButtonSize.small}
           style={{ top: '4px', left: '-12px' }}
           variant={ButtonVariant.link}
-          onClick={props.onClose}
+          onClick={props.onReturnBack}
         >
           Back to Calendar
         </IconButton>

@@ -150,6 +150,71 @@ describe('Date Picker', () => {
     expect(getByLabelText('Date Picker Label')).toHaveAttribute('value', '');
   });
 
+  it('should not allow to navigate through inactive days', () => {
+    const minDate = new Date('January 10, 2020');
+    const valueDate = new Date('January 11, 2020');
+
+    const { getByText, getByRole } = render(
+      <DatePicker minDate={minDate} value={valueDate} />
+    );
+
+    expect(getByText('January 2020')).toBeInTheDocument();
+
+    const selectedDateButton = getByText(11);
+    const button = getByRole('button');
+
+    userEvent.click(button);
+
+    expect(selectedDateButton).toBeInTheDocument();
+    expect(selectedDateButton).toHaveFocus();
+
+    userEvent.keyboard('[ArrowLeft]');
+
+    expect(selectedDateButton).not.toHaveFocus();
+
+    const startDateButton = getByText(10);
+    expect(startDateButton).toBeInTheDocument();
+    expect(startDateButton).toHaveFocus();
+
+    userEvent.keyboard('[ArrowUp]');
+    userEvent.keyboard('[ArrowLeft]');
+
+    expect(startDateButton).toHaveFocus();
+    
+    userEvent.keyboard('[ArrowRight]');
+    
+    expect(startDateButton).not.toHaveFocus();
+    expect(selectedDateButton).toHaveFocus();
+
+    userEvent.keyboard('[ArrowDown]');
+
+    expect(getByText(18)).toHaveFocus();
+  });
+
+  it('should lock focus inside', () => {
+    const valueDate = new Date('January 1, 2020');
+
+    const { getByText, getByRole } = render(
+      <DatePicker value={valueDate} />
+    );
+
+    const selectedDateButton = getByText(1);
+    const button = getByRole('button');
+
+    userEvent.click(button);
+
+    expect(selectedDateButton).toBeInTheDocument();
+    expect(selectedDateButton).toHaveFocus();
+
+    userEvent.tab();
+    userEvent.tab();
+    userEvent.tab();
+    userEvent.tab();
+    userEvent.tab();
+
+    expect(selectedDateButton).toHaveFocus();
+  });
+
   it('should not set the value to the date if it is after the maxDate', () => {
     const valueDate = new Date('January 23, 2020');
     const maxDate = new Date('January 10, 2020');
