@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.24
+
+### Patch Changes
+
+- 270e1f4ff: fix(Select): Fix placeholder color.
+
 ## 4.7.0-next.23
 
 ### Patch Changes
