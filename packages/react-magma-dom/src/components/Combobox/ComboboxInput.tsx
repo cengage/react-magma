@@ -1,18 +1,18 @@
-import React from 'react';
-import { inputBaseStyles } from '../InputBase';
-import { defaultComponents, SelectComponents } from '../Select/components';
-import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import {
   UseComboboxGetComboboxPropsOptions,
   UseComboboxGetInputPropsOptions,
   UseComboboxGetToggleButtonPropsOptions,
 } from 'downshift';
+import React from 'react';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { inputBaseStyles } from '../InputBase';
+import { defaultComponents, SelectComponents } from '../Select/components';
 
-import { SelectedItemsWrapper } from '../Select/shared';
-import { transparentize } from 'polished';
 import { ReferenceType } from '@floating-ui/react-dom';
+import { transparentize } from 'polished';
+import { SelectedItemsWrapper } from '../Select/shared';
 
 const ComboBoxContainer = styled.div<{
   hasError?: boolean;
@@ -53,7 +53,7 @@ const InputContainer = styled.div<{
         ${props.isInverse
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
-      outline-offset: 2px;
+      outline-offset: -1px;
     `}
 
   ${props =>

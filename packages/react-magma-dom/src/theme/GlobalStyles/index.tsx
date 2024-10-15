@@ -1,7 +1,7 @@
-import * as React from 'react';
 import { Global, css } from '@emotion/react';
-import { ThemeContext } from '../ThemeContext';
+import * as React from 'react';
 import { useIsInverse } from '../../inverse';
+import { ThemeContext } from '../ThemeContext';
 
 function getStyles(theme, isInverse: boolean) {
   return css`
@@ -17,7 +17,7 @@ function getStyles(theme, isInverse: boolean) {
     *:focus {
       outline: 2px solid
         ${isInverse ? theme.colors.focusInverse : theme.colors.focus};
-      outline-offset: 2px;
+      outline-offset: -1px;
     }
 
     html {
