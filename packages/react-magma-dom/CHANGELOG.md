@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.22
+
+### Patch Changes
+
+- eb2b3ab1e: fix(DatePicker): Fix navigation and accessibility issues.
+
 ## 4.7.0-next.21
 
 ### Minor Changes
