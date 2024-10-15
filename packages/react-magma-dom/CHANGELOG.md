@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.23
+
+### Patch Changes
+
+- 3c94afd1a: fix(Input): Style update: Focus style on inputs.
+
 ## 4.7.0-next.22
 
 ### Patch Changes

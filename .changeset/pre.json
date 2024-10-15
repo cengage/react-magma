@@ -34,6 +34,7 @@
     "feat-treeview-add-support-for-isdisabled",
     "fix-blockQuote-border-color",
     "fix-initial-expanded-items-should-expand-all-parents",
+    "fix-input-focus-outline",
     "fix-listItem-icons-color",
     "fix-modal-focuslock",
     "fix-stories-files",
