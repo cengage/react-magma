@@ -418,6 +418,15 @@ function getIconButtonSVGSize(props) {
   return `${theme.iconSizes.medium}px`;
 }
 
+function getHelpeLinkSVGSize(props) {
+  const { inputSize, theme } = props;
+
+  if (inputSize === InputSize.large) {
+    return `${theme.iconSizes.medium}px`;
+  }
+  return `${theme.iconSizes.small}px`;
+}
+
 function getIconButtonTransform(props) {
   const { isClickable, iconPosition, inputSize, hasChildren, theme } = props;
   let position = { x: '', y: '' };
@@ -604,8 +613,16 @@ export const HelpLinkContainer = styled.span<{
         : `calc(-100% - ${props.theme.spaceScale.spacing03})`}
   );
   svg {
-    height: ${props => getIconButtonSVGSize(props)};
-    width: ${props => getIconButtonSVGSize(props)};
+    height: ${props => getHelpeLinkSVGSize(props)};
+    width: ${props => getHelpeLinkSVGSize(props)};
+  }
+  button {
+    height: ${props => getHelpeLinkSVGSize(props)};
+    width: ${props => getHelpeLinkSVGSize(props)};
+    &:not(:disabled)::after {
+      height: ${props => getHelpeLinkSVGSize(props)};
+      width: ${props => getHelpeLinkSVGSize(props)};
+    }
   }
 `;
 
@@ -718,7 +735,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             disabled={disabled}
             iconPosition={iconPosition}
             isInverse={props.isInverse}
-            inputSize={inputSize ? inputSize : InputSize.medium}
+            inputSize={inputSize ?? InputSize.medium}
             theme={theme}
             style={containerStyle}
             hasError={hasError}
@@ -732,7 +749,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               data-testid={testId}
               hasCharacterCounter={hasCharacterCounter}
               iconPosition={iconPosition}
-              inputSize={inputSize ? inputSize : InputSize.medium}
+              inputSize={inputSize ?? InputSize.medium}
               isClearable={
                 type === InputType.search
                   ? isClearable
@@ -755,7 +772,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               <IconWrapper
                 aria-label={iconAriaLabel}
                 iconPosition={iconPosition}
-                inputSize={inputSize ? inputSize : InputSize.medium}
+                inputSize={inputSize ?? InputSize.medium}
                 isInverse={props.isInverse}
                 isPredictive={isPredictive}
                 theme={theme}
@@ -764,7 +781,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
                 {React.Children.only(
                   React.cloneElement(icon, {
                     size: getIconSize(
-                      inputSize ? inputSize : InputSize.medium,
+                      inputSize ?? InputSize.medium,
                       theme,
                       iconPosition
                     ),
@@ -847,8 +864,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
           ) : (
             <HelpLinkContainer
               isLabelVisuallyHidden={isLabelVisuallyHidden || false}
-              inputSize={inputSize || InputSize.medium}
-              labelPosition={labelPosition || LabelPosition.top}
+              inputSize={inputSize ?? InputSize.medium}
+              labelPosition={labelPosition ?? LabelPosition.top}
               theme={theme}
             >
               {children}
