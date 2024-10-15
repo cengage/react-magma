@@ -256,10 +256,17 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
               </SelectedItemButton>
             );
           })
-        ) : typeof placeholder === 'string' ? (
-          <SelectText>{placeholder}</SelectText>
         ) : (
-          <SelectText>{i18n.multiSelect.placeholder}</SelectText>
+          <SelectText
+            isShowPlaceholder={true}
+            isInverse={isInverse}
+            isDisabled={disabled}
+            theme={theme}
+          >
+            {typeof placeholder === 'string'
+              ? placeholder
+              : i18n.multiSelect.placeholder}
+          </SelectText>
         )}
       </SelectTriggerButton>
 
@@ -277,7 +284,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
             position: 'absolute',
             right: '3.25em',
             top: '50%',
-            transform: 'translateY(-50%)'
+            transform: 'translateY(-50%)',
           }}
         />
       )}
