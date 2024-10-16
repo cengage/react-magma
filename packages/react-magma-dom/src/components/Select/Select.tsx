@@ -1,16 +1,16 @@
-import * as React from 'react';
-import { SelectProps } from '.';
 import { useSelect } from 'downshift';
-import { SelectText } from './shared';
-import { defaultComponents } from './components';
+import * as React from 'react';
 import { CloseIcon } from 'react-magma-icons';
+import { SelectProps } from '.';
+import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useForkedRef } from '../../utils';
 import { ButtonSize, ButtonVariant } from '../Button';
+import { defaultComponents } from './components';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { I18nContext } from '../../i18n';
-import { useForkedRef } from '../../utils';
+import { SelectText } from './shared';
 
 export function Select<T>(props: SelectProps<T>) {
   const {
@@ -226,9 +226,10 @@ export function Select<T>(props: SelectProps<T>) {
         isOpen={isOpen}
         items={items}
         itemToString={itemToString}
-        maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
+        maxHeight={itemListMaxHeight ?? theme.select.menu.maxHeight}
         menuStyle={menuStyle}
         setFloating={setFloating}
+        setHighlightedIndex={setHighlightedIndex}
       />
     </SelectContainer>
   );

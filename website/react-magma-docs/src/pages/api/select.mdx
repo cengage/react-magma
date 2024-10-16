@@ -159,6 +159,29 @@ export function Example() {
 }
 ```
 
+## Disabled Items
+
+You can disable specific items in the `Select` component by adding a `disabled: true` property to the item object. For example:
+
+```tsx
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Select
+      id="disabledItemsSelectId"
+      labelText="Select with Disabled Items"
+      items={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue', disabled: true },
+        { label: 'Green', value: 'green' },
+      ]}
+    />
+  );
+}
+```
+
 ## Clearable
 
 The optional `isClearable` prop allows the user to clear the field once a selection has been made.

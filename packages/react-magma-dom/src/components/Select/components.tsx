@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { ArrowDropDownIcon, IconProps } from 'react-magma-icons';
+import { ThemeInterface } from '../../theme/magma';
 import { IconButton, IconButtonProps } from '../IconButton';
 import { Spinner, SpinnerProps } from '../Spinner';
-import { IconProps, ArrowDropDownIcon } from 'react-magma-icons';
 import { StyledItem } from './shared';
-import { ThemeInterface } from '../../theme/magma';
 
 export type ItemRenderOptions<T> = {
   key: string;
@@ -46,10 +46,17 @@ export function DefaultItem<T>({
   itemRef,
   itemString,
   isInverse,
+  isDisabled,
   ...props
 }: ItemRenderOptions<T>) {
   return (
-    <StyledItem {...props} isInverse={isInverse} ref={itemRef}>
+    <StyledItem
+      {...props}
+      isInverse={isInverse}
+      ref={itemRef}
+      isDisabled={isDisabled}
+      aria-disabled={isDisabled}
+    >
       {itemString}
     </StyledItem>
   );
