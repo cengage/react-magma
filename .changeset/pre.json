@@ -39,6 +39,7 @@
     "fix-modal-focuslock",
     "fix-select-placeholder-color",
     "fix-stories-files",
+    "implement-scrollspy-in-docs",
     "inputwrapperstyles",
     "search-clear-overlaps",
     "sync4-6",

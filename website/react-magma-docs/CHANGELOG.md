@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.9-next.9
+
+### Patch Changes
+
+- d3eaf4ab6: feat(react-magma-docs): Implement scrollspy.
+
 ## 5.0.9-next.8
 
 ### Patch Changes
