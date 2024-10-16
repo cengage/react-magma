@@ -530,15 +530,15 @@ import {
  TagSize,
  TagColor,
  TreeViewApi,
+ TreeItemSelectedInterface,
  Heading
 } from 'react-magma-dom';
-import { FolderIcon, ArticleIcon } from 'react-magma-icons';
 
-function createControlledTags(items = [], api?: TreeViewApi) {
+function createControlledTags(items: TreeItemSelectedInterface[] = [], api?: TreeViewApi) {
   const selected = items && items
     .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
     .map((i, key) => (
-      <Tag key={key} size={TagSize.small} color={TagColor.primary} onDelete={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+      <Tag key={key} size={TagSize.small} color={TagColor.primary} onDelete={() => api?.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
         {i.itemId}
       </Tag>
     ));
@@ -546,7 +546,7 @@ function createControlledTags(items = [], api?: TreeViewApi) {
   const indeterminate = items && items
     .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate)
     .map((i, key) => (
-      <Tag key={key} size={TagSize.small} color={TagColor.default} onDelete={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+      <Tag key={key} size={TagSize.small} color={TagColor.default} onDelete={() => api?.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
         {i.itemId}
       </Tag>
     ));
