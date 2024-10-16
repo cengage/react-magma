@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
 import { transparentize } from 'polished';
 import * as React from 'react';
-import * as React from 'react';
 import { ClearIcon, IconProps } from 'react-magma-icons';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
@@ -12,6 +11,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
+import { LabelPosition } from '../Label';
 
 export enum InputSize {
   large = 'large',
@@ -418,13 +418,22 @@ function getIconButtonSVGSize(props) {
   return `${theme.iconSizes.medium}px`;
 }
 
-function getHelpeLinkSVGSize(props) {
+function getHelpLinkSVGSize(props) {
   const { inputSize, theme } = props;
 
   if (inputSize === InputSize.large) {
     return `${theme.iconSizes.medium}px`;
   }
   return `${theme.iconSizes.small}px`;
+}
+
+function getHelpIconButtonSize(props) {
+  const { inputSize, theme } = props;
+
+  if (inputSize === InputSize.large) {
+    return theme.spaceScale.spacing09;
+  }
+  return theme.spaceScale.spacing07;
 }
 
 function getIconButtonTransform(props) {
@@ -509,27 +518,6 @@ const PasswordButtonContainer = styled.span<{
 `;
 
 function getClearablePosition(props) {
-  if (props.hasChildren) {
-    if (props.iconPosition === 'right') {
-      if (props.inputSize === 'large') {
-        return '92px';
-      }
-      return props.theme.spaceScale.spacing12;
-    }
-    if (props.iconPosition === 'left') {
-      if (props.inputSize === 'large') {
-        return '88px';
-      }
-      return props.theme.spaceScale.spacing12;
-    }
-    if (props.iconPosition === 'top') {
-      if (props.inputSize === 'large') {
-        return props.theme.spaceScale.spacing10;
-      }
-      return '34px';
-    }
-    return props.theme.spaceScale.spacing12;
-  }
   if (props.iconPosition === 'right' && props.icon) {
     if (props.inputSize === 'large') {
       return '88px';
@@ -548,7 +536,6 @@ const IsClearableContainer = styled.span<{
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
   onIconClick?: () => void;
-  hasChildren?: boolean;
 }>`
   background-color: transparent;
   margin: 0;
@@ -613,16 +600,12 @@ export const HelpLinkContainer = styled.span<{
         : `calc(-100% - ${props.theme.spaceScale.spacing03})`}
   );
   svg {
-    height: ${props => getHelpeLinkSVGSize(props)};
-    width: ${props => getHelpeLinkSVGSize(props)};
+    height: ${props => getHelpLinkSVGSize(props)};
+    width: ${props => getHelpLinkSVGSize(props)};
   }
   button {
-    height: ${props => getHelpeLinkSVGSize(props)};
-    width: ${props => getHelpeLinkSVGSize(props)};
-    &:not(:disabled)::after {
-      height: ${props => getHelpeLinkSVGSize(props)};
-      width: ${props => getHelpeLinkSVGSize(props)};
-    }
+   height: ${props => getHelpIconButtonSize(props)};
+    width: ${props => getHelpIconButtonSize(props)};
   }
 `;
 
@@ -797,7 +780,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               inputSize={inputSize}
               onIconClick={onIconClick}
               icon={icon}
-              hasChildren={!!children && !isPasswordInput}
             >
               <IconButton
                 aria-label={i18n.input.isClearableAriaLabel}
