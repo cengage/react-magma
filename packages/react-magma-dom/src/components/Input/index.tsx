@@ -94,7 +94,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         <InputBase
           {...other}
           aria-describedby={
-            descriptionId ? descriptionId : props['aria-describedby']
+            descriptionId ?? props['aria-describedby']
           }
           aria-invalid={!!errorMessage}
           hasError={
