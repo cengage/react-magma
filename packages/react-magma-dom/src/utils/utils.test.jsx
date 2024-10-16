@@ -66,28 +66,28 @@ describe('Utils', () => {
       const actual = reactNodeToString('test');
       const expected = 'test';
 
-      expect(reactNodeToString(actual)).toEqual(expected);
+      expect(actual).toEqual(expected);
     });
     
     it('converts number to string', () => {
       const actual = reactNodeToString(123);
       const expected = '123';
 
-      expect(reactNodeToString(actual)).toEqual(expected);
+      expect(actual).toEqual(expected);
     });
     
     it('converts node to string', () => {
       const actual = reactNodeToString(<div>test</div>);
       const expected = 'test';
 
-      expect(reactNodeToString(actual)).toEqual(expected);
+      expect(actual).toEqual(expected);
     });
     
     it('converts array of nodes to string', () => {
       const actual = reactNodeToString([<div key={1}>test</div>]);
       const expected = 'test';
 
-      expect(reactNodeToString(actual)).toEqual(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });
