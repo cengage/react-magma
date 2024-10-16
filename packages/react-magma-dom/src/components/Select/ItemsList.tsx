@@ -1,21 +1,24 @@
-import React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { I18nContext } from '../../i18n';
-import { StyledCard, StyledItem, StyledList } from './shared';
+import styled from '@emotion/styled';
+import { ReferenceType } from '@floating-ui/react-dom';
 import {
   UseSelectGetItemPropsOptions,
   UseSelectGetMenuPropsOptions,
 } from 'downshift';
-import { instanceOfToBeCreatedItemObject } from '.';
+import React from 'react';
+import {
+  instanceOfItemWithOptionalDisabled,
+  instanceOfToBeCreatedItemObject,
+} from '.';
+import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { convertStyleValueToString } from '../../utils';
+import { Spinner } from '../Spinner';
 import {
   defaultComponents,
   ItemRenderOptions,
   SelectComponents,
 } from './components';
-import { convertStyleValueToString } from '../../utils';
-import { Spinner } from '../Spinner';
-import styled from '@emotion/styled';
-import { ReferenceType } from '@floating-ui/react-dom';
+import { StyledCard, StyledItem, StyledList } from './shared';
 
 interface ItemsListProps<T> {
   customComponents?: SelectComponents<T>;
@@ -98,7 +101,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   }
 
   return (
-    <div ref={setFloating} style={{...floatingElementStyles, zIndex: '2'}}>
+    <div ref={setFloating} style={{ ...floatingElementStyles, zIndex: '2' }}>
       <StyledCard
         hasDropShadow
         isInverse={isInverse}
@@ -117,10 +120,14 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
               const itemString = instanceOfToBeCreatedItemObject(item)
                 ? item.label
                 : itemToString(item);
+              const isItemDisabled = instanceOfItemWithOptionalDisabled(item)
+                ? item.disabled
+                : false;
 
               const { ref, ...otherDownshiftItemProps } = getItemProps({
                 item,
                 index,
+                disabled: isItemDisabled,
               });
 
               const key = `${itemString}${index}`;
@@ -133,6 +140,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
                 itemString,
                 key,
                 theme,
+                isDisabled:isItemDisabled,
                 ...otherDownshiftItemProps,
               };
 

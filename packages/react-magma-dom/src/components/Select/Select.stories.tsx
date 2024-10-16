@@ -1,13 +1,13 @@
+import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { Select, SelectOptions, SelectProps, MultiSelectProps } from './';
-import { LabelPosition } from '../Label';
-import { Card } from '../Card';
-import { CardBody } from '../Card/CardBody';
-import { Tooltip } from '../Tooltip';
-import { IconButton } from '../IconButton';
 import { HelpIcon } from 'react-magma-icons';
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { Card } from '../Card';
+import { CardBody } from '../Card/CardBody';
+import { IconButton } from '../IconButton';
+import { LabelPosition } from '../Label';
+import { Tooltip } from '../Tooltip';
+import { MultiSelectProps, Select, SelectOptions, SelectProps } from './';
 
 const Template: Story<SelectProps<SelectOptions>> = args => (
   <Select {...args} />
@@ -40,8 +40,8 @@ export const Default = Template.bind({});
 Default.args = {
   labelText: 'Example',
   items: [
-    { label: 'Red', value: 'red' },
-    { label: 'Blue', value: 'blue' },
+    { label: 'Red', value: 'red' , disabled: false},
+    { label: 'Blue', value: 'blue' , disabled: true},
     { label: 'Green', value: 'green' },
     { label: 'Purple mountain majesty', value: 'purple' },
   ],
