@@ -133,6 +133,30 @@ describe('Tabs', () => {
     expect(getByTestId('buttonPrev')).toBeDefined();
   });
 
+  it('should render tabs with textTransform prop', () => {
+    const { getByText, rerender } = render(
+      <TabsContainerContext.Provider value={{ activeTabIndex: 1 }}>
+        <Tabs>
+          <Tab>Tab 1</Tab>
+          <Tab>Tab 2</Tab>
+        </Tabs>
+      </TabsContainerContext.Provider>
+    );
+
+    expect(getByText('Tab 1')).toBeInTheDocument();
+    expect(getByText('Tab 2')).toBeInTheDocument();
+    expect(getByText('Tab 1')).toHaveStyleRule('text-transform', 'uppercase');
+
+    rerender(
+      <Tabs textTransform="none">
+        <Tab>Tab 1</Tab>
+        <Tab>Tab 2</Tab>
+      </Tabs>
+    );
+
+    expect(getByText('Tab 1')).toHaveStyleRule('text-transform', 'none');
+  });
+
   it('should render centered tabs', () => {
     const { container } = render(
       <Tabs alignment="center">

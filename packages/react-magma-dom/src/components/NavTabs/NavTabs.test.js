@@ -71,6 +71,30 @@ describe('NavTabs', () => {
     );
   });
 
+  it('should render navtabs with textTransform prop', () => {
+    const { container, rerender } = render(
+      <NavTabs>
+        <NavTab>Tab 1</NavTab>
+      </NavTabs>
+    );
+
+    expect(container.querySelector('a')).toHaveStyleRule(
+      'text-transform',
+      'uppercase'
+    );
+
+    rerender(
+      <NavTabs textTransform="none">
+        <NavTab>Tab 1</NavTab>
+      </NavTabs>
+    );
+
+    expect(container.querySelector('a')).toHaveStyleRule(
+      'text-transform',
+      'none'
+    );
+  });
+
   it('should show icon in top position', () => {
     const testId = 'test-id';
 

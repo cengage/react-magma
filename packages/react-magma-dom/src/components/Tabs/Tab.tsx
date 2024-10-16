@@ -4,8 +4,8 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { css } from '@emotion/react';
 import isPropValid from '@emotion/is-prop-valid';
 import { TabsIconPosition, TabsBorderPosition, TabsContext } from './Tabs';
-import { TabsOrientation } from './shared';
-import { useForkedRef } from '../../utils';
+import { TabsOrientation, TabsTextTransform } from './shared';
+import { resolveProps, useForkedRef } from '../../utils';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { TabsContainerContext } from './TabsContainer';
 import { ThemeInterface } from '../../theme/magma';
@@ -18,6 +18,11 @@ export interface TabProps
    */
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
   isInverse?: boolean;
+  /**
+   * Determines whether the tab appears in all-caps
+   * @default TabsTextTransform.uppercase
+   */
+  textTransform?: TabsTextTransform;
   /**
    * @internal
    */
@@ -39,7 +44,7 @@ export const StyledTabsChild = styled('li', {
   orientation: TabsOrientation;
   theme: ThemeInterface;
 }>`
-  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   flex-grow: 0;
   flex-shrink: ${props => (props.isFullWidth ? '1' : '0')};
   height: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
@@ -144,7 +149,7 @@ export const TabStyles = props => css`
   pointer-events: ${props.disabled ? 'none' : ''};
   text-align: center;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: ${props.textTransform};
   width: ${props.isFullWidth ? '100%' : 'auto'};
 
   ${props.orientation === 'vertical' &&
@@ -191,6 +196,7 @@ const StyledTab = styled('button', { shouldForwardProp: isPropValid })<{
   isFullWidth?: boolean;
   isInverse?: boolean;
   orientation: TabsOrientation;
+  textTransform: TabsTextTransform;
   theme: ThemeInterface;
 }>`
   ${TabStyles}
@@ -231,7 +237,9 @@ export const StyledIcon = styled.span<{
 
 export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
   (props, forwardedRef) => {
-    const { children, icon, disabled, testId, ...rest } = props;
+    const contextProps = React.useContext(TabsContext);
+    const resolvedProps = resolveProps(contextProps, props);
+    const { children, icon, disabled, testId, ...rest } = resolvedProps;
     const { activeTabIndex } = React.useContext(TabsContainerContext);
     const { buttonRefArray, registerTabButton } = React.useContext(TabsContext);
     const ownRef = React.useRef<HTMLDivElement>();
@@ -254,7 +262,8 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       iconPosition,
       isInverse,
       isFullWidth,
-    } = React.useContext(TabsContext);
+      textTransform,
+    } = resolvedProps;
 
     const handleClick = (index, e) => {
       changeHandler(index, e);
@@ -304,6 +313,7 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
           role="tab"
           tabIndex={isActive ? 0 : -1}
           theme={theme}
+          textTransform={textTransform}
         >
           {icon && (
             <StyledIcon

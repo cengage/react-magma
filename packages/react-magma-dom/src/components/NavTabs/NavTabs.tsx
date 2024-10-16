@@ -10,14 +10,15 @@ import {
   Orientation,
 } from '../Tabs';
 import { NavTabProps, NavTab } from './NavTab';
-import { TabsOrientation } from '../Tabs/shared';
+import { TabsOrientation, TabsTextTransform } from '../Tabs/shared';
 import { Omit } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
 import { useTabsMeta } from '../Tabs/utils';
 import { useIsInverse } from '../../inverse';
 
-export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {}
+export interface NavTabsProps
+  extends Omit<TabsProps, 'onChange'> {}
 
 interface NavTabsContextInterface {
   borderPosition?: TabsBorderPosition;
@@ -25,6 +26,7 @@ interface NavTabsContextInterface {
   isInverse?: boolean;
   isFullWidth?: boolean;
   orientation?: TabsOrientation;
+  textTransform?: TabsTextTransform;
 }
 
 export const NavTabsContext = React.createContext<NavTabsContextInterface>({
@@ -33,6 +35,7 @@ export const NavTabsContext = React.createContext<NavTabsContextInterface>({
   isInverse: false,
   isFullWidth: false,
   orientation: TabsOrientation.horizontal,
+  textTransform: TabsTextTransform.uppercase,
 });
 
 export const NavTabs = React.forwardRef<
@@ -47,6 +50,7 @@ export const NavTabs = React.forwardRef<
     iconPosition,
     isFullWidth,
     orientation,
+    textTransform,
     testId,
     ...rest
   } = props;
@@ -128,6 +132,7 @@ export const NavTabs = React.forwardRef<
               isInverse: isInverse,
               isFullWidth,
               orientation,
+              textTransform: textTransform || TabsTextTransform.uppercase,
             }}
           >
             {navTabsChildren}
