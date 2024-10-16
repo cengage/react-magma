@@ -1,9 +1,19 @@
 import * as React from 'react';
 import { useDescendants } from '../../hooks/useDescendants';
 import { TreeItemSelectedInterface, TreeViewItemInterface } from './TreeViewContext';
-import { getInitialExpandedIds, getInitialItems, toggleMulti, selectSingle, toggleAllMulti, isSelectedItemsChanged } from './utils';
+import {
+  getInitialExpandedIds,
+  getInitialItems,
+  toggleMulti,
+  selectSingle,
+  toggleAllMulti,
+  isSelectedItemsChanged,
+  isEqualArrays,
+} from './utils';
 import { TreeViewSelectable } from './types';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
+
+export { TreeItemSelectedInterface };
 
 export interface TreeViewApi {
   selectItem({ itemId, checkedStatus }: Pick<TreeViewItemInterface, 'itemId' | 'checkedStatus'>): void;
@@ -78,7 +88,7 @@ export interface UseTreeViewProps {
    * selectAll(): void - action that allows to select all items, 
    * clearAll(): void - action that allows to unselect all items.
    */
-  apiRef?: React.MutableRefObject<TreeViewApi>,
+  apiRef?: React.MutableRefObject<TreeViewApi | undefined>,
   /**
    * If true, every item is disabled
    * @default false
@@ -139,9 +149,19 @@ export function useTreeView(props: UseTreeViewProps) {
   }, [items]);
   
   const prevSelectedItemsRef = React.useRef(null);
+  const prevPreselectedItemsRef = React.useRef(preselectedItems);
 
   const initializationRef = React.useRef(true);
 
+  React.useEffect(() => {
+    if (isEqualArrays(prevPreselectedItemsRef.current, preselectedItems)) {
+      return;
+    }
+
+    setItems(getInitialItems({ children, preselectedItems, checkParents, checkChildren, selectable, isDisabled }));
+    prevPreselectedItemsRef.current = preselectedItems;
+  }, [preselectedItems, checkParents, checkChildren, selectable, isDisabled])
+  
   React.useEffect(() => {
     if (initializationRef.current) {
       return;

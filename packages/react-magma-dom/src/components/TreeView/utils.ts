@@ -220,20 +220,20 @@ const getTreeViewData = ({ children, selectable, checkChildren, parentId = null,
   }).flat();
 }
 
-const processItemCheckedStatus = ({ items, itemId, checkedStatus }) => {
+const processItemCheckedStatus = ({ items, itemId, checkedStatus, forceCheckedStatusForDisabled }: { items: TreeViewItemInterface[]; itemId: TreeViewItemInterface['itemId']; checkedStatus: TreeViewItemInterface['checkedStatus']; forceCheckedStatusForDisabled?: boolean }) => {
   const item = items.find((item) => item.itemId === itemId);
   
-  if (item.isDisabled) {
+  if (item.isDisabled && !forceCheckedStatusForDisabled) {
     return items;
   }
   
   return items.map((item) => item.itemId === itemId ? { ...item, checkedStatus } : item);
 }
 
-const processChildrenSelection = ({ items, itemId, checkedStatus }) => {
+const processChildrenSelection = ({ items, itemId, checkedStatus, forceCheckedStatusForDisabled }: { items: TreeViewItemInterface[]; itemId: TreeViewItemInterface['itemId']; checkedStatus: TreeViewItemInterface['checkedStatus']; forceCheckedStatusForDisabled?: boolean }) => {
   const item = items.find((item) => item.itemId === itemId);
   
-  const itemsWithProcessedItemCheckedStatus = processItemCheckedStatus({ items, itemId, checkedStatus });
+  const itemsWithProcessedItemCheckedStatus = processItemCheckedStatus({ items, itemId, checkedStatus, forceCheckedStatusForDisabled });
   
   if (!item.hasOwnTreeItems) {
     return itemsWithProcessedItemCheckedStatus;
@@ -242,7 +242,7 @@ const processChildrenSelection = ({ items, itemId, checkedStatus }) => {
   const directChildren = itemsWithProcessedItemCheckedStatus.filter((item) => item.parentId === itemId);
   
   const itemsWithProcessedChildren = directChildren.reduce((result, directChild) => {
-    return processChildrenSelection({ items: result, itemId: directChild.itemId, checkedStatus })
+    return processChildrenSelection({ items: result, itemId: directChild.itemId, checkedStatus, forceCheckedStatusForDisabled })
   }, itemsWithProcessedItemCheckedStatus);
   
   const childrenIds = getChildrenIds({ items: itemsWithProcessedChildren, itemId });
@@ -252,7 +252,7 @@ const processChildrenSelection = ({ items, itemId, checkedStatus }) => {
   const isAllChildrenWithTheSameCheckedStatus = uniqueChildrenCheckedStatus.length === 1;
   const itemCheckedStatus = isAllChildrenWithTheSameCheckedStatus ? checkedStatus : IndeterminateCheckboxStatus.indeterminate;
 
-  return processItemCheckedStatus({ items: itemsWithProcessedChildren, itemId, checkedStatus: itemCheckedStatus });
+  return processItemCheckedStatus({ items: itemsWithProcessedChildren, itemId, checkedStatus: itemCheckedStatus, forceCheckedStatusForDisabled });
 }
 
 const getChildrenIds = ({ items, itemId }: { items: TreeViewItemInterface[]; itemId: TreeViewItemInterface['itemId']; }) => {
@@ -290,7 +290,7 @@ const processInitialParentStatuses = ({ items }: { items: TreeViewItemInterface[
       return result;
     }
 
-    return processChildrenSelection({items: result, itemId: item.itemId, checkedStatus: IndeterminateCheckboxStatus.checked});
+    return processChildrenSelection({items: result, itemId: item.itemId, checkedStatus: IndeterminateCheckboxStatus.checked, forceCheckedStatusForDisabled: true });
   }, items);
 
   return itemsWithSelectedChildren.map((item) => {
@@ -319,7 +319,15 @@ export const getInitialItems = ({ children, preselectedItems: rawPreselectedItem
     } : treeViewDataItem
   }) : treeViewData
 
-  return selectable === TreeViewSelectable.multi && checkParents && preselectedItems ? processInitialParentStatuses({ items: enhancedWithPreselectedItems }) : enhancedWithPreselectedItems
+  const itemsWithProcessedChildrenSelection = checkChildren
+    ? enhancedWithPreselectedItems.reduce((result, item) => {
+      return item.checkedStatus === IndeterminateCheckboxStatus.checked
+        ? processChildrenSelection({ items: result, itemId: item.itemId, checkedStatus: item.checkedStatus })
+        : result;
+    }, enhancedWithPreselectedItems)
+    : enhancedWithPreselectedItems
+
+  return selectable === TreeViewSelectable.multi && checkParents && preselectedItems ? processInitialParentStatuses({ items: itemsWithProcessedChildrenSelection }) : itemsWithProcessedChildrenSelection
 }
 
 export const selectSingle = ({items, itemId, checkedStatus}: { items: TreeViewItemInterface[]; itemId: TreeViewItemInterface['itemId']; checkedStatus: TreeViewItemInterface['checkedStatus'] }) => {
@@ -376,8 +384,8 @@ const getParentIds = ({ items, itemId, prevParentIds = []}: { items: TreeViewIte
   return parentId ? getParentIds({ itemId: parentId, items, prevParentIds: [...prevParentIds, parentId]}) : prevParentIds;
 }
 
-const getRootParentIds = (items: TreeViewItemInterface[]) => {
-  const rootParents = items.filter(({ parentId }) => !parentId);
+const getEnabledRootParentIds = (items: TreeViewItemInterface[]) => {
+  const rootParents = items.filter(({ parentId, isDisabled }) => !parentId && !isDisabled);
 
   return rootParents.map(({ itemId }) => itemId);
 }
@@ -393,7 +401,7 @@ export const toggleAllMulti = ({ items, checkedStatus, checkChildren, checkParen
     })
   }
   
-  const rootParentIds = getRootParentIds(items);
+  const rootParentIds = getEnabledRootParentIds(items);
   
   return rootParentIds.reduce((result, rootParentId) => {
     return toggleMulti({ items: result, itemId: rootParentId, checkedStatus, forceCheckedStatus: true, checkChildren, checkParents })
@@ -410,13 +418,10 @@ export const getInitialExpandedIds = ({ items, initialExpandedItems }: { items: 
   }, []);
 }
 
-export const isSelectedItemsChanged = (prevSelectedItems: TreeItemSelectedInterface[] | null, selectedItems: TreeItemSelectedInterface[]) => {
-  if (!prevSelectedItems && selectedItems) {
-    return true;
-  }
-  
-  const stringifiedPrevSelectedItems = JSON.stringify(prevSelectedItems);
-  const stringifiedSelectedItems = JSON.stringify(selectedItems);
+export const isEqualArrays = <T>(arrayA: T[], arrayB: T[]) => {
+  return JSON.stringify(arrayA) === JSON.stringify(arrayB);
+}
 
-  return stringifiedPrevSelectedItems !== stringifiedSelectedItems;
+export const isSelectedItemsChanged = (prevSelectedItems: TreeItemSelectedInterface[] | null, selectedItems: TreeItemSelectedInterface[]) => {
+  return !isEqualArrays(prevSelectedItems ?? [], selectedItems);
 }

@@ -331,11 +331,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           theme={theme}
           tabIndex={tabIndex}
           onKeyDown={handleKeyDown}
-          onClick={event => {
-            if (selectable===TreeViewSelectable.off && hasOwnTreeItems) {
-              onExpandedClicked(event);
-            }
-          }}
         >
           <StyledItemWrapper
             data-testid={`${testId || itemId}-itemwrapper`}
@@ -356,7 +351,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 isDisabled={isDisabled}
                 isInverse={isInverse}
                 onClick={event => {
-                  if (!isDisabled && selectable !== TreeViewSelectable.off) {
+                  if (!isDisabled) {
                     onExpandedClicked(event);
                   }
                 }}

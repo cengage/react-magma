@@ -19,6 +19,8 @@ import {
   Flex,
   FlexBehavior,
   IndeterminateCheckboxStatus,
+  TreeItemSelectedInterface,
+  TreeViewProps,
   ButtonVariant,
   ButtonGroup,
 } from '../..';
@@ -73,7 +75,7 @@ export default {
   },
 } as Meta;
 
-function createTags(items) {
+function createTags(items: TreeItemSelectedInterface[]) {
   const selected = items
     ?.filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
     .map((i, key) => (
@@ -97,11 +99,11 @@ function createTags(items) {
 }
 
 
-function createControlledTags(items = [], api?: TreeViewApi) {
+function createControlledTags(items: TreeItemSelectedInterface[] = [], api?: TreeViewApi) {
   const selected = items
     ?.filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
     .map((i, key) => (
-      <Tag key={key} size={TagSize.small} color={TagColor.primary} onDelete={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+      <Tag key={key} size={TagSize.small} color={TagColor.primary} onDelete={() => api?.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
         {i.itemId}
       </Tag>
     ));
@@ -109,7 +111,7 @@ function createControlledTags(items = [], api?: TreeViewApi) {
   const indeterminate = items
     ?.filter(i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate)
     .map((i, key) => (
-      <Tag key={key} size={TagSize.small} color={TagColor.default} onDelete={() => api.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+      <Tag key={key} size={TagSize.small} color={TagColor.default} onDelete={() => api?.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
         {i.itemId}
       </Tag>
     ));
@@ -120,12 +122,12 @@ function createControlledTags(items = [], api?: TreeViewApi) {
   };
 }
 
-export const Simple = args => {
-  const [selectedItems, setSelectedItems] = React.useState(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
+export const Simple = (args: Partial<TreeViewProps>) => {
+  const [selectedItems, setSelectedItems] = React.useState<React.ReactNode[] | null>(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState<React.ReactNode[] | null>(null);
   const [total, setTotal] = React.useState(selectedItems?.length || 0);
 
-  function onSelection(items) {
+  function onSelection(items: TreeItemSelectedInterface[]) {
     const selected = createTags(items).selected;
     const indet = createTags(items).indeterminate;
     setSelectedItems(selected);
@@ -169,12 +171,12 @@ export const Simple = args => {
 
 Simple.parameters = { controls: { exclude: ['isInverse'] } };
 
-export const Complex = args => {
-  const [selectedItems, setSelectedItems] = React.useState(null);
+export const Complex = (args: Partial<TreeViewProps>) => {
+  const [selectedItems, setSelectedItems] = React.useState<TreeItemSelectedInterface[]>();
 
-  const apiRef = React.useRef<TreeViewApi>(null);
+  const apiRef = React.useRef<TreeViewApi>();
 
-  const { selected, indeterminate } = createControlledTags(selectedItems, apiRef.current);
+  const { selected, indeterminate } = createControlledTags(selectedItems, apiRef?.current);
   const total = selectedItems?.length || 0;
 
   return (
@@ -430,11 +432,11 @@ Complex.args = {
   testId: 'complex-example',
 };
 
-export const NoIcons = args => {
-  const [selectedItems, setSelectedItems] = React.useState(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
+export const NoIcons = (args: Partial<TreeViewProps>) => {
+  const [selectedItems, setSelectedItems] = React.useState<React.ReactNode[] | null>(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState<React.ReactNode[] | null>(null);
 
-  function onSelection(items) {
+  function onSelection(items: TreeItemSelectedInterface[]) {
     const selected = createTags(items).selected;
     const indet = createTags(items).indeterminate;
     setSelectedItems(selected);
@@ -501,12 +503,12 @@ NoIcons.args = {
   ],
 };
 
-export const Textbook = args => {
-  const [selectedItems, setSelectedItems] = React.useState(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
+export const Textbook = (args: Partial<TreeViewProps>) => {
+  const [selectedItems, setSelectedItems] = React.useState<React.ReactNode[] | null>(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState<React.ReactNode[] | null>(null);
   const [total, setTotal] = React.useState(selectedItems?.length || 0);
 
-  function onSelection(items) {
+  function onSelection(items: TreeItemSelectedInterface[]) {
     const selected = createTags(items).selected;
     const indet = createTags(items).indeterminate;
     setSelectedItems(selected);
@@ -600,11 +602,11 @@ Textbook.args = {
   ariaLabelledBy: 'ah-textbook',
 };
 
-export const DefaultIcon = args => {
-  const [selectedItems, setSelectedItems] = React.useState(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
+export const DefaultIcon = (args: Partial<TreeViewProps>) => {
+  const [selectedItems, setSelectedItems] = React.useState<React.ReactNode[] | null>(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState<React.ReactNode[] | null>(null);
 
-  function onSelection(items) {
+  function onSelection(items: TreeItemSelectedInterface[]) {
     const selected = createTags(items).selected;
     const indet = createTags(items).indeterminate;
     setSelectedItems(selected);
@@ -662,11 +664,11 @@ export const DefaultIcon = args => {
 
 DefaultIcon.parameters = { controls: { exclude: ['isInverse'] } };
 
-export const FirstItemLeaf = args => {
-  const [selectedItems, setSelectedItems] = React.useState(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
+export const FirstItemLeaf = (args: Partial<TreeViewProps>) => {
+  const [selectedItems, setSelectedItems] = React.useState<React.ReactNode[] | null>(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState<React.ReactNode[] | null>(null);
 
-  function onSelection(items) {
+  function onSelection(items: TreeItemSelectedInterface[]) {
     const selected = createTags(items).selected;
     const indet = createTags(items).indeterminate;
 
@@ -720,12 +722,12 @@ FirstItemLeaf.args = {
 
 FirstItemLeaf.parameters = { controls: { exclude: ['isInverse'] } };
 
-export const FirstItemBranch = args => {
-  const [selectedItems, setSelectedItems] = React.useState(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
+export const FirstItemBranch = (args: Partial<TreeViewProps>) => {
+  const [selectedItems, setSelectedItems] = React.useState<React.ReactNode[] | null>(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState<React.ReactNode[] | null>(null);
   const [total, setTotal] = React.useState(selectedItems?.length || 0);
 
-  function onSelection(items) {
+  function onSelection(items: TreeItemSelectedInterface[]) {
     const selected = createTags(items).selected;
     const indet = createTags(items).indeterminate;
 
@@ -786,7 +788,7 @@ FirstItemBranch.args = {
   initialExpandedItems: ['Birds', 'Parrots'],
 };
 
-export const FlatTree = args => {
+export const FlatTree = (args: Partial<TreeViewProps>) => {
   return (
     <TreeView {...args} style={{ width: '100%' }}>
       <TreeItem
@@ -852,11 +854,11 @@ FlatTree.args = {
 
 FlatTree.parameters = { controls: { exclude: ['isInverse'] } };
 
-export const ParentsAndChildrenNotAutoChecked = args => {
-  const [selectedItems, setSelectedItems] = React.useState(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState(null);
+export const ParentsAndChildrenNotAutoChecked = (args: Partial<TreeViewProps>) => {
+  const [selectedItems, setSelectedItems] = React.useState<React.ReactNode[] | null>(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState<React.ReactNode[] | null>(null);
 
-  function onSelection(items) {
+  function onSelection(items: TreeItemSelectedInterface[]) {
     const selected = createTags(items).selected;
     const indet = createTags(items).indeterminate;
 
