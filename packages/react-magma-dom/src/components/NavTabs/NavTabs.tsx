@@ -17,8 +17,7 @@ import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
 import { useTabsMeta } from '../Tabs/utils';
 import { useIsInverse } from '../../inverse';
 
-export interface NavTabsProps
-  extends Omit<TabsProps, 'onChange'> {}
+export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {}
 
 interface NavTabsContextInterface {
   borderPosition?: TabsBorderPosition;
