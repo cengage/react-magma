@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.25
+
+### Patch Changes
+
+- eb5f11fd8: fix(TreeView): Fix TreeView issues from verification
+
 ## 4.7.0-next.24
 
 ### Patch Changes
