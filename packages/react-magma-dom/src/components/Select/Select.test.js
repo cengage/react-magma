@@ -1,14 +1,14 @@
-import React from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
+import React from 'react';
+import { HelpIcon } from 'react-magma-icons';
 import { Select } from '.';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
+import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { IconButton } from '../IconButton';
+import { LabelPosition } from '../Label';
 import { Modal } from '../Modal';
 import { Tooltip } from '../Tooltip';
-import { IconButton } from '../IconButton';
-import { HelpIcon } from 'react-magma-icons';
-import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
-import { LabelPosition } from '../Label';
 
 describe('Select', () => {
   const labelText = 'Label';
@@ -624,6 +624,25 @@ describe('Select', () => {
         'display',
         'flex'
       );
+    });
+
+    it('Should handle disabled items', () => {
+      const items = [
+        { label: 'Red', value: 'red', disabled: true },
+        { label: 'Blue', value: 'blue', disabled: false },
+        { label: 'Green', value: 'green' },
+      ];
+      const { getByLabelText, getByText } = render(
+        <Select labelText={labelText} items={items} />
+      );
+  
+      const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+      fireEvent.click(renderedSelect);
+
+      expect(getByText('Red')).toHaveAttribute('aria-disabled', 'true');
+      expect(getByText('Red')).toHaveStyleRule('cursor', 'not-allowed');
+      expect(getByText('Blue')).toHaveAttribute('aria-disabled', 'false');
+      expect(getByText('Green')).toHaveAttribute('aria-disabled', 'false');
     });
   });
 
