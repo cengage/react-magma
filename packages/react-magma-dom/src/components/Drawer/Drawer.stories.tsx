@@ -4,7 +4,7 @@ import { Button } from '../Button';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { DrawerPosition } from './Drawer';
 import { NavTab, NavTabs } from '../NavTabs';
-import { TabsOrientation } from '../Tabs';
+import { TabsOrientation } from '../Tabs/shared';
 
 const info = {
   component: Drawer,
@@ -23,7 +23,7 @@ export default info;
 
 export const Default = args => {
   const [showDrawer, setShowDrawer] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement | null>(null);
 
   return (
     <>
@@ -31,7 +31,7 @@ export const Default = args => {
         header="Drawer Title"
         onClose={() => {
           setShowDrawer(false);
-          buttonRef.current.focus();
+          buttonRef.current?.focus();
         }}
         isOpen={showDrawer}
         closeAriaLabel="Close drawer"
@@ -52,14 +52,14 @@ export const Default = args => {
 
 export const SiteNavigation = args => {
   const [showDrawer, setShowDrawer] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement | null>(null);
 
   return (
     <>
       <Drawer
         onClose={() => {
           setShowDrawer(false);
-          buttonRef.current.focus();
+          buttonRef.current?.focus();
         }}
         isOpen={showDrawer}
         position={DrawerPosition.right}

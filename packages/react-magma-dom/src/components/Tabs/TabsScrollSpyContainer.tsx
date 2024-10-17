@@ -1,10 +1,11 @@
 import React, { useCallback } from 'react';
 import styled from '@emotion/styled';
 import { ScrollSpy } from './utils';
-import { Tabs, TabsOrientation } from './Tabs';
+import { Tabs } from './Tabs';
 import { Tab } from './Tab';
 import { TabsContainer } from './TabsContainer';
 import { toCamelCase } from '../../utils';
+import { TabsOrientation } from './shared';
 
 export interface TabsScrollSpyContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {

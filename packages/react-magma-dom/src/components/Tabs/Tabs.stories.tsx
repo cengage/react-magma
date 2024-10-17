@@ -4,7 +4,6 @@ import {
   TabsIconPosition,
   TabsAlignment,
   TabsBorderPosition,
-  TabsOrientation,
   TabsProps,
   TabsScrollSpyContainer,
   TabScrollSpyPanel,
@@ -26,6 +25,7 @@ import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Heading } from '../Heading';
 import { Container } from '../Container';
+import { TabsOrientation, TabsTextTransform } from './shared';
 
 export default {
   title: 'Tabs',
@@ -60,6 +60,12 @@ export default {
       control: {
         type: 'select',
         options: TabsOrientation,
+      },
+    },
+    textTransform: {
+      control: {
+        type: 'select',
+        options: TabsTextTransform,
       },
     },
     isInverse: {
