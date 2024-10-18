@@ -77,25 +77,6 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   color: #3942B0;
 }
 
-.emotion-1:not(:disabled):after {
-  background: #3942B0;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-1:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
@@ -220,25 +201,6 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-1:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
-}
-
-.emotion-1:not(:disabled):after {
-  background: #3942B0;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {
