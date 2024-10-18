@@ -372,34 +372,6 @@ export function buildFocusColor(props) {
   return props.theme.colors.neutral100;
 }
 
-export function buildAfterBackground(props) {
-  props = buildPropsWithDefaultButtonStyles(props);
-
-  if (
-    (props.variant !== 'solid' && !props.isInverse) ||
-    (props.variant === 'solid' && props.isInverse)
-  ) {
-    switch (props.color) {
-      case 'secondary':
-        return props.theme.colors.primary;
-      case 'danger':
-        return props.theme.colors.danger;
-      case 'success':
-        return props.theme.colors.success;
-      default:
-        return props.theme.colors.primary;
-    }
-  }
-  if (
-    props.variant === 'solid' &&
-    !props.isInverse &&
-    props.color === 'secondary'
-  ) {
-    return props.theme.colors.neutral;
-  }
-  return props.theme.colors.neutral100;
-}
-
 export function buildActiveBackground(props) {
   props = buildPropsWithDefaultButtonStyles(props);
 

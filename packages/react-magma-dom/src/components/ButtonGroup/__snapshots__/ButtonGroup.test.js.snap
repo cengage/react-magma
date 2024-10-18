@@ -151,25 +151,6 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -351,25 +332,6 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 .emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
-}
-
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-2:not(:disabled):active {
@@ -563,25 +525,6 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -720,25 +663,6 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 .emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
-}
-
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-2:not(:disabled):active {
@@ -929,25 +853,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -1042,25 +947,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 .emotion-9:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
-}
-
-.emotion-9:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-9:not(:disabled):active {
@@ -1261,25 +1147,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -1374,25 +1241,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 .emotion-9:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
-}
-
-.emotion-9:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-9:not(:disabled):active {
@@ -1747,25 +1595,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -1860,25 +1689,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 .emotion-9:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
-}
-
-.emotion-9:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-9:not(:disabled):active {
@@ -2086,25 +1896,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -2199,25 +1990,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 .emotion-9:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
-}
-
-.emotion-9:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-9:not(:disabled):active {
@@ -2611,25 +2383,6 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -2724,25 +2477,6 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 .emotion-9:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
-}
-
-.emotion-9:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-9:not(:disabled):active {
@@ -2989,25 +2723,6 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -3102,25 +2817,6 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 .emotion-9:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
-}
-
-.emotion-9:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-9:not(:disabled):active {
