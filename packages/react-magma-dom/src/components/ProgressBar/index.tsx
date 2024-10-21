@@ -60,9 +60,9 @@ function buildProgressBarBackground(props) {
     } else if (props.color === ProgressBarColor.primary) {
       return props.theme.colors.tertiary;
     } else if (props.color === ProgressBarColor.danger) {
-      return props.theme.colors.danger200;
+      return props.theme.colors.danger300;
     } else if (props.color === ProgressBarColor.success) {
-      return props.theme.colors.success200;
+      return props.theme.colors.success300;
     }
   }
   if (
