@@ -89,9 +89,11 @@ export function Example() {
 }
 ```
 
-## Drop Direction
+## Drop Direction (deprecated)
 
-Using the `dropDirection` prop will change where the menu appears. Options are `down` and `up`, with `down` being default.
+Using the `dropDirection` prop will change where the menu appears and the arrow direction. Options are `down`, `up`, `left` and `right` with `down` being default.
+
+Deprecation note: Dropdowns now support viewport detection, so there is no need to use the `dropDirection` prop. The dropdown will always open where there is enough space, and the arrow will always face down.
 
 ```tsx
 import React from 'react';

@@ -40,6 +40,7 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Position of the dropdown content
    * @default DropdownDropDirection.down
+   * @deprecated = true
    */
   dropDirection?: DropdownDropDirection;
   /**
