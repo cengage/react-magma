@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import {
   buildActiveBackground,
   buildActiveColor,
-  buildAfterBackground,
   buildButtonBorderRadius,
   buildButtonFontSize,
   buildButtonLineHeight,
@@ -80,21 +79,6 @@ export const buttonStyles = props => css`
     &:focus {
       background: ${buildFocusBackground(props)};
       color: ${buildFocusColor(props)};
-    }
-
-    &:after {
-      background: ${buildAfterBackground(props)};
-      border-radius: 50%;
-      content: '';
-      height: ${props.theme.spaceScale.spacing07};
-      left: 50%;
-      opacity: 0;
-      padding: 50%;
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%) scale(1);
-      transition: opacity 1s, transform 0.5s;
-      width: ${props.theme.spaceScale.spacing07};
     }
 
     &:active {
