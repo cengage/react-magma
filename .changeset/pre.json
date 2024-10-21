@@ -31,6 +31,7 @@
     "build-upgrade-lerna",
     "dropdown-safari",
     "feat-navTab-support-overwriting-textTransform",
+    "feat-progressBar-update-colors",
     "feat-select-combobox-dropdown-viewport",
     "feat-success-button",
     "feat-treeview-add-support-for-isdisabled",

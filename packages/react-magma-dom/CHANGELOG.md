@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.28
+
+### Minor Changes
+
+- 5a928ea59: feat(ProgressBar): Update colors from danger200/success200 to danger300/success300 in dark mode.
+
 ## 4.7.0-next.27
 
 ### Patch Changes
