@@ -215,8 +215,8 @@ export {
   TabsAlignment,
   TabsBorderPosition,
   TabsIconPosition,
-  TabsOrientation,
 } from './components/Tabs';
+export { TabsOrientation, TabsTextTransform } from './components/Tabs/shared';
 export { Tab } from './components/Tabs/Tab';
 export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
 export { TabPanel } from './components/Tabs/TabPanel';
