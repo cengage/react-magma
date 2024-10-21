@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.27
+
+### Patch Changes
+
+- d7423ebe5: fix(Button): Remove animation presses for `Button`.
+
 ## 4.7.0-next.26
 
 ### Minor Changes
