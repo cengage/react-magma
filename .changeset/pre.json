@@ -42,6 +42,7 @@
     "fix-modal-focuslock",
     "fix-select-placeholder-color",
     "fix-stories-files",
+    "fix-toast-loading-ring-misaligned",
     "fix-treeview-issues-from-verification",
     "implement-scrollspy-in-docs",
     "inputwrapperstyles",

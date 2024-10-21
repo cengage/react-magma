@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.29
+
+### Patch Changes
+
+- e447c8af8: fix(Toast): Fixed loading ring alignment when zooming in Safari.
+
 ## 4.7.0-next.28
 
 ### Minor Changes
