@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.26
+
+### Minor Changes
+
+- 40708c7c6: feat(Tabs, NavTabs): Add support for overwriting `TextTransform`: add `textTransform` prop.
+
 ## 4.7.0-next.25
 
 ### Patch Changes
