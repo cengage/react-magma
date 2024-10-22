@@ -29,6 +29,8 @@
     "a11y-treeview-navigation",
     "a11y-useFocusLock-hook-disabled-elements",
     "build-upgrade-lerna",
+    "chore-deprecate-header",
+    "chore-deprecate-schema",
     "dropdown-safari",
     "feat-input-help-text",
     "feat-navTab-support-overwriting-textTransform",

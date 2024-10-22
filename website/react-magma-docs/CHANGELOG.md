@@ -1,5 +1,14 @@
 # Change Log
 
+## 5.0.9-next.10
+
+### Patch Changes
+
+- Updated dependencies [7da83c307]
+- Updated dependencies [7da83c307]
+  - @cengage-patterns/header@12.0.0-next.2
+  - @react-magma/schema-renderer@10.0.0-next.2
+
 ## 5.0.9-next.9
 
 ### Patch Changes
