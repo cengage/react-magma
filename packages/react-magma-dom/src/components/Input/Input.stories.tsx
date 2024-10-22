@@ -1,13 +1,13 @@
+import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
+import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
 import { Input, InputProps } from '.';
+import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { Card, CardBody } from '../Card';
+import { IconButton } from '../IconButton';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
-import { Card, CardBody } from '../Card';
 import { Tooltip } from '../Tooltip';
-import { IconButton } from '../IconButton';
-import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 
 const Template: Story<InputProps> = args => (
   <>
@@ -161,7 +161,7 @@ Inverse.decorators = [
   ),
 ];
 
-export const WithChildren = args => {
+export const HelpLink = args => {
   const helpLinkLabel = 'Learn more';
   const onHelpLinkClick = () => {
     alert('Help link clicked!');
@@ -170,7 +170,6 @@ export const WithChildren = args => {
     <>
       <Input
         labelText="Help link - top"
-        iconPosition={InputIconPosition.top}
         {...args}
       >
         <Tooltip content={helpLinkLabel}>
@@ -186,8 +185,24 @@ export const WithChildren = args => {
       </Input>
       <br />
       <Input
-        labelText="Help link - right"
-        iconPosition={InputIconPosition.right}
+        labelText="Help link - left"
+        labelPosition={LabelPosition.left}
+        {...args}
+      >
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon />}
+            onClick={onHelpLinkClick}
+            type={ButtonType.button}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+          />
+        </Tooltip>
+      </Input>
+      <Input
+        labelText="Help link - hidden"
+        isLabelVisuallyHidden
         {...args}
       >
         <Tooltip content={helpLinkLabel}>
@@ -204,11 +219,11 @@ export const WithChildren = args => {
     </>
   );
 };
-WithChildren.args = {
+HelpLink.args = {
   ...Default.args,
 };
-WithChildren.parameters = {
-  controls: { exclude: ['isInverse', 'type', 'iconPosition'] },
+HelpLink.parameters = {
+  controls: { exclude: ['isInverse', 'type', 'iconPosition','isLabelVisuallyHidden','labelPosition' ] },
 };
 
 export const WithTwoIcons = args => {
