@@ -236,7 +236,7 @@ describe('Checkbox', () => {
     );
 
     const span = container.querySelector('span');
-    expect(span).toHaveStyleRule('border-color', magma.colors.danger200);
+    expect(span).toHaveStyleRule('border-color', magma.colors.danger300);
     expect(span).toHaveStyleRule('color', magma.colors.neutral100);
   });
 
