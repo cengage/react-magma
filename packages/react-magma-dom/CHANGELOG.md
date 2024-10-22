@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.30
+
+### Minor Changes
+
+- d8662d6f6: feat(Input): Update Input additional children position based on label position
+
 ## 4.7.0-next.29
 
 ### Patch Changes

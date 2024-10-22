@@ -30,6 +30,7 @@
     "a11y-useFocusLock-hook-disabled-elements",
     "build-upgrade-lerna",
     "dropdown-safari",
+    "feat-input-help-text",
     "feat-navTab-support-overwriting-textTransform",
     "feat-progressBar-update-colors",
     "feat-select-combobox-dropdown-viewport",
