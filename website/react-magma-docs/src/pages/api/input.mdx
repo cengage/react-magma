@@ -73,7 +73,7 @@ export function Example() {
       value={inputVal}
       onChange={handleChange}
     />
-  )
+  );
 }
 ```
 
@@ -392,11 +392,15 @@ export function Example() {
 }
 ```
 
-## Additional Children (e.g. Help Link)
+## Help Link
 
 Some inputs require more content next to the form field, such as a help link to provide a bit of explanation to the user.
-If you pass children to the input field, it will render immediately after the input. The container is displayed flex, so the content
-will appear to the right of the field.
+If you pass children to the input field, it will render immediately after the input. the placement of the content will vary based on the label's position:
+- When the label is positioned at the top, the help link will appear at the top right of the input.
+- When the label is positioned on the left, the help link will appear to the right of the input.
+- When the label is visually hidden, the help link will appear to the right of the input.
+
+The container uses a flex layout to ensure the content is positioned appropriately next to the input field.
 
 ```tsx
 import React from 'react';
@@ -409,18 +413,45 @@ export function Example() {
   };
 
   return (
-    <Input labelText="Help link" iconPosition="top">
-      <Tooltip content={helpLinkLabel}>
-        <IconButton
-          aria-label={helpLinkLabel}
-          icon={<HelpIcon />}
-          onClick={onHelpLinkClick}
-          type={InputType.button}
-          size="small"
-          variant="link"
-        />
-      </Tooltip>
-    </Input>
+    <>
+      <Input labelText="Help link - top label" labelPosition="top">
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon />}
+            onClick={onHelpLinkClick}
+            type={InputType.button}
+            size="small"
+            variant="link"
+          />
+        </Tooltip>
+      </Input>
+      <Spacer size="12" />
+      <Input labelText="Help link - left label" labelPosition="left">
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon />}
+            onClick={onHelpLinkClick}
+            type={InputType.button}
+            size="small"
+            variant="link"
+          />
+        </Tooltip>
+      </Input>
+      <Input labelText="Help link - Hidden" isLabelVisuallyHidden helperMessage="Help link - Label Hidden">
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon />}
+            onClick={onHelpLinkClick}
+            type={InputType.button}
+            size="small"
+            variant="link"
+          />
+        </Tooltip>
+      </Input>
+    </>
   );
 }
 ```
