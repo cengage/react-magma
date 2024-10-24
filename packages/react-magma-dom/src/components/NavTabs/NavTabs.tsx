@@ -8,10 +8,11 @@ import {
   TabsIconPosition,
   TabsProps,
   Orientation,
+  TabsContainerContext,
 } from '../Tabs';
 import { NavTabProps, NavTab } from './NavTab';
 import { TabsOrientation, TabsTextTransform } from '../Tabs/shared';
-import { Omit } from '../../utils';
+import { getNormalizedScrollLeft, Omit } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
 import { useTabsMeta } from '../Tabs/utils';
@@ -66,12 +67,18 @@ export const NavTabs = React.forwardRef<
     isInverse
   );
 
-  const { displayScroll } = tabsMeta;
-  const { handleStartScrollClick, handleEndScrollClick, handleTabsScroll } =
-    tabsHandleMethods;
+  const { displayScroll, scrollStart } = tabsMeta;
+  const { activeTabIndex } = React.useContext(TabsContainerContext);
+  const {
+    handleStartScrollClick,
+    handleEndScrollClick,
+    handleTabsScroll,
+    scroll,
+  } = tabsHandleMethods;
   const { prevButtonRef, nextButtonRef, tabsWrapperRef } = tabsRefs;
 
   const navTabChildren = React.Children.toArray(children);
+  const childrenWrapperRef = React.useRef<HTMLUListElement>();
 
   const hasChildFocus = navTabChildren.some(child => {
     if (React.isValidElement(child)) {
@@ -91,6 +98,60 @@ export const NavTabs = React.forwardRef<
     }
     return child;
   });
+
+  function getTabsMeta() {
+    const tabsNode = tabsWrapperRef.current;
+    let tabsMeta;
+    if (tabsNode) {
+      const rect = tabsNode.getBoundingClientRect();
+      tabsMeta = {
+        clientWidth: tabsNode.clientWidth,
+        scrollLeft: tabsNode.scrollLeft,
+        scrollTop: tabsNode.scrollTop,
+        scrollLeftNormalized: getNormalizedScrollLeft(
+          tabsNode,
+          theme.direction
+        ),
+        scrollWidth: tabsNode.scrollWidth,
+        top: rect.top,
+        bottom: rect.bottom,
+        left: rect.left,
+        right: rect.right,
+      };
+    }
+
+    let tabMeta;
+    if (tabsNode) {
+      const childrenArray = childrenWrapperRef.current.children;
+      if (childrenArray.length > 0) {
+        const tab = childrenArray[activeTabIndex];
+        tabMeta = tab ? (tab as any).getBoundingClientRect() : null;
+      }
+    }
+    return { tabsMeta, tabMeta };
+  }
+
+  const scrollInitialActiveIndexIntoView = () => {
+    const { tabsMeta, tabMeta } = getTabsMeta();
+
+    if (!tabMeta || !tabsMeta) {
+      return;
+    }
+
+    const start = orientation === TabsOrientation.vertical ? 'top' : 'left';
+    const end = orientation === TabsOrientation.vertical ? 'bottom' : 'right';
+
+    const tabCenter = (tabMeta[start] + tabMeta[end]) / 2;
+    const containerCenter = (tabsMeta[start] + tabsMeta[end]) / 2;
+
+    const scrollDelta = tabCenter - containerCenter;
+
+    const nextScrollStart = Number(tabsMeta[scrollStart]) + scrollDelta;
+
+    scroll(nextScrollStart);
+  };
+
+  React.useEffect(scrollInitialActiveIndexIntoView, []);
 
   return (
     <StyledContainer
@@ -123,6 +184,7 @@ export const NavTabs = React.forwardRef<
         <StyledTabs
           alignment={alignment ? alignment : TabsAlignment.left}
           orientation={orientation}
+          ref={childrenWrapperRef}
         >
           <NavTabsContext.Provider
             value={{
