@@ -204,7 +204,7 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
   ${props.hasError &&
   css`
     border-color: ${props.isInverse
-      ? props.theme.colors.danger200
+      ? props.theme.colors.danger300
       : props.theme.colors.danger};
   `}
 
