@@ -10,6 +10,7 @@ import {
 import styled from '@emotion/styled';
 import { Header } from '@cengage-patterns/header';
 import { GithubIcon } from 'react-magma-icons';
+import { Search } from '../Search';
 
 const LogoLink = styled(Link)`
   align-items: center;
@@ -100,6 +101,7 @@ const HeaderLogo = (
         }
       />
     </RepoLink>
+    <Search/>
   </HeaderWrap>
 );
 

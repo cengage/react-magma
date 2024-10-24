@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   pathPrefix: process.env.PATH_PREFIX || '/',
   siteMetadata: {
@@ -95,6 +93,16 @@ module.exports = {
         display: 'minimal-ui',
         icon: 'src/images/react-magma-icon.svg', // This path is relative to the root of the site.
       },
+    },
+    {
+      resolve: `gatsby-plugin-algolia-docsearch`,
+      options: {
+        apiKey: "d7c2a125c1c3dde0b7a885c1382f3f65",
+        indexName: "react-magma-cengage",
+        inputSelector: "#algolia-doc-search",
+        appId: "N1NELVWDHC",
+        debug: false
+      }
     },
     'gatsby-plugin-offline',
   ],
