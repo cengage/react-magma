@@ -32,6 +32,7 @@
     "chore-deprecate-header",
     "chore-deprecate-schema",
     "dropdown-safari",
+    "feat-input-error-state-update-colors",
     "feat-input-help-text",
     "feat-navTab-support-overwriting-textTransform",
     "feat-progressBar-update-colors",

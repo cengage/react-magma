@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.31
+
+### Minor Changes
+
+- 360cf8d29: feat(Input): Update colors for error message, icon and border in dark mode.
+
 ## 4.7.0-next.30
 
 ### Minor Changes
