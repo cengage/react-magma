@@ -5,7 +5,12 @@ import { Card } from '../Card';
 import { magma } from '../../theme/magma';
 import { Meta, Story } from '@storybook/react/types-6-0';
 import { AndroidIcon, EmailIcon, NotificationsIcon } from 'react-magma-icons';
-import { TabsAlignment, TabsBorderPosition, TabsIconPosition } from '../Tabs';
+import {
+  TabsAlignment,
+  TabsBorderPosition,
+  TabsContainer,
+  TabsIconPosition,
+} from '../Tabs';
 import { TabsOrientation, TabsTextTransform } from '../Tabs/shared';
 
 export default {
@@ -129,4 +134,42 @@ export const CustomTab: Story<NavTabsProps> = args => {
       </NavTabs>
     </Card>
   );
+};
+
+const ScrollingTemplate: Story<
+  NavTabsProps & { activeIndex: number }
+> = args => {
+  const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+  return (
+    <div>
+      <TabsContainer
+        style={{
+          maxWidth: '600px',
+          height:
+            args.orientation === TabsOrientation.vertical ? '300px' : 'auto',
+        }}
+        activeIndex={args.activeIndex}
+      >
+        <NavTabs aria-label="Sample Tabs" {...args}>
+          {arr.map((item, index) => (
+            <NavTab
+              to={`#${item}`}
+              key={item}
+              isActive={index === args.activeIndex}
+            >
+              {`Link ${item}`}
+            </NavTab>
+          ))}
+        </NavTabs>
+      </TabsContainer>
+    </div>
+  );
+};
+
+export const Scrolling = ScrollingTemplate.bind({});
+Scrolling.args = {
+  ...Default.args,
+  orientation: TabsOrientation.vertical,
+  activeIndex: 0,
 };

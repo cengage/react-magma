@@ -154,7 +154,7 @@ export const IconOnly = IconOnlyTemplate.bind({});
 IconOnly.args = { ...Default.args };
 IconOnly.parameters = { ...Default.parameters };
 
-const ScrollingTemplate: Story<TabsProps> = args => (
+const ScrollingTemplate: Story<TabsProps & { activeIndex: number }> = args => (
   <div>
     <TabsContainer
       style={{
@@ -162,6 +162,7 @@ const ScrollingTemplate: Story<TabsProps> = args => (
         height:
           args.orientation === TabsOrientation.vertical ? '300px' : 'auto',
       }}
+      activeIndex={args.activeIndex}
     >
       <Tabs aria-label="Sample Tabs" {...args}>
         <Tab>First item</Tab>
@@ -220,7 +221,11 @@ const ScrollingTemplate: Story<TabsProps> = args => (
 );
 
 export const Scrolling = ScrollingTemplate.bind({});
-Scrolling.args = { ...Default.args, orientation: TabsOrientation.vertical };
+Scrolling.args = {
+  ...Default.args,
+  orientation: TabsOrientation.vertical,
+  activeIndex: 0,
+};
 Scrolling.parameters = { ...Default.parameters };
 
 const scrollContent = (
