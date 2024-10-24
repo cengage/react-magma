@@ -1,17 +1,15 @@
-import React, { useRef } from 'react';
-import PropTypes from 'prop-types';
-import { Link, StaticQuery, graphql } from 'gatsby';
+import styled from '@emotion/styled';
 import { Location } from '@reach/router';
-import { LaunchIcon } from 'react-magma-icons';
+import { Link, StaticQuery, graphql } from 'gatsby';
+import PropTypes from 'prop-types';
+import React, { useRef } from 'react';
 import {
   Accordion,
   AccordionButton,
   AccordionItem,
   AccordionPanel,
-  Hyperlink,
-  magma,
+  magma
 } from 'react-magma-dom';
-import styled from '@emotion/styled';
 
 const StyledWrapper = styled.div`
   margin-top: 8px;
@@ -107,16 +105,6 @@ const StyledAccordionButton = styled(AccordionButton)`
   }
 `;
 
-const Heading3 = styled.h3`
-  color: ${magma.colors.neutral700};
-  font-size: ${magma.typeScale.size01.fontSize};
-  font-weight: 700;
-  text-transform: uppercase;
-  display: inline-block;
-  text-indent: 0;
-  padding-left: ${magma.spaceScale.spacing05};
-`;
-
 const List = styled.ul`
   list-style-type: none;
   margin: 0 0 ${magma.spaceScale.spacing03} 0;
@@ -133,19 +121,6 @@ const StyledLink = styled(Link)`
   ${LinkStyles};
   &:hover {
     ${LinkHoverStyles}
-  }
-`;
-
-const StyledHyperlink = styled(Hyperlink)`
-  ${LinkStyles}
-  &:hover {
-    ${LinkHoverStyles}
-  }
-  &:not([disabled]):hover {
-    ${LinkHoverStyles}
-  }
-  &:not([disabled]):focus {
-    color: inherit;
   }
 `;
 
@@ -189,17 +164,25 @@ function defaultPanelIndex(location) {
   if (location.pathname.includes('design')) {
     return [0];
   }
-  if (location.pathname.includes('api')) {
+  if (location.pathname.includes('api-intro')) {
     return [1];
   }
-  if (location.pathname.includes('patterns')) {
+  if (location.pathname.includes('api') && !location.pathname.includes('chart')) {
     return [2];
+  }
+  if (location.pathname.includes('patterns')) {
+    return [3];
+  }
+  if (location.pathname.includes('chart')) {
+    return [4];
   }
 }
 
 function isAccordionItemOpen(location, id) {
   return location.pathname.includes(id);
 }
+
+const dataVisualizationPages = ['Chart', 'LineChart'];
 
 export const MainNav = ({ ...props }) => {
   const activeStyle = activeStyleDefault;
@@ -315,66 +298,23 @@ export const MainNav = ({ ...props }) => {
                 >
                   <Heading2>Introduction</Heading2>
                 </StyledLink>
-
                 <StyledLink
                   activeStyle={activeStyle}
                   aria-label="Contribution Guidelines"
                   to="/contribution-guidelines/"
                 >
-                  <Heading2>Contribution Guidelines</Heading2>
+                  <Heading2>Contributing</Heading2>
                 </StyledLink>
-
-                <StyledHyperlink
-                  aria-label="View project on GitHub"
-                  to="https://github.com/cengage/react-magma"
-                  target="_blank"
-                >
-                  <Heading2>
-                    GitHub
-                    <LaunchIcon size={magma.iconSizes.small} />
-                  </Heading2>
-                </StyledHyperlink>
-
-                <StyledAccordion defaultIndex={defaultPanelIndex(location)}>
+                <StyledAccordion isMulti defaultIndex={defaultPanelIndex(location)}>
                   <StyledAccordionItem
                     isOpen={isAccordionItemOpen(location, 'design')}
                   >
                     <StyledAccordionButton>
-                      <Heading2>Design</Heading2>
+                      <Heading2>Designing</Heading2>
                     </StyledAccordionButton>
                     <StyledAccordionPanel>
                       <List>
-                        <Heading3>Intro</Heading3>
                         {data.designIntro.edges.map(({ node }) => (
-                          <ListItem key={node.fields.slug}>
-                            <StyledLink2
-                              activeStyle={activeStyle}
-                              onClick={props.handleClick}
-                              to={node.fields.slug}
-                            >
-                              {node.frontmatter.title}
-                            </StyledLink2>
-                            
-                          </ListItem>
-                        ))}
-                      </List>
-                      <Heading3>Components</Heading3>
-                      <List>
-                        {data.designComponentDocs.edges.map(({ node }) => (
-                          <ListItem key={node.fields.slug}>
-                            <StyledLink2
-                              activeStyle={activeStyle}
-                              onClick={props.handleClick}
-                              to={node.fields.slug}
-                            >
-                              {node.frontmatter.title}
-                            </StyledLink2>
-                          </ListItem>
-                        ))}
-                      </List>
-                      <Heading3>Patterns</Heading3>
-                      <List>
-                        {data.designPatternDocs.edges.map(({ node }) => (
                           <ListItem key={node.fields.slug}>
                             <StyledLink2
                               activeStyle={activeStyle}
@@ -388,15 +328,13 @@ export const MainNav = ({ ...props }) => {
                       </List>
                     </StyledAccordionPanel>
                   </StyledAccordionItem>
-
                   <StyledAccordionItem
-                    isOpen={isAccordionItemOpen(location, 'api')}
+                    isOpen={isAccordionItemOpen(location, 'api-intro')}
                   >
                     <StyledAccordionButton>
-                      <Heading2>Components</Heading2>
+                      <Heading2>Developing</Heading2>
                     </StyledAccordionButton>
                     <StyledAccordionPanel>
-                      <Heading3>Intro</Heading3>
                       <List>
                         {data.apiIntro.edges.map(({ node }) => (
                           <ListItem key={node.fields.slug}>
@@ -410,9 +348,52 @@ export const MainNav = ({ ...props }) => {
                           </ListItem>
                         ))}
                       </List>
-                      <Heading3>API</Heading3>
+                    </StyledAccordionPanel>
+                  </StyledAccordionItem>
+                  <StyledAccordionItem
+                    isOpen={isAccordionItemOpen(location, 'api')}
+                  >
+                    <StyledAccordionButton>
+                      <Heading2>Components</Heading2>
+                    </StyledAccordionButton>
+                    <StyledAccordionPanel>
                       <List>
-                        {data.apiDocs.edges.map(({ node }) => (
+                        {data.apiDocs.edges
+                          .filter(({ node }) => !dataVisualizationPages.includes(node.frontmatter.title))
+                          .map(({ node }) => (
+                            <ListItem key={node.fields.slug}>
+                              <StyledLink2
+                                activeStyle={activeStyle}
+                                onClick={props.handleClick}
+                                to={node.fields.slug}
+                              >
+                                {node.frontmatter.title}
+                              </StyledLink2>
+                            </ListItem>
+                          ))}
+                      </List>
+                    </StyledAccordionPanel>
+                  </StyledAccordionItem>
+                  <StyledAccordionItem
+                    isOpen={isAccordionItemOpen(location, 'patterns')}
+                  >
+                    <StyledAccordionButton>
+                      <Heading2>Patterns</Heading2>
+                    </StyledAccordionButton>
+                    <StyledAccordionPanel>
+                      <List>
+                        {data.patternsIntro.edges.map(({ node }) => (
+                          <ListItem key={node.fields.slug}>
+                            <StyledLink2
+                              activeStyle={activeStyle}
+                              onClick={props.handleClick}
+                              to={node.fields.slug}
+                            >
+                              {node.frontmatter.title}
+                            </StyledLink2>
+                          </ListItem>
+                        ))}
+                        {data.patternsDocs.edges.map(({ node }) => (
                           <ListItem key={node.fields.slug}>
                             <StyledLink2
                               activeStyle={activeStyle}
@@ -427,39 +408,39 @@ export const MainNav = ({ ...props }) => {
                     </StyledAccordionPanel>
                   </StyledAccordionItem>
                   <StyledAccordionItem
-                    isOpen={isAccordionItemOpen(location, 'patterns')}
+                    isOpen={isAccordionItemOpen(location, 'chart')}
                   >
                     <StyledAccordionButton>
-                      <Heading2>Patterns</Heading2>
+                      <Heading2>Data Visualization</Heading2>
                     </StyledAccordionButton>
                     <StyledAccordionPanel>
-                      <Heading3>Intro</Heading3>
                       <List>
-                        {data.patternsIntro.edges.map(({ node }) => (
-                          <ListItem key={node.fields.slug}>
-                            <StyledLink2
-                              activeStyle={activeStyle}
-                              onClick={props.handleClick}
-                              to={node.fields.slug}
-                            >
-                              {node.frontmatter.title}
-                            </StyledLink2>
-                          </ListItem>
-                        ))}
-                      </List>
-                      <Heading3>API</Heading3>
-                      <List>
-                        {data.patternsDocs.edges.map(({ node }) => (
-                          <ListItem key={node.fields.slug}>
-                            <StyledLink2
-                              activeStyle={activeStyle}
-                              onClick={props.handleClick}
-                              to={node.fields.slug}
-                            >
-                              {node.frontmatter.title}
-                            </StyledLink2>
-                          </ListItem>
-                        ))}
+                        {data.designComponentDocs.edges
+                          .filter(({ node }) => dataVisualizationPages.includes(node.frontmatter.title))
+                          .map(({ node }) => (
+                            <ListItem key={node.fields.slug}>
+                              <StyledLink2
+                                activeStyle={activeStyle}
+                                onClick={props.handleClick}
+                                to={node.fields.slug}
+                              >
+                                {node.frontmatter.title}
+                              </StyledLink2>
+                            </ListItem>
+                          ))}
+                        {data.apiDocs.edges
+                          .filter(({ node }) => dataVisualizationPages.includes(node.frontmatter.title))
+                          .map(({ node }) => (
+                            <ListItem key={node.fields.slug}>
+                              <StyledLink2
+                                activeStyle={activeStyle}
+                                onClick={props.handleClick}
+                                to={node.fields.slug}
+                              >
+                                {node.frontmatter.title}
+                              </StyledLink2>
+                            </ListItem>
+                          ))}
                       </List>
                     </StyledAccordionPanel>
                   </StyledAccordionItem>

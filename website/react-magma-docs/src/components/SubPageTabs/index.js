@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { convertTextToId } from '../../utils';
+import PropTypes from 'prop-types';
+import React from 'react';
 import {
-  useIsInverse,
-  NavTabs,
-  NavTab,
   magma,
+  NavTab,
+  NavTabs,
   TabsOrientation,
+  useIsInverse,
 } from 'react-magma-dom';
+import { convertTextToId } from '../../utils';
 
 export const StyledTabHeading = styled.p`
   font-size: ${magma.typeScale.size01.fontSize};
@@ -114,7 +114,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
       { rootMargin: rootMarginValue }
     );
 
-    headings.forEach(page => {
+    headings?.forEach(page => {
       const id = convertTextToId(page);
       const element = document.getElementById(id);
 
@@ -124,7 +124,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
     });
 
     return () => {
-      headings.forEach(page => {
+      headings?.forEach(page => {
         const id = convertTextToId(page);
         const element = document.getElementById(id);
 
