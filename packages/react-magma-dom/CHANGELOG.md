@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.32
+
+### Patch Changes
+
+- ddf476a38: fix(Tabs): Center preselected `Tab` on the `Scrollable Tabs`.
+
 ## 4.7.0-next.31
 
 ### Minor Changes

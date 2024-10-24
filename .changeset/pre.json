@@ -46,6 +46,7 @@
     "fix-modal-focuslock",
     "fix-select-placeholder-color",
     "fix-stories-files",
+    "fix-tabs-center-active-tab",
     "fix-toast-loading-ring-misaligned",
     "fix-treeview-issues-from-verification",
     "implement-scrollspy-in-docs",
