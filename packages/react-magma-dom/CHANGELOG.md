@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.33
+
+### Patch Changes
+
+- 7887c50b9: chore(dropdown): Deprecate `dropDirection` & `alignment` props. These are no longer necessary with viewport detection support.
+
 ## 4.7.0-next.32
 
 ### Patch Changes

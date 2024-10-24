@@ -31,6 +31,7 @@
     "build-upgrade-lerna",
     "chore-deprecate-header",
     "chore-deprecate-schema",
+    "dropdown-deprecate",
     "dropdown-safari",
     "feat-input-error-state-update-colors",
     "feat-input-help-text",
