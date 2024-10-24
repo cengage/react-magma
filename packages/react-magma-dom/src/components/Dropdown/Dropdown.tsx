@@ -35,6 +35,7 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Alignment of the dropdown content
    * @default DropdownAlignment.start
+   * @deprecated = true
    */
   alignment?: DropdownAlignment;
   /**
@@ -265,6 +266,8 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         ['left-end', 'left-end'],
       ]);
 
+      // dropDirection & alignment are deprecated. 
+      // this fallback can be removed when the props are deleted.
       const contentPosition = `${dropDirection}-${alignment}`;
 
       setPlacement(placementMap.get(contentPosition) ?? 'bottom-start');
