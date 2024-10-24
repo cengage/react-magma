@@ -282,9 +282,26 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       }
     }
 
-    React.useEffect(scrollSelectedIntoView, []);
+    const scrollInitialActiveIndexIntoView = () => {
+      const { tabsMeta, tabMeta } = getTabsMeta();
+
+      if (!tabMeta || !tabsMeta) {
+        return;
+      }
+
+      const tabCenter = (tabMeta[start] + tabMeta[end]) / 2;
+      const containerCenter = (tabsMeta[start] + tabsMeta[end]) / 2;
+
+      const scrollDelta = tabCenter - containerCenter;
+
+      const nextScrollStart = Number(tabsMeta[scrollStart]) + scrollDelta;
+
+      scroll(nextScrollStart);
+    };
 
     React.useEffect(scrollSelectedIntoView, [activeTabIndex]);
+
+    React.useEffect(scrollInitialActiveIndexIntoView, []);
 
     function changeHandler(
       newActiveIndex: number,
