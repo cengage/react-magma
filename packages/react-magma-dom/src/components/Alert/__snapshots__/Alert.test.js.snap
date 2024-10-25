@@ -273,6 +273,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
     id="ignoreSvg"
   >
     <svg
+      aria-hidden="true"
       class="icon"
       fill="currentColor"
       height="20"
