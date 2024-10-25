@@ -29,7 +29,8 @@ const InputsContainer = typedStyled.div<{
   ${inputWrapperStyles};
   height: ${props => props.theme.spaceScale.spacing09};
   padding: ${props => props.theme.spaceScale.spacing03};
-  width: 144px;
+  min-width: 144px;
+  width: fit-content;
   font-family: ${props => props.theme.bodyFont};
 `;
 
