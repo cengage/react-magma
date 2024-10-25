@@ -33,6 +33,14 @@ describe('Indeterminate Checkbox', () => {
     expect(getByLabelText('Hello')).toBeInTheDocument();
   });
 
+  it('should render the indeterminate checkbox with aria-hidden', () => {
+    const { container } = render(<IndeterminateCheckbox />);
+
+    const span = container.querySelector('span');
+
+    expect(span).toHaveAttribute('aria-hidden', 'true');
+  });
+
   it('should give the checkbox an indeterminate value', () => {
     const label = 'test label';
     const { getByLabelText } = render(

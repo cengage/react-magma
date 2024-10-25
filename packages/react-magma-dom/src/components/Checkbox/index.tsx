@@ -255,6 +255,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               style={inputStyle}
               textPosition={textPosition}
               theme={theme}
+              aria-hidden="true"
             >
               {isChecked ? (
                 <CheckBoxIcon size={theme.iconSizes.medium} />

@@ -171,6 +171,7 @@ export const IndeterminateCheckbox = React.forwardRef<
             isInverse={isInverse}
             style={inputStyle}
             theme={theme}
+            aria-hidden="true"
           >
             {isIndeterminate ? (
               <IndeterminateCheckBoxIcon
