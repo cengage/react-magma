@@ -15,6 +15,7 @@
     "a11y-breadcrumb-hide-svg-from-screen-readers",
     "a11y-button-remove-animation-presses",
     "a11y-checkBox-labels-not-read",
+    "a11y-checkbox-hide-svg-from-screen-readers",
     "a11y-combobox-clear-focus",
     "a11y-datePicker-nav-issues",
     "a11y-datePicker-shortcut",
