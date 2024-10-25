@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.34
+
+### Patch Changes
+
+- f885d5906: fix(Breadcrumb): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `span` element that wraps the SVGs.
+
 ## 4.7.0-next.33
 
 ### Patch Changes
