@@ -53,6 +53,10 @@ describe('List', () => {
       'borderRadius',
       '50%'
     );
+    expect(container.querySelector('span')).toHaveAttribute(
+      'aria-hidden',
+      'true'
+    );
   });
 
   it('should render a list item with a small icon', () => {
