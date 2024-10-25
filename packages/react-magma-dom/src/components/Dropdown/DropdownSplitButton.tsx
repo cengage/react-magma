@@ -64,9 +64,17 @@ export const DropdownSplitButton = React.forwardRef<
 
   const buttonIcon =
     resolvedContext.dropDirection === DropdownDropDirection.up ? (
-      <ArrowDropUpIcon size={theme.iconSizes.medium} testId="caretUp" />
+      <ArrowDropUpIcon
+        size={theme.iconSizes.medium}
+        testId="caretUp"
+        aria-hidden="true"
+      />
     ) : (
-      <ArrowDropDownIcon size={theme.iconSizes.medium} testId="caretDown" />
+      <ArrowDropDownIcon
+        size={theme.iconSizes.medium}
+        testId="caretDown"
+        aria-hidden="true"
+      />
     );
 
   function handleClick(event: React.SyntheticEvent) {

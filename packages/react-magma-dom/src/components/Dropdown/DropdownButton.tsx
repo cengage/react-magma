@@ -94,14 +94,14 @@ export const DropdownButton = React.forwardRef<
   function getButtonIcon(dropDirection: DropdownDropDirection) {
     switch (dropDirection) {
       case DropdownDropDirection.left:
-        return <ArrowLeftIcon testId="caretLeft" />;
+        return <ArrowLeftIcon testId="caretLeft" aria-hidden="true" />;
       case DropdownDropDirection.right:
-        return <ArrowRightIcon testId="caretRight" />;
+        return <ArrowRightIcon testId="caretRight" aria-hidden="true" />;
       case DropdownDropDirection.up:
-        return <ArrowDropUpIcon testId="caretUp" />;
+        return <ArrowDropUpIcon testId="caretUp" aria-hidden="true" />;
 
       default:
-        return <ArrowDropDownIcon testId="caretDown" />;
+        return <ArrowDropDownIcon testId="caretDown" aria-hidden="true" />;
     }
   }
 

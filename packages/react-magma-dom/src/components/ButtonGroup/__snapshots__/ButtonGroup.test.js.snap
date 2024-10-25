@@ -1377,6 +1377,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
               Dropdown 2
             </span>
             <svg
+              aria-hidden="true"
               class="icon"
               data-testid="caretDown"
               fill="currentColor"
@@ -1439,6 +1440,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
               Dropdown 3
             </span>
             <svg
+              aria-hidden="true"
               class="icon"
               data-testid="caretDown"
               fill="currentColor"
@@ -2126,6 +2128,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
               Dropdown 2
             </span>
             <svg
+              aria-hidden="true"
               class="icon"
               data-testid="caretDown"
               fill="currentColor"
@@ -2188,6 +2191,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
               Dropdown 3
             </span>
             <svg
+              aria-hidden="true"
               class="icon"
               data-testid="caretDown"
               fill="currentColor"
@@ -2953,6 +2957,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
               Dropdown 2
             </span>
             <svg
+              aria-hidden="true"
               class="icon"
               data-testid="caretDown"
               fill="currentColor"
@@ -3015,6 +3020,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
               Dropdown 3
             </span>
             <svg
+              aria-hidden="true"
               class="icon"
               data-testid="caretDown"
               fill="currentColor"
