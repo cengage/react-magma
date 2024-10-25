@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.37
+
+### Patch Changes
+
+- 08deb434d: fix(List): Hide SVGs from assistive tech by adding `aria-hidden="true"` to the `span` element that wraps the SVGs.
+
 ## 4.7.0-next.36
 
 ### Patch Changes
