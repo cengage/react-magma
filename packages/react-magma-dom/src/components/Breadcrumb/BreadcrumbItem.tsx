@@ -36,7 +36,7 @@ const StyledLink = styled.a<{ isInverse?: boolean }>`
       : props.theme.colors.neutral700};
   text-decoration: none;
   cursor: default;
-  
+
   &:hover,
   &:focus {
     color: ${props =>
@@ -82,7 +82,7 @@ export const BreadcrumbItem = React.forwardRef<
           <Hyperlink to={to} isInverse={isInverse}>
             {children}
           </Hyperlink>
-          <StyledSpan isInverse={isInverse} theme={theme}>
+          <StyledSpan isInverse={isInverse} theme={theme} aria-hidden="true">
             <ChevronRightIcon size={theme.iconSizes.small} />
           </StyledSpan>
         </>
