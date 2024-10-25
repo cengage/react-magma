@@ -24,6 +24,7 @@
     "a11y-docs-img-empty-alts",
     "a11y-drawer-navigation-focus",
     "a11y-dropdown-active-item",
+    "a11y-dropdown-hide-svg-from-screen-readers",
     "a11y-list-hide-icons-from-assistive-tech",
     "a11y-progressBar-animation",
     "a11y-search-loading",

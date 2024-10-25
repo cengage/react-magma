@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.38
+
+### Patch Changes
+
+- acbec5c8d: fix(Dropdown): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `svg` elements.
+
 ## 4.7.0-next.37
 
 ### Patch Changes
