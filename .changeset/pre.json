@@ -49,6 +49,7 @@
     "fix-select-placeholder-color",
     "fix-stories-files",
     "fix-tabs-center-active-tab",
+    "fix-timePicker-adjust-AM-PM-width",
     "fix-toast-loading-ring-misaligned",
     "fix-treeview-issues-from-verification",
     "implement-scrollspy-in-docs",

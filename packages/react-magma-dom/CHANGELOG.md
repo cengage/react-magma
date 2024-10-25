@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.35
+
+### Patch Changes
+
+- 044da059c: fix(TimePicker): Fixed AM/PM width in the `TimePicker`.
+
 ## 4.7.0-next.34
 
 ### Patch Changes
