@@ -96,6 +96,7 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
               }
               iconColor={theme.colors[iconColor] || theme.colors.neutral100}
               theme={theme}
+              aria-hidden="true"
             >
               {icon}
             </StyledIcon>
