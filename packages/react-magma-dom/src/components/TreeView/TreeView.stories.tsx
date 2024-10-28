@@ -214,7 +214,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
       <Card isInverse={args.isInverse}>
         <TreeView
           {...args}
-          // apiRef={apiRef}
+          apiRef={apiRef}
           onSelectedItemChange={setSelectedItems}
         >
           <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
@@ -446,27 +446,27 @@ export const Complex = (args: Partial<TreeViewProps>) => {
 Complex.args = {
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Textbook tree',
-  // initialExpandedItems: ['pt1', 'pt1ch1', 'pt2ch5.1'],
+  initialExpandedItems: ['pt1', 'pt1ch1', 'pt2ch5.1'],
   preselectedItems: [
     { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
-    // { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
+    { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
     { itemId: 'pt2ch4', checkedStatus: IndeterminateCheckboxStatus.checked },
     {
       itemId: 'pt2ch5.1.1',
       checkedStatus: IndeterminateCheckboxStatus.checked,
     },
-    // {
-    //   itemId: 'pt2ch5.1.2',
-    //   checkedStatus: IndeterminateCheckboxStatus.unchecked,
-    //   isDisabled: true,
-    // },
+    {
+      itemId: 'pt2ch5.1.2',
+      checkedStatus: IndeterminateCheckboxStatus.unchecked,
+      isDisabled: true,
+    },
     { itemId: 'pt2ch5.2', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt2ch5.3', checkedStatus: IndeterminateCheckboxStatus.checked },
   ],
-  // checkParents: true,
-  // checkChildren: true,
-  // isDisabled: false,
-  // testId: 'complex-example',
+  checkParents: true,
+  checkChildren: true,
+  isDisabled: false,
+  testId: 'complex-example',
 };
 
 export const NoIcons = (args: Partial<TreeViewProps>) => {

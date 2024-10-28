@@ -94,7 +94,12 @@ describe('TreeItem', () => {
     it('the ability to expand the item is disabled', () => {
       const { getByTestId } = render(
         <TreeView>
-          <TreeItem label={labelText} itemId="parent" testId={testId} isDisabled>
+          <TreeItem
+            label={labelText}
+            itemId="parent"
+            testId={testId}
+            isDisabled
+          >
             <TreeItem
               label={`${labelText}-child`}
               testId={`${testId}-child`}

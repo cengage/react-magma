@@ -62,14 +62,7 @@ export const checkedStatusToBoolean = (
 ): boolean => status === IndeterminateCheckboxStatus.checked;
 
 export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
-  const {
-    children,
-    itemDepth,
-    itemId,
-    onClick,
-    parentDepth,
-    topLevel,
-  } = props;
+  const { children, itemDepth, itemId, onClick, parentDepth, topLevel } = props;
 
   const {
     initialExpandedItems,
@@ -81,20 +74,22 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     items,
     selectItem,
   } = React.useContext(TreeViewContext);
-  
+
   const treeViewItemData = React.useMemo(() => {
-    return items.find((item) => item.itemId === itemId)
-  }, [itemId, items])
+    return items.find(item => item.itemId === itemId);
+  }, [itemId, items]);
 
   const isDisabled = treeViewItemData?.isDisabled;
-  
+
   const checkedStatus = React.useMemo(() => {
-    return treeViewItemData?.checkedStatus ?? IndeterminateCheckboxStatus.unchecked
-  }, [treeViewItemData])
+    return (
+      treeViewItemData?.checkedStatus ?? IndeterminateCheckboxStatus.unchecked
+    );
+  }, [treeViewItemData]);
 
   const hasOwnTreeItems = React.useMemo(() => {
-    return treeViewItemData?.hasOwnTreeItems
-  }, [treeViewItemData])
+    return treeViewItemData?.hasOwnTreeItems;
+  }, [treeViewItemData]);
 
   const [expanded, setExpanded] = React.useState(false);
 
@@ -150,7 +145,12 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     }
 
     if (selectable !== TreeViewSelectable.off) {
-      selectItem({ itemId, checkedStatus: isChecked ? IndeterminateCheckboxStatus.unchecked : IndeterminateCheckboxStatus.checked })
+      selectItem({
+        itemId,
+        checkedStatus: isChecked
+          ? IndeterminateCheckboxStatus.unchecked
+          : IndeterminateCheckboxStatus.checked,
+      });
       onClick && typeof onClick === 'function' && onClick();
     }
   };
@@ -181,7 +181,9 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     const filteredRefArray = filterNullEntries(treeItemRefArray);
     const curr = filteredRefArray['current'];
 
-    (curr?.[0].current as HTMLDivElement).closest<HTMLElement>('[role=treeitem]').focus();
+    (curr?.[0].current as HTMLDivElement)
+      .closest<HTMLElement>('[role=treeitem]')
+      .focus();
   };
 
   const focusNext = () => {
@@ -233,9 +235,9 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     const filteredRefArray = filterNullEntries(treeItemRefArray);
     const arrLength = filteredRefArray['current'].length;
 
-    (
-      filteredRefArray['current']?.[arrLength - 1].current as HTMLDivElement
-    ).closest<HTMLElement>('[role=treeitem]').focus();
+    (filteredRefArray['current']?.[arrLength - 1].current as HTMLDivElement)
+      .closest<HTMLElement>('[role=treeitem]')
+      .focus();
   };
 
   const focusSelf = () => {
@@ -243,7 +245,9 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     const curr = filteredRefArray['current'];
     focusIndex = getFocusIndex(curr);
 
-    (curr?.[focusIndex].current as HTMLDivElement).closest<HTMLElement>('[role=treeitem]').focus();
+    (curr?.[focusIndex].current as HTMLDivElement)
+      .closest<HTMLElement>('[role=treeitem]')
+      .focus();
   };
 
   const expandFocusedNode = () => {
@@ -275,7 +279,18 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     const curr = filteredRefArray['current'];
     const arrLength = curr.length;
 
-    if (['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft', 'Home', 'End', 'Enter', ' '].includes(event.key)) {
+    if (
+      [
+        'ArrowDown',
+        'ArrowUp',
+        'ArrowRight',
+        'ArrowLeft',
+        'Home',
+        'End',
+        'Enter',
+        ' ',
+      ].includes(event.key)
+    ) {
       event.preventDefault();
       event.stopPropagation();
     }
@@ -322,10 +337,19 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
             return;
           }
           // In single-select it selects the focused node.
-          selectItem({ itemId, checkedStatus: IndeterminateCheckboxStatus.checked })
+          selectItem({
+            itemId,
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          });
         } else if (selectable === TreeViewSelectable.multi) {
           // In multi-select, it toggles the selection state of the focused node.
-          selectItem({ itemId, checkedStatus: checkedStatus === IndeterminateCheckboxStatus.checked ? IndeterminateCheckboxStatus.unchecked : IndeterminateCheckboxStatus.checked })
+          selectItem({
+            itemId,
+            checkedStatus:
+              checkedStatus === IndeterminateCheckboxStatus.checked
+                ? IndeterminateCheckboxStatus.unchecked
+                : IndeterminateCheckboxStatus.checked,
+          });
         }
         break;
       }
@@ -340,10 +364,19 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
             if (isChecked) {
               return;
             }
-            selectItem({ itemId, checkedStatus: IndeterminateCheckboxStatus.checked });
+            selectItem({
+              itemId,
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            });
           }
         } else if (selectable === TreeViewSelectable.multi) {
-          selectItem({ itemId, checkedStatus: checkedStatus === IndeterminateCheckboxStatus.checked ? IndeterminateCheckboxStatus.unchecked : IndeterminateCheckboxStatus.checked });
+          selectItem({
+            itemId,
+            checkedStatus:
+              checkedStatus === IndeterminateCheckboxStatus.checked
+                ? IndeterminateCheckboxStatus.unchecked
+                : IndeterminateCheckboxStatus.checked,
+          });
         }
         break;
       }
