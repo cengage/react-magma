@@ -222,10 +222,19 @@ export function useTreeView(props: UseTreeViewProps) {
       return;
     }
 
-    setItems(getInitialItems({ children, preselectedItems, checkParents, checkChildren, selectable, isDisabled }));
+    setItems(
+      getInitialItems({
+        children,
+        preselectedItems,
+        checkParents,
+        checkChildren,
+        selectable,
+        isDisabled,
+      })
+    );
     prevPreselectedItemsRef.current = preselectedItems;
-  }, [preselectedItems, checkParents, checkChildren, selectable, isDisabled])
-  
+  }, [preselectedItems, checkParents, checkChildren, selectable, isDisabled]);
+
   React.useEffect(() => {
     if (initializationRef.current) {
       return;
