@@ -1,8 +1,5 @@
 import * as React from 'react';
-import {
-  UseTreeViewProps,
-  useTreeView,
-} from './useTreeView';
+import { UseTreeViewProps, useTreeView } from './useTreeView';
 import { TreeViewSelectable } from './types';
 import { TreeItem } from './TreeItem';
 import { ThemeContext } from '../../theme/ThemeContext';

@@ -13,8 +13,8 @@ export interface TreeViewItemInterface {
   parentId?: string | null;
   icon?: React.ReactNode;
   checkedStatus: IndeterminateCheckboxStatus;
-  hasOwnTreeItems: boolean
-  isDisabled?: boolean
+  hasOwnTreeItems: boolean;
+  isDisabled?: boolean;
 }
 
 export interface TreeViewContextInterface {
@@ -38,7 +38,9 @@ export interface TreeViewContextInterface {
   checkParents: boolean;
   checkChildren: boolean;
   items: TreeViewItemInterface[];
-  selectItem: (data: Pick<TreeViewItemInterface, 'itemId' | 'checkedStatus'>) => void
+  selectItem: (
+    data: Pick<TreeViewItemInterface, 'itemId' | 'checkedStatus'>
+  ) => void;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
@@ -52,5 +54,5 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   checkParents: true,
   checkChildren: true,
   items: [],
-  selectItem: () => undefined
+  selectItem: () => undefined,
 });

@@ -209,8 +209,8 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       props,
       forwardedRef
     );
-    
-    const { isDisabled} = contextValue;
+
+    const { isDisabled } = contextValue;
 
     const {
       checkboxChangeHandler,
@@ -398,7 +398,9 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                     })}
                   </ul>
                 </Transition>
-              ) : child;
+              ) : (
+                child
+              );
             }
           )}
         </StyledTreeItem>
