@@ -60,6 +60,7 @@
     "search-clear-overlaps",
     "sync4-6",
     "tree-initEx-docs",
-    "treeViewSelectItemsOutside"
+    "treeViewSelectItemsOutside",
+    "treeview-undefined"
   ]
 }
