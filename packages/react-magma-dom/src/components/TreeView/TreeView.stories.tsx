@@ -98,12 +98,24 @@ function createTags(items: TreeItemSelectedInterface[]) {
   };
 }
 
-
-function createControlledTags(items: TreeItemSelectedInterface[] = [], api?: TreeViewApi) {
+function createControlledTags(
+  items: TreeItemSelectedInterface[] = [],
+  api?: TreeViewApi
+) {
   const selected = items
     ?.filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
     .map((i, key) => (
-      <Tag key={key} size={TagSize.small} color={TagColor.primary} onDelete={() => api?.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+      <Tag
+        key={key}
+        size={TagSize.small}
+        color={TagColor.primary}
+        onDelete={() =>
+          api?.selectItem({
+            itemId: i.itemId,
+            checkedStatus: IndeterminateCheckboxStatus.unchecked,
+          })
+        }
+      >
         {i.itemId}
       </Tag>
     ));
@@ -111,7 +123,17 @@ function createControlledTags(items: TreeItemSelectedInterface[] = [], api?: Tre
   const indeterminate = items
     ?.filter(i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate)
     .map((i, key) => (
-      <Tag key={key} size={TagSize.small} color={TagColor.default} onDelete={() => api?.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+      <Tag
+        key={key}
+        size={TagSize.small}
+        color={TagColor.default}
+        onDelete={() =>
+          api?.selectItem({
+            itemId: i.itemId,
+            checkedStatus: IndeterminateCheckboxStatus.unchecked,
+          })
+        }
+      >
         {i.itemId}
       </Tag>
     ));
@@ -123,8 +145,12 @@ function createControlledTags(items: TreeItemSelectedInterface[] = [], api?: Tre
 }
 
 export const Simple = (args: Partial<TreeViewProps>) => {
-  const [selectedItems, setSelectedItems] = React.useState<React.ReactNode[] | null>(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState<React.ReactNode[] | null>(null);
+  const [selectedItems, setSelectedItems] = React.useState<
+    React.ReactNode[] | null
+  >(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState<
+    React.ReactNode[] | null
+  >(null);
   const [total, setTotal] = React.useState(selectedItems?.length || 0);
 
   function onSelection(items: TreeItemSelectedInterface[]) {
@@ -172,17 +198,25 @@ export const Simple = (args: Partial<TreeViewProps>) => {
 Simple.parameters = { controls: { exclude: ['isInverse'] } };
 
 export const Complex = (args: Partial<TreeViewProps>) => {
-  const [selectedItems, setSelectedItems] = React.useState<TreeItemSelectedInterface[]>();
+  const [selectedItems, setSelectedItems] =
+    React.useState<TreeItemSelectedInterface[]>();
 
   const apiRef = React.useRef<TreeViewApi>();
 
-  const { selected, indeterminate } = createControlledTags(selectedItems, apiRef?.current);
+  const { selected, indeterminate } = createControlledTags(
+    selectedItems,
+    apiRef?.current
+  );
   const total = selectedItems?.length || 0;
 
   return (
     <>
       <Card isInverse={args.isInverse}>
-        <TreeView {...args} apiRef={apiRef} onSelectedItemChange={setSelectedItems}>
+        <TreeView
+          {...args}
+          apiRef={apiRef}
+          onSelectedItemChange={setSelectedItems}
+        >
           <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
             <TreeItem
               icon={<FolderIcon aria-hidden={true} />}
@@ -417,7 +451,10 @@ Complex.args = {
     { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
     { itemId: 'pt2ch4', checkedStatus: IndeterminateCheckboxStatus.checked },
-    { itemId: 'pt2ch5.1.1', checkedStatus: IndeterminateCheckboxStatus.checked },
+    {
+      itemId: 'pt2ch5.1.1',
+      checkedStatus: IndeterminateCheckboxStatus.checked,
+    },
     {
       itemId: 'pt2ch5.1.2',
       checkedStatus: IndeterminateCheckboxStatus.unchecked,
@@ -433,8 +470,12 @@ Complex.args = {
 };
 
 export const NoIcons = (args: Partial<TreeViewProps>) => {
-  const [selectedItems, setSelectedItems] = React.useState<React.ReactNode[] | null>(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState<React.ReactNode[] | null>(null);
+  const [selectedItems, setSelectedItems] = React.useState<
+    React.ReactNode[] | null
+  >(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState<
+    React.ReactNode[] | null
+  >(null);
 
   function onSelection(items: TreeItemSelectedInterface[]) {
     const selected = createTags(items).selected;
@@ -504,8 +545,12 @@ NoIcons.args = {
 };
 
 export const Textbook = (args: Partial<TreeViewProps>) => {
-  const [selectedItems, setSelectedItems] = React.useState<React.ReactNode[] | null>(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState<React.ReactNode[] | null>(null);
+  const [selectedItems, setSelectedItems] = React.useState<
+    React.ReactNode[] | null
+  >(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState<
+    React.ReactNode[] | null
+  >(null);
   const [total, setTotal] = React.useState(selectedItems?.length || 0);
 
   function onSelection(items: TreeItemSelectedInterface[]) {
@@ -603,8 +648,12 @@ Textbook.args = {
 };
 
 export const DefaultIcon = (args: Partial<TreeViewProps>) => {
-  const [selectedItems, setSelectedItems] = React.useState<React.ReactNode[] | null>(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState<React.ReactNode[] | null>(null);
+  const [selectedItems, setSelectedItems] = React.useState<
+    React.ReactNode[] | null
+  >(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState<
+    React.ReactNode[] | null
+  >(null);
 
   function onSelection(items: TreeItemSelectedInterface[]) {
     const selected = createTags(items).selected;
@@ -665,8 +714,12 @@ export const DefaultIcon = (args: Partial<TreeViewProps>) => {
 DefaultIcon.parameters = { controls: { exclude: ['isInverse'] } };
 
 export const FirstItemLeaf = (args: Partial<TreeViewProps>) => {
-  const [selectedItems, setSelectedItems] = React.useState<React.ReactNode[] | null>(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState<React.ReactNode[] | null>(null);
+  const [selectedItems, setSelectedItems] = React.useState<
+    React.ReactNode[] | null
+  >(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState<
+    React.ReactNode[] | null
+  >(null);
 
   function onSelection(items: TreeItemSelectedInterface[]) {
     const selected = createTags(items).selected;
@@ -723,8 +776,12 @@ FirstItemLeaf.args = {
 FirstItemLeaf.parameters = { controls: { exclude: ['isInverse'] } };
 
 export const FirstItemBranch = (args: Partial<TreeViewProps>) => {
-  const [selectedItems, setSelectedItems] = React.useState<React.ReactNode[] | null>(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState<React.ReactNode[] | null>(null);
+  const [selectedItems, setSelectedItems] = React.useState<
+    React.ReactNode[] | null
+  >(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState<
+    React.ReactNode[] | null
+  >(null);
   const [total, setTotal] = React.useState(selectedItems?.length || 0);
 
   function onSelection(items: TreeItemSelectedInterface[]) {
@@ -854,9 +911,15 @@ FlatTree.args = {
 
 FlatTree.parameters = { controls: { exclude: ['isInverse'] } };
 
-export const ParentsAndChildrenNotAutoChecked = (args: Partial<TreeViewProps>) => {
-  const [selectedItems, setSelectedItems] = React.useState<React.ReactNode[] | null>(null);
-  const [indeterminateItems, setIndeterminateItems] = React.useState<React.ReactNode[] | null>(null);
+export const ParentsAndChildrenNotAutoChecked = (
+  args: Partial<TreeViewProps>
+) => {
+  const [selectedItems, setSelectedItems] = React.useState<
+    React.ReactNode[] | null
+  >(null);
+  const [indeterminateItems, setIndeterminateItems] = React.useState<
+    React.ReactNode[] | null
+  >(null);
 
   function onSelection(items: TreeItemSelectedInterface[]) {
     const selected = createTags(items).selected;
