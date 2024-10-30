@@ -1,6 +1,6 @@
+import styled from '@emotion/styled';
 import * as React from 'react';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '@emotion/styled';
 
 export interface ProgressRingProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -38,26 +38,37 @@ export const ProgressRing = React.forwardRef<HTMLDivElement, ProgressRingProps>(
     } = props;
 
     const [percentage, setPercentage] = React.useState(100);
+    const mountedRef = React.useRef<boolean>(true);
 
     React.useEffect(() => {
+      mountedRef.current = true;
       const intervalDuration = duration / 50;
 
-      let interval = null;
+      let interval: NodeJS.Timeout | null = null;
 
       if (isActive) {
         interval = setInterval(() => {
-          setPercentage(percentage - 2);
+          setPercentage(prevPercentage => {
+            if (!mountedRef.current) {
+              clearInterval(interval!);
+              return prevPercentage;
+            }
+            if (prevPercentage <= 2) {
+              clearInterval(interval!);
+              return 0;
+            }
+            return prevPercentage - 2;
+          });
         }, intervalDuration);
-
-        if (percentage <= 0) {
-          clearInterval(interval);
-        }
-      } else {
-        clearInterval(interval);
       }
 
-      return () => clearInterval(interval);
-    }, [percentage, isActive]);
+      return () => {
+        mountedRef.current = false;
+        if (interval) {
+          clearInterval(interval);
+        }
+      };
+    }, [isActive, duration]);
 
     const normalizedRadius = radius - strokeWidth * 2;
     const circumference = normalizedRadius * 2 * Math.PI;
@@ -73,7 +84,7 @@ export const ProgressRing = React.forwardRef<HTMLDivElement, ProgressRingProps>(
             cy={radius}
             fill="transparent"
             r={normalizedRadius}
-            stroke={color ? color : theme.colors.neutral}
+            stroke={color ?? theme.colors.neutral}
             strokeWidth={strokeWidth}
             strokeDasharray={`${circumference} ${circumference}`}
             strokeDashoffset={strokeDashoffset}

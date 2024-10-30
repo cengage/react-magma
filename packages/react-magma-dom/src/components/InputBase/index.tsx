@@ -3,15 +3,23 @@ import styled from '@emotion/styled';
 import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
 import { transparentize } from 'polished';
 import * as React from 'react';
+import styled from '@emotion/styled';
+import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
+import { transparentize } from 'polished';
+import * as React from 'react';
 import { ClearIcon, IconProps } from 'react-magma-icons';
+import { I18nContext } from '../../i18n';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { LabelPosition } from '../Label';
+import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { IconButton } from '../IconButton';
 
 export enum InputSize {
   large = 'large',
@@ -536,7 +544,6 @@ const IsClearableContainer = styled.span<{
   icon?: React.ReactElement<IconProps>;
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
-  onIconClick?: () => void;
 }>`
   background-color: transparent;
   margin: 0;
@@ -779,7 +786,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               theme={theme}
               iconPosition={iconPosition}
               inputSize={inputSize}
-              onIconClick={onIconClick}
               icon={icon}
             >
               <IconButton

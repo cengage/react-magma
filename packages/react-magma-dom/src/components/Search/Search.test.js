@@ -1,9 +1,9 @@
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
-import { axe } from '../../../axe-helper';
 import { Search } from '.';
+import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
-import { render, fireEvent } from '@testing-library/react';
 
 const onSearchSpy = jest.fn();
 
@@ -45,6 +45,14 @@ describe('Search', () => {
   });
 
   it('should fire the onSearch event when the icon is clicked', () => {
+    window.getComputedStyle = (elt) => {
+      return {
+        getPropertyValue: (prop) => {
+          return '';
+        },
+      };
+    };
+  
     const labelText = 'LABEL TEXT';
     const targetValue = 'VALUE';
     const { container, getByLabelText } = render(
