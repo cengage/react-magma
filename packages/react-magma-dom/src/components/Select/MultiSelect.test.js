@@ -1,5 +1,5 @@
+import { act, fireEvent, render } from '@testing-library/react';
 import React from 'react';
-import { act, fireEvent, getByTestId, render } from '@testing-library/react';
 import { Select as MultiSelect } from '.';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
@@ -8,6 +8,12 @@ import { Modal } from '../Modal';
 describe('Select', () => {
   const items = ['Red', 'Blue', 'Green'];
   const labelText = 'Label';
+
+  beforeAll(() => {
+    window.addEventListener('submit', (e) => {
+      e.preventDefault();
+    });
+  });
 
   it('should render a multi-select with items', () => {
     const { getByLabelText, getByText } = render(

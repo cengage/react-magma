@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsteriskIcon } from 'react-magma-icons';
+import { AsteriskIcon , RestaurantMenuIcon } from 'react-magma-icons';
 import { Dropdown } from '.';
 import {
   DropdownContent,
@@ -18,7 +18,6 @@ import {
 } from './';
 import { Modal } from '../Modal';
 import { magma } from '../../theme/magma';
-import { RestaurantMenuIcon } from 'react-magma-icons';
 import { transparentize } from 'polished';
 
 import { act, render, fireEvent, getByTestId } from '@testing-library/react';
