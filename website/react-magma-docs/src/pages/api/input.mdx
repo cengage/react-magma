@@ -170,6 +170,8 @@ export function Example() {
 If an input has an `errorMessage`, the input will be styled to highlight it's error state and the error message will appear below the input field.
 If an error message is present, it will replace the helper text. Can be a node or a string.
 
+For best practices, use a `ref` on the input to enhance usability when handling an `errorMessage`.
+
 The `required` prop can be used to indicate when a field is required. It is also important to indicate to the user whenever a field is required.
 
 While React Magma provides the error styling, it is up to the consumer app to handle the validation.
@@ -180,10 +182,12 @@ import { Input, Button, ButtonGroup, Spacer } from 'react-magma-dom';
 export function Example() {
   const [hasError, setHasError] = React.useState(false);
   const [nameValue, setNameValue] = React.useState('');
+  const inputRef = React.useRef();
 
   function submit() {
     if (nameValue === '') {
       setHasError(true);
+      inputRef.current.focus();
     } else {
       setHasError(false);
     }
@@ -192,6 +196,7 @@ export function Example() {
   function reset() {
     setHasError(false);
     setNameValue('');
+    inputRef.current.focus();
   }
 
   return (
@@ -203,6 +208,7 @@ export function Example() {
         onChange={event => setNameValue(event.target.value)}
         required
         value={nameValue}
+        ref={inputRef}
       />
       <Spacer size="12" />
       <ButtonGroup>
@@ -396,6 +402,7 @@ export function Example() {
 
 Some inputs require more content next to the form field, such as a help link to provide a bit of explanation to the user.
 If you pass children to the input field, it will render immediately after the input. the placement of the content will vary based on the label's position:
+
 - When the label is positioned at the top, the help link will appear at the top right of the input.
 - When the label is positioned on the left, the help link will appear to the right of the input.
 - When the label is visually hidden, the help link will appear to the right of the input.
@@ -439,7 +446,11 @@ export function Example() {
           />
         </Tooltip>
       </Input>
-      <Input labelText="Help link - Hidden" isLabelVisuallyHidden helperMessage="Help link - Label Hidden">
+      <Input
+        labelText="Help link - Hidden"
+        isLabelVisuallyHidden
+        helperMessage="Help link - Label Hidden"
+      >
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}

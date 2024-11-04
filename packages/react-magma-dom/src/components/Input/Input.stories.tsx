@@ -2,12 +2,13 @@ import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
 import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
 import { Input, InputProps } from '.';
-import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { Button, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { Card, CardBody } from '../Card';
 import { IconButton } from '../IconButton';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
 import { Tooltip } from '../Tooltip';
+import { ButtonGroup } from '../ButtonGroup';
 
 const Template: Story<InputProps> = args => (
   <>
@@ -168,10 +169,7 @@ export const HelpLink = args => {
   };
   return (
     <>
-      <Input
-        labelText="Help link - top"
-        {...args}
-      >
+      <Input labelText="Help link - top" {...args}>
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}
@@ -200,11 +198,7 @@ export const HelpLink = args => {
           />
         </Tooltip>
       </Input>
-      <Input
-        labelText="Help link - hidden"
-        isLabelVisuallyHidden
-        {...args}
-      >
+      <Input labelText="Help link - hidden" isLabelVisuallyHidden {...args}>
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}
@@ -223,7 +217,15 @@ HelpLink.args = {
   ...Default.args,
 };
 HelpLink.parameters = {
-  controls: { exclude: ['isInverse', 'type', 'iconPosition','isLabelVisuallyHidden','labelPosition' ] },
+  controls: {
+    exclude: [
+      'isInverse',
+      'type',
+      'iconPosition',
+      'isLabelVisuallyHidden',
+      'labelPosition',
+    ],
+  },
 };
 
 export const WithTwoIcons = args => {
@@ -303,4 +305,106 @@ NumberInput.args = {
 
 NumberInput.parameters = {
   controls: { exclude: ['type', 'iconPosition', 'labelWidth'] },
+};
+
+export const SeveralErrors = () => {
+  const [inputValues, setInputValues] = React.useState({
+    first: '',
+    second: '',
+    third: '',
+  });
+  const [hasErrors, setHasErrors] = React.useState({
+    first: true,
+    second: true,
+    third: true,
+  });
+
+  const firstInputRef = React.useRef();
+  const secondInputRef = React.useRef();
+  const thirdInputRef = React.useRef();
+
+  const submit = () => {
+    setHasErrors({
+      first: false,
+      second: false,
+      third: false,
+    });
+
+    if (!inputValues.third) {
+      setHasErrors(prev => ({ ...prev, third: true }));
+      thirdInputRef.current.focus();
+    }
+
+    if (!inputValues.second) {
+      setHasErrors(prev => ({ ...prev, second: true }));
+      secondInputRef.current.focus();
+    }
+
+    if (!inputValues.first) {
+      setHasErrors(prev => ({ ...prev, first: true }));
+      firstInputRef.current.focus();
+    }
+  };
+
+  const reset = () => {
+    setHasErrors({
+      first: false,
+      second: false,
+      third: false,
+    });
+    setInputValues({
+      first: '',
+      second: '',
+      third: '',
+    });
+
+    firstInputRef.current.focus();
+  };
+
+  return (
+    <>
+      <Input
+        errorMessage={hasErrors.first ? 'First error' : ''}
+        helperMessage=""
+        labelText="Error 1 *"
+        onChange={event =>
+          setInputValues(prev => ({ ...prev, first: event.target.value }))
+        }
+        required
+        value={inputValues.first}
+        ref={firstInputRef}
+      />
+      <br />
+      <Input
+        errorMessage={hasErrors.second ? 'Second error' : ''}
+        helperMessage=""
+        labelText="Error 2 *"
+        onChange={event =>
+          setInputValues(prev => ({ ...prev, second: event.target.value }))
+        }
+        required
+        value={inputValues.second}
+        ref={secondInputRef}
+      />
+      <br />
+      <Input
+        errorMessage={hasErrors.third ? 'Third error' : ''}
+        helperMessage=""
+        labelText="Error 3 *"
+        onChange={event =>
+          setInputValues(prev => ({ ...prev, third: event.target.value }))
+        }
+        required
+        value={inputValues.third}
+        ref={thirdInputRef}
+      />
+      <br />
+      <ButtonGroup>
+        <Button onClick={submit}>Submit</Button>
+        <Button onClick={reset} color="secondary">
+          Reset
+        </Button>
+      </ButtonGroup>
+    </>
+  );
 };
