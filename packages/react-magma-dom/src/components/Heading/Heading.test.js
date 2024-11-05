@@ -174,6 +174,120 @@ describe('Heading', () => {
     expect(getByText(headingText6)).toHaveStyleRule('margin', '0');
   });
 
+  it('should render headings without top margin styles', () => {
+    const headingText1 = 'test 1';
+    const headingText2 = 'test 2';
+    const headingText3 = 'test 3';
+    const headingText4 = 'test 4';
+    const headingText5 = 'test 5';
+    const headingText6 = 'test 6';
+
+    const { getByText } = render(
+      <>
+        <Heading noTopMargin level={1}>
+          {headingText1}
+        </Heading>
+        <Heading noTopMargin level={2}>
+          {headingText2}
+        </Heading>
+        <Heading noTopMargin level={3}>
+          {headingText3}
+        </Heading>
+        <Heading noTopMargin level={4}>
+          {headingText4}
+        </Heading>
+        <Heading noTopMargin level={5}>
+          {headingText5}
+        </Heading>
+        <Heading noTopMargin level={6}>
+          {headingText6}
+        </Heading>
+      </>
+    );
+
+    expect(getByText(headingText1)).toHaveStyleRule(
+      'margin',
+      `0 0 ${magma.spaceScale.spacing05} 0`
+    );
+    expect(getByText(headingText2)).toHaveStyleRule(
+      'margin',
+      `0 0 ${magma.spaceScale.spacing05} 0`
+    );
+    expect(getByText(headingText3)).toHaveStyleRule(
+      'margin',
+      `0 0 ${magma.spaceScale.spacing05} 0`
+    );
+    expect(getByText(headingText4)).toHaveStyleRule(
+      'margin',
+      `0 0 ${magma.spaceScale.spacing05} 0`
+    );
+    expect(getByText(headingText5)).toHaveStyleRule(
+      'margin',
+      `0 0 ${magma.spaceScale.spacing05} 0`
+    );
+    expect(getByText(headingText6)).toHaveStyleRule(
+      'margin',
+      `0 0 ${magma.spaceScale.spacing03} 0`
+    );
+  });
+
+  it('should render headings without bottom margin styles', () => {
+    const headingText1 = 'test 1';
+    const headingText2 = 'test 2';
+    const headingText3 = 'test 3';
+    const headingText4 = 'test 4';
+    const headingText5 = 'test 5';
+    const headingText6 = 'test 6';
+
+    const { getByText } = render(
+      <>
+        <Heading noBottomMargin level={1}>
+          {headingText1}
+        </Heading>
+        <Heading noBottomMargin level={2}>
+          {headingText2}
+        </Heading>
+        <Heading noBottomMargin level={3}>
+          {headingText3}
+        </Heading>
+        <Heading noBottomMargin level={4}>
+          {headingText4}
+        </Heading>
+        <Heading noBottomMargin level={5}>
+          {headingText5}
+        </Heading>
+        <Heading noBottomMargin level={6}>
+          {headingText6}
+        </Heading>
+      </>
+    );
+
+    expect(getByText(headingText1)).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing05} 0 0 0`
+    );
+    expect(getByText(headingText2)).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing10} 0 0 0`
+    );
+    expect(getByText(headingText3)).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing09} 0 0 0`
+    );
+    expect(getByText(headingText4)).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing08} 0 0 0`
+    );
+    expect(getByText(headingText5)).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing06} 0 0 0`
+    );
+    expect(getByText(headingText6)).toHaveStyleRule(
+      'margin',
+      `${magma.spaceScale.spacing06} 0 0 0`
+    );
+  });
+
   it('should render inverse styles', () => {
     const headingText = 'test';
     const { getByText } = render(
