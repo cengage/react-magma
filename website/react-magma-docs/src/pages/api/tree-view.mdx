@@ -547,27 +547,24 @@ function createControlledTags(
   items: TreeItemSelectedInterface[] = [],
   api?: TreeViewApi
 ) {
-  const selected = {
-    items &&
-    items
-      .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
-      .map((i, key) => (
-        <Tag
-          key={key}
-          size={TagSize.small}
-          color={TagColor.primary}
-          onDelete={() =>
-            api?.selectItem({
-              itemId: i.itemId,
-              checkedStatus: IndeterminateCheckboxStatus.unchecked,
-            })
-          }
-        >
+
+
+
+ const selected = items && items
+    .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
+    .map((i, key) => (
+      <Tag key={key} size={TagSize.small} color={TagColor.primary} onDelete={() => api?.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
+        {i.itemId}
+      </Tag>
+    ));
+
+  const selected = items && items .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked).map((i, key) => (
+        <Tag key={key} size={TagSize.small} color={TagColor.primary} onDelete={() => api?.selectItem({ itemId: i.itemId, checkedStatus: IndeterminateCheckboxStatus.unchecked })}>
           {i.itemId}
         </Tag>
-      ))};
+      ));
 
-  const indeterminate = {
+  const indeterminate =
     items &&
     items
       .filter(
@@ -587,7 +584,7 @@ function createControlledTags(
         >
           {i.itemId}
         </Tag>
-      ))};
+      ));
 
   return {
     selected: selected || [],
