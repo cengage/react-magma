@@ -547,7 +547,7 @@ function createControlledTags(
   items: TreeItemSelectedInterface[] = [],
   api?: TreeViewApi
 ) {
-  const selected =
+  const selected = {
     items &&
     items
       .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
@@ -565,9 +565,9 @@ function createControlledTags(
         >
           {i.itemId}
         </Tag>
-      ));
+      ))};
 
-  const indeterminate =
+  const indeterminate = {
     items &&
     items
       .filter(
@@ -587,7 +587,7 @@ function createControlledTags(
         >
           {i.itemId}
         </Tag>
-      ));
+      ))};
 
   return {
     selected: selected || [],
