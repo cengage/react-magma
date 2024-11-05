@@ -1,5 +1,4 @@
 ---
-'react-magma-docs': patch
+'react-magma-dom': patch
 ---
-
-feat(Heading): Add a description of the `noTopMargin` and `noBottomMargin` props to the documentation.
+patch(Heading): Add the `noTopMargin` and `noBottomMargin` props to the `Heading` component.
