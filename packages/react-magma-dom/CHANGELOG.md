@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.40
+
+### Patch Changes
+
+- 3a97fe97f: patch(Heading): Add the `noTopMargin` and `noBottomMargin` props to the `Heading` component.
+
 ## 4.7.0-next.39
 
 ### Patch Changes

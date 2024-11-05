@@ -37,6 +37,7 @@
     "chore-deprecate-schema",
     "dropdown-deprecate",
     "dropdown-safari",
+    "feat-heading-add-props",
     "feat-input-error-state-update-colors",
     "feat-input-help-text",
     "feat-navTab-support-overwriting-textTransform",
