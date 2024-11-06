@@ -170,6 +170,7 @@ export const SelectedItemButton = typedStyled.button<{
   position: relative;
   white-space: nowrap;
   min-width: 0%;
+  outline-offset: 2px;
 `;
 
 export const IconWrapper = styled.span`
