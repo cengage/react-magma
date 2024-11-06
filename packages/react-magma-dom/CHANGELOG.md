@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.41
+
+### Patch Changes
+
+- 8004c9f55: fix(DatePicker): Add `aria-label` to calendar header columns.
+
 ## 4.7.0-next.40
 
 ### Patch Changes
