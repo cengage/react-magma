@@ -46,7 +46,7 @@
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@floating-ui/react-dom": "^2.1.2",
-    "@popperjs/core": "^2.6.0",
+    "@popperjs/core": "^2.11.8",
     "csstype": "^3.0.8",
     "polished": "^3.2.0",
     "react-popper": "^2.2.4"
