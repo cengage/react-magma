@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.9-next.11
+
+### Patch Changes
+
+- 4971408b6: docs(emotion): Update changelog to explain possible issue with emotion/css.
+
 ## 5.0.9-next.10
 
 ### Patch Changes

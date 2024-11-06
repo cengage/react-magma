@@ -36,6 +36,7 @@
     "build-upgrade-lerna",
     "chore-deprecate-header",
     "chore-deprecate-schema",
+    "docs-emotion",
     "dropdown-deprecate",
     "dropdown-safari",
     "feat-heading-add-props",
