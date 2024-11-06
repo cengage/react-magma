@@ -52,6 +52,7 @@
     "fix-input-focus-outline",
     "fix-listItem-icons-color",
     "fix-modal-focuslock",
+    "fix-select-combobox-multi-outline",
     "fix-select-placeholder-color",
     "fix-stories-files",
     "fix-tabs-center-active-tab",

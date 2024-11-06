@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.42
+
+### Patch Changes
+
+- 5e39ab2b4: fix(Select): Fix multi Select selected item outline.
+
 ## 4.7.0-next.41
 
 ### Patch Changes
