@@ -52,7 +52,7 @@
     "react-popper": "^2.2.4"
   },
   "devDependencies": {
-    "date-fns": "^2.16.1",
+    "date-fns": "^2.30.0",
     "downshift": "^5.4.5",
     "framer-motion": "^4.1.11",
     "mkdirp": "^1.0.4",
