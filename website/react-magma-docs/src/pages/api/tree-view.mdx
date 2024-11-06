@@ -830,11 +830,7 @@ Use the `isDisabled` prop to disable all items inside TreeView.
 
 ```typescript
 import React from 'react';
-import {
-  TreeView,
-  TreeItem,
-  TreeViewSelectable,
-} from 'react-magma-dom';
+import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -842,7 +838,10 @@ export function Example() {
       <TreeView
         ariaLabelledBy="animals-multi-checkparentschildren"
         selectable={TreeViewSelectable.multi}
-        initialExpandedItems={['selectable-parrots 1', 'selectable-birds of Prey 1']}
+        initialExpandedItems={[
+          'selectable-parrots 1',
+          'selectable-birds of Prey 1',
+        ]}
         isDisabled
       >
         <TreeItem label="Birds" itemId="selectable-birds 1">
@@ -894,12 +893,22 @@ export function Example() {
       <TreeView
         ariaLabelledBy="animals-multi-checkparentschildren"
         selectable={TreeViewSelectable.multi}
-        initialExpandedItems={['selectable-parrots 2', 'selectable-birds of Prey 2']}
-        preselectedItems={[
-            { itemId: 'selectable-cockatiel 2', checkedStatus: IndeterminateCheckboxStatus.unchecked, isDisabled: true },
-            { itemId: 'selectable-budgerigar 2', checkedStatus: IndeterminateCheckboxStatus.checked, isDisabled: false }
+        initialExpandedItems={[
+          'selectable-parrots 2',
+          'selectable-birds of Prey 2',
         ]}
-     
+        preselectedItems={[
+          {
+            itemId: 'selectable-cockatiel 2',
+            checkedStatus: IndeterminateCheckboxStatus.unchecked,
+            isDisabled: true,
+          },
+          {
+            itemId: 'selectable-budgerigar 2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+            isDisabled: false,
+          },
+        ]}
       >
         <TreeItem label="Birds" itemId="selectable-birds 2">
           <TreeItem label="Parrots" itemId="selectable-parrots 2">
@@ -930,7 +939,6 @@ export function Example() {
   );
 }
 ```
-
 
 ## Change Events
 
