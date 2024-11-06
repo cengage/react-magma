@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.9-next.12
+
+### Patch Changes
+
+- a328f30bb: fix(TreeView): Fix TreeView references in Selectable example.
+
 ## 5.0.9-next.11
 
 ### Patch Changes
