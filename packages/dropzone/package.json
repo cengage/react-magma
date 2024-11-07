@@ -1,38 +1,6 @@
 {
   "name": "@react-magma/dropzone",
   "version": "10.0.0-next.1",
-  "publishConfig": {
-    "access": "public"
-  },
-  "license": "MIT",
-  "source": "src/index.ts",
-  "main": "dist/fileuploader.js",
-  "module": "dist/fileuploader.modern.module.js",
-  "umd:main": "dist/fileuploader.umd.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "npm": ">=7.3.0",
-    "node": ">=14.15.0"
-  },
-  "scripts": {
-    "build": "microbundle build --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx",
-    "build-watch": "microbundle watch --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx",
-    "test": "jest",
-    "test-watch": "jest --watch",
-    "lint": "eslint ./src"
-  },
-  "peerDependencies": {
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.7.0-next.1",
-    "react-magma-icons": "^3.0.0"
-  },
   "dependencies": {
     "polished": "^3.2.0",
     "react-dropzone": "11.3.2"
@@ -40,9 +8,43 @@
   "devDependencies": {
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
+    "@types/react": "~17.0.83",
+    "@types/react-dom": "~17.0.25",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.7.0-next.1",
+    "react-magma-dom": "4.7.0-next.42",
     "react-magma-icons": "^3.0.0"
-  }
+  },
+  "engines": {
+    "npm": ">=7.3.0",
+    "node": ">=14.15.0"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "license": "MIT",
+  "main": "dist/fileuploader.js",
+  "module": "dist/fileuploader.modern.module.js",
+  "peerDependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-magma-dom": "4.7.0-next.42",
+    "react-magma-icons": "^3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "microbundle build --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx",
+    "build-watch": "microbundle watch --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx",
+    "lint": "eslint ./src",
+    "test": "jest",
+    "test-watch": "jest --watch"
+  },
+  "source": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "umd:main": "dist/fileuploader.umd.js"
 }
