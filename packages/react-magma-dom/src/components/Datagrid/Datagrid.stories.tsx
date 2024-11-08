@@ -282,6 +282,11 @@ export default {
         type: 'boolean',
       },
     },
+    tableTitle: {
+      control: {
+        type: 'text',
+      },
+    },
   },
 } as Meta;
 

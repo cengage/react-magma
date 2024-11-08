@@ -88,6 +88,11 @@ export default {
         type: 'number',
       },
     },
+    tableTitle: {
+      control: {
+        type: 'text',
+      },
+    },
   },
 } as Meta;
 
@@ -797,13 +802,17 @@ export const AdjustableRowNumber = args => {
       tableRows.push(
         <TableRow key={`row${i}`}>
           <TableCell key={`cell${i}-left`}>{i}</TableCell>
-          <TableCell key={`cell${i}-middle`}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</TableCell>
-          <TableCell key={`cell${i}-right`}>Nullam bibendum diam vel felis consequat lacinia.</TableCell>
+          <TableCell key={`cell${i}-middle`}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </TableCell>
+          <TableCell key={`cell${i}-right`}>
+            Nullam bibendum diam vel felis consequat lacinia.
+          </TableCell>
         </TableRow>
       );
     }
     return tableRows;
-  };
+  }
 
   return (
     <Table {...args}>
@@ -814,9 +823,7 @@ export const AdjustableRowNumber = args => {
           <TableHeaderCell>Column</TableHeaderCell>
         </TableRow>
       </TableHead>
-      <TableBody>
-        {getTableRows()}
-      </TableBody>
+      <TableBody>{getTableRows()}</TableBody>
     </Table>
   );
 };

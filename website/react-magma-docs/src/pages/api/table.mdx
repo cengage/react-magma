@@ -20,7 +20,9 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 <PageContent componentName="table" type="api">
 
 <LeadParagraph>
-Tables are used to organize and display information from a data set efficiently. A table contains a header row at the top that lists column names, followed by rows for data.
+  Tables are used to organize and display information from a data set
+  efficiently. A table contains a header row at the top that lists column names,
+  followed by rows for data.
 </LeadParagraph>
 
 ## Basic Usage
@@ -77,7 +79,7 @@ export function Example() {
   ];
 
   return (
-    <Table>
+    <Table tableTitle={<h1>Basic usage table</h1>}>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>

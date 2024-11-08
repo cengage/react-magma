@@ -3,6 +3,8 @@ import { useControlled } from '../../hooks/useControlled';
 import { useDataPagination } from '../../hooks/useDataPagination';
 import { XOR } from '../../utils';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
+import styled from '@emotion/styled';
+
 import {
   Table,
   TableBody,
@@ -51,6 +53,7 @@ export interface DatagridRow {
    * Used to allow each unique column field as a key with the row content as the value
    */
   [key: string]: any;
+  tableTitle?: any;
 }
 
 export interface DatagridComponents {
@@ -138,6 +141,11 @@ export interface UncontrolledSelectedRowsProps {
   defaultSelectedRows?: (string | number)[];
 }
 
+export const StyledCaption = styled.caption`
+  display: flex;
+  flex: 1;
+`;
+
 export type DatagridSelectedRowsProps = XOR<
   ControlledSelectedRowsProps,
   UncontrolledSelectedRowsProps
@@ -160,6 +168,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       selectedRows: selectedRowsProp,
       hasPagination = true,
       onSortBySelected,
+      tableTitle,
       sortDirection,
       ...other
     } = props;
@@ -278,6 +287,8 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
 
     return (
       <>
+        {tableTitle && <StyledCaption>{tableTitle}</StyledCaption>}
+
         <Table {...other} ref={ref} aria-live="polite">
           <TableHead>
             <TableRow

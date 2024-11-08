@@ -45,6 +45,8 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
    */
   minWidth?: number;
   rowCount?: number;
+  tableTitle?: any;
+
   selectedItems?: Array<number>;
   /**
    * @internal
@@ -123,6 +125,11 @@ export const TableContainer = styled.div<{
   }
 `;
 
+export const StyledCaption = styled.caption`
+  display: flex;
+  flex: 1;
+`;
+
 export const StyledTable = styled.table<{
   isInverse?: boolean;
   minWidth: number;
@@ -154,6 +161,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       minWidth = 600,
       rowCount,
       selectedItems,
+      tableTitle,
       testId,
       isSortableBySelected,
       ...other
@@ -175,7 +183,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isInverse: isInverse,
           isSelectable,
           isSortableBySelected,
-          rowCount
+          rowCount,
         }}
       >
         <TableContainer
@@ -186,6 +194,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           theme={theme}
           tabIndex={0}
         >
+          {tableTitle && <StyledCaption>{tableTitle}</StyledCaption>}
           <StyledTable
             {...other}
             data-testid={testId}
