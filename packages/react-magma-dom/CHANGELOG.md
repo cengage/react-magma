@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.43
+
+### Minor Changes
+
+- 78fc319ba: feat(TreeView): onExpandedChange returns an array of expanded IDs
+
 ## 4.7.0-next.42
 
 ### Patch Changes
