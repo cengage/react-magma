@@ -23,6 +23,8 @@ import {
   TreeViewProps,
   ButtonVariant,
   ButtonGroup,
+  Spacer,
+  SpacerAxis,
 } from '../..';
 import { ButtonSize } from '../Button';
 import { FlexAlignContent, FlexAlignItems } from '../Flex';
@@ -201,13 +203,18 @@ export const Complex = (args: Partial<TreeViewProps>) => {
   const [selectedItems, setSelectedItems] =
     React.useState<TreeItemSelectedInterface[]>();
 
+  const [expandedItems, setExpandedItems] = React.useState<string[]>();
   const apiRef = React.useRef<TreeViewApi>();
 
   const { selected, indeterminate } = createControlledTags(
     selectedItems,
     apiRef?.current
   );
-  const total = selectedItems?.length || 0;
+  const total = selectedItems?.length ?? 0;
+
+  const handleExpandedChange = (event: React.SyntheticEvent, expandedItems: string[]) => {
+    setExpandedItems(expandedItems);
+  };
 
   return (
     <>
@@ -216,6 +223,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
           {...args}
           apiRef={apiRef}
           onSelectedItemChange={setSelectedItems}
+          onExpandedChange={handleExpandedChange}
         >
           <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
             <TreeItem
@@ -336,6 +344,47 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                   }
                   itemId="pt2ch5.1.2"
                 />
+                <TreeItem
+                  icon={<ArticleIcon aria-hidden={true} />}
+                  label={
+                    <>
+                      Section 5.1.3: Apple pie apple pie tart macaroon topping
+                      chocolate cake
+                    </>
+                  }
+                  itemId="pt2ch5.1.3"
+                >
+                  <TreeItem
+                    icon={<ArticleIcon aria-hidden={true} />}
+                    label={
+                      <>
+                        Section 5.1.3.1: Apple pie apple pie tart macaroon topping
+                        chocolate cake
+                      </>
+                    }
+                    itemId="pt2ch5.1.3.1"
+                  />
+                  <TreeItem
+                    icon={<ArticleIcon aria-hidden={true} />}
+                    label={
+                      <>
+                        Section 5.1.3.2: Apple pie apple pie tart macaroon topping
+                        chocolate cake
+                      </>
+                    }
+                    itemId="pt2ch5.1.3.2"
+                  />
+                  <TreeItem
+                    icon={<ArticleIcon aria-hidden={true} />}
+                    label={
+                      <>
+                        Section 5.1.3.3: Apple pie apple pie tart macaroon topping
+                        chocolate cake
+                      </>
+                    }
+                    itemId="pt2ch5.1.3.3"
+                  />
+                </TreeItem>
               </TreeItem>
               <TreeItem
                 icon={<ArticleIcon aria-hidden={true} />}
@@ -439,6 +488,8 @@ export const Complex = (args: Partial<TreeViewProps>) => {
         <Button onClick={() => apiRef.current?.selectAll()}>Select all</Button>
         <Button onClick={() => apiRef.current?.clearAll()}>Clear all</Button>
       </ButtonGroup>
+      <Spacer axis={SpacerAxis.vertical} size={24} />
+      <p>Expanded: {expandedItems?.join(', ')}</p>
     </>
   );
 };
@@ -446,7 +497,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
 Complex.args = {
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Textbook tree',
-  initialExpandedItems: ['pt1', 'pt1ch1', 'pt2ch5.1'],
+  initialExpandedItems: ['pt1', 'pt2ch5.1'],
   preselectedItems: [
     { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
@@ -462,6 +513,10 @@ Complex.args = {
     },
     { itemId: 'pt2ch5.2', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt2ch5.3', checkedStatus: IndeterminateCheckboxStatus.checked },
+    {
+      itemId: 'pt2ch5.1.3',
+      checkedStatus: IndeterminateCheckboxStatus.checked,
+    },
   ],
   checkParents: true,
   checkChildren: true,

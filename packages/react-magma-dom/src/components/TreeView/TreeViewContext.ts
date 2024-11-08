@@ -22,7 +22,10 @@ export interface TreeViewContextInterface {
   hasIcons: boolean;
   initialExpandedItems: Array<string>;
   initialExpandedItemsNeedUpdate: boolean;
-  onExpandedChange?: (event: React.SyntheticEvent) => void;
+  onExpandedChange?: (
+    event: React.SyntheticEvent,
+    expandedItems: Array<string>
+  ) => void;
   onSelectedItemChange?: (
     selectedItems: Array<TreeItemSelectedInterface>
   ) => void;
@@ -41,6 +44,10 @@ export interface TreeViewContextInterface {
   selectItem: (
     data: Pick<TreeViewItemInterface, 'itemId' | 'checkedStatus'>
   ) => void;
+  handleExpandedChange: (
+    event: React.SyntheticEvent,
+    expandedItemId: string
+  ) => void;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
@@ -55,4 +62,5 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   checkChildren: true,
   items: [],
   selectItem: () => undefined,
+  handleExpandedChange: () => undefined,
 });
