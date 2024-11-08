@@ -360,7 +360,7 @@ const processChildrenSelection = ({
   });
 };
 
-const getChildrenIds = ({
+export const getChildrenIds = ({
   items,
   itemId,
 }: {

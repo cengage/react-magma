@@ -834,19 +834,24 @@ export function Example() {
   const [currentTreeEvent, setCurrentTreeEvent] = React.useState<
     string | undefined
   >(undefined);
+  const [expandedItems, setExpandedItems] = React.useState<string[]>([]);
 
   function handleSelectedItemChange(event) {
     setCurrentTreeEvent('Selected');
   }
 
-  function handleExpandedChange(event) {
+  function handleExpandedChange(event: React.SyntheticEvent, expandedItems: string[]) {
     setCurrentTreeEvent('Expanded');
+    setExpandedItems(expandedItems);
   }
 
   return (
     <>
       <p>
         <strong>{currentTreeEvent || 'No'} event was triggered</strong>
+        <br />
+        <br />
+        <strong>Expanded Items: {expandedItems ? expandedItems.join(', ') : ' '}</strong>
       </p>
 
       <TreeView
