@@ -213,7 +213,6 @@ export const Complex = (args: Partial<TreeViewProps>) => {
   const total = selectedItems?.length ?? 0;
 
   const handleExpandedChange = (event: React.SyntheticEvent, expandedItems: string[]) => {
-    console.log(event);
     setExpandedItems(expandedItems);
   };
 
@@ -322,6 +321,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                   </>
                 }
                 itemId="pt2ch5.1"
+                isDisabled
               >
                 <TreeItem
                   icon={<ArticleIcon aria-hidden={true} />}
