@@ -46,6 +46,9 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
    */
   minWidth?: number;
   rowCount?: number;
+  /**
+   * Title that appears above the Datagrid
+   */
   tableTitle?: React.ReactNode | string;
 
   selectedItems?: Array<number>;

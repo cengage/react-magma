@@ -54,7 +54,10 @@ export interface DatagridRow {
    * Used to allow each unique column field as a key with the row content as the value
    */
   [key: string]: any;
-  tableTitle?: any;
+  /**
+   * Title that appears above the Datagrid
+   */
+  tableTitle?: React.ReactNode | string;
 }
 
 export interface DatagridComponents {
@@ -286,7 +289,9 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     return (
       <>
         {tableTitle && (
-          <StyledCaption theme={theme}>{tableTitle}</StyledCaption>
+          <StyledCaption isInverse={props.isInverse} theme={theme}>
+            {tableTitle}
+          </StyledCaption>
         )}
 
         <Table {...other} ref={ref} aria-live="polite">
