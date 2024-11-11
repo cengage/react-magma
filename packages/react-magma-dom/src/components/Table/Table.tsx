@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
-import { TypographyVisualStyle } from '../Typography';
 
 /**
  * @children required
