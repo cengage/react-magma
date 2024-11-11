@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
+import { TypographyVisualStyle } from '../Typography';
 
 /**
  * @children required
@@ -45,7 +46,7 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
    */
   minWidth?: number;
   rowCount?: number;
-  tableTitle?: any;
+  tableTitle?: React.ReactNode | string;
 
   selectedItems?: Array<number>;
   /**
@@ -124,8 +125,21 @@ export const TableContainer = styled.div<{
           : props.theme.colors.focus};
   }
 `;
-
-export const StyledCaption = styled.caption`
+export const StyledCaption = styled.caption<{ isInverse: boolean }>`
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
+  margin: ${props => props.theme.spaceScale.spacing04} 0;
+  border-bottom: 2px solid transparent;
+  font-size: ${props =>
+    props.theme.typographyVisualStyles.headingMedium.desktop.fontSize};
+  letter-spacing: ${props =>
+    props.theme.typographyVisualStyles.headingMedium.desktop.letterSpacing};
+  line-height: ${props =>
+    props.theme.typographyVisualStyles.headingMedium.desktop.lineHeight};
+  font-weight: ${props =>
+    props.theme.typographyVisualStyles.headingMedium.fontWeight};
   display: flex;
   flex: 1;
 `;
@@ -194,7 +208,11 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           theme={theme}
           tabIndex={0}
         >
-          {tableTitle && <StyledCaption>{tableTitle}</StyledCaption>}
+          {tableTitle && (
+            <StyledCaption isInverse={isInverse} theme={theme}>
+              {tableTitle}
+            </StyledCaption>
+          )}
           <StyledTable
             {...other}
             data-testid={testId}

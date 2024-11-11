@@ -103,6 +103,7 @@ Default.args = {
   hasVerticalBorders: false,
   hasZebraStripes: false,
   isInverse: false,
+  tableTitle: `Basic usage table`,
 };
 
 export const SquareCorners = args => {
@@ -115,7 +116,7 @@ export const SquareCorners = args => {
   );
 
   return (
-    <div style={{ background: magma.colors.primary600, padding: '20px' }}>
+    <div style={{ background: magma.colors.neutral300, padding: '20px' }}>
       <Table style={{ background: magma.colors.neutral100 }} {...args}>
         <TableHead>
           <TableRow>
@@ -143,6 +144,7 @@ SquareCorners.args = {
   hasHoverStyles: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,
+  tableTitle: `Square corners table`,
 };
 
 const rowsLong = [
@@ -339,6 +341,7 @@ export const ControlledPagination = args => {
 };
 ControlledPagination.args = {
   ...Default.args,
+  tableTitle: `Controlled Pagination`,
 };
 
 export const UncontrolledPagination = args => {
@@ -360,7 +363,7 @@ export const UncontrolledPagination = args => {
 
   return (
     <>
-      <Table>
+      <Table tableTitle="Uncontrolled Pagination">
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -406,7 +409,7 @@ export const PaginationWithSquareCorners = args => {
   );
 
   return (
-    <div style={{ background: magma.colors.primary600, padding: '20px' }}>
+    <div style={{ background: magma.colors.neutral300, padding: '20px' }}>
       <Table style={{ background: magma.colors.neutral100 }} {...args}>
         <TableHead>
           <TableRow>
@@ -443,6 +446,7 @@ PaginationWithSquareCorners.args = {
   hasHoverStyles: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,
+  tableTitle: `Pagination with square corners`,
 };
 
 export const PaginationInverse = args => {
@@ -495,6 +499,7 @@ export const PaginationInverse = args => {
 PaginationInverse.args = {
   ...Default.args,
   isInverse: true,
+  tableTitle: `Pagination inverse`,
 };
 
 export const RowColors = args => {
@@ -546,6 +551,7 @@ RowColors.args = {
   ...Default.args,
   hasHoverStyles: true,
   hasZebraStripe: true,
+  tableTitle: `Row colors`,
 };
 
 export const RowColorsInverse = args => {
@@ -603,6 +609,7 @@ export const RowColorsInverse = args => {
 RowColorsInverse.args = {
   ...Default.args,
   isInverse: true,
+  tableTitle: `Row colors inverse`,
 };
 
 export const Sortable = args => {
@@ -718,6 +725,7 @@ export const Sortable = args => {
 
 Sortable.args = {
   ...Default.args,
+  tableTitle: `Sortable`,
 };
 
 export const WithDropdown = args => {
@@ -793,6 +801,7 @@ export const WithDropdown = args => {
 };
 WithDropdown.args = {
   ...Default.args,
+  tableTitle: `With Dropdown`,
 };
 
 export const AdjustableRowNumber = args => {
@@ -829,6 +838,7 @@ export const AdjustableRowNumber = args => {
 };
 AdjustableRowNumber.args = {
   numberRows: 300,
+  tableTitle: `Adjustable row number`,
 };
 
 export const NoRowsPerPageControl = args => {
@@ -846,7 +856,7 @@ export const NoRowsPerPageControl = args => {
 
   return (
     <Card isInverse={args.isInverse}>
-      <Table {...args}>
+      <Table {...args} tableTitle="No rows per page control">
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>

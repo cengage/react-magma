@@ -4,7 +4,12 @@ import { Datagrid } from '.';
 import { TableRowColor } from '../Table';
 import { Button } from '../Button';
 import { usePagination } from '../Pagination/usePagination';
-import { render, screen, fireEvent } from '@testing-library/react';
+import {
+  render,
+  screen,
+  fireEvent,
+  getByDisplayValue,
+} from '@testing-library/react';
 import { magma } from '../../theme/magma';
 
 const columns = [
@@ -834,6 +839,18 @@ describe('Datagrid', () => {
       expect(getByText(/previous page/i)).toBeInTheDocument();
       expect(getByText(/next page/i)).toBeInTheDocument();
     });
+  });
+
+  it('should have a title above the Datagrid', () => {
+    const { getByText } = render(
+      <Datagrid
+        columns={columns}
+        rows={rowsForPagination}
+        tableTitle="Datagrid title"
+      />
+    );
+
+    expect(getByText('Datagrid title')).toBeInTheDocument();
   });
 
   it('Does not violate accessibility standards', () => {

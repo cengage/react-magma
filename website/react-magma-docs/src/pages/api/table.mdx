@@ -79,7 +79,7 @@ export function Example() {
   ];
 
   return (
-    <Table tableTitle={<h1>Basic usage table</h1>}>
+    <Table tableTitle=`Basic usage table`>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -118,32 +118,31 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
-  return (
-    <Table hasVerticalBorders>
-      <TableHead>
-        <TableRow>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        <TableRow>
-          <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-          <TableCell>Lorem ipsum dolor</TableCell>
-          <TableCell>Lorem ipsum dolor</TableCell>
-          <TableCell>Lorem ipsum</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Lorem ipsum dolor sit amet</TableCell>
-          <TableCell>Lorem ipsum dolor</TableCell>
-          <TableCell>Lorem ipsum dolor</TableCell>
-          <TableCell>Lorem ipsum</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
-  );
+  return;
+  <Table tableTitle="Vertical borders table" hasVerticalBorders>
+    <TableHead>
+      <TableRow>
+        <TableHeaderCell>Column</TableHeaderCell>
+        <TableHeaderCell>Column</TableHeaderCell>
+        <TableHeaderCell>Column</TableHeaderCell>
+        <TableHeaderCell>Column</TableHeaderCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      <TableRow>
+        <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+        <TableCell>Lorem ipsum dolor</TableCell>
+        <TableCell>Lorem ipsum dolor</TableCell>
+        <TableCell>Lorem ipsum</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Lorem ipsum dolor sit amet</TableCell>
+        <TableCell>Lorem ipsum dolor</TableCell>
+        <TableCell>Lorem ipsum dolor</TableCell>
+        <TableCell>Lorem ipsum</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>;
 }
 ```
 
@@ -164,7 +163,7 @@ import {
 
 export function Example() {
   return (
-    <Table hasHoverStyles>
+    <Table tableTitle=`Hover style table` hasHoverStyles>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -209,7 +208,7 @@ import {
 
 export function Example() {
   return (
-    <Table hasZebraStripes hasHoverStyles>
+    <Table tableTitle=`Zebra stripes table` hasZebraStripes hasHoverStyles>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -268,7 +267,7 @@ import {
 export function Example() {
   return (
     <>
-      <Table density={TableDensity.compact}>
+      <Table tableTitle=`Density table` density={TableDensity.compact}>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -388,7 +387,7 @@ export function Example() {
 
   return (
     <>
-      <Table>
+      <Table tableTitle=`Sortable table`>
         <TableHead>
           <TableRow>
             <TableHeaderCell
@@ -474,7 +473,7 @@ import {
 export function Example() {
   return (
     <Card isInverse>
-      <Table isInverse hasZebraStripes hasVerticalBorders hasHoverStyles>
+      <Table tableTitle=`Inverse table` isInverse hasZebraStripes hasVerticalBorders hasHoverStyles>
         <TableHead>
           <TableRow>
             <TableHeaderCell sortDirection={TableSortDirection.descending}>
@@ -527,7 +526,7 @@ import {
 
 export function Example() {
   return (
-    <Table>
+    <Table tableTitle=`Cell alignment table`>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -571,7 +570,7 @@ import {
 export function Example() {
   return (
     <>
-      <Table>
+      <Table tableTitle=`Cell width table`>
         <TableHead>
           <TableRow>
             <TableHeaderCell width="25%">Column 25%</TableHeaderCell>
@@ -637,7 +636,7 @@ import {
 export function Example() {
   return (
     <>
-      <Table minWidth={920}>
+      <Table tableTitle=`Min-width table` minWidth={920}>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column 1</TableHeaderCell>
@@ -695,7 +694,7 @@ import {
 
 export function Example() {
   return (
-    <Table hasVerticalBorders>
+    <Table tableTitle=`Other content table` hasVerticalBorders>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column 1</TableHeaderCell>
@@ -911,7 +910,7 @@ export function Example() {
 
   return (
     <>
-      <Table>
+      <Table tableTitle=`Pagination table`>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -960,7 +959,7 @@ import {
 
 export function Example() {
   return (
-    <Table>
+    <Table tableTitle=`Table row color table`>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>

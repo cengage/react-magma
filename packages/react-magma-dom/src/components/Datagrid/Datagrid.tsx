@@ -3,7 +3,8 @@ import { useControlled } from '../../hooks/useControlled';
 import { useDataPagination } from '../../hooks/useDataPagination';
 import { XOR } from '../../utils';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
-import styled from '@emotion/styled';
+import { StyledCaption } from '../Table';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 import {
   Table,
@@ -141,11 +142,6 @@ export interface UncontrolledSelectedRowsProps {
   defaultSelectedRows?: (string | number)[];
 }
 
-export const StyledCaption = styled.caption`
-  display: flex;
-  flex: 1;
-`;
-
 export type DatagridSelectedRowsProps = XOR<
   ControlledSelectedRowsProps,
   UncontrolledSelectedRowsProps
@@ -177,6 +173,8 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       controlled: selectedRowsProp,
       default: defaultSelectedRows,
     });
+
+    const theme = React.useContext(ThemeContext);
 
     const isControlled = selectedRowsProp ? true : false;
 
@@ -287,7 +285,9 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
 
     return (
       <>
-        {tableTitle && <StyledCaption>{tableTitle}</StyledCaption>}
+        {tableTitle && (
+          <StyledCaption theme={theme}>{tableTitle}</StyledCaption>
+        )}
 
         <Table {...other} ref={ref} aria-live="polite">
           <TableHead>

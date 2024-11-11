@@ -355,6 +355,27 @@ describe('Table', () => {
     });
   });
 
+  it('should have a title above the Table', () => {
+    const { getByText } = render(
+      <Table tableTitle="Table title">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByText('Table title')).toBeInTheDocument();
+  });
+
   it('should render sortable table header cells with inverse styles', () => {
     const { getByTestId } = render(
       <Table isInverse>
