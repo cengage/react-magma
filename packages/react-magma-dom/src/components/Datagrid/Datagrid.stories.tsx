@@ -340,13 +340,17 @@ const defaultArgs = {
   isInverse: false,
   isSortableBySelected: false,
   paginationProps: {},
+  tableTitle: 'Default'
 };
 
 export const Default = Template.bind({});
-Default.args = { ...defaultArgs, tableTitle: 'Default' };
+Default.args = { ...defaultArgs };
 
 export const TitleWithNode = Template.bind({});
+
 TitleWithNode.args = { ...defaultArgs, tableTitle: <Heading level={1}>Title with node</Heading> };
+
+TitleWithNode.parameters = { controls: { exclude: ['tableTitle'] } };
 
 export const ColoredRows = Template.bind({});
 ColoredRows.args = {

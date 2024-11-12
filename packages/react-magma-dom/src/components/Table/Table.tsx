@@ -47,7 +47,8 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   minWidth?: number;
   rowCount?: number;
   /**
-   * Title that appears above the Datagrid
+   * The title or caption of a table inside a <caption> HTML element that provides the table an accessible 
+   * description
    */
   tableTitle?: React.ReactNode | string;
 
@@ -130,6 +131,7 @@ export const TableContainer = styled.div<{
 `;
 export const StyledCaption = styled.caption<{ isInverse: boolean; isTitleNode: boolean; }>`
   ${headingMediumStyles};
+  text-align:left;
   margin: ${props => props.isTitleNode || props.theme.spaceScale.spacing04};
   display: flex;
   flex: 1;
@@ -199,11 +201,6 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           theme={theme}
           tabIndex={0}
         >
-          {tableTitle && (
-            <StyledCaption isInverse={isInverse} isTitleNode={typeof tableTitle !== 'string'} theme={theme}>
-              {tableTitle}
-            </StyledCaption>
-          )}
           <StyledTable
             {...other}
             data-testid={testId}
@@ -211,7 +208,12 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
             minWidth={minWidth || theme.breakpoints.small}
             ref={ref}
             theme={theme}
-          >
+            >
+            {tableTitle && (
+              <StyledCaption isInverse={isInverse} isTitleNode={typeof tableTitle !== 'string'} theme={theme}>
+                {tableTitle}
+              </StyledCaption>
+            )}
             {children}
           </StyledTable>
         </TableContainer>

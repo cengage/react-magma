@@ -55,7 +55,8 @@ export interface DatagridRow {
    */
   [key: string]: any;
   /**
-   * Title that appears above the Datagrid
+   * The title or caption of a table inside a <caption> HTML element that provides the table an accessible 
+   * description
    */
   tableTitle?: React.ReactNode | string;
 }
@@ -288,13 +289,13 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
 
     return (
       <>
+
+        <Table {...other} ref={ref} aria-live="polite">
         {tableTitle && (
           <StyledCaption isInverse={props.isInverse} isTitleNode={typeof tableTitle !== 'string'} theme={theme}>
             {tableTitle}
           </StyledCaption>
         )}
-
-        <Table {...other} ref={ref} aria-live="polite">
           <TableHead>
             <TableRow
               headerRowStatus={headerRowStatus}
