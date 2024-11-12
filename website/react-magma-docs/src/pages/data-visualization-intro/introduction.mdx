@@ -5,6 +5,8 @@ order: 1
 
 import { LeadParagraph } from '../../components/LeadParagraph';
 import { Flex, FlexBehavior, FlexAlignItems, magma } from 'react-magma-dom';
+import { OpenInNewIcon } from 'react-magma-icons';
+import { StorybookIcon } from '../../images/icons/storybook-icon';
 
 <PageContent componentName="getting_started" type="data_visualization_intro">
 
@@ -19,7 +21,7 @@ Get started below with implementation instructions for developers. You can also 
 
 export const MagmaChartsSiteLink = () => (
   <Link
-    to="https://storybook-preview-1544--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart"
+    to="https://storybook-preview-dev--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart"
     target="_blank"
   >
     <Flex
@@ -33,58 +35,9 @@ export const MagmaChartsSiteLink = () => (
         borderRadius: magma.spaceScale.spacing03,
       }}
     >
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <g clip-path="url(#clip0_2272_35)">
-          <path
-            d="M2.59394 18.3902L1.97569 1.91682C1.95528 1.37276 2.37244 0.911686 2.91581 0.877725L16.9276 0.00198812C17.4807 -0.0325801 17.9571 0.387766 17.9916 0.940857C17.9929 0.961695 17.9936 0.982569 17.9936 1.00345V18.9541C17.9936 19.5083 17.5444 19.9576 16.9902 19.9576C16.9752 19.9576 16.9602 19.9572 16.9452 19.9566L3.55162 19.355C3.03 19.3316 2.61352 18.912 2.59394 18.3902Z"
-            fill="#FF4785"
-          />
-          <mask
-            id="mask0_2272_35"
-            style="mask-type:luminance"
-            maskUnits="userSpaceOnUse"
-            x="1"
-            y="0"
-            width="17"
-            height="20"
-          >
-            <path
-              d="M2.59394 18.3902L1.97569 1.91682C1.95528 1.37276 2.37244 0.911686 2.91581 0.877725L16.9276 0.00198812C17.4807 -0.0325801 17.9571 0.387766 17.9916 0.940857C17.9929 0.961695 17.9936 0.982569 17.9936 1.00345V18.9541C17.9936 19.5083 17.5444 19.9576 16.9902 19.9576C16.9752 19.9576 16.9602 19.9572 16.9452 19.9566L3.55162 19.355C3.03 19.3316 2.61352 18.912 2.59394 18.3902Z"
-              fill="white"
-            />
-          </mask>
-          <g mask="url(#mask0_2272_35)">
-            <path
-              d="M13.8035 2.4531L13.8992 0.15119L15.8235 0L15.9064 2.37388C15.9093 2.4565 15.8446 2.52581 15.762 2.5287C15.7266 2.52993 15.692 2.51859 15.6642 2.49669L14.9221 1.91213L14.0435 2.57857C13.9777 2.62853 13.8838 2.61564 13.8338 2.54978C13.8128 2.52206 13.8021 2.48787 13.8035 2.4531ZM11.3426 7.52228C11.3426 7.91266 13.9722 7.72556 14.3252 7.45134C14.3252 4.7929 12.8987 3.39593 10.2867 3.39593C7.67458 3.39593 6.21107 4.81464 6.21107 6.94269C6.21107 10.6491 11.2129 10.72 11.2129 12.7416C11.2129 13.3091 10.9351 13.6461 10.3237 13.6461C9.52712 13.6461 9.21219 13.2392 9.24924 11.856C9.24924 11.5559 6.21107 11.4624 6.11844 11.856C5.88258 15.2081 7.97099 16.1749 10.3608 16.1749C12.6764 16.1749 14.4919 14.9406 14.4919 12.7062C14.4919 8.73381 9.41597 8.84021 9.41597 6.87176C9.41597 6.07374 10.0088 5.96733 10.3608 5.96733C10.7313 5.96733 11.3982 6.03264 11.3426 7.52228Z"
-              fill="white"
-            />
-          </g>
-        </g>
-        <defs>
-          <clipPath id="clip0_2272_35">
-            <rect width="20" height="20" fill="white" />
-          </clipPath>
-        </defs>
-      </svg>
+      <StorybookIcon />
       <span>Magma Charts demo site</span>
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M15 15.8333H5C4.54167 15.8333 4.16667 15.4583 4.16667 15V5C4.16667 4.54167 4.54167 4.16667 5 4.16667H9.16667C9.625 4.16667 10 3.79167 10 3.33333C10 2.875 9.625 2.5 9.16667 2.5H4.16667C3.24167 2.5 2.5 3.25 2.5 4.16667V15.8333C2.5 16.75 3.25 17.5 4.16667 17.5H15.8333C16.75 17.5 17.5 16.75 17.5 15.8333V10.8333C17.5 10.375 17.125 10 16.6667 10C16.2083 10 15.8333 10.375 15.8333 10.8333V15C15.8333 15.4583 15.4583 15.8333 15 15.8333ZM11.6667 3.33333C11.6667 3.79167 12.0417 4.16667 12.5 4.16667H14.6583L7.05 11.775C6.725 12.1 6.725 12.625 7.05 12.95C7.375 13.275 7.9 13.275 8.225 12.95L15.8333 5.34167V7.5C15.8333 7.95833 16.2083 8.33333 16.6667 8.33333C17.125 8.33333 17.5 7.95833 17.5 7.5V3.33333C17.5 2.875 17.125 2.5 16.6667 2.5H12.5C12.0417 2.5 11.6667 2.875 11.6667 3.33333Z"
-          fill="#3942B0"
-        />
-      </svg>
+      <OpenInNewIcon size={magma.iconSizes.small} />
     </Flex>
   </Link>
 );
@@ -92,6 +45,17 @@ export const MagmaChartsSiteLink = () => (
 <MagmaChartsSiteLink />
 
 ## Installation
+
+<Alert variant="warning">
+  <strong>Important!</strong> CarbonChart is imported from{' '}
+  <inlineCode>@react-magma/charts</inlineCode> which must be installed as a peer
+  dependency.
+  <br />
+  <br />
+  In addition, you must manually import the styles:
+  <br />
+  <inlineCode>import '@react-magma/charts/dist/charts.css';</inlineCode>
+</Alert>
 
 ### Setup Requirements
 
@@ -114,7 +78,8 @@ npm install --save \
     "react@^17.0.2" \
     "react-dom@^17.0.2" \
     "react-magma-dom@^4.7.0-next.1" \
-    "react-magma-icons@^3.0.0"
+    "react-magma-icons@^3.0.0" \
+    "@react-magma/charts"
 ```
 
 </PageContent>

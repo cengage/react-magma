@@ -33,7 +33,6 @@
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
-  letter-spacing: 0.1599999964237213px;
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
@@ -41,11 +40,11 @@
 }
 
 .description > p {
+  font-family: Work Sans;
   margin-top: 8px;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;
-  letter-spacing: 0.1599999964237213px;
   text-align: left;
 }
 
@@ -53,7 +52,6 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
-  letter-spacing: 0.3199999928474426px;
   text-align: center;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
