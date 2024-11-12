@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
+import { headingMediumStyles } from '../Typography';
 
 /**
  * @children required
@@ -127,21 +128,9 @@ export const TableContainer = styled.div<{
           : props.theme.colors.focus};
   }
 `;
-export const StyledCaption = styled.caption<{ isInverse: boolean }>`
-  color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
-  margin: ${props => props.theme.spaceScale.spacing04} 0;
-  border-bottom: 2px solid transparent;
-  font-size: ${props =>
-    props.theme.typographyVisualStyles.headingMedium.desktop.fontSize};
-  letter-spacing: ${props =>
-    props.theme.typographyVisualStyles.headingMedium.desktop.letterSpacing};
-  line-height: ${props =>
-    props.theme.typographyVisualStyles.headingMedium.desktop.lineHeight};
-  font-weight: ${props =>
-    props.theme.typographyVisualStyles.headingMedium.fontWeight};
+export const StyledCaption = styled.caption<{ isInverse: boolean; tableTitleNode: boolean; }>`
+  ${headingMediumStyles};
+  margin: ${props => props.tableTitleNode ? `` : props.theme.spaceScale.spacing04};
   display: flex;
   flex: 1;
 `;
@@ -211,7 +200,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           tabIndex={0}
         >
           {tableTitle && (
-            <StyledCaption isInverse={isInverse} theme={theme}>
+            <StyledCaption isInverse={isInverse} tableTitleNode={typeof tableTitle !== 'string' ? true : false} theme={theme}>
               {tableTitle}
             </StyledCaption>
           )}

@@ -289,7 +289,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     return (
       <>
         {tableTitle && (
-          <StyledCaption isInverse={props.isInverse} theme={theme}>
+          <StyledCaption isInverse={props.isInverse} tableTitleNode={typeof tableTitle !== 'string' ? true : false} theme={theme}>
             {tableTitle}
           </StyledCaption>
         )}

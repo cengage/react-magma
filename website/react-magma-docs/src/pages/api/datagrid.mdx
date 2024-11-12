@@ -925,6 +925,7 @@ export function Example() {
         onRowSelect={handleSelectedItems}
         onHeaderSelect={handleHeaderSelect}
         sortDirection={selectedDirection}
+        tableTitle="Selectable and sortable"
       />
       <Announce>
         <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
@@ -1172,6 +1173,7 @@ export function Example() {
         isSelectable
         selectedRows={selectedRows}
         onSelectedRowsChange={updatedSelectedRows}
+        tableTitle="Controlled selectable column"
       />
     </Card>
   );
@@ -1860,6 +1862,7 @@ export function Example() {
       columns={columns}
       rows={rows}
       components={{ Pagination: CustomPaginationComponent }}
+      tableTitle="Custom pagination components"
     />
   );
 }

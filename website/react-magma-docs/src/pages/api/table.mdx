@@ -79,7 +79,7 @@ export function Example() {
   ];
 
   return (
-    <Table tableTitle=`Basic usage table`>
+    <Table tableTitle="Basic usage table">
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -118,8 +118,8 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
-  return;
-  <Table tableTitle="Vertical borders table" hasVerticalBorders>
+  return(
+    <Table tableTitle="Vertical borders table" hasVerticalBorders>
     <TableHead>
       <TableRow>
         <TableHeaderCell>Column</TableHeaderCell>
@@ -142,7 +142,8 @@ export function Example() {
         <TableCell>Lorem ipsum</TableCell>
       </TableRow>
     </TableBody>
-  </Table>;
+  </Table>
+  );
 }
 ```
 
@@ -163,7 +164,7 @@ import {
 
 export function Example() {
   return (
-    <Table tableTitle=`Hover style table` hasHoverStyles>
+    <Table tableTitle="Hover style table" hasHoverStyles>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -208,7 +209,7 @@ import {
 
 export function Example() {
   return (
-    <Table tableTitle=`Zebra stripes table` hasZebraStripes hasHoverStyles>
+    <Table tableTitle="Zebra stripes table" hasZebraStripes hasHoverStyles>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -267,7 +268,7 @@ import {
 export function Example() {
   return (
     <>
-      <Table tableTitle=`Density table` density={TableDensity.compact}>
+      <Table tableTitle="Density table" density={TableDensity.compact}>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -387,7 +388,7 @@ export function Example() {
 
   return (
     <>
-      <Table tableTitle=`Sortable table`>
+      <Table tableTitle="Sortable table">
         <TableHead>
           <TableRow>
             <TableHeaderCell
@@ -473,7 +474,13 @@ import {
 export function Example() {
   return (
     <Card isInverse>
-      <Table tableTitle=`Inverse table` isInverse hasZebraStripes hasVerticalBorders hasHoverStyles>
+      <Table
+        tableTitle="Inverse table"
+        isInverse
+        hasZebraStripes
+        hasVerticalBorders
+        hasHoverStyles
+      >
         <TableHead>
           <TableRow>
             <TableHeaderCell sortDirection={TableSortDirection.descending}>
@@ -526,7 +533,7 @@ import {
 
 export function Example() {
   return (
-    <Table tableTitle=`Cell alignment table`>
+    <Table tableTitle="Cell alignment table">
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -570,7 +577,7 @@ import {
 export function Example() {
   return (
     <>
-      <Table tableTitle=`Cell width table`>
+      <Table tableTitle="Cell width table">
         <TableHead>
           <TableRow>
             <TableHeaderCell width="25%">Column 25%</TableHeaderCell>
@@ -636,7 +643,7 @@ import {
 export function Example() {
   return (
     <>
-      <Table tableTitle=`Min-width table` minWidth={920}>
+      <Table tableTitle="Min-width table" minWidth={920}>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column 1</TableHeaderCell>
@@ -694,7 +701,7 @@ import {
 
 export function Example() {
   return (
-    <Table tableTitle=`Other content table` hasVerticalBorders>
+    <Table tableTitle="Other content table" hasVerticalBorders>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column 1</TableHeaderCell>
@@ -910,7 +917,7 @@ export function Example() {
 
   return (
     <>
-      <Table tableTitle=`Pagination table`>
+      <Table tableTitle="Pagination table">
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -959,7 +966,7 @@ import {
 
 export function Example() {
   return (
-    <Table tableTitle=`Table row color table`>
+    <Table tableTitle="Table row color table">
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>

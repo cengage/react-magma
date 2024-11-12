@@ -841,7 +841,7 @@ describe('Datagrid', () => {
     });
   });
 
-  it('should have a title above the Datagrid', () => {
+  it('should display the title', () => {
     const { getByText } = render(
       <Datagrid
         columns={columns}
