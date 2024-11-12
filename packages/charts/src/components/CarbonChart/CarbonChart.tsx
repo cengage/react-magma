@@ -12,6 +12,14 @@ import {
   PieChart,
   SimpleBarChart,
   StackedBarChart,
+  RadarChart,
+  BoxplotChart,
+  BubbleChart,
+  BulletChart,
+  GaugeChart,
+  HistogramChart,
+  MeterChart,
+  ScatterChart,
 } from '@carbon/charts-react';
 import './styles.min.css';
 
@@ -21,10 +29,18 @@ export enum CarbonChartType {
   bar = 'bar',
   barGrouped = 'barGrouped',
   barStacked = 'barStacked',
+  boxplot = 'boxplot',
+  bubble = 'bubble',
+  bullet = 'bullet',
   donut = 'donut',
+  gauge = 'gauge',
+  histogram = 'histogram',
   line = 'line',
-  pie = 'pie',
   lollipop = 'lollipop',
+  meter = 'meter',
+  pie = 'pie',
+  radar = 'radar',
+  scatter = 'scatter',
 }
 
 export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -460,6 +476,14 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       line: LineChart,
       lollipop: LollipopChart,
       pie: PieChart,
+      radar: RadarChart,
+      boxplot: BoxplotChart,
+      bubble: BubbleChart,
+      bullet: BulletChart,
+      gauge: GaugeChart,
+      histogram: HistogramChart,
+      meter: MeterChart,
+      scatter: ScatterChart,
     };
 
     function buildColors() {

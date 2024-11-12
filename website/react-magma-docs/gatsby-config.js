@@ -69,6 +69,20 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data-visualization`,
+        path: `${__dirname}/src/pages/data-visualization`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data-visualization-intro`,
+        path: `${__dirname}/src/pages/data-visualization-intro`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-mdx',
       options: {
         gatsbyRemarkPlugins: [

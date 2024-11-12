@@ -46,6 +46,11 @@ const getPathPrefix = path => {
       return 'patterns-intro';
     }
     return 'patterns';
+  } else if (/data-visualization/.test(path)) {
+    if (/intro/.test(path)) {
+      return 'data-visualization-intro'
+    }
+    return 'data-visualization';
   }
 };
 
