@@ -133,8 +133,6 @@ export const StyledCaption = styled.caption<{ isInverse: boolean; isTitleNode: b
   ${headingMediumStyles};
   text-align:left;
   margin: ${props => props.isTitleNode || props.theme.spaceScale.spacing04};
-  display: flex;
-  flex: 1;
 `;
 
 export const StyledTable = styled.table<{
