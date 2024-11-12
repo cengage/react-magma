@@ -15,6 +15,7 @@ import { magma } from '../../theme/magma';
 import { Spacer, SpacerAxis } from '../Spacer';
 import { Announce } from '../Announce';
 import { VisuallyHidden } from '../VisuallyHidden';
+import { Heading } from '../Heading';
 
 const rowsForPagination = [
   {
@@ -343,6 +344,9 @@ const defaultArgs = {
 
 export const Default = Template.bind({});
 Default.args = { ...defaultArgs, tableTitle: 'Default' };
+
+export const TitleWithNode = Template.bind({});
+TitleWithNode.args = { ...defaultArgs, tableTitle: <Heading level={1}>Title with node</Heading> };
 
 export const ColoredRows = Template.bind({});
 ColoredRows.args = {

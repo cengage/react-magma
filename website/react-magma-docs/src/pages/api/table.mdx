@@ -109,6 +109,7 @@ The `hasVerticalBorders` boolean prop may be used to give table cells vertical b
 ```tsx
 import React from 'react';
 import {
+  Heading,
   Table,
   TableHead,
   TableRow,
@@ -119,7 +120,7 @@ import {
 
 export function Example() {
   return(
-    <Table tableTitle="Vertical borders table" hasVerticalBorders>
+    <Table tableTitle={<Heading level={1}>Vertical borders table</Heading>} hasVerticalBorders>
     <TableHead>
       <TableRow>
         <TableHeaderCell>Column</TableHeaderCell>

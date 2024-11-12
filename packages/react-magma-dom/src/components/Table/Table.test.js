@@ -355,7 +355,7 @@ describe('Table', () => {
     });
   });
 
-  it('should have a title above the Table', () => {
+  it('should display the title', () => {
     const { getByText } = render(
       <Table tableTitle="Table title">
         <TableHead>

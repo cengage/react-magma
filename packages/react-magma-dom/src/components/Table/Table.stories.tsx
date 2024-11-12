@@ -52,7 +52,7 @@ const rows = [
 
 const Template: Story<TableProps> = args => (
   <Card isInverse={args.isInverse}>
-    <Table tableTitle="Basic usage">
+    <Table tableTitle="Basic usage" {...args}>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -890,7 +890,7 @@ export const NoRowsPerPageControl = args => {
 
 export const TableTitleWithNode = args => {
   return (
-    <Table tableTitle={<Heading level={1} {...args}>Heading component example</Heading>}>
+    <Table tableTitle={<Heading level={1}>Heading component example</Heading>} {...args}>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>

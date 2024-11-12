@@ -285,7 +285,7 @@ Use `rowName` when using Selectable so that the aria labels on the checkboxes ca
 
 ```typescript
 import React from 'react';
-import { Datagrid, Card } from 'react-magma-dom';
+import { Datagrid, Heading, Card } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -501,7 +501,7 @@ export function Example() {
   return (
     <Card>
       <Datagrid
-        tableTitle="Selectable Datagrid"
+        tableTitle={<Heading level={1}>Selectable Datagrid</Heading>}
         columns={columns}
         rows={rows}
         isSelectable

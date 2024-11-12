@@ -128,9 +128,9 @@ export const TableContainer = styled.div<{
           : props.theme.colors.focus};
   }
 `;
-export const StyledCaption = styled.caption<{ isInverse: boolean; tableTitleNode: boolean; }>`
+export const StyledCaption = styled.caption<{ isInverse: boolean; isTitleNode: boolean; }>`
   ${headingMediumStyles};
-  margin: ${props => props.tableTitleNode ? `` : props.theme.spaceScale.spacing04};
+  margin: ${props => props.isTitleNode || props.theme.spaceScale.spacing04};
   display: flex;
   flex: 1;
 `;
@@ -200,7 +200,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           tabIndex={0}
         >
           {tableTitle && (
-            <StyledCaption isInverse={isInverse} tableTitleNode={typeof tableTitle !== 'string' ? true : false} theme={theme}>
+            <StyledCaption isInverse={isInverse} isTitleNode={typeof tableTitle !== 'string'} theme={theme}>
               {tableTitle}
             </StyledCaption>
           )}
