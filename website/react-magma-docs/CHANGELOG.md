@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.9-next.13
+
+### Patch Changes
+
+- 8027499be: docs: Fix contribution guidelines page
+
 ## 5.0.9-next.12
 
 ### Patch Changes
