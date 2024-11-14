@@ -52,6 +52,7 @@
     "fix-blockQuote-border-color",
     "fix-initial-expanded-items-should-expand-all-parents",
     "fix-input-focus-outline",
+    "fix-input-help-link",
     "fix-listItem-icons-color",
     "fix-modal-focuslock",
     "fix-select-combobox-multi-outline",
