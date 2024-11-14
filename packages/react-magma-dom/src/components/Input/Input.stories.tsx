@@ -8,6 +8,7 @@ import { IconButton } from '../IconButton';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
 import { Tooltip } from '../Tooltip';
+import { Spacer } from '../Spacer';
 
 const Template: Story<InputProps> = args => (
   <>
@@ -61,6 +62,18 @@ export default {
         type: 'select',
         options: InputType,
       },
+    },
+    labelText: {
+      control: 'text',
+      description: 'Label for the input',
+    },
+    helperMessage: {
+      control: 'text',
+      description: 'Helper message displayed below the input',
+    },
+    errorMessage: {
+      control: 'text',
+      description: 'Error message displayed below the input',
     },
   },
   errorMessage: '',
@@ -183,7 +196,7 @@ export const HelpLink = args => {
           />
         </Tooltip>
       </Input>
-      <br />
+      <Spacer size={16}/>
       <Input
         labelText="Help link - left"
         labelPosition={LabelPosition.left}
@@ -200,6 +213,7 @@ export const HelpLink = args => {
           />
         </Tooltip>
       </Input>
+      <Spacer size={16}/>
       <Input
         labelText="Help link - hidden"
         isLabelVisuallyHidden
@@ -221,6 +235,9 @@ export const HelpLink = args => {
 };
 HelpLink.args = {
   ...Default.args,
+  errorMessage: '',
+  helperMessage: 'Helper Message',
+  labelText: 'Label Text',
 };
 HelpLink.parameters = {
   controls: { exclude: ['isInverse', 'type', 'iconPosition','isLabelVisuallyHidden','labelPosition' ] },
