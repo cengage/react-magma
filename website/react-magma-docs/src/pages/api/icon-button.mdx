@@ -382,15 +382,38 @@ import React from 'react';
 import {
   IconButton,
   ButtonVariant,
-  ButtonColor,
   ButtonGroup,
+  Card,
+  CardBody,
 } from 'react-magma-dom';
 import {
   PriorityHighIcon,
   NotificationsIcon,
-  Card,
-  CardBody,
 } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <ButtonGroup>
+          <IconButton
+            aria-label="Alert"
+            variant={ButtonVariant.solid}
+            icon={<PriorityHighIcon />}
+            isInverse
+          />
+          <IconButton
+            aria-label="Notifications"
+            variant={ButtonVariant.solid}
+            icon={<NotificationsIcon />}
+            isInverse
+          />
+        </ButtonGroup>
+      </CardBody>
+    </Card>
+  );
+}
+
 
 export function Example() {
   return (

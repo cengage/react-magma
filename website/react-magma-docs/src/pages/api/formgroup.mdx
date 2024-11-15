@@ -69,12 +69,11 @@ export function Example() {
             Labelled by <i>label</i>
           </>
         }
-        name="labelledByGroup"
       >
         <Checkbox labelText="Label" />
         <Checkbox labelText="Label" />
       </FormGroup>
-      <FormGroup labelledById="h3Label" name="labelledByGroup">
+      <FormGroup labelledById="h3Label" >
         <Heading id="h3Label" level={3}>
           Labelled by H3
         </Heading>
@@ -100,7 +99,6 @@ export function Example() {
       containerStyle={{ border: '1px solid gray', padding: '10px' }}
       labelStyle={{ fontWeight: '500', color: 'red' }}
       labelText="Group label"
-      name="labelledByGroup"
     >
       <Checkbox labelText="Checkbox label" />
       <Checkbox labelText="Checkbox label" />
@@ -121,7 +119,6 @@ export function Example() {
   return (
     <FormGroup
       labelText="Group Label"
-      name="labelledByGroup"
       isTextVisuallyHidden
     >
       <Checkbox labelText="Checkbox label" />
