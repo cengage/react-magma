@@ -59,7 +59,8 @@ describe('ToggleButtonGroup', () => {
         );
 
         const buttonOne = getByTestId(testId);
-        const buttonOneSvg = buttonOne.children[0]; // ensure that clicking either the button or child SVG works
+        // ensure that clicking either the button or child SVG works
+        const buttonOneSvg = buttonOne.children[0];
         expect(buttonOne).toHaveAttribute('aria-checked', 'false');
         fireEvent.click(buttonOneSvg);
         expect(buttonOne).toHaveAttribute('aria-checked', 'true');
@@ -82,7 +83,8 @@ describe('ToggleButtonGroup', () => {
         );
 
         const buttonOne = getByTestId(testId);
-        const buttonOneSvg = buttonOne.children[0]; // ensure that clicking either the button or child SVG works
+        // ensure that clicking either the button or child SVG works
+        const buttonOneSvg = buttonOne.children[0];
         const buttonTwo = getByTestId(`${testId}-1`);
 
         expect(buttonOne).toHaveAttribute('aria-checked', 'false');
@@ -107,7 +109,8 @@ describe('ToggleButtonGroup', () => {
         );
 
         const buttonOne = getByTestId(testId);
-        const buttonOneSvg = buttonOne.children[0]; // ensure that clicking either the button or child SVG works
+        // ensure that clicking either the button or child SVG works
+        const buttonOneSvg = buttonOne.children[0];
         const buttonTwo = getByTestId(`${testId}-1`);
 
         expect(buttonOne).toHaveAttribute('aria-checked', 'false');
@@ -198,7 +201,7 @@ describe('ToggleButtonGroup', () => {
     );
 
     const buttonOne = getByTestId(testId);
-    
+
     expect(buttonOne).toHaveAttribute('aria-checked', 'true');
     fireEvent.click(buttonOne);
     expect(onChangeMock).toHaveBeenCalledTimes(1);
