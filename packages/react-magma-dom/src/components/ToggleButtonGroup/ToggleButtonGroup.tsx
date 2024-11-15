@@ -98,7 +98,7 @@ export const ToggleButtonGroup = React.forwardRef<
   }, [value]);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value: newSelectedValue } = event.target;
+    const { value: newSelectedValue } = event.currentTarget;
 
     const oneBtnSelected = selectedValues.length === 1;
     const newValueAlreadySelected = selectedValues.includes(newSelectedValue);
