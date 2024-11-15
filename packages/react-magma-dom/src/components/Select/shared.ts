@@ -55,9 +55,12 @@ export const SelectText = styled.span<{
         : props.theme.colors.neutral500;
     }
   }};
-  ${props => props.isDisabled && props.isShowPlaceholder && css`
-    opacity: ${props.isInverse ? 0.4 : 0.6}
-  `}
+  ${props =>
+    props.isDisabled &&
+    props.isShowPlaceholder &&
+    css`
+      opacity: ${props.isInverse ? 0.4 : 0.6};
+    `}
 `;
 
 export const StyledCard = styled(Card)<{
@@ -169,6 +172,13 @@ export const SelectedItemButton = styled.button<{
   white-space: nowrap;
   min-width: 0%;
   outline-offset: 2px;
+  &:focus {
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+  }
 `;
 
 export const IconWrapper = styled.span`
