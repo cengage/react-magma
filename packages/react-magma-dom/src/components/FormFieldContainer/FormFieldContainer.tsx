@@ -222,7 +222,6 @@ export const FormFieldContainer = React.forwardRef<
               id={descriptionId}
               isInverse={isInverse}
               style={messageStyle}
-              describedbyId={fieldId}
             >
               {(errorMessage || helperMessage) && (
                 <>{errorMessage ? errorMessage : helperMessage}</>

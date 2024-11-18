@@ -50,7 +50,7 @@ const IconWrapper = styled.span`
   padding-right: ${props => props.theme.spaceScale.spacing02};
 `;
 
-export const InputMessage: React.FunctionComponent<InputMessageProps & { describedbyId?: string }> = ({
+export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
   children,
   id,
   isInverse,
