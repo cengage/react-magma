@@ -1,5 +1,5 @@
 ---
-'react-magma-dom': patch
+'@react-magma/charts': patch
 ---
 
 fix(Charts): Fix circle styles for `Charts`.
