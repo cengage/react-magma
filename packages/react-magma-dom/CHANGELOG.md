@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.47
+
+### Patch Changes
+
+- a163f4230: fix(Heading): Update margins for `heading2XLarge`
+
 ## 4.7.0-next.46
 
 ### Patch Changes
