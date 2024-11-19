@@ -3,6 +3,7 @@ import { axe } from '../../../axe-helper';
 import { Heading } from '.';
 import { render } from '@testing-library/react';
 import { magma } from '../../theme/magma';
+import { TypographyContextVariant, TypographyVisualStyle } from '../Typography';
 
 describe('Heading', () => {
   it('should find element by testId', () => {
@@ -136,6 +137,7 @@ describe('Heading', () => {
   });
 
   it('should render headings without margins styles', () => {
+    const headingText1Exp = 'test 1 expressive';
     const headingText1 = 'test 1';
     const headingText2 = 'test 2';
     const headingText3 = 'test 3';
@@ -145,6 +147,14 @@ describe('Heading', () => {
 
     const { getByText } = render(
       <>
+        <Heading
+          noMargins
+          level={1}
+          contextVariant={TypographyContextVariant.expressive}
+          visualStyle={TypographyVisualStyle.heading2XLarge}
+        >
+          {headingText1Exp}
+        </Heading>
         <Heading noMargins level={1}>
           {headingText1}
         </Heading>
@@ -166,6 +176,7 @@ describe('Heading', () => {
       </>
     );
 
+    expect(getByText(headingText1Exp)).toHaveStyleRule('margin', '0');
     expect(getByText(headingText1)).toHaveStyleRule('margin', '0');
     expect(getByText(headingText2)).toHaveStyleRule('margin', '0');
     expect(getByText(headingText3)).toHaveStyleRule('margin', '0');
@@ -175,6 +186,7 @@ describe('Heading', () => {
   });
 
   it('should render headings without top margin styles', () => {
+    const headingText1Exp = 'test 1 expressive';
     const headingText1 = 'test 1';
     const headingText2 = 'test 2';
     const headingText3 = 'test 3';
@@ -184,6 +196,14 @@ describe('Heading', () => {
 
     const { getByText } = render(
       <>
+        <Heading
+          noTopMargin
+          level={1}
+          contextVariant={TypographyContextVariant.expressive}
+          visualStyle={TypographyVisualStyle.heading2XLarge}
+        >
+          {headingText1Exp}
+        </Heading>
         <Heading noTopMargin level={1}>
           {headingText1}
         </Heading>
@@ -205,6 +225,10 @@ describe('Heading', () => {
       </>
     );
 
+    expect(getByText(headingText1Exp)).toHaveStyleRule(
+      'margin',
+      `0 0 ${magma.spaceScale.spacing06} 0`
+    );
     expect(getByText(headingText1)).toHaveStyleRule(
       'margin',
       `0 0 ${magma.spaceScale.spacing05} 0`
@@ -232,6 +256,7 @@ describe('Heading', () => {
   });
 
   it('should render headings without bottom margin styles', () => {
+    const headingText1Exp = 'test 1 expressive';
     const headingText1 = 'test 1';
     const headingText2 = 'test 2';
     const headingText3 = 'test 3';
@@ -241,6 +266,14 @@ describe('Heading', () => {
 
     const { getByText } = render(
       <>
+        <Heading
+          noBottomMargin
+          level={1}
+          contextVariant={TypographyContextVariant.expressive}
+          visualStyle={TypographyVisualStyle.heading2XLarge}
+        >
+          {headingText1Exp}
+        </Heading>
         <Heading noBottomMargin level={1}>
           {headingText1}
         </Heading>
@@ -262,10 +295,8 @@ describe('Heading', () => {
       </>
     );
 
-    expect(getByText(headingText1)).toHaveStyleRule(
-      'margin',
-      `${magma.spaceScale.spacing05} 0 0 0`
-    );
+    expect(getByText(headingText1Exp)).toHaveStyleRule('margin', '0');
+    expect(getByText(headingText1)).toHaveStyleRule('margin', `0`);
     expect(getByText(headingText2)).toHaveStyleRule(
       'margin',
       `${magma.spaceScale.spacing10} 0 0 0`
@@ -358,6 +389,36 @@ describe('Heading', () => {
 
     it('should render heading 6 correctly', () => {
       const { container } = render(<Heading level={6}>Heading 6</Heading>);
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('should render expressive heading2XLarge correctly', () => {
+      const { container } = render(
+        <Heading
+          level={1}
+          contextVariant={TypographyContextVariant.expressive}
+          visualStyle={TypographyVisualStyle.heading2XLarge}
+          id="testId"
+        >
+          Heading 1
+        </Heading>
+      );
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('should render expressive headingXLarge correctly', () => {
+      const { container } = render(
+        <Heading
+          level={2}
+          contextVariant={TypographyContextVariant.expressive}
+          visualStyle={TypographyVisualStyle.headingXLarge}
+          id="testId"
+        >
+          Heading 2
+        </Heading>
+      );
 
       expect(container).toMatchSnapshot();
     });
