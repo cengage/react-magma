@@ -310,7 +310,7 @@ const processChildrenSelection = ({
     forceCheckedStatusForDisabled,
   });
 
-  if (!item.hasOwnTreeItems) {
+  if (!item?.hasOwnTreeItems) {
     return itemsWithProcessedItemCheckedStatus;
   }
 
@@ -373,7 +373,7 @@ export const getChildrenIds = ({
         return result;
       }
 
-      if (item.hasOwnTreeItems) {
+      if (item?.hasOwnTreeItems) {
         return [...result, ...getChildrenIds({ items, itemId: item.itemId })];
       }
 
@@ -403,7 +403,7 @@ const getChildrenUniqueStatuses = ({
 }) => {
   const childrenAndItemIds = getChildrenIds({ items, itemId });
   const leaves = items.filter(item => {
-    return !item.hasOwnTreeItems && childrenAndItemIds.includes(item.itemId);
+    return !item?.hasOwnTreeItems && childrenAndItemIds.includes(item.itemId);
   });
   const uniqueStatuses = Array.from(
     new Set(
@@ -427,8 +427,8 @@ const processInitialParentStatuses = ({
 }) => {
   const itemsWithSelectedChildren = items.reduce((result, item) => {
     if (
-      !item.hasOwnTreeItems ||
-      item.checkedStatus !== IndeterminateCheckboxStatus.checked
+      !item?.hasOwnTreeItems ||
+      item?.checkedStatus !== IndeterminateCheckboxStatus.checked
     ) {
       return result;
     }
@@ -442,7 +442,7 @@ const processInitialParentStatuses = ({
   }, items);
 
   return itemsWithSelectedChildren.map(item => {
-    if (!item.hasOwnTreeItems) {
+    if (!item?.hasOwnTreeItems) {
       return item;
     }
 
