@@ -166,7 +166,7 @@ export function useTreeView(props: UseTreeViewProps) {
 
     if (selectable === TreeViewSelectable.off) {
       const firstExpandableItem = enabledItems.find(
-        item => item.hasOwnTreeItems
+        item => item?.hasOwnTreeItems
       );
 
       return firstExpandableItem
@@ -176,7 +176,7 @@ export function useTreeView(props: UseTreeViewProps) {
 
     const firstNonUncheckedItem = enabledItems.find(
       item =>
-        item.checkedStatus &&
+        item?.checkedStatus &&
         item.checkedStatus !== IndeterminateCheckboxStatus.unchecked
     );
 
