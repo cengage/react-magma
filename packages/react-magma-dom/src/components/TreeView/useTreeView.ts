@@ -161,7 +161,7 @@ export function useTreeView(props: UseTreeViewProps) {
   }, [items, rawInitialExpandedItems]);
 
   const itemToFocus = React.useMemo(() => {
-    const enabledItems = items.filter(item => !item.isDisabled);
+    const enabledItems = items.filter(item => !item?.isDisabled);
     const [firstItem] = enabledItems;
 
     if (selectable === TreeViewSelectable.off) {
@@ -230,13 +230,13 @@ export function useTreeView(props: UseTreeViewProps) {
           item => item.itemId === prevItem.itemId
         );
 
-        if (itemWithUpdatedDisabledState?.isDisabled === prevItem.isDisabled) {
+        if (itemWithUpdatedDisabledState?.isDisabled === prevItem?.isDisabled) {
           return prevItem;
         }
 
         return {
           ...prevItem,
-          isDisabled: itemWithUpdatedDisabledState.isDisabled,
+          isDisabled: itemWithUpdatedDisabledState?.isDisabled,
         };
       });
     });

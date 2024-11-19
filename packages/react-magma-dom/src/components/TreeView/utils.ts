@@ -204,7 +204,7 @@ const getIsDisabled = ({
   const isDisabled =
     preselectedItem?.isDisabled !== undefined
       ? preselectedItem?.isDisabled
-      : props.isDisabled;
+      : props?.isDisabled;
 
   if (selectable === TreeViewSelectable.multi && !checkChildren) {
     return isDisabled;
@@ -281,7 +281,7 @@ const processItemCheckedStatus = ({
 }) => {
   const item = items.find(item => item.itemId === itemId);
 
-  if (item.isDisabled && !forceCheckedStatusForDisabled) {
+  if (item?.isDisabled && !forceCheckedStatusForDisabled) {
     return items;
   }
 
@@ -682,7 +682,7 @@ export const toggleAllMulti = ({
 } & Pick<UseTreeViewProps, 'checkChildren' | 'checkParents'>) => {
   if (!checkChildren) {
     return items.map(item => {
-      if (item.isDisabled) {
+      if (item?.isDisabled) {
         return item;
       }
 
