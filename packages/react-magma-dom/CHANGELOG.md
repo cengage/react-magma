@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.45
+
+### Patch Changes
+
+- febf617fc: fix(TreeView): Fix undefined problem
+
 ## 4.7.0-next.44
 
 ### Patch Changes
