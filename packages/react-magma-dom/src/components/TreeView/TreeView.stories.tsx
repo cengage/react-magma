@@ -1047,8 +1047,9 @@ export const InvalidTreeItems = (args: Partial<TreeViewProps>) => {
     <>
       <p>
         <em>
-          This is an example of a tree with badly structured tree items. 
-          Expect only the following items to be expandable: Node 1, Child 1, Node 2, Child 2, Grandchild 2.
+          This is an example of a tree with badly structured tree items. Expect
+          only the following items to be expandable: Node 1, Child 1, Node 2,
+          Child 2, Grandchild 2.
         </em>
       </p>
       <TreeView {...args}>
@@ -1066,7 +1067,9 @@ export const InvalidTreeItems = (args: Partial<TreeViewProps>) => {
           <TreeItem label="Child 2" itemId="item-child2">
             <TreeItem label="Grandchild 2" itemId="item-gchild2">
               <TreeItem label="Great-grandchild 2" itemId="item-ggchild2" />
-              <TreeItem label="Great-grandchild 3" itemId="item-ggchild3" />
+              <TreeItem label="Great-grandchild 3" itemId="item-ggchild3">
+                <>Invalid child</>
+              </TreeItem>
             </TreeItem>
           </TreeItem>
         </TreeItem>

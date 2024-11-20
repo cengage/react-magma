@@ -197,19 +197,28 @@ const getIsDisabled = ({
   return isParentDisabled || isDisabled;
 };
 
-// Returns a boolean indicating whether all the children are valid.
-// A child is considered valid if it can be counted as an item that would make the parent expandable.
-const areAllChildrenValid = children => {
+/* Returns a boolean indicating whether at least one child is valid.
+A child is considered valid if it can be counted as an item that would make the parent expandable.
+This is used to set `hasOwnTreeItems` which manages visibility of the expandable arrow.
+*/
+const areChildrenValid = children => {
   if (!children) {
     return false;
   } else if (!children.length && children.type !== TreeItem) {
     return false;
   }
 
+  let hasValidChild = true;
+
   for (let i = 0; i < children.length; i++) {
     const child = children[i];
+
+    if (typeof child === 'string') {
+      return false; // Return false if a child is a string
+    }
+
     if (child.type !== TreeItem) {
-      return false;
+      return hasValidChild;
     }
     // Recursively check the validity of nested children
     if (child.props.children) {
@@ -217,13 +226,14 @@ const areAllChildrenValid = children => {
         ? child.props.children
         : [child.props.children];
 
-      if (!areAllChildrenValid(nestedChildren)) {
-        return false;
+      if (areChildrenValid(nestedChildren)) {
+        hasValidChild = true;
+        return hasValidChild;
       }
     }
   }
 
-  return true;
+  return hasValidChild;
 };
 
 const getTreeViewData = ({
@@ -262,7 +272,7 @@ const getTreeViewData = ({
           itemId: props.itemId,
           parentId,
           icon: props.icon,
-          hasOwnTreeItems: areAllChildrenValid(props.children),
+          hasOwnTreeItems: areChildrenValid(props.children),
           isDisabled,
         },
         ...(props.children
