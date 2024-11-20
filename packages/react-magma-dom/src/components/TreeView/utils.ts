@@ -152,22 +152,6 @@ export function getChildrenItemIdsFlat(children) {
   return itemIds;
 }
 
-// Return an array of objects where all children are items are nested in the parents
-export function getChildrenItemIdsInTree(children) {
-  let itemIds = [];
-
-  React.Children.forEach(children, child => {
-    if (child.props?.itemId && !child.props?.isDisabled) {
-      itemIds.push({
-        itemId: child.props?.itemId,
-        children: getChildrenItemIdsInTree(child.props?.children),
-      });
-    }
-  });
-
-  return itemIds;
-}
-
 // Return a treeItemRefArray object with no null children
 export function filterNullEntries(obj) {
   if (Array.isArray(obj.current)) {
@@ -213,6 +197,35 @@ const getIsDisabled = ({
   return isParentDisabled || isDisabled;
 };
 
+// Returns a boolean indicating whether all the children are valid.
+// A child is considered valid if it can be counted as an item that would make the parent expandable.
+const areAllChildrenValid = children => {
+  if (!children) {
+    return false;
+  } else if (!children.length && children.type !== TreeItem) {
+    return false;
+  }
+
+  for (let i = 0; i < children.length; i++) {
+    const child = children[i];
+    if (child.type !== TreeItem) {
+      return false;
+    }
+    // Recursively check the validity of nested children
+    if (child.props.children) {
+      const nestedChildren = Array.isArray(child.props.children)
+        ? child.props.children
+        : [child.props.children];
+
+      if (!areAllChildrenValid(nestedChildren)) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+};
+
 const getTreeViewData = ({
   children,
   selectable,
@@ -249,7 +262,7 @@ const getTreeViewData = ({
           itemId: props.itemId,
           parentId,
           icon: props.icon,
-          hasOwnTreeItems: Boolean(props.children),
+          hasOwnTreeItems: areAllChildrenValid(props.children),
           isDisabled,
         },
         ...(props.children
