@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 10.0.0-next.2
+
+### Patch Changes
+
+- 6869467ff: fix(Charts): Fix circle styles for `Charts`.
+
 ## 10.0.0-next.1
 
 ### Patch Changes
