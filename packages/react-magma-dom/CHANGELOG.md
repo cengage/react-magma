@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.48
+
+### Patch Changes
+
+- cf959a580: fix(Combobox/Select:): Fix focus color for selected items when using `isMulti` + `isInverse`
+
 ## 4.7.0-next.47
 
 ### Patch Changes
