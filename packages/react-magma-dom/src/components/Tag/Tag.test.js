@@ -2,9 +2,8 @@ import React from 'react';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { Tag, TagColor, TagSize } from '.';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, getByTestId } from '@testing-library/react';
 import { transparentize } from 'polished';
-import { I18nContext, deleteAriaLabel } from '../../i18n';
 import { AccountCircleIcon, CancelIcon } from 'react-magma-icons';
 
 const TEXT = 'Text Label';
@@ -23,7 +22,28 @@ describe('Tag', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
-  describe('Default background tests', () => {
+  it('Should not have a focus state', () => {
+    const testId = 'tag-id';
+    const { getByTestId } = render(
+      <Tag testId={testId}>
+        {TEXT}
+      </Tag>
+    );
+    const tag = getByTestId(testId);
+
+    expect(tag).not.toHaveStyleRule('outline-offset', '2px', {
+      target: ':focus',
+    });
+    expect(tag).not.toHaveStyleRule(
+      'outline',
+      `2px solid ${magma.colors.focus}`,
+      {
+        target: ':focus',
+      }
+    );
+  });
+
+  describe('Default background', () => {
     it('Should render a default Tag with a gray background', () => {
       const { getByText } = render(<Tag>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
@@ -57,7 +77,7 @@ describe('Tag', () => {
     });
   });
 
-  describe('Disabled background tests', () => {
+  describe('Disabled background', () => {
     it('Should render a Tag with a disabled background', () => {
       const { getByText } = render(<Tag disabled>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
@@ -116,7 +136,7 @@ describe('Tag', () => {
     });
   });
 
-  describe('Disabled Inverse background tests', () => {
+  describe('Disabled Inverse background', () => {
     it('Should render a inverse Tag with a disabled background', () => {
       const { getByText } = render(
         <Tag disabled isInverse>
@@ -175,7 +195,7 @@ describe('Tag', () => {
     });
   });
 
-  describe('Inverse background tests', () => {
+  describe('Inverse background', () => {
     it('Should render a default inverse Tag with a gray background', () => {
       const { getByText } = render(<Tag isInverse>{TEXT}</Tag>);
       const tag = getByText('Text Label').parentElement;
@@ -217,7 +237,7 @@ describe('Tag', () => {
     });
   });
 
-  describe('Size tests', () => {
+  describe('Size', () => {
     it('Should render a small Tag size', () => {
       const { getByText } = render(
         <Tag size={TagSize.small} isInverse>
@@ -255,23 +275,113 @@ describe('Tag', () => {
     });
   });
 
-  describe('Events tests', () => {
+  describe('Clickable Tag', () => {
+    const testId = 'clickableTag';
+
     it('Should render a clickable tag', () => {
       const isClickable = jest.fn();
       const { getByText } = render(<Tag onClick={isClickable}>{TEXT}</Tag>);
-      const button = getByText(TEXT);
+      const tag = getByText(TEXT);
 
-      fireEvent.click(button);
+      fireEvent.click(tag);
       expect(isClickable).toHaveBeenCalled();
     });
 
-    it('Should render a deletable tag', () => {
+    it('Should have a focus state', () => {
       const isClickable = jest.fn();
-      const { getByText } = render(<Tag onDelete={isClickable}>{TEXT}</Tag>);
-      const button = getByText(TEXT);
+      const { getByTestId } = render(
+        <Tag onClick={isClickable} testId={testId}>
+          {TEXT}
+        </Tag>
+      );
+      const tag = getByTestId(testId);
 
-      fireEvent.click(button);
-      expect(isClickable).toHaveBeenCalled();
+      expect(tag).toHaveStyleRule('outline-offset', '2px', {
+        target: ':focus',
+      });
+      expect(tag).toHaveStyleRule(
+        'outline',
+        `2px solid ${magma.colors.focus}`,
+        {
+          target: ':focus',
+        }
+      );
+    });
+
+    it('Should have a focus state when isInverse', () => {
+      const isClickable = jest.fn();
+      const { getByTestId } = render(
+        <Tag onClick={isClickable} testId={testId} isInverse>
+          {TEXT}
+        </Tag>
+      );
+      const tag = getByTestId(testId);
+
+      expect(tag).toHaveStyleRule('outline-offset', '2px', {
+        target: ':focus',
+      });
+      expect(tag).toHaveStyleRule(
+        'outline',
+        `2px solid ${magma.colors.focusInverse}`,
+        {
+          target: ':focus',
+        }
+      );
+    });
+  });
+
+  describe('Deletable Tag', () => {
+    const testId = 'deleteTag';
+
+    it('Should render a deletable tag', () => {
+      const onTagDelete = jest.fn();
+      const { getByText } = render(<Tag onDelete={onTagDelete}>{TEXT}</Tag>);
+      const tag = getByText(TEXT);
+
+      fireEvent.click(tag);
+      expect(onTagDelete).toHaveBeenCalled();
+    });
+
+    it('Should have a focus state', () => {
+      const onTagDelete = jest.fn();
+      const { getByTestId } = render(
+        <Tag onDelete={onTagDelete} testId={testId}>
+          {TEXT}
+        </Tag>
+      );
+      const tag = getByTestId(testId);
+
+      expect(tag).toHaveStyleRule('outline-offset', '2px', {
+        target: ':focus',
+      });
+      expect(tag).toHaveStyleRule(
+        'outline',
+        `2px solid ${magma.colors.focus}`,
+        {
+          target: ':focus',
+        }
+      );
+    });
+
+    it('Should have a focus state when isInverse', () => {
+      const onTagDelete = jest.fn();
+      const { getByTestId } = render(
+        <Tag onDelete={onTagDelete} testId={testId} isInverse>
+          {TEXT}
+        </Tag>
+      );
+      const tag = getByTestId(testId);
+
+      expect(tag).toHaveStyleRule('outline-offset', '2px', {
+        target: ':focus',
+      });
+      expect(tag).toHaveStyleRule(
+        'outline',
+        `2px solid ${magma.colors.focusInverse}`,
+        {
+          target: ':focus',
+        }
+      );
     });
   });
 
