@@ -1,6 +1,6 @@
 {
   "name": "react-magma-dom",
-  "version": "4.7.0-next.48",
+  "version": "4.7.0-next.49",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/esm/index.js",

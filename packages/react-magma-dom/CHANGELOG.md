@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.49
+
+### Patch Changes
+
+- 6a8ed217b: fix(Tag): Update tag focus state
+
 ## 4.7.0-next.48
 
 ### Patch Changes
