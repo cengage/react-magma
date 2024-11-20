@@ -19,7 +19,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 The `RadioGroup` component is used as the container for the set of options. The `Radio` component is used for each of the options themselves.
 
-See also: <Link to="/api/checkboxes">Checkboxes</Link>, <Link to="/api/toggle">Toggle Switches</Link>, and the <Link to="/design/selection-controls">Design Guidelines</Link> for selection controls in general.
+See also: <Link to="/api/checkboxes">Checkboxes</Link> and <Link to="/api/toggle">Toggle Switches</Link>.
 
 The label/radio association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
 
@@ -470,34 +470,40 @@ export function Example() {
 Using React's `forwardRef` feature you can gain access to the reference of the internal radio.
 
 ```tsx
-import React from 'react';
+import React from "react";
 import {
   RadioGroup,
   Radio,
   Button,
   ButtonColor,
   ButtonGroup,
-} from 'react-magma-dom';
+} from "react-magma-dom";
 
 export function Example() {
+  const [refValue, setRefValue] = React.useState();
+
   const radioRef = React.useRef();
 
   function handleButtonClick() {
-    radioRef.current.checked = !radioRef.current.checked;
+    setRefValue(radioRef.current.value);
   }
 
   function handleSecondaryButtonClick() {
     radioRef.current.focus();
   }
 
+  console.log(radioRef);
+
   return (
     <>
       <RadioGroup
+        value={refValue}
         labelText="Forward ref usage"
         id="forwardRefGroup"
         name="forwardRef"
       >
         <Radio
+          isChecked
           ref={radioRef}
           id="forwardRefRadio1"
           labelText="Option one label"

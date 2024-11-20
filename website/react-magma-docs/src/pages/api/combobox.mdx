@@ -1044,6 +1044,7 @@ export function Example() {
     return {
       id: uuidv4(),
       name: value,
+      hex: item.hex,
       representation: value.charAt(0).toUpperCase() + value.slice(1),
     };
   }
@@ -1144,7 +1145,7 @@ export function Example() {
 
     return {
       id: uuidv4(),
-      name: value,
+      actual: value,
       representation: value.charAt(0).toUpperCase() + value.slice(1),
     };
   }

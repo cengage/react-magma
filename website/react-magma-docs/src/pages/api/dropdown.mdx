@@ -575,28 +575,24 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
-  const showItem2 = true;
-
-  const OptionalDropdownMenuItem = ({
-    toggle,
-    children,
-    dropdownMenuItemProps,
-  }) => {
+  const OptionalDropdownMenuItem = ({ toggle, ...dropdownMenuItemProps }) => {
     return toggle ? (
-      <DropdownMenuItem {...dropdownMenuItemProps}>{children}</DropdownMenuItem>
+      <DropdownMenuItem {...dropdownMenuItemProps}>
+        Hello There
+      </DropdownMenuItem>
     ) : null;
   };
 
   function handleMenuItem1Click() {
-    alert("Item 1 clicked");
+    alert('Item 1 clicked');
   }
 
   function handleMenuItem2Click() {
-    alert("Item 2 clicked");
+    alert('Item 2 clicked');
   }
 
   function handleMenuItem3Click() {
-    alert("Item 3 clicked");
+    alert('Item 3 clicked');
   }
 
   return (
@@ -606,11 +602,8 @@ export function Example() {
         <DropdownMenuItem onClick={handleMenuItem1Click}>
           Menu item 1
         </DropdownMenuItem>
-        <OptionalDropdownMenuItem
-          toggle={showItem2}
-          onClick={handleMenuItem2Click}
-        >
-          Menu item 2 (optional)
+        <OptionalDropdownMenuItem toggle onClick={handleMenuItem2Click}>
+          Menu item 2
         </OptionalDropdownMenuItem>
         <div>
           <DropdownMenuItem onClick={handleMenuItem3Click}>
@@ -621,6 +614,7 @@ export function Example() {
     </Dropdown>
   );
 }
+
 
 ```
 
