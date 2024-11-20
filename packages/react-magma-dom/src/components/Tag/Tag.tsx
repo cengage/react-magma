@@ -298,6 +298,14 @@ const StyledButton = styled.button<{
 }>`
   ${TagStyling};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  &:focus {
+    outline-offset: 2px;
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+  }
 `;
 
 const StyledSpan = styled.span<{
