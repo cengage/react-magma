@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.50
+
+### Patch Changes
+
+- b8364bbca: fix(ToggleButtonGroup): Fix `enforced` and `exclusive` props
+
 ## 4.7.0-next.49
 
 ### Patch Changes
