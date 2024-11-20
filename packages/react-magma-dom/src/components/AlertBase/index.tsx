@@ -379,6 +379,10 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   }
 `;
 
+const AlertSpan = styled.span`
+  white-space: pre-line;
+`
+
 function renderIcon(variant = 'info', isToast?: boolean, theme?: any) {
   const Icon = VARIANT_ICON[variant];
 
@@ -479,7 +483,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
               isDismissible={isDismissible}
               theme={theme}
             >
-              <span>{children}</span>
+              <AlertSpan>{children}</AlertSpan>
               {additionalContent && (
                 <AdditionalContentWrapper theme={theme}>
                   {additionalContent}

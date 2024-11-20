@@ -29,23 +29,128 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
+  const [state, setState] = React.useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+  });
+
+  const [errors, setErrors] = React.useState({
+    firstName: true,
+    lastName: true,
+    email: true,
+  });
+
+  const resetErrors = () => {
+    setErrors({
+      firstName: false,
+      lastName: false,
+      email: false,
+    });
+  };
+
+  const onSubmit = event => {
+    event.preventDefault();
+    resetErrors();
+
+    if (!state.firstName) {
+      setErrors(prevErrors => ({ ...prevErrors, firstName: true }));
+    }
+
+    if (!state.lastName) {
+      setErrors(prevErrors => ({ ...prevErrors, lastName: true }));
+    }
+
+    if (!state.email) {
+      setErrors(prevErrors => ({ ...prevErrors, email: true }));
+    }
+  };
+
+  const cancel = () => {
+    setState({
+      firstName: '',
+      lastName: '',
+      email: '',
+    });
+    setErrors({
+      firstName: true,
+      lastName: true,
+      email: true,
+    });
+  };
+
+  const errorMessage = React.useMemo(() => {
+    let message = '';
+
+    for (const error in errors) {
+      if (errors[error]) {
+        switch (error) {
+          case 'firstName':
+            message += '- First Name field may not be blank\n';
+            break;
+          case 'lastName':
+            message += '- Last Name field may not be blank\n';
+            break;
+          case 'email':
+            message += '- Email field may not be blank\n';
+            break;
+          default:
+            return;
+        }
+      }
+    }
+
+    return message;
+  }, [errors]);
+
   return (
     <Form
-      onSubmit={() => alert('form submitted')}
+      onSubmit={onSubmit}
       header="Form Heading"
       description="Some Form Description"
-      errorMessage="Some Form Error"
+      errorMessage={errorMessage}
       actions={
         <ButtonGroup>
-          <Button color={ButtonColor.secondary}>Cancel</Button>
+          <Button color={ButtonColor.secondary} onClick={cancel}>
+            Cancel
+          </Button>
           <Button type={ButtonType.submit}>Submit</Button>
         </ButtonGroup>
       }
     >
       <>
-        <Input labelText="Name" />
+        <Input
+          labelText="First Name"
+          value={state.firstName}
+          onChange={event =>
+            setState(prevState => ({
+              ...prevState,
+              firstName: event.target.value,
+            }))
+          }
+        />
         <Spacer size="12" />
-        <Input labelText="Email" />
+        <Input
+          labelText="Last Name"
+          value={state.lastName}
+          onChange={event =>
+            setState(prevState => ({
+              ...prevState,
+              lastName: event.target.value,
+            }))
+          }
+        />
+        <Spacer size="12" />
+        <Input
+          labelText="Email"
+          value={state.email}
+          onChange={event =>
+            setState(prevState => ({
+              ...prevState,
+              email: event.target.value,
+            }))
+          }
+        />
         <Spacer size="24" />
       </>
     </Form>
