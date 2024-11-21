@@ -217,7 +217,7 @@ const areChildrenValid = children => {
       return false; // Return false if a child is a string
     }
 
-    if (child.type !== TreeItem) {
+    if (child?.type !== TreeItem) {
       return hasValidChild;
     }
     // Recursively check the validity of nested children
@@ -575,13 +575,12 @@ const processParentsSelection = ({
   checkedStatus: TreeViewItemInterface['checkedStatus'];
 }) => {
   const item = items.find(item => item.itemId === itemId);
-  const { parentId } = item;
 
-  if (parentId === null) {
+  if (item?.parentId === null) {
     return items;
   }
 
-  const siblings = items.filter(item => item?.parentId === parentId);
+  const siblings = items.filter(i => i.parentId === item?.parentId);
   const isAllSiblingsHasTheSameStatus = siblings.every(
     item =>
       (item.checkedStatus || IndeterminateCheckboxStatus.unchecked) ===
@@ -591,7 +590,7 @@ const processParentsSelection = ({
     ? checkedStatus
     : IndeterminateCheckboxStatus.indeterminate;
 
-  const parent = items.find(item => item.itemId === parentId);
+  const parent = items.find(i => i.itemId === item?.parentId);
 
   const nextItems = items.map(item =>
     item.itemId === parent.itemId
