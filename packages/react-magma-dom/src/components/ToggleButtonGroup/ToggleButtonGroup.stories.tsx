@@ -111,21 +111,25 @@ export const AlignmentExample = args => {
         aria-label="Left align"
         icon={<FormatAlignLeftIcon />}
         value="left"
+        testId="left"
       />
       <ToggleButton
         aria-label="Center align"
         icon={<FormatAlignCenterIcon />}
         value="center"
+        testId="center"
       />
       <ToggleButton
         aria-label="Right align"
         icon={<FormatAlignRightIcon />}
         value="right"
+        testId="right"
       />
       <ToggleButton
         aria-label="Justify align"
         icon={<FormatAlignJustifyIcon />}
         value="justify"
+        testId="justify"
       />
     </ToggleButtonGroup>
   );
@@ -146,7 +150,11 @@ export const DifferentToggleButtons = args => {
         value="settings"
       />
       <ToggleButton value="text">Text</ToggleButton>
-      <ToggleButton icon={<SettingsIcon />} value="iconAndText" size={ButtonSize.small}>
+      <ToggleButton
+        icon={<SettingsIcon />}
+        value="iconAndText"
+        size={ButtonSize.small}
+      >
         Icon and Text
       </ToggleButton>
     </ToggleButtonGroup>

@@ -427,7 +427,7 @@ function getHelpLinkSVGSize(props) {
   return `${theme.iconSizes.small}px`;
 }
 
-function getHelpIconButtonSize(props) {
+export function getHelpIconButtonSize(props) {
   const { inputSize, theme } = props;
 
   if (inputSize === InputSize.large) {
@@ -570,7 +570,7 @@ function getIconSize(
   }
 }
 
-const isLeftOrHidden = ({
+export const isLeftOrHidden = ({
   labelPosition,
   isLabelVisuallyHidden,
 }: {
@@ -584,16 +584,15 @@ export const HelpLinkContainer = styled.span<{
   theme: ThemeInterface;
   isLabelVisuallyHidden?: boolean;
 }>`
-  position: relative;
+  position: ${props => (isLeftOrHidden(props) ? 'relative' : 'absolute')};
   display: flex;
   align-items: center;
   justify-content: center;
 
   height: ${props => (isLeftOrHidden(props) ? 'auto' : 'fit-content')};
   margin-inline-start: ${props =>
-    isLeftOrHidden(props) ? `${props.theme.spaceScale.spacing03}` : 0};
-  transform: translate(
-    ${props => (isLeftOrHidden(props) ? '0' : '-100%')},
+    isLeftOrHidden(props) ? `${props.theme.spaceScale.spacing03}` : 'auto'};
+  transform: translateY(
     ${props =>
       isLeftOrHidden(props)
         ? '0'
@@ -604,9 +603,10 @@ export const HelpLinkContainer = styled.span<{
     width: ${props => getHelpLinkSVGSize(props)};
   }
   button {
-   height: ${props => getHelpIconButtonSize(props)};
+    height: ${props => getHelpIconButtonSize(props)};
     width: ${props => getHelpIconButtonSize(props)};
   }
+  inset-inline-end: ${props => (isLeftOrHidden(props) ? 'auto' : '0')};
 `;
 
 export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(

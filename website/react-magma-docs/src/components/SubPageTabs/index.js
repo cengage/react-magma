@@ -103,7 +103,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
       entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            const index = headings.findIndex(
+            const index = headings?.findIndex(
               page => convertTextToId(page) === entry.target.id
             );
 
@@ -114,7 +114,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
       { rootMargin: rootMarginValue }
     );
 
-    headings.forEach(page => {
+    headings?.forEach(page => {
       const id = convertTextToId(page);
       const element = document.getElementById(id);
 
@@ -124,7 +124,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
     });
 
     return () => {
-      headings.forEach(page => {
+      headings?.forEach(page => {
         const id = convertTextToId(page);
         const element = document.getElementById(id);
 
@@ -133,7 +133,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
         }
       });
     };
-  }, []);
+  }, [headings]);
 
   return (
     <>

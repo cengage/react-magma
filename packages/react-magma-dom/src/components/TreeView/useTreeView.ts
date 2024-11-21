@@ -12,6 +12,7 @@ import {
   toggleAllMulti,
   isSelectedItemsChanged,
   isEqualArrays,
+  getChildrenIds,
 } from './utils';
 import { TreeViewSelectable } from './types';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
@@ -63,8 +64,13 @@ export interface UseTreeViewProps {
   testId?: string;
   /**
    * Action that fires when an item is expanded or collapsed
+   * Return an array of itemIds of items that are expanded
+   * Example: ['item0', 'item1', 'item3']
    */
-  onExpandedChange?: (event: React.SyntheticEvent) => void;
+  onExpandedChange?: (
+    event: React.SyntheticEvent,
+    expandedItems: Array<string>
+  ) => void;
   /**
    * Action that fires when an item is selected
    * Return an array of objects.
@@ -155,12 +161,12 @@ export function useTreeView(props: UseTreeViewProps) {
   }, [items, rawInitialExpandedItems]);
 
   const itemToFocus = React.useMemo(() => {
-    const enabledItems = items.filter(item => !item.isDisabled);
+    const enabledItems = items.filter(item => !item?.isDisabled);
     const [firstItem] = enabledItems;
 
     if (selectable === TreeViewSelectable.off) {
       const firstExpandableItem = enabledItems.find(
-        item => item.hasOwnTreeItems
+        item => item?.hasOwnTreeItems
       );
 
       return firstExpandableItem
@@ -170,7 +176,7 @@ export function useTreeView(props: UseTreeViewProps) {
 
     const firstNonUncheckedItem = enabledItems.find(
       item =>
-        item.checkedStatus &&
+        item?.checkedStatus &&
         item.checkedStatus !== IndeterminateCheckboxStatus.unchecked
     );
 
@@ -224,13 +230,13 @@ export function useTreeView(props: UseTreeViewProps) {
           item => item.itemId === prevItem.itemId
         );
 
-        if (itemWithUpdatedDisabledState?.isDisabled === prevItem.isDisabled) {
+        if (itemWithUpdatedDisabledState?.isDisabled === prevItem?.isDisabled) {
           return prevItem;
         }
 
         return {
           ...prevItem,
-          isDisabled: itemWithUpdatedDisabledState.isDisabled,
+          isDisabled: itemWithUpdatedDisabledState?.isDisabled,
         };
       });
     });
@@ -360,6 +366,43 @@ export function useTreeView(props: UseTreeViewProps) {
     }
   }, []);
 
+  const [expandedSet, setExpandedSet] = React.useState<Set<string>>(
+    new Set(initialExpandedItems)
+  );
+
+  const handleExpandedChange = (
+    event: React.SyntheticEvent,
+    itemId: string
+  ) => {
+    setExpandedSet(prevExpandedSet => {
+      const updatedExpandedSet = new Set(prevExpandedSet);
+      const childItemIds = getChildrenIds({
+        items,
+        itemId,
+      });
+
+      if (updatedExpandedSet.has(itemId)) {
+        updatedExpandedSet.delete(itemId);
+        childItemIds.forEach((childId: string) => {
+          updatedExpandedSet.delete(childId);
+        });
+      } else {
+        updatedExpandedSet.add(itemId);
+        childItemIds.forEach((childId: string) => {
+          if (initialExpandedItems?.includes(childId)) {
+            updatedExpandedSet.add(childId);
+          }
+        });
+      }
+
+      const expandedItemsArray = Array.from(updatedExpandedSet);
+      onExpandedChange &&
+        typeof onExpandedChange === 'function' &&
+        onExpandedChange(event, expandedItemsArray);
+      return updatedExpandedSet;
+    });
+  };
+
   const contextValue = {
     hasIcons,
     itemToFocus,
@@ -376,6 +419,8 @@ export function useTreeView(props: UseTreeViewProps) {
     checkParents,
     items,
     selectItem,
+    handleExpandedChange,
+    expandedSet,
   };
 
   return { contextValue };
