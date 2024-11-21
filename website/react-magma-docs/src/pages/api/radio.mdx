@@ -470,22 +470,25 @@ export function Example() {
 Using React's `forwardRef` feature you can gain access to the reference of the internal radio.
 
 ```tsx
-import React from 'react';
+import React from "react";
 import {
   RadioGroup,
   Radio,
   Button,
   ButtonColor,
   ButtonGroup,
-} from 'react-magma-dom';
+} from "react-magma-dom";
 
 export function Example() {
-  const [refValue, setRefValue] = React.useState();
-
   const radioRef = React.useRef();
 
+  const [refValue, setRefValue] = React.useState();
+
   function handleButtonClick() {
-    setRefValue(radioRef.current.value);
+    setRefValue((refValue) => (refValue = "1"));
+    if (refValue === "1") {
+      setRefValue((refValue) => (refValue = ""));
+    }
   }
 
   function handleSecondaryButtonClick() {
@@ -501,7 +504,6 @@ export function Example() {
         name="forwardRef"
       >
         <Radio
-          isChecked
           ref={radioRef}
           id="forwardRefRadio1"
           labelText="Option one label"
