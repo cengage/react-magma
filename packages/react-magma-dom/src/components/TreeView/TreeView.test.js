@@ -7,6 +7,8 @@ import userEvent from '@testing-library/user-event';
 import { FavoriteIcon } from 'react-magma-icons';
 import { transparentize } from 'polished';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
+import { Tag } from '../Tag';
+import { Paragraph } from '../Paragraph';
 
 const TEXT = 'Test Text Tree Item';
 const testId = 'tree-view';
@@ -2388,6 +2390,162 @@ describe('TreeView', () => {
 
       userEvent.click(getByTestId('item2-expand'));
       expect(item2).toHaveAttribute('aria-expanded', 'false');
+    });
+  });
+
+  describe('tree validity', () => {
+    it('when a TreeView is passed as a child, the tree item is expandable', () => {
+      const { getByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1-expand')).toBeInTheDocument();
+    });
+
+    it('when multiple TreeViews are passed as a child, the tree item is expandable', () => {
+      const { getByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+            <TreeItem
+              label="Child 2"
+              itemId="item-child2"
+              testId="item-child2"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1-expand')).toBeInTheDocument();
+    });
+
+    it('when multiple TreeViews with nested children are passed as a child, the tree items are expandable', () => {
+      const { getByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+            <TreeItem label="Child 2" itemId="item-child2" testId="item-child2">
+              <TreeItem
+                label="Child 2.1"
+                itemId="item-child2.1"
+                testId="item-child2.1"
+              >
+                <TreeItem
+                  label="Child 2.1.1"
+                  itemId="item-child2.1.1"
+                  testId="item-child2.1.1"
+                />
+              </TreeItem>
+            </TreeItem>
+            <TreeItem label="Child 3" itemId="item-child3" testId="item-child3">
+              <TreeItem
+                label="Child 3.1"
+                itemId="item-child3.1"
+                testId="item-child3.1"
+              />
+            </TreeItem>
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1-expand')).toBeInTheDocument();
+      userEvent.click(getByTestId('item1-expand'));
+      expect(getByTestId('item-child2-expand')).toBeInTheDocument();
+      userEvent.click(getByTestId('item-child2-expand'));
+      expect(getByTestId('item-child2.1-expand')).toBeInTheDocument();
+      expect(getByTestId('item-child3-expand')).toBeInTheDocument();
+    });
+
+    it('when multiple TreeViews are passed as a child and at least one is valid, the tree item is expandable', () => {
+      const { getByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem label="Child 1" itemId="item-child1" testId="item-child1">
+              <></>
+            </TreeItem>
+            <TreeItem label="Child 2" itemId="item-child2" testId="item-child2">
+              <TreeItem
+                label="Child 2.1"
+                itemId="item-child2.1"
+                testId="item-child2.1"
+              />
+            </TreeItem>
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1-expand')).toBeInTheDocument();
+      userEvent.click(getByTestId('item1-expand'));
+      expect(getByTestId('item-child2-expand')).toBeInTheDocument();
+    });
+
+
+    it('when a fragment is passed as a child, the tree item is not expandable', () => {
+      const { queryByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <></>
+          </TreeItem>
+          <TreeItem label="Node 2" itemId="item2" testId="item2"></TreeItem>
+        </TreeView>
+      );
+
+      expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
+      expect(queryByTestId('item2-expand')).not.toBeInTheDocument();
+    });
+
+    it('when any other component is passed as a child, the tree item is not expandable', () => {
+      const { queryByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <Tag>This is a tag</Tag>
+          </TreeItem>
+          <TreeItem label="Node 2" itemId="item2" testId="item2">
+            <Paragraph>This is a paragraph</Paragraph>
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
+      expect(queryByTestId('item2-expand')).not.toBeInTheDocument();
+    });
+
+    it('when text is passed as a child, the tree item is not expandable', () => {
+      const { queryByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            This is sample text
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
+    });
+
+    it('when a TreeView does not have a child, the tree item is not expandable', () => {
+      const { queryByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1" />
+        </TreeView>
+      );
+
+      expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
     });
   });
 });
