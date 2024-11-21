@@ -8,6 +8,7 @@ import { IconButton } from '../IconButton';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
 import { Tooltip } from '../Tooltip';
+import { Spacer } from '../Spacer';
 import { ButtonGroup } from '../ButtonGroup';
 
 const Template: Story<InputProps> = args => (
@@ -198,7 +199,12 @@ export const HelpLink = args => {
           />
         </Tooltip>
       </Input>
-      <Input labelText="Help link - hidden" isLabelVisuallyHidden {...args}>
+      <Spacer size={16} />
+      <Input 
+        labelText="Help link - hidden" 
+        isLabelVisuallyHidden 
+        {...args}
+      >
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}
@@ -309,94 +315,94 @@ NumberInput.parameters = {
 
 export const SeveralErrors = () => {
   const [inputValues, setInputValues] = React.useState({
-    first: '',
-    second: '',
-    third: '',
+    firstName: '',
+    lastName: '',
+    emailAddress: '',
   });
   const [hasErrors, setHasErrors] = React.useState({
-    first: true,
-    second: true,
-    third: true,
+    firstName: true,
+    lastName: true,
+    emailAddress: true,
   });
 
-  const firstInputRef = React.useRef();
-  const secondInputRef = React.useRef();
-  const thirdInputRef = React.useRef();
+  const firstNameInputRef = React.useRef();
+  const lastNameInputRef = React.useRef();
+  const emailAddressInputRef = React.useRef();
 
   const submit = () => {
     setHasErrors({
-      first: false,
-      second: false,
-      third: false,
+      firstName: false,
+      lastName: false,
+      emailAddress: false,
     });
 
-    if (!inputValues.third) {
-      setHasErrors(prev => ({ ...prev, third: true }));
-      thirdInputRef.current.focus();
+    if (!inputValues.emailAddress) {
+      setHasErrors(prev => ({ ...prev, emailAddress: true }));
+      emailAddressInputRef.current.focus();
     }
 
-    if (!inputValues.second) {
-      setHasErrors(prev => ({ ...prev, second: true }));
-      secondInputRef.current.focus();
+    if (!inputValues.lastName) {
+      setHasErrors(prev => ({ ...prev, lastName: true }));
+      lastNameInputRef.current.focus();
     }
 
-    if (!inputValues.first) {
-      setHasErrors(prev => ({ ...prev, first: true }));
-      firstInputRef.current.focus();
+    if (!inputValues.firstName) {
+      setHasErrors(prev => ({ ...prev, firstName: true }));
+      firstNameInputRef.current.focus();
     }
   };
 
   const reset = () => {
     setHasErrors({
-      first: false,
-      second: false,
-      third: false,
+      firstName: false,
+      lastName: false,
+      emailAddress: false,
     });
     setInputValues({
-      first: '',
-      second: '',
-      third: '',
+      firstName: '',
+      lastName: '',
+      emailAddress: '',
     });
 
-    firstInputRef.current.focus();
+    firstNameInputRef.current.focus();
   };
 
   return (
     <>
       <Input
-        errorMessage={hasErrors.first ? 'First error' : ''}
+        errorMessage={hasErrors.firstName ? 'Please enter your first name' : ''}
         helperMessage=""
-        labelText="Error 1 *"
+        labelText="First name *"
         onChange={event =>
-          setInputValues(prev => ({ ...prev, first: event.target.value }))
+          setInputValues(prev => ({ ...prev, firstName: event.target.value }))
         }
         required
-        value={inputValues.first}
-        ref={firstInputRef}
+        value={inputValues.firstName}
+        ref={firstNameInputRef}
       />
       <br />
       <Input
-        errorMessage={hasErrors.second ? 'Second error' : ''}
+        errorMessage={hasErrors.lastName ? 'Please enter your last name' : ''}
         helperMessage=""
-        labelText="Error 2 *"
+        labelText="Last name *"
         onChange={event =>
-          setInputValues(prev => ({ ...prev, second: event.target.value }))
+          setInputValues(prev => ({ ...prev, lastName: event.target.value }))
         }
         required
-        value={inputValues.second}
-        ref={secondInputRef}
+        value={inputValues.lastName}
+        ref={lastNameInputRef}
       />
       <br />
       <Input
-        errorMessage={hasErrors.third ? 'Third error' : ''}
+        errorMessage={hasErrors.emailAddress ? 'Please enter your email address' : ''}
         helperMessage=""
-        labelText="Error 3 *"
+        labelText="Email address *"
         onChange={event =>
-          setInputValues(prev => ({ ...prev, third: event.target.value }))
+          setInputValues(prev => ({ ...prev, emailAddress: event.target.value }))
         }
         required
-        value={inputValues.third}
-        ref={thirdInputRef}
+        value={inputValues.emailAddress}
+        ref={emailAddressInputRef}
       />
       <br />
       <ButtonGroup>

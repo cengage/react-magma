@@ -172,9 +172,9 @@ If an error message is present, it will replace the helper text. Can be a node o
 
 For best practices, use a `ref` on the input to enhance usability when handling an `errorMessage`.
 
-The `required` prop can be used to indicate when a field is required. It is also important to indicate to the user whenever a field is required.
+While React Magma provides the error styling, it is up to the consumer app to handle the validation. We recommend using a ref on the input for accessibility.
 
-While React Magma provides the error styling, it is up to the consumer app to handle the validation.
+For short forms with an error, clicking submit should bring the focus back to the input with an error. For long forms, we recommend using an alert to combine the errors and focus should be moved to the alert. See example in Form.
 
 ```tsx
 import React from 'react';
@@ -446,6 +446,7 @@ export function Example() {
           />
         </Tooltip>
       </Input>
+      <Spacer size="16" />
       <Input
         labelText="Help link - Hidden"
         isLabelVisuallyHidden
