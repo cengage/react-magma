@@ -51,6 +51,7 @@
     "feat-treeview-add-support-for-isdisabled",
     "feat-treeview-onexpandedchange",
     "fix-blockQuote-border-color",
+    "fix-docs-examples",
     "fix-initial-expanded-items-should-expand-all-parents",
     "fix-input-focus-outline",
     "fix-input-help-link",
