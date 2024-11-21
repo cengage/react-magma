@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Input): Style update: Focus style on inputs.
+fix(Input): Update focus style on inputs.

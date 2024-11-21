@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(dropdown): Fix active index communication handled programmatically
+fix(Dropdown): Fix a11y for active index

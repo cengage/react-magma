@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(search): Fix the overlapping content issue around the clear button
+fix(Search): Fix overlapping content issue with the clear button

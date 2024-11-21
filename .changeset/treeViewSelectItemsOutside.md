@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(TreeView): Add ability to change items selection outside
+feat(TreeView): Add ability to update selected items from outside the tree
