@@ -470,38 +470,40 @@ export function Example() {
 Using React's `forwardRef` feature you can gain access to the reference of the internal radio.
 
 ```tsx
-import React from "react";
+import React from 'react';
 import {
   RadioGroup,
   Radio,
   Button,
   ButtonColor,
   ButtonGroup,
-} from "react-magma-dom";
+} from 'react-magma-dom';
 
 export function Example() {
   const radioRef = React.useRef();
+  const [radioGroupVal, setRadioGroupVal] = React.useState(null);
 
-  const [refValue, setRefValue] = React.useState();
-
-  function handleButtonClick() {
-    setRefValue((refValue) => (refValue = "1"));
-    if (refValue === "1") {
-      setRefValue((refValue) => (refValue = ""));
+  function handleSelectOne() {
+    if (!radioRef.current) {
+      setRadioGroupVal(null);
+    } else if (radioRef.current.checked) {
+      setRadioGroupVal("");
+    } else if (!radioRef.current.checked) {
+      setRadioGroupVal("1");
     }
   }
 
-  function handleSecondaryButtonClick() {
+  function handleFocusOne() {
     radioRef.current.focus();
   }
 
   return (
     <>
       <RadioGroup
-        value={refValue}
         labelText="Forward ref usage"
         id="forwardRefGroup"
         name="forwardRef"
+        value={radioGroupVal}
       >
         <Radio
           ref={radioRef}
@@ -514,11 +516,8 @@ export function Example() {
       </RadioGroup>
 
       <ButtonGroup>
-        <Button onClick={handleButtonClick}>Toggle option 1</Button>
-        <Button
-          color={ButtonColor.secondary}
-          onClick={handleSecondaryButtonClick}
-        >
+        <Button onClick={handleSelectOne}>Toggle option 1 selection</Button>
+        <Button color={ButtonColor.secondary} onClick={handleFocusOne}>
           Focus option 1
         </Button>
       </ButtonGroup>
