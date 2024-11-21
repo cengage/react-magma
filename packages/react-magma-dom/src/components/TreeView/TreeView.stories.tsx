@@ -212,7 +212,10 @@ export const Complex = (args: Partial<TreeViewProps>) => {
   );
   const total = selectedItems?.length ?? 0;
 
-  const handleExpandedChange = (event: React.SyntheticEvent, expandedItems: string[]) => {
+  const handleExpandedChange = (
+    event: React.SyntheticEvent,
+    expandedItems: string[]
+  ) => {
     setExpandedItems(expandedItems);
   };
 
@@ -358,8 +361,8 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                     icon={<ArticleIcon aria-hidden={true} />}
                     label={
                       <>
-                        Section 5.1.3.1: Apple pie apple pie tart macaroon topping
-                        chocolate cake
+                        Section 5.1.3.1: Apple pie apple pie tart macaroon
+                        topping chocolate cake
                       </>
                     }
                     itemId="pt2ch5.1.3.1"
@@ -368,8 +371,8 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                     icon={<ArticleIcon aria-hidden={true} />}
                     label={
                       <>
-                        Section 5.1.3.2: Apple pie apple pie tart macaroon topping
-                        chocolate cake
+                        Section 5.1.3.2: Apple pie apple pie tart macaroon
+                        topping chocolate cake
                       </>
                     }
                     itemId="pt2ch5.1.3.2"
@@ -378,8 +381,8 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                     icon={<ArticleIcon aria-hidden={true} />}
                     label={
                       <>
-                        Section 5.1.3.3: Apple pie apple pie tart macaroon topping
-                        chocolate cake
+                        Section 5.1.3.3: Apple pie apple pie tart macaroon
+                        topping chocolate cake
                       </>
                     }
                     itemId="pt2ch5.1.3.3"
@@ -1034,6 +1037,52 @@ ParentsAndChildrenNotAutoChecked.args = {
 };
 
 ParentsAndChildrenNotAutoChecked.parameters = {
+  controls: {
+    exclude: ['isInverse', 'initialExpandedItems', 'ariaLabelledBy'],
+  },
+};
+
+export const InvalidTreeItems = (args: Partial<TreeViewProps>) => {
+  return (
+    <>
+      <p>
+        <em>
+          This is an example of a tree with badly structured tree items. Expect
+          only the following items to be expandable: Node 1, Child 1, Node 2,
+          Child 2, Grandchild 2.
+        </em>
+      </p>
+      <TreeView {...args}>
+        <TreeItem label="Node 0 - fragment" itemId="item0" testId="item0">
+          <></>
+        </TreeItem>
+        <TreeItem label="Node 1" itemId="item1" testId="item1">
+          <TreeItem label="Child 1" itemId="item-child1">
+            <TreeItem label="Grandchild 1" itemId="item-gchild1">
+              <Tag>This is a tag as a child of Grandchild 1</Tag>
+            </TreeItem>
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Node 2" itemId="item2">
+          <TreeItem label="Child 2" itemId="item-child2">
+            <TreeItem label="Grandchild 2" itemId="item-gchild2">
+              <TreeItem label="Great-grandchild 2" itemId="item-ggchild2" />
+              <TreeItem label="Great-grandchild 3" itemId="item-ggchild3">
+                <>Invalid child</>
+              </TreeItem>
+            </TreeItem>
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Node 3" itemId="item3"></TreeItem>
+        <TreeItem label="Node 4" itemId="item4">
+          Child of node 4 is just text
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+};
+
+InvalidTreeItems.parameters = {
   controls: {
     exclude: ['isInverse', 'initialExpandedItems', 'ariaLabelledBy'],
   },
