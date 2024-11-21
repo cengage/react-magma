@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.51
+
+### Patch Changes
+
+- 46c70e610: fix(TreeView): Fix invalid tree item children
+
 ## 4.7.0-next.50
 
 ### Patch Changes
