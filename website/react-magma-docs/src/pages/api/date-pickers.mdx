@@ -65,6 +65,8 @@ export function Example() {
   const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
     undefined
   );
+  const [value, setValue] = React.useState('');
+
   const minDate = '01/09/2024';
   const maxDate = '02/10/2024';
 
@@ -72,13 +74,18 @@ export function Example() {
     setChosenDate(newChosenDate);
   }
 
+  function onBlur(event) {
+    setValue(event.target.value);
+  }
+
   function hasErrorMessage() {
     const convertedMinDate = getDateFromString(minDate);
     const convertedMaxDate = getDateFromString(maxDate);
 
     if (
-      chosenDate &&
-      !inDateRange(chosenDate, convertedMinDate, convertedMaxDate)
+      (value && isNaN(getDateFromString(value).getTime())) ||
+      (chosenDate &&
+        !inDateRange(chosenDate, convertedMinDate, convertedMaxDate))
     ) {
       return `Please enter a date within the range ${minDate} - ${maxDate}`;
     }
@@ -92,6 +99,7 @@ export function Example() {
       minDate={minDate}
       maxDate={maxDate}
       onDateChange={handleDateChange}
+      onInputBlur={onBlur}
       errorMessage={hasErrorMessage()}
     />
   );

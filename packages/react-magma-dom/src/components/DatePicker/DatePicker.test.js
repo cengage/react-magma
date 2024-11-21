@@ -497,7 +497,6 @@ describe('Date Picker', () => {
 
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByText(format(now, 'MMMM yyyy'))).not.toBeNull();
     expect(getByText(format(now, 'd'))).not.toBe(document.activeElement);
   });
 
