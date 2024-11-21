@@ -1,5 +1,11 @@
 ## 4.6.0
 
+## 4.7.0-next.52
+
+### Patch Changes
+
+- c54190d6c: fix(TreeView): Fix undefined problem
+
 ## 4.7.0-next.51
 
 ### Patch Changes
