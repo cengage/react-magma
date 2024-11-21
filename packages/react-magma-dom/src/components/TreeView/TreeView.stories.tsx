@@ -1049,7 +1049,7 @@ export const InvalidTreeItems = (args: Partial<TreeViewProps>) => {
         <em>
           This is an example of a tree with badly structured tree items. Expect
           only the following items to be expandable: Node 1, Child 1, Node 2,
-          Child 2, Grandchild 2.
+          Child 2, Grandchild 2, Node 6.
         </em>
       </p>
       <TreeView {...args}>
@@ -1058,14 +1058,14 @@ export const InvalidTreeItems = (args: Partial<TreeViewProps>) => {
         </TreeItem>
         <TreeItem label="Node 1" itemId="item1" testId="item1">
           <TreeItem label="Child 1" itemId="item-child1">
-            <TreeItem label="Grandchild 1" itemId="item-gchild1">
+            <TreeItem label="Grandchild 1 - has tag content" itemId="item-gchild1">
               <Tag>This is a tag as a child of Grandchild 1</Tag>
             </TreeItem>
           </TreeItem>
         </TreeItem>
         <TreeItem label="Node 2" itemId="item2">
           <TreeItem label="Child 2" itemId="item-child2">
-            <TreeItem label="Grandchild 2" itemId="item-gchild2">
+            <TreeItem label="Grandchild 2 - has valid and invalid children" itemId="item-gchild2">
               <TreeItem label="Great-grandchild 2" itemId="item-ggchild2" />
               <TreeItem label="Great-grandchild 3" itemId="item-ggchild3">
                 <>Invalid child</>
@@ -1073,9 +1073,19 @@ export const InvalidTreeItems = (args: Partial<TreeViewProps>) => {
             </TreeItem>
           </TreeItem>
         </TreeItem>
-        <TreeItem label="Node 3" itemId="item3"></TreeItem>
-        <TreeItem label="Node 4" itemId="item4">
+        <TreeItem label="Node 3 - has empty content" itemId="item3"></TreeItem>
+        <TreeItem label="Node 4 - has child with only text" itemId="item4">
           Child of node 4 is just text
+        </TreeItem>
+        <TreeItem label="Node 5 - has null content" itemId="item5">
+          {null}
+        </TreeItem>
+        <TreeItem label="Node 6 - has undefined and valid children" itemId="item6">
+          {undefined}
+          <TreeItem label="Node 7" itemId="item7" />
+          <TreeItem label="Node 8 - has undefined content" itemId="item8">
+            {undefined}
+          </TreeItem>
         </TreeItem>
       </TreeView>
     </>

@@ -2492,6 +2492,29 @@ describe('TreeView', () => {
       expect(getByTestId('item-child2-expand')).toBeInTheDocument();
     });
 
+    it('when multiple TreeViews are passed as a child and at least one is valid and the other is undefined, the tree item is expandable', () => {
+      const { getByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem label="Child 1" itemId="item-child1" testId="item-child1">
+              {undefined}
+            </TreeItem>
+            {undefined}
+            <TreeItem label="Child 2" itemId="item-child2" testId="item-child2">
+              <TreeItem
+                label="Child 2.1"
+                itemId="item-child2.1"
+                testId="item-child2.1"
+              />
+            </TreeItem>
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1-expand')).toBeInTheDocument();
+      userEvent.click(getByTestId('item1-expand'));
+      expect(getByTestId('item-child2-expand')).toBeInTheDocument();
+    });
 
     it('when a fragment is passed as a child, the tree item is not expandable', () => {
       const { queryByTestId } = render(
@@ -2533,6 +2556,34 @@ describe('TreeView', () => {
       );
 
       expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
+    });
+
+    it('when undefined is passed as a child, the tree item is not expandable', () => {
+      const { queryByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            {undefined}
+          </TreeItem>
+          <TreeItem label="Node 2" itemId="item2" testId="item2"></TreeItem>
+        </TreeView>
+      );
+
+      expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
+      expect(queryByTestId('item2-expand')).not.toBeInTheDocument();
+    });
+
+    it('when null is passed as a child, the tree item is not expandable', () => {
+      const { queryByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            {null}
+          </TreeItem>
+          <TreeItem label="Node 2" itemId="item2" testId="item2"></TreeItem>
+        </TreeView>
+      );
+
+      expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
+      expect(queryByTestId('item2-expand')).not.toBeInTheDocument();
     });
 
     it('when a TreeView does not have a child, the tree item is not expandable', () => {
