@@ -470,14 +470,14 @@ export function Example() {
 Using React's `forwardRef` feature you can gain access to the reference of the internal radio.
 
 ```tsx
-import React from "react";
+import React from 'react';
 import {
   RadioGroup,
   Radio,
   Button,
   ButtonColor,
   ButtonGroup,
-} from "react-magma-dom";
+} from 'react-magma-dom';
 
 export function Example() {
   const [refValue, setRefValue] = React.useState();
@@ -491,8 +491,6 @@ export function Example() {
   function handleSecondaryButtonClick() {
     radioRef.current.focus();
   }
-
-  console.log(radioRef);
 
   return (
     <>

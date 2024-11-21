@@ -58,8 +58,8 @@ export function Example() {
 Minimum and Maximum dates can be passed in as `props` to disallow the selection of a date outside of a specific range. If a date value is passed in that does not fit in to the range given, the date picker will try to give focus when entering the calendar on today's date, then the minimum date, and finally the maximum date.
 
 ```tsx
-import React from "react";
-import { DatePicker, getDateFromString, inDateRange } from "react-magma-dom";
+import React from 'react';
+import { DatePicker, getDateFromString, inDateRange } from 'react-magma-dom';
 
 export function Example() {
   const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
