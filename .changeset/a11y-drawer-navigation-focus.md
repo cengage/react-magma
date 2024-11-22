@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(drawer): Fix trapped focus in the drawer
+fix(Drawer): Fix trapped focus

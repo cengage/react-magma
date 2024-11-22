@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(button): Add `success` button
+feat(Button): Add `success` button color
