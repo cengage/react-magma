@@ -5,13 +5,14 @@ props:
   - FormGroupProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="form_group" type="api">
 
 <LeadParagraph>
-FormGroup components wrap controls such as the <Link to="/api/checkboxes">Checkbox</Link> and <Link to="/api/toggle">Toggle</Link> components.
-For <Link to="/api/radio">Radio Buttons</Link>, you should use the <Link to="/api/radio/#labeling_radio%20groups">Radio Group</Link> component.
+  FormGroup components wrap controls such as the{' '}
+  <Link to="/api/checkboxes">Checkbox</Link> and{' '}
+  <Link to="/api/toggle">Toggle</Link> components. For{' '}
+  <Link to="/api/radio">Radio Buttons</Link>, you should use the{' '}
+  <Link to="/api/radio/#labeling_radio%20groups">Radio Group</Link> component.
 </LeadParagraph>
 
 ## Basic Usage
@@ -20,7 +21,6 @@ Form groups are not necessary when displaying only a single checkbox or toggle. 
 form groups should be used to make that association, both visually and for users of assistive technology.
 
 The label/group association will be handled via the passed in `id` if one is supplied or via an auto-generated `id` if not supplied.
-
 
 ```tsx
 import React from 'react';

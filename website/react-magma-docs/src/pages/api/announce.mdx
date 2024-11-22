@@ -5,13 +5,14 @@ props:
   - AnnounceProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="announce" type="api">
 
 <LeadParagraph>
-When dynamically changing content on a page, it is important that all users become aware of these changes. While changes may be visually apparent to users who cans see the page,
-they may not be clear to users of assistive technology. The `Announce` component uses the `aria-live` attribute to to expose dynamic content to those using screen readers.
+  When dynamically changing content on a page, it is important that all users
+  become aware of these changes. While changes may be visually apparent to users
+  who cans see the page, they may not be clear to users of assistive technology.
+  The `Announce` component uses the `aria-live` attribute to to expose dynamic
+  content to those using screen readers.
 </LeadParagraph>
 
 ## Basic Usage
@@ -21,9 +22,8 @@ import React from 'react';
 import { Announce, Button } from 'react-magma-dom';
 
 export function Example() {
-  const [announceContent, setAnnounceContent] = React.useState<string>(
-    'Initial content'
-  );
+  const [announceContent, setAnnounceContent] =
+    React.useState<string>('Initial content');
 
   function updateAnnounceContent() {
     setAnnounceContent('New content replacing the initial content');
@@ -56,10 +56,8 @@ import React from 'react';
 import { Announce, Button } from 'react-magma-dom';
 
 export function Example() {
-  const [
-    announceContentAssertive,
-    setAnnounceContentAssertive,
-  ] = React.useState<string>('Initial assertive content');
+  const [announceContentAssertive, setAnnounceContentAssertive] =
+    React.useState<string>('Initial assertive content');
   const [announceContentOff, setAnnounceContentOff] = React.useState<string>(
     'Initial off content'
   );

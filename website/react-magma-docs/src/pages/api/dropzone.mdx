@@ -3,8 +3,6 @@ pageTitle: Dropzone API
 title: Dropzone
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="dropzone" type="api">
 
 <LeadParagraph>
@@ -20,7 +18,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 ## Basic Usage
 
-```typescript
+```tsx
 import React from 'react';
 import { Dropzone } from '@react-magma/dropzone';
 
@@ -40,7 +38,7 @@ export function Example() {
 
 ## No Dragging
 
-```typescript
+```tsx
 import React from 'react';
 import { Dropzone } from '@react-magma/dropzone';
 
@@ -58,7 +56,7 @@ export function Example() {
 
 ## Inverse
 
-```typescript
+```tsx
 import React from 'react';
 import { Card, CardBody } from 'react-magma-dom';
 import { Dropzone } from '@react-magma/dropzone';
@@ -93,13 +91,12 @@ when the `sendFiles` is set to true. If the files should be immediately passed t
 initally set to true. If the files should be queued until some action then it can be initally false and
 then switched to true when needed.
 
-```typescript
+```tsx
 import React from 'react';
 import { Dropzone } from '@react-magma/dropzone';
 import { Button, Spacer } from 'react-magma-dom';
 
 export function Example() {
-  const [file, setFile] = React.useState<string>();
   const [sendFiles, setSendFiles] = React.useState<Boolean>(false);
 
   const onSendFile = (props: OnSendFileProps) => {
@@ -163,10 +160,9 @@ Since the dropzone uses the [FileReader API](https://developer.mozilla.org/en-US
 
 ### Image File Example
 
-```typescript
+```tsx
 import React from 'react';
 import { Dropzone } from '@react-magma/dropzone';
-import { Textarea } from 'react-magma-dom';
 
 export function Example() {
   const [file, setFile] = React.useState<string>();
@@ -196,7 +192,7 @@ export function Example() {
         helperMessage="Only PNG files"
         sendFiles
       />
-      {file && <img src={file} />}
+      {file && <img alt="" src={file} />}
     </div>
   );
 }
@@ -204,7 +200,7 @@ export function Example() {
 
 ### Text File Example
 
-```typescript
+```tsx
 import React from 'react';
 import { Dropzone } from '@react-magma/dropzone';
 import { Textarea } from 'react-magma-dom';
@@ -245,9 +241,9 @@ export function Example() {
 
 ### CSV Example
 
-```typescript
+```tsx
 import React from 'react';
-import { DataGrid } from 'react-magma-dom';
+import { Datagrid } from 'react-magma-dom';
 import { Dropzone } from '@react-magma/dropzone';
 
 export function Example() {

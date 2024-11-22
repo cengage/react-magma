@@ -65,7 +65,10 @@
     "develop": "gatsby develop",
     "docs": "npm run develop",
     "serve": "gatsby serve",
-    "format": "prettier --write \"src/**/*.js\"",
-    "test": "echo \"Error: no test specified\""
+    "format": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
+    "test": "echo \"Error: no test specified\"",
+    "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}'",
+    "lint:fix": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --fix",
+    "lint:check": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --max-warnings=0"
   }
 }

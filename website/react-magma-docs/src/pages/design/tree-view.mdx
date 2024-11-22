@@ -5,12 +5,12 @@ order: 1
 ---
 
 import './design-guidelines-styles.css';
-import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="treeview" type="design">
 
 <LeadParagraph>
-  TreeView provides a hierarchical list of items that can be collapsed or expanded to hide or reveal their contents.
+  TreeView provides a hierarchical list of items that can be collapsed or
+  expanded to hide or reveal their contents.
 </LeadParagraph>
 
 ## Usage
@@ -18,14 +18,14 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 A tree view comprises nested heading levels, establishing a content hierarchy for users and aiding in the navigation of extensive amounts of information. The tree view component includes branch nodes that can be expanded or collapsed, unveiling or concealing child nodes. Additionally, the tree may feature leaf nodes, which can emerge at any level of the hierarchy and do not possess child nodes.
 
 <figure>
-  <div class="image-container">
+  <div className="image-container">
     <img src="../../images/treeview/intro-image.png" alt="GATSBY_EMPTY_ALT" />
   </div>
 </figure>
 
 ### When to use
 
-- Commonly utilized for exploring file system configurations consisting of folders and documents. 
+- Commonly utilized for exploring file system configurations consisting of folders and documents.
 - To organize large amounts of information that can nest within multiple levels.
 
 ### When not to use
@@ -38,26 +38,23 @@ When dealing with a single level of nested information, consider utilizing an al
 
 ### Anatomy
 
-<figure>
-  
-</figure>
+<figure></figure>
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/treeview/anatomy.png" alt="GATSBY_EMPTY_ALT" />
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
-1. **Branch node:** A node that has one or more child nodes. Can be expanded or collapsed to reveal or hide child nodes. 
-1. **Leaf node:** A node that has no child nodes and can appear at any level of the tree view hierarchy. A leaf node may be referred to as a child node when it is nested underneath a branch node. 
-1. **Arrow icon:** An icon to expand or collapse a branch node. 
-1. **Checkbox (multi-select only):** A checkbox to select multiple nodes. 
+1. **Branch node:** A node that has one or more child nodes. Can be expanded or collapsed to reveal or hide child nodes.
+1. **Leaf node:** A node that has no child nodes and can appear at any level of the tree view hierarchy. A leaf node may be referred to as a child node when it is nested underneath a branch node.
+1. **Arrow icon:** An icon to expand or collapse a branch node.
+1. **Checkbox (multi-select only):** A checkbox to select multiple nodes.
 1. **Node icon (optional):** An icon to visually represent and support a node label, they can assist the user to scan different content types quickly.
 
 ### Alignment
@@ -66,15 +63,17 @@ When dealing with a single level of nested information, consider utilizing an al
 
 Nodes stack directly on top of each other with 0px space between them. Having nodes flush with each other ensures consistent spacing and alignment between each node in the tree view.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/treeview/stacking-nodes.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/treeview/stacking-nodes.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -82,16 +81,22 @@ Nodes stack directly on top of each other with 0px space between them. Having no
 
 Nested nodes in a tree view rely on organized and consistent alignment to group nodes together. When a level within the hierarchy contains both branches and leaves, the spacing is adjusted to make sure the text labels at the same level are always aligned.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/treeview/nesting-alignment-1.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/treeview/nesting-alignment-1.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/treeview/nesting-alignment-1-1.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/treeview/nesting-alignment-1-1.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
   </div>
@@ -113,27 +118,29 @@ If the text label is longer than the space allows, the text will wrap to 2 or mo
 
 Icons can be a helpful way of scanning a list for various item types. Icons should be clear and not require a high level of interpretation to understand. To maintain proper alignment, icons should be used at all levels of a hierarchy or not at all.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/treeview/node-icons-correct.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/treeview/node-icons-correct.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-correct">Correct</p>
-          <p>
-            Do consistently use icons for each node in a tree view.
-          </p>
+          <p className="title title-correct">Correct</p>
+          <p>Do consistently use icons for each node in a tree view.</p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/treeview/node-icons-wrong.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/treeview/node-icons-wrong.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
-          <p>
-            Do not mix text-only and icon nodes in a tree view.
-          </p>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>Do not mix text-only and icon nodes in a tree view.</p>
         </figcaption>
       </figure>
     </div>
@@ -148,16 +155,22 @@ Icons can be a helpful way of scanning a list for various item types. Icons shou
 
 Branch nodes and leaf nodes exhibit identical styles across various states. The sole disparity in their structure lies in the presence of an arrow, which signifies the expansion or collapse of branch nodes.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/treeview/single-select-states.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/treeview/single-select-states.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/treeview/multi-select-states.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/treeview/multi-select-states.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
   </div>
@@ -173,32 +186,36 @@ Upon receiving focus, a single-select tree sets focus on its initial node.
 
 To expand or collapse a branch node the user can click anywhere within the arrow icon bounding box.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/treeview/expanding-behavior.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/treeview/expanding-behavior.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
 #### Selecting
 
-- To select a branch node the user can click anywhere on the node excluding the arrow icon bounding box. 
+- To select a branch node the user can click anywhere on the node excluding the arrow icon bounding box.
 - To select a leaf node the user can click anywhere on the node container.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/treeview/selecting-behavior.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/treeview/selecting-behavior.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
-    <div class="col col-2">
-    </div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -206,9 +223,9 @@ To expand or collapse a branch node the user can click anywhere within the arrow
 
 - **Up and down arrows:** Moves focus between visible nodes in the tree.
 - **Right and left arrows:** Opens and closes branch nodes.
-- **Space:** Toggles the selection state of the focused node. 
-- **Enter:** activates a node, i.e., performs its default action. In multi-select, it toggles the selection state of the focused node. In single-select it selects the focused node. 
-- **Home:** Moves focus to the first node in the tree without opening or closing a node. 
+- **Space:** Toggles the selection state of the focused node.
+- **Enter:** activates a node, i.e., performs its default action. In multi-select, it toggles the selection state of the focused node. In single-select it selects the focused node.
+- **Home:** Moves focus to the first node in the tree without opening or closing a node.
 - **End:** Moves focus to the last node in the tree that is focusable without opening a node.
 
 ---
@@ -216,7 +233,9 @@ To expand or collapse a branch node the user can click anywhere within the arrow
 ## Accessibility
 
 - <a href="https://www.w3.org/TR/aria-role/roles#tree">Tree</a> (W3C Recommendation)
-- <a href="https://www.w3.org/WAI/ARIA/apg/patterns/treeview/">Tree view WAI-ARIA practices</a> (W3C)
-
+- <a href="https://www.w3.org/WAI/ARIA/apg/patterns/treeview/">
+    Tree view WAI-ARIA practices
+  </a>
+  (W3C)
 
 </PageContent>

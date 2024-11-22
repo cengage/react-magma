@@ -6,8 +6,6 @@ props:
   - GridItemProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="grid" type="api">
 
 <LeadParagraph>CSS Grid React Component</LeadParagraph>
@@ -18,7 +16,7 @@ The Grid component is simply a container that has `display: grid;` on it. All of
 
 Child elements can be added as they are, or inside of `<GridItem></GridItem>`. `GridItem` accepts props that allow it to be styled to span columns or rows, and be part of a grid area.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Grid,
@@ -28,6 +26,7 @@ import {
   useMediaQuery,
 } from 'react-magma-dom';
 
+// eslint-disable-next-line complexity
 export function Example() {
   const isSmallerScreen = useMediaQuery(
     `(max-width:${magma.breakpoints.small}px)`
@@ -145,7 +144,7 @@ export function Example() {
 
 `<Grid />` and `<GridItem />` both accept the `as` prop to allow for semantic HTML.
 
-```typescript
+```tsx
 import React from 'react';
 import { Grid, GridItem, GridAlignItems, GridJustifyContent } from 'react-magma-dom';
 

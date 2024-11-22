@@ -5,8 +5,6 @@ props:
   - ComboboxProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="combobox" type="api">
 
 <LeadParagraph>
@@ -45,14 +43,14 @@ export function Example() {
 Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `initialHighlightedIndex` props.
 
 <Alert variant="info">
-  When using any of the <inlineCode class="inverse">initial*</inlineCode> props
-  be aware that passing in the controlled version of that prop will overwrite
-  the initial version.
+  When using any of the <inlineCode className="inverse">initial*</inlineCode>{' '}
+  props be aware that passing in the controlled version of that prop will
+  overwrite the initial version.
   <br />
   <br />
   <strong>Ex: </strong>
-  <inlineCode class="inverse">selectedItem</inlineCode> takes precedence over{' '}
-  <inlineCode class="inverse">initialSelectedItem</inlineCode>
+  <inlineCode className="inverse">selectedItem</inlineCode> takes precedence
+  over <inlineCode className="inverse">initialSelectedItem</inlineCode>
 </Alert>
 
 ```tsx
@@ -173,7 +171,7 @@ export function Example() {
   const [changes, updateChanges] = React.useState({});
   const [highlightedIndex, updateHighlightedIndex] = React.useState<number>(-1);
   const [isOpen, updateIsOpen] = React.useState<boolean>(false);
-  const [selectedItem, updateSelectedItem] = React.useState({});
+  const [selectedItem] = React.useState({});
 
   function onStateChange(newChanges) {
     const { type } = newChanges;
@@ -185,25 +183,19 @@ export function Example() {
         updateIsOpen(!isOpen);
         break;
       case ComboboxStateChangeTypes.InputKeyDownArrowDown:
-        newChanges.isOpen ? updateIsOpen(newChanges.isOpen) : null;
+        if (newChanges.isOpen) {
+          updateIsOpen(newChanges.isOpen);
+        }
         updateHighlightedIndex(newChanges.highlightedIndex);
         break;
       case ComboboxStateChangeTypes.ItemMouseMove:
       case ComboboxStateChangeTypes.FunctionSetHighlightedIndex:
-      case ComboboxStateChangeTypes.InputKeyDownArrowDown:
       case ComboboxStateChangeTypes.InputKeyDownArrowUp:
         updateHighlightedIndex(newChanges.highlightedIndex);
         break;
       case ComboboxStateChangeTypes.InputKeyDownEscape:
       case ComboboxStateChangeTypes.InputBlur:
         updateIsOpen(false);
-        updateHighlightedIndex(newChanges.highlightedIndex);
-        break;
-      case ComboboxStateChangeTypes.ItemClick:
-      case ComboboxStateChangeTypes.InputKeyDownEnter:
-        updateHighlightedIndex(newChanges.highlightedIndex);
-        updateIsOpen(newChanges.isOpen);
-        updateSelectedItem(newChanges.selectedItem);
         break;
       default:
         break;
@@ -794,7 +786,7 @@ export function Example() {
   ];
 
   const [suggestedItems, setSuggestedItems] = React.useState([]);
-  const [selectedItems, updateSelectedItems] = React.useState([]);
+  const [, updateSelectedItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [inputQuery, setInputQuery] = React.useState('');
 
@@ -856,22 +848,6 @@ import React from 'react';
 import { Card, CardBody, Combobox } from 'react-magma-dom';
 
 export function Example() {
-  const [selectedItem, updateSelectedItem] = React.useState('');
-
-  function onSelectedItemChange(changes) {
-    updateSelectedItem(changes.selectedItem);
-  }
-
-  const [selectedItems, updateSelectedItems] = React.useState([]);
-
-  function handleSelectedItemsChange(changes) {
-    updateSelectedItems(changes.selectedItems);
-  }
-
-  function handleRemoveSelectedItem(removedItem) {
-    updateSelectedItems(selectedItems.filter(item => item !== removedItem));
-  }
-
   return (
     <Card isInverse>
       <CardBody>
@@ -1397,13 +1373,14 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
   In the development environment these types equate to strings
   <br />
   (eg:{' '}
-  <inlineCode class="inverse">
+  <inlineCode className="inverse">
     ComboboxStateChangeTypes.InputKeyDownArrowDown =
     '__input_keydown_arrow_down__'
   </inlineCode>
   ). However, in the production environment the types equate to numbers
   <br />
-  (eg: <inlineCode class="inverse">
+  (eg:
+  <inlineCode className="inverse">
     ComboboxStateChangeTypes.InputKeyDownArrowDown = 0
   </inlineCode>
   ).

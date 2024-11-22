@@ -6,8 +6,6 @@ props:
   - SkipLinkContentProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="skip_link" type="api">
 
 <LeadParagraph>
@@ -45,10 +43,8 @@ const SideNav = ({ length }) => {
   return (
     <nav>
       {[...Array(length).keys()].map(index => (
-        <div>
-          <Hyperlink key={index} to={`#${index}`}>
-            Link ${index}
-          </Hyperlink>
+        <div key={index}>
+          <Hyperlink to={`#${index}`}>Link ${index}</Hyperlink>
         </div>
       ))}
     </nav>
@@ -95,10 +91,8 @@ const SideNav = ({ length }) => {
   return (
     <nav>
       {[...Array(length).keys()].map(index => (
-        <div>
-          <Hyperlink key={index} to={`#${index}`}>
-            Link ${index}
-          </Hyperlink>
+        <div key={index}>
+          <Hyperlink to={`#${index}`}>Link ${index}</Hyperlink>
         </div>
       ))}
     </nav>
@@ -136,10 +130,8 @@ const SideNav = ({ length }) => {
   return (
     <nav>
       {[...Array(length).keys()].map(index => (
-        <div>
-          <Hyperlink key={index} to={`#${index}`}>
-            Link ${index}
-          </Hyperlink>
+        <div key={index}>
+          <Hyperlink to={`#${index}`}>Link ${index}</Hyperlink>
         </div>
       ))}
     </nav>
@@ -178,10 +170,8 @@ const SideNav = ({ length }) => {
   return (
     <nav>
       {[...Array(length).keys()].map(index => (
-        <div>
-          <Hyperlink key={index} to={`#${index}`}>
-            Link ${index}
-          </Hyperlink>
+        <div key={index}>
+          <Hyperlink to={`#${index}`}>Link ${index}</Hyperlink>
         </div>
       ))}
     </nav>

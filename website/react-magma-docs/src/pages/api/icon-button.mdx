@@ -3,8 +3,6 @@ pageTitle: Icon Button API
 title: Icon Button
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="icon_button" type="api">
 
 <LeadParagraph>Icon buttons have an icon included in them.</LeadParagraph>
@@ -16,13 +14,13 @@ If no children are included, then they render in the icon-only style.
 
 <Alert>
   For icon only buttons you <strong>must</strong> include an{' '}
-  <inlineCode class="inverse">aria-label</inlineCode> property that accurately
-  describes the function of the button, so that screen-reader users will know
-  the button's purpose.
+  <inlineCode className="inverse">aria-label</inlineCode> property that
+  accurately describes the function of the button, so that screen-reader users
+  will know the button's purpose.
 </Alert>
 <Alert>
   For icon buttons with text, an{' '}
-  <inlineCode class="inverse">aria-label</inlineCode> is not needed, as the
+  <inlineCode className="inverse">aria-label</inlineCode> is not needed, as the
   function of the button should be described in the visible button text.
 </Alert>
 
@@ -379,13 +377,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import {
-  Card,
-  CardBody,
-  IconButton,
-  ButtonVariant,
-  ButtonGroup,
-} from 'react-magma-dom';
+import { IconButton, ButtonVariant, ButtonGroup } from 'react-magma-dom';
 import {
   PriorityHighIcon,
   NotificationsIcon,

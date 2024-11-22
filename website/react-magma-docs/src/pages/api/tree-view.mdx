@@ -6,8 +6,6 @@ props:
   - TreeItemProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="treeview" type="api">
 
 <LeadParagraph>
@@ -17,7 +15,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 ## Basic Usage
 
-```typescript
+```tsx
 import React from 'react';
 import { TreeView, TreeItem, Heading } from 'react-magma-dom';
 
@@ -25,7 +23,7 @@ export function Example() {
   return (
     <>
       <Heading level={3} id="ah-textbook">
-        Gardner's Art through the ages
+        {`Gardner's Art through the ages`}
       </Heading>
       <TreeView ariaLabelledBy={'ah-textbook'}>
         <TreeItem
@@ -101,7 +99,7 @@ export function Example() {
 
 TreeViews can have `TreeViewSelectable.single` for single select (default), `TreeViewSelectable.multi` for multi select with checkboxes, or `TreeViewSelectable.off` for no selection.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   TreeView,
@@ -234,7 +232,7 @@ export function Example() {
 
 If one `TreeItem` uses the `icon` prop, all other `TreeItems` should also have an `icon`. If one is not passed, default icons will be used: `FolderIcon` for branches and `ArticleIcon` for leafs.
 
-```typescript
+```tsx
 import React from 'react';
 import { TreeView, TreeItem, magma } from 'react-magma-dom';
 import { FavoriteIcon } from 'react-magma-icons';
@@ -276,7 +274,7 @@ export function Example() {
 
 To have a `TreeItem` expanded initially, pass an array of `TreeItem` `itemId`s to the `TreeView`.
 
-```typescript
+```tsx
 import React from 'react';
 import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
 
@@ -331,7 +329,7 @@ export function Example() {
 
 To have a `TreeItem` selected initially, pass an array of `{itemId: 'itemId', checkedStatus: 'checked'}` objects to the `TreeView`.
 
-```typescript
+```tsx
 import React from 'react';
 import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
 
@@ -386,7 +384,7 @@ If there is no visible name for the element you can reference, use `ariaLabel` t
 
 _It's required to use either `ariaLabel` OR `ariaLabelledBy`._
 
-```typescript
+```tsx
 import React from 'react';
 import { TreeView, TreeItem } from 'react-magma-dom';
 
@@ -454,7 +452,7 @@ In a multi-select tree view, the relationship between parents and children when 
 
 By default, the `checkChildren` and `checkParents` props are set to true.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   TreeView,
@@ -523,7 +521,7 @@ export function Example() {
 
 Use the `apiRef` prop to change items selection from outside. It exposes these functions: `selectItem`, `selectAll`, `clearAll`.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   TreeView,
@@ -608,7 +606,7 @@ export function Example() {
   return (
     <>
       <Heading level={3} id="ah-textbook">
-        Gardner's Art through the ages
+        {`Gardner's Art through the ages`}
       </Heading>
       <TreeView
         ariaLabelledBy={'ah-textbook'}
@@ -710,7 +708,7 @@ export function Example() {
 
 Use the `isDisabled` prop to disable all items inside TreeView.
 
-```typescript
+```tsx
 import React from 'react';
 import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
 
@@ -760,7 +758,7 @@ export function Example() {
 
 Pass the `isDisabled` prop to item inside `preselectedItems` prop to manage disabled state for the item.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   TreeView,
@@ -826,7 +824,7 @@ export function Example() {
 
 The following events are available: `onSelectedItemChange` and `onExpandedChange`.
 
-```typescript
+```tsx
 import React from 'react';
 import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
 
@@ -840,7 +838,10 @@ export function Example() {
     setCurrentTreeEvent('Selected');
   }
 
-  function handleExpandedChange(event: React.SyntheticEvent, expandedItems: string[]) {
+  function handleExpandedChange(
+    event: React.SyntheticEvent,
+    expandedItems: string[]
+  ) {
     setCurrentTreeEvent('Expanded');
     setExpandedItems(expandedItems);
   }
@@ -851,7 +852,9 @@ export function Example() {
         <strong>{currentTreeEvent || 'No'} event was triggered</strong>
         <br />
         <br />
-        <strong>Expanded Items: {expandedItems ? expandedItems.join(', ') : ' '}</strong>
+        <strong>
+          Expanded Items: {expandedItems ? expandedItems.join(', ') : ' '}
+        </strong>
       </p>
 
       <TreeView
@@ -1106,7 +1109,7 @@ export function Example() {
 
 ## Inverse
 
-```typescript
+```tsx
 import React from 'react';
 import { TreeView, TreeItem, Card } from 'react-magma-dom';
 
@@ -1154,7 +1157,7 @@ export function Example() {
 
 Use the `labelStyle` prop to customize the `TreeItem` labels.
 
-```typescript
+```tsx
 import React from 'react';
 import { TreeView, TreeItem, magma } from 'react-magma-dom';
 

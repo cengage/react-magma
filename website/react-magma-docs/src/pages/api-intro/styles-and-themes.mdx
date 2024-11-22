@@ -3,7 +3,6 @@ title: Styles and Themes
 order: 4
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
 import { Donut } from '../../components/Donut';
 
 <PageContent componentName="styles_and_themes" type="api_intro">
@@ -22,7 +21,7 @@ Custom styles can be passed to components using the `style` prop.
 
 Magma variables can also be used in the style prop to apply themed styles on the fly.
 
-```typescript
+```tsx
 import React from 'react';
 import { Button, Paragraph } from 'react-magma-dom';
 
@@ -50,9 +49,9 @@ Some non-atomic components support styling of individual elements within the com
 For example, the <Link to="/api/checkboxes">Checkbox</Link> supports the following properties: `containerStyle`, `inputStyle`
 and `labelStyle`. In these cases, the `style` prop would have no effect because there is more than one element to target.
 
-```typescript
+```tsx
 import React from 'react';
-import { Button } from 'react-magma-dom';
+import { Checkbox } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -206,7 +205,7 @@ A project can have multiple theme files that are triggered conditionally by the 
 
 The code below is an example of a theme file (applying to all components), including a themes for all valid individual components (only applies to those components - see subsection below for more information).
 
-```js noCodeSandbox
+```jsx noCodeSandbox
 import { magma } from 'react-magma-dom';
 
 const typeScale = {
@@ -401,7 +400,7 @@ To apply component-specific theming, theme objects can be included in the theme 
 These individual theme objects will be applied globally to **only those components.**
 The theme object for each above component can be found on its documentation page. See below for an example of an individual component's theme object:
 
-```js noCodeSandbox
+```jsx noCodeSandbox
 tooltip: {
   arrowSize: '4px',
   arrowSizeDoubled: '8px',
@@ -424,7 +423,7 @@ One of the features of the Magma theme is a typography scale, that contains thir
 
 The `typeScale` can be set as part of the theme.
 
-```js noCodeSandbox
+```jsx noCodeSandbox
 typeScale: {
   size01: {
     fontSize: '12px',
@@ -495,7 +494,7 @@ typeScale: {
 Furthermore, font-size and line-height can be set in the theme for six heading levels and four paragraph relative sizes for two different screen resolutions.
 The theme also contains options for two additional typography variants for those heading and paragraph styles.
 
-```js noCodeSandbox
+```jsx noCodeSandbox
 typographyVisualStyles: {
   headingXLarge: {
       mobile: typeScale.size07,
@@ -565,7 +564,7 @@ Designers are advised to use values from the space scale whenever possible.
 
 The `spaceScale` can be overridden in by defining its values new theme.
 
-```js noCodeSandbox
+```jsx noCodeSandbox
 spaceScale: {
   spacing01: '2px',
   spacing02: '4px',
@@ -601,13 +600,10 @@ import {
   ButtonVariant,
   Card,
   CardBody,
-  CardHeading,
   Combobox,
-  Drawer,
   Flex,
   FlexBehavior,
   Heading,
-  HyperLink,
   IconButton,
   magma,
   Radio,
@@ -626,6 +622,7 @@ import {
   TabPanel,
   Tag,
   Tooltip,
+  ThemeContext,
 } from 'react-magma-dom';
 
 import { InfoIcon } from 'react-magma-icons';
@@ -965,8 +962,8 @@ export function Example() {
   return (
     <ThemeContext.Provider value={springfieldDonut}>
       <style>
-        @import
-        url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
+        @import url(
+        {`https://fonts.googleapis.com/css2?family=Varela+Round&display=swap`});
       </style>
 
       <Card isInverse>

@@ -3,8 +3,6 @@ pageTitle: Input API
 title: Input
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="input" type="api">
 
 <LeadParagraph>
@@ -220,7 +218,7 @@ export function Example() {
 
 Character Counter is enabled when using the `maxCount` prop. As the user types past the allowable length, an error state appears showing the overrage.
 
-```typescript
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 
@@ -501,7 +499,7 @@ export function Example() {
 import React from 'react';
 import { Input } from 'react-magma-dom';
 export function Example() {
-  const [focused, setFocused] = React.useState(false);
+  const [, setFocused] = React.useState(false);
   const [message, setMessage] = React.useState('');
 
   function changeFocusedMessage() {

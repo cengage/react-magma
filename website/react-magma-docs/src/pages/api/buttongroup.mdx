@@ -5,8 +5,6 @@ props:
   - ButtonGroupProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="buttongroup" type="api">
 
 <LeadParagraph>
@@ -20,7 +18,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 By default, the ButtonGroup will align the buttons horizontally and to the left.
 
-```typescript
+```tsx
 import React from 'react';
 import { ButtonGroup, Button, ButtonColor } from 'react-magma-dom';
 
@@ -38,7 +36,7 @@ export function Example() {
 
 The `orientation` prop can be used to display buttons vertically, instead of horizontally. The `orientation` prop accepts either `horizontal` (default) or `vertical`.
 
-```typescript
+```tsx
 import React from 'react';
 import { ButtonGroup, Button, ButtonGroupOrientation } from 'react-magma-dom';
 
@@ -68,7 +66,7 @@ The `alignment` prop can be used to display buttons in different positions. The 
 
 The `apart` prop should only be used with the `horizontal` orientation.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   ButtonGroup,
@@ -151,13 +149,17 @@ export function Example() {
 
 The `noSpace` prop should only be used with the `horizontal` orientation.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   ButtonGroup,
   Button,
   ButtonGroupOrientation,
   ButtonColor,
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -203,7 +205,7 @@ export function Example() {
 
 The `color`, `variant` and `size` props can be used on the ButtonGroup to set the default value for all the buttons inside it. If a Button in the group also sets that prop, the one in the Button will be visible.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   ButtonGroup,
@@ -238,7 +240,7 @@ export function Example() {
 
 This is an example of how to handle changing the orientation of the `ButtonGroup` for certain Breakpoints.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   ButtonGroup,

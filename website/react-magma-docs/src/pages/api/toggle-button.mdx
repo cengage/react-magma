@@ -6,8 +6,6 @@ props:
   - ToggleButtonIconProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="toggle_button" type="api">
 
 <LeadParagraph>
@@ -17,7 +15,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 ## Basic Usage
 
-```typescript
+```tsx
 import React from 'react';
 import { ToggleButton } from 'react-magma-dom';
 
@@ -30,7 +28,7 @@ export function Example() {
 
 When a pre-selected state is needed, `isChecked` enables an active selected state on render.
 
-```typescript
+```tsx
 import React from 'react';
 import { ToggleButton } from 'react-magma-dom';
 
@@ -47,7 +45,7 @@ export function Example() {
 
 Toggle Buttons come in three formats. Icon only, text only, or text with an icon. `aria-label` prop is required for icon only buttons.
 
-```typescript
+```tsx
 import React from 'react';
 import { Flex, FlexBehavior, ToggleButton } from 'react-magma-dom';
 import { SettingsIcon } from 'react-magma-icons';
@@ -57,7 +55,11 @@ export function Example() {
     <>
       <Flex behavior={FlexBehavior.container} spacing={1}>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="1" icon={<SettingsIcon />} aria-label="Settings" />
+          <ToggleButton
+            value="1"
+            icon={<SettingsIcon />}
+            aria-label="Settings"
+          />
         </Flex>
         <Flex behavior={FlexBehavior.item}>
           <ToggleButton value="2">Text only</ToggleButton>
@@ -77,7 +79,7 @@ export function Example() {
 
 Three sizes are configurable with the `ButtonSize` prop between `small`, `medium` (default), and `large`.
 
-```typescript
+```tsx
 import React from 'react';
 import { Flex, FlexBehavior, ToggleButton } from 'react-magma-dom';
 import { SettingsIcon } from 'react-magma-icons';
@@ -116,7 +118,7 @@ export function Example() {
 
 ## Disabled
 
-```typescript
+```tsx
 import React from 'react';
 import { Flex, FlexBehavior, ToggleButton } from 'react-magma-dom';
 import { SettingsIcon } from 'react-magma-icons';
@@ -126,7 +128,12 @@ export function Example() {
     <>
       <Flex behavior={FlexBehavior.container} spacing={1}>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="1" disabled icon={<SettingsIcon />}  aria-label="Settings" />
+          <ToggleButton
+            value="1"
+            disabled
+            icon={<SettingsIcon />}
+            aria-label="Settings"
+          />
         </Flex>
         <Flex behavior={FlexBehavior.item}>
           <ToggleButton value="2" disabled>
@@ -146,7 +153,7 @@ export function Example() {
 
 ## Inverse
 
-```typescript
+```tsx
 import React from 'react';
 import { Container, Flex, FlexBehavior, ToggleButton } from 'react-magma-dom';
 import { SettingsIcon } from 'react-magma-icons';
@@ -156,7 +163,12 @@ export function Example() {
     <Container isInverse style={{ padding: '12px' }}>
       <Flex behavior={FlexBehavior.container} spacing={1}>
         <Flex behavior={FlexBehavior.item}>
-          <ToggleButton value="1" isInverse icon={<SettingsIcon />}  aria-label="Settings" />
+          <ToggleButton
+            value="1"
+            isInverse
+            icon={<SettingsIcon />}
+            aria-label="Settings"
+          />
         </Flex>
         <Flex behavior={FlexBehavior.item}>
           <ToggleButton value="2" isInverse>

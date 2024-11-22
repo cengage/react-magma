@@ -3,9 +3,6 @@ title: Search
 order: 1
 ---
 
-import { Link } from 'gatsby';
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="search" type="design">
 
 <LeadParagraph>
@@ -25,16 +22,22 @@ Search offers users a way to explore a website or application using keywords. Se
 
 Set the user’s context for the search with helpful placeholder text within the search field (search documents), that pertains to the page or section the search box is in. Search in the global header should just say search.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/inputs/header-search.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/inputs/header-search.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/inputs/inline-search.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/inputs/inline-search.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
   </div>
@@ -52,6 +55,6 @@ Set the user’s context for the search with helpful placeholder text within the
 - Include enough of a description in the results for users to make a judgement as to whether that particular result is relevant.
 - Highlight the search term in the results, where appropriate.
 
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 </PageContent>
