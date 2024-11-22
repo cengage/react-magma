@@ -14,6 +14,7 @@
     "a11y-Stepper-vertical-orientation",
     "a11y-breadcrumb-hide-svg-from-screen-readers",
     "a11y-button-remove-animation-presses",
+    "a11y-charts-space-around-circle-nodes-missing",
     "a11y-checkBox-labels-not-read",
     "a11y-checkbox-hide-svg-from-screen-readers",
     "a11y-combobox-clear-focus",
@@ -50,6 +51,7 @@
     "feat-treeview-add-support-for-isdisabled",
     "feat-treeview-onexpandedchange",
     "fix-blockQuote-border-color",
+    "fix-docs-examples",
     "fix-initial-expanded-items-should-expand-all-parents",
     "fix-input-focus-outline",
     "fix-input-help-link",
@@ -67,11 +69,16 @@
     "implement-scrollspy-in-docs",
     "inputwrapperstyles",
     "search-clear-overlaps",
+    "selecteItemButton-focus",
     "sync4-6",
+    "tag-focus",
+    "toggleButtonGroup",
     "tree-initEx-docs",
+    "tree-validity",
     "treeViewSelectItemsOutside",
     "treeview-undefined-2",
     "treeview-undefined-3",
-    "treeview-undefined"
+    "treeview-undefined",
+    "treeview-undefined4"
   ]
 }

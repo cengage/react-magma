@@ -1,5 +1,35 @@
 ## 4.6.0
 
+## 4.7.0-next.52
+
+### Patch Changes
+
+- c54190d6c: fix(TreeView): Fix undefined problem
+
+## 4.7.0-next.51
+
+### Patch Changes
+
+- 46c70e610: fix(TreeView): Fix invalid tree item children
+
+## 4.7.0-next.50
+
+### Patch Changes
+
+- b8364bbca: fix(ToggleButtonGroup): Fix `enforced` and `exclusive` props
+
+## 4.7.0-next.49
+
+### Patch Changes
+
+- 6a8ed217b: fix(Tag): Update tag focus state
+
+## 4.7.0-next.48
+
+### Patch Changes
+
+- cf959a580: fix(Combobox/Select:): Fix focus color for selected items when using `isMulti` + `isInverse`
+
 ## 4.7.0-next.47
 
 ### Patch Changes

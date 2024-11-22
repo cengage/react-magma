@@ -99,7 +99,7 @@ When using `layout` with `StepperLayout.summaryView`, the option to change the s
 
 ```typescript
 import React from 'react';
-import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
+import { Container, Stepper, Step, StepperLayout, Button, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   const [currentStep, setCurrentStep] = React.useState(0);
@@ -161,13 +161,13 @@ export function Example() {
 }
 ```
 
-## Completed Step Description
+## Completion Label
 
-When using layout `StepperLayout.summaryView`, after all of the steps are complete, the `completedStepDescription` prop takes a string and changes the title.
+When using layout `StepperLayout.summaryView`, after all of the steps are complete, the `completionLabel` prop takes a string and changes the title.
 
 ```typescript
 import React from 'react';
-import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
+import { Container, Stepper, Step, StepperLayout, Button, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   const [currentStep, setCurrentStep] = React.useState(4);
@@ -192,7 +192,7 @@ export function Example() {
     <>
       <Stepper
         ariaLabel="progress"
-        completedStepDescription="Steps Complete!"
+        completionLabel="Steps Complete!"
         layout={StepperLayout.summaryView}
         currentStep={currentStep}
       >
