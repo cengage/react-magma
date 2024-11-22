@@ -20,7 +20,6 @@ Child elements can be added as they are, or inside of `<GridItem></GridItem>`. `
 
 ```typescript
 import React from 'react';
-import styled from '@emotion/styled';
 import {
   Grid,
   GridItem,
@@ -148,15 +147,15 @@ export function Example() {
 
 ```typescript
 import React from 'react';
-import { Grid, GridItem } from 'react-magma-dom';
+import { Grid, GridItem, GridAlignItems, GridJustifyContent } from 'react-magma-dom';
 
 export function Example() {
   return (
     <Grid
       gridTemplateColumns="repeat(4, 1fr)"
       gridGap="1em"
-      gridJustifyContent="center"
-      gridAlignItems="center"
+      gridJustifyContent={GridJustifyContent.center}
+      gridAlignItems={GridAlignItems.center}
     >
       <GridItem
         gridRow="1 / 4"

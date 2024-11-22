@@ -1,5 +1,83 @@
 ## 4.6.0
 
+## 4.7.0-next.52
+
+### Patch Changes
+
+- c54190d6c: fix(TreeView): Fix undefined problem
+
+## 4.7.0-next.51
+
+### Patch Changes
+
+- 46c70e610: fix(TreeView): Fix invalid tree item children
+
+## 4.7.0-next.50
+
+### Patch Changes
+
+- b8364bbca: fix(ToggleButtonGroup): Fix `enforced` and `exclusive` props
+
+## 4.7.0-next.49
+
+### Patch Changes
+
+- 6a8ed217b: fix(Tag): Update tag focus state
+
+## 4.7.0-next.48
+
+### Patch Changes
+
+- cf959a580: fix(Combobox/Select:): Fix focus color for selected items when using `isMulti` + `isInverse`
+
+## 4.7.0-next.47
+
+### Patch Changes
+
+- a163f4230: fix(Heading): Update margins for `heading2XLarge`
+
+## 4.7.0-next.46
+
+### Patch Changes
+
+- f37d5c4af: fix(TreeView): Fix undefined problem
+
+## 4.7.0-next.45
+
+### Patch Changes
+
+- febf617fc: fix(TreeView): Fix undefined problem
+
+## 4.7.0-next.44
+
+### Patch Changes
+
+- fbae9ce39: fix(Input): Style update: Fix HelpLink position on inputs.
+
+## 4.7.0-next.43
+
+### Minor Changes
+
+- 78fc319ba: feat(TreeView): onExpandedChange returns an array of expanded IDs
+
+## 4.7.0-next.42
+
+### Patch Changes
+
+- 5e39ab2b4: fix(Select): Fix multi Select selected item outline.
+
+## 4.7.0-next.41
+
+### Patch Changes
+
+- 8004c9f55: fix(DatePicker): Add `aria-label` to calendar header columns.
+
+## 4.7.0-next.40
+
+### Patch Changes
+
+- 3a97fe97f: patch(Heading): Add the `noTopMargin` and `noBottomMargin` props to the `Heading` component.
+
 ## 4.7.0-next.39
 
 ### Patch Changes

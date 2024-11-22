@@ -291,7 +291,6 @@ export function Example() {
         icon={<MailOutlineIcon />}
         type={InputType.email}
       />
-
       <Input
         labelText="Large input with clickable icon on right"
         iconAriaLabel="Calendar"
@@ -301,7 +300,6 @@ export function Example() {
         }}
         icon={<EventIcon />}
       />
-
       <Input
         errorMessage="Error"
         inputSize="large"
@@ -409,7 +407,15 @@ The container uses a flex layout to ensure the content is positioned appropriate
 
 ```tsx
 import React from 'react';
-import { IconButton, Input, Tooltip, InputType } from 'react-magma-dom';
+import {
+  IconButton,
+  Input,
+  Tooltip,
+  Spacer,
+  LabelPosition,
+  ButtonSize,
+  ButtonVariant,
+} from 'react-magma-dom';
 import { HelpIcon } from 'react-magma-icons';
 export function Example() {
   const helpLinkLabel = 'Learn more';
@@ -419,28 +425,32 @@ export function Example() {
 
   return (
     <>
-      <Input labelText="Help link - top label" labelPosition="top">
+      <Input
+        labelText="Help link - top label"
+        labelPosition={LabelPosition.top}
+      >
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}
             icon={<HelpIcon />}
             onClick={onHelpLinkClick}
-            type={InputType.button}
-            size="small"
-            variant="link"
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
           />
         </Tooltip>
       </Input>
-      <Spacer size="12" />
-      <Input labelText="Help link - left label" labelPosition="left">
+      <Spacer size="16" />
+      <Input
+        labelText="Help link - left label"
+        labelPosition={LabelPosition.left}
+      >
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}
             icon={<HelpIcon />}
             onClick={onHelpLinkClick}
-            type={InputType.button}
-            size="small"
-            variant="link"
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
           />
         </Tooltip>
       </Input>
@@ -455,9 +465,8 @@ export function Example() {
             aria-label={helpLinkLabel}
             icon={<HelpIcon />}
             onClick={onHelpLinkClick}
-            type={InputType.button}
-            size="small"
-            variant="link"
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
           />
         </Tooltip>
       </Input>

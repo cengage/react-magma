@@ -23,6 +23,8 @@ import {
   TreeViewProps,
   ButtonVariant,
   ButtonGroup,
+  Spacer,
+  SpacerAxis,
 } from '../..';
 import { ButtonSize } from '../Button';
 import { FlexAlignContent, FlexAlignItems } from '../Flex';
@@ -201,13 +203,21 @@ export const Complex = (args: Partial<TreeViewProps>) => {
   const [selectedItems, setSelectedItems] =
     React.useState<TreeItemSelectedInterface[]>();
 
+  const [expandedItems, setExpandedItems] = React.useState<string[]>();
   const apiRef = React.useRef<TreeViewApi>();
 
   const { selected, indeterminate } = createControlledTags(
     selectedItems,
     apiRef?.current
   );
-  const total = selectedItems?.length || 0;
+  const total = selectedItems?.length ?? 0;
+
+  const handleExpandedChange = (
+    event: React.SyntheticEvent,
+    expandedItems: string[]
+  ) => {
+    setExpandedItems(expandedItems);
+  };
 
   return (
     <>
@@ -216,6 +226,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
           {...args}
           apiRef={apiRef}
           onSelectedItemChange={setSelectedItems}
+          onExpandedChange={handleExpandedChange}
         >
           <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
             <TreeItem
@@ -336,6 +347,47 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                   }
                   itemId="pt2ch5.1.2"
                 />
+                <TreeItem
+                  icon={<ArticleIcon aria-hidden={true} />}
+                  label={
+                    <>
+                      Section 5.1.3: Apple pie apple pie tart macaroon topping
+                      chocolate cake
+                    </>
+                  }
+                  itemId="pt2ch5.1.3"
+                >
+                  <TreeItem
+                    icon={<ArticleIcon aria-hidden={true} />}
+                    label={
+                      <>
+                        Section 5.1.3.1: Apple pie apple pie tart macaroon
+                        topping chocolate cake
+                      </>
+                    }
+                    itemId="pt2ch5.1.3.1"
+                  />
+                  <TreeItem
+                    icon={<ArticleIcon aria-hidden={true} />}
+                    label={
+                      <>
+                        Section 5.1.3.2: Apple pie apple pie tart macaroon
+                        topping chocolate cake
+                      </>
+                    }
+                    itemId="pt2ch5.1.3.2"
+                  />
+                  <TreeItem
+                    icon={<ArticleIcon aria-hidden={true} />}
+                    label={
+                      <>
+                        Section 5.1.3.3: Apple pie apple pie tart macaroon
+                        topping chocolate cake
+                      </>
+                    }
+                    itemId="pt2ch5.1.3.3"
+                  />
+                </TreeItem>
               </TreeItem>
               <TreeItem
                 icon={<ArticleIcon aria-hidden={true} />}
@@ -439,6 +491,8 @@ export const Complex = (args: Partial<TreeViewProps>) => {
         <Button onClick={() => apiRef.current?.selectAll()}>Select all</Button>
         <Button onClick={() => apiRef.current?.clearAll()}>Clear all</Button>
       </ButtonGroup>
+      <Spacer axis={SpacerAxis.vertical} size={24} />
+      <p>Expanded: {expandedItems?.join(', ')}</p>
     </>
   );
 };
@@ -446,7 +500,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
 Complex.args = {
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Textbook tree',
-  initialExpandedItems: ['pt1', 'pt1ch1', 'pt2ch5.1'],
+  initialExpandedItems: ['pt1', 'pt2ch5.1'],
   preselectedItems: [
     { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
@@ -462,6 +516,10 @@ Complex.args = {
     },
     { itemId: 'pt2ch5.2', checkedStatus: IndeterminateCheckboxStatus.checked },
     { itemId: 'pt2ch5.3', checkedStatus: IndeterminateCheckboxStatus.checked },
+    {
+      itemId: 'pt2ch5.1.3',
+      checkedStatus: IndeterminateCheckboxStatus.checked,
+    },
   ],
   checkParents: true,
   checkChildren: true,
@@ -979,6 +1037,62 @@ ParentsAndChildrenNotAutoChecked.args = {
 };
 
 ParentsAndChildrenNotAutoChecked.parameters = {
+  controls: {
+    exclude: ['isInverse', 'initialExpandedItems', 'ariaLabelledBy'],
+  },
+};
+
+export const InvalidTreeItems = (args: Partial<TreeViewProps>) => {
+  return (
+    <>
+      <p>
+        <em>
+          This is an example of a tree with badly structured tree items. Expect
+          only the following items to be expandable: Node 1, Child 1, Node 2,
+          Child 2, Grandchild 2, Node 6.
+        </em>
+      </p>
+      <TreeView {...args}>
+        <TreeItem label="Node 0 - fragment" itemId="item0" testId="item0">
+          <></>
+        </TreeItem>
+        <TreeItem label="Node 1" itemId="item1" testId="item1">
+          <TreeItem label="Child 1" itemId="item-child1">
+            <TreeItem label="Grandchild 1 - has tag content" itemId="item-gchild1">
+              <Tag>This is a tag as a child of Grandchild 1</Tag>
+            </TreeItem>
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Node 2" itemId="item2">
+          <TreeItem label="Child 2" itemId="item-child2">
+            <TreeItem label="Grandchild 2 - has valid and invalid children" itemId="item-gchild2">
+              <TreeItem label="Great-grandchild 2" itemId="item-ggchild2" />
+              <TreeItem label="Great-grandchild 3" itemId="item-ggchild3">
+                <>Invalid child</>
+              </TreeItem>
+            </TreeItem>
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Node 3 - has empty content" itemId="item3"></TreeItem>
+        <TreeItem label="Node 4 - has child with only text" itemId="item4">
+          Child of node 4 is just text
+        </TreeItem>
+        <TreeItem label="Node 5 - has null content" itemId="item5">
+          {null}
+        </TreeItem>
+        <TreeItem label="Node 6 - has undefined and valid children" itemId="item6">
+          {undefined}
+          <TreeItem label="Node 7" itemId="item7" />
+          <TreeItem label="Node 8 - has undefined content" itemId="item8">
+            {undefined}
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+};
+
+InvalidTreeItems.parameters = {
   controls: {
     exclude: ['isInverse', 'initialExpandedItems', 'ariaLabelledBy'],
   },

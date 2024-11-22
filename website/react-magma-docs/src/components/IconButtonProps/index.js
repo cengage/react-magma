@@ -27,6 +27,7 @@ export function IconButtonProps() {
             options: [
               'ButtonColor.primary',
               'ButtonColor.secondary',
+              'ButtonColor.success',
               'ButtonColor.danger',
               'ButtonColor.marketing',
             ],

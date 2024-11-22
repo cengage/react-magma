@@ -64,6 +64,18 @@ export default {
         options: InputType,
       },
     },
+    labelText: {
+      control: 'text',
+      description: 'Label for the input',
+    },
+    helperMessage: {
+      control: 'text',
+      description: 'Helper message displayed below the input',
+    },
+    errorMessage: {
+      control: 'text',
+      description: 'Error message displayed below the input',
+    },
   },
   errorMessage: '',
 } as Meta;
@@ -182,7 +194,7 @@ export const HelpLink = args => {
           />
         </Tooltip>
       </Input>
-      <br />
+      <Spacer size={16}/>
       <Input
         labelText="Help link - left"
         labelPosition={LabelPosition.left}
@@ -221,6 +233,9 @@ export const HelpLink = args => {
 };
 HelpLink.args = {
   ...Default.args,
+  errorMessage: '',
+  helperMessage: 'Helper Message',
+  labelText: 'Label Text',
 };
 HelpLink.parameters = {
   controls: {
