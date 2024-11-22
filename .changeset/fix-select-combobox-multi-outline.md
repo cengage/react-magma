@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Select): Fix multi Select selected item outline.
+fix(Select): Update outline offset on multiselected items
