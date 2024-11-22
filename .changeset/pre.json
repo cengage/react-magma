@@ -54,7 +54,6 @@
     "fix-docs-examples",
     "fix-initial-expanded-items-should-expand-all-parents",
     "fix-input-focus-outline",
-    "fix-input-help-link",
     "fix-listItem-icons-color",
     "fix-modal-focuslock",
     "fix-select-combobox-multi-outline",
@@ -64,21 +63,16 @@
     "fix-timePicker-adjust-AM-PM-width",
     "fix-toast-loading-ring-misaligned",
     "fix-treeview-docs-example",
-    "fix-treeview-issues-from-verification",
     "heading-margins",
     "implement-scrollspy-in-docs",
     "inputwrapperstyles",
     "search-clear-overlaps",
     "selecteItemButton-focus",
+    "soft-ligers-laugh",
     "sync4-6",
     "tag-focus",
     "toggleButtonGroup",
     "tree-initEx-docs",
-    "tree-validity",
-    "treeViewSelectItemsOutside",
-    "treeview-undefined-2",
-    "treeview-undefined-3",
-    "treeview-undefined",
-    "treeview-undefined4"
+    "treeViewSelectItemsOutside"
   ]
 }
