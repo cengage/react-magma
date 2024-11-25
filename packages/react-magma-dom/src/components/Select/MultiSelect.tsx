@@ -55,7 +55,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       i => itemToString(i) === itemToString(itemToCheck)
     );
 
-    return !isItemDisabled(itemToCheck) && itemIndex !== -1;
+    return !isItemDisabled(itemToCheck) && itemIndex !== -1 && !isItemDisabled(items[itemIndex]);
   }
 
   function getFilteredItemIndex(item: T, filteredItems: T[]) {

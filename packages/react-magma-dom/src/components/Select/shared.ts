@@ -182,6 +182,14 @@ export const SelectedItemButton = styled.button<{
   position: relative;
   white-space: nowrap;
   min-width: 0%;
+  outline-offset: 2px;
+  &:focus {
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+  }
 `;
 
 export const IconWrapper = styled.span`

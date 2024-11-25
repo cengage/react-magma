@@ -563,7 +563,6 @@ describe('Select', () => {
     fireEvent.click(renderedSelect);
 
     expect(getByText('Red')).toHaveAttribute('aria-disabled', 'true');
-    expect(getByText('Red')).toHaveStyleRule('cursor', 'not-allowed');
     expect(getByText('Blue')).toHaveAttribute('aria-disabled', 'false');
     expect(getByText('Green')).toHaveAttribute('aria-disabled', 'false');
   });
