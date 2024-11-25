@@ -196,6 +196,13 @@ export function Example() {
       case ComboboxStateChangeTypes.InputKeyDownEscape:
       case ComboboxStateChangeTypes.InputBlur:
         updateIsOpen(false);
+        updateHighlightedIndex(newChanges.highlightedIndex);
+        break;
+      case ComboboxStateChangeTypes.ItemClick:
+      case ComboboxStateChangeTypes.InputKeyDownEnter:
+        updateHighlightedIndex(newChanges.highlightedIndex);
+        updateIsOpen(newChanges.isOpen);
+        updateSelectedItem(newChanges.selectedItem);
         break;
       default:
         break;
@@ -636,11 +643,11 @@ export function Example() {
   const [isLoading, updateIsLoading] = React.useState<boolean>(false);
 
   function loadItems() {
-    return new Promise((resolve) =>
+    return new Promise(resolve =>
       resolve([
-        { label: "Yellow", value: "yellow" },
-        { label: "Pink", value: "pink" },
-        { label: "Periwinkle", value: "periwinkle" },
+        { label: 'Yellow', value: 'yellow' },
+        { label: 'Pink', value: 'pink' },
+        { label: 'Periwinkle', value: 'periwinkle' },
       ])
     );
   }
@@ -656,7 +663,7 @@ export function Example() {
       updateIsLoading(false);
       loadItems().then((items: any) => {
         setInputItems(
-          items.filter((item) =>
+          items.filter(item =>
             item.label.toLowerCase().startsWith(inputValue.toLowerCase())
           )
         );
@@ -670,9 +677,9 @@ export function Example() {
       labelText="Async"
       isLoading={isLoading}
       defaultItems={[
-        { label: "Red", value: "red" },
-        { label: "Blue", value: "blue" },
-        { label: "Green", value: "green" },
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
       ]}
       onInputValueChange={handleInputValueChange}
     />

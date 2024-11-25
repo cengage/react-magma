@@ -113,7 +113,7 @@ export function Example() {
           b = b.toLowerCase();
           return a > b ? 1 : a < b ? -1 : 0;
         })
-        .map(category, idx => {
+        .map((category, idx) => {
           return (
             <div key={idx}>
               <Heading level={3}>{category}</Heading>

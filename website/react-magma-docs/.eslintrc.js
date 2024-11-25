@@ -16,6 +16,7 @@ module.exports = {
     'complexity': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
     'jsx-a11y/anchor-has-content': 'off',
+    'react/no-unescaped-entities': 'off',
   },
   settings: {
     'mdx/code-blocks': true,

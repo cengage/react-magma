@@ -75,7 +75,10 @@ export function Example() {
 
   return (
     <Dropdown>
-      <DropdownSplitButton aria-label="Split Button" onClick={handleSplitButtonClick}>
+      <DropdownSplitButton
+        aria-label="Split Button"
+        onClick={handleSplitButtonClick}
+      >
         Split Button
       </DropdownSplitButton>
       <DropdownContent>
@@ -612,8 +615,6 @@ export function Example() {
     </Dropdown>
   );
 }
-
-
 ```
 
 ### Leading Icons

@@ -887,7 +887,7 @@ export function Example() {
 
 Use the `apiRef.showMore()` prop when using a Show All button inside a tree, and `apiRef.showLess()` when using a Show Less button.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   ButtonSize,
@@ -1036,7 +1036,7 @@ export function Example() {
 
   const apiRef = React.useRef<TreeViewApi>();
   const [isShowAll, setIsShowAll] = React.useState(false);
-  const [selectedItems, setSelectedItems] =
+  const [, setSelectedItems] =
     React.useState<TreeItemSelectedInterface[]>();
 
   function onSelection(items: TreeItemSelectedInterface[]) {
