@@ -335,9 +335,9 @@ export const SeveralErrors = () => {
     emailAddress: '',
   });
   const [hasErrors, setHasErrors] = React.useState({
-    firstName: true,
-    lastName: true,
-    emailAddress: true,
+    firstName: false,
+    lastName: false,
+    emailAddress: false,
   });
 
   const firstNameInputRef = React.useRef();

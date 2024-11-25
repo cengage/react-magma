@@ -36,9 +36,9 @@ export function Example() {
   });
 
   const [errors, setErrors] = React.useState({
-    firstName: true,
-    lastName: true,
-    email: true,
+    firstName: false,
+    lastName: false,
+    email: false,
   });
 
   const resetErrors = () => {
@@ -73,9 +73,9 @@ export function Example() {
       email: '',
     });
     setErrors({
-      firstName: true,
-      lastName: true,
-      email: true,
+      firstName: false,
+      lastName: false,
+      email: false,
     });
   };
 
