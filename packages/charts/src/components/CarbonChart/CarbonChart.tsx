@@ -20,6 +20,7 @@ import {
   HistogramChart,
   MeterChart,
   ScatterChart,
+  ComboChart,
 } from '@carbon/charts-react';
 import './styles.min.css';
 
@@ -41,6 +42,7 @@ export enum CarbonChartType {
   pie = 'pie',
   radar = 'radar',
   scatter = 'scatter',
+  combo = 'combo',
 }
 
 export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -484,6 +486,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       histogram: HistogramChart,
       meter: MeterChart,
       scatter: ScatterChart,
+      combo: ComboChart,
     };
 
     function buildColors() {
