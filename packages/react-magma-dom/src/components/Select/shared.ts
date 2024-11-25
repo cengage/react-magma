@@ -118,7 +118,6 @@ export const StyledItem = styled('li')<{
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
-  cursor: ${props => (props.isDisabled ? 'not-allowed' : 'default')};
   &:hover {
     background: ${props => buildListHoverColor(props)};
     border-color: transparent;
@@ -183,14 +182,6 @@ export const SelectedItemButton = styled.button<{
   position: relative;
   white-space: nowrap;
   min-width: 0%;
-  outline-offset: 2px;
-  &:focus {
-    outline: 2px solid
-      ${props =>
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
-  }
 `;
 
 export const IconWrapper = styled.span`

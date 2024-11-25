@@ -1,8 +1,5 @@
 import * as React from 'react';
-import {
-  instanceOfDefaultItemObject,
-  MultiSelectProps,
-} from '.';
+import { instanceOfDefaultItemObject, MultiSelectProps } from '.';
 import { useMultipleSelection, useSelect } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
 import { ItemsList } from './ItemsList';
@@ -54,10 +51,11 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   } = props;
 
   function checkSelectedItemValidity(itemToCheck: T) {
-    return (
-      !isItemDisabled(itemToCheck) &&
-      items.findIndex(i => itemToString(i) === itemToString(itemToCheck)) !== -1
+    const itemIndex = items.findIndex(
+      i => itemToString(i) === itemToString(itemToCheck)
     );
+
+    return !isItemDisabled(itemToCheck) && itemIndex !== -1;
   }
 
   function getFilteredItemIndex(item: T, filteredItems: T[]) {

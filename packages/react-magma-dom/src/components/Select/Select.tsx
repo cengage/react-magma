@@ -63,15 +63,15 @@ export function Select<T>(props: SelectProps<T>) {
   }
 
   function getValidItem(itemToCheck: T, key: string): object {
-    if (isItemDisabled(itemToCheck)) {
+    const itemIndex = items.findIndex(
+      i => itemToString(i) === itemToString(itemToCheck)
+    );
+
+    if (itemIndex === -1 || isItemDisabled(itemToCheck)) {
       return { [key]: null };
     }
 
-    return items.findIndex(
-      i => itemToString(i) === itemToString(itemToCheck)
-    ) !== -1
-      ? { [key]: itemToCheck }
-      : { [key]: null };
+    return { [key]: itemToCheck };
   }
 
   function getValidItemIndex(indexToCheck: number) {
