@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(DatePicker): Date clears after invalid character is added.
+fix(DatePicker): Date no longer clears after invalid character is added.
