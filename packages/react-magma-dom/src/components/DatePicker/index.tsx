@@ -315,12 +315,19 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         props.onInputFocus(event);
     }
 
+    function reset() {
+      setFocusedDate(setDefaultFocusedDate());
+      setDateFocused(false);
+    }
+
     function handleInputBlur(event: React.FocusEvent) {
       const { value } = inputRef.current;
       const day = parse(value, i18n.dateFormat, new Date());
 
       if (isValidDateFromString(value, day)) {
         handleDateChange(day, event);
+      } else {
+        reset && typeof reset === 'function' && reset();
       }
 
       props.onInputBlur &&

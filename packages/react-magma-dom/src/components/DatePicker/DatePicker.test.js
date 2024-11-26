@@ -21,6 +21,7 @@ import { Modal } from '../Modal';
 import { ClearingTheDate } from './DatePicker.stories';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+import { getDateFromString } from './utils';
 
 describe('Date Picker', () => {
   it('should find element by testId', () => {
@@ -180,9 +181,9 @@ describe('Date Picker', () => {
     userEvent.keyboard('[ArrowLeft]');
 
     expect(startDateButton).toHaveFocus();
-    
+
     userEvent.keyboard('[ArrowRight]');
-    
+
     expect(startDateButton).not.toHaveFocus();
     expect(selectedDateButton).toHaveFocus();
 
@@ -194,9 +195,7 @@ describe('Date Picker', () => {
   it('should lock focus inside', () => {
     const valueDate = new Date('January 1, 2020');
 
-    const { getByText, getByRole } = render(
-      <DatePicker value={valueDate} />
-    );
+    const { getByText, getByRole } = render(<DatePicker value={valueDate} />);
 
     const selectedDateButton = getByText(1);
     const button = getByRole('button');
@@ -479,13 +478,20 @@ describe('Date Picker', () => {
     expect(getByText('17')).toBe(document.activeElement);
   });
 
-  it('should take focus off of chosen date when none valid date in input', () => {
+  it('should take focus off of chosen date and set focus on the current date when none valid date in input', () => {
     const defaultDate = new Date('January 17, 2019');
     const now = new Date();
     const labelText = 'Date Picker Label';
     const { getByLabelText, getByText } = render(
       <DatePicker defaultDate={defaultDate} labelText={labelText} />
     );
+
+    getByLabelText('Toggle Calendar Widget').focus();
+
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+
+    expect(getByText(format(defaultDate, 'MMMM yyyy'))).not.toBeNull();
+    expect(getByText(format(defaultDate, 'd'))).toBe(document.activeElement);
 
     getByLabelText(labelText).focus();
 
@@ -497,7 +503,42 @@ describe('Date Picker', () => {
 
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByText(format(now, 'd'))).not.toBe(document.activeElement);
+    expect(getByText(format(now, 'MMMM yyyy'))).not.toBeNull();
+    expect(getByText(format(now, 'd'))).toBe(document.activeElement);
+  });
+
+  it('should save typed date even if date is not valid', () => {
+    const labelText = 'Date Picker Label';
+    const invalidDate = '01/09/20141212';
+
+    const { getByLabelText, getByText } = render(
+      <DatePicker labelText={labelText} />
+    );
+
+    fireEvent.change(getByLabelText(labelText), {
+      target: { value: invalidDate },
+    });
+
+    expect(getByLabelText(labelText).hasAttribute('value', invalidDate)).toBeTrue();
+  })
+
+  it('should show an error message when none valid date in input', () => {
+    const labelText = 'Date Picker Label';
+    const errorMessage = 'Please enter a valid date';
+    const invalidDate = '01/09/20141212';
+
+    const hasErrorMessage = () => {
+      if (invalidDate && isNaN(getDateFromString(invalidDate).getTime())) {
+        return errorMessage;
+      }
+      return;
+    };
+
+    const { getByText } = render(
+      <DatePicker labelText={labelText} errorMessage={hasErrorMessage()} />
+    );
+
+    expect(getByText(errorMessage)).toBeInTheDocument();
   });
 
   it('should go to the previous month when the previous month button is clicked', () => {
