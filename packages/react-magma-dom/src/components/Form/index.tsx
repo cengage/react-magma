@@ -8,6 +8,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { InverseContext, useIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
 import { TypographyContextVariant, TypographyVisualStyle } from '../Typography';
+import { Announce } from '../Announce';
 
 /**
  * @children required
@@ -108,7 +109,9 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
           </Heading>
           {description && <Paragraph>{description}</Paragraph>}
           {errorMessage && (
-            <Alert variant={AlertVariant.danger}>{errorMessage}</Alert>
+            <Announce>
+              <Alert variant={AlertVariant.danger}>{errorMessage}</Alert>
+            </Announce>
           )}
           <div>{children}</div>
           <FormActions>{actions}</FormActions>
