@@ -63,9 +63,6 @@ function borderColors(props) {
     if (props.disabled) {
       return transparentize(0.85, props.theme.colors.neutral100);
     }
-    if (props.disabled) {
-      return transparentize(0.85, props.theme.colors.neutral100);
-    }
     return transparentize(0.5, props.theme.colors.neutral100);
   }
   if (props.hasError) {
