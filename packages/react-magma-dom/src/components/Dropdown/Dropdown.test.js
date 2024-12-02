@@ -73,8 +73,21 @@ describe('Dropdown', () => {
     expect(getByText('FAQ')).toBeInTheDocument();
   });
 
+  it('should render the dropdown component with aria-hidden', () => {
+    const { container } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    const svg = container.querySelector('svg');
+
+    expect(svg).toHaveAttribute('aria-hidden', 'true');
+  });
+
   it('should render a dropup', () => {
-    const { getByTestId } = render(
+    const { getByTestId, container } = render(
       <Dropdown dropDirection="up">
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent />
@@ -82,12 +95,14 @@ describe('Dropdown', () => {
     );
 
     expect(getByTestId('caretUp')).toBeInTheDocument();
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('top', 'auto');
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('bottom', '100%');
+
+    const svg = container.querySelector('svg');
+
+    expect(svg).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('should render a dropleft', () => {
-    const { getByTestId } = render(
+    const { getByTestId, container } = render(
       <Dropdown dropDirection="left">
         <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
         <DropdownContent />
@@ -95,19 +110,18 @@ describe('Dropdown', () => {
     );
 
     expect(getByTestId('caretLeft')).toBeInTheDocument();
-    expect(getByTestId('dropdownContent')).toHaveStyleRule(
-      'top',
-      magma.spaceScale.spacing02
-    );
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('right', '100%');
     expect(getByTestId('dropdownButton')).toHaveStyleRule(
       'padding-left',
       magma.spaceScale.spacing03
     );
+
+    const svg = container.querySelector('svg');
+
+    expect(svg).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('should render a dropright', () => {
-    const { getByTestId } = render(
+    const { getByTestId, container } = render(
       <Dropdown dropDirection="right">
         <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
         <DropdownContent />
@@ -115,15 +129,14 @@ describe('Dropdown', () => {
     );
 
     expect(getByTestId('caretRight')).toBeInTheDocument();
-    expect(getByTestId('dropdownContent')).toHaveStyleRule(
-      'top',
-      magma.spaceScale.spacing02
-    );
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('left', '100%');
     expect(getByTestId('dropdownButton')).toHaveStyleRule(
       'padding-right',
       magma.spaceScale.spacing03
     );
+
+    const svg = container.querySelector('svg');
+
+    expect(svg).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('should render a dropdown with a small button', () => {
@@ -158,36 +171,6 @@ describe('Dropdown', () => {
     );
   });
 
-  it('should render a right aligned menu', () => {
-    const { getByTestId } = render(
-      <Dropdown alignment="end">
-        <DropdownButton>Toggle me</DropdownButton>
-        <DropdownContent />
-      </Dropdown>
-    );
-
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('left', 'auto');
-    expect(getByTestId('dropdownContent')).toHaveStyleRule(
-      'right',
-      magma.spaceScale.spacing02
-    );
-  });
-
-  it('should render a top-aligned menu', () => {
-    const { getByTestId } = render(
-      <Dropdown alignment="end" dropDirection="right">
-        <DropdownButton>Toggle me</DropdownButton>
-        <DropdownContent />
-      </Dropdown>
-    );
-
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('top', 'auto');
-    expect(getByTestId('dropdownContent')).toHaveStyleRule(
-      'bottom',
-      magma.spaceScale.spacing02
-    );
-  });
-
   it('should render a split dropdown', () => {
     const { getByTestId, container } = render(
       <Dropdown>
@@ -198,6 +181,10 @@ describe('Dropdown', () => {
 
     expect(getByTestId('caretDown')).toBeInTheDocument();
     expect(container.querySelectorAll('button').length).toBe(2);
+
+    const svg = container.querySelector('svg');
+
+    expect(svg).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('should render a split dropdown with custom label', () => {
@@ -252,7 +239,7 @@ describe('Dropdown', () => {
   });
 
   it('should render a button with custom icon', () => {
-    const { queryByTestId, getByText } = render(
+    const { queryByTestId, getByText, container } = render(
       <Dropdown>
         <DropdownButton icon={<AsteriskIcon />}>Toggle me</DropdownButton>
         <DropdownContent />
@@ -265,6 +252,10 @@ describe('Dropdown', () => {
 
     expect(queryByTestId('caretUp')).not.toBeInTheDocument();
     expect(queryByTestId('caretDown')).not.toBeInTheDocument();
+
+    const svg = container.querySelector('svg');
+
+    expect(svg).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('should render a button with custom icon with specified icon position', () => {
@@ -392,7 +383,7 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
-    userEvent.click(document.body);
+    fireEvent.blur(getByText('Toggle me'));
 
     act(jest.runAllTimers);
 
@@ -827,7 +818,7 @@ describe('Dropdown', () => {
         'block'
       );
 
-      userEvent.click(document.body);
+      fireEvent.blur(getByText('Toggle me'));
       act(jest.runAllTimers);
 
       expect(onClose).toHaveBeenCalled();

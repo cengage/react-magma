@@ -64,6 +64,8 @@ export function Example() {
 
 ## Animated
 
+The `isAnimated` prop can be used to set animation in the progress bar. Because of the problems that animation can create for people who are sensitive to such things, we automatically disable it in the progress bar if we detect that the `prefers-reduced-motion` media query is set.
+
 ```tsx
 import React from 'react';
 import { ProgressBar } from 'react-magma-dom';

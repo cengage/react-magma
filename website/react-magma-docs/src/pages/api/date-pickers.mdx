@@ -62,7 +62,7 @@ import React from 'react';
 import { DatePicker, getDateFromString, inDateRange } from 'react-magma-dom';
 
 export function Example() {
-   const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
+  const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
     undefined
   );
   const minDate = '01/09/2024';
@@ -76,9 +76,12 @@ export function Example() {
     const convertedMinDate = getDateFromString(minDate);
     const convertedMaxDate = getDateFromString(maxDate);
 
-    if (chosenDate && !inDateRange(chosenDate, convertedMinDate, convertedMaxDate)) {
+    if (
+      chosenDate &&
+      !inDateRange(chosenDate, convertedMinDate, convertedMaxDate)
+    ) {
       return `Please enter a date within the range ${minDate} - ${maxDate}`;
-    } 
+    }
 
     return;
   }
@@ -415,6 +418,15 @@ export function Example() {
             thursday: 'J',
             friday: 'V',
             saturday: 'S',
+          },
+          long: {
+            sunday: 'Domingo',
+            monday: 'Lunes',
+            tuesday: 'Martes',
+            wednesday: 'Miércoles',
+            thursday: 'Jueves',
+            friday: 'Viernes',
+            saturday: 'Sábado',
           },
         },
         datePicker: {

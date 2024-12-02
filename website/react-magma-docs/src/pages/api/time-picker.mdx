@@ -142,7 +142,11 @@ export function Example() {
 
   return (
     <>
-      <TimePicker labelText="Time Due" onChange={handleOnChange} value={timeValue} />
+      <TimePicker
+        labelText="Time Due"
+        onChange={handleOnChange}
+        value={timeValue}
+      />
       <br />
       <Button onClick={() => handleOnChange(undefined)}>Clear Time</Button>
     </>
@@ -174,6 +178,8 @@ export function Example() {
 
 ## Internationalization
 
+The `TimePicker` component supports internationalization through the `I18nContext`. You can provide translations for the following properties `hoursAriaLabel`, `minutesAriaLabel` ,`amButtonAriaLabel`, `pmButtonAriaLabel`, `amSelectedAnnounce` and `pmSelectedAnnounce` Additionally, the `labelText` prop affects the aria-label of the input, ensuring that screen readers announce the correct label, making the component accessible for users in different languages.
+
 ```tsx
 import React from 'react';
 import { I18nContext, defaultI18n, TimePicker } from 'react-magma-dom';
@@ -185,9 +191,17 @@ export function Example() {
       value={{
         ...defaultI18n,
         locale: zhCN,
+        timePicker: {
+          hoursAriaLabel: '小时',
+          minutesAriaLabel: '分钟',
+          amButtonAriaLabel: '上午已选中。要切换到下午，请按 p 或回车键。',
+          pmButtonAriaLabel: '下午已选中。要切换到上午，请按 a 或回车键。',
+          amSelectedAnnounce: '现在选择上午',
+          pmSelectedAnnounce: '现在选择下午',
+        },
       }}
     >
-      <TimePicker labelText="International Time" />
+      <TimePicker labelText="到期时间" />
       <TimePicker
         labelText="International Time with Passed in Value"
         value="01:30 下午"

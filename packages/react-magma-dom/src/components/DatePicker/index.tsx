@@ -4,24 +4,41 @@ import { CalendarMonth } from './CalendarMonth';
 import { Announce } from '../Announce';
 import { Input } from '../Input';
 import { InputType } from '../InputBase';
-import { isValid, parse, isMatch } from 'date-fns';
+import {
+  addDays,
+  endOfDay,
+  isAfter,
+  isBefore,
+  isMatch,
+  isSameMonth,
+  isValid,
+  parse,
+  setHours,
+  startOfDay,
+} from 'date-fns';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { EventIcon } from 'react-magma-icons';
 import { VisuallyHidden } from '../VisuallyHidden';
 import {
-  handleKeyPress,
   getCalendarMonthWeeks,
-  getPrevMonthFromDate,
-  getNextMonthFromDate,
-  i18nFormat as format,
   getDateFromString,
+  getNextMonthFromDate,
+  getPrevMonthFromDate,
+  handleKeyPress,
+  i18nFormat as format,
   inDateRange,
 } from './utils';
-import { omit, useGenerateId, Omit, useForkedRef } from '../../utils';
+import { omit, Omit, useForkedRef, useGenerateId } from '../../utils';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { transparentize } from 'polished';
 import styled from '@emotion/styled';
+import {
+  AlignedPlacement,
+  autoUpdate,
+  flip,
+  useFloating,
+} from '@floating-ui/react-dom';
 
 export interface DatePickerProps
   extends Omit<
@@ -53,6 +70,10 @@ export interface DatePickerProps
    * @default false
    */
   isClearable?: boolean;
+  /**
+   * If true, the component will have inverse styling to better appear on a dark background
+   * @default false
+   */
   isInverse?: boolean;
   /**
    * Style properties for the label element
@@ -136,13 +157,11 @@ const DatePickerCalendar = styled.div<{
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
   display: ${props => (props.opened ? 'block' : 'none')};
-  margin-top: ${props => props.theme.spaceScale.spacing01};
+  margin: ${props => props.theme.spaceScale.spacing01} 0px;
   opacity: ${props => (props.opened ? '1' : '0')};
   overflow: hidden;
-  position: absolute;
   transition: opacity 0.2s ease-in-out 0s;
   width: 320px;
-  z-index: ${props => (props.opened ? '998' : '-1')};
 `;
 
 export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
@@ -190,8 +209,14 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     }
 
     function hideHelperInformation() {
-      setHelperInformationShown(false);
       lastFocus.current.focus();
+      setHelperInformationShown(false);
+    }
+
+    function closeHelperInformation() {
+      setHelperInformationShown(false);
+      iconRef.current.focus();
+      setCalendarOpened(false);
     }
 
     function setDateFromConsumer(date: Date): Date {
@@ -211,6 +236,10 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       const convertedMaxDate = getDateFromString(props.maxDate);
 
       if (inDateRange(newDate, convertedMinDate, convertedMaxDate)) {
+        if (isBefore(startOfDay(newDate), convertedMinDate)) {
+          return addDays(newDate, 1);
+        }
+
         return newDate;
       } else if (convertedMaxDate || convertedMinDate) {
         return convertedMinDate ? convertedMinDate : convertedMaxDate;
@@ -236,11 +265,19 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     }
 
     function onPrevMonthClick() {
-      setFocusedDate(getPrevMonthFromDate);
+      const newDate = getPrevMonthFromDate(focusedDate);
+
+      setFocusedDate(
+        isSameMonth(newDate, minDate) ? setDefaultFocusedDate : newDate
+      );
     }
 
     function onNextMonthClick() {
-      setFocusedDate(getNextMonthFromDate);
+      const newDate = getNextMonthFromDate(focusedDate);
+
+      setFocusedDate(
+        isSameMonth(newDate, minDate) ? setDefaultFocusedDate : newDate
+      );
     }
 
     function onDateChange(day: Date) {
@@ -323,11 +360,24 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           iconRef
         );
         if (newChosenDate) {
-          setFocusedDate(newChosenDate);
-        }
-      } else {
-        if (event.key === '?') {
-          showHelperInformation();
+          if (minDate && maxDate) {
+            if (
+              isAfter(setHours(newChosenDate, 12), startOfDay(minDate)) &&
+              isBefore(setHours(newChosenDate, 12), endOfDay(maxDate))
+            ) {
+              setFocusedDate(newChosenDate);
+            }
+          } else if (minDate && !maxDate) {
+            if (isAfter(setHours(newChosenDate, 12), startOfDay(minDate))) {
+              setFocusedDate(newChosenDate);
+            }
+          } else if (maxDate && !minDate) {
+            if (isBefore(setHours(newChosenDate, 12), endOfDay(maxDate))) {
+              setFocusedDate(newChosenDate);
+            }
+          } else {
+            setFocusedDate(newChosenDate);
+          }
         }
       }
     }
@@ -345,7 +395,9 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         props.onChange(day?.toISOString(), event);
 
       onDateChange(day);
-      setFocusedDate(day);
+      setFocusedDate(
+        isAfter(setHours(day, 12), minDate) ? day : setDefaultFocusedDate
+      );
     }
 
     function handleDaySelection(day: Date, event: React.SyntheticEvent) {
@@ -391,6 +443,12 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
 
+    const { floatingStyles, refs } = useFloating({
+      middleware: [flip()],
+      placement: 'bottom-start' as AlignedPlacement,
+      whileElementsMounted: autoUpdate,
+    });
+
     return (
       <CalendarContext.Provider
         value={{
@@ -409,6 +467,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           onNextMonthClick,
           onDateChange: handleDaySelection,
           setDateFocused,
+          onClose: closeHelperInformation,
         }}
       >
         <DatePickerContainer data-testid={testId} onBlur={handleCalendarBlur}>
@@ -437,24 +496,32 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             placeholder={placeholder ? placeholder : dateFormat.toLowerCase()}
             type={InputType.text}
             value={inputValue}
+            setReference={refs.setReference}
           />
           <InverseContext.Provider value={{ isInverse }}>
-            <DatePickerCalendar
-              data-testid="calendarContainer"
-              opened={calendarOpened}
-              isInverse={isInverse}
-              theme={theme}
+            <div
+              ref={refs.setFloating}
+              style={{ ...floatingStyles, zIndex: '998' }}
             >
-              <CalendarMonth
-                focusOnOpen={
-                  calendarOpened && Boolean(focusedDate) && Boolean(chosenDate)
-                }
+              <DatePickerCalendar
+                data-testid="calendarContainer"
+                opened={calendarOpened}
                 isInverse={isInverse}
-                handleCloseButtonClick={handleCloseButtonClick}
-                calendarOpened={calendarOpened}
-                setDateFocused={setDateFocused}
-              />
-            </DatePickerCalendar>
+                theme={theme}
+              >
+                <CalendarMonth
+                  focusOnOpen={
+                    calendarOpened &&
+                    Boolean(focusedDate) &&
+                    Boolean(chosenDate)
+                  }
+                  isInverse={isInverse}
+                  handleCloseButtonClick={handleCloseButtonClick}
+                  calendarOpened={calendarOpened}
+                  setDateFocused={setDateFocused}
+                />
+              </DatePickerCalendar>
+            </div>
           </InverseContext.Provider>
         </DatePickerContainer>
       </CalendarContext.Provider>

@@ -186,6 +186,15 @@ export { Spinner, SpinnerProps } from './components/Spinner';
 export { Stepper, StepperLayout, StepperProps } from './components/Stepper';
 export { Step, StepProps } from './components/Stepper/Step';
 export {
+  Stepper,
+  StepperLayout,
+  StepperProps,
+  StepperOrientation,
+  ResponsiveStepperContainerProps,
+} from './components/Stepper';
+export { Step, StepProps } from './components/Stepper/Step';
+export { ResponsiveStepperContainer } from './components/Stepper';
+export {
   Table,
   TableProps,
   TableDensity,
@@ -214,8 +223,8 @@ export {
   TabsAlignment,
   TabsBorderPosition,
   TabsIconPosition,
-  TabsOrientation,
 } from './components/Tabs';
+export { TabsOrientation, TabsTextTransform } from './components/Tabs/shared';
 export { Tab } from './components/Tabs/Tab';
 export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
 export { TabPanel } from './components/Tabs/TabPanel';

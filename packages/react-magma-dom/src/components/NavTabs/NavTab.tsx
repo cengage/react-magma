@@ -9,9 +9,9 @@ import {
   TabStyles,
   TabsIconPosition,
 } from '../Tabs';
-import { TabsOrientation } from '../Tabs/shared';
+import { TabsOrientation, TabsTextTransform } from '../Tabs/shared';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { omit, useForkedRef, XOR } from '../../utils';
+import { omit, resolveProps, useForkedRef, XOR } from '../../utils';
 
 export interface BaseNavTabProps
   extends React.HTMLAttributes<HTMLAnchorElement> {
@@ -37,6 +37,11 @@ export interface BaseNavTabProps
    * @default TabsOrientation.horizontal
    */
   orientation?: TabsOrientation;
+  /**
+   * Determines whether the tab appears in all-caps
+   * @default TabsTextTransform.uppercase
+   */
+  textTransform?: TabsTextTransform;
   /**
    * @internal
    */
@@ -91,6 +96,7 @@ const StyledTab = styled.a<{
   isFullWidth?: boolean;
   isInverse?: boolean;
   orientation: TabsOrientation;
+  textTransform?: TabsTextTransform;
   theme: any;
 }>`
   ${TabStyles}
@@ -137,7 +143,9 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
   (props, forwardRef) => {
     let children;
     let component;
-    const { isActive, icon, isFocused, testId, to, ...other } = props;
+    const contextProps = React.useContext(NavTabsContext);
+    const resolvedProps = resolveProps(contextProps, props);
+    const { isActive, icon, isFocused, testId, to, ...other } = resolvedProps;
     const theme = React.useContext(ThemeContext);
 
     if (instanceOfNavComponentTab(props)) {
@@ -154,7 +162,8 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
       iconPosition,
       isInverse,
       isFullWidth,
-    } = React.useContext(NavTabsContext);
+      textTransform,
+    } = resolvedProps;
 
     const tabIconPosition = iconPosition
       ? iconPosition
@@ -216,6 +225,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
             iconPosition={tabIconPosition}
             isInverse={isInverse}
             orientation={orientation}
+            textTransform={textTransform}
             theme={theme}
           >
             {icon && (

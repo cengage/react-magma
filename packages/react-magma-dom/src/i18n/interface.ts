@@ -151,10 +151,6 @@ export interface I18nInterface {
         displayValue: string;
         explanation: string;
       };
-      questionMark: {
-        ariaLabel: string;
-        explanation: string;
-      };
     };
   };
   dropdown: {
@@ -246,6 +242,9 @@ export interface I18nInterface {
   select: {
     placeholder: string;
     clearIndicatorAriaLabel: string;
+    multi: {
+      clearIndicatorAriaLabel: string;
+    };
   };
   simplePagination: {
     ofLabel: string;

@@ -1,6 +1,6 @@
 # React Magma Schema Renderer
 
-** THIS PACKAGE IS CURRENTLY A WORK IN PROGRESS AND EXTREMELY BETA. THERE MAY BE BREAKING CHANGES. **
+** THIS PACKAGE HAS BEEN DEPRECATED **
 
 ````
 import * as React from 'react';

@@ -1,17 +1,18 @@
-import React from 'react';
-import { inputBaseStyles } from '../InputBase';
-import { defaultComponents, SelectComponents } from '../Select/components';
-import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '@emotion/styled';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import {
-  UseComboboxGetToggleButtonPropsOptions,
   UseComboboxGetComboboxPropsOptions,
   UseComboboxGetInputPropsOptions,
+  UseComboboxGetToggleButtonPropsOptions,
 } from 'downshift';
+import React from 'react';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { inputBaseStyles } from '../InputBase';
+import { defaultComponents, SelectComponents } from '../Select/components';
 
-import { SelectedItemsWrapper } from '../Select/shared';
+import { ReferenceType } from '@floating-ui/react-dom';
 import { transparentize } from 'polished';
+import { SelectedItemsWrapper } from '../Select/shared';
 
 const ComboBoxContainer = styled.div<{
   hasError?: boolean;
@@ -52,7 +53,7 @@ const InputContainer = styled.div<{
         ${props.isInverse
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
-      outline-offset: 2px;
+      outline-offset: -1px;
     `}
 
   ${props =>
@@ -120,6 +121,7 @@ interface ComboboxInputProps<T> {
   onInputKeyUp?: (event: any) => void;
   placeholder?: string;
   selectedItems?: React.ReactNode;
+  setReference?: (node: ReferenceType) => void;
   toggleButtonRef?: React.Ref<HTMLButtonElement>;
 }
 
@@ -145,6 +147,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     onInputKeyUp,
     placeholder,
     selectedItems,
+    setReference,
     toggleButtonRef,
   } = props;
   const theme = React.useContext(ThemeContext);
@@ -191,49 +194,51 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
   };
 
   return (
-    <ComboBoxContainer
-      {...getComboboxProps()}
-      hasError={hasError}
-      disabled={disabled}
-      isInverse={isInverse}
-      theme={theme}
-    >
-      <InputContainer
-        {...getToggleButtonProps({
-          disabled,
-          ...(toggleButtonRef && { ref: toggleButtonRef }),
-        })}
+    <div ref={setReference}>
+      <ComboBoxContainer
+        {...getComboboxProps()}
         hasError={hasError}
         disabled={disabled}
-        isFocused={isFocused}
         isInverse={isInverse}
-        style={inputStyle}
         theme={theme}
-        ref={innerRef}
       >
-        <SelectedItemsWrapper>
-          {selectedItems}
-          <StyledInput
-            {...inputProps}
-            aria-describedby={ariaDescribedBy}
-            aria-invalid={hasError}
-            disabled={disabled}
-            isInverse={isInverse}
-            placeholder={placeholder}
-            theme={theme}
+        <InputContainer
+          {...getToggleButtonProps({
+            disabled,
+            ...(toggleButtonRef && { ref: toggleButtonRef }),
+          })}
+          hasError={hasError}
+          disabled={disabled}
+          isFocused={isFocused}
+          isInverse={isInverse}
+          style={inputStyle}
+          theme={theme}
+          ref={innerRef}
+        >
+          <SelectedItemsWrapper>
+            {selectedItems}
+            <StyledInput
+              {...inputProps}
+              aria-describedby={ariaDescribedBy}
+              aria-invalid={hasError}
+              disabled={disabled}
+              isInverse={isInverse}
+              placeholder={placeholder}
+              theme={theme}
+            />
+          </SelectedItemsWrapper>
+          {children}
+          {isLoading && !isTypeahead && (
+            <LoadingIndicator
+              style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
+            />
+          )}
+          <DropdownIndicator
+            aria-label="toggle menu"
+            color={dropdownIndicatorColor()}
           />
-        </SelectedItemsWrapper>
-        {children}
-        {isLoading && !isTypeahead && (
-          <LoadingIndicator
-            style={{ flexShrink: 0, marginRight: theme.spaceScale.spacing02 }}
-          />
-        )}
-        <DropdownIndicator
-          aria-label="toggle menu"
-          color={dropdownIndicatorColor()}
-        />
-      </InputContainer>
-    </ComboBoxContainer>
+        </InputContainer>
+      </ComboBoxContainer>
+    </div>
   );
 }

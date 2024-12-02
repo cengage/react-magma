@@ -1,13 +1,14 @@
+import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
+import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
 import { Input, InputProps } from '.';
+import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { Card, CardBody } from '../Card';
+import { IconButton } from '../IconButton';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
-import { Card, CardBody } from '../Card';
 import { Tooltip } from '../Tooltip';
-import { IconButton } from '../IconButton';
-import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { Spacer } from '../Spacer';
 
 const Template: Story<InputProps> = args => (
   <>
@@ -61,6 +62,18 @@ export default {
         type: 'select',
         options: InputType,
       },
+    },
+    labelText: {
+      control: 'text',
+      description: 'Label for the input',
+    },
+    helperMessage: {
+      control: 'text',
+      description: 'Helper message displayed below the input',
+    },
+    errorMessage: {
+      control: 'text',
+      description: 'Error message displayed below the input',
     },
   },
   errorMessage: '',
@@ -161,16 +174,29 @@ Inverse.decorators = [
   ),
 ];
 
-export const WithChildren = args => {
+export const HelpLink = args => {
   const helpLinkLabel = 'Learn more';
   const onHelpLinkClick = () => {
     alert('Help link clicked!');
   };
   return (
     <>
+      <Input labelText="Help link - top" {...args}>
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon />}
+            onClick={onHelpLinkClick}
+            type={ButtonType.button}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+          />
+        </Tooltip>
+      </Input>
+      <Spacer size={16} />
       <Input
-        labelText="Help link - top"
-        iconPosition={InputIconPosition.top}
+        labelText="Help link - left"
+        labelPosition={LabelPosition.left}
         {...args}
       >
         <Tooltip content={helpLinkLabel}>
@@ -184,12 +210,8 @@ export const WithChildren = args => {
           />
         </Tooltip>
       </Input>
-      <br />
-      <Input
-        labelText="Help link - right"
-        iconPosition={InputIconPosition.right}
-        {...args}
-      >
+      <Spacer size={16} />
+      <Input labelText="Help link - hidden" isLabelVisuallyHidden {...args}>
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}
@@ -204,11 +226,22 @@ export const WithChildren = args => {
     </>
   );
 };
-WithChildren.args = {
+HelpLink.args = {
   ...Default.args,
+  errorMessage: '',
+  helperMessage: 'Helper Message',
+  labelText: 'Label Text',
 };
-WithChildren.parameters = {
-  controls: { exclude: ['isInverse', 'type', 'iconPosition'] },
+HelpLink.parameters = {
+  controls: {
+    exclude: [
+      'isInverse',
+      'type',
+      'iconPosition',
+      'isLabelVisuallyHidden',
+      'labelPosition',
+    ],
+  },
 };
 
 export const WithTwoIcons = args => {

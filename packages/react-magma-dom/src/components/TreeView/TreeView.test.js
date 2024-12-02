@@ -92,6 +92,109 @@ const getTreeItemsWithDisabled = props => (
   </TreeView>
 );
 
+const getTreeItemsWithDisabledChildren = props => (
+  <TreeView testId={testId} {...props}>
+    <TreeItem label="Node 1" itemId="item1" testId="item1">
+      <TreeItem
+        label="Child 1"
+        itemId="item-child1"
+        testId="item-child1"
+        isDisabled
+      />
+      <TreeItem
+        label="Child 2"
+        itemId="item-child2"
+        testId="item-child2"
+        isDisabled
+      />
+      <TreeItem label="Child 3" itemId="item-child3" testId="item-child3" />
+      <TreeItem label="Child 4" itemId="item-child4" testId="item-child4" />
+    </TreeItem>
+  </TreeView>
+);
+
+const TreeItemsMultiLevelControlledOutside = props => {
+  const apiRef = React.useRef(null);
+  const [items, setItems] = React.useState([]);
+
+  const onSelectedItemChange = items => {
+    setItems(items);
+    props.onSelectedItemChange(items);
+  };
+
+  return (
+    <>
+      <button
+        data-testid="select-all"
+        onClick={() => apiRef.current.selectAll()}
+      >
+        Select all
+      </button>
+      <button
+        data-testid="clear-all"
+        onClick={() => apiRef.current.clearAll()}
+      />
+      {items.map(({ itemId }) => (
+        <button
+          key={itemId}
+          data-testid={`${itemId}-tag`}
+          onClick={() =>
+            apiRef.current.selectItem({
+              itemId,
+              checkedStatus: IndeterminateCheckboxStatus.unchecked,
+            })
+          }
+        />
+      ))}
+      <TreeView
+        testId={testId}
+        apiRef={apiRef}
+        selectable={TreeViewSelectable.multi}
+        {...props}
+        onSelectedItemChange={onSelectedItemChange}
+      >
+        <TreeItem label="Node 0" itemId="item0" testId="item0" />
+        <TreeItem label="Node 1" itemId="item1" testId="item1">
+          <TreeItem label="Child 1" itemId="item-child1" testId="item-child1" />
+        </TreeItem>
+        <TreeItem label="Node 2" itemId="item2" testId="item2">
+          <TreeItem
+            label="Child 2"
+            itemId="item-child2.1"
+            testId="item-child2.1"
+          >
+            <TreeItem
+              label="Grandchild 2"
+              itemId="item-gchild2"
+              testId="item-gchild2"
+            >
+              <TreeItem
+                label="Great-grandchild 1"
+                itemId="item-ggchild1"
+                testId="item-ggchild1"
+                isDisabled
+              />
+              <TreeItem
+                label="Great-grandchild 2"
+                itemId="item-ggchild2"
+                testId="item-ggchild2"
+              />
+              <TreeItem
+                label="Great-grandchild 3"
+                itemId="item-ggchild3"
+                testId="item-ggchild3"
+              />
+            </TreeItem>
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Node 3" itemId="item3" testId="item3">
+          <TreeItem label="Child 3" itemId="item-child3" testId="item-child3" />
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+};
+
 describe('TreeView', () => {
   it('should find element by testId', () => {
     const { getByTestId } = render(
@@ -148,10 +251,10 @@ describe('TreeView', () => {
       expect(getByTestId('item3')).toHaveAttribute('aria-expanded', 'false');
     });
 
-    it('when child item is part of the array, that item is expanded', () => {
+    it('when child item is part of the array, that item is expanded including parents', () => {
       const { getByTestId } = render(
         getTreeItemsMultiLevel({
-          initialExpandedItems: ['item2', 'item-child2.1'],
+          initialExpandedItems: ['item-child2.1'],
         })
       );
 
@@ -547,23 +650,23 @@ describe('TreeView', () => {
 
         expect(onSelectedItemChange).toHaveBeenCalledWith([
           {
-            itemId: 'item-child2.1',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'item-child2.2',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
             itemId: 'item1',
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+          {
+            itemId: 'item-child1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
           },
           {
             itemId: 'item2',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
           {
-            itemId: 'item-child1',
+            itemId: 'item-child2.1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child2.2',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
         ]);
@@ -622,8 +725,17 @@ describe('TreeView', () => {
           })
         );
 
-        userEvent.click(getByTestId('item1-label'));
+        const item1 = getByTestId('item1');
+        const item1Label = getByTestId('item1-label');
+
+        userEvent.click(item1Label);
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
         expect(onSelectedItemChange).toHaveBeenCalled();
+        expect(item1).toHaveAttribute('aria-selected', 'true');
+
+        userEvent.click(item1Label);
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
+        expect(item1).toHaveAttribute('aria-selected', 'true');
       });
 
       it('function gets called when it has a preselected item', () => {
@@ -737,11 +849,11 @@ describe('TreeView', () => {
 
         expect(onSelectedItemChange).toHaveBeenCalledWith([
           {
-            itemId: 'item-child1',
+            itemId: 'item1',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
           {
-            itemId: 'item1',
+            itemId: 'item-child1',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
         ]);
@@ -777,6 +889,10 @@ describe('TreeView', () => {
         userEvent.click(getByTestId('item2-checkbox'));
         expect(onSelectedItemChange).toHaveBeenCalledWith([
           {
+            itemId: 'item2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
             itemId: 'item-child2.1',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
@@ -796,10 +912,6 @@ describe('TreeView', () => {
             itemId: 'item-ggchild3',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
-          {
-            itemId: 'item2',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
         ]);
         userEvent.click(getByTestId('item2-expand'));
         userEvent.click(getByTestId('item-child2.1-expand'));
@@ -808,15 +920,7 @@ describe('TreeView', () => {
         userEvent.click(getByTestId('item-ggchild2-checkbox'));
         expect(onSelectedItemChange).toHaveBeenCalledWith([
           {
-            itemId: 'item-ggchild3',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'item-ggchild1',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'item-gchild2',
+            itemId: 'item2',
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
           },
           {
@@ -824,8 +928,16 @@ describe('TreeView', () => {
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
           },
           {
-            itemId: 'item2',
+            itemId: 'item-gchild2',
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+          {
+            itemId: 'item-ggchild1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-ggchild3',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
           },
         ]);
 
@@ -844,6 +956,10 @@ describe('TreeView', () => {
         userEvent.click(getByTestId('item2-checkbox'));
         expect(onSelectedItemChange).toHaveBeenCalledWith([
           {
+            itemId: 'item2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
             itemId: 'item-child2.1',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
@@ -861,10 +977,6 @@ describe('TreeView', () => {
           },
           {
             itemId: 'item-ggchild3',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'item2',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
         ]);
@@ -875,15 +987,7 @@ describe('TreeView', () => {
         userEvent.click(getByTestId('item-ggchild2-checkbox'));
         expect(onSelectedItemChange).toHaveBeenCalledWith([
           {
-            itemId: 'item-ggchild3',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'item-ggchild1',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'item-gchild2',
+            itemId: 'item2',
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
           },
           {
@@ -891,19 +995,23 @@ describe('TreeView', () => {
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
           },
           {
-            itemId: 'item2',
+            itemId: 'item-gchild2',
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+          {
+            itemId: 'item-ggchild1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-ggchild3',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
           },
         ]);
 
         userEvent.click(getByTestId('item-ggchild3-checkbox'));
         expect(onSelectedItemChange).toHaveBeenCalledWith([
           {
-            itemId: 'item-ggchild1',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'item-gchild2',
+            itemId: 'item2',
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
           },
           {
@@ -911,8 +1019,12 @@ describe('TreeView', () => {
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
           },
           {
-            itemId: 'item2',
+            itemId: 'item-gchild2',
             checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+          {
+            itemId: 'item-ggchild1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
           },
         ]);
 
@@ -921,6 +1033,10 @@ describe('TreeView', () => {
 
         userEvent.click(getByTestId('item2-checkbox'));
         expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
           {
             itemId: 'item-child2.1',
             checkedStatus: IndeterminateCheckboxStatus.checked,
@@ -939,10 +1055,6 @@ describe('TreeView', () => {
           },
           {
             itemId: 'item-ggchild3',
-            checkedStatus: IndeterminateCheckboxStatus.checked,
-          },
-          {
-            itemId: 'item2',
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
         ]);
@@ -967,12 +1079,14 @@ describe('TreeView', () => {
 
     it('sets only child state as checked if checkParents is false and checkChildren is false', () => {
       const onSelectedItemChange = jest.fn();
-      const { getByTestId } = render(getTreeItemsMultiLevel({
-        onSelectedItemChange,
-        selectable: TreeViewSelectable.multi,
-        checkParents: false,
-        checkChildren: false
-      }));
+      const { getByTestId } = render(
+        getTreeItemsMultiLevel({
+          onSelectedItemChange,
+          selectable: TreeViewSelectable.multi,
+          checkParents: false,
+          checkChildren: false,
+        })
+      );
 
       userEvent.click(getByTestId('item1-expand'));
       const item1Checkbox = getByTestId('item-child1-checkbox');
@@ -980,19 +1094,21 @@ describe('TreeView', () => {
       expect(onSelectedItemChange).toHaveBeenCalledWith([
         {
           itemId: 'item-child1',
-          checkedStatus: IndeterminateCheckboxStatus.checked
-        }
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
       ]);
     });
 
     it('sets child state as checked and parent indeterminate if checkParents is true and checkChildren is false', () => {
       const onSelectedItemChange = jest.fn();
-      const { getByTestId } = render(getTreeItemsMultiLevel({
-        onSelectedItemChange,
-        selectable: TreeViewSelectable.multi,
-        checkParents: true,
-        checkChildren: false
-      }));
+      const { getByTestId } = render(
+        getTreeItemsMultiLevel({
+          onSelectedItemChange,
+          selectable: TreeViewSelectable.multi,
+          checkParents: true,
+          checkChildren: false,
+        })
+      );
 
       userEvent.click(getByTestId('item2-expand'));
       userEvent.click(getByTestId('item-child2.1-expand'));
@@ -1001,21 +1117,58 @@ describe('TreeView', () => {
       userEvent.click(grandChildCheckbox);
       expect(onSelectedItemChange).toHaveBeenCalledWith([
         {
-          itemId: 'item-ggchild1',
-          checkedStatus: IndeterminateCheckboxStatus.checked
-        },
-        {
-          itemId: 'item-gchild2',
-          checkedStatus: IndeterminateCheckboxStatus.indeterminate
+          itemId: 'item2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
         },
         {
           itemId: 'item-child2.1',
-          checkedStatus: IndeterminateCheckboxStatus.indeterminate
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
         },
         {
-          itemId: 'item2',
-          checkedStatus: IndeterminateCheckboxStatus.indeterminate
-        }
+          itemId: 'item-gchild2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-ggchild1',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+    });
+
+    it('sets to all children of preselected and checked parent state as checked if checkParents is false and checkChildren is true', () => {
+      const onSelectedItemChange = jest.fn();
+      const { getByTestId } = render(
+        getTreeItemsMultiLevel({
+          onSelectedItemChange,
+          selectable: TreeViewSelectable.multi,
+          checkParents: false,
+          checkChildren: true,
+          preselectedItems: [
+            {
+              itemId: 'item-gchild2',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ],
+        })
+      );
+
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: 'item-gchild2',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item-ggchild1',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item-ggchild2',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item-ggchild3',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
       ]);
     });
   });
@@ -1253,9 +1406,9 @@ describe('TreeView', () => {
           })
         );
 
-        const item1 = getByTestId('item1-itemwrapper');
-        const item2 = getByTestId('item2-itemwrapper');
-        const item3 = getByTestId('item3-itemwrapper');
+        const item1 = getByTestId('item1');
+        const item2 = getByTestId('item2');
+        const item3 = getByTestId('item3');
 
         userEvent.tab();
         expect(item1).toHaveFocus();
@@ -1274,7 +1427,7 @@ describe('TreeView', () => {
 
         // expand item
         fireEvent.keyDown(item1, { key: 'ArrowRight' });
-        const item1child = getByTestId('item-child1-itemwrapper');
+        const item1child = getByTestId('item-child1');
         expect(getByTestId('item1')).toHaveAttribute('aria-expanded', 'true');
         expect(item1).toHaveFocus();
 
@@ -1296,8 +1449,8 @@ describe('TreeView', () => {
           </TreeView>
         );
 
-        const item0 = getByTestId('item0-itemwrapper');
-        const item1 = getByTestId('item1-itemwrapper');
+        const item0 = getByTestId('item0');
+        const item1 = getByTestId('item1');
 
         userEvent.tab();
         expect(item0).toHaveFocus();
@@ -1317,8 +1470,8 @@ describe('TreeView', () => {
           </TreeView>
         );
 
-        const item0 = getByTestId('item0-itemwrapper');
-        const item1 = getByTestId('item1-itemwrapper');
+        const item0 = getByTestId('item0');
+        const item1 = getByTestId('item1');
 
         userEvent.tab();
         expect(item0).toHaveFocus();
@@ -1333,8 +1486,8 @@ describe('TreeView', () => {
       it('should expand the focused branch item when pressing ArrowRight', () => {
         const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
 
-        const item0Wrapper = getByTestId('item0-itemwrapper');
-        const item1Wrapper = getByTestId('item1-itemwrapper');
+        const item0Wrapper = getByTestId('item0');
+        const item1Wrapper = getByTestId('item1');
         const item1 = getByTestId('item1');
 
         userEvent.tab();
@@ -1351,9 +1504,9 @@ describe('TreeView', () => {
           getTreeItemsOneLevelSmall({ initialExpandedItems: ['item1'] })
         );
 
-        const item0 = getByTestId('item0-itemwrapper');
-        const item1 = getByTestId('item1-itemwrapper');
-        const item1child = getByTestId('item-child1-itemwrapper');
+        const item0 = getByTestId('item0');
+        const item1 = getByTestId('item1');
+        const item1child = getByTestId('item-child1');
 
         userEvent.tab();
         fireEvent.keyDown(item0, { key: 'ArrowDown' });
@@ -1365,7 +1518,7 @@ describe('TreeView', () => {
       it('should maintain focus when pressing ArrowRight on a leaf item', () => {
         const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
 
-        const item0 = getByTestId('item0-itemwrapper');
+        const item0 = getByTestId('item0');
 
         userEvent.tab();
         fireEvent.keyDown(item0, { key: 'ArrowRight' });
@@ -1378,8 +1531,8 @@ describe('TreeView', () => {
           getTreeItemsOneLevelSmall({ initialExpandedItems: ['item1'] })
         );
 
-        const item0 = getByTestId('item0-itemwrapper');
-        const item1 = getByTestId('item1-itemwrapper');
+        const item0 = getByTestId('item0');
+        const item1 = getByTestId('item1');
 
         userEvent.tab();
 
@@ -1393,7 +1546,7 @@ describe('TreeView', () => {
       it('should maintain focus when pressing ArrowLeft on a leaf item', () => {
         const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
 
-        const item0 = getByTestId('item0-itemwrapper');
+        const item0 = getByTestId('item0');
 
         userEvent.tab();
         fireEvent.keyDown(item0, { key: 'ArrowLeft' });
@@ -1404,8 +1557,8 @@ describe('TreeView', () => {
       it('should focus to the first item when pressing the Home key', () => {
         const { getByTestId } = render(getTreeItemsOneLevelSmall({}));
 
-        const item0 = getByTestId('item0-itemwrapper');
-        const item1 = getByTestId('item1-itemwrapper');
+        const item0 = getByTestId('item0');
+        const item1 = getByTestId('item1');
 
         userEvent.tab();
         fireEvent.focus(item1);
@@ -1419,8 +1572,8 @@ describe('TreeView', () => {
           getTreeItemsOneLevelSmall({ initialExpandedItems: ['item1'] })
         );
 
-        const item0 = getByTestId('item0-itemwrapper');
-        const item1Child = getByTestId('item-child1-itemwrapper');
+        const item0 = getByTestId('item0');
+        const item1Child = getByTestId('item-child1');
 
         userEvent.tab();
         fireEvent.focus(item0);
@@ -1434,9 +1587,9 @@ describe('TreeView', () => {
           getTreeItemsOneLevel({ initialExpandedItems: ['item-3'] })
         );
 
-        const item0 = getByTestId('item0-itemwrapper');
-        const item2 = getByTestId('item2-itemwrapper');
-        const item3 = getByTestId('item3-itemwrapper');
+        const item0 = getByTestId('item0');
+        const item2 = getByTestId('item2');
+        const item3 = getByTestId('item3');
 
         userEvent.tab();
         fireEvent.keyDown(item0, { key: 'End' });
@@ -1478,7 +1631,7 @@ describe('TreeView', () => {
               <TreeItem label="Node 1" itemId="item1" testId="item1" />
             </TreeView>
           );
-          const item0 = getByTestId('item0-itemwrapper');
+          const item0 = getByTestId('item0');
 
           userEvent.tab();
           expect(item0).toHaveFocus();
@@ -1488,7 +1641,7 @@ describe('TreeView', () => {
           const { getByTestId } = render(
             getTreeItemsOneLevelSmall({ selectable: TreeViewSelectable.off })
           );
-          const item1 = getByTestId('item1-itemwrapper');
+          const item1 = getByTestId('item1');
 
           userEvent.tab();
           expect(item1).toHaveFocus();
@@ -1502,7 +1655,7 @@ describe('TreeView', () => {
           const { getByTestId } = render(
             getTreeItemsOneLevelSmall({ selectable: TreeViewSelectable.single })
           );
-          const item0 = getByTestId('item0-itemwrapper');
+          const item0 = getByTestId('item0');
 
           userEvent.tab();
           expect(item0).toHaveFocus();
@@ -1521,7 +1674,7 @@ describe('TreeView', () => {
               initialExpandedItems: ['item1'],
             })
           );
-          const item1Child = getByTestId('item-child1-itemwrapper');
+          const item1Child = getByTestId('item-child1');
 
           userEvent.tab();
           expect(item1Child).toHaveFocus();
@@ -1547,12 +1700,18 @@ describe('TreeView', () => {
           fireEvent.keyDown(item1wrapper, { key: 'Enter' });
 
           expect(item1).toHaveAttribute('aria-selected', 'true');
+          expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
           expect(onSelectedItemChange).toHaveBeenCalledWith([
             {
               itemId: 'item1',
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
           ]);
+
+          fireEvent.keyDown(item1wrapper, { key: 'Enter' });
+
+          expect(item1).toHaveAttribute('aria-selected', 'true');
+          expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
         });
 
         it('should select the leaf item when pressing the Space key', () => {
@@ -1573,12 +1732,18 @@ describe('TreeView', () => {
           fireEvent.keyDown(item0wrapper, { key: ' ' });
 
           expect(item0).toHaveAttribute('aria-selected', 'true');
+          expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
           expect(onSelectedItemChange).toHaveBeenCalledWith([
             {
               itemId: 'item0',
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
           ]);
+
+          fireEvent.keyDown(item0wrapper, { key: ' ' });
+
+          expect(item0).toHaveAttribute('aria-selected', 'true');
+          expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
         });
 
         it('should toggle expand the branch item when pressing the Space key', () => {
@@ -1621,7 +1786,7 @@ describe('TreeView', () => {
           const { getByTestId } = render(
             getTreeItemsOneLevelSmall({ selectable: TreeViewSelectable.multi })
           );
-          const item0 = getByTestId('item0-itemwrapper');
+          const item0 = getByTestId('item0');
 
           userEvent.tab();
           expect(item0).toHaveFocus();
@@ -1643,7 +1808,7 @@ describe('TreeView', () => {
               ],
             })
           );
-          const item1 = getByTestId('item1-itemwrapper');
+          const item1 = getByTestId('item1');
 
           userEvent.tab();
           expect(item1).toHaveFocus();
@@ -1674,11 +1839,11 @@ describe('TreeView', () => {
           expect(item3).toHaveAttribute('aria-checked', 'true');
           expect(onSelectedItemChange).toHaveBeenCalledWith([
             {
-              itemId: 'item-child3',
+              itemId: 'item3',
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
             {
-              itemId: 'item3',
+              itemId: 'item-child3',
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
           ]);
@@ -1715,11 +1880,11 @@ describe('TreeView', () => {
           expect(item3).toHaveAttribute('aria-checked', 'true');
           expect(onSelectedItemChange).toHaveBeenCalledWith([
             {
-              itemId: 'item-child3',
+              itemId: 'item3',
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
             {
-              itemId: 'item3',
+              itemId: 'item-child3',
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
           ]);
@@ -1754,11 +1919,11 @@ describe('TreeView', () => {
           expect(itemChild3).toHaveAttribute('aria-checked', 'true');
           expect(onSelectedItemChange).toHaveBeenCalledWith([
             {
-              itemId: 'item-child3',
+              itemId: 'item3',
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
             {
-              itemId: 'item3',
+              itemId: 'item-child3',
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
           ]);
@@ -1791,11 +1956,11 @@ describe('TreeView', () => {
           expect(itemChild3).toHaveAttribute('aria-checked', 'true');
           expect(onSelectedItemChange).toHaveBeenCalledWith([
             {
-              itemId: 'item-child3',
+              itemId: 'item3',
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
             {
-              itemId: 'item3',
+              itemId: 'item-child3',
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
           ]);
@@ -1825,11 +1990,11 @@ describe('TreeView', () => {
           expect(item3).toHaveAttribute('aria-checked', 'true');
           expect(onSelectedItemChange).toHaveBeenCalledWith([
             {
-              itemId: 'item-child3',
+              itemId: 'item3',
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
             {
-              itemId: 'item3',
+              itemId: 'item-child3',
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
           ]);
@@ -1842,6 +2007,633 @@ describe('TreeView', () => {
           );
         });
       });
+
+      it('parent should have indeterminate checkbox state and toggle children selection when some disabled children are partially selected', () => {
+        const onSelectedItemChange = jest.fn();
+        const { getByTestId, debug } = render(
+          getTreeItemsWithDisabledChildren({
+            selectable: TreeViewSelectable.multi,
+            preselectedItems: [
+              {
+                itemId: 'item-child1',
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+              },
+            ],
+            onSelectedItemChange,
+          })
+        );
+
+        const item1 = getByTestId('item1');
+
+        expect(item1).toHaveAttribute('aria-checked', 'mixed');
+
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
+        expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item1',
+            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+          {
+            itemId: 'item-child1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+        ]);
+
+        userEvent.click(getByTestId('item1-checkbox'));
+        expect(item1).toHaveAttribute('aria-checked', 'mixed');
+
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(2);
+        expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item1',
+            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+          {
+            itemId: 'item-child1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child3',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child4',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+        ]);
+
+        userEvent.click(getByTestId('item1-checkbox'));
+        expect(item1).toHaveAttribute('aria-checked', 'mixed');
+
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(3);
+        expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item1',
+            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+          {
+            itemId: 'item-child1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+        ]);
+      });
+
+      it('parent should have unchecked checkbox state when all disabled children and all enabled children are not selected. parent should have indeterminate checkbox state when all disabled children are not selected and some enabled children are selected. parent should have indeterminate checkbox state when all disabled children are not selected and all enabled children are selected. and toggle children selection', () => {
+        const onSelectedItemChange = jest.fn();
+        const { getByTestId, debug } = render(
+          getTreeItemsWithDisabledChildren({
+            selectable: TreeViewSelectable.multi,
+            onSelectedItemChange,
+          })
+        );
+
+        const item1 = getByTestId('item1');
+
+        expect(item1).toHaveAttribute('aria-checked', 'false');
+
+        expect(onSelectedItemChange).not.toHaveBeenCalled();
+
+        userEvent.click(getByTestId('item1-checkbox'));
+        expect(item1).toHaveAttribute('aria-checked', 'mixed');
+
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
+        expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item1',
+            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+          {
+            itemId: 'item-child3',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child4',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+        ]);
+
+        userEvent.click(getByTestId('item1-checkbox'));
+        expect(item1).toHaveAttribute('aria-checked', 'false');
+
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(2);
+        expect(onSelectedItemChange).toHaveBeenCalledWith([]);
+      });
+
+      it('parent should have checked checkbox state when all disabled children are selected and all enabled children are selected. parent should have indeterminate checkbox state when all disabled children are selected and enabled children are partially selected. parent should have indeterminate checkbox state when all disabled children are selected and all enabled children are not selected. and toggle children selection', () => {
+        const onSelectedItemChange = jest.fn();
+        const { getByTestId, debug } = render(
+          getTreeItemsWithDisabledChildren({
+            selectable: TreeViewSelectable.multi,
+            preselectedItems: [
+              {
+                itemId: 'item-child1',
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+              },
+              {
+                itemId: 'item-child2',
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+              },
+              {
+                itemId: 'item-child3',
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+              },
+              {
+                itemId: 'item-child4',
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+              },
+            ],
+            onSelectedItemChange,
+          })
+        );
+
+        const item1 = getByTestId('item1');
+
+        expect(item1).toHaveAttribute('aria-checked', 'true');
+
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
+        expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child3',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child4',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+        ]);
+
+        userEvent.click(getByTestId('item1-checkbox'));
+        expect(item1).toHaveAttribute('aria-checked', 'mixed');
+
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(2);
+        expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item1',
+            checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+          },
+          {
+            itemId: 'item-child1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+        ]);
+
+        userEvent.click(getByTestId('item1-checkbox'));
+        expect(item1).toHaveAttribute('aria-checked', 'true');
+
+        expect(onSelectedItemChange).toHaveBeenCalledTimes(3);
+        expect(onSelectedItemChange).toHaveBeenCalledWith([
+          {
+            itemId: 'item1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child1',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child3',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+          {
+            itemId: 'item-child4',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+          },
+        ]);
+      });
+
+      it('an item can be selected and disabled through preselectedItems', () => {
+        const onSelectedItemChange = jest.fn();
+        const { getByTestId, debug } = render(
+          getTreeItemsWithDisabledChildren({
+            selectable: TreeViewSelectable.multi,
+            preselectedItems: [
+              {
+                itemId: 'item-child1',
+                checkedStatus: IndeterminateCheckboxStatus.unchecked,
+                isDisabled: false,
+              },
+              {
+                itemId: 'item-child2',
+                checkedStatus: IndeterminateCheckboxStatus.unchecked,
+                isDisabled: false,
+              },
+              {
+                itemId: 'item-child3',
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+                isDisabled: true,
+              },
+            ],
+            initialExpandedItems: ['item1'],
+            onSelectedItemChange,
+          })
+        );
+
+        expect(getByTestId('item-child1-checkbox')).not.toHaveAttribute(
+          'disabled'
+        );
+        expect(getByTestId('item-child2-checkbox')).not.toHaveAttribute(
+          'disabled'
+        );
+        expect(getByTestId('item-child3-checkbox')).toHaveAttribute('disabled');
+        expect(getByTestId('item-child3-label')).toHaveStyleRule(
+          'color',
+          transparentize(0.6, magma.colors.neutral500)
+        );
+        expect(getByTestId('item-child4-checkbox')).not.toHaveAttribute(
+          'disabled'
+        );
+      });
+
+      it('should disable all items if "isDisabled" prop set to true on TreeView', () => {
+        const onSelectedItemChange = jest.fn();
+        const { getByTestId, debug } = render(
+          getTreeItemsWithDisabledChildren({
+            isDisabled: true,
+            selectable: TreeViewSelectable.multi,
+            preselectedItems: [
+              {
+                itemId: 'item-child1',
+                checkedStatus: IndeterminateCheckboxStatus.unchecked,
+                isDisabled: false,
+              },
+              {
+                itemId: 'item-child2',
+                checkedStatus: IndeterminateCheckboxStatus.unchecked,
+                isDisabled: false,
+              },
+              {
+                itemId: 'item-child3',
+                checkedStatus: IndeterminateCheckboxStatus.unchecked,
+                isDisabled: true,
+              },
+            ],
+            initialExpandedItems: ['item1'],
+            onSelectedItemChange,
+          })
+        );
+
+        expect(getByTestId('item1-checkbox')).toHaveAttribute('disabled');
+        expect(getByTestId('item1-label')).toHaveStyleRule(
+          'color',
+          transparentize(0.6, magma.colors.neutral500)
+        );
+        expect(getByTestId('item-child1-checkbox')).toHaveAttribute('disabled');
+        expect(getByTestId('item-child1-label')).toHaveStyleRule(
+          'color',
+          transparentize(0.6, magma.colors.neutral500)
+        );
+        expect(getByTestId('item-child2-checkbox')).toHaveAttribute('disabled');
+        expect(getByTestId('item-child2-label')).toHaveStyleRule(
+          'color',
+          transparentize(0.6, magma.colors.neutral500)
+        );
+        expect(getByTestId('item-child3-checkbox')).toHaveAttribute('disabled');
+        expect(getByTestId('item-child3-label')).toHaveStyleRule(
+          'color',
+          transparentize(0.6, magma.colors.neutral500)
+        );
+        expect(getByTestId('item-child4-checkbox')).toHaveAttribute('disabled');
+        expect(getByTestId('item-child4-label')).toHaveStyleRule(
+          'color',
+          transparentize(0.6, magma.colors.neutral500)
+        );
+      });
+    });
+  });
+
+  describe('when controlled outside', () => {
+    it('should be able to select all enabled items outside of TreeView', () => {
+      const onSelectedItemChange = jest.fn();
+      const { getByTestId, debug } = render(
+        <TreeItemsMultiLevelControlledOutside
+          onSelectedItemChange={onSelectedItemChange}
+        />
+      );
+
+      expect(onSelectedItemChange).not.toHaveBeenCalled();
+
+      userEvent.click(getByTestId('select-all'));
+
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: 'item0',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item1',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item-child1',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-child2.1',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-gchild2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-ggchild2',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item-ggchild3',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item3',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item-child3',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+    });
+
+    it('should not select root parent if it initially unselected and disabled during select all', () => {
+      const onSelectedItemChange = jest.fn();
+      const { getByTestId, debug } = render(
+        <TreeItemsMultiLevelControlledOutside
+          onSelectedItemChange={onSelectedItemChange}
+          preselectedItems={[
+            {
+              itemId: 'item1',
+              checkedStatus: IndeterminateCheckboxStatus.unchecked,
+              isDisabled: true,
+            },
+          ]}
+        />
+      );
+
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(0);
+
+      userEvent.click(getByTestId('select-all'));
+
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        { itemId: 'item0', checkedStatus: IndeterminateCheckboxStatus.checked },
+        {
+          itemId: 'item2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-child2.1',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-gchild2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-ggchild2',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item-ggchild3',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        { itemId: 'item3', checkedStatus: IndeterminateCheckboxStatus.checked },
+        {
+          itemId: 'item-child3',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+    });
+
+    it('should be able to clear all enabled items outside of TreeView', () => {
+      const disabledItemId = 'item-ggchild1';
+
+      const onSelectedItemChange = jest.fn();
+      const { getByTestId, debug } = render(
+        <TreeItemsMultiLevelControlledOutside
+          onSelectedItemChange={onSelectedItemChange}
+          preselectedItems={[
+            {
+              itemId: disabledItemId,
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+            {
+              itemId: 'item-ggchild2',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]}
+        />
+      );
+
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: 'item2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-child2.1',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-gchild2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-ggchild1',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item-ggchild2',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+
+      userEvent.click(getByTestId('clear-all'));
+
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(2);
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: 'item2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-child2.1',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-gchild2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-ggchild1',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+    });
+
+    it('should not unselect root parent if it initially selected and disabled during clear all', () => {
+      const onSelectedItemChange = jest.fn();
+      const { getByTestId, debug } = render(
+        <TreeItemsMultiLevelControlledOutside
+          onSelectedItemChange={onSelectedItemChange}
+          preselectedItems={[
+            {
+              itemId: 'item0',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+            {
+              itemId: 'item1',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+              isDisabled: true,
+            },
+          ]}
+        />
+      );
+
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        { itemId: 'item0', checkedStatus: IndeterminateCheckboxStatus.checked },
+        { itemId: 'item1', checkedStatus: IndeterminateCheckboxStatus.checked },
+        {
+          itemId: 'item-child1',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+
+      userEvent.click(getByTestId('clear-all'));
+
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(2);
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        { itemId: 'item1', checkedStatus: IndeterminateCheckboxStatus.checked },
+        {
+          itemId: 'item-child1',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+    });
+
+    it('should be able to unselect enabled item outside of TreeView', () => {
+      const disabledItemId = 'item-ggchild1';
+
+      const onSelectedItemChange = jest.fn();
+      const { getByTestId, debug } = render(
+        <TreeItemsMultiLevelControlledOutside
+          onSelectedItemChange={onSelectedItemChange}
+          preselectedItems={[
+            {
+              itemId: disabledItemId,
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+            {
+              itemId: 'item-ggchild2',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]}
+        />
+      );
+
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: 'item2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-child2.1',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-gchild2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-ggchild1',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item-ggchild2',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+
+      userEvent.click(getByTestId(`${disabledItemId}-tag`));
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
+
+      userEvent.click(getByTestId('item-ggchild2-tag'));
+
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(2);
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: 'item2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-child2.1',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-gchild2',
+          checkedStatus: IndeterminateCheckboxStatus.indeterminate,
+        },
+        {
+          itemId: 'item-ggchild1',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+    });
+  });
+
+  describe('toggle expanded items', () => {
+    it('when selectable is TreeViewSelectable.off should expand/collapse nested items', () => {
+      const { getByTestId, queryByTestId } = render(
+        getTreeItemsMultiLevel({ selectable: TreeViewSelectable.off })
+      );
+
+      userEvent.tab();
+
+      const item2 = getByTestId('item2');
+
+      expect(item2).toHaveAttribute('aria-expanded', 'false');
+
+      userEvent.click(getByTestId('item2-expand'));
+
+      expect(item2).toHaveAttribute('aria-expanded', 'true');
+
+      const item2Child1 = getByTestId('item-child2.1');
+      expect(item2Child1).toHaveAttribute('aria-expanded', 'false');
+
+      userEvent.click(getByTestId('item-child2.1-expand'));
+      expect(item2Child1).toHaveAttribute('aria-expanded', 'true');
+
+      userEvent.click(getByTestId('item-child2.1-expand'));
+      expect(item2Child1).toHaveAttribute('aria-expanded', 'false');
+
+      userEvent.click(getByTestId('item2-expand'));
+      expect(item2).toHaveAttribute('aria-expanded', 'false');
     });
   });
 });

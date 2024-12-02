@@ -1,9 +1,8 @@
 import React from 'react';
-import { render, fireEvent, act } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { Combobox as MultiCombobox } from '.';
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
-import { Button } from '../Button';
 
 describe('MultiCombobox', () => {
   const labelText = 'Label';
