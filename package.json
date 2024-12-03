@@ -28,6 +28,7 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "test-dom": "lerna run test --scope react-magma-dom -- --watch --coverage=false",
+    "webpack-filter-warnings-plugin": "npm install -D webpack-filter-warnings-plugin",
     "storybook": "NODE_OPTIONS='--max-old-space-size=4096' start-storybook -p 6006",
     "build:docs": "lerna run build --scope react-magma-docs --no-progress",
     "build:lite": "lerna run build --ignore react-magma-docs --concurrency=6 --no-progress",
