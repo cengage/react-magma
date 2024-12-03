@@ -9,6 +9,7 @@ import { transparentize } from 'polished';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import { Tag } from '../Tag';
 import { Paragraph } from '../Paragraph';
+import { TreeWithShowAll } from './TreeView.stories';
 
 const TEXT = 'Test Text Tree Item';
 const testId = 'tree-view';
@@ -2326,7 +2327,7 @@ describe('TreeView', () => {
       const disabledItemId = 'item-ggchild1';
   
       const onSelectedItemChange = jest.fn();
-      const { getByTestId, debug } = render(
+      const { getByTestId } = render(
         <TreeItemsMultiLevelControlledOutside
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[
@@ -2596,4 +2597,24 @@ describe('TreeView', () => {
       expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
     });
   });
+
+  describe('tree with hidden items', () => {
+    it('renders tree with some items, and clicking show all displays the rest of the tree', () => {
+      const onSelectedItemChange = jest.fn();
+      const { asFragment, getByLabelText, getByTestId } = render(<TreeWithShowAll onSelectedItemChange={onSelectedItemChange} />);
+
+      expect(asFragment()).toMatchSnapshot();
+
+      expect(getByLabelText('item-title-1')).toBeInTheDocument();
+      expect(getByLabelText('item-title-2')).toBeInTheDocument();
+      expect(getByLabelText('item-title-3')).toBeInTheDocument();
+      expect(getByLabelText('item-title-4')).toBeInTheDocument();
+      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+
+      userEvent.click(getByTestId('showAllBtn'));
+      expect(getByLabelText('item-title-6')).toBeInTheDocument();
+      userEvent.click(getByLabelText('item-title-6'));
+      // expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
+    })
+  })
 });

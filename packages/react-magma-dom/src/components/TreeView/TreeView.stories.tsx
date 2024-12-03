@@ -25,6 +25,10 @@ import {
   ButtonGroup,
   Spacer,
   SpacerAxis,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel
 } from '../..';
 import { ButtonSize } from '../Button';
 import { FlexAlignContent, FlexAlignItems } from '../Flex';
@@ -1096,4 +1100,167 @@ InvalidTreeItems.parameters = {
   controls: {
     exclude: ['isInverse', 'initialExpandedItems', 'ariaLabelledBy'],
   },
+};
+
+// MAST Tree example with hidden items
+
+const renderTreeItemsRecursively = (terms, depth) => {
+  const labelStyles = {
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    width: 230 - depth * 24 + 'px',
+    display: 'inline-block',
+  };
+  return terms.map(term => {
+    return (
+      <TreeItem
+        itemId={term.id}
+        key={term.id}
+        label={term.title}
+        labelStyle={labelStyles}
+        title={term.title}
+        isDisabled={term.title === 'item-title-1'}
+      >
+        {term.children?.length ? (
+          renderTreeItemsRecursively(term.children, depth + 1)
+        ) : (
+          <></>
+        )}
+      </TreeItem>
+    );
+  });
+};
+
+const AccordionSectionWithTreeView = props => {
+  const {
+    trees,
+    title,
+    keyForRerenderOfTagsTree,
+    id,
+    isDisabled,
+    onSelectedItemChange,
+    ...rest
+  } = props;
+  const [isShowAll, setIsShowAll] = React.useState(false);
+  const isSingeTaxonomyOfSuchType = trees.length === 1;
+  const customIndex = Number(id) || 0;
+  const getTermsForRender = terms => {
+    if (isShowAll || terms.length <= 5) return terms;
+    return terms.slice(0, 5);
+  };
+  const getTreesForRender = () => {
+    if (isShowAll || trees.length <= 5) return trees;
+    return trees.slice(0, 5);
+  };
+  const toggleShowAll = () => {
+    setIsShowAll(prev => !prev);
+  };
+  const renderTrees = () => {
+    return (
+      <>
+        {getTreesForRender().map(tree => {
+          // RM issue with types. Should be "TreeItemSelectedInterface" instead of "Object".
+          // eslint-disable-next-line @typescript-eslint/ban-types
+          const handleSelectedItemChange = selectedItems => {
+            // onSelectedItemChange(selectedItems, tree.groupName, tree.id);
+          };
+          return (
+            <TreeView
+              key={JSON.stringify(`${keyForRerenderOfTagsTree}-${tree.id}`)}
+              onSelectedItemChange={handleSelectedItemChange}
+              preselectedItems={tree.preselectedItems}
+              selectable={TreeViewSelectable.multi}
+            >
+              {renderTreeItemsRecursively(
+                isSingeTaxonomyOfSuchType
+                  ? getTermsForRender(tree.items)
+                  : tree.items,
+                0
+              )}
+            </TreeView>
+          );
+        })}
+      </>
+    );
+  };
+  const isShowAllButtonVisible =
+    trees.length === 1 ? trees[0].items.length > 5 : trees.length > 5;
+  return (
+    <AccordionItem {...rest} index={customIndex} isDisabled={isDisabled}>
+      <AccordionButton>{title}</AccordionButton>
+      <AccordionPanel>
+        {renderTrees()}
+        {isShowAllButtonVisible && (
+          <Button
+            disabled={isDisabled}
+            onClick={toggleShowAll}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+            testId='showAllBtn'
+          >
+            {isShowAll ? 'Show Less' : 'Show All'}
+          </Button>
+        )}
+      </AccordionPanel>
+    </AccordionItem>
+  );
+};
+
+
+export const TreeWithShowAll = args => {
+  const props = {
+    title: 'Chapter/Subchapter',
+    trees: [
+      {
+        id: 'tree-id',
+        groupName: 'book-table-of-contents',
+        items: [
+          {
+            id: 'item-id-1',
+            title: 'item-title-1',
+            children: [],
+          },
+          {
+            id: 'item-id-2',
+            title: 'item-title-2',
+            children: [],
+          },
+          {
+            id: 'item-id-3',
+            title: 'item-title-3',
+            children: [],
+          },
+          {
+            id: 'item-id-4',
+            title: 'item-title-4',
+            children: [
+              {
+                id: 'item-id-4.1',
+                title: 'item-title-4.1',
+                children: [],
+              },
+            ],
+          },
+          {
+            id: 'item-id-5',
+            title: 'item-title-5',
+            children: [],
+          },
+          {
+            id: 'item-id-6',
+            title: 'item-title-6',
+            children: [],
+          },
+        ],
+        preselectedItems: [],
+      },
+    ],
+    keyForRerenderOfTagsTree: true,
+  };
+
+  return (
+    <Accordion defaultIndex={[0]} isMulti testId="accordion">
+      <AccordionSectionWithTreeView {...props} {...args} />
+    </Accordion>
+  );
 };

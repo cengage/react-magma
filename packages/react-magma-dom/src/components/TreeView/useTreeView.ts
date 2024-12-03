@@ -208,7 +208,7 @@ export function useTreeView(props: UseTreeViewProps) {
       })
     );
     prevPreselectedItemsRef.current = preselectedItems;
-  }, [preselectedItems, checkParents, checkChildren, selectable, isDisabled]);
+  }, [preselectedItems, checkParents, checkChildren, selectable, isDisabled, children]);
 
   React.useEffect(() => {
     if (initializationRef.current) {
