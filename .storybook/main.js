@@ -24,23 +24,24 @@ module.exports = {
     reactDocgen: false,
     // check: true,
   },
-  webpackFinal: async config => {
-    
-    config.module.rules[0].exclude = /node_modules\/(?!(@carbon)\/).*/;
+  webpackFinal: [
+    async config => {
+      config.module.rules[0].exclude = /node_modules\/(?!(@carbon)\/).*/;
       return {
         ...config,
         // devtool: false,
         module: {
           ...config.module,
-      },
-      // devtool: 'eval',
-      resolve: {
-        ...config.resolve,
-        alias: {
-          ...config.resolve.alias,
-          'react-magma-dom': toPath('packages/react-magma-dom/src'),
         },
-      },
-    };
-  },
+        // devtool: 'eval',
+        resolve: {
+          ...config.resolve,
+          alias: {
+            ...config.resolve.alias,
+            'react-magma-dom': toPath('packages/react-magma-dom/src'),
+          },
+        },
+      };
+    },
+  ],
 };
