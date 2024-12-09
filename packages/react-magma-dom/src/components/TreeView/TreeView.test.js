@@ -2599,9 +2599,142 @@ describe('TreeView', () => {
   });
 
   describe('tree with hidden items', () => {
+    const propsFlatTree = {
+      title: 'Chapter/Subchapter',
+      trees: [
+        {
+          id: 'tree-id',
+          groupName: 'book-table-of-contents',
+          items: [
+            {
+              id: 'item-id-1',
+              title: 'item-title-1',
+              children: [],
+            },
+            {
+              id: 'item-id-2',
+              title: 'item-title-2',
+              children: [],
+            },
+            {
+              id: 'item-id-3',
+              title: 'item-title-3',
+              children: [],
+            },
+            {
+              id: 'item-id-4',
+              title: 'item-title-4',
+              children: [
+                {
+                  id: 'item-id-4.1',
+                  title: 'item-title-4.1',
+                  children: [],
+                },
+              ],
+            },
+            {
+              id: 'item-id-5',
+              title: 'item-title-5',
+              children: [],
+            },
+            {
+              id: 'item-id-6',
+              title: 'item-title-6',
+              children: [],
+            },
+          ],
+          preselectedItems: [
+            {
+              itemId: 'item-id-2',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ],
+        },
+      ],
+      keyForRerenderOfTagsTree: true,
+    };
+
+    const propsTreeWithParent = {
+      title: 'Chapter/Subchapter',
+      trees: [
+        {
+          id: 'tree-id',
+          groupName: 'book-table-of-contents',
+          items: [
+            {
+              id: 'item-id-1',
+              title: 'item-title-1',
+              children: [],
+            },
+            {
+              id: 'item-id-2',
+              title: 'item-title-2',
+              children: [],
+            },
+            {
+              id: 'item-id-3',
+              title: 'item-title-3',
+              children: [],
+            },
+            {
+              id: 'item-id-4',
+              title: 'item-title-4',
+              children: [],
+            },
+            {
+              id: 'item-id-5',
+              title: 'item-title-5',
+              children: [
+                {
+                  id: 'item-id-6',
+                  title: 'item-title-6',
+                  children: [],
+                },
+              ],
+            },
+            {
+              id: 'item-id-7',
+              title: 'item-title-7',
+              children: [
+                {
+                  id: 'item-id-8',
+                  title: 'item-title-8',
+                  children: [],
+                },
+                {
+                  id: 'item-id-9',
+                  title: 'item-title-9',
+                  children: [
+                    {
+                      id: 'item-id-10',
+                      title: 'item-title-10',
+                      children: [],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+          preselectedItems: [
+            {
+              itemId: 'item-id-2',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ],
+        },
+      ],
+      keyForRerenderOfTagsTree: true,
+    };
+
     it('renders tree with some items, and clicking show all displays the rest of the tree', () => {
       const onSelectedItemChange = jest.fn();
-      const { asFragment, getByLabelText, getByTestId } = render(<TreeWithShowAll onSelectedItemChange={onSelectedItemChange} />);
+      const { asFragment, getByLabelText, getByTestId } = render(
+        <TreeWithShowAll
+          {...propsFlatTree}
+          onSelectedItemChange={onSelectedItemChange}
+          preselectedItems={[]}
+        />
+      );
 
       expect(asFragment()).toMatchSnapshot();
 
@@ -2614,7 +2747,167 @@ describe('TreeView', () => {
       userEvent.click(getByTestId('showAllBtn'));
       expect(getByLabelText('item-title-6')).toBeInTheDocument();
       userEvent.click(getByLabelText('item-title-6'));
-      // expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
-    })
-  })
+      expect(getByTestId('item-id-6')).toHaveAttribute('aria-checked', 'true');
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
+    });
+
+    it('renders tree with some items preselected, clicking show all displays the rest of the tree and preselected items remain selected', () => {
+      const onSelectedItemChange = jest.fn();
+      const { asFragment, getByLabelText, getByTestId } = render(
+        <TreeWithShowAll
+          {...propsFlatTree}
+          onSelectedItemChange={onSelectedItemChange}
+          preselectedItems={[
+            {
+              itemId: 'item-id-2',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]}
+        />
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+
+      expect(getByLabelText('item-title-1')).toBeInTheDocument();
+      expect(getByLabelText('item-title-2')).toBeInTheDocument();
+      expect(getByLabelText('item-title-3')).toBeInTheDocument();
+      expect(getByLabelText('item-title-4')).toBeInTheDocument();
+      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+
+      expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
+      userEvent.click(getByTestId('showAllBtn'));
+      expect(getByLabelText('item-title-6')).toBeInTheDocument();
+      userEvent.click(getByLabelText('item-title-6'));
+      expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: 'item-id-2',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item-id-6',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+    });
+
+    it('renders tree with some items preselected, deselecting preselected items, clicking show all displays the rest of the tree and preselected items remain deselected', () => {
+      const onSelectedItemChange = jest.fn();
+      const { asFragment, getByLabelText, getByTestId } = render(
+        <TreeWithShowAll
+          {...propsFlatTree}
+          onSelectedItemChange={onSelectedItemChange}
+          preselectedItems={[
+            {
+              itemId: 'item-id-2',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]}
+        />
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+
+      expect(getByLabelText('item-title-1')).toBeInTheDocument();
+      expect(getByLabelText('item-title-2')).toBeInTheDocument();
+      expect(getByLabelText('item-title-3')).toBeInTheDocument();
+      expect(getByLabelText('item-title-4')).toBeInTheDocument();
+      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+
+      expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
+      userEvent.click(getByLabelText('item-title-2'));
+      userEvent.click(getByTestId('showAllBtn'));
+      expect(getByLabelText('item-title-6')).toBeInTheDocument();
+      userEvent.click(getByLabelText('item-title-6'));
+      expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'false');
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: 'item-id-6',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+    });
+
+    it('clicking show all displays the rest of the tree, preselected items remain selected, and clicking show less maintains selected items', () => {
+      const onSelectedItemChange = jest.fn();
+      const { asFragment, getByLabelText, getByTestId } = render(
+        <TreeWithShowAll
+          {...propsFlatTree}
+          onSelectedItemChange={onSelectedItemChange}
+          preselectedItems={[
+            {
+              itemId: 'item-id-2',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]}
+        />
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+
+      expect(getByLabelText('item-title-1')).toBeInTheDocument();
+      expect(getByLabelText('item-title-2')).toBeInTheDocument();
+      expect(getByLabelText('item-title-3')).toBeInTheDocument();
+      expect(getByLabelText('item-title-4')).toBeInTheDocument();
+      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+
+      expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
+      userEvent.click(getByTestId('showAllBtn'));
+      expect(getByLabelText('item-title-6')).toBeInTheDocument();
+      userEvent.click(getByLabelText('item-title-6'));
+      expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
+      userEvent.click(getByTestId('showAllBtn'));
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(2);
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: 'item-id-2',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item-id-6',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+    });
+
+    it('can uncheck all items by clicking on the parent (including hidden one)', () => {
+      const onSelectedItemChange = jest.fn();
+      const { asFragment, getByLabelText, getByTestId } = render(
+        <TreeWithShowAll
+          {...propsTreeWithParent}
+          onSelectedItemChange={onSelectedItemChange}
+          preselectedItems={[]}
+        />
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+
+      expect(getByLabelText('item-title-1')).toBeInTheDocument();
+      expect(getByLabelText('item-title-2')).toBeInTheDocument();
+      expect(getByLabelText('item-title-3')).toBeInTheDocument();
+      expect(getByLabelText('item-title-4')).toBeInTheDocument();
+      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+
+      userEvent.click(getByTestId('showAllBtn'));
+      expect(getByLabelText('item-title-7')).toBeInTheDocument();
+
+      userEvent.click(getByLabelText('item-title-7'));
+      userEvent.click(getByTestId('item-id-7-expand'));
+      expect(getByTestId('item-id-8')).toHaveAttribute('aria-checked', 'true');
+      expect(getByTestId('item-id-9')).toHaveAttribute('aria-checked', 'true');
+
+      userEvent.click(getByLabelText('item-title-7'));
+      expect(getByTestId('item-id-8')).toHaveAttribute('aria-checked', 'false');
+      expect(getByTestId('item-id-9')).toHaveAttribute('aria-checked', 'false');
+
+      userEvent.click(getByTestId('item-id-9-expand'));
+      userEvent.click(getByLabelText('item-title-10'));
+      expect(getByTestId('item-id-10')).toHaveAttribute('aria-checked', 'true');
+      expect(getByTestId('item-id-9')).toHaveAttribute('aria-checked', 'true');
+      expect(getByTestId('item-id-7')).toHaveAttribute('aria-checked', 'mixed');
+
+      userEvent.click(getByTestId('showAllBtn')); // show less
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(3);
+    });
+  });
 });

@@ -28,7 +28,7 @@ import {
   Accordion,
   AccordionItem,
   AccordionButton,
-  AccordionPanel
+  AccordionPanel,
 } from '../..';
 import { ButtonSize } from '../Button';
 import { FlexAlignContent, FlexAlignItems } from '../Flex';
@@ -1062,14 +1062,20 @@ export const InvalidTreeItems = (args: Partial<TreeViewProps>) => {
         </TreeItem>
         <TreeItem label="Node 1" itemId="item1" testId="item1">
           <TreeItem label="Child 1" itemId="item-child1">
-            <TreeItem label="Grandchild 1 - has tag content" itemId="item-gchild1">
+            <TreeItem
+              label="Grandchild 1 - has tag content"
+              itemId="item-gchild1"
+            >
               <Tag>This is a tag as a child of Grandchild 1</Tag>
             </TreeItem>
           </TreeItem>
         </TreeItem>
         <TreeItem label="Node 2" itemId="item2">
           <TreeItem label="Child 2" itemId="item-child2">
-            <TreeItem label="Grandchild 2 - has valid and invalid children" itemId="item-gchild2">
+            <TreeItem
+              label="Grandchild 2 - has valid and invalid children"
+              itemId="item-gchild2"
+            >
               <TreeItem label="Great-grandchild 2" itemId="item-ggchild2" />
               <TreeItem label="Great-grandchild 3" itemId="item-ggchild3">
                 <>Invalid child</>
@@ -1084,7 +1090,10 @@ export const InvalidTreeItems = (args: Partial<TreeViewProps>) => {
         <TreeItem label="Node 5 - has null content" itemId="item5">
           {null}
         </TreeItem>
-        <TreeItem label="Node 6 - has undefined and valid children" itemId="item6">
+        <TreeItem
+          label="Node 6 - has undefined and valid children"
+          itemId="item6"
+        >
           {undefined}
           <TreeItem label="Node 7" itemId="item7" />
           <TreeItem label="Node 8 - has undefined content" itemId="item8">
@@ -1115,6 +1124,7 @@ const renderTreeItemsRecursively = (terms, depth) => {
     return (
       <TreeItem
         itemId={term.id}
+        testId={term.id}
         key={term.id}
         label={term.title}
         labelStyle={labelStyles}
@@ -1139,11 +1149,13 @@ const AccordionSectionWithTreeView = props => {
     id,
     isDisabled,
     onSelectedItemChange,
+    apiRef,
     ...rest
   } = props;
   const [isShowAll, setIsShowAll] = React.useState(false);
   const isSingeTaxonomyOfSuchType = trees.length === 1;
   const customIndex = Number(id) || 0;
+  
   const getTermsForRender = terms => {
     if (isShowAll || terms.length <= 5) return terms;
     return terms.slice(0, 5);
@@ -1152,24 +1164,26 @@ const AccordionSectionWithTreeView = props => {
     if (isShowAll || trees.length <= 5) return trees;
     return trees.slice(0, 5);
   };
+
   const toggleShowAll = () => {
     setIsShowAll(prev => !prev);
+    if (!isShowAll) {
+      apiRef.current?.showMore();
+    }
   };
+
   const renderTrees = () => {
     return (
       <>
         {getTreesForRender().map(tree => {
-          // RM issue with types. Should be "TreeItemSelectedInterface" instead of "Object".
-          // eslint-disable-next-line @typescript-eslint/ban-types
-          const handleSelectedItemChange = selectedItems => {
-            // onSelectedItemChange(selectedItems, tree.groupName, tree.id);
-          };
           return (
             <TreeView
               key={JSON.stringify(`${keyForRerenderOfTagsTree}-${tree.id}`)}
-              onSelectedItemChange={handleSelectedItemChange}
               preselectedItems={tree.preselectedItems}
               selectable={TreeViewSelectable.multi}
+              onSelectedItemChange={onSelectedItemChange}
+              apiRef={apiRef}
+              {...rest}
             >
               {renderTreeItemsRecursively(
                 isSingeTaxonomyOfSuchType
@@ -1185,6 +1199,7 @@ const AccordionSectionWithTreeView = props => {
   };
   const isShowAllButtonVisible =
     trees.length === 1 ? trees[0].items.length > 5 : trees.length > 5;
+
   return (
     <AccordionItem {...rest} index={customIndex} isDisabled={isDisabled}>
       <AccordionButton>{title}</AccordionButton>
@@ -1196,7 +1211,7 @@ const AccordionSectionWithTreeView = props => {
             onClick={toggleShowAll}
             size={ButtonSize.small}
             variant={ButtonVariant.link}
-            testId='showAllBtn'
+            testId="showAllBtn"
           >
             {isShowAll ? 'Show Less' : 'Show All'}
           </Button>
@@ -1206,61 +1221,182 @@ const AccordionSectionWithTreeView = props => {
   );
 };
 
+const propsFlatTree = {
+  title: 'Chapter/Subchapter',
+  trees: [
+    {
+      id: 'tree-id',
+      groupName: 'book-table-of-contents',
+      items: [
+        {
+          id: 'item-id-1',
+          title: 'item-title-1',
+          children: [],
+        },
+        {
+          id: 'item-id-2',
+          title: 'item-title-2',
+          children: [],
+        },
+        {
+          id: 'item-id-3',
+          title: 'item-title-3',
+          children: [],
+        },
+        {
+          id: 'item-id-4',
+          title: 'item-title-4',
+          children: [
+            {
+              id: 'item-id-4.1',
+              title: 'item-title-4.1',
+              children: [],
+            },
+          ],
+        },
+        {
+          id: 'item-id-5',
+          title: 'item-title-5',
+          children: [],
+        },
+        {
+          id: 'item-id-6',
+          title: 'item-title-6',
+          children: [],
+        },
+      ],
+      preselectedItems: [
+        {
+          itemId: 'item-id-2',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ],
+    },
+  ],
+  keyForRerenderOfTagsTree: true,
+};
 
-export const TreeWithShowAll = args => {
-  const props = {
-    title: 'Chapter/Subchapter',
-    trees: [
-      {
-        id: 'tree-id',
-        groupName: 'book-table-of-contents',
-        items: [
-          {
-            id: 'item-id-1',
-            title: 'item-title-1',
-            children: [],
-          },
-          {
-            id: 'item-id-2',
-            title: 'item-title-2',
-            children: [],
-          },
-          {
-            id: 'item-id-3',
-            title: 'item-title-3',
-            children: [],
-          },
-          {
-            id: 'item-id-4',
-            title: 'item-title-4',
-            children: [
-              {
-                id: 'item-id-4.1',
-                title: 'item-title-4.1',
-                children: [],
-              },
-            ],
-          },
-          {
-            id: 'item-id-5',
-            title: 'item-title-5',
-            children: [],
-          },
-          {
-            id: 'item-id-6',
-            title: 'item-title-6',
-            children: [],
-          },
-        ],
-        preselectedItems: [],
-      },
-    ],
-    keyForRerenderOfTagsTree: true,
-  };
+const propsTreeWithParent = {
+  title: 'Chapter/Subchapter',
+  trees: [
+    {
+      id: 'tree-id',
+      groupName: 'book-table-of-contents',
+      items: [
+        {
+          id: 'item-id-1',
+          title: 'item-title-1',
+          children: [],
+        },
+        {
+          id: 'item-id-2',
+          title: 'item-title-2',
+          children: [],
+        },
+        {
+          id: 'item-id-3',
+          title: 'item-title-3',
+          children: [],
+        },
+        {
+          id: 'item-id-4',
+          title: 'item-title-4',
+          children: [],
+        },
+        {
+          id: 'item-id-5',
+          title: 'item-title-5',
+          children: [
+            {
+              id: 'item-id-6',
+              title: 'item-title-6',
+              children: [],
+            },
+          ],
+        },
+        {
+          id: 'item-id-7',
+          title: 'item-title-7',
+          children: [
+            {
+              id: 'item-id-8',
+              title: 'item-title-8',
+              children: [],
+            },
+            {
+              id: 'item-id-9',
+              title: 'item-title-9',
+              children: [
+                {
+                  id: 'item-id-10',
+                  title: 'item-title-10',
+                  children: [],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      preselectedItems: [
+        {
+          itemId: 'item-id-2',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ],
+    },
+  ],
+  keyForRerenderOfTagsTree: true,
+};
+
+export const TreeWithShowAll = (props) => {
+  // const tree = propsFlatTree;
+  const tree = propsTreeWithParent;
+
+  const [selectedItems, setSelectedItems] = React.useState<
+    TreeItemSelectedInterface[]
+  >(tree?.trees[0].preselectedItems);
+  const apiRef = React.useRef<TreeViewApi>();
+
+  const { selected, indeterminate } = createControlledTags(
+    selectedItems,
+    apiRef?.current
+  );
+  const total = selectedItems?.length ?? 0;
+
+  function onSelection(items: TreeItemSelectedInterface[]) {
+    setSelectedItems(items);
+    props.onSelectedItemChange(items);
+  }
 
   return (
-    <Accordion defaultIndex={[0]} isMulti testId="accordion">
-      <AccordionSectionWithTreeView {...props} {...args} />
-    </Accordion>
+    <>
+      <Accordion defaultIndex={[0]} isMulti testId="accordion">
+        <AccordionSectionWithTreeView
+          {...tree}
+          {...props}
+          apiRef={apiRef}
+          onSelectedItemChange={onSelection}
+        />
+      </Accordion>
+
+      <p>{total} total</p>
+      <p>Selected: {selected}</p>
+      <p>Indeterminate: {indeterminate}</p>
+    </>
   );
+};
+
+TreeWithShowAll.parameters = {
+  controls: {
+    exclude: [
+      'isInverse',
+      'initialExpandedItems',
+      'ariaLabelledBy',
+      'ariaLabel',
+      'testId',
+      'selectable',
+      'checkChildren',
+      'checkParents',
+    ],
+  },
 };
