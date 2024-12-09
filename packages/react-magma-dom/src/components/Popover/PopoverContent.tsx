@@ -61,28 +61,28 @@ const StyledCard = styled(Card)<{
     border-width: 11px;
   }
 
-  &[data-placement=${PopoverPositioning.bottom}]::before {
+  &[data-popover-placement=${PopoverPositioning.bottom}]::before {
     border-color: transparent transparent
       ${props => props.theme.colors.neutral300} transparent;
     left: 50%;
     bottom: 100%;
     transform: translateX(-50%) rotate(0deg);
   }
-  &[data-placement=${PopoverPositioning.top}]::before {
+  &[data-popover-placement=${PopoverPositioning.top}]::before {
     border-color: ${props => props.theme.colors.neutral300} transparent
       transparent transparent;
     left: 50%;
     top: 100%;
     transform: translateX(-50%) rotate(0deg);
   }
-  &[data-placement=${PopoverPositioning.left}]::before {
+  &[data-popover-placement=${PopoverPositioning.left}]::before {
     border-color: transparent transparent transparent
       ${props => props.theme.colors.neutral300};
     left: 100%;
     top: 50%;
     transform: translateY(-50%) rotate(0deg);
   }
-  &[data-placement=${PopoverPositioning.right}]::before {
+  &[data-popover-placement=${PopoverPositioning.right}]::before {
     border-color: transparent ${props => props.theme.colors.neutral300}
       transparent transparent;
     right: 100%;
@@ -100,28 +100,28 @@ const StyledCard = styled(Card)<{
     border-width: 10px;
   }
 
-  &[data-placement=${PopoverPositioning.bottom}]::after {
+  &[data-popover-placement=${PopoverPositioning.bottom}]::after {
     border-color: transparent transparent
       ${props => props.theme.colors.neutral100} transparent;
     left: 50%;
     bottom: 100%;
     transform: translateX(-50%) rotate(0deg);
   }
-  &[data-placement=${PopoverPositioning.top}]::after {
+  &[data-popover-placement=${PopoverPositioning.top}]::after {
     border-color: ${props => props.theme.colors.neutral100} transparent
       transparent transparent;
     left: 50%;
     top: 100%;
     transform: translateX(-50%) rotate(0deg);
   }
-  &[data-placement=${PopoverPositioning.left}]::after {
+  &[data-popover-placement=${PopoverPositioning.left}]::after {
     border-color: transparent transparent transparent
       ${props => props.theme.colors.neutral100};
     left: 100%;
     top: 50%;
     transform: translateY(-50%) rotate(0deg);
   }
-  &[data-placement=${PopoverPositioning.right}]::after {
+  &[data-popover-placement=${PopoverPositioning.right}]::after {
     border-color: transparent ${props => props.theme.colors.neutral100}
       transparent transparent;
     right: 100%;
@@ -225,7 +225,7 @@ export const PopoverContent = React.forwardRef<
         testId={testId || 'popoverContent'}
         theme={theme}
         width={context.width}
-        data-placement={context.positioning}
+        data-popover-placement={context.positioning}
         withoutPointer={context.withoutPointer}
       >
         <PopoverChildrenContent
