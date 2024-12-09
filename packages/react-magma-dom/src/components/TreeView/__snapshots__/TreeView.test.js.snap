@@ -468,6 +468,14 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-98 {
+  display: block;
+  height: 16px;
+  min-height: 16px;
+  min-width: 1px;
+  width: 1px;
+}
+
+.emotion-100 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -511,24 +519,24 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   width: auto;
 }
 
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-98:not(:disabled):hover,
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):hover,
+.emotion-100:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-98:not(:disabled):active {
+.emotion-100:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-98:not(:disabled):active:after {
+.emotion-100:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -538,13 +546,13 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   transition: transform 0s;
 }
 
-.emotion-98 svg {
+.emotion-100 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-100 {
+.emotion-102 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -554,6 +562,10 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.emotion-104 {
+  padding-left: 4px;
 }
 
 .emotion-0 {
@@ -1022,6 +1034,14 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-98 {
+  display: block;
+  height: 16px;
+  min-height: 16px;
+  min-width: 1px;
+  width: 1px;
+}
+
+.emotion-100 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1065,24 +1085,24 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   width: auto;
 }
 
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-98:not(:disabled):hover,
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):hover,
+.emotion-100:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-98:not(:disabled):active {
+.emotion-100:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-98:not(:disabled):active:after {
+.emotion-100:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -1092,13 +1112,13 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   transition: transform 0s;
 }
 
-.emotion-98 svg {
+.emotion-100 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-100 {
+.emotion-102 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1108,6 +1128,10 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.emotion-104 {
+  padding-left: 4px;
 }
 
 <div
@@ -1525,148 +1549,45 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
               </div>
             </li>
           </ul>
+          <span
+            class="emotion-98 emotion-9"
+            size="16"
+          />
           <button
-            class="emotion-98 emotion-99"
+            class="emotion-100 emotion-101"
             color="primary"
             data-testid="showAllBtn"
             shape="fill"
             type="button"
           >
             <span
-              class="emotion-100 emotion-101"
+              class="emotion-102 emotion-103"
             >
-              Show All
+              <svg
+                aria-hidden="true"
+                class="icon"
+                fill="currentColor"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7a.9959.9959 0 010-1.41c.39-.38 1.03-.39 1.42 0z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              <span
+                class="emotion-104 emotion-105"
+              >
+                Show All
+              </span>
             </span>
           </button>
         </div>
       </div>
     </div>
   </div>
-  <p>
-    1 total
-  </p>
-  .emotion-0 {
-  border: 0;
-  border-radius: 16px;
-  background: #3942B0;
-  color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: space-around;
-  -ms-flex-pack: space-around;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .32px;
-  min-width: 48px;
-  padding: 0 4px;
-  cursor: pointer;
-}
-
-.emotion-0 svg:first-of-type {
-  opacity: inherit;
-  height: 16px;
-  width: 16px;
-}
-
-.emotion-0 svg:last-child {
-  opacity: 75%;
-  width: 16px;
-}
-
-.emotion-0:focus {
-  outline-offset: 2px;
-  outline: 2px solid #0074B7;
-}
-
-.emotion-2 {
-  padding: 0 4px;
-}
-
-.emotion-0 {
-  border: 0;
-  border-radius: 16px;
-  background: #3942B0;
-  color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: space-around;
-  -ms-flex-pack: space-around;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .32px;
-  min-width: 48px;
-  padding: 0 4px;
-  cursor: pointer;
-}
-
-.emotion-0 svg:first-of-type {
-  opacity: inherit;
-  height: 16px;
-  width: 16px;
-}
-
-.emotion-0 svg:last-child {
-  opacity: 75%;
-  width: 16px;
-}
-
-.emotion-0:focus {
-  outline-offset: 2px;
-  outline: 2px solid #0074B7;
-}
-
-.emotion-2 {
-  padding: 0 4px;
-}
-
-<p>
-    Selected: 
-    <button
-      class="emotion-0 emotion-1"
-      color="primary"
-    >
-      <span
-        class="emotion-2 emotion-3"
-      >
-        item-id-2
-      </span>
-      <svg
-        aria-label="Delete item-id-2 tag"
-        class="icon"
-        fill="currentColor"
-        height="20"
-        viewBox="0 0 24 24"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm4.3 14.3c-.39.39-1.02.39-1.41 0L12 13.41 9.11 16.3c-.39.39-1.02.39-1.41 0a.9959.9959 0 010-1.41L10.59 12 7.7 9.11a.9959.9959 0 010-1.41c.39-.39 1.02-.39 1.41 0L12 10.59l2.89-2.89c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41L13.41 12l2.89 2.89c.38.38.38 1.02 0 1.41z"
-          fill-rule="evenodd"
-        />
-      </svg>
-    </button>
-  </p>
-  <p>
-    Indeterminate: 
-  </p>
 </DocumentFragment>
 `;
 
@@ -2213,6 +2134,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-98 {
+  display: block;
+  height: 16px;
+  min-height: 16px;
+  min-width: 1px;
+  width: 1px;
+}
+
+.emotion-100 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2256,24 +2185,24 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   width: auto;
 }
 
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-98:not(:disabled):hover,
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):hover,
+.emotion-100:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-98:not(:disabled):active {
+.emotion-100:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-98:not(:disabled):active:after {
+.emotion-100:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2283,13 +2212,13 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   transition: transform 0s;
 }
 
-.emotion-98 svg {
+.emotion-100 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-100 {
+.emotion-102 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2299,6 +2228,10 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.emotion-104 {
+  padding-left: 4px;
 }
 
 .emotion-0 {
@@ -2842,6 +2775,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-98 {
+  display: block;
+  height: 16px;
+  min-height: 16px;
+  min-width: 1px;
+  width: 1px;
+}
+
+.emotion-100 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2885,24 +2826,24 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   width: auto;
 }
 
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-98:not(:disabled):hover,
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):hover,
+.emotion-100:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-98:not(:disabled):active {
+.emotion-100:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-98:not(:disabled):active:after {
+.emotion-100:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2912,13 +2853,13 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   transition: transform 0s;
 }
 
-.emotion-98 svg {
+.emotion-100 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-100 {
+.emotion-102 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2928,6 +2869,10 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.emotion-104 {
+  padding-left: 4px;
 }
 
 <div
@@ -3346,148 +3291,45 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
               </div>
             </li>
           </ul>
+          <span
+            class="emotion-98 emotion-9"
+            size="16"
+          />
           <button
-            class="emotion-98 emotion-99"
+            class="emotion-100 emotion-101"
             color="primary"
             data-testid="showAllBtn"
             shape="fill"
             type="button"
           >
             <span
-              class="emotion-100 emotion-101"
+              class="emotion-102 emotion-103"
             >
-              Show All
+              <svg
+                aria-hidden="true"
+                class="icon"
+                fill="currentColor"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7a.9959.9959 0 010-1.41c.39-.38 1.03-.39 1.42 0z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              <span
+                class="emotion-104 emotion-105"
+              >
+                Show All
+              </span>
             </span>
           </button>
         </div>
       </div>
     </div>
   </div>
-  <p>
-    1 total
-  </p>
-  .emotion-0 {
-  border: 0;
-  border-radius: 16px;
-  background: #3942B0;
-  color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: space-around;
-  -ms-flex-pack: space-around;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .32px;
-  min-width: 48px;
-  padding: 0 4px;
-  cursor: pointer;
-}
-
-.emotion-0 svg:first-of-type {
-  opacity: inherit;
-  height: 16px;
-  width: 16px;
-}
-
-.emotion-0 svg:last-child {
-  opacity: 75%;
-  width: 16px;
-}
-
-.emotion-0:focus {
-  outline-offset: 2px;
-  outline: 2px solid #0074B7;
-}
-
-.emotion-2 {
-  padding: 0 4px;
-}
-
-.emotion-0 {
-  border: 0;
-  border-radius: 16px;
-  background: #3942B0;
-  color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: space-around;
-  -ms-flex-pack: space-around;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .32px;
-  min-width: 48px;
-  padding: 0 4px;
-  cursor: pointer;
-}
-
-.emotion-0 svg:first-of-type {
-  opacity: inherit;
-  height: 16px;
-  width: 16px;
-}
-
-.emotion-0 svg:last-child {
-  opacity: 75%;
-  width: 16px;
-}
-
-.emotion-0:focus {
-  outline-offset: 2px;
-  outline: 2px solid #0074B7;
-}
-
-.emotion-2 {
-  padding: 0 4px;
-}
-
-<p>
-    Selected: 
-    <button
-      class="emotion-0 emotion-1"
-      color="primary"
-    >
-      <span
-        class="emotion-2 emotion-3"
-      >
-        item-id-2
-      </span>
-      <svg
-        aria-label="Delete item-id-2 tag"
-        class="icon"
-        fill="currentColor"
-        height="20"
-        viewBox="0 0 24 24"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm4.3 14.3c-.39.39-1.02.39-1.41 0L12 13.41 9.11 16.3c-.39.39-1.02.39-1.41 0a.9959.9959 0 010-1.41L10.59 12 7.7 9.11a.9959.9959 0 010-1.41c.39-.39 1.02-.39 1.41 0L12 10.59l2.89-2.89c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41L13.41 12l2.89 2.89c.38.38.38 1.02 0 1.41z"
-          fill-rule="evenodd"
-        />
-      </svg>
-    </button>
-  </p>
-  <p>
-    Indeterminate: 
-  </p>
 </DocumentFragment>
 `;
 
@@ -4034,6 +3876,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-98 {
+  display: block;
+  height: 16px;
+  min-height: 16px;
+  min-width: 1px;
+  width: 1px;
+}
+
+.emotion-100 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -4077,24 +3927,24 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: auto;
 }
 
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-98:not(:disabled):hover,
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):hover,
+.emotion-100:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-98:not(:disabled):active {
+.emotion-100:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-98:not(:disabled):active:after {
+.emotion-100:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -4104,13 +3954,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   transition: transform 0s;
 }
 
-.emotion-98 svg {
+.emotion-100 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-100 {
+.emotion-102 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -4120,6 +3970,10 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.emotion-104 {
+  padding-left: 4px;
 }
 
 .emotion-0 {
@@ -4663,6 +4517,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-98 {
+  display: block;
+  height: 16px;
+  min-height: 16px;
+  min-width: 1px;
+  width: 1px;
+}
+
+.emotion-100 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -4706,24 +4568,24 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: auto;
 }
 
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-98:not(:disabled):hover,
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):hover,
+.emotion-100:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-98:not(:disabled):active {
+.emotion-100:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-98:not(:disabled):active:after {
+.emotion-100:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -4733,13 +4595,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   transition: transform 0s;
 }
 
-.emotion-98 svg {
+.emotion-100 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-100 {
+.emotion-102 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -4749,6 +4611,10 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.emotion-104 {
+  padding-left: 4px;
 }
 
 <div
@@ -5167,148 +5033,45 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
               </div>
             </li>
           </ul>
+          <span
+            class="emotion-98 emotion-9"
+            size="16"
+          />
           <button
-            class="emotion-98 emotion-99"
+            class="emotion-100 emotion-101"
             color="primary"
             data-testid="showAllBtn"
             shape="fill"
             type="button"
           >
             <span
-              class="emotion-100 emotion-101"
+              class="emotion-102 emotion-103"
             >
-              Show All
+              <svg
+                aria-hidden="true"
+                class="icon"
+                fill="currentColor"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7a.9959.9959 0 010-1.41c.39-.38 1.03-.39 1.42 0z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              <span
+                class="emotion-104 emotion-105"
+              >
+                Show All
+              </span>
             </span>
           </button>
         </div>
       </div>
     </div>
   </div>
-  <p>
-    1 total
-  </p>
-  .emotion-0 {
-  border: 0;
-  border-radius: 16px;
-  background: #3942B0;
-  color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: space-around;
-  -ms-flex-pack: space-around;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .32px;
-  min-width: 48px;
-  padding: 0 4px;
-  cursor: pointer;
-}
-
-.emotion-0 svg:first-of-type {
-  opacity: inherit;
-  height: 16px;
-  width: 16px;
-}
-
-.emotion-0 svg:last-child {
-  opacity: 75%;
-  width: 16px;
-}
-
-.emotion-0:focus {
-  outline-offset: 2px;
-  outline: 2px solid #0074B7;
-}
-
-.emotion-2 {
-  padding: 0 4px;
-}
-
-.emotion-0 {
-  border: 0;
-  border-radius: 16px;
-  background: #3942B0;
-  color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: space-around;
-  -ms-flex-pack: space-around;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .32px;
-  min-width: 48px;
-  padding: 0 4px;
-  cursor: pointer;
-}
-
-.emotion-0 svg:first-of-type {
-  opacity: inherit;
-  height: 16px;
-  width: 16px;
-}
-
-.emotion-0 svg:last-child {
-  opacity: 75%;
-  width: 16px;
-}
-
-.emotion-0:focus {
-  outline-offset: 2px;
-  outline: 2px solid #0074B7;
-}
-
-.emotion-2 {
-  padding: 0 4px;
-}
-
-<p>
-    Selected: 
-    <button
-      class="emotion-0 emotion-1"
-      color="primary"
-    >
-      <span
-        class="emotion-2 emotion-3"
-      >
-        item-id-2
-      </span>
-      <svg
-        aria-label="Delete item-id-2 tag"
-        class="icon"
-        fill="currentColor"
-        height="20"
-        viewBox="0 0 24 24"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm4.3 14.3c-.39.39-1.02.39-1.41 0L12 13.41 9.11 16.3c-.39.39-1.02.39-1.41 0a.9959.9959 0 010-1.41L10.59 12 7.7 9.11a.9959.9959 0 010-1.41c.39-.39 1.02-.39 1.41 0L12 10.59l2.89-2.89c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41L13.41 12l2.89 2.89c.38.38.38 1.02 0 1.41z"
-          fill-rule="evenodd"
-        />
-      </svg>
-    </button>
-  </p>
-  <p>
-    Indeterminate: 
-  </p>
 </DocumentFragment>
 `;
 
@@ -5855,6 +5618,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-98 {
+  display: block;
+  height: 16px;
+  min-height: 16px;
+  min-width: 1px;
+  width: 1px;
+}
+
+.emotion-100 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -5898,24 +5669,24 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: auto;
 }
 
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-98:not(:disabled):hover,
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):hover,
+.emotion-100:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-98:not(:disabled):active {
+.emotion-100:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-98:not(:disabled):active:after {
+.emotion-100:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -5925,13 +5696,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   transition: transform 0s;
 }
 
-.emotion-98 svg {
+.emotion-100 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-100 {
+.emotion-102 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -5941,6 +5712,10 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.emotion-104 {
+  padding-left: 4px;
 }
 
 .emotion-0 {
@@ -6484,6 +6259,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-98 {
+  display: block;
+  height: 16px;
+  min-height: 16px;
+  min-width: 1px;
+  width: 1px;
+}
+
+.emotion-100 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -6527,24 +6310,24 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: auto;
 }
 
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-98:not(:disabled):hover,
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):hover,
+.emotion-100:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-98:not(:disabled):active {
+.emotion-100:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-98:not(:disabled):active:after {
+.emotion-100:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -6554,13 +6337,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   transition: transform 0s;
 }
 
-.emotion-98 svg {
+.emotion-100 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-100 {
+.emotion-102 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -6570,6 +6353,10 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.emotion-104 {
+  padding-left: 4px;
 }
 
 <div
@@ -6988,148 +6775,45 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
               </div>
             </li>
           </ul>
+          <span
+            class="emotion-98 emotion-9"
+            size="16"
+          />
           <button
-            class="emotion-98 emotion-99"
+            class="emotion-100 emotion-101"
             color="primary"
             data-testid="showAllBtn"
             shape="fill"
             type="button"
           >
             <span
-              class="emotion-100 emotion-101"
+              class="emotion-102 emotion-103"
             >
-              Show All
+              <svg
+                aria-hidden="true"
+                class="icon"
+                fill="currentColor"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7a.9959.9959 0 010-1.41c.39-.38 1.03-.39 1.42 0z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              <span
+                class="emotion-104 emotion-105"
+              >
+                Show All
+              </span>
             </span>
           </button>
         </div>
       </div>
     </div>
   </div>
-  <p>
-    1 total
-  </p>
-  .emotion-0 {
-  border: 0;
-  border-radius: 16px;
-  background: #3942B0;
-  color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: space-around;
-  -ms-flex-pack: space-around;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .32px;
-  min-width: 48px;
-  padding: 0 4px;
-  cursor: pointer;
-}
-
-.emotion-0 svg:first-of-type {
-  opacity: inherit;
-  height: 16px;
-  width: 16px;
-}
-
-.emotion-0 svg:last-child {
-  opacity: 75%;
-  width: 16px;
-}
-
-.emotion-0:focus {
-  outline-offset: 2px;
-  outline: 2px solid #0074B7;
-}
-
-.emotion-2 {
-  padding: 0 4px;
-}
-
-.emotion-0 {
-  border: 0;
-  border-radius: 16px;
-  background: #3942B0;
-  color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: space-around;
-  -ms-flex-pack: space-around;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .32px;
-  min-width: 48px;
-  padding: 0 4px;
-  cursor: pointer;
-}
-
-.emotion-0 svg:first-of-type {
-  opacity: inherit;
-  height: 16px;
-  width: 16px;
-}
-
-.emotion-0 svg:last-child {
-  opacity: 75%;
-  width: 16px;
-}
-
-.emotion-0:focus {
-  outline-offset: 2px;
-  outline: 2px solid #0074B7;
-}
-
-.emotion-2 {
-  padding: 0 4px;
-}
-
-<p>
-    Selected: 
-    <button
-      class="emotion-0 emotion-1"
-      color="primary"
-    >
-      <span
-        class="emotion-2 emotion-3"
-      >
-        item-id-2
-      </span>
-      <svg
-        aria-label="Delete item-id-2 tag"
-        class="icon"
-        fill="currentColor"
-        height="20"
-        viewBox="0 0 24 24"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm4.3 14.3c-.39.39-1.02.39-1.41 0L12 13.41 9.11 16.3c-.39.39-1.02.39-1.41 0a.9959.9959 0 010-1.41L10.59 12 7.7 9.11a.9959.9959 0 010-1.41c.39-.39 1.02-.39 1.41 0L12 10.59l2.89-2.89c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41L13.41 12l2.89 2.89c.38.38.38 1.02 0 1.41z"
-          fill-rule="evenodd"
-        />
-      </svg>
-    </button>
-  </p>
-  <p>
-    Indeterminate: 
-  </p>
 </DocumentFragment>
 `;
 
@@ -7601,6 +7285,14 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-98 {
+  display: block;
+  height: 16px;
+  min-height: 16px;
+  min-width: 1px;
+  width: 1px;
+}
+
+.emotion-100 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -7644,24 +7336,24 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   width: auto;
 }
 
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-98:not(:disabled):hover,
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):hover,
+.emotion-100:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-98:not(:disabled):active {
+.emotion-100:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-98:not(:disabled):active:after {
+.emotion-100:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -7671,13 +7363,13 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   transition: transform 0s;
 }
 
-.emotion-98 svg {
+.emotion-100 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-100 {
+.emotion-102 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -7687,6 +7379,10 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.emotion-104 {
+  padding-left: 4px;
 }
 
 .emotion-0 {
@@ -8155,6 +7851,14 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-98 {
+  display: block;
+  height: 16px;
+  min-height: 16px;
+  min-width: 1px;
+  width: 1px;
+}
+
+.emotion-100 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -8198,24 +7902,24 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   width: auto;
 }
 
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-98:not(:disabled):hover,
-.emotion-98:not(:disabled):focus {
+.emotion-100:not(:disabled):hover,
+.emotion-100:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-98:not(:disabled):active {
+.emotion-100:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-98:not(:disabled):active:after {
+.emotion-100:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -8225,13 +7929,13 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   transition: transform 0s;
 }
 
-.emotion-98 svg {
+.emotion-100 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-100 {
+.emotion-102 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -8241,6 +7945,10 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.emotion-104 {
+  padding-left: 4px;
 }
 
 <div
@@ -8658,147 +8366,44 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
               </div>
             </li>
           </ul>
+          <span
+            class="emotion-98 emotion-9"
+            size="16"
+          />
           <button
-            class="emotion-98 emotion-99"
+            class="emotion-100 emotion-101"
             color="primary"
             data-testid="showAllBtn"
             shape="fill"
             type="button"
           >
             <span
-              class="emotion-100 emotion-101"
+              class="emotion-102 emotion-103"
             >
-              Show All
+              <svg
+                aria-hidden="true"
+                class="icon"
+                fill="currentColor"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M8.12 9.29L12 13.17l3.88-3.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-4.59 4.59c-.39.39-1.02.39-1.41 0L6.7 10.7a.9959.9959 0 010-1.41c.39-.38 1.03-.39 1.42 0z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              <span
+                class="emotion-104 emotion-105"
+              >
+                Show All
+              </span>
             </span>
           </button>
         </div>
       </div>
     </div>
   </div>
-  <p>
-    1 total
-  </p>
-  .emotion-0 {
-  border: 0;
-  border-radius: 16px;
-  background: #3942B0;
-  color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: space-around;
-  -ms-flex-pack: space-around;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .32px;
-  min-width: 48px;
-  padding: 0 4px;
-  cursor: pointer;
-}
-
-.emotion-0 svg:first-of-type {
-  opacity: inherit;
-  height: 16px;
-  width: 16px;
-}
-
-.emotion-0 svg:last-child {
-  opacity: 75%;
-  width: 16px;
-}
-
-.emotion-0:focus {
-  outline-offset: 2px;
-  outline: 2px solid #0074B7;
-}
-
-.emotion-2 {
-  padding: 0 4px;
-}
-
-.emotion-0 {
-  border: 0;
-  border-radius: 16px;
-  background: #3942B0;
-  color: #FFFFFF;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: space-around;
-  -ms-flex-pack: space-around;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: .32px;
-  min-width: 48px;
-  padding: 0 4px;
-  cursor: pointer;
-}
-
-.emotion-0 svg:first-of-type {
-  opacity: inherit;
-  height: 16px;
-  width: 16px;
-}
-
-.emotion-0 svg:last-child {
-  opacity: 75%;
-  width: 16px;
-}
-
-.emotion-0:focus {
-  outline-offset: 2px;
-  outline: 2px solid #0074B7;
-}
-
-.emotion-2 {
-  padding: 0 4px;
-}
-
-<p>
-    Selected: 
-    <button
-      class="emotion-0 emotion-1"
-      color="primary"
-    >
-      <span
-        class="emotion-2 emotion-3"
-      >
-        item-id-2
-      </span>
-      <svg
-        aria-label="Delete item-id-2 tag"
-        class="icon"
-        fill="currentColor"
-        height="20"
-        viewBox="0 0 24 24"
-        width="20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm4.3 14.3c-.39.39-1.02.39-1.41 0L12 13.41 9.11 16.3c-.39.39-1.02.39-1.41 0a.9959.9959 0 010-1.41L10.59 12 7.7 9.11a.9959.9959 0 010-1.41c.39-.39 1.02-.39 1.41 0L12 10.59l2.89-2.89c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41L13.41 12l2.89 2.89c.38.38.38 1.02 0 1.41z"
-          fill-rule="evenodd"
-        />
-      </svg>
-    </button>
-  </p>
-  <p>
-    Indeterminate: 
-  </p>
 </DocumentFragment>
 `;

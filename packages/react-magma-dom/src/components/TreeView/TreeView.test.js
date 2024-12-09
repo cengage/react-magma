@@ -9,7 +9,7 @@ import { transparentize } from 'polished';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import { Tag } from '../Tag';
 import { Paragraph } from '../Paragraph';
-import { TreeWithShowAll } from './TreeView.stories';
+import { AccordionTreeWithShowAll } from './TreeView.stories';
 
 const TEXT = 'Test Text Tree Item';
 const testId = 'tree-view';
@@ -2729,7 +2729,7 @@ describe('TreeView', () => {
     it('renders tree with some items, and clicking show all displays the rest of the tree', () => {
       const onSelectedItemChange = jest.fn();
       const { asFragment, getByLabelText, getByTestId } = render(
-        <TreeWithShowAll
+        <AccordionTreeWithShowAll
           {...propsFlatTree}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[]}
@@ -2754,7 +2754,7 @@ describe('TreeView', () => {
     it('renders tree with some items preselected, clicking show all displays the rest of the tree and preselected items remain selected', () => {
       const onSelectedItemChange = jest.fn();
       const { asFragment, getByLabelText, getByTestId } = render(
-        <TreeWithShowAll
+        <AccordionTreeWithShowAll
           {...propsFlatTree}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[
@@ -2794,7 +2794,7 @@ describe('TreeView', () => {
     it('renders tree with some items preselected, deselecting preselected items, clicking show all displays the rest of the tree and preselected items remain deselected', () => {
       const onSelectedItemChange = jest.fn();
       const { asFragment, getByLabelText, getByTestId } = render(
-        <TreeWithShowAll
+        <AccordionTreeWithShowAll
           {...propsFlatTree}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[
@@ -2831,7 +2831,7 @@ describe('TreeView', () => {
     it('clicking show all displays the rest of the tree, preselected items remain selected, and clicking show less maintains selected items', () => {
       const onSelectedItemChange = jest.fn();
       const { asFragment, getByLabelText, getByTestId } = render(
-        <TreeWithShowAll
+        <AccordionTreeWithShowAll
           {...propsFlatTree}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[
@@ -2873,7 +2873,7 @@ describe('TreeView', () => {
     it('can uncheck all items by clicking on the parent (including hidden one)', () => {
       const onSelectedItemChange = jest.fn();
       const { asFragment, getByLabelText, getByTestId } = render(
-        <TreeWithShowAll
+        <AccordionTreeWithShowAll
           {...propsTreeWithParent}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[]}

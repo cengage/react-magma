@@ -8,6 +8,8 @@ import {
   FavoriteIcon,
   StarIcon,
   EmergencyIcon,
+  KeyboardArrowDownIcon,
+  KeyboardArrowUpIcon,
 } from 'react-magma-icons';
 import { Meta } from '@storybook/react/types-6-0';
 import { Card } from '../Card';
@@ -29,6 +31,7 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
+  IconButton,
 } from '../..';
 import { ButtonSize } from '../Button';
 import { FlexAlignContent, FlexAlignItems } from '../Flex';
@@ -1113,7 +1116,7 @@ InvalidTreeItems.parameters = {
 
 // MAST Tree example with hidden items
 
-const renderTreeItemsRecursively = (terms, depth) => {
+const renderTreeItemsRecursively = (terms: any[], depth: number) => {
   const labelStyles = {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -1141,7 +1144,7 @@ const renderTreeItemsRecursively = (terms, depth) => {
   });
 };
 
-const AccordionSectionWithTreeView = props => {
+const AccordionSectionWithTreeView = (props: any) => {
   const {
     trees,
     title,
@@ -1155,8 +1158,8 @@ const AccordionSectionWithTreeView = props => {
   const [isShowAll, setIsShowAll] = React.useState(false);
   const isSingeTaxonomyOfSuchType = trees.length === 1;
   const customIndex = Number(id) || 0;
-  
-  const getTermsForRender = terms => {
+
+  const getTermsForRender = (terms: any) => {
     if (isShowAll || terms.length <= 5) return terms;
     return terms.slice(0, 5);
   };
@@ -1175,25 +1178,31 @@ const AccordionSectionWithTreeView = props => {
   const renderTrees = () => {
     return (
       <>
-        {getTreesForRender().map(tree => {
-          return (
-            <TreeView
-              key={JSON.stringify(`${keyForRerenderOfTagsTree}-${tree.id}`)}
-              preselectedItems={tree.preselectedItems}
-              selectable={TreeViewSelectable.multi}
-              onSelectedItemChange={onSelectedItemChange}
-              apiRef={apiRef}
-              {...rest}
-            >
-              {renderTreeItemsRecursively(
-                isSingeTaxonomyOfSuchType
-                  ? getTermsForRender(tree.items)
-                  : tree.items,
-                0
-              )}
-            </TreeView>
-          );
-        })}
+        {getTreesForRender().map(
+          (tree: {
+            id: any;
+            preselectedItems: TreeItemSelectedInterface[] | undefined;
+            items: any[];
+          }) => {
+            return (
+              <TreeView
+                key={JSON.stringify(`${keyForRerenderOfTagsTree}-${tree.id}`)}
+                preselectedItems={tree.preselectedItems}
+                selectable={TreeViewSelectable.multi}
+                onSelectedItemChange={onSelectedItemChange}
+                apiRef={apiRef}
+                {...rest}
+              >
+                {renderTreeItemsRecursively(
+                  isSingeTaxonomyOfSuchType
+                    ? getTermsForRender(tree.items)
+                    : tree.items,
+                  0
+                )}
+              </TreeView>
+            );
+          }
+        )}
       </>
     );
   };
@@ -1205,23 +1214,27 @@ const AccordionSectionWithTreeView = props => {
       <AccordionButton>{title}</AccordionButton>
       <AccordionPanel>
         {renderTrees()}
+        <Spacer axis={SpacerAxis.vertical} size={16} />
         {isShowAllButtonVisible && (
-          <Button
+          <IconButton
             disabled={isDisabled}
             onClick={toggleShowAll}
             size={ButtonSize.small}
             variant={ButtonVariant.link}
             testId="showAllBtn"
+            icon={
+              isShowAll ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />
+            }
           >
             {isShowAll ? 'Show Less' : 'Show All'}
-          </Button>
+          </IconButton>
         )}
       </AccordionPanel>
     </AccordionItem>
   );
 };
 
-const propsFlatTree = {
+const flatTree = {
   title: 'Chapter/Subchapter',
   trees: [
     {
@@ -1276,95 +1289,11 @@ const propsFlatTree = {
   keyForRerenderOfTagsTree: true,
 };
 
-const propsTreeWithParent = {
-  title: 'Chapter/Subchapter',
-  trees: [
-    {
-      id: 'tree-id',
-      groupName: 'book-table-of-contents',
-      items: [
-        {
-          id: 'item-id-1',
-          title: 'item-title-1',
-          children: [],
-        },
-        {
-          id: 'item-id-2',
-          title: 'item-title-2',
-          children: [],
-        },
-        {
-          id: 'item-id-3',
-          title: 'item-title-3',
-          children: [],
-        },
-        {
-          id: 'item-id-4',
-          title: 'item-title-4',
-          children: [],
-        },
-        {
-          id: 'item-id-5',
-          title: 'item-title-5',
-          children: [
-            {
-              id: 'item-id-6',
-              title: 'item-title-6',
-              children: [],
-            },
-          ],
-        },
-        {
-          id: 'item-id-7',
-          title: 'item-title-7',
-          children: [
-            {
-              id: 'item-id-8',
-              title: 'item-title-8',
-              children: [],
-            },
-            {
-              id: 'item-id-9',
-              title: 'item-title-9',
-              children: [
-                {
-                  id: 'item-id-10',
-                  title: 'item-title-10',
-                  children: [],
-                },
-              ],
-            },
-          ],
-        },
-      ],
-      preselectedItems: [
-        {
-          itemId: 'item-id-2',
-          checkedStatus: IndeterminateCheckboxStatus.checked,
-        },
-      ],
-    },
-  ],
-  keyForRerenderOfTagsTree: true,
-};
-
-export const TreeWithShowAll = (props) => {
-  // const tree = propsFlatTree;
-  const tree = propsTreeWithParent;
-
-  const [selectedItems, setSelectedItems] = React.useState<
-    TreeItemSelectedInterface[]
-  >(tree?.trees[0].preselectedItems);
+// This example is used in unit tests - modifying it may cause broken tests
+export const AccordionTreeWithShowAll = (props: any) => {
   const apiRef = React.useRef<TreeViewApi>();
 
-  const { selected, indeterminate } = createControlledTags(
-    selectedItems,
-    apiRef?.current
-  );
-  const total = selectedItems?.length ?? 0;
-
   function onSelection(items: TreeItemSelectedInterface[]) {
-    setSelectedItems(items);
     props.onSelectedItemChange(items);
   }
 
@@ -1372,21 +1301,17 @@ export const TreeWithShowAll = (props) => {
     <>
       <Accordion defaultIndex={[0]} isMulti testId="accordion">
         <AccordionSectionWithTreeView
-          {...tree}
+          {...flatTree}
           {...props}
           apiRef={apiRef}
           onSelectedItemChange={onSelection}
         />
       </Accordion>
-
-      <p>{total} total</p>
-      <p>Selected: {selected}</p>
-      <p>Indeterminate: {indeterminate}</p>
     </>
   );
 };
 
-TreeWithShowAll.parameters = {
+AccordionTreeWithShowAll.parameters = {
   controls: {
     exclude: [
       'isInverse',
@@ -1398,5 +1323,229 @@ TreeWithShowAll.parameters = {
       'checkChildren',
       'checkParents',
     ],
+  },
+};
+
+export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
+  const treeContent = {
+    id: 'tree-id',
+    groupName: 'disciplines',
+    items: [
+      {
+        id: 'discipline-arts-design',
+        title: 'Arts and Design',
+        children: [
+          {
+            id: 'ad-1',
+            title: 'Animation',
+            children: [],
+          },
+          {
+            id: 'ad-2',
+            title: 'Photography',
+            children: [],
+          },
+          {
+            id: 'item-id-3',
+            title: 'Web Design',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-business',
+        title: 'Business',
+        children: [
+          {
+            id: 'bsn-1',
+            title: 'Accounting',
+            children: [],
+          },
+          {
+            id: 'bsn-2',
+            title: 'Finance',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-cs',
+        title: 'Computer Science',
+        children: [
+          {
+            id: 'cs-1',
+            title: 'Software Engineering',
+            children: [],
+          },
+          {
+            id: 'cs-2',
+            title: 'Information Technology',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-geography',
+        title: 'Geography',
+        children: [],
+      },
+      {
+        id: 'discipline-his',
+        title: 'History',
+        children: [
+          {
+            id: 'nutr-1',
+            title: 'American History',
+            children: [],
+          },
+          {
+            id: 'nutr-2',
+            title: 'World History',
+            children: [],
+          },
+          {
+            id: 'nutr-3',
+            title: 'Western Civilization',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-math',
+        title: 'Mathematics',
+        children: [
+          {
+            id: 'math-1',
+            title: 'Precalculus',
+            children: [],
+          },
+          {
+            id: 'math-2',
+            title: 'Calculus',
+            children: [],
+          },
+          {
+            id: 'math-3',
+            title: 'Finite Math',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-nutr',
+        title: 'Nutrition',
+        children: [
+          {
+            id: 'nutr-1',
+            title: 'Community Nutrition',
+            children: [],
+          },
+          {
+            id: 'nutr-2',
+            title: 'Sports Nutrition',
+            children: [],
+          },
+        ],
+      },
+    ],
+    preselectedItems: [
+      {
+        itemId: 'bsn-1',
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+      },
+    ],
+  };
+
+  const apiRef = React.useRef<TreeViewApi>();
+  const [isShowAll, setIsShowAll] = React.useState(false);
+  const [selectedItems, setSelectedItems] =
+    React.useState<TreeItemSelectedInterface[]>();
+  const total = selectedItems?.length ?? 0;
+  const { selected, indeterminate } = createControlledTags(
+    selectedItems,
+    apiRef?.current
+  );
+
+  function onSelection(items: TreeItemSelectedInterface[]) {
+    setSelectedItems(items);
+  }
+
+  const getTermsForRender = (terms: any) => {
+    if (isShowAll || terms.length <= 5) {
+      return terms;
+    } else {
+      return terms.slice(0, 5);
+    }
+  };
+
+  const toggleShowAll = () => {
+    setIsShowAll(prev => !prev);
+    if (!isShowAll) {
+      apiRef.current?.showMore();
+    }
+  };
+
+  const renderTreeItemsRecursively = (discipline: any[], depth: number) => {
+    return discipline.map(term => {
+      return (
+        <TreeItem
+          key={term.id}
+          itemId={term.id}
+          testId={term.id}
+          label={term.title}
+        >
+          {term.children?.length ? (
+            renderTreeItemsRecursively(term.children, depth + 1)
+          ) : (
+            <></>
+          )}
+        </TreeItem>
+      );
+    });
+  };
+
+  return (
+    <>
+      <TreeView
+        key={treeContent.id}
+        {...args}
+        preselectedItems={treeContent.preselectedItems}
+        onSelectedItemChange={onSelection}
+        apiRef={apiRef}
+      >
+        {renderTreeItemsRecursively(getTermsForRender(treeContent.items), 0)}
+      </TreeView>
+
+      <Spacer size={16} axis={SpacerAxis.vertical} />
+
+      <IconButton
+        onClick={toggleShowAll}
+        size={ButtonSize.small}
+        variant={ButtonVariant.link}
+        testId="showAllBtn"
+        icon={isShowAll ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+      >
+        {isShowAll ? 'Show Less' : 'Show All'}
+      </IconButton>
+
+      <Spacer size={24} axis={SpacerAxis.vertical} />
+
+      <p>{total} total</p>
+      <p>Selected: {selected}</p>
+      <p>Indeterminate: {indeterminate}</p>
+    </>
+  );
+};
+
+ComplexTreeWithShowAll.args = {
+  checkParents: true,
+  checkChildren: true,
+  selectable: TreeViewSelectable.multi,
+  ariaLabel: 'Disciplines',
+};
+
+ComplexTreeWithShowAll.parameters = {
+  controls: {
+    exclude: ['isInverse', 'initialExpandedItems', 'ariaLabelledBy', 'testId'],
   },
 };
