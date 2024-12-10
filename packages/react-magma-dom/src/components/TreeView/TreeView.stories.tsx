@@ -1206,8 +1206,6 @@ const AccordionSectionWithTreeView = (props: any) => {
       </>
     );
   };
-  const isShowAllButtonVisible =
-    trees.length === 1 ? trees[0].items.length > 5 : trees.length > 5;
 
   return (
     <AccordionItem {...rest} index={customIndex} isDisabled={isDisabled}>
@@ -1215,20 +1213,16 @@ const AccordionSectionWithTreeView = (props: any) => {
       <AccordionPanel>
         {renderTrees()}
         <Spacer axis={SpacerAxis.vertical} size={16} />
-        {isShowAllButtonVisible && (
-          <IconButton
-            disabled={isDisabled}
-            onClick={toggleShowAll}
-            size={ButtonSize.small}
-            variant={ButtonVariant.link}
-            testId="showAllBtn"
-            icon={
-              isShowAll ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />
-            }
-          >
-            {isShowAll ? 'Show Less' : 'Show All'}
-          </IconButton>
-        )}
+        <IconButton
+          disabled={isDisabled}
+          onClick={toggleShowAll}
+          size={ButtonSize.small}
+          variant={ButtonVariant.link}
+          testId="showAllBtn"
+          icon={isShowAll ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+        >
+          {isShowAll ? 'Show Less' : 'Show All'}
+        </IconButton>
       </AccordionPanel>
     </AccordionItem>
   );
@@ -1298,16 +1292,14 @@ export const AccordionTreeWithShowAll = (props: any) => {
   }
 
   return (
-    <>
-      <Accordion defaultIndex={[0]} isMulti testId="accordion">
-        <AccordionSectionWithTreeView
-          {...flatTree}
-          {...props}
-          apiRef={apiRef}
-          onSelectedItemChange={onSelection}
-        />
-      </Accordion>
-    </>
+    <Accordion index={[0]} isMulti testId="accordion">
+      <AccordionSectionWithTreeView
+        {...flatTree}
+        {...props}
+        apiRef={apiRef}
+        onSelectedItemChange={onSelection}
+      />
+    </Accordion>
   );
 };
 
@@ -1325,6 +1317,8 @@ AccordionTreeWithShowAll.parameters = {
     ],
   },
 };
+
+// END of MAST Tree example with hidden items
 
 export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
   const treeContent = {
