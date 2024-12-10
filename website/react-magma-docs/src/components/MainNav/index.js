@@ -274,11 +274,11 @@ export const MainNav = ({ ...props }) => {
               ...navFields
             }
           }
-          dataVisualizationDocs: allMdx(
+          dataVisualization: allMdx(
             filter: {
               fileAbsolutePath: { glob: "**/src/pages/data-visualization/**" }
             }
-            sort: { order: ASC, fields: frontmatter___title }
+            sort: { order: ASC, fields: frontmatter___order }
           ) {
             edges {
               ...navFields
@@ -305,18 +305,6 @@ export const MainNav = ({ ...props }) => {
           patternsIntro: allMdx(
             filter: {
               fileAbsolutePath: { glob: "**/src/pages/patterns-intro/**" }
-            }
-            sort: { order: ASC, fields: frontmatter___order }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          dataVisualizationIntro: allMdx(
-            filter: {
-              fileAbsolutePath: {
-                glob: "**/src/pages/data-visualization-intro/**"
-              }
             }
             sort: { order: ASC, fields: frontmatter___order }
           ) {
@@ -496,23 +484,8 @@ export const MainNav = ({ ...props }) => {
                       <Heading2>Data Visualization</Heading2>
                     </StyledAccordionButton>
                     <StyledAccordionPanel>
-                      <Heading3>Intro</Heading3>
                       <List>
-                        {data.dataVisualizationIntro.edges.map(({ node }) => (
-                          <ListItem key={node.fields.slug}>
-                            <StyledLink2
-                              activeStyle={activeStyle}
-                              onClick={props.handleClick}
-                              to={node.fields.slug}
-                            >
-                              {node.frontmatter.title}
-                            </StyledLink2>
-                          </ListItem>
-                        ))}
-                      </List>
-                      <Heading3>API</Heading3>
-                      <List>
-                        {data.dataVisualizationDocs.edges.map(({ node }) => (
+                        {data.dataVisualization.edges.map(({ node }) => (
                           <ListItem key={node.fields.slug}>
                             <StyledLink2
                               activeStyle={activeStyle}

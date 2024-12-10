@@ -27,7 +27,6 @@ const NAV_TABS = {
   PATTERNS: 'patterns',
   PATTERNS_INTRO: 'patterns_intro',
   DATA_VISUALIZATION: 'data_visualization',
-  DATA_VISUALIZATION_INTRO: 'data_visualization_intro',
 };
 
 // Special case pages that don't have secondary navigation.
@@ -163,11 +162,11 @@ export const PageContent = ({ children, componentName, type }) => {
               ...navFields
             }
           }
-          dataVisualizationDocs: allMdx(
+          dataVisualization: allMdx(
             filter: {
               fileAbsolutePath: { glob: "**/src/pages/data-visualization/**" }
             }
-            sort: { order: ASC, fields: frontmatter___title }
+            sort: { order: ASC, fields: frontmatter___order }
           ) {
             edges {
               ...navFields
@@ -201,18 +200,6 @@ export const PageContent = ({ children, componentName, type }) => {
               ...navFields
             }
           }
-          dataVisualizationIntro: allMdx(
-            filter: {
-              fileAbsolutePath: {
-                glob: "**/src/pages/data-visualization-intro/**"
-              }
-            }
-            sort: { order: ASC, fields: frontmatter___order }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
         }
       `}
       render={data => {
@@ -223,36 +210,32 @@ export const PageContent = ({ children, componentName, type }) => {
           data.designPatternDocs,
           componentName
         );
-        const dataVisualizationDocs = getDataNode(
-          data.dataVisualizationDocs,
+        const dataVisualization = getDataNode(
+          data.dataVisualization,
           componentName
         );
 
         const designIntro = getDataNode(data.designIntro, componentName);
         const apiIntro = getDataNode(data.apiIntro, componentName);
         const patternsIntro = getDataNode(data.patternsIntro, componentName);
-        const dataVisualizationIntro = getDataNode(
-          data.dataVisualizationIntro,
-          componentName
-        );
 
         const designLink = designDocs?.node.fields.slug;
         const apiLink = apiDocs?.node.fields.slug;
         const patternsLink = patternsDocs?.node.fields.slug;
         const designPatternsLink = designPatternDocs?.node.fields.slug;
-        const dataVisualizationLink = dataVisualizationDocs?.node.fields.slug;
+        const dataVisualizationLink = dataVisualization?.node.fields.slug;
 
         const hasDocs = !!(
           apiDocs ||
           designDocs ||
           patternsDocs ||
           designPatternDocs ||
-          dataVisualizationDocs
+          dataVisualization
         );
 
         const apiNavTabToLink = patternsDocs
           ? patternsLink
-          : dataVisualizationDocs
+          : dataVisualization
           ? dataVisualizationLink
           : apiLink;
         const designNavTabToLink = designPatternDocs
@@ -268,9 +251,9 @@ export const PageContent = ({ children, componentName, type }) => {
               return patternsDocs;
             }
           }
-          if (dataVisualizationDocs) {
+          if (dataVisualization) {
             if (type === NAV_TABS.DATA_VISUALIZATION) {
-              return dataVisualizationDocs;
+              return dataVisualization;
             }
           }
           if (apiDocs || designDocs) {
@@ -281,12 +264,7 @@ export const PageContent = ({ children, componentName, type }) => {
               return designDocs;
             }
           }
-          if (
-            designIntro ||
-            patternsIntro ||
-            apiIntro ||
-            dataVisualizationIntro
-          ) {
+          if (designIntro || patternsIntro || apiIntro) {
             if (type === NAV_TABS.API_INTRO) {
               return apiIntro;
             }
@@ -295,9 +273,6 @@ export const PageContent = ({ children, componentName, type }) => {
             }
             if (type === NAV_TABS.PATTERNS_INTRO) {
               return patternsIntro;
-            }
-            if (type === NAV_TABS.DATA_VISUALIZATION_INTRO) {
-              return dataVisualizationIntro;
             }
           }
         };
@@ -381,6 +356,5 @@ PageContent.propTypes = {
     'patterns',
     'patterns_intro',
     'data_visualization',
-    'data_visualization_intro',
   ]),
 };
