@@ -72,42 +72,30 @@ export default {
     },
   },
 } as Meta;
-// Story<PasswordInputProps>
 const Template = args => (
   <Card
     style={{
       display: 'flex',
       alignItems: 'center',
-      height: '300px',
+      height: '500px',
       justifyContent: 'center',
-      // backgroundColor: '#1A1E51',
     }}
   >
     <Popover {...args}>
       <PopoverTrigger>
-        <Button>Hello!</Button>
+        <Button>Popover Trigger Button</Button>
       </PopoverTrigger>
       <PopoverContent>
         <PopoverHeader style={{ gap: '8px' }}>
-          <span>Header</span>
+          <span>This is header</span>
           <Button>Header Button</Button>
         </PopoverHeader>
-        <Button>Hello!</Button>
-        <span>Content inside</span>
-
-        <span>Content inside</span>
-        <span>Content inside</span>
-
-        <span>Content inside</span>
-        <span>Content inside</span>
-
-        <span>Content inside</span>
-        <span>Content inside</span>
-
-        <span>Content inside</span>
-        <span>Content inside</span>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', whiteSpace: 'wrap' }}>
+          <span>This is a content inside the popover!</span>
+          <Button>Content Button</Button>
+        </div>
         <PopoverFooter style={{ gap: '8px' }}>
-          <span>Footer</span>
+          <span>This is footer</span>
           <Button>Footer Button</Button>
         </PopoverFooter>
       </PopoverContent>
@@ -136,7 +124,6 @@ const InputTemplate = args => {
         <PopoverTrigger>
           <PasswordInput
             {...args}
-            labelText="Password"
             value={state}
             onChange={e => setState(e.target.value)}
             ref={inputRef}
