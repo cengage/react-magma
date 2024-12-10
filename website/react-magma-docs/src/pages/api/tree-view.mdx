@@ -882,11 +882,23 @@ export function Example() {
 
 ## Show All / Show Less Button
 
-Use the `apiRef.showAll()` prop when using a Show All / Show Less button inside your tree.
+Use the `apiRef.showAll()` prop when using a Show All / Show Less button inside a tree.
 
 ```typescript
 import React from 'react';
-import { TreeView, TreeItem, TreeViewSelectable, TreeItemSelectedInterface, Spacer, SpacerAxis, IconButton, ButtonSize, ButtonVariant } from 'react-magma-dom';
+import {
+  ButtonSize,
+  ButtonVariant,
+  IconButton,
+  IndeterminateCheckboxStatus,
+  Spacer,
+  SpacerAxis,
+  TreeItem,
+  TreeItemSelectedInterface,
+  TreeView,
+  TreeViewApi,
+  TreeViewSelectable
+} from 'react-magma-dom';
 import { KeyboardArrowUpIcon, KeyboardArrowDownIcon } from 'react-magma-icons';
 
 export function Example() {
