@@ -27,6 +27,7 @@ export interface TreeViewApi {
   selectAll(): void;
   clearAll(): void;
   showMore(): void;
+  showLess(): void;
 }
 
 export interface UseTreeViewProps {
@@ -100,7 +101,8 @@ export interface UseTreeViewProps {
    * selectItem({ itemId, checkedStatus }: Pick<TreeViewItemInterface, 'itemId' | 'checkedStatus'>): void - action that allows to change item selection,
    * selectAll(): void - action that allows to select all items,
    * clearAll(): void - action that allows to unselect all items.
-   * showMore(): void - action that gets called when a tree has hidden items.
+   * showMore(): void - action that gets called when a tree has hidden items and they get expanded.
+   * showLess(): void - action that gets called when a tree has hidden items and they get collapsed.
    */
   apiRef?: React.MutableRefObject<TreeViewApi | undefined>;
   /**
@@ -150,6 +152,8 @@ export function useTreeView(props: UseTreeViewProps) {
   });
 
   const selectedItems = React.useMemo(() => {
+    console.log(items);
+    
     return items.filter(
       item => item.checkedStatus === IndeterminateCheckboxStatus.checked
     );
@@ -331,15 +335,7 @@ export function useTreeView(props: UseTreeViewProps) {
           ) {
             return;
           }
-
-          setItems(() => {
-            return toggleAllMulti({
-              items,
-              checkedStatus: IndeterminateCheckboxStatus.checked,
-              checkChildren,
-              checkParents,
-            });
-          });
+          this.showMore(true);
         },
 
         clearAll() {
@@ -357,16 +353,39 @@ export function useTreeView(props: UseTreeViewProps) {
           });
         },
 
-        showMore() {
-          setItemsNeedUpdate(true);
+        showMore(fromSelectAll: boolean = false) {
+          if (fromSelectAll) {
+            setItems(() => {
+              return toggleAllMulti({
+                items,
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+                checkChildren,
+                checkParents,
+              });
+            });
+          } else {
+            setItemsNeedUpdate(true);
+          }
+        },
+
+        showLess() {
+          setItems(
+            getInitialItems({
+              children,
+              preselectedItems: selectedItems,
+              checkParents,
+              checkChildren,
+              selectable,
+              isDisabled,
+            })
+          );
         }
       };
     }
-  }, [selectItem, isDisabled]);
+  }, [selectItem, isDisabled, children]);
 
   React.useEffect(() => {
     if (itemsNeedUpdate) {
-
       setItems(
         getInitialItems({
           children,
@@ -381,7 +400,7 @@ export function useTreeView(props: UseTreeViewProps) {
 
       setItemsNeedUpdate(false);
     }
-  }, [itemsNeedUpdate]);
+  }, [itemsNeedUpdate, children]);
 
   const [initialExpandedItemsNeedUpdate, setInitialExpandedItemsNeedUpdate] =
     React.useState(false);

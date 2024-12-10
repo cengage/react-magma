@@ -882,7 +882,7 @@ export function Example() {
 
 ## Show All / Show Less Button
 
-Use the `apiRef.showMore()` prop when using a Show All / Show Less button inside a tree.
+Use the `apiRef.showMore()` prop when using a Show All button inside a tree, and `apiRef.showLess()` when using a Show Less button.
 
 ```typescript
 import React from 'react';
@@ -921,7 +921,7 @@ export function Example() {
             children: [],
           },
           {
-            id: 'item-id-3',
+            id: 'ad-3',
             title: 'Web Design',
             children: [],
           },
@@ -969,17 +969,17 @@ export function Example() {
         title: 'History',
         children: [
           {
-            id: 'nutr-1',
+            id: 'his-1',
             title: 'American History',
             children: [],
           },
           {
-            id: 'nutr-2',
+            id: 'his-2',
             title: 'World History',
             children: [],
           },
           {
-            id: 'nutr-3',
+            id: 'his-3',
             title: 'Western Civilization',
             children: [],
           },
@@ -1049,10 +1049,12 @@ export function Example() {
   };
 
   const toggleShowAll = () => {
-    setIsShowAll(prev => !prev);
-    if (!isShowAll) {
+    if (isShowAll) {
+      apiRef && apiRef.current && apiRef.current.showLess();
+    } else {
       apiRef && apiRef.current && apiRef.current.showMore();
     }
+    setIsShowAll(prev => !prev);
   };
 
   const renderTreeItemsRecursively = (discipline: any[], depth: number) => {

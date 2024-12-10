@@ -1,7 +1,6 @@
 import React from 'react';
 import { TreeView, TreeItem, TreeViewSelectable, TreeViewApi } from '.';
 import { magma } from '../../theme/magma';
-
 import {
   ArticleIcon,
   FolderIcon,
@@ -33,7 +32,7 @@ import {
   AccordionPanel,
   IconButton,
 } from '../..';
-import { ButtonSize } from '../Button';
+import { ButtonColor, ButtonSize } from '../Button';
 import { FlexAlignContent, FlexAlignItems } from '../Flex';
 import { TagColor } from '../Tag';
 
@@ -1294,9 +1293,9 @@ export const AccordionTreeWithShowAll = (props: any) => {
   return (
     <Accordion index={[0]} isMulti testId="accordion">
       <AccordionSectionWithTreeView
+        apiRef={apiRef}
         {...flatTree}
         {...props}
-        apiRef={apiRef}
         onSelectedItemChange={onSelection}
       />
     </Accordion>
@@ -1340,7 +1339,7 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
             children: [],
           },
           {
-            id: 'item-id-3',
+            id: 'ad-3',
             title: 'Web Design',
             children: [],
           },
@@ -1388,17 +1387,17 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
         title: 'History',
         children: [
           {
-            id: 'nutr-1',
+            id: 'his-1',
             title: 'American History',
             children: [],
           },
           {
-            id: 'nutr-2',
+            id: 'his-2',
             title: 'World History',
             children: [],
           },
           {
-            id: 'nutr-3',
+            id: 'his-3',
             title: 'Western Civilization',
             children: [],
           },
@@ -1474,9 +1473,23 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
 
   const toggleShowAll = () => {
     setIsShowAll(prev => !prev);
-    if (!isShowAll) {
+    if (isShowAll) {
+      apiRef.current?.showLess();
+    } else {
       apiRef.current?.showMore();
     }
+  };
+
+  const onSelectAll = () => {
+    if (isShowAll) {
+      apiRef.current?.showLess();
+    } else {
+      apiRef.current?.showMore();
+      setIsShowAll(prev => !prev);
+    }
+    setTimeout(() => {
+      apiRef.current?.selectAll();
+    }, 50)
   };
 
   const renderTreeItemsRecursively = (discipline: any[], depth: number) => {
@@ -1500,6 +1513,17 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
 
   return (
     <>
+      <ButtonGroup
+        size={ButtonSize.small}
+        variant={ButtonVariant.solid}
+        color={ButtonColor.subtle}
+      >
+        <Button onClick={onSelectAll}>Select all</Button>
+        <Button onClick={() => apiRef.current?.clearAll()}>Clear all</Button>
+      </ButtonGroup>
+
+      <Spacer size={24} axis={SpacerAxis.vertical} />
+
       <TreeView
         key={treeContent.id}
         {...args}
