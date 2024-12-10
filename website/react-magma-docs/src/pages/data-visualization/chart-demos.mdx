@@ -36,7 +36,7 @@ export const MoreDemosLink = ({ number, path }) => (
       }}
     >
       <StorybookIcon />
-      <span>{number} more demos</span>
+      <span>{number > 1 ? `${number} more demos` : `1 more demo`}</span>
       <OpenInNewIcon size={magma.iconSizes.small} />
     </Flex>
   </Link>
