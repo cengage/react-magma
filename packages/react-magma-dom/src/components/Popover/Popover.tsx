@@ -19,7 +19,7 @@ export enum PopoverPositioning {
   right = 'right',
 }
 
-export interface PopoverProps {
+export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose?: (event: React.SyntheticEvent) => void;
   onOpen?: () => void;
   testId?: string;
@@ -81,13 +81,6 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     const popoverContentId = React.useRef<string>('');
     const popoverTriggerId = React.useRef<string>('');
 
-    const idPrefix = useGenerateId();
-
-    popoverTriggerId.current = `${idPrefix}_trigger`;
-    popoverContentId.current = `${idPrefix}_content`;
-
-    const ref = useForkedRef(forwardedRef, ownRef);
-
     const {
       onClose,
       onOpen,
@@ -102,14 +95,22 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       matchedWidth,
       withoutPointer,
       openByDefault,
+      id: defaultId,
       ...other
     } = props;
+
+    const popoverId = useGenerateId(defaultId);
+
+    popoverTriggerId.current = `${popoverId}_trigger`;
+    popoverContentId.current = `${popoverId}_content`;
+
+    const ref = useForkedRef(forwardedRef, ownRef);
 
     React.useEffect(() => {
       if (openByDefault) {
         openPopover();
       }
-    }, [openByDefault]) // Do I need this?
+    }, [openByDefault]); // Do I need this?
 
     const maxHeightString =
       typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
@@ -215,6 +216,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           onMouseOver={handleMouseOver}
           onMouseLeave={handleMouseLeave}
           onFocus={onFocus}
+          id={popoverId}
         >
           {children}
         </Container>

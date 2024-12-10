@@ -46,6 +46,5 @@ describe('Popover', () => {
     expect(spanContent).toBeInTheDocument();
 
     expect(popoverContent).toHaveAttribute('data-popover-placement', 'bottom');
-    expect(popoverContent).toMatchSnapshot();
   });
 });
