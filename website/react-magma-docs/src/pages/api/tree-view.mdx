@@ -1023,11 +1023,6 @@ export function Example() {
   const [isShowAll, setIsShowAll] = React.useState(false);
   const [selectedItems, setSelectedItems] =
     React.useState<TreeItemSelectedInterface[]>();
-  const total = selectedItems?.length ?? 0;
-  const { selected, indeterminate } = createControlledTags(
-    selectedItems,
-    apiRef?.current
-  );
 
   function onSelection(items: TreeItemSelectedInterface[]) {
     setSelectedItems(items);
@@ -1044,7 +1039,7 @@ export function Example() {
   const toggleShowAll = () => {
     setIsShowAll(prev => !prev);
     if (!isShowAll) {
-      apiRef.current?.showMore();
+      apiRef && apiRef.current && apiRef.current.showMore();
     }
   };
 
@@ -1057,7 +1052,7 @@ export function Example() {
           testId={term.id}
           label={term.title}
         >
-          {term.children?.length ? (
+          {term.children.length ? (
             renderTreeItemsRecursively(term.children, depth + 1)
           ) : (
             <></>
@@ -1090,12 +1085,6 @@ export function Example() {
       >
         {isShowAll ? 'Show Less' : 'Show All'}
       </IconButton>
-
-      <Spacer size={24} axis={SpacerAxis.vertical} />
-
-      <p>{total} total</p>
-      <p>Selected: {selected}</p>
-      <p>Indeterminate: {indeterminate}</p>
     </>
   );
 }
