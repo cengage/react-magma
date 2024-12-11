@@ -880,6 +880,230 @@ export function Example() {
 }
 ```
 
+## Show All / Show Less Button
+
+Use the `apiRef.showMore()` prop when using a Show All button inside a tree, and `apiRef.showLess()` when using a Show Less button.
+
+```typescript
+import React from 'react';
+import {
+  ButtonSize,
+  ButtonVariant,
+  IconButton,
+  IndeterminateCheckboxStatus,
+  Spacer,
+  SpacerAxis,
+  TreeItem,
+  TreeItemSelectedInterface,
+  TreeView,
+  TreeViewApi,
+  TreeViewSelectable
+} from 'react-magma-dom';
+import { KeyboardArrowUpIcon, KeyboardArrowDownIcon } from 'react-magma-icons';
+
+export function Example() {
+  const treeContent = {
+    id: 'tree-id',
+    groupName: 'disciplines',
+    items: [
+      {
+        id: 'discipline-arts-design',
+        title: 'Arts and Design',
+        children: [
+          {
+            id: 'ad-1',
+            title: 'Animation',
+            children: [],
+          },
+          {
+            id: 'ad-2',
+            title: 'Photography',
+            children: [],
+          },
+          {
+            id: 'ad-3',
+            title: 'Web Design',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-business',
+        title: 'Business',
+        children: [
+          {
+            id: 'bsn-1',
+            title: 'Accounting',
+            children: [],
+          },
+          {
+            id: 'bsn-2',
+            title: 'Finance',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-cs',
+        title: 'Computer Science',
+        children: [
+          {
+            id: 'cs-1',
+            title: 'Software Engineering',
+            children: [],
+          },
+          {
+            id: 'cs-2',
+            title: 'Information Technology',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-geography',
+        title: 'Geography',
+        children: [],
+      },
+      {
+        id: 'discipline-his',
+        title: 'History',
+        children: [
+          {
+            id: 'his-1',
+            title: 'American History',
+            children: [],
+          },
+          {
+            id: 'his-2',
+            title: 'World History',
+            children: [],
+          },
+          {
+            id: 'his-3',
+            title: 'Western Civilization',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-math',
+        title: 'Mathematics',
+        children: [
+          {
+            id: 'math-1',
+            title: 'Precalculus',
+            children: [],
+          },
+          {
+            id: 'math-2',
+            title: 'Calculus',
+            children: [],
+          },
+          {
+            id: 'math-3',
+            title: 'Finite Math',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-nutr',
+        title: 'Nutrition',
+        children: [
+          {
+            id: 'nutr-1',
+            title: 'Community Nutrition',
+            children: [],
+          },
+          {
+            id: 'nutr-2',
+            title: 'Sports Nutrition',
+            children: [],
+          },
+        ],
+      },
+    ],
+    preselectedItems: [
+      {
+        itemId: 'bsn-1',
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+      },
+    ],
+  };
+
+  const apiRef = React.useRef<TreeViewApi>();
+  const [isShowAll, setIsShowAll] = React.useState(false);
+  const [selectedItems, setSelectedItems] =
+    React.useState<TreeItemSelectedInterface[]>();
+
+  function onSelection(items: TreeItemSelectedInterface[]) {
+    setSelectedItems(items);
+  }
+
+  const getTermsForRender = (terms: any) => {
+    if (isShowAll || terms.length <= 5) {
+      return terms;
+    } else {
+      return terms.slice(0, 5);
+    }
+  };
+
+  const toggleShowAll = () => {
+    if (isShowAll) {
+      apiRef && apiRef.current && apiRef.current.showLess();
+    } else {
+      apiRef && apiRef.current && apiRef.current.showMore();
+    }
+    setIsShowAll(prev => !prev);
+  };
+
+  const renderTreeItemsRecursively = (discipline: any[], depth: number) => {
+    return discipline.map(term => {
+      return (
+        <TreeItem
+          key={term.id}
+          itemId={term.id}
+          testId={term.id}
+          label={term.title}
+        >
+          {term.children.length ? (
+            renderTreeItemsRecursively(term.children, depth + 1)
+          ) : (
+            <></>
+          )}
+        </TreeItem>
+      );
+    });
+  };
+
+  return (
+    <>
+      <TreeView
+        key={treeContent.id}
+        preselectedItems={treeContent.preselectedItems}
+        selectable={TreeViewSelectable.multi}
+        onSelectedItemChange={onSelection}
+        apiRef={apiRef}
+      >
+        {renderTreeItemsRecursively(getTermsForRender(treeContent.items), 0)}
+      </TreeView>
+
+      <Spacer size={16} axis={SpacerAxis.vertical} />
+
+      <IconButton
+        onClick={toggleShowAll}
+        size={ButtonSize.small}
+        variant={ButtonVariant.link}
+        testId="showAllBtn"
+        icon={isShowAll ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+      >
+        {isShowAll ? 'Show Less' : 'Show All'}
+      </IconButton>
+    </>
+  );
+}
+```
+
 ## Inverse
 
 ```typescript
