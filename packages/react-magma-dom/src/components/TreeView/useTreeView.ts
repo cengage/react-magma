@@ -152,6 +152,8 @@ export function useTreeView(props: UseTreeViewProps) {
   });
 
   const selectedItems = React.useMemo(() => {
+    console.log(items);
+    
     return items.filter(
       item => item.checkedStatus === IndeterminateCheckboxStatus.checked
     );
