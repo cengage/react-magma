@@ -65,6 +65,7 @@
     "fix-treeview-docs-example",
     "heading-margins",
     "implement-scrollspy-in-docs",
+    "input-props",
     "inputwrapperstyles",
     "search-clear-overlaps",
     "selecteItemButton-focus",

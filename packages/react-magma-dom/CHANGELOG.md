@@ -1,4 +1,8 @@
+## 4.7.0-next.53
 
+### Patch Changes
+
+- e432f97c9: fix(Input): Improve descriptions for `inputWrapperStyle` and `containerStyle` props.
 
 ## 4.6.0
 
