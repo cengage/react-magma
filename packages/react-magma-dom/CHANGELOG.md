@@ -1,5 +1,11 @@
 ## 4.7.0-next.53
 
+## 4.7.0-next.54
+
+### Minor Changes
+
+- 4bec9c320: fix(TreeView): Support "show all" button inside TreeView component
+
 ### Patch Changes
 
 - e432f97c9: fix(Input): Improve descriptions for `inputWrapperStyle` and `containerStyle` props.
