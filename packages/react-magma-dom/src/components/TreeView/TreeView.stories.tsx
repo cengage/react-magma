@@ -1331,12 +1331,29 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
           {
             id: 'ad-1',
             title: 'Animation',
-            children: [],
+            children: null,
           },
           {
             id: 'ad-2',
             title: 'Photography',
-            children: [],
+            children: [
+              {
+                id: 'ad-2-child1',
+                title: 'Wedding',
+                children: [],
+              },
+              {
+                id: 'ad-2-child2',
+                title: 'Nature',
+                children: [
+                  {
+                    id: 'ad-2-child2-child1',
+                    title: 'Pet',
+                    children: [],
+                  }
+                ],
+              }
+            ],
           },
           {
             id: 'ad-3',
@@ -1380,7 +1397,7 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
       {
         id: 'discipline-geography',
         title: 'Geography',
-        children: [],
+        children: undefined,
       },
       {
         id: 'discipline-his',
@@ -1436,7 +1453,23 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
           {
             id: 'nutr-2',
             title: 'Sports Nutrition',
-            children: [],
+            children: [
+              {
+                id: 'nutr-2-child1',
+                title: 'Protein',
+                children: [],
+              },
+              {
+                id: 'nutr-2-child2',
+                title: 'Supplements',
+                children: [
+                  {
+                    id: 'nutr-2-child2-child1',
+                    title: 'Creatine'
+                  }
+                ],
+              }
+            ],
           },
         ],
       },
