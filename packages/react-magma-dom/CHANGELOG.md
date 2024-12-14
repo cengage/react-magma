@@ -1,5 +1,11 @@
 ## 4.7.0-next.53
 
+## 4.7.0-next.55
+
+### Patch Changes
+
+- 4ed9e5c7d: fix(TreeView): Add more unit tests
+
 ## 4.7.0-next.54
 
 ### Minor Changes

@@ -75,6 +75,7 @@
     "toggleButtonGroup",
     "tree-initEx-docs",
     "tree-showAllExample",
+    "tree-unitTests",
     "treeViewSelectItemsOutside"
   ]
 }
