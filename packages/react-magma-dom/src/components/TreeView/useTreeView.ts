@@ -152,8 +152,6 @@ export function useTreeView(props: UseTreeViewProps) {
   });
 
   const selectedItems = React.useMemo(() => {
-    console.log(items);
-    
     return items.filter(
       item => item.checkedStatus === IndeterminateCheckboxStatus.checked
     );
@@ -167,7 +165,7 @@ export function useTreeView(props: UseTreeViewProps) {
   }, [items, rawInitialExpandedItems]);
 
   const itemToFocus = React.useMemo(() => {
-    const enabledItems = items.filter(item => !item?.isDisabled);
+    const enabledItems = items.filter(item => !item.isDisabled);
     const [firstItem] = enabledItems;
 
     if (selectable === TreeViewSelectable.off) {
