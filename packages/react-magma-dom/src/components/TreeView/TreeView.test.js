@@ -172,6 +172,25 @@ const TreeItemsMultiLevelControlledOutside = props => {
   );
 };
 
+const renderTreeItemsRecursively = (treeItems, depth) => {
+  return treeItems.map(item => {
+    return (
+      <TreeItem
+        key={item.id}
+        itemId={item.id}
+        testId={item.id}
+        label={item.title}
+      >
+        {item.children?.length ? (
+          renderTreeItemsRecursively(item.children, depth + 1)
+        ) : (
+          <></>
+        )}
+      </TreeItem>
+    );
+  });
+};
+
 describe('TreeView', () => {
   it('should find element by testId', () => {
     const { getByTestId } = render(
@@ -2058,7 +2077,7 @@ describe('TreeView', () => {
 
       it('parent should have checked checkbox state when all disabled children are selected and all enabled children are selected. parent should have indeterminate checkbox state when all disabled children are selected and enabled children are partially selected. parent should have indeterminate checkbox state when all disabled children are selected and all enabled children are not selected. and toggle children selection', () => {
         const onSelectedItemChange = jest.fn();
-        const { getByTestId, debug } = render(
+        const { getByTestId } = render(
           getTreeItemsWithDisabledChildren({
             selectable: TreeViewSelectable.multi,
             preselectedItems: [
@@ -2595,6 +2614,219 @@ describe('TreeView', () => {
       );
 
       expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('recursive children', () => {
+    const recursiveTreeItems = [
+      {
+        id: 'discipline-arts-design',
+        title: 'Arts and Design',
+        children: [
+          {
+            id: 'ad-1',
+            title: 'Animation',
+            children: [],
+          },
+          {
+            id: 'ad-2',
+            title: 'Photography',
+            children: [
+              {
+                id: 'ad-2-child1',
+                title: 'Wedding',
+                children: [],
+              },
+              {
+                id: 'ad-2-child2',
+                title: 'Nature',
+                children: [
+                  {
+                    id: 'ad-2-child2-child1',
+                    title: 'Pet',
+                    children: [],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: 'ad-3',
+            title: 'Web Design',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-geography',
+        title: 'Geography',
+        children: [],
+      },
+      {
+        id: 'discipline-nutr',
+        title: 'Nutrition',
+        children: [
+          {
+            id: 'nutr-1',
+            title: 'Community Nutrition',
+            children: [],
+          },
+          {
+            id: 'nutr-2',
+            title: 'Sports Nutrition',
+            children: [
+              {
+                id: 'nutr-2-child1',
+                title: 'Protein',
+                children: [],
+              },
+              {
+                id: 'nutr-2-child2',
+                title: 'Supplements',
+                children: [
+                  {
+                    id: 'nutr-2-child2-child1',
+                    title: 'Creatine',
+                    children: [
+                      {
+                        id: 'nutr-2-child2-child1-child1',
+                        title: 'Is it safe?',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ];
+
+    it('can render recursively created children', () => {
+      const { getByTestId } = render(
+        <TreeView>{renderTreeItemsRecursively(recursiveTreeItems, 0)}</TreeView>
+      );
+
+      expect(getByTestId('discipline-arts-design')).toBeInTheDocument();
+      expect(getByTestId('discipline-geography')).toBeInTheDocument();
+      expect(getByTestId('discipline-nutr')).toBeInTheDocument();
+
+      userEvent.click(getByTestId('discipline-arts-design-expand'));
+      expect(getByTestId('ad-1')).toBeInTheDocument();
+      expect(getByTestId('ad-2')).toBeInTheDocument();
+      expect(getByTestId('ad-3')).toBeInTheDocument();
+      userEvent.click(getByTestId('ad-2-expand'));
+      expect(getByTestId('ad-2-child1')).toBeInTheDocument();
+      expect(getByTestId('ad-2-child2')).toBeInTheDocument();
+      userEvent.click(getByTestId('ad-2-child2-expand'));
+      expect(getByTestId('ad-2-child2-child1')).toBeInTheDocument();
+
+      userEvent.click(getByTestId('discipline-nutr-expand'));
+      expect(getByTestId('nutr-1')).toBeInTheDocument();
+      expect(getByTestId('nutr-2')).toBeInTheDocument();
+      userEvent.click(getByTestId('nutr-2-expand'));
+      expect(getByTestId('nutr-2-child1')).toBeInTheDocument();
+      expect(getByTestId('nutr-2-child2')).toBeInTheDocument();
+      userEvent.click(getByTestId('nutr-2-child2-expand'));
+      expect(getByTestId('nutr-2-child2-child1')).toBeInTheDocument();
+      userEvent.click(getByTestId('nutr-2-child2-child1-expand'));
+      expect(getByTestId('nutr-2-child2-child1-child1')).toBeInTheDocument();
+    });
+
+    it('can render recursively created children with preselected items', () => {
+      const { getByTestId } = render(
+        <TreeView
+          selectable={TreeViewSelectable.multi}
+          preselectedItems={[
+            {
+              itemId: 'ad-1',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+            {
+              itemId: 'discipline-geography',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]}
+        >
+          {renderTreeItemsRecursively(recursiveTreeItems, 0)}
+        </TreeView>
+      );
+
+      expect(getByTestId('discipline-arts-design')).toBeInTheDocument();
+      expect(getByTestId('discipline-geography')).toBeInTheDocument();
+      expect(getByTestId('discipline-nutr')).toBeInTheDocument();
+      expect(getByTestId('discipline-geography')).toHaveAttribute(
+        'aria-checked',
+        'true'
+      );
+
+      userEvent.click(getByTestId('discipline-arts-design-expand'));
+      expect(getByTestId('ad-1')).toBeInTheDocument();
+      expect(getByTestId('ad-2')).toBeInTheDocument();
+      expect(getByTestId('ad-3')).toBeInTheDocument();
+      userEvent.click(getByTestId('ad-2-expand'));
+      expect(getByTestId('ad-2-child1')).toBeInTheDocument();
+      expect(getByTestId('ad-2-child2')).toBeInTheDocument();
+      userEvent.click(getByTestId('ad-2-child2-expand'));
+      expect(getByTestId('ad-2-child2-child1')).toBeInTheDocument();
+      expect(getByTestId('discipline-arts-design')).toHaveAttribute(
+        'aria-checked',
+        'mixed'
+      );
+      expect(getByTestId('ad-1')).toHaveAttribute('aria-checked', 'true');
+    });
+
+    it('can select and deselect recursively created children', () => {
+      const { getByTestId } = render(
+        <TreeView selectable={TreeViewSelectable.multi} preselectedItems={[]}>
+          {renderTreeItemsRecursively(recursiveTreeItems, 0)}
+        </TreeView>
+      );
+
+      expect(getByTestId('discipline-arts-design')).toBeInTheDocument();
+      expect(getByTestId('discipline-geography')).toBeInTheDocument();
+      expect(getByTestId('discipline-nutr')).toBeInTheDocument();
+
+      userEvent.click(getByTestId('discipline-nutr-expand'));
+      expect(getByTestId('nutr-1')).toHaveAttribute('aria-checked', 'false');
+      expect(getByTestId('nutr-2')).toHaveAttribute('aria-checked', 'false');
+
+      userEvent.click(getByTestId('nutr-2-expand'));
+      expect(getByTestId('nutr-2-child1')).toBeInTheDocument();
+      expect(getByTestId('nutr-2-child2')).toBeInTheDocument();
+
+      userEvent.click(getByTestId('nutr-2-child2-expand'));
+      userEvent.click(getByTestId('nutr-2-child2-checkbox'));
+      expect(getByTestId('nutr-2-child2')).toHaveAttribute(
+        'aria-checked',
+        'true'
+      );
+      expect(getByTestId('nutr-2-child2-child1')).toHaveAttribute(
+        'aria-checked',
+        'true'
+      );
+      userEvent.click(getByTestId('nutr-2-child2-child1-expand'));
+      expect(getByTestId('nutr-2-child2-child1-child1')).toHaveAttribute(
+        'aria-checked',
+        'true'
+      );
+
+      expect(getByTestId('nutr-2')).toHaveAttribute('aria-checked', 'mixed');
+      expect(getByTestId('discipline-nutr')).toHaveAttribute(
+        'aria-checked',
+        'mixed'
+      );
+      userEvent.click(getByTestId('nutr-2-child1-checkbox'));
+      expect(getByTestId('nutr-2')).toHaveAttribute('aria-checked', 'true');
+      userEvent.click(getByTestId('nutr-2-child2-child1-child1-checkbox'));
+      expect(getByTestId('nutr-2-child1')).toHaveAttribute(
+        'aria-checked',
+        'true'
+      );
+      expect(getByTestId('nutr-2-child2')).toHaveAttribute(
+        'aria-checked',
+        'false'
+      );
     });
   });
 
