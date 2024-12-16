@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.1
+
+### Patch Changes
+
+- 4484ad2b7: fix(NativeSelect): Add `aria-describedby` to helper and error messages to associate them with the `Select`.
+
 ### Minor Changes
 
 - 79435c964: feat(Select): Support disabling individual items in Select and Multi Select components
