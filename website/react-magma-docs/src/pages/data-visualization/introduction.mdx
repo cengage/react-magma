@@ -1,0 +1,85 @@
+---
+title: Get Started
+order: 1
+---
+
+import { LeadParagraph } from '../../components/LeadParagraph';
+import { Flex, FlexBehavior, FlexAlignItems, magma } from 'react-magma-dom';
+import { OpenInNewIcon } from 'react-magma-icons';
+import { StorybookIcon } from '../../images/icons/storybook-icon';
+
+<PageContent componentName="get_started" type="data_visualization">
+
+<LeadParagraph>
+  Magma charts enable you to convey precise and compelling narratives around
+  data through visually appealing and accessible visualizations. 
+</LeadParagraph>
+
+Magma Charts is based on [Carbon Charts from IBM](https://charts.carbondesignsystem.com/introduction).
+
+Get started below with implementation instructions for developers. You can also learn more about the [chart types](../chart-types) we provide, as well as [view examples](../chart-demos).
+
+export const MagmaChartsSiteLink = () => (
+  <Link
+    to="https://storybook-preview-dev--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart"
+    target="_blank"
+  >
+    <Flex
+      behavior={FlexBehavior.container}
+      alignItems={FlexAlignItems.center}
+      style={{
+        backgroundColor: magma.colors.neutral200,
+        width: 'fit-content',
+        gap: magma.spaceScale.spacing03,
+        padding: `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing05}`,
+        borderRadius: magma.spaceScale.spacing03,
+      }}
+    >
+      <StorybookIcon />
+      <span>Magma Charts demo site</span>
+      <OpenInNewIcon size={magma.iconSizes.small} />
+    </Flex>
+  </Link>
+);
+
+<MagmaChartsSiteLink />
+
+## Installation
+
+<Alert variant="warning">
+  <strong>Important!</strong> CarbonChart is imported from{' '}
+  <inlineCode>@react-magma/charts</inlineCode> which must be installed as a peer
+  dependency.
+  <br />
+  <br />
+  In addition, you must manually import the styles:
+  <br />
+  <inlineCode>import '@react-magma/charts/dist/charts.css';</inlineCode>
+</Alert>
+
+### Setup Requirements
+
+Your project needs to be running **React v17** or greater
+
+### Install the Charts Library
+
+Install the React Magma Charts library with `npm`.
+
+```sh title noRender noCodeSandbox
+npm install --save react-magma@charts
+```
+
+Install peer dependencies
+
+```sh title noRender noCodeSandbox
+npm install --save \
+    "@emotion/react@^11.13.0" \
+    "@emotion/styled@^11.13.0" \
+    "react@^17.0.2" \
+    "react-dom@^17.0.2" \
+    "react-magma-dom@^4.7.0-next.1" \
+    "react-magma-icons@^3.0.0" \
+    "@react-magma/charts@^9.0.0"
+```
+
+</PageContent>

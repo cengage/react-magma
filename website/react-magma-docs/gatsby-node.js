@@ -12,8 +12,8 @@ exports.onCreateWebpackConfig = ({ actions, plugins }) => {
         path: require.resolve('path-browserify'),
       },
       fallback: {
-        'object.assign/polyfill': require.resolve("object.assign/polyfill.js"),
-      }
+        'object.assign/polyfill': require.resolve('object.assign/polyfill.js'),
+      },
     },
     module: {
       rules: [
@@ -25,7 +25,7 @@ exports.onCreateWebpackConfig = ({ actions, plugins }) => {
       ],
     },
     plugins: [
-      plugins.provide({ process: 'process', Buffer: ['buffer', 'Buffer'] })
+      plugins.provide({ process: 'process', Buffer: ['buffer', 'Buffer'] }),
     ],
   });
 };
@@ -46,6 +46,8 @@ const getPathPrefix = path => {
       return 'patterns-intro';
     }
     return 'patterns';
+  } else if (/data-visualization/.test(path)) {
+    return 'data-visualization';
   }
 };
 

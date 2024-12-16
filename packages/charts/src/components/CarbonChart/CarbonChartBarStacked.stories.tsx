@@ -831,3 +831,128 @@ HorizontalStackedBarSkeleton.args = {
     height: '400px',
   },
 };
+
+export const CustomTicksStackedBar = Template.bind({});
+CustomTicksStackedBar.args = {
+  isInverse: false,
+  type: CarbonChartType.barStacked,
+  dataSet: [
+    {
+      group: 'Dataset 1',
+      date: '2023-01-01',
+      value: 10000,
+    },
+    {
+      group: 'Dataset 1',
+      date: '2023-01-05',
+      value: 65000,
+    },
+    {
+      group: 'Dataset 1',
+      date: '2023-01-08',
+      value: 10000,
+    },
+    {
+      group: 'Dataset 1',
+      date: '2023-01-13',
+      value: 49213,
+    },
+    {
+      group: 'Dataset 1',
+      date: '2023-01-17',
+      value: 51213,
+    },
+    {
+      group: 'Dataset 2',
+      date: '2023-01-03',
+      value: 75000,
+    },
+    {
+      group: 'Dataset 2',
+      date: '2023-01-06',
+      value: 57312,
+    },
+    {
+      group: 'Dataset 2',
+      date: '2023-01-08',
+      value: 21432,
+    },
+    {
+      group: 'Dataset 2',
+      date: '2023-01-15',
+      value: 70323,
+    },
+    {
+      group: 'Dataset 2',
+      date: '2023-01-19',
+      value: 21300,
+    },
+    {
+      group: 'Dataset 3',
+      date: '2023-01-01',
+      value: 50000,
+    },
+    {
+      group: 'Dataset 3',
+      date: '2023-01-05',
+      value: 15000,
+    },
+    {
+      group: 'Dataset 3',
+      date: '2023-01-08',
+      value: 20000,
+    },
+    {
+      group: 'Dataset 3',
+      date: '2023-01-13',
+      value: 39213,
+    },
+    {
+      group: 'Dataset 3',
+      date: '2023-01-17',
+      value: 61213,
+    },
+    {
+      group: 'Dataset 4',
+      date: '2023-01-02',
+      value: 10,
+    },
+    {
+      group: 'Dataset 4',
+      date: '2023-01-06',
+      value: 37312,
+    },
+    {
+      group: 'Dataset 4',
+      date: '2023-01-08',
+      value: 51432,
+    },
+    {
+      group: 'Dataset 4',
+      date: '2023-01-15',
+      value: 40323,
+    },
+    {
+      group: 'Dataset 4',
+      date: '2023-01-19',
+      value: 31300,
+    },
+  ],
+  options: {
+    title: 'Custom ticks (stacked bar)',
+    axes: {
+      left: {
+        mapsTo: 'value',
+        stacked: true,
+      },
+      bottom: {
+        mapsTo: 'date',
+        scaleType: 'time',
+        ticks: {
+          values: [new Date(2023, 0, 17, 0, 0, 0)],
+        },
+      },
+    },
+    height: '400px',
+  },
+};
