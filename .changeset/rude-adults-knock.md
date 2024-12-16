@@ -2,4 +2,4 @@
 'react-magma-docs': patch
 ---
 
-Manually sync main -> dev (v4.7.0)
+Fix changelog for dom v4.7.0
