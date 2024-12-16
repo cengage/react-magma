@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
+import { headingMediumStyles } from '../Typography';
 
 /**
  * @children required
@@ -45,6 +46,12 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
    */
   minWidth?: number;
   rowCount?: number;
+  /**
+   * The title or caption of a table inside a <caption> HTML element that provides the table an accessible 
+   * description
+   */
+  tableTitle?: React.ReactNode | string;
+
   selectedItems?: Array<number>;
   /**
    * @internal
@@ -122,6 +129,11 @@ export const TableContainer = styled.div<{
           : props.theme.colors.focus};
   }
 `;
+export const StyledCaption = styled.caption<{ isInverse: boolean; isTitleNode: boolean; }>`
+  ${headingMediumStyles};
+  text-align:left;
+  margin: ${props => props.isTitleNode || props.theme.spaceScale.spacing04};
+`;
 
 export const StyledTable = styled.table<{
   isInverse?: boolean;
@@ -154,6 +166,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       minWidth = 600,
       rowCount,
       selectedItems,
+      tableTitle,
       testId,
       isSortableBySelected,
       ...other
@@ -175,7 +188,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isInverse: isInverse,
           isSelectable,
           isSortableBySelected,
-          rowCount
+          rowCount,
         }}
       >
         <TableContainer
@@ -193,7 +206,12 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
             minWidth={minWidth || theme.breakpoints.small}
             ref={ref}
             theme={theme}
-          >
+            >
+            {tableTitle && (
+              <StyledCaption isInverse={isInverse} isTitleNode={typeof tableTitle !== 'string'} theme={theme}>
+                {tableTitle}
+              </StyledCaption>
+            )}
             {children}
           </StyledTable>
         </TableContainer>

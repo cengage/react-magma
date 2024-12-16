@@ -27,6 +27,7 @@ import { Select } from '../Select';
 import { Combobox } from '../Combobox';
 
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { Heading } from '../Heading';
 
 const rows = [
   [
@@ -88,6 +89,11 @@ export default {
         type: 'number',
       },
     },
+    tableTitle: {
+      control: {
+        type: 'text',
+      },
+    },
   },
 } as Meta;
 
@@ -98,6 +104,7 @@ Default.args = {
   hasVerticalBorders: false,
   hasZebraStripes: false,
   isInverse: false,
+  tableTitle: "Basic usage table",
 };
 
 export const SquareCorners = args => {
@@ -110,7 +117,7 @@ export const SquareCorners = args => {
   );
 
   return (
-    <div style={{ background: magma.colors.primary600, padding: '20px' }}>
+    <div style={{ background: magma.colors.neutral300, padding: '20px' }}>
       <Table style={{ background: magma.colors.neutral100 }} {...args}>
         <TableHead>
           <TableRow>
@@ -138,6 +145,7 @@ SquareCorners.args = {
   hasHoverStyles: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,
+  tableTitle: "Square corners",
 };
 
 const rowsLong = [
@@ -334,6 +342,7 @@ export const ControlledPagination = args => {
 };
 ControlledPagination.args = {
   ...Default.args,
+  tableTitle: "Controlled Pagination",
 };
 
 export const UncontrolledPagination = args => {
@@ -355,7 +364,7 @@ export const UncontrolledPagination = args => {
 
   return (
     <>
-      <Table>
+      <Table tableTitle="Uncontrolled Pagination">
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -401,7 +410,7 @@ export const PaginationWithSquareCorners = args => {
   );
 
   return (
-    <div style={{ background: magma.colors.primary600, padding: '20px' }}>
+    <div style={{ background: magma.colors.neutral300, padding: '20px' }}>
       <Table style={{ background: magma.colors.neutral100 }} {...args}>
         <TableHead>
           <TableRow>
@@ -438,6 +447,7 @@ PaginationWithSquareCorners.args = {
   hasHoverStyles: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,
+  tableTitle: "Pagination with square corners",
 };
 
 export const PaginationInverse = args => {
@@ -490,6 +500,7 @@ export const PaginationInverse = args => {
 PaginationInverse.args = {
   ...Default.args,
   isInverse: true,
+  tableTitle: "Pagination inverse",
 };
 
 export const RowColors = args => {
@@ -541,6 +552,7 @@ RowColors.args = {
   ...Default.args,
   hasHoverStyles: true,
   hasZebraStripe: true,
+  tableTitle: "Row colors",
 };
 
 export const RowColorsInverse = args => {
@@ -598,6 +610,7 @@ export const RowColorsInverse = args => {
 RowColorsInverse.args = {
   ...Default.args,
   isInverse: true,
+  tableTitle: "Row colors inverse",
 };
 
 export const Sortable = args => {
@@ -713,6 +726,7 @@ export const Sortable = args => {
 
 Sortable.args = {
   ...Default.args,
+  tableTitle: "Sortable",
 };
 
 export const WithDropdown = args => {
@@ -788,6 +802,7 @@ export const WithDropdown = args => {
 };
 WithDropdown.args = {
   ...Default.args,
+  tableTitle: "With Dropdown",
 };
 
 export const AdjustableRowNumber = args => {
@@ -797,13 +812,17 @@ export const AdjustableRowNumber = args => {
       tableRows.push(
         <TableRow key={`row${i}`}>
           <TableCell key={`cell${i}-left`}>{i}</TableCell>
-          <TableCell key={`cell${i}-middle`}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</TableCell>
-          <TableCell key={`cell${i}-right`}>Nullam bibendum diam vel felis consequat lacinia.</TableCell>
+          <TableCell key={`cell${i}-middle`}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </TableCell>
+          <TableCell key={`cell${i}-right`}>
+            Nullam bibendum diam vel felis consequat lacinia.
+          </TableCell>
         </TableRow>
       );
     }
     return tableRows;
-  };
+  }
 
   return (
     <Table {...args}>
@@ -814,14 +833,13 @@ export const AdjustableRowNumber = args => {
           <TableHeaderCell>Column</TableHeaderCell>
         </TableRow>
       </TableHead>
-      <TableBody>
-        {getTableRows()}
-      </TableBody>
+      <TableBody>{getTableRows()}</TableBody>
     </Table>
   );
 };
 AdjustableRowNumber.args = {
   numberRows: 300,
+  tableTitle: "Adjustable row number",
 };
 
 export const NoRowsPerPageControl = args => {
@@ -839,7 +857,7 @@ export const NoRowsPerPageControl = args => {
 
   return (
     <Card isInverse={args.isInverse}>
-      <Table {...args}>
+      <Table {...args} tableTitle="No rows per page control">
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -868,4 +886,56 @@ export const NoRowsPerPageControl = args => {
       />
     </Card>
   );
+};
+
+export const TableTitleWithNode = args => {
+  return (
+    <Table {...args} tableTitle={<Heading level={1}>Heading component example</Heading>}>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow color={TableRowColor.success}>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow color={TableRowColor.danger}>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow color={TableRowColor.info}>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+        <TableRow color={TableRowColor.warning}>
+          <TableCell>Lorem ipsum</TableCell>
+          <TableCell>dolar sit</TableCell>
+          <TableCell>amet</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  );
+};
+TableTitleWithNode.args = {
+  ...Default.args,
+  hasHoverStyles: true,
+  hasZebraStripe: true,
+  tableTitle: "Row colors",
 };
