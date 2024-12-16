@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.0.10-next.0
+
+### Patch Changes
+
+- e2b3b9356: Manually sync main -> dev (v4.7.0)
+- e2b3b9356: Manually sync main -> dev (v4.7.0)
+
 ## 5.0.9
 
 ### Patch Changes
