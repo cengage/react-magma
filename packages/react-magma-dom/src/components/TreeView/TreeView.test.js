@@ -7,6 +7,9 @@ import userEvent from '@testing-library/user-event';
 import { FavoriteIcon } from 'react-magma-icons';
 import { transparentize } from 'polished';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
+import { Tag } from '../Tag';
+import { Paragraph } from '../Paragraph';
+import { AccordionTreeWithShowAll } from './TreeView.stories';
 
 const TEXT = 'Test Text Tree Item';
 const testId = 'tree-view';
@@ -193,6 +196,25 @@ const TreeItemsMultiLevelControlledOutside = props => {
       </TreeView>
     </>
   );
+};
+
+const renderTreeItemsRecursively = (treeItems, depth) => {
+  return treeItems.map(item => {
+    return (
+      <TreeItem
+        key={item.id}
+        itemId={item.id}
+        testId={item.id}
+        label={item.title}
+      >
+        {item.children?.length ? (
+          renderTreeItemsRecursively(item.children, depth + 1)
+        ) : (
+          <></>
+        )}
+      </TreeItem>
+    );
+  });
 };
 
 describe('TreeView', () => {
@@ -2121,7 +2143,7 @@ describe('TreeView', () => {
 
       it('parent should have checked checkbox state when all disabled children are selected and all enabled children are selected. parent should have indeterminate checkbox state when all disabled children are selected and enabled children are partially selected. parent should have indeterminate checkbox state when all disabled children are selected and all enabled children are not selected. and toggle children selection', () => {
         const onSelectedItemChange = jest.fn();
-        const { getByTestId, debug } = render(
+        const { getByTestId } = render(
           getTreeItemsWithDisabledChildren({
             selectable: TreeViewSelectable.multi,
             preselectedItems: [
@@ -2540,7 +2562,7 @@ describe('TreeView', () => {
       const disabledItemId = 'item-ggchild1';
 
       const onSelectedItemChange = jest.fn();
-      const { getByTestId, debug } = render(
+      const { getByTestId } = render(
         <TreeItemsMultiLevelControlledOutside
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[
@@ -2634,6 +2656,739 @@ describe('TreeView', () => {
 
       userEvent.click(getByTestId('item2-expand'));
       expect(item2).toHaveAttribute('aria-expanded', 'false');
+    });
+  });
+
+  describe('tree validity', () => {
+    it('when a TreeView is passed as a child, the tree item is expandable', () => {
+      const { getByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1-expand')).toBeInTheDocument();
+    });
+
+    it('when multiple TreeViews are passed as a child, the tree item is expandable', () => {
+      const { getByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+            <TreeItem
+              label="Child 2"
+              itemId="item-child2"
+              testId="item-child2"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1-expand')).toBeInTheDocument();
+    });
+
+    it('when multiple TreeViews with nested children are passed as a child, the tree items are expandable', () => {
+      const { getByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+            <TreeItem label="Child 2" itemId="item-child2" testId="item-child2">
+              <TreeItem
+                label="Child 2.1"
+                itemId="item-child2.1"
+                testId="item-child2.1"
+              >
+                <TreeItem
+                  label="Child 2.1.1"
+                  itemId="item-child2.1.1"
+                  testId="item-child2.1.1"
+                />
+              </TreeItem>
+            </TreeItem>
+            <TreeItem label="Child 3" itemId="item-child3" testId="item-child3">
+              <TreeItem
+                label="Child 3.1"
+                itemId="item-child3.1"
+                testId="item-child3.1"
+              />
+            </TreeItem>
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1-expand')).toBeInTheDocument();
+      userEvent.click(getByTestId('item1-expand'));
+      expect(getByTestId('item-child2-expand')).toBeInTheDocument();
+      userEvent.click(getByTestId('item-child2-expand'));
+      expect(getByTestId('item-child2.1-expand')).toBeInTheDocument();
+      expect(getByTestId('item-child3-expand')).toBeInTheDocument();
+    });
+
+    it('when multiple TreeViews are passed as a child and at least one is valid, the tree item is expandable', () => {
+      const { getByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem label="Child 1" itemId="item-child1" testId="item-child1">
+              <></>
+            </TreeItem>
+            <TreeItem label="Child 2" itemId="item-child2" testId="item-child2">
+              <TreeItem
+                label="Child 2.1"
+                itemId="item-child2.1"
+                testId="item-child2.1"
+              />
+            </TreeItem>
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1-expand')).toBeInTheDocument();
+      userEvent.click(getByTestId('item1-expand'));
+      expect(getByTestId('item-child2-expand')).toBeInTheDocument();
+    });
+
+    it('when multiple TreeViews are passed as a child and at least one is valid and the other is undefined, the tree item is expandable', () => {
+      const { getByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem label="Child 1" itemId="item-child1" testId="item-child1">
+              {undefined}
+            </TreeItem>
+            {undefined}
+            <TreeItem label="Child 2" itemId="item-child2" testId="item-child2">
+              <TreeItem
+                label="Child 2.1"
+                itemId="item-child2.1"
+                testId="item-child2.1"
+              />
+            </TreeItem>
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1-expand')).toBeInTheDocument();
+      userEvent.click(getByTestId('item1-expand'));
+      expect(getByTestId('item-child2-expand')).toBeInTheDocument();
+    });
+
+    it('when a fragment is passed as a child, the tree item is not expandable', () => {
+      const { queryByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <></>
+          </TreeItem>
+          <TreeItem label="Node 2" itemId="item2" testId="item2"></TreeItem>
+        </TreeView>
+      );
+
+      expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
+      expect(queryByTestId('item2-expand')).not.toBeInTheDocument();
+    });
+
+    it('when any other component is passed as a child, the tree item is not expandable', () => {
+      const { queryByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <Tag>This is a tag</Tag>
+          </TreeItem>
+          <TreeItem label="Node 2" itemId="item2" testId="item2">
+            <Paragraph>This is a paragraph</Paragraph>
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
+      expect(queryByTestId('item2-expand')).not.toBeInTheDocument();
+    });
+
+    it('when text is passed as a child, the tree item is not expandable', () => {
+      const { queryByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            This is sample text
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
+    });
+
+    it('when undefined is passed as a child, the tree item is not expandable', () => {
+      const { queryByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            {undefined}
+          </TreeItem>
+          <TreeItem label="Node 2" itemId="item2" testId="item2"></TreeItem>
+        </TreeView>
+      );
+
+      expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
+      expect(queryByTestId('item2-expand')).not.toBeInTheDocument();
+    });
+
+    it('when null is passed as a child, the tree item is not expandable', () => {
+      const { queryByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            {null}
+          </TreeItem>
+          <TreeItem label="Node 2" itemId="item2" testId="item2"></TreeItem>
+        </TreeView>
+      );
+
+      expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
+      expect(queryByTestId('item2-expand')).not.toBeInTheDocument();
+    });
+
+    it('when a TreeView does not have a child, the tree item is not expandable', () => {
+      const { queryByTestId } = render(
+        <TreeView>
+          <TreeItem label="Node 1" itemId="item1" testId="item1" />
+        </TreeView>
+      );
+
+      expect(queryByTestId('item1-expand')).not.toBeInTheDocument();
+    });
+  });
+
+  describe('recursive children', () => {
+    const recursiveTreeItems = [
+      {
+        id: 'discipline-arts-design',
+        title: 'Arts and Design',
+        children: [
+          {
+            id: 'ad-1',
+            title: 'Animation',
+            children: [],
+          },
+          {
+            id: 'ad-2',
+            title: 'Photography',
+            children: [
+              {
+                id: 'ad-2-child1',
+                title: 'Wedding',
+                children: [],
+              },
+              {
+                id: 'ad-2-child2',
+                title: 'Nature',
+                children: [
+                  {
+                    id: 'ad-2-child2-child1',
+                    title: 'Pet',
+                    children: [],
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            id: 'ad-3',
+            title: 'Web Design',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-geography',
+        title: 'Geography',
+        children: [],
+      },
+      {
+        id: 'discipline-nutr',
+        title: 'Nutrition',
+        children: [
+          {
+            id: 'nutr-1',
+            title: 'Community Nutrition',
+            children: [],
+          },
+          {
+            id: 'nutr-2',
+            title: 'Sports Nutrition',
+            children: [
+              {
+                id: 'nutr-2-child1',
+                title: 'Protein',
+                children: [],
+              },
+              {
+                id: 'nutr-2-child2',
+                title: 'Supplements',
+                children: [
+                  {
+                    id: 'nutr-2-child2-child1',
+                    title: 'Creatine',
+                    children: [
+                      {
+                        id: 'nutr-2-child2-child1-child1',
+                        title: 'Is it safe?',
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ];
+
+    it('can render recursively created children', () => {
+      const { getByTestId } = render(
+        <TreeView>{renderTreeItemsRecursively(recursiveTreeItems, 0)}</TreeView>
+      );
+
+      expect(getByTestId('discipline-arts-design')).toBeInTheDocument();
+      expect(getByTestId('discipline-geography')).toBeInTheDocument();
+      expect(getByTestId('discipline-nutr')).toBeInTheDocument();
+
+      userEvent.click(getByTestId('discipline-arts-design-expand'));
+      expect(getByTestId('ad-1')).toBeInTheDocument();
+      expect(getByTestId('ad-2')).toBeInTheDocument();
+      expect(getByTestId('ad-3')).toBeInTheDocument();
+      userEvent.click(getByTestId('ad-2-expand'));
+      expect(getByTestId('ad-2-child1')).toBeInTheDocument();
+      expect(getByTestId('ad-2-child2')).toBeInTheDocument();
+      userEvent.click(getByTestId('ad-2-child2-expand'));
+      expect(getByTestId('ad-2-child2-child1')).toBeInTheDocument();
+
+      userEvent.click(getByTestId('discipline-nutr-expand'));
+      expect(getByTestId('nutr-1')).toBeInTheDocument();
+      expect(getByTestId('nutr-2')).toBeInTheDocument();
+      userEvent.click(getByTestId('nutr-2-expand'));
+      expect(getByTestId('nutr-2-child1')).toBeInTheDocument();
+      expect(getByTestId('nutr-2-child2')).toBeInTheDocument();
+      userEvent.click(getByTestId('nutr-2-child2-expand'));
+      expect(getByTestId('nutr-2-child2-child1')).toBeInTheDocument();
+      userEvent.click(getByTestId('nutr-2-child2-child1-expand'));
+      expect(getByTestId('nutr-2-child2-child1-child1')).toBeInTheDocument();
+    });
+
+    it('can render recursively created children with preselected items', () => {
+      const { getByTestId } = render(
+        <TreeView
+          selectable={TreeViewSelectable.multi}
+          preselectedItems={[
+            {
+              itemId: 'ad-1',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+            {
+              itemId: 'discipline-geography',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]}
+        >
+          {renderTreeItemsRecursively(recursiveTreeItems, 0)}
+        </TreeView>
+      );
+
+      expect(getByTestId('discipline-arts-design')).toBeInTheDocument();
+      expect(getByTestId('discipline-geography')).toBeInTheDocument();
+      expect(getByTestId('discipline-nutr')).toBeInTheDocument();
+      expect(getByTestId('discipline-geography')).toHaveAttribute(
+        'aria-checked',
+        'true'
+      );
+
+      userEvent.click(getByTestId('discipline-arts-design-expand'));
+      expect(getByTestId('ad-1')).toBeInTheDocument();
+      expect(getByTestId('ad-2')).toBeInTheDocument();
+      expect(getByTestId('ad-3')).toBeInTheDocument();
+      userEvent.click(getByTestId('ad-2-expand'));
+      expect(getByTestId('ad-2-child1')).toBeInTheDocument();
+      expect(getByTestId('ad-2-child2')).toBeInTheDocument();
+      userEvent.click(getByTestId('ad-2-child2-expand'));
+      expect(getByTestId('ad-2-child2-child1')).toBeInTheDocument();
+      expect(getByTestId('discipline-arts-design')).toHaveAttribute(
+        'aria-checked',
+        'mixed'
+      );
+      expect(getByTestId('ad-1')).toHaveAttribute('aria-checked', 'true');
+    });
+
+    it('can select and deselect recursively created children', () => {
+      const { getByTestId } = render(
+        <TreeView selectable={TreeViewSelectable.multi} preselectedItems={[]}>
+          {renderTreeItemsRecursively(recursiveTreeItems, 0)}
+        </TreeView>
+      );
+
+      expect(getByTestId('discipline-arts-design')).toBeInTheDocument();
+      expect(getByTestId('discipline-geography')).toBeInTheDocument();
+      expect(getByTestId('discipline-nutr')).toBeInTheDocument();
+
+      userEvent.click(getByTestId('discipline-nutr-expand'));
+      expect(getByTestId('nutr-1')).toHaveAttribute('aria-checked', 'false');
+      expect(getByTestId('nutr-2')).toHaveAttribute('aria-checked', 'false');
+
+      userEvent.click(getByTestId('nutr-2-expand'));
+      expect(getByTestId('nutr-2-child1')).toBeInTheDocument();
+      expect(getByTestId('nutr-2-child2')).toBeInTheDocument();
+
+      userEvent.click(getByTestId('nutr-2-child2-expand'));
+      userEvent.click(getByTestId('nutr-2-child2-checkbox'));
+      expect(getByTestId('nutr-2-child2')).toHaveAttribute(
+        'aria-checked',
+        'true'
+      );
+      expect(getByTestId('nutr-2-child2-child1')).toHaveAttribute(
+        'aria-checked',
+        'true'
+      );
+      userEvent.click(getByTestId('nutr-2-child2-child1-expand'));
+      expect(getByTestId('nutr-2-child2-child1-child1')).toHaveAttribute(
+        'aria-checked',
+        'true'
+      );
+
+      expect(getByTestId('nutr-2')).toHaveAttribute('aria-checked', 'mixed');
+      expect(getByTestId('discipline-nutr')).toHaveAttribute(
+        'aria-checked',
+        'mixed'
+      );
+      userEvent.click(getByTestId('nutr-2-child1-checkbox'));
+      expect(getByTestId('nutr-2')).toHaveAttribute('aria-checked', 'true');
+      userEvent.click(getByTestId('nutr-2-child2-child1-child1-checkbox'));
+      expect(getByTestId('nutr-2-child1')).toHaveAttribute(
+        'aria-checked',
+        'true'
+      );
+      expect(getByTestId('nutr-2-child2')).toHaveAttribute(
+        'aria-checked',
+        'false'
+      );
+    });
+  });
+
+  describe('tree with hidden items', () => {
+    const propsFlatTree = {
+      title: 'Chapter/Subchapter',
+      trees: [
+        {
+          id: 'tree-id',
+          groupName: 'book-table-of-contents',
+          items: [
+            {
+              id: 'item-id-1',
+              title: 'item-title-1',
+              children: [],
+            },
+            {
+              id: 'item-id-2',
+              title: 'item-title-2',
+              children: [],
+            },
+            {
+              id: 'item-id-3',
+              title: 'item-title-3',
+              children: [],
+            },
+            {
+              id: 'item-id-4',
+              title: 'item-title-4',
+              children: [
+                {
+                  id: 'item-id-4.1',
+                  title: 'item-title-4.1',
+                  children: [],
+                },
+              ],
+            },
+            {
+              id: 'item-id-5',
+              title: 'item-title-5',
+              children: [],
+            },
+            {
+              id: 'item-id-6',
+              title: 'item-title-6',
+              children: [],
+            },
+          ],
+          preselectedItems: [
+            {
+              itemId: 'item-id-2',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ],
+        },
+      ],
+      keyForRerenderOfTagsTree: true,
+    };
+
+    const propsTreeWithParent = {
+      title: 'Chapter/Subchapter',
+      trees: [
+        {
+          id: 'tree-id',
+          groupName: 'book-table-of-contents',
+          items: [
+            {
+              id: 'item-id-1',
+              title: 'item-title-1',
+              children: [],
+            },
+            {
+              id: 'item-id-2',
+              title: 'item-title-2',
+              children: [],
+            },
+            {
+              id: 'item-id-3',
+              title: 'item-title-3',
+              children: [],
+            },
+            {
+              id: 'item-id-4',
+              title: 'item-title-4',
+              children: [],
+            },
+            {
+              id: 'item-id-5',
+              title: 'item-title-5',
+              children: [
+                {
+                  id: 'item-id-6',
+                  title: 'item-title-6',
+                  children: [],
+                },
+              ],
+            },
+            {
+              id: 'item-id-7',
+              title: 'item-title-7',
+              children: [
+                {
+                  id: 'item-id-8',
+                  title: 'item-title-8',
+                  children: [],
+                },
+                {
+                  id: 'item-id-9',
+                  title: 'item-title-9',
+                  children: [
+                    {
+                      id: 'item-id-10',
+                      title: 'item-title-10',
+                      children: [],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+          preselectedItems: [
+            {
+              itemId: 'item-id-2',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ],
+        },
+      ],
+      keyForRerenderOfTagsTree: true,
+    };
+
+    it('renders tree with some items, and clicking show all displays the rest of the tree', () => {
+      const onSelectedItemChange = jest.fn();
+      const { asFragment, getByLabelText, getByTestId } = render(
+        <AccordionTreeWithShowAll
+          {...propsFlatTree}
+          onSelectedItemChange={onSelectedItemChange}
+          preselectedItems={[]}
+        />
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+
+      expect(getByLabelText('item-title-1')).toBeInTheDocument();
+      expect(getByLabelText('item-title-2')).toBeInTheDocument();
+      expect(getByLabelText('item-title-3')).toBeInTheDocument();
+      expect(getByLabelText('item-title-4')).toBeInTheDocument();
+      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+
+      userEvent.click(getByTestId('showAllBtn'));
+      expect(getByLabelText('item-title-6')).toBeInTheDocument();
+      userEvent.click(getByLabelText('item-title-6'));
+      expect(getByTestId('item-id-6')).toHaveAttribute('aria-checked', 'true');
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
+    });
+
+    it('renders tree with some items preselected, clicking show all displays the rest of the tree and preselected items remain selected', () => {
+      const onSelectedItemChange = jest.fn();
+      const { asFragment, getByLabelText, getByTestId } = render(
+        <AccordionTreeWithShowAll
+          {...propsFlatTree}
+          onSelectedItemChange={onSelectedItemChange}
+          preselectedItems={[
+            {
+              itemId: 'item-id-2',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]}
+        />
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+
+      expect(getByLabelText('item-title-1')).toBeInTheDocument();
+      expect(getByLabelText('item-title-2')).toBeInTheDocument();
+      expect(getByLabelText('item-title-3')).toBeInTheDocument();
+      expect(getByLabelText('item-title-4')).toBeInTheDocument();
+      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+
+      expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
+      userEvent.click(getByTestId('showAllBtn'));
+      expect(getByLabelText('item-title-6')).toBeInTheDocument();
+      userEvent.click(getByLabelText('item-title-6'));
+      expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: 'item-id-2',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item-id-6',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+    });
+
+    it('renders tree with some items preselected, deselecting preselected items, clicking show all displays the rest of the tree and preselected items remain deselected', () => {
+      const onSelectedItemChange = jest.fn();
+      const { asFragment, getByLabelText, getByTestId } = render(
+        <AccordionTreeWithShowAll
+          {...propsFlatTree}
+          onSelectedItemChange={onSelectedItemChange}
+          preselectedItems={[
+            {
+              itemId: 'item-id-2',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]}
+        />
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+
+      expect(getByLabelText('item-title-1')).toBeInTheDocument();
+      expect(getByLabelText('item-title-2')).toBeInTheDocument();
+      expect(getByLabelText('item-title-3')).toBeInTheDocument();
+      expect(getByLabelText('item-title-4')).toBeInTheDocument();
+      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+
+      expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
+      userEvent.click(getByLabelText('item-title-2'));
+      userEvent.click(getByTestId('showAllBtn'));
+      expect(getByLabelText('item-title-6')).toBeInTheDocument();
+      userEvent.click(getByLabelText('item-title-6'));
+      expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'false');
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: 'item-id-6',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+    });
+
+    it('clicking show all displays the rest of the tree, preselected items remain selected, and clicking show less maintains selected items', () => {
+      const onSelectedItemChange = jest.fn();
+      const { asFragment, getByLabelText, getByTestId } = render(
+        <AccordionTreeWithShowAll
+          {...propsFlatTree}
+          onSelectedItemChange={onSelectedItemChange}
+          preselectedItems={[
+            {
+              itemId: 'item-id-2',
+              checkedStatus: IndeterminateCheckboxStatus.checked,
+            },
+          ]}
+        />
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+
+      expect(getByLabelText('item-title-1')).toBeInTheDocument();
+      expect(getByLabelText('item-title-2')).toBeInTheDocument();
+      expect(getByLabelText('item-title-3')).toBeInTheDocument();
+      expect(getByLabelText('item-title-4')).toBeInTheDocument();
+      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+
+      expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
+      userEvent.click(getByTestId('showAllBtn'));
+      expect(getByLabelText('item-title-6')).toBeInTheDocument();
+      userEvent.click(getByLabelText('item-title-6'));
+      expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
+      userEvent.click(getByTestId('showAllBtn'));
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(2);
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: 'item-id-2',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'item-id-6',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+    });
+
+    it('can uncheck all items by clicking on the parent (including hidden one)', () => {
+      const onSelectedItemChange = jest.fn();
+      const { asFragment, getByLabelText, getByTestId } = render(
+        <AccordionTreeWithShowAll
+          {...propsTreeWithParent}
+          onSelectedItemChange={onSelectedItemChange}
+          preselectedItems={[]}
+        />
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+
+      expect(getByLabelText('item-title-1')).toBeInTheDocument();
+      expect(getByLabelText('item-title-2')).toBeInTheDocument();
+      expect(getByLabelText('item-title-3')).toBeInTheDocument();
+      expect(getByLabelText('item-title-4')).toBeInTheDocument();
+      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+
+      userEvent.click(getByTestId('showAllBtn'));
+      expect(getByLabelText('item-title-7')).toBeInTheDocument();
+
+      userEvent.click(getByLabelText('item-title-7'));
+      userEvent.click(getByTestId('item-id-7-expand'));
+      expect(getByTestId('item-id-8')).toHaveAttribute('aria-checked', 'true');
+      expect(getByTestId('item-id-9')).toHaveAttribute('aria-checked', 'true');
+
+      userEvent.click(getByLabelText('item-title-7'));
+      expect(getByTestId('item-id-8')).toHaveAttribute('aria-checked', 'false');
+      expect(getByTestId('item-id-9')).toHaveAttribute('aria-checked', 'false');
+
+      userEvent.click(getByTestId('item-id-9-expand'));
+      userEvent.click(getByLabelText('item-title-10'));
+      expect(getByTestId('item-id-10')).toHaveAttribute('aria-checked', 'true');
+      expect(getByTestId('item-id-9')).toHaveAttribute('aria-checked', 'true');
+      expect(getByTestId('item-id-7')).toHaveAttribute('aria-checked', 'mixed');
+
+      userEvent.click(getByTestId('showAllBtn')); // show less
+      expect(onSelectedItemChange).toHaveBeenCalledTimes(3);
     });
   });
 });

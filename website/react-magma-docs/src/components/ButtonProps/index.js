@@ -18,6 +18,7 @@ export const ButtonProps = () => (
             options: [
               'ButtonColor.primary',
               'ButtonColor.secondary',
+              'ButtonColor.success',
               'ButtonColor.danger',
               'ButtonColor.marketing',
             ],

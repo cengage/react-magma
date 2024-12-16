@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(dropdown): Fix the dropdown closing on the second button click in `Safari`
+fix(Dropdown): Fix the dropdown closing on second button click in Safari

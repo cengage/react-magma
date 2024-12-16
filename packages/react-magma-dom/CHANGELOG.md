@@ -1,7 +1,8 @@
-
 ## 4.7.0
 
 ### Minor Changes
+
+- 4bec9c320: fix(TreeView): Support "show all" button inside TreeView component
 - 78fc319ba: feat(TreeView): onExpandedChange returns an array of expanded IDs.
 - 360cf8d29: feat(Input): Update colors for error message, icon and border in dark mode.
 - d8662d6f6: feat(Input): Update Input additional children position based on label position.
@@ -15,6 +16,8 @@
 
 ### Patch Changes
 
+- e432f97c9: fix(Input): Improve descriptions for `inputWrapperStyle` and `containerStyle` props.
+- 4ed9e5c7d: fix(TreeView): Add more unit tests
 - b8364bbca: fix(ToggleButtonGroup): Fix `enforced` and `exclusive` props.
 - 6a8ed217b: fix(Tag): Update tag focus state.
 - cf959a580: fix(Combobox/Select:): Fix focus color for selected items when using `isMulti` + `isInverse`.
@@ -63,6 +66,7 @@
 
 - ca58152cb: feat(TreeView): Add support for `checkChildren`, `checkParents` props
 - fdf2dc929: feat(Modal): New `headerRef` prop that returns a reference to the header element
+- ca58152cb: feat(TreeView): Add support for `checkChildren`, `checkParents` props
 
 ### Patch Changes
 
@@ -73,11 +77,16 @@
 - 84a8a17d6: fix(DatePicker): Fix error when using both `onChange` and `onDateChange`
 - 48b7a5539: fix(Breadcrumbs): Fixed alignment issue between elements.
 - 616cbf9a0: fix(BreadCrumb): Improved accessibility by replace span with link to fix focus
-- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
 - aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
 - 9d840d863: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
+- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
 - 9214724b6: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
 - 1d1dd1d06: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
+- 48b7a5539: fix(Breadcrumbs): Fixed alignment issue between elements.
+- 84a8a17d6: fix(DatePicker): Fix error when using both `onChange` and `onDateChange`
+- dc307446a: fix(Accordion): Fix screen scroll behavior during accordion navigation
+- d4164cacb: fix(Modal): Fix focus issue when using `isBackgroundClickDisabled`
+- 6b413fb77: fix(List): Updated support for nested items
 - 11bedeff9: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
 
 ## 4.5.0

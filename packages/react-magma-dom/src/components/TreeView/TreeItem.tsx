@@ -392,7 +392,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           {React.Children.map(
             children,
             (child: React.ReactElement<any>, index) => {
-              return child.type === TreeItem ? (
+              return child?.type === TreeItem ? (
                 <Transition isOpen={expanded} collapse unmountOnExit>
                   <ul role="group">
                     {React.cloneElement(child, {

@@ -152,22 +152,6 @@ export function getChildrenItemIdsFlat(children) {
   return itemIds;
 }
 
-// Return an array of objects where all children are items are nested in the parents
-export function getChildrenItemIdsInTree(children) {
-  let itemIds = [];
-
-  React.Children.forEach(children, child => {
-    if (child.props?.itemId && !child.props?.isDisabled) {
-      itemIds.push({
-        itemId: child.props?.itemId,
-        children: getChildrenItemIdsInTree(child.props?.children),
-      });
-    }
-  });
-
-  return itemIds;
-}
-
 // Return a treeItemRefArray object with no null children
 export function filterNullEntries(obj) {
   if (Array.isArray(obj.current)) {
@@ -213,6 +197,45 @@ const getIsDisabled = ({
   return isParentDisabled || isDisabled;
 };
 
+/* Returns a boolean indicating whether at least one child is valid.
+A child is considered valid if it can be counted as an item that would make the parent expandable.
+This is used to set `hasOwnTreeItems` which manages visibility of the expandable arrow.
+*/
+const areChildrenValid = children => {
+  if (!children) {
+    return false;
+  } else if (!children.length && children.type !== TreeItem) {
+    return false;
+  }
+
+  let hasValidChild = true;
+
+  for (let i = 0; i < children.length; i++) {
+    const child = children[i];
+
+    if (typeof child === 'string') {
+      return false; // Return false if a child is a string
+    }
+
+    if (child?.type !== TreeItem) {
+      return hasValidChild;
+    }
+    // Recursively check the validity of nested children
+    if (child.props.children) {
+      const nestedChildren = Array.isArray(child.props.children)
+        ? child.props.children
+        : [child.props.children];
+
+      if (areChildrenValid(nestedChildren)) {
+        hasValidChild = true;
+        return hasValidChild;
+      }
+    }
+  }
+
+  return hasValidChild;
+};
+
 const getTreeViewData = ({
   children,
   selectable,
@@ -249,7 +272,7 @@ const getTreeViewData = ({
           itemId: props.itemId,
           parentId,
           icon: props.icon,
-          hasOwnTreeItems: Boolean(props.children),
+          hasOwnTreeItems: areChildrenValid(props.children),
           isDisabled,
         },
         ...(props.children
@@ -552,13 +575,12 @@ const processParentsSelection = ({
   checkedStatus: TreeViewItemInterface['checkedStatus'];
 }) => {
   const item = items.find(item => item.itemId === itemId);
-  const { parentId } = item;
 
-  if (parentId === null) {
+  if (item?.parentId === null) {
     return items;
   }
 
-  const siblings = items.filter(item => item?.parentId === parentId);
+  const siblings = items.filter(i => i.parentId === item?.parentId);
   const isAllSiblingsHasTheSameStatus = siblings.every(
     item =>
       (item.checkedStatus || IndeterminateCheckboxStatus.unchecked) ===
@@ -568,7 +590,7 @@ const processParentsSelection = ({
     ? checkedStatus
     : IndeterminateCheckboxStatus.indeterminate;
 
-  const parent = items.find(item => item.itemId === parentId);
+  const parent = items.find(i => i.itemId === item?.parentId);
 
   const nextItems = items.map(item =>
     item.itemId === parent.itemId
