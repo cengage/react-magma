@@ -1,6 +1,6 @@
 {
   "name": "@react-magma/schema-renderer",
-  "version": "10.0.0",
+  "version": "11.0.0-next.0",
   "publishConfig": {
     "access": "public"
   },
@@ -27,7 +27,7 @@
     "downshift": "^5.4.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.7.0-next.1",
+    "react-magma-dom": "^4.8.0-next.0",
     "react-magma-icons": "^3.0.0",
     "uuid": "^8.3.0"
   },
@@ -41,7 +41,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-dropzone": "11.3.2",
-    "react-magma-dom": "^4.7.0",
+    "react-magma-dom": "^4.8.0-next.0",
     "react-magma-icons": "^3.0.0",
     "tsdx": "^0.14.1",
     "uuid": "^8.3.0"

@@ -1,3 +1,8 @@
+## 4.8.0-next.0
+
+### Minor Changes
+
+- 79435c964: feat(Select): Support disabling individual items in Select and Multi Select components
 
 ## 4.7.0
 
@@ -52,7 +57,7 @@
 - 044da059c: fix(TimePicker): Fix AM/PM width in the `TimePicker`
 - e447c8af8: fix(Toast): Fix loading ring alignment when zooming in Safari
 - 631d01024: fix(TreeView): Improve screenreader accessibility
-- 24680b288: fix(TreeView):  Fix initialExpanded items expanding all parents
+- 24680b288: fix(TreeView): Fix initialExpanded items expanding all parents
 - c0aecada5: fix(useFocusLock): Fix the `useFocusLock` hook if the first or last element is disabled.
 - 7adf69a9f: fix(.stories.): Remove `.stories.` files from the production bundle
 

@@ -10,5 +10,7 @@
     "react-magma-docs": "5.0.10",
     "react-magma-landing": "1.1.4"
   },
-  "changesets": []
+  "changesets": [
+    "feat-select-disabled-items"
+  ]
 }
