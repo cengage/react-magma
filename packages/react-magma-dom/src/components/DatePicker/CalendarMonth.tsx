@@ -83,6 +83,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
 ) => {
   const lastFocus = React.useRef<any>();
   const headingRef = React.useRef<any>();
+  const helperButtonRef = React.useRef<any>();
   const context = React.useContext(CalendarContext);
   const [dayFocusable, setDayFocusable] = React.useState<boolean>(false);
   const [focusHeader, setFocusHeader] = React.useState<boolean>(false);
@@ -108,6 +109,12 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
       setFocusHeader(false);
     }
   }, [props.calendarOpened, props.focusOnOpen]);
+
+  React.useEffect(() => {
+    if (prevCalendarOpened && !context.helperInformationShown) {
+      helperButtonRef.current.focus();
+    }
+  }, [context.helperInformationShown]);
 
   function onCalendarTableFocus() {
     setDayFocusable(true);
@@ -137,7 +144,12 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   const startOfWeek = days.indexOf(i18n.datePicker.startOfWeek);
   const sortedDays = days.slice(startOfWeek).concat(days.slice(0, startOfWeek));
   const tableDaysHeaders = sortedDays.map((day, index) => (
-    <Th key={index} theme={theme} isInverse={context.isInverse}>
+    <Th
+      key={index}
+      theme={theme}
+      isInverse={context.isInverse}
+      aria-label={i18n.days.long[day]}
+    >
       {i18n.days.min[day]}
     </Th>
   ));
@@ -150,12 +162,14 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
         theme={theme}
         onKeyDown={context.onKeyDown}
         isInverse={context.isInverse}
+        ref={focusTrapElement}
       >
         {context.helperInformationShown ? (
           <HelperInformation
             isOpen={context.helperInformationShown}
             isInverse={context.isInverse}
-            onClose={context.hideHelperInformation}
+            onReturnBack={context.hideHelperInformation}
+            onClose={context.onClose}
           />
         ) : (
           <MonthContainer
@@ -163,7 +177,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             data-visible="true"
             isInverse={context.isInverse}
             theme={theme}
-            ref={focusTrapElement}
           >
             <CalendarHeader
               ref={headingRef}
@@ -175,6 +188,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
               onBlur={onCalendarTableBlur}
               onFocus={onCalendarTableFocus}
               theme={theme}
+              role="application"
             >
               <tbody>
                 <tr>{tableDaysHeaders}</tr>
@@ -201,6 +215,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             >
               <HelperButton theme={theme}>
                 <IconButton
+                  ref={helperButtonRef}
                   aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
                   icon={<KeyboardIcon />}
                   onClick={context.showHelperInformation}

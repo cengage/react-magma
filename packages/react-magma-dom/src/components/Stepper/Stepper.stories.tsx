@@ -1,13 +1,21 @@
 import React from 'react';
 import { Button } from '../Button';
-import { Stepper, StepperProps, Step, StepperLayout } from './';
+import {
+  Stepper,
+  StepperProps,
+  Step,
+  StepperLayout,
+  StepperOrientation,
+} from './';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { Container } from '../Container';
 import { ButtonGroup } from '../ButtonGroup';
 import { InputType } from '../InputBase';
 import { Input } from '../Input';
-import { Flex, FlexAlignItems, FlexBehavior, FlexJustify } from '../Flex';
+import { Flex, FlexBehavior, FlexJustify } from '../Flex';
 import { LabelPosition } from '../Label';
+import { ResponsiveStepperContainer } from './ResponsiveStepperContainer';
+import { Dropdown, DropdownButton, DropdownContent } from '../Dropdown';
 
 export default {
   title: 'Stepper',
@@ -30,6 +38,13 @@ export default {
         defaultValue: StepperLayout.hideLabels,
       },
     },
+    breakpointOrientation: {
+      control: {
+        type: 'select',
+        options: StepperOrientation,
+        defaultValue: StepperOrientation.horizontal,
+      },
+    },
     layout: {
       control: {
         type: 'select',
@@ -46,6 +61,13 @@ export default {
     isInverse: {
       control: 'boolean',
       defaultValue: false,
+    },
+    orientation: {
+      control: {
+        type: 'select',
+        options: StepperOrientation,
+        defaultValue: StepperOrientation.horizontal,
+      },
     },
     testId: {
       control: 'text',
@@ -99,17 +121,18 @@ const Template: Story<StepperProps> = args => {
   });
 
   return (
-    <>
-      <Stepper currentStep={currentStep} {...args}>
-        {step}
-      </Stepper>
-
+    <ResponsiveStepperContainer
+      currentStep={currentStep}
+      steps={step}
+      {...args}
+    >
       <Container
         style={{
           background: args.isInverse ? '#1A1E51' : '#F5F5F5',
           borderRadius: '6px',
-          margin: '20px 0 0',
           padding: '20px',
+          width: '100%',
+          flex: 10,
         }}
       >
         <div>
@@ -120,10 +143,9 @@ const Template: Story<StepperProps> = args => {
       </Container>
 
       <Flex
-        behavior={FlexBehavior.container}
-        alignItems={FlexAlignItems.center}
+        behavior={FlexBehavior.both}
         justify={FlexJustify.spaceBetween}
-        style={{ paddingTop: '20px' }}
+        style={{ paddingTop: '20px', flex: 1 }}
       >
         <Flex behavior={FlexBehavior.item}>
           <Input
@@ -151,7 +173,43 @@ const Template: Story<StepperProps> = args => {
           </ButtonGroup>
         </Flex>
       </Flex>
-    </>
+    </ResponsiveStepperContainer>
+  );
+};
+
+const InsideDropdownTemplate: Story<StepperProps> = args => {
+  return (
+    <Dropdown>
+      <DropdownButton>Stepper</DropdownButton>
+      <DropdownContent
+        style={{
+          maxHeight: 'fit-content',
+          padding: '1em',
+        }}
+      >
+        <ResponsiveStepperContainer
+          currentStep={2}
+          {...args}
+          steps={[
+            <Step key={0} label="First Item" secondaryLabel="Description One">
+              Item Content One
+            </Step>,
+            <Step key={1} label="Second Item" secondaryLabel="Description Two">
+              Item Content Two
+            </Step>,
+            <Step key={2} label="Third Item" secondaryLabel="Description Three">
+              Item Content Three
+            </Step>,
+            <Step key={3} label="Fourth Item" secondaryLabel="Description Four">
+              Item Content Four
+            </Step>,
+            <Step key={4} label="Fifth Item" secondaryLabel="Description Five">
+              Item Content Five
+            </Step>,
+          ]}
+        ></ResponsiveStepperContainer>
+      </DropdownContent>
+    </Dropdown>
   );
 };
 
@@ -175,40 +233,43 @@ const RealisticLabels: Story<StepperProps> = args => {
   };
 
   return (
-    <>
-      <Stepper currentStep={currentStep} {...args}>
+    <ResponsiveStepperContainer
+      currentStep={currentStep}
+      {...args}
+      steps={[
         <Step
           key={0}
           label="Fenway seating"
           secondaryLabel="Select an area in the ball park"
           testId="fenway0"
-        />
+        />,
         <Step
           key={1}
           label="Guest information"
           secondaryLabel="Please fill out the registration form for your party"
           testId="fenway1"
-        />
+        />,
         <Step
           key={2}
           label="Yankees fans?"
           secondaryLabel="An additional surcharge may be applicable"
           testId="fenway2"
-        />
+        />,
         <Step
           key={3}
           label="MBTA and parking information"
           secondaryLabel="Suggested methods of transportation"
           testId="fenway3"
-        />
-      </Stepper>
-
+        />,
+      ]}
+    >
       <Container
         style={{
-          background: '#F5F5F5',
+          background: args.isInverse ? '#1A1E51' : '#F5F5F5',
           borderRadius: '6px',
-          margin: '20px 0 0',
           padding: '20px',
+          width: '100%',
+          flex: 10,
         }}
       >
         {currentStep === 0 && <div>Fenway seating Content</div>}
@@ -218,7 +279,10 @@ const RealisticLabels: Story<StepperProps> = args => {
         {currentStep === 4 && <div>Steps completed</div>}
       </Container>
 
-      <Container style={{ padding: '20px 0' }}>
+      <Flex
+        behavior={FlexBehavior.item}
+        style={{ padding: '20px 0', alignSelf: 'flex-end' }}
+      >
         <ButtonGroup>
           <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
             Previous
@@ -227,21 +291,23 @@ const RealisticLabels: Story<StepperProps> = args => {
             {currentStep >= 4 ? 'Finish' : 'Next'}
           </Button>
         </ButtonGroup>
-      </Container>
-    </>
+      </Flex>
+    </ResponsiveStepperContainer>
   );
 };
 
 const ErrorTemplate: Story<StepperProps> = args => {
   return (
-    <>
-      <Stepper currentStep={2} {...args}>
+    <ResponsiveStepperContainer
+      currentStep={2}
+      {...args}
+      steps={[
         <Step key={0} label="First Item" secondaryLabel="Description One">
           Item Content One
-        </Step>
+        </Step>,
         <Step key={1} label="Second Item" secondaryLabel="Description Two">
           Item Content Two
-        </Step>
+        </Step>,
         <Step
           key={2}
           label="Third Item"
@@ -249,37 +315,54 @@ const ErrorTemplate: Story<StepperProps> = args => {
           secondaryLabel="Description Three"
         >
           Item Content Three
-        </Step>
+        </Step>,
         <Step key={3} label="Fourth Item" secondaryLabel="Description Four">
           Item Content Four
-        </Step>
-      </Stepper>
+        </Step>,
+      ]}
+    >
       <Container
         style={{
           background: args.isInverse ? '#1A1E51' : '#F5F5F5',
           borderRadius: '6px',
-          margin: '20px 0 0',
           padding: '20px',
+          width: '100%',
+          flex: 10,
         }}
       >
         <div>Item Content Three</div>
       </Container>
 
-      <Container style={{ padding: '20px 0' }}>
+      <Flex
+        behavior={FlexBehavior.item}
+        style={{ padding: '20px 0', alignSelf: 'flex-end' }}
+      >
         <ButtonGroup>
           <Button disabled>Previous</Button>
           <Button disabled>Next</Button>
         </ButtonGroup>
-      </Container>
-    </>
+      </Flex>
+    </ResponsiveStepperContainer>
   );
 };
 
 export const Default = Template.bind({});
 Default.args = {};
 
+export const Vertical = Template.bind({});
+Vertical.args = {
+  ...Default.args,
+  orientation: StepperOrientation.vertical,
+};
+
+export const InsideDropdown = InsideDropdownTemplate.bind({});
+InsideDropdown.args = {
+  ...Default.args,
+  orientation: StepperOrientation.vertical,
+};
+
 export const RealWorldExample = RealisticLabels.bind({});
-RealisticLabels.args = {
+RealWorldExample.args = {
   stepLabel: 'Module',
 };
 

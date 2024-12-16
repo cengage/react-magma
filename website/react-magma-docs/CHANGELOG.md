@@ -1,40 +1,115 @@
 # Change Log
 
-## 5.0.8
+## 5.0.9-next.15
 
 ### Patch Changes
 
-- d48b8bbd4: fix(Accordion): Fix focus issue with `Collapse All` and `Expand All` buttons
-- d48b8bbd4: fix(ToggleButton): Improved accessibility for Toggle Button icon only examples.
-- d48b8bbd4: build: Fix package lock
-- d48b8bbd4: fix(Drawer): Fixed drawer appearing open at lower screen resolutions for the doc site navigation.
-- d48b8bbd4: docs(Drawer): Fix Drawer examples
-- d48b8bbd4: Update changelog text to alert adopters about the emotion update.
-- d48b8bbd4: docs(Modal): Modal Heading example fixes
-- d48b8bbd4: docs(Modal): Modal Heading icon example fix
-- d48b8bbd4: fix(TreeView): Fixed the Preselected items example
-- d48b8bbd4: chore: Manually sync main -> dev (4.5.0)
-- d48b8bbd4: build(deps): bump elliptic from 6.5.5 to 6.5.7
-- d48b8bbd4: docs(TreeView): Update TreeView example
-- Updated dependencies [d48b8bbd4]
-- Updated dependencies [d48b8bbd4]
-- Updated dependencies [d48b8bbd4]
-- Updated dependencies [d48b8bbd4]
-- Updated dependencies [d48b8bbd4]
-- Updated dependencies [d48b8bbd4]
-- Updated dependencies [d48b8bbd4]
-- Updated dependencies [d48b8bbd4]
-- Updated dependencies [d48b8bbd4]
-- Updated dependencies [d48b8bbd4]
-- Updated dependencies [d48b8bbd4]
-- Updated dependencies [d48b8bbd4]
-- Updated dependencies [d48b8bbd4]
-- Updated dependencies [d48b8bbd4]
-  - react-magma-dom@4.6.0
-  - @react-magma/charts@9.0.0
-  - @react-magma/dropzone@9.0.0
-  - @react-magma/schema-renderer@9.0.0
-  - @cengage-patterns/header@11.0.0
+- 356730976: chore: Clean up changesets ahead of release
+
+## 5.0.9-next.14
+
+### Patch Changes
+
+- 78aad0925: fix(Docs): Within the Docs site, these components have had fixes for missing references and general clean-up for CodeSandbox examples: Grid, Container, Stepper, Combobox, Hyperlink, IconButton, Toast, DatePicker, Dropdown, Form, FormGroup, useFocusLock
+
+## 5.0.9-next.13
+
+### Patch Changes
+
+- 8027499be: docs: Fix contribution guidelines page
+
+## 5.0.9-next.12
+
+### Patch Changes
+
+- a328f30bb: fix(TreeView): Fix TreeView references in Selectable example.
+
+## 5.0.9-next.11
+
+### Patch Changes
+
+- 4971408b6: docs(emotion): Update changelog to explain possible issue with emotion/css.
+
+## 5.0.9-next.10
+
+### Patch Changes
+
+- Updated dependencies [7da83c307]
+- Updated dependencies [7da83c307]
+  - @cengage-patterns/header@12.0.0-next.2
+  - @react-magma/schema-renderer@10.0.0-next.2
+
+## 5.0.9-next.9
+
+### Patch Changes
+
+- d3eaf4ab6: feat(react-magma-docs): Implement scrollspy.
+
+## 5.0.9-next.8
+
+### Patch Changes
+
+- 04f09e89d: fix(TimePicker): improve TimePicker internationalization example.
+
+## 5.0.9-next.7
+
+### Patch Changes
+
+- b49c69e63: fix(drawer): Corrected examples for a `drawer` component to ensure focus returns to the opening button after the `drawer` closes.
+
+  .
+
+## 5.0.9-next.6
+
+### Patch Changes
+
+- 8983e14e9: build(Lerna): update and add local caching for build and test commands`.
+
+## 5.0.9-next.5
+
+### Patch Changes
+
+- df1e5c8ba: fix(Docs): add "GATSBY_EMPTY_ALT" as alt text for empty alts.
+
+## 5.0.9-next.4
+
+### Patch Changes
+
+- 0846b586f: fix(Modal): Fix nested modal example focus lock.
+
+## 5.0.9-next.3
+
+### Patch Changes
+
+- 5b8791d89: docs(TreeView): Update examples
+
+## 5.0.9-next.2
+
+### Patch Changes
+
+- Updated dependencies [c815b89ac]
+  - react-magma-dom@4.7.0-next.1
+  - @react-magma/charts@10.0.0-next.1
+  - @react-magma/dropzone@10.0.0-next.1
+  - @react-magma/schema-renderer@10.0.0-next.1
+  - @cengage-patterns/header@12.0.0-next.1
+
+## 5.0.9-next.1
+
+### Patch Changes
+
+- Updated dependencies [f45bdde78]
+  - react-magma-dom@4.6.1-next.0
+  - @react-magma/charts@9.0.1-next.0
+  - @react-magma/dropzone@9.0.1-next.0
+  - @react-magma/schema-renderer@9.0.1-next.0
+  - @cengage-patterns/header@11.0.1-next.0
+
+## 5.0.9-next.0
+
+### Patch Changes
+
+- ce0dc00ca: chore: Manually sync main -> dev (4.6.0)
 
 ## 5.0.8-next.14
 

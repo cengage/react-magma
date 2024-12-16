@@ -1,12 +1,79 @@
 import * as React from 'react';
 import { useState } from 'react';
+import { useIsInverse } from '../../inverse';
+import { useGenerateId } from '../../utils';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
+  FormFieldContainerProps,
 } from '../FormFieldContainer';
-import { InputBase, InputBaseProps, InputSize } from '../InputBase';
-import { useGenerateId } from '../../utils';
-import { useIsInverse } from '../../inverse';
+import {
+  getHelpIconButtonSize,
+  InputBase,
+  InputBaseProps,
+  InputSize,
+  isLeftOrHidden,
+} from '../InputBase';
+import { LabelPosition } from '../Label';
+import styled from '@emotion/styled';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { Theme } from '@emotion/react';
+
+const getLabelStyles = (
+  props: FormFieldContainerProps &
+    React.RefAttributes<HTMLDivElement> & { theme?: Theme } & {
+      labelPosition?: LabelPosition;
+      InputSize?: InputSize;
+    } & { theme: Theme }
+) => {
+  const marginBlock = isLeftOrHidden(props)
+    ? '0'
+    : `0 ${props.theme.spaceScale.spacing03}`;
+  const marginInline = isLeftOrHidden(props)
+    ? `0 ${props.theme.spaceScale.spacing03}`
+    : '0';
+  const maxWidth = isLeftOrHidden(props)
+    ? 'auto'
+    : `calc(100% - ${getHelpIconButtonSize(props)} - ${
+        props.theme.spaceScale.spacing03
+      })`;
+  let minHeight: string;
+  if (props.labelPosition === LabelPosition.left) {
+    minHeight =
+      props.InputSize === InputSize.large
+        ? props.theme.spaceScale.spacing11
+        : props.theme.spaceScale.spacing09;
+  } else {
+    minHeight = 'auto';
+  }
+  const justifyContent = isLeftOrHidden(props) ? 'end' : 'start';
+
+  return { marginBlock, marginInline, maxWidth, minHeight, justifyContent };
+};
+
+const StyledFormFieldContainer = styled(FormFieldContainer)<{
+  labelPosition?: LabelPosition;
+  InputSize?: InputSize;
+}>`
+  position: relative;
+  align-items: start;
+
+  label {
+    ${props => {
+      const { marginBlock, marginInline, maxWidth, minHeight, justifyContent } =
+        getLabelStyles(props);
+      return `
+        margin-block: ${marginBlock};
+        margin-inline: ${marginInline};
+        max-width: ${maxWidth};
+        min-height: ${minHeight};
+        justify-content: ${justifyContent};
+      `;
+    }}
+    display: flex;
+    align-items: center;
+  }
+`;
 
 export interface InputProps
   extends Omit<FormFieldContainerBaseProps, 'fieldId'>,
@@ -33,6 +100,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       messageStyle,
       testId,
       value,
+      setReference,
       ...other
     } = props;
 
@@ -45,13 +113,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
 
-    const maxLengthNum = !hasCharacterCounter && maxLength ? maxLength : undefined;
+    const maxLengthNum =
+      !hasCharacterCounter && maxLength ? maxLength : undefined;
 
     const isInverse = useIsInverse(props.isInverse);
 
     const [characterLength, setCharacterLength] = useState(
       value?.toString().length
     );
+
+    const theme = React.useContext(ThemeContext);
 
     React.useEffect(() => {
       setCharacterLength(value?.toString().length);
@@ -70,7 +141,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     }
 
     return (
-      <FormFieldContainer
+      <StyledFormFieldContainer
         containerStyle={containerStyle}
         errorMessage={errorMessage}
         fieldId={id}
@@ -89,12 +160,12 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         maxCount={maxCount}
         messageStyle={messageStyle}
         testId={testId && `${testId}-formFieldContainer`}
+        theme={theme}
+        InputSize={inputSize}
       >
         <InputBase
           {...other}
-          aria-describedby={
-            descriptionId ? descriptionId : props['aria-describedby']
-          }
+          aria-describedby={descriptionId ?? props['aria-describedby']}
           aria-invalid={!!errorMessage}
           hasError={
             !!errorMessage ||
@@ -110,12 +181,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           onClear={handleClear}
           onDateChange={props.onDateChange}
           ref={ref}
+          setReference={setReference}
           testId={testId}
           value={value}
+          isLabelVisuallyHidden={isLabelVisuallyHidden}
+          labelPosition={labelPosition}
         >
           {children}
         </InputBase>
-      </FormFieldContainer>
+      </StyledFormFieldContainer>
     );
   }
 );

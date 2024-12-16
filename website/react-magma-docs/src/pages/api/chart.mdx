@@ -7,19 +7,26 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="chart" type="api">
 
-<LeadParagraph>Magma charts enable you to convey precise and compelling narratives around data through visually appealing and accessible visualizations.</LeadParagraph>
+<LeadParagraph>
+  Magma charts enable you to convey precise and compelling narratives around
+  data through visually appealing and accessible visualizations.
+</LeadParagraph>
 
 The CarbonChart component is a wrapper for the [Carbon Design System Simple Charts](https://carbondesignsystem.com/data-visualization/simple-charts).
 
-
 <Alert variant="warning">
   <strong>Important!</strong> CarbonChart is imported from{' '}
-  <inlineCode>@react-magma/charts</inlineCode> which must be installed as a peer dependency.
-  <br/><br/>
-  In addition, you must manually import the styles:<br/><inlineCode>import '@react-magma/charts/dist/charts.css';</inlineCode>
+  <inlineCode>@react-magma/charts</inlineCode> which must be installed as a peer
+  dependency.
+  <br />
+  <br />
+  In addition, you must manually import the styles:
+  <br />
+  <inlineCode>import '@react-magma/charts/dist/charts.css';</inlineCode>
 </Alert>
 
 We currently support the following chart types:
+
 - AreaChart
 - StackedAreaChart
 - DonutChart
@@ -32,7 +39,7 @@ We currently support the following chart types:
 
 ## Area Chart
 
-Area charts share similarities with line charts, distinguished by the filled areas below the lines, adorned with colors or patterns. Stacked charts, on the other hand, prove valuable for comparing proportional contributions within a category by plotting the relative value each data series contributes to the total. 
+Area charts share similarities with line charts, distinguished by the filled areas below the lines, adorned with colors or patterns. Stacked charts, on the other hand, prove valuable for comparing proportional contributions within a category by plotting the relative value each data series contributes to the total.
 
 ```typescript
 import React from 'react';
@@ -114,7 +121,11 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart dataSet={dataSet} type={CarbonChartType.area} options={options} />
+      <CarbonChart
+        dataSet={dataSet}
+        type={CarbonChartType.area}
+        options={options}
+      />
     </Card>
   );
 }
@@ -175,12 +186,15 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart dataSet={dataSet} type={CarbonChartType.donut} options={options} />
+      <CarbonChart
+        dataSet={dataSet}
+        type={CarbonChartType.donut}
+        options={options}
+      />
     </Card>
   );
 }
 ```
-
 
 ## Line Chart
 
@@ -318,7 +332,12 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }} isInverse>
-      <CarbonChart dataSet={dataSet} type={CarbonChartType.line} options={options} isInverse />
+      <CarbonChart
+        dataSet={dataSet}
+        type={CarbonChartType.line}
+        options={options}
+        isInverse
+      />
     </Card>
   );
 }
@@ -374,7 +393,12 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }} isInverse>
-      <CarbonChart dataSet={dataSet} type={CarbonChartType.pie} options={options} isInverse />
+      <CarbonChart
+        dataSet={dataSet}
+        type={CarbonChartType.pie}
+        options={options}
+        isInverse
+      />
     </Card>
   );
 }
@@ -400,8 +424,7 @@ export function Example() {
         ],
       },
       required: true,
-      description:
-        'Type of Chart: area, bar, donut, line, etc.',
+      description: 'Type of Chart: area, bar, donut, line, etc.',
     },
     dataSet: {
       type: {
@@ -416,7 +439,8 @@ export function Example() {
         name: 'object',
       },
       required: true,
-      description: 'For a complete list of options, see Carbon Charts documentation',
+      description:
+        'For a complete list of options, see Carbon Charts documentation',
       defaultValue: '{}',
     },
     isInverse: {
@@ -426,7 +450,6 @@ export function Example() {
       required: false,
       defaultValue: false,
     },
-    
   }}
 />
 

@@ -1,6 +1,6 @@
 {
   "name": "@react-magma/charts",
-  "version": "9.0.0",
+  "version": "10.0.0-next.2",
   "publishConfig": {
     "access": "public"
   },
@@ -16,8 +16,8 @@
     "src/components/CarbonChart/styles.min.css"
   ],
   "engines": {
-    "npm": "^7.3.0",
-    "node": "^14.15.0"
+    "npm": ">=7.3.0",
+    "node": ">=14.15.0"
   },
   "scripts": {
     "build": "microbundle build --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx",
@@ -31,7 +31,7 @@
     "@emotion/styled": "^11.13.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.6.0-next.0",
+    "react-magma-dom": "^4.7.0-next.1",
     "react-magma-icons": "^3.0.0"
   },
   "dependencies": {
@@ -48,7 +48,7 @@
     "identity-obj-proxy": "^3.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.6.0",
+    "react-magma-dom": "^4.7.0-next.1",
     "react-magma-icons": "^3.0.0"
   },
   "exports": {

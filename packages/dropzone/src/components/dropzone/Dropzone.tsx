@@ -149,7 +149,7 @@ const Container = styled(Flex)<
       ? `0px`
       : dragState === 'dragReject' || dragState === 'error'
       ? isInverse
-        ? `1px dashed ${theme.colors.danger200}`
+        ? `1px dashed ${theme.colors.danger300}`
         : `1px dashed ${theme.colors.danger}`
       : dragState === 'dragActive'
       ? `1px dashed ${theme.colors.primary}`

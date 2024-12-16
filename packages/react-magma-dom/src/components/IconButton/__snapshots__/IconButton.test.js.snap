@@ -69,25 +69,6 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -189,25 +170,6 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -254,6 +216,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
       class="emotion-2 emotion-3"
     >
       <svg
+        aria-hidden="true"
         class="icon"
         fill="currentColor"
         height="32"
@@ -340,25 +303,6 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -460,25 +404,6 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -525,6 +450,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
       class="emotion-2 emotion-3"
     >
       <svg
+        aria-hidden="true"
         class="icon"
         fill="currentColor"
         height="20"
@@ -611,25 +537,6 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   color: #3942B0;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #707070;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
@@ -731,25 +638,6 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   color: #3942B0;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #707070;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
@@ -796,6 +684,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
       class="emotion-2 emotion-3"
     >
       <svg
+        aria-hidden="true"
         class="icon"
         fill="currentColor"
         height="24"
@@ -882,25 +771,6 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -1002,25 +872,6 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -1067,6 +918,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
       class="emotion-2 emotion-3"
     >
       <svg
+        aria-hidden="true"
         class="icon"
         fill="currentColor"
         height="24"
@@ -1153,25 +1005,6 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -1273,25 +1106,6 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -1338,6 +1152,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
       class="emotion-2 emotion-3"
     >
       <svg
+        aria-hidden="true"
         class="icon"
         fill="currentColor"
         height="24"
@@ -1413,25 +1228,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -1526,25 +1322,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -1600,6 +1377,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
         Test Text
       </span>
       <svg
+        aria-hidden="true"
         class="icon"
         fill="currentColor"
         height="32"
@@ -1675,25 +1453,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -1788,25 +1547,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -1862,6 +1602,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
         Test Text
       </span>
       <svg
+        aria-hidden="true"
         class="icon"
         fill="currentColor"
         height="24"
@@ -1937,25 +1678,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -2050,25 +1772,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -2124,6 +1827,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
         Test Text
       </span>
       <svg
+        aria-hidden="true"
         class="icon"
         fill="currentColor"
         height="20"
@@ -2199,25 +1903,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   color: #3942B0;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #707070;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
@@ -2312,25 +1997,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   color: #3942B0;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #707070;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
@@ -2386,6 +2052,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
         Test Text
       </span>
       <svg
+        aria-hidden="true"
         class="icon"
         fill="currentColor"
         height="24"
@@ -2461,25 +2128,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -2574,25 +2222,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -2648,6 +2277,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
         Test Text
       </span>
       <svg
+        aria-hidden="true"
         class="icon"
         fill="currentColor"
         height="24"
@@ -2723,25 +2353,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -2836,25 +2447,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -2910,6 +2502,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
         Test Text
       </span>
       <svg
+        aria-hidden="true"
         class="icon"
         fill="currentColor"
         height="24"
@@ -2985,25 +2578,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -3098,25 +2672,6 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) scale(1);
-  -moz-transform: translate(-50%, -50%) scale(1);
-  -ms-transform: translate(-50%, -50%) scale(1);
-  transform: translate(-50%, -50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-0:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -3172,6 +2727,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
         Test Text
       </span>
       <svg
+        aria-hidden="true"
         class="icon"
         fill="currentColor"
         height="24"

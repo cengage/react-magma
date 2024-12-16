@@ -353,7 +353,7 @@ export function Example() {
 }
 ```
 
-## Additional Content
+## Help Link
 
 When a select needs additional context related to the user, `additionalContent` allows child elements to help. It is encouraged to use this prop with a `Tooltip` wrapping an `IconButton`.
 
@@ -1135,7 +1135,7 @@ The `type` property in the `changes` object that is returned from the `onStateCh
 corresponds to a `stateChangeTypes` property. The list of all the possible types for a `select` or a
 `multi-select` are listed below.
 
-<Alert variant="info" style={{ maxWidth: '100%', overflow: 'scroll' }}>
+<Alert variant="info" style={{ maxWidth: '100%' }}>
   In the development environment these types equate to strings
   <br />
   (eg:{' '}
@@ -1145,15 +1145,12 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
   </inlineCode>
   ). However, in the production environment the types equate to numbers
   <br />
-  (eg: <inlineCode class="inverse">
-    ComboboxStateChangeTypes.InputKeyDownArrowDown = 0
-  </inlineCode>
-  ).
+  (eg: <inlineCode class="inverse">ComboboxStateChangeTypes.InputKeyDownArrowDown = 0</inlineCode>).
 </Alert>
 
 ### Select
 
-<div style={{ overflowX: 'scroll' }}>
+<div>
   <ul>
     <li>
       <inlineCode>SelectStateChangeTypes.MenuKeyDownArrowDown</inlineCode>
@@ -1235,7 +1232,7 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 
 ### MultiSelect
 
-<div style={{ overflowX: 'scroll' }}>
+<div >
   <ul>
     <li>
       <inlineCode>

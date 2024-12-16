@@ -181,6 +181,7 @@ export const DropdownMenuItem = React.forwardRef<
     <StyledItem
       {...other}
       aria-disabled={disabled}
+      aria-current={isActive ? 'true' : null}
       disabled={disabled}
       isFixedWidth={context.isFixedWidth}
       isInactive={isInactive}

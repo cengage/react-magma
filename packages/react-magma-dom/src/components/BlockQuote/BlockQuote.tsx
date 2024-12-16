@@ -2,7 +2,7 @@ import * as React from 'react';
 import { css } from '@emotion/react';
 
 import { ThemeContext } from '../../theme/ThemeContext';
-import { magma, ThemeInterface } from '../../theme/magma';
+import { Colors, ThemeInterface } from '../../theme/magma';
 import { InverseContext, useIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
 
@@ -13,7 +13,7 @@ export interface BlockQuoteProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Style properties for the left border color which accept custom CSS hex values.
    */
-  borderStyle?: keyof typeof magma.colors | string;
+  borderStyle?: keyof Colors | string;
   isInverse?: boolean;
   /**
    * @internal
@@ -51,7 +51,7 @@ export const BlockQuote = React.forwardRef<HTMLDivElement, BlockQuoteProps>(
     return (
       <InverseContext.Provider value={{ isInverse }}>
         <StyledBlockQuote
-          borderStyle={magma.colors[borderStyle] || borderStyle}
+          borderStyle={theme.colors[borderStyle] || borderStyle}
           theme={theme}
           isInverse={isInverse}
           ref={ref}
