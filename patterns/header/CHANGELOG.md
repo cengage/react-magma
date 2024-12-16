@@ -1,5 +1,11 @@
 # Change Log
 
+## 12.0.0
+
+### Patch Changes
+
+- 02db8e632: Deprecate @cengage-patterns/header package.
+
 ## 12.0.0-next.2
 
 ### Patch Changes

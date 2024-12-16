@@ -2,4 +2,4 @@
 'react-magma-docs': patch
 ---
 
-docs(TreeView): Update examples
+Manually sync main -> dev (v4.7.0)

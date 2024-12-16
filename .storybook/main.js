@@ -25,13 +25,12 @@ module.exports = {
     // check: true,
   },
   webpackFinal: async config => {
-    
     config.module.rules[0].exclude = /node_modules\/(?!(@carbon)\/).*/;
-      return {
-        ...config,
-        // devtool: false,
-        module: {
-          ...config.module,
+    return {
+      ...config,
+      // devtool: false,
+      module: {
+        ...config.module,
       },
       // devtool: 'eval',
       resolve: {

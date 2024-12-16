@@ -181,10 +181,7 @@ export const HelpLink = args => {
   };
   return (
     <>
-      <Input
-        labelText="Help link - top"
-        {...args}
-      >
+      <Input labelText="Help link - top" {...args}>
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}
@@ -196,7 +193,7 @@ export const HelpLink = args => {
           />
         </Tooltip>
       </Input>
-      <Spacer size={16}/>
+      <Spacer size={16} />
       <Input
         labelText="Help link - left"
         labelPosition={LabelPosition.left}
@@ -213,12 +210,8 @@ export const HelpLink = args => {
           />
         </Tooltip>
       </Input>
-      <Spacer size={16}/>
-      <Input
-        labelText="Help link - hidden"
-        isLabelVisuallyHidden
-        {...args}
-      >
+      <Spacer size={16} />
+      <Input labelText="Help link - hidden" isLabelVisuallyHidden {...args}>
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}
@@ -240,7 +233,15 @@ HelpLink.args = {
   labelText: 'Label Text',
 };
 HelpLink.parameters = {
-  controls: { exclude: ['isInverse', 'type', 'iconPosition','isLabelVisuallyHidden','labelPosition' ] },
+  controls: {
+    exclude: [
+      'isInverse',
+      'type',
+      'iconPosition',
+      'isLabelVisuallyHidden',
+      'labelPosition',
+    ],
+  },
 };
 
 export const WithTwoIcons = args => {

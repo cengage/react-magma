@@ -1,31 +1,71 @@
-## 4.7.0-next.53
 
-## 4.7.0-next.55
-
-### Patch Changes
-
-- 4ed9e5c7d: fix(TreeView): Add more unit tests
-
-## 4.7.0-next.54
+## 4.7.0
 
 ### Minor Changes
 
-- 4bec9c320: fix(TreeView): Support "show all" button inside TreeView component
+- e926d3ddf: feat(Button): Add `success` button.
+- cdb304158: feat(Combobox, Select, Date picker, Dropdown): Support viewport detection and positioning
+- d8662d6f6: feat(Input): Update additional children position based on label position
+- 360cf8d29: feat(Input): Update colors for error message, icon and border in dark mode
+- 5a928ea59: feat(ProgressBar): Update colors from danger200/success200 to danger300/success300 in dark mode
+- 68ff224cc: feat(Stepper): Add vertical orientation for `Stepper`
+- 40708c7c6: feat(Tabs, NavTabs): Add support for overwriting text transform with `textTransform` prop
+- 78fc319ba: feat(TreeView): `onExpandedChange` returns an array of expanded IDs
+- c815b89ac: feat(TreeView): Add ability to update selected items from outside the tree
+- 1caced455: feat(TreeView): Add support for `isDisabled` trees and items
+- 4bec9c320: feat(TreeView): Support "show all"/"hide all" button inside TreeView component
 
 ### Patch Changes
 
-- e432f97c9: fix(Input): Improve descriptions for `inputWrapperStyle` and `containerStyle` props.
+- ac6ff21bb: fix(BlockQuote): Fix border color respecting the `Theme` context
+- f885d5906: fix(Breadcrumb): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `span` element that wraps the SVGs
+- d7423ebe5: fix(Button): Remove animation presses for `Button`
+- 2157b4708: fix(CheckBox): Fix unreadable labels in `CheckBox` for screen readers
+- a95d26ca7: fix(CheckBox): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `span` element that wraps the SVGs
+- b3fcc32b1: fix(Combobox): Fix focus issue after triggering the clear button
+- cf959a580: fix(Combobox/Select): Fix focus color for selected items when using `isMulti` + `isInverse`
+- f45bdde78: fix(DatePicker): Remove shortcut to open `HelperInformation`
+- 8004c9f55: fix(DatePicker): Add `aria-label` to calendar header columns
+- eb2b3ab1e: fix(DatePicker): Fix navigation and accessibility issues
+- 35d9507ad: fix(Drawer): Fix trapped focus
+- 7887c50b9: chore(Dropdown): Deprecate `dropDirection` & `alignment` props. These are no longer necessary with viewport detection support
+- d109847d8: fix(Dropdown): Fix the dropdown closing on second button click in `Safari`
+- 1d1110dc3: fix(Dropdown): Fix accessibility for active index
+- acbec5c8d: fix(Dropdown): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `svg` elements
+- a163f4230: fix(Heading): Update margins for `heading2XLarge`
+- 3a97fe97f: fix(Heading): Add the `noTopMargin` and `noBottomMargin` props to the `Heading` component
+- 3c94afd1a: fix(Input): Update focus style on inputs
+- 482268a7e: fix(Input): Remove `flex-shrink` to allow inputs to shrink as needed
+- fbae9ce39: fix(Input): Fix help link position on inputs
+- e432f97c9: fix(Input): Improve descriptions for `inputWrapperStyle` and `containerStyle` props
+- 08deb434d: fix(List): Hide SVGs from assistive tech by adding `aria-hidden="true"` to the `span` element that wraps the SVGs
+- ac6ff21bb: fix(ListItem): Fix icon colors respecting the `Theme` context
+- fbfd75e8b: fix(Modal): Fix modal losing focus order with dynamic content
+- 7d8006fe1: fix(ProgressBar): Remove animation if the user has `prefers-reduced-motion` media query set
+- 5c3d7fce3: fix(Search): Fix the disappearing focus on the button when loading
+- 1da99002f: fix(Search): Fix overlapping content issue with the clear button
+- 5e39ab2b4: fix(Select): Update outline offset on multiselected items
+- 270e1f4ff: fix(Select): Fix placeholder color
+- a328ebe29: fix(Select): Fix accessibility issue for `clearIndicator` inside `SelectTriggerButton`
+- ddf476a38: fix(Tabs): Center preselected `Tab` on the `Scrollable Tabs`
+- 6a8ed217b: fix(Tag): Update tag focus state.
+- 044da059c: fix(TimePicker): Fix AM/PM width in the `TimePicker`
+- e447c8af8: fix(Toast): Fix loading ring alignment when zooming in Safari
+- 631d01024: fix(TreeView): Improve screenreader accessibility
+- 24680b288: fix(TreeView):  Fix initialExpanded items expanding all parents
+- c0aecada5: fix(useFocusLock): Fix the `useFocusLock` hook if the first or last element is disabled.
+- 7adf69a9f: fix(.stories.): Remove `.stories.` files from the production bundle
 
 ## 4.6.0
 
 ### Minor Changes
 
-- fdf2dc929: feat(Modal): New `headerRef` prop that returns a reference to the header element
 - ca58152cb: feat(TreeView): Add support for `checkChildren`, `checkParents` props
+- fdf2dc929: feat(Modal): New `headerRef` prop that returns a reference to the header element
 
 ### Patch Changes
 
-- 616cbf9a0: fix(BreadCrumb): Improved accessibility by replace span with link to fix focus
+- 616cbf9a0: fix(BreadCrumb): Improved accessibility by replacing span with link to fix focus
 - aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
 - 9d840d863: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
 - 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
@@ -42,13 +82,13 @@
 
 ### Minor Changes
 
-- ae668a3e5: chore: Updating emotion to v11 **Note: adopters will need to upgrade** their packages to the following versions `"@emotion/react": "^11.13.0", "@emotion/styled": "^11.13.0"`. Notice that `@emotion/core` has been replaced with `@emotion/styled` and that's the only breaking change, unless your project is using `@emotion/css` which may not work the same. Please review the emotion documentation when upgrading.
+- ae668a3e5: chore: Updating emotion to v11. **Note: adopters will need to upgrade** their packages to the following versions `"@emotion/react": "^11.13.0", "@emotion/styled": "^11.13.0"`. Notice that `@emotion/core` has been replaced with `@emotion/styled` and that's the only breaking change.
 - 9e38e9e7f: feat(Stepper): New Stepper component. Displays step based content for use in multi-step interfaces.
 
 ### Patch Changes
 
 - e43932d45: fix(Modal): Background overlay now displays as expected for nested modals
-- e24db7ab4: fix(DatePicker): Remove role="presentation" from calendar
+- e24db7ab4: fix(DatePicker): Remove `role="presentation"` from calendar
 - 65d417254: fix(ProgressBar): Add support for custom colors
 - 636fa3060: fix(NativeSelect): Update arrow placement, arrow color and border color when disabled
 - da14eec4f: fix(Modal): Remove unnecessary `aria-describedBy=“modal”`. Add `ariaLabel` prop so that Modals without headers can customize the `aria-label` instead of defaulting to `aria-label="modal"` which is not correct for a11y standards.
