@@ -266,7 +266,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         ['left-end', 'left-end'],
       ]);
 
-      // dropDirection & alignment are deprecated. 
+      // dropDirection & alignment are deprecated.
       // this fallback can be removed when the props are deleted.
       const contentPosition = `${dropDirection}-${alignment}`;
 

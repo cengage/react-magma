@@ -1,5 +1,11 @@
 # @react-magma/schema-renderer
 
+## 10.0.0
+
+### Patch Changes
+
+- 02db8e632: Deprecate @react-magma/schema-renderer package.
+
 ## 10.0.0-next.2
 
 ### Patch Changes

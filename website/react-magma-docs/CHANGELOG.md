@@ -1,5 +1,78 @@
 # Change Log
 
+## 5.0.9
+
+### Patch Changes
+
+- 02db8e632: fix(Modal): Fix nested modal example focus lock.
+- 02db8e632: fix(Drawer): Corrected examples for a `drawer` component to ensure focus returns to the opening button after the `drawer` closes.
+- 02db8e632: fix(Docs): add "GATSBY_EMPTY_ALT" as alt text for empty alts.
+- 02db8e632: fix(TimePicker): improve TimePicker internationalization example.
+- 02db8e632: build(Lerna): update and add local caching for build and test commands`.
+- 02db8e632: docs: Fix contribution guidelines page
+- 02db8e632: docs(emotion): Update changelog to explain possible issue with emotion/css.
+- 02db8e632: fix(Docs): Within the Docs site, these components have had fixes for missing references and general clean-up for CodeSandbox examples: Grid, Container, Stepper, Combobox, Hyperlink, IconButton, Toast, DatePicker, Dropdown, Form, FormGroup, useFocusLock
+- 02db8e632: fix(TreeView): Fix TreeView references in Selectable example.
+- 02db8e632: feat(react-magma-docs): Implement scrollspy.
+- 02db8e632: chore: Manually sync main -> dev (4.6.0)
+- 02db8e632: docs(TreeView): Update examples
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+  - react-magma-dom@4.7.0
+  - @react-magma/charts@10.0.0
+  - @cengage-patterns/header@12.0.0
+  - @react-magma/schema-renderer@10.0.0
+  - @react-magma/dropzone@10.0.0
+
 ## 5.0.9-next.15
 
 ### Patch Changes
