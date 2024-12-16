@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.0.10
+
+### Patch Changes
+
+- 91966ce38: Manually sync main -> dev (v4.7.0)
+- 91966ce38: Fix changelog for dom v4.7.0
+
 ## 5.0.9
 
 ### Patch Changes
