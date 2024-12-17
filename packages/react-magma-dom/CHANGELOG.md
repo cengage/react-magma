@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.2
+
+### Patch Changes
+
+- 2b097cef4: build(deps): bump path-to-regexp and express
+
 ## 4.8.0-next.1
 
 ### Patch Changes
