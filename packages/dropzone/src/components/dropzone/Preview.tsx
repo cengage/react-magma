@@ -108,7 +108,7 @@ const StyledCard = typedStyled(Card)<{ file: FilePreview; isInverse: boolean }>`
   border-color: ${({ file, theme, isInverse }) =>
     file.errors
       ? isInverse
-        ? theme.colors.danger300
+        ? theme.colors.danger200
         : theme.colors.danger
       : theme.colors.neutral300};
   border-width: 1px;
@@ -288,7 +288,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
               {file.errors ? (
                 <ErrorIcon
                   color={
-                    isInverse ? theme.colors.danger300 : theme.colors.danger
+                    isInverse ? theme.colors.danger200 : theme.colors.danger
                   }
                   size={24}
                 />

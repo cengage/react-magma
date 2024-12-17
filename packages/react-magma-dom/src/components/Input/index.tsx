@@ -17,7 +17,7 @@ import {
 import { LabelPosition } from '../Label';
 import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { Theme } from '@emotion/react';
+import { Theme } from '@emotion/core';
 
 const getLabelStyles = (
   props: FormFieldContainerProps &
