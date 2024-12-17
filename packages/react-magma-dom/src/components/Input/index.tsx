@@ -5,75 +5,77 @@ import { useGenerateId } from '../../utils';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
-  FormFieldContainerProps,
+  // FormFieldContainerProps,
 } from '../FormFieldContainer';
 import {
-  getHelpIconButtonSize,
+  // getHelpIconButtonSize,
   InputBase,
   InputBaseProps,
   InputSize,
-  isLeftOrHidden,
+  // isLeftOrHidden,
 } from '../InputBase';
 import { LabelPosition } from '../Label';
-import styled from '@emotion/styled';
+import styled, { CreateStyled } from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { Theme } from '@emotion/core';
+import { ThemeInterface } from '../../theme/magma';
 
-const getLabelStyles = (
-  props: FormFieldContainerProps &
-    React.RefAttributes<HTMLDivElement> & { theme?: Theme } & {
-      labelPosition?: LabelPosition;
-      InputSize?: InputSize;
-    } & { theme: Theme }
-) => {
-  const marginBlock = isLeftOrHidden(props)
-    ? '0'
-    : `0 ${props.theme.spaceScale.spacing03}`;
-  const marginInline = isLeftOrHidden(props)
-    ? `0 ${props.theme.spaceScale.spacing03}`
-    : '0';
-  const maxWidth = isLeftOrHidden(props)
-    ? 'auto'
-    : `calc(100% - ${getHelpIconButtonSize(props)} - ${
-        props.theme.spaceScale.spacing03
-      })`;
-  let minHeight: string;
-  if (props.labelPosition === LabelPosition.left) {
-    minHeight =
-      props.InputSize === InputSize.large
-        ? props.theme.spaceScale.spacing11
-        : props.theme.spaceScale.spacing09;
-  } else {
-    minHeight = 'auto';
-  }
-  const justifyContent = isLeftOrHidden(props) ? 'end' : 'start';
+const typedStyled = styled as CreateStyled<ThemeInterface>;
 
-  return { marginBlock, marginInline, maxWidth, minHeight, justifyContent };
-};
+// const getLabelStyles = (
+//   props: FormFieldContainerProps &
+//     React.RefAttributes<HTMLDivElement> & { theme?: ThemeInterface } & {
+//       labelPosition?: LabelPosition;
+//       InputSize?: InputSize;
+//     } & { theme: ThemeInterface } & Omit<FormFieldContainerBaseProps, 'fieldId'>
+// ) => {
+//   const marginBlock = isLeftOrHidden(props)
+//     ? '0'
+//     : `0 ${props.theme.spaceScale.spacing03}`;
+//   const marginInline = isLeftOrHidden(props)
+//     ? `0 ${props.theme.spaceScale.spacing03}`
+//     : '0';
+//   const maxWidth = isLeftOrHidden(props)
+//     ? 'auto'
+//     : `calc(100% - ${getHelpIconButtonSize(props)} - ${
+//         props.theme.spaceScale.spacing03
+//       })`;
+//   let minHeight: string;
+//   if (props.labelPosition === LabelPosition.left) {
+//     minHeight =
+//       props.InputSize === InputSize.large
+//         ? props.theme.spaceScale.spacing11
+//         : props.theme.spaceScale.spacing09;
+//   } else {
+//     minHeight = 'auto';
+//   }
+//   const justifyContent = isLeftOrHidden(props) ? 'end' : 'start';
 
-const StyledFormFieldContainer = styled(FormFieldContainer)<{
+//   return { marginBlock, marginInline, maxWidth, minHeight, justifyContent };
+// };
+
+const StyledFormFieldContainer = typedStyled(FormFieldContainer)<{
   labelPosition?: LabelPosition;
   InputSize?: InputSize;
 }>`
   position: relative;
   align-items: start;
 
-  label {
-    ${props => {
-      const { marginBlock, marginInline, maxWidth, minHeight, justifyContent } =
-        getLabelStyles(props);
-      return `
-        margin-block: ${marginBlock};
-        margin-inline: ${marginInline};
-        max-width: ${maxWidth};
-        min-height: ${minHeight};
-        justify-content: ${justifyContent};
-      `;
-    }}
-    display: flex;
-    align-items: center;
-  }
+  display: flex;
+  align-items: center;
+}
 `;
+// label {
+//   ${props => {
+//     const { marginBlock, marginInline, maxWidth, minHeight, justifyContent } =
+//       getLabelStyles(props);
+//     return `
+//       margin-block: ${marginBlock};
+//       margin-inline: ${marginInline};
+//       max-width: ${maxWidth};
+//       min-height: ${minHeight};
+//       justify-content: ${justifyContent};
+//     `;
+//   }}
 
 export interface InputProps
   extends Omit<FormFieldContainerBaseProps, 'fieldId'>,
