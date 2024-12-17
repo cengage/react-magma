@@ -12,6 +12,7 @@
   },
   "changesets": [
     "a11y-nativeSelect-add-aria-secribedBy-to-helper-message",
+    "chore-deprecate-header copy",
     "feat-select-disabled-items"
   ]
 }

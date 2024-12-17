@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.11-next.1
+
+### Patch Changes
+
+- fabbece34: ## Chore: Improve TypeScript, Linting, and Styling Support in Doc MDX Files
+
 ## 5.0.11-next.0
 
 ### Patch Changes
