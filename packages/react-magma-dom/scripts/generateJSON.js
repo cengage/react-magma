@@ -156,6 +156,7 @@ const filterJson = () => {
         },
       };
     }
+    console.log(child);
     return {};
   };
 

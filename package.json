@@ -9,14 +9,9 @@
     "url": "https://github.com/cengage/react-magma.git"
   },
   "engines": {
-    "npm": ">=v10.7.0",
-    "node": ">=18.20.4"
+    "npm": ">=^7.3.0",
+    "node": ">=^14.21.3"
   },
-  "workspaces": [
-    "website/*",
-    "packages/*",
-    "patterns/*"
-  ],
   "scripts": {
     "pkg": "manypkg run",
     "check:pkgs": "manypkg check",
@@ -24,7 +19,7 @@
     "upgrade:pkgs": "manypkg upgrade",
     "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
-    "postinstall": "npm run build:lite",
+    "postinstall": "npm run bootstrap && npm run build:lite",
     "test": "jest",
     "test-watch": "jest --watch",
     "test-dom": "lerna run test --scope react-magma-dom -- --watch --coverage=false",
@@ -36,9 +31,8 @@
     "build:storybook": "NODE_OPTIONS=--openssl-legacy-provider build-storybook",
     "lint": "lerna run lint",
     "develop": "npm run docs",
-    "docs": "lerna run --scope react-magma-docs develop",
+    "docs": "lerna run --stream --scope react-magma-docs develop",
     "clean": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes && rimraf node_modules",
-    "clean:docs": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes --scope react-magma-docs ",
     "cm": "git-cz",
     "cm-retry": "git-cz --retry",
     "check:spelling": "cspell --config=.cspell.json packages/**/*.{md,ts,js,mdx,tsx,jsx}",
@@ -133,7 +127,7 @@
     "jest-emotion": "^10.0.32",
     "jest-extended": "^0.11.5",
     "jest-watch-typeahead": "^0.6.1",
-    "lerna": "^8.1.8",
+    "lerna": "^5.5.4",
     "lint-staged": "^10.5.4",
     "lodash": "^4.17.21",
     "microbundle": "^0.13.3",
