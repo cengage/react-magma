@@ -4,9 +4,8 @@ title: Button
 order: 1
 ---
 
-import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { LeadParagraph } from '../../components/LeadParagraph';
+
 import { Button } from 'react-magma-dom';
 
 <PageContent componentName="button" type="design">
@@ -64,22 +63,22 @@ Almost all buttons use text labels, which describe the action that will occur if
 
 Text labels should always be short and have clear purpose. If a button requires a text label with three or more words, try really hard to shorten it. If you can’t, you may use title case to help reduce the size of the button’s footprint. We recommend buttons using title case also have an outline or solid container, to help differentiate the button from the text around it.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/buttons/ex_4_1.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>Keep labels short</p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
         <img src="../../images/buttons/ex_4_2.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>
             Don’t wrap text. For maximum legibility and recognition as a button,
             a text label should never wrap to multiple lines.
@@ -88,12 +87,12 @@ Text labels should always be short and have clear purpose. If a button requires 
       </figure>
     </div>
   </div>
-  <div class="row">
-    <div class="col col-1">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/buttons/ex_4_3.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             Text labels can be written in title case if all efforts to make the
             label less than three words have been exhausted, or if the button
@@ -102,14 +101,14 @@ Text labels should always be short and have clear purpose. If a button requires 
         </figcaption>
       </figure>
     </div>
-    <div class="col"></div>
+    <div className="col"></div>
   </div>
-  <div class="row">
-    <div class="col col-1">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/buttons/ex_4_4.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             Text buttons don’t typically need a container when in all caps,
             because the label is differentiated from the text around it.
@@ -117,11 +116,11 @@ Text labels should always be short and have clear purpose. If a button requires 
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
         <img src="../../images/buttons/ex_4_5.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
-          <p class="title title-caution">Caution</p>
+          <p className="title title-caution">Caution</p>
           <p>
             Text labels need to be distinct from other elements. Without a
             container, the button above could be hard to distinguish from the
@@ -137,22 +136,22 @@ Text labels should always be short and have clear purpose. If a button requires 
 
 You can place icons next to text labels to both clarify an action and call attention to a button. If a text label is not used, make sure the icon is intuitive and clear through testing. Also, consider using a tooltip so its exact meaning can be easily seen on hover.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/buttons/ex_4_6.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>Use icons that clearly communicate their meaning.</p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
         <img src="../../images/buttons/ex_4_7.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             You can use icons without a text label if testing proves that the
             intended action of the button is clear to the users.
@@ -161,12 +160,12 @@ You can place icons next to text labels to both clarify an action and call atten
       </figure>
     </div>
   </div>
-  <div class="row">
-    <div class="col col-1">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/buttons/ex_4_8.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>
             Don’t vertically align an icon and text in the center of a contained
             button.
@@ -174,11 +173,11 @@ You can place icons next to text labels to both clarify an action and call atten
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
         <img src="../../images/buttons/ex_4_9.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>Don’t use two icons in the same button.</p>
         </figcaption>
       </figure>
@@ -212,14 +211,14 @@ The **primary** button should be used by default for important actions. From the
 
 When you are pairing together primary and secondary actions such as "Save" and "Cancel", it is recommended you use the primary and secondary buttons.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/buttons/ex_6_1.png" alt="GATSBY_EMPTY_ALT" />
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -229,16 +228,22 @@ The **subtle** button style is intended to have even less emphasis than **second
 
 An additional benefit of the subtle button's very neutral appearance is to help limit the amount of the primary brand color appearing on the page. Too much of this color can result in a very chaotic experience where everything looks relatively important and is distracting. The subtle button helps calm an interface that has a high number of actions that can be performed.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/buttons/subtle_button_example_1.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/buttons/subtle_button_example_1.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/buttons/subtle_button_example_2.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/buttons/subtle_button_example_2.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
   </div>
@@ -248,14 +253,14 @@ An additional benefit of the subtle button's very neutral appearance is to help 
 
 For actions that delete things, you can emphasize this action with the **danger** buttons.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/buttons/ex_6_3.png" alt="GATSBY_EMPTY_ALT" />
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -269,9 +274,9 @@ The **marketing** button is intended to be used on product websites where the pr
 
 If your button is going on a dark background, all of the buttons have an inverse appearance for optimal accessibility. They are carefully designed for use within entirely dark themes for Dark Mode.
 
-<div class="one-col">
-  <div class="row">
-    <div class="col">
+<div className="one-col">
+  <div className="row">
+    <div className="col">
       <figure>
         <img src="../../images/buttons/ex_6_4.png" alt="GATSBY_EMPTY_ALT" />
       </figure>
@@ -285,9 +290,9 @@ If your button is going on a dark background, all of the buttons have an inverse
 
 Buttons have clear states to provide feedback to the user.
 
-<div class="one-col">
-  <div class="row">
-    <div class="col">
+<div className="one-col">
+  <div className="row">
+    <div className="col">
       <figure>
         <img src="../../images/buttons/ex_7_1.png" alt="GATSBY_EMPTY_ALT" />
       </figure>
@@ -301,9 +306,9 @@ It’s important for users to clearly see when the browser’s focus is on a but
 
 The solid outline is 2px thick with at least a 2px offset, and the color is info-500. These properties ensure the outline is visible on a light background. The color changes to semi-transparent-white for optimal visibility on dark backgrounds.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col">
+<div className="two-col">
+  <div className="row">
+    <div className="col">
       <figure>
         <img src="../../images/buttons/ex_7_2.png" alt="GATSBY_EMPTY_ALT" />
       </figure>
@@ -329,13 +334,13 @@ An app can show more than one button in a layout at a time, so a high-emphasis b
 
 Multiple button types can be used to express different emphasis levels. When using buttons that are contextually connected to left-to-right content, the buttons should also be left aligned, with the most important action coming first. When the buttons are positioned as actions for a larger context, like an entire modal or page, then the buttons will typically be right aligned, with the most important action on the far right.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/buttons/ex_8_1.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             When using multiple buttons, you can place a text button next to a
             solid button to show emphasis.
@@ -343,11 +348,11 @@ Multiple button types can be used to express different emphasis levels. When usi
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
         <img src="../../images/buttons/ex_8_2.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             When using multiple buttons in the bottom bar of a modal, the
             buttons align to the right with the most important button on the far
@@ -357,12 +362,12 @@ Multiple button types can be used to express different emphasis levels. When usi
       </figure>
     </div>
   </div>
-  <div class="row">
-    <div class="col col-1">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/buttons/ex_8_3.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             You can place a text button (low emphasis) next to an outlined
             button (medium emphasis).
@@ -370,7 +375,7 @@ Multiple button types can be used to express different emphasis levels. When usi
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -380,13 +385,13 @@ Multiple button types can be used to express different emphasis levels. When usi
 
 Button sizes and placements will sometimes need to change because of the size of the user’s screen. CSS breakpoints should be determined based on need, instead of limited to a set of standard breakpoints.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/buttons/ex_9_1.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             You may allow the buttons to go block level if it benefits the
             design or if there isn’t enough room for them to remain
@@ -395,11 +400,11 @@ Button sizes and placements will sometimes need to change because of the size of
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
         <img src="../../images/buttons/ex_9_2.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             No need to force buttons to be block level if they fit in the
             container without problem.

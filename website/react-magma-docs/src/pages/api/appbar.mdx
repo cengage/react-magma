@@ -5,19 +5,22 @@ props:
   - AppBarProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="appbar" type="api">
 
 <LeadParagraph>
-The AppBar component is a relatively simple container, rendering a header element, used to display information and actions relating to the current screen.
-<br/><br/>
-It is the foundation for the <Link to="/patterns/header">Header Pattern</Link>, a more robust, more opinionated component that also handles the rendering of several components inside of it.
+  The AppBar component is a relatively simple container, rendering a header
+  element, used to display information and actions relating to the current
+  screen.
+  <br />
+  <br />
+  It is the foundation for the <Link to="/patterns/header">Header Pattern</Link>,
+  a more robust, more opinionated component that also handles the rendering of several
+  components inside of it.
 </LeadParagraph>
 
 ## Basic Usage
 
-```typescript
+```tsx
 import React from 'react';
 import { AppBar } from 'react-magma-dom';
 
@@ -30,7 +33,7 @@ export function Example() {
 
 The `isCompact` prop will render a shorter appbar with less padding.
 
-```typescript
+```tsx
 import React from 'react';
 import { AppBar } from 'react-magma-dom';
 
@@ -43,7 +46,7 @@ export function Example() {
 
 The `isInverse` prop will render an appbar with a dark background and light text. The components inside the app bar will inherit the `isInverse` prop unless specified otherwise.
 
-```typescript
+```tsx
 import React from 'react';
 import { AppBar } from 'react-magma-dom';
 
@@ -58,7 +61,7 @@ The `position` prop will set the positioning type with CSS. It accepts values `a
 
 If the `position` is set to `sticky` or `fixed`, the app bar will have a small drop-shadow.
 
-```typescript
+```tsx
 import React from 'react';
 import { AppBar, AppBarPosition, Heading, Paragraph } from 'react-magma-dom';
 
@@ -105,7 +108,7 @@ export function Example() {
 
 This is a more complex example of putting mutliple elements inside an `AppBar`.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   AppBar,
@@ -157,7 +160,7 @@ export function Example() {
 }
 ```
 
-# AppBar Props
+## AppBar Props
 
 **Any other props supplied will be provided to the wrapping `header` element.**
 

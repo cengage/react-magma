@@ -3,7 +3,6 @@ pageTitle: Chart API
 title: Chart
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="chart" type="api">
 
@@ -41,7 +40,7 @@ We currently support the following chart types:
 
 Area charts share similarities with line charts, distinguished by the filled areas below the lines, adorned with colors or patterns. Stacked charts, on the other hand, prove valuable for comparing proportional contributions within a category by plotting the relative value each data series contributes to the total.
 
-```typescript
+```tsx
 import React from 'react';
 import { Card } from 'react-magma-dom';
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
@@ -133,7 +132,7 @@ export function Example() {
 
 ## Donut Chart
 
-```typescript
+```tsx
 import React from 'react';
 import { Card } from 'react-magma-dom';
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
@@ -200,7 +199,7 @@ export function Example() {
 
 Line charts depict data at regular intervals, connecting the points with lines. These visualizations are valuable for illustrating trends over time and comparing multiple datasets.
 
-```typescript
+```tsx
 import React from 'react';
 import { Card } from 'react-magma-dom';
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
@@ -345,7 +344,7 @@ export function Example() {
 
 ## Pie Chart
 
-```typescript
+```tsx
 import React from 'react';
 import { Card } from 'react-magma-dom';
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';

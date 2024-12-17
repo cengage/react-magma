@@ -31,18 +31,18 @@ export const SimplePropsTable = ({ propertyValues }) => {
     font-weight: 600;
     padding-bottom: 0;
   `;
-  
-const StyledFlexLeft = styled(Flex)`
-  @media (max-width: ${magma.breakpoints.small}px) {
-    padding: 8px 8px 4px !important;
-  }
-`;
 
-const StyledFlexRight = styled(Flex)`
-  @media (max-width: ${magma.breakpoints.small}px) {
-    padding-top: 0 !important;
-  }
-`;
+  const StyledFlexLeft = styled(Flex)`
+    @media (max-width: ${magma.breakpoints.small}px) {
+      padding: 8px 8px 4px !important;
+    }
+  `;
+
+  const StyledFlexRight = styled(Flex)`
+    @media (max-width: ${magma.breakpoints.small}px) {
+      padding-top: 0 !important;
+    }
+  `;
 
   if (propertyValues === undefined) {
     return null;
@@ -83,7 +83,14 @@ const StyledFlexRight = styled(Flex)`
                 >
                   <Paragraph
                     contextVariant={TypographyContextVariant.narrative}
-                    style={{ fontWeight: 'bold', fontFamily: 'Courier', color: prop.deprecated ? magma.colors.neutral600 : magma.colors.info, marginBottom: '16px' }}
+                    style={{
+                      fontWeight: 'bold',
+                      fontFamily: 'Courier',
+                      color: prop.deprecated
+                        ? magma.colors.neutral600
+                        : magma.colors.info,
+                      marginBottom: '16px',
+                    }}
                   >
                     {name}
                   </Paragraph>
@@ -105,10 +112,7 @@ const StyledFlexRight = styled(Flex)`
                     </Tag>
                   )}
                   {prop.deprecated && (
-                    <Tag
-                      size={TagSize.small}
-                      isInverse={isInverse}
-                    >
+                    <Tag size={TagSize.small} isInverse={isInverse}>
                       Deprecated
                     </Tag>
                   )}
@@ -122,11 +126,11 @@ const StyledFlexRight = styled(Flex)`
                       xs={3}
                       direction={FlexDirection.column}
                       spacing={0}
-                      >
+                    >
                       <StyledParagraphKey
                         visualStyle={TypographyVisualStyle.bodySmall}
                         noMargins
-                        >
+                      >
                         Description
                       </StyledParagraphKey>
                     </StyledFlexLeft>
@@ -135,7 +139,7 @@ const StyledFlexRight = styled(Flex)`
                       xs={12}
                       md={9}
                       direction={FlexDirection.column}
-                      >
+                    >
                       <Paragraph
                         visualStyle={TypographyVisualStyle.bodySmall}
                         noMargins
@@ -212,7 +216,7 @@ const StyledFlexRight = styled(Flex)`
             </div>
           );
         })}
-        <Spacer size="32" />
+      <Spacer size="32" />
     </>
   );
 };

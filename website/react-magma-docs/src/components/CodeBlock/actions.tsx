@@ -98,7 +98,8 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
         host: 'github',
       }}
       dependencies={{
-        '@data-driven-forms/react-form-renderer': pkg.dependencies['@data-driven-forms/react-form-renderer'],
+        '@data-driven-forms/react-form-renderer':
+          pkg.dependencies['@data-driven-forms/react-form-renderer'],
         '@emotion/react': pkg.dependencies['@emotion/react'],
         '@emotion/styled': pkg.dependencies['@emotion/styled'],
         'date-fns': pkg.dependencies['date-fns'],
@@ -111,7 +112,8 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
         '@react-magma/charts': pkg.dependencies['@react-magma/charts'],
         '@cengage-patterns/header':
           pkg.dependencies['@cengage-patterns/header'],
-        '@react-magma/schema-renderer': pkg.dependencies['@react-magma/schema-renderer'],
+        '@react-magma/schema-renderer':
+          pkg.dependencies['@react-magma/schema-renderer'],
         uuid: pkg.dependencies['uuid'],
       }}
       providedFiles={{

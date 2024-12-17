@@ -3,8 +3,6 @@ pageTitle: Icon API
 title: Icon
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="icon" type="api">
 
 <LeadParagraph>
@@ -101,9 +99,10 @@ export function Example() {
 
 ## Available Icons
 
-```typescript noCode noCodeSandbox noCopy noBorder
+```tsx noCode noCodeSandbox noCopy noBorder
 import React from 'react';
 import ICONS from 'react-magma-icons';
+import { Heading } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -114,9 +113,9 @@ export function Example() {
           b = b.toLowerCase();
           return a > b ? 1 : a < b ? -1 : 0;
         })
-        .map(category => {
+        .map((category, idx) => {
           return (
-            <div>
+            <div key={idx}>
               <Heading level={3}>{category}</Heading>
               <div className="demo-icon-list-container">
                 {ICONS.categories[category].map(icon => {
@@ -128,7 +127,7 @@ export function Example() {
                     <span className="demo-icon-container" key={id}>
                       <Icon size={40} title={title} />
                       <br />
-                      <span class="icon-name">{icon}</span>
+                      <span className="icon-name">{icon}</span>
                     </span>
                   );
                 })}

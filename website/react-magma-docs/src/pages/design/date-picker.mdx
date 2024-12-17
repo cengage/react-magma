@@ -4,9 +4,6 @@ title: Date Picker
 order: 1
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-import { Link } from 'gatsby';
-
 <PageContent componentName="date_picker" type="design">
 
 <LeadParagraph>
@@ -16,8 +13,11 @@ import { Link } from 'gatsby';
 </LeadParagraph>
 
 <figure>
-  <div class="image-container">
-    <img src="../../images/inputs/date-input-example.png" alt="GATSBY_EMPTY_ALT" />
+  <div className="image-container">
+    <img
+      src="../../images/inputs/date-input-example.png"
+      alt="GATSBY_EMPTY_ALT"
+    />
   </div>
 </figure>
 
@@ -47,22 +47,28 @@ The field label tells the user what information they need to input. Using placeh
 - Do not truncate text labels.
 - Keep labels as short and clear as possible to avoid wrapping to multiple lines.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/inputs/wrong-truncate-label.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/inputs/wrong-truncate-label.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>Do not truncate field labels.</p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/inputs/caution-wrap-label.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/inputs/caution-wrap-label.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-caution">Caution</p>
+          <p className="title title-caution">Caution</p>
           <p>
             Wrapping long field labels is acceptable, but try to avoid at all
             costs. Labels are best kept simple and short enough to fit on a
@@ -78,9 +84,9 @@ The field label tells the user what information they need to input. Using placeh
 
 Placeholder text provides hints or examples of what to enter. Placeholder text disappears after the user begins entering data into the input and should not contain crucial information. Use sentence-style capitalization, and in most cases, write the text as a direct statement without punctuation.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/inputs/input-text.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
@@ -91,7 +97,7 @@ Placeholder text provides hints or examples of what to enter. Placeholder text d
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -99,17 +105,20 @@ Placeholder text provides hints or examples of what to enter. Placeholder text d
 
 Helper text is pertinent information that assists the user in completing a field. Helper text appears underneath the container and remains visible unless there is a validation error on that field. Use sentence-style capitalization, and in most cases, write the text as full sentences with punctuation.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/inputs/input-helper-text.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/inputs/input-helper-text.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
           <p>Example of input helper text</p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -117,13 +126,16 @@ Helper text is pertinent information that assists the user in completing a field
 
 Required fields should be indicated by putting an asterisk (\*) at the end of the label. If there are very few required inputs in the form, you can use the helper text to inform the user what the asterisk means. If there are a relatively large number of required fields in the form, you can put a legend at the top of the form and just tell them once.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/inputs/single-required-field.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/inputs/single-required-field.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             A required field is indicated with an asterisk. If there aren't many
             required fields, you may use the Helper Text to tell the user what
@@ -132,11 +144,14 @@ Required fields should be indicated by putting an asterisk (\*) at the end of th
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/inputs/multiple-required-fields.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/inputs/multiple-required-fields.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             If there are multiple required fields, you may explain the meaning
             of the asterisk one time above the form.
@@ -145,12 +160,15 @@ Required fields should be indicated by putting an asterisk (\*) at the end of th
       </figure>
     </div>
   </div>
-  <div class="row">
-    <div class="col col-1">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/inputs/wrong-optional-field.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/inputs/wrong-optional-field.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>
             Only required fields are called out as such. Do not mark optional
             fields.
@@ -158,7 +176,7 @@ Required fields should be indicated by putting an asterisk (\*) at the end of th
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -174,17 +192,20 @@ The input container is filled with white and has a 1px border. The color of the 
 
 Inputs have a 5px border radius to be consistent with buttons, which often accompany inputs.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/inputs/input-container.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/inputs/input-container.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
           <p>Examples of text fields on light and dark backgrounds.</p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -194,11 +215,14 @@ Inputs have a 5px border radius to be consistent with buttons, which often accom
 
 Icons can be used to help provide clarity or functionality. Leading icons are typically used to help clarify the type of input, such as email or phone. Trailing icons are typically also buttons that can be used to clear the input or trigger something else like a calendar component.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/inputs/input-leading-icon.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/inputs/input-leading-icon.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
           <p>
             Example of input with leading icon. The Visa icon helps identify the
@@ -207,9 +231,12 @@ Icons can be used to help provide clarity or functionality. Leading icons are ty
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/inputs/input-trailing-icon.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/inputs/input-trailing-icon.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
           <p>
             Example of input with trailing icon. The calendar icon is a button
@@ -227,17 +254,20 @@ The "Help Icon" can be added to inputs that might require more explanation or cl
 
 The icon can be configured to simply display a message within a tooltip or also trigger actions like opening a modal or navigating to another location for extreme cases.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/inputs/input-what-is-this.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/inputs/input-what-is-this.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
           <p>Example of input with Help icon</p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -245,11 +275,14 @@ The icon can be configured to simply display a message within a tooltip or also 
 
 ## Input States
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/inputs/input-states.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/inputs/input-states.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
           <p>
             Inputs can display the following states: active, disabled, focused,
@@ -258,7 +291,7 @@ The icon can be configured to simply display a message within a tooltip or also 
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -267,23 +300,26 @@ The icon can be configured to simply display a message within a tooltip or also 
 1. Focus
 1. Error
 
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 ### Error Messages
 
 When the input provided is invalid, an error message should be used to provide instructions on how to fix the error. The error message will replace the helper text until it is fixed.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/inputs/input-error-message.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/inputs/input-error-message.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
           <p>Example of input with error message</p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 

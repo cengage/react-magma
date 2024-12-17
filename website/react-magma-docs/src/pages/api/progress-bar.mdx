@@ -5,8 +5,6 @@ props:
   - ProgressBarProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="progress_bar" type="api">
 
 <LeadParagraph>
@@ -125,11 +123,7 @@ export function Example() {
             percentage={72}
           />
           <br />
-          <ProgressBar
-            isInverse
-            color="#FFB685"
-            percentage={20}
-          />
+          <ProgressBar isInverse color="#FFB685" percentage={20} />
         </CardBody>
       </Card>
     </>
