@@ -9,8 +9,8 @@
     "url": "https://github.com/cengage/react-magma.git"
   },
   "engines": {
-    "npm": ">=^7.3.0",
-    "node": ">=^14.21.3"
+    "npm": ">=v10.7.0",
+    "node": ">=18.20.4"
   },
   "scripts": {
     "pkg": "manypkg run",
@@ -29,6 +29,7 @@
     "build": "lerna run build --concurrency=6 --no-progress",
     "build:landing": "NODE_OPTIONS=--openssl-legacy-provider node website/react-magma-landing/scripts/build.js",
     "build:storybook": "NODE_OPTIONS=--openssl-legacy-provider build-storybook",
+    "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint",
     "develop": "npm run docs",
     "docs": "lerna run --stream --scope react-magma-docs develop",
