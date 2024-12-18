@@ -5,7 +5,7 @@ import { useGenerateId } from '../../utils';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
-  FormFieldContainerProps,
+  // FormFieldContainerProps,
 } from '../FormFieldContainer';
 import {
   getHelpIconButtonSize,
@@ -22,11 +22,11 @@ import { ThemeInterface } from '../../theme/magma';
 const typedStyled = styled as CreateStyled<ThemeInterface>;
 
 const getLabelStyles = (
-  props: FormFieldContainerProps &
+  props: InputProps &
     React.RefAttributes<HTMLDivElement> & { theme?: ThemeInterface } & {
       labelPosition?: LabelPosition;
       InputSize?: InputSize;
-    } & { theme: ThemeInterface }
+    }
 ) => {
   const marginBlock = isLeftOrHidden(props)
     ? '0'
