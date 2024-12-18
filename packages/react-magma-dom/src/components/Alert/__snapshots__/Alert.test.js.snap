@@ -92,7 +92,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   color: #3942B0;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
@@ -221,7 +221,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   color: #3942B0;
 }
 
-.emotion-1:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }

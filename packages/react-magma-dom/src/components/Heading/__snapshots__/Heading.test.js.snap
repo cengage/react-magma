@@ -19,7 +19,7 @@ exports[`Heading Snapshot should render expressive heading2XLarge correctly 1`] 
   transition: border 0.1s linear;
 }
 
-@media (min-width: 600px) {
+@media (min-width:600px) {
   .emotion-0 {
     font-size: 64px;
     line-height: 84px;
@@ -44,7 +44,7 @@ exports[`Heading Snapshot should render expressive heading2XLarge correctly 1`] 
   transition: border 0.1s linear;
 }
 
-@media (min-width: 600px) {
+@media (min-width:600px) {
   .emotion-0 {
     font-size: 64px;
     line-height: 84px;
@@ -83,14 +83,14 @@ exports[`Heading Snapshot should render expressive headingXLarge correctly 1`] =
   transition: border 0.1s linear;
 }
 
-@media (min-width: 600px) {
+@media (min-width:600px) {
   .emotion-0 {
     font-size: 36px;
     line-height: 48px;
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width:600px) {
   .emotion-0 {
     font-size: 48px;
     line-height: 64px;
@@ -118,14 +118,14 @@ exports[`Heading Snapshot should render expressive headingXLarge correctly 1`] =
   transition: border 0.1s linear;
 }
 
-@media (min-width: 600px) {
+@media (min-width:600px) {
   .emotion-0 {
     font-size: 36px;
     line-height: 48px;
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width:600px) {
   .emotion-0 {
     font-size: 48px;
     line-height: 64px;

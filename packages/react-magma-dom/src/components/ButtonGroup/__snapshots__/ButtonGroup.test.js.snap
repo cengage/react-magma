@@ -1016,10 +1016,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-}
-
-.emotion-16:focus {
-  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
@@ -1319,10 +1315,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-}
-
-.emotion-16:focus {
-  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
@@ -1395,10 +1387,10 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
           type="button"
         >
           <span
-            class="emotion-4 emotion-5"
+            class="emotion-0 emotion-1"
           >
             <span
-              class="emotion-13 emotion-14"
+              class="emotion-4 emotion-5"
             >
               Dropdown 2
             </span>
@@ -1424,7 +1416,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
         style="position: absolute; left: 0px; top: 0px; z-index: 2; transform: translate(0px, 0px);"
       >
         <div
-          class="emotion-15 emotion-16 emotion-17"
+          class="emotion-13"
           data-testid="dropdownContent"
           tabindex="-1"
           width="auto"
@@ -1434,7 +1426,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
             role="menu"
           >
             <div
-              class="emotion-18 emotion-19"
+              class="emotion-11 emotion-12"
               role="menuitem"
               tabindex="-1"
             >
@@ -1458,10 +1450,10 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
           type="button"
         >
           <span
-            class="emotion-4 emotion-5"
+            class="emotion-0 emotion-1"
           >
             <span
-              class="emotion-13 emotion-14"
+              class="emotion-4 emotion-5"
             >
               Dropdown 3
             </span>
@@ -1487,7 +1479,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
         style="position: absolute; left: 0px; top: 0px; z-index: 2; transform: translate(0px, 0px);"
       >
         <div
-          class="emotion-15 emotion-16 emotion-17"
+          class="emotion-13"
           data-testid="dropdownContent"
           tabindex="-1"
           width="auto"
@@ -1497,7 +1489,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
             role="menu"
           >
             <div
-              class="emotion-18 emotion-19"
+              class="emotion-11 emotion-12"
               role="menuitem"
               tabindex="-1"
             >
@@ -1778,10 +1770,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-}
-
-.emotion-16:focus {
-  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
@@ -2088,10 +2076,6 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-}
-
-.emotion-16:focus {
-  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
@@ -2164,10 +2148,10 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
           type="button"
         >
           <span
-            class="emotion-4 emotion-5"
+            class="emotion-0 emotion-1"
           >
             <span
-              class="emotion-13 emotion-14"
+              class="emotion-4 emotion-5"
             >
               Dropdown 2
             </span>
@@ -2193,7 +2177,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
         style="position: absolute; left: 0px; top: 0px; z-index: 2; transform: translate(0px, 0px);"
       >
         <div
-          class="emotion-15 emotion-16 emotion-17"
+          class="emotion-13"
           data-testid="dropdownContent"
           tabindex="-1"
           width="auto"
@@ -2203,7 +2187,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
             role="menu"
           >
             <div
-              class="emotion-18 emotion-19"
+              class="emotion-11 emotion-12"
               role="menuitem"
               tabindex="-1"
             >
@@ -2227,10 +2211,10 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
           type="button"
         >
           <span
-            class="emotion-4 emotion-5"
+            class="emotion-0 emotion-1"
           >
             <span
-              class="emotion-13 emotion-14"
+              class="emotion-4 emotion-5"
             >
               Dropdown 3
             </span>
@@ -2256,7 +2240,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
         style="position: absolute; left: 0px; top: 0px; z-index: 2; transform: translate(0px, 0px);"
       >
         <div
-          class="emotion-15 emotion-16 emotion-17"
+          class="emotion-13"
           data-testid="dropdownContent"
           tabindex="-1"
           width="auto"
@@ -2266,7 +2250,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
             role="menu"
           >
             <div
-              class="emotion-18 emotion-19"
+              class="emotion-11 emotion-12"
               role="menuitem"
               tabindex="-1"
             >
@@ -2586,10 +2570,6 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-}
-
-.emotion-16:focus {
-  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
@@ -2935,10 +2915,6 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-transition: opacity 0.3s;
   transition: opacity 0.3s;
   white-space: nowrap;
-}
-
-.emotion-16:focus {
-  outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
@@ -3011,10 +2987,10 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
           type="button"
         >
           <span
-            class="emotion-4 emotion-5"
+            class="emotion-0 emotion-1"
           >
             <span
-              class="emotion-13 emotion-14"
+              class="emotion-4 emotion-5"
             >
               Dropdown 2
             </span>
@@ -3040,7 +3016,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
         style="position: absolute; left: 0px; top: 0px; z-index: 2; transform: translate(0px, 0px);"
       >
         <div
-          class="emotion-15 emotion-16 emotion-17"
+          class="emotion-13"
           data-testid="dropdownContent"
           tabindex="-1"
           width="auto"
@@ -3050,7 +3026,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
             role="menu"
           >
             <div
-              class="emotion-18 emotion-19"
+              class="emotion-11 emotion-12"
               role="menuitem"
               tabindex="-1"
             >
@@ -3074,10 +3050,10 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
           type="button"
         >
           <span
-            class="emotion-4 emotion-5"
+            class="emotion-0 emotion-1"
           >
             <span
-              class="emotion-13 emotion-14"
+              class="emotion-4 emotion-5"
             >
               Dropdown 3
             </span>
@@ -3103,7 +3079,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
         style="position: absolute; left: 0px; top: 0px; z-index: 2; transform: translate(0px, 0px);"
       >
         <div
-          class="emotion-15 emotion-16 emotion-17"
+          class="emotion-13"
           data-testid="dropdownContent"
           tabindex="-1"
           width="auto"
@@ -3113,7 +3089,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
             role="menu"
           >
             <div
-              class="emotion-18 emotion-19"
+              class="emotion-11 emotion-12"
               role="menuitem"
               tabindex="-1"
             >

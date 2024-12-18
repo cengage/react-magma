@@ -84,7 +84,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -188,7 +188,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -324,7 +324,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -428,7 +428,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -564,7 +564,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   color: #3942B0;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
@@ -668,7 +668,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   color: #3942B0;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
@@ -804,7 +804,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -908,7 +908,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -1032,7 +1032,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -1136,7 +1136,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -1273,7 +1273,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -1370,7 +1370,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -1504,7 +1504,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -1601,7 +1601,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -1735,7 +1735,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -1832,7 +1832,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -1966,7 +1966,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   color: #3942B0;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
@@ -2063,7 +2063,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   color: #3942B0;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
@@ -2197,7 +2197,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -2294,7 +2294,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -2432,7 +2432,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -2529,7 +2529,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -2659,7 +2659,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -2756,7 +2756,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }

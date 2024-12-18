@@ -73,7 +73,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -166,7 +166,7 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -277,7 +277,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -370,7 +370,7 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -481,7 +481,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   color: #3942B0;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
@@ -574,7 +574,7 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   color: #3942B0;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
@@ -685,7 +685,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -778,7 +778,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -889,7 +889,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -982,7 +982,7 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -1081,7 +1081,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
@@ -1174,7 +1174,7 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-0:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
