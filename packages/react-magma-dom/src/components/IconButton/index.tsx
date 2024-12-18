@@ -93,7 +93,8 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     const contextProps = React.useContext(ButtonGroupContext);
     const theme = React.useContext(ThemeContext);
     const resolvedProps = resolveProps(contextProps, props);
-    const { color, shape, size, testId, textTransform, variant, ...rest } = resolvedProps;
+    const { color, shape, size, testId, textTransform, variant, ...rest } =
+      resolvedProps;
 
     if (instanceOfIconOnly(resolvedProps)) {
       icon = resolvedProps.icon;
@@ -125,6 +126,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
               size: icon.props.size
                 ? icon.props.size
                 : getIconSize(size, theme),
+              'aria-hidden': 'true',
             })
           )}
         </StyledButton>
@@ -139,9 +141,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         shape={shape || ButtonShape.fill}
         size={size || ButtonSize.medium}
         testId={testId}
-        textTransform={
-          textTransform || ButtonTextTransform.uppercase
-        }
+        textTransform={textTransform || ButtonTextTransform.uppercase}
         variant={variant || ButtonVariant.solid}
       >
         {iconPosition === ButtonIconPosition.right && (
@@ -153,6 +153,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
           React.cloneElement(icon, {
             size: icon.props.size || getIconSize(size, theme),
             'data-testid': `${testId}-icon`,
+            'aria-hidden': 'true',
           })
         )}
         {iconPosition !== ButtonIconPosition.right && (

@@ -1,15 +1,21 @@
 import * as React from 'react';
 import {
-  useSelect,
   useMultipleSelection,
-  UseSelectProps,
   UseMultipleSelectionProps,
+  useSelect,
+  UseSelectProps,
 } from 'downshift';
-
+import {
+  AlignedPlacement,
+  autoUpdate,
+  flip,
+  useFloating,
+} from '@floating-ui/react-dom';
+import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
 import { Select as InternalSelect } from './Select';
 import { MultiSelect } from './MultiSelect';
 import { SelectComponents } from './components';
-import { useGenerateId, XOR, Omit } from '../../utils';
+import { Omit, useGenerateId, XOR } from '../../utils';
 import { LabelPosition } from '../Label';
 import { useIsInverse } from '../../inverse';
 
@@ -53,6 +59,10 @@ export interface InternalSelectProps<T> {
    * @default false
    */
   disabled?: boolean;
+  /**
+   * If true, the component will have inverse styling to better appear on a dark background
+   * @default false
+   */
   isInverse?: boolean;
   /**
    * If true, label text will be hidden visually, but will still be read by assistive technology
@@ -119,6 +129,10 @@ export interface SelectProps<T extends SelectOptions>
   /**
    * @internal
    */
+  floatingElementStyles?: React.CSSProperties;
+  /**
+   * @internal
+   */
   hasError?: boolean;
   /**
    * Reference to the trigger button element in the select
@@ -148,6 +162,14 @@ export interface SelectProps<T extends SelectOptions>
    * Event that will fire when a keypress is released while focused on the trigger button
    */
   onKeyUp?: (event: React.KeyboardEvent) => void;
+  /**
+   * @internal
+   */
+  setFloating?: (node: ReferenceType) => void;
+  /**
+   * @internal
+   */
+  setReference?: (node: ReferenceType) => void;
 }
 
 export interface MultiSelectProps<T extends SelectOptions>
@@ -158,6 +180,9 @@ export interface MultiSelectProps<T extends SelectOptions>
    * @internal
    */
   hasError?: boolean;
+  /**
+   * @internal
+   */
   isInverse?: boolean;
   /**
    * @internal
@@ -224,31 +249,45 @@ export function Select<T>(props: XORSelectProps<T>) {
 
   const isInverse = useIsInverse(props.isInverse);
 
+  const { floatingStyles, refs } = useFloating({
+    middleware: [flip()],
+    placement: 'bottom-start' as AlignedPlacement,
+    whileElementsMounted: autoUpdate,
+  });
+
+  const floatingElementStyles = { ...floatingStyles, width: '100%' };
+
   return (
     <div style={containerStyle} data-testid={testId}>
       {isMulti && instanceOfMultiSelect<T>(props) ? (
         <MultiSelect
           ariaDescribedBy={descriptionId}
+          floatingElementStyles={floatingElementStyles}
+          hasError={hasError}
           id={id}
           isInverse={isInverse}
+          itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
           labelWidth={labelWidth}
-          itemToString={itemToString}
+          setFloating={refs.setFloating}
+          setReference={refs.setReference}
           {...(props as MultiSelectProps<T>)}
-          hasError={hasError}
         />
       ) : (
         <InternalSelect
           ariaDescribedBy={descriptionId}
           errorMessage={errorMessage}
+          floatingElementStyles={floatingElementStyles}
+          hasError={hasError}
+          helperMessage={helperMessage}
           id={id}
           isInverse={isInverse}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
           labelWidth={labelWidth}
-          hasError={hasError}
-          helperMessage={helperMessage}
           messageStyle={messageStyle}
+          setFloating={refs.setFloating}
+          setReference={refs.setReference}
           {...(props as SelectProps<T>)}
         />
       )}

@@ -10,7 +10,7 @@ import {
   useTreeItem,
   checkedStatusToBoolean,
 } from './useTreeItem';
-import { TreeViewSelectable } from './useTreeView';
+import { TreeViewSelectable } from './types';
 import {
   FolderIcon,
   ArticleIcon,
@@ -65,6 +65,19 @@ const StyledTreeItem = typedStyled.li<{
 
   padding-inline-start: ${props =>
     calculateOffset(props.nodeType, props.depth)};
+
+  &:focus {
+    outline: none;
+
+    & > *:first-child {
+      outline-offset: -2px;
+      outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+}
+  }
 
   > div:first-of-type {
     background: ${props =>
@@ -173,14 +186,6 @@ const StyledItemWrapper = typedStyled.div<{
       props.selectable,
       props.nodeType
     )};
-  &:focus {
-    outline-offset: -2px;
-    outline: 2px solid
-      ${props =>
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
-  }
 `;
 
 export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
@@ -189,26 +194,27 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       children,
       icon,
       index,
-      isDisabled,
       label,
       labelStyle,
-      parentCheckedStatus,
       style,
       testId,
-      updateParentCheckStatus,
       topLevel,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse();
 
-    const { selectable, hasIcons, onExpandedChange, itemToFocus } =
+    const { selectable, hasIcons, onExpandedChange, itemToFocus, handleExpandedChange } =
       React.useContext(TreeViewContext);
 
     const { contextValue, handleClick, handleKeyDown } = useTreeItem(
       props,
       forwardedRef
     );
+
+    const { isDisabled } = contextValue;
+
+    const { isDisabled } = contextValue;
 
     const {
       checkboxChangeHandler,
@@ -221,7 +227,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       ref,
       selectedItems,
       setExpanded,
-      updateCheckedStatusFromChild,
     } = contextValue;
 
     const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
@@ -253,7 +258,12 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         id={`${itemId}-label`}
         data-testid={`${testId || itemId}-label`}
         onClick={(e: any) => {
-          if (selectable === TreeViewSelectable.single && !isDisabled) {
+          if (isDisabled) {
+            e.stopPropagation();
+            return;
+          }
+
+          if (selectable === TreeViewSelectable.single) {
             handleClick(e, itemId);
           }
         }}
@@ -293,9 +303,17 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       event.preventDefault();
 
       onExpandedChange &&
-        typeof onExpandedChange === 'function' &&
-        onExpandedChange(event);
+      typeof onExpandedChange === 'function' &&
+      handleExpandedChange(event, itemId);
     };
+
+    const tabIndex = React.useMemo(() => {
+      if (isDisabled) {
+        return undefined;
+      }
+
+      return itemToFocus === itemId ? 0 : -1;
+    }, [isDisabled, itemToFocus, itemId]);
 
     return (
       <TreeItemContext.Provider value={contextValue}>
@@ -315,6 +333,8 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           selectableType={selectable}
           selected={selectedItem}
           theme={theme}
+          tabIndex={tabIndex}
+          onKeyDown={handleKeyDown}
         >
           <StyledItemWrapper
             data-testid={`${testId || itemId}-itemwrapper`}
@@ -323,19 +343,10 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             isDisabled={isDisabled}
             isInverse={isInverse}
             nodeType={nodeType}
-            onClick={event => {
-              if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
-                onExpandedClicked(event);
-              }
-            }}
-            onKeyDown={e => {
-              handleKeyDown(e);
-            }}
-            ref={ref}
             selectable={selectable}
             style={style}
-            tabIndex={itemToFocus === itemId ? 0 : -1}
             theme={theme}
+            ref={ref}
           >
             {hasOwnTreeItems && (
               <StyledExpandWrapper
@@ -344,7 +355,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 isDisabled={isDisabled}
                 isInverse={isInverse}
                 onClick={event => {
-                  if (!isDisabled && selectable !== TreeViewSelectable.off) {
+                  if (!isDisabled) {
                     onExpandedClicked(event);
                   }
                 }}
@@ -380,27 +391,20 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           {React.Children.map(
             children,
             (child: React.ReactElement<any>, index) => {
-              const component =
-                child.type === TreeItem ? (
-                  <Transition isOpen={expanded} collapse unmountOnExit>
-                    <ul role="group">
-                      {React.cloneElement(child, {
-                        index,
-                        key: index,
-                        itemDepth,
-                        parentDepth,
-                        parentCheckedStatus: checkedStatus,
-                        updateParentCheckStatus: updateCheckedStatusFromChild,
-                      })}
-                    </ul>
-                  </Transition>
-                ) : (
-                  child
-                );
-              // hide the disabled item + the children
-              if (isDisabled) return <></>;
-
-              return component;
+              return child?.type === TreeItem ? (
+                <Transition isOpen={expanded} collapse unmountOnExit>
+                  <ul role="group">
+                    {React.cloneElement(child, {
+                      index,
+                      key: index,
+                      itemDepth,
+                      parentDepth,
+                    })}
+                  </ul>
+                </Transition>
+              ) : (
+                child
+              );
             }
           )}
         </StyledTreeItem>

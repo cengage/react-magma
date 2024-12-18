@@ -128,6 +128,7 @@ const StyledFormFieldContainer = typedStyled.div<{
 // Input and helper text <div> wrapper based on labelPosition.
 const StyledInputWrapper = styled.div`
   flex: 1 1 auto;
+  align-self: center;
 `;
 
 // If the labelPosition is set to 'left' then a <div> wraps the Input, errorMessage, helperMessage, and CharacterCounter for proper styling alignment.

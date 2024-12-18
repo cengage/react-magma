@@ -134,16 +134,17 @@ describe('Input', () => {
   it('should render an inverse input with a correctly styled error message', () => {
     const labelText = 'test label';
     const testMessage = 'Test error message';
-    const { getByTestId, getByLabelText } = render(
+    const { getByTestId, getByLabelText, getByRole } = render(
       <Input errorMessage={testMessage} isInverse labelText={labelText} />
     );
 
     const input = getByLabelText(labelText).parentElement;
     const errorMessage = getByTestId('inputMessage');
+    const errorIcon = getByRole('img').firstChild;
 
-    expect(input).toHaveStyleRule('border-color', magma.colors.danger200);
-
+    expect(input).toHaveStyleRule('border-color', magma.colors.danger300);
     expect(errorMessage).toHaveStyleRule('color', magma.colors.danger200);
+    expect(errorIcon).toHaveAttribute('fill', magma.colors.danger300);
   });
 
   it('should render an input with a right-aligned icon by default', () => {

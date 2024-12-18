@@ -1,16 +1,33 @@
 import * as React from 'react';
 import { useDescendants } from '../../hooks/useDescendants';
-import { TreeItemSelectedInterface } from './TreeViewContext';
 import {
-  findFirstBranchNode,
-  getChildrenItemIdsInTree,
-  getFirstItemInTree,
+  TreeItemSelectedInterface,
+  TreeViewItemInterface,
+} from './TreeViewContext';
+import {
+  getInitialExpandedIds,
+  getInitialItems,
+  toggleMulti,
+  selectSingle,
+  toggleAllMulti,
+  isSelectedItemsChanged,
+  isEqualArrays,
+  getChildrenIds,
 } from './utils';
+import { TreeViewSelectable } from './types';
+import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
-export enum TreeViewSelectable {
-  single = 'single',
-  multi = 'multi',
-  off = 'off',
+export { TreeItemSelectedInterface };
+
+export interface TreeViewApi {
+  selectItem({
+    itemId,
+    checkedStatus,
+  }: Pick<TreeViewItemInterface, 'itemId' | 'checkedStatus'>): void;
+  selectAll(): void;
+  clearAll(): void;
+  showMore(): void;
+  showLess(): void;
 }
 
 export interface UseTreeViewProps {
@@ -49,8 +66,13 @@ export interface UseTreeViewProps {
   testId?: string;
   /**
    * Action that fires when an item is expanded or collapsed
+   * Return an array of itemIds of items that are expanded
+   * Example: ['item0', 'item1', 'item3']
    */
-  onExpandedChange?: (event: React.SyntheticEvent) => void;
+  onExpandedChange?: (
+    event: React.SyntheticEvent,
+    expandedItems: Array<string>
+  ) => void;
   /**
    * Action that fires when an item is selected
    * Return an array of objects.
@@ -72,7 +94,22 @@ export interface UseTreeViewProps {
    * @default true
    */
   checkChildren?: boolean;
-  children?: React.ReactNode[];
+  children?: React.ReactNode[] | React.ReactNode;
+  /**
+   * The ref object that allows TreeView manipulation.
+   * Actions available:
+   * selectItem({ itemId, checkedStatus }: Pick<TreeViewItemInterface, 'itemId' | 'checkedStatus'>): void - action that allows to change item selection,
+   * selectAll(): void - action that allows to select all items,
+   * clearAll(): void - action that allows to unselect all items.
+   * showMore(): void - action that gets called when a tree has hidden items and they get expanded.
+   * showLess(): void - action that gets called when a tree has hidden items and they get collapsed.
+   */
+  apiRef?: React.MutableRefObject<TreeViewApi | undefined>;
+  /**
+   * If true, every item is disabled
+   * @default false
+   */
+  isDisabled?: boolean;
 }
 
 export function useTreeView(props: UseTreeViewProps) {
@@ -80,77 +117,354 @@ export function useTreeView(props: UseTreeViewProps) {
     selectable = TreeViewSelectable.single,
     onSelectedItemChange,
     onExpandedChange,
-    initialExpandedItems,
+    initialExpandedItems: rawInitialExpandedItems,
     preselectedItems,
-    checkChildren = true,
-    checkParents = true,
+    checkChildren = selectable !== TreeViewSelectable.single,
+    checkParents = selectable !== TreeViewSelectable.single,
     children,
+    apiRef,
+    isDisabled,
   } = props;
 
-  const [hasIcons, setHasIcons] = React.useState(false);
-  const [selectedItems, setSelectedItems] = React.useState(
-    preselectedItems || []
+  const hasPreselectedItems = Boolean(preselectedItems);
+
+  const [items, setItems] = React.useState(() =>
+    getInitialItems({
+      children,
+      preselectedItems,
+      checkParents,
+      checkChildren,
+      selectable,
+      isDisabled,
+    })
+  );
+  const [hasIcons] = React.useState(() => {
+    const initialItems = getInitialItems({
+      children,
+      preselectedItems,
+      checkParents,
+      checkChildren,
+      selectable,
+      isDisabled,
+    });
+
+    return initialItems.some(item => item.icon);
+  });
+
+  const selectedItems = React.useMemo(() => {
+    return items.filter(
+      item => item.checkedStatus === IndeterminateCheckboxStatus.checked
+    );
+  }, [items]);
+
+  const initialExpandedItems = React.useMemo(() => {
+    return getInitialExpandedIds({
+      items,
+      initialExpandedItems: rawInitialExpandedItems,
+    });
+  }, [items, rawInitialExpandedItems]);
+
+  const itemToFocus = React.useMemo(() => {
+    const enabledItems = items.filter(item => !item.isDisabled);
+    const [firstItem] = enabledItems;
+
+    if (selectable === TreeViewSelectable.off) {
+      const firstExpandableItem = enabledItems.find(
+        item => item?.hasOwnTreeItems
+      );
+
+      return firstExpandableItem
+        ? firstExpandableItem.itemId
+        : firstItem?.itemId;
+    }
+
+    const firstNonUncheckedItem = enabledItems.find(
+      item =>
+        item?.checkedStatus &&
+        item.checkedStatus !== IndeterminateCheckboxStatus.unchecked
+    );
+
+    if (firstNonUncheckedItem) {
+      return firstNonUncheckedItem.itemId;
+    }
+
+    return firstItem?.itemId;
+  }, [items]);
+
+  const prevSelectedItemsRef = React.useRef(null);
+  const prevPreselectedItemsRef = React.useRef(preselectedItems);
+  const prevChildrenRef = React.useRef(children);
+  const initializationRef = React.useRef(true);
+
+  // Used for showAll button
+  const [itemsNeedUpdate, setItemsNeedUpdate] = React.useState(null);
+
+  React.useEffect(() => {
+    if (isEqualArrays(prevPreselectedItemsRef.current, preselectedItems)) {
+      return;
+    }
+
+    setItems(
+      getInitialItems({
+        children,
+        preselectedItems,
+        checkParents,
+        checkChildren,
+        selectable,
+        isDisabled,
+      })
+    );
+    prevPreselectedItemsRef.current = preselectedItems;
+  }, [preselectedItems, checkParents, checkChildren, selectable, isDisabled]);
+
+  React.useEffect(() => {
+    if (isEqualArrays(prevPreselectedItemsRef.current, preselectedItems)) {
+      return;
+    }
+
+    setItems(
+      getInitialItems({
+        children,
+        preselectedItems,
+        checkParents,
+        checkChildren,
+        selectable,
+        isDisabled,
+      })
+    );
+    prevPreselectedItemsRef.current = preselectedItems;
+  }, [preselectedItems, checkParents, checkChildren, selectable, isDisabled]);
+
+  React.useEffect(() => {
+    if (initializationRef.current) {
+      return;
+    }
+
+    const itemsWithUpdatedDisabledState = getInitialItems({
+      children,
+      preselectedItems,
+      checkParents,
+      checkChildren,
+      selectable,
+      isDisabled,
+    });
+
+    setItems(prevItems => {
+      return prevItems.map(prevItem => {
+        const itemWithUpdatedDisabledState = itemsWithUpdatedDisabledState.find(
+          item => item.itemId === prevItem.itemId
+        );
+
+        if (itemWithUpdatedDisabledState?.isDisabled === prevItem?.isDisabled) {
+          return prevItem;
+        }
+
+        return {
+          ...prevItem,
+          isDisabled: itemWithUpdatedDisabledState?.isDisabled,
+        };
+      });
+    });
+  }, [isDisabled]);
+
+  React.useEffect(() => {
+    const isInitialization = initializationRef.current;
+
+    initializationRef.current = false;
+
+    if (isInitialization && !hasPreselectedItems) {
+      return;
+    }
+
+    if (selectable === TreeViewSelectable.off) {
+      return;
+    }
+    const nextSelectedItems = items
+      .filter(
+        ({ checkedStatus }) =>
+          checkedStatus &&
+          checkedStatus !== IndeterminateCheckboxStatus.unchecked
+      )
+      .map(({ itemId, checkedStatus }) => ({ itemId, checkedStatus }));
+
+    if (
+      !isSelectedItemsChanged(prevSelectedItemsRef.current, nextSelectedItems)
+    ) {
+      return;
+    }
+
+    prevSelectedItemsRef.current = nextSelectedItems;
+    onSelectedItemChange && onSelectedItemChange(nextSelectedItems);
+  }, [items, selectable, hasPreselectedItems]);
+
+  const selectItem = React.useCallback(
+    ({
+      itemId,
+      checkedStatus,
+    }: Pick<TreeViewItemInterface, 'itemId'> &
+      Partial<Pick<TreeViewItemInterface, 'checkedStatus'>>) => {
+      if (selectable === TreeViewSelectable.off) {
+        return;
+      }
+
+      const item = items.find(item => item.itemId === itemId);
+
+      if (item?.isDisabled) {
+        return;
+      }
+
+      setItems(prevItems => {
+        if (selectable === TreeViewSelectable.single) {
+          return selectSingle({
+            items: prevItems,
+            itemId,
+            checkedStatus: checkedStatus ?? IndeterminateCheckboxStatus.checked,
+          });
+        }
+
+        if (selectable === TreeViewSelectable.multi) {
+          return toggleMulti({
+            items: prevItems,
+            itemId,
+            checkedStatus,
+            checkChildren,
+            checkParents,
+          });
+        }
+
+        return prevItems;
+      });
+    },
+    [selectable, checkChildren, checkParents, items]
   );
 
-  const [preselectedItemsNeedUpdate, setPreselectedItemsNeedUpdate] =
-    React.useState(false);
+  React.useEffect(() => {
+    if (apiRef) {
+      apiRef.current = {
+        selectItem,
+        selectAll() {
+          if (
+            [TreeViewSelectable.single, TreeViewSelectable.single].includes(
+              selectable
+            ) ||
+            isDisabled
+          ) {
+            return;
+          }
+          this.showMore(true);
+        },
+
+        clearAll() {
+          if (isDisabled) {
+            return;
+          }
+
+          setItems(() => {
+            return toggleAllMulti({
+              items,
+              checkedStatus: IndeterminateCheckboxStatus.unchecked,
+              checkChildren,
+              checkParents,
+            });
+          });
+        },
+
+        showMore(fromSelectAll: boolean = false) {
+          if (fromSelectAll) {
+            setItems(() => {
+              return toggleAllMulti({
+                items,
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+                checkChildren,
+                checkParents,
+              });
+            });
+          } else {
+            setItemsNeedUpdate(true);
+          }
+        },
+
+        showLess() {
+          setItems(
+            getInitialItems({
+              children,
+              preselectedItems: selectedItems,
+              checkParents,
+              checkChildren,
+              selectable,
+              isDisabled,
+            })
+          );
+        }
+      };
+    }
+  }, [selectItem, isDisabled, children]);
+
+  React.useEffect(() => {
+    if (itemsNeedUpdate) {
+      setItems(
+        getInitialItems({
+          children,
+          preselectedItems: selectedItems,
+          checkParents,
+          checkChildren,
+          selectable,
+          isDisabled,
+        })
+      );
+      prevChildrenRef.current = children;
+
+      setItemsNeedUpdate(false);
+    }
+  }, [itemsNeedUpdate, children]);
+
   const [initialExpandedItemsNeedUpdate, setInitialExpandedItemsNeedUpdate] =
     React.useState(false);
-  const [selectedItemsChanged, setSelectedItemsChanged] = React.useState(false);
-  const [itemToFocus, setItemToFocus] = React.useState(null);
 
   const [treeItemRefArray, registerTreeItem] = useDescendants();
 
   React.useEffect(() => {
-    if (selectable !== TreeViewSelectable.off && preselectedItems) {
-      setPreselectedItemsNeedUpdate(true);
-    }
     if (initialExpandedItems) {
       setInitialExpandedItemsNeedUpdate(true);
     }
-
-    getItemToFocusFirst();
   }, []);
 
-  React.useEffect(() => {
-    if (selectable !== TreeViewSelectable.off && selectedItemsChanged) {
-      onSelectedItemChange &&
-        typeof onSelectedItemChange === 'function' &&
-        onSelectedItemChange(selectedItems);
+  const [expandedSet, setExpandedSet] = React.useState<Set<string>>(
+    new Set(initialExpandedItems)
+  );
 
-      setSelectedItemsChanged(false);
-      getItemToFocusFirst();
-    }
-  }, [selectedItemsChanged]);
+  const handleExpandedChange = (
+    event: React.SyntheticEvent,
+    itemId: string
+  ) => {
+    setExpandedSet(prevExpandedSet => {
+      const updatedExpandedSet = new Set(prevExpandedSet);
+      const childItemIds = getChildrenIds({
+        items,
+        itemId,
+      });
 
-  function getItemToFocusFirst() {
-    let item = null;
-
-    if (children?.length > 0) {
-      const allChildrenInTree = getChildrenItemIdsInTree(children);
-      const firstBranchNode = findFirstBranchNode(children)?.props.itemId;
-      const firstItemSelected = getFirstItemInTree(selectedItems, children);
-      const firstNode = allChildrenInTree?.[0].itemId;
-
-      if (selectable === TreeViewSelectable.off) {
-        /*
-        If there is at least one node with a branch, focus is set on the first branch node.
-        If there are no nodes with branches, the first item is focused and the tree can be traversed
-      */
-        item = firstBranchNode || allChildrenInTree?.[0].itemId;
+      if (updatedExpandedSet.has(itemId)) {
+        updatedExpandedSet.delete(itemId);
+        childItemIds.forEach((childId: string) => {
+          updatedExpandedSet.delete(childId);
+        });
       } else {
-        // Same behavior for Single and Multiple
-        if (selectedItems.length === 0) {
-          // If none of the nodes are selected before the tree receives focus, focus is set on the first node.
-          item = firstNode;
-        } else if (selectedItems.length > 0) {
-          // If one or more nodes are selected before the tree receives focus, focus is set on the first selected node.
-          item = firstItemSelected;
-        }
+        updatedExpandedSet.add(itemId);
+        childItemIds.forEach((childId: string) => {
+          if (initialExpandedItems?.includes(childId)) {
+            updatedExpandedSet.add(childId);
+          }
+        });
       }
-    }
-    setItemToFocus(item);
-  }
+
+      const expandedItemsArray = Array.from(updatedExpandedSet);
+      onExpandedChange &&
+        typeof onExpandedChange === 'function' &&
+        onExpandedChange(event, expandedItemsArray);
+      return updatedExpandedSet;
+    });
+  };
 
   const contextValue = {
     hasIcons,
@@ -158,20 +472,18 @@ export function useTreeView(props: UseTreeViewProps) {
     onSelectedItemChange,
     onExpandedChange,
     selectable,
-    setHasIcons,
     selectedItems,
-    setSelectedItems,
     initialExpandedItems,
     treeItemRefArray,
     registerTreeItem,
-    preselectedItemsNeedUpdate,
-    setPreselectedItemsNeedUpdate,
     initialExpandedItemsNeedUpdate,
     setInitialExpandedItemsNeedUpdate,
-    selectedItemsChanged,
-    setSelectedItemsChanged,
     checkChildren,
     checkParents,
+    items,
+    selectItem,
+    handleExpandedChange,
+    expandedSet,
   };
 
   return { contextValue };

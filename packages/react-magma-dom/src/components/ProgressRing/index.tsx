@@ -18,6 +18,9 @@ export interface ProgressRingProps
 
 const Circle = styled.circle`
   transition: stroke-dashoffset 0.35s;
+`;
+
+const Svg = styled.svg`
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
 `;
@@ -64,7 +67,7 @@ export const ProgressRing = React.forwardRef<HTMLDivElement, ProgressRingProps>(
 
     return (
       <div {...other} ref={ref} data-testid={testId}>
-        <svg height={radius * 2} width={radius * 2}>
+        <Svg height={radius * 2} width={radius * 2}>
           <Circle
             cx={radius}
             cy={radius}
@@ -73,9 +76,9 @@ export const ProgressRing = React.forwardRef<HTMLDivElement, ProgressRingProps>(
             stroke={color ? color : theme.colors.neutral}
             strokeWidth={strokeWidth}
             strokeDasharray={`${circumference} ${circumference}`}
-            style={{ strokeDashoffset }}
+            strokeDashoffset={strokeDashoffset}
           />
-        </svg>
+        </Svg>
       </div>
     );
   }
