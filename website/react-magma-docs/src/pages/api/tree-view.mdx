@@ -103,7 +103,16 @@ TreeViews can have `TreeViewSelectable.single` for single select (default), `Tre
 
 ```typescript
 import React from 'react';
-import { TreeView, TreeItem, TreeViewSelectable, Tag } from 'react-magma-dom';
+import {
+  TreeView,
+  TreeItem,
+  TreeViewSelectable,
+  Tag,
+  Heading,
+  IndeterminateCheckboxStatus,
+  TagSize,
+  TagColor,
+} from 'react-magma-dom';
 
 export function Example() {
   const [selectedItems, setSelectedItems] = React.useState(null);
@@ -277,7 +286,7 @@ export function Example() {
       <TreeView
         ariaLabel="single-select-treeview"
         selectable={TreeViewSelectable.single}
-        initialExpandedItems={['initExpanded-Mammals', 'initExpanded-Cats']}
+        initialExpandedItems={['initExpanded-Cats']}
       >
         <TreeItem label="Mammals" itemId="initExpanded-Mammals">
           <TreeItem label="Dogs" itemId="initExpanded-Dogs">
@@ -441,7 +450,9 @@ export function Example() {
 
 ## Check Children & Check Parents
 
-In a multi-select tree view, the relationship between parents and children when you select an item is flexible depending on your needs. Using the props below, you can configure the component so that selecting an item has no cascading effect on any other item so they're truly independent, or the selection of a child or parent can automatically update surrounding items appropriately, including setting parents to an indeterminate state. By default, these props are set to true.
+In a multi-select tree view, the relationship between parents and children when you select an item is flexible depending on your needs. Using the props below, you can configure the component so that selecting an item has no cascading effect on any other item so they're truly independent, or the selection of a child or parent can automatically update surrounding items appropriately, including setting parents to an indeterminate state.
+
+By default, the `checkChildren` and `checkParents` props are set to true.
 
 ```typescript
 import React from 'react';
@@ -462,12 +473,12 @@ export function Example() {
   return (
     <>
       <Toggle
-        labelText="Check Children when Parent item is selected"
+        labelText="Check children when parent item is selected"
         onChange={changeCheckChildren}
         checked={checkChildren}
       />
       <Toggle
-        labelText="Check Parents when children item is selected"
+        labelText="Check parents when child item is selected"
         onChange={changeCheckParents}
         checked={checkParents}
       />
@@ -508,6 +519,309 @@ export function Example() {
 }
 ```
 
+## Update Selected Items From Outside
+
+Use the `apiRef` prop to change items selection from outside. It exposes these functions: `selectItem`, `selectAll`, `clearAll`.
+
+```typescript
+import React from 'react';
+import {
+  TreeView,
+  TreeItem,
+  Tag,
+  IndeterminateCheckboxStatus,
+  TreeViewSelectable,
+  ButtonGroup,
+  Button,
+  ButtonColor,
+  ButtonSize,
+  ButtonVariant,
+  TagSize,
+  TagColor,
+  TreeViewApi,
+  TreeItemSelectedInterface,
+  Heading,
+} from 'react-magma-dom';
+
+function createControlledTags(
+  items: TreeItemSelectedInterface[] = [],
+  api: TreeViewApi
+) {
+  const selected =
+    items &&
+    items
+      .filter(i => i.checkedStatus === IndeterminateCheckboxStatus.checked)
+      .map((i, key) => (
+        <Tag
+          key={key}
+          size={TagSize.small}
+          color={TagColor.primary}
+          onDelete={() =>
+            api.selectItem({
+              itemId: i.itemId,
+              checkedStatus: IndeterminateCheckboxStatus.unchecked,
+            })
+          }
+        >
+          {i.itemId}
+        </Tag>
+      ));
+
+  const indeterminate =
+    items &&
+    items
+      .filter(
+        i => i.checkedStatus === IndeterminateCheckboxStatus.indeterminate
+      )
+      .map((i, key) => (
+        <Tag
+          key={key}
+          size={TagSize.small}
+          color={TagColor.default}
+          onDelete={() =>
+            api.selectItem({
+              itemId: i.itemId,
+              checkedStatus: IndeterminateCheckboxStatus.unchecked,
+            })
+          }
+        >
+          {i.itemId}
+        </Tag>
+      ));
+
+  return {
+    selected: selected || [],
+    indeterminate: indeterminate || [],
+  };
+}
+
+export function Example() {
+  const [selectedItems, setSelectedItems] = React.useState(null);
+
+  const apiRef = React.useRef<TreeViewApi>(null);
+
+  const { selected, indeterminate } = createControlledTags(
+    selectedItems,
+    apiRef.current
+  );
+
+  return (
+    <>
+      <Heading level={3} id="ah-textbook">
+        Gardner's Art through the ages
+      </Heading>
+      <TreeView
+        ariaLabelledBy={'ah-textbook'}
+        selectable={TreeViewSelectable.multi}
+        apiRef={apiRef}
+        onSelectedItemChange={setSelectedItems}
+      >
+        <TreeItem
+          label={<>I. INTRODUCTION: WHAT IS ART HISTORY?</>}
+          itemId="I-intro"
+        >
+          <TreeItem
+            label={<>Art History in the 21st Century</>}
+            itemId="I-21st-century"
+          >
+            <TreeItem
+              label={<>The Questions Art Historians Ask</>}
+              itemId="I-questions"
+            />
+            <TreeItem
+              label={<>The Words Art Historians Use</>}
+              itemId="I-words"
+            >
+              <TreeItem label={<>Vocabulary</>} itemId="I-vocab" />
+            </TreeItem>
+            <TreeItem
+              label={<>Art History and Other Disciplines</>}
+              itemId="I-other"
+            />
+          </TreeItem>
+          <TreeItem
+            label={<>Different Ways of Seeing</>}
+            itemId="I-different-ways"
+          />
+        </TreeItem>
+        <TreeItem label={<>1. ART IN THE STONE AGE</>} itemId="1-stone-age">
+          <TreeItem label={<>Paleolithic Art</>} itemId="1-paleolithic">
+            <TreeItem label={<>Africa</>} itemId="1-africa" />
+            <TreeItem label={<>Europe</>} itemId="1-europe" />
+          </TreeItem>
+          <TreeItem label={<>Neolithic Art</>} itemId="1-neolithic">
+            <TreeItem
+              label={<>Anatolia and Mesopotamia</>}
+              itemId="1-anatolia"
+            />
+            <TreeItem
+              label={<>Europe</>}
+              itemId="1-neolithic-europe"
+              isDisabled
+            />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem
+          label={<>2. ANCIENT MESOPOTAMIA AND PERSIA</>}
+          itemId="2-ancient"
+        >
+          <TreeItem label={<>Mesopotamia</>} itemId="2-mesopotamia">
+            <TreeItem label={<>Sumer</>} itemId="2-sumer" />
+            <TreeItem label={<>Akkad</>} itemId="2-akkad" />
+            <TreeItem label={<>Third Dynasty of Ur</>} itemId="2-ur" />
+            <TreeItem label={<>Babylon</>} itemId="2-babylon" />
+            <TreeItem label={<>Elam</>} itemId="2-elam" />
+            <TreeItem label={<>Assyria</>} itemId="2-assyria" />
+            <TreeItem label={<>Neo-Babylonia</>} itemId="2-neo" />
+          </TreeItem>
+          <TreeItem label={<>Persia</>} itemId="2-persia">
+            <TreeItem label={<>Achaemenid Empire</>} itemId="2-achaemenid" />
+            <TreeItem label={<>Sasanian Empire</>} itemId="2-sasanian" />
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+      <br />
+      <>
+        <p>Selected: {selected}</p>
+        <p>Indeterminate: {indeterminate}</p>
+      </>
+      <ButtonGroup size={ButtonSize.small} variant={ButtonVariant.solid}>
+        <Button
+          onClick={() => apiRef.current.selectAll()}
+          color={ButtonColor.secondary}
+        >
+          Select all
+        </Button>
+        <Button
+          onClick={() => apiRef.current.clearAll()}
+          color={ButtonColor.secondary}
+        >
+          Clear all
+        </Button>
+      </ButtonGroup>
+    </>
+  );
+}
+```
+
+## Disabling TreeView
+
+**Styling for disabled item may not be visible if the user is passing a node to the label.**
+
+Use the `isDisabled` prop to disable all items inside TreeView.
+
+```typescript
+import React from 'react';
+import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <TreeView
+        ariaLabelledBy="animals-multi-checkparentschildren"
+        selectable={TreeViewSelectable.multi}
+        initialExpandedItems={[
+          'selectable-parrots 1',
+          'selectable-birds of Prey 1',
+        ]}
+        isDisabled
+      >
+        <TreeItem label="Birds" itemId="selectable-birds 1">
+          <TreeItem label="Parrots" itemId="selectable-parrots 1">
+            <TreeItem label="African Grey" itemId="selectable-african Grey 1" />
+            <TreeItem label="Cockatiel" itemId="selectable-cockatiel 1" />
+            <TreeItem label="Budgerigar" itemId="selectable-budgerigar 1" />
+          </TreeItem>
+          <TreeItem label="Birds of Prey" itemId="selectable-birds of Prey 1">
+            <TreeItem label="Eagles" itemId="selectable-eagles 1" />
+            <TreeItem label="Hawks" itemId="selectable-hawks 1" />
+            <TreeItem label="Falcons" itemId="selectable-falcons 1" />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Aquatic Animals" itemId="selectable-aquatic Animals 1">
+          <TreeItem label="Fish" itemId="selectable-fish 1">
+            <TreeItem label="Goldfish" itemId="selectable-goldfish 1" />
+            <TreeItem label="Betta Fish" itemId="selectable-betta Fish 1" />
+            <TreeItem label="Guppies" itemId="selectable-guppies 1" />
+          </TreeItem>
+          <TreeItem label="Marine Mammals" itemId="selectable-marine Mammals 1">
+            <TreeItem label="Dolphins" itemId="selectable-dolphins 1" />
+            <TreeItem label="Whales" itemId="selectable-whales 1" />
+            <TreeItem label="Seals" itemId="selectable-seals 1" />
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+}
+```
+
+## Disabling items
+
+Pass the `isDisabled` prop to item inside `preselectedItems` prop to manage disabled state for the item.
+
+```typescript
+import React from 'react';
+import {
+  TreeView,
+  TreeItem,
+  TreeViewSelectable,
+  IndeterminateCheckboxStatus,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <TreeView
+        ariaLabelledBy="animals-multi-checkparentschildren"
+        selectable={TreeViewSelectable.multi}
+        initialExpandedItems={[
+          'selectable-parrots 2',
+          'selectable-birds of Prey 2',
+        ]}
+        preselectedItems={[
+          {
+            itemId: 'selectable-cockatiel 2',
+            checkedStatus: IndeterminateCheckboxStatus.unchecked,
+            isDisabled: true,
+          },
+          {
+            itemId: 'selectable-budgerigar 2',
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+            isDisabled: false,
+          },
+        ]}
+      >
+        <TreeItem label="Birds" itemId="selectable-birds 2">
+          <TreeItem label="Parrots" itemId="selectable-parrots 2">
+            <TreeItem label="African Grey" itemId="selectable-african Grey 2" />
+            <TreeItem label="Cockatiel" itemId="selectable-cockatiel 2" />
+            <TreeItem label="Budgerigar" itemId="selectable-budgerigar 2" />
+          </TreeItem>
+          <TreeItem label="Birds of Prey" itemId="selectable-birds of Prey 2">
+            <TreeItem label="Eagles" itemId="selectable-eagles 2" isDisabled />
+            <TreeItem label="Hawks" itemId="selectable-hawks 2" />
+            <TreeItem label="Falcons" itemId="selectable-falcons 2" />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Aquatic Animals" itemId="selectable-aquatic Animals 2">
+          <TreeItem label="Fish" itemId="selectable-fish 2">
+            <TreeItem label="Goldfish" itemId="selectable-goldfish 2" />
+            <TreeItem label="Betta Fish" itemId="selectable-betta Fish 2" />
+            <TreeItem label="Guppies" itemId="selectable-guppies 2" />
+          </TreeItem>
+          <TreeItem label="Marine Mammals" itemId="selectable-marine Mammals 2">
+            <TreeItem label="Dolphins" itemId="selectable-dolphins 2" />
+            <TreeItem label="Whales" itemId="selectable-whales 2" />
+            <TreeItem label="Seals" itemId="selectable-seals 2" />
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+    </>
+  );
+}
+```
+
 ## Change Events
 
 The following events are available: `onSelectedItemChange` and `onExpandedChange`.
@@ -520,19 +834,24 @@ export function Example() {
   const [currentTreeEvent, setCurrentTreeEvent] = React.useState<
     string | undefined
   >(undefined);
+  const [expandedItems, setExpandedItems] = React.useState<string[]>([]);
 
   function handleSelectedItemChange(event) {
     setCurrentTreeEvent('Selected');
   }
 
-  function handleExpandedChange(event) {
+  function handleExpandedChange(event: React.SyntheticEvent, expandedItems: string[]) {
     setCurrentTreeEvent('Expanded');
+    setExpandedItems(expandedItems);
   }
 
   return (
     <>
       <p>
         <strong>{currentTreeEvent || 'No'} event was triggered</strong>
+        <br />
+        <br />
+        <strong>Expanded Items: {expandedItems ? expandedItems.join(', ') : ' '}</strong>
       </p>
 
       <TreeView
@@ -556,6 +875,230 @@ export function Example() {
           <TreeItem label={<>Information Technology</>} itemId="it" />
         </TreeItem>
       </TreeView>
+    </>
+  );
+}
+```
+
+## Show More / Show Less Button
+
+Use the `apiRef.showMore()` prop when using a Show All button inside a tree, and `apiRef.showLess()` when using a Show Less button.
+
+```typescript
+import React from 'react';
+import {
+  ButtonSize,
+  ButtonVariant,
+  IconButton,
+  IndeterminateCheckboxStatus,
+  Spacer,
+  SpacerAxis,
+  TreeItem,
+  TreeItemSelectedInterface,
+  TreeView,
+  TreeViewApi,
+  TreeViewSelectable
+} from 'react-magma-dom';
+import { KeyboardArrowUpIcon, KeyboardArrowDownIcon } from 'react-magma-icons';
+
+export function Example() {
+  const treeContent = {
+    id: 'tree-id',
+    groupName: 'disciplines',
+    items: [
+      {
+        id: 'discipline-arts-design',
+        title: 'Arts and Design',
+        children: [
+          {
+            id: 'ad-1',
+            title: 'Animation',
+            children: [],
+          },
+          {
+            id: 'ad-2',
+            title: 'Photography',
+            children: [],
+          },
+          {
+            id: 'ad-3',
+            title: 'Web Design',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-business',
+        title: 'Business',
+        children: [
+          {
+            id: 'bsn-1',
+            title: 'Accounting',
+            children: [],
+          },
+          {
+            id: 'bsn-2',
+            title: 'Finance',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-cs',
+        title: 'Computer Science',
+        children: [
+          {
+            id: 'cs-1',
+            title: 'Software Engineering',
+            children: [],
+          },
+          {
+            id: 'cs-2',
+            title: 'Information Technology',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-geography',
+        title: 'Geography',
+        children: [],
+      },
+      {
+        id: 'discipline-his',
+        title: 'History',
+        children: [
+          {
+            id: 'his-1',
+            title: 'American History',
+            children: [],
+          },
+          {
+            id: 'his-2',
+            title: 'World History',
+            children: [],
+          },
+          {
+            id: 'his-3',
+            title: 'Western Civilization',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-math',
+        title: 'Mathematics',
+        children: [
+          {
+            id: 'math-1',
+            title: 'Precalculus',
+            children: [],
+          },
+          {
+            id: 'math-2',
+            title: 'Calculus',
+            children: [],
+          },
+          {
+            id: 'math-3',
+            title: 'Finite Math',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'discipline-nutr',
+        title: 'Nutrition',
+        children: [
+          {
+            id: 'nutr-1',
+            title: 'Community Nutrition',
+            children: [],
+          },
+          {
+            id: 'nutr-2',
+            title: 'Sports Nutrition',
+            children: [],
+          },
+        ],
+      },
+    ],
+    preselectedItems: [
+      {
+        itemId: 'bsn-1',
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+      },
+    ],
+  };
+
+  const apiRef = React.useRef<TreeViewApi>();
+  const [isShowAll, setIsShowAll] = React.useState(false);
+  const [selectedItems, setSelectedItems] =
+    React.useState<TreeItemSelectedInterface[]>();
+
+  function onSelection(items: TreeItemSelectedInterface[]) {
+    setSelectedItems(items);
+  }
+
+  const getTermsForRender = (terms: any) => {
+    if (isShowAll || terms.length <= 5) {
+      return terms;
+    } else {
+      return terms.slice(0, 5);
+    }
+  };
+
+  const toggleShowAll = () => {
+    if (isShowAll) {
+      apiRef && apiRef.current && apiRef.current.showLess();
+    } else {
+      apiRef && apiRef.current && apiRef.current.showMore();
+    }
+    setIsShowAll(prev => !prev);
+  };
+
+  const renderTreeItemsRecursively = (discipline: any[], depth: number) => {
+    return discipline.map(term => {
+      return (
+        <TreeItem
+          key={term.id}
+          itemId={term.id}
+          testId={term.id}
+          label={term.title}
+        >
+          {term.children.length ? (
+            renderTreeItemsRecursively(term.children, depth + 1)
+          ) : (
+            <></>
+          )}
+        </TreeItem>
+      );
+    });
+  };
+
+  return (
+    <>
+      <TreeView
+        key={treeContent.id}
+        preselectedItems={treeContent.preselectedItems}
+        selectable={TreeViewSelectable.multi}
+        onSelectedItemChange={onSelection}
+        apiRef={apiRef}
+      >
+        {renderTreeItemsRecursively(getTermsForRender(treeContent.items), 0)}
+      </TreeView>
+
+      <Spacer size={16} axis={SpacerAxis.vertical} />
+
+      <IconButton
+        onClick={toggleShowAll}
+        size={ButtonSize.small}
+        variant={ButtonVariant.link}
+        testId="showAllBtn"
+        icon={isShowAll ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+      >
+        {isShowAll ? 'Show Less' : 'Show All'}
+      </IconButton>
     </>
   );
 }

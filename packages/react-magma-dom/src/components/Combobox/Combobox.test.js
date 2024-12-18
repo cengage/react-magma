@@ -3,7 +3,6 @@ import { render, fireEvent, act } from '@testing-library/react';
 import { Combobox } from '.';
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
-import { Button } from '../Button';
 
 describe('Combobox', () => {
   const labelText = 'Label';

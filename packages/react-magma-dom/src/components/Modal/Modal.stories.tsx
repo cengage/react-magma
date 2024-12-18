@@ -1,22 +1,21 @@
 import React from 'react';
+import { Modal, ModalSize, NativeSelect, Toggle, VisuallyHidden } from '../..';
 import { Button, ButtonColor } from '../Button';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { Combobox } from '../Combobox';
 import { Container } from '../Container';
 import { DatePicker } from '../DatePicker';
-import { Modal, ModalSize, NativeSelect, Toggle, VisuallyHidden } from '../..';
-import { Paragraph } from '../Paragraph';
-import { Radio } from '../Radio';
-import { RadioGroup } from '../RadioGroup';
-import { Spacer } from '../Spacer';
 import {
   Dropdown,
   DropdownButton,
   DropdownContent,
   DropdownMenuItem,
 } from '../Dropdown';
+import { Paragraph } from '../Paragraph';
+import { Radio } from '../Radio';
+import { RadioGroup } from '../RadioGroup';
 import { Select } from '../Select';
-import { useFocusLock } from '../..';
+import { Spacer } from '../Spacer';
 
 const info = {
   component: Modal,
@@ -180,6 +179,11 @@ export const ModalContentUpdate = () => {
   const [showHidden, setShowHidden] = React.useState(false);
   const [goToNextPageEnabled, setGoToNextPageEnabled] = React.useState(true);
   const buttonRef = React.useRef<HTMLButtonElement>();
+  const [mainHeaderRef, setmainHeaderRef] = React.useState(React.useRef<any>());
+
+  const handleGetHeaderRef = ref => {
+    setmainHeaderRef(ref);
+  };
 
   const onModalShow = () => {
     setShowModal(true);
@@ -191,10 +195,12 @@ export const ModalContentUpdate = () => {
   };
 
   const goToPage1 = () => {
+    mainHeaderRef?.current?.focus();
     setPage(1);
   };
 
   const goToPage2 = () => {
+    mainHeaderRef?.current?.focus();
     setPage(2);
   };
 
@@ -208,7 +214,12 @@ export const ModalContentUpdate = () => {
 
   return (
     <>
-      <Modal header="Modal Title" onClose={onModalClose} isOpen={showModal}>
+      <Modal
+        header="Modal Title"
+        onClose={onModalClose}
+        isOpen={showModal}
+        headerRef={handleGetHeaderRef}
+      >
         <div id="attachToMe">
           {page === 1 && (
             <>
@@ -297,7 +308,18 @@ export const NoHeaderOrFocusableContent = () => {
 export const ModalInAModal = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [showModal2, setShowModal2] = React.useState(false);
+  const [mainHeaderRef, setmainHeaderRef] = React.useState(React.useRef<any>());
+
   const buttonRef = React.useRef<HTMLButtonElement>();
+
+  const handleGetHeaderRef = ref => {
+    setmainHeaderRef(ref);
+  };
+
+  const closeModal2 = () => {
+    mainHeaderRef?.current?.focus();
+    setShowModal2(false);
+  };
 
   return (
     <>
@@ -308,6 +330,7 @@ export const ModalInAModal = () => {
           buttonRef.current.focus();
         }}
         isOpen={showModal}
+        headerRef={handleGetHeaderRef}
       >
         <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
         <Paragraph>
@@ -354,7 +377,7 @@ export const ModalInAModal = () => {
       <Modal
         size={ModalSize.small}
         header="Modal 2 Title"
-        onClose={() => setShowModal2(false)}
+        onClose={() => closeModal2()}
         isOpen={showModal2}
       >
         <Paragraph noTopMargin>This is modal 2</Paragraph>
@@ -440,19 +463,27 @@ export const CloseModalWithConfirmation = () => {
   const [showModal, setShowModal] = React.useState(false);
   const [showConfirmationModal, setShowConfirmationModal] =
     React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
-  const focusTrapElement = useFocusLock(!showConfirmationModal && showModal);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const mainModalRef = React.useRef<HTMLDivElement>(null);
+  const confirmationModalRef = React.useRef<HTMLDivElement>(null);
+  const [mainHeaderRef, setmainHeaderRef] = React.useState(React.useRef<any>());
+
+  const handleGetHeaderRef = ref => {
+    setmainHeaderRef(ref);
+  };
 
   const closeTheModal = () => {
     setShowConfirmationModal(true);
+    confirmationModalRef.current?.focus();
   };
 
   const closeTheConfirmationModal = () => {
+    mainHeaderRef?.current?.focus();
     setShowConfirmationModal(false);
   };
 
   const closeBothModals = () => {
-    buttonRef.current.focus();
+    buttonRef.current?.focus();
     setShowConfirmationModal(false);
     setShowModal(false);
   };
@@ -467,7 +498,8 @@ export const CloseModalWithConfirmation = () => {
         isModalClosingControlledManually
         onClose={closeTheModal}
         isOpen={showModal}
-        ref={focusTrapElement}
+        ref={mainModalRef}
+        headerRef={handleGetHeaderRef}
       >
         <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
         <Paragraph>
@@ -491,6 +523,7 @@ export const CloseModalWithConfirmation = () => {
         isModalClosingControlledManually
         onClose={closeTheConfirmationModal}
         isOpen={showConfirmationModal}
+        ref={confirmationModalRef}
       >
         <Paragraph noTopMargin>Close the modal?</Paragraph>
         <ButtonGroup>
@@ -508,6 +541,8 @@ export const HeaderReference = () => {
   const [customHeadingRef, setCustomHeadingRef] = React.useState(
     React.useRef<any>()
   );
+  const customButtonRef = React.useRef<HTMLButtonElement>();
+  const defaultButtonRef = React.useRef<HTMLButtonElement>();
 
   const handleGetHeaderRef = ref => {
     setCustomHeadingRef(ref);
@@ -519,6 +554,7 @@ export const HeaderReference = () => {
 
   const onModalClose = () => {
     setShowModal(false);
+    customButtonRef.current.focus();
   };
 
   const onModalShowDefault = () => {
@@ -527,6 +563,7 @@ export const HeaderReference = () => {
 
   const onModalCloseDefault = () => {
     setShowDefaultModal(false);
+    defaultButtonRef.current.focus();
   };
 
   const onHeadingFocus = () => {
@@ -587,8 +624,10 @@ export const HeaderReference = () => {
       </Modal>
 
       <ButtonGroup>
-        <Button onClick={onModalShow}>Show Custom Heading Modal</Button>
-        <Button onClick={onModalShowDefault}>
+        <Button onClick={onModalShow} ref={customButtonRef}>
+          Show Custom Heading Modal
+        </Button>
+        <Button onClick={onModalShowDefault} ref={defaultButtonRef}>
           Show Modal with Default Heading
         </Button>
       </ButtonGroup>

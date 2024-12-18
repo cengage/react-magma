@@ -239,6 +239,74 @@ export function Example() {
 }
 ```
 
+## No Top Margin
+
+When the `noTopMargin` prop is used, the element will have a top margin value of 0.
+
+```tsx
+import React from 'react';
+import { Heading } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Heading noTopMargin level={1}>
+        Heading 1
+      </Heading>
+      <Heading noTopMargin level={2}>
+        Heading 2
+      </Heading>
+      <Heading noTopMargin level={3}>
+        Heading 3
+      </Heading>
+      <Heading noTopMargin level={4}>
+        Heading 4
+      </Heading>
+      <Heading noTopMargin level={5}>
+        Heading 5
+      </Heading>
+      <Heading noTopMargin level={6}>
+        Heading 6
+      </Heading>
+    </>
+  );
+}
+```
+
+## No Bottom Margin
+
+When the `noBottomMargin` prop is used, the element will have a bottom margin value of 0.
+
+```tsx
+import React from 'react';
+import { Heading } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Heading noBottomMargin level={1}>
+        Heading 1
+      </Heading>
+      <Heading noBottomMargin level={2}>
+        Heading 2
+      </Heading>
+      <Heading noBottomMargin level={3}>
+        Heading 3
+      </Heading>
+      <Heading noBottomMargin level={4}>
+        Heading 4
+      </Heading>
+      <Heading noBottomMargin level={5}>
+        Heading 5
+      </Heading>
+      <Heading noBottomMargin level={6}>
+        Heading 6
+      </Heading>
+    </>
+  );
+}
+```
+
 ## Forward Ref
 
 Using React's `forwardRef` feature you can gain access to the reference of the internal heading.

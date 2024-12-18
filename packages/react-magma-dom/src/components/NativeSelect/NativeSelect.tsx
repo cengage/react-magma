@@ -60,7 +60,7 @@ const StyledNativeSelectWrapper = styled.div<{
 function borderColors(props) {
   if (props.isInverse) {
     if (props.hasError) {
-      return props.theme.colors.danger200;
+      return props.theme.colors.danger300;
     }
     if (props.disabled) {
       return transparentize(0.85, props.theme.colors.neutral100);

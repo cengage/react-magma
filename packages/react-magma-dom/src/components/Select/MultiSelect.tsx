@@ -1,14 +1,16 @@
 import * as React from 'react';
-import { MultiSelectProps } from '.';
-import { useSelect, useMultipleSelection } from 'downshift';
+import { instanceOfDefaultItemObject, MultiSelectProps } from '.';
+import { useMultipleSelection, useSelect } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
-import { SelectText, SelectedItemButton, IconWrapper } from './shared';
+import { IconWrapper, SelectedItemButton, SelectText } from './shared';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
+import { ButtonSize, ButtonVariant } from '../Button';
+import { defaultComponents } from './components';
 
 export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
@@ -16,6 +18,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     ariaDescribedBy,
     components: customComponents,
     errorMessage,
+    floatingElementStyles,
     hasError,
     helperMessage,
     inputStyle,
@@ -39,6 +42,9 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     onKeyUp,
     onRemoveSelectedItem,
     placeholder,
+    setFloating,
+    setReference,
+    isClearable,
   } = props;
 
   function checkSelectedItemValidity(itemToCheck: T) {
@@ -54,6 +60,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     removeSelectedItem,
     selectedItems,
     setActiveIndex,
+    reset,
   } = useMultipleSelection<T>({
     ...props,
     ...(props.initialSelectedItems && {
@@ -159,6 +166,44 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     disabled: disabled,
   });
 
+  const { ClearIndicator } = defaultComponents<T>({
+    ...customComponents,
+  });
+
+  function itemsArrayToString(itemsArray: any[]) {
+    let allItems = [];
+    itemsArray.map(item => {
+      if (typeof item === 'string') {
+        allItems.push(item);
+      } else if (instanceOfDefaultItemObject(item)) {
+        allItems.push(item.label);
+      }
+    });
+
+    return allItems.join(', ');
+  }
+
+  const toggleButtonRef = React.useRef<HTMLButtonElement>();
+
+  const clearIndicatori18n =
+    selectedItems.length > 1
+      ? i18n.select.multi.clearIndicatorAriaLabel
+      : i18n.select.clearIndicatorAriaLabel;
+
+  const clearIndicatorAriaLabel = clearIndicatori18n
+    .replace(/\{labelText\}/g, labelText)
+    .replace(/\{selectedItem\}/g, itemsArrayToString(selectedItems));
+
+  function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
+    event.stopPropagation();
+
+    if (toggleButtonRef.current) {
+      toggleButtonRef.current.focus();
+    }
+
+    reset();
+  }
+
   return (
     <SelectContainer
       additionalContent={additionalContent}
@@ -180,6 +225,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         hasError={hasError}
         disabled={disabled}
         isInverse={isInverse}
+        setReference={setReference}
         style={inputStyle}
       >
         {selectedItems && selectedItems.length > 0 ? (
@@ -210,14 +256,41 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
               </SelectedItemButton>
             );
           })
-        ) : typeof placeholder === 'string' ? (
-          <SelectText>{placeholder}</SelectText>
         ) : (
-          <SelectText>{i18n.multiSelect.placeholder}</SelectText>
+          <SelectText
+            isShowPlaceholder={true}
+            isInverse={isInverse}
+            isDisabled={disabled}
+            theme={theme}
+          >
+            {typeof placeholder === 'string'
+              ? placeholder
+              : i18n.multiSelect.placeholder}
+          </SelectText>
         )}
       </SelectTriggerButton>
+
+      {isClearable && selectedItems?.length > 0 && (
+        <ClearIndicator
+          aria-label={clearIndicatorAriaLabel}
+          icon={<CloseIcon size={theme.iconSizes.xSmall} />}
+          isInverse={isInverse}
+          onClick={defaultHandleClearIndicatorClick}
+          size={ButtonSize.small}
+          variant={ButtonVariant.link}
+          disabled={disabled}
+          testId="clearIndicator"
+          style={{
+            position: 'absolute',
+            right: '3.25em',
+            top: '50%',
+            transform: 'translateY(-50%)',
+          }}
+        />
+      )}
       <ItemsList
         customComponents={customComponents}
+        floatingElementStyles={floatingElementStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
@@ -227,6 +300,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         itemToString={itemToString}
         maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
         menuStyle={menuStyle}
+        setFloating={setFloating}
       />
     </SelectContainer>
   );

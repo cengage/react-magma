@@ -4,7 +4,7 @@ import { Button } from '../Button';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { DrawerPosition } from './Drawer';
 import { NavTab, NavTabs } from '../NavTabs';
-import { TabsOrientation } from '../Tabs';
+import { TabsOrientation } from '../Tabs/shared';
 
 const info = {
   component: Drawer,
@@ -23,12 +23,16 @@ export default info;
 
 export const Default = args => {
   const [showDrawer, setShowDrawer] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement | null>(null);
 
   return (
     <>
       <Drawer
         header="Drawer Title"
-        onClose={() => setShowDrawer(false)}
+        onClose={() => {
+          setShowDrawer(false);
+          buttonRef.current?.focus();
+        }}
         isOpen={showDrawer}
         closeAriaLabel="Close drawer"
         {...args}
@@ -38,7 +42,7 @@ export const Default = args => {
           <Button>This is a button</Button>
         </p>
       </Drawer>
-      <Button onClick={() => setShowDrawer(true)}>
+      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
         Show Drawer
         <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
       </Button>
@@ -48,11 +52,15 @@ export const Default = args => {
 
 export const SiteNavigation = args => {
   const [showDrawer, setShowDrawer] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement | null>(null);
 
   return (
     <>
       <Drawer
-        onClose={() => setShowDrawer(false)}
+        onClose={() => {
+          setShowDrawer(false);
+          buttonRef.current?.focus();
+        }}
         isOpen={showDrawer}
         position={DrawerPosition.right}
         ariaLabel="Site Navigation Drawer"
@@ -65,7 +73,7 @@ export const SiteNavigation = args => {
           <NavTab to="#">Four</NavTab>
         </NavTabs>
       </Drawer>
-      <Button onClick={() => setShowDrawer(true)}>
+      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
         Show Drawer
         <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
       </Button>
