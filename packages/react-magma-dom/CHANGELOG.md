@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.3
+
+### Patch Changes
+
+- 48d786c08: build(deps): bump nanoid from 3.3.7 to 3.3.8
+
 ## 4.8.0-next.2
 
 ### Patch Changes
