@@ -295,6 +295,7 @@ const StyledButton = styled.button<{
   isClickable?: boolean;
   isInverse?: boolean;
   size: string;
+  theme: ThemeInterface;
 }>`
   ${TagStyling};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
