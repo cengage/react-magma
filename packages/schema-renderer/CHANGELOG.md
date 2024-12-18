@@ -1,5 +1,61 @@
 # @react-magma/schema-renderer
 
+## 5.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+- Updated dependencies [5e74867]
+  - react-magma-dom@3.11.0-next.0
+
 ## 4.0.0-next.0
 
 ### Patch Changes

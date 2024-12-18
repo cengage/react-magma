@@ -1,5 +1,63 @@
 ## 3.10.0
 
+## 3.11.0-next.0
+
+### Minor Changes
+
+- 5e74867: feat(Stepper): Add vertical orientation for `Stepper`.
+- 5e74867: feat(Input): Update colors for error message, icon and border in dark mode.
+- 5e74867: feat(Input): Update additional children position based on label position
+- 5e74867: feat(Tabs/NavTabs): Add support for overwriting text transform with `textTransform` prop.
+- 5e74867: feat(ProgressBar): Update colors from danger200/success200 to danger300/success300 in dark mode.
+- 5e74867: feat(Combobox, Select, Date picker, Dropdown): Support viewport detection and positioning
+- 5e74867: feat(Button): Add `success` button color
+- 5e74867: feat(TreeView): Add support for `isDisabled` trees and items
+- 5e74867: feat(TreeView): `onExpandedChange` returns an array of expanded IDs
+- 5e74867: fix(TreeView): Support "show all" button inside TreeView component
+- 5e74867: feat(TreeView): Add ability to update selected items from outside the tree
+
+### Patch Changes
+
+- 5e74867: fix(Breadcrumb): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `span` element that wraps the SVGs.
+- 5e74867: fix(Button): Remove animation presses for `Button`.
+- 5e74867: fix(CheckBox): Fix unreadable labels in `CheckBox` for screen readers.
+- 5e74867: fix(CheckBox): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `span` element that wraps the SVGs.
+- 5e74867: fix(Combobox): Fix focus issue after triggering the clear button
+- 5e74867: fix(DatePicker): Fix navigation and accessibility issues.
+- 5e74867: fix(DatePicker): Remove shortcut to open `HelperInformation`.
+- 5e74867: fix(DatePicker): Add `aria-label` to calendar header columns.
+- 5e74867: fix(Drawer): Fix trapped focus
+- 5e74867: fix(Dropdown): Fix a11y for active index
+- 5e74867: fix(Dropdown): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `svg` elements.
+- 5e74867: fix(List): Hide SVGs from assistive tech by adding `aria-hidden="true"` to the `span` element that wraps the SVGs.
+- 5e74867: fix(ProgressBar): Remove animation if the user has `prefers-reduced-motion` media query set.
+- 5e74867: fix(Search): Fix the disappearing focus on the button when loading
+- 5e74867: fix(Select): Fix accessibility issue for `clearIndicator` inside `SelectTriggerButton`.
+- 5e74867: fix(TreeView): Improve screenreader accessibility
+- 5e74867: fix(useFocusLock): Fix the `useFocusLock` hook if the first or last element is disabled.
+- 5e74867: chore(Dropdown): Deprecate `dropDirection` & `alignment` props. These are no longer necessary with viewport detection support.
+- 5e74867: fix(Dropdown): Fix the dropdown closing on second button click in Safari
+- 5e74867: fix(Heading): Add the `noTopMargin` and `noBottomMargin` props to the `Heading` component.
+- 5e74867: fix(BlockQuote): Fix border color respecting the `Theme` context.
+- 5e74867: fix(TreeView): Fix initialExpanded items expanding all parents
+- 5e74867: fix(Input): Update focus style on inputs.
+- 5e74867: fix(ListItem): Fix icon colors respecting the `Theme` context.
+- 5e74867: fix(Modal): Fix modal losing focus order with dynamic content.
+- 5e74867: fix(Select): Update outline offset on multiselected items
+- 5e74867: fix(Select): Fix placeholder color.
+- 5e74867: chore: Remove `.stories.` files from the production bundle.
+- 5e74867: fix(Tabs): Center preselected `Tab` on the `Scrollable Tabs`.
+- 5e74867: fix(TimePicker): Fix AM/PM width in the `TimePicker`.
+- 5e74867: fix(Toast): Fix loading ring alignment when zooming in Safari
+- 5e74867: fix(Heading): Update margins for `heading2XLarge`
+- 5e74867: fix(Input): Improve descriptions for `inputWrapperStyle` and `containerStyle` props.
+- 5e74867: fix(Input): Remove `flex-shrink` to allow inputs to shrink as needed.
+- 5e74867: fix(Search): Fix overlapping content issue with the clear button
+- 5e74867: fix(Combobox/Select:): Fix focus color for selected items when using `isMulti` + `isInverse`
+- 5e74867: fix(Tag): Update focus state
+- 5e74867: fix(ToggleButtonGroup): Fix `enforced` and `exclusive` props
+- 5e74867: fix(TreeView): Add more unit tests
+
 ### Minor Changes
 
 - cfe5026: feat(Modal): New `headerRef` prop that returns a reference to the header element
