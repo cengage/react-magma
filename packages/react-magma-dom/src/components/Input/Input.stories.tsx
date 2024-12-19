@@ -2,13 +2,14 @@ import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
 import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
 import { Input, InputProps } from '.';
-import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { Button, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { Card, CardBody } from '../Card';
 import { IconButton } from '../IconButton';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
 import { Tooltip } from '../Tooltip';
 import { Spacer } from '../Spacer';
+import { ButtonGroup } from '../ButtonGroup';
 
 const Template: Story<InputProps> = args => (
   <>
@@ -211,7 +212,11 @@ export const HelpLink = args => {
         </Tooltip>
       </Input>
       <Spacer size={16} />
-      <Input labelText="Help link - hidden" isLabelVisuallyHidden {...args}>
+      <Input 
+        labelText="Help link - hidden" 
+        isLabelVisuallyHidden 
+        {...args}
+      >
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}
@@ -321,4 +326,106 @@ NumberInput.args = {
 
 NumberInput.parameters = {
   controls: { exclude: ['type', 'iconPosition', 'labelWidth'] },
+};
+
+export const SeveralErrors = () => {
+  const [inputValues, setInputValues] = React.useState({
+    firstName: '',
+    lastName: '',
+    emailAddress: '',
+  });
+  const [hasErrors, setHasErrors] = React.useState({
+    firstName: false,
+    lastName: false,
+    emailAddress: false,
+  });
+
+  const firstNameInputRef = React.useRef();
+  const lastNameInputRef = React.useRef();
+  const emailAddressInputRef = React.useRef();
+
+  const submit = () => {
+    setHasErrors({
+      firstName: false,
+      lastName: false,
+      emailAddress: false,
+    });
+
+    if (!inputValues.emailAddress) {
+      setHasErrors(prev => ({ ...prev, emailAddress: true }));
+      emailAddressInputRef.current.focus();
+    }
+
+    if (!inputValues.lastName) {
+      setHasErrors(prev => ({ ...prev, lastName: true }));
+      lastNameInputRef.current.focus();
+    }
+
+    if (!inputValues.firstName) {
+      setHasErrors(prev => ({ ...prev, firstName: true }));
+      firstNameInputRef.current.focus();
+    }
+  };
+
+  const reset = () => {
+    setHasErrors({
+      firstName: false,
+      lastName: false,
+      emailAddress: false,
+    });
+    setInputValues({
+      firstName: '',
+      lastName: '',
+      emailAddress: '',
+    });
+
+    firstNameInputRef.current.focus();
+  };
+
+  return (
+    <>
+      <Input
+        errorMessage={hasErrors.firstName ? 'Please enter your first name' : ''}
+        helperMessage=""
+        labelText="First name *"
+        onChange={event =>
+          setInputValues(prev => ({ ...prev, firstName: event.target.value }))
+        }
+        required
+        value={inputValues.firstName}
+        ref={firstNameInputRef}
+      />
+      <br />
+      <Input
+        errorMessage={hasErrors.lastName ? 'Please enter your last name' : ''}
+        helperMessage=""
+        labelText="Last name *"
+        onChange={event =>
+          setInputValues(prev => ({ ...prev, lastName: event.target.value }))
+        }
+        required
+        value={inputValues.lastName}
+        ref={lastNameInputRef}
+      />
+      <br />
+      <Input
+        errorMessage={hasErrors.emailAddress ? 'Please enter your email address' : ''}
+        helperMessage=""
+        labelText="Email address *"
+        onChange={event =>
+          setInputValues(prev => ({ ...prev, emailAddress: event.target.value }))
+        }
+        required
+        value={inputValues.emailAddress}
+        ref={emailAddressInputRef}
+      />
+      <br />
+      <ButtonGroup>
+        <Button onClick={submit}>Submit</Button>
+        <Button onClick={reset} color="secondary">
+          Reset
+        </Button>
+      </ButtonGroup>
+    </>
+  );
 };
