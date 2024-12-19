@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.4
+
+### Patch Changes
+
+- b95b94c7b: fix(GlobalStyles): fix @import rule warning in GlobalStyles
+
 ## 4.8.0-next.3
 
 ### Patch Changes
