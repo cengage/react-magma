@@ -5,7 +5,6 @@ order: 1
 ---
 
 import './design-guidelines-styles.css';
-import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="table" type="design">
 
@@ -92,16 +91,19 @@ The loose density can be useful if you have a relatively small amount of data an
 - The table title should make it clear to the user what the data is and what purpose it serves in the UI.
 - A description can be added under the title to provide more information about the data or its source.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/tables/table-title.png" alt="GATSBY_EMPTY_ALT" />
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/tables/table-description.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/tables/table-description.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
   </div>
@@ -115,22 +117,28 @@ The loose density can be useful if you have a relatively small amount of data an
 <figure>
   <img src="../../images/tables/column-titles.png" alt="GATSBY_EMPTY_ALT" />
 </figure>
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/tables/column-header-truncate.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/tables/column-header-truncate.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>Don't truncate column titles.</p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/tables/column-header-wrap.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/tables/column-header-wrap.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>Let long column titles wrap naturally.</p>
         </figcaption>
       </figure>
@@ -178,16 +186,22 @@ A sorted table has three states: unsorted (sort-double-arrow), sorted-up (arrow-
 
 Inline actions are functions that may be performed on a specific table row. In order to save space, inline actions can be condensed under a single overflow menu.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/tables/inline-actions.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/tables/inline-actions.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/tables/inline-actions-overflow.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/tables/inline-actions-overflow.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
   </div>

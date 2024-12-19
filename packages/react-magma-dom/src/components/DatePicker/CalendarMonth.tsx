@@ -21,6 +21,7 @@ interface CalendarMonthProps {
   setDateFocused?: (value: boolean) => void;
 }
 
+
 const CalendarContainer = styled.div<{ isInverse?: boolean }>`
   background: ${props =>
     props.isInverse

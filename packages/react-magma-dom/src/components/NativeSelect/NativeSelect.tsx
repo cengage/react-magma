@@ -183,6 +183,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
         >
           <StyledNativeSelect
             data-testid={testId}
+            aria-describedby={`${id}__desc`}
             hasError={!!errorMessage}
             disabled={disabled}
             id={id}

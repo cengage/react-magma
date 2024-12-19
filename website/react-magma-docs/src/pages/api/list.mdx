@@ -6,8 +6,6 @@ props:
   - ListItemProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="list" type="api">
 
 <LeadParagraph>
@@ -19,8 +17,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 By default `List` uses an unorganized markup `<ul>`.
 
-
-```typescript
+```tsx
 import React from 'react';
 import { List, ListItem } from 'react-magma-dom';
 
@@ -82,19 +79,21 @@ Another method of `List` is the ordered list `<ol>`. There are several methods o
 - The `isReversed` prop changes the order from ascending to descending numbers or letters.
 - The `listType` prop allows for changing the bulleted items from a number to lowercase letters, uppercase letters, lowercase Roman numerals, or uppercase Roman numerals.
 
-```typescript
+```tsx
 import React from 'react';
 import { List, ListItem, olListType } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <List isOrdered listType={olListType.uppercaseRoman} hasStart="3" isReversed>
+    <List
+      isOrdered
+      listType={olListType.uppercaseRoman}
+      hasStart="3"
+      isReversed
+    >
       <ListItem>
         Fruits
-        <List
-          isOrdered
-          listType={olListType.lowercaseRoman}
-        >
+        <List isOrdered listType={olListType.lowercaseRoman}>
           <ListItem>Apples</ListItem>
           <ListItem>Bananas</ListItem>
           <ListItem>Oranges</ListItem>
@@ -102,26 +101,17 @@ export function Example() {
       </ListItem>
       <ListItem>
         Vegetables
-        <List
-          isOrdered
-          listType={olListType.lowercaseRoman}
-        >
+        <List isOrdered listType={olListType.lowercaseRoman}>
           <ListItem>
             Leafy greens
-            <List
-              isOrdered
-              listType={olListType.lowercase}
-            >
+            <List isOrdered listType={olListType.lowercase}>
               <ListItem>Spinach</ListItem>
               <ListItem>Kale</ListItem>
             </List>
           </ListItem>
           <ListItem>
             Root vegetables
-            <List
-              isOrdered
-              listType={olListType.lowercase}
-            >
+            <List isOrdered listType={olListType.lowercase}>
               <ListItem>Carrots</ListItem>
               <ListItem>Potatoes</ListItem>
             </List>
@@ -130,10 +120,7 @@ export function Example() {
       </ListItem>
       <ListItem>
         Dairy
-        <List
-          isOrdered
-          listType={olListType.lowercaseRoman}
-        >
+        <List isOrdered listType={olListType.lowercaseRoman}>
           <ListItem>Milk</ListItem>
           <ListItem>Cheese</ListItem>
         </List>
@@ -147,7 +134,7 @@ export function Example() {
 
 The `description` prop is a boolean which changes a nested list item into a styled paragraph.
 
-```typescript
+```tsx
 import React from 'react';
 import { List, ListItem } from 'react-magma-dom';
 
@@ -162,9 +149,7 @@ export function Example() {
             <List>
               <ListItem>
                 German Shepherd
-                <ListItem description>
-                  Courageous, energetic, loyal
-                </ListItem>
+                <ListItem description>Courageous, energetic, loyal</ListItem>
               </ListItem>
               <ListItem>
                 Labrador Retriever
@@ -174,9 +159,7 @@ export function Example() {
               </ListItem>
               <ListItem>
                 American Bully
-                <ListItem description>
-                  Strong, athletic, affectionate
-                </ListItem>
+                <ListItem description>Strong, athletic, affectionate</ListItem>
               </ListItem>
             </List>
           </ListItem>
@@ -198,7 +181,7 @@ An Icon `List` allows the user to use Magma Icons in place of bulleted or numeri
 
 ### Icon sizes
 
-```typescript
+```tsx
 import React from 'react';
 import { List, ListItem, IconSizes } from 'react-magma-dom';
 import { InboxIcon, DraftsIcon, DeleteIcon } from 'react-magma-icons';
@@ -211,13 +194,13 @@ export function Example() {
         <ListItem icon={<DraftsIcon />}>Drafts</ListItem>
         <ListItem icon={<DeleteIcon />}>Trash</ListItem>
       </List>
-      <br/>
+      <br />
       <List spacingStyle="spacing02">
         <ListItem icon={<InboxIcon />}>Inbox</ListItem>
         <ListItem icon={<DraftsIcon />}>Drafts</ListItem>
         <ListItem icon={<DeleteIcon />}>Trash</ListItem>
       </List>
-      <br/>
+      <br />
       <List iconSize={IconSizes.large} spacingStyle="spacing02">
         <ListItem icon={<InboxIcon />}>Inbox</ListItem>
         <ListItem icon={<DraftsIcon />}>Drafts</ListItem>
@@ -230,9 +213,9 @@ export function Example() {
 
 ### Icon Alignment
 
-```typescript
+```tsx
 import React from 'react';
-import { List, ListItem, IconAlignment, magma } from 'react-magma-dom';
+import { List, ListItem, IconAlignment } from 'react-magma-dom';
 import { EmailIcon } from 'react-magma-icons';
 
 export function Example() {
@@ -256,7 +239,7 @@ export function Example() {
 
 ### Icon colors
 
-```typescript
+```tsx
 import React from 'react';
 import { List, ListItem } from 'react-magma-dom';
 import { EmailIcon } from 'react-magma-icons';
@@ -295,7 +278,7 @@ export function Example() {
 The `isInverse` prop will render a dark background and light text. The children will
 inherit the `isInverse` prop unless specified otherwise.
 
-```typescript
+```tsx
 import React from 'react';
 import { Card, CardBody, List, ListItem } from 'react-magma-dom';
 

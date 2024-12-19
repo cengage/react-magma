@@ -194,7 +194,7 @@ export const HelpLink = args => {
           />
         </Tooltip>
       </Input>
-      <Spacer size={16}/>
+      <Spacer size={16} />
       <Input
         labelText="Help link - left"
         labelPosition={LabelPosition.left}

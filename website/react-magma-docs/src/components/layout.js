@@ -14,6 +14,7 @@ import { CodeBlock } from './CodeBlock';
 import { Link } from 'gatsby';
 import { IconButtonProps } from '../components/IconButtonProps';
 import { ButtonProps } from '../components/ButtonProps';
+import { LeadParagraph } from '../components/LeadParagraph';
 
 const ContentArticle = styled.article`
   @media (max-width: 1025px) {
@@ -80,6 +81,7 @@ export const Layout = ({ children, pageContext }) => {
           hr: Divider,
           Alert,
           Link,
+          LeadParagraph,
           PageContent: props => (
             <PageContent {...props}>{props.children}</PageContent>
           ),

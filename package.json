@@ -122,6 +122,8 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jest": "^24.0.2",
     "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-mdx": "^3.1.5",
+    "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.2",
     "eslint-plugin-unicorn": "^22.0.0",
@@ -147,6 +149,7 @@
     "ts-node": "^9.1.1",
     "tsdx": "^0.14.1",
     "typedoc": "^0.19.2",
-    "typescript": "^3.9.7"
+    "typescript": "^3.9.7",
+    "webpack-filter-warnings-plugin": "1.2.1"
   }
 }

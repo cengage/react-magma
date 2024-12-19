@@ -4,9 +4,7 @@ title: Card
 order: 1
 ---
 
-import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="card" type="design">
 
@@ -20,21 +18,24 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 Cards are one of the core building blocks in React Magma. They can be used to create the overall layout of a page, contain relatively large amounts of content focusing on a single topic, or contain small related pieces of content such as a carousel.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/cards/cards-layout.png" alt="GATSBY_EMPTY_ALT" />
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/cards/cards-related-pieces.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/cards/cards-related-pieces.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
   </div>
 </div>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 ## Anatomy
 
@@ -61,7 +62,7 @@ Use full-width dividers that extend to the edges of a card to separate more dist
 <figure>
   <img src="../../images/cards/card-dividers.png" alt="GATSBY_EMPTY_ALT" />
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 ---
 
@@ -80,7 +81,7 @@ If a card can move, such as in a carousel or a drag and drop scenario, you shoul
 <figure>
   <img src="../../images/cards/card-depth.png" alt="GATSBY_EMPTY_ALT" />
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 ---
 
@@ -90,13 +91,16 @@ A card will grow vertically to display as much content as you choose to put insi
 
 To avoid these issues, you should instead provide links within the card to view more information somewhere else, or allow the cards to expand and show more details. You may also switch from one method to the other based on a logical breakpoint.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/cards/card-truncate-correct.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/cards/card-truncate-correct.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             If the maximum height of the card isn't enough to display all of the
             content, then allow the card to expand and collapse on small
@@ -105,11 +109,14 @@ To avoid these issues, you should instead provide links within the card to view 
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/cards/card-scrolling-incorrect.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/cards/card-scrolling-incorrect.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>
             On small devices, do not allow scrolling within a card or you could
             create a trap for the user on small devices preventing them from
@@ -120,7 +127,7 @@ To avoid these issues, you should instead provide links within the card to view 
     </div>
   </div>
 </div>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 ---
 
@@ -139,7 +146,7 @@ Cards can contain many kinds of UI controls, including buttons, tabs, toggle swi
 <figure>
   <img src="../../images/cards/card-ui-controls.png" alt="GATSBY_EMPTY_ALT" />
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 ---
 
@@ -152,7 +159,7 @@ Various colors from the global color palette may be used as the background of a 
 <figure>
   <img src="../../images/cards/card-colors.png" alt="GATSBY_EMPTY_ALT" />
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 ---
 
@@ -165,7 +172,7 @@ Callout cards add a band of color to the left edge of the container. This can be
 <figure>
   <img src="../../images/cards/card-callout.png" alt="GATSBY_EMPTY_ALT" />
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 ---
 
@@ -178,7 +185,10 @@ When cards are grouped together, it's because they are working together for a co
 In general, cards change size depending on the amount of content within them. But you can emphasize certain cards creating a layout that implies a hierarchy on the page with different sized columns. Just be mindful the card is large enough to support the content of the card, and that the content responds appropriately on smaller screens.
 
 <figure>
-  <img src="../../images/cards/card-general-layout.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/cards/card-general-layout.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
 </figure>
 
 ### Scannable
@@ -188,6 +198,6 @@ If you want a group of cards to be easy to scan, use a clean and consistent patt
 <figure>
   <img src="../../images/cards/card-scannable.png" alt="GATSBY_EMPTY_ALT" />
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 </PageContent>

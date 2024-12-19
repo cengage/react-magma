@@ -16,8 +16,6 @@ props:
   - DropdownExpandableMenuPanelProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="dropdown" type="api">
 
 <LeadParagraph>
@@ -77,7 +75,10 @@ export function Example() {
 
   return (
     <Dropdown>
-      <DropdownSplitButton aria-label="Split Button" onClick={handleSplitButtonClick}>
+      <DropdownSplitButton
+        aria-label="Split Button"
+        onClick={handleSplitButtonClick}
+      >
         Split Button
       </DropdownSplitButton>
       <DropdownContent>
@@ -93,7 +94,7 @@ export function Example() {
 
 Using the `dropDirection` prop will change where the menu appears and the arrow direction. Options are `down`, `up`, `left` and `right` with `down` being default.
 
-*Deprecation note:* Dropdowns now support viewport detection, so there is no need to use the `dropDirection` prop. The dropdown will always open where there is enough space, and the arrow will always face down.
+_Deprecation note:_ Dropdowns now support viewport detection, so there is no need to use the `dropDirection` prop. The dropdown will always open where there is enough space, and the arrow will always face down.
 
 ```tsx
 import React from 'react';
@@ -145,7 +146,7 @@ and a drop-left or a drop-right will have the content aligned to the top of the 
 The other option is `end`, meaning that a drop-down or a drop-up, will have the dropdown content aligned to the right side of the button,
 and a drop-left or a drop-right will have the content aligned to the bottom of the button.
 
-*Deprecation note:* Dropdowns now support viewport detection, so there is no need to use the `alignment` prop. 
+_Deprecation note:_ Dropdowns now support viewport detection, so there is no need to use the `alignment` prop.
 
 ```tsx
 import React from 'react';
@@ -614,8 +615,6 @@ export function Example() {
     </Dropdown>
   );
 }
-
-
 ```
 
 ### Leading Icons
@@ -722,7 +721,6 @@ export function Example() {
 ```tsx
 import React from 'react';
 import {
-  Checkbox,
   Dropdown,
   DropdownButton,
   DropdownContent,

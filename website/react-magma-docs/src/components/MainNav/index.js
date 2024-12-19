@@ -354,7 +354,6 @@ export const MainNav = ({ ...props }) => {
                             >
                               {node.frontmatter.title}
                             </StyledLink2>
-                            
                           </ListItem>
                         ))}
                       </List>

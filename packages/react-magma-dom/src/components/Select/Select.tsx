@@ -1,16 +1,17 @@
-import * as React from 'react';
-import { SelectProps } from '.';
 import { useSelect } from 'downshift';
-import { SelectText } from './shared';
-import { defaultComponents } from './components';
+import * as React from 'react';
 import { CloseIcon } from 'react-magma-icons';
+import { SelectProps } from '.';
+import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useForkedRef } from '../../utils';
 import { ButtonSize, ButtonVariant } from '../Button';
+import { defaultComponents } from './components';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { I18nContext } from '../../i18n';
-import { useForkedRef } from '../../utils';
+import { SelectText } from './shared';
+import { isItemDisabled } from './utils';
 
 export function Select<T>(props: SelectProps<T>) {
   const {
@@ -48,6 +49,7 @@ export function Select<T>(props: SelectProps<T>) {
     selectedItem: passedInSelectedItem,
     setReference,
     setFloating,
+    initialHighlightedIndex,
   } = props;
 
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
@@ -56,12 +58,28 @@ export function Select<T>(props: SelectProps<T>) {
 
   const ref = useForkedRef(innerRef || null, toggleButtonRef);
 
+  function isDisabledItemIndex(index) {
+    return isItemDisabled(items[index]);
+  }
+
   function getValidItem(itemToCheck: T, key: string): object {
-    return items.findIndex(
+    const itemIndex = items.findIndex(
       i => itemToString(i) === itemToString(itemToCheck)
-    ) !== -1
-      ? { [key]: itemToCheck }
-      : { [key]: null };
+    );
+
+    if (itemIndex === -1 || isItemDisabled(itemToCheck) || isItemDisabled(items[itemIndex])) {
+      return { [key]: null };
+    }
+
+    return { [key]: itemToCheck };
+  }
+
+  function getValidItemIndex(indexToCheck: number) {
+    if (isDisabledItemIndex(indexToCheck)) {
+      return -1;
+    } else {
+      return indexToCheck;
+    }
   }
 
   function handleOnIsOpenChange(changes) {
@@ -69,11 +87,15 @@ export function Select<T>(props: SelectProps<T>) {
       changes;
 
     if (changedIsOpen && changedSelectedItem) {
-      setHighlightedIndex(
-        items.findIndex(
-          i => itemToString(i) === itemToString(changedSelectedItem)
-        )
-      );
+      if (isItemDisabled(changedSelectedItem)) {
+        setHighlightedIndex(-1);
+      } else {
+        setHighlightedIndex(
+          items.findIndex(
+            i => itemToString(i) === itemToString(changedSelectedItem)
+          )
+        );
+      }
     }
 
     onIsOpenChange &&
@@ -89,6 +111,15 @@ export function Select<T>(props: SelectProps<T>) {
           ...changes,
           selectedItem: state.selectedItem,
         };
+      case useSelect.stateChangeTypes.ItemClick:
+      case useSelect.stateChangeTypes.MenuKeyDownEnter:
+        if (isItemDisabled(changes.selectedItem)) {
+          return {
+            ...changes,
+            selectedItem: state.selectedItem,
+          };
+        }
+        return changes;
       default:
         return changes;
     }
@@ -107,6 +138,7 @@ export function Select<T>(props: SelectProps<T>) {
     setHighlightedIndex,
   } = useSelect<T>({
     ...props,
+    initialHighlightedIndex: getValidItemIndex(initialHighlightedIndex),
     onIsOpenChange: handleOnIsOpenChange,
     stateReducer,
     ...(defaultSelectedItem &&
@@ -226,9 +258,10 @@ export function Select<T>(props: SelectProps<T>) {
         isOpen={isOpen}
         items={items}
         itemToString={itemToString}
-        maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
+        maxHeight={itemListMaxHeight ?? theme.select.menu.maxHeight}
         menuStyle={menuStyle}
         setFloating={setFloating}
+        setHighlightedIndex={setHighlightedIndex}
       />
     </SelectContainer>
   );
