@@ -15,8 +15,8 @@
     "src"
   ],
   "engines": {
-    "npm": ">=7.3.0",
-    "node": ">=14.15.0"
+    "npm": "^7.3.0",
+    "node": "^14.15.0"
   },
   "scripts": {
     "build": "microbundle build --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx",
@@ -30,7 +30,7 @@
     "@emotion/styled": "^10.0.27",
     "react": "^15.0.0 || ^16.0.0 || ^17.0.0",
     "react-dom": "^15.0.0 || ^16.0.0 || ^17.0.0",
-    "react-magma-dom": "^3.10.0",
+    "react-magma-dom": "^3.9.0",
     "react-magma-icons": "2.3.6"
   },
   "dependencies": {
@@ -41,7 +41,7 @@
     "@emotion/styled": "^10.0.27",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
-    "react-magma-dom": "^3.10.0",
+    "react-magma-dom": "^3.9.0",
     "react-magma-icons": "2.3.6"
   }
 }
