@@ -1,11 +1,11 @@
 import { css } from '@emotion/core';
 import * as React from 'react';
-import { IconButton, ButtonIconPosition } from '../IconButton';
+import { ButtonIconPosition, IconButton } from '../IconButton';
 import {
+  ArrowDropDownIcon,
   ArrowDropUpIcon,
   ArrowLeftIcon,
   ArrowRightIcon,
-  ArrowDropDownIcon,
   IconProps,
 } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
@@ -94,14 +94,14 @@ export const DropdownButton = React.forwardRef<
   function getButtonIcon(dropDirection: DropdownDropDirection) {
     switch (dropDirection) {
       case DropdownDropDirection.left:
-        return <ArrowLeftIcon testId="caretLeft" />;
+        return <ArrowLeftIcon testId="caretLeft" aria-hidden="true" />;
       case DropdownDropDirection.right:
-        return <ArrowRightIcon testId="caretRight" />;
+        return <ArrowRightIcon testId="caretRight" aria-hidden="true" />;
       case DropdownDropDirection.up:
-        return <ArrowDropUpIcon testId="caretUp" />;
+        return <ArrowDropUpIcon testId="caretUp" aria-hidden="true" />;
 
       default:
-        return <ArrowDropDownIcon testId="caretDown" />;
+        return <ArrowDropDownIcon testId="caretDown" aria-hidden="true" />;
     }
   }
 
@@ -122,6 +122,11 @@ export const DropdownButton = React.forwardRef<
     }
   }
 
+  // Necessary for the proper opening and closing of the menu in Safari
+  function handleMouseDown(event: React.MouseEvent) {
+    event.preventDefault();
+  }
+
   const iconPositionToUse = props.icon
     ? iconPosition
       ? iconPosition
@@ -131,19 +136,22 @@ export const DropdownButton = React.forwardRef<
     : ButtonIconPosition.right;
 
   return (
-    <StyledIconButton
-      {...other}
-      aria-expanded={context.isOpen}
-      aria-haspopup="true"
-      icon={icon}
-      iconPosition={iconPositionToUse}
-      id={context.dropdownButtonId.current}
-      isInverse={context.isInverse}
-      onClick={handleClick}
-      ref={ref}
-      theme={theme}
-    >
-      {children}
-    </StyledIconButton>
+    <div ref={context.setReference}>
+      <StyledIconButton
+        {...other}
+        aria-expanded={context.isOpen}
+        aria-haspopup="true"
+        icon={icon}
+        iconPosition={iconPositionToUse}
+        id={context.dropdownButtonId.current}
+        isInverse={context.isInverse}
+        onClick={handleClick}
+        onMouseDown={handleMouseDown}
+        ref={ref}
+        theme={theme}
+      >
+        {children}
+      </StyledIconButton>
+    </div>
   );
 });

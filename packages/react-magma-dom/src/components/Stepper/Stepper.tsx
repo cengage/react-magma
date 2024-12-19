@@ -1,6 +1,5 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
 import { CreateStyled } from '@emotion/styled';
 
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -28,6 +27,10 @@ export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   breakpointLayout?: StepperLayout;
   /**
+   * Changes the Stepper orientation for responsive layouts, needs a minimum 'breakpoint' number.
+   */
+  breakpointOrientation?: StepperOrientation;
+  /**
    * Sets the Stepper view
    * @default StepperLayout.showLabels
    */
@@ -47,6 +50,11 @@ export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   currentStep: number;
   /**
+   * Determines if the stepper is displayed vertically or horizontally
+   * @default StepperOrientation.horizontal
+   */
+  orientation?: StepperOrientation;
+  /**
    * Inverse styling.
    */
   isInverse?: boolean;
@@ -60,6 +68,11 @@ export enum StepperLayout {
   showLabels = 'showLabels', //default
   hideLabels = 'hideLabels',
   summaryView = 'summaryView',
+}
+
+export enum StepperOrientation {
+  horizontal = 'horizontal', //default
+  vertical = 'vertical',
 }
 
 function buildSeparatorBackgroundColors(props) {
@@ -79,33 +92,47 @@ function buildSeparatorBackgroundColors(props) {
 
 const typedStyled = styled as CreateStyled<ThemeInterface>;
 
-const StyledStepper = typedStyled.div`
+const StyledStepper = typedStyled.div<{orientation?: StepperOrientation;}>`
   display: flex;
-  flex: 1;
-  flex-direction: column;
+  flex: ${props =>
+    props.orientation === StepperOrientation.vertical ? '0 0 auto' : 1};
+  flex-direction: ${props =>
+    props.orientation === StepperOrientation.horizontal && 'column'};
 `;
 
-const StyledStepContent = typedStyled.ol`
+const StyledStepContent = typedStyled.ol<{ isVerticalOrientation?: boolean }>`
   display: flex;
   margin: 0;
   padding: 0;
+  flex-direction: ${props => props.isVerticalOrientation && 'column'};
 `;
 
-const StyledLiWrapper = typedStyled.li<{ hasLabels?: boolean }>`
+const StyledLiWrapper = typedStyled.li<{
+  hasLabels?: boolean;
+  isVerticalOrientation?: boolean;
+}>`
   list-style-type: none;
-  ${props =>
-    props.hasLabels
-      ? css`
-          position: relative;
-          flex: 1;
-        `
-      : css`
-          display: contents;
-        `}
+  display: ${props =>
+    !props.isVerticalOrientation && !props.hasLabels && 'contents'};
+  flex: ${props => !props.isVerticalOrientation && 1};
+  position: relative;
+  margin: 0;
+
+  &:not(:last-child) {
+    min-height: ${props => props.isVerticalOrientation && '64px'};
+  }
 `;
+
+const isActiveLabels = props => {
+  return (
+    props.showLabelsLayout &&
+    (props.bothLabels || props.allStepsHaveLabels || props.secondaryLabel)
+  );
+};
 
 const StyledSeparator = typedStyled.div<{
   isInverse?: boolean;
+  isVerticalOrientation?: boolean;
   bothLabels?: boolean;
   allStepsHaveLabels?: boolean;
   secondaryLabel?: boolean;
@@ -114,25 +141,27 @@ const StyledSeparator = typedStyled.div<{
   theme?: ThemeInterface;
 }>`
   background: ${buildSeparatorBackgroundColors};
-  width: ${props =>
-    props.showLabelsLayout &&
-    (props.bothLabels || props.allStepsHaveLabels || props.secondaryLabel)
-      ? 'calc(100% - 24px)'
-      : '100%'};
-  height: 2px;
-  top: 11px;
+  width: ${props => {
+    if (props.isVerticalOrientation) {
+      return '2px';
+    }
+
+    return isActiveLabels(props) ? 'calc(100% - 24px)' : '100%';
+  }};
+
+  height: ${props =>
+    props.isVerticalOrientation ? 'calc(100% - 24px)' : '2px'};
+  top: ${props => (props.isVerticalOrientation ? '24px' : '11px')};
   left: ${props =>
-    props.showLabelsLayout &&
-    (props.bothLabels || props.allStepsHaveLabels || props.secondaryLabel)
-      ? 'calc(50% + 12px)'
-      : ''};
+    props.isVerticalOrientation
+      ? '11px'
+      : isActiveLabels(props) && 'calc(50% + 12px)'};
   position: ${props =>
-    props.showLabelsLayout &&
-    (props.bothLabels || props.allStepsHaveLabels || props.secondaryLabel)
+    isActiveLabels(props) || props.isVerticalOrientation
       ? 'absolute'
       : 'relative'};
   align-self: baseline;
-  transition: all 0.4s ease;
+  transition: background 0.4s ease;
 `;
 
 const StyledSummary = typedStyled.div<{
@@ -180,10 +209,12 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
     const {
       ariaLabel,
       breakpoint,
-      breakpointLayout,
+      breakpointLayout = StepperLayout.showLabels,
+      breakpointOrientation = StepperOrientation.horizontal,
       children,
       currentStep,
       layout = StepperLayout.showLabels,
+      orientation = StepperOrientation.horizontal,
       stepLabel,
       isInverse: isInverseProp,
       testId,
@@ -198,6 +229,14 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
     const [hideLabelsLayout, setHideLabelsLayout] = React.useState(false);
     const [summaryViewLayout, setSummaryViewLayout] = React.useState(false);
 
+    const [responsiveOrientation, setResponsiveOrientaion] =
+      React.useState<StepperOrientation>(StepperOrientation.horizontal);
+
+    const isVerticalOrientation = React.useMemo(
+      () => responsiveOrientation === StepperOrientation.vertical,
+      [responsiveOrientation]
+    );
+
     React.useEffect(() => {
       setHideLabelsLayout(layout === StepperLayout.hideLabels);
       setShowLabelsLayout(layout === StepperLayout.showLabels);
@@ -205,10 +244,22 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
     }, [layout]);
 
     React.useEffect(() => {
-      setHideLabelsLayout(breakpointLayout === StepperLayout.hideLabels);
-      setShowLabelsLayout(breakpointLayout === StepperLayout.showLabels);
-      setSummaryViewLayout(breakpointLayout === StepperLayout.summaryView);
+      setResponsiveOrientaion(orientation);
+    }, [orientation]);
+
+    React.useEffect(() => {
+      if (breakpoint) {
+        setHideLabelsLayout(breakpointLayout === StepperLayout.hideLabels);
+        setShowLabelsLayout(breakpointLayout === StepperLayout.showLabels);
+        setSummaryViewLayout(breakpointLayout === StepperLayout.summaryView);
+      }
     }, [breakpointLayout]);
+
+    React.useEffect(() => {
+      if (breakpoint) {
+        setResponsiveOrientaion(breakpointOrientation);
+      }
+    }, [breakpointOrientation]);
 
     const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
@@ -219,12 +270,16 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
           setShowLabelsLayout(breakpointLayout === StepperLayout.showLabels);
           setHideLabelsLayout(breakpointLayout === StepperLayout.hideLabels);
           setSummaryViewLayout(breakpointLayout === StepperLayout.summaryView);
+
+          setResponsiveOrientaion(breakpointOrientation);
         }
 
         if (window.innerWidth > breakpoint || !breakpoint) {
           setShowLabelsLayout(layout === StepperLayout.showLabels);
           setHideLabelsLayout(layout === StepperLayout.hideLabels);
           setSummaryViewLayout(layout === StepperLayout.summaryView);
+
+          setResponsiveOrientaion(orientation);
         }
         if (showLabelsLayout) {
           setHideLabelsLayout(false);
@@ -261,6 +316,20 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       }
     }
 
+    const getLayout = () => {
+      if (responsiveOrientation === StepperOrientation.vertical) {
+        return showLabelsLayout
+          ? StepperLayout.showLabels
+          : StepperLayout.hideLabels;
+      }
+
+      return summaryViewLayout
+        ? StepperLayout.summaryView
+        : hideLabelsLayout
+        ? StepperLayout.hideLabels
+        : StepperLayout.showLabels;
+    };
+
     const stepContent = React.Children.map(
       children,
       (
@@ -278,11 +347,8 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
           const item = React.cloneElement(child, {
             isInverse,
             index,
-            layout: summaryViewLayout
-              ? StepperLayout.summaryView
-              : hideLabelsLayout
-              ? StepperLayout.hideLabels
-              : StepperLayout.showLabels,
+            orientation: responsiveOrientation,
+            layout: getLayout(),
             stepLabel: stepLabel || i18n.stepper.stepLabel,
             stepStatus: stepStatusStyles,
           });
@@ -294,6 +360,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                 <StyledSeparator
                   key={`separator-${index}`}
                   isInverse={isInverse}
+                  isVerticalOrientation={isVerticalOrientation}
                   bothLabels={allStepsHaveLabels && allStepsHaveSecondaryLabels}
                   allStepsHaveLabels={allStepsHaveLabels}
                   secondaryLabel={allStepsHaveSecondaryLabels}
@@ -312,6 +379,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                 showLabelsLayout &&
                 (allStepsHaveLabels || allStepsHaveSecondaryLabels)
               }
+              isVerticalOrientation={isVerticalOrientation}
             >
               {stepAndSeparator()}
             </StyledLiWrapper>
@@ -337,27 +405,37 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       props.completionLabel || i18n.stepper.completionLabel;
 
     return (
-      <StyledStepper {...rest} data-testid={testId} ref={ref}>
-        <StyledStepContent aria-label={ariaLabel} theme={theme}>
+      <StyledStepper
+        {...rest}
+        data-testid={testId}
+        ref={ref}
+        orientation={responsiveOrientation}
+      >
+        <StyledStepContent
+          aria-label={ariaLabel}
+          theme={theme}
+          isVerticalOrientation={isVerticalOrientation}
+        >
           {stepContent}
         </StyledStepContent>
-        {summaryViewLayout && (
-          <StyledSummary
-            data-testid={testId && `${testId}-stepper-summary`}
-            isInverse={isInverse}
-            theme={theme}
-          >
-            {currentStep < numberOfSteps
-              ? stepLabel
-                ? `${stepLabel} ${currentStep + 1} ${
-                    i18n.stepper.stepOfLabel
-                  } ${numberOfSteps}`
-                : `${i18n.stepper.stepLabel} 
+        {summaryViewLayout &&
+          responsiveOrientation === StepperOrientation.horizontal && (
+            <StyledSummary
+              data-testid={testId && `${testId}-stepper-summary`}
+              isInverse={isInverse}
+              theme={theme}
+            >
+              {currentStep < numberOfSteps
+                ? stepLabel
+                  ? `${stepLabel} ${currentStep + 1} ${
+                      i18n.stepper.stepOfLabel
+                    } ${numberOfSteps}`
+                  : `${i18n.stepper.stepLabel} 
           ${currentStep + 1} ${i18n.stepper.stepOfLabel} ${numberOfSteps}`
-              : completionLabel}
-            {getSummaryStepLabels()}
-          </StyledSummary>
-        )}
+                : completionLabel}
+              {getSummaryStepLabels()}
+            </StyledSummary>
+          )}
       </StyledStepper>
     );
   }

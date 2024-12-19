@@ -271,3 +271,32 @@ export function resolveProps(
 
   return output;
 }
+
+/**
+ * Convert ReactNode to string
+ * @param {object} defaultProps
+ * @returns string
+ */
+export const reactNodeToString = (node: React.ReactNode): string => {
+  if (!node) {
+    return '';
+  }
+
+  if (typeof node === 'string') {
+    return node;
+  }
+
+  if (typeof node === 'number') {
+    return String(node);
+  }
+
+  if (Array.isArray(node)) {
+    return node.map(subElement => reactNodeToString(subElement)).join('');
+  }
+
+  if (typeof node === 'object' && 'props' in node && node.props && node.props.children) {
+    return reactNodeToString(node.props.children);
+  }
+
+  return '';
+}

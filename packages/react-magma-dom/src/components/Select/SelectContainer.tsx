@@ -12,11 +12,12 @@ export const SelectContainerElement = styled.div<{
   labelPosition?: LabelPosition;
   labelWidth?: number;
 }>`
-  display: ${props =>
+  display: flex;
+  flex-direction: ${props =>
     props.labelPosition === LabelPosition.left ||
     (props.isLabelVisuallyHidden && LabelPosition.top)
-      ? 'flex'
-      : 'block'};
+      ? 'row'
+      : 'column'};
   position: relative;
   label {
     flex-basis: ${props =>
@@ -28,14 +29,18 @@ export const SelectContainerElement = styled.div<{
 
 const InputMessageContainer = styled.div`
   flex-grow: 1;
+  padding: 0.25em;
+  margin: -0.25em;
+  min-width: 0%;
+  position: relative;
 `;
 
 interface SelectContainerInterface<T> {
   additionalContent?: React.ReactNode;
   children: React.ReactNode[];
   containerStyle?: React.CSSProperties;
-  errorMessage?: React.ReactNode;
   descriptionId?: string;
+  errorMessage?: React.ReactNode;
   getLabelProps: (options?: UseSelectGetLabelPropsOptions) => any;
   hasError?: boolean;
   helperMessage?: React.ReactNode;
@@ -80,6 +85,11 @@ const StyledAdditionalContent = styled.div<{
         ? `0 0 0 ${props.theme.spaceScale.spacing03}`
         : ''};
   }
+`;
+
+const FormField = styled.form`
+  flex: 1 1 auto;
+  min-width: 0%;
 `;
 
 export function SelectContainer<T>(props: SelectContainerInterface<T>) {
@@ -158,8 +168,8 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
           )}
         </Label>
       </AdditionalContentWrapper>
-      <InputMessageContainer>
-        {children}
+      <FormField>
+        <InputMessageContainer>{children}</InputMessageContainer>
         {!(
           labelPosition === LabelPosition.left &&
           !(errorMessage || helperMessage)
@@ -176,7 +186,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
               )}
             </InputMessage>
           )}
-      </InputMessageContainer>
+      </FormField>
       {additionalItemRightAlign()}
     </SelectContainerElement>
   );

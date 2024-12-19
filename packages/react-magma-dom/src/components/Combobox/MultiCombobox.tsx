@@ -6,8 +6,8 @@ import { defaultComponents } from '../Select/components';
 import { SelectContainer } from '../Select/SelectContainer';
 import { ItemsList } from '../Select/ItemsList';
 import { ComboboxInput } from './ComboboxInput';
-import { SelectedItemButton, IconWrapper } from '../Select/shared';
-import { useComboboxItems, defaultOnInputValueChange } from './shared';
+import { IconWrapper, SelectedItemButton } from '../Select/shared';
+import { defaultOnInputValueChange, useComboboxItems } from './shared';
 import { useForkedRef } from '../../utils';
 
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -23,6 +23,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     defaultItems,
     disableCreateItem,
     errorMessage,
+    floatingElementStyles,
     hasError,
     hasPersistentMenu = false,
     helperMessage,
@@ -54,6 +55,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     onIsOpenChange,
     onItemCreated,
     onRemoveSelectedItem,
+    setReference,
+    setFloating,
     placeholder,
     toggleButtonRef,
   } = props;
@@ -305,7 +308,10 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     event.stopPropagation();
 
     if (inputRef.current) {
-      inputRef.current.focus();
+      const inputElement = inputRef.current.querySelector('input');
+      if (inputElement) {
+        inputElement.focus();
+      }
     }
 
     reset();
@@ -403,6 +409,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         onInputKeyUp={onInputKeyUp}
         placeholder={selectedItems.length > 0 ? null : placeholder}
         selectedItems={selectedItemsContent}
+        setReference={setReference}
         toggleButtonRef={toggleButtonRef}
       >
         {isClearable && selectedItems?.length > 0 && (
@@ -420,6 +427,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       </ComboboxInput>
       <ItemsList
         customComponents={customComponents}
+        floatingElementStyles={floatingElementStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
@@ -430,6 +438,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         isLoading={isLoading && isTypeahead}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
+        setFloating={setFloating}
       />
     </SelectContainer>
   );

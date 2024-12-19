@@ -313,7 +313,7 @@ describe('Radio', () => {
 
     expect(span).toHaveStyleRule(
       'box-shadow',
-      `0 0 0 2px ${magma.colors.danger200}`
+      `0 0 0 2px ${magma.colors.danger300}`
     );
   });
 

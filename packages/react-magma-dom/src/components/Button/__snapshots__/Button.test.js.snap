@@ -73,25 +73,6 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -183,25 +164,6 @@ exports[`Button Base Button Snapshot should render with large size 1`] = `
 .emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
-}
-
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-2:not(:disabled):active {
@@ -315,25 +277,6 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -425,25 +368,6 @@ exports[`Button Base Button Snapshot should render with small size 1`] = `
 .emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
-}
-
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-2:not(:disabled):active {
@@ -557,25 +481,6 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
   color: #3942B0;
 }
 
-.emotion-2:not(:disabled):after {
-  background: #707070;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-2:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
@@ -667,25 +572,6 @@ exports[`Button Base Button Snapshot should render with updated color 1`] = `
 .emotion-2:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
-}
-
-.emotion-2:not(:disabled):after {
-  background: #707070;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-2:not(:disabled):active {
@@ -799,25 +685,6 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -909,25 +776,6 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
 .emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
-}
-
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-2:not(:disabled):active {
@@ -1041,25 +889,6 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -1151,25 +980,6 @@ exports[`Button Base Button Snapshot should render with updated textTransform 1`
 .emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
-}
-
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-2:not(:disabled):active {
@@ -1271,25 +1081,6 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -1381,25 +1172,6 @@ exports[`Button Base Button Snapshot should render with updated variant 1`] = `
 .emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
-}
-
-.emotion-2:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-2:not(:disabled):active {

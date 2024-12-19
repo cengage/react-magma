@@ -84,7 +84,7 @@ export const BreadcrumbItem = React.forwardRef<
           <Hyperlink to={to} isInverse={isInverse}>
             {children}
           </Hyperlink>
-          <StyledSpan isInverse={isInverse} theme={theme}>
+          <StyledSpan isInverse={isInverse} theme={theme} aria-hidden="true">
             <ChevronRightIcon size={theme.iconSizes.small} />
           </StyledSpan>
         </>

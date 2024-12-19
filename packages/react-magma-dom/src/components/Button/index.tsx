@@ -13,6 +13,7 @@ export enum ButtonColor {
   primary = 'primary', //default
   secondary = 'secondary',
   danger = 'danger',
+  success = 'success',
   marketing = 'marketing',
   subtle = 'subtle',
 }

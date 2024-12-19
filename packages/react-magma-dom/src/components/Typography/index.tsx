@@ -272,6 +272,12 @@ export const heading2XLargeStyles = props => css`
     line-height: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
       .mobile.lineHeight};
 
+    margin: ${props.noMargins || props.noBottomMargin
+      ? '0'
+      : props.noTopMargin
+      ? `0 0 ${props.theme.spaceScale.spacing06} 0`
+      : `0 0 ${props.theme.spaceScale.spacing06}`};
+
     @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
         .desktop.fontSize};
@@ -289,10 +295,8 @@ export const headingXLargeStyles = props => css`
   font-weight: ${props.theme.typographyVisualStyles.headingXLarge.fontWeight};
   line-height: ${props.theme.typographyVisualStyles.headingXLarge.mobile
     .lineHeight};
-  margin: ${props.noMargins
+  margin: ${props.noMargins || props.noBottomMargin
     ? '0'
-    : props.noBottomMargin
-    ? `${props.theme.spaceScale.spacing05} 0 0 0`
     : props.noTopMargin
     ? `0 0 ${props.theme.spaceScale.spacing05} 0`
     : `0 0 ${props.theme.spaceScale.spacing05}`};

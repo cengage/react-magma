@@ -39,6 +39,7 @@ import {
   CheckIcon,
   NotificationsIcon,
   SettingsIcon,
+  AddIcon,
 } from 'react-magma-icons';
 
 export function Example() {
@@ -115,6 +116,26 @@ export function Example() {
           color={ButtonColor.danger}
           variant={ButtonVariant.link}
           icon={<PriorityHighIcon />}
+        />
+      </ButtonGroup>
+      <br />
+      <ButtonGroup>
+        <IconButton
+          aria-label="Add"
+          color={ButtonColor.success}
+          icon={<AddIcon />}
+        />
+        <IconButton
+          aria-label="Add"
+          color={ButtonColor.success}
+          variant={ButtonVariant.solid}
+          icon={<AddIcon />}
+        />
+        <IconButton
+          aria-label="Add"
+          color={ButtonColor.success}
+          variant={ButtonVariant.link}
+          icon={<AddIcon />}
         />
       </ButtonGroup>
       <br />

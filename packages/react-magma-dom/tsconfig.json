@@ -1,13 +1,14 @@
 {
   "extends": "../../tsconfig",
   "include": ["src/**/*"],
+  "exclude": ["**/*.stories.*"],
   "compilerOptions": {
     "removeComments": false,
     "noUnusedParameters": false,
     "noImplicitAny": false,
     "noImplicitReturns": false,
-    "noImplicitThis": false, 
+    "noImplicitThis": false,
     "strictFunctionTypes": false,
-    "strictNullChecks":  false,
+    "strictNullChecks": false
   }
 }

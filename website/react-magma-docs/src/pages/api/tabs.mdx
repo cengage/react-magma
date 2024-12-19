@@ -424,7 +424,64 @@ export function Example() {
 }
 ```
 
-## Full-Width
+## Text Transform
+
+#### For all Tabs
+
+Options for the `textTransform` prop for tabs include `uppercase` and `none`, with `uppercase` (all caps) being the default value.
+This sets the CSS `text-transform` property.
+
+```tsx
+import React from 'react';
+import { Tabs, Tab, TabsContainer, TabsTextTransform } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <TabsContainer>
+        <Tabs textTransform={TabsTextTransform.uppercase}>
+          <Tab>First uppercase</Tab>
+          <Tab>Second uppercase</Tab>
+        </Tabs>
+      </TabsContainer>
+      <br />
+      <br />
+      <br />
+      <TabsContainer>
+        <Tabs textTransform={TabsTextTransform.none}>
+          <Tab>First lowercase</Tab>
+          <Tab>Second lowercase</Tab>
+        </Tabs>
+      </TabsContainer>
+    </>
+  );
+}
+```
+
+#### For a certain Tab
+
+`textTransform` prop can also be used for `Tab` component.
+
+```tsx
+import React from 'react';
+import { Tabs, Tab, TabsContainer, TabsTextTransform } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <TabsContainer>
+      <Tabs>
+        <Tab>All caps (default)</Tab>
+        <Tab textTransform={TabsTextTransform.none}>No Text Transform</Tab>
+        <Tab textTransform={TabsTextTransform.uppercase}>
+          Uppercase transform
+        </Tab>
+      </Tabs>
+    </TabsContainer>
+  );
+}
+```
+
+## Full Width
 
 The `isFullWidth` prop is an optional boolean that will cause the tabs to take up the full width of their container. The `isFullWidth` prop is specified on the `Tabs` component.
 

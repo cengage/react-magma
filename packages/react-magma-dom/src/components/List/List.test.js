@@ -5,6 +5,7 @@ import { EmailIcon } from 'react-magma-icons';
 import { IconSizes, List, ListItem } from '.';
 import { render } from '@testing-library/react';
 import { magma } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 const TEXT = 'List Item Text';
 
@@ -51,6 +52,10 @@ describe('List', () => {
       '10px',
       'borderRadius',
       '50%'
+    );
+    expect(container.querySelector('span')).toHaveAttribute(
+      'aria-hidden',
+      'true'
     );
   });
 
@@ -115,6 +120,29 @@ describe('List', () => {
       'inherit',
       'color',
       'inherit'
+    );
+  });
+
+  it('should render icons with the correct span color according to the overwritten theme', () => {
+    const testId = 'test-id';
+    const icon = <EmailIcon />;
+
+    const { container } = render(
+      <ThemeContext.Provider
+        value={{ ...magma, colors: { ...magma.colors, primary: 'black' } }}
+      >
+        <List>
+          <ListItem icon={icon} testId={testId}>
+            Email
+          </ListItem>
+        </List>
+      </ThemeContext.Provider>
+    );
+
+    expect(container.querySelector('svg')).toBeInTheDocument();
+    expect(container.querySelector('span')).toHaveStyleRule(
+      'background',
+      'black'
     );
   });
 });

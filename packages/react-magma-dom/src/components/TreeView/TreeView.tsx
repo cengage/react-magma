@@ -1,9 +1,6 @@
 import * as React from 'react';
-import {
-  UseTreeViewProps,
-  useTreeView,
-  TreeViewSelectable,
-} from './useTreeView';
+import { UseTreeViewProps, useTreeView } from './useTreeView';
+import { TreeViewSelectable } from './types';
 import { TreeItem } from './TreeItem';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InverseContext, useIsInverse } from '../../inverse';
@@ -45,6 +42,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       onSelectedItemChange,
       selectable,
       testId,
+      apiRef,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
@@ -52,10 +50,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
 
     const { contextValue } = useTreeView(props);
 
-    const { contextValue: treeItemContextValue } = useTreeItem(
-      { label: ariaLabel, itemId: '' },
-      ref
-    );
+    useTreeItem({ label: ariaLabel, itemId: '' }, ref);
 
     let treeItemIndex = 0;
 
@@ -81,10 +76,6 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                   parentDepth: 0,
                   itemDepth: 0,
                   topLevel: true,
-                  parentCheckedStatus:
-                    treeItemContextValue.checkedStatus || null,
-                  updateParentCheckStatus:
-                    treeItemContextValue.updateCheckedStatusFromChild,
                 });
                 treeItemIndex++;
                 return item;

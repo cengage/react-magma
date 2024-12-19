@@ -7,12 +7,7 @@ interface TreeItemContextInterface {
   setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
   checkedStatus: IndeterminateCheckboxStatus;
   checkboxChangeHandler: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  numberOfTreeItemChildren: number;
   hasOwnTreeItems: boolean;
-  updateCheckedStatusFromChild: (
-    index: number,
-    status: IndeterminateCheckboxStatus
-  ) => void;
   parentDepth: number;
 }
 
@@ -22,7 +17,5 @@ export const TreeItemContext = React.createContext<TreeItemContextInterface>({
   checkedStatus: IndeterminateCheckboxStatus.unchecked,
   checkboxChangeHandler: () => {},
   hasOwnTreeItems: false,
-  updateCheckedStatusFromChild: () => {},
-  numberOfTreeItemChildren: 0,
   parentDepth: 0,
 });

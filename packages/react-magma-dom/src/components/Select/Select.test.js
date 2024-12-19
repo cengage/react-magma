@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, act } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import { Select } from '.';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';

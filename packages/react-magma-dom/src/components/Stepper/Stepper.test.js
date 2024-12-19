@@ -2,7 +2,7 @@ import React from 'react';
 import { act } from 'react-dom/test-utils';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
-import { Stepper, Step, StepperLayout } from '.';
+import { Stepper, Step, StepperLayout, StepperOrientation } from '.';
 import { render } from '@testing-library/react';
 import { transparentize } from 'polished';
 import { I18nContext } from '../../i18n';
@@ -604,6 +604,108 @@ describe('Stepper', () => {
         });
         expect(getByTestId(`${testId}-stepper-summary`)).toBeVisible();
         expect(getByTestId(testId)).toHaveTextContent('Step 1 of 2');
+      });
+    });
+    describe('Orientation', () => {
+      it('should render correctly with horizontal orintation', () => {
+        const { getByTestId } = render(
+          <Stepper
+            ariaLabel="progress"
+            orientation={StepperOrientation.horizontal}
+            currentStep={0}
+            testId={testId}
+          >
+            <Step />
+            <Step />
+          </Stepper>
+        );
+
+        const stepper = getByTestId(testId);
+
+        expect(stepper).toHaveAttribute('orientation', 'horizontal');
+      });
+
+      it('should render correctly with vertical orintation', () => {
+        const { getByTestId } = render(
+          <Stepper
+            ariaLabel="progress"
+            orientation={StepperOrientation.vertical}
+            currentStep={0}
+            testId={testId}
+          >
+            <Step />
+            <Step />
+          </Stepper>
+        );
+
+        const stepper = getByTestId(testId);
+
+        expect(stepper).toHaveAttribute('orientation', 'vertical');
+      });
+
+      it('should show vertical orientation when breakpointOrientation is set to "vertical" if viewport is smaller than set breakpoint prop', () => {
+        const { getByTestId } = render(
+          <Stepper
+            ariaLabel="progress"
+            testId={testId}
+            breakpoint={1500}
+            breakpointOrientation={StepperOrientation.vertical}
+            orientation={StepperOrientation.horizontal}
+            currentStep={0}
+          >
+            <Step label={`${TEXT}-1`} />
+            <Step label={`${TEXT}-2`} />
+          </Stepper>
+        );
+
+        const stepper = getByTestId(testId);
+
+        act(() => {
+          global.innerWidth = 1600;
+          global.dispatchEvent(new Event('resize'));
+        });
+
+        expect(stepper).toHaveAttribute('orientation', 'horizontal');
+
+        act(() => {
+          global.innerWidth = 1400;
+          global.dispatchEvent(new Event('resize'));
+        });
+
+        expect(stepper).toHaveAttribute('orientation', 'vertical');
+      });
+
+      it('should have hidden labels for screen readers when orientation is set to "vertical" and layout is set to "summaryView"', () => {
+        const { getByText, getByTestId } = render(
+          <Stepper
+            ariaLabel="progress"
+            orientation={StepperOrientation.vertical}
+            layout={StepperLayout.summaryView}
+            currentStep={1}
+          >
+            <Step testId={`${testId}-1`} label={`${TEXT}-1`} />
+            <Step testId={`${testId}-2`} label={`${TEXT}-2`} />
+          </Stepper>
+        );
+
+        expect(getByTestId(`${testId}-1`)).toHaveTextContent(
+          `Step completed, ${TEXT}-1`
+        );
+        expect(getByTestId(`${testId}-1`).closest('li')).toHaveAttribute(
+          'aria-current',
+          'false'
+        );
+        expect(getByTestId(`${testId}-2`)).toHaveTextContent(`${TEXT}-2`);
+        expect(getByTestId(`${testId}-2`).closest('li')).toHaveAttribute(
+          'aria-current',
+          'step'
+        );
+
+        expect(getByText(`Step completed, ${TEXT}-1`)).toHaveStyleRule(
+          'overflow',
+          'hidden'
+        );
+        expect(getByText(`${TEXT}-2`)).toHaveStyleRule('overflow', 'hidden');
       });
     });
   });

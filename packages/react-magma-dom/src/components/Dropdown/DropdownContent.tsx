@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { css } from '@emotion/core';
 import { Card } from '../Card';
-import {
-  DropdownContext,
-  DropdownAlignment,
-  DropdownDropDirection,
-} from './Dropdown';
+import { DropdownAlignment, DropdownContext, DropdownDropDirection } from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import styled, { CreateStyled } from '@emotion/styled';
@@ -38,17 +34,14 @@ const StyledCard = typedStyled(Card)<{
       ? props.theme.colors.primary500
       : props.theme.colors.neutral100};
   display: ${props => (props.isOpen ? 'block' : 'none')};
-  left: ${props => props.theme.spaceScale.spacing02};
   max-height: ${props =>
     props.maxHeight ? props.maxHeight : props.theme.dropdown.content.maxHeight};
   opacity: ${props => (props.isOpen ? '1' : '0')};
   outline: 0;
   overflow-y: auto;
   padding: ${props => props.theme.spaceScale.spacing03} 0;
-  position: absolute;
   transition: opacity 0.3s;
   white-space: nowrap;
-  z-index: 2;
   &:focus {
     outline: 2px solid ${props =>
       props.isInverse
@@ -64,45 +57,6 @@ const StyledCard = typedStyled(Card)<{
       white-space: normal;
       width: ${props.width};
     `}
-
-  ${props =>
-    props.dropDirection === 'up' &&
-    css`
-      top: auto;
-      bottom: 100%;
-    `}
-
-  ${props =>
-    props.dropDirection === 'left' &&
-    css`
-      left: auto;
-      right: 100%;
-      top: ${props.theme.spaceScale.spacing02};
-    `}
-
-  ${props =>
-    props.dropDirection === 'right' &&
-    css`
-      left: 100%;
-      top: ${props.theme.spaceScale.spacing02};
-    `}
-
-  ${props =>
-    props.alignment === 'end' &&
-    props.dropDirection !== 'left' &&
-    props.dropDirection !== 'right' &&
-    css`
-      left: auto;
-      right: ${props.theme.spaceScale.spacing02};
-    `}
-
- ${props =>
-   props.alignment === 'end' &&
-   (props.dropDirection === 'left' || props.dropDirection === 'right') &&
-   css`
-     bottom: ${props.theme.spaceScale.spacing02};
-     top: auto;
-   `}
 `;
 
 export const DropdownContent = React.forwardRef<
@@ -133,31 +87,36 @@ export const DropdownContent = React.forwardRef<
   });
 
   return (
-    <StyledCard
-      {...other}
-      alignment={context.alignment}
-      dropDirection={context.dropDirection}
-      hasDropShadow
-      isInverse={context.isInverse}
-      isOpen={context.isOpen}
-      maxHeight={context.maxHeight}
-      ref={ref}
-      style={
-        hasExpandableItems
-          ? { maxHeight: 'inherit', overflow: 'hidden' }
-          : props.style
-      }
-      tabIndex={-1}
-      testId={testId || 'dropdownContent'}
-      theme={theme}
-      width={context.width}
+    <div
+      ref={context.setFloating}
+      style={{ ...context.floatingStyles, zIndex: '2' }}
     >
-      <div
-        aria-labelledby={context.dropdownButtonId.current}
-        role={hasItemChildren ? 'menu' : null}
+      <StyledCard
+        {...other}
+        alignment={context.alignment}
+        dropDirection={context.dropDirection}
+        hasDropShadow
+        isInverse={context.isInverse}
+        isOpen={context.isOpen}
+        maxHeight={context.maxHeight}
+        ref={ref}
+        style={
+          hasExpandableItems
+            ? { maxHeight: 'inherit', overflow: 'hidden' }
+            : props.style
+        }
+        tabIndex={-1}
+        testId={testId || 'dropdownContent'}
+        theme={theme}
+        width={context.width}
       >
-        {children}
-      </div>
-    </StyledCard>
+        <div
+          aria-labelledby={context.dropdownButtonId.current}
+          role={hasItemChildren ? 'menu' : null}
+        >
+          {children}
+        </div>
+      </StyledCard>
+    </div>
   );
 });

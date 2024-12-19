@@ -32,6 +32,14 @@ describe('Checkbox', () => {
     expect(checkbox).not.toHaveAttribute('autoFocus');
   });
 
+  it('should render the checkbox with aria-hidden', () => {
+    const { container } = render(<Checkbox />);
+
+    const span = container.querySelector('span');
+
+    expect(span).toHaveAttribute('aria-hidden', 'true');
+  });
+
   it('should render a checkbox that is checked on render with defaultChecked', () => {
     const label = 'test label';
     const { getByLabelText } = render(
@@ -236,7 +244,7 @@ describe('Checkbox', () => {
     );
 
     const span = container.querySelector('span');
-    expect(span).toHaveStyleRule('border-color', magma.colors.danger200);
+    expect(span).toHaveStyleRule('border-color', magma.colors.danger300);
     expect(span).toHaveStyleRule('color', magma.colors.neutral100);
   });
 

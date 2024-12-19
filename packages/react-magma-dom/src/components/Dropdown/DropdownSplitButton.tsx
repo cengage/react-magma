@@ -8,7 +8,7 @@ import {
   ButtonVariant,
 } from '../Button';
 import { IconButton } from '../IconButton';
-import { ArrowDropUpIcon, ArrowDropDownIcon } from 'react-magma-icons';
+import { ArrowDropDownIcon, ArrowDropUpIcon } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { I18nContext } from '../../i18n';
 import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
@@ -64,9 +64,17 @@ export const DropdownSplitButton = React.forwardRef<
 
   const buttonIcon =
     resolvedContext.dropDirection === DropdownDropDirection.up ? (
-      <ArrowDropUpIcon size={theme.iconSizes.medium} testId="caretUp" />
+      <ArrowDropUpIcon
+        size={theme.iconSizes.medium}
+        testId="caretUp"
+        aria-hidden="true"
+      />
     ) : (
-      <ArrowDropDownIcon size={theme.iconSizes.medium} testId="caretDown" />
+      <ArrowDropDownIcon
+        size={theme.iconSizes.medium}
+        testId="caretDown"
+        aria-hidden="true"
+      />
     );
 
   function handleClick(event: React.SyntheticEvent) {
@@ -77,17 +85,25 @@ export const DropdownSplitButton = React.forwardRef<
     }
   }
 
+  // Necessary for the proper opening and closing of the menu in Safari
+  function handleMouseDown(event: React.MouseEvent) {
+    event.preventDefault();
+  }
+
   const i18n = React.useContext(I18nContext);
 
   function buildIconButtonStyles(props) {
-    if (props.color === ButtonColor.secondary || props.color === ButtonColor.subtle) {
+    if (
+      props.color === ButtonColor.secondary ||
+      props.color === ButtonColor.subtle
+    ) {
       return '0';
     }
     return theme.spaceScale.spacing01;
   }
 
   return (
-    <>
+    <div ref={context.setReference}>
       <Button
         {...other}
         id={resolvedContext.dropdownButtonId.current}
@@ -107,6 +123,7 @@ export const DropdownSplitButton = React.forwardRef<
         icon={buttonIcon}
         isInverse={resolvedContext.isInverse}
         onClick={handleClick}
+        onMouseDown={handleMouseDown}
         shape={ButtonShape.rightCap}
         style={{
           marginLeft: buildIconButtonStyles(resolvedProps),
@@ -114,6 +131,6 @@ export const DropdownSplitButton = React.forwardRef<
         ref={ref}
         variant={variant}
       />
-    </>
+    </div>
   );
 });

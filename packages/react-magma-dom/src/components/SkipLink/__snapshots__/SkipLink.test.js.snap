@@ -64,25 +64,6 @@ exports[`SkipLink should render the skip link component 1`] = `
   color: #FFFFFF;
 }
 
-.emotion-1:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
-}
-
 .emotion-1:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
@@ -171,25 +152,6 @@ exports[`SkipLink should render the skip link component 1`] = `
 .emotion-1:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
-}
-
-.emotion-1:not(:disabled):after {
-  background: #FFFFFF;
-  border-radius: 50%;
-  content: '';
-  height: 28px;
-  left: 50%;
-  opacity: 0;
-  padding: 50%;
-  position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%,-50%) scale(1);
-  -ms-transform: translate(-50%,-50%) scale(1);
-  transform: translate(-50%,-50%) scale(1);
-  -webkit-transition: opacity 1s,-webkit-transform 0.5s;
-  -webkit-transition: opacity 1s,transform 0.5s;
-  transition: opacity 1s,transform 0.5s;
-  width: 28px;
 }
 
 .emotion-1:not(:disabled):active {

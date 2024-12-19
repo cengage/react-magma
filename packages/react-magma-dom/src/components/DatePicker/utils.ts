@@ -88,11 +88,6 @@ export function handleKeyPress(
       iconRef.current.focus();
       break;
 
-    case '?':
-      e.preventDefault();
-      showHelperInformation();
-      break;
-
     default:
       break;
   }

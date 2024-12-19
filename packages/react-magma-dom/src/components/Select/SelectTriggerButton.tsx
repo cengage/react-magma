@@ -1,14 +1,15 @@
 import React from 'react';
 import {
   inputBaseStyles,
-  inputWrapperStyles,
   InputBaseStylesProps,
+  inputWrapperStyles,
   InputWrapperStylesProps,
 } from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled, { CreateStyled } from '@emotion/styled';
 import { ThemeInterface } from '../../theme/magma';
+import { ReferenceType } from '@floating-ui/react-dom';
 
 const typedStyled = styled as CreateStyled<ThemeInterface>;
 
@@ -31,15 +32,17 @@ const ChildrenContainer = typedStyled.div`
   flex-grow: 1;
   flex-wrap: wrap;
   min-height: ${props => props.theme.spaceScale.spacing09};
+  min-width: 0%;
 `;
 
 interface SelectTriggerButtonInterface<T> {
   ariaDescribedBy?: string;
   children: React.ReactNode | React.ReactNode[];
   customComponents?: SelectComponents<T>;
-  hasError?: boolean;
   disabled?: boolean;
+  hasError?: boolean;
   isInverse?: boolean;
+  setReference?: (node: ReferenceType) => void;
   style?: React.CSSProperties;
   toggleButtonProps: any;
   tabindex?: number;
@@ -53,6 +56,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
     hasError,
     disabled,
     isInverse,
+    setReference,
     style: passedInStyle,
     toggleButtonProps,
   } = props;
@@ -65,20 +69,22 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
   const style = { ...passedInStyle, cursor: 'default' };
 
   return (
-    <StyledButton
-      {...toggleButtonProps}
-      aria-describedby={ariaDescribedBy}
-      data-testid="selectTriggerButton"
-      hasError={hasError}
-      disabled={disabled}
-      isInverse={isInverse}
-      role="button"
-      style={style}
-      theme={theme}
-      tabIndex={disabled ? undefined : 0}
-    >
-      <ChildrenContainer theme={theme}>{children}</ChildrenContainer>
-      <DropdownIndicator />
-    </StyledButton>
+    <div ref={setReference}>
+      <StyledButton
+        {...toggleButtonProps}
+        aria-describedby={ariaDescribedBy}
+        data-testid="selectTriggerButton"
+        disabled={disabled}
+        hasError={hasError}
+        isInverse={isInverse}
+        role="button"
+        style={style}
+        tabIndex={disabled ? undefined : 0}
+        theme={theme}
+      >
+        <ChildrenContainer theme={theme}>{children}</ChildrenContainer>
+        <DropdownIndicator />
+      </StyledButton>
+    </div>
   );
 }

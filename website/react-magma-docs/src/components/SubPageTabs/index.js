@@ -71,7 +71,6 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
     window.scrollBy({ top: originalTop, left: 0, behavior: 'smooth' });
 
     window.history.pushState('', '', '#' + targetID);
-    setActiveTab(index);
   };
 
   function renderPageNavTabs() {
@@ -96,6 +95,45 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
       );
     }
   }
+
+  React.useEffect(() => {
+    const rootMarginValue = `0px 0px -80% 0px`;
+
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const index = headings?.findIndex(
+              page => convertTextToId(page) === entry.target.id
+            );
+
+            setActiveTab(index);
+          }
+        });
+      },
+      { rootMargin: rootMarginValue }
+    );
+
+    headings?.forEach(page => {
+      const id = convertTextToId(page);
+      const element = document.getElementById(id);
+
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      headings?.forEach(page => {
+        const id = convertTextToId(page);
+        const element = document.getElementById(id);
+
+        if (element) {
+          observer.unobserve(element);
+        }
+      });
+    };
+  }, [headings]);
 
   return (
     <>

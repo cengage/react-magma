@@ -42,7 +42,7 @@ export function Example() {
 
 ## Colors
 
-Colors for buttons include `primary`, `secondary`, `subtle`, `danger`, and `marketing` with `primary` being the default value.
+Colors for buttons include `primary`, `secondary`, `subtle`, `danger`, `success`, and `marketing` with `primary` being the default value.
 
 ```tsx
 import React from 'react';
@@ -55,6 +55,7 @@ export function Example() {
       <Button color={ButtonColor.secondary}>Secondary</Button>
       <Button color={ButtonColor.subtle}>Subtle</Button>
       <Button color={ButtonColor.danger}>Danger</Button>
+      <Button color={ButtonColor.success}>Success</Button>
       <Button color={ButtonColor.marketing}>Marketing</Button>
     </ButtonGroup>
   );
@@ -198,6 +199,9 @@ export function Example() {
           </Button>
           <Button color={ButtonColor.danger} isInverse>
             Solid danger inverse
+          </Button>
+          <Button color={ButtonColor.success} isInverse>
+            Solid success inverse
           </Button>
           <Button color={ButtonColor.marketing} isInverse>
             Solid marketing inverse

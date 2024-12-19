@@ -48,7 +48,7 @@ export function buildDisplayInputActiveBackground(props) {
 export function buildDisplayInputBorderColor(props) {
   if (props.hasError) {
     if (props.isInverse) {
-      return props.theme.colors.danger200;
+      return props.theme.colors.danger300;
     }
     return props.theme.colors.danger;
   }

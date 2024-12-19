@@ -1,5 +1,147 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Heading Snapshot should render expressive heading2XLarge correctly 1`] = `
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 64px;
+  margin: 0 0 24px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 64px;
+    line-height: 84px;
+  }
+}
+
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 64px;
+  margin: 0 0 24px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 64px;
+    line-height: 84px;
+  }
+}
+
+<div>
+  <h1
+    class="emotion-0 emotion-1"
+    id="testId"
+  >
+    Heading 1
+  </h1>
+</div>
+`;
+
+exports[`Heading Snapshot should render expressive headingXLarge correctly 1`] = `
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 40px;
+  margin: 0 0 16px;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 48px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 36px;
+    line-height: 48px;
+  }
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 48px;
+    line-height: 64px;
+  }
+}
+
+.emotion-0 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 40px;
+  margin: 0 0 16px;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 48px;
+}
+
+.emotion-0:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 36px;
+    line-height: 48px;
+  }
+}
+
+@media (min-width:600px) {
+  .emotion-0 {
+    font-size: 48px;
+    line-height: 64px;
+  }
+}
+
+<div>
+  <h2
+    class="emotion-0 emotion-1"
+    id="testId"
+  >
+    Heading 2
+  </h2>
+</div>
+`;
+
 exports[`Heading Snapshot should render heading 1 correctly 1`] = `
 .emotion-0 {
   border-bottom: 2px solid transparent;

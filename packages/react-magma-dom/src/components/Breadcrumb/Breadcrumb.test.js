@@ -58,6 +58,19 @@ describe('Breadcrumb', () => {
     expect(getByLabelText('Test label')).toBeInTheDocument();
   });
 
+  it('should render the breadcrumb component with aria-hidden', () => {
+    const { container } = render(
+      <Breadcrumb>
+        <BreadcrumbItem to="#">{LINK_TEXT}</BreadcrumbItem>
+        <BreadcrumbItem>{SPAN_TEXT}</BreadcrumbItem>
+      </Breadcrumb>
+    );
+
+    const span = container.querySelector('span');
+
+    expect(span).toHaveAttribute('aria-hidden', 'true');
+  });
+
   describe('i18n', () => {
     it('should use the nav aria-label', () => {
       const navAriaLabel = 'test aria label';

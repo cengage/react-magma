@@ -14,7 +14,7 @@ import { CheckBoxIcon, CheckBoxOutlineBlankIcon } from 'react-magma-icons';
 import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
 import styled from '@emotion/styled';
-import { omit, useGenerateId } from '../../utils';
+import { omit, reactNodeToString, useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
 import { transparentize } from 'polished';
 
@@ -230,6 +230,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         <StyledContainer style={containerStyle}>
           <HiddenInput
             {...other}
+            aria-label={reactNodeToString(labelText)}
             aria-describedby={describedBy}
             id={id}
             data-testid={testId}
@@ -254,6 +255,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               style={inputStyle}
               textPosition={textPosition}
               theme={theme}
+              aria-hidden="true"
             >
               {isChecked ? (
                 <CheckBoxIcon size={theme.iconSizes.medium} />

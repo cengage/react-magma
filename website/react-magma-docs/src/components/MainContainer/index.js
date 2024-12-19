@@ -16,6 +16,9 @@ const StyledContainer = styled.div`
       'masthead masthead'
       'nav content';
   }
+  @media (max-width: 1024px) {
+    display: hidden;
+  }
 `;
 
 const StyledSkipLink = styled(SkipLink)`

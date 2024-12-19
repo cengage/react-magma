@@ -5,11 +5,35 @@ order: 6
 
 <PageContent componentName="changelog" type="api_intro">
 
+
+## 3.10.0
+
+### Minor Changes
+
+- fdf2dc929: feat(Modal): New `headerRef` prop that returns a reference to the header element
+- ca58152cb: feat(TreeView): Add support for `checkChildren`, `checkParents` props
+
+### Patch Changes
+
+- 616cbf9a0: fix(BreadCrumb): Improved accessibility by replace span with link to fix focus
+- aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
+- 9d840d863: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
+- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
+- 9214724b6: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
+- 1d1dd1d06: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
+- 48b7a5539: fix(Breadcrumbs): Fixed alignment issue between elements.
+- 84a8a17d6: fix(DatePicker): Fix error when using both `onChange` and `onDateChange`
+- dc307446a: fix(Accordion): Fix screen scroll behavior during accordion navigation
+- d4164cacb: fix(Modal): Fix focus issue when using `isBackgroundClickDisabled`
+- 6b413fb77: fix(List): Updated support for nested items
+- 11bedeff9: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
+
 ## 3.9.0
 
 ### Minor Changes
 
-- f30013877: feat(Stepper): Displays step based content for use in multi-step interfaces.
+- ae668a3e5: chore: Updating emotion to v11. **Note: adopters will need to upgrade** their packages to the following versions `"@emotion/react": "^11.13.0", "@emotion/styled": "^11.13.0"`. Notice that `@emotion/core` has been replaced with `@emotion/styled` and that's the only breaking change, unless your project is using `@emotion/css` which may not work the same. Please review the emotion documentation when upgrading.
+- 9e38e9e7f: feat(Stepper): New Stepper component. Displays step based content for use in multi-step interfaces.
 
 ### Patch Changes
 
@@ -110,14 +134,14 @@ order: 6
 
 ## 3.3.0
 
-## Minor Changes
+### Minor Changes
 
 - 17fc12212: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
 - 17fc12212: feat(toggleButton): New Toggle Button component.
 - 17fc12212: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
   Deprecations: dropdownDropDirection prop is now deprecated
 
-## Patch Changes
+### Patch Changes
 
 - 17fc12212: Set fallback font-family for all components.
 - 17fc12212: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.

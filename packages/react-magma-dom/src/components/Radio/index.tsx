@@ -96,7 +96,7 @@ function buildRadioIconColor(props) {
 export function buildErrorBorder(props) {
   if (props.hasError) {
     if (props.isInverse) {
-      return `0 0 0 2px ${props.theme.colors.danger200}`;
+      return `0 0 0 2px ${props.theme.colors.danger300}`;
     }
     return `0 0 0 2px ${props.theme.colors.danger}`;
   }

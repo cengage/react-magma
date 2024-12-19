@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.13-next.0
+
+### Patch Changes
+
+- 66b9003: Manually sync dev-patch with patch-3.x.x
+
 ## 5.0.12
 
 ### Patch Changes

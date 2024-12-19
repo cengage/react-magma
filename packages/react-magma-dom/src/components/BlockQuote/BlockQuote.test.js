@@ -3,6 +3,7 @@ import { axe } from '../../../axe-helper';
 import { BlockQuote, BlockQuoteItem } from '.';
 import { magma } from '../../theme/magma';
 import { render } from '@testing-library/react';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 const TEXT = 'Test Text';
 
@@ -31,7 +32,10 @@ describe('BlockQuote', () => {
 
     const blockquote = getByTestId(testId);
 
-    expect(blockquote).toHaveStyleRule('border-left', `4px solid ${magma.colors.neutral300}`);
+    expect(blockquote).toHaveStyleRule(
+      'border-left',
+      `4px solid ${magma.colors.neutral300}`
+    );
   });
 
   it('should render the component with the correct inverse styles', () => {
@@ -127,5 +131,20 @@ describe('BlockQuote', () => {
       'color',
       magma.colors.neutral200
     );
+  });
+
+  it('should render border with the correct color according to the overwritten theme', () => {
+    const testId = 'test-id';
+
+    const { getByTestId } = render(
+      <ThemeContext.Provider
+        value={{ ...magma, colors: { ...magma.colors, primary: 'black' } }}
+      >
+        <BlockQuote borderStyle="primary" testId={testId}></BlockQuote>
+      </ThemeContext.Provider>
+    );
+
+    const blockquote = getByTestId(testId);
+    expect(blockquote).toHaveStyleRule('border-left', `4px solid black`);
   });
 });

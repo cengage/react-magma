@@ -1,6 +1,6 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
-import { TreeItem } from '.';
+import { TreeItem, TreeView } from '.';
 import { render, getByTestId } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { magma } from '../../theme/magma';
@@ -75,12 +75,14 @@ describe('TreeItem', () => {
   describe('isDisabled', () => {
     it('the label is disabled', () => {
       const { getByTestId } = render(
-        <TreeItem
-          label={labelText}
-          testId={testId}
-          itemId={itemId}
-          isDisabled
-        />
+        <TreeView>
+          <TreeItem
+            label={labelText}
+            testId={testId}
+            itemId={itemId}
+            isDisabled
+          />
+        </TreeView>
       );
 
       expect(getByTestId(`${testId}-label`)).toHaveStyleRule(
@@ -91,13 +93,20 @@ describe('TreeItem', () => {
 
     it('the ability to expand the item is disabled', () => {
       const { getByTestId } = render(
-        <TreeItem label={labelText} itemId="parent" testId={testId} isDisabled>
+        <TreeView>
           <TreeItem
-            label={`${labelText}-child`}
-            testId={`${testId}-child`}
-            itemId="child"
-          />
-        </TreeItem>
+            label={labelText}
+            itemId="parent"
+            testId={testId}
+            isDisabled
+          >
+            <TreeItem
+              label={`${labelText}-child`}
+              testId={`${testId}-child`}
+              itemId="child"
+            />
+          </TreeItem>
+        </TreeView>
       );
 
       expect(getByTestId(`${testId}-expand`)).toHaveAttribute(

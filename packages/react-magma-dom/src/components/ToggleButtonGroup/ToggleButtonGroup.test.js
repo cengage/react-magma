@@ -59,8 +59,10 @@ describe('ToggleButtonGroup', () => {
         );
 
         const buttonOne = getByTestId(testId);
+        // ensure that clicking either the button or child SVG works
+        const buttonOneSvg = buttonOne.children[0];
         expect(buttonOne).toHaveAttribute('aria-checked', 'false');
-        fireEvent.click(buttonOne);
+        fireEvent.click(buttonOneSvg);
         expect(buttonOne).toHaveAttribute('aria-checked', 'true');
         fireEvent.click(buttonOne);
         expect(buttonOne).toHaveAttribute('aria-checked', 'true');
@@ -81,10 +83,12 @@ describe('ToggleButtonGroup', () => {
         );
 
         const buttonOne = getByTestId(testId);
+        // ensure that clicking either the button or child SVG works
+        const buttonOneSvg = buttonOne.children[0];
         const buttonTwo = getByTestId(`${testId}-1`);
 
         expect(buttonOne).toHaveAttribute('aria-checked', 'false');
-        fireEvent.click(buttonOne);
+        fireEvent.click(buttonOneSvg);
         expect(buttonOne).toHaveAttribute('aria-checked', 'true');
         fireEvent.click(buttonTwo);
         expect(buttonOne).toHaveAttribute('aria-checked', 'false');
@@ -105,12 +109,14 @@ describe('ToggleButtonGroup', () => {
         );
 
         const buttonOne = getByTestId(testId);
+        // ensure that clicking either the button or child SVG works
+        const buttonOneSvg = buttonOne.children[0];
         const buttonTwo = getByTestId(`${testId}-1`);
 
         expect(buttonOne).toHaveAttribute('aria-checked', 'false');
-        fireEvent.click(buttonOne);
+        fireEvent.click(buttonOneSvg);
         expect(buttonOne).toHaveAttribute('aria-checked', 'true');
-        fireEvent.click(buttonOne);
+        fireEvent.click(buttonOneSvg);
         expect(buttonOne).toHaveAttribute('aria-checked', 'true');
         fireEvent.click(buttonTwo);
         expect(buttonOne).toHaveAttribute('aria-checked', 'false');
@@ -195,7 +201,7 @@ describe('ToggleButtonGroup', () => {
     );
 
     const buttonOne = getByTestId(testId);
-    
+
     expect(buttonOne).toHaveAttribute('aria-checked', 'true');
     fireEvent.click(buttonOne);
     expect(onChangeMock).toHaveBeenCalledTimes(1);

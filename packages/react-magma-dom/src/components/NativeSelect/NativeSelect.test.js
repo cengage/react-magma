@@ -113,7 +113,7 @@ describe('NativeSelect', () => {
 
     expect(getByTestId(testId).parentElement).toHaveStyleRule(
       'border',
-      `1px solid ${magma.colors.danger200}`
+      `1px solid ${magma.colors.danger300}`
     );
 
     expect(getByText(errorMessage)).toBeInTheDocument();
