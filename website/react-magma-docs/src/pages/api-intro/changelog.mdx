@@ -6,6 +6,62 @@ order: 6
 <PageContent componentName="changelog" type="api_intro">
 
 
+## 3.11.0
+
+### Minor Changes
+
+- 6b64b34: feat(Stepper): Add vertical orientation for `Stepper`.
+- 6b64b34: feat(Input): Update colors for error message, icon and border in dark mode.
+- 6b64b34: feat(Input): Update additional children position based on label position
+- 6b64b34: feat(Tabs/NavTabs): Add support for overwriting text transform with `textTransform` prop.
+- 6b64b34: feat(ProgressBar): Update colors from danger200/success200 to danger300/success300 in dark mode.
+- 6b64b34: feat(Combobox, Select, Date picker, Dropdown): Support viewport detection and positioning
+- 6b64b34: feat(Button): Add `success` button color
+- 6b64b34: feat(TreeView): Add support for `isDisabled` trees and items
+- 6b64b34: feat(TreeView): `onExpandedChange` returns an array of expanded IDs
+- 6b64b34: fix(TreeView): Support "show all" button inside TreeView component
+- 6b64b34: feat(TreeView): Add ability to update selected items from outside the tree
+
+### Patch Changes
+
+- 6b64b34: fix(Breadcrumb): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `span` element that wraps the SVGs.
+- 6b64b34: fix(Button): Remove animation presses for `Button`.
+- 6b64b34: fix(CheckBox): Fix unreadable labels in `CheckBox` for screen readers.
+- 6b64b34: fix(CheckBox): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `span` element that wraps the SVGs.
+- 6b64b34: fix(Combobox): Fix focus issue after triggering the clear button
+- 6b64b34: fix(DatePicker): Fix navigation and accessibility issues.
+- 6b64b34: fix(DatePicker): Remove shortcut to open `HelperInformation`.
+- 6b64b34: fix(DatePicker): Add `aria-label` to calendar header columns.
+- 6b64b34: fix(Drawer): Fix trapped focus
+- 6b64b34: fix(Dropdown): Fix a11y for active index
+- 6b64b34: fix(Dropdown): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `svg` elements.
+- 6b64b34: fix(List): Hide SVGs from assistive tech by adding `aria-hidden="true"` to the `span` element that wraps the SVGs.
+- 6b64b34: fix(ProgressBar): Remove animation if the user has `prefers-reduced-motion` media query set.
+- 6b64b34: fix(Search): Fix the disappearing focus on the button when loading
+- 6b64b34: fix(Select): Fix accessibility issue for `clearIndicator` inside `SelectTriggerButton`.
+- 6b64b34: fix(TreeView): Improve screenreader accessibility
+- 6b64b34: fix(useFocusLock): Fix the `useFocusLock` hook if the first or last element is disabled.
+- 6b64b34: chore(Dropdown): Deprecate `dropDirection` & `alignment` props. These are no longer necessary with viewport detection support.
+- 6b64b34: fix(Dropdown): Fix the dropdown closing on second button click in Safari
+- 6b64b34: fix(Heading): Add the `noTopMargin` and `noBottomMargin` props to the `Heading` component.
+- 6b64b34: fix(BlockQuote): Fix border color respecting the `Theme` context.
+- 6b64b34: fix(TreeView): Fix initialExpanded items expanding all parents
+- 6b64b34: fix(Input): Update focus style on inputs.
+- 6b64b34: fix(ListItem): Fix icon colors respecting the `Theme` context.
+- 6b64b34: fix(Modal): Fix modal losing focus order with dynamic content.
+- 6b64b34: fix(Select): Update outline offset on multiselected items
+- 6b64b34: fix(Select): Fix placeholder color.
+- 6b64b34: chore: Remove `.stories.` files from the production bundle.
+- 6b64b34: fix(Tabs): Center preselected `Tab` on the `Scrollable Tabs`.
+- 6b64b34: fix(TimePicker): Fix AM/PM width in the `TimePicker`.
+- 6b64b34: fix(Toast): Fix loading ring alignment when zooming in Safari
+- 6b64b34: fix(Heading): Update margins for `heading2XLarge`
+- 6b64b34: fix(Input): Improve descriptions for `inputWrapperStyle` and `containerStyle` props.
+- 6b64b34: fix(Input): Remove `flex-shrink` to allow inputs to shrink as needed.
+- 6b64b34: fix(Search): Fix overlapping content issue with the clear button
+- 6b64b34: fix(Combobox/Select:): Fix focus color for selected items when using `isMulti` + `isInverse`
+- 6b64b34: fix(Tag): Update focus state
+
 ## 3.10.0
 
 ### Minor Changes
