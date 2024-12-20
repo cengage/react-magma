@@ -3,7 +3,11 @@ import { Card } from '../Card';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import styled from '@emotion/styled';
-import { PopoverContext, PopoverPositioning } from './Popover';
+import {
+  isExistedActiveElements,
+  PopoverContext,
+  PopoverPosition,
+} from './Popover';
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { Announce } from '../Announce';
 import { ThemeInterface } from '../../theme/magma';
@@ -15,7 +19,6 @@ import { PopoverFooter } from './PopoverFooter';
  */
 export interface PopoverContentProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  // isInverse?: boolean;
   /**
    * @internal
    */
@@ -24,13 +27,13 @@ export interface PopoverContentProps
 }
 
 const StyledCard = styled(Card)<{
-  positioning: PopoverPositioning;
+  position: PopoverPosition;
   isInverse?: boolean;
   isOpen?: boolean;
   maxHeight?: string;
   width?: string;
   theme?: ThemeInterface;
-  withoutPointer?: boolean;
+  hasPointer?: boolean;
 }>`
   position: relative;
   background: ${props =>
@@ -41,7 +44,6 @@ const StyledCard = styled(Card)<{
   max-height: ${props => (props.maxHeight ? props.maxHeight : '100%')};
   opacity: ${props => (props.isOpen ? '1' : '0')};
   outline: 0;
-  /* padding: ${props => props.theme.spaceScale.spacing05}; */
   transition: opacity 0.3s;
   white-space: nowrap;
   border: 1px solid
@@ -52,7 +54,7 @@ const StyledCard = styled(Card)<{
   width: ${props => (props.width ? props.width : '100%')};
 
   ::before {
-    display: ${props => props.withoutPointer ? 'none' : 'block'};
+    display: ${props => (props.hasPointer ? 'block' : 'none')};
     content: '';
     position: absolute;
     width: 0;
@@ -61,37 +63,23 @@ const StyledCard = styled(Card)<{
     border-width: 11px;
   }
 
-  &[data-popover-placement=${PopoverPositioning.bottom}]::before {
+  &[data-popover-placement=${PopoverPosition.bottom}]::before {
     border-color: transparent transparent
       ${props => props.theme.colors.neutral300} transparent;
     left: 50%;
     bottom: 100%;
     transform: translateX(-50%) rotate(0deg);
   }
-  &[data-popover-placement=${PopoverPositioning.top}]::before {
+  &[data-popover-placement=${PopoverPosition.top}]::before {
     border-color: ${props => props.theme.colors.neutral300} transparent
       transparent transparent;
     left: 50%;
     top: 100%;
     transform: translateX(-50%) rotate(0deg);
   }
-  &[data-popover-placement=${PopoverPositioning.left}]::before {
-    border-color: transparent transparent transparent
-      ${props => props.theme.colors.neutral300};
-    left: 100%;
-    top: 50%;
-    transform: translateY(-50%) rotate(0deg);
-  }
-  &[data-popover-placement=${PopoverPositioning.right}]::before {
-    border-color: transparent ${props => props.theme.colors.neutral300}
-      transparent transparent;
-    right: 100%;
-    top: 50%;
-    transform: translateY(-50%) rotate(0deg);
-  }
 
   &::after {
-    display: ${props => props.withoutPointer ? 'none' : 'block'};
+    display: ${props => (props.hasPointer ? 'block' : 'none')};
     content: '';
     position: absolute;
     width: 0;
@@ -100,33 +88,19 @@ const StyledCard = styled(Card)<{
     border-width: 10px;
   }
 
-  &[data-popover-placement=${PopoverPositioning.bottom}]::after {
+  &[data-popover-placement=${PopoverPosition.bottom}]::after {
     border-color: transparent transparent
       ${props => props.theme.colors.neutral100} transparent;
     left: 50%;
     bottom: 100%;
     transform: translateX(-50%) rotate(0deg);
   }
-  &[data-popover-placement=${PopoverPositioning.top}]::after {
+  &[data-popover-placement=${PopoverPosition.top}]::after {
     border-color: ${props => props.theme.colors.neutral100} transparent
       transparent transparent;
     left: 50%;
     top: 100%;
     transform: translateX(-50%) rotate(0deg);
-  }
-  &[data-popover-placement=${PopoverPositioning.left}]::after {
-    border-color: transparent transparent transparent
-      ${props => props.theme.colors.neutral100};
-    left: 100%;
-    top: 50%;
-    transform: translateY(-50%) rotate(0deg);
-  }
-  &[data-popover-placement=${PopoverPositioning.right}]::after {
-    border-color: transparent ${props => props.theme.colors.neutral100}
-      transparent transparent;
-    right: 100%;
-    top: 50%;
-    transform: translateY(-50%) rotate(0deg);
   }
 `;
 
@@ -134,45 +108,26 @@ const StyledAnnounce = styled(Announce)<{ maxHeight?: string }>`
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* display: grid; */
-  /* grid-template-rows: 1fr auto 1fr; */
-  /* flex-wrap: wrap; */
-  /* justify-content: center; */
-  /* align-items: center; */
   max-height: ${props => (props.maxHeight ? props.maxHeight : '100%')};
+`;
+
+const ErrorMessage = styled.div`
+  width: fit-content;
+  padding: 1em;
 `;
 
 const StyledPopoverContent = styled.div`
   z-index: 2;
 `;
 
-const PopoverChildrenContent = styled.div``;
-
 const ScrollableContent = styled.div`
-  /* width: 100%; */
   display: flex;
   flex-direction: column;
-  /* flex-wrap: wrap; */
   overflow-y: auto;
   padding: 16px;
   height: inherit;
+  white-space: normal;
 `;
-
-function isExistedActiveElements(ref) {
-  return Array.from(
-    ref.current?.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
-    ) || []
-  ).filter((element: HTMLElement) => {
-    const style = window.getComputedStyle(element);
-    return (
-      element instanceof HTMLElement &&
-      style.display !== 'none' &&
-      style.visibility !== 'hidden' &&
-      !element.hasAttribute('disabled')
-    );
-  }).length > 0;
-}
 
 export const PopoverContent = React.forwardRef<
   HTMLDivElement,
@@ -183,7 +138,9 @@ export const PopoverContent = React.forwardRef<
   const theme = React.useContext(ThemeContext);
   const ref = useForkedRef(forwardedRef, context.contentRef);
 
-  const focusTrapRef = useFocusLock(context.isOpen && isExistedActiveElements(context.contentRef));
+  const focusTrapRef = useFocusLock(
+    context.isOpen && isExistedActiveElements(context.contentRef)
+  );
 
   const styledChildren = React.Children.toArray(children).map(item =>
     React.cloneElement(item as React.ReactElement, {
@@ -215,7 +172,7 @@ export const PopoverContent = React.forwardRef<
     >
       <StyledCard
         {...other}
-        positioning={context.positioning}
+        position={context.position}
         hasDropShadow
         isInverse={context.isInverse}
         isOpen={context.isOpen}
@@ -225,26 +182,24 @@ export const PopoverContent = React.forwardRef<
         testId={testId || 'popoverContent'}
         theme={theme}
         width={context.width}
-        data-popover-placement={context.positioning}
-        withoutPointer={context.withoutPointer}
+        data-popover-placement={context.position}
+        hasPointer={context.hasPointer}
       >
-        <PopoverChildrenContent
+        <div
           aria-labelledby={context.popoverTriggerId.current}
           role="dialog"
           ref={focusTrapRef}
         >
-          <StyledAnnounce maxHeight={context.maxHeight}>
-            {!content.length ? (
-              'Content must be passed'
-            ) : (
-              <>
-                {header}
-                <ScrollableContent>{content}</ScrollableContent>
-                {footer}
-              </>
-            )}
-          </StyledAnnounce>
-        </PopoverChildrenContent>
+          {!content.length ? (
+            <ErrorMessage>Content must be passed</ErrorMessage>
+          ) : (
+            <StyledAnnounce maxHeight={context.maxHeight}>
+              {header}
+              <ScrollableContent>{content}</ScrollableContent>
+              {footer}
+            </StyledAnnounce>
+          )}
+        </div>
       </StyledCard>
     </StyledPopoverContent>
   );

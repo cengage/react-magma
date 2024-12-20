@@ -60,11 +60,13 @@ export const PopoverTrigger = React.forwardRef<
 
   const { icon = <InfoIcon />, children, ...other } = props;
 
-  function handleClick(event: React.SyntheticEvent) {
-    if (context.isOpen) {
-      context.closePopover(event);
-    } else {
-      context.openPopover();
+  function handleClick(event: React.UIEvent) {
+    if (!context.isDisabled) {
+      if (context.isOpen) {
+        context.closePopover(event);
+      } else {
+        context.openPopover();
+      }
     }
   }
 
@@ -92,16 +94,16 @@ export const PopoverTrigger = React.forwardRef<
           aria-label="popoverTriggerIcon"
           aria-haspopup="dialog"
           aria-expanded={context.isOpen}
-          aria-controls={context.popoverContentId.current} 
+          aria-controls={context.popoverContentId.current}
           id={context.popoverTriggerId.current}
           isInverse={context.isInverse}
           icon={icon}
           onClick={handleClick}
           ref={ref}
           theme={theme}
-          type={ButtonType.button}
-          size={ButtonSize.medium}
-          variant={ButtonVariant.link}
+          type={props.type ?? ButtonType.button}
+          size={props.size ?? ButtonSize.medium}
+          variant={props.variant ?? ButtonVariant.link}
           onMouseDown={handleMouseDown}
           disabled={context.isDisabled}
         />
@@ -116,7 +118,7 @@ export const PopoverTrigger = React.forwardRef<
           aria-label="popoverTriggerButton"
           aria-haspopup="dialog"
           aria-expanded={context.isOpen}
-          aria-controls={context.popoverContentId.current} 
+          aria-controls={context.popoverContentId.current}
           id={context.popoverTriggerId.current}
           isInverse={context.isInverse}
           onClick={handleClick}
@@ -132,14 +134,13 @@ export const PopoverTrigger = React.forwardRef<
           aria-label="popoverTriggerButton"
           aria-haspopup="dialog"
           aria-expanded={context.isOpen}
-          aria-controls={context.popoverContentId.current} 
+          aria-controls={context.popoverContentId.current}
           id={context.popoverTriggerId.current}
           onMouseDown={handleMouseDown}
         >
           {styledChildren}
         </TriggerButtonContainer>
       )}
-
     </div>
   );
 });

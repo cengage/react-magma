@@ -4,7 +4,6 @@ import {
   useFloating,
   offset,
   flip,
-  Placement,
   autoUpdate,
   ReferenceType,
 } from '@floating-ui/react-dom';
@@ -12,32 +11,32 @@ import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
 import { ButtonGroupContext } from '../ButtonGroup';
 
-export enum PopoverPositioning {
+export enum PopoverPosition {
   bottom = 'bottom', //default
   top = 'top',
-  left = 'left',
-  right = 'right',
 }
 
+export interface PopoverApi {
+  closePopoverManually(event): void;
+}
 export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose?: (event: React.SyntheticEvent) => void;
   onOpen?: () => void;
   testId?: string;
-  positioning?: PopoverPositioning;
+  position?: PopoverPosition;
   maxHeight?: string | number;
   width?: string | number;
   hoverable?: boolean;
-  focusable?: boolean;
   isInverse?: boolean;
   isDisabled?: boolean;
-  matchedWidth?: boolean;
-  withoutPointer?: boolean;
+  hasPointer?: boolean;
   openByDefault?: boolean;
+  apiRef?: React.MutableRefObject<PopoverApi | undefined>;
 }
 
 export interface PopoverContextInterface {
   floatingStyles?: React.CSSProperties;
-  positioning?: PopoverPositioning;
+  position?: PopoverPosition;
   closePopover?: (event: React.SyntheticEvent | React.KeyboardEvent) => void;
   popoverTriggerId?: React.MutableRefObject<string>;
   popoverContentId?: React.MutableRefObject<string>;
@@ -46,7 +45,6 @@ export interface PopoverContextInterface {
   isOpen: boolean;
   maxHeight?: string;
   width?: string;
-  isFixedWidth?: boolean;
   contentRef?: any;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setFloating?: (node: ReferenceType) => void;
@@ -54,8 +52,7 @@ export interface PopoverContextInterface {
   toggleRef?: any;
   isDisabled?: boolean;
   hoverable?: boolean;
-  focusable?: boolean;
-  withoutPointer?: boolean;
+  hasPointer?: boolean;
 }
 
 const Container = styled.div`
@@ -66,6 +63,24 @@ export const PopoverContext = React.createContext<PopoverContextInterface>({
   isOpen: false,
   setIsOpen: () => false,
 });
+
+export function isExistedActiveElements(ref) {
+  return (
+    Array.from(
+      ref.current?.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
+      ) || []
+    ).filter((element: HTMLElement) => {
+      const style = window.getComputedStyle(element);
+      return (
+        element instanceof HTMLElement &&
+        style.display !== 'none' &&
+        style.visibility !== 'hidden' &&
+        !element.hasAttribute('disabled')
+      );
+    }).length > 0
+  );
+}
 
 export const usePopoverContext = () => React.useContext(PopoverContext);
 
@@ -78,26 +93,35 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     const ownRef = React.useRef<any>();
     const toggleRef = React.useRef<HTMLButtonElement>();
     const contentRef = React.useRef<any>(null);
-    const popoverContentId = React.useRef<string>('');
-    const popoverTriggerId = React.useRef<string>('');
+    const popoverContentId = React.useRef('');
+    const popoverTriggerId = React.useRef('');
 
     const {
       onClose,
       onOpen,
-      positioning = PopoverPositioning.bottom,
+      position = PopoverPosition.bottom,
       children,
       testId,
       maxHeight,
       width,
       hoverable,
-      focusable,
       isDisabled,
-      matchedWidth,
-      withoutPointer,
+      hasPointer,
       openByDefault,
       id: defaultId,
+      apiRef,
       ...other
     } = props;
+
+    React.useEffect(() => {
+      if (apiRef) {
+        apiRef.current = {
+          closePopoverManually(event) {
+            closePopover(event);
+          },
+        };
+      }
+    }, []);
 
     const popoverId = useGenerateId(defaultId);
 
@@ -110,27 +134,18 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       if (openByDefault) {
         openPopover();
       }
-    }, [openByDefault]); // Do I need this?
-
-    const maxHeightString =
-      typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
-
-    const widthString = matchedWidth
-      ? toggleRef.current && window.getComputedStyle(toggleRef.current).width
-      : typeof width === 'number'
-      ? `${width}px`
-      : width;
+    }, []);
 
     const isInverse = useIsInverse(resolvedProps.isInverse);
 
     const handleMouseOver = () => {
-      if (hoverable && !isDisabled) {
+      if (hoverable && !isDisabled && !isExistedActiveElements(contentRef)) {
         setIsOpen(true);
       }
     };
 
     const handleMouseLeave = () => {
-      if (hoverable) {
+      if (hoverable && !isExistedActiveElements(contentRef)) {
         setIsOpen(false);
       }
     };
@@ -170,23 +185,27 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       }
     }
 
-    function onFocus() {
-      if (focusable && !isOpen) {
-        openPopover();
-      }
-    }
-
-    const { refs, floatingStyles } = useFloating({
-      middleware: [flip(), offset(withoutPointer ? 4 : 14)],
-      placement: positioning as Placement,
+    const { refs, floatingStyles, placement } = useFloating({
+      middleware: [flip(), offset(hasPointer ? 14 : 4)],
+      placement: position,
       whileElementsMounted: autoUpdate,
     });
+
+    const maxHeightString =
+      typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
+
+    const widthString =
+      width === 'target'
+        ? `${refs.reference.current?.getBoundingClientRect().width}px`
+        : typeof width === 'number'
+        ? `${width}px`
+        : width;
 
     return (
       <PopoverContext.Provider
         value={{
           floatingStyles,
-          positioning,
+          position: placement as PopoverPosition,
           closePopover,
           popoverTriggerId,
           popoverContentId,
@@ -195,7 +214,6 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           isOpen,
           maxHeight: maxHeightString,
           width: widthString,
-          isFixedWidth: !!width,
           contentRef,
           setIsOpen,
           setFloating: refs.setFloating,
@@ -203,8 +221,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           toggleRef,
           isDisabled,
           hoverable,
-          focusable,
-          withoutPointer,
+          hasPointer,
         }}
       >
         <Container
@@ -215,7 +232,6 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           data-testid={testId}
           onMouseOver={handleMouseOver}
           onMouseLeave={handleMouseLeave}
-          onFocus={onFocus}
           id={popoverId}
         >
           {children}
