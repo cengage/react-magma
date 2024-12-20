@@ -77,7 +77,7 @@ export function Example() {
 
   return (
     <Dropdown>
-      <DropdownSplitButton onClick={handleSplitButtonClick}>
+      <DropdownSplitButton aria-label="Split Button" onClick={handleSplitButtonClick}>
         Split Button
       </DropdownSplitButton>
       <DropdownContent>
@@ -465,7 +465,7 @@ export function Example() {
     <Dropdown width={240}>
       <DropdownButton>Expandable Items Dropdown</DropdownButton>
       <DropdownContent>
-        <DropdownExpandableMenuGroup defaultIndex={[0]}>
+        <DropdownExpandableMenuGroup isMulti defaultIndex={[0]}>
           <DropdownExpandableMenuItem>
             <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
               Pasta
@@ -575,7 +575,7 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
-  const OptionalDropdownMenuItem = ({ toggle, dropdownMenuItemProps }) => {
+  const OptionalDropdownMenuItem = ({ toggle, ...dropdownMenuItemProps }) => {
     return toggle ? (
       <DropdownMenuItem {...dropdownMenuItemProps}>
         Hello There
@@ -614,6 +614,8 @@ export function Example() {
     </Dropdown>
   );
 }
+
+
 ```
 
 ### Leading Icons
@@ -752,6 +754,7 @@ import {
   ButtonColor,
   ButtonSize,
   ButtonGroup,
+  ButtonVariant,
   Dropdown,
   DropdownButton,
   DropdownContent,
