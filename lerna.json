@@ -1,6 +1,13 @@
 {
-  "packages": ["website/*", "packages/*", "patterns/*"],
+  "packages": [
+    "website/*",
+    "packages/*",
+    "patterns/*"
+  ],
   "command": {
+    "bootstrap": {
+      "hoist": true
+    },
     "publish": {
       "allowBranch": ["dev", "hotfix/*", "main"],
       "preDistTag": "next",
@@ -12,6 +19,5 @@
       "conventionalCommits": true
     }
   },
-  "version": "independent",
-  "$schema": "node_modules/lerna/schemas/lerna-schema.json"
+  "version": "independent"
 }

@@ -218,24 +218,6 @@ export function useTreeView(props: UseTreeViewProps) {
   }, [preselectedItems, checkParents, checkChildren, selectable, isDisabled]);
 
   React.useEffect(() => {
-    if (isEqualArrays(prevPreselectedItemsRef.current, preselectedItems)) {
-      return;
-    }
-
-    setItems(
-      getInitialItems({
-        children,
-        preselectedItems,
-        checkParents,
-        checkChildren,
-        selectable,
-        isDisabled,
-      })
-    );
-    prevPreselectedItemsRef.current = preselectedItems;
-  }, [preselectedItems, checkParents, checkChildren, selectable, isDisabled]);
-
-  React.useEffect(() => {
     if (initializationRef.current) {
       return;
     }
