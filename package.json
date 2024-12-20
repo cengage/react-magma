@@ -9,8 +9,8 @@
     "url": "https://github.com/cengage/react-magma.git"
   },
   "engines": {
-    "npm": ">=v10.7.0",
-    "node": ">=18.20.4"
+    "npm": ">=^7.3.0",
+    "node": ">=^14.21.3"
   },
   "workspaces": [
     "website/*",
@@ -29,11 +29,12 @@
     "test-watch": "jest --watch",
     "test-dom": "lerna run test --scope react-magma-dom -- --watch --coverage=false",
     "storybook": "NODE_OPTIONS='--max-old-space-size=4096' start-storybook -p 6006",
-    "build:docs": "NODE_OPTIONS=--openssl-legacy-provider lerna run build --scope react-magma-docs --no-progress",
-    "build:lite": "lerna run build --ignore react-magma-docs --concurrency=6 --no-progress",
-    "build": "lerna run build --concurrency=6 --no-progress",
+    "build:docs": "NODE_OPTIONS=--openssl-legacy-provider lerna run build --scope react-magma-docs --stream --no-progress",
+    "build:lite": "lerna run build --ignore react-magma-docs --stream --no-progress",
+    "build": "lerna run build --stream --no-progress",
     "build:landing": "NODE_OPTIONS=--openssl-legacy-provider node website/react-magma-landing/scripts/build.js",
     "build:storybook": "NODE_OPTIONS=--openssl-legacy-provider build-storybook",
+    "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint",
     "develop": "npm run docs",
     "docs": "lerna run --scope react-magma-docs develop",
@@ -79,6 +80,8 @@
     "@commitlint/parse": "^12.1.1",
     "@commitlint/rules": "^12.1.1",
     "@commitlint/top-level": "^12.1.1",
+    "@emotion/core": "^10.1.1",
+    "@emotion/styled": "^10.0.27",
     "@manypkg/cli": "^0.18.0",
     "@storybook/addon-a11y": "^6.5.10",
     "@storybook/addon-actions": "^6.5.10",

@@ -253,6 +253,13 @@ export interface I18nInterface {
     pagesLabel: string;
     selectedLabel: string;
   };
+  simplePagination: {
+    ofLabel: string;
+    pageNumberLabel: string;
+    pageLabel: string;
+    pagesLabel: string;
+    selectedLabel: string;
+  };
   skipLink: {
     buttonText: string;
   };

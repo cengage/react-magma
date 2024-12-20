@@ -643,12 +643,12 @@ import { Combobox } from 'react-magma-dom';
 export function Example() {
   const [isLoading, updateIsLoading] = React.useState<boolean>(false);
 
-  function loadItems(inputValue) {
-    return new Promise(resolve =>
+  function loadItems() {
+    return new Promise((resolve) =>
       resolve([
-        { label: 'Yellow', value: 'yellow' },
-        { label: 'Pink', value: 'pink' },
-        { label: 'Periwinkle', value: 'periwinkle' },
+        { label: "Yellow", value: "yellow" },
+        { label: "Pink", value: "pink" },
+        { label: "Periwinkle", value: "periwinkle" },
       ])
     );
   }
@@ -662,9 +662,9 @@ export function Example() {
 
     setTimeout(() => {
       updateIsLoading(false);
-      loadItems(inputValue).then(items => {
+      loadItems().then((items: any) => {
         setInputItems(
-          items.filter(item =>
+          items.filter((item) =>
             item.label.toLowerCase().startsWith(inputValue.toLowerCase())
           )
         );
@@ -678,9 +678,9 @@ export function Example() {
       labelText="Async"
       isLoading={isLoading}
       defaultItems={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' },
+        { label: "Red", value: "red" },
+        { label: "Blue", value: "blue" },
+        { label: "Green", value: "green" },
       ]}
       onInputValueChange={handleInputValueChange}
     />
@@ -944,7 +944,7 @@ import { Combobox, LabelPosition } from 'react-magma-dom';
 export function Example() {
   return (
     <Combobox
-      labelPosition={LabelPosition.top}
+      labelPosition={LabelPosition.left}
       labelText="Left-aligned label"
       defaultItems={[
         { label: 'Red', value: 'red' },
@@ -1021,6 +1021,7 @@ custom `type`](/api/combobox#custom_items_typescript).
 ```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 export function Example() {
   const [controlledSelectedItem, updateControlledSelectedItem] =
@@ -1041,8 +1042,9 @@ export function Example() {
     const { value } = item;
 
     return {
-      id: uuid(),
+      id: uuidv4(),
       name: value,
+      hex: item.hex,
       representation: value.charAt(0).toUpperCase() + value.slice(1),
     };
   }
@@ -1100,6 +1102,7 @@ element with the shape of the `items` you are passing in.
 ```tsx
 import React from 'react';
 import { Combobox } from 'react-magma-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 interface CustomComboboxItem {
   id: number;
@@ -1141,8 +1144,8 @@ export function Example() {
     const { value } = item;
 
     return {
-      id: uuid(),
-      name: value,
+      id: uuidv4(),
+      actual: value,
       representation: value.charAt(0).toUpperCase() + value.slice(1),
     };
   }
@@ -1273,7 +1276,7 @@ import { Combobox } from 'react-magma-dom';
 export function Example() {
   const [isLoading, updateIsLoading] = React.useState<boolean>(false);
 
-  function loadItems(inputValue) {
+  function loadItems() {
     return new Promise(resolve =>
       resolve([
         { label: 'Yellow', value: 'yellow' },
@@ -1292,7 +1295,7 @@ export function Example() {
 
     setTimeout(() => {
       updateIsLoading(false);
-      loadItems(inputValue).then(items => {
+      loadItems().then((items: any) => {
         setInputItems(
           items.filter(item =>
             item.label.toLowerCase().startsWith(inputValue.toLowerCase())
