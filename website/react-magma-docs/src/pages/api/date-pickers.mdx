@@ -34,7 +34,7 @@ import React from 'react';
 import { DatePicker } from 'react-magma-dom';
 
 export function Example() {
-  return <DatePicker defaultDate="07/23/2024" labelText="Date" />;
+  return <DatePicker defaultDate={new Date(2025, 1, 0)} labelText="Date" />;
 }
 ```
 
@@ -48,7 +48,7 @@ import { DatePicker } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <DatePicker defaultDate="07/23/2024" labelText="Date" value="03/12/2024" />
+    <DatePicker defaultDate={new Date(2025, 1, 0)} labelText="Date" value={new Date(2000, 1, 0)} />
   );
 }
 ```
@@ -65,8 +65,8 @@ export function Example() {
   const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
     undefined
   );
-  const minDate = '01/09/2024';
-  const maxDate = '02/10/2024';
+  const minDate = new Date(2025, 1, 2);
+  const maxDate = new Date(2025, 1, 20);
 
   function handleDateChange(newChosenDate: Date) {
     setChosenDate(newChosenDate);
@@ -111,7 +111,7 @@ export function Example() {
     undefined
   );
 
-  function handleDateChange(newChosenDate: Date) {
+  function handleDateChange(newChosenDate: Date | null) {
     setChosenDate(newChosenDate);
   }
 
@@ -187,7 +187,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { DatePicker, Card, CardBody, magma } from 'react-magma-dom';
+import { DatePicker, Card, CardBody } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -352,7 +352,7 @@ export function Example() {
 
 ## Keyboard Navigation
 
-The `DatePicker` is keyboard navigable for allowing the user to navigate between days, weeks, and months. If you would like to see all of the options for keyboard navigation click on the `?` button in the bottom right corner of the `DatePicker` or press the `?` key.
+The `DatePicker` is keyboard navigable for allowing the user to navigate between days, weeks, and months. 
 
 ```tsx
 import React from 'react';
