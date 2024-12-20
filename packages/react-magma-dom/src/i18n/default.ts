@@ -106,8 +106,7 @@ export const defaultI18n: I18nInterface = {
   datePicker: {
     startOfWeek: 'sunday',
     calendarIconAriaLabel: 'Toggle Calendar Widget',
-    calendarOpenAnnounce:
-      'Calendar Widget is now open. Press the question mark key to get the keyboard shortcuts for changing dates.',
+    calendarOpenAnnounce: 'Calendar Widget is now open.',
     calendarCloseAriaLabel: 'Close Calendar Widget',
     previousMonthAriaLabel: 'Previous Month',
     nextMonthAriaLabel: 'Next Month',
@@ -143,10 +142,6 @@ export const defaultI18n: I18nInterface = {
         ariaLabel: 'Escape key',
         displayValue: 'ESC',
         explanation: 'Return to the date input field.',
-      },
-      questionMark: {
-        ariaLabel: 'Question Mark',
-        explanation: 'Open this panel.',
       },
     },
   },
@@ -262,6 +257,10 @@ export const defaultI18n: I18nInterface = {
     placeholder: 'Select...',
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
+    multi: {
+      clearIndicatorAriaLabel:
+        'reset selection for {labelText}. {selectedItem} are selected',
+    },
   },
   simplePagination: {
     ofLabel: 'of',
@@ -294,7 +293,7 @@ export const defaultI18n: I18nInterface = {
       selectRowAriaLabel: 'Select row',
       deselectAllRowsAriaLabel: 'Deselect all rows',
       deselectRowAriaLabel: 'Deselect row',
-    }
+    },
   },
   tabs: {
     horizontalTabsInstructions:

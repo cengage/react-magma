@@ -4,6 +4,7 @@ title: Stepper
 props:
   - StepperProps
   - StepProps
+  - ResponsiveStepperContainerProps
 ---
 
 import { LeadParagraph } from '../../components/LeadParagraph';
@@ -98,7 +99,7 @@ When using `layout` with `StepperLayout.summaryView`, the option to change the s
 
 ```typescript
 import React from 'react';
-import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
+import { Container, Stepper, Step, StepperLayout, Button, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   const [currentStep, setCurrentStep] = React.useState(0);
@@ -160,13 +161,13 @@ export function Example() {
 }
 ```
 
-## Completed Step Description
+## Completion Label
 
-When using layout `StepperLayout.summaryView`, after all of the steps are complete, the `completedStepDescription` prop takes a string and changes the title.
+When using layout `StepperLayout.summaryView`, after all of the steps are complete, the `completionLabel` prop takes a string and changes the title.
 
 ```typescript
 import React from 'react';
-import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
+import { Container, Stepper, Step, StepperLayout, Button, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   const [currentStep, setCurrentStep] = React.useState(4);
@@ -191,7 +192,7 @@ export function Example() {
     <>
       <Stepper
         ariaLabel="progress"
-        completedStepDescription="Steps Complete!"
+        completionLabel="Steps Complete!"
         layout={StepperLayout.summaryView}
         currentStep={currentStep}
       >
@@ -759,6 +760,278 @@ export function Example() {
 }
 ```
 
+## Orientation
+
+The `orientation` prop allows you to change the orientation of the `Stepper`. By default, the `Stepper` is displayed horizontally unless the `orientation` prop is specified. Vertical `Stepper` only supports `StepperLayout.showLabels` and `StepperLayout.hideLabels` layouts. If `StepperLayout.summaryView` is used with a vertical `Stepper`, it will be shown as `StepperLayout.hideLabels`.
+
+#### Vertical orientation
+
+```typescript
+import React from 'react';
+import {
+  Container,
+  Stepper,
+  StepperOrientation,
+  Step,
+  Button,
+  ButtonGroup,
+  Flex,
+  FlexBehavior,
+  FlexWrap,
+  FlexAlignItems,
+  FlexJustify,
+  FlexDirection,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <Flex
+      behavior={FlexBehavior.container}
+      wrap={FlexWrap.nowrap}
+      style={{ gap: '24px' }}
+    >
+      <Stepper
+        ariaLabel="progress"
+        currentStep={currentStep}
+        orientation={StepperOrientation.vertical}
+      >
+        <Step label="First Step" secondaryLabel="Description One" />
+        <Step label="Second Step" secondaryLabel="Description Two" />
+        <Step label="Third Step" secondaryLabel="Description Three" />
+        <Step label="Fourth Step" secondaryLabel="Description Four" />
+      </Stepper>
+
+      <Flex
+        behavior={FlexBehavior.container}
+        alignItems={FlexAlignItems.stretch}
+        justify={FlexJustify.spaceBetween}
+        direction={FlexDirection.column}
+      >
+        <Container
+          style={{
+            background: '#F5F5F5',
+            borderRadius: '6px',
+            padding: '20px',
+            width: '100%',
+            flex: 10,
+          }}
+        >
+          {currentStep === 0 && <div>Step Content One</div>}
+          {currentStep === 1 && <div>Step Content Two</div>}
+          {currentStep === 2 && <div>Step Content Three</div>}
+          {currentStep === 3 && <div>Step Content Four</div>}
+          {currentStep === 4 && <div>Steps Completed</div>}
+        </Container>
+
+        <Flex
+          behavior={FlexBehavior.item}
+          style={{ paddingTop: '20px', alignSelf: 'flex-end' }}
+        >
+          <ButtonGroup>
+            <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+              Previous
+            </Button>
+            <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+              {currentStep >= 4 ? 'Finish' : 'Next'}
+            </Button>
+          </ButtonGroup>
+        </Flex>
+      </Flex>
+    </Flex>
+  );
+}
+```
+
+## Stepper inside a Dropdown
+
+```typescript
+import React from 'react';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  Stepper,
+  Step,
+  StepperOrientation,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div style={{ display: 'flex', gap: '1em' }}>
+      <Dropdown>
+        <DropdownButton>Vertical Stepper</DropdownButton>
+        <DropdownContent
+          style={{
+            maxHeight: 'fit-content',
+            padding: '1em',
+          }}
+        >
+          <Stepper
+            currentStep={2}
+            ariaLabel="progress"
+            orientation={StepperOrientation.vertical}
+          >
+            <Step key={0} label="First Item" secondaryLabel="Description One">
+              Item Content One
+            </Step>
+            <Step key={1} label="Second Item" secondaryLabel="Description Two">
+              Item Content Two
+            </Step>
+            <Step key={2} label="Third Item" secondaryLabel="Description Three">
+              Item Content Three
+            </Step>
+            <Step key={3} label="Fourth Item" secondaryLabel="Description Four">
+              Item Content Four
+            </Step>
+            <Step key={4} label="Fifth Item" secondaryLabel="Description Five">
+              Item Content Five
+            </Step>
+          </Stepper>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown>
+        <DropdownButton>Horizontal Stepper</DropdownButton>
+        <DropdownContent
+          style={{
+            whiteSpace: 'normal',
+            maxHeight: 'fit-content',
+            padding: '1em',
+          }}
+        >
+          <Stepper currentStep={2} ariaLabel="progress">
+            <Step key={0} label="First Item" secondaryLabel="Description One">
+              Item Content One
+            </Step>
+            <Step key={1} label="Second Item" secondaryLabel="Description Two">
+              Item Content Two
+            </Step>
+            <Step key={2} label="Third Item" secondaryLabel="Description Three">
+              Item Content Three
+            </Step>
+            <Step key={3} label="Fourth Item" secondaryLabel="Description Four">
+              Item Content Four
+            </Step>
+            <Step key={4} label="Fifth Item" secondaryLabel="Description Five">
+              Item Content Five
+            </Step>
+          </Stepper>
+        </DropdownContent>
+      </Dropdown>
+    </div>
+  );
+}
+```
+
+## Breakpoint Orientation
+
+For responsive layouts, the `breakpoint` prop can be used in combination with the `breakpointOrientation` prop to change the `Stepper`’s orientation based on screen width. The `breakpoint` prop sets a maximum screen width, and `breakpointOrientation` defines the desired orientation (horizontal or vertical) when the screen width is below the specified breakpoint. By default, the `Stepper` is displayed horizontally if no responsive props are used. It is recommended to use `breakpointOrientation` with `ResponsiveStepperContainer` for optimal behavior.
+
+```typescript
+import React from 'react';
+import {
+  Container,
+  StepperLayout,
+  StepperOrientation,
+  Step,
+  Button,
+  ButtonGroup,
+  Flex,
+  FlexBehavior,
+  ResponsiveStepperContainer,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [currentStep, setCurrentStep] = React.useState(0);
+
+  const handleOnNext = () => {
+    if (currentStep !== 4) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+  const handleOnPrevious = () => {
+    if (currentStep !== 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+  const handleFinish = () => {
+    if (currentStep === 4) {
+      setCurrentStep(0);
+    }
+  };
+
+  return (
+    <ResponsiveStepperContainer
+      currentStep={currentStep}
+      breakpoint={1200}
+      breakpointOrientation={StepperOrientation.vertical}
+      breakpointLayout={StepperLayout.hideLabels}
+      steps={[
+        <Step key={0} label="First Item" secondaryLabel="Description One">
+          Item Content One
+        </Step>,
+        <Step key={1} label="Second Item" secondaryLabel="Description Two">
+          Item Content Two
+        </Step>,
+        <Step key={2} label="Third Item" secondaryLabel="Description Three">
+          Item Content Three
+        </Step>,
+        <Step key={3} label="Fourth Item" secondaryLabel="Description Four">
+          Item Content Four
+        </Step>,
+      ]}
+    >
+      <Container
+        style={{
+          background: '#F5F5F5',
+          borderRadius: '6px',
+          padding: '20px',
+          width: '100%',
+          flex: 10,
+        }}
+      >
+        {currentStep === 0 && <div>Step Content One</div>}
+        {currentStep === 1 && <div>Step Content Two</div>}
+        {currentStep === 2 && <div>Step Content Three</div>}
+        {currentStep === 3 && <div>Step Content Four</div>}
+        {currentStep === 4 && <div>Steps Completed</div>}
+      </Container>
+
+      <Flex
+        behavior={FlexBehavior.item}
+        style={{ padding: '20px 0', alignSelf: 'flex-end' }}
+      >
+        <ButtonGroup>
+          <Button disabled={currentStep === 0} onClick={handleOnPrevious}>
+            Previous
+          </Button>
+          <Button onClick={currentStep >= 4 ? handleFinish : handleOnNext}>
+            {currentStep >= 4 ? 'Finish' : 'Next'}
+          </Button>
+        </ButtonGroup>
+      </Flex>
+    </ResponsiveStepperContainer>
+  );
+}
+```
+
 ## Error State
 
 When a `Step` is in the error state, use `hasError` on the `Step` to change the styling.
@@ -876,5 +1149,11 @@ export function Example() {
 **Any other props supplied will be provided to the wrapping `div` element.**
 
 <StepperProps />
+
+## ResponsiveStepperContainer Props
+
+**Any other props supplied will be provided to the wrapping `Stepper` element.**
+
+<ResponsiveStepperContainerProps />
 
 </PageContent>

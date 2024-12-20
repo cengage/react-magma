@@ -19,6 +19,7 @@ export function Select<T>(props: SelectProps<T>) {
     components: customComponents,
     defaultSelectedItem,
     errorMessage,
+    floatingElementStyles,
     hasError,
     helperMessage,
     inputStyle,
@@ -45,6 +46,8 @@ export function Select<T>(props: SelectProps<T>) {
     messageStyle,
     placeholder,
     selectedItem: passedInSelectedItem,
+    setReference,
+    setFloating,
   } = props;
 
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
@@ -161,8 +164,8 @@ export function Select<T>(props: SelectProps<T>) {
   return (
     <SelectContainer
       additionalContent={additionalContent}
-      errorMessage={errorMessage}
       descriptionId={ariaDescribedBy}
+      errorMessage={errorMessage}
       getLabelProps={getLabelProps}
       helperMessage={helperMessage}
       isInverse={isInverse}
@@ -176,36 +179,56 @@ export function Select<T>(props: SelectProps<T>) {
       <SelectTriggerButton
         ariaDescribedBy={ariaDescribedBy}
         customComponents={customComponents}
-        toggleButtonProps={toggleButtonProps}
-        hasError={hasError}
         disabled={disabled}
+        hasError={hasError}
         isInverse={isInverse}
+        setReference={setReference}
         style={inputStyle}
+        toggleButtonProps={toggleButtonProps}
       >
-        <SelectText data-testid="selectedItemText">{selectText}</SelectText>
-        {isClearable && selectedItem && (
-          <ClearIndicator
-            aria-label={clearIndicatorAriaLabel}
-            icon={<CloseIcon size={theme.iconSizes.xSmall} />}
-            onClick={defaultHandleClearIndicatorClick}
-            size={ButtonSize.small}
-            style={{ marginTop: '0', marginBottom: '0' }}
-            testId="clearIndicator"
-            variant={ButtonVariant.link}
-          />
-        )}
+        <SelectText
+          data-testid="selectedItemText"
+          isClearable={isClearable}
+          isShowPlaceholder={!selectedItem}
+          isInverse={isInverse}
+          isDisabled={disabled}
+          theme={theme}
+        >
+          {selectText}
+        </SelectText>
       </SelectTriggerButton>
+
+      {isClearable && selectedItem && (
+        <ClearIndicator
+          aria-label={clearIndicatorAriaLabel}
+          icon={<CloseIcon size={theme.iconSizes.xSmall} />}
+          onClick={defaultHandleClearIndicatorClick}
+          isInverse={isInverse}
+          size={ButtonSize.small}
+          style={{
+            position: 'absolute',
+            right: '3.25em',
+            top: '50%',
+            transform: 'translateY(-50%)',
+          }}
+          testId="clearIndicator"
+          variant={ButtonVariant.link}
+        />
+      )}
+
       <ItemsList
         customComponents={customComponents}
+        floatingElementStyles={floatingElementStyles}
         getItemProps={getItemProps}
         getMenuProps={getMenuProps}
         highlightedIndex={highlightedIndex}
-        isOpen={isOpen}
         isInverse={isInverse}
-        maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
+        isOpen={isOpen}
         items={items}
         itemToString={itemToString}
+        maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
         menuStyle={menuStyle}
+        setFloating={setFloating}
       />
     </SelectContainer>
   );

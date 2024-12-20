@@ -5,11 +5,35 @@ order: 6
 
 <PageContent componentName="changelog" type="api_intro">
 
+
+## 3.10.0
+
+### Minor Changes
+
+- fdf2dc929: feat(Modal): New `headerRef` prop that returns a reference to the header element
+- ca58152cb: feat(TreeView): Add support for `checkChildren`, `checkParents` props
+
+### Patch Changes
+
+- 616cbf9a0: fix(BreadCrumb): Improved accessibility by replace span with link to fix focus
+- aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
+- 9d840d863: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
+- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
+- 9214724b6: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
+- 1d1dd1d06: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
+- 48b7a5539: fix(Breadcrumbs): Fixed alignment issue between elements.
+- 84a8a17d6: fix(DatePicker): Fix error when using both `onChange` and `onDateChange`
+- dc307446a: fix(Accordion): Fix screen scroll behavior during accordion navigation
+- d4164cacb: fix(Modal): Fix focus issue when using `isBackgroundClickDisabled`
+- 6b413fb77: fix(List): Updated support for nested items
+- 11bedeff9: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
+
 ## 3.9.0
 
 ### Minor Changes
 
-- f30013877: feat(Stepper): Displays step based content for use in multi-step interfaces.
+- ae668a3e5: chore: Updating emotion to v11. **Note: adopters will need to upgrade** their packages to the following versions `"@emotion/react": "^11.13.0", "@emotion/styled": "^11.13.0"`. Notice that `@emotion/core` has been replaced with `@emotion/styled` and that's the only breaking change, unless your project is using `@emotion/css` which may not work the same. Please review the emotion documentation when upgrading.
+- 9e38e9e7f: feat(Stepper): New Stepper component. Displays step based content for use in multi-step interfaces.
 
 ### Patch Changes
 
@@ -110,14 +134,14 @@ order: 6
 
 ## 3.3.0
 
-## Minor Changes
+### Minor Changes
 
 - 17fc12212: feat(Alert): New additionalContent prop to enable adding styled children within an Alert or Banner.
 - 17fc12212: feat(toggleButton): New Toggle Button component.
 - 17fc12212: (TablePagination, DataGrid) switch dropdown component in table pagination to native select
   Deprecations: dropdownDropDirection prop is now deprecated
 
-## Patch Changes
+### Patch Changes
 
 - 17fc12212: Set fallback font-family for all components.
 - 17fc12212: fix(character counter): Added value capability for Input and Textarea when using maxLength for an initial value.
@@ -443,11 +467,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 
 - d0a7687d: fix(input): fix issue with inline inputs rendering too wide (such as search box)
 
-### Patch Changes
-
-- d0a7687d: fix(input): fix issue with inline inputs rendering too wide (such as search box)
-
-### 2.3.9 (2021-03-24)
+## 2.3.9
 
 - chore: update to node 14, npm 7
 - fix(checkbox): switch to icon for unchecked state
@@ -458,21 +478,20 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - fix(Button): default to ButtonType.button
 - fix(icons): update remaining v1 icons
 
-### 2.3.8 (2021-03-01)
+## 2.3.8
 
 - fix: update dependencies accross packages
 - docs(checkbox): improve stories
 
-### 2.3.7 (2021-02-22)
+## 2.3.7
 
 - feat(icons): release v2.0.0
 
-### 2.3.6 (2021-02-18)
+## 2.3.6
 
 - Note: Version bump only for package react-magma-dom
--
 
-### 2.3.5 (2021-02-18)
+## 2.3.5 
 
 - table: duplicate exports (1583413)
 - ci(stories): add remaining stories
@@ -488,13 +507,13 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - fix(label): add labelPosition enum
 - feature(table): add pagination
 
-### 2.3.4 (2021-01-25)
+## 2.3.4
 
 - ci(storybook): add storybook
 - chore: update contributing guide
 - fix(tooltip): improve positioning
 
-### 2.3.3 (2021-01-20)
+## 2.3.3
 
 - docs(theme): use magma theme in more places
 - feat(combobox): add isMulti XOR
@@ -504,7 +523,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - fix(hyperlink): extend Anchor
 - fix(theme): remove jsx pragma
 
-### 2.3.2 (2020-12-30)
+## 2.3.2
 
 - ci(actions): new github Actions
 - ci(actions): deploy to Netlify
@@ -517,7 +536,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - fix(combobox): support maxHeight
 - fix(combobox): support customComponents
 
-### [2.3.1-alpha.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.1-alpha.0) (2020-12-11)
+## 2.3.1
 
 ### Bug Fixes
 
@@ -525,7 +544,7 @@ This was an accidental release. Please skip this version and upgrade to to 2.5.1
 - **dropdown:** add interfaces with default props, testids ([65d15d7](https://github.com/cengage/react-magma/commit/65d15d70131cf45d40622f41e45bd96284729c10))
 - **tab:** handle click parameter names fixed ([70dc881](https://github.com/cengage/react-magma/commit/70dc881078a1823c7031eb973362eef369682dc3))
 
-## [2.3.0](https://github.com/cengage/react-magma/compare/react-magma-dom@2.3.0...react-magma-dom@2.3.0) (2020-12-08)
+## 2.3.0
 
 ### Features
 

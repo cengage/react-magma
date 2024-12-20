@@ -73,6 +73,8 @@
     "@commitlint/parse": "^12.1.1",
     "@commitlint/rules": "^12.1.1",
     "@commitlint/top-level": "^12.1.1",
+    "@emotion/core": "^10.1.1",
+    "@emotion/styled": "^10.0.27",
     "@manypkg/cli": "^0.18.0",
     "@storybook/addon-a11y": "^6.5.10",
     "@storybook/addon-actions": "^6.5.10",

@@ -9,6 +9,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { ButtonNext, ButtonPrev } from './TabsScrollButtons';
 import { useTabsMeta } from './utils';
 import { I18nContext } from '../../i18n';
+import { TabsOrientation, TabsTextTransform } from './shared';
 
 export enum TabsAlignment {
   center = 'center',
@@ -28,11 +29,6 @@ export enum TabsIconPosition {
   left = 'left',
   right = 'right',
   top = 'top',
-}
-
-export enum TabsOrientation {
-  horizontal = 'horizontal',
-  vertical = 'vertical',
 }
 
 export interface VerticalTabsProps {
@@ -80,6 +76,11 @@ export interface TabsProps
    */
   orientation?: TabsOrientation;
   /**
+   * Determines whether the tab appears in all-caps
+   * @default TabsTextTransform.uppercase
+   */
+  textTransform?: TabsTextTransform;
+  /**
    * @internal
    */
   testId?: string;
@@ -96,6 +97,7 @@ interface TabsContextInterface {
   isInverse?: boolean;
   isFullWidth?: boolean;
   orientation?: TabsOrientation;
+  textTransform?: TabsTextTransform;
   registerTabButton: (
     itemRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
     itemRef: React.MutableRefObject<Element>
@@ -109,6 +111,7 @@ export const TabsContext = React.createContext<TabsContextInterface>({
   isInverse: false,
   isFullWidth: false,
   orientation: TabsOrientation.horizontal,
+  textTransform: TabsTextTransform.uppercase,
   registerTabButton: (elements, element) => {},
 });
 
@@ -179,6 +182,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       onChange,
       iconPosition,
       testId,
+      textTransform,
       ...rest
     } = props;
 
@@ -278,9 +282,26 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       }
     }
 
-    React.useEffect(scrollSelectedIntoView, []);
+    const scrollInitialActiveIndexIntoView = () => {
+      const { tabsMeta, tabMeta } = getTabsMeta();
+
+      if (!tabMeta || !tabsMeta) {
+        return;
+      }
+
+      const tabCenter = (tabMeta[start] + tabMeta[end]) / 2;
+      const containerCenter = (tabsMeta[start] + tabsMeta[end]) / 2;
+
+      const scrollDelta = tabCenter - containerCenter;
+
+      const nextScrollStart = Number(tabsMeta[scrollStart]) + scrollDelta;
+
+      scroll(nextScrollStart);
+    };
 
     React.useEffect(scrollSelectedIntoView, [activeTabIndex]);
+
+    React.useEffect(scrollInitialActiveIndexIntoView, []);
 
     function changeHandler(
       newActiveIndex: number,
@@ -443,6 +464,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
                 isInverse,
                 isFullWidth,
                 orientation,
+                textTransform: textTransform || TabsTextTransform.uppercase,
                 registerTabButton,
               }}
             >
