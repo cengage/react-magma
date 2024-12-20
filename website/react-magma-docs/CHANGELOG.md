@@ -1,5 +1,69 @@
 # Change Log
 
+## 5.0.13
+
+### Patch Changes
+
+- 6b64b34: fix(Modal): Fix nested modal example focus lock.
+- 6b64b34: fix(Drawer): Corrected examples for a `drawer` component to ensure focus returns to the opening button after the `drawer` closes.
+- 6b64b34: fix(Docs): add "GATSBY_EMPTY_ALT" as alt text for empty alts.
+- 6b64b34: fix(TimePicker): improve TimePicker internationalization example.
+- 6b64b34: build(Lerna): update and add local caching for build and test commands`.
+- 6b64b34: docs: Fix contribution guidelines page
+- 6b64b34: docs(emotion): Update changelog to explain possible issue with emotion/css.
+- 6b64b34: fix(TreeView): Fix TreeView references in Selectable example.
+- 6b64b34: feat(react-magma-docs): Implement scrollspy.
+- 6b64b34: docs(TreeView): Update examples
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+- Updated dependencies [6b64b34]
+  - react-magma-dom@3.11.0
+
 ## 5.0.13-next.0
 
 ### Patch Changes
