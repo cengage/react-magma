@@ -253,6 +253,17 @@ export {
   TypographyContextVariant,
   TypographyVisualStyle,
 } from './components/Typography';
+export { Popover, PopoverProps, PopoverPosition } from './components/Popover';
+export {
+  PopoverTrigger,
+  PopoverTriggerProps,
+} from './components/Popover/PopoverTrigger';
+export {
+  PopoverContent,
+  PopoverContentProps,
+} from './components/Popover/PopoverContent';
+export { PopoverHeader } from './components/Popover/PopoverHeader';
+export { PopoverFooter } from './components/Popover/PopoverFooter';
 
 export {
   VisuallyHidden,
