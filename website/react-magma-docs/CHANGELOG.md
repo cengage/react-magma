@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.14-next.0
+
+### Patch Changes
+
+- afea146: Manual sync patch-3.x.x -> dev-patch for 3.11
+
 ## 5.0.13
 
 ### Patch Changes
