@@ -153,6 +153,25 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       }
     }, [activeIndex]);
 
+    React.useEffect(() => {
+      if (isOpen) {
+        const handleClickOutside = (event: MouseEvent) => {
+          if (
+            ownRef.current &&
+            !ownRef.current.contains(event.target as Node)
+          ) {
+            closeDropdown(event as unknown as React.SyntheticEvent);
+          }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+          document.removeEventListener('mousedown', handleClickOutside);
+        };
+      }
+    }, [isOpen]);
+
     function openDropdown() {
       const [filteredItems] = getFilteredItem();
 
@@ -174,7 +193,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     function closeDropdown(event) {
       setIsOpen(false);
 
-      toggleRef.current.focus();
+      toggleRef.current?.focus();
 
       onClose && typeof onClose === 'function' && onClose(event);
     }
