@@ -117,7 +117,7 @@ export const StyledCustomTab = React.forwardRef<any, NavTabComponentProps>(
       };
 
       const other = omit(
-        ['iconPosition', 'isInverse', 'isActive', 'isFullWidth'],
+        ['iconPosition', 'isInverse', 'isActive', 'isFullWidth', 'borderPosition', 'orientation', 'textTransform'],
         rest
       );
 

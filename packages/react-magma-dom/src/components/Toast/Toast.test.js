@@ -2,17 +2,19 @@ import React from 'react';
 import { magma } from '../../theme/magma';
 import { Toast } from '.';
 import { ToastsContainer } from './ToastsContainer';
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent, waitFor } from '@testing-library/react';
 
 describe('Toast', () => {
   beforeEach(() => {
     jest.useFakeTimers();
   });
 
-  afterEach(async () => {
-    await act(async () => {
+  afterEach(() => {
+    act(() => {
       jest.runOnlyPendingTimers();
     });
+    jest.clearAllTimers();
+    jest.clearAllMocks();
     jest.useRealTimers();
   });
 
@@ -70,7 +72,9 @@ describe('Toast', () => {
       jest.advanceTimersByTime(6000);
     });
 
-    expect(onDismiss).toHaveBeenCalled();
+    await waitFor(() => {
+      expect(onDismiss).toHaveBeenCalled();
+    });
   });
 
   it('should use passed in timeout duration plus the transition time', () => {
@@ -127,7 +131,9 @@ describe('Toast', () => {
       jest.advanceTimersByTime(6000);
     });
 
-    expect(onDismiss).toHaveBeenCalled();
+    await waitFor(() => {
+      expect(onDismiss).toHaveBeenCalled();
+    });
   });
 
   it('should keep the toast up when focusing on an element in the toast and dismiss when element is blurred', async () => {
@@ -153,7 +159,9 @@ describe('Toast', () => {
       jest.advanceTimersByTime(6000);
     });
 
-    expect(onDismiss).toHaveBeenCalled();
+    await waitFor(() => {
+      expect(onDismiss).toHaveBeenCalled();
+    });
   });
 
   it('should not pause and resume a timer when the disableAutoDismiss flag is set to true', () => {

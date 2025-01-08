@@ -536,7 +536,6 @@ const IsClearableContainer = styled.span<{
   icon?: React.ReactElement<IconProps>;
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
-  onIconClick?: () => void;
 }>`
   background-color: transparent;
   margin: 0;
@@ -779,7 +778,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               theme={theme}
               iconPosition={iconPosition}
               inputSize={inputSize}
-              onIconClick={onIconClick}
               icon={icon}
             >
               <IconButton
