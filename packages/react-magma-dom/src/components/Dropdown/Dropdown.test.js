@@ -641,7 +641,40 @@ describe('Dropdown', () => {
 
     expect(onClick).toHaveBeenCalled();
   });
+  
+  it('should call onClose for the previously opened dropdown when a new one is opened', async() => {
+    const onClose1 = jest.fn();
+    const onClose2 = jest.fn();
+  
+    const { getByText } = render(
+      <>
+        <Dropdown testId="dropdown1" onClose={onClose1}>
+          <DropdownButton>Toggle Dropdown 1</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Item 1</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown testId="dropdown2" onClose={onClose2}>
+          <DropdownButton>Toggle Dropdown 2</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Item 2</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </>
+    );
+  
+    // Open the first dropdown
+    userEvent.click(getByText('Toggle Dropdown 1'));
+    expect(onClose1).not.toHaveBeenCalled();
 
+    // Open the second dropdown
+    userEvent.click(getByText('Toggle Dropdown 2'));
+  
+    // Verify that the first dropdown's onClose is called
+    expect(onClose1).toHaveBeenCalled();
+    expect(onClose2).not.toHaveBeenCalled(); // Second dropdown is still open
+  });
+  
   it('should render a dropdown with an active item', async () => {
     const { container, getByText } = render(
       <Dropdown activeIndex={1}>
