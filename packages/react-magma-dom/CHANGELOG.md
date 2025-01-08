@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.5
+
+### Patch Changes
+
+- 285a2592d: chore: Fix remaining unit test errors
+
 ## 4.8.0-next.4
 
 ### Patch Changes

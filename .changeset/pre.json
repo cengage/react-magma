@@ -12,7 +12,8 @@
   },
   "changesets": [
     "a11y-nativeSelect-add-aria-secribedBy-to-helper-message",
-    "chore-deprecate-header copy",
+    "chore-docs-linting-",
+    "chore-fix-remaining-unit-test-errors",
     "feat-select-disabled-items",
     "fix-GlobalStyles-import-warning",
     "rotten-carrots-retire",

@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.0.11-next.2
+
+### Patch Changes
+
+- 285a2592d: chore: Improve TypeScript, Linting, and Styling Support in Doc MDX Files
+- Updated dependencies [285a2592d]
+  - react-magma-dom@4.8.0-next.5
+
 ## 5.0.11-next.1
 
 ### Patch Changes
