@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.6
+
+### Minor Changes
+
+- ec5cb3cf7: feat(Select): added not-allowed pointer effect for disabled items in Select and Multi Select components
+
 ## 4.8.0-next.5
 
 ### Patch Changes
