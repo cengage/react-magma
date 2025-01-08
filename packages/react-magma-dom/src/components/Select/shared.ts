@@ -121,6 +121,7 @@ export const StyledItem = styled('li')<{
   &:hover {
     background: ${props => buildListHoverColor(props)};
     border-color: transparent;
+    cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
   }
 `;
 
