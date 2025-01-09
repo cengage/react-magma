@@ -5,8 +5,6 @@ props:
   - HyperlinkProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="hyperlink" type="api">
 
 <LeadParagraph>
@@ -293,18 +291,28 @@ The underline text decoration can be turned off. When a hyperlink is used within
 
 ```tsx
 import React from 'react';
-import { Hyperlink, Spacer, SpacerAxis, magma, HyperlinkIconPosition } from 'react-magma-dom';
+import {
+  Hyperlink,
+  Spacer,
+  SpacerAxis,
+  magma,
+  HyperlinkIconPosition,
+} from 'react-magma-dom';
 import { OpenInNewIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <>
-    <Hyperlink target="_blank" to="https://www.google.com" hasUnderline={false}>
-      Google
-    </Hyperlink>
-    <Spacer size={'8px'} axis={SpacerAxis.both} />
-      Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar
-      brownie lemon drops tootsie roll pudding muffin powder pudding.{' '}
+      <Hyperlink
+        target="_blank"
+        to="https://www.google.com"
+        hasUnderline={false}
+      >
+        Google
+      </Hyperlink>
+      <Spacer size={'8px'} axis={SpacerAxis.both} />
+      Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar brownie
+      lemon drops tootsie roll pudding muffin powder pudding.{' '}
       <Hyperlink
         target="_blank"
         to="https://sallysbakingaddiction.com/triple-chocolate-layer-cake/"

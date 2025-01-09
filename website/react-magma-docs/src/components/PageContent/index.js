@@ -1,21 +1,20 @@
 /* eslint-disable complexity */
-import React from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { graphql, StaticQuery } from 'gatsby';
-import { Link } from 'gatsby';
-import { SubPageTabs } from '../SubPageTabs';
-import { convertTextToId } from '../../utils';
+import { graphql, Link, StaticQuery } from 'gatsby';
+import PropTypes from 'prop-types';
+import React from 'react';
 import {
-  TabPanelsContainer,
-  TabPanel,
-  TabsContainer,
   magma,
-  NavTabs,
   NavTab,
+  NavTabs,
+  TabPanel,
+  TabPanelsContainer,
+  TabsContainer,
   useIsInverse,
 } from 'react-magma-dom';
+import { convertTextToId } from '../../utils';
 import { PANEL_WIDTH } from '../SlidingDrawer';
+import { SubPageTabs } from '../SubPageTabs';
 
 export const CONTENT_MAX_WIDTH = 1112;
 

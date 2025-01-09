@@ -6,7 +6,7 @@ order: 1
 
 import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { LeadParagraph } from '../../components/LeadParagraph';
+
 import { Alert } from 'react-magma-dom';
 
 <PageContent componentName="alert" type="design">
@@ -103,13 +103,19 @@ Alerts have an inverse option where we have defined colors that are optimized fo
 Inline alerts are embedded within the content of a page. They can provide the user with helpful information regarding a specific process or part of the interface. They can also be triggered by an action the user took, like submitting a form before filling out all the required fields.
 
 <figure>
-  <img src="../../images/alerts/inline-alert-example.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/alerts/inline-alert-example.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
 </figure>
 
 If an inline alert is being used to communicate some general information to the user, then you can choose to allow them to dismiss the alert to get it out of their way. However, error messages are typically not dismissible by the user and persist until the issue is fixed either by the user or the system.
 
 <figure>
-  <img src="../../images/alerts/inline-alert-example-2.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/alerts/inline-alert-example-2.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
 </figure>
 
 ---
@@ -119,9 +125,12 @@ If an inline alert is being used to communicate some general information to the 
 When the viewport is 600px wide and smaller, we automatically reduce the icon and font size to optimize the amount of space given to the message and optional links or buttons in the alert.
 
 <figure>
-  <img src="../../images/alerts/mobile-inline-alert-example.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/alerts/mobile-inline-alert-example.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 ---
 

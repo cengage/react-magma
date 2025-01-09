@@ -1,5 +1,35 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.6
+
+### Minor Changes
+
+- ec5cb3cf7: feat(Select): added not-allowed pointer effect for disabled items in Select and Multi Select components
+
+## 4.8.0-next.5
+
+### Patch Changes
+
+- 285a2592d: chore: Fix remaining unit test errors
+
+## 4.8.0-next.4
+
+### Patch Changes
+
+- b95b94c7b: fix(GlobalStyles): fix @import rule warning in GlobalStyles
+
+## 4.8.0-next.3
+
+### Patch Changes
+
+- 48d786c08: build(deps): bump nanoid from 3.3.7 to 3.3.8
+
+## 4.8.0-next.2
+
+### Patch Changes
+
+- 2b097cef4: build(deps): bump path-to-regexp and express
+
 ## 4.8.0-next.1
 
 ### Patch Changes

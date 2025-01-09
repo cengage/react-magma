@@ -15,7 +15,7 @@ module.exports = {
   ],
   roots: ['<rootDir>'],
   setupFiles: [
-    // '<rootDir>/jest.overrides.js',
+    '<rootDir>/jest.overrides.js'
   ],
   setupFilesAfterEnv: [
     'jest-extended',

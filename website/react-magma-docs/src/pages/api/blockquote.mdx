@@ -6,8 +6,6 @@ props:
   - BlockQuoteItemProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="block_quote" type="api">
 
 <LeadParagraph>
@@ -18,7 +16,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 An optional prop of `hasAttribution` may be added for attribution purposes. Both lines can be uniquely customized with font family and color options.
 
-```typescript
+```tsx
 import React from 'react';
 import { BlockQuote, BlockQuoteItem } from 'react-magma-dom';
 
@@ -35,7 +33,7 @@ export function Example() {
 
 `hasAttribution` is an optional boolean which adds a second line providing a source for the quotation.
 
-```typescript
+```tsx
 import React from 'react';
 import { BlockQuote, BlockQuoteItem } from 'react-magma-dom';
 
@@ -57,7 +55,7 @@ The default `visualStyle` for the main quotation is `bodyMedium`.
 In addition to the blockquote visual styles, the `visualStyle` prop can also accept the values for the different heading visual styles: `headingXLarge`, `headingLarge`, `headingMedium`, `headingSmall`, `headingXSmall` and `heading2XSmall`.
 These visual styles are also used with the <Link to="/api/paragraph">Paragraph</Link> and <Link to="/api/heading">Heading</Link> components. The underlying HTML will still render as a `p` element.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   BlockQuote,
@@ -86,7 +84,7 @@ export function Example() {
 
 The `color` prop allows three additional custom font colors aside from the defaults: `success`, `danger` and `subdued`.
 
-```typescript
+```tsx
 import React from 'react';
 import { BlockQuote, BlockQuoteItem, TypographyColor } from 'react-magma-dom';
 
@@ -108,7 +106,7 @@ export function Example() {
 
 The `borderStyle` prop allows the use of any Magma color or a custom CSS hex value. The available Magma colors are found <Link to="/design-intro/colors">here</Link>.
 
-```typescript
+```tsx
 import React from 'react';
 import { BlockQuote, BlockQuoteItem } from 'react-magma-dom';
 
@@ -130,7 +128,7 @@ The `contextVariant` prop can be used to set additional styles on `BlockQuote`. 
 
 This prop may be customized between `hasAttribution` and the main quote element with `narrative` and `expressive` font families.
 
-```typescript
+```tsx
 import React from 'react';
 import { BlockQuote, BlockQuoteItem } from 'react-magma-dom';
 
@@ -152,7 +150,7 @@ export function Example() {
 
 The `isInverse` prop renders white text for the quotation and nearly white text for the attribution line if enabled.
 
-```typescript
+```tsx
 import React from 'react';
 import { BlockQuote, BlockQuoteItem, Card, CardBody } from 'react-magma-dom';
 

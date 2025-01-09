@@ -4,9 +4,7 @@ title: Header
 isPattern: true
 ---
 
-import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="header" type="design">
 
@@ -32,13 +30,16 @@ The header component is designed to be extremely flexible allowing designers to 
 1. Hamburger menu for responsive design
 
 <figure>
-  <div class="background">
-    <img src="../../images/header/anatomy-standard-responsive.png" alt="GATSBY_EMPTY_ALT" />
+  <div className="background">
+    <img
+      src="../../images/header/anatomy-standard-responsive.png"
+      alt="GATSBY_EMPTY_ALT"
+    />
   </div>
   <figcaption>Header on small/mobile screen</figcaption>
 </figure>
 
-<figure class="with-background">
+<figure className="with-background">
   <img src="../../images/header/anatomy-standard.png" alt="GATSBY_EMPTY_ALT" />
   <figcaption>Header on large/desktop screen</figcaption>
 </figure>
@@ -48,7 +49,10 @@ The header component is designed to be extremely flexible allowing designers to 
 Horizontal specifications are consistent across all “flavors” of the header (standard, compact, and responsive.)
 
 <figure>
-  <img src="../../images/header/h-specs-standard-responsive.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/header/h-specs-standard-responsive.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>Header on small/mobile screen</figcaption>
 </figure>
 
@@ -58,7 +62,10 @@ Horizontal specifications are consistent across all “flavors” of the header 
 </figure>
 
 <figure>
-  <img src="../../images/header/h-specs-standard-with-sidebar.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/header/h-specs-standard-with-sidebar.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>Header with sidebar menu icon</figcaption>
 </figure>
 
@@ -67,7 +74,10 @@ Horizontal specifications are consistent across all “flavors” of the header 
 In certain circumstances, designers may need to left-justify header features. The component allows for this and uses the same basic rules of horizontal and vertical spacing.
 
 <figure>
-  <img src="../../images/header/left-justification.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/header/left-justification.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>Header with left justification</figcaption>
 </figure>
 
@@ -126,7 +136,7 @@ Here are several examples of strategies that designers should avoid:
 <figure>
   <img src="../../images/header/too-many-icons.png" alt="GATSBY_EMPTY_ALT" />
   <figcaption>
-    <p class="title title-incorrect">Incorrect</p>
+    <p className="title title-incorrect">Incorrect</p>
     <p>Incorrect: Too many icons create inbalance and clutter</p>
   </figcaption>
 </figure>
@@ -138,7 +148,7 @@ Don't duplicate items that already exist in the sidebar or elsewhere on the UI.
 <figure>
   <img src="../../images/header/duplicate-sidebar.png" alt="GATSBY_EMPTY_ALT" />
   <figcaption>
-    <p class="title title-incorrect">Incorrect</p>
+    <p className="title title-incorrect">Incorrect</p>
     <p>These already exist in the sidebar or are better suited there</p>
   </figcaption>
 </figure>
@@ -146,9 +156,12 @@ Don't duplicate items that already exist in the sidebar or elsewhere on the UI.
 ### Don't use a collapsed sidebar and hamburger menu
 
 <figure>
-  <img src="../../images/header/sidebar-and-hamburger.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/header/sidebar-and-hamburger.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>
-    <p class="title title-incorrect">Incorrect</p>
+    <p className="title title-incorrect">Incorrect</p>
     <p>Sidebar controls should never co-exist with the hamburger menu</p>
   </figcaption>
 </figure>

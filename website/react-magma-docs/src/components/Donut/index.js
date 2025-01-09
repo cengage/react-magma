@@ -163,6 +163,7 @@ export const Donut = () => (
     <StyledShadow />
     {[...Array(60)].map((_, i) => (
       <StyledSprinkle
+        key={i}
         style={{
           background: Sprinkles[haveARandomNum(6)].background,
           top: `${haveARandomNum(110)}px`,

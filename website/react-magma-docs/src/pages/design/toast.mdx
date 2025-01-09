@@ -4,9 +4,7 @@ title: Toast
 order: 1
 ---
 
-import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="toast" type="design">
 
@@ -20,7 +18,10 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 Toasts are the least intrusive of the three types of alerts and are used primarily for communicating non-critical information to the user. Toasts appear in the lower-left corner of the viewport.
 
 <figure>
-  <img src="../../images/alerts/toast-alert-example.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/alerts/toast-alert-example.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
 </figure>
 
 ---
@@ -46,9 +47,12 @@ The basic anatomy of the alert is the same across all three types (banner, inlin
 If multiple toasts are triggered, they will automatically stack vertically. When at all possible, try to group batch-like actions into a single toast instead of triggering multiple alerts.
 
 <figure>
-  <img src="../../images/alerts/stack-toasts-incorrect.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/alerts/stack-toasts-incorrect.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>
-    <p class="title title-incorrect">Incorrect</p>
+    <p className="title title-incorrect">Incorrect</p>
     <p>
       Do not trigger multiple toasts when a single action processes multiple
       identical results
@@ -56,9 +60,12 @@ If multiple toasts are triggered, they will automatically stack vertically. When
   </figcaption>
 </figure>
 <figure>
-  <img src="../../images/alerts/batch-actions-toast.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/alerts/batch-actions-toast.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>
-    <p class="title title-correct">Correct</p>
+    <p className="title title-correct">Correct</p>
     <p>Combine the results from a single action into a single toast alert.</p>
   </figcaption>
 </figure>
@@ -71,16 +78,16 @@ Because toasts are intended to be the least disruptive type of alert, you can ge
 
 Avoid displaying errors or warnings with toasts, but if you have to, then these should not auto-dismiss. Errors and warnings are generally considered critical, and you don't want the user to miss the notification. The user has to manually dismiss these messages when they are ready, or when the issue is resolved.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img
           src="../../images/alerts/toast-error-manually-dismiss.png"
           alt="GATSBY_EMPTY_ALT"
         />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             Toasts displaying error messages or warnings should only be manually
             dismissible.
@@ -88,14 +95,14 @@ Avoid displaying errors or warnings with toasts, but if you have to, then these 
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
         <img
           src="../../images/alerts/toast-successful-auto-dismiss.png"
           alt="GATSBY_EMPTY_ALT"
         />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             Toasts displaying general information or success messages may be set
             to auto-dismiss.
@@ -125,7 +132,10 @@ Take the following guidelines into consideration when crafting your message:
 When the viewport is 600px wide and smaller, we automatically reduce the icon and font size to optimize the amount of space given to the message and optional links or buttons in the alert. The toast will also automatically stretch to 100% of the viewport width with spacing around it.
 
 <figure>
-  <img src="../../images/alerts/mobile-toast-alert-example.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/alerts/mobile-toast-alert-example.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
 </figure>
 
 ---

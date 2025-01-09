@@ -4,9 +4,7 @@ title: Tabs
 order: 1
 ---
 
-import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="tabs" type="design">
 
@@ -22,7 +20,11 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 ## Anatomy
 
 <figure>
-  <img src="../../images/tabs/tabs-anatomy.png" alt="GATSBY_EMPTY_ALT" aria-hidden="true" />
+  <img
+    src="../../images/tabs/tabs-anatomy.png"
+    alt="GATSBY_EMPTY_ALT"
+    aria-hidden="true"
+  />
 </figure>
 
 1. Tab
@@ -36,13 +38,16 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 Text labels should clearly and succinctly describe the content they represent. Tabs have a max-width of 250px by default, and long labels will wrap, but this obviously has a drastic impact on the presentation so we should take great care with the words we choose.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/tabs/tabs-line-wrap.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/tabs/tabs-line-wrap.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-caution">Caution</p>
+          <p className="title title-caution">Caution</p>
           <p>
             Be careful how much text you use in your tab labels. The text will
             wrap, but it has a drastic impact on the presentation of your tabs.
@@ -50,11 +55,14 @@ Text labels should clearly and succinctly describe the content they represent. T
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/tabs/tabs-resize-text.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/tabs/tabs-resize-text.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>
             Do not resize the text on a tab to make it fit on a single line.
           </p>
@@ -62,12 +70,15 @@ Text labels should clearly and succinctly describe the content they represent. T
       </figure>
     </div>
   </div>
-  <div class="row">
-    <div class="col col-1">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/tabs/tabs-truncate-text.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/tabs/tabs-truncate-text.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>
             Do not truncate text on a tab to make it fit on a single line. This
             could make it difficult to understand the true intent of the tab.
@@ -75,11 +86,14 @@ Text labels should clearly and succinctly describe the content they represent. T
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/tabs/tabs-icon-and-text-incorrect.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/tabs/tabs-icon-and-text-incorrect.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>
             Do not mix icon-only tabs with text-only tabs. All tabs in a group
             should use the same type of tab consistently.
@@ -107,9 +121,12 @@ Icons can be placed to the left of the label or on top of the label, depending o
     </p>
   </figcaption>
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 <figure>
-  <img src="../../images/tabs/tabs-icon-and-label-stacked.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/tabs/tabs-icon-and-label-stacked.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>
     <p>
       Icons can be stacked on top of the label which saves horizontal space, but
@@ -125,35 +142,41 @@ Icon-only tabs can be very useful for communicating the content they represent, 
 <figure>
   <img src="../../images/tabs/tabs-icon-only.png" alt="GATSBY_EMPTY_ALT" />
   <figcaption>
-    <p class="title title-caution">Caution</p>
+    <p className="title title-caution">Caution</p>
     <p>
       Icons used on their own should only be done if testing proves that the
       icons being used are clear and easy to understand or learn quickly.
     </p>
   </figcaption>
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 ### Active Tab Indicator
 
 The active tab indicator helps make it very clear which tab is currently selected.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/tabs/tabs-active-indicator-bottom.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/tabs/tabs-active-indicator-bottom.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>The indicator appears on the bottom of the tab by default.</p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/tabs/tabs-active-indicator-top.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/tabs/tabs-active-indicator-top.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-caution">Caution</p>
+          <p className="title title-caution">Caution</p>
           <p>
             Displaying tabs below their associated content panel is most
             commonly used for navigation that appears at the bottom of the
@@ -193,30 +216,36 @@ Tabs are displayed in a single row or column, with each tab connected to the con
     <p>Example of tabs in the header of a panel.</p>
   </figcaption>
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 <figure>
   <img src="../../images/tabs/tabs-column.png" alt="GATSBY_EMPTY_ALT" />
   <figcaption>
     <p>Example of tabs in a column.</p>
   </figcaption>
 </figure>
-<span class="horizontal-spacer"></span>
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<span className="horizontal-spacer"></span>
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/tabs/nesting-tabs-wrong.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/tabs/nesting-tabs-wrong.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>Don't nest tabs to create multiple levels.</p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/tabs/stacking-tabs-wrong.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/tabs/stacking-tabs-wrong.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>Don't stack tabs meant to be horizontal on top of each other.</p>
         </figcaption>
       </figure>
@@ -242,14 +271,14 @@ Auto-width tabs can be left-aligned, right-aligned, or centered.
     <p>By default, auto-width tabs are left aligned.</p>
   </figcaption>
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 <figure>
   <img src="../../images/tabs/tabs-right-aligned.png" alt="GATSBY_EMPTY_ALT" />
   <figcaption>
     <p>You may also right-align the tabs with the content below or above.</p>
   </figcaption>
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 <figure>
   <img src="../../images/tabs/tabs-centered.png" alt="GATSBY_EMPTY_ALT" />
   <figcaption>
@@ -262,7 +291,10 @@ Auto-width tabs can be left-aligned, right-aligned, or centered.
 The tab container for auto-width tabs will automatically scroll if the container becomes too small to show all the tabs. Buttons to scroll left and right will automatically be added, but users with touch-based devices will also be able to drag the tab container left and right.
 
 <figure>
-  <img src="../../images/tabs/horizontal-scrolling-tabs.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/tabs/horizontal-scrolling-tabs.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>
     <p>
       If there are more tabs to see beyond the edge of the container, you will
@@ -281,11 +313,14 @@ Full-width tabs can be calculated by the width of the container divided by the n
     <p>Simple example of full-width tabs, each tab being of equal width.</p>
   </figcaption>
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 <figure>
-  <img src="../../images/tabs/tabs-alignment-with-content.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/tabs/tabs-alignment-with-content.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>
-    <p class="title title-caution">Caution</p>
+    <p className="title title-caution">Caution</p>
     <p>
       Be careful with how the content aligns with the tabs themselves. In this
       example, the alignment could cause users to misunderstand what the tabs
@@ -312,7 +347,10 @@ Tabs may also be placed to the left of their corresponding content in a vertical
 Vertical tabs will also automatically scroll when the height of their container is too small to display all of the tabs.
 
 <figure>
-  <img src="../../images/tabs/tabs-vertical-scrolling.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/tabs/tabs-vertical-scrolling.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>
     <p>
       If there are more tabs to see beyond the bottom of the container, you will
@@ -328,7 +366,10 @@ Vertical tabs will also automatically scroll when the height of their container 
 The tabs have inverse styling available for use on dark backgrounds. Take care with the color you choose for the background to make sure the necessary contrast ratios are upheld for accessibility compliance.
 
 <figure>
-  <img src="../../images/tabs/tabs-inverse-example.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/tabs/tabs-inverse-example.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>
     <p>Example of tabs on a dark blue background.</p>
   </figcaption>

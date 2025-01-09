@@ -292,9 +292,9 @@ export function IndexPageContent() {
             </CardBody>
           </HeroCardGrid>
         </StyledGridHeroItem>
-        </StyledGridTop>
+      </StyledGridTop>
 
-        <StyledGrid gridGap={magma.spaceScale.spacing06}>
+      <StyledGrid gridGap={magma.spaceScale.spacing06}>
         <CenterBlock>
           <Heading level={2}>Working smarter, not&nbsp;harder</Heading>
           <p>

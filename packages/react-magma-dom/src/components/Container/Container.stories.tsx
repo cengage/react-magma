@@ -13,9 +13,7 @@ import {
   TabPanelsContainer,
   TabPanel,
 } from '../Tabs';
-import { Meta } from '@storybook/react/types-6-0';
-
-import { Story } from '@storybook/react/types-6-0';
+import { Meta , Story} from '@storybook/react/types-6-0';
 
 export default {
   component: Container,
