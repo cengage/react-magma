@@ -159,6 +159,75 @@ export function Example() {
 }
 ```
 
+## Disabled Items
+
+To disable specific items in the `Select` component, add a `disabled: true` property to each item object. Disabled items specified as `defaultSelectedItem` or `initialSelectedItem` will not be selected by default or initially. If `initialHighlightedIndex` points to a `disabled` item, the component will not highlight it.
+
+Example:
+
+```tsx
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Select
+        id="disabledItemsSelectId"
+        labelText="Select with Disabled Items"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue', disabled: true },
+          { label: 'Green', value: 'green' },
+        ]}
+        isClearable
+        initialHighlightedIndex={1}
+        defaultSelectedItem={{ label: 'Blue', value: 'blue', disabled: true }}
+        initialSelectedItem={{ label: 'Blue', value: 'blue', disabled: true }}
+      />
+      <br />
+      <Select
+        id="disabledItemsSelectId"
+        labelText="Multi Select with Disabled Items"
+        isMulti
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Green', value: 'green' },
+          { label: 'Blue-Disabled', value: 'blue', disabled: true },
+          { label: 'Purple mountain majesty', value: 'purple' },
+          { label: 'Orange', value: 'orange', disabled: false },
+          {
+            label: 'Yellow-Disabled',
+            value: 'Yellow-Disabled',
+            disabled: true,
+          },
+        ]}
+        isClearable
+        initialHighlightedIndex={2}
+        defaultSelectedItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Orange', value: 'orange', disabled: false },
+          {
+            label: 'Yellow-Disabled',
+            value: 'Yellow-Disabled',
+            disabled: true,
+          },
+        ]}
+        initialSelectedItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Orange', value: 'orange', disabled: false },
+          {
+            label: 'Yellow-Disabled',
+            value: 'Yellow-Disabled',
+            disabled: true,
+          },
+        ]}
+      />
+    </>
+  );
+}
+```
+
 ## Clearable
 
 The optional `isClearable` prop allows the user to clear the field once a selection has been made.
@@ -1135,7 +1204,7 @@ The `type` property in the `changes` object that is returned from the `onStateCh
 corresponds to a `stateChangeTypes` property. The list of all the possible types for a `select` or a
 `multi-select` are listed below.
 
-<Alert variant="info" style={{ maxWidth: '100%', overflow: 'scroll' }}>
+<Alert variant="info" style={{ maxWidth: '100%' }}>
   In the development environment these types equate to strings
   <br />
   (eg:{' '}
@@ -1145,12 +1214,14 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
   </inlineCode>
   ). However, in the production environment the types equate to numbers
   <br />
-  (eg: <inlineCode class="inverse">ComboboxStateChangeTypes.InputKeyDownArrowDown = 0</inlineCode>).
+  (eg: <inlineCode class="inverse">
+    ComboboxStateChangeTypes.InputKeyDownArrowDown = 0
+  </inlineCode>).
 </Alert>
 
 ### Select
 
-<div style={{ overflowX: 'scroll' }}>
+<div>
   <ul>
     <li>
       <inlineCode>SelectStateChangeTypes.MenuKeyDownArrowDown</inlineCode>
@@ -1232,7 +1303,7 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 
 ### MultiSelect
 
-<div style={{ overflowX: 'scroll' }}>
+<div >
   <ul>
     <li>
       <inlineCode>

@@ -21,6 +21,7 @@ interface CalendarMonthProps {
   setDateFocused?: (value: boolean) => void;
 }
 
+
 const CalendarContainer = styled.div<{ isInverse?: boolean }>`
   background: ${props =>
     props.isInverse
@@ -143,7 +144,12 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   const startOfWeek = days.indexOf(i18n.datePicker.startOfWeek);
   const sortedDays = days.slice(startOfWeek).concat(days.slice(0, startOfWeek));
   const tableDaysHeaders = sortedDays.map((day, index) => (
-    <Th key={index} theme={theme} isInverse={context.isInverse}>
+    <Th
+      key={index}
+      theme={theme}
+      isInverse={context.isInverse}
+      aria-label={i18n.days.long[day]}
+    >
       {i18n.days.min[day]}
     </Th>
   ));

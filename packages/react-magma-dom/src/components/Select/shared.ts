@@ -1,9 +1,9 @@
-import { inputBaseStyles } from '../InputBase';
-import { Card } from '../Card';
-import { transparentize } from 'polished';
-import styled from '@emotion/styled';
-import { ThemeInterface } from '../../theme/magma';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+import { ThemeInterface } from '../../theme/magma';
+import { Card } from '../Card';
+import { inputBaseStyles } from '../InputBase';
 
 function buildListHoverColor(props) {
   if (props.isFocused) {
@@ -23,6 +23,19 @@ function buildListFocusColor(props) {
     return props.theme.colors.focus;
   }
   return 'transparent';
+}
+
+function buildListItemColor(props) {
+  if (props.isDisabled) {
+    if (props.isInverse) {
+      return transparentize(0.6, props.theme.colors.neutral100);
+    }
+    return transparentize(0.4, props.theme.colors.neutral500);
+  }
+  if (props.isInverse) {
+    return props.theme.colors.neutral100;
+  }
+  return props.theme.colors.neutral700;
 }
 
 export const SelectContainer = styled.div`
@@ -55,9 +68,12 @@ export const SelectText = styled.span<{
         : props.theme.colors.neutral500;
     }
   }};
-  ${props => props.isDisabled && props.isShowPlaceholder && css`
-    opacity: ${props.isInverse ? 0.4 : 0.6}
-  `}
+  ${props =>
+    props.isDisabled &&
+    props.isShowPlaceholder &&
+    css`
+      opacity: ${props.isInverse ? 0.4 : 0.6};
+    `}
 `;
 
 export const StyledCard = styled(Card)<{
@@ -91,16 +107,14 @@ export const StyledList = styled('ul')<{ isOpen?: boolean; maxHeight: string }>`
 export const StyledItem = styled('li')<{
   isInverse?: boolean;
   isFocused?: boolean;
+  isDisabled?: boolean;
 }>`
   align-self: center;
   background: ${props => buildListHoverColor(props)};
   border: 2px solid;
   border-color: ${props => buildListFocusColor(props)};
   cursor: default;
-  color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+  color: ${props => buildListItemColor(props)};
   line-height: 24px;
   margin: 0;
   padding: 8px 16px;
@@ -168,6 +182,14 @@ export const SelectedItemButton = styled.button<{
   position: relative;
   white-space: nowrap;
   min-width: 0%;
+  outline-offset: 2px;
+  &:focus {
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
+  }
 `;
 
 export const IconWrapper = styled.span`

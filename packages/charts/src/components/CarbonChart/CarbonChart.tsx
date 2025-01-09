@@ -248,15 +248,15 @@ const CarbonChartWrapper = styled.div<{
         drop-shadow( 1px  0px 0px ${props =>
           props.isInverse
             ? props.theme.colors.primary600
-            : props.theme.colors.neutral100}); 
+            : props.theme.colors.neutral100})
         drop-shadow(-1px  0px 0px ${props =>
           props.isInverse
             ? props.theme.colors.primary600
-            : props.theme.colors.neutral100});
+            : props.theme.colors.neutral100})
         drop-shadow( 0px  1px 0px ${props =>
           props.isInverse
             ? props.theme.colors.primary600
-            : props.theme.colors.neutral100});
+            : props.theme.colors.neutral100})
         drop-shadow( 0px -1px 0px ${props =>
           props.isInverse
             ? props.theme.colors.primary600

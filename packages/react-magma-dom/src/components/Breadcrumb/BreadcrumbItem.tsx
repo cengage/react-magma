@@ -36,7 +36,6 @@ const StyledLink = styled.a<{ isInverse?: boolean }>`
       : props.theme.colors.neutral700};
   text-decoration: none;
   cursor: default;
-
   &:hover,
   &:focus {
     color: ${props =>

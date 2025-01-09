@@ -548,6 +548,25 @@ describe('Select', () => {
     expect(getByText(helperMessage)).toBeInTheDocument();
   });
 
+  it('should handle disabled items', () => {
+    const items = [
+      { label: 'Red', value: 'red', disabled: true },
+      { label: 'Blue', value: 'blue', disabled: false },
+      { label: 'Green', value: 'green' },
+    ];
+
+    const { getByLabelText, getByText } = render(
+      <MultiSelect labelText={labelText} items={items} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+    fireEvent.click(renderedSelect);
+
+    expect(getByText('Red')).toHaveAttribute('aria-disabled', 'true');
+    expect(getByText('Blue')).toHaveAttribute('aria-disabled', 'false');
+    expect(getByText('Green')).toHaveAttribute('aria-disabled', 'false');
+  });
+
   describe('events', () => {
     it('onBlur', () => {
       const onBlur = jest.fn();

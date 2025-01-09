@@ -12,6 +12,7 @@ import {
   toggleAllMulti,
   isSelectedItemsChanged,
   isEqualArrays,
+  getChildrenIds,
 } from './utils';
 import { TreeViewSelectable } from './types';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
@@ -25,6 +26,8 @@ export interface TreeViewApi {
   }: Pick<TreeViewItemInterface, 'itemId' | 'checkedStatus'>): void;
   selectAll(): void;
   clearAll(): void;
+  showMore(): void;
+  showLess(): void;
 }
 
 export interface UseTreeViewProps {
@@ -63,8 +66,13 @@ export interface UseTreeViewProps {
   testId?: string;
   /**
    * Action that fires when an item is expanded or collapsed
+   * Return an array of itemIds of items that are expanded
+   * Example: ['item0', 'item1', 'item3']
    */
-  onExpandedChange?: (event: React.SyntheticEvent) => void;
+  onExpandedChange?: (
+    event: React.SyntheticEvent,
+    expandedItems: Array<string>
+  ) => void;
   /**
    * Action that fires when an item is selected
    * Return an array of objects.
@@ -93,6 +101,8 @@ export interface UseTreeViewProps {
    * selectItem({ itemId, checkedStatus }: Pick<TreeViewItemInterface, 'itemId' | 'checkedStatus'>): void - action that allows to change item selection,
    * selectAll(): void - action that allows to select all items,
    * clearAll(): void - action that allows to unselect all items.
+   * showMore(): void - action that gets called when a tree has hidden items and they get expanded.
+   * showLess(): void - action that gets called when a tree has hidden items and they get collapsed.
    */
   apiRef?: React.MutableRefObject<TreeViewApi | undefined>;
   /**
@@ -160,7 +170,7 @@ export function useTreeView(props: UseTreeViewProps) {
 
     if (selectable === TreeViewSelectable.off) {
       const firstExpandableItem = enabledItems.find(
-        item => item.hasOwnTreeItems
+        item => item?.hasOwnTreeItems
       );
 
       return firstExpandableItem
@@ -170,7 +180,7 @@ export function useTreeView(props: UseTreeViewProps) {
 
     const firstNonUncheckedItem = enabledItems.find(
       item =>
-        item.checkedStatus &&
+        item?.checkedStatus &&
         item.checkedStatus !== IndeterminateCheckboxStatus.unchecked
     );
 
@@ -183,8 +193,11 @@ export function useTreeView(props: UseTreeViewProps) {
 
   const prevSelectedItemsRef = React.useRef(null);
   const prevPreselectedItemsRef = React.useRef(preselectedItems);
-
+  const prevChildrenRef = React.useRef(children);
   const initializationRef = React.useRef(true);
+
+  // Used for showAll button
+  const [itemsNeedUpdate, setItemsNeedUpdate] = React.useState(null);
 
   React.useEffect(() => {
     if (isEqualArrays(prevPreselectedItemsRef.current, preselectedItems)) {
@@ -224,13 +237,13 @@ export function useTreeView(props: UseTreeViewProps) {
           item => item.itemId === prevItem.itemId
         );
 
-        if (itemWithUpdatedDisabledState?.isDisabled === prevItem.isDisabled) {
+        if (itemWithUpdatedDisabledState?.isDisabled === prevItem?.isDisabled) {
           return prevItem;
         }
 
         return {
           ...prevItem,
-          isDisabled: itemWithUpdatedDisabledState.isDisabled,
+          isDisabled: itemWithUpdatedDisabledState?.isDisabled,
         };
       });
     });
@@ -320,15 +333,7 @@ export function useTreeView(props: UseTreeViewProps) {
           ) {
             return;
           }
-
-          setItems(prevItems => {
-            return toggleAllMulti({
-              items,
-              checkedStatus: IndeterminateCheckboxStatus.checked,
-              checkChildren,
-              checkParents,
-            });
-          });
+          this.showMore(true);
         },
 
         clearAll() {
@@ -336,7 +341,7 @@ export function useTreeView(props: UseTreeViewProps) {
             return;
           }
 
-          setItems(prevItems => {
+          setItems(() => {
             return toggleAllMulti({
               items,
               checkedStatus: IndeterminateCheckboxStatus.unchecked,
@@ -345,9 +350,55 @@ export function useTreeView(props: UseTreeViewProps) {
             });
           });
         },
+
+        showMore(fromSelectAll: boolean = false) {
+          if (fromSelectAll) {
+            setItems(() => {
+              return toggleAllMulti({
+                items,
+                checkedStatus: IndeterminateCheckboxStatus.checked,
+                checkChildren,
+                checkParents,
+              });
+            });
+          } else {
+            setItemsNeedUpdate(true);
+          }
+        },
+
+        showLess() {
+          setItems(
+            getInitialItems({
+              children,
+              preselectedItems: selectedItems,
+              checkParents,
+              checkChildren,
+              selectable,
+              isDisabled,
+            })
+          );
+        }
       };
     }
-  }, [selectItem, isDisabled]);
+  }, [selectItem, isDisabled, children]);
+
+  React.useEffect(() => {
+    if (itemsNeedUpdate) {
+      setItems(
+        getInitialItems({
+          children,
+          preselectedItems: selectedItems,
+          checkParents,
+          checkChildren,
+          selectable,
+          isDisabled,
+        })
+      );
+      prevChildrenRef.current = children;
+
+      setItemsNeedUpdate(false);
+    }
+  }, [itemsNeedUpdate, children]);
 
   const [initialExpandedItemsNeedUpdate, setInitialExpandedItemsNeedUpdate] =
     React.useState(false);
@@ -359,6 +410,43 @@ export function useTreeView(props: UseTreeViewProps) {
       setInitialExpandedItemsNeedUpdate(true);
     }
   }, []);
+
+  const [expandedSet, setExpandedSet] = React.useState<Set<string>>(
+    new Set(initialExpandedItems)
+  );
+
+  const handleExpandedChange = (
+    event: React.SyntheticEvent,
+    itemId: string
+  ) => {
+    setExpandedSet(prevExpandedSet => {
+      const updatedExpandedSet = new Set(prevExpandedSet);
+      const childItemIds = getChildrenIds({
+        items,
+        itemId,
+      });
+
+      if (updatedExpandedSet.has(itemId)) {
+        updatedExpandedSet.delete(itemId);
+        childItemIds.forEach((childId: string) => {
+          updatedExpandedSet.delete(childId);
+        });
+      } else {
+        updatedExpandedSet.add(itemId);
+        childItemIds.forEach((childId: string) => {
+          if (initialExpandedItems?.includes(childId)) {
+            updatedExpandedSet.add(childId);
+          }
+        });
+      }
+
+      const expandedItemsArray = Array.from(updatedExpandedSet);
+      onExpandedChange &&
+        typeof onExpandedChange === 'function' &&
+        onExpandedChange(event, expandedItemsArray);
+      return updatedExpandedSet;
+    });
+  };
 
   const contextValue = {
     hasIcons,
@@ -376,6 +464,8 @@ export function useTreeView(props: UseTreeViewProps) {
     checkParents,
     items,
     selectItem,
+    handleExpandedChange,
+    expandedSet,
   };
 
   return { contextValue };

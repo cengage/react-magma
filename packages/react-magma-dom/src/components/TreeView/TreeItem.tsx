@@ -202,8 +202,13 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse();
 
-    const { selectable, hasIcons, onExpandedChange, itemToFocus } =
-      React.useContext(TreeViewContext);
+    const {
+      selectable,
+      hasIcons,
+      onExpandedChange,
+      itemToFocus,
+      handleExpandedChange,
+    } = React.useContext(TreeViewContext);
 
     const { contextValue, handleClick, handleKeyDown } = useTreeItem(
       props,
@@ -300,7 +305,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
       onExpandedChange &&
         typeof onExpandedChange === 'function' &&
-        onExpandedChange(event);
+        handleExpandedChange(event, itemId);
     };
 
     const tabIndex = React.useMemo(() => {
@@ -387,7 +392,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           {React.Children.map(
             children,
             (child: React.ReactElement<any>, index) => {
-              return child.type === TreeItem ? (
+              return child?.type === TreeItem ? (
                 <Transition isOpen={expanded} collapse unmountOnExit>
                   <ul role="group">
                     {React.cloneElement(child, {

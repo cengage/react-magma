@@ -1,251 +1,73 @@
-## 4.6.0
+## 4.8.0-next.0
 
-## 4.7.0-next.40
-
-### Patch Changes
-
-- 3a97fe97f: patch(Heading): Add the `noTopMargin` and `noBottomMargin` props to the `Heading` component.
-
-## 4.7.0-next.39
+## 4.8.0-next.1
 
 ### Patch Changes
 
-- 45be51cfc: fix(TreeView): Fix undefined problem
-
-## 4.7.0-next.38
-
-### Patch Changes
-
-- acbec5c8d: fix(Dropdown): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `svg` elements.
-
-## 4.7.0-next.37
-
-### Patch Changes
-
-- 08deb434d: fix(List): Hide SVGs from assistive tech by adding `aria-hidden="true"` to the `span` element that wraps the SVGs.
-
-## 4.7.0-next.36
-
-### Patch Changes
-
-- a95d26ca7: fix(CheckBox): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `span` element that wraps the SVGs.
-
-## 4.7.0-next.35
-
-### Patch Changes
-
-- 044da059c: fix(TimePicker): Fixed AM/PM width in the `TimePicker`.
-
-## 4.7.0-next.34
-
-### Patch Changes
-
-- f885d5906: fix(Breadcrumb): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `span` element that wraps the SVGs.
-
-## 4.7.0-next.33
-
-### Patch Changes
-
-- 7887c50b9: chore(dropdown): Deprecate `dropDirection` & `alignment` props. These are no longer necessary with viewport detection support.
-
-## 4.7.0-next.32
-
-### Patch Changes
-
-- ddf476a38: fix(Tabs): Center preselected `Tab` on the `Scrollable Tabs`.
-
-## 4.7.0-next.31
+- 4484ad2b7: fix(NativeSelect): Add `aria-describedby` to helper and error messages to associate them with the `Select`.
 
 ### Minor Changes
 
-- 360cf8d29: feat(Input): Update colors for error message, icon and border in dark mode.
+- 79435c964: feat(Select): Support disabling individual items in Select and Multi Select components
 
-## 4.7.0-next.30
-
-### Minor Changes
-
-- d8662d6f6: feat(Input): Update Input additional children position based on label position
-
-## 4.7.0-next.29
-
-### Patch Changes
-
-- e447c8af8: fix(Toast): Fixed loading ring alignment when zooming in Safari.
-
-## 4.7.0-next.28
+## 4.7.0
 
 ### Minor Changes
 
-- 5a928ea59: feat(ProgressBar): Update colors from danger200/success200 to danger300/success300 in dark mode.
-
-## 4.7.0-next.27
-
-### Patch Changes
-
-- d7423ebe5: fix(Button): Remove animation presses for `Button`.
-
-## 4.7.0-next.26
-
-### Minor Changes
-
-- 40708c7c6: feat(Tabs, NavTabs): Add support for overwriting `TextTransform`: add `textTransform` prop.
-
-## 4.7.0-next.25
+- e926d3ddf: feat(Button): Add `success` button.
+- cdb304158: feat(Combobox, Select, Date picker, Dropdown): Support viewport detection and positioning
+- d8662d6f6: feat(Input): Update additional children position based on label position
+- 360cf8d29: feat(Input): Update colors for error message, icon and border in dark mode
+- 5a928ea59: feat(ProgressBar): Update colors from danger200/success200 to danger300/success300 in dark mode
+- 68ff224cc: feat(Stepper): Add vertical orientation for `Stepper`
+- 40708c7c6: feat(Tabs, NavTabs): Add support for overwriting text transform with `textTransform` prop
+- 78fc319ba: feat(TreeView): `onExpandedChange` returns an array of expanded IDs
+- c815b89ac: feat(TreeView): Add ability to update selected items from outside the tree
+- 1caced455: feat(TreeView): Add support for `isDisabled` trees and items
+- 4bec9c320: feat(TreeView): Support "show all"/"hide all" button inside TreeView component
 
 ### Patch Changes
 
-- eb5f11fd8: fix(TreeView): Fix TreeView issues from verification
-
-## 4.7.0-next.24
-
-### Patch Changes
-
-- 270e1f4ff: fix(Select): Fix placeholder color.
-
-## 4.7.0-next.23
-
-### Patch Changes
-
-- 3c94afd1a: fix(Input): Style update: Focus style on inputs.
-
-## 4.7.0-next.22
-
-### Patch Changes
-
-- eb2b3ab1e: fix(DatePicker): Fix navigation and accessibility issues.
-
-## 4.7.0-next.21
-
-### Minor Changes
-
-- 1caced455: feat(TreeView): Add support for isDisabled
-
-## 4.7.0-next.20
-
-### Patch Changes
-
-- 2157b4708: fix(CheckBox): Fix for unreadable labels in `CheckBox` for screen readers.
-
-## 4.7.0-next.19
-
-### Patch Changes
-
-- 7adf69a9f: fix(.srories.): Remove `.stories.` files from the production bundle.
-
-## 4.7.0-next.18
-
-### Patch Changes
-
+- ac6ff21bb: fix(BlockQuote): Fix border color respecting the `Theme` context
+- f885d5906: fix(Breadcrumb): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `span` element that wraps the SVGs
+- d7423ebe5: fix(Button): Remove animation presses for `Button`
+- 2157b4708: fix(CheckBox): Fix unreadable labels in `CheckBox` for screen readers
+- a95d26ca7: fix(CheckBox): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `span` element that wraps the SVGs
+- b3fcc32b1: fix(Combobox): Fix focus issue after triggering the clear button
+- cf959a580: fix(Combobox/Select): Fix focus color for selected items when using `isMulti` + `isInverse`
+- f45bdde78: fix(DatePicker): Remove shortcut to open `HelperInformation`
+- 8004c9f55: fix(DatePicker): Add `aria-label` to calendar header columns
+- eb2b3ab1e: fix(DatePicker): Fix navigation and accessibility issues
+- 35d9507ad: fix(Drawer): Fix trapped focus
+- 7887c50b9: chore(Dropdown): Deprecate `dropDirection` & `alignment` props. These are no longer necessary with viewport detection support
+- d109847d8: fix(Dropdown): Fix the dropdown closing on second button click in `Safari`
+- 1d1110dc3: fix(Dropdown): Fix accessibility for active index
+- acbec5c8d: fix(Dropdown): Hide SVGs from screen readers by adding `aria-hidden="true"` to the `svg` elements
+- a163f4230: fix(Heading): Update margins for `heading2XLarge`
+- 3a97fe97f: fix(Heading): Add the `noTopMargin` and `noBottomMargin` props to the `Heading` component
+- 3c94afd1a: fix(Input): Update focus style on inputs
+- 482268a7e: fix(Input): Remove `flex-shrink` to allow inputs to shrink as needed
+- fbae9ce39: fix(Input): Fix help link position on inputs
+- e432f97c9: fix(Input): Improve descriptions for `inputWrapperStyle` and `containerStyle` props
+- 08deb434d: fix(List): Hide SVGs from assistive tech by adding `aria-hidden="true"` to the `span` element that wraps the SVGs
+- ac6ff21bb: fix(ListItem): Fix icon colors respecting the `Theme` context
+- fbfd75e8b: fix(Modal): Fix modal losing focus order with dynamic content
+- 7d8006fe1: fix(ProgressBar): Remove animation if the user has `prefers-reduced-motion` media query set
+- 5c3d7fce3: fix(Search): Fix the disappearing focus on the button when loading
+- 1da99002f: fix(Search): Fix overlapping content issue with the clear button
+- 5e39ab2b4: fix(Select): Update outline offset on multiselected items
+- 270e1f4ff: fix(Select): Fix placeholder color
+- a328ebe29: fix(Select): Fix accessibility issue for `clearIndicator` inside `SelectTriggerButton`
+- ddf476a38: fix(Tabs): Center preselected `Tab` on the `Scrollable Tabs`
+- 6a8ed217b: fix(Tag): Update tag focus state.
+- 044da059c: fix(TimePicker): Fix AM/PM width in the `TimePicker`
+- e447c8af8: fix(Toast): Fix loading ring alignment when zooming in Safari
+- 631d01024: fix(TreeView): Improve screenreader accessibility
+- 24680b288: fix(TreeView): Fix initialExpanded items expanding all parents
 - c0aecada5: fix(useFocusLock): Fix the `useFocusLock` hook if the first or last element is disabled.
+- 7adf69a9f: fix(.stories.): Remove `.stories.` files from the production bundle
 
-## 4.7.0-next.17
-
-### Patch Changes
-
-- 1da99002f: fix(search): Fix the overlapping content issue around the clear button
-
-## 4.7.0-next.16
-
-### Patch Changes
-
-- ac6ff21bb: fix(BlockQuote): Fix border color respecting the `Theme` context.
-- ac6ff21bb: fix(ListItem): Fix icon colors respecting the `Theme` context.
-
-## 4.7.0-next.15
-
-### Patch Changes
-
-- b3fcc32b1: fix(combobox): Fix focus issue after triggering the clear button
-
-## 4.7.0-next.14
-
-### Patch Changes
-
-- 7d8006fe1: fix(ProgressBar): Remove animation if the user has `prefers-reduced-motion` media query set.
-
-## 4.7.0-next.13
-
-### Minor Changes
-
-- 68ff224cc: feat(Stepper): Add vertical orientation for `Stepper`.
-
-## 4.7.0-next.12
-
-### Patch Changes
-
-- 35d9507ad: fix(drawer): Fix trapped focus in the drawer
-
-## 4.7.0-next.11
-
-### Patch Changes
-
-- 1d1110dc3: fix(dropdown): Fix active index communication handled programmatically
-
-## 4.7.0-next.10
-
-### Minor Changes
-
-- e926d3ddf: feat(button): Add `success` button
-
-## 4.7.0-next.9
-
-### Patch Changes
-
-- fbfd75e8b: fix(Modal): Fix modal losing focus order with dynamic content.
-
-## 4.7.0-next.8
-
-### Patch Changes
-
-- d109847d8: fix(dropdown): Fix the dropdown closing on the second button click in `Safari`
-
-## 4.7.0-next.7
-
-### Patch Changes
-
-- 24680b288: fix(TreeView): fix initial expanded items should expand all parents
-
-## 4.7.0-next.6
-
-### Minor Changes
-
-- cdb304158: feat(Combobox, Select, Date picker, Dropdown): Update viewport detection/positioning
-
-## 4.7.0-next.5
-
-### Patch Changes
-
-- 631d01024: fix(TreeView): Fix switching to Focus Mode inside `TreeView`.
-
-## 4.7.0-next.4
-
-### Patch Changes
-
-- 482268a7e: fix(Input): Remove flex-shrink to allow inputs to shrink as needed.
-
-## 4.7.0-next.3
-
-### Patch Changes
-
-- a328ebe29: fix(Select): Fix the accessibility issue for `clearIndicator` inside `SelectTriggerButton`.
-
-## 4.7.0-next.2
-
-### Patch Changes
-
-- 5c3d7fce3: fix(search):Fix the disappearing focus on the button when loading
-
-## 4.7.0-next.1
-
-### Minor Changes
-
-- c815b89ac: feat(TreeView): Add ability to change items selection outside
-
-## 4.6.1-next.0
-
-### Patch Changes
-
-- f45bdde78: fix(DatePicker): Remove shortcut to open `HelperInformation`.
+## 4.6.0
 
 ### Minor Changes
 
@@ -254,30 +76,30 @@
 
 ### Patch Changes
 
-- dc307446a: fix(Accordion): Fix screen scroll behavior during accordion navigation
-- 6b413fb77: fix(List): Updated support for nested items
-- d4164cacb: fix(Modal): Fix focus issue when using `isBackgroundClickDisabled`
-- 84a8a17d6: fix(DatePicker): Fix error when using both `onChange` and `onDateChange`
-- 48b7a5539: fix(Breadcrumbs): Fixed alignment issue between elements.
-- 616cbf9a0: fix(BreadCrumb): Improved accessibility by replace span with link to fix focus
-- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
+- 616cbf9a0: fix(BreadCrumb): Improved accessibility by replacing span with link to fix focus
 - aced1dd74: fix(DataGrid): Improved accessibility by adding `aria-live="polite"` and fixing labelText for checkboxes when `isSelectable={true}`
 - 9d840d863: fix(Indeterminate Checkbox): Improved accessibility for `Indeterminate` status
+- 3fa73c68d: fix(Button): Improved accessibility for `isLoading` state
 - 9214724b6: fix(NavTabs): Improved accessibility by adding `aria-current="page"` for active tabs.
 - 1d1dd1d06: fix(Pagination): Improved accessibility for classic pagination by adding `aria-current="page"` and `aria-label="pagination"`.
+- 48b7a5539: fix(Breadcrumbs): Fixed alignment issue between elements.
+- 84a8a17d6: fix(DatePicker): Fix error when using both `onChange` and `onDateChange`
+- dc307446a: fix(Accordion): Fix screen scroll behavior during accordion navigation
+- d4164cacb: fix(Modal): Fix focus issue when using `isBackgroundClickDisabled`
+- 6b413fb77: fix(List): Updated support for nested items
 - 11bedeff9: fix(TreeView): Accessibility updates: respect reduced motion preference, navigate tree with left arrow keys
 
 ## 4.5.0
 
 ### Minor Changes
 
-- ae668a3e5: chore: Updating emotion to v11
+- ae668a3e5: chore: Updating emotion to v11. **Note: adopters will need to upgrade** their packages to the following versions `"@emotion/react": "^11.13.0", "@emotion/styled": "^11.13.0"`. Notice that `@emotion/core` has been replaced with `@emotion/styled` and that's the only breaking change.
 - 9e38e9e7f: feat(Stepper): New Stepper component. Displays step based content for use in multi-step interfaces.
 
 ### Patch Changes
 
 - e43932d45: fix(Modal): Background overlay now displays as expected for nested modals
-- e24db7ab4: fix(DatePicker): Remove role="presentation" from calendar
+- e24db7ab4: fix(DatePicker): Remove `role="presentation"` from calendar
 - 65d417254: fix(ProgressBar): Add support for custom colors
 - 636fa3060: fix(NativeSelect): Update arrow placement, arrow color and border color when disabled
 - da14eec4f: fix(Modal): Remove unnecessary `aria-describedBy=“modal”`. Add `ariaLabel` prop so that Modals without headers can customize the `aria-label` instead of defaulting to `aria-label="modal"` which is not correct for a11y standards.

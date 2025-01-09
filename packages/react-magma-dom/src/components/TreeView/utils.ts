@@ -152,22 +152,6 @@ export function getChildrenItemIdsFlat(children) {
   return itemIds;
 }
 
-// Return an array of objects where all children are items are nested in the parents
-export function getChildrenItemIdsInTree(children) {
-  let itemIds = [];
-
-  React.Children.forEach(children, child => {
-    if (child.props?.itemId && !child.props?.isDisabled) {
-      itemIds.push({
-        itemId: child.props?.itemId,
-        children: getChildrenItemIdsInTree(child.props?.children),
-      });
-    }
-  });
-
-  return itemIds;
-}
-
 // Return a treeItemRefArray object with no null children
 export function filterNullEntries(obj) {
   if (Array.isArray(obj.current)) {
@@ -204,13 +188,52 @@ const getIsDisabled = ({
   const isDisabled =
     preselectedItem?.isDisabled !== undefined
       ? preselectedItem?.isDisabled
-      : props.isDisabled;
+      : props?.isDisabled;
 
   if (selectable === TreeViewSelectable.multi && !checkChildren) {
     return isDisabled;
   }
 
   return isParentDisabled || isDisabled;
+};
+
+/* Returns a boolean indicating whether at least one child is valid.
+A child is considered valid if it can be counted as an item that would make the parent expandable.
+This is used to set `hasOwnTreeItems` which manages visibility of the expandable arrow.
+*/
+const areChildrenValid = children => {
+  if (!children) {
+    return false;
+  } else if (!children.length && children.type !== TreeItem) {
+    return false;
+  }
+
+  let hasValidChild = true;
+
+  for (let i = 0; i < children.length; i++) {
+    const child = children[i];
+
+    if (typeof child === 'string') {
+      return false; // Return false if a child is a string
+    }
+
+    if (child?.type !== TreeItem) {
+      return hasValidChild;
+    }
+    // Recursively check the validity of nested children
+    if (child.props.children) {
+      const nestedChildren = Array.isArray(child.props.children)
+        ? child.props.children
+        : [child.props.children];
+
+      if (areChildrenValid(nestedChildren)) {
+        hasValidChild = true;
+        return hasValidChild;
+      }
+    }
+  }
+
+  return hasValidChild;
 };
 
 const getTreeViewData = ({
@@ -249,7 +272,7 @@ const getTreeViewData = ({
           itemId: props.itemId,
           parentId,
           icon: props.icon,
-          hasOwnTreeItems: Boolean(props.children),
+          hasOwnTreeItems: areChildrenValid(props.children),
           isDisabled,
         },
         ...(props.children
@@ -281,7 +304,7 @@ const processItemCheckedStatus = ({
 }) => {
   const item = items.find(item => item.itemId === itemId);
 
-  if (item.isDisabled && !forceCheckedStatusForDisabled) {
+  if (item?.isDisabled && !forceCheckedStatusForDisabled) {
     return items;
   }
 
@@ -310,7 +333,7 @@ const processChildrenSelection = ({
     forceCheckedStatusForDisabled,
   });
 
-  if (!item.hasOwnTreeItems) {
+  if (!item?.hasOwnTreeItems) {
     return itemsWithProcessedItemCheckedStatus;
   }
 
@@ -360,7 +383,7 @@ const processChildrenSelection = ({
   });
 };
 
-const getChildrenIds = ({
+export const getChildrenIds = ({
   items,
   itemId,
 }: {
@@ -373,7 +396,7 @@ const getChildrenIds = ({
         return result;
       }
 
-      if (item.hasOwnTreeItems) {
+      if (item?.hasOwnTreeItems) {
         return [...result, ...getChildrenIds({ items, itemId: item.itemId })];
       }
 
@@ -403,7 +426,7 @@ const getChildrenUniqueStatuses = ({
 }) => {
   const childrenAndItemIds = getChildrenIds({ items, itemId });
   const leaves = items.filter(item => {
-    return !item.hasOwnTreeItems && childrenAndItemIds.includes(item.itemId);
+    return !item?.hasOwnTreeItems && childrenAndItemIds.includes(item.itemId);
   });
   const uniqueStatuses = Array.from(
     new Set(
@@ -427,8 +450,8 @@ const processInitialParentStatuses = ({
 }) => {
   const itemsWithSelectedChildren = items.reduce((result, item) => {
     if (
-      !item.hasOwnTreeItems ||
-      item.checkedStatus !== IndeterminateCheckboxStatus.checked
+      !item?.hasOwnTreeItems ||
+      item?.checkedStatus !== IndeterminateCheckboxStatus.checked
     ) {
       return result;
     }
@@ -442,7 +465,7 @@ const processInitialParentStatuses = ({
   }, items);
 
   return itemsWithSelectedChildren.map(item => {
-    if (!item.hasOwnTreeItems) {
+    if (!item?.hasOwnTreeItems) {
       return item;
     }
 
@@ -552,13 +575,12 @@ const processParentsSelection = ({
   checkedStatus: TreeViewItemInterface['checkedStatus'];
 }) => {
   const item = items.find(item => item.itemId === itemId);
-  const { parentId } = item;
 
-  if (parentId === null) {
+  if (item?.parentId === null) {
     return items;
   }
 
-  const siblings = items.filter(item => item?.parentId === parentId);
+  const siblings = items.filter(i => i.parentId === item?.parentId);
   const isAllSiblingsHasTheSameStatus = siblings.every(
     item =>
       (item.checkedStatus || IndeterminateCheckboxStatus.unchecked) ===
@@ -568,7 +590,7 @@ const processParentsSelection = ({
     ? checkedStatus
     : IndeterminateCheckboxStatus.indeterminate;
 
-  const parent = items.find(item => item.itemId === parentId);
+  const parent = items.find(i => i.itemId === item?.parentId);
 
   const nextItems = items.map(item =>
     item.itemId === parent.itemId
@@ -682,7 +704,7 @@ export const toggleAllMulti = ({
 } & Pick<UseTreeViewProps, 'checkChildren' | 'checkParents'>) => {
   if (!checkChildren) {
     return items.map(item => {
-      if (item.isDisabled) {
+      if (item?.isDisabled) {
         return item;
       }
 

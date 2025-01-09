@@ -1,5 +1,126 @@
 # Change Log
 
+## 5.0.11-next.0
+
+### Patch Changes
+
+- Updated dependencies [79435c964]
+  - react-magma-dom@4.8.0-next.0
+  - @react-magma/charts@11.0.0-next.0
+  - @react-magma/dropzone@11.0.0-next.0
+  - @react-magma/schema-renderer@11.0.0-next.0
+  - @cengage-patterns/header@13.0.0-next.0
+
+## 5.0.10
+
+### Patch Changes
+
+- 91966ce38: Manually sync main -> dev (v4.7.0)
+- 91966ce38: Fix changelog for dom v4.7.0
+
+## 5.0.9
+
+### Patch Changes
+
+- 02db8e632: fix(Modal): Fix nested modal example focus lock.
+- 02db8e632: fix(Drawer): Corrected examples for a `drawer` component to ensure focus returns to the opening button after the `drawer` closes.
+- 02db8e632: fix(Docs): add "GATSBY_EMPTY_ALT" as alt text for empty alts.
+- 02db8e632: fix(TimePicker): improve TimePicker internationalization example.
+- 02db8e632: build(Lerna): update and add local caching for build and test commands`.
+- 02db8e632: docs: Fix contribution guidelines page
+- 02db8e632: docs(emotion): Update changelog to explain possible issue with emotion/css.
+- 02db8e632: fix(Docs): Within the Docs site, these components have had fixes for missing references and general clean-up for CodeSandbox examples: Grid, Container, Stepper, Combobox, Hyperlink, IconButton, Toast, DatePicker, Dropdown, Form, FormGroup, useFocusLock
+- 02db8e632: fix(TreeView): Fix TreeView references in Selectable example.
+- 02db8e632: feat(react-magma-docs): Implement scrollspy.
+- 02db8e632: chore: Manually sync main -> dev (4.6.0)
+- 02db8e632: docs(TreeView): Update examples
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+- Updated dependencies [02db8e632]
+  - react-magma-dom@4.7.0
+  - @react-magma/charts@10.0.0
+  - @cengage-patterns/header@12.0.0
+  - @react-magma/schema-renderer@10.0.0
+  - @react-magma/dropzone@10.0.0
+
+## 5.0.9-next.15
+
+### Patch Changes
+
+- 356730976: chore: Clean up changesets ahead of release
+
+## 5.0.9-next.14
+
+### Patch Changes
+
+- 78aad0925: fix(Docs): Within the Docs site, these components have had fixes for missing references and general clean-up for CodeSandbox examples: Grid, Container, Stepper, Combobox, Hyperlink, IconButton, Toast, DatePicker, Dropdown, Form, FormGroup, useFocusLock
+
+## 5.0.9-next.13
+
+### Patch Changes
+
+- 8027499be: docs: Fix contribution guidelines page
+
+## 5.0.9-next.12
+
+### Patch Changes
+
+- a328f30bb: fix(TreeView): Fix TreeView references in Selectable example.
+
+## 5.0.9-next.11
+
+### Patch Changes
+
+- 4971408b6: docs(emotion): Update changelog to explain possible issue with emotion/css.
+
 ## 5.0.9-next.10
 
 ### Patch Changes

@@ -207,8 +207,7 @@ const InsideDropdownTemplate: Story<StepperProps> = args => {
               Item Content Five
             </Step>,
           ]}
-        >
-        </ResponsiveStepperContainer>
+        ></ResponsiveStepperContainer>
       </DropdownContent>
     </Dropdown>
   );
