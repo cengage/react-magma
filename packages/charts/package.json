@@ -53,7 +53,6 @@
   },
   "exports": {
     ".": "./src",
-    "./src/components/CarbonChart/": "./styles.min.css",
-    "./dist/charts.css": "./dist/charts.css"
+    "./src/components/CarbonChart/": "./styles.min.css"
   }
 }
