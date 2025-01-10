@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.0.11-next.3
+
+### Patch Changes
+
+- be7697292: feat(Charts): Add the `Data Visualization` tab with pages `Getting Started`, `Chart Types` and `Chart Demos`.
+- Updated dependencies [be7697292]
+  - @react-magma/charts@11.0.0-next.1
+
 ## 5.0.11-next.2
 
 ### Patch Changes

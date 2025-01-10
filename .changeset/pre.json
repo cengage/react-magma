@@ -14,6 +14,8 @@
     "a11y-nativeSelect-add-aria-secribedBy-to-helper-message",
     "chore-docs-linting-",
     "chore-fix-remaining-unit-test-errors",
+    "feat-add-new-charts",
+    "feat-charts-documentation",
     "feat-select-disabled-items-styling",
     "feat-select-disabled-items",
     "fix-GlobalStyles-import-warning",
