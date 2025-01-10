@@ -25,6 +25,7 @@ const NAV_TABS = {
   DESIGN_INTRO: 'design_intro',
   PATTERNS: 'patterns',
   PATTERNS_INTRO: 'patterns_intro',
+  DATA_VISUALIZATION: 'data_visualization',
 };
 
 // Special case pages that don't have secondary navigation.
@@ -160,6 +161,16 @@ export const PageContent = ({ children, componentName, type }) => {
               ...navFields
             }
           }
+          dataVisualization: allMdx(
+            filter: {
+              fileAbsolutePath: { glob: "**/src/pages/data-visualization/**" }
+            }
+            sort: { order: ASC, fields: frontmatter___order }
+          ) {
+            edges {
+              ...navFields
+            }
+          }
           designIntro: allMdx(
             filter: {
               fileAbsolutePath: { glob: "**/src/pages/design-intro/**" }
@@ -198,6 +209,10 @@ export const PageContent = ({ children, componentName, type }) => {
           data.designPatternDocs,
           componentName
         );
+        const dataVisualization = getDataNode(
+          data.dataVisualization,
+          componentName
+        );
 
         const designIntro = getDataNode(data.designIntro, componentName);
         const apiIntro = getDataNode(data.apiIntro, componentName);
@@ -207,15 +222,21 @@ export const PageContent = ({ children, componentName, type }) => {
         const apiLink = apiDocs?.node.fields.slug;
         const patternsLink = patternsDocs?.node.fields.slug;
         const designPatternsLink = designPatternDocs?.node.fields.slug;
+        const dataVisualizationLink = dataVisualization?.node.fields.slug;
 
         const hasDocs = !!(
           apiDocs ||
           designDocs ||
           patternsDocs ||
-          designPatternDocs
+          designPatternDocs ||
+          dataVisualization
         );
 
-        const apiNavTabToLink = patternsDocs ? patternsLink : apiLink;
+        const apiNavTabToLink = patternsDocs
+          ? patternsLink
+          : dataVisualization
+          ? dataVisualizationLink
+          : apiLink;
         const designNavTabToLink = designPatternDocs
           ? designPatternsLink
           : designLink;
@@ -227,6 +248,11 @@ export const PageContent = ({ children, componentName, type }) => {
             }
             if (type === NAV_TABS.API) {
               return patternsDocs;
+            }
+          }
+          if (dataVisualization) {
+            if (type === NAV_TABS.DATA_VISUALIZATION) {
+              return dataVisualization;
             }
           }
           if (apiDocs || designDocs) {
@@ -328,5 +354,6 @@ PageContent.propTypes = {
     'design_intro',
     'patterns',
     'patterns_intro',
+    'data_visualization',
   ]),
 };

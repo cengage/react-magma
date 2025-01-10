@@ -195,6 +195,9 @@ function defaultPanelIndex(location) {
   if (location.pathname.includes('patterns')) {
     return [2];
   }
+  if (location.pathname.includes('data-visualization')) {
+    return [3];
+  }
 }
 
 function isAccordionItemOpen(location, id) {
@@ -266,6 +269,16 @@ export const MainNav = ({ ...props }) => {
           patternsDocs: allMdx(
             filter: { fileAbsolutePath: { glob: "**/src/pages/patterns/**" } }
             sort: { order: ASC, fields: frontmatter___title }
+          ) {
+            edges {
+              ...navFields
+            }
+          }
+          dataVisualization: allMdx(
+            filter: {
+              fileAbsolutePath: { glob: "**/src/pages/data-visualization/**" }
+            }
+            sort: { order: ASC, fields: frontmatter___order }
           ) {
             edges {
               ...navFields
@@ -425,6 +438,7 @@ export const MainNav = ({ ...props }) => {
                       </List>
                     </StyledAccordionPanel>
                   </StyledAccordionItem>
+
                   <StyledAccordionItem
                     isOpen={isAccordionItemOpen(location, 'patterns')}
                   >
@@ -449,6 +463,29 @@ export const MainNav = ({ ...props }) => {
                       <Heading3>API</Heading3>
                       <List>
                         {data.patternsDocs.edges.map(({ node }) => (
+                          <ListItem key={node.fields.slug}>
+                            <StyledLink2
+                              activeStyle={activeStyle}
+                              onClick={props.handleClick}
+                              to={node.fields.slug}
+                            >
+                              {node.frontmatter.title}
+                            </StyledLink2>
+                          </ListItem>
+                        ))}
+                      </List>
+                    </StyledAccordionPanel>
+                  </StyledAccordionItem>
+
+                  <StyledAccordionItem
+                    isOpen={isAccordionItemOpen(location, 'data-visualization')}
+                  >
+                    <StyledAccordionButton>
+                      <Heading2>Data Visualization</Heading2>
+                    </StyledAccordionButton>
+                    <StyledAccordionPanel>
+                      <List>
+                        {data.dataVisualization.edges.map(({ node }) => (
                           <ListItem key={node.fields.slug}>
                             <StyledLink2
                               activeStyle={activeStyle}
