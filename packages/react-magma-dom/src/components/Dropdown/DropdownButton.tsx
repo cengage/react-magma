@@ -14,6 +14,7 @@ import { ButtonProps, ButtonSize } from '../Button';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
 import styled from '@emotion/styled';
+import useDeviceDetect from '../../hooks/useDeviceDetect';
 
 export interface IconOnlyDropdownButtonProps
   extends Omit<ButtonProps, 'children'> {
@@ -86,6 +87,7 @@ export const DropdownButton = React.forwardRef<
 >((props, forwardedRef) => {
   const context = React.useContext(DropdownContext);
   const theme = React.useContext(ThemeContext);
+  const { isSafari } = useDeviceDetect();
 
   context.dropdownButtonId.current = useGenerateId(props.id);
 
@@ -124,16 +126,21 @@ export const DropdownButton = React.forwardRef<
 
   // Necessary for the proper opening and closing of the menu in Safari
   function handleMouseDown(event: React.MouseEvent) {
-    event.preventDefault();
+    if (isSafari) {
+      event.preventDefault();
+    }
   }
 
-  const iconPositionToUse = props.icon
-    ? iconPosition
-      ? iconPosition
-      : ButtonIconPosition.left
-    : context.dropDirection === DropdownDropDirection.left
-    ? ButtonIconPosition.left
-    : ButtonIconPosition.right;
+  let iconPositionToUse: ButtonIconPosition;
+
+  if (props.icon) {
+    iconPositionToUse = iconPosition ?? ButtonIconPosition.left;
+  } else {
+    iconPositionToUse =
+      context.dropDirection === DropdownDropDirection.left
+        ? ButtonIconPosition.left
+        : ButtonIconPosition.right;
+  }
 
   return (
     <div ref={context.setReference}>

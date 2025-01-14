@@ -392,6 +392,53 @@ describe('Dropdown', () => {
     jest.useRealTimers();
   });
 
+  it('should open one dropdown at a time, close the previous one, and close when clicking outside', () => {
+    jest.useFakeTimers();
+
+    const onClose1 = jest.fn();
+    const onClose2 = jest.fn();
+    const { getByText, getByTestId, container } = render(
+      <>
+        <Dropdown testId="dropdown1" onClose={onClose1}>
+          <DropdownButton>Toggle me 1</DropdownButton>
+          <DropdownContent testId="dropdown1Content">
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown testId="dropdown2" onClose={onClose2}>
+          <DropdownButton>Toggle me 2</DropdownButton>
+          <DropdownContent testId="dropdown2Content">
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </>
+    );
+
+    expect(getByTestId('dropdown1Content')).toHaveStyleRule('display', 'none');
+    expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'none');
+
+    // Open the first dropdown
+    userEvent.click(getByText('Toggle me 1'));
+    expect(getByTestId('dropdown1Content')).toHaveStyleRule('display', 'block');
+    expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'none');
+
+    // Open the second dropdown, which should close the first one
+    userEvent.click(getByText('Toggle me 2'));
+
+    expect(onClose1).toHaveBeenCalled();
+    expect(getByTestId('dropdown1Content')).toHaveStyleRule('display', 'none');
+    expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'block');
+
+    // Close the second dropdown by clicking outside
+    fireEvent.mouseDown(document.body);
+    act(jest.runAllTimers);
+
+    expect(onClose2).toHaveBeenCalled();
+    expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'none');
+
+    jest.useRealTimers();
+  });
+
   it('should close the menu when escape key is pressed', () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">

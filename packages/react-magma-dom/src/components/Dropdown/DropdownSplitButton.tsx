@@ -14,6 +14,7 @@ import { I18nContext } from '../../i18n';
 import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonGroupContext } from '../ButtonGroup';
+import useDeviceDetect from '../../hooks/useDeviceDetect';
 
 export interface DropdownSplitButtonProps extends ButtonStyles {
   /**
@@ -48,6 +49,7 @@ export const DropdownSplitButton = React.forwardRef<
 
   const resolvedContext = resolveProps(buttonGroupContext, context);
   const resolvedProps = resolveProps(props, resolvedContext);
+  const { isSafari } = useDeviceDetect();
 
   const {
     'aria-label': ariaLabel,
@@ -87,7 +89,9 @@ export const DropdownSplitButton = React.forwardRef<
 
   // Necessary for the proper opening and closing of the menu in Safari
   function handleMouseDown(event: React.MouseEvent) {
-    event.preventDefault();
+    if (isSafari) {
+      event.preventDefault();
+    }
   }
 
   const i18n = React.useContext(I18nContext);
@@ -118,7 +122,7 @@ export const DropdownSplitButton = React.forwardRef<
       <IconButton
         {...other}
         aria-expanded={resolvedContext.isOpen}
-        aria-label={ariaLabel ? ariaLabel : i18n.dropdown.toggleMenuAriaLabel}
+        aria-label={ariaLabel || i18n.dropdown.toggleMenuAriaLabel}
         aria-haspopup="true"
         icon={buttonIcon}
         isInverse={resolvedContext.isInverse}
