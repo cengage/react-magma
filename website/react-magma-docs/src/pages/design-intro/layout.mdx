@@ -12,7 +12,6 @@ import {
   TableBody,
   TableCell,
 } from 'react-magma-dom';
-import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="layout" type="design_intro">
 
@@ -28,7 +27,10 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 Every layout is made up of columns, gutters, and margins that respond accordingly to the size of the viewport.
 
 <figure>
-  <img src="../../images/layout/columns-gutters-margins.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/layout/columns-gutters-margins.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
 </figure>
 
 1. Columns
@@ -46,7 +48,7 @@ The columns indicate where the content of the page goes. The widths of the colum
   </figcaption>
 </figure>
 
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 <figure>
   <img src="../../images/layout/columns-6.png" alt="GATSBY_EMPTY_ALT" />
@@ -55,7 +57,7 @@ The columns indicate where the content of the page goes. The widths of the colum
   </figcaption>
 </figure>
 
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 <figure>
   <img src="../../images/layout/columns-4.png" alt="GATSBY_EMPTY_ALT" />
@@ -78,7 +80,7 @@ The width of gutters on standard Cengage page layouts should be set to 24px. On 
   </figcaption>
 </figure>
 
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 <figure>
   <img src="../../images/layout/gutters-16.png" alt="GATSBY_EMPTY_ALT" />
@@ -106,7 +108,10 @@ The width of margins on standard Cengage full-width page layouts should be set t
 Larger margins based on percentages can be used to restrict the maximum width of the content area. Commonly used for text-heavy pages displaying sales materials, articles, etc.
 
 <figure>
-  <img src="../../images/layout/layout-restricted-width.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/layout/layout-restricted-width.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
 </figure>
 
 ---
@@ -154,7 +159,7 @@ Each breakpoint range determines the number of columns, and recommended margins 
   </TableBody>
 </Table>
 
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 _\* Even for full-width layouts, we are only allowing the content area to size up to 1600px wide. Beyond that, the margins are essentially ignored and the space between the content area and the edges of the screen will grow as much as necessary._
 
@@ -165,23 +170,29 @@ _\* Even for full-width layouts, we are only allowing the content area to size u
 Some Cengage web applications have a global sidebar on the left side of the page. This sidebar necessitates that the main content changes from 12 columns to 6 at 1024px wide and below. This is much earlier than the other layouts detailed above.
 
 <figure>
-  <img src="../../images/layout/layout-with-sidebar.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/layout/layout-with-sidebar.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>
     When using the global sidebar, the main content area still has 12 columns
     when the viewport is wider than 1024px
   </figcaption>
 </figure>
 
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 <figure>
-  <img src="../../images/layout/layout-with-sidebar-1024.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/layout/layout-with-sidebar-1024.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>
     When using the global sidebar, the main content area changes to 6 columns
     when the viewport is 1024px wide and below.
   </figcaption>
 </figure>
 
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 </PageContent>

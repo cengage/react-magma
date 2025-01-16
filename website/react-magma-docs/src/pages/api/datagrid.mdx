@@ -11,8 +11,6 @@ props:
   - UseDataPaginationUncontrolled
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="datagrid" type="api">
 
 <LeadParagraph>
@@ -22,7 +20,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 ## Basic Usage
 
-```typescript
+```tsx
 import React from 'react';
 import { Datagrid, Card } from 'react-magma-dom';
 
@@ -222,7 +220,7 @@ export function Example() {
 
 ## Row Color
 
-```typescript
+```tsx
 import React from 'react';
 import { Datagrid, TableRowColor } from 'react-magma-dom';
 
@@ -272,7 +270,7 @@ export function Example() {
 
 Use `rowName` when using Selectable so that the aria labels on the checkboxes can be unique, otherwise the labels will default to "Select Row" or "Deselect Row."
 
-```typescript
+```tsx
 import React from 'react';
 import { Datagrid, Card } from 'react-magma-dom';
 
@@ -291,7 +289,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 1'
+      rowName: 'Row 1',
     },
     {
       id: 2,
@@ -299,7 +297,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 2'
+      rowName: 'Row 2',
     },
     {
       id: 3,
@@ -307,7 +305,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 3'
+      rowName: 'Row 3',
     },
     {
       id: 4,
@@ -315,7 +313,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 4'
+      rowName: 'Row 4',
     },
     {
       id: 5,
@@ -323,7 +321,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 5'
+      rowName: 'Row 5',
     },
     {
       id: 6,
@@ -331,7 +329,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 6'
+      rowName: 'Row 6',
     },
     {
       id: 7,
@@ -339,7 +337,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 7'
+      rowName: 'Row 7',
     },
     {
       id: 8,
@@ -347,7 +345,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 8'
+      rowName: 'Row 8',
     },
     {
       id: 9,
@@ -355,7 +353,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 9'
+      rowName: 'Row 9',
     },
     {
       id: 10,
@@ -363,7 +361,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 10'
+      rowName: 'Row 10',
     },
     {
       id: 11,
@@ -497,7 +495,7 @@ export function Example() {
 
 ## Disabled Selectable Row
 
-```typescript
+```tsx
 import React from 'react';
 import { Datagrid, Card } from 'react-magma-dom';
 
@@ -516,7 +514,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 1'
+      rowName: 'Row 1',
     },
     {
       id: 2,
@@ -524,7 +522,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 2'
+      rowName: 'Row 2',
     },
     {
       id: 3,
@@ -532,7 +530,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 3'
+      rowName: 'Row 3',
     },
     {
       id: 4,
@@ -541,7 +539,7 @@ export function Example() {
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
       isSelectableDisabled: true,
-      rowName: 'Row 4'
+      rowName: 'Row 4',
     },
     {
       id: 5,
@@ -549,7 +547,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 5'
+      rowName: 'Row 5',
     },
     {
       id: 6,
@@ -557,7 +555,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 6'
+      rowName: 'Row 6',
     },
     {
       id: 7,
@@ -565,7 +563,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 7'
+      rowName: 'Row 7',
     },
     {
       id: 8,
@@ -573,7 +571,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 8'
+      rowName: 'Row 8',
     },
     {
       id: 9,
@@ -581,7 +579,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 9'
+      rowName: 'Row 9',
     },
     {
       id: 10,
@@ -589,7 +587,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 10'
+      rowName: 'Row 10',
     },
     {
       id: 11,
@@ -723,7 +721,7 @@ export function Example() {
 
 ## Selectable and Sortable
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Datagrid,
@@ -915,7 +913,7 @@ export function Example() {
 
 ## Controlled Selectable Column
 
-```typescript
+```tsx
 import React from 'react';
 import { Button, ButtonColor, Datagrid, Card } from 'react-magma-dom';
 
@@ -938,7 +936,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 1'
+      rowName: 'Row 1',
     },
     {
       id: 2,
@@ -946,7 +944,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 2'
+      rowName: 'Row 2',
     },
     {
       id: 3,
@@ -954,7 +952,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 3'
+      rowName: 'Row 3',
     },
     {
       id: 4,
@@ -962,7 +960,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 4'
+      rowName: 'Row 4',
     },
     {
       id: 5,
@@ -970,7 +968,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 5'
+      rowName: 'Row 5',
     },
     {
       id: 6,
@@ -978,7 +976,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 6'
+      rowName: 'Row 6',
     },
     {
       id: 7,
@@ -986,7 +984,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 7'
+      rowName: 'Row 7',
     },
     {
       id: 8,
@@ -994,7 +992,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 8'
+      rowName: 'Row 8',
     },
     {
       id: 9,
@@ -1002,7 +1000,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 9'
+      rowName: 'Row 9',
     },
     {
       id: 10,
@@ -1010,7 +1008,7 @@ export function Example() {
       col2: 'Lorem ipsum dolor',
       col3: 'Lorem ipsum dolor',
       col4: 'Lorem ipsum',
-      rowName: 'Row 10'
+      rowName: 'Row 10',
     },
     {
       id: 11,
@@ -1159,7 +1157,7 @@ export function Example() {
 
 ## Pagination Defaults
 
-```typescript
+```tsx
 import React from 'react';
 import { Datagrid } from 'react-magma-dom';
 
@@ -1363,7 +1361,7 @@ export function Example() {
 
 ## Pagination Controlled
 
-```typescript
+```tsx
 import React from 'react';
 import { Datagrid } from 'react-magma-dom';
 
@@ -1586,7 +1584,7 @@ export function Example() {
 
 ## Custom Pagination Components
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Datagrid,
@@ -1838,9 +1836,9 @@ export function Example() {
 
 Pagination controls are put on the `Datagrid` component by default. You can turn off pagination by passing the `hasPagination` prop as `false`.
 
-```typescript
+```tsx
 import React from 'react';
-import { Datagrid, Card } from 'react-magma-dom';
+import { Datagrid } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -2037,7 +2035,7 @@ export function Example() {
 The `isInverse` prop will render a dark background and light text. The children will
 inherit the `isInverse` prop unless specified otherwise.
 
-```typescript
+```tsx
 import React from 'react';
 import { Datagrid, Card } from 'react-magma-dom';
 

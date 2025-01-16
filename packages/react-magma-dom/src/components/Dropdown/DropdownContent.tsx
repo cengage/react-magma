@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { css } from '@emotion/react';
 import { Card } from '../Card';
-import { DropdownAlignment, DropdownContext, DropdownDropDirection } from './Dropdown';
+import {
+  DropdownAlignment,
+  DropdownContext,
+  DropdownDropDirection,
+} from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import styled from '@emotion/styled';
@@ -40,10 +44,11 @@ const StyledCard = styled(Card)<{
   transition: opacity 0.3s;
   white-space: nowrap;
   &:focus {
-    outline: 2px solid ${props =>
-      props.isInverse
-        ? props.theme.colors.focusInverse
-        : props.theme.colors.focus};
+    outline: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
     outline-offset: 0;
   }
 

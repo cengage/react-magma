@@ -7,8 +7,6 @@ props:
   - ResponsiveStepperContainerProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="stepper" type="api">
 
 <LeadParagraph>
@@ -21,7 +19,7 @@ The Stepper consists of two components, the `Stepper` which acts like a wrapper 
 
 Throughout the series of `Step`s, the prop `currentStep` sets the appropriate styling between incomplete, active, and complete.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Container,
@@ -97,9 +95,16 @@ export function Example() {
 
 When using `layout` with `StepperLayout.summaryView`, the option to change the step label may be done with the `stepLabel` which takes a string and replaces the default "Step" label.
 
-```typescript
+```tsx
 import React from 'react';
-import { Container, Stepper, Step, StepperLayout, Button, ButtonGroup } from 'react-magma-dom';
+import {
+  Container,
+  Stepper,
+  Step,
+  StepperLayout,
+  Button,
+  ButtonGroup,
+} from 'react-magma-dom';
 
 export function Example() {
   const [currentStep, setCurrentStep] = React.useState(0);
@@ -165,9 +170,16 @@ export function Example() {
 
 When using layout `StepperLayout.summaryView`, after all of the steps are complete, the `completionLabel` prop takes a string and changes the title.
 
-```typescript
+```tsx
 import React from 'react';
-import { Container, Stepper, Step, StepperLayout, Button, ButtonGroup } from 'react-magma-dom';
+import {
+  Container,
+  Stepper,
+  Step,
+  StepperLayout,
+  Button,
+  ButtonGroup,
+} from 'react-magma-dom';
 
 export function Example() {
   const [currentStep, setCurrentStep] = React.useState(4);
@@ -236,7 +248,7 @@ export function Example() {
 
 For proper accessibility usage, the `ariaLabel` prop takes a string to idenitify the `Stepper` to screenreaders appropriately.
 
-```typescript
+```tsx
 import React from 'react';
 import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
 
@@ -304,7 +316,7 @@ For alternative layouts, the `layout` prop hides either labels or shows just the
 
 #### Layout - Hide Labels
 
-```typescript
+```tsx
 import React from 'react';
 import {
   StepperLayout,
@@ -379,7 +391,7 @@ export function Example() {
 
 #### Layout - Show Labels
 
-```typescript
+```tsx
 import React from 'react';
 import {
   StepperLayout,
@@ -454,7 +466,7 @@ export function Example() {
 
 #### Layout - Summary View
 
-```typescript
+```tsx
 import React from 'react';
 import {
   StepperLayout,
@@ -533,7 +545,7 @@ For responsive layouts, the `breakpoint` prop used along with `breakpointLayout`
 
 #### Breakpoint - Show Labels
 
-```typescript
+```tsx
 import React from 'react';
 import {
   StepperLayout,
@@ -610,7 +622,7 @@ export function Example() {
 
 #### Breakpoint - Hide Labels
 
-```typescript
+```tsx
 import React from 'react';
 import {
   StepperLayout,
@@ -686,7 +698,7 @@ export function Example() {
 
 #### Breakpoint - Summary View
 
-```typescript
+```tsx
 import React from 'react';
 import {
   StepperLayout,
@@ -766,7 +778,7 @@ The `orientation` prop allows you to change the orientation of the `Stepper`. By
 
 #### Vertical orientation
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Container,
@@ -862,7 +874,7 @@ export function Example() {
 
 ## Stepper inside a Dropdown
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Dropdown,
@@ -944,7 +956,7 @@ export function Example() {
 
 For responsive layouts, the `breakpoint` prop can be used in combination with the `breakpointOrientation` prop to change the `Stepper`’s orientation based on screen width. The `breakpoint` prop sets a maximum screen width, and `breakpointOrientation` defines the desired orientation (horizontal or vertical) when the screen width is below the specified breakpoint. By default, the `Stepper` is displayed horizontally if no responsive props are used. It is recommended to use `breakpointOrientation` with `ResponsiveStepperContainer` for optimal behavior.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Container,
@@ -1036,13 +1048,11 @@ export function Example() {
 
 When a `Step` is in the error state, use `hasError` on the `Step` to change the styling.
 
-```typescript
+```tsx
 import React from 'react';
 import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
-  const [currentStep, setCurrentStep] = React.useState(0);
-
   return (
     <>
       <Stepper ariaLabel="progress" currentStep={2}>
@@ -1076,7 +1086,7 @@ export function Example() {
 
 ## Inverse
 
-```typescript
+```tsx
 import React from 'react';
 import { Container, Stepper, Step, Button, ButtonGroup } from 'react-magma-dom';
 

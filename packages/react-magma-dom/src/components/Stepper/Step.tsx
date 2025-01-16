@@ -1,11 +1,11 @@
-import * as React from 'react';
-import { CheckIcon, CrossIcon } from 'react-magma-icons';
 import styled from '@emotion/styled';
+import * as React from 'react';
+import { CheckIcon, CloseIcon } from 'react-magma-icons';
 
+import { transparentize } from 'polished';
+import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
-import { useIsInverse } from '../../inverse';
-import { transparentize } from 'polished';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { StepperLayout, StepperOrientation } from './Stepper';
 
@@ -252,7 +252,7 @@ export const Step = React.forwardRef<HTMLDivElement, StepProps>(
           {stepStatus === StepStatus.completed && !hasError && (
             <CheckIcon aria-hidden="true" />
           )}
-          {hasError && <CrossIcon aria-hidden="true" />}
+          {hasError && <CloseIcon aria-hidden="true" />}
         </StyledStepIndicator>
 
         <StyledStepTextWrapper isVerticalOrientation={isVerticalOrientation}>

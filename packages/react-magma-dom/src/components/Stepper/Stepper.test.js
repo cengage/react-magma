@@ -1,12 +1,12 @@
-import React from 'react';
-import { act } from 'react-dom/test-utils';
-import { axe } from '../../../axe-helper';
-import { magma } from '../../theme/magma';
-import { Stepper, Step, StepperLayout, StepperOrientation } from '.';
 import { render } from '@testing-library/react';
 import { transparentize } from 'polished';
+import React from 'react';
+import { act } from 'react-dom/test-utils';
+import { Step, Stepper, StepperLayout, StepperOrientation } from '.';
+import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+import { magma } from '../../theme/magma';
 
 const TEXT = 'Test Text';
 const testId = 'test-id';
@@ -15,7 +15,7 @@ describe('Stepper', () => {
   it('should find element by testId', () => {
     const { getByTestId } = render(
       <Stepper ariaLabel="progress" testId={testId}>
-        <Step testId="step" label="step" />
+        <Step  key="step" testId="step" label="step" />
       </Stepper>
     );
 
@@ -26,8 +26,8 @@ describe('Stepper', () => {
     it('Does not violate accessibility standards', () => {
       const { container } = render(
         <Stepper ariaLabel="progress">
-          <Step testId="step1" label="step1" />
-          <Step testId="step2" label="step2" />
+          <Step  key="step1" testId="step1" label="step1" />
+          <Step  key="step2" testId="step2" label="step2" />
         </Stepper>
       );
 
@@ -39,8 +39,8 @@ describe('Stepper', () => {
     it('should use the custom aria-label', () => {
       const { getByLabelText } = render(
         <Stepper ariaLabel="custom" testId={testId} currentStep={0}>
-          <Step />
-          <Step />
+          <Step  key="step1" />
+          <Step  key="step2" />
         </Stepper>
       );
 
@@ -56,8 +56,8 @@ describe('Stepper', () => {
           layout={StepperLayout.showLabels}
           currentStep={1}
         >
-          <Step testId={`${testId}-1`} label={`${TEXT}-1`} />
-          <Step testId={`${testId}-2`} label={`${TEXT}-2`} />
+          <Step  key="step1" testId={`${testId}-1`} label={`${TEXT}-1`} />
+          <Step  key="step2" testId={`${testId}-2`} label={`${TEXT}-2`} />
         </Stepper>
       );
 
@@ -82,8 +82,8 @@ describe('Stepper', () => {
           layout={StepperLayout.hideLabels}
           currentStep={1}
         >
-          <Step testId={`${testId}-1`} label={`${TEXT}-1`} />
-          <Step testId={`${testId}-2`} label={`${TEXT}-2`} />
+          <Step key="step1" testId={`${testId}-1`} label={`${TEXT}-1`} />
+          <Step key="step2" testId={`${testId}-2`} label={`${TEXT}-2`} />
         </Stepper>
       );
 
@@ -109,8 +109,8 @@ describe('Stepper', () => {
         currentStep={2}
         layout={StepperLayout.summaryView}
       >
-        <Step />
-        <Step />
+        <Step key="step1" />
+        <Step key="step2" />
       </Stepper>
     );
 
@@ -124,8 +124,8 @@ describe('Stepper', () => {
         currentStep={0}
         layout={StepperLayout.summaryView}
       >
-        <Step />
-        <Step />
+        <Step key="step1" />
+        <Step key="step2" />
       </Stepper>
     );
 
@@ -140,8 +140,8 @@ describe('Stepper', () => {
         currentStep={2}
         layout={StepperLayout.summaryView}
       >
-        <Step />
-        <Step />
+        <Step key="step1" />
+        <Step key="step2" />
       </Stepper>
     );
 
@@ -156,8 +156,8 @@ describe('Stepper', () => {
         currentStep={0}
         layout={StepperLayout.summaryView}
       >
-        <Step />
-        <Step />
+        <Step key="step1" />
+        <Step key="step2" />
       </Stepper>
     );
 
@@ -181,8 +181,8 @@ describe('Stepper', () => {
             currentStep={2}
             layout={StepperLayout.summaryView}
           >
-            <Step />
-            <Step />
+            <Step key="step1" />
+            <Step key="step2" />
           </Stepper>
         </I18nContext.Provider>
       );
@@ -208,8 +208,8 @@ describe('Stepper', () => {
             currentStep={0}
             layout={StepperLayout.summaryView}
           >
-            <Step />
-            <Step />
+            <Step key="step1" />
+            <Step key="step2" />
           </Stepper>
         </I18nContext.Provider>
       );
@@ -222,8 +222,8 @@ describe('Stepper', () => {
     it('should have an active styled circle', () => {
       const { getByTestId } = render(
         <Stepper ariaLabel="progress" currentStep={0}>
-          <Step testId={testId} />
-          <Step />
+          <Step key="step1" testId={testId} />
+          <Step key="step2" />
         </Stepper>
       );
 
@@ -238,8 +238,8 @@ describe('Stepper', () => {
     it('should have an incomplete styled circle', () => {
       const { getByTestId } = render(
         <Stepper ariaLabel="progress" currentStep={0}>
-          <Step />
-          <Step testId={testId} />
+          <Step key="step1" />
+          <Step key="step2" testId={testId} />
         </Stepper>
       );
 
@@ -254,8 +254,8 @@ describe('Stepper', () => {
     it('should have a completed styled circle', () => {
       const { getByTestId } = render(
         <Stepper ariaLabel="progress" currentStep={1}>
-          <Step testId={testId} />
-          <Step />
+          <Step key="step1" testId={testId} />
+          <Step key="step2" />
         </Stepper>
       );
 
@@ -267,8 +267,8 @@ describe('Stepper', () => {
     it('should have a error styled circle', () => {
       const { getByTestId } = render(
         <Stepper ariaLabel="progress" currentStep={1}>
-          <Step testId={testId} hasError />
-          <Step />
+          <Step key="step1" testId={testId} hasError />
+          <Step key="step2" />
         </Stepper>
       );
 
@@ -280,8 +280,8 @@ describe('Stepper', () => {
     it('should have a primary label', () => {
       const { getByText } = render(
         <Stepper ariaLabel="progress" currentStep={1}>
-          <Step label={TEXT} />
-          <Step />
+          <Step key="step1" label={TEXT} />
+          <Step key="step2" />
         </Stepper>
       );
 
@@ -295,8 +295,8 @@ describe('Stepper', () => {
     it('should have a secondary label', () => {
       const { getByText } = render(
         <Stepper ariaLabel="progress" currentStep={1}>
-          <Step secondaryLabel={TEXT} hasError />
-          <Step />
+          <Step key="step1" secondaryLabel={TEXT} hasError />
+          <Step key="step2" />
         </Stepper>
       );
 
@@ -309,8 +309,8 @@ describe('Stepper', () => {
     it('should have an incomplete styled separator', () => {
       const { getByTestId } = render(
         <Stepper ariaLabel="progress" currentStep={0}>
-          <Step testId={testId} />
-          <Step />
+          <Step key="step1" testId={testId} />
+          <Step key="step2" />
         </Stepper>
       );
 
@@ -323,8 +323,8 @@ describe('Stepper', () => {
     it('should have a completed styled separator', () => {
       const { getByTestId } = render(
         <Stepper ariaLabel="progress" currentStep={1}>
-          <Step testId={testId} />
-          <Step />
+          <Step key="step1" testId={testId} />
+          <Step key="step2" />
         </Stepper>
       );
 
@@ -338,8 +338,8 @@ describe('Stepper', () => {
       it('should have an inverse active styled circle', () => {
         const { getByTestId } = render(
           <Stepper ariaLabel="progress" isInverse currentStep={0}>
-            <Step testId={testId} />
-            <Step />
+            <Step key="step1" testId={testId} />
+            <Step key="step2" />
           </Stepper>
         );
 
@@ -354,8 +354,8 @@ describe('Stepper', () => {
       it('should have an inverse incomplete styled circle', () => {
         const { getByTestId } = render(
           <Stepper ariaLabel="progress" isInverse currentStep={0}>
-            <Step />
-            <Step testId={testId} />
+            <Step key="step1" />
+            <Step key="step2" testId={testId} />
           </Stepper>
         );
 
@@ -370,8 +370,8 @@ describe('Stepper', () => {
       it('should have an inverse completed styled circle', () => {
         const { getByTestId } = render(
           <Stepper ariaLabel="progress" isInverse currentStep={1}>
-            <Step testId={testId} />
-            <Step />
+            <Step key="step1" testId={testId} />
+            <Step key="step2" />
           </Stepper>
         );
 
@@ -383,8 +383,8 @@ describe('Stepper', () => {
       it('should have an inverse error styled circle', () => {
         const { getByTestId } = render(
           <Stepper ariaLabel="progress" isInverse currentStep={1}>
-            <Step testId={testId} hasError />
-            <Step />
+            <Step key="step1" testId={testId} hasError />
+            <Step key="step2" />
           </Stepper>
         );
 
@@ -396,8 +396,8 @@ describe('Stepper', () => {
       it('should have an inverse primary label', () => {
         const { getByText } = render(
           <Stepper ariaLabel="progress" isInverse currentStep={1}>
-            <Step label={TEXT} hasError />
-            <Step />
+            <Step key="step1" label={TEXT} hasError />
+            <Step key="step2" />
           </Stepper>
         );
 
@@ -409,8 +409,8 @@ describe('Stepper', () => {
       it('should have an inverse secondary label', () => {
         const { getByText } = render(
           <Stepper ariaLabel="progress" isInverse currentStep={1}>
-            <Step secondaryLabel={TEXT} hasError />
-            <Step />
+            <Step key="step1" secondaryLabel={TEXT} hasError />
+            <Step key="step2" />
           </Stepper>
         );
 
@@ -425,8 +425,8 @@ describe('Stepper', () => {
       it('should have an inverse incomplete styled separator', () => {
         const { getByTestId } = render(
           <Stepper ariaLabel="progress" isInverse currentStep={0}>
-            <Step testId={testId} />
-            <Step />
+            <Step key="step1" testId={testId} />
+            <Step key="step2" />
           </Stepper>
         );
 
@@ -441,8 +441,8 @@ describe('Stepper', () => {
       it('should have an inverse completed styled separator', () => {
         const { getByTestId } = render(
           <Stepper ariaLabel="progress" isInverse currentStep={1}>
-            <Step testId={testId} />
-            <Step />
+            <Step key="step1" testId={testId} />
+            <Step key="step2" />
           </Stepper>
         );
 
@@ -463,8 +463,8 @@ describe('Stepper', () => {
             layout={StepperLayout.hideLabels}
             currentStep={1}
           >
-            <Step label={`${TEXT}-1`} />
-            <Step label={`${TEXT}-2`} />
+            <Step key="step1" label={`${TEXT}-1`} />
+            <Step key="step2" label={`${TEXT}-2`} />
           </Stepper>
         );
 
@@ -494,8 +494,8 @@ describe('Stepper', () => {
             layout={StepperLayout.summaryView}
             currentStep={0}
           >
-            <Step label={`${TEXT}-1`} />
-            <Step label={`${TEXT}-2`} />
+            <Step key="step1" label={`${TEXT}-1`} />
+            <Step key="step2" label={`${TEXT}-2`} />
           </Stepper>
         );
 
@@ -510,8 +510,8 @@ describe('Stepper', () => {
             layout={StepperLayout.showLabels}
             currentStep={0}
           >
-            <Step label={`${TEXT}-1`} />
-            <Step label={`${TEXT}-2`} />
+            <Step key="step1" label={`${TEXT}-1`} />
+            <Step key="step2" label={`${TEXT}-2`} />
           </Stepper>
         );
         const label1 = getByText(`${TEXT}-1`);
@@ -536,8 +536,8 @@ describe('Stepper', () => {
             layout={StepperLayout.showLabels}
             currentStep={1}
           >
-            <Step label={`${TEXT}-1`} />
-            <Step label={`${TEXT}-2`} />
+            <Step key="step1" label={`${TEXT}-1`} />
+            <Step key="step2" label={`${TEXT}-2`} />
           </Stepper>
         );
         act(() => {
@@ -563,8 +563,8 @@ describe('Stepper', () => {
             layout={StepperLayout.hideLabels}
             currentStep={0}
           >
-            <Step label={`${TEXT}-1`} />
-            <Step label={`${TEXT}-2`} />
+            <Step key="step1" label={`${TEXT}-1`} />
+            <Step key="step2" label={`${TEXT}-2`} />
           </Stepper>
         );
         act(() => {
@@ -594,8 +594,8 @@ describe('Stepper', () => {
             layout={StepperLayout.showLabels}
             currentStep={0}
           >
-            <Step label={`${TEXT}-1`} />
-            <Step label={`${TEXT}-2`} />
+            <Step key="step1" label={`${TEXT}-1`} />
+            <Step key="step2" label={`${TEXT}-2`} />
           </Stepper>
         );
         act(() => {
@@ -615,8 +615,8 @@ describe('Stepper', () => {
             currentStep={0}
             testId={testId}
           >
-            <Step />
-            <Step />
+            <Step key="step1" />
+            <Step key="step2" />
           </Stepper>
         );
 
@@ -633,8 +633,8 @@ describe('Stepper', () => {
             currentStep={0}
             testId={testId}
           >
-            <Step />
-            <Step />
+            <Step key="step1" />
+            <Step key="step2" />
           </Stepper>
         );
 
@@ -653,8 +653,8 @@ describe('Stepper', () => {
             orientation={StepperOrientation.horizontal}
             currentStep={0}
           >
-            <Step label={`${TEXT}-1`} />
-            <Step label={`${TEXT}-2`} />
+            <Step key="step1" label={`${TEXT}-1`} />
+            <Step key="step2" label={`${TEXT}-2`} />
           </Stepper>
         );
 
@@ -683,8 +683,8 @@ describe('Stepper', () => {
             layout={StepperLayout.summaryView}
             currentStep={1}
           >
-            <Step testId={`${testId}-1`} label={`${TEXT}-1`} />
-            <Step testId={`${testId}-2`} label={`${TEXT}-2`} />
+            <Step key="step1" testId={`${testId}-1`} label={`${TEXT}-1`} />
+            <Step key="step2" testId={`${testId}-2`} label={`${TEXT}-2`} />
           </Stepper>
         );
 

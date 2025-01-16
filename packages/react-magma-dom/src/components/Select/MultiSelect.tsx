@@ -11,6 +11,8 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { defaultComponents } from './components';
+import { useForkedRef } from '../../utils';
+import { isItemDisabled } from './utils';
 
 export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
@@ -45,12 +47,47 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     setFloating,
     setReference,
     isClearable,
+    initialHighlightedIndex,
   } = props;
 
   function checkSelectedItemValidity(itemToCheck: T) {
-    return (
-      items.findIndex(i => itemToString(i) === itemToString(itemToCheck)) !== -1
+    const itemIndex = items.findIndex(
+      i => itemToString(i) === itemToString(itemToCheck)
     );
+
+    return !isItemDisabled(itemToCheck) && itemIndex !== -1 && !isItemDisabled(items[itemIndex]);
+  }
+
+  function getFilteredItemIndex(item: T, filteredItems: T[]) {
+    const index = filteredItems.findIndex(
+      filteredItem => itemToString(filteredItem) === itemToString(item)
+    );
+
+    if (isItemDisabled(filteredItems[index])) {
+      return -1;
+    }
+    return index;
+  }
+
+  function handleOnIsOpenChange(changes) {
+    const { isOpen: changedIsOpen, selectedItem: changedSelectedItem } =
+      changes;
+
+    if (changedIsOpen && changedSelectedItem) {
+      if (isItemDisabled(changedSelectedItem)) {
+        setHighlightedIndex(-1);
+      } else {
+        setHighlightedIndex(
+          items.findIndex(
+            i => itemToString(i) === itemToString(changedSelectedItem)
+          )
+        );
+      }
+    }
+
+    onIsOpenChange &&
+      typeof onIsOpenChange === 'function' &&
+      onIsOpenChange(changes);
   }
 
   const {
@@ -71,6 +108,11 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     ...(props.selectedItems && {
       selectedItems: props.selectedItems.filter(checkSelectedItemValidity),
     }),
+    ...(props.defaultSelectedItems && {
+      defaultSelectedItems: props.defaultSelectedItems.filter(
+        checkSelectedItemValidity
+      ),
+    }),
   });
 
   function getFilteredItems(unfilteredItems) {
@@ -85,6 +127,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
     stateReducer: passedInStateReducer,
     onStateChange,
+    onIsOpenChange,
     ...selectProps
   } = props;
 
@@ -96,10 +139,25 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
           ...changes,
           selectedItem: state.selectedItem,
         };
+      case useSelect.stateChangeTypes.ItemClick:
+      case useSelect.stateChangeTypes.MenuKeyDownEnter:
+        if (isItemDisabled(changes.selectedItem)) {
+          return {
+            ...changes,
+            selectedItem: state.selectedItem,
+          };
+        }
+        return changes;
       default:
         return changes;
     }
   }
+
+  const filteredItems = getFilteredItems(items);
+  const initialIndex = getFilteredItemIndex(
+    items[initialHighlightedIndex],
+    filteredItems
+  );
 
   const {
     isOpen,
@@ -110,11 +168,14 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     getItemProps,
     selectItem,
     openMenu,
+    setHighlightedIndex,
   } = useSelect({
     ...selectProps,
-    items: getFilteredItems(items),
+    items: filteredItems,
     onSelectedItemChange: defaultOnSelectedItemChange,
     stateReducer,
+    initialHighlightedIndex: initialIndex,
+    onIsOpenChange: handleOnIsOpenChange,
   });
 
   function defaultOnSelectedItemChange(changes) {
@@ -136,6 +197,9 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
 
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+
+  const toggleButtonRef = React.useRef<HTMLButtonElement>();
+  const forkedtoggleButtonRef = useForkedRef(innerRef || null, toggleButtonRef);
 
   const toggleButtonProps = getToggleButtonProps({
     ...getDropdownProps({
@@ -161,7 +225,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       onKeyUp: (event: any) => onKeyUp?.(event),
       onFocus,
       preventKeyAction: isOpen,
-      ...(innerRef && { ref: innerRef }),
+      ...(forkedtoggleButtonRef && { ref: forkedtoggleButtonRef }),
     }),
     disabled: disabled,
   });
@@ -182,8 +246,6 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
 
     return allItems.join(', ');
   }
-
-  const toggleButtonRef = React.useRef<HTMLButtonElement>();
 
   const clearIndicatori18n =
     selectedItems.length > 1
@@ -298,9 +360,10 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         isInverse={isInverse}
         items={getFilteredItems(items)}
         itemToString={itemToString}
-        maxHeight={itemListMaxHeight || theme.select.menu.maxHeight}
+        maxHeight={itemListMaxHeight ?? theme.select.menu.maxHeight}
         menuStyle={menuStyle}
         setFloating={setFloating}
+        setHighlightedIndex={setHighlightedIndex}
       />
     </SelectContainer>
   );

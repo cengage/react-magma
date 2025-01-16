@@ -294,9 +294,14 @@ export const reactNodeToString = (node: React.ReactNode): string => {
     return node.map(subElement => reactNodeToString(subElement)).join('');
   }
 
-  if (typeof node === 'object' && 'props' in node && node.props && node.props.children) {
+  if (
+    typeof node === 'object' &&
+    'props' in node &&
+    node.props &&
+    node.props.children
+  ) {
     return reactNodeToString(node.props.children);
   }
 
   return '';
-}
+};

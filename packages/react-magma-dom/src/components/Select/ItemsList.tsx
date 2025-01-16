@@ -1,21 +1,24 @@
-import React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { I18nContext } from '../../i18n';
-import { StyledCard, StyledItem, StyledList } from './shared';
+import styled from '@emotion/styled';
+import { ReferenceType } from '@floating-ui/react-dom';
 import {
   UseSelectGetItemPropsOptions,
   UseSelectGetMenuPropsOptions,
 } from 'downshift';
-import { instanceOfToBeCreatedItemObject } from '.';
+import React from 'react';
+import {
+  instanceOfToBeCreatedItemObject,
+} from '.';
+import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { convertStyleValueToString } from '../../utils';
+import { Spinner } from '../Spinner';
 import {
   defaultComponents,
   ItemRenderOptions,
   SelectComponents,
 } from './components';
-import { convertStyleValueToString } from '../../utils';
-import { Spinner } from '../Spinner';
-import styled from '@emotion/styled';
-import { ReferenceType } from '@floating-ui/react-dom';
+import { StyledCard, StyledItem, StyledList } from './shared';
+import { isItemDisabled } from './utils';
 
 interface ItemsListProps<T> {
   customComponents?: SelectComponents<T>;
@@ -31,6 +34,7 @@ interface ItemsListProps<T> {
   maxHeight?: number | string;
   menuStyle?: React.CSSProperties;
   setFloating?: (node: ReferenceType) => void;
+  setHighlightedIndex?: (index: number) => void;
 }
 
 const NoItemsMessage = styled.span<{
@@ -67,6 +71,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     maxHeight,
     menuStyle,
     setFloating,
+    setHighlightedIndex,
   } = props;
 
   const theme = React.useContext(ThemeContext);
@@ -98,7 +103,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   }
 
   return (
-    <div ref={setFloating} style={{...floatingElementStyles, zIndex: '2'}}>
+    <div ref={setFloating} style={{ ...floatingElementStyles, zIndex: '2' }}>
       <StyledCard
         hasDropShadow
         isInverse={isInverse}
@@ -117,10 +122,12 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
               const itemString = instanceOfToBeCreatedItemObject(item)
                 ? item.label
                 : itemToString(item);
+              const isDisabled = isItemDisabled(item)
 
               const { ref, ...otherDownshiftItemProps } = getItemProps({
                 item,
                 index,
+                disabled: isDisabled,
               });
 
               const key = `${itemString}${index}`;
@@ -133,8 +140,15 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
                 itemString,
                 key,
                 theme,
+                isDisabled: isDisabled,
                 ...otherDownshiftItemProps,
               };
+
+              if (isDisabled) {
+                itemProps.onMouseEnter = () => {
+                  setHighlightedIndex && setHighlightedIndex(-1);
+                };
+              }
 
               return <Item<T> {...itemProps} key={key} />;
             })

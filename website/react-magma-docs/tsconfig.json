@@ -1,0 +1,21 @@
+{
+  "extends": "../../tsconfig",
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx"
+  ],
+  "mdx": {
+    "checkMdx": true
+  },
+  "compilerOptions": {
+    "removeComments": false,
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
+    "strictFunctionTypes": false,
+    "strictNullChecks": false,
+  }
+}

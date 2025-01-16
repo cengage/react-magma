@@ -1,5 +1,24 @@
 # @react-magma/charts
 
+## 11.0.0-next.1
+
+### Minor Changes
+
+- be7697292: feat(CarbonCharts): Add new charts: `Histogram`, `Scatter`, `Step`, `SparkLine`, `Boxplot`, `Bullet`, `Combo`, `Bubble`, `Gauge`, `Meter`, and `Radar`. -->
+
+## 11.0.0-next.0
+
+### Patch Changes
+
+- Updated dependencies [79435c964]
+  - react-magma-dom@4.8.0-next.0
+
+## 10.0.0
+
+### Patch Changes
+
+- 02db8e632: fix(Charts): Fix circle styles for `Charts`.
+
 ## 10.0.0-next.2
 
 ### Patch Changes

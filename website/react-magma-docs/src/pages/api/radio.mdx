@@ -6,8 +6,6 @@ props:
   - RadioGroupProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="radio_button" type="api">
 
 <LeadParagraph>
@@ -487,9 +485,9 @@ export function Example() {
     if (!radioRef.current) {
       setRadioGroupVal(null);
     } else if (radioRef.current.checked) {
-      setRadioGroupVal("");
+      setRadioGroupVal('');
     } else if (!radioRef.current.checked) {
-      setRadioGroupVal("1");
+      setRadioGroupVal('1');
     }
   }
 

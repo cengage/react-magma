@@ -4,9 +4,7 @@ title: Loading Indicator
 order: 1
 ---
 
-import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="loading_indicator" type="design">
 
@@ -27,9 +25,9 @@ React Magma loading indicators range from small circular spinners, to larger com
 
 Circular spinners are used when the amount of time needed to run a process or load some content is unknown. The circular spinner can be applied to any surface, and should be placed in a way that makes it clear what it is related to. This means the size of the spinner can vary depending on where it's used, but the size should be set in multiples of 10px.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img
           src="../../images/loading-indicators/circular-spinner.png"
@@ -37,7 +35,7 @@ Circular spinners are used when the amount of time needed to run a process or lo
         />
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -45,14 +43,17 @@ Circular spinners are used when the amount of time needed to run a process or lo
 
 Progress bars should be used when real progress data can be fed to it, and you also know it could take several seconds or longer to complete. This could include the uploading of files, loading pages, loading large areas of data, etc.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/loading-indicators/progress-bar.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/loading-indicators/progress-bar.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -67,7 +68,10 @@ Many actions happen quickly, such as saving updates, submitting a form, or loadi
 If you know that it will take less than a second to complete an action, then no loading indicator is necessary. If you know the action is going to take 1 - 5 seconds to complete, you should use a circular spinner.
 
 <figure>
-  <img src="../../images/loading-indicators/Button-loading.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/loading-indicators/Button-loading.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>
     <p>
       Replace the label in the button with the circular spinner after clicking
@@ -75,14 +79,17 @@ If you know that it will take less than a second to complete an action, then no 
     </p>
   </figcaption>
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 ### Large Amounts of Data
 
 If you are loading large amounts of data like an entire page or large areas of data, the amount of time it takes to load can vary greatly. We need to effectively communicate with the user what is happening, but that takes some informed decisions on our part.
 
 <figure>
-  <img src="../../images/loading-indicators/mindtap-loading.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/loading-indicators/mindtap-loading.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>
     <p>
       In this example, we are using a loading indicator while the Learning Path
@@ -115,8 +122,11 @@ If there is no way of measuring how long it will take in real-time, but you know
 If you know from testing that it typically takes more than 15 seconds to load, **AND** you can measure the progress in real-time, you should use the component that uses the progress bar plus message.
 
 <figure>
-  <div class="image-container">
-    <img src="../../images/progress-bars/Progress-bar-dynamic.png" alt="GATSBY_EMPTY_ALT" />
+  <div className="image-container">
+    <img
+      src="../../images/progress-bars/Progress-bar-dynamic.png"
+      alt="GATSBY_EMPTY_ALT"
+    />
   </div>
   <figcaption>
     <p>
@@ -126,7 +136,7 @@ If you know from testing that it typically takes more than 15 seconds to load, *
     </p>
   </figcaption>
 </figure>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 This component also allows for three messages, although at different intervals than the variant with the spinner above.
 

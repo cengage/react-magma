@@ -44,10 +44,9 @@ const Pre = styled.pre<{ expanded?: boolean; isInverse?: boolean }>`
 
 export const Editor = ({ ...props }: EditorProps) => {
   const context = useContext(CodeBlockContext);
+  const isInverse = useIsInverse();
 
   if (context.noCode) return null;
-
-  const isInverse = useIsInverse();
 
   return (
     <Highlight

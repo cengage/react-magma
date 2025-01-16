@@ -17,7 +17,9 @@ const StyledLink = styled.button`
   border-color: ${props =>
     props.active ? props.theme.colors.secondary : 'transparent'};
   color: ${props =>
-    props.active ? props.theme.colors.secondary : props.theme.colors.neutral100};
+    props.active
+      ? props.theme.colors.secondary
+      : props.theme.colors.neutral100};
   display: block;
   font-size: 13px;
   line-height: 1.3em;

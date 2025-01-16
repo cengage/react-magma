@@ -180,9 +180,9 @@ describe('Date Picker', () => {
     userEvent.keyboard('[ArrowLeft]');
 
     expect(startDateButton).toHaveFocus();
-    
+
     userEvent.keyboard('[ArrowRight]');
-    
+
     expect(startDateButton).not.toHaveFocus();
     expect(selectedDateButton).toHaveFocus();
 
@@ -194,9 +194,7 @@ describe('Date Picker', () => {
   it('should lock focus inside', () => {
     const valueDate = new Date('January 1, 2020');
 
-    const { getByText, getByRole } = render(
-      <DatePicker value={valueDate} />
-    );
+    const { getByText, getByRole } = render(<DatePicker value={valueDate} />);
 
     const selectedDateButton = getByText(1);
     const button = getByRole('button');

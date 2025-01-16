@@ -40,7 +40,8 @@ export interface InputBaseProps
    */
   children?: any;
   /**
-   * Style properties for the component container element
+   * Style properties for the component container element.
+   * This div is a direct child of the div with the inputWrapperStyle, so the second from the top.
    */
   containerStyle?: React.CSSProperties;
   /** 
@@ -81,7 +82,7 @@ export interface InputBaseProps
    */
   inputStyle?: React.CSSProperties;
   /**
-   * Style properties for input wrapper element
+   * Style properties for input wrapper element. This is the outermost div.
    */
   inputWrapperStyle?: React.CSSProperties;
   /**
@@ -535,7 +536,6 @@ const IsClearableContainer = styled.span<{
   icon?: React.ReactElement<IconProps>;
   iconPosition?: InputIconPosition;
   inputSize?: InputSize;
-  onIconClick?: () => void;
 }>`
   background-color: transparent;
   margin: 0;
@@ -778,7 +778,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
               theme={theme}
               iconPosition={iconPosition}
               inputSize={inputSize}
-              onIconClick={onIconClick}
               icon={icon}
             >
               <IconButton
