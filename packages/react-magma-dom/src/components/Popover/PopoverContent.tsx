@@ -11,8 +11,7 @@ import {
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { Announce } from '../Announce';
 import { ThemeInterface } from '../../theme/magma';
-import { PopoverHeader } from './PopoverHeader';
-import { PopoverFooter } from './PopoverFooter';
+import { PopoverHeader, PopoverFooter } from './PopoverSection';
 
 /**
  * @children required
@@ -23,6 +22,9 @@ export interface PopoverContentProps
    * @internal
    */
   testId?: string;
+  /**
+   * @children required
+   */
   children: React.ReactChild | React.ReactChild[];
 }
 

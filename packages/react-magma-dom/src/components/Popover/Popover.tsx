@@ -20,17 +20,63 @@ export interface PopoverApi {
   closePopoverManually(event): void;
 }
 export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Function called when closing the popover menu
+   */
   onClose?: (event: React.SyntheticEvent) => void;
+  /**
+   * Function called when opening the popover menu
+   */
   onOpen?: () => void;
+  /**
+   * @internal
+   */
   testId?: string;
+  /**
+   * Determines the position of the popover relative to its trigger.
+   * @default PopoverPosition.bottom
+   */
   position?: PopoverPosition;
+  /**
+   * Sets the maximum height of the popover content.
+   * @default 100%
+   */
   maxHeight?: string | number;
+  /**
+   * Sets the width of the popover.
+   * @default Width of longest menu item
+   */
   width?: string | number;
+  /**
+   * If true, the popover will remain open when hovered over.
+   * @default false
+   */
   hoverable?: boolean;
+  /**
+   * If true, the component will have inverse styling to better appear on a dark background
+   * @default false
+   */
   isInverse?: boolean;
+  /**
+   * If true, the popover will be disabled and cannot be opened.
+   * @default false
+   */
   isDisabled?: boolean;
+  /**
+   * If true, a pointer (arrow) is displayed pointing towards the trigger element.
+   * @default false
+   */
   hasPointer?: boolean;
+  /**
+   * If true, the popover is open by default when the component is first rendered.
+   * @default false
+   */
   openByDefault?: boolean;
+  /**
+   * The ref object that allows Popover manipulation.
+   * Actions available:
+   * closePopoverManually(event): void - Closes the popover manually.
+   */
   apiRef?: React.MutableRefObject<PopoverApi | undefined>;
 }
 
@@ -187,7 +233,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
 
     const { refs, floatingStyles, placement } = useFloating({
       middleware: [flip(), offset(hasPointer ? 14 : 4)],
-      placement: position,
+      placement: position as unknown as Record<string, unknown>,
       whileElementsMounted: autoUpdate,
     });
 
@@ -205,7 +251,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       <PopoverContext.Provider
         value={{
           floatingStyles,
-          position: placement as PopoverPosition,
+          position: placement as unknown as PopoverPosition,
           closePopover,
           popoverTriggerId,
           popoverContentId,

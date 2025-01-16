@@ -3,16 +3,9 @@ import { Popover, PopoverApi, PopoverPosition } from './Popover';
 import { PopoverContent } from './PopoverContent';
 import { PopoverTrigger } from './PopoverTrigger';
 import { Meta } from '@storybook/react/types-6-0';
-import {
-  Button,
-  ButtonColor,
-  ButtonSize,
-  ButtonType,
-  ButtonVariant,
-} from '../Button';
+import { Button, ButtonColor, ButtonSize, ButtonType } from '../Button';
 import { Card } from '../Card';
-import { PopoverHeader } from './PopoverHeader';
-import { PopoverFooter } from './PopoverFooter';
+import { PopoverHeader, PopoverFooter } from './PopoverSection';
 import { PasswordInput } from '../PasswordInput';
 import {
   ArrowDropDownIcon,

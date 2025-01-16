@@ -262,8 +262,7 @@ export {
   PopoverContent,
   PopoverContentProps,
 } from './components/Popover/PopoverContent';
-export { PopoverHeader } from './components/Popover/PopoverHeader';
-export { PopoverFooter } from './components/Popover/PopoverFooter';
+export { PopoverHeader, PopoverFooter } from './components/Popover/PopoverSection';
 
 export {
   VisuallyHidden,
