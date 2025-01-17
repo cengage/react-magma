@@ -23,50 +23,82 @@ describe('Table', () => {
 
   it('should render table with a border radius', () => {
     const { getByTestId } = render(
-      <Table isInverse testId="test-id">
+      <Table>
         <TableHead>
           <TableRow>
-            <TableHeaderCell>heading 1</TableHeaderCell>
-            <TableHeaderCell>heading 2</TableHeaderCell>
+            <TableHeaderCell testId="heading-1">heading 1</TableHeaderCell>
+            <TableHeaderCell testId="heading-2">heading 2</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell>cell 1</TableCell>
-            <TableCell>cell 2</TableCell>
+            <TableCell testId="cell-1">cell 1</TableCell>
+            <TableCell testId="cell-2">cell 2</TableCell>
           </TableRow>
         </TableBody>
       </Table>
     );
 
-    expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
+    expect(getByTestId('heading-1')).toHaveStyleRule(
       'border-radius',
-      magma.spaceScale.spacing03
+      `${magma.spaceScale.spacing03} 0 0 0`,
+      { target: 'first-child' }
+    );
+    expect(getByTestId('heading-2')).toHaveStyleRule(
+      'border-radius',
+      `0 ${magma.spaceScale.spacing03} 0 0`,
+
+      { target: 'last-child' }
+    );
+    expect(getByTestId('cell-1')).toHaveStyleRule(
+      'border-radius',
+      `0 0 0 ${magma.spaceScale.spacing03}`,
+
+      { target: 'first-child' }
+    );
+    expect(getByTestId('cell-2')).toHaveStyleRule(
+      'border-radius',
+      `0 0 ${magma.spaceScale.spacing03} 0`,
+      { target: 'last-child' }
     );
   });
 
   it('should render table without a border radius', () => {
     const { getByTestId } = render(
-      <Table hasSquareCorners isInverse testId="test-id">
+      <Table hasSquareCorners>
         <TableHead>
           <TableRow>
-            <TableHeaderCell>heading 1</TableHeaderCell>
-            <TableHeaderCell>heading 2</TableHeaderCell>
+            <TableHeaderCell testId="heading-1">heading 1</TableHeaderCell>
+            <TableHeaderCell testId="heading-2">heading 2</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
           <TableRow>
-            <TableCell>cell 1</TableCell>
-            <TableCell>cell 2</TableCell>
+            <TableCell testId="cell-1">cell 1</TableCell>
+            <TableCell testId="cell-2">cell 2</TableCell>
           </TableRow>
         </TableBody>
       </Table>
     );
 
-    expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
+    expect(getByTestId('heading-1')).toHaveStyleRule('border-radius', '0', {
+      target: 'first-child',
+    });
+    expect(getByTestId('heading-2')).toHaveStyleRule(
       'border-radius',
-      '0'
+      '0',
+
+      { target: 'last-child' }
     );
+    expect(getByTestId('cell-1')).toHaveStyleRule(
+      'border-radius',
+      '0',
+
+      { target: 'first-child' }
+    );
+    expect(getByTestId('cell-2')).toHaveStyleRule('border-radius', '0', {
+      target: 'last-child',
+    });
   });
 
   it('should render table with vertical borders', () => {

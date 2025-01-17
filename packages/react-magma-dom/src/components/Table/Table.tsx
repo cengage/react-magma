@@ -82,6 +82,7 @@ export enum TableRowColor {
 interface TableContextInterface {
   density?: TableDensity;
   hasHoverStyles?: boolean;
+  hasSquareCorners?: boolean;
   hasVerticalBorders?: boolean;
   hasZebraStripes?: boolean;
   isInverse?: boolean;
@@ -94,6 +95,7 @@ interface TableContextInterface {
 export const TableContext = React.createContext<TableContextInterface>({
   density: TableDensity.normal,
   hasHoverStyles: false,
+  hasSquareCorners: false,
   hasZebraStripes: false,
   hasVerticalBorders: false,
   isInverse: false,
@@ -109,16 +111,16 @@ export const TableContainer = styled.div<{
   isInverse?: boolean;
 }>`
   table thead tr th:first-child {
-    border-radius: ${props => (props.hasSquareCorners ? '0' : '8px 0 0 0')};
+    border-radius: ${props => (props.hasSquareCorners ? '0' : '')};
   }
   table thead tr th:last-child {
-    border-radius: ${props => (props.hasSquareCorners ? '0' : '0 8px 0 0')};
+    border-radius: ${props => (props.hasSquareCorners ? '0' : '')};
   }
   table tr:last-child td:first-child {
-    border-radius: ${props => (props.hasSquareCorners ? '0' : '0 0 0 8px')};
+    border-radius: ${props => (props.hasSquareCorners ? '0' : '')};
   }
   table tr:last-child td:last-child {
-    border-radius: ${props => (props.hasSquareCorners ? '0' : '0 0 8px 0')};
+    border-radius: ${props => (props.hasSquareCorners ? '0' : '')};
   }
 
   &:focus {
@@ -180,12 +182,13 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
         value={{
           density,
           hasHoverStyles,
+          hasSquareCorners,
           hasZebraStripes,
           hasVerticalBorders,
           isInverse: isInverse,
           isSelectable,
           isSortableBySelected,
-          rowCount
+          rowCount,
         }}
       >
         <TableContainer

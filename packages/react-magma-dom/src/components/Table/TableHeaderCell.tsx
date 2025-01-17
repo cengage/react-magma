@@ -62,6 +62,7 @@ export enum TableHeaderCellScope {
 
 const StyledTableHeaderCell = styled.th<{
   density?: TableDensity;
+  hasSquareCorners?: boolean;
   hasVerticalBorders?: boolean;
   isInverse?: boolean;
   isRowHeader?: boolean;
@@ -84,13 +85,20 @@ const StyledTableHeaderCell = styled.th<{
 
   ${baseTableCellStyle}
 
+   &:first-child {
+    border-radius: ${props => (props.hasSquareCorners ? '0' : '8px 0 0 0')};
+  }
+  &:last-child {
+    border-radius: ${props => (props.hasSquareCorners ? '0' : '0 8px 0 0')};
+  }
+
   ${props =>
     props.isSortable &&
     css`
       padding: 0;
     `}
 
-    ${props =>
+  ${props =>
     props.width &&
     css`
       width: ${props.width};
@@ -195,6 +203,7 @@ export const TableHeaderCell = React.forwardRef<
       {...other}
       data-testid={testId}
       density={tableContext.density}
+      hasSquareCorners={tableContext.hasSquareCorners}
       hasVerticalBorders={tableContext.hasVerticalBorders}
       isInverse={tableContext.isInverse}
       ref={ref}

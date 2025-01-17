@@ -53,6 +53,7 @@ export function buildCellPaddingStyle(density, theme: any) {
 
 const StyledCell = styled.td<{
   density?: TableDensity;
+  hasSquareCorners?: boolean;
   hasVerticalBorders?: boolean;
   isInverse?: boolean;
   textAlign?: TableCellAlign;
@@ -60,6 +61,13 @@ const StyledCell = styled.td<{
   width?: string;
 }>`
   ${baseTableCellStyle}
+
+  &:first-child {
+    border-radius: ${props => (props.hasSquareCorners ? '0' : '0 0 0 8px')};
+  }
+  &:last-child {
+    border-radius: ${props => (props.hasSquareCorners ? '0' : '0 0 8px 0')};
+  }
 
   ${props =>
     props.width &&
@@ -81,6 +89,7 @@ export const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
         {...other}
         data-testid={testId}
         density={tableContext.density}
+        hasSquareCorners={tableContext.hasSquareCorners}
         hasVerticalBorders={tableContext.hasVerticalBorders}
         isInverse={tableContext.isInverse}
         ref={ref}
