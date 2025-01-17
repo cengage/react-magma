@@ -187,7 +187,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isInverse: isInverse,
           isSelectable,
           isSortableBySelected,
-          rowCount,
+          rowCount
         }}
       >
         <TableContainer
