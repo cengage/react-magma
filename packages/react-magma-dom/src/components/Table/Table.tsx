@@ -108,9 +108,19 @@ export const TableContainer = styled.div<{
   hasSquareCorners?: boolean;
   isInverse?: boolean;
 }>`
-  border-radius: ${props =>
-    props.hasSquareCorners ? 0 : props.theme.borderRadius};
-  overflow: ${props => (props.minWidth ? 'auto' : 'visible')};
+  table thead tr th:first-child {
+    border-radius: ${props => (props.hasSquareCorners ? '0' : '8px 0 0 0')};
+  }
+  table thead tr th:last-child {
+    border-radius: ${props => (props.hasSquareCorners ? '0' : '0 8px 0 0')};
+  }
+  table tr:last-child td:first-child {
+    border-radius: ${props => (props.hasSquareCorners ? '0' : '0 0 0 8px')};
+  }
+  table tr:last-child td:last-child {
+    border-radius: ${props => (props.hasSquareCorners ? '0' : '0 0 8px 0')};
+  }
+
   &:focus {
     outline: none;
   }
@@ -165,6 +175,8 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
 
     const tableWrapper = `table-wrapper-${testId}`;
 
+    console.log(hasSquareCorners);
+
     return (
       <TableContext.Provider
         value={{
@@ -175,7 +187,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isInverse: isInverse,
           isSelectable,
           isSortableBySelected,
-          rowCount
+          rowCount,
         }}
       >
         <TableContainer
