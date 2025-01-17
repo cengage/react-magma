@@ -31,9 +31,9 @@ describe('Table', () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
-            <TableCell testId="cell-1">cell 1</TableCell>
-            <TableCell testId="cell-2">cell 2</TableCell>
+          <TableRow testId="table-row-2">
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -50,13 +50,13 @@ describe('Table', () => {
 
       { target: 'last-child' }
     );
-    expect(getByTestId('cell-1')).toHaveStyleRule(
+    expect(getByTestId('table-row-2')).toHaveStyleRule(
       'border-radius',
       `0 0 0 ${magma.spaceScale.spacing03}`,
 
       { target: 'first-child' }
     );
-    expect(getByTestId('cell-2')).toHaveStyleRule(
+    expect(getByTestId('table-row-2')).toHaveStyleRule(
       'border-radius',
       `0 0 ${magma.spaceScale.spacing03} 0`,
       { target: 'last-child' }
@@ -73,9 +73,9 @@ describe('Table', () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
-            <TableCell testId="cell-1">cell 1</TableCell>
-            <TableCell testId="cell-2">cell 2</TableCell>
+          <TableRow testId="table-row-2">
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
           </TableRow>
         </TableBody>
       </Table>
@@ -90,13 +90,13 @@ describe('Table', () => {
 
       { target: 'last-child' }
     );
-    expect(getByTestId('cell-1')).toHaveStyleRule(
+    expect(getByTestId('table-row-2')).toHaveStyleRule(
       'border-radius',
       '0',
 
       { target: 'first-child' }
     );
-    expect(getByTestId('cell-2')).toHaveStyleRule('border-radius', '0', {
+    expect(getByTestId('table-row-2')).toHaveStyleRule('border-radius', '0', {
       target: 'last-child',
     });
   });
