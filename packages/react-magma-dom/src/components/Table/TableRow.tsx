@@ -117,9 +117,9 @@ const StyledTableRow = styled.tr<{
     td:first-child {
       border-radius: ${props => (props.hasSquareCorners ? '0' : '0 0 0 8px')};
     }
-  td:last-child {
-    border-radius: ${props => (props.hasSquareCorners ? '0' : '0 0 8px 0')};
-  }
+    td:last-child {
+      border-radius: ${props => (props.hasSquareCorners ? '0' : '0 0 8px 0')};
+    }
   }
 
   ${props =>
@@ -346,8 +346,12 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
               labelStyle={{ padding: 0 }}
               labelText={
                 isSelected
-                  ? `${i18n.table.selectable.deselectRowAriaLabel} ${rowName || ''}`
-                  : `${i18n.table.selectable.selectRowAriaLabel} ${rowName || ''}`
+                  ? `${i18n.table.selectable.deselectRowAriaLabel} ${
+                      rowName || ''
+                    }`
+                  : `${i18n.table.selectable.selectRowAriaLabel} ${
+                      rowName || ''
+                    }`
               }
               isTextVisuallyHidden
               isInverse={getIsCheckboxInverse()}
