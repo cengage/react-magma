@@ -175,8 +175,6 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
 
     const tableWrapper = `table-wrapper-${testId}`;
 
-    console.log(hasSquareCorners);
-
     return (
       <TableContext.Provider
         value={{
