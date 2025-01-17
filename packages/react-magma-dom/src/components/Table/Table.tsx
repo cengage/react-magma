@@ -107,22 +107,8 @@ export const TableContext = React.createContext<TableContextInterface>({
 
 export const TableContainer = styled.div<{
   minWidth: number;
-  hasSquareCorners?: boolean;
   isInverse?: boolean;
 }>`
-  table thead tr th:first-child {
-    border-radius: ${props => (props.hasSquareCorners ? '0' : '')};
-  }
-  table thead tr th:last-child {
-    border-radius: ${props => (props.hasSquareCorners ? '0' : '')};
-  }
-  table tr:last-child td:first-child {
-    border-radius: ${props => (props.hasSquareCorners ? '0' : '')};
-  }
-  table tr:last-child td:last-child {
-    border-radius: ${props => (props.hasSquareCorners ? '0' : '')};
-  }
-
   &:focus {
     outline: none;
   }
@@ -188,12 +174,11 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isInverse: isInverse,
           isSelectable,
           isSortableBySelected,
-          rowCount,
+          rowCount
         }}
       >
         <TableContainer
           data-testid={tableWrapper}
-          hasSquareCorners={hasSquareCorners}
           isInverse={isInverse}
           minWidth={minWidth}
           theme={theme}
