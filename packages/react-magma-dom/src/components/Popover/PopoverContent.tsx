@@ -67,14 +67,21 @@ const StyledCard = styled(Card)<{
 
   &[data-popover-placement=${PopoverPosition.bottom}]::before {
     border-color: transparent transparent
-      ${props => props.theme.colors.neutral300} transparent;
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.primary400
+          : props.theme.colors.neutral300}
+      transparent;
     left: 50%;
     bottom: 100%;
     transform: translateX(-50%) rotate(0deg);
   }
   &[data-popover-placement=${PopoverPosition.top}]::before {
-    border-color: ${props => props.theme.colors.neutral300} transparent
-      transparent transparent;
+    border-color: ${props =>
+        props.isInverse
+          ? props.theme.colors.primary400
+          : props.theme.colors.neutral300}
+      transparent transparent transparent;
     left: 50%;
     top: 100%;
     transform: translateX(-50%) rotate(0deg);
@@ -92,25 +99,31 @@ const StyledCard = styled(Card)<{
 
   &[data-popover-placement=${PopoverPosition.bottom}]::after {
     border-color: transparent transparent
-      ${props => props.theme.colors.neutral100} transparent;
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.primary600
+          : props.theme.colors.neutral100}
+      transparent;
     left: 50%;
     bottom: 100%;
     transform: translateX(-50%) rotate(0deg);
   }
   &[data-popover-placement=${PopoverPosition.top}]::after {
-    border-color: ${props => props.theme.colors.neutral100} transparent
-      transparent transparent;
+    border-color: ${props =>
+        props.isInverse
+          ? props.theme.colors.primary600
+          : props.theme.colors.neutral100}
+      transparent transparent transparent;
     left: 50%;
     top: 100%;
     transform: translateX(-50%) rotate(0deg);
   }
 `;
 
-const StyledAnnounce = styled(Announce)<{ maxHeight?: string }>`
+const StyledAnnounce = styled(Announce)`
   width: 100%;
   display: flex;
   flex-direction: column;
-  max-height: ${props => (props.maxHeight ? props.maxHeight : '100%')};
 `;
 
 const ErrorMessage = styled.div`
@@ -147,7 +160,6 @@ export const PopoverContent = React.forwardRef<
   const styledChildren = React.Children.toArray(children).map(item =>
     React.cloneElement(item as React.ReactElement, {
       theme,
-      isInverse: context.isInverse,
     })
   );
   const header = styledChildren.find(
@@ -195,7 +207,11 @@ export const PopoverContent = React.forwardRef<
           {!content.length ? (
             <ErrorMessage>Content must be passed</ErrorMessage>
           ) : (
-            <StyledAnnounce maxHeight={context.maxHeight}>
+            <StyledAnnounce
+              style={{
+                maxHeight: context.maxHeight ? context.maxHeight : '100%',
+              }}
+            >
               {header}
               <ScrollableContent>{content}</ScrollableContent>
               {footer}

@@ -102,7 +102,7 @@ const Template = args => (
           <Hyperlink to="/" hasUnderline={false} isInverse={args.isInverse}>
             Learn more
           </Hyperlink>
-          <Button>Manage Cases</Button>
+          <Button isInverse={args.isInverse}>Manage Cases</Button>
         </ButtonGroup>
       </PopoverContent>
     </Popover>
@@ -367,6 +367,7 @@ const SettingsExampleTemplate = args => {
             <Button
               size={ButtonSize.small}
               onClick={event => ref.current?.closePopoverManually(event)}
+              isInverse={args.isInverse}
             >
               Apply
             </Button>
@@ -397,7 +398,7 @@ const CustomTriggerButtonTemplate = args => {
     >
       <Popover {...args} apiRef={ref}>
         <PopoverTrigger>
-          <Button style={{ width: '280px' }}>
+          <Button style={{ width: '280px' }} isInverse={args.isInverse}>
             <div style={{ display: 'flex', gap: '8px' }}>
               <SettingsIcon />
               <span>Settings</span>
@@ -432,6 +433,7 @@ const CustomTriggerButtonTemplate = args => {
             <Button
               size={ButtonSize.small}
               onClick={event => ref.current?.closePopoverManually(event)}
+              isInverse={args.isInverse}
             >
               Apply
             </Button>
@@ -462,6 +464,7 @@ const FormExampleTemplate = args => {
         <PopoverTrigger>Register</PopoverTrigger>
         <PopoverContent>
           <Form
+            isInverse={args.isInverse}
             onSubmit={() => alert('form submitted')}
             header="Form in the popover"
             headingLevel={6}
@@ -577,57 +580,135 @@ const InputExampleTemplate = args => {
           >
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.length ? (
-                <CloseIcon color="red" size={16} />
+                <CloseIcon
+                  color={args.isInverse ? '#FAAEB0' : '#D32821'}
+                  size={16}
+                />
               ) : (
-                <DoneIcon color="green" size={16} />
+                <DoneIcon
+                  color={args.isInverse ? '#ACF0C1' : '#178037'}
+                  size={16}
+                />
               )}
 
-              <span style={{ color: errorState.length ? 'red' : 'green' }}>
+              <span
+                style={{
+                  color: errorState.length
+                    ? args.isInverse
+                      ? '#FAAEB0'
+                      : '#D32821'
+                    : args.isInverse
+                    ? '#ACF0C1'
+                    : '#178037',
+                }}
+              >
                 Includes at least 6 characters
               </span>
             </div>
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.number ? (
-                <CloseIcon color="red" size={16} />
+                <CloseIcon
+                  color={args.isInverse ? '#FAAEB0' : '#D32821'}
+                  size={16}
+                />
               ) : (
-                <DoneIcon color="green" size={16} />
+                <DoneIcon
+                  color={args.isInverse ? '#ACF0C1' : '#178037'}
+                  size={16}
+                />
               )}
 
-              <span style={{ color: errorState.number ? 'red' : 'green' }}>
+              <span
+                style={{
+                  color: errorState.number
+                    ? args.isInverse
+                      ? '#FAAEB0'
+                      : '#D32821'
+                    : args.isInverse
+                    ? '#ACF0C1'
+                    : '#178037',
+                }}
+              >
                 Includes number
               </span>
             </div>
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.lowercase ? (
-                <CloseIcon color="red" size={16} />
+                <CloseIcon
+                  color={args.isInverse ? '#FAAEB0' : '#D32821'}
+                  size={16}
+                />
               ) : (
-                <DoneIcon color="green" size={16} />
+                <DoneIcon
+                  color={args.isInverse ? '#ACF0C1' : '#178037'}
+                  size={16}
+                />
               )}
 
-              <span style={{ color: errorState.lowercase ? 'red' : 'green' }}>
+              <span
+                style={{
+                  color: errorState.lowercase
+                    ? args.isInverse
+                      ? '#FAAEB0'
+                      : '#D32821'
+                    : args.isInverse
+                    ? '#ACF0C1'
+                    : '#178037',
+                }}
+              >
                 Includes lowercase letter
               </span>
             </div>
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.uppercase ? (
-                <CloseIcon color="red" size={16} />
+                <CloseIcon
+                  color={args.isInverse ? '#FAAEB0' : '#D32821'}
+                  size={16}
+                />
               ) : (
-                <DoneIcon color="green" size={16} />
+                <DoneIcon
+                  color={args.isInverse ? '#ACF0C1' : '#178037'}
+                  size={16}
+                />
               )}
 
-              <span style={{ color: errorState.uppercase ? 'red' : 'green' }}>
+              <span
+                style={{
+                  color: errorState.uppercase
+                    ? args.isInverse
+                      ? '#FAAEB0'
+                      : '#D32821'
+                    : args.isInverse
+                    ? '#ACF0C1'
+                    : '#178037',
+                }}
+              >
                 Includes uppercase letter
               </span>
             </div>
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.specialSymbol ? (
-                <CloseIcon color="red" size={16} />
+                <CloseIcon
+                  color={args.isInverse ? '#FAAEB0' : '#D32821'}
+                  size={16}
+                />
               ) : (
-                <DoneIcon color="green" size={16} />
+                <DoneIcon
+                  color={args.isInverse ? '#ACF0C1' : '#178037'}
+                  size={16}
+                />
               )}
 
               <span
-                style={{ color: errorState.specialSymbol ? 'red' : 'green' }}
+                style={{
+                  color: errorState.specialSymbol
+                    ? args.isInverse
+                      ? '#FAAEB0'
+                      : '#D32821'
+                    : args.isInverse
+                    ? '#ACF0C1'
+                    : '#178037',
+                }}
               >
                 Includes special symbol
               </span>
@@ -730,6 +811,7 @@ const ProfileExampleTemplate = args => {
             <ButtonGroup
               alignment={ButtonGroupAlignment.fill}
               style={{ width: '100%' }}
+              isInverse={args.isInverse}
             >
               <Button color={ButtonColor.subtle} size={ButtonSize.small}>
                 <div
@@ -859,6 +941,7 @@ const DontShowAgainTemplate = args => {
             <Button
               size={ButtonSize.small}
               onClick={event => ref.current?.closePopoverManually(event)}
+              isInverse={args.isInverse}
             >
               Got it
             </Button>

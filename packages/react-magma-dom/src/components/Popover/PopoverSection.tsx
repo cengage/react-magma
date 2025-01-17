@@ -70,7 +70,6 @@ const PopoverSection = React.forwardRef<
   const styledChildren = React.Children.toArray(children).map(item =>
     React.cloneElement(item as React.ReactElement, {
       theme,
-      isInverse: context.isInverse,
     })
   );
 

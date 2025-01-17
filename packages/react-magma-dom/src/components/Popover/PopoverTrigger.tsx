@@ -79,7 +79,6 @@ export const PopoverTrigger = React.forwardRef<
     children && typeof children !== 'string'
       ? React.cloneElement(children as React.ReactElement, {
           theme,
-          isInverse: context.isInverse,
           disabled: context.isDisabled,
           onClick: handleClick,
           ref: ref,
