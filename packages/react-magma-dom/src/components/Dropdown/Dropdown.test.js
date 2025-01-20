@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsteriskIcon , RestaurantMenuIcon } from 'react-magma-icons';
+import { AsteriskIcon, RestaurantMenuIcon } from 'react-magma-icons';
 import { Dropdown } from '.';
 import {
   DropdownContent,
@@ -20,7 +20,7 @@ import { Modal } from '../Modal';
 import { magma } from '../../theme/magma';
 import { transparentize } from 'polished';
 
-import { act, render, fireEvent, getByTestId } from '@testing-library/react';
+import { act, render, fireEvent, getByTestId, getByLabelText } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 describe('Dropdown', () => {
@@ -30,8 +30,8 @@ describe('Dropdown', () => {
       <Dropdown testId={testId}>
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent>
-          <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem onClick={() => {}}>
+          <DropdownMenuItem onClick={() => { }}>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => { }}>
             Menu item number two
           </DropdownMenuItem>
         </DropdownContent>
@@ -57,10 +57,10 @@ describe('Dropdown', () => {
       <Dropdown>
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent>
-          <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
-          <OptionalDropdownItem onClick={() => {}} toggle />
+          <DropdownMenuItem onClick={() => { }}>Menu item 1</DropdownMenuItem>
+          <OptionalDropdownItem onClick={() => { }} toggle />
           <div>
-            <DropdownMenuItem onClick={() => {}}>FAQ</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => { }}>FAQ</DropdownMenuItem>
           </div>
         </DropdownContent>
       </Dropdown>
@@ -397,7 +397,7 @@ describe('Dropdown', () => {
 
     const onClose1 = jest.fn();
     const onClose2 = jest.fn();
-    const { getByText, getByTestId, container } = render(
+    const { getByText, getByTestId } = render(
       <>
         <Dropdown testId="dropdown1" onClose={onClose1}>
           <DropdownButton>Toggle me 1</DropdownButton>
@@ -424,6 +424,57 @@ describe('Dropdown', () => {
 
     // Open the second dropdown, which should close the first one
     userEvent.click(getByText('Toggle me 2'));
+
+    expect(onClose1).toHaveBeenCalled();
+    expect(getByTestId('dropdown1Content')).toHaveStyleRule('display', 'none');
+    expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'block');
+
+    // Close the second dropdown by clicking outside
+    fireEvent.mouseDown(document.body);
+    act(jest.runAllTimers);
+
+    expect(onClose2).toHaveBeenCalled();
+    expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'none');
+
+    jest.useRealTimers();
+  });
+
+  it('should open one splitdropdown at a time, close the previous one, and close when clicking outside', () => {
+    jest.useFakeTimers();
+
+    const onClose1 = jest.fn();
+    const onClose2 = jest.fn();
+    const { getAllByLabelText, getByTestId } = render(
+      <>
+        <Dropdown testId="dropdown1" onClose={onClose1}>
+          <DropdownSplitButton
+            aria-label="Split"
+          >Toggle me 1</DropdownSplitButton>
+          <DropdownContent testId="dropdown1Content">
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown testId="dropdown2" onClose={onClose2}>
+          <DropdownSplitButton
+            aria-label="Split"
+          >Toggle me 2</DropdownSplitButton>
+          <DropdownContent testId="dropdown2Content">
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </>
+    );
+
+    expect(getByTestId('dropdown1Content')).toHaveStyleRule('display', 'none');
+    expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'none');
+
+    // Open the first dropdown
+    userEvent.click(getAllByLabelText('Split')[0]);
+    expect(getByTestId('dropdown1Content')).toHaveStyleRule('display', 'block');
+    expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'none');
+
+    // Open the second dropdown, which should close the first one
+    userEvent.click(getAllByLabelText('Split')[1]);
 
     expect(onClose1).toHaveBeenCalled();
     expect(getByTestId('dropdown1Content')).toHaveStyleRule('display', 'none');
@@ -472,9 +523,9 @@ describe('Dropdown', () => {
       <Dropdown testId="dropdown">
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent>
-          <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => { }}>Menu item 1</DropdownMenuItem>
           <DropdownDivider />
-          <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => { }}>Menu item 2</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
     );
@@ -503,9 +554,9 @@ describe('Dropdown', () => {
       <Dropdown testId="dropdown">
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent>
-          <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => { }}>Menu item 1</DropdownMenuItem>
           <DropdownDivider />
-          <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => { }}>Menu item 2</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
     );
@@ -688,11 +739,11 @@ describe('Dropdown', () => {
 
     expect(onClick).toHaveBeenCalled();
   });
-  
-  it('should call onClose for the previously opened dropdown when a new one is opened', async() => {
+
+  it('should call onClose for the previously opened dropdown when a new one is opened', async () => {
     const onClose1 = jest.fn();
     const onClose2 = jest.fn();
-  
+
     const { getByText } = render(
       <>
         <Dropdown testId="dropdown1" onClose={onClose1}>
@@ -709,26 +760,26 @@ describe('Dropdown', () => {
         </Dropdown>
       </>
     );
-  
+
     // Open the first dropdown
     userEvent.click(getByText('Toggle Dropdown 1'));
     expect(onClose1).not.toHaveBeenCalled();
 
     // Open the second dropdown
     userEvent.click(getByText('Toggle Dropdown 2'));
-  
+
     // Verify that the first dropdown's onClose is called
     expect(onClose1).toHaveBeenCalled();
     expect(onClose2).not.toHaveBeenCalled(); // Second dropdown is still open
   });
-  
+
   it('should render a dropdown with an active item', async () => {
     const { container, getByText } = render(
       <Dropdown activeIndex={1}>
         <DropdownButton>Toggle</DropdownButton>
         <DropdownContent>
-          <DropdownMenuItem onClick={() => {}}>aaa</DropdownMenuItem>
-          <DropdownMenuItem onClick={() => {}}>bbb</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => { }}>aaa</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => { }}>bbb</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
     );

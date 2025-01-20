@@ -89,6 +89,7 @@ export const DropdownSplitButton = React.forwardRef<
 
   // Necessary for the proper opening and closing of the menu in Safari
   function handleMouseDown(event: React.MouseEvent) {
+    console.log(event);
     if (isSafari) {
       event.preventDefault();
     }

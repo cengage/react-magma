@@ -623,3 +623,50 @@ export const FlippedItems = args => {
     </>
   );
 };
+
+const CustomRefTemplate: Story<DropdownProps> = args => {
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const splitButtonRef = React.useRef<HTMLButtonElement>(null);
+
+  function handleClose(event: React.SyntheticEvent) {
+    buttonRef.current?.focus();
+  }
+
+  function handleSplitClose(event: React.SyntheticEvent) {
+    splitButtonRef.current?.focus();
+  }
+
+  return (
+    <div
+      style={{
+        margin: '150px auto',
+        textAlign: 'center',
+        gap: '20px',
+        display: 'flex',
+        justifyContent: 'center',
+      }}
+    >
+      <Dropdown {...args} onClose={handleClose}>
+        <DropdownButton ref={buttonRef}>Basic Dropdown</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown {...args} onClose={handleSplitClose}>
+        <DropdownSplitButton aria-label="Split" ref={splitButtonRef}>
+          Split Dropdown
+        </DropdownSplitButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </div>
+  );
+};
+
+export const CustomRef = CustomRefTemplate.bind({});
+CustomRef.args = {
+  ...Default.args,
+};
