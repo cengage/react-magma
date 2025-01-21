@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.11-next.5
+
+### Patch Changes
+
+- 49db608fe: build(deps): bump nanoid from 3.3.7 to 3.3.8 in /website/react-magma-docs
+
 ## 5.0.11-next.4
 
 ### Patch Changes
