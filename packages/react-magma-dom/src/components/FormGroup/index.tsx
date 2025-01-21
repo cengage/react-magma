@@ -115,15 +115,15 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
           )}
           {children}
 
-          <InputMessage
-            id={descriptionId}
-            hasError={!!errorMessage}
-            isInverse={isInverse}
-          >
-            {(errorMessage || helperMessage) && (
-              <>{errorMessage ? errorMessage : helperMessage}</>
-            )}
-          </InputMessage>
+          {(errorMessage || helperMessage) && (
+            <InputMessage
+              id={descriptionId}
+              hasError={!!errorMessage}
+              isInverse={isInverse}
+            >
+              {errorMessage ? errorMessage : helperMessage}
+            </InputMessage>
+          )}
         </FormGroupContext.Provider>
       </div>
     );

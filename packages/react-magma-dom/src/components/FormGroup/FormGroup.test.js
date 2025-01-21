@@ -121,7 +121,7 @@ describe('Form Group', () => {
     );
   });
 
-  it('should not render anything except container and message container when invalid children are present', () => {
+  it('should not render anything except container when invalid children are present', () => {
     const { container } = render(
       <FormGroup>
         <Checkbox labelText="Default Color" value="default" />
@@ -129,7 +129,7 @@ describe('Form Group', () => {
       </FormGroup>
     );
 
-    expect(container.firstChild.children.length).toBe(2);
+    expect(container.firstChild.children.length).toBe(1);
   });
 
   it('Does not violate accessibility standards', () => {
