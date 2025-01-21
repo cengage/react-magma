@@ -59,6 +59,11 @@ export const PopoverTrigger = React.forwardRef<
   const ref = useForkedRef(context.toggleRef, forwardedRef);
 
   const { icon = <InfoIcon />, children, ...other } = props;
+  const {
+    type = ButtonType.button,
+    size = ButtonSize.medium,
+    variant = ButtonVariant.link,
+  } = props;
 
   function handleClick(event: React.UIEvent) {
     if (!context.isDisabled) {
@@ -100,9 +105,9 @@ export const PopoverTrigger = React.forwardRef<
           onClick={handleClick}
           ref={ref}
           theme={theme}
-          type={props.type ?? ButtonType.button}
-          size={props.size ?? ButtonSize.medium}
-          variant={props.variant ?? ButtonVariant.link}
+          type={type}
+          size={size}
+          variant={variant}
           onMouseDown={handleMouseDown}
           disabled={context.isDisabled}
         />
