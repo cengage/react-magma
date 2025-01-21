@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.11-next.4
+
+### Patch Changes
+
+- 7c881aefb: build(deps): bump path-to-regexp and express in /website/react-magma-docs
+
 ## 5.0.11-next.3
 
 ### Patch Changes
