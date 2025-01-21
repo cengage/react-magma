@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.7
+
+### Patch Changes
+
+- 3c1702509: fix(FormGroup): Fix validation for `InputMessage`.
+
 ## 4.8.0-next.6
 
 ### Minor Changes

@@ -18,6 +18,7 @@
     "feat-charts-documentation",
     "feat-select-disabled-items-styling",
     "feat-select-disabled-items",
+    "fix-FormGroup-input-message",
     "fix-GlobalStyles-import-warning",
     "rotten-carrots-retire",
     "two-laws-bake"
