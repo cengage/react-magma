@@ -87,14 +87,6 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
 
     const isInverse = useIsInverse(props.isInverse);
 
-    const errorMessageRef = React.useRef<HTMLDivElement>();
-
-    React.useEffect(() => {
-      if (errorMessage) {
-        errorMessageRef.current.focus();
-      }
-    }, [errorMessage]);
-
     return (
       <InverseContext.Provider
         value={{
@@ -117,10 +109,8 @@ export const Form = React.forwardRef<HTMLFormElement, FormProps>(
           </Heading>
           {description && <Paragraph>{description}</Paragraph>}
           {errorMessage && (
-            <Announce>
-              <Alert variant={AlertVariant.danger} ref={errorMessageRef}>
-                {errorMessage}
-              </Alert>
+            <Announce role="alert">
+              <Alert variant={AlertVariant.danger}>{errorMessage}</Alert>
             </Announce>
           )}
           <div>{children}</div>

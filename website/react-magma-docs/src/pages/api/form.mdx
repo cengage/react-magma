@@ -80,17 +80,21 @@ export function Example() {
   const errorMessage = React.useMemo(() => {
     let message = '';
 
+    if (Object.values(errors).some(error => error)) {
+      message += 'Please fix the following errors:\n';
+    }
+
     for (const error in errors) {
       if (errors[error]) {
         switch (error) {
           case 'firstName':
-            message += '- First Name field may not be blank\n';
+            message += '· First Name is required\n';
             break;
           case 'lastName':
-            message += '- Last Name field may not be blank\n';
+            message += '· Last Name is required\n';
             break;
           case 'email':
-            message += '- Email field may not be blank\n';
+            message += '· Email is required\n';
             break;
           default:
             return;
@@ -118,7 +122,7 @@ export function Example() {
     >
       <>
         <Input
-          labelText="First Name"
+          labelText="First Name (required)"
           value={state.firstName}
           onChange={event =>
             setState(prevState => ({
@@ -126,10 +130,11 @@ export function Example() {
               firstName: event.target.value,
             }))
           }
+          errorMessage={errors.firstName && 'First Name is required'}
         />
         <Spacer size="12" />
         <Input
-          labelText="Last Name"
+          labelText="Last Name (required)"
           value={state.lastName}
           onChange={event =>
             setState(prevState => ({
@@ -137,10 +142,11 @@ export function Example() {
               lastName: event.target.value,
             }))
           }
+          errorMessage={errors.lastName && 'Last Name is required'}
         />
         <Spacer size="12" />
         <Input
-          labelText="Email"
+          labelText="Email (required)"
           value={state.email}
           onChange={event =>
             setState(prevState => ({
@@ -148,6 +154,7 @@ export function Example() {
               email: event.target.value,
             }))
           }
+          errorMessage={errors.email && 'Email is required'}
         />
         <Spacer size="24" />
       </>
