@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.11-next.6
+
+### Patch Changes
+
+- 27044996c: build(deps): bump undici from 6.19.7 to 6.21.1 in /website/react-magma-docs
+
 ## 5.0.11-next.5
 
 ### Patch Changes
