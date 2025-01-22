@@ -41,24 +41,24 @@ describe('Table', () => {
 
     expect(getByTestId('heading-1')).toHaveStyleRule(
       'border-radius',
-      `${magma.spaceScale.spacing03} 0 0 0`,
+      `${magma.borderRadius} 0 0 0`,
       { target: 'first-child' }
     );
     expect(getByTestId('heading-2')).toHaveStyleRule(
       'border-radius',
-      `0 ${magma.spaceScale.spacing03} 0 0`,
+      `0 ${magma.borderRadius} 0 0`,
 
       { target: 'last-child' }
     );
     expect(getByTestId('table-row-2')).toHaveStyleRule(
       'border-radius',
-      `0 0 0 ${magma.spaceScale.spacing03}`,
+      `0 0 0 ${magma.borderRadius}`,
 
       { target: 'first-child' }
     );
     expect(getByTestId('table-row-2')).toHaveStyleRule(
       'border-radius',
-      `0 0 ${magma.spaceScale.spacing03} 0`,
+      `0 0 ${magma.borderRadius} 0`,
       { target: 'last-child' }
     );
   });
@@ -193,11 +193,11 @@ describe('Table', () => {
 
     expect(getByText('cell 1')).toHaveStyleRule(
       'padding',
-      `${magma.spaceScale.spacing02} ${magma.spaceScale.spacing03}`
+      `${magma.spaceScale.spacing02} ${magma.borderRadius}`
     );
     expect(getByText('heading 1')).toHaveStyleRule(
       'padding',
-      `${magma.spaceScale.spacing02} ${magma.spaceScale.spacing03}`
+      `${magma.spaceScale.spacing02} ${magma.borderRadius}`
     );
   });
 

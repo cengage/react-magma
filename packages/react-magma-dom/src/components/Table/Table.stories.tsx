@@ -50,7 +50,14 @@ const rows = [
 ];
 
 const Template: Story<TableProps> = args => (
-  <Card isInverse={args.isInverse}>
+  <Card
+    style={
+      args.hasSquareCorners
+        ? { borderRadius: '0' }
+        : { borderRadius: `${magma.borderRadius}` }
+    }
+    isInverse={args.isInverse}
+  >
     <Table {...args}>
       <TableHead>
         <TableRow>
@@ -300,7 +307,14 @@ export const ControlledPagination = args => {
   );
 
   return (
-    <Card isInverse={args.isInverse}>
+    <Card
+      isInverse={args.isInverse}
+      style={
+        args.hasSquareCorners
+          ? { borderRadius: '0' }
+          : { borderRadius: `${magma.borderRadius}` }
+      }
+    >
       <Table {...args}>
         <TableHead>
           <TableRow>
@@ -458,7 +472,14 @@ export const PaginationInverse = args => {
   );
 
   return (
-    <Card isInverse>
+    <Card
+      isInverse
+      style={
+        args.hasSquareCorners
+          ? { borderRadius: '0' }
+          : { borderRadius: `${magma.borderRadius}` }
+      }
+    >
       <Table {...args} isInverse>
         <TableHead>
           <TableRow>
@@ -545,7 +566,14 @@ RowColors.args = {
 
 export const RowColorsInverse = args => {
   return (
-    <Card isInverse>
+    <Card
+      isInverse
+      style={
+        args.hasSquareCorners
+          ? { borderRadius: '0' }
+          : { borderRadius: `${magma.borderRadius}` }
+      }
+    >
       <Table {...args}>
         <TableHead>
           <TableRow>
@@ -646,7 +674,14 @@ export const Sortable = args => {
   };
 
   return (
-    <Card isInverse={args.isInverse}>
+    <Card
+      isInverse={args.isInverse}
+      style={
+        args.hasSquareCorners
+          ? { borderRadius: '0' }
+          : { borderRadius: `${magma.borderRadius}` }
+      }
+    >
       <Table {...args}>
         <TableHead>
           <TableRow>
@@ -717,7 +752,14 @@ Sortable.args = {
 
 export const WithDropdown = args => {
   return (
-    <Card isInverse={args.isInverse}>
+    <Card
+      isInverse={args.isInverse}
+      style={
+        args.hasSquareCorners
+          ? { borderRadius: '0' }
+          : { borderRadius: `${magma.borderRadius}` }
+      }
+    >
       <Table maxWidth={500} {...args}>
         <TableHead>
           <TableRow>
@@ -797,13 +839,17 @@ export const AdjustableRowNumber = args => {
       tableRows.push(
         <TableRow key={`row${i}`}>
           <TableCell key={`cell${i}-left`}>{i}</TableCell>
-          <TableCell key={`cell${i}-middle`}>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</TableCell>
-          <TableCell key={`cell${i}-right`}>Nullam bibendum diam vel felis consequat lacinia.</TableCell>
+          <TableCell key={`cell${i}-middle`}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </TableCell>
+          <TableCell key={`cell${i}-right`}>
+            Nullam bibendum diam vel felis consequat lacinia.
+          </TableCell>
         </TableRow>
       );
     }
     return tableRows;
-  };
+  }
 
   return (
     <Table {...args}>
@@ -814,9 +860,7 @@ export const AdjustableRowNumber = args => {
           <TableHeaderCell>Column</TableHeaderCell>
         </TableRow>
       </TableHead>
-      <TableBody>
-        {getTableRows()}
-      </TableBody>
+      <TableBody>{getTableRows()}</TableBody>
     </Table>
   );
 };

@@ -122,11 +122,14 @@ export const TableContainer = styled.div<{
 `;
 
 export const StyledTable = styled.table<{
+  hasSquareCorners?: boolean;
   isInverse?: boolean;
   minWidth: number;
 }>`
   border-collapse: collapse;
   border-spacing: 0;
+  border-radius: ${props =>
+    props.hasSquareCorners ? '0' : props.theme.borderRadius};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
@@ -174,7 +177,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isInverse: isInverse,
           isSelectable,
           isSortableBySelected,
-          rowCount
+          rowCount,
         }}
       >
         <TableContainer
@@ -187,6 +190,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           <StyledTable
             {...other}
             data-testid={testId}
+            hasSquareCorners={hasSquareCorners}
             isInverse={isInverse}
             minWidth={minWidth || theme.breakpoints.small}
             ref={ref}

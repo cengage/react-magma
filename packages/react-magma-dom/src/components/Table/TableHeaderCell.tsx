@@ -86,10 +86,12 @@ const StyledTableHeaderCell = styled.th<{
   ${baseTableCellStyle}
 
    &:first-child {
-    border-radius: ${props => (props.hasSquareCorners ? '0' : '8px 0 0 0')};
+    border-radius: ${props =>
+      props.hasSquareCorners ? '0' : `${props.theme.borderRadius} 0 0 0`};
   }
   &:last-child {
-    border-radius: ${props => (props.hasSquareCorners ? '0' : '0 8px 0 0')};
+    border-radius: ${props =>
+      props.hasSquareCorners ? '0' : `0 ${props.theme.borderRadius} 0 0`};
   }
 
   ${props =>

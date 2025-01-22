@@ -115,10 +115,12 @@ const StyledTableRow = styled.tr<{
   &:last-child {
     border-bottom: 0;
     td:first-child {
-      border-radius: ${props => (props.hasSquareCorners ? '0' : '0 0 0 8px')};
+      border-radius: ${props =>
+        props.hasSquareCorners ? '0' : `0 0 0 ${props.theme.borderRadius}`};
     }
     td:last-child {
-      border-radius: ${props => (props.hasSquareCorners ? '0' : '0 0 8px 0')};
+      border-radius: ${props =>
+        props.hasSquareCorners ? '0' : `0 0 ${props.theme.borderRadius} 0`};
     }
   }
 
