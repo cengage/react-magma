@@ -10,7 +10,7 @@ import {
 
 import { magma } from '../../theme/magma';
 
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent, getByTestId } from '@testing-library/react';
 import { transparentize } from 'polished';
 
 describe('Table', () => {
@@ -423,5 +423,24 @@ describe('Table', () => {
         target: ':hover',
       }
     );
+  });
+
+  it('should change the table layout to `overflow: auto` when the minimum table size is greater than the screen width', () => {
+    const { getByTestId } = render(
+      <Table minWidth={600} testId="main-table">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+      </Table>
+    );
+    act(() => {
+      global.innerWidth = 500;
+      global.dispatchEvent(new Event('resize'));
+    });
+    const table = getByTestId('main-table').parentElement;
+
+    expect(table).toHaveStyleRule('overflow', 'auto');
   });
 });
