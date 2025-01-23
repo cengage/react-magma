@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.11-next.7
+
+### Patch Changes
+
+- 11ffb3abe: build(deps): bump dom-iterator from 1.0.0 to 1.0.2 in /website/react-magma-docs
+
 ## 5.0.11-next.6
 
 ### Patch Changes
