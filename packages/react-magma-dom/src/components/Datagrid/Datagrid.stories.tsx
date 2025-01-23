@@ -15,6 +15,7 @@ import { magma } from '../../theme/magma';
 import { Spacer, SpacerAxis } from '../Spacer';
 import { Announce } from '../Announce';
 import { VisuallyHidden } from '../VisuallyHidden';
+import { Heading } from '../Heading';
 
 const rowsForPagination = [
   {
@@ -282,6 +283,11 @@ export default {
         type: 'boolean',
       },
     },
+    tableTitle: {
+      control: {
+        type: 'text',
+      },
+    },
   },
 } as Meta;
 
@@ -334,21 +340,30 @@ const defaultArgs = {
   isInverse: false,
   isSortableBySelected: false,
   paginationProps: {},
+  tableTitle: 'Default'
 };
 
 export const Default = Template.bind({});
-Default.args = defaultArgs;
+Default.args = { ...defaultArgs };
+
+export const TitleWithNode = Template.bind({});
+
+TitleWithNode.args = { ...defaultArgs, tableTitle: <Heading level={1}>Title with node</Heading> };
+
+TitleWithNode.parameters = { controls: { exclude: ['tableTitle'] } };
 
 export const ColoredRows = Template.bind({});
 ColoredRows.args = {
   ...defaultArgs,
   rows: coloredRows,
+  tableTitle: 'Colored rows',
 };
 
 export const Selectable = Template.bind({});
 Selectable.args = {
   ...defaultArgs,
   isSelectable: true,
+  tableTitle: 'Selectable',
 };
 
 export const SelectableAndSortable: Story<DatagridProps> = ({
@@ -536,18 +551,21 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
 SelectableAndSortable.args = {
   isSelectable: true,
   isSortableBySelected: true,
+  tableTitle: 'Selectable and sortable',
 };
 
 export const ControlledSelectable = ControlledTemplate.bind({});
 ControlledSelectable.args = {
   ...defaultArgs,
   isSelectable: true,
+  tableTitle: 'Controlled selectable',
 };
 
 export const DisabledSelectableRow = Template.bind({});
 DisabledSelectableRow.args = {
   ...defaultArgs,
   isSelectable: true,
+  tableTitle: 'Disabled selectable row',
   rows: [
     ...defaultArgs.rows,
     {
@@ -564,6 +582,7 @@ DisabledSelectableRow.args = {
 export const PaginationChangedDefaults = Template.bind({});
 PaginationChangedDefaults.args = {
   ...defaultArgs,
+  tableTitle: 'Pagination changed defaults',
   paginationProps: {
     defaultPage: 2,
     defaultRowsPerPage: 5,
@@ -574,6 +593,7 @@ PaginationChangedDefaults.args = {
 export const ControlledPagination = ControlledPaginatedTemplate.bind({});
 ControlledPagination.args = {
   ...defaultArgs,
+  tableTitle: 'Controlled pagination',
   paginationProps: {
     rowsPerPageValues: [5, 10, 20],
   },
@@ -582,6 +602,7 @@ ControlledPagination.args = {
 export const WithoutPagination = Template.bind({});
 WithoutPagination.args = {
   ...defaultArgs,
+  tableTitle: 'Without pagination',
   hasPagination: false,
 };
 
@@ -627,6 +648,7 @@ const CustomPaginationComponent: React.FunctionComponent<
 export const PaginationWithCustomComponent = Template.bind({});
 PaginationWithCustomComponent.args = {
   ...defaultArgs,
+  tableTitle: 'Pagination with custom component',
   components: {
     Pagination: CustomPaginationComponent,
   },

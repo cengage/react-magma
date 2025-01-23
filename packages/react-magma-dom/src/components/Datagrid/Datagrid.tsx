@@ -3,6 +3,9 @@ import { useControlled } from '../../hooks/useControlled';
 import { useDataPagination } from '../../hooks/useDataPagination';
 import { XOR } from '../../utils';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
+import { StyledCaption } from '../Table';
+import { ThemeContext } from '../../theme/ThemeContext';
+
 import {
   Table,
   TableBody,
@@ -51,6 +54,11 @@ export interface DatagridRow {
    * Used to allow each unique column field as a key with the row content as the value
    */
   [key: string]: any;
+  /**
+   * The title or caption of a table inside a <caption> HTML element that provides the table an accessible 
+   * description
+   */
+  tableTitle?: React.ReactNode | string;
 }
 
 export interface DatagridComponents {
@@ -160,6 +168,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       selectedRows: selectedRowsProp,
       hasPagination = true,
       onSortBySelected,
+      tableTitle,
       sortDirection,
       ...other
     } = props;
@@ -168,6 +177,8 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       controlled: selectedRowsProp,
       default: defaultSelectedRows,
     });
+
+    const theme = React.useContext(ThemeContext);
 
     const isControlled = selectedRowsProp ? true : false;
 
@@ -278,7 +289,13 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
 
     return (
       <>
+
         <Table {...other} ref={ref} aria-live="polite">
+        {tableTitle && (
+          <StyledCaption isInverse={props.isInverse} isTitleNode={typeof tableTitle !== 'string'} theme={theme}>
+            {tableTitle}
+          </StyledCaption>
+        )}
           <TableHead>
             <TableRow
               headerRowStatus={headerRowStatus}

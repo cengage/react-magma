@@ -212,7 +212,11 @@ export function Example() {
 
   return (
     <Card>
-      <Datagrid columns={columns} rows={rows} />
+      <Datagrid
+        tableTitle="Basic usage Datagrid"
+        columns={columns}
+        rows={rows}
+      />
     </Card>
   );
 }
@@ -262,7 +266,14 @@ export function Example() {
     },
   ];
 
-  return <Datagrid columns={columns} rows={coloredRows} hasSquareCorners />;
+  return (
+    <Datagrid
+      tableTitle="Colored rows Datagrid"
+      columns={columns}
+      rows={coloredRows}
+      hasSquareCorners
+    />
+  );
 }
 ```
 
@@ -272,7 +283,7 @@ Use `rowName` when using Selectable so that the aria labels on the checkboxes ca
 
 ```tsx
 import React from 'react';
-import { Datagrid, Card } from 'react-magma-dom';
+import { Datagrid, Heading, Card } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -487,7 +498,12 @@ export function Example() {
 
   return (
     <Card>
-      <Datagrid columns={columns} rows={rows} isSelectable />
+      <Datagrid
+        tableTitle={<Heading level={1}>Selectable Datagrid</Heading>}
+        columns={columns}
+        rows={rows}
+        isSelectable
+      />
     </Card>
   );
 }
@@ -713,7 +729,12 @@ export function Example() {
 
   return (
     <Card>
-      <Datagrid columns={columns} rows={rows} isSelectable />
+      <Datagrid
+        tableTitle="Disabled selectable row Datagrid"
+        columns={columns}
+        rows={rows}
+        isSelectable
+      />
     </Card>
   );
 }
@@ -902,6 +923,7 @@ export function Example() {
         onRowSelect={handleSelectedItems}
         onHeaderSelect={handleHeaderSelect}
         sortDirection={selectedDirection}
+        tableTitle="Selectable and sortable"
       />
       <Announce>
         <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
@@ -1149,6 +1171,7 @@ export function Example() {
         isSelectable
         selectedRows={selectedRows}
         onSelectedRowsChange={updatedSelectedRows}
+        tableTitle="Controlled selectable column"
       />
     </Card>
   );
@@ -1354,7 +1377,12 @@ export function Example() {
   };
 
   return (
-    <Datagrid columns={columns} rows={rows} paginationProps={paginationProps} />
+    <Datagrid
+      tableTitle="Pagination defaults Datagrid"
+      columns={columns}
+      rows={rows}
+      paginationProps={paginationProps}
+    />
   );
 }
 ```
@@ -1577,7 +1605,12 @@ export function Example() {
   };
 
   return (
-    <Datagrid columns={columns} rows={rows} paginationProps={paginationProps} />
+    <Datagrid
+      tableTitle="Pagination controlled Datagrid"
+      columns={columns}
+      rows={rows}
+      paginationProps={paginationProps}
+    />
   );
 }
 ```
@@ -1827,6 +1860,7 @@ export function Example() {
       columns={columns}
       rows={rows}
       components={{ Pagination: CustomPaginationComponent }}
+      tableTitle="Custom pagination components"
     />
   );
 }
@@ -2026,7 +2060,14 @@ export function Example() {
     },
   ];
 
-  return <Datagrid columns={columns} rows={rows} hasPagination={false} />;
+  return (
+    <Datagrid
+      tableTitle="Without pagination Datagrid"
+      columns={columns}
+      rows={rows}
+      hasPagination={false}
+    />
+  );
 }
 ```
 
@@ -2073,7 +2114,12 @@ export function Example() {
 
   return (
     <Card isInverse>
-      <Datagrid columns={columns} isInverse rows={rows} />
+      <Datagrid
+        tableTitle="Inverse Datagrid"
+        columns={columns}
+        isInverse
+        rows={rows}
+      />
     </Card>
   );
 }
