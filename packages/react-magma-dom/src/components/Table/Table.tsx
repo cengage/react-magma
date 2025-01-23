@@ -172,24 +172,25 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
 
     const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
-    React.useEffect(() => {
-      function handleResize() {
-        setWindowWidth(window.innerWidth);
-        if (window.innerWidth < minWidth && minWidth) {
-          setTableOverFlow('auto');
+    if (typeof window !== 'undefined') {
+      React.useEffect(() => {
+        function handleResize() {
+          setWindowWidth(window.innerWidth);
+          if (window.innerWidth < minWidth && minWidth) {
+            setTableOverFlow('auto');
+          }
+
+          if (window.innerWidth > minWidth) {
+            setTableOverFlow('visible');
+          }
         }
 
-        if (window.innerWidth > minWidth) {
-          setTableOverFlow('visible');
-        }
-      }
+        window.addEventListener('resize', handleResize);
+        handleResize();
 
-      window.addEventListener('resize', handleResize);
-      handleResize();
-
-      return () => window.removeEventListener('resize', handleResize);
-    }, [windowWidth]);
-
+        return () => window.removeEventListener('resize', handleResize);
+      }, [windowWidth]);
+    }
     return (
       <TableContext.Provider
         value={{
