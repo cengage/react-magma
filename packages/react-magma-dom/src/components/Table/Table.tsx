@@ -177,21 +177,22 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
     React.useEffect(() => {
       function handleResize() {
         setWindowWidth(window.innerWidth);
-        if (isBrowser && window.innerWidth < minWidth && minWidth) {
+        if (window.innerWidth < minWidth && minWidth) {
           setTableOverFlow('auto');
         }
 
-        if (isBrowser && window.innerWidth > minWidth) {
+        if (window.innerWidth > minWidth) {
           setTableOverFlow('visible');
         }
       }
 
-      isBrowser && window.addEventListener('resize', handleResize);
+      window.addEventListener('resize', handleResize);
       handleResize();
 
-      return () =>
-        isBrowser && window.removeEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
     }, [windowWidth]);
+
+    const handleTableOverFlow = isBrowser && tableOverFlow;
 
     return (
       <TableContext.Provider
@@ -211,7 +212,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           data-testid={tableWrapper}
           isInverse={isInverse}
           minWidth={minWidth}
-          tableOverFlow={tableOverFlow}
+          tableOverFlow={handleTableOverFlow}
           theme={theme}
           tabIndex={0}
         >
