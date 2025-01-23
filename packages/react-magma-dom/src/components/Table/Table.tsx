@@ -172,6 +172,8 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
 
     const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
+    const isBrowser = typeof window !== 'undefined';
+
     React.useEffect(() => {
       function handleResize() {
         setWindowWidth(window.innerWidth);
@@ -187,7 +189,9 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       window.addEventListener('resize', handleResize);
       handleResize();
 
-      return () => window.removeEventListener('resize', handleResize);
+      if (isBrowser) {
+        return () => window.removeEventListener('resize', handleResize);
+      }
     }, [windowWidth]);
 
     return (
