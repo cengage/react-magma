@@ -2,7 +2,7 @@ import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
 import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
 import { Input, InputProps } from '.';
-import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { ButtonSize, ButtonType, ButtonVariant, Button } from '../Button';
 import { Card, CardBody } from '../Card';
 import { IconButton } from '../IconButton';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
