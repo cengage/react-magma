@@ -172,26 +172,25 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
 
     const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
-    const isBrowser = typeof window !== 'undefined';
+    const isBrowser = () => typeof window !== 'undefined';
 
     React.useEffect(() => {
       function handleResize() {
         setWindowWidth(window.innerWidth);
-        if (window.innerWidth < minWidth && minWidth) {
+        if (isBrowser && window.innerWidth < minWidth && minWidth) {
           setTableOverFlow('auto');
         }
 
-        if (window.innerWidth > minWidth) {
+        if (isBrowser && window.innerWidth > minWidth) {
           setTableOverFlow('visible');
         }
       }
 
-      window.addEventListener('resize', handleResize);
+      isBrowser && window.addEventListener('resize', handleResize);
       handleResize();
 
-      if (isBrowser) {
-        return () => window.removeEventListener('resize', handleResize);
-      }
+      return () =>
+        isBrowser && window.removeEventListener('resize', handleResize);
     }, [windowWidth]);
 
     return (
