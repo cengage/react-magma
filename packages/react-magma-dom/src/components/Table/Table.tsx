@@ -106,7 +106,6 @@ export const TableContext = React.createContext<TableContextInterface>({
 });
 
 export const TableContainer = styled.div<{
-  minWidth: number;
   isInverse?: boolean;
   tableOverFlow?: string;
 }>`
@@ -172,8 +171,6 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
 
     const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
-    const isBrowser = () => typeof window !== 'undefined';
-
     React.useEffect(() => {
       function handleResize() {
         setWindowWidth(window.innerWidth);
@@ -192,8 +189,6 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       return () => window.removeEventListener('resize', handleResize);
     }, [windowWidth]);
 
-    const handleTableOverFlow = isBrowser && tableOverFlow;
-
     return (
       <TableContext.Provider
         value={{
@@ -211,8 +206,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
         <TableContainer
           data-testid={tableWrapper}
           isInverse={isInverse}
-          minWidth={minWidth}
-          tableOverFlow={handleTableOverFlow}
+          tableOverFlow={minWidth && tableOverFlow}
           theme={theme}
           tabIndex={0}
         >
