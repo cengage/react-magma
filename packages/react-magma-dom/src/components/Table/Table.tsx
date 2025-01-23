@@ -206,7 +206,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
         <TableContainer
           data-testid={tableWrapper}
           isInverse={isInverse}
-          tableOverFlow={minWidth && tableOverFlow}
+          tableOverFlow={tableOverFlow ? tableOverFlow : null}
           theme={theme}
           tabIndex={0}
         >
