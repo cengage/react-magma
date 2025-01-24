@@ -59,6 +59,7 @@ export const DropdownSplitButton = React.forwardRef<
   } = resolvedProps;
 
   const ref = useForkedRef(forwardedRef, resolvedContext.toggleRef);
+  const splitButtonRef = React.useRef<HTMLButtonElement>(null);
 
   resolvedContext.dropdownButtonId.current = useGenerateId(id);
 
@@ -70,18 +71,27 @@ export const DropdownSplitButton = React.forwardRef<
         aria-hidden="true"
       />
     ) : (
-      <ArrowDropDownIcon
-        size={theme.iconSizes.medium}
-        testId="caretDown"
-        aria-hidden="true"
-      />
-    );
+        <ArrowDropDownIcon
+          size={theme.iconSizes.medium}
+          testId="caretDown"
+          aria-hidden="true"
+        />
+      );
 
   function handleClick(event: React.SyntheticEvent) {
     if (resolvedContext.isOpen) {
       resolvedContext.closeDropdown(event);
     } else {
       resolvedContext.openDropdown();
+    }
+  }
+
+  function handleButtonClick(event: React.SyntheticEvent) {
+    onClick?.();
+
+    if (resolvedContext.isOpen) {
+      resolvedContext.closeDropdown(event);
+      splitButtonRef.current?.focus();
     }
   }
 
@@ -103,11 +113,12 @@ export const DropdownSplitButton = React.forwardRef<
         {...other}
         id={resolvedContext.dropdownButtonId.current}
         isInverse={resolvedContext.isInverse}
-        onClick={onClick}
+        onClick={handleButtonClick}
         shape={ButtonShape.leftCap}
         style={{ borderRight: 0, marginRight: 0 }}
         variant={variant}
         tabIndex={0}
+        ref={splitButtonRef}
       >
         {children}
       </Button>
