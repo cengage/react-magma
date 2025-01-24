@@ -9,20 +9,25 @@ import { Button } from '../Button';
 
 describe('Popover', () => {
   it('should find element by testId', () => {
-    const testId = 'test-id';
+    const popoverTestId = 'popover-test-id';
+    const triggerTestId = 'trigger-test-id';
+    const contentTestId = 'content-test-id';
+
     const { getByTestId } = render(
-      <Popover testId={testId}>
-        <PopoverTrigger />
-        <PopoverContent>
+      <Popover testId={popoverTestId}>
+        <PopoverTrigger testId={triggerTestId} />
+        <PopoverContent testId={contentTestId}>
           <span>Content</span>
         </PopoverContent>
       </Popover>
     );
 
-    expect(getByTestId(testId)).toBeInTheDocument();
+    expect(getByTestId(popoverTestId)).toBeInTheDocument();
+    expect(getByTestId(triggerTestId)).toBeInTheDocument();
+    expect(getByTestId(contentTestId)).toBeInTheDocument();
   });
 
-  it('should show an error message if there is no content', async () => {
+  it('should show an error message if there is no content', () => {
     const { getByText, getByTestId } = render(
       <Popover>
         <PopoverTrigger />
@@ -71,7 +76,7 @@ describe('Popover', () => {
     expect(spanContent).toBeVisible();
   });
 
-  it('should render the popover with custom icon on trigger', async () => {
+  it('should render the popover with custom icon on trigger', () => {
     const triggerTestId = 'trigger-test-id';
     const { container, getByTestId } = render(
       <Popover>
@@ -90,7 +95,7 @@ describe('Popover', () => {
     expect(popoverTrigger).toContainElement(customIcon);
   });
 
-  it('should render the popover with custom text on trigger', async () => {
+  it('should render the popover with custom text on trigger', () => {
     const triggerTestId = 'trigger-test-id';
     const customText = 'Custom Text';
     const { getByTestId } = render(
@@ -215,7 +220,7 @@ describe('Popover', () => {
     expect(spanContent).not.toBeVisible();
   });
 
-  it('should render the popover component, positioned bottom by default', async () => {
+  it('should render the popover component, positioned bottom by default', () => {
     const { getByTestId } = render(
       <Popover>
         <PopoverTrigger />
@@ -230,7 +235,7 @@ describe('Popover', () => {
     expect(popoverContent).toHaveAttribute('data-popover-placement', 'bottom');
   });
 
-  it('should render the popover component with position top', async () => {
+  it('should render the popover component with position top', () => {
     const { getByTestId } = render(
       <Popover position={PopoverPosition.top}>
         <PopoverTrigger />
@@ -351,7 +356,7 @@ describe('Popover', () => {
     expect(spanContent).not.toBeVisible();
   });
 
-  it('should render the popover with auto width by default', async () => {
+  it('should render the popover with auto width by default', () => {
     const { getByTestId } = render(
       <Popover>
         <PopoverTrigger />
@@ -366,7 +371,7 @@ describe('Popover', () => {
     expect(popoverContent).toHaveAttribute('width', 'auto');
   });
 
-  it('should render the popover with fixed width', async () => {
+  it('should render the popover with fixed width', () => {
     const { getByTestId } = render(
       <Popover width={320}>
         <PopoverTrigger />
@@ -381,7 +386,7 @@ describe('Popover', () => {
     expect(popoverContent).toHaveStyle('width: 320px');
   });
 
-  it('should render the popover with target width', async () => {
+  it('should render the popover with target width', () => {
     const { getByTestId } = render(
       <Popover id="popoverWithTargetWidth" width="target">
         <PopoverTrigger />
@@ -396,7 +401,7 @@ describe('Popover', () => {
     expect(popoverContent).toMatchSnapshot();
   });
 
-  it('should render the popover with header and footer', async () => {
+  it('should render the popover with header and footer', () => {
     const { getByTestId, getByText } = render(
       <Popover>
         <PopoverTrigger />
@@ -422,7 +427,7 @@ describe('Popover', () => {
     expect(popoverContent).toContainElement(popoverFooter);
   });
 
-  it('should render the popover with max height', async () => {
+  it('should render the popover with max height', () => {
     const { getByTestId } = render(
       <Popover maxHeight={300} width={100}>
         <PopoverTrigger />
@@ -448,7 +453,7 @@ describe('Popover', () => {
     expect(popoverContent).toHaveStyle('max-height: 300px');
   });
 
-  it('should render the popover with pointer by default', async () => {
+  it('should render the popover with pointer by default', () => {
     const { getByTestId } = render(
       <Popover id="popoverWithPointer">
         <PopoverTrigger />
@@ -463,7 +468,7 @@ describe('Popover', () => {
     expect(popoverContent).toMatchSnapshot();
   });
 
-  it('should render the popover without pointer', async () => {
+  it('should render the popover without pointer', () => {
     const { getByTestId } = render(
       <Popover id="popoverWithoutPointer" hasPointer={false}>
         <PopoverTrigger />
@@ -525,7 +530,7 @@ describe('Popover', () => {
     expect(closeButton).not.toBeVisible();
   });
 
-  it('should open popover by default if openByDefault property was passed', async () => {
+  it('should open popover by default if openByDefault property was passed', () => {
     const { getByTestId } = render(
       <Popover openByDefault>
         <PopoverTrigger />
@@ -540,7 +545,7 @@ describe('Popover', () => {
     expect(popoverContent).toBeVisible();
   });
 
-  it('should render the popover with isInverse prop', async () => {
+  it('should render the popover with isInverse prop', () => {
     const { getByTestId } = render(
       <Popover id="popoverWithInverseStyles" isInverse>
         <PopoverTrigger />

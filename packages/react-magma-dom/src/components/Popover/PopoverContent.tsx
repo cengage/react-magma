@@ -3,19 +3,12 @@ import { Card } from '../Card';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import styled from '@emotion/styled';
-import {
-  isExistedActiveElements,
-  PopoverContext,
-  PopoverPosition,
-} from './Popover';
+import { hasActiveElements, PopoverContext, PopoverPosition } from './Popover';
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { Announce } from '../Announce';
 import { ThemeInterface } from '../../theme/magma';
 import { PopoverHeader, PopoverFooter } from './PopoverSection';
 
-/**
- * @children required
- */
 export interface PopoverContentProps
   extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -131,15 +124,11 @@ const ErrorMessage = styled.div`
   padding: 1em;
 `;
 
-const StyledPopoverContent = styled.div`
-  z-index: 2;
-`;
-
 const ScrollableContent = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  padding: 16px;
+  padding: ${props => props.theme.spaceScale.spacing05};
   height: inherit;
   white-space: normal;
 `;
@@ -154,7 +143,7 @@ export const PopoverContent = React.forwardRef<
   const ref = useForkedRef(forwardedRef, context.contentRef);
 
   const focusTrapRef = useFocusLock(
-    context.isOpen && isExistedActiveElements(context.contentRef)
+    context.isOpen && hasActiveElements(context.contentRef)
   );
 
   const styledChildren = React.Children.toArray(children).map(item =>
@@ -180,10 +169,7 @@ export const PopoverContent = React.forwardRef<
   );
 
   return (
-    <StyledPopoverContent
-      ref={context.setFloating}
-      style={{ ...context.floatingStyles }}
-    >
+    <div ref={context.setFloating} style={{ ...context.floatingStyles }}>
       <StyledCard
         {...other}
         position={context.position}
@@ -213,12 +199,12 @@ export const PopoverContent = React.forwardRef<
               }}
             >
               {header}
-              <ScrollableContent>{content}</ScrollableContent>
+              <ScrollableContent theme={theme}>{content}</ScrollableContent>
               {footer}
             </StyledAnnounce>
           )}
         </div>
       </StyledCard>
-    </StyledPopoverContent>
+    </div>
   );
 });

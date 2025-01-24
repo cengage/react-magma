@@ -25,6 +25,7 @@ import { Spacer } from '../Spacer';
 import { TypographyVisualStyle } from '../Typography';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { Hyperlink } from '../Hyperlink';
+import { magma } from '../../theme/magma';
 
 export default {
   component: Popover,
@@ -113,6 +114,7 @@ export const Default = Template.bind({});
 Default.args = {
   width: 320,
 };
+Default.parameters = { controls: { exclude: ['hoverable'] } };
 
 const CustomIconTemplate = args => (
   <Card
@@ -142,6 +144,7 @@ export const CustomIcon = CustomIconTemplate.bind({});
 CustomIcon.args = {
   width: 160,
 };
+CustomIcon.parameters = { controls: { exclude: ['hoverable'] } };
 
 const TextOnlyWithHoverTemplate = args => {
   return (
@@ -382,6 +385,7 @@ export const SettingsExample = SettingsExampleTemplate.bind({});
 SettingsExample.args = {
   width: 280,
 };
+SettingsExample.parameters = { controls: { exclude: ['hoverable'] } };
 
 const CustomTriggerButtonTemplate = args => {
   const ref = React.useRef<PopoverApi>(null);
@@ -448,6 +452,7 @@ export const CustomTriggerButton = CustomTriggerButtonTemplate.bind({});
 CustomTriggerButton.args = {
   width: 'target',
 };
+CustomTriggerButton.parameters = { controls: { exclude: ['hoverable'] } };
 
 const FormExampleTemplate = args => {
   return (
@@ -490,6 +495,7 @@ const FormExampleTemplate = args => {
 
 export const FormExample = FormExampleTemplate.bind({});
 FormExample.args = {};
+FormExample.parameters = { controls: { exclude: ['hoverable'] } };
 
 const InputExampleTemplate = args => {
   const [state, setState] = React.useState<string>('');
@@ -581,12 +587,20 @@ const InputExampleTemplate = args => {
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.length ? (
                 <CloseIcon
-                  color={args.isInverse ? '#FAAEB0' : '#D32821'}
+                  color={
+                    args.isInverse
+                      ? magma.colors.danger200
+                      : magma.colors.danger500
+                  }
                   size={16}
                 />
               ) : (
                 <DoneIcon
-                  color={args.isInverse ? '#ACF0C1' : '#178037'}
+                  color={
+                    args.isInverse
+                      ? magma.colors.success200
+                      : magma.colors.success500
+                  }
                   size={16}
                 />
               )}
@@ -595,11 +609,11 @@ const InputExampleTemplate = args => {
                 style={{
                   color: errorState.length
                     ? args.isInverse
-                      ? '#FAAEB0'
-                      : '#D32821'
+                      ? magma.colors.danger200
+                      : magma.colors.danger500
                     : args.isInverse
-                    ? '#ACF0C1'
-                    : '#178037',
+                    ? magma.colors.success200
+                    : magma.colors.success500,
                 }}
               >
                 Includes at least 6 characters
@@ -608,12 +622,20 @@ const InputExampleTemplate = args => {
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.number ? (
                 <CloseIcon
-                  color={args.isInverse ? '#FAAEB0' : '#D32821'}
+                  color={
+                    args.isInverse
+                      ? magma.colors.danger200
+                      : magma.colors.danger500
+                  }
                   size={16}
                 />
               ) : (
                 <DoneIcon
-                  color={args.isInverse ? '#ACF0C1' : '#178037'}
+                  color={
+                    args.isInverse
+                      ? magma.colors.success200
+                      : magma.colors.success500
+                  }
                   size={16}
                 />
               )}
@@ -622,11 +644,11 @@ const InputExampleTemplate = args => {
                 style={{
                   color: errorState.number
                     ? args.isInverse
-                      ? '#FAAEB0'
-                      : '#D32821'
+                      ? magma.colors.danger200
+                      : magma.colors.danger500
                     : args.isInverse
-                    ? '#ACF0C1'
-                    : '#178037',
+                    ? magma.colors.success200
+                    : magma.colors.success500,
                 }}
               >
                 Includes number
@@ -635,12 +657,20 @@ const InputExampleTemplate = args => {
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.lowercase ? (
                 <CloseIcon
-                  color={args.isInverse ? '#FAAEB0' : '#D32821'}
+                  color={
+                    args.isInverse
+                      ? magma.colors.danger200
+                      : magma.colors.danger500
+                  }
                   size={16}
                 />
               ) : (
                 <DoneIcon
-                  color={args.isInverse ? '#ACF0C1' : '#178037'}
+                  color={
+                    args.isInverse
+                      ? magma.colors.success200
+                      : magma.colors.success500
+                  }
                   size={16}
                 />
               )}
@@ -649,11 +679,11 @@ const InputExampleTemplate = args => {
                 style={{
                   color: errorState.lowercase
                     ? args.isInverse
-                      ? '#FAAEB0'
-                      : '#D32821'
+                      ? magma.colors.danger200
+                      : magma.colors.danger500
                     : args.isInverse
-                    ? '#ACF0C1'
-                    : '#178037',
+                    ? magma.colors.success200
+                    : magma.colors.success500,
                 }}
               >
                 Includes lowercase letter
@@ -662,12 +692,20 @@ const InputExampleTemplate = args => {
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.uppercase ? (
                 <CloseIcon
-                  color={args.isInverse ? '#FAAEB0' : '#D32821'}
+                  color={
+                    args.isInverse
+                      ? magma.colors.danger200
+                      : magma.colors.danger500
+                  }
                   size={16}
                 />
               ) : (
                 <DoneIcon
-                  color={args.isInverse ? '#ACF0C1' : '#178037'}
+                  color={
+                    args.isInverse
+                      ? magma.colors.success200
+                      : magma.colors.success500
+                  }
                   size={16}
                 />
               )}
@@ -676,11 +714,11 @@ const InputExampleTemplate = args => {
                 style={{
                   color: errorState.uppercase
                     ? args.isInverse
-                      ? '#FAAEB0'
-                      : '#D32821'
+                      ? magma.colors.danger200
+                      : magma.colors.danger500
                     : args.isInverse
-                    ? '#ACF0C1'
-                    : '#178037',
+                    ? magma.colors.success200
+                    : magma.colors.success500,
                 }}
               >
                 Includes uppercase letter
@@ -689,12 +727,20 @@ const InputExampleTemplate = args => {
             <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
               {errorState.specialSymbol ? (
                 <CloseIcon
-                  color={args.isInverse ? '#FAAEB0' : '#D32821'}
+                  color={
+                    args.isInverse
+                      ? magma.colors.danger200
+                      : magma.colors.danger500
+                  }
                   size={16}
                 />
               ) : (
                 <DoneIcon
-                  color={args.isInverse ? '#ACF0C1' : '#178037'}
+                  color={
+                    args.isInverse
+                      ? magma.colors.success200
+                      : magma.colors.success500
+                  }
                   size={16}
                 />
               )}
@@ -703,11 +749,11 @@ const InputExampleTemplate = args => {
                 style={{
                   color: errorState.specialSymbol
                     ? args.isInverse
-                      ? '#FAAEB0'
-                      : '#D32821'
+                      ? magma.colors.danger200
+                      : magma.colors.danger500
                     : args.isInverse
-                    ? '#ACF0C1'
-                    : '#178037',
+                    ? magma.colors.success200
+                    : magma.colors.success500,
                 }}
               >
                 Includes special symbol
@@ -764,6 +810,7 @@ export const DisabledTrigger = DisabledTriggerExample.bind({});
 DisabledTrigger.args = {
   width: 320,
   isDisabled: true,
+  hoverable: true,
 };
 
 const ProfileExampleTemplate = args => {
@@ -781,7 +828,7 @@ const ProfileExampleTemplate = args => {
     >
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/3/33/Mark_Kassen%2C_Tony_C%C3%A1rdenas_and_Chris_Evans_%28cropped%29.jpg"
-        alt="Mark_Kassen"
+        alt="Chris Evans"
         width={32}
         height={32}
         style={{
@@ -806,6 +853,7 @@ const ProfileExampleTemplate = args => {
             Chris Evans
           </span>
         </PopoverTrigger>
+
         <PopoverContent>
           <PopoverFooter>
             <ButtonGroup
@@ -835,7 +883,7 @@ const ProfileExampleTemplate = args => {
           <div style={{ display: 'flex', gap: '8px' }}>
             <img
               src="https://upload.wikimedia.org/wikipedia/commons/3/33/Mark_Kassen%2C_Tony_C%C3%A1rdenas_and_Chris_Evans_%28cropped%29.jpg"
-              alt="Mark_Kassen"
+              alt="Chris Evans"
               width={74}
               height={74}
               style={{
@@ -886,6 +934,7 @@ const ProfileExampleTemplate = args => {
 
 export const ProfileExample = ProfileExampleTemplate.bind({});
 ProfileExample.args = {};
+ProfileExample.parameters = { controls: { exclude: ['hoverable'] } };
 
 const DontShowAgainTemplate = args => {
   const sessionStorageValue = JSON.parse(
@@ -957,3 +1006,4 @@ DontShowAgain.args = {
   width: 320,
   openByDefault: true,
 };
+DontShowAgain.parameters = { controls: { exclude: ['hoverable'] } };

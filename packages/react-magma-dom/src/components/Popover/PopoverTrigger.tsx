@@ -7,6 +7,7 @@ import {
   ButtonSize,
   ButtonType,
   ButtonVariant,
+  ButtonShape,
 } from '../Button';
 import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
@@ -38,10 +39,6 @@ export interface IconTextPopoverTriggerProps extends ButtonProps {
 
 const TriggerButtonContainer = styled.div`
   width: 100%;
-`;
-
-const StyledIcon = styled(IconButton)`
-  border-radius: 8px;
 `;
 
 export type PopoverTriggerProps = XOR<
@@ -93,8 +90,9 @@ export const PopoverTrigger = React.forwardRef<
   if (!children) {
     return (
       <div ref={context.setReference} style={{ width: 'fit-content' }}>
-        <StyledIcon
+        <IconButton
           {...other}
+          shape={ButtonShape.fill}
           aria-label="popoverTriggerIcon"
           aria-haspopup="dialog"
           aria-expanded={context.isOpen}

@@ -6,6 +6,7 @@ import {
   flip,
   autoUpdate,
   ReferenceType,
+  AlignedPlacement,
 } from '@floating-ui/react-dom';
 import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
@@ -101,7 +102,7 @@ export interface PopoverContextInterface {
   hasPointer?: boolean;
 }
 
-const Container = styled.div`
+const StyledContainer = styled.div`
   display: inline-block;
 `;
 
@@ -110,7 +111,7 @@ export const PopoverContext = React.createContext<PopoverContextInterface>({
   setIsOpen: () => false,
 });
 
-export function isExistedActiveElements(ref) {
+export function hasActiveElements(ref) {
   return (
     Array.from(
       ref.current?.querySelectorAll(
@@ -127,8 +128,6 @@ export function isExistedActiveElements(ref) {
     }).length > 0
   );
 }
-
-export const usePopoverContext = () => React.useContext(PopoverContext);
 
 export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
   (props, forwardedRef) => {
@@ -167,6 +166,10 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           },
         };
       }
+
+      if (openByDefault) {
+        openPopover();
+      }
     }, []);
 
     const popoverId = useGenerateId(defaultId);
@@ -176,22 +179,16 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
 
     const ref = useForkedRef(forwardedRef, ownRef);
 
-    React.useEffect(() => {
-      if (openByDefault) {
-        openPopover();
-      }
-    }, []);
-
     const isInverse = useIsInverse(resolvedProps.isInverse);
 
     const handleMouseOver = () => {
-      if (hoverable && !isDisabled && !isExistedActiveElements(contentRef)) {
+      if (hoverable && !hasActiveElements(contentRef)) {
         setIsOpen(true);
       }
     };
 
     const handleMouseLeave = () => {
-      if (hoverable && !isExistedActiveElements(contentRef)) {
+      if (hoverable && !hasActiveElements(contentRef)) {
         setIsOpen(false);
       }
     };
@@ -232,8 +229,10 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     }
 
     const { refs, floatingStyles, placement } = useFloating({
+      //flip() - Changes the placement of the floating element to keep it in view.
+      // offset - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
       middleware: [flip(), offset(hasPointer ? 14 : 4)],
-      placement: position as unknown as Record<string, unknown>,
+      placement: position as AlignedPlacement,
       whileElementsMounted: autoUpdate,
     });
 
@@ -251,7 +250,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       <PopoverContext.Provider
         value={{
           floatingStyles,
-          position: placement as unknown as PopoverPosition,
+          position: placement as AlignedPlacement,
           closePopover,
           popoverTriggerId,
           popoverContentId,
@@ -270,7 +269,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           hasPointer,
         }}
       >
-        <Container
+        <StyledContainer
           {...other}
           onKeyDown={handleKeyDown}
           onBlur={handlePopoverBlur}
@@ -281,7 +280,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           id={popoverId}
         >
           {children}
-        </Container>
+        </StyledContainer>
       </PopoverContext.Provider>
     );
   }

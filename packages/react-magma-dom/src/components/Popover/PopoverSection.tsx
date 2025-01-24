@@ -28,7 +28,7 @@ export interface PopoverSectionProps {
 
 export const StyledSection = styled.section`
   position: relative;
-  padding: 16px;
+  padding: ${props => props.theme.spaceScale.spacing05};
 `;
 
 const SectionContent = styled.div`
@@ -74,7 +74,7 @@ const PopoverSection = React.forwardRef<
   );
 
   return (
-    <StyledSection as={section} ref={forwardedRef}>
+    <StyledSection as={section} ref={forwardedRef} theme={theme}>
       <SectionContent style={style}>{styledChildren}</SectionContent>
       <SectionLine
         isInverse={context.isInverse}
