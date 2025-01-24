@@ -22,6 +22,7 @@
     "feat-select-disabled-items",
     "fix-FormGroup-input-message",
     "fix-GlobalStyles-import-warning",
+    "fix-toast-time-duration",
     "moody-impalas-decide",
     "rotten-carrots-retire",
     "shiny-coins-divide",
