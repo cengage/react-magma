@@ -497,6 +497,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
                     <ProgressRing
                       color={progressRingColor()}
                       isActive={!isPaused}
+                      duration={toastDuration}
                     />
                   </ProgressRingWrapper>
                 )}
