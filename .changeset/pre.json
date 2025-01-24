@@ -11,6 +11,7 @@
     "react-magma-landing": "1.1.4"
   },
   "changesets": [
+    "a11y-input-error-message-not-read",
     "a11y-nativeSelect-add-aria-secribedBy-to-helper-message",
     "angry-actors-glow",
     "chore-docs-linting-",
@@ -22,6 +23,7 @@
     "feat-select-disabled-items",
     "fix-FormGroup-input-message",
     "fix-GlobalStyles-import-warning",
+    "fix-toast-time-duration",
     "moody-impalas-decide",
     "rotten-carrots-retire",
     "shiny-coins-divide",

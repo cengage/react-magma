@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.0.11-next.8
+
+### Patch Changes
+
+- e724cb027: fix(Input): Clarification that developers should use `ref` with `Input`. Add a new example for Storybook.
+- Updated dependencies [50117512e]
+  - react-magma-dom@4.8.0-next.8
+
 ## 5.0.11-next.7
 
 ### Patch Changes
