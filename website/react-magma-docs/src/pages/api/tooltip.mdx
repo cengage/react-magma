@@ -60,6 +60,8 @@ The `Tooltip` component takes a `position` property, that accepts the following 
 ```tsx
 import React from 'react';
 import {
+  Flex,
+  FlexBehavior,
   Tooltip,
   EnumTooltipPosition,
   IconButton,
@@ -74,7 +76,7 @@ import {
 
 export function Example() {
   return (
-    <>
+    <Flex behavior={FlexBehavior.container} spacing={2}>
       <Tooltip position={EnumTooltipPosition.right} content="Tooltip right">
         <IconButton
           aria-label="Right"
@@ -106,7 +108,7 @@ export function Example() {
           variant={ButtonVariant.solid}
         />
       </Tooltip>
-    </>
+    </Flex>
   );
 }
 ```

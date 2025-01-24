@@ -86,7 +86,7 @@ The Nudge transitions (`nudgeLeft`, `nudgeRight`, `nudgeTop`, `nudgeBottom`) mov
 ```tsx
 import React from 'react';
 import styled from '@emotion/styled';
-import { Button, Transition } from 'react-magma-dom';
+import { Button, Card, CardBody, Transition } from 'react-magma-dom';
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -99,7 +99,7 @@ export function Example() {
 
   return (
     <>
-      <Transition isOpen={isOpen} nudgeLeft>
+      <Transition isOpen={isOpen} nudgeLeft style={{ margin: '0 0 10px 50px' }}>
         <Box />
       </Transition>
       <Button onClick={() => setIsOpen(!isOpen)}>
