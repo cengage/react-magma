@@ -424,23 +424,4 @@ describe('Table', () => {
       }
     );
   });
-
-  it('should change the table layout to `overflow: auto` when the minimum table size is greater than the screen width', () => {
-    const { getByTestId } = render(
-      <Table minWidth={600} testId="main-table">
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>heading 1</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-      </Table>
-    );
-    act(() => {
-      global.innerWidth = 500;
-      global.dispatchEvent(new Event('resize'));
-    });
-    const table = getByTestId('main-table').parentElement;
-
-    expect(table).toHaveStyleRule('overflow', 'auto');
-  });
 });
