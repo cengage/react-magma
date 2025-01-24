@@ -107,9 +107,12 @@ export const TableContext = React.createContext<TableContextInterface>({
 
 export const TableContainer = styled.div<{
   isInverse?: boolean;
+  minWidth: number;
   tableOverFlow?: string;
 }>`
-  overflow: ${props => props.tableOverFlow};
+  @media screen and (max-width: ${props => props.minWidth}px) {
+    overflow: auto;
+  }
   &:focus {
     outline: none;
   }
@@ -167,27 +170,27 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
 
     const tableWrapper = `table-wrapper-${testId}`;
 
-    const [tableOverFlow, setTableOverFlow] = React.useState<string>('visible');
+    // const [tableOverFlow, setTableOverFlow] = React.useState<string>('visible');
 
-    const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+    // const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
-    React.useEffect(() => {
-      function handleResize() {
-        setWindowWidth(window.innerWidth);
-        if (window.innerWidth < minWidth && minWidth) {
-          setTableOverFlow('auto');
-        }
+    // React.useEffect(() => {
+    //   function handleResize() {
+    //     setWindowWidth(window.innerWidth);
+    //     if (window.innerWidth < minWidth && minWidth) {
+    //       setTableOverFlow('auto');
+    //     }
 
-        if (window.innerWidth > minWidth) {
-          setTableOverFlow('visible');
-        }
-      }
+    //     if (window.innerWidth > minWidth) {
+    //       setTableOverFlow('visible');
+    //     }
+    //   }
 
-      window.addEventListener('resize', handleResize);
-      handleResize();
+    //   window.addEventListener('resize', handleResize);
+    //   handleResize();
 
-      return () => window.removeEventListener('resize', handleResize);
-    }, [windowWidth]);
+    //   return () => window.removeEventListener('resize', handleResize);
+    // }, [windowWidth]);
 
     return (
       <TableContext.Provider
@@ -206,7 +209,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
         <TableContainer
           data-testid={tableWrapper}
           isInverse={isInverse}
-          tableOverFlow={tableOverFlow ? tableOverFlow : null}
+          minWidth={minWidth}
           theme={theme}
           tabIndex={0}
         >
