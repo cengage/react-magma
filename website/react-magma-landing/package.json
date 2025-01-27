@@ -11,10 +11,10 @@
   "keywords": [],
   "license": "MIT",
   "devDependencies": {
-    "axios": "^1.7.9",
+    "axios": "^1.6.0",
     "copy": "^0.3.2",
-    "ejs": "^3.1.10",
+    "ejs": "^3.1.5",
     "mkdirp": "^1.0.4",
-    "semver": "^7.6.3"
+    "semver": "^7.3.4"
   }
 }
