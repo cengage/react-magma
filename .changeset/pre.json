@@ -21,6 +21,7 @@
     "feat-charts-documentation",
     "feat-select-disabled-items-styling",
     "feat-select-disabled-items",
+    "fix-Dropdown-click-outside",
     "fix-FormGroup-input-message",
     "fix-GlobalStyles-import-warning",
     "fix-toast-time-duration",

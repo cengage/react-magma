@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.9
+
+### Patch Changes
+
+- 4c9fa50aa: fix(Dropdown): fix click outside behavior in Dropdown
+
 ## 4.8.0-next.8
 
 ### Patch Changes
