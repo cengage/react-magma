@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.11-next.9
+
+### Patch Changes
+
+- 32be7d5a6: feat(Charts): Change the name from 'Get Started' to 'Getting Started'.
+
 ## 5.0.11-next.8
 
 ### Patch Changes
