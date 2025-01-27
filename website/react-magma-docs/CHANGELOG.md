@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.11-next.10
+
+### Patch Changes
+
+- 06813d972: build(deps): bump store2 from 2.14.2 to 2.14.4
+
 ## 5.0.11-next.9
 
 ### Patch Changes
