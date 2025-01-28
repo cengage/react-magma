@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.10
+
+### Patch Changes
+
+- 6163bc4d7: chore: Upgrade uuid to 9.0.1 and @types/uuid to 9.0.8
+
 ## 4.8.0-next.9
 
 ### Patch Changes
