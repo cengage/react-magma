@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.11
+
+### Patch Changes
+
+- bbc13e67a: fix(Table): Reconfigured the table CSS to better allow for content within a table to overlay the container, such as dropdowns.
+
 ## 4.8.0-next.10
 
 ### Patch Changes
