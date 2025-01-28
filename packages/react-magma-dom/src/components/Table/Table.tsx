@@ -82,6 +82,7 @@ export enum TableRowColor {
 interface TableContextInterface {
   density?: TableDensity;
   hasHoverStyles?: boolean;
+  hasSquareCorners?: boolean;
   hasVerticalBorders?: boolean;
   hasZebraStripes?: boolean;
   isInverse?: boolean;
@@ -94,6 +95,7 @@ interface TableContextInterface {
 export const TableContext = React.createContext<TableContextInterface>({
   density: TableDensity.normal,
   hasHoverStyles: false,
+  hasSquareCorners: false,
   hasZebraStripes: false,
   hasVerticalBorders: false,
   isInverse: false,
@@ -104,13 +106,13 @@ export const TableContext = React.createContext<TableContextInterface>({
 });
 
 export const TableContainer = styled.div<{
-  minWidth: number;
-  hasSquareCorners?: boolean;
   isInverse?: boolean;
+  minWidth: number;
+  tableOverFlow?: string;
 }>`
-  border-radius: ${props =>
-    props.hasSquareCorners ? 0 : props.theme.borderRadius};
-  overflow: ${props => (props.minWidth ? 'auto' : 'visible')};
+  @media screen and (max-width: ${props => props.minWidth}px) {
+    overflow: auto;
+  }
   &:focus {
     outline: none;
   }
@@ -124,11 +126,14 @@ export const TableContainer = styled.div<{
 `;
 
 export const StyledTable = styled.table<{
+  hasSquareCorners?: boolean;
   isInverse?: boolean;
   minWidth: number;
 }>`
   border-collapse: collapse;
   border-spacing: 0;
+  border-radius: ${props =>
+    props.hasSquareCorners ? '0' : props.theme.borderRadius};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
@@ -170,17 +175,17 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
         value={{
           density,
           hasHoverStyles,
+          hasSquareCorners,
           hasZebraStripes,
           hasVerticalBorders,
           isInverse: isInverse,
           isSelectable,
           isSortableBySelected,
-          rowCount
+          rowCount,
         }}
       >
         <TableContainer
           data-testid={tableWrapper}
-          hasSquareCorners={hasSquareCorners}
           isInverse={isInverse}
           minWidth={minWidth}
           theme={theme}
@@ -189,6 +194,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           <StyledTable
             {...other}
             data-testid={testId}
+            hasSquareCorners={hasSquareCorners}
             isInverse={isInverse}
             minWidth={minWidth || theme.breakpoints.small}
             ref={ref}
