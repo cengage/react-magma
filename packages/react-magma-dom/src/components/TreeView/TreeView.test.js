@@ -13,6 +13,7 @@ import { Tag } from '../Tag';
 import { AccordionTreeWithShowAllAndExpandAll } from './TreeView.stories';
 
 import { TreeView, TreeItem, TreeViewSelectable } from '.';
+import { act } from 'react-dom/test-utils';
 
 const TEXT = 'Test Text Tree Item';
 const testId = 'tree-view';
@@ -213,8 +214,8 @@ const renderTreeItemsRecursively = (treeItems, depth) => {
         {item.children?.length ? (
           renderTreeItemsRecursively(item.children, depth + 1)
         ) : (
-          <></>
-        )}
+            <></>
+          )}
       </TreeItem>
     );
   });
@@ -3524,6 +3525,166 @@ describe('TreeView', () => {
         expect(getByLabelText('item-title-3.1')).toBeDisabled();
         expect(getByLabelText('item-title-5.1')).toBeDisabled();
       });
+    });
+  });
+
+  describe('TreeView isTopLevelSelectable', () => {
+    it('should not select top-level items when isTopLevelSelectable is false and selectable is TreeViewSelectable.multi', () => {
+      const apiRef = React.createRef();
+      const { getByTestId } = render(
+        <TreeView
+          selectable={TreeViewSelectable.multi}
+          isTopLevelSelectable={false}
+          apiRef={apiRef}
+          initialExpandedItems={['parent1', 'parent2']} // ensure children are in the DOM
+        >
+          <TreeItem label="Parent 1" itemId="parent1">
+            <TreeItem label="Child 1" itemId="child1" />
+          </TreeItem>
+          <TreeItem label="Parent 2" itemId="parent2">
+            <TreeItem label="Child 2" itemId="child2" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      act(() => {
+        apiRef.current.selectAll();
+      });
+
+      expect(() => getByTestId('parent1-checkbox')).toThrow();
+      expect(() => getByTestId('parent2-checkbox')).toThrow();
+      expect(getByTestId('child1-checkbox')).toBeChecked();
+      expect(getByTestId('child2-checkbox')).toBeChecked();
+    });
+
+    it('should not render checkboxes for top-level parent items when isTopLevelSelectable is false', () => {
+      const { queryByTestId } = render(
+        <TreeView selectable={TreeViewSelectable.multi} isTopLevelSelectable={false}>
+          <TreeItem label="Parent 1" itemId="parent1">
+            <TreeItem label="Child 1" itemId="child1" />
+          </TreeItem>
+          <TreeItem label="Parent 2" itemId="parent2">
+            <TreeItem label="Child 2" itemId="child2" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(queryByTestId('parent1-checkbox')).toBeNull();
+      expect(queryByTestId('parent2-checkbox')).toBeNull();
+
+      // expand parents to verify children are rendered
+      userEvent.click(queryByTestId('parent1-expand'));
+      userEvent.click(queryByTestId('parent2-expand'));
+
+      // child checkboxes should exist
+      expect(queryByTestId('child1-checkbox')).toBeInTheDocument();
+      expect(queryByTestId('child2-checkbox')).toBeInTheDocument();
+    });
+
+    it('should not render checkboxes for top-level items when one is a parent and one is a leaf', () => {
+      const { queryByTestId } = render(
+        <TreeView selectable={TreeViewSelectable.multi} isTopLevelSelectable={false}>
+          <TreeItem label="Parent 1" itemId="parent1">
+            <TreeItem label="Child 1" itemId="child1" />
+          </TreeItem>
+          <TreeItem label="Leaf 1" itemId="leaf1" />
+        </TreeView>
+      );
+
+      expect(queryByTestId('parent1-checkbox')).toBeNull();
+
+      // expand only the parent to see its children
+      userEvent.click(queryByTestId('parent1-expand'));
+
+      expect(queryByTestId('leaf1-checkbox')).toBeNull();
+      expect(queryByTestId('child1-checkbox')).toBeInTheDocument();
+    });
+
+    it('should not render checkboxes for top-level items when both are leaves', () => {
+      const { queryByTestId } = render(
+        <TreeView selectable={TreeViewSelectable.multi} isTopLevelSelectable={false}>
+          <TreeItem label="Leaf 1" itemId="leaf1" />
+          <TreeItem label="Leaf 2" itemId="leaf2" />
+        </TreeView>
+      );
+
+      expect(queryByTestId('leaf1-checkbox')).toBeNull();
+      expect(queryByTestId('leaf2-checkbox')).toBeNull();
+    });
+
+    it('should not update top-level parent state when children are selected (parent remains non-selectable)', () => {
+      const onSelectedItemChange = jest.fn();
+      const { getByTestId, queryByTestId } = render(
+        <TreeView
+          selectable={TreeViewSelectable.multi}
+          isTopLevelSelectable={false}
+          onSelectedItemChange={onSelectedItemChange}
+          initialExpandedItems={['parent1']}
+        >
+          <TreeItem label="Parent 1" itemId="parent1" testId="parent1">
+            <TreeItem label="Child 1" itemId="child1" testId="child1" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(queryByTestId('parent1-checkbox')).toBeNull();
+      userEvent.click(getByTestId('child1-checkbox'));
+      expect(getByTestId('child1')).toHaveAttribute('aria-checked', 'true');
+      expect(getByTestId('parent1')).not.toHaveAttribute('aria-checked');
+    });
+
+    it('should not set parent to indeterminate even if some children are selected', () => {
+      const onSelectedItemChange = jest.fn();
+      const { getByTestId, queryByTestId } = render(
+        <TreeView
+          selectable={TreeViewSelectable.multi}
+          isTopLevelSelectable={false}
+          onSelectedItemChange={onSelectedItemChange}
+          initialExpandedItems={['parent1']}
+        >
+          <TreeItem label="Parent 1" itemId="parent1" testId="parent1">
+            <TreeItem label="Child 1" itemId="child1" testId="child1" />
+            <TreeItem label="Child 2" itemId="child2" testId="child2" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(queryByTestId('parent1-checkbox')).toBeNull();
+
+      userEvent.click(getByTestId('child1-checkbox'));
+      expect(getByTestId('child1')).toHaveAttribute('aria-checked', 'true');
+      expect(getByTestId('child2')).toHaveAttribute('aria-checked', 'false');
+
+      expect(getByTestId('parent1')).not.toHaveAttribute('aria-checked');
+    });
+
+    it('should expand/collapse on top-level parent using Space or Enter but never select it when isTopLevelSelectable is false', () => {
+      const onSelectedItemChange = jest.fn();
+      const { getByTestId, queryByTestId } = render(
+        <TreeView
+          selectable={TreeViewSelectable.multi}
+          isTopLevelSelectable={false}
+          onSelectedItemChange={onSelectedItemChange}
+        >
+          <TreeItem label="Parent 1" itemId="parent1" testId="parent1">
+            <TreeItem label="Child 1" itemId="child1" testId="child1" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      userEvent.tab();
+      expect(getByTestId('parent1')).toHaveFocus();
+
+      fireEvent.keyDown(getByTestId('parent1-itemwrapper'), { key: ' ' });
+      expect(getByTestId('parent1')).toHaveAttribute('aria-expanded', 'true');
+      expect(onSelectedItemChange).not.toHaveBeenCalled();
+      expect(queryByTestId('parent1-checkbox')).toBeNull();
+      expect(getByTestId('parent1')).not.toHaveAttribute('aria-checked');
+
+      fireEvent.keyDown(getByTestId('parent1-itemwrapper'), { key: ' ' });
+      expect(getByTestId('parent1')).toHaveAttribute('aria-expanded', 'false');
+      expect(onSelectedItemChange).not.toHaveBeenCalled();
+      expect(getByTestId('parent1')).not.toHaveAttribute('aria-checked');
     });
   });
 });
