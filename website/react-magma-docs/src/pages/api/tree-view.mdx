@@ -913,6 +913,7 @@ import {
   TreeView,
   TreeViewApi,
   TreeViewSelectable,
+  TreeViewSelectable,
 } from 'react-magma-dom';
 import { KeyboardArrowUpIcon, KeyboardArrowDownIcon } from 'react-magma-icons';
 
@@ -1114,6 +1115,51 @@ export function Example() {
         {isShowAll ? 'Show Less' : 'Show All'}
       </IconButton>
     </>
+  );
+}
+```
+
+## isTopLevelSelectable
+
+When set to `false` (defaults to `true`), and used with `TreeViewSelectable.multi`, the top-level parents or leaves will not be selectable.
+
+```tsx
+import React from 'react';
+import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <TreeView
+      ariaLabelledBy="animals-multi-isTopLevelSelectable"
+      selectable={TreeViewSelectable.multi}
+      isTopLevelSelectable={false}
+    >
+      <TreeItem label="Birds" itemId="birds">
+        <TreeItem label="Parrots" itemId="parrots">
+          <TreeItem label="African Grey" isDisabled itemId="african Grey" />
+          <TreeItem label="Cockatiel" itemId="cockatiel" />
+          <TreeItem label="Budgerigar" itemId="budgerigar" />
+        </TreeItem>
+        <TreeItem label="Birds of Prey" itemId="birds of Prey">
+          <TreeItem label="Eagles" itemId="eagles" />
+          <TreeItem label="Hawks" itemId="hawks" />
+          <TreeItem label="Falcons" itemId="falcons" />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Aquatic Animals" itemId="aquatic Animals">
+        <TreeItem label="Fish" itemId="fish">
+          <TreeItem label="Goldfish" itemId="goldfish" />
+          <TreeItem label="Betta Fish" itemId="betta Fish" />
+          <TreeItem label="Guppies" itemId="guppies" />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Marine Mammals" itemId="marine Mammals">
+        <TreeItem label="Dolphins" isDisabled itemId="dolphins" />
+        <TreeItem label="Whales" isDisabled itemId="whales" />
+        <TreeItem label="Seals" isDisabled itemId="seals" />
+      </TreeItem>
+      <TreeItem label="land Mammals" itemId="land-mamels" />
+    </TreeView>
   );
 }
 ```

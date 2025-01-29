@@ -3686,5 +3686,23 @@ describe('TreeView', () => {
       expect(onSelectedItemChange).not.toHaveBeenCalled();
       expect(getByTestId('parent1')).not.toHaveAttribute('aria-checked');
     });
+
+    it('preselected top-level parent should not be selected when isTopLevelSelectable is false', () => {
+      const { getByTestId, queryByTestId } = render(
+        <TreeView
+          selectable={TreeViewSelectable.multi}
+          isTopLevelSelectable={false}
+          preselectedItems={['parent1']}
+          initialExpandedItems={['parent1']}
+        >
+          <TreeItem label="Parent 1" itemId="parent1" testId="parent1">
+            <TreeItem label="Child 1" itemId="child1" testId="child1" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(queryByTestId('parent1-checkbox')).toBeNull();
+      expect(getByTestId('child1-checkbox')).toBeInTheDocument();
+    });
   });
 });
