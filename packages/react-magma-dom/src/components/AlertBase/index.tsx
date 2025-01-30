@@ -381,7 +381,7 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
 
 const AlertSpan = styled.span`
   white-space: pre-line;
-`
+`;
 
 function renderIcon(variant = 'info', isToast?: boolean, theme?: any) {
   const Icon = VARIANT_ICON[variant];
@@ -505,13 +505,15 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
                     />
                   </ProgressRingWrapper>
                 )}
+                {/* @ts-ignore */}
                 <DismissButton
                   alertVariant={variant}
-                  aria-label={
-                    closeAriaLabel
-                      ? closeAriaLabel
-                      : i18n.alert.dismissAriaLabel
-                  }
+                  {...(isToast
+                    ? { title: closeAriaLabel || i18n.alert.dismissAriaLabel }
+                    : {
+                        'aria-label':
+                          closeAriaLabel || i18n.alert.dismissAriaLabel,
+                      })}
                   icon={
                     <CloseIcon
                       size={
