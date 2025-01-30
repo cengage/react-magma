@@ -48,7 +48,7 @@ export function useTimePicker(props: UseTimePickerProps) {
   const id = useGenerateId(props.id);
 
   React.useEffect(() => {
-    if(typeof props.value === 'undefined') {
+    if (typeof props.value === 'undefined') {
       setHour('');
       setMinute('');
       setAmPm(am);
@@ -115,15 +115,46 @@ export function useTimePicker(props: UseTimePickerProps) {
     return newMinute.toString();
   }
 
+  const sanitizeMinute = (newMinute: string): number => {
+    if (Number(newMinute) > 99) {
+      return Number(newMinute.slice(2));
+    }
+
+    if (newMinute.length > 2) {
+      return Number(newMinute.slice(-2));
+    }
+
+    return Number(newMinute);
+  };
+
+  const sanitizeHour = (newHour: string): number => {
+    console.log(newHour);
+    if (Number(newHour) > 99) {
+      return Number(newHour.slice(-1));
+    }
+
+    if (newHour.length > 2) {
+      if (Number(newHour) > 12) {
+        return Number(newHour.slice(-1));
+      }
+
+      return Number(newHour.slice(-2));
+    }
+
+    return Number(newHour);
+  };
+
   function handleHourChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const newHour = calculateHour(Number(event.target.value));
+    const sanitizedHour = sanitizeHour(event.target.value);
+    const newHour = calculateHour(sanitizedHour);
 
     setHour(newHour);
     updateTime(`${newHour}:${minute} ${amPm}`);
   }
 
   function handleMinuteChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const newMinute = calculateMinute(Number(event.target.value));
+    const sanitizedMinute = sanitizeMinute(event.target.value);
+    const newMinute = calculateMinute(sanitizedMinute);
 
     setMinute(newMinute);
     updateTime(`${hour}:${newMinute} ${amPm}`);
