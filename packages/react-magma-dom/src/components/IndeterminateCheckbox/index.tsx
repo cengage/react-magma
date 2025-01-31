@@ -76,6 +76,17 @@ export const IndeterminateCheckbox = React.forwardRef<
     }
   }
 
+  function handleOnKeyDown(event: React.KeyboardEvent) {
+    if (event.key === ' ') {
+      event.preventDefault();
+      const syntheticEvent = {
+        ...event,
+        target: { checked: !isChecked },
+      } as unknown as React.ChangeEvent<HTMLInputElement>;
+      handleChange(syntheticEvent);
+    }
+  }
+
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
   const context = React.useContext(FormGroupContext);
@@ -159,37 +170,45 @@ export const IndeterminateCheckbox = React.forwardRef<
           ref={ref}
           type="checkbox"
           onChange={handleChange}
+          tabIndex={-1}
         />
-        <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
-          <StyledFakeInput
-            isChecked={isChecked}
-            color={color}
-            disabled={disabled}
-            hasError={hasError}
-            hideFocus={props.hideFocus}
-            isIndeterminate={isIndeterminate}
-            isInverse={isInverse}
-            style={inputStyle}
-            theme={theme}
-            aria-hidden="true"
-          >
-            {isIndeterminate ? (
-              <IndeterminateCheckBoxIcon
-                testId="indeterminateIcon"
-                size={theme.iconSizes.medium}
-              />
-            ) : isChecked ? (
-              <CheckBoxIcon size={theme.iconSizes.medium} />
+        <div
+          tabIndex={0}
+          role="checkbox"
+          aria-checked="mixed"
+          onKeyDown={handleOnKeyDown}
+        >
+          <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
+            <StyledFakeInput
+              isChecked={isChecked}
+              color={color}
+              disabled={disabled}
+              hasError={hasError}
+              hideFocus={props.hideFocus}
+              isIndeterminate={isIndeterminate}
+              isInverse={isInverse}
+              style={inputStyle}
+              theme={theme}
+              aria-hidden="true"
+            >
+              {isIndeterminate ? (
+                <IndeterminateCheckBoxIcon
+                  testId="indeterminateIcon"
+                  size={theme.iconSizes.medium}
+                />
+              ) : isChecked ? (
+                <CheckBoxIcon size={theme.iconSizes.medium} />
+              ) : (
+                <CheckBoxOutlineBlankIcon size={theme.iconSizes.medium} />
+              )}
+            </StyledFakeInput>
+            {isTextVisuallyHidden ? (
+              <HiddenLabelText>{labelText}</HiddenLabelText>
             ) : (
-              <CheckBoxOutlineBlankIcon size={theme.iconSizes.medium} />
+              labelText
             )}
-          </StyledFakeInput>
-          {isTextVisuallyHidden ? (
-            <HiddenLabelText>{labelText}</HiddenLabelText>
-          ) : (
-            labelText
-          )}
-        </StyledLabel>
+          </StyledLabel>
+        </div>
         <Announce>
           {showAnnounce && <VisuallyHidden>{announceText}</VisuallyHidden>}
         </Announce>
