@@ -22,4 +22,4 @@ Include description of the change and type of change:
 - [ ] Tests that prove the fix is effective or that the feature works have been added
 
 ## How to test
-<!-- Include testing steps, all edge cases, all components affects by this change, etc. -->
+<!-- Include testing steps, list of edge cases, components affected by this change, etc. -->
