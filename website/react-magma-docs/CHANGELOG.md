@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.11-next.11
+
+### Patch Changes
+
+- c41fd904d: fix: Repointed a few broken links and fixed some styling bugs throughout the examples.
+
 ## 5.0.11-next.10
 
 ### Patch Changes
