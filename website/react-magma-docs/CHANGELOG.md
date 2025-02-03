@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.0.11-next.12
+
+### Patch Changes
+
+- 45734993c: chore: Fix codeowners and update PR template
+- a81fd575f: fix(Typography): Fix wrong size on images in the documentation.
+
 ## 5.0.11-next.11
 
 ### Patch Changes
