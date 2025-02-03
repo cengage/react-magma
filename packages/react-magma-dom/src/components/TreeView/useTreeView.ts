@@ -321,6 +321,7 @@ export function useTreeView(props: UseTreeViewProps) {
             checkedStatus,
             checkChildren,
             checkParents,
+            isTopLevelSelectable: isTopLevelSelectable,
           });
         }
 
@@ -336,7 +337,7 @@ export function useTreeView(props: UseTreeViewProps) {
         selectItem,
         selectAll() {
           if (
-            [TreeViewSelectable.single, TreeViewSelectable.off].includes(
+            [TreeViewSelectable.single, TreeViewSelectable.single].includes(
               selectable
             ) ||
             isDisabled
@@ -377,6 +378,7 @@ export function useTreeView(props: UseTreeViewProps) {
               checkedStatus: IndeterminateCheckboxStatus.unchecked,
               checkChildren,
               checkParents,
+              isTopLevelSelectable: isTopLevelSelectable,
             });
           });
         },
@@ -389,6 +391,7 @@ export function useTreeView(props: UseTreeViewProps) {
                 checkedStatus: IndeterminateCheckboxStatus.checked,
                 checkChildren,
                 checkParents,
+                isTopLevelSelectable: isTopLevelSelectable,
               });
             });
           } else {
@@ -407,7 +410,7 @@ export function useTreeView(props: UseTreeViewProps) {
               isDisabled,
             })
           );
-        }
+        },
       };
     }
   }, [selectItem, isDisabled, children, isTopLevelSelectable]);

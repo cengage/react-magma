@@ -629,12 +629,16 @@ export const toggleMulti = ({
   forceCheckedStatus,
   checkChildren,
   checkParents,
+  isTopLevelSelectable,
 }: {
   items: TreeViewItemInterface[];
   itemId: TreeViewItemInterface['itemId'];
   checkedStatus: TreeViewItemInterface['checkedStatus'];
   forceCheckedStatus?: boolean;
-} & Pick<UseTreeViewProps, 'checkChildren' | 'checkParents'>) => {
+} & Pick<
+  UseTreeViewProps,
+  'checkChildren' | 'checkParents' | 'isTopLevelSelectable'
+>) => {
   const checkedStatus =
     checkChildren && !forceCheckedStatus
       ? getMultiToggledStatus({ items, itemId })
@@ -650,7 +654,7 @@ export const toggleMulti = ({
         checkedStatus,
       })
     : itemsWithProcessedItemSelection;
-  return checkParents
+  return checkParents && isTopLevelSelectable
     ? processParentsSelection({
         items: itemsWithProcessedChildrenSelection,
         itemId,
@@ -698,10 +702,14 @@ export const toggleAllMulti = ({
   checkedStatus,
   checkChildren,
   checkParents,
+  isTopLevelSelectable,
 }: {
   items: TreeViewItemInterface[];
   checkedStatus: TreeViewItemInterface['checkedStatus'];
-} & Pick<UseTreeViewProps, 'checkChildren' | 'checkParents'>) => {
+} & Pick<
+  UseTreeViewProps,
+  'checkChildren' | 'checkParents' | 'isTopLevelSelectable'
+>) => {
   if (!checkChildren) {
     return items.map(item => {
       if (item?.isDisabled) {
@@ -727,6 +735,7 @@ export const toggleAllMulti = ({
       forceCheckedStatus: true,
       checkChildren,
       checkParents,
+      isTopLevelSelectable,
     });
   }, items);
 };

@@ -115,7 +115,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     }
 
     forceUpdate();
-  }, [isDisabled, registerTreeItem, treeItemRefArray, forceUpdate]);
+  }, []);
 
   React.useEffect(() => {
     if (initialExpandedItemsNeedUpdate) {
