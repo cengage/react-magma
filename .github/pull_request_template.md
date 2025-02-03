@@ -1,4 +1,4 @@
-Issue: #
+Closes: #
 
 ## What I did
 <!--
@@ -10,15 +10,16 @@ Include description of the change and type of change:
 - Other: style, refactor, performance, build, chore
 -->
 
-## Screenshots:
-<!-- Include screenshot of your change -->
+## Screenshots
+<!-- Include screenshot of your change, when applicable -->
 
 ## Checklist 
 - [ ] changeset has been added
-- [ ] Pull request description is descriptive
-- [ ] I have made corresponding changes to the documentation
-- [ ] New and existing unit tests pass locally with my changes
-- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] Pull request is assigned, labels have been added and ticket is linked
+- [ ] Pull request description is descriptive and testing steps are listed
+- [ ] Corresponding changes to the documentation have been made
+- [ ] New and existing unit tests pass locally with the proposed changes
+- [ ] Tests that prove the fix is effective or that the feature works have been added
 
 ## How to test
-<!-- Include testing steps, all edge cases, etc. -->
+<!-- Include testing steps, list of edge cases, components affected by this change, etc. -->
