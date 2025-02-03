@@ -77,7 +77,7 @@ export const IndeterminateCheckbox = React.forwardRef<
   }
 
   function handleOnKeyDown(event: React.KeyboardEvent) {
-    if (event.key === ' ') {
+    if (event.key === ' ' && !disabled) {
       event.preventDefault();
       const syntheticEvent = {
         ...event,
@@ -173,7 +173,7 @@ export const IndeterminateCheckbox = React.forwardRef<
           tabIndex={-1}
         />
         <div
-          tabIndex={0}
+          tabIndex={!disabled && 0}
           role="checkbox"
           aria-checked="mixed"
           onKeyDown={handleOnKeyDown}
