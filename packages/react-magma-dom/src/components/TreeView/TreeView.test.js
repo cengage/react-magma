@@ -3641,6 +3641,8 @@ describe('TreeView', () => {
           isTopLevelSelectable={false}
           onSelectedItemChange={onSelectedItemChange}
           initialExpandedItems={['parent1']}
+          checkParents={true}
+          checkChildren={true}
         >
           <TreeItem label="Parent 1" itemId="parent1" testId="parent1">
             <TreeItem label="Child 1" itemId="child1" testId="child1" />
@@ -3703,6 +3705,36 @@ describe('TreeView', () => {
 
       expect(queryByTestId('parent1-checkbox')).toBeNull();
       expect(getByTestId('child1-checkbox')).toBeInTheDocument();
+    });
+
+    it('selectAll should not select top-level parent when isTopLevelSelectable is false', () => {
+      const apiRef = React.createRef();
+      const onSelectedItemChange = jest.fn();
+
+      render(
+        <TreeView
+          selectable={TreeViewSelectable.multi}
+          isTopLevelSelectable={false}
+          apiRef={apiRef}
+          initialExpandedItems={['parent1']}
+          onSelectedItemChange={onSelectedItemChange}
+        >
+          <TreeItem label="Parent 1" itemId="parent1" testId="parent1">
+            <TreeItem label="Child 1" itemId="child1" testId="child1" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      act(() => {
+        apiRef.current.selectAll();
+      });
+
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: 'child1',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
     });
   });
 });

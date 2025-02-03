@@ -324,6 +324,7 @@ export function useTreeView(props: UseTreeViewProps) {
             checkedStatus,
             checkChildren,
             checkParents,
+            isTopLevelSelectable: isTopLevelSelectable,
           });
         }
 

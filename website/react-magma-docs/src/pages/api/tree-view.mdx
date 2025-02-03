@@ -1130,35 +1130,39 @@ import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
 export function Example() {
   return (
     <TreeView
-      ariaLabelledBy="animals-multi-isTopLevelSelectable"
+      ariaLabelledBy="istoplevel-animals-multi"
       selectable={TreeViewSelectable.multi}
       isTopLevelSelectable={false}
     >
-      <TreeItem label="Birds" itemId="birds">
-        <TreeItem label="Parrots" itemId="parrots">
-          <TreeItem label="African Grey" isDisabled itemId="african Grey" />
-          <TreeItem label="Cockatiel" itemId="cockatiel" />
-          <TreeItem label="Budgerigar" itemId="budgerigar" />
+      <TreeItem label="Birds" itemId="istoplevel-birds">
+        <TreeItem label="Parrots" itemId="istoplevel-parrots">
+          <TreeItem
+            label="African Grey"
+            isDisabled
+            itemId="istoplevel-african-grey"
+          />
+          <TreeItem label="Cockatiel" itemId="istoplevel-cockatiel" />
+          <TreeItem label="Budgerigar" itemId="istoplevel-budgerigar" />
         </TreeItem>
-        <TreeItem label="Birds of Prey" itemId="birds of Prey">
-          <TreeItem label="Eagles" itemId="eagles" />
-          <TreeItem label="Hawks" itemId="hawks" />
-          <TreeItem label="Falcons" itemId="falcons" />
-        </TreeItem>
-      </TreeItem>
-      <TreeItem label="Aquatic Animals" itemId="aquatic Animals">
-        <TreeItem label="Fish" itemId="fish">
-          <TreeItem label="Goldfish" itemId="goldfish" />
-          <TreeItem label="Betta Fish" itemId="betta Fish" />
-          <TreeItem label="Guppies" itemId="guppies" />
+        <TreeItem label="Birds of Prey" itemId="istoplevel-birds-of-prey">
+          <TreeItem label="Eagles" itemId="istoplevel-eagles" />
+          <TreeItem label="Hawks" itemId="istoplevel-hawks" />
+          <TreeItem label="Falcons" itemId="istoplevel-falcons" />
         </TreeItem>
       </TreeItem>
-      <TreeItem label="Marine Mammals" itemId="marine Mammals">
-        <TreeItem label="Dolphins" isDisabled itemId="dolphins" />
-        <TreeItem label="Whales" isDisabled itemId="whales" />
-        <TreeItem label="Seals" isDisabled itemId="seals" />
+      <TreeItem label="Aquatic Animals" itemId="istoplevel-aquatic-animals">
+        <TreeItem label="Fish" itemId="istoplevel-fish">
+          <TreeItem label="Goldfish" itemId="istoplevel-goldfish" />
+          <TreeItem label="Betta Fish" itemId="istoplevel-betta-fish" />
+          <TreeItem label="Guppies" itemId="istoplevel-guppies" />
+        </TreeItem>
       </TreeItem>
-      <TreeItem label="land Mammals" itemId="land-mamels" />
+      <TreeItem label="Marine Mammals" itemId="istoplevel-marine-mammals">
+        <TreeItem label="Dolphins" isDisabled itemId="istoplevel-dolphins" />
+        <TreeItem label="Whales" isDisabled itemId="istoplevel-whales" />
+        <TreeItem label="Seals" isDisabled itemId="istoplevel-seals" />
+      </TreeItem>
+      <TreeItem label="Land Mammals" itemId="istoplevel-land-mamels" />
     </TreeView>
   );
 }

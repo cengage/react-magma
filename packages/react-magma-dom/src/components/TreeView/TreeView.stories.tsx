@@ -83,6 +83,10 @@ export default {
       control: 'boolean',
       defaultValue: true,
     },
+    isTopLevelSelectable: {
+      control: 'boolean',
+      defaultValue: true,
+    },
   },
 } as Meta;
 
@@ -2044,7 +2048,7 @@ ComplexTreeWithLargeDataSet.parameters = {
   },
 };
 
-export const ComplexWithTopLevelSelectable = (args: Partial<TreeViewProps>) => {
+export const ComplexWithTopLevelNotSelectable = (args: Partial<TreeViewProps>) => {
   const [selectedItems, setSelectedItems] =
     React.useState<TreeItemSelectedInterface[]>();
 
@@ -2361,7 +2365,7 @@ export const ComplexWithTopLevelSelectable = (args: Partial<TreeViewProps>) => {
   );
 };
 
-ComplexWithTopLevelSelectable.args = {
+ComplexWithTopLevelNotSelectable.args = {
   selectable: TreeViewSelectable.multi,
   isTopLevelSelectable: false,
   ariaLabel: 'Textbook tree',
