@@ -1,5 +1,5 @@
 ---
-'react-magma-dom': patch
+'react-magma-docs': patch
 ---
 
-fix(Typographu): Wrong size on images in the documentation.
+fix(Typography): Fix wrong size on images in the documentation.
