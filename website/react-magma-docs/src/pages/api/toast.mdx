@@ -24,6 +24,8 @@ props:
 
 **Toasts are used to display non-critical information to users.** For critical messages, designers should consider a different way of presenting the information, such as using the <Link to="/api/alert">Alert component</Link> within the context of the UI.
 
+Developers should always use the <Link to="/api/announce">Announce component</Link> to wrap Toasts so that the content can be properly announced to screen readers. More below under <Link to="#accessibility_considerations">Accessibility Considerations</Link>.
+
 ```tsx
 import React from 'react';
 import { Button, Toast, Announce } from 'react-magma-dom';
@@ -169,18 +171,9 @@ export function Example() {
 
 ## Accessibility Considerations
 
-Toasts are intended to be small interruptions to users, so when a `Toast` component is added to a screen, it is important that screen readers or similar assistive technology
-read the new content. One way to do this is to use the <Link to="/api/announce">Announce component</Link>, which employs the `aria-live` attribute. Be sure to place
-the conditional logic to display the Toast _inside_ the Announce component.
+Toasts are brief interruptions, so users must be notified when they appear. Use the <Link to="/api/announce">Announce component</Link>, which uses the `aria-live` attribute, and place the toast’s display logic inside it.
 
-<Alert variant="info">
-  Developers should always use the <strong>Announce component</strong> when implementing Toasts. 
-  This ensures proper accessibility support and allows us to follow our own best practices as documented. 
-  Note that <strong>Announce</strong> uses <i>aria-label</i>, while <strong>Toast</strong> itself uses <i>title</i> for accessibility purposes. 
-</Alert>
-
-While toasts appear visually at the bottom left of the screen, they will exist in the dom wherever they are placed. Keep this in mind when you are structuring your
-markup, to ensure that they have the expected tab order.
+Visually, toasts appear at the bottom left, but their DOM placement affects tab order—structure your markup accordingly.
 
 ```tsx
 import React from 'react';
