@@ -116,7 +116,7 @@ export function useTimePicker(props: UseTimePickerProps) {
   }
 
   const sanitizeMinute = (newMinute: string): number => {
-    if (Number(newMinute) > 99) {
+    if (Number(newMinute) > 59) {
       return Number(newMinute.slice(2));
     }
 
@@ -128,8 +128,7 @@ export function useTimePicker(props: UseTimePickerProps) {
   };
 
   const sanitizeHour = (newHour: string): number => {
-    console.log(newHour);
-    if (Number(newHour) > 99) {
+    if (Number(newHour) > 12) {
       return Number(newHour.slice(-1));
     }
 
