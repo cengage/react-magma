@@ -84,7 +84,11 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const isDisabled = treeViewItemData?.isDisabled;
 
   const checkedStatus = React.useMemo(() => {
-    if (topLevel && !isTopLevelSelectable) {
+    if (
+      selectable == TreeViewSelectable.multi &&
+      topLevel &&
+      !isTopLevelSelectable
+    ) {
       return IndeterminateCheckboxStatus.unchecked;
     }
 
@@ -150,8 +154,12 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       return;
     }
 
-    //If top-level item is not selectable, skip selection logic
-    if (topLevel && !isTopLevelSelectable) {
+    //If TreeViewSelectable.multi and top-level item is not selectable, skip selection logic
+    if (
+      selectable == TreeViewSelectable.multi &&
+      topLevel &&
+      !isTopLevelSelectable
+    ) {
       return;
     }
 
@@ -346,8 +354,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           break;
         }
 
-        // If top-level & not selectable, only toggle expand (no selection)
-        if (topLevel && !isTopLevelSelectable) {
+        // If TreeViewSelectable.multi and top-level & not selectable, only toggle expand (no selection)
+        if ( selectable == TreeViewSelectable.multi && topLevel && !isTopLevelSelectable) {
           if (hasOwnTreeItems) {
             setExpanded(!expanded);
           }
@@ -381,8 +389,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           break;
         }
 
-        // NEW: If top-level & not selectable, only toggle expand (no selection)
-        if (topLevel && !isTopLevelSelectable) {
+        // If TreeViewSelectable.multi and top-level & not selectable, only toggle expand (no selection)
+        if ( selectable == TreeViewSelectable.multi && topLevel && !isTopLevelSelectable) {
           if (hasOwnTreeItems) {
             setExpanded(!expanded);
           }

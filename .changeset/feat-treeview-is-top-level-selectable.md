@@ -2,5 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(TreeView): Add isTopLevelSelectable prop to TreeView component
-```
+feat(TreeView): Add 'isTopLevelSelectable' prop to TreeView component
