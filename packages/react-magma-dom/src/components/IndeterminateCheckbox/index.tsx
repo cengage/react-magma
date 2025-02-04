@@ -172,43 +172,42 @@ export const IndeterminateCheckbox = React.forwardRef<
           onChange={handleChange}
           tabIndex={-1}
         />
-        <div
-          tabIndex={!disabled && 0}
-          role="checkbox"
-          aria-checked="mixed"
-          onKeyDown={handleOnKeyDown}
-        >
-          <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
-            <StyledFakeInput
-              isChecked={isChecked}
-              color={color}
-              disabled={disabled}
-              hasError={hasError}
-              hideFocus={props.hideFocus}
-              isIndeterminate={isIndeterminate}
-              isInverse={isInverse}
-              style={inputStyle}
-              theme={theme}
-              aria-hidden="true"
-            >
-              {isIndeterminate ? (
-                <IndeterminateCheckBoxIcon
-                  testId="indeterminateIcon"
-                  size={theme.iconSizes.medium}
-                />
-              ) : isChecked ? (
-                <CheckBoxIcon size={theme.iconSizes.medium} />
-              ) : (
-                <CheckBoxOutlineBlankIcon size={theme.iconSizes.medium} />
-              )}
-            </StyledFakeInput>
-            {isTextVisuallyHidden ? (
-              <HiddenLabelText>{labelText}</HiddenLabelText>
+
+        <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
+          <StyledFakeInput
+            isChecked={isChecked}
+            color={color}
+            disabled={disabled}
+            hasError={hasError}
+            hideFocus={props.hideFocus}
+            isIndeterminate={isIndeterminate}
+            isInverse={isInverse}
+            style={inputStyle}
+            theme={theme}
+            aria-hidden="true"
+            tabIndex={0}
+            role="checkbox"
+            aria-checked={isIndeterminate ? 'mixed' : isChecked}
+            onKeyDown={handleOnKeyDown}
+          >
+            {isIndeterminate ? (
+              <IndeterminateCheckBoxIcon
+                testId="indeterminateIcon"
+                size={theme.iconSizes.medium}
+              />
+            ) : isChecked ? (
+              <CheckBoxIcon size={theme.iconSizes.medium} />
             ) : (
-              labelText
+              <CheckBoxOutlineBlankIcon size={theme.iconSizes.medium} />
             )}
-          </StyledLabel>
-        </div>
+          </StyledFakeInput>
+          {isTextVisuallyHidden ? (
+            <HiddenLabelText>{labelText}</HiddenLabelText>
+          ) : (
+            labelText
+          )}
+        </StyledLabel>
+
         <Announce>
           {showAnnounce && <VisuallyHidden>{announceText}</VisuallyHidden>}
         </Announce>
