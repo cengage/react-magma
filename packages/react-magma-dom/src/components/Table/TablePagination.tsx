@@ -218,9 +218,14 @@ export const TablePagination = React.forwardRef<
   });
 
   React.useEffect(() => {
-    if (!rowsPerPageValues.includes(rowsPerPageProp)) {
-      setRowsPerPageState(defaultRowsPerPage);
-      handleRowsPerPageChange(defaultRowsPerPage);
+    const checkedRowsPerPage = rowsPerPageProp
+      ? rowsPerPageProp
+      : defaultRowsPerPage;
+
+    if (!rowsPerPageValues.includes(checkedRowsPerPage)) {
+      console.log(rowsPerPageValues[0]);
+      setRowsPerPageState(rowsPerPageValues[0]);
+      handleRowsPerPageChange(rowsPerPageValues[0]);
     }
   }, []);
 
