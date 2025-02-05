@@ -223,7 +223,6 @@ export const TablePagination = React.forwardRef<
       : defaultRowsPerPage;
 
     if (!rowsPerPageValues.includes(checkedRowsPerPage)) {
-      console.log(rowsPerPageValues[0]);
       setRowsPerPageState(rowsPerPageValues[0]);
       handleRowsPerPageChange(rowsPerPageValues[0]);
     }
