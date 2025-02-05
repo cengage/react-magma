@@ -13,6 +13,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import styled from '@emotion/styled';
 import { IconProps, InfoIcon } from 'react-magma-icons';
 import { PopoverContext } from './Popover';
+import { transparentize } from 'polished';
 
 export interface IconOnlyPopoverTriggerProps
   extends Omit<ButtonProps, 'children'> {
@@ -24,6 +25,10 @@ export interface IconOnlyPopoverTriggerProps
    * The text the screen reader will announce. Required for icon-only buttons
    */
   'aria-label': string;
+  /**
+   * The tab order of the component when navigating with a keyboard
+   */
+  tabIndex?: number;
 }
 
 export interface IconTextPopoverTriggerProps extends ButtonProps {
@@ -35,10 +40,31 @@ export interface IconTextPopoverTriggerProps extends ButtonProps {
    * The content of the component
    */
   children?: React.ReactChild | React.ReactChild[] | string;
+  /**
+   * The tab order of the component when navigating with a keyboard
+   */
+  tabIndex?: number;
 }
 
-const TriggerButtonContainer = styled.div`
+const TriggerButtonContainer = styled.div<{
+  isDisabled?: boolean;
+  isInverse?: boolean;
+}>`
   width: 100%;
+
+  &:focus {
+    outline: none;
+    outline-offset: 2px;
+    border-radius: 8px;
+
+    outline: ${props =>
+        props.isDisabled
+          ? props.isInverse
+            ? props.theme.colors.neutral300
+            : transparentize(0.4, props.theme.colors.neutral500)
+          : 'none'}
+      solid 2px;
+  }
 `;
 
 export type PopoverTriggerProps = XOR<
@@ -55,7 +81,13 @@ export const PopoverTrigger = React.forwardRef<
 
   const ref = useForkedRef(context.toggleRef, forwardedRef);
 
-  const { icon = <InfoIcon />, children, ...other } = props;
+  const {
+    icon = <InfoIcon />,
+    children,
+    tabIndex,
+    'aria-label': ariaLabel,
+    ...other
+  } = props;
   const {
     type = ButtonType.button,
     size = ButtonSize.medium,
@@ -81,11 +113,12 @@ export const PopoverTrigger = React.forwardRef<
     children && typeof children !== 'string'
       ? React.cloneElement(children as React.ReactElement, {
           theme,
-          disabled: context.isDisabled,
           onClick: handleClick,
           ref: ref,
         })
       : children;
+
+  console.log((styledChildren as React.ReactElement)?.props);
 
   if (!children) {
     return (
@@ -93,7 +126,7 @@ export const PopoverTrigger = React.forwardRef<
         <IconButton
           {...other}
           shape={ButtonShape.fill}
-          aria-label="popoverTriggerIcon"
+          aria-label={ariaLabel}
           aria-haspopup="dialog"
           aria-expanded={context.isOpen}
           aria-controls={context.popoverContentId.current}
@@ -107,7 +140,7 @@ export const PopoverTrigger = React.forwardRef<
           size={size}
           variant={variant}
           onMouseDown={handleMouseDown}
-          disabled={context.isDisabled}
+          tabIndex={tabIndex}
         />
       </div>
     );
@@ -117,7 +150,7 @@ export const PopoverTrigger = React.forwardRef<
       {typeof children === 'string' ? (
         <Button
           {...other}
-          aria-label="popoverTriggerButton"
+          aria-label={ariaLabel}
           aria-haspopup="dialog"
           aria-expanded={context.isOpen}
           aria-controls={context.popoverContentId.current}
@@ -127,18 +160,32 @@ export const PopoverTrigger = React.forwardRef<
           onMouseDown={handleMouseDown}
           ref={ref}
           theme={theme}
-          disabled={context.isDisabled}
+          tabIndex={tabIndex}
         >
           {children}
         </Button>
       ) : (
         <TriggerButtonContainer
-          aria-label="popoverTriggerButton"
+          aria-label={ariaLabel}
           aria-haspopup="dialog"
           aria-expanded={context.isOpen}
           aria-controls={context.popoverContentId.current}
           id={context.popoverTriggerId.current}
           onMouseDown={handleMouseDown}
+          tabIndex={
+            tabIndex
+              ? tabIndex
+              : (styledChildren as React.ReactElement)?.props.disabled &&
+                context.hoverable
+              ? 0
+              : -1
+          }
+          isDisabled={
+            (styledChildren as React.ReactElement)?.props.disabled &&
+            context.hoverable
+          }
+          isInverse={context.isInverse}
+          theme={theme}
         >
           {styledChildren}
         </TriggerButtonContainer>

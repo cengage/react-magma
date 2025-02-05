@@ -79,6 +79,11 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
    * closePopoverManually(event): void - Closes the popover manually.
    */
   apiRef?: React.MutableRefObject<PopoverApi | undefined>;
+  /**
+   * If true, the focus will be trapped within the popover, preventing focus from moving outside.
+   * @default false
+   */
+  focusTrap?: boolean;
 }
 
 export interface PopoverContextInterface {
@@ -100,6 +105,7 @@ export interface PopoverContextInterface {
   isDisabled?: boolean;
   hoverable?: boolean;
   hasPointer?: boolean;
+  focusTrap?: boolean;
 }
 
 const StyledContainer = styled.div`
@@ -155,6 +161,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       openByDefault,
       id: defaultId,
       apiRef,
+      focusTrap,
       ...other
     } = props;
 
@@ -182,20 +189,23 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     const isInverse = useIsInverse(resolvedProps.isInverse);
 
     const handleMouseOver = () => {
-      if (hoverable && !hasActiveElements(contentRef)) {
+      if (hoverable && !isDisabled && !hasActiveElements(contentRef)) {
         setIsOpen(true);
       }
     };
 
     const handleMouseLeave = () => {
-      if (hoverable && !hasActiveElements(contentRef)) {
+      if (hoverable && !isDisabled && !hasActiveElements(contentRef)) {
         setIsOpen(false);
       }
     };
 
     function openPopover() {
       setIsOpen(true);
-      toggleRef.current.focus();
+
+      if (!hoverable) {
+        toggleRef.current.focus();
+      }
 
       onOpen && typeof onOpen === 'function' && onOpen();
     }
@@ -203,7 +213,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     function closePopover(event) {
       setIsOpen(false);
 
-      if (toggleRef.current !== event.target) {
+      if (toggleRef.current !== event.target && !hoverable) {
         toggleRef.current.focus();
       }
 
@@ -246,6 +256,12 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
         ? `${width}px`
         : width;
 
+    const onFocus = () => {
+      if (hoverable && !isDisabled && !hasActiveElements(contentRef)) {
+        openPopover();
+      }
+    };
+
     return (
       <PopoverContext.Provider
         value={{
@@ -267,6 +283,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           isDisabled,
           hoverable,
           hasPointer,
+          focusTrap,
         }}
       >
         <StyledContainer
@@ -278,6 +295,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           onMouseOver={handleMouseOver}
           onMouseLeave={handleMouseLeave}
           id={popoverId}
+          onFocus={onFocus}
         >
           {children}
         </StyledContainer>

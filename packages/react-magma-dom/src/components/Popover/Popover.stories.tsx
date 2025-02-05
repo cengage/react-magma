@@ -76,6 +76,11 @@ export default {
         type: 'boolean',
       },
     },
+    focusTrap: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 
@@ -772,7 +777,7 @@ InputExample.args = {
   width: 'target',
 };
 
-const DisabledTriggerExample = args => {
+const DisabledPopoverExample = args => {
   return (
     <Card
       style={{
@@ -806,10 +811,52 @@ const DisabledTriggerExample = args => {
   );
 };
 
+export const DisabledPopover = DisabledPopoverExample.bind({});
+DisabledPopover.args = {
+  width: 320,
+  isDisabled: true,
+  hoverable: true,
+};
+
+const DisabledTriggerExample = args => {
+  return (
+    <Card
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        height: '300px',
+        justifyContent: 'center',
+      }}
+      isInverse={args.isInverse}
+    >
+      <Popover {...args}>
+        <PopoverTrigger>
+          <Button disabled>Disabled button</Button>
+        </PopoverTrigger>
+        <PopoverContent>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '8px',
+            }}
+          >
+            <span style={{ fontWeight: 600 }}>Lorem ipsum dolor</span>
+            <span>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam.
+            </span>
+          </div>
+        </PopoverContent>
+      </Popover>
+    </Card>
+  );
+};
+
 export const DisabledTrigger = DisabledTriggerExample.bind({});
 DisabledTrigger.args = {
   width: 320,
-  isDisabled: true,
   hoverable: true,
 };
 

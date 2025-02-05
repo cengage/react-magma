@@ -143,7 +143,7 @@ export const PopoverContent = React.forwardRef<
   const ref = useForkedRef(forwardedRef, context.contentRef);
 
   const focusTrapRef = useFocusLock(
-    context.isOpen && hasActiveElements(context.contentRef)
+    context.focusTrap && context.isOpen && hasActiveElements(context.contentRef)
   );
 
   const styledChildren = React.Children.toArray(children).map(item =>
