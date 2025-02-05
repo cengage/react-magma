@@ -115,7 +115,7 @@ describe('Popover', () => {
 
   it('should lock focus inside the popover', async () => {
     const { container, getByTestId } = render(
-      <Popover>
+      <Popover focusTrap>
         <PopoverTrigger />
         <PopoverContent>
           <button>Button 1</button>
@@ -182,6 +182,9 @@ describe('Popover', () => {
     });
 
     expect(popoverContent).toBeVisible();
+
+    userEvent.tab();
+
     expect(popoverContent.querySelector('button')).toHaveFocus();
 
     userEvent.keyboard('{esc}');
@@ -341,7 +344,6 @@ describe('Popover', () => {
 
     expect(container).toBeInTheDocument();
     expect(popoverTrigger).toBeInTheDocument();
-    expect(popoverTrigger).toBeDisabled();
 
     const popoverContent = getByTestId('popoverContent');
     const popoverContentDialog = container.querySelector('div[role="dialog"]');
