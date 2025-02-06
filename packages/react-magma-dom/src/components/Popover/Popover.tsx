@@ -81,6 +81,7 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
   apiRef?: React.MutableRefObject<PopoverApi | undefined>;
   /**
    * If true, the focus will be trapped within the popover, preventing focus from moving outside.
+   * This is recommended when using interactive elements inside the popover to improve accessibility.
    * @default false
    */
   focusTrap?: boolean;

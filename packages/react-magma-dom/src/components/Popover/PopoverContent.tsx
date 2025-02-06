@@ -119,10 +119,6 @@ const StyledAnnounce = styled(Announce)`
   flex-direction: column;
 `;
 
-const ErrorMessage = styled.div`
-  width: fit-content;
-  padding: 1em;
-`;
 
 const ScrollableContent = styled.div`
   display: flex;
@@ -190,19 +186,15 @@ export const PopoverContent = React.forwardRef<
           role="dialog"
           ref={focusTrapRef}
         >
-          {!content.length ? (
-            <ErrorMessage>Content must be passed</ErrorMessage>
-          ) : (
-            <StyledAnnounce
-              style={{
-                maxHeight: context.maxHeight ? context.maxHeight : '100%',
-              }}
-            >
-              {header}
-              <ScrollableContent theme={theme}>{content}</ScrollableContent>
-              {footer}
-            </StyledAnnounce>
-          )}
+          <StyledAnnounce
+            style={{
+              maxHeight: context.maxHeight ? context.maxHeight : '100%',
+            }}
+          >
+            {header}
+            <ScrollableContent theme={theme}>{content}</ScrollableContent>
+            {footer}
+          </StyledAnnounce>
         </div>
       </StyledCard>
     </div>

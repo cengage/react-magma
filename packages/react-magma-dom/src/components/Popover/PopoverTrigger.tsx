@@ -55,7 +55,7 @@ const TriggerButtonContainer = styled.div<{
   &:focus {
     outline: none;
     outline-offset: 2px;
-    border-radius: 8px;
+    border-radius: ${props => props.theme.borderRadius};
 
     outline: ${props =>
         props.isDisabled
@@ -86,12 +86,10 @@ export const PopoverTrigger = React.forwardRef<
     children,
     tabIndex,
     'aria-label': ariaLabel,
-    ...other
-  } = props;
-  const {
     type = ButtonType.button,
     size = ButtonSize.medium,
     variant = ButtonVariant.link,
+    ...other
   } = props;
 
   function handleClick(event: React.UIEvent) {
@@ -104,11 +102,6 @@ export const PopoverTrigger = React.forwardRef<
     }
   }
 
-  // Necessary for the proper opening and closing of the menu in Safari
-  function handleMouseDown(event: React.MouseEvent) {
-    event.preventDefault();
-  }
-
   const styledChildren =
     children && typeof children !== 'string'
       ? React.cloneElement(children as React.ReactElement, {
@@ -117,8 +110,6 @@ export const PopoverTrigger = React.forwardRef<
           ref: ref,
         })
       : children;
-
-  console.log((styledChildren as React.ReactElement)?.props);
 
   if (!children) {
     return (
@@ -139,7 +130,6 @@ export const PopoverTrigger = React.forwardRef<
           type={type}
           size={size}
           variant={variant}
-          onMouseDown={handleMouseDown}
           tabIndex={tabIndex}
         />
       </div>
@@ -157,7 +147,6 @@ export const PopoverTrigger = React.forwardRef<
           id={context.popoverTriggerId.current}
           isInverse={context.isInverse}
           onClick={handleClick}
-          onMouseDown={handleMouseDown}
           ref={ref}
           theme={theme}
           tabIndex={tabIndex}
@@ -171,7 +160,6 @@ export const PopoverTrigger = React.forwardRef<
           aria-expanded={context.isOpen}
           aria-controls={context.popoverContentId.current}
           id={context.popoverTriggerId.current}
-          onMouseDown={handleMouseDown}
           tabIndex={
             tabIndex
               ? tabIndex

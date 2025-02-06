@@ -27,20 +27,6 @@ describe('Popover', () => {
     expect(getByTestId(contentTestId)).toBeInTheDocument();
   });
 
-  it('should show an error message if there is no content', () => {
-    const { getByText, getByTestId } = render(
-      <Popover>
-        <PopoverTrigger />
-        <PopoverContent />
-      </Popover>
-    );
-    const popoverContent = getByTestId('popoverContent');
-    const errorMessage = getByText('Content must be passed');
-
-    expect(popoverContent).toBeInTheDocument();
-    expect(errorMessage).toBeInTheDocument();
-  });
-
   it('should be hidden before click on trigger', async () => {
     const { container, getByText, getByTestId } = render(
       <Popover position={PopoverPosition.top}>
