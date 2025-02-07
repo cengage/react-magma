@@ -27,6 +27,7 @@
     "fix-Dropdown-click-outside",
     "fix-FormGroup-input-message",
     "fix-GlobalStyles-import-warning",
+    "fix-TablePagination-NativeSelect-rowsPerPage",
     "fix-Typography-images-wrong-size",
     "fix-docs-links-and-styling",
     "fix-tableOverflow",

@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.12
+
+### Patch Changes
+
+- 16aaefb40: fix(Table): fix logic for the default `rowsPerPage` value.
+
 ## 4.8.0-next.11
 
 ### Patch Changes
