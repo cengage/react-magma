@@ -290,7 +290,9 @@ const rowsLong = [
 
 export const ControlledPagination = args => {
   const [pageIndex, setPageIndex] = React.useState<number>(1);
-  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(
+    args.rowsPerPage ? args.rowsPerPage : 10
+  );
 
   function handleRowsPerPageChange(numberOfRows) {
     setRowsPerPage(numberOfRows);
@@ -342,17 +344,22 @@ export const ControlledPagination = args => {
         rowsPerPage={rowsPerPage}
         isInverse={args.isInverse}
         hasSquareCorners={args.hasSquareCorners}
+        rowsPerPageValues={args.rowsPerPageValues}
       />
     </Card>
   );
 };
 ControlledPagination.args = {
   ...Default.args,
+  rowsPerPage: 10,
+  rowsPerPageValues: [10, 20, 50, 100],
 };
 
 export const UncontrolledPagination = args => {
   const [pageIndex, setPageIndex] = React.useState<number>(1);
-  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(
+    args.defaultRowsPerPage ? args.defaultRowsPerPage : 10
+  );
 
   function handlePageChange(_, page) {
     setPageIndex(page);
@@ -392,9 +399,15 @@ export const UncontrolledPagination = args => {
         itemCount={rowsLong.length}
         onPageChange={handlePageChange}
         onRowsPerPageChange={handleRowsPerPageChange}
+        defaultRowsPerPage={rowsPerPage}
+        rowsPerPageValues={args.rowsPerPageValues}
       />
     </>
   );
+};
+UncontrolledPagination.args = {
+  defaultRowsPerPage: 10,
+  rowsPerPageValues: [10, 20, 50, 100],
 };
 
 export const PaginationWithSquareCorners = args => {
