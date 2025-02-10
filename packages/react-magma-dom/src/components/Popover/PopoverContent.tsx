@@ -119,7 +119,6 @@ const StyledAnnounce = styled(Announce)`
   flex-direction: column;
 `;
 
-
 const ScrollableContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -165,7 +164,11 @@ export const PopoverContent = React.forwardRef<
   );
 
   return (
-    <div ref={context.setFloating} style={{ ...context.floatingStyles }}>
+    <div
+      ref={context.setFloating}
+      // z-index 2 is used to make the content appear above docs elements (code blocks)
+      style={{ ...context.floatingStyles, zIndex: 2 }}
+    >
       <StyledCard
         {...other}
         position={context.position}

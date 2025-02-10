@@ -26,7 +26,7 @@ export interface PopoverSectionProps {
   style?: React.CSSProperties;
 }
 
-export const StyledSection = styled.section`
+const StyledSection = styled.section`
   position: relative;
   padding: ${props => props.theme.spaceScale.spacing05};
 `;
