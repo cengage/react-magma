@@ -24,9 +24,11 @@ props:
 
 **Toasts are used to display non-critical information to users.** For critical messages, designers should consider a different way of presenting the information, such as using the <Link to="/api/alert">Alert component</Link> within the context of the UI.
 
+Developers should always use the <Link to="/api/announce">Announce component</Link> to wrap Toasts so that the content can be properly announced to screen readers. More below under <Link to="#accessibility_considerations">Accessibility Considerations</Link>.
+
 ```tsx
 import React from 'react';
-import { Button, Toast } from 'react-magma-dom';
+import { Button, Toast, Announce } from 'react-magma-dom';
 
 export function Example() {
   const [showToast, setShowToast] = React.useState(false);
@@ -42,9 +44,11 @@ export function Example() {
   return (
     <>
       <Button onClick={handleClick}>Show Default Toast</Button>
-      {showToast ? (
-        <Toast onDismiss={handleDismiss}>Default Toast</Toast>
-      ) : null}
+      <Announce>
+        {showToast ? (
+          <Toast onDismiss={handleDismiss}>Default Toast</Toast>
+        ) : null}
+      </Announce>
     </>
   );
 }
@@ -103,9 +107,9 @@ export function Example() {
 
   return (
     <ToastsContainer>
-      <Announce>
-        <ButtonGroup>
-          <Button onClick={handleClick}>Show Success Toast</Button>
+      <ButtonGroup>
+        <Button onClick={handleClick}>Show Success Toast</Button>
+        <Announce>
           {showToast && (
             <Toast
               id="toast1"
@@ -115,8 +119,10 @@ export function Example() {
               This is a success toast
             </Toast>
           )}
+        </Announce>
 
-          <Button onClick={handleClick2}>Show Warning Toast</Button>
+        <Button onClick={handleClick2}>Show Warning Toast</Button>
+        <Announce>
           {showToast2 && (
             <Toast
               id="toast2"
@@ -127,10 +133,12 @@ export function Example() {
               This is is a warning toast
             </Toast>
           )}
-        </ButtonGroup>
-        <br />
-        <ButtonGroup>
-          <Button onClick={handleClick3}>Show Danger Toast</Button>
+        </Announce>
+      </ButtonGroup>
+      <br />
+      <ButtonGroup>
+        <Button onClick={handleClick3}>Show Danger Toast</Button>
+        <Announce>
           {showToast3 && (
             <Toast
               id="toast3"
@@ -141,8 +149,10 @@ export function Example() {
               This is a danger toast
             </Toast>
           )}
+        </Announce>
 
-          <Button onClick={handleClick4}>Show Info Toast</Button>
+        <Button onClick={handleClick4}>Show Info Toast</Button>
+        <Announce>
           {showToast4 && (
             <Toast
               id="toast4"
@@ -152,8 +162,8 @@ export function Example() {
               This is an info toast
             </Toast>
           )}
-        </ButtonGroup>
-      </Announce>
+        </Announce>
+      </ButtonGroup>
     </ToastsContainer>
   );
 }
@@ -161,12 +171,9 @@ export function Example() {
 
 ## Accessibility Considerations
 
-Toasts are intended to be small interruptions to users, so when a `Toast` component is added to a screen, it is important that screen readers or similar assistive technology
-read the new content. One way to do this is to use the <Link to="/api/announce">Announce component</Link>, which employs the `aria-live` attribute. Be sure to place
-the conditional logic to display the Toast _inside_ the Announce component.
+Toasts are brief interruptions, so users must be notified when they appear. Use the <Link to="/api/announce">Announce component</Link>, which uses the `aria-live` attribute, and place the toast’s display logic inside it.
 
-While toasts appear visually at the bottom left of the screen, they will exist in the dom wherever they are placed. Keep this in mind when you are structuring your
-markup, to ensure that they have the expected tab order.
+Visually, toasts appear at the bottom left, but their DOM placement affects tab order—structure your markup accordingly.
 
 ```tsx
 import React from 'react';
@@ -245,9 +252,9 @@ export function Example() {
 
   return (
     <ToastsContainer>
-      <Announce>
-        <ButtonGroup>
-          <Button onClick={handleClick}>Show Toast</Button>
+      <ButtonGroup>
+        <Button onClick={handleClick}>Show Toast</Button>
+        <Announce>
           {showToast && (
             <Toast
               id="toast1"
@@ -257,20 +264,24 @@ export function Example() {
               Toast 1
             </Toast>
           )}
+        </Announce>
 
-          <Button onClick={handleClick2} color={ButtonColor.secondary}>
-            Show Toast 2
-          </Button>
+        <Button onClick={handleClick2} color={ButtonColor.secondary}>
+          Show Toast 2
+        </Button>
+        <Announce>
           {showToast2 && (
             <Toast id="toast2" onDismiss={handleDismiss2}>
               This is the second toast which is longer than either toast one or
               three
             </Toast>
           )}
+        </Announce>
 
-          <Button onClick={handleClick3} color={ButtonColor.danger}>
-            Show Toast 3
-          </Button>
+        <Button onClick={handleClick3} color={ButtonColor.danger}>
+          Show Toast 3
+        </Button>
+        <Announce>
           {showToast3 && (
             <Toast
               disableAutoDismiss
@@ -281,8 +292,8 @@ export function Example() {
               Toast three
             </Toast>
           )}
-        </ButtonGroup>
-      </Announce>
+        </Announce>
+      </ButtonGroup>
     </ToastsContainer>
   );
 }
@@ -295,7 +306,7 @@ This is useful in cases where toasts are intended to display above a component, 
 
 ```tsx
 import React from 'react';
-import { Button, Toast, ToastsContainer } from 'react-magma-dom';
+import { Button, Toast, ToastsContainer, Announce } from 'react-magma-dom';
 
 export function Example() {
   const [showToast, setShowToast] = React.useState(false);
@@ -310,11 +321,13 @@ export function Example() {
   return (
     <ToastsContainer bottomOffset={100}>
       <Button onClick={handleClick}>Show Toast with Bottom Offset</Button>
-      {showToast && (
-        <Toast onDismiss={handleDismiss}>
-          Toast Container has bottomOffset of 100
-        </Toast>
-      )}
+      <Announce>
+        {showToast && (
+          <Toast onDismiss={handleDismiss}>
+            Toast Container has bottomOffset of 100
+          </Toast>
+        )}
+      </Announce>
     </ToastsContainer>
   );
 }
@@ -326,7 +339,7 @@ The `toastDuration` prop can be used to set the number of milliseconds that the 
 
 ```tsx
 import React from 'react';
-import { Button, Toast } from 'react-magma-dom';
+import { Button, Toast, Announce } from 'react-magma-dom';
 
 export function Example() {
   const [showToast, setShowToast] = React.useState(false);
@@ -341,11 +354,13 @@ export function Example() {
   return (
     <>
       <Button onClick={handleClick}>Show Toast</Button>
-      {showToast && (
-        <Toast toastDuration={10000} onDismiss={handleDismiss}>
-          Slow Toast
-        </Toast>
-      )}
+      <Announce>
+        {showToast && (
+          <Toast toastDuration={10000} onDismiss={handleDismiss}>
+            Slow Toast
+          </Toast>
+        )}
+      </Announce>
     </>
   );
 }
@@ -355,7 +370,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Button, Toast } from 'react-magma-dom';
+import { Button, Toast, Announce } from 'react-magma-dom';
 
 export function Example() {
   const [showToast, setShowToast] = React.useState(false);
@@ -370,11 +385,13 @@ export function Example() {
   return (
     <>
       <Button onClick={handleClick}>Show Toast</Button>
-      {showToast && (
-        <Toast disableAutoDismiss onDismiss={handleDismiss}>
-          Non-Auto Hiding Dismissible Toast
-        </Toast>
-      )}
+      <Announce>
+        {showToast && (
+          <Toast disableAutoDismiss onDismiss={handleDismiss}>
+            Non-Auto Hiding Dismissible Toast
+          </Toast>
+        )}
+      </Announce>
     </>
   );
 }
@@ -386,7 +403,7 @@ When you hover over the Toast the timer is paused. Once the mouse leaves the Toa
 
 ```tsx
 import React from 'react';
-import { Button, Toast } from 'react-magma-dom';
+import { Button, Toast, Announce } from 'react-magma-dom';
 
 export function Example() {
   const [showToast, setShowToast] = React.useState(false);
@@ -411,15 +428,17 @@ export function Example() {
   return (
     <>
       <Button onClick={handleClick}>Show Toast</Button>
-      {showToast && (
-        <Toast
-          onDismiss={handleDismiss}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          {toastContent}
-        </Toast>
-      )}
+      <Announce>
+        {showToast && (
+          <Toast
+            onDismiss={handleDismiss}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            {toastContent}
+          </Toast>
+        )}
+      </Announce>
     </>
   );
 }
@@ -433,7 +452,7 @@ includes the element's background, border-radius, and fade animation.
 
 ```tsx
 import React from 'react';
-import { Button, Toast } from 'react-magma-dom';
+import { Button, Toast, Announce } from 'react-magma-dom';
 
 export function Example() {
   const [showToast, setShowToast] = React.useState(false);
@@ -448,15 +467,17 @@ export function Example() {
   return (
     <>
       <Button onClick={handleClick}>Show Toast</Button>
-      {showToast && (
-        <Toast
-          alertStyle={{ border: '4px dotted yellow' }}
-          containerStyle={{ left: 'auto', right: '20px', bottom: '150px' }}
-          onDismiss={handleDismiss}
-        >
-          Toast with custom styles
-        </Toast>
-      )}
+      <Announce>
+        {showToast && (
+          <Toast
+            alertStyle={{ border: '4px dotted yellow' }}
+            containerStyle={{ left: 'auto', right: '20px', bottom: '150px' }}
+            onDismiss={handleDismiss}
+          >
+            Toast with custom styles
+          </Toast>
+        )}
+      </Announce>
     </>
   );
 }
@@ -513,11 +534,11 @@ export function Example() {
   return (
     <Card isInverse style={{ padding: '8px' }}>
       <ToastsContainer>
-        <Announce>
-          <ButtonGroup>
-            <Button onClick={handleClick} isInverse>
-              Show Success Inverse Toast
-            </Button>
+        <ButtonGroup>
+          <Button onClick={handleClick} isInverse>
+            Show Success Inverse Toast
+          </Button>
+          <Announce>
             {showToast && (
               <Toast
                 id="toast1"
@@ -528,10 +549,12 @@ export function Example() {
                 This is a success toast
               </Toast>
             )}
+          </Announce>
 
-            <Button onClick={handleClick2} isInverse>
-              Show Warning Inverse Toast
-            </Button>
+          <Button onClick={handleClick2} isInverse>
+            Show Warning Inverse Toast
+          </Button>
+          <Announce>
             {showToast2 && (
               <Toast
                 id="toast2"
@@ -542,12 +565,14 @@ export function Example() {
                 This is is a warning toast
               </Toast>
             )}
-          </ButtonGroup>
-          <br />
-          <ButtonGroup>
-            <Button onClick={handleClick3} isInverse>
-              Show Danger Toast Inverse
-            </Button>
+          </Announce>
+        </ButtonGroup>
+        <br />
+        <ButtonGroup>
+          <Button onClick={handleClick3} isInverse>
+            Show Danger Toast Inverse
+          </Button>
+          <Announce>
             {showToast3 && (
               <Toast
                 id="toast3"
@@ -558,10 +583,12 @@ export function Example() {
                 This is a danger toast
               </Toast>
             )}
+          </Announce>
 
-            <Button onClick={handleClick4} isInverse>
-              Show Info Toast Inverse
-            </Button>
+          <Button onClick={handleClick4} isInverse>
+            Show Info Toast Inverse
+          </Button>
+          <Announce>
             {showToast4 && (
               <Toast
                 id="toast4"
@@ -572,8 +599,8 @@ export function Example() {
                 This is an info toast
               </Toast>
             )}
-          </ButtonGroup>
-        </Announce>
+          </Announce>
+        </ButtonGroup>
       </ToastsContainer>
     </Card>
   );
