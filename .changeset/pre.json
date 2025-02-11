@@ -32,6 +32,7 @@
     "fix-Toast-close-button-announced-twice",
     "fix-Typography-images-wrong-size",
     "fix-docs-links-and-styling",
+    "fix-multiselect-page-refreshs",
     "fix-tableOverflow",
     "fix-toast-time-duration",
     "moody-impalas-decide",

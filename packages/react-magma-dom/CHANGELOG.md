@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.14
+
+### Patch Changes
+
+- ed14a909c: fix(MultiSelect): Fix a bug where the page refreshes when you click on a selected item.
+
 ## 4.8.0-next.13
 
 ### Patch Changes
