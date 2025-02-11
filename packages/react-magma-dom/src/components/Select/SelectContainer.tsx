@@ -87,7 +87,7 @@ const StyledAdditionalContent = styled.div<{
   }
 `;
 
-const FormField = styled.form`
+const FieldContainer = styled.div`
   flex: 1 1 auto;
   min-width: 0%;
 `;
@@ -147,11 +147,6 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
     }
   }
 
-  // Necessary to prevent unexpected sabmits on a form
-  const onFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-  };
-
   return (
     <SelectContainerElement
       isLabelVisuallyHidden={isLabelVisuallyHidden}
@@ -173,7 +168,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
           )}
         </Label>
       </AdditionalContentWrapper>
-      <FormField onSubmit={onFormSubmit}>
+      <FieldContainer onSubmit={onFormSubmit}>
         <InputMessageContainer>{children}</InputMessageContainer>
         {!(
           labelPosition === LabelPosition.left &&
@@ -191,7 +186,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
               )}
             </InputMessage>
           )}
-      </FormField>
+      </FieldContainer>
       {additionalItemRightAlign()}
     </SelectContainerElement>
   );
