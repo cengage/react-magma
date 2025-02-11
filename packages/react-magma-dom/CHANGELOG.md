@@ -1,5 +1,12 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.13
+
+### Patch Changes
+
+- e689dc0cb: fix(TimePicker): Fix input wrong number validation.
+- 9697b00b7: fix(Toast): Change property for Toast close button from `aria-label` to `title`.
+
 ## 4.8.0-next.12
 
 ### Patch Changes
