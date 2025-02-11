@@ -24,6 +24,7 @@
     "feat-charts-documentation",
     "feat-select-disabled-items-styling",
     "feat-select-disabled-items",
+    "fix-DatePicker-input-wrong-number",
     "fix-Dropdown-click-outside",
     "fix-FormGroup-input-message",
     "fix-GlobalStyles-import-warning",

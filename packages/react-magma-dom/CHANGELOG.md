@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.13
+
+### Patch Changes
+
+- e689dc0cb: fix(TimePicker): Fix input wrong number validation.
+
 ## 4.8.0-next.12
 
 ### Patch Changes
