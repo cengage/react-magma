@@ -143,6 +143,7 @@ export function useTreeView(props: UseTreeViewProps) {
       checkChildren,
       selectable,
       isDisabled,
+      isTopLevelSelectable,
     })
   );
   const [hasIcons] = React.useState(() => {
@@ -153,6 +154,7 @@ export function useTreeView(props: UseTreeViewProps) {
       checkChildren,
       selectable,
       isDisabled,
+      isTopLevelSelectable,
     });
 
     return initialItems.some(item => item.icon);
@@ -219,10 +221,18 @@ export function useTreeView(props: UseTreeViewProps) {
         checkChildren,
         selectable,
         isDisabled,
+        isTopLevelSelectable,
       })
     );
     prevPreselectedItemsRef.current = preselectedItems;
-  }, [preselectedItems, checkParents, checkChildren, selectable, isDisabled]);
+  }, [
+    preselectedItems,
+    checkParents,
+    checkChildren,
+    selectable,
+    isDisabled,
+    isTopLevelSelectable,
+  ]);
 
   React.useEffect(() => {
     if (initializationRef.current) {
@@ -236,6 +246,7 @@ export function useTreeView(props: UseTreeViewProps) {
       checkChildren,
       selectable,
       isDisabled,
+      isTopLevelSelectable
     });
 
     setItems(prevItems => {
@@ -344,27 +355,7 @@ export function useTreeView(props: UseTreeViewProps) {
           ) {
             return;
           }
-
-          setItems(prevItems => {
-            if (isTopLevelSelectable) {
-              return toggleAllMulti({
-                items: prevItems,
-                checkedStatus: IndeterminateCheckboxStatus.checked,
-                checkChildren,
-                checkParents,
-              });
-            } else {
-              return prevItems.map(item => {
-                if (!item.parentId) {
-                  return item;
-                }
-                return {
-                  ...item,
-                  checkedStatus: IndeterminateCheckboxStatus.checked,
-                };
-              });
-            }
-          });
+          this.showMore(true);
         },
 
         clearAll() {
@@ -378,7 +369,7 @@ export function useTreeView(props: UseTreeViewProps) {
               checkedStatus: IndeterminateCheckboxStatus.unchecked,
               checkChildren,
               checkParents,
-              isTopLevelSelectable: isTopLevelSelectable,
+              isTopLevelSelectable,
             });
           });
         },
@@ -408,6 +399,7 @@ export function useTreeView(props: UseTreeViewProps) {
               checkChildren,
               selectable,
               isDisabled,
+              isTopLevelSelectable
             })
           );
         },
@@ -425,6 +417,7 @@ export function useTreeView(props: UseTreeViewProps) {
           checkChildren,
           selectable,
           isDisabled,
+          isTopLevelSelectable,
         })
       );
       prevChildrenRef.current = children;

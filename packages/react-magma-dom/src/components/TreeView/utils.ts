@@ -445,8 +445,12 @@ const getChildrenUniqueStatuses = ({
 
 const processInitialParentStatuses = ({
   items,
+  isTopLevelSelectable,
+  selectable,
 }: {
   items: TreeViewItemInterface[];
+  isTopLevelSelectable: UseTreeViewProps['isTopLevelSelectable'];
+  selectable: TreeViewSelectable;
 }) => {
   const itemsWithSelectedChildren = items.reduce((result, item) => {
     if (
@@ -474,6 +478,14 @@ const processInitialParentStatuses = ({
       itemId: item.itemId,
     });
 
+    if (
+      !item.parentId &&
+      !isTopLevelSelectable &&
+      selectable === TreeViewSelectable.multi
+    ) {
+      return { ...item, checkedStatus: IndeterminateCheckboxStatus.unchecked };
+    }
+
     const parentStatus =
       childrenUniqueStatuses.length > 1
         ? IndeterminateCheckboxStatus.indeterminate
@@ -490,6 +502,7 @@ export const getInitialItems = ({
   checkChildren,
   selectable,
   isDisabled: isTreeViewDisabled,
+  isTopLevelSelectable
 }: Pick<
   UseTreeViewProps,
   | 'children'
@@ -498,6 +511,7 @@ export const getInitialItems = ({
   | 'checkChildren'
   | 'selectable'
   | 'isDisabled'
+  | 'isTopLevelSelectable'
 >) => {
   const treeViewData = getTreeViewData({
     children,
@@ -538,11 +552,19 @@ export const getInitialItems = ({
       }, enhancedWithPreselectedItems)
     : enhancedWithPreselectedItems;
 
+  if (!isTopLevelSelectable) {
+    return itemsWithProcessedChildrenSelection.map(item =>
+      !item.parentId ? { ...item, checkedStatus: IndeterminateCheckboxStatus.unchecked } : item
+    );
+  }
+
   return selectable === TreeViewSelectable.multi &&
     checkParents &&
     preselectedItems
     ? processInitialParentStatuses({
         items: itemsWithProcessedChildrenSelection,
+        isTopLevelSelectable,
+        selectable,
       })
     : itemsWithProcessedChildrenSelection;
 };
@@ -654,7 +676,14 @@ export const toggleMulti = ({
         checkedStatus,
       })
     : itemsWithProcessedItemSelection;
-  return checkParents && isTopLevelSelectable
+
+  if (!isTopLevelSelectable) {
+    return itemsWithProcessedChildrenSelection.map(item =>
+      !item.parentId ? { ...item, checkedStatus: IndeterminateCheckboxStatus.unchecked } : item
+    );
+  }
+
+  return checkParents
     ? processParentsSelection({
         items: itemsWithProcessedChildrenSelection,
         itemId,
