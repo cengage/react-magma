@@ -85,14 +85,22 @@ const PopoverSection = React.forwardRef<
   );
 });
 
-export const PopoverHeader = ({ children, style }: PopoverSectionProps) => (
-  <PopoverSection section={SectionEnum.header} style={style}>
+export const PopoverHeader = ({
+  children,
+  style,
+  ...other
+}: PopoverSectionProps) => (
+  <PopoverSection section={SectionEnum.header} style={style} {...other}>
     {children}
   </PopoverSection>
 );
 
-export const PopoverFooter = ({ children, style }: PopoverSectionProps) => (
-  <PopoverSection section={SectionEnum.footer} style={style}>
+export const PopoverFooter = ({
+  children,
+  style,
+  ...other
+}: PopoverSectionProps) => (
+  <PopoverSection section={SectionEnum.footer} style={style} {...other}>
     {children}
   </PopoverSection>
 );

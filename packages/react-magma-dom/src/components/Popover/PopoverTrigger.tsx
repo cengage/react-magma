@@ -15,7 +15,7 @@ import { IconProps, InfoIcon } from 'react-magma-icons';
 import { PopoverContext } from './Popover';
 import { transparentize } from 'polished';
 
-export interface IconOnlyPopoverTriggerProps
+interface IconOnlyPopoverTriggerProps
   extends Omit<ButtonProps, 'children'> {
   /**
    * Icon to display within the component
@@ -31,7 +31,7 @@ export interface IconOnlyPopoverTriggerProps
   tabIndex?: number;
 }
 
-export interface IconTextPopoverTriggerProps extends ButtonProps {
+interface IconTextPopoverTriggerProps extends ButtonProps {
   /**
    * Icon to display within the component
    */

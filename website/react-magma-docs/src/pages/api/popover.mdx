@@ -42,7 +42,7 @@ import {
 export function Example() {
   return (
     <Popover>
-      <PopoverTrigger aria-label="Open popover">Click me</PopoverTrigger>
+      <PopoverTrigger>Click me</PopoverTrigger>
       <PopoverContent>
         <PopoverHeader>
           <div>Popover Title</div>
@@ -316,7 +316,11 @@ import { FilterAltIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <Popover width={160}>
-      <PopoverTrigger icon={<FilterAltIcon />} size={ButtonSize.large} />
+      <PopoverTrigger
+        icon={<FilterAltIcon />}
+        size={ButtonSize.large}
+        aria-label="Open popover"
+      />
       <PopoverContent>
         <FormGroup>
           <Checkbox labelText="Filter 1" />
@@ -332,7 +336,7 @@ export function Example() {
 
 ## Disabled Popover / Disabled Trigger
 
-The `isDisabled` property will disable the ability to open the popover. For disabled trigger and enabled content, you need to place the disable button inside the trigger and use the `hoberable` property.
+The `isDisabled` property will disable the ability to open the popover. For disabled trigger and enabled content, you need to place the disable button inside the trigger and use the `hoverable` property.
 
 ```tsx
 import React from 'react';
@@ -370,6 +374,8 @@ export function Example() {
 ## Open by default
 
 The `openByDefault` property will allow Popover to open as soon as the page loads. It is recommended to use localStorage to modify this behavior.
+
+**Note:** For a proper demonstration, open the example, uncheck the “Don’t show this again” checkbox, and then refresh the page.
 
 ```tsx
 import React from 'react';
@@ -457,11 +463,5 @@ export function Example() {
 **Any additional props supplied will be provided to the wrapping section element.**
 
 <PopoverSectionProps />
-
-## Popover Trigger Props
-
-**Props supplied to the PopoverTrigger component will be provided to the underlying button element.**
-
-<PopoverTriggerProps />
 
 </PageContent>
