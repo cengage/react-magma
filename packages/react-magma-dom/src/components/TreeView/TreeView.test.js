@@ -3736,5 +3736,130 @@ describe('TreeView', () => {
         },
       ]);
     });
+
+    it('should allow selection of a top-level item in single-select mode when isTopLevelSelectable is false', () => {
+      const { getByTestId } = render(
+        <TreeView selectable={TreeViewSelectable.single} isTopLevelSelectable={false}>
+          <TreeItem label="Parent 1" itemId="parent1" testId="parent1">
+            <TreeItem label="Child 1" itemId="child1" testId="child1" />
+          </TreeItem>
+        </TreeView>
+      );
+  
+      // In single-select mode, clicking the label should select the item.
+      userEvent.click(getByTestId('parent1-label'));
+      expect(getByTestId('parent1')).toHaveAttribute('aria-selected', 'true');
+    });
+  
+    it('should allow selection of a top-level item in single-select mode even when isTopLevelSelectable is true', () => {
+      const { getByTestId } = render(
+        <TreeView selectable={TreeViewSelectable.single} isTopLevelSelectable={true}>
+          <TreeItem label="Parent 1" itemId="parent1" testId="parent1">
+            <TreeItem label="Child 1" itemId="child1" testId="child1" />
+          </TreeItem>
+        </TreeView>
+      );
+  
+      // With isTopLevelSelectable true the top-level item should be selectable.
+      userEvent.click(getByTestId('parent1-label'));
+      expect(getByTestId('parent1')).toHaveAttribute('aria-selected', 'true');
+    });
+  
+    it('should allow selectAll to select top-level items when isTopLevelSelectable is true', () => {
+      const apiRef = React.createRef();
+      const { getByTestId } = render(
+        <TreeView selectable={TreeViewSelectable.multi} isTopLevelSelectable={true} apiRef={apiRef} initialExpandedItems={['parent1']}>
+          <TreeItem label="Parent 1" itemId="parent1" testId="parent1">
+            <TreeItem label="Child 1" itemId="child1" testId="child1" />
+          </TreeItem>
+        </TreeView>
+      );
+  
+      act(() => {
+        apiRef.current.selectAll();
+      });
+      expect(getByTestId('parent1-checkbox')).toBeChecked();
+      expect(getByTestId('child1-checkbox')).toBeChecked();
+    });
+  
+    it('should ignore isTopLevelSelectable when selectable is off', () => {
+      const { queryByTestId } = render(
+        <TreeView selectable={TreeViewSelectable.off} isTopLevelSelectable={false} initialExpandedItems={['parent1']}>
+          <TreeItem label="Parent 1" itemId="parent1" testId="parent1">
+            <TreeItem label="Child 1" itemId="child1" testId="child1" />
+          </TreeItem>
+        </TreeView>
+      );
+      // When selection is off no checkboxes should be rendered.
+      expect(queryByTestId('parent1-checkbox')).toBeNull();
+      expect(queryByTestId('child1-checkbox')).toBeNull();
+    });
+  
+    it('should not update a top-level parent state when its child is selected, if isTopLevelSelectable is false (even with checkChildren=true)', () => {
+      const onSelectedItemChange = jest.fn();
+      const { getByTestId, queryByTestId } = render(
+        <TreeView
+          selectable={TreeViewSelectable.multi}
+          isTopLevelSelectable={false}
+          checkChildren={true}
+          onSelectedItemChange={onSelectedItemChange}
+          initialExpandedItems={['parent1']}
+        >
+          <TreeItem label="Parent 1" itemId="parent1" testId="parent1">
+            <TreeItem label="Child 1" itemId="child1" testId="child1" />
+          </TreeItem>
+        </TreeView>
+      );
+  
+      // No checkbox for parent should be rendered.
+      expect(queryByTestId('parent1-checkbox')).toBeNull();
+  
+      // When clicking the child checkbox the child becomes selected...
+      userEvent.click(getByTestId('child1-checkbox'));
+      expect(getByTestId('child1')).toHaveAttribute('aria-checked', 'true');
+      // ...while the parent remains unaffected.
+      expect(getByTestId('parent1')).not.toHaveAttribute('aria-checked');
+    });
+  
+    it('should update dynamically to render top-level checkboxes when isTopLevelSelectable changes from false to true', () => {
+      const { queryByTestId, rerender } = render(
+        <TreeView selectable={TreeViewSelectable.multi} isTopLevelSelectable={false}>
+          <TreeItem label="Parent 1" itemId="parent1" testId="parent1">
+            <TreeItem label="Child 1" itemId="child1" testId="child1" />
+          </TreeItem>
+        </TreeView>
+      );
+      // Initially, no top-level checkbox is rendered.
+      expect(queryByTestId('parent1-checkbox')).toBeNull();
+  
+      // Rerender with isTopLevelSelectable true.
+      rerender(
+        <TreeView selectable={TreeViewSelectable.multi} isTopLevelSelectable={true}>
+          <TreeItem label="Parent 1" itemId="parent1" testId="parent1">
+            <TreeItem label="Child 1" itemId="child1" testId="child1" />
+          </TreeItem>
+        </TreeView>
+      );
+      expect(queryByTestId('parent1-checkbox')).toBeInTheDocument();
+    });
+  
+    it('should ignore a preselected top-level item when isTopLevelSelectable is false', () => {
+      const { queryByTestId } = render(
+        <TreeView
+          selectable={TreeViewSelectable.multi}
+          isTopLevelSelectable={false}
+          preselectedItems={['parent1']}
+          initialExpandedItems={['parent1']}
+        >
+          <TreeItem label="Parent 1" itemId="parent1" testId="parent1">
+            <TreeItem label="Child 1" itemId="child1" testId="child1" />
+          </TreeItem>
+        </TreeView>
+      );
+      // Even though "parent1" is in preselectedItems, its checkbox isn’t rendered.
+      expect(queryByTestId('parent1-checkbox')).toBeNull();
+      // The child is rendered and remains unselected unless explicitly chosen.
+      expect(queryByTestId('child1-checkbox')).toBeInTheDocument();
+    });
   });
 });

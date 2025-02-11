@@ -146,6 +146,7 @@ export function useTreeView(props: UseTreeViewProps) {
       checkChildren,
       selectable,
       isDisabled,
+      isTopLevelSelectable,
     })
   );
   const [hasIcons] = React.useState(() => {
@@ -156,6 +157,7 @@ export function useTreeView(props: UseTreeViewProps) {
       checkChildren,
       selectable,
       isDisabled,
+      isTopLevelSelectable,
     });
 
     return initialItems.some(item => item.icon);
@@ -222,10 +224,18 @@ export function useTreeView(props: UseTreeViewProps) {
         checkChildren,
         selectable,
         isDisabled,
+        isTopLevelSelectable,
       })
     );
     prevPreselectedItemsRef.current = preselectedItems;
-  }, [preselectedItems, checkParents, checkChildren, selectable, isDisabled]);
+  }, [
+    preselectedItems,
+    checkParents,
+    checkChildren,
+    selectable,
+    isDisabled,
+    isTopLevelSelectable,
+  ]);
 
   React.useEffect(() => {
     if (initializationRef.current) {
@@ -239,6 +249,7 @@ export function useTreeView(props: UseTreeViewProps) {
       checkChildren,
       selectable,
       isDisabled,
+      isTopLevelSelectable
     });
 
     setItems(prevItems => {
@@ -470,6 +481,7 @@ export function useTreeView(props: UseTreeViewProps) {
           checkChildren,
           selectable,
           isDisabled,
+          isTopLevelSelectable,
         })
       );
       prevChildrenRef.current = children;
