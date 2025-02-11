@@ -168,7 +168,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
           )}
         </Label>
       </AdditionalContentWrapper>
-      <FieldContainer onSubmit={onFormSubmit}>
+      <FieldContainer>
         <InputMessageContainer>{children}</InputMessageContainer>
         {!(
           labelPosition === LabelPosition.left &&
