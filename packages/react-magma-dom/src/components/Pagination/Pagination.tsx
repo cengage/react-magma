@@ -227,7 +227,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                         size={size}
                         theme={theme}
                       >
-                        ...
+                        &#8230;
                       </StyledEllipsis>
                     );
                   } else if (type === 'page') {
