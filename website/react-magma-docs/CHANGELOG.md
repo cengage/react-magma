@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.11-next.13
+
+### Patch Changes
+
+- 43c388021: chore: REVERT Upgrade uuid to 9.0.1 and @types/uuid to 9.0.8
+
 ## 5.0.11-next.12
 
 ### Patch Changes
