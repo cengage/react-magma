@@ -8,6 +8,10 @@
     "url": "https://github.com/cengage/react-magma.git"
   },
   "license": "MIT",
+  "engines": {
+    "npm": ">=v10.7.0",
+    "node": ">=18.20.4"
+  },
   "workspaces": [
     "website/*",
     "packages/*",
@@ -24,7 +28,6 @@
     "check:spelling": "cspell --config=.cspell.json packages/**/*.{md,ts,js,mdx,tsx,jsx}",
     "clean": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes && rimraf node_modules",
     "clean:docs": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes --scope react-magma-docs ",
-    "cm": "git-cz",
     "cm-retry": "git-cz --retry",
     "copy:readme": "copy README.md packages/react-magma-dom",
     "develop": "npm run docs",
@@ -32,10 +35,10 @@
     "fix:pkgs": "manypkg fix",
     "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
-    "postinstall": "npm run build:lite",
     "lint": "lerna run lint",
     "pkg": "manypkg run",
     "plop": "ts-node scripts/plopfile.ts",
+    "postinstall": "npm run build:lite",
     "prettier": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
     "publish": "npm run copy:readme && lerna publish",
     "release": "changeset publish",
@@ -95,7 +98,7 @@
     "@types/lodash": "^4.14.168",
     "@types/node": "^12.6.8",
     "@types/react": "^16.9.0",
-    "@types/uuid": "^9.0.8",
+    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
     "babel-core": "7.0.0-bridge.0",
@@ -147,9 +150,5 @@
     "typedoc": "^0.19.2",
     "typescript": "^3.9.7",
     "webpack-filter-warnings-plugin": "1.2.1"
-  },
-  "engines": {
-    "node": ">=18.20.4",
-    "npm": ">=v10.7.0"
   }
 }
