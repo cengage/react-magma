@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.15
+
+### Patch Changes
+
+- 4f460ce4c: chore: Bump version to 4.8.0-next.15
+
 ## 4.8.0-next.14
 
 ### Patch Changes
