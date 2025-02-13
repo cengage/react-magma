@@ -76,6 +76,17 @@ export const IndeterminateCheckbox = React.forwardRef<
     }
   }
 
+  function handleOnKeyDown(event: React.KeyboardEvent) {
+    if (event.key === ' ' && !disabled) {
+      event.preventDefault();
+      const syntheticEvent = {
+        ...event,
+        target: { checked: !isChecked },
+      } as unknown as React.ChangeEvent<HTMLInputElement>;
+      handleChange(syntheticEvent);
+    }
+  }
+
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
   const context = React.useContext(FormGroupContext);
@@ -159,7 +170,9 @@ export const IndeterminateCheckbox = React.forwardRef<
           ref={ref}
           type="checkbox"
           onChange={handleChange}
+          tabIndex={-1}
         />
+
         <StyledLabel htmlFor={id} isInverse={isInverse} style={labelStyle}>
           <StyledFakeInput
             isChecked={isChecked}
@@ -172,6 +185,10 @@ export const IndeterminateCheckbox = React.forwardRef<
             style={inputStyle}
             theme={theme}
             aria-hidden="true"
+            tabIndex={0}
+            role="checkbox"
+            aria-checked={isIndeterminate ? 'mixed' : isChecked}
+            onKeyDown={handleOnKeyDown}
           >
             {isIndeterminate ? (
               <IndeterminateCheckBoxIcon
@@ -190,6 +207,7 @@ export const IndeterminateCheckbox = React.forwardRef<
             labelText
           )}
         </StyledLabel>
+
         <Announce>
           {showAnnounce && <VisuallyHidden>{announceText}</VisuallyHidden>}
         </Announce>

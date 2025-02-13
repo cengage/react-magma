@@ -1507,10 +1507,13 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                       style="padding: 0px;"
                     >
                       <span
+                        aria-checked="false"
                         aria-hidden="true"
                         class="emotion-42 emotion-27"
                         color="#3942B0"
+                        role="checkbox"
                         style="margin-right: 8px;"
+                        tabindex="0"
                       >
                         <svg
                           class="icon"
@@ -3183,10 +3186,13 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                       style="padding: 0px;"
                     >
                       <span
+                        aria-checked="false"
                         aria-hidden="true"
                         class="emotion-58 emotion-27"
                         color="#3942B0"
+                        role="checkbox"
                         style="margin-right: 8px;"
+                        tabindex="0"
                       >
                         <svg
                           class="icon"
@@ -4925,10 +4931,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                       style="padding: 0px;"
                     >
                       <span
+                        aria-checked="false"
                         aria-hidden="true"
                         class="emotion-58 emotion-27"
                         color="#3942B0"
+                        role="checkbox"
                         style="margin-right: 8px;"
+                        tabindex="0"
                       >
                         <svg
                           class="icon"
@@ -6667,10 +6676,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                       style="padding: 0px;"
                     >
                       <span
+                        aria-checked="false"
                         aria-hidden="true"
                         class="emotion-58 emotion-27"
                         color="#3942B0"
+                        role="checkbox"
                         style="margin-right: 8px;"
+                        tabindex="0"
                       >
                         <svg
                           class="icon"
@@ -8258,10 +8270,13 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                       style="padding: 0px;"
                     >
                       <span
+                        aria-checked="false"
                         aria-hidden="true"
                         class="emotion-42 emotion-27"
                         color="#3942B0"
+                        role="checkbox"
                         style="margin-right: 8px;"
+                        tabindex="0"
                       >
                         <svg
                           class="icon"
