@@ -1174,6 +1174,21 @@ const AccordionSectionWithTreeView = (props: any) => {
     }
   };
 
+  const toggleExpandAll = () => {
+    if (!isShowAll) {
+      apiRef.current?.showMore();
+      setIsShowAll(true);
+    }
+
+    setTimeout(() => {
+      apiRef.current?.expandAll();
+    }, 50);
+  };
+
+  const toggleCollapseAll = () => {
+    apiRef.current?.collapseAll();
+  };
+
   const renderTrees = () => {
     return (
       <>
@@ -1210,6 +1225,15 @@ const AccordionSectionWithTreeView = (props: any) => {
     <AccordionItem {...rest} index={customIndex} isDisabled={isDisabled}>
       <AccordionButton>{title}</AccordionButton>
       <AccordionPanel>
+        <ButtonGroup
+          size={ButtonSize.small}
+          variant={ButtonVariant.solid}
+          color={ButtonColor.subtle}
+        >
+          <Button onClick={toggleExpandAll}>Expand All</Button>
+          <Button onClick={toggleCollapseAll}>Collapse All</Button>
+        </ButtonGroup>
+        <Spacer axis={SpacerAxis.vertical} size={16} />
         {renderTrees()}
         <Spacer axis={SpacerAxis.vertical} size={16} />
         <IconButton
@@ -1283,7 +1307,7 @@ const flatTree = {
 };
 
 // This example is used in unit tests - modifying it may cause broken tests
-export const AccordionTreeWithShowAll = (props: any) => {
+export const AccordionTreeWithShowAllAndExpandAll = (props: any) => {
   const apiRef = React.useRef<TreeViewApi>();
 
   function onSelection(items: TreeItemSelectedInterface[]) {
@@ -1302,7 +1326,7 @@ export const AccordionTreeWithShowAll = (props: any) => {
   );
 };
 
-AccordionTreeWithShowAll.parameters = {
+AccordionTreeWithShowAllAndExpandAll.parameters = {
   controls: {
     exclude: [
       'isInverse',
@@ -1319,7 +1343,9 @@ AccordionTreeWithShowAll.parameters = {
 
 // END of MAST Tree example with hidden items
 
-export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
+export const ComplexTreeWithShowAllAndExpandAll = (
+  args: Partial<TreeViewProps>
+) => {
   const treeContent = {
     id: 'tree-id',
     groupName: 'disciplines',
@@ -1350,9 +1376,9 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
                     id: 'ad-2-child2-child1',
                     title: 'Pet',
                     children: [],
-                  }
+                  },
                 ],
-              }
+              },
             ],
           },
           {
@@ -1465,10 +1491,10 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
                 children: [
                   {
                     id: 'nutr-2-child2-child1',
-                    title: 'Creatine'
-                  }
+                    title: 'Creatine',
+                  },
                 ],
-              }
+              },
             ],
           },
         ],
@@ -1522,11 +1548,11 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
     }
     setTimeout(() => {
       apiRef.current?.selectAll();
-    }, 50)
+    }, 50);
   };
 
   const renderTreeItemsRecursively = (discipline: any[], depth: number) => {
-    return discipline.map(term => {
+    return discipline.map((term, index) => {
       return (
         <TreeItem
           key={term.id}
@@ -1544,6 +1570,21 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
     });
   };
 
+  const toggleExpandAll = () => {
+    if (!isShowAll) {
+      apiRef.current?.showMore();
+      setIsShowAll(true);
+    }
+
+    setTimeout(() => {
+      apiRef.current?.expandAll();
+    }, 50);
+  };
+
+  const toggleCollapseAll = () => {
+    apiRef.current?.collapseAll();
+  };
+
   return (
     <>
       <ButtonGroup
@@ -1553,6 +1594,8 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
       >
         <Button onClick={onSelectAll}>Select all</Button>
         <Button onClick={() => apiRef.current?.clearAll()}>Clear all</Button>
+        <Button onClick={toggleExpandAll}>Expand All</Button>
+        <Button onClick={toggleCollapseAll}>Collapse All</Button>
       </ButtonGroup>
 
       <Spacer size={24} axis={SpacerAxis.vertical} />
@@ -1588,14 +1631,14 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
   );
 };
 
-ComplexTreeWithShowAll.args = {
+ComplexTreeWithShowAllAndExpandAll.args = {
   checkParents: true,
   checkChildren: true,
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Disciplines',
 };
 
-ComplexTreeWithShowAll.parameters = {
+ComplexTreeWithShowAllAndExpandAll.parameters = {
   controls: {
     exclude: ['isInverse', 'initialExpandedItems', 'ariaLabelledBy', 'testId'],
   },

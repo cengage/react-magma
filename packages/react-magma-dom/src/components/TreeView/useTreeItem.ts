@@ -73,11 +73,20 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     initialExpandedItemsNeedUpdate,
     items,
     selectItem,
+    expandedSet,
   } = React.useContext(TreeViewContext);
 
   const treeViewItemData = React.useMemo(() => {
     return items.find(item => item.itemId === itemId);
   }, [itemId, items]);
+
+  React.useEffect(() => {
+    const isExpanded = treeViewItemData?.itemId
+      ? expandedSet.has(treeViewItemData.itemId)
+      : false;
+
+    setExpanded(isExpanded);
+  }, [expandedSet, treeViewItemData]);
 
   const isDisabled = treeViewItemData?.isDisabled;
 
