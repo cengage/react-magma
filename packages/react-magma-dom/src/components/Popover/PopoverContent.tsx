@@ -8,6 +8,7 @@ import { useFocusLock } from '../../hooks/useFocusLock';
 import { Announce } from '../Announce';
 import { ThemeInterface } from '../../theme/magma';
 import { PopoverHeader, PopoverFooter } from './PopoverSection';
+import { FloatingArrow } from '@floating-ui/react';
 
 export interface PopoverContentProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -47,70 +48,6 @@ const StyledCard = styled(Card)<{
         ? props.theme.colors.primary400
         : props.theme.colors.neutral300};
   width: ${props => (props.width ? props.width : '100%')};
-
-  ::before {
-    display: ${props => (props.hasPointer ? 'block' : 'none')};
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 11px;
-  }
-
-  &[data-popover-placement=${PopoverPosition.bottom}]::before {
-    border-color: transparent transparent
-      ${props =>
-        props.isInverse
-          ? props.theme.colors.primary400
-          : props.theme.colors.neutral300}
-      transparent;
-    left: 50%;
-    bottom: 100%;
-    transform: translateX(-50%) rotate(0deg);
-  }
-  &[data-popover-placement=${PopoverPosition.top}]::before {
-    border-color: ${props =>
-        props.isInverse
-          ? props.theme.colors.primary400
-          : props.theme.colors.neutral300}
-      transparent transparent transparent;
-    left: 50%;
-    top: 100%;
-    transform: translateX(-50%) rotate(0deg);
-  }
-
-  &::after {
-    display: ${props => (props.hasPointer ? 'block' : 'none')};
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 10px;
-  }
-
-  &[data-popover-placement=${PopoverPosition.bottom}]::after {
-    border-color: transparent transparent
-      ${props =>
-        props.isInverse
-          ? props.theme.colors.primary600
-          : props.theme.colors.neutral100}
-      transparent;
-    left: 50%;
-    bottom: 100%;
-    transform: translateX(-50%) rotate(0deg);
-  }
-  &[data-popover-placement=${PopoverPosition.top}]::after {
-    border-color: ${props =>
-        props.isInverse
-          ? props.theme.colors.primary600
-          : props.theme.colors.neutral100}
-      transparent transparent transparent;
-    left: 50%;
-    top: 100%;
-    transform: translateX(-50%) rotate(0deg);
-  }
 `;
 
 const StyledAnnounce = styled(Announce)`
@@ -169,6 +106,29 @@ export const PopoverContent = React.forwardRef<
       // z-index 2 is used to make the content appear above docs elements (code blocks)
       style={{ ...context.floatingStyles, zIndex: 2 }}
     >
+      {context.isOpen && context.hasPointer && (
+        <FloatingArrow
+          ref={context.arrowRef}
+          context={context.arrowContext}
+          data-testid="popoverArrow"
+          data-popover-placement={context.position}
+          width={10}
+          height={6}
+          fill={
+            context.isInverse
+              ? theme.colors.primary600
+              : theme.colors.neutral100
+          }
+          stroke={
+            context.isInverse
+              ? theme.colors.primary400
+              : theme.colors.neutral300
+          }
+          strokeWidth={1}
+          style={{ zIndex: 2, transform: 'translateY(-15%)' }}
+        />
+      )}
+
       <StyledCard
         {...other}
         position={context.position}
@@ -181,7 +141,6 @@ export const PopoverContent = React.forwardRef<
         testId={testId || 'popoverContent'}
         theme={theme}
         width={context.width}
-        data-popover-placement={context.position}
         hasPointer={context.hasPointer}
       >
         <div

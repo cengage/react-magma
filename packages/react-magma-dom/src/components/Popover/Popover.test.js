@@ -209,34 +209,50 @@ describe('Popover', () => {
     expect(spanContent).not.toBeVisible();
   });
 
-  it('should render the popover component, positioned bottom by default', () => {
-    const { getByTestId } = render(
-      <Popover>
+  it('should render the popover component with pointer, positioned bottom by default', () => {
+    const { getByTestId, container } = render(
+      <Popover hasPointer>
         <PopoverTrigger />
         <PopoverContent>
           <span>Content</span>
         </PopoverContent>
       </Popover>
     );
-    const popoverContent = getByTestId('popoverContent');
-    expect(popoverContent).toBeInTheDocument();
+    const popoverTrigger = container.querySelector('button');
 
-    expect(popoverContent).toHaveAttribute('data-popover-placement', 'bottom');
+    userEvent.click(popoverTrigger);
+
+    const popoverContent = getByTestId('popoverContent');
+
+    expect(popoverContent).toBeInTheDocument();
+    expect(popoverContent).toBeVisible();
+
+    const popoverArrow = getByTestId('popoverArrow');
+
+    expect(popoverArrow).toHaveAttribute('data-popover-placement', 'bottom');
   });
 
-  it('should render the popover component with position top', () => {
-    const { getByTestId } = render(
-      <Popover position={PopoverPosition.top}>
+  it('should render the popover component with pointer, positioned top', () => {
+    const { getByTestId, container } = render(
+      <Popover hasPointer position={PopoverPosition.top}>
         <PopoverTrigger />
         <PopoverContent>
           <span>Content</span>
         </PopoverContent>
       </Popover>
     );
-    const popoverContent = getByTestId('popoverContent');
-    expect(popoverContent).toBeInTheDocument();
+    const popoverTrigger = container.querySelector('button');
 
-    expect(popoverContent).toHaveAttribute('data-popover-placement', 'top');
+    userEvent.click(popoverTrigger);
+
+    const popoverContent = getByTestId('popoverContent');
+
+    expect(popoverContent).toBeInTheDocument();
+    expect(popoverContent).toBeVisible();
+
+    const popoverArrow = getByTestId('popoverArrow');
+
+    expect(popoverArrow).toHaveAttribute('data-popover-placement', 'top');
   });
 
   it('should open the popover on hover', async () => {

@@ -1,16 +1,18 @@
 import styled from '@emotion/styled';
 import React from 'react';
 import {
-  useFloating,
   offset,
   flip,
   autoUpdate,
   ReferenceType,
   AlignedPlacement,
+  arrow,
+  shift,
 } from '@floating-ui/react-dom';
 import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
 import { useIsInverse } from '../../inverse';
 import { ButtonGroupContext } from '../ButtonGroup';
+import { useFloating } from '@floating-ui/react';
 
 export enum PopoverPosition {
   bottom = 'bottom', //default
@@ -102,6 +104,8 @@ export interface PopoverContextInterface {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setFloating?: (node: ReferenceType) => void;
   setReference?: (node: ReferenceType) => void;
+  arrowRef?: React.MutableRefObject<any>;
+  arrowContext?: any;
   toggleRef?: any;
   isDisabled?: boolean;
   hoverable?: boolean;
@@ -147,6 +151,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     const contentRef = React.useRef<any>(null);
     const popoverContentId = React.useRef('');
     const popoverTriggerId = React.useRef('');
+    const arrowRef = React.useRef(null);
 
     const {
       onClose,
@@ -239,10 +244,17 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       }
     }
 
-    const { refs, floatingStyles, placement } = useFloating({
+    const { refs, floatingStyles, placement, context } = useFloating({
       //flip() - Changes the placement of the floating element to keep it in view.
-      // offset - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
-      middleware: [flip(), offset(hasPointer ? 14 : 4)],
+      //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
+      //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
+      //arrow() - Positions an arrow element pointing at the reference element, ensuring proper alignment.
+      middleware: [
+        flip(),
+        shift({ padding: 12 }),
+        offset(hasPointer ? 12 : 4),
+        arrow({ element: arrowRef }),
+      ],
       placement: position as AlignedPlacement,
       whileElementsMounted: autoUpdate,
     });
@@ -280,6 +292,8 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           setIsOpen,
           setFloating: refs.setFloating,
           setReference: refs.setReference,
+          arrowRef,
+          arrowContext: context,
           toggleRef,
           isDisabled,
           hoverable,

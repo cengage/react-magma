@@ -33,66 +33,6 @@ exports[`Popover should render the popover with isInverse prop 1`] = `
   width: 100%;
 }
 
-.emotion-1::before {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 11px;
-}
-
-.emotion-1[data-popover-placement=bottom]::before {
-  border-color: transparent transparent #5D65CB transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::before {
-  border-color: #5D65CB transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1::after {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px;
-}
-
-.emotion-1[data-popover-placement=bottom]::after {
-  border-color: transparent transparent #292F7C transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::after {
-  border-color: #292F7C transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
 .emotion-3 {
   width: 100%;
   display: -webkit-box;
@@ -150,66 +90,6 @@ exports[`Popover should render the popover with isInverse prop 1`] = `
   width: 100%;
 }
 
-.emotion-1::before {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 11px;
-}
-
-.emotion-1[data-popover-placement=bottom]::before {
-  border-color: transparent transparent #5D65CB transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::before {
-  border-color: #5D65CB transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1::after {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px;
-}
-
-.emotion-1[data-popover-placement=bottom]::after {
-  border-color: transparent transparent #292F7C transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::after {
-  border-color: #292F7C transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
 .emotion-3 {
   width: 100%;
   display: -webkit-box;
@@ -237,7 +117,6 @@ exports[`Popover should render the popover with isInverse prop 1`] = `
 
 <div
   class="emotion-0 emotion-1 emotion-2"
-  data-popover-placement="bottom"
   data-testid="popoverContent"
   tabindex="-1"
   width="auto"
@@ -298,66 +177,6 @@ exports[`Popover should render the popover with pointer by default 1`] = `
   width: 100%;
 }
 
-.emotion-1::before {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 11px;
-}
-
-.emotion-1[data-popover-placement=bottom]::before {
-  border-color: transparent transparent #D4D4D4 transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::before {
-  border-color: #D4D4D4 transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1::after {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px;
-}
-
-.emotion-1[data-popover-placement=bottom]::after {
-  border-color: transparent transparent #FFFFFF transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::after {
-  border-color: #FFFFFF transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
 .emotion-3 {
   width: 100%;
   display: -webkit-box;
@@ -415,66 +234,6 @@ exports[`Popover should render the popover with pointer by default 1`] = `
   width: 100%;
 }
 
-.emotion-1::before {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 11px;
-}
-
-.emotion-1[data-popover-placement=bottom]::before {
-  border-color: transparent transparent #D4D4D4 transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::before {
-  border-color: #D4D4D4 transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1::after {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px;
-}
-
-.emotion-1[data-popover-placement=bottom]::after {
-  border-color: transparent transparent #FFFFFF transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::after {
-  border-color: #FFFFFF transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
 .emotion-3 {
   width: 100%;
   display: -webkit-box;
@@ -502,7 +261,6 @@ exports[`Popover should render the popover with pointer by default 1`] = `
 
 <div
   class="emotion-0 emotion-1 emotion-2"
-  data-popover-placement="bottom"
   data-testid="popoverContent"
   tabindex="-1"
   width="auto"
@@ -563,66 +321,6 @@ exports[`Popover should render the popover with target width 1`] = `
   width: 0px;
 }
 
-.emotion-1::before {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 11px;
-}
-
-.emotion-1[data-popover-placement=bottom]::before {
-  border-color: transparent transparent #D4D4D4 transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::before {
-  border-color: #D4D4D4 transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1::after {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px;
-}
-
-.emotion-1[data-popover-placement=bottom]::after {
-  border-color: transparent transparent #FFFFFF transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::after {
-  border-color: #FFFFFF transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
 .emotion-3 {
   width: 100%;
   display: -webkit-box;
@@ -680,66 +378,6 @@ exports[`Popover should render the popover with target width 1`] = `
   width: 0px;
 }
 
-.emotion-1::before {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 11px;
-}
-
-.emotion-1[data-popover-placement=bottom]::before {
-  border-color: transparent transparent #D4D4D4 transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::before {
-  border-color: #D4D4D4 transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1::after {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px;
-}
-
-.emotion-1[data-popover-placement=bottom]::after {
-  border-color: transparent transparent #FFFFFF transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::after {
-  border-color: #FFFFFF transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
 .emotion-3 {
   width: 100%;
   display: -webkit-box;
@@ -767,7 +405,6 @@ exports[`Popover should render the popover with target width 1`] = `
 
 <div
   class="emotion-0 emotion-1 emotion-2"
-  data-popover-placement="bottom"
   data-testid="popoverContent"
   tabindex="-1"
   width="0px"
@@ -828,66 +465,6 @@ exports[`Popover should render the popover without pointer 1`] = `
   width: 100%;
 }
 
-.emotion-1::before {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 11px;
-}
-
-.emotion-1[data-popover-placement=bottom]::before {
-  border-color: transparent transparent #D4D4D4 transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::before {
-  border-color: #D4D4D4 transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1::after {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px;
-}
-
-.emotion-1[data-popover-placement=bottom]::after {
-  border-color: transparent transparent #FFFFFF transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::after {
-  border-color: #FFFFFF transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
 .emotion-3 {
   width: 100%;
   display: -webkit-box;
@@ -945,66 +522,6 @@ exports[`Popover should render the popover without pointer 1`] = `
   width: 100%;
 }
 
-.emotion-1::before {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 11px;
-}
-
-.emotion-1[data-popover-placement=bottom]::before {
-  border-color: transparent transparent #D4D4D4 transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::before {
-  border-color: #D4D4D4 transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1::after {
-  display: none;
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 10px;
-}
-
-.emotion-1[data-popover-placement=bottom]::after {
-  border-color: transparent transparent #FFFFFF transparent;
-  left: 50%;
-  bottom: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.emotion-1[data-popover-placement=top]::after {
-  border-color: #FFFFFF transparent transparent transparent;
-  left: 50%;
-  top: 100%;
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  -moz-transform: translateX(-50%) rotate(0deg);
-  -ms-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
 .emotion-3 {
   width: 100%;
   display: -webkit-box;
@@ -1032,7 +549,6 @@ exports[`Popover should render the popover without pointer 1`] = `
 
 <div
   class="emotion-0 emotion-1 emotion-2"
-  data-popover-placement="bottom"
   data-testid="popoverContent"
   tabindex="-1"
   width="auto"
