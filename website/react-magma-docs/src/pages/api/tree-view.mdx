@@ -1130,120 +1130,120 @@ import {
 
 export function Example() {
   const treeContent = {
-    id: 'tree-id',
+    id: 'another-tree-id',
     groupName: 'disciplines',
     items: [
       {
-        id: 'discipline-arts-design',
+        id: 'another-discipline-arts-design',
         title: 'Arts and Design',
         children: [
           {
-            id: 'ad-1',
+            id: 'another-ad-1',
             title: 'Animation',
             children: [],
           },
           {
-            id: 'ad-2',
+            id: 'another-ad-2',
             title: 'Photography',
             children: [],
           },
           {
-            id: 'ad-3',
+            id: 'another-ad-3',
             title: 'Web Design',
             children: [],
           },
         ],
       },
       {
-        id: 'discipline-business',
+        id: 'another-discipline-business',
         title: 'Business',
         children: [
           {
-            id: 'bsn-1',
+            id: 'another-bsn-1',
             title: 'Accounting',
             children: [],
           },
           {
-            id: 'bsn-2',
+            id: 'another-bsn-2',
             title: 'Finance',
             children: [],
           },
         ],
       },
       {
-        id: 'discipline-cs',
+        id: 'another-discipline-cs',
         title: 'Computer Science',
         children: [
           {
-            id: 'cs-1',
+            id: 'another-cs-1',
             title: 'Software Engineering',
             children: [],
           },
           {
-            id: 'cs-2',
+            id: 'another-cs-2',
             title: 'Information Technology',
             children: [],
           },
         ],
       },
       {
-        id: 'discipline-geography',
+        id: 'another-discipline-geography',
         title: 'Geography',
         children: [],
       },
       {
-        id: 'discipline-his',
+        id: 'another-discipline-his',
         title: 'History',
         children: [
           {
-            id: 'his-1',
+            id: 'another-his-1',
             title: 'American History',
             children: [],
           },
           {
-            id: 'his-2',
+            id: 'another-his-2',
             title: 'World History',
             children: [],
           },
           {
-            id: 'his-3',
+            id: 'another-his-3',
             title: 'Western Civilization',
             children: [],
           },
         ],
       },
       {
-        id: 'discipline-math',
+        id: 'another-discipline-math',
         title: 'Mathematics',
         children: [
           {
-            id: 'math-1',
+            id: 'another-math-1',
             title: 'Precalculus',
             children: [],
           },
           {
-            id: 'math-2',
+            id: 'another-math-2',
             title: 'Calculus',
             children: [],
           },
           {
-            id: 'math-3',
+            id: 'another-math-3',
             title: 'Finite Math',
             children: [],
           },
         ],
       },
       {
-        id: 'discipline-nutr',
+        id: 'another-discipline-nutr',
         title: 'Nutrition',
         children: [
           {
-            id: 'nutr-1',
+            id: 'another-nutr-1',
             title: 'Community Nutrition',
             children: [],
           },
           {
-            id: 'nutr-2',
+            id: 'another-nutr-2',
             title: 'Sports Nutrition',
             children: [],
           },
@@ -1252,7 +1252,11 @@ export function Example() {
     ],
     preselectedItems: [
       {
-        itemId: 'bsn-1',
+        itemId: 'another-bsn-1',
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+      },
+      {
+        itemId: 'another-nutr-1',
         checkedStatus: IndeterminateCheckboxStatus.checked,
       },
     ],
@@ -1266,13 +1270,22 @@ export function Example() {
   }
 
   const renderTreeItemsRecursively = (discipline: any[], depth: number) => {
+    console.log(discipline);
     return discipline.map(term => {
+      const isDisabled =
+        term.title === 'Accounting' ||
+        term.title === 'Computer Science' ||
+        term.title === 'Calculus' ||
+        term.title === 'Nutrition' ||
+        term.title === 'Community Nutrition';
+
       return (
         <TreeItem
           key={term.id}
           itemId={term.id}
           testId={term.id}
           label={term.title}
+          isDisabled={isDisabled}
         >
           {term.children.length ? (
             renderTreeItemsRecursively(term.children, depth + 1)

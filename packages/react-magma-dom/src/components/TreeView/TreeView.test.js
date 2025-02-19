@@ -1,7 +1,11 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
 import { TreeView, TreeItem, TreeViewSelectable } from '.';
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import {
+  render,
+  fireEvent,
+  waitFor,
+} from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import userEvent from '@testing-library/user-event';
 import { FavoriteIcon } from 'react-magma-icons';
@@ -329,6 +333,30 @@ describe('TreeView', () => {
 
       userEvent.click(getByTestId('item2-itemwrapper'));
       expect(onExpandedChange).not.toHaveBeenCalled();
+    });
+
+    it('should work correctly with expandedAll() function', () => {
+      const onExpandedChange = jest.fn();
+      const apiRef = React.createRef();
+      const { getByText } = render(
+        <>
+          <button onClick={() => apiRef.current.expandAll()}>Expand All</button>
+          {getTreeItemsWithDisabled({
+            selectable: TreeViewSelectable.single,
+            initialExpandedItems: ['item1', 'item2'],
+            onExpandedChange,
+            apiRef,
+          })}
+        </>
+      );
+
+      expect(getByText('Expand All')).toBeInTheDocument();
+
+      userEvent.click(getByText('Expand All'));
+
+      expect(onExpandedChange).toHaveBeenCalled();
+      expect(onExpandedChange).toHaveBeenCalledTimes(1);
+      expect(onExpandedChange).toHaveBeenCalledWith({}, ['item1', 'item2']);
     });
   });
 
@@ -3100,7 +3128,13 @@ describe('TreeView', () => {
             {
               id: 'item-id-3',
               title: 'item-title-3',
-              children: [],
+              children: [
+                {
+                  id: 'item-id-3.1',
+                  title: 'item-title-3.1',
+                  children: [],
+                },
+              ],
             },
             {
               id: 'item-id-4',
@@ -3116,7 +3150,18 @@ describe('TreeView', () => {
             {
               id: 'item-id-5',
               title: 'item-title-5',
-              children: [],
+              children: [
+                {
+                  id: 'item-id-5.1',
+                  title: 'item-title-5.1',
+                  children: [],
+                },
+                {
+                  id: 'item-id-5.2',
+                  title: 'item-title-5.2',
+                  children: [],
+                },
+              ],
             },
             {
               id: 'item-id-6',
@@ -3409,15 +3454,53 @@ describe('TreeView', () => {
 
       userEvent.click(getByText('Expand All'));
 
+      let expandedItem = null;
+
       await waitFor(() => {
         expect(getByLabelText('item-title-6')).toBeInTheDocument();
-        expect(getByLabelText('item-title-4.1')).toBeInTheDocument();
+
+        expandedItem = getByLabelText('item-title-4.1');
+
+        expect(expandedItem).not.toBeNull();
+        expect(expandedItem).toBeInTheDocument();
       });
 
       userEvent.click(getByText('Collapse All'));
 
       await waitFor(() => {
-        expect(() => getByLabelText('item-title-4.1')).toThrowError();
+        expect(expandedItem).not.toBeNull();
+        expect(expandedItem).not.toBeInTheDocument();
+      });
+    });
+
+    it('expand all should work correctly with disabled items', async () => {
+      const { asFragment, getByLabelText, getByText } = render(
+        <AccordionTreeWithShowAllAndExpandAll
+          {...propsFlatTree}
+          preselectedItems={[]}
+        />
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+
+      expect(getByLabelText('item-title-1')).toBeInTheDocument();
+      expect(getByLabelText('item-title-2')).toBeInTheDocument();
+      expect(getByLabelText('item-title-3')).toBeInTheDocument();
+      expect(getByLabelText('item-title-4')).toBeInTheDocument();
+      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+
+      expect(getByLabelText('item-title-3')).toBeDisabled();
+
+      userEvent.click(getByText('Expand All'));
+
+      await waitFor(() => {
+        expect(getByLabelText('item-title-6')).toBeInTheDocument();
+        expect(getByLabelText('item-title-3.1')).toBeInTheDocument();
+        expect(getByLabelText('item-title-5.1')).toBeInTheDocument();
+        expect(getByLabelText('item-title-3.1')).toBeVisible();
+        expect(getByLabelText('item-title-5.1')).toBeVisible();
+        expect(getByLabelText('item-title-3.1')).toBeDisabled();
+        expect(getByLabelText('item-title-5.1')).toBeDisabled();
       });
     });
   });
