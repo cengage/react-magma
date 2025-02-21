@@ -45,9 +45,9 @@ export function Example() {
     <>
       <Button onClick={handleClick}>Show Default Toast</Button>
       <Announce>
-        {showToast ? (
+        {showToast && (
           <Toast onDismiss={handleDismiss}>Default Toast</Toast>
-        ) : null}
+        )}
       </Announce>
     </>
   );

@@ -801,11 +801,13 @@ export function Example() {
       value={{
         ...defaultI18n,
         select: {
+          ...defaultI18n.select,
           placeholder: 'Custom Select Placeholder...',
           clearIndicatorAriaLabel:
             'Click to reset selection for {labelText}. {selectedItem} is currently selected',
         },
         multiSelect: {
+          ...defaultI18n.multiSelect,
           selectedItemButtonAriaLabel:
             'Click to reset the selected item {selectedItem}',
         },
