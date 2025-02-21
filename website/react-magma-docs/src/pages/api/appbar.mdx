@@ -42,6 +42,50 @@ export function Example() {
 }
 ```
 
+## With Skip Link
+
+The `AppBar` works concurrently with `SkipLink` which assists keyboard navigation.
+
+```tsx
+import React from 'react';
+import {
+  AppBar,
+  AppBarPosition,
+  SkipLink,
+  SkipLinkContent,
+  Paragraph,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div style={{ height: '400px', overflow: 'auto', position: 'relative' }}>
+      <AppBar isInverse position={AppBarPosition.sticky}>
+        AppBar content
+      </AppBar>
+      <SkipLink to="#last-one">Skip to the end!</SkipLink>
+
+      <Paragraph>
+        Peel the onion peel the onion, so the horse is out of the barn per my
+        previous email, nor draw a line in the sand. I just wanted to give you a
+        heads-up drink from the firehose, game plan back-end of third quarter
+        viral engagement. Eat our own dog food driving the initiative forward
+        tribal knowledge increase the pipelines, but run it up the flag pole.
+      </Paragraph>
+      <SkipLinkContent>
+        <Paragraph id="last-one">
+          Turn the crank regroup can we align on lunch orders, so regroup, yet
+          the last person we talked to said this would be ready, for this vendor
+          is incompetent , or pipeline. We've bootstrapped the model zeitgeist,
+          so let's schedule a standup during the sprint to review our kpis, so
+          not the long pole in my tent we're ahead of the curve on that one, and
+          we're ahead of the curve on that one.{' '}
+        </Paragraph>
+      </SkipLinkContent>
+    </div>
+  );
+}
+```
+
 ## Inverse
 
 The `isInverse` prop will render an appbar with a dark background and light text. The components inside the app bar will inherit the `isInverse` prop unless specified otherwise.

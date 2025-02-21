@@ -60,6 +60,9 @@ const StyledSkipLink = styled(Hyperlink)<{
       top: ${props => props.positionTop}px;
       z-index: 99999;
     }
+    &:not(:disabled):focus {
+      z-index: 99999;
+    }
   }
 `;
 
