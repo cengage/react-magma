@@ -5,8 +5,7 @@ import { transparentize } from 'polished';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
-import { Button, ButtonProps, ButtonSize } from '../Button';
-import { ButtonColor } from '../Button';
+import { Button, ButtonProps, ButtonSize, ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
 import { IconProps } from 'react-magma-icons';
 import { ToggleButtonGroupContext } from '../ToggleButtonGroup/ToggleButtonGroup';

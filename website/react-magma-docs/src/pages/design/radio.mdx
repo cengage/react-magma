@@ -5,11 +5,12 @@ order: 1
 ---
 
 import './design-guidelines-styles.css';
-import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="radio_button" type="design">
 
-<LeadParagraph>The Radio button allows the user to select one option from a set.</LeadParagraph>
+<LeadParagraph>
+  The Radio button allows the user to select one option from a set.
+</LeadParagraph>
 
 ## Usage
 
@@ -18,7 +19,7 @@ Use radio buttons when the user needs to see all available options. If available
 Radio buttons should have the most commonly used option selected by default.
 
 <figure>
-  <div class="image-container">
+  <div className="image-container">
     <img
       src="../../images/selection-controls/Radio-buttons-example.png"
       alt="GATSBY_EMPTY_ALT"
@@ -28,30 +29,30 @@ Radio buttons should have the most commonly used option selected by default.
     <p>Radio buttons</p>
   </figcaption>
 </figure>
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img
           src="../../images/selection-controls/Radio-select-only-one.png"
           alt="GATSBY_EMPTY_ALT"
         />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             Use radio buttons when only one item can be selected from a list.
           </p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
         <img
           src="../../images/selection-controls/Radio-select-only-one-incorrect.png"
           alt="GATSBY_EMPTY_ALT"
         />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>
             Don’t use checkboxes when only one item can be selected from a list.
             Use radio buttons instead.
@@ -62,8 +63,11 @@ Radio buttons should have the most commonly used option selected by default.
   </div>
 </div>
 <figure>
-  <div class="image-container">
-    <img src="../../images/selection-controls/Radio-example-2.png" alt="GATSBY_EMPTY_ALT" />
+  <div className="image-container">
+    <img
+      src="../../images/selection-controls/Radio-example-2.png"
+      alt="GATSBY_EMPTY_ALT"
+    />
   </div>
   <figcaption>
     <p>Radio buttons - only one option can be selected at a time.</p>
@@ -75,8 +79,11 @@ Radio buttons should have the most commonly used option selected by default.
 Radio buttons can be off or on. Radio buttons have enabled, focused and pressed states.
 
 <figure>
-  <div class="image-container">
-    <img src="../../images/selection-controls/Radio-states.png" alt="GATSBY_EMPTY_ALT" />
+  <div className="image-container">
+    <img
+      src="../../images/selection-controls/Radio-states.png"
+      alt="GATSBY_EMPTY_ALT"
+    />
   </div>
   <figcaption>
     <p>Radio states</p>
@@ -88,8 +95,11 @@ Radio buttons can be off or on. Radio buttons have enabled, focused and pressed 
 Use the inverse version when using the radio buttons on a dark background.
 
 <figure>
-  <div class="image-container">
-    <img src="../../images/selection-controls/Radio-inverse.png" alt="GATSBY_EMPTY_ALT" />
+  <div className="image-container">
+    <img
+      src="../../images/selection-controls/Radio-inverse.png"
+      alt="GATSBY_EMPTY_ALT"
+    />
   </div>
   <figcaption>
     <p>Inverse colors</p>

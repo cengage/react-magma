@@ -10,12 +10,18 @@ export class DemoModal extends React.Component {
       isModalOpen: false,
     };
 
+    this.buttonRef = React.createRef();
+
     this.closeModal = this.closeModal.bind(this);
     this.openModal = this.openModal.bind(this);
   }
 
   closeModal() {
     this.setState({ isModalOpen: false });
+
+    if (this.buttonRef.current) {
+      this.buttonRef.current.focus();
+    }
   }
 
   openModal() {
@@ -25,7 +31,9 @@ export class DemoModal extends React.Component {
   render() {
     return (
       <>
-        <Button onClick={this.openModal}>Launch {this.props.size} modal</Button>
+        <Button onClick={this.openModal} ref={this.buttonRef}>
+          Launch {this.props.size} modal
+        </Button>
 
         <Modal
           header="Demo Modal"

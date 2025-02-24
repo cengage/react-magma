@@ -11,8 +11,6 @@ props:
   - AccordionPanelProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="accordion" type="api">
 
 <LeadParagraph>
@@ -27,7 +25,7 @@ An accordion is made up of four components: `Accordion`, `AccordionItem`, `Accor
 
 By default, multiple items are expandable. The `defaultIndex` prop which takes a zero-based array can be used to set panels open by default.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Accordion,
@@ -68,7 +66,7 @@ By default, the `isMulti` true, which means that the accordion will allow multip
 
 When the `isMulti` prop is false, the `defaultIndex` prop will take a single number, instead of an array.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Accordion,
@@ -109,7 +107,7 @@ If you would like to control which panels are open directly, you can use the `in
 
 If `isMulti` is true, then the `index` prop must be an array.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Accordion,
@@ -179,7 +177,7 @@ export function Example() {
 
 By default, a chevron icon appears on the right of each `AccordionItem`. You may change the position to the left, or remove it by using the `iconPosition` prop, which accepts the values `AccordionIconPosition.left`, `AccordionIconPosition.none`, or `AccordionIconPosition.right`.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Accordion,
@@ -209,7 +207,7 @@ export function Example() {
 
 You can disable a single item by adding the `isDisabled` prop to the `AccordionItem` component.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Accordion,
@@ -243,7 +241,7 @@ export function Example() {
 The `isInverse` prop will render light text, to be used on a dark background. The children will
 inherit the `isInverse` prop unless specified otherwise.
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Accordion,

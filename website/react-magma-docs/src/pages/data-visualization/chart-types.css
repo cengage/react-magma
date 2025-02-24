@@ -1,0 +1,131 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.item {
+  border: 1px solid #d4d4d4;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.description {
+  background-color: #f5f5f5;
+  padding: 16px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.description > h2 {
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  text-transform: uppercase;
+}
+
+.description > p {
+  font-family: Work Sans;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  color: #454545;
+}
+
+.description > a {
+  background-color: #ffffff;
+  border: 1px solid;
+  border-color: #d4d4d4;
+  border-radius: 8px;
+  color: #454545;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: Work Sans, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  margin: 0;
+  padding: 6px 8px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  transition: background 0.35s, border-color 0.35s, box-shadow 0.35s,
+    color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: fit-content;
+  outline: none !important;
+  margin-top: auto;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  overflow: hidden;
+}
+
+.description > a::after {
+  background: rgb(255, 255, 255);
+  border-radius: 50%;
+  content: '';
+  height: 28px;
+  left: 50%;
+  opacity: 0;
+  padding: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  transition: opacity 1s, transform 0.5s;
+  width: 28px;
+}
+
+.description > a:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #454545;
+}
+
+.description > a:active {
+  background: rgba(0, 0, 0, 0.1);
+  color: rgb(69, 69, 69);
+}
+
+.description > a:active::after {
+  opacity: 0.4;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0s;
+}
+
+.description > a:focus {
+  outline: 2px solid #0074b7 !important;
+  outline-offset: 2px;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.05);
+  color: #454545;
+}
+
+.item > figure {
+  margin: 0 !important;
+  padding-block: 8px !important;
+}
+
+.item > figure > span {
+  border: none !important;
+  width: 144px;
+}

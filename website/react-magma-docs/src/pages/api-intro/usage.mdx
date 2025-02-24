@@ -3,12 +3,12 @@ title: Usage
 order: 3
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="usage" type="api_intro">
 
 <LeadParagraph>
-How to use React Magma components. The examples here use the <Link to="/api/button">Button</Link> component. More information about each of the components can be found in the Component API section.
+  How to use React Magma components. The examples here use the{' '}
+  <Link to="/api/button">Button</Link> component. More information about each of
+  the components can be found in the Component API section.
 </LeadParagraph>
 
 ## Basic Usage
@@ -16,11 +16,11 @@ How to use React Magma components. The examples here use the <Link to="/api/butt
 To use a component, simply import the component and add it to your UI. The styles are already bundled with the component.
 Here is a most basic example:
 
-```typescript
+```tsx
 import React from 'react';
 import { Button } from 'react-magma-dom';
 
-function Example() {
+export function Example() {
   return <Button>Hello World</Button>;
 }
 ```
@@ -29,11 +29,11 @@ function Example() {
 
 When using a prop that takes an enum, you must import that type from React Magma if you are using TypeScript.
 
-```typescript
+```tsx
 import React from 'react';
 import { Button, ButtonVariant } from 'react-magma-dom';
 
-function Example() {
+export function Example() {
   return <Button variant={ButtonVariant.solid}>Hello World</Button>;
 }
 ```
@@ -46,13 +46,13 @@ to insure consistency across products.
 
 To use the `GlobalStyles` object, simply import it from `react-magma-dom` and include it in your App.
 
-The `GlobalStyles` component can be nested inside the <Link to="/api/theme">ThemeContext.Provider</Link> to inherit styles from the theme.
+The `GlobalStyles` component can be nested inside the <Link to="/api-intro/styles-and-themes/#using_themes">ThemeContext.Provider</Link> to inherit styles from the theme.
 
-```js noRender startExpanded
+```jsx noRender startExpanded
 import React from 'react';
 import { GlobalStyles } from 'react-magma-dom';
 
-function Example() {
+export function Example() {
   return (
     <div>
       <GlobalStyles />
@@ -74,7 +74,7 @@ import React from 'react';
 import { magma } from 'react-magma-dom';
 import styled from '@emotion/styled';
 
-function Example() {
+export function Example() {
   const StyledDiv = styled('div')(props => ({
     background: props.theme.colors.neutral,
     color: props.theme.colors.neutral100,

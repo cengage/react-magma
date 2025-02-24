@@ -5,8 +5,6 @@ props:
   - ButtonProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="button" type="api">
 
 <LeadParagraph>
@@ -17,7 +15,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 ## Basic Usage
 
-When using multiple buttons, they should be wrapped in a <Link to="/api/button-group">ButtonGroup</Link>.
+When using multiple buttons, they should be wrapped in a <Link to="/api/buttongroup">ButtonGroup</Link>.
 
 When used with icons, the Button component takes a slightly different set of props. For information on how to use this component with icons, please see documentation on <Link to="/api/icon-button">Icon Buttons</Link>.
 
@@ -183,6 +181,7 @@ import {
   ButtonGroup,
   Card,
   CardBody,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -207,7 +206,7 @@ export function Example() {
             Solid marketing inverse
           </Button>
         </ButtonGroup>
-        <ButtonGroup>
+        <ButtonGroup style={{ margin: magma.spaceScale.spacing03 }}>
           <Button variant={ButtonVariant.link} isInverse>
             Link inverse
           </Button>

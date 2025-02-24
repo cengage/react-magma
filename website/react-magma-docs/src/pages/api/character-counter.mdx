@@ -5,8 +5,6 @@ props:
   - CharacterCounterProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="character_counter" type="api">
 
 <LeadParagraph>
@@ -21,7 +19,7 @@ The Character Counter is called when the prop of `maxCount` is set within an <Li
 
 As the user types, a counter is displayed below the Input or Textarea counting down to the allowable length. Once this is exceeded, an error message shows in place counting the overrage of characters.
 
-```typescript
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 
@@ -34,7 +32,7 @@ export function Example() {
 
 When an intial value is needed, the `value` prop may be used. The Character Counter then shows the remainder against the value accordingly.
 
-```typescript
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 
@@ -51,7 +49,7 @@ The `maxLength` prop temporarily controlled the Character Counter, but moving fo
 
 To enable the Character Counter, use `maxCount` (preferred) or **both** `maxLength` and `hasCharacterCounter` (to be deprecated in future versions).
 
-```typescript
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 
@@ -64,7 +62,7 @@ export function Example() {
 
 `isInverse` is an optional boolean prop, that may be passed in when inputs are to be displayed on a dark background.
 
-```typescript
+```tsx
 import React from 'react';
 import { Container, Input } from 'react-magma-dom';
 
@@ -85,7 +83,6 @@ Full example of <Link to="/api/internationalization">internationalization overri
 
 ```tsx
 import React from 'react';
-import { es } from 'date-fns/locale';
 import { Input, I18nContext, defaultI18n } from 'react-magma-dom';
 
 export function Example() {
@@ -108,7 +105,7 @@ export function Example() {
 }
 ```
 
-### Character Counter Props
+## Character Counter Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
 

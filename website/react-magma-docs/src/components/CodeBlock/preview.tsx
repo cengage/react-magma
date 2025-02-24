@@ -50,12 +50,11 @@ const PreviewContainer = styled.div<{
 export const Preview = ({ ...props }: PreviewProps) => {
   const context = useContext(CodeBlockContext);
   const supported = SUPPORTED_LANGUAGES.includes(context.language);
+  const isInverse = MAGMA.useIsInverse();
 
   if (context.noRender || !supported) return null;
 
   const preview = formatPreview(props.code);
-
-  const isInverse = MAGMA.useIsInverse();
 
   return (
     <PreviewContainer isInverse={isInverse} noBorder={props.noBorder}>

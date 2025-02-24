@@ -3,8 +3,6 @@ pageTitle: Input API
 title: Input
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="input" type="api">
 
 <LeadParagraph>
@@ -172,7 +170,9 @@ If an error message is present, it will replace the helper text. Can be a node o
 
 The `required` prop can be used to indicate when a field is required. It is also important to indicate to the user whenever a field is required.
 
-While React Magma provides the error styling, it is up to the consumer app to handle the validation.
+While React Magma provides the error styling, it is up to the consumer app to handle the validation. We recommend using a `ref` on the input for accessibility.
+
+For short forms with an error, clicking submit should bring the focus back to the input with an error. For long forms, we recommend using an alert to combine the errors and focus should be moved to the alert. See example in <Link to='/api/form'>Form</Link>.
 
 ```tsx
 import React from 'react';
@@ -180,10 +180,12 @@ import { Input, Button, ButtonGroup, Spacer } from 'react-magma-dom';
 export function Example() {
   const [hasError, setHasError] = React.useState(false);
   const [nameValue, setNameValue] = React.useState('');
+  const inputRef = React.useRef();
 
   function submit() {
     if (nameValue === '') {
       setHasError(true);
+      inputRef.current.focus();
     } else {
       setHasError(false);
     }
@@ -192,6 +194,7 @@ export function Example() {
   function reset() {
     setHasError(false);
     setNameValue('');
+    inputRef.current.focus();
   }
 
   return (
@@ -203,6 +206,7 @@ export function Example() {
         onChange={event => setNameValue(event.target.value)}
         required
         value={nameValue}
+        ref={inputRef}
       />
       <Spacer size="12" />
       <ButtonGroup>
@@ -220,7 +224,7 @@ export function Example() {
 
 Character Counter is enabled when using the `maxCount` prop. As the user types past the allowable length, an error state appears showing the overrage.
 
-```typescript
+```tsx
 import React from 'react';
 import { Input } from 'react-magma-dom';
 
@@ -501,7 +505,7 @@ export function Example() {
 import React from 'react';
 import { Input } from 'react-magma-dom';
 export function Example() {
-  const [focused, setFocused] = React.useState(false);
+  const [, setFocused] = React.useState(false);
   const [message, setMessage] = React.useState('');
 
   function changeFocusedMessage() {

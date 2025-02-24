@@ -1,7 +1,7 @@
 {
   "name": "react-magma-docs",
   "description": "React Magma docs",
-  "version": "5.0.10",
+  "version": "5.0.11-next.14",
   "private": true,
   "repository": {
     "type": "git",
@@ -11,15 +11,15 @@
   "homepage": "https://react-magma.cengage.com",
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "7.10.4",
-    "@cengage-patterns/header": "12.0.0",
+    "@cengage-patterns/header": "13.0.0-next.0",
     "@data-driven-forms/react-form-renderer": "^3.6.0",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mdx-js/mdx": "^1.5.5",
     "@mdx-js/react": "^1.5.5",
-    "@react-magma/charts": "^10.0.0",
-    "@react-magma/dropzone": "10.0.0",
-    "@react-magma/schema-renderer": "^10.0.0",
+    "@react-magma/charts": "^11.0.0-next.1",
+    "@react-magma/dropzone": "11.0.0-next.0",
+    "@react-magma/schema-renderer": "^11.0.0-next.0",
     "buble": "0.19.4",
     "buffer": "^6.0.3",
     "core-js": "^3.1.4",
@@ -49,7 +49,7 @@
     "react-focus-lock": "^2.9.2",
     "react-helmet": "5.2.0",
     "react-live": "^2.2.1",
-    "react-magma-dom": "^4.7.0",
+    "react-magma-dom": "^4.8.0-next.16",
     "react-magma-icons": "^3.0.0",
     "react-spring": "6.1.9",
     "semver": "^7.3.4",
@@ -65,7 +65,10 @@
     "develop": "gatsby develop",
     "docs": "npm run develop",
     "serve": "gatsby serve",
-    "format": "prettier --write \"src/**/*.js\"",
-    "test": "echo \"Error: no test specified\""
+    "format": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
+    "test": "echo \"Error: no test specified\"",
+    "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}'",
+    "lint:fix": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --fix",
+    "lint:check": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --max-warnings=0"
   }
 }

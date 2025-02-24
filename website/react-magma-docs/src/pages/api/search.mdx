@@ -5,8 +5,6 @@ props:
   - SearchProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="search" type="api">
 
 <LeadParagraph>
@@ -94,7 +92,12 @@ export function Example() {
   return (
     <Card isInverse>
       <CardBody>
-        <Search isInverse onSearch={term => {}} />
+        <Search
+          isInverse
+          onSearch={term => {
+            handleSearch(term);
+          }}
+        />
       </CardBody>
     </Card>
   );

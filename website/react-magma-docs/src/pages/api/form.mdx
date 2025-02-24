@@ -5,8 +5,6 @@ props:
   - FormProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="form" type="api">
 
 <LeadParagraph>
@@ -16,7 +14,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 ## Basic Usage
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Button,
@@ -29,23 +27,135 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
+  const [state, setState] = React.useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+  });
+
+  const [errors, setErrors] = React.useState({
+    firstName: false,
+    lastName: false,
+    email: false,
+  });
+
+  const resetErrors = () => {
+    setErrors({
+      firstName: false,
+      lastName: false,
+      email: false,
+    });
+  };
+
+  const onSubmit = event => {
+    event.preventDefault();
+    resetErrors();
+
+    if (!state.firstName) {
+      setErrors(prevErrors => ({ ...prevErrors, firstName: true }));
+    }
+
+    if (!state.lastName) {
+      setErrors(prevErrors => ({ ...prevErrors, lastName: true }));
+    }
+
+    if (!state.email) {
+      setErrors(prevErrors => ({ ...prevErrors, email: true }));
+    }
+  };
+
+  const cancel = () => {
+    setState({
+      firstName: '',
+      lastName: '',
+      email: '',
+    });
+    setErrors({
+      firstName: false,
+      lastName: false,
+      email: false,
+    });
+  };
+
+  const errorMessage = React.useMemo(() => {
+    let message = '';
+
+    if (Object.values(errors).some(error => error)) {
+      message += 'Please fix the following errors:\n';
+    }
+
+    for (const error in errors) {
+      if (errors[error]) {
+        switch (error) {
+          case 'firstName':
+            message += '· First Name is required\n';
+            break;
+          case 'lastName':
+            message += '· Last Name is required\n';
+            break;
+          case 'email':
+            message += '· Email is required\n';
+            break;
+          default:
+            return;
+        }
+      }
+    }
+
+    return message;
+  }, [errors]);
+
   return (
     <Form
-      onSubmit={() => alert('form submitted')}
+      onSubmit={onSubmit}
       header="Form Heading"
       description="Some Form Description"
-      errorMessage="Some Form Error"
+      errorMessage={errorMessage}
       actions={
         <ButtonGroup>
-          <Button color={ButtonColor.secondary}>Cancel</Button>
+          <Button color={ButtonColor.secondary} onClick={cancel}>
+            Cancel
+          </Button>
           <Button type={ButtonType.submit}>Submit</Button>
         </ButtonGroup>
       }
     >
       <>
-        <Input labelText="Name" />
+        <Input
+          labelText="First Name (required)"
+          value={state.firstName}
+          onChange={event =>
+            setState(prevState => ({
+              ...prevState,
+              firstName: event.target.value,
+            }))
+          }
+          errorMessage={errors.firstName && 'First Name is required'}
+        />
         <Spacer size="12" />
-        <Input labelText="Email" />
+        <Input
+          labelText="Last Name (required)"
+          value={state.lastName}
+          onChange={event =>
+            setState(prevState => ({
+              ...prevState,
+              lastName: event.target.value,
+            }))
+          }
+          errorMessage={errors.lastName && 'Last Name is required'}
+        />
+        <Spacer size="12" />
+        <Input
+          labelText="Email (required)"
+          value={state.email}
+          onChange={event =>
+            setState(prevState => ({
+              ...prevState,
+              email: event.target.value,
+            }))
+          }
+          errorMessage={errors.email && 'Email is required'}
+        />
         <Spacer size="24" />
       </>
     </Form>
@@ -55,7 +165,7 @@ export function Example() {
 
 ## Inverse
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Button,

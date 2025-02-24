@@ -5,8 +5,6 @@ props:
   - SelectProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="select" type="api">
 
 <LeadParagraph>
@@ -69,14 +67,14 @@ export function Example() {
 Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `initialHighlightedIndex` props.
 
 <Alert variant="info">
-  When using any of the <inlineCode class="inverse">initial*</inlineCode> props
-  be aware that passing in the controlled version of that prop will overwrite
-  the initial version.
+  When using any of the <inlineCode className="inverse">initial*</inlineCode>{' '}
+  props be aware that passing in the controlled version of that prop will
+  overwrite the initial version.
   <br />
   <br />
   <strong>Ex: </strong>
-  <inlineCode class="inverse">selectedItem</inlineCode> takes precedence over{' '}
-  <inlineCode class="inverse">initialSelectedItem</inlineCode>
+  <inlineCode className="inverse">selectedItem</inlineCode> takes precedence
+  over <inlineCode className="inverse">initialSelectedItem</inlineCode>
 </Alert>
 
 ```tsx
@@ -155,6 +153,75 @@ export function Example() {
         { label: 'Green', value: 'green' },
       ]}
     />
+  );
+}
+```
+
+## Disabled Items
+
+To disable specific items in the `Select` component, add a `disabled: true` property to each item object. Disabled items specified as `defaultSelectedItem` or `initialSelectedItem` will not be selected by default or initially. If `initialHighlightedIndex` points to a `disabled` item, the component will not highlight it.
+
+Example:
+
+```tsx
+import React from 'react';
+import { Select } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Select
+        id="disabledItemsSelectId"
+        labelText="Select with Disabled Items"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue', disabled: true },
+          { label: 'Green', value: 'green' },
+        ]}
+        isClearable
+        initialHighlightedIndex={1}
+        defaultSelectedItem={{ label: 'Blue', value: 'blue', disabled: true }}
+        initialSelectedItem={{ label: 'Blue', value: 'blue', disabled: true }}
+      />
+      <br />
+      <Select
+        id="disabledItemsSelectId"
+        labelText="Multi Select with Disabled Items"
+        isMulti
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Green', value: 'green' },
+          { label: 'Blue-Disabled', value: 'blue', disabled: true },
+          { label: 'Purple mountain majesty', value: 'purple' },
+          { label: 'Orange', value: 'orange', disabled: false },
+          {
+            label: 'Yellow-Disabled',
+            value: 'Yellow-Disabled',
+            disabled: true,
+          },
+        ]}
+        isClearable
+        initialHighlightedIndex={2}
+        defaultSelectedItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Orange', value: 'orange', disabled: false },
+          {
+            label: 'Yellow-Disabled',
+            value: 'Yellow-Disabled',
+            disabled: true,
+          },
+        ]}
+        initialSelectedItems={[
+          { label: 'Red', value: 'red' },
+          { label: 'Orange', value: 'orange', disabled: false },
+          {
+            label: 'Yellow-Disabled',
+            value: 'Yellow-Disabled',
+            disabled: true,
+          },
+        ]}
+      />
+    </>
   );
 }
 ```
@@ -444,16 +511,6 @@ export function Example() {
     updateSelectedItem(changes.selectedItem);
   }
 
-  const [selectedItems, updateSelectedItems] = React.useState([]);
-
-  function handleSelectedItemsChange(changes) {
-    updateSelectedItems(changes.selectedItems);
-  }
-
-  function handleRemoveSelectedItem(removedItem) {
-    updateSelectedItems(selectedItems.filter(item => item !== removedItem));
-  }
-
   return (
     <Card isInverse>
       <CardBody>
@@ -578,22 +635,27 @@ export function Example() {
     switch (type) {
       case SelectStateChangeTypes.ToggleButtonClick:
         updateIsOpen(!isOpen);
+        break;
       case SelectStateChangeTypes.ToggleButtonKeyDownArrowDown:
         updateIsOpen(newChanges.isOpen);
         updateHighlightedIndex(newChanges.highlightedIndex);
+        break;
       case SelectStateChangeTypes.ItemMouseMove:
       case SelectStateChangeTypes.FunctionSetHighlightedIndex:
       case SelectStateChangeTypes.MenuKeyDownArrowDown:
       case SelectStateChangeTypes.MenuKeyDownArrowUp:
         updateHighlightedIndex(newChanges.highlightedIndex);
+        break;
       case SelectStateChangeTypes.MenuKeyDownEscape:
       case SelectStateChangeTypes.MenuBlur:
         updateIsOpen(false);
         updateHighlightedIndex(newChanges.highlightedIndex);
+        break;
       case SelectStateChangeTypes.ItemClick:
         updateHighlightedIndex(newChanges.highlightedIndex);
         updateIsOpen(newChanges.isOpen);
         updateSelectedItem(newChanges.selectedItem);
+        break;
       default:
         break;
     }
@@ -739,11 +801,13 @@ export function Example() {
       value={{
         ...defaultI18n,
         select: {
+          ...defaultI18n.select,
           placeholder: 'Custom Select Placeholder...',
           clearIndicatorAriaLabel:
             'Click to reset selection for {labelText}. {selectedItem} is currently selected',
         },
         multiSelect: {
+          ...defaultI18n.multiSelect,
           selectedItemButtonAriaLabel:
             'Click to reset the selected item {selectedItem}',
         },
@@ -1139,13 +1203,15 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
   In the development environment these types equate to strings
   <br />
   (eg:{' '}
-  <inlineCode class="inverse">
+  <inlineCode className="inverse">
     ComboboxStateChangeTypes.InputKeyDownArrowDown =
     '__input_keydown_arrow_down__'
   </inlineCode>
   ). However, in the production environment the types equate to numbers
   <br />
-  (eg: <inlineCode class="inverse">ComboboxStateChangeTypes.InputKeyDownArrowDown = 0</inlineCode>).
+  (eg: <inlineCode className="inverse">
+    ComboboxStateChangeTypes.InputKeyDownArrowDown = 0
+  </inlineCode>).
 </Alert>
 
 ### Select
@@ -1232,7 +1298,7 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 
 ### MultiSelect
 
-<div >
+<div>
   <ul>
     <li>
       <inlineCode>

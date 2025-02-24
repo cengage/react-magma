@@ -4,10 +4,7 @@ title: Character Counter
 order: 1
 ---
 
-import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { LeadParagraph } from '../../components/LeadParagraph';
-import { Tooltip } from 'react-magma-dom';
 
 <PageContent componentName="character_counter" type="design">
 
@@ -40,40 +37,49 @@ import { Tooltip } from 'react-magma-dom';
 
 The character counter initially tells the user the maximum number of characters they are allowed to enter.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/character-counter/behavior-1.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/character-counter/behavior-1.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
 As the user types, the character counter updates in real-time and informs the user how many characters they have left.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/character-counter/behavior-2.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/character-counter/behavior-2.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
 When the user exceeds the maximum number of characters allowed, the character counter alerts them with an error and tells the user how many characters over the limit they are.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/character-counter/behavior-3.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/character-counter/behavior-3.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
