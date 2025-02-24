@@ -139,7 +139,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     );
 
     const ownRef = React.useRef<any>();
-    const toggleRef = React.useRef<HTMLButtonElement>();
+    const toggleRef = React.useRef<HTMLButtonElement>(null);
     const menuRef = React.useRef<any>([]);
     const dropdownButtonId = React.useRef<string>('');
 
@@ -160,7 +160,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
       if (filteredItems.length > 0) {
         setTimeout(() => {
-          filteredItems[0].current && filteredItems[0].current.focus();
+          filteredItems[0]?.current?.focus();
         }, 0);
       } else {
         setTimeout(() => {
@@ -171,10 +171,10 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       onOpen && typeof onOpen === 'function' && onOpen();
     }
 
-    function closeDropdown(event) {
+    function closeDropdown(event: React.SyntheticEvent<Element, Event>) {
       setIsOpen(false);
 
-      toggleRef.current.focus();
+      toggleRef.current?.focus();
 
       onClose && typeof onClose === 'function' && onClose(event);
     }
@@ -283,32 +283,57 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       changePlacement(dropDirection, alignment);
     }, [dropDirection, alignment]);
 
+    const contextValue = React.useMemo(
+      () => ({
+        activeItemIndex,
+        alignment,
+        closeDropdown,
+        dropdownButtonId,
+        dropDirection,
+        floatingStyles,
+        handleDropdownBlur,
+        itemRefArray,
+        isFixedWidth: !!width,
+        isOpen,
+        isInverse,
+        maxHeight: maxHeightString,
+        menuRef,
+        openDropdown,
+        registerDropdownMenuItem,
+        setActiveItemIndex,
+        setIsOpen,
+        setReference: refs.setReference,
+        setFloating: refs.setFloating,
+        toggleRef,
+        width: widthString,
+      }),
+      [
+        activeItemIndex,
+        alignment,
+        closeDropdown,
+        dropdownButtonId,
+        dropDirection,
+        floatingStyles,
+        handleDropdownBlur,
+        itemRefArray,
+        width,
+        isOpen,
+        isInverse,
+        maxHeightString,
+        menuRef,
+        openDropdown,
+        registerDropdownMenuItem,
+        setActiveItemIndex,
+        setIsOpen,
+        refs.setReference,
+        refs.setFloating,
+        toggleRef,
+        widthString,
+      ]
+    );
+
     return (
-      <DropdownContext.Provider
-        value={{
-          activeItemIndex,
-          alignment,
-          closeDropdown,
-          dropdownButtonId,
-          dropDirection,
-          floatingStyles,
-          handleDropdownBlur,
-          itemRefArray,
-          isFixedWidth: !!width,
-          isOpen,
-          isInverse,
-          maxHeight: maxHeightString,
-          menuRef,
-          openDropdown,
-          registerDropdownMenuItem,
-          setActiveItemIndex,
-          setIsOpen,
-          setReference: refs.setReference,
-          setFloating: refs.setFloating,
-          toggleRef,
-          width: widthString,
-        }}
-      >
+      <DropdownContext.Provider value={contextValue}>
         <Container
           {...other}
           ref={ref}

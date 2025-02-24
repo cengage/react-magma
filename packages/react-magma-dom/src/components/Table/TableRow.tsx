@@ -97,6 +97,7 @@ function buildTableRowColor(props) {
 
 const StyledTableRow = styled.tr<{
   color?: string;
+  hasSquareCorners?: boolean;
   hasHoverStyles?: boolean;
   hasZebraStripes?: boolean;
   isInverse?: boolean;
@@ -113,6 +114,14 @@ const StyledTableRow = styled.tr<{
 
   &:last-child {
     border-bottom: 0;
+    td:first-child {
+      border-radius: ${props =>
+        props.hasSquareCorners ? '0' : `0 0 0 ${props.theme.borderRadius}`};
+    }
+    td:last-child {
+      border-radius: ${props =>
+        props.hasSquareCorners ? '0' : `0 0 ${props.theme.borderRadius} 0`};
+    }
   }
 
   ${props =>
@@ -281,6 +290,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
       <StyledTableRow
         {...other}
         data-testid={testId}
+        hasSquareCorners={tableContext.hasSquareCorners}
         hasHoverStyles={tableContext.hasHoverStyles && !isHeaderRow}
         hasZebraStripes={tableContext.hasZebraStripes}
         isInverse={tableContext.isInverse}
@@ -338,8 +348,12 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
               labelStyle={{ padding: 0 }}
               labelText={
                 isSelected
-                  ? `${i18n.table.selectable.deselectRowAriaLabel} ${rowName || ''}`
-                  : `${i18n.table.selectable.selectRowAriaLabel} ${rowName || ''}`
+                  ? `${i18n.table.selectable.deselectRowAriaLabel} ${
+                      rowName || ''
+                    }`
+                  : `${i18n.table.selectable.selectRowAriaLabel} ${
+                      rowName || ''
+                    }`
               }
               isTextVisuallyHidden
               isInverse={getIsCheckboxInverse()}

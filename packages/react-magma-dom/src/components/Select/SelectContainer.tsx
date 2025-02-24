@@ -87,7 +87,7 @@ const StyledAdditionalContent = styled.div<{
   }
 `;
 
-const FormField = styled.form`
+const FieldContainer = styled.div`
   flex: 1 1 auto;
   min-width: 0%;
 `;
@@ -168,7 +168,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
           )}
         </Label>
       </AdditionalContentWrapper>
-      <FormField>
+      <FieldContainer>
         <InputMessageContainer>{children}</InputMessageContainer>
         {!(
           labelPosition === LabelPosition.left &&
@@ -186,7 +186,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
               )}
             </InputMessage>
           )}
-      </FormField>
+      </FieldContainer>
       {additionalItemRightAlign()}
     </SelectContainerElement>
   );

@@ -59,6 +59,7 @@ export const DropdownSplitButton = React.forwardRef<
   } = resolvedProps;
 
   const ref = useForkedRef(forwardedRef, resolvedContext.toggleRef);
+  const splitButtonRef = React.useRef<HTMLButtonElement>(null);
 
   resolvedContext.dropdownButtonId.current = useGenerateId(id);
 
@@ -70,12 +71,12 @@ export const DropdownSplitButton = React.forwardRef<
         aria-hidden="true"
       />
     ) : (
-      <ArrowDropDownIcon
-        size={theme.iconSizes.medium}
-        testId="caretDown"
-        aria-hidden="true"
-      />
-    );
+        <ArrowDropDownIcon
+          size={theme.iconSizes.medium}
+          testId="caretDown"
+          aria-hidden="true"
+        />
+      );
 
   function handleClick(event: React.SyntheticEvent) {
     if (resolvedContext.isOpen) {
@@ -85,9 +86,13 @@ export const DropdownSplitButton = React.forwardRef<
     }
   }
 
-  // Necessary for the proper opening and closing of the menu in Safari
-  function handleMouseDown(event: React.MouseEvent) {
-    event.preventDefault();
+  function handleButtonClick(event: React.SyntheticEvent) {
+    onClick?.();
+
+    if (resolvedContext.isOpen) {
+      resolvedContext.closeDropdown(event);
+      splitButtonRef.current?.focus();
+    }
   }
 
   const i18n = React.useContext(I18nContext);
@@ -108,22 +113,23 @@ export const DropdownSplitButton = React.forwardRef<
         {...other}
         id={resolvedContext.dropdownButtonId.current}
         isInverse={resolvedContext.isInverse}
-        onClick={onClick}
+        onClick={handleButtonClick}
         shape={ButtonShape.leftCap}
         style={{ borderRight: 0, marginRight: 0 }}
         variant={variant}
+        tabIndex={0}
+        ref={splitButtonRef}
       >
         {children}
       </Button>
       <IconButton
         {...other}
         aria-expanded={resolvedContext.isOpen}
-        aria-label={ariaLabel ? ariaLabel : i18n.dropdown.toggleMenuAriaLabel}
+        aria-label={ariaLabel || i18n.dropdown.toggleMenuAriaLabel}
         aria-haspopup="true"
         icon={buttonIcon}
         isInverse={resolvedContext.isInverse}
         onClick={handleClick}
-        onMouseDown={handleMouseDown}
         shape={ButtonShape.rightCap}
         style={{
           marginLeft: buildIconButtonStyles(resolvedProps),

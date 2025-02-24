@@ -120,12 +120,12 @@
   color: #454545;
 }
 
-figure {
+.item > figure {
   margin: 0 !important;
   padding-block: 8px !important;
 }
 
-figure > span {
+.item > figure > span {
   border: none !important;
   width: 144px;
 }

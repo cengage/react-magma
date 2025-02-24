@@ -379,6 +379,10 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   }
 `;
 
+const AlertSpan = styled.span`
+  white-space: pre-line;
+`;
+
 function renderIcon(variant = 'info', isToast?: boolean, theme?: any) {
   const Icon = VARIANT_ICON[variant];
 
@@ -479,7 +483,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
               isDismissible={isDismissible}
               theme={theme}
             >
-              <span>{children}</span>
+              <AlertSpan>{children}</AlertSpan>
               {additionalContent && (
                 <AdditionalContentWrapper theme={theme}>
                   {additionalContent}
@@ -497,16 +501,19 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
                     <ProgressRing
                       color={progressRingColor()}
                       isActive={!isPaused}
+                      duration={toastDuration}
                     />
                   </ProgressRingWrapper>
                 )}
+                {/* @ts-ignore */}
                 <DismissButton
                   alertVariant={variant}
-                  aria-label={
-                    closeAriaLabel
-                      ? closeAriaLabel
-                      : i18n.alert.dismissAriaLabel
-                  }
+                  {...(isToast
+                    ? { title: closeAriaLabel || i18n.alert.dismissAriaLabel }
+                    : {
+                        'aria-label':
+                          closeAriaLabel || i18n.alert.dismissAriaLabel,
+                      })}
                   icon={
                     <CloseIcon
                       size={

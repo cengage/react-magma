@@ -10,7 +10,7 @@ import {
 
 import { magma } from '../../theme/magma';
 
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent, getByTestId } from '@testing-library/react';
 import { transparentize } from 'polished';
 
 describe('Table', () => {
@@ -23,15 +23,15 @@ describe('Table', () => {
 
   it('should render table with a border radius', () => {
     const { getByTestId } = render(
-      <Table isInverse testId="test-id">
+      <Table>
         <TableHead>
           <TableRow>
-            <TableHeaderCell>heading 1</TableHeaderCell>
-            <TableHeaderCell>heading 2</TableHeaderCell>
+            <TableHeaderCell testId="heading-1">heading 1</TableHeaderCell>
+            <TableHeaderCell testId="heading-2">heading 2</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
+          <TableRow testId="table-row-2">
             <TableCell>cell 1</TableCell>
             <TableCell>cell 2</TableCell>
           </TableRow>
@@ -39,23 +39,41 @@ describe('Table', () => {
       </Table>
     );
 
-    expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
+    expect(getByTestId('heading-1')).toHaveStyleRule(
       'border-radius',
-      magma.spaceScale.spacing03
+      `${magma.borderRadius} 0 0 0`,
+      { target: 'first-child' }
+    );
+    expect(getByTestId('heading-2')).toHaveStyleRule(
+      'border-radius',
+      `0 ${magma.borderRadius} 0 0`,
+
+      { target: 'last-child' }
+    );
+    expect(getByTestId('table-row-2')).toHaveStyleRule(
+      'border-radius',
+      `0 0 0 ${magma.borderRadius}`,
+
+      { target: 'first-child' }
+    );
+    expect(getByTestId('table-row-2')).toHaveStyleRule(
+      'border-radius',
+      `0 0 ${magma.borderRadius} 0`,
+      { target: 'last-child' }
     );
   });
 
   it('should render table without a border radius', () => {
     const { getByTestId } = render(
-      <Table hasSquareCorners isInverse testId="test-id">
+      <Table hasSquareCorners>
         <TableHead>
           <TableRow>
-            <TableHeaderCell>heading 1</TableHeaderCell>
-            <TableHeaderCell>heading 2</TableHeaderCell>
+            <TableHeaderCell testId="heading-1">heading 1</TableHeaderCell>
+            <TableHeaderCell testId="heading-2">heading 2</TableHeaderCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
+          <TableRow testId="table-row-2">
             <TableCell>cell 1</TableCell>
             <TableCell>cell 2</TableCell>
           </TableRow>
@@ -63,10 +81,24 @@ describe('Table', () => {
       </Table>
     );
 
-    expect(getByTestId('table-wrapper-test-id')).toHaveStyleRule(
+    expect(getByTestId('heading-1')).toHaveStyleRule('border-radius', '0', {
+      target: 'first-child',
+    });
+    expect(getByTestId('heading-2')).toHaveStyleRule(
       'border-radius',
-      '0'
+      '0',
+
+      { target: 'last-child' }
     );
+    expect(getByTestId('table-row-2')).toHaveStyleRule(
+      'border-radius',
+      '0',
+
+      { target: 'first-child' }
+    );
+    expect(getByTestId('table-row-2')).toHaveStyleRule('border-radius', '0', {
+      target: 'last-child',
+    });
   });
 
   it('should render table with vertical borders', () => {
@@ -161,11 +193,11 @@ describe('Table', () => {
 
     expect(getByText('cell 1')).toHaveStyleRule(
       'padding',
-      `${magma.spaceScale.spacing02} ${magma.spaceScale.spacing03}`
+      `${magma.spaceScale.spacing02} ${magma.borderRadius}`
     );
     expect(getByText('heading 1')).toHaveStyleRule(
       'padding',
-      `${magma.spaceScale.spacing02} ${magma.spaceScale.spacing03}`
+      `${magma.spaceScale.spacing02} ${magma.borderRadius}`
     );
   });
 

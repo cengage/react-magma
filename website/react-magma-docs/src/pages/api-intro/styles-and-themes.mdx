@@ -23,7 +23,7 @@ Magma variables can also be used in the style prop to apply themed styles on the
 
 ```tsx
 import React from 'react';
-import { Button, Paragraph } from 'react-magma-dom';
+import { Button, Paragraph, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -1025,6 +1025,7 @@ export function Example() {
                               aria-label="Right"
                               icon={<InfoIcon />}
                               isInverse
+                              style={{ marginLeft: magma.spaceScale.spacing03 }}
                               variant={ButtonVariant.link}
                             />
                           </Tooltip>
@@ -1047,6 +1048,7 @@ export function Example() {
                               aria-label="Right"
                               icon={<InfoIcon />}
                               isInverse
+                              style={{ marginLeft: magma.spaceScale.spacing03 }}
                               variant={ButtonVariant.link}
                             />
                           </Tooltip>

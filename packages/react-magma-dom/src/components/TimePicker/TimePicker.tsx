@@ -175,6 +175,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             theme={theme}
             type="number"
             value={hour}
+            onFocus={e => e.target.select()}
           />
           <Divider> : </Divider>
           <StyledNumInput
@@ -193,6 +194,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             theme={theme}
             type="number"
             value={minute}
+            onFocus={e => e.target.select()}
           />
           <AmPmToggle
             aria-label={amPmLabel}

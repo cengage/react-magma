@@ -1,5 +1,60 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.15
+
+### Patch Changes
+
+- 4f460ce4c: chore: Bump version to 4.8.0-next.15
+
+## 4.8.0-next.14
+
+### Patch Changes
+
+- ed14a909c: fix(MultiSelect): Fix a bug where the page refreshes when you click on a selected item.
+
+## 4.8.0-next.13
+
+### Patch Changes
+
+- e689dc0cb: fix(TimePicker): Fix input wrong number validation.
+- 9697b00b7: fix(Toast): Change property for Toast close button from `aria-label` to `title`.
+
+## 4.8.0-next.12
+
+### Patch Changes
+
+- 16aaefb40: fix(Table): fix logic for the default `rowsPerPage` value.
+
+## 4.8.0-next.11
+
+### Patch Changes
+
+- bbc13e67a: fix(Table): Reconfigured the table CSS to better allow for content within a table to overlay the container, such as dropdowns.
+
+## 4.8.0-next.10
+
+### Patch Changes
+
+- 6163bc4d7: chore: Upgrade uuid to 9.0.1 and @types/uuid to 9.0.8
+
+## 4.8.0-next.9
+
+### Patch Changes
+
+- 4c9fa50aa: fix(Dropdown): fix click outside behavior in Dropdown
+
+## 4.8.0-next.8
+
+### Patch Changes
+
+- 50117512e: fix(Toast): fix ring time duration
+
+## 4.8.0-next.7
+
+### Patch Changes
+
+- 3c1702509: fix(FormGroup): Fix validation for `InputMessage`.
+
 ## 4.8.0-next.6
 
 ### Minor Changes

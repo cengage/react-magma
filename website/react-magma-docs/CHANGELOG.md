@@ -1,5 +1,68 @@
 # Change Log
 
+## 5.0.11-next.13
+
+### Patch Changes
+
+- 43c388021: chore: REVERT Upgrade uuid to 9.0.1 and @types/uuid to 9.0.8
+
+## 5.0.11-next.12
+
+### Patch Changes
+
+- 45734993c: chore: Fix codeowners and update PR template
+- a81fd575f: fix(Typography): Fix wrong size on images in the documentation.
+
+## 5.0.11-next.11
+
+### Patch Changes
+
+- c41fd904d: fix: Repointed a few broken links and fixed some styling bugs throughout the examples.
+
+## 5.0.11-next.10
+
+### Patch Changes
+
+- 06813d972: build(deps): bump store2 from 2.14.2 to 2.14.4
+
+## 5.0.11-next.9
+
+### Patch Changes
+
+- 32be7d5a6: feat(Charts): Change the name from 'Get Started' to 'Getting Started'.
+
+## 5.0.11-next.8
+
+### Patch Changes
+
+- e724cb027: fix(Input): Clarification that developers should use `ref` with `Input`. Add a new example for Storybook.
+- Updated dependencies [50117512e]
+  - react-magma-dom@4.8.0-next.8
+
+## 5.0.11-next.7
+
+### Patch Changes
+
+- 11ffb3abe: build(deps): bump dom-iterator from 1.0.0 to 1.0.2 in /website/react-magma-docs
+
+## 5.0.11-next.6
+
+### Patch Changes
+
+- 27044996c: build(deps): bump undici from 6.19.7 to 6.21.1 in /website/react-magma-docs
+
+## 5.0.11-next.5
+
+### Patch Changes
+
+- 49db608fe: build(deps): bump nanoid from 3.3.7 to 3.3.8 in /website/react-magma-docs
+
+## 5.0.11-next.4
+
+### Patch Changes
+
+- 7c881aefb: build(deps): bump path-to-regexp and express in /website/react-magma-docs
+
 ## 5.0.11-next.3
 
 ### Patch Changes

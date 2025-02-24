@@ -108,7 +108,7 @@ export const DropdownContent = React.forwardRef<
             : props.style
         }
         tabIndex={-1}
-        testId={testId || 'dropdownContent'}
+        testId={testId ?? 'dropdownContent'}
         theme={theme}
         width={context.width}
       >
