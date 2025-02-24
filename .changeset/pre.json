@@ -34,6 +34,7 @@
     "fix-docs-links-and-styling",
     "fix-multiselect-page-refreshs",
     "fix-tableOverflow",
+    "fix-tableOverflowv2",
     "fix-toast-time-duration",
     "moody-impalas-decide",
     "revert-uuid",

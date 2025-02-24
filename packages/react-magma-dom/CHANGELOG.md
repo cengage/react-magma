@@ -1,5 +1,11 @@
 ## 4.8.0-next.0
 
+## 4.8.0-next.16
+
+### Patch Changes
+
+- 11a3361d4: fix(Table): fix min-width overflow issues.
+
 ## 4.8.0-next.15
 
 ### Patch Changes
