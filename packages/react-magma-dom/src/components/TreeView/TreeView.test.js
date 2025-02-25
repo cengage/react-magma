@@ -343,7 +343,6 @@ describe('TreeView', () => {
           <button onClick={() => apiRef.current.expandAll()}>Expand All</button>
           {getTreeItemsWithDisabled({
             selectable: TreeViewSelectable.single,
-            initialExpandedItems: ['item1', 'item2'],
             onExpandedChange,
             apiRef,
           })}

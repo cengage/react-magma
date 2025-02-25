@@ -388,17 +388,17 @@ export function useTreeView(props: UseTreeViewProps) {
 
           setExpandedSet(new Set(expandableIds));
 
-          if (onExpandedChange) {
-            onExpandedChange({} as React.SyntheticEvent, expandableIds);
-          }
+          onExpandedChange &&
+          typeof onExpandedChange === 'function' &&
+          onExpandedChange({} as React.SyntheticEvent, expandableIds)
         },
 
         collapseAll() {
           setExpandedSet(new Set());
 
-          if (onExpandedChange) {
-            onExpandedChange({} as React.SyntheticEvent, []);
-          }
+          onExpandedChange &&
+          typeof onExpandedChange === 'function' &&
+          onExpandedChange({} as React.SyntheticEvent, [])
         },
       };
     }
