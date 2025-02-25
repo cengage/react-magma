@@ -14,9 +14,6 @@ import {
   TagSize,
 } from 'react-magma-dom';
 import { getVersions } from '../../utils';
-import { LeadParagraph } from '../../components/LeadParagraph';
-
-<PageContent componentName="react_magma_versions" type="api_intro">
 
 export const NextVersionTable = () => {
   const [tags, setTags] = React.useState([]);
@@ -169,6 +166,8 @@ export const IconsTable = () => {
     </>
   );
 };
+
+<PageContent componentName="react_magma_versions" type="api_intro">
 
 <LeadParagraph>
   On an older version? Want to see the newest unreleased updates? Switch to a

@@ -4,9 +4,7 @@ title: List
 order: 1
 ---
 
-import { Link } from 'gatsby';
 import './design-guidelines-styles.css';
-import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="list" type="design">
 
@@ -25,18 +23,21 @@ Use unordered (bulleted) lists when you don’t need to convey a specific order 
 
 Use ordered (numbered) lists when you need to convey a sequence or hierarchy between list items.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/lists/unordered-list.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/lists/unordered-list.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
           The list in this image shows a list of grocery items in no particular
           order.
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
         <img src="../../images/lists/ordered-list.png" alt="GATSBY_EMPTY_ALT" />
         <figcaption>
@@ -74,16 +75,22 @@ The basic unordered and ordered lists have very minimal styling and instead rely
 
 You can use the spacing tokens in React Magma to increase the vertical space between each item in the list.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/lists/small-spacing.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/lists/small-spacing.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/lists/larger-spacing.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/lists/larger-spacing.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
   </div>
@@ -93,14 +100,14 @@ You can use the spacing tokens in React Magma to increase the vertical space bet
 
 The icon list is really just a variant of the Unordered List, but instead of bullets, you can put Material Design icons in front of each list item.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/lists/icon-list.png" alt="GATSBY_EMPTY_ALT" />
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -108,14 +115,14 @@ The icon list is really just a variant of the Unordered List, but instead of bul
 
 There are three icon size choices, including small, medium, and large. These sizes provide flexibility and allow you to find the right balance between the size of the icon and the content associated with it.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
         <img src="../../images/lists/icon-sizes.png" alt="GATSBY_EMPTY_ALT" />
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -123,17 +130,20 @@ There are three icon size choices, including small, medium, and large. These siz
 
 You can align the icon with the center or top of the associated content. This largely depends on the layout of the associated content. For example, top-aligning the icon with single lines of content creates a very undesirable appearance. Also center-aligning the icon with content consisting of several lines may also create an odd-looking result.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/lists/icon-alignment.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/lists/icon-alignment.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 </PageContent>

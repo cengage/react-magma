@@ -4,8 +4,6 @@ title: Icon
 order: 2
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="icon" type="design">
 
 <LeadParagraph>
@@ -18,9 +16,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 ## Icon Resources
 
-React Magma primarily uses the beautiful icons from Material Design. Specifically we use the [rounded variant](https://material.io/resources/icons/?style=round). We also have a group of custom icons when Material doesn't have what we need, but we take great care to design those icons with the same [principles](https://material.io/design/iconography/system-icons.html#design-principles) that Google does.
-
-We do our best to keep up with any updates that happen to Material Design's icons, and that includes updating the [Sketch icon library you can download](https://www.dropbox.com/sh/kt8oaf7am443794/AAArcOLft67q5Fk90wcXSmida?dl=0). If you are a designer at Cengage, and you are a current Abstract user, then you'll find the Sketch libraries there instead.
+React Magma primarily uses the beautiful icons from Material Design. Specifically we use the [rounded variant](https://material.io/resources/icons/?style=round). We also have a group of custom icons when Material doesn't have what we need, but we take great care to design those icons with the same [principles](https://material.io/design/iconography/system-icons.html#design-principles) that Google does. Cengage designers can find these icons built into the Figma component libraries.
 
 ---
 
@@ -36,13 +32,16 @@ This example illustrates how 12px, 14px, 16px, and 20px text strings are paired 
 
 ![ ](../../images/icons/icon-text-balance.png)
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/icons/icon-text-balance-correct.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/icons/icon-text-balance-correct.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             Maintain the balance of icons with text by using the line-height as
             a guide.
@@ -50,11 +49,14 @@ This example illustrates how 12px, 14px, 16px, and 20px text strings are paired 
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/icons/icon-text-balance-incorrect.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/icons/icon-text-balance-incorrect.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>
             Don't let icons get too large or too small when paired with text.
             Use the line-height of the text as a guide.
@@ -73,13 +75,16 @@ Our icons are simple monochromatic symbols, and any color from the color palette
 
 The color of an icon needs to hit a minimum color contrast ratio of 3:1 with the background it appears on. The color of the icon can help reflect the importance or nature of the action the icon is representing, but shouldn't rely on color alone. Text labels or tooltips are still important elements that can help make the action clearer to users.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/icons/icon-color-correct.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/icons/icon-color-correct.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             It's nearly always a good idea to match the color of the icon with
             the text label, but sometimes you may want the icon to be a list
@@ -88,11 +93,14 @@ The color of an icon needs to hit a minimum color contrast ratio of 3:1 with the
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/icons/icon-color-too-light.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/icons/icon-color-too-light.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>
             In this example, the icon only hits a contrast ratio of 1.7:1.
             Despit the fact there is a text label, the icons should still hit a
@@ -102,12 +110,15 @@ The color of an icon needs to hit a minimum color contrast ratio of 3:1 with the
       </figure>
     </div>
   </div>
-  <div class="row">
-    <div class="col col-1">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/icons/icon-mixed-colors.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/icons/icon-mixed-colors.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>
             Do not mix colors when combining an icon with text, unless you are
             using different shades of the same color or using our default text
@@ -116,7 +127,7 @@ The color of an icon needs to hit a minimum color contrast ratio of 3:1 with the
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2"></div>
+    <div className="col col-2"></div>
   </div>
 </div>
 
@@ -126,24 +137,30 @@ The color of an icon needs to hit a minimum color contrast ratio of 3:1 with the
 
 When positioning an icon next to text you should always center-align them.
 
-<div class="two-col">
-  <div class="row">
-    <div class="col col-1">
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
       <figure>
-        <img src="../../images/icons/icon-text-centered.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/icons/icon-text-centered.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-correct">Correct</p>
+          <p className="title title-correct">Correct</p>
           <p>
             Always center-align icons with text when they're next to each other.
           </p>
         </figcaption>
       </figure>
     </div>
-    <div class="col col-2">
+    <div className="col col-2">
       <figure>
-        <img src="../../images/icons/icon-text-wrong-alignment.png" alt="GATSBY_EMPTY_ALT" />
+        <img
+          src="../../images/icons/icon-text-wrong-alignment.png"
+          alt="GATSBY_EMPTY_ALT"
+        />
         <figcaption>
-          <p class="title title-incorrect">Incorrect</p>
+          <p className="title title-incorrect">Incorrect</p>
           <p>
             Don't bottom-align or top-align icons with text when they're next to
             each other.
@@ -153,6 +170,6 @@ When positioning an icon next to text you should always center-align them.
     </div>
   </div>
 </div>
-<span class="horizontal-spacer"></span>
+<span className="horizontal-spacer"></span>
 
 </PageContent>

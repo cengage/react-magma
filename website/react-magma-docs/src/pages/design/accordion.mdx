@@ -5,7 +5,6 @@ order: 1
 ---
 
 import './design-guidelines-styles.css';
-import { LeadParagraph } from '../../components/LeadParagraph';
 
 <PageContent componentName="accordion" type="design">
 <LeadParagraph>
@@ -42,11 +41,14 @@ By default the chevron icon is placed on the right side of the header. This allo
 
 In some scenarios, the accordion can be modified to place the chevron icon in front of the title to function more like a tree. But this should be used with care because the content of the panel may not align with the title.
 
-<div class="image-grid">
+<div className="image-grid">
   <figure>
-    <img src="../../images/accordion/accordion-good-alignment.png" alt="GATSBY_EMPTY_ALT" />
+    <img
+      src="../../images/accordion/accordion-good-alignment.png"
+      alt="GATSBY_EMPTY_ALT"
+    />
     <figcaption>
-      <p class="title title-correct">Correct</p>
+      <p className="title title-correct">Correct</p>
       <p>
         Use the default icon alignment to make sure accordion text content
         properly aligns with other text content on the page.
@@ -54,9 +56,12 @@ In some scenarios, the accordion can be modified to place the chevron icon in fr
     </figcaption>
   </figure>
   <figure>
-    <img src="../../images/accordion/accordion-bad-alignment.png" alt="GATSBY_EMPTY_ALT" />
+    <img
+      src="../../images/accordion/accordion-bad-alignment.png"
+      alt="GATSBY_EMPTY_ALT"
+    />
     <figcaption>
-      <p class="title title-caution">Caution</p>
+      <p className="title title-caution">Caution</p>
       <p>
         Be careful putting the icon on the left side of the accordion, because
         this could cause unintended alignment issues with other text content on
@@ -68,14 +73,14 @@ In some scenarios, the accordion can be modified to place the chevron icon in fr
 
 If you place the chevron icon on the left side of the title, don’t be tempted to use a right-facing chevron. While it is common to have right-facing arrows on the left side of tree, placing it on the right side completely changes the meaning of the icon. So for the sake of consistency, we will only allow up and down chevrons for components that expand and collapse.
 
-<div class="image-grid">
+<div className="image-grid">
   <figure>
     <img
       src="../../images/accordion/accordion-incorrect-icon-orientation.png"
       alt="GATSBY_EMPTY_ALT"
     />
     <figcaption>
-      <p class="title title-incorrect">Incorrect</p>
+      <p className="title title-incorrect">Incorrect</p>
       <p>
         Only use up and down chevrons to indicate whether an accordion section
         is expanded or collapsed, even if you move the icon to the left side.
@@ -83,9 +88,12 @@ If you place the chevron icon on the left side of the title, don’t be tempted 
     </figcaption>
   </figure>
   <figure>
-    <img src="../../images/accordion/accordion-incorrect-icons.png" alt="GATSBY_EMPTY_ALT" />
+    <img
+      src="../../images/accordion/accordion-incorrect-icons.png"
+      alt="GATSBY_EMPTY_ALT"
+    />
     <figcaption>
-      <p class="title title-incorrect">Incorrect</p>
+      <p className="title title-incorrect">Incorrect</p>
       <p>
         Don't change the chevron icon to something else like arrows or plus and
         minus icons.
@@ -95,9 +103,12 @@ If you place the chevron icon on the left side of the title, don’t be tempted 
 </div>
 
 <figure>
-  <img src="../../images/accordion/accordion-crowded-icons.png" alt="GATSBY_EMPTY_ALT" />
+  <img
+    src="../../images/accordion/accordion-crowded-icons.png"
+    alt="GATSBY_EMPTY_ALT"
+  />
   <figcaption>
-    <p class="title title-incorrect">Incorrect</p>
+    <p className="title title-incorrect">Incorrect</p>
     <p>
       Don't group additional icons with the chevron without providing some kind
       of separation to avoid missing the expanding functionality entirely.
@@ -109,15 +120,24 @@ If you place the chevron icon on the left side of the title, don’t be tempted 
 
 Accordions can be placed within main page content or placed inside of a container such as a side panel or card.
 
-<div class="image-grid">
+<div className="image-grid">
   <figure>
-    <img src="../../images/accordion/accordion-in-page.png" alt="GATSBY_EMPTY_ALT" />
+    <img
+      src="../../images/accordion/accordion-in-page.png"
+      alt="GATSBY_EMPTY_ALT"
+    />
   </figure>
   <figure>
-    <img src="../../images/accordion/accordion-sidebar.png" alt="GATSBY_EMPTY_ALT" />
+    <img
+      src="../../images/accordion/accordion-sidebar.png"
+      alt="GATSBY_EMPTY_ALT"
+    />
   </figure>
   <figure>
-    <img src="../../images/accordion/accordion-drawer.png" alt="GATSBY_EMPTY_ALT" />
+    <img
+      src="../../images/accordion/accordion-drawer.png"
+      alt="GATSBY_EMPTY_ALT"
+    />
   </figure>
 </div>
 

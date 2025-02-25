@@ -710,7 +710,7 @@ describe('Datagrid', () => {
       const pagination = {
         itemCount: rowsForPagination.length,
         page: 1,
-        rowsPerPage: 10,
+        defaultRowsPerPage: 10,
         rowsPerPageValues: [10, 20, 50, 100],
         onRowsPerPageChange,
       };

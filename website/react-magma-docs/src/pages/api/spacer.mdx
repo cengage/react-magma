@@ -5,8 +5,6 @@ props:
   - SpacerProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="spacer" type="api">
 
 <LeadParagraph>
@@ -18,7 +16,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 The `size` prop is required and will set the height and width of the `Spacer` component. This value can either be a number or a string. If a number is used, the size will be set in pixels.
 
-```typescript
+```tsx
 import React from 'react';
 import { Card, CardBody, Spacer, magma } from 'react-magma-dom';
 
@@ -49,7 +47,7 @@ export function Example() {
 
 By default, the `Spacer` component use the size for both height and width. However, the `axis` prop can be used if you only wish to create horizontal or vertical space. It accepts the options `SpacerAxis.horizontal`, `SpacerAxis.vertical` and `SpacerAxis.both` (default).
 
-```typescript
+```tsx
 import React from 'react';
 import { Button, Spacer, SpacerAxis, magma } from 'react-magma-dom';
 
@@ -64,7 +62,7 @@ export function Example() {
 }
 ```
 
-# Spacer Props
+## Spacer Props
 
 **Any other props supplied will be provided to the wrapping `span` element.**
 

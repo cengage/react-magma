@@ -96,12 +96,12 @@ figcaption .title-correct {
 }
 
 figcaption .title-incorrect {
-  background: #D32821;
+  background: #d32821;
   color: #fff;
 }
 
 figcaption .title-caution {
-  background: #AD5115;
+  background: #ad5115;
   color: #fff;
 }
 
@@ -136,7 +136,7 @@ figcaption .title-caution {
 }
 
 .swatch-rows .color-test-light {
-  color: #FFFFFF;
+  color: #ffffff;
   margin: 0;
   font-size: 16px;
   line-height: 24px;
@@ -229,8 +229,8 @@ figcaption .title-caution {
   text-align: center;
   margin-bottom: 32px;
   border-radius: 8px;
-  background: #FFFFFF;
-  border: 1px solid #D4D4D4;
+  background: #ffffff;
+  border: 1px solid #d4d4d4;
 }
 
 .principles-c h3 {
@@ -248,9 +248,9 @@ figcaption .title-caution {
   padding: 24px;
   margin: 0;
   text-align: left;
-  background: #3942B0;
+  background: #3942b0;
   border-radius: 8px;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .principles-c blockquote p {
@@ -443,44 +443,43 @@ td .space-example {
     font-size: 20px;
     font-weight: 400;
     line-height: 32px;
-    color: #292F7C;
+    color: #292f7c;
   }
 
   .expressive-heading-xlarge {
     font-size: 32px;
     font-weight: 600;
     line-height: 40px;
-    color: #292F7C;
+    color: #292f7c;
   }
 
   .expressive-heading-large {
     font-size: 28px;
     font-weight: 300;
     line-height: 40px;
-    color: #292F7C;
+    color: #292f7c;
   }
 
   .expressive-heading-medium {
     font-size: 24px;
     font-weight: 300;
     line-height: 32px;
-    color: #292F7C;
+    color: #292f7c;
   }
 
   .expressive-heading-small {
     font-size: 20px;
     font-weight: 300;
     line-height: 32px;
-    color: #292F7C;
+    color: #292f7c;
   }
 
   .expressive-heading-xsmall {
     font-size: 18px;
     font-weight: 300;
     line-height: 32px;
-    color: #292F7C;
+    color: #292f7c;
   }
-
 }
 
 @media only screen and (max-width: 480px) {

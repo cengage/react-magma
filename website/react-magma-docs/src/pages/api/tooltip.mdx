@@ -5,8 +5,6 @@ props:
   - TooltipProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="tooltip" type="api">
 
 <LeadParagraph>
@@ -17,7 +15,6 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 ## Basic Usage
 
 The Tooltip component should wrap the triggerring element. This trigger should be a focusable element for accessibility, such as a button.
-
 
 ```tsx
 import React from 'react';
@@ -63,16 +60,14 @@ The `Tooltip` component takes a `position` property, that accepts the following 
 ```tsx
 import React from 'react';
 import {
+  Flex,
+  FlexBehavior,
   Tooltip,
   EnumTooltipPosition,
   IconButton,
   ButtonVariant,
 } from 'react-magma-dom';
 import {
-  ArrowDownwardIcon,
-  ArrowForwardIcon,
-  ArrowBackIcon,
-  ArrowUpwardIcon,
   KeyboardArrowRightIcon,
   KeyboardArrowLeftIcon,
   KeyboardArrowDownIcon,
@@ -81,7 +76,7 @@ import {
 
 export function Example() {
   return (
-    <>
+    <Flex behavior={FlexBehavior.container} spacing={2}>
       <Tooltip position={EnumTooltipPosition.right} content="Tooltip right">
         <IconButton
           aria-label="Right"
@@ -113,7 +108,7 @@ export function Example() {
           variant={ButtonVariant.solid}
         />
       </Tooltip>
-    </>
+    </Flex>
   );
 }
 ```
@@ -215,7 +210,7 @@ export function Example() {
 
 The values of some style properties are set in the Magma theme.
 
-```js noCodeSandbox
+```jsx noCodeSandbox noRender
     tooltip: {
       arrowSize: '4px',
       arrowSizeDoubled: '8px',

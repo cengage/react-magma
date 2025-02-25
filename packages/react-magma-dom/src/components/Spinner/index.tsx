@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { I18nContext } from '../../i18n';
-import { stringIncludesUnit } from '../../utils';
-import { ThemeInterface } from '../../theme/magma';
 import styled from '@emotion/styled';
+import * as React from 'react';
+import { I18nContext } from '../../i18n';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { stringIncludesUnit } from '../../utils';
 
 export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
@@ -82,7 +82,7 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
         }
         data-testid={testId}
         ref={ref}
-        role={!noRole && 'img'}
+        role={noRole ? undefined : 'img'}
         aria-hidden={noRole}
         size={sizeString}
       />

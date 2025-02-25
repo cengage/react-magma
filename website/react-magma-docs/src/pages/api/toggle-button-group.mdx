@@ -5,8 +5,6 @@ props:
   - ToggleButtonGroupProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="toggle_button_group" type="api">
 
 <LeadParagraph>
@@ -18,7 +16,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 The Toggle Button Group enables styling and selection states across a group of ToggleButtons.
 
-```typescript
+```tsx
 import React from 'react';
 import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
 import {
@@ -60,7 +58,7 @@ export function Example() {
 
 Using the same `value` between `ToggleButtonGroup` and `ToggleButton` allows a user to define preselected buttons.
 
-```typescript
+```tsx
 import React from 'react';
 import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
 import {
@@ -102,15 +100,14 @@ export function Example() {
 
 When `exclusive` is enabled, it ensures a radio style ToggleButtonGroup has at least one selected state.
 
-```typescript
+```tsx
 import React from 'react';
-import { ButtonSize, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
 import {
   FormatAlignLeftIcon,
   FormatAlignCenterIcon,
   FormatAlignRightIcon,
   FormatAlignJustifyIcon,
-  SettingsIcon,
 } from 'react-magma-icons';
 
 export function Example() {
@@ -147,20 +144,14 @@ The `enforced` prop requires that at least one button be selected (after first s
 
 The `enforced` prop in conjunction with `exclusive` allows just one toggled button across the group like a radio.
 
-```typescript
+```tsx
 import React from 'react';
-import {
-  ButtonSize,
-  ToggleButton,
-  ToggleButtonGroup,
-  Spacer,
-} from 'react-magma-dom';
+import { ToggleButton, ToggleButtonGroup, Spacer } from 'react-magma-dom';
 import {
   FormatAlignLeftIcon,
   FormatAlignCenterIcon,
   FormatAlignRightIcon,
   FormatAlignJustifyIcon,
-  SettingsIcon,
 } from 'react-magma-icons';
 
 export function Example() {
@@ -220,7 +211,7 @@ export function Example() {
 
 Removes margins and border radius on each button then applies the border-radius around the container.
 
-```typescript
+```tsx
 import React from 'react';
 import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
 import {
@@ -262,7 +253,7 @@ export function Example() {
 
 Three sizes are configurable with the `ButtonSize` prop between `small`, `medium` (default), and `large` across the group.
 
-```typescript
+```tsx
 import React from 'react';
 import { ButtonSize, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
 
@@ -281,14 +272,9 @@ export function Example() {
 
 ## Inverse
 
-```typescript
+```tsx
 import React from 'react';
-import {
-  ButtonSize,
-  Container,
-  ToggleButton,
-  ToggleButtonGroup,
-} from 'react-magma-dom';
+import { Container, ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
 
 export function Example() {
   return (

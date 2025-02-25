@@ -1,13 +1,13 @@
+import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { Select, SelectOptions, SelectProps, MultiSelectProps } from './';
-import { LabelPosition } from '../Label';
-import { Card } from '../Card';
-import { CardBody } from '../Card/CardBody';
-import { Tooltip } from '../Tooltip';
-import { IconButton } from '../IconButton';
 import { HelpIcon } from 'react-magma-icons';
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { Card } from '../Card';
+import { CardBody } from '../Card/CardBody';
+import { IconButton } from '../IconButton';
+import { LabelPosition } from '../Label';
+import { Tooltip } from '../Tooltip';
+import { MultiSelectProps, Select, SelectOptions, SelectProps } from './';
 
 const Template: Story<SelectProps<SelectOptions>> = args => (
   <Select {...args} />
@@ -33,6 +33,36 @@ export default {
         type: 'boolean',
       },
     },
+    isClearable: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    initialHighlightedIndex: {
+      control: {
+        type: 'number',
+      },
+    },
+    defaultSelectedItem: {
+      control: {
+        type: 'object',
+      },
+    },
+    initialSelectedItem: {
+      control: {
+        type: 'object',
+      },
+    },
+    defaultSelectedItems: {
+      control: {
+        type: 'object',
+      },
+    },
+    initialSelectedItems: {
+      control: {
+        type: 'object',
+      },
+    },
   },
 } as Meta;
 
@@ -40,8 +70,8 @@ export const Default = Template.bind({});
 Default.args = {
   labelText: 'Example',
   items: [
-    { label: 'Red', value: 'red' },
-    { label: 'Blue', value: 'blue' },
+    { label: 'Red', value: 'red', disabled: false },
+    { label: 'Blue', value: 'blue', disabled: true },
     { label: 'Green', value: 'green' },
     { label: 'Purple mountain majesty', value: 'purple' },
   ],
@@ -153,3 +183,58 @@ LeftAlignedLabelWithContainer.decorators = [
     </Card>
   ),
 ];
+
+export const WithDisabledItems = Template.bind({});
+WithDisabledItems.args = {
+  ...Default.args,
+  items: [
+    {
+      label: 'First-Item-Disabled',
+      value: 'First-Item-Disabled',
+      disabled: true,
+    },
+    { label: 'Red', value: 'red' },
+    { label: 'Blue-Disabled', value: 'blue', disabled: true },
+    { label: 'Green', value: 'green' },
+    { label: 'Purple mountain majesty', value: 'purple' },
+    { label: 'Orange-Disabled', value: 'Orange-Disabled', disabled: true },
+    { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
+  ],
+  isClearable: true,
+  defaultSelectedItem: {
+    label: 'Blue-Disabled',
+    value: 'blue',
+    disabled: true,
+  },
+  initialSelectedItem: {
+    label: 'Orange-Disabled',
+    value: 'disabled',
+    disabled: true,
+  },
+};
+
+export const MultiWithDisabledItems = Template.bind({});
+MultiWithDisabledItems.args = {
+  ...Default.args,
+  isMulti: true,
+  items: [
+    { label: 'Red', value: 'red' },
+    { label: 'Green', value: 'green' },
+    { label: 'Blue-Disabled', value: 'blue', disabled: true },
+    { label: 'Purple mountain majesty', value: 'purple' },
+    { label: 'Orange', value: 'orange', disabled: false },
+    { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
+  ],
+  isClearable: true,
+  initialHighlightedIndex: 2,
+  defaultSelectedItems: [
+    { label: 'Red', value: 'red' },
+    { label: 'Orange', value: 'orange', disabled: false },
+    { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
+  ],
+  initialSelectedItems: [
+    { label: 'Red', value: 'red' },
+    { label: 'Orange', value: 'orange', disabled: false },
+    { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
+  ],
+};

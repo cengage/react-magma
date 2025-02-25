@@ -1,3 +1,25 @@
+## 4.8.0
+
+### Minor Changes
+
+- 79435c964: feat(Select): Support disabling individual items in Select and Multi Select components
+
+### Patch Changes
+
+- 4484ad2b7: fix(NativeSelect): Add `aria-describedby` to helper and error messages to associate them with the `Select`.
+- e689dc0cb: fix(TimePicker): Fix input wrong number validation.
+- 4c9fa50aa: fix(Dropdown): Fix click outside behavior in Dropdown
+- 3c1702509: fix(FormGroup): Fix validation for `InputMessage`.
+- b95b94c7b: fix(GlobalStyles): Fix @import rule warning in GlobalStyles
+- 16aaefb40: fix(Table): Fix logic for the default `rowsPerPage` value.
+- 9697b00b7: fix(Toast): Change property for Toast close button from `aria-label` to `title`.
+- ed14a909c: fix(MultiSelect): Fix a bug where the page refreshes when you click on a selected item.
+- bbc13e67a: fix(Table): Reconfigured the table CSS to better allow for content within a table to overlay the container, such as dropdowns.
+- 11a3361d4: fix(Table): Fix min-width overflow issues.
+- 50117512e: fix(Toast): Fix ring time duration.
+- 285a2592d: chore: Fix unit test errors
+- 2b097cef4: build(deps): Bump path-to-regexp and express.
+- 48d786c08: build(deps): Bump nanoid from 3.3.7 to 3.3.8.
 
 ## 4.7.0
 
@@ -52,7 +74,7 @@
 - 044da059c: fix(TimePicker): Fix AM/PM width in the `TimePicker`
 - e447c8af8: fix(Toast): Fix loading ring alignment when zooming in Safari
 - 631d01024: fix(TreeView): Improve screenreader accessibility
-- 24680b288: fix(TreeView):  Fix initialExpanded items expanding all parents
+- 24680b288: fix(TreeView): Fix initialExpanded items expanding all parents
 - c0aecada5: fix(useFocusLock): Fix the `useFocusLock` hook if the first or last element is disabled.
 - 7adf69a9f: fix(.stories.): Remove `.stories.` files from the production bundle
 

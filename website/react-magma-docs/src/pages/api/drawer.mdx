@@ -5,8 +5,6 @@ props:
   - DrawerProps
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-
 <PageContent componentName="drawer" type="api">
 
 <LeadParagraph>A container with a transition</LeadParagraph>
@@ -15,7 +13,7 @@ import { LeadParagraph } from '../../components/LeadParagraph';
 
 Drawer accepts a position (top, right, bottom, or left)
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Button,
@@ -56,7 +54,7 @@ export function Example() {
 
 ## Navigation Example
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Button,
@@ -101,7 +99,7 @@ export function Example() {
 
 ## Inverse
 
-```typescript
+```tsx
 import React from 'react';
 import {
   Button,
@@ -158,8 +156,9 @@ import {
   Drawer,
   DrawerPosition,
   VisuallyHidden,
+  I18nContext,
+  defaultI18n,
 } from 'react-magma-dom';
-import { I18nContext, defaultI18n } from 'react-magma-dom';
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { useIsInverse } from '../../inverse';
-import { useGenerateId } from '../../utils';
+import { omit, useGenerateId } from '../../utils';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
@@ -140,6 +140,17 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       setCharacterLength(0);
     }
 
+    const validInputBaseProps = omit(
+      [
+        'onDateChange',
+        'onInputChange',
+        'onInputBlur',
+        'onInputFocus',
+        'onClear',
+      ],
+      other
+    );
+
     return (
       <StyledFormFieldContainer
         containerStyle={containerStyle}
@@ -164,8 +175,10 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         InputSize={inputSize}
       >
         <InputBase
-          {...other}
-          aria-describedby={descriptionId ?? props['aria-describedby']}
+          {...validInputBaseProps}
+          aria-describedby={
+            descriptionId ? descriptionId : props['aria-describedby']
+          }
           aria-invalid={!!errorMessage}
           hasError={
             !!errorMessage ||

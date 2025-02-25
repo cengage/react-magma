@@ -1,10 +1,3 @@
-import * as React from 'react';
-import {
-  useMultipleSelection,
-  UseMultipleSelectionProps,
-  useSelect,
-  UseSelectProps,
-} from 'downshift';
 import {
   AlignedPlacement,
   autoUpdate,
@@ -12,16 +5,23 @@ import {
   useFloating,
 } from '@floating-ui/react-dom';
 import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
-import { Select as InternalSelect } from './Select';
-import { MultiSelect } from './MultiSelect';
-import { SelectComponents } from './components';
+import {
+  useMultipleSelection,
+  UseMultipleSelectionProps,
+  useSelect,
+  UseSelectProps,
+} from 'downshift';
+import * as React from 'react';
+import { useIsInverse } from '../../inverse';
 import { Omit, useGenerateId, XOR } from '../../utils';
 import { LabelPosition } from '../Label';
-import { useIsInverse } from '../../inverse';
+import { MultiSelect } from './MultiSelect';
+import { Select as InternalSelect } from './Select';
+import { SelectComponents } from './components';
 
 export type SelectOptions =
   | string
-  | { value: string; label: string; [key: string]: any }
+  | { value: string; label: string; [key: string]: any; disabled?: boolean }
   | any;
 
 export interface InternalSelectProps<T> {
@@ -143,6 +143,10 @@ export interface SelectProps<T extends SelectOptions>
    */
   isMulti?: false;
   /**
+   * Index of the item that should be highlighted by default. Use this prop when you want to set a specific item on the list to be highlighted when the component is first rendered.
+   */
+  initialHighlightedIndex?: number;
+  /**
    * Event that fires when the trigger button loses focus
    */
   onBlur?: (event: React.FocusEvent) => void;
@@ -212,6 +216,12 @@ export function instanceOfToBeCreatedItemObject(object: any): object is {
     object &&
     'react_magma__created_item' in object
   );
+}
+
+export function instanceOfItemWithOptionalDisabled(
+  object: any
+): object is { label: string; value: string; disabled?: boolean } {
+  return typeof object !== 'string' && object && 'disabled' in object;
 }
 
 export type XORSelectProps<T> = XOR<SelectProps<T>, MultiSelectProps<T>>;

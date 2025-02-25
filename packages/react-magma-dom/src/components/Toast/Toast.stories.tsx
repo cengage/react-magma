@@ -5,6 +5,7 @@ import { AlertVariant } from '../AlertBase';
 import { Button, ButtonSize } from '../Button';
 import { Hyperlink } from '../Hyperlink';
 import { Meta } from '@storybook/react/types-6-0';
+import { Announce } from '../Announce';
 
 export default {
   component: Toast,
@@ -56,11 +57,13 @@ export const Default = args => {
       >
         Show Default Toast
       </Button>
-      {showToast ? (
-        <Toast onDismiss={handleDismiss} {...args}>
-          Default Toast
-        </Toast>
-      ) : null}
+      <Announce>
+        {showToast ? (
+          <Toast onDismiss={handleDismiss} {...args}>
+            Default Toast
+          </Toast>
+        ) : null}
+      </Announce>
     </div>
   );
 };
@@ -93,12 +96,15 @@ export const TwoLine = args => {
       >
         Show two line Toast
       </Button>
-      {showToast ? (
-        <Toast onDismiss={handleDismiss} {...args}>
-          Toast with a breaking line of content which will appear exactly right
-          now! Oh, and here is a <Hyperlink to="#">hyperlink</Hyperlink> for fun.
-        </Toast>
-      ) : null}
+      <Announce>
+        {showToast ? (
+          <Toast onDismiss={handleDismiss} {...args}>
+            Toast with a breaking line of content which will appear exactly
+            right now! Oh, and here is a <Hyperlink to="#">hyperlink</Hyperlink>{' '}
+            for fun.
+          </Toast>
+        ) : null}
+      </Announce>
     </div>
   );
 };

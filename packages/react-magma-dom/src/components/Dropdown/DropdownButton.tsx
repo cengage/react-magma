@@ -122,18 +122,16 @@ export const DropdownButton = React.forwardRef<
     }
   }
 
-  // Necessary for the proper opening and closing of the menu in Safari
-  function handleMouseDown(event: React.MouseEvent) {
-    event.preventDefault();
-  }
+  let iconPositionToUse: ButtonIconPosition;
 
-  const iconPositionToUse = props.icon
-    ? iconPosition
-      ? iconPosition
-      : ButtonIconPosition.left
-    : context.dropDirection === DropdownDropDirection.left
-    ? ButtonIconPosition.left
-    : ButtonIconPosition.right;
+  if (props.icon) {
+    iconPositionToUse = iconPosition ?? ButtonIconPosition.left;
+  } else {
+    iconPositionToUse =
+      context.dropDirection === DropdownDropDirection.left
+        ? ButtonIconPosition.left
+        : ButtonIconPosition.right;
+  }
 
   return (
     <div ref={context.setReference}>
@@ -146,7 +144,6 @@ export const DropdownButton = React.forwardRef<
         id={context.dropdownButtonId.current}
         isInverse={context.isInverse}
         onClick={handleClick}
-        onMouseDown={handleMouseDown}
         ref={ref}
         theme={theme}
       >

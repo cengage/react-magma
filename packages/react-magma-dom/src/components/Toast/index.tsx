@@ -1,9 +1,13 @@
-import * as React from 'react';
-import { AlertBase, AlertBaseProps, AlertVariant, transitionDuration } from '../AlertBase';
-import { getTrapElements } from '../../utils';
-import { useGenerateId } from '../../utils';
-import { ToastsContext } from './ToastsContainer';
 import styled from '@emotion/styled';
+import * as React from 'react';
+import { getTrapElements, useGenerateId } from '../../utils';
+import {
+  AlertBase,
+  AlertBaseProps,
+  AlertVariant,
+  transitionDuration,
+} from '../AlertBase';
+import { ToastsContext } from './ToastsContainer';
 
 /**
  * @children required
@@ -73,11 +77,12 @@ const TOAST_HEIGHT = 65;
 
 export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
   (props, ref) => {
-    const timerAutoHide = React.useRef<any>();
+    const timerAutoHide = React.useRef<NodeJS.Timeout | null>(null);
     const [isDismissed, setIsDismissed] = React.useState<boolean>(false);
     const [isPaused, setIsPaused] = React.useState<boolean>(false);
     const [timerTimeRemaining, setTimerTimeRemaining] =
       React.useState<number>();
+    const mountedRef = React.useRef<boolean>(true);
 
     const {
       alertStyle,
@@ -102,6 +107,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
     const containerElement = React.useRef<any>();
 
     function dismissToast() {
+      if (!mountedRef.current) return;
       setIsDismissed(true);
 
       setTimeout(() => {
@@ -128,7 +134,9 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       const totalDuration = duration + transitionDuration;
 
       timerAutoHide.current = setTimeout(() => {
-        dismissToast();
+        if (mountedRef.current) {
+          dismissToast();
+        }
       }, totalDuration);
     }
 
@@ -183,24 +191,30 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       React.useState(0);
 
     React.useEffect(() => {
-      lastFocus.current = document.activeElement;
-
+      lastFocus.current = document.activeElement as HTMLElement;
       if (!props.disableAutoDismiss) {
         setAutoHideTimer(props.toastDuration);
       }
 
       return () => {
         clearTimeout(timerAutoHide.current);
+        mountedRef.current = false;
       };
-    }, []);
+    }, [props.disableAutoDismiss, props.toastDuration]);
 
     React.useEffect(() => {
-      if (!disableAutoDismiss) {
+      if (!props.disableAutoDismiss) {
         const focusableElements = getTrapElements(containerElement);
         focusableElements.forEach(element => {
           element.addEventListener('focus', handlePause);
           element.addEventListener('blur', handleResume);
         });
+        return () => {
+          focusableElements.forEach(element => {
+            element.removeEventListener('focus', handlePause);
+            element.removeEventListener('blur', handleResume);
+          });
+        };
       }
     }, []);
 
