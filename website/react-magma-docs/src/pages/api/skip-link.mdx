@@ -54,7 +54,7 @@ const SideNav = ({ length }) => {
 export function Example() {
   return (
     <div>
-      <SkipLink />
+      <SkipLink buttonText="Skip to main content" />
       <SideNav length={500} />
       <SkipLinkContent>
         <Paragraph>Content to jump to.</Paragraph>
@@ -102,7 +102,10 @@ const SideNav = ({ length }) => {
 export function Example() {
   return (
     <div>
-      <SkipLink variant={ButtonVariant.solid} />
+      <SkipLink
+        buttonText="Skip to main content"
+        variant={ButtonVariant.solid}
+      />
       <SideNav length={500} />
       <SkipLinkContent>
         <Paragraph>Content to jump to.</Paragraph>
@@ -181,12 +184,58 @@ const SideNav = ({ length }) => {
 export function Example() {
   return (
     <div>
-      <SkipLink positionLeft={25} positionTop={25} />
+      <SkipLink
+        buttonText="Skip to main content"
+        positionLeft={25}
+        positionTop={25}
+      />
       <SideNav length={500} />
       <SkipLinkContent>
         <Paragraph>Content to jump to.</Paragraph>
       </SkipLinkContent>
       <Paragraph>Additional content.</Paragraph>
+    </div>
+  );
+}
+```
+
+## With AppBar
+
+The `SkipLink` works concurrently with `AppBar` which assists in keyboard navigation.
+
+```tsx
+import React from 'react';
+import {
+  AppBar,
+  AppBarPosition,
+  SkipLink,
+  SkipLinkContent,
+  Paragraph,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div style={{ height: '400px', overflow: 'auto', position: 'relative' }}>
+      <AppBar position={AppBarPosition.sticky}>AppBar content</AppBar>
+      <SkipLink buttonText="Skip to main content" to="#last-one" />
+
+      <Paragraph>
+        Peel the onion peel the onion, so the horse is out of the barn per my
+        previous email, nor draw a line in the sand. I just wanted to give you a
+        heads-up drink from the firehose, game plan back-end of third quarter
+        viral engagement. Eat our own dog food driving the initiative forward
+        tribal knowledge increase the pipelines, but run it up the flag pole.
+      </Paragraph>
+      <SkipLinkContent>
+        <Paragraph id="last-one">
+          Turn the crank regroup can we align on lunch orders, so regroup, yet
+          the last person we talked to said this would be ready, for this vendor
+          is incompetent , or pipeline. We've bootstrapped the model zeitgeist,
+          so let's schedule a standup during the sprint to review our kpis, so
+          not the long pole in my tent we're ahead of the curve on that one, and
+          we're ahead of the curve on that one.{' '}
+        </Paragraph>
+      </SkipLinkContent>
     </div>
   );
 }
