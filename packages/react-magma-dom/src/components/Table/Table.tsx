@@ -110,18 +110,24 @@ export const TableContainer = styled.div<{
   minWidth: number;
   tableOverFlow?: string;
 }>`
-  @media screen and (max-width: ${props => props.minWidth}px) {
-    overflow: auto;
-  }
+  container-type: inline-size;
+  container-name: tableContainer;
+
   &:focus {
     outline: none;
   }
   &:focus-visible {
     outline: 2px solid
       ${props =>
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+    props.isInverse
+      ? props.theme.colors.focusInverse
+      : props.theme.colors.focus};
+  }
+`;
+
+export const TableWrapper = styled.div<{ minWidth: number }>`
+  @container tableContainer (max-width: ${props => props.minWidth}px) {
+    overflow: auto;
   }
 `;
 
@@ -191,17 +197,19 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           theme={theme}
           tabIndex={0}
         >
-          <StyledTable
-            {...other}
-            data-testid={testId}
-            hasSquareCorners={hasSquareCorners}
-            isInverse={isInverse}
-            minWidth={minWidth || theme.breakpoints.small}
-            ref={ref}
-            theme={theme}
-          >
-            {children}
-          </StyledTable>
+          <TableWrapper minWidth={minWidth}>
+            <StyledTable
+              {...other}
+              data-testid={testId}
+              hasSquareCorners={hasSquareCorners}
+              isInverse={isInverse}
+              minWidth={minWidth || theme.breakpoints.small}
+              ref={ref}
+              theme={theme}
+            >
+              {children}
+            </StyledTable>
+          </TableWrapper>
         </TableContainer>
       </TableContext.Provider>
     );
