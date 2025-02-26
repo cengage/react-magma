@@ -15,8 +15,7 @@ import { IconProps, InfoIcon } from 'react-magma-icons';
 import { PopoverContext } from './Popover';
 import { transparentize } from 'polished';
 
-interface IconOnlyPopoverTriggerProps
-  extends Omit<ButtonProps, 'children'> {
+interface IconOnlyPopoverTriggerProps extends Omit<ButtonProps, 'children'> {
   /**
    * Icon to display within the component
    */
@@ -111,6 +110,11 @@ export const PopoverTrigger = React.forwardRef<
         })
       : children;
 
+  // Necessary for the proper opening and closing of the menu in Safari
+  function handleMouseDown(event: React.MouseEvent) {
+    event.preventDefault();
+  }
+
   if (!children) {
     return (
       <div ref={context.setReference} style={{ width: 'fit-content' }}>
@@ -125,6 +129,7 @@ export const PopoverTrigger = React.forwardRef<
           isInverse={context.isInverse}
           icon={icon}
           onClick={handleClick}
+          onMouseDown={handleMouseDown}
           ref={ref}
           theme={theme}
           type={type}
@@ -147,6 +152,7 @@ export const PopoverTrigger = React.forwardRef<
           id={context.popoverTriggerId.current}
           isInverse={context.isInverse}
           onClick={handleClick}
+          onMouseDown={handleMouseDown}
           ref={ref}
           theme={theme}
           tabIndex={tabIndex}
@@ -173,6 +179,7 @@ export const PopoverTrigger = React.forwardRef<
             context.hoverable
           }
           isInverse={context.isInverse}
+          onMouseDown={handleMouseDown}
           theme={theme}
         >
           {styledChildren}

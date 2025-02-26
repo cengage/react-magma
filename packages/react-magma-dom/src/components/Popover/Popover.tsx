@@ -72,7 +72,7 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
   hasPointer?: boolean;
   /**
    * If true, the popover is open by default when the component is first rendered.
-   * @default false
+   * @default true
    */
   openByDefault?: boolean;
   /**
@@ -163,7 +163,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       width,
       hoverable,
       isDisabled,
-      hasPointer,
+      hasPointer = true,
       openByDefault,
       id: defaultId,
       apiRef,

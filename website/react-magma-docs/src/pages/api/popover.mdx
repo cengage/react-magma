@@ -18,11 +18,8 @@ props:
 <PageContent componentName="popover" type="api">
 
 <LeadParagraph>
-  The <b>Popover</b> component provides an overlay to display content (such as
-  menus, tooltips or custom interactive sections) in a floating container
-  positioned relative to a trigger element. It supports multiple interaction
-  modes including click and hover, and can be customized with headers, footers,
-  focus trapping, and more.
+  A <b>Popover</b> is a small UI element that appears on top of content when
+  triggered, showing additional information or actions.
 </LeadParagraph>
 
 ## Basic Usage
@@ -79,7 +76,7 @@ export function Example() {
 
 ## Popover with Pointer
 
-The `hasPointer` prop adds an arrow (pointer) that visually connects the popover to its trigger element.
+The `hasPointer` prop controls the display of an arrow pointer that visually connects the popover to its trigger element. By default, `hasPointer` is `true`. Set `hasPointer={false}` to disable the pointer.
 
 ```tsx
 import React from 'react';
@@ -87,12 +84,12 @@ import { Popover, PopoverTrigger, PopoverContent } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Popover hasPointer>
+    <Popover hasPointer={false}>
       <PopoverTrigger aria-label="Open popover">
-        Click for popover with pointer
+        Click for popover without pointer
       </PopoverTrigger>
       <PopoverContent>
-        <div>Content with an arrow pointer</div>
+        <div>Content without an arrow pointer</div>
       </PopoverContent>
     </Popover>
   );
