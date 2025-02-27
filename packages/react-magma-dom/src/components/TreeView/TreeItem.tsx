@@ -35,7 +35,7 @@ import { TreeItemContext } from './TreeItemContext';
 import { TreeViewContext } from './TreeViewContext';
 import styled from '@emotion/styled';
 
-export interface TreeItemProps extends UseTreeItemProps {}
+export interface TreeItemProps extends UseTreeItemProps { }
 
 const StyledTreeItem = styled.li<{
   theme?: ThemeInterface;
@@ -71,36 +71,36 @@ const StyledTreeItem = styled.li<{
       outline-offset: -2px;
       outline: 2px solid
       ${props =>
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+    props.isInverse
+      ? props.theme.colors.focusInverse
+      : props.theme.colors.focus};
 }
   }
 
   > div:first-of-type {
     background: ${props =>
-      props.selected && props.isInverse
-        ? transparentize(0.7, props.theme.colors.neutral900)
-        : props.selected &&
-          transparentize(0.92, props.theme.colors.neutral900)};
+    props.selected && props.isInverse
+      ? transparentize(0.7, props.theme.colors.neutral900)
+      : props.selected &&
+      transparentize(0.92, props.theme.colors.neutral900)};
     position: relative;
 
     padding-inline-start: ${props =>
-      calculateOffset(props.nodeType, props.depth, true)};
+    calculateOffset(props.nodeType, props.depth, true)};
     margin-inline-start: ${props =>
-      calculateOffset(props.nodeType, props.depth, true, true)};
+    calculateOffset(props.nodeType, props.depth, true, true)};
     padding-block-end: ${props => props.theme.spaceScale.spacing02};
     padding-block-start: ${props => props.theme.spaceScale.spacing02};
     padding-right: ${props => props.theme.spaceScale.spacing02};
 
     ${props =>
-      props.selected &&
-      css`
+    props.selected &&
+    css`
         &:before {
           position: absolute;
           background-color: ${props.isInverse
-            ? props.theme.colors.tertiary500
-            : props.theme.colors.primary500};
+        ? props.theme.colors.tertiary500
+        : props.theme.colors.primary500};
           block-size: 100%;
           content: '';
           inline-size: ${props.theme.spaceScale.spacing02};
@@ -111,11 +111,11 @@ const StyledTreeItem = styled.li<{
 
     &:hover {
       background: ${props =>
-        !props.isDisabled
-          ? props.isInverse
-            ? transparentize(0.8, props.theme.colors.neutral900)
-            : transparentize(0.95, props.theme.colors.neutral900)
-          : undefined}
+    !props.isDisabled
+      ? props.isInverse
+        ? transparentize(0.8, props.theme.colors.neutral900)
+        : transparentize(0.95, props.theme.colors.neutral900)
+      : undefined}
     }
   `;
 
@@ -208,6 +208,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       onExpandedChange,
       itemToFocus,
       handleExpandedChange,
+      isTopLevelSelectable,
     } = React.useContext(TreeViewContext);
 
     const { contextValue, handleClick, handleKeyDown } = useTreeItem(
@@ -236,19 +237,23 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         ? selectedItems?.[0]?.itemId === itemId
         : null;
 
-    const ariaCheckedValue =
-      selectable === TreeViewSelectable.multi
-        ? checkedStatus === IndeterminateCheckboxStatus.indeterminate
-          ? 'mixed'
-          : checkedStatus === IndeterminateCheckboxStatus.checked
-        : null;
+    let ariaCheckedValue: 'true' | 'false' | 'mixed' | undefined;
 
+    if (selectable === TreeViewSelectable.multi && (!topLevel || isTopLevelSelectable)) {
+      if (checkedStatus === IndeterminateCheckboxStatus.indeterminate) {
+        ariaCheckedValue = 'mixed';
+      } else if (checkedStatus === IndeterminateCheckboxStatus.checked) {
+        ariaCheckedValue = 'true';
+      } else {
+        ariaCheckedValue = 'false';
+      }
+    }
     const defaultIcon =
       nodeType === TreeNodeType.branch ? (
         <FolderIcon aria-hidden={true} />
       ) : (
-        <ArticleIcon aria-hidden={true} />
-      );
+          <ArticleIcon aria-hidden={true} />
+        );
 
     const labelText = (
       <StyledLabelWrapper
@@ -365,12 +370,12 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 {expanded ? (
                   <ExpandMoreIcon aria-hidden={true} />
                 ) : (
-                  <ChevronRightIcon aria-hidden={true} />
-                )}
+                    <ChevronRightIcon aria-hidden={true} />
+                  )}
               </StyledExpandWrapper>
             )}
 
-            {selectable === TreeViewSelectable.multi ? (
+            {selectable === TreeViewSelectable.multi && (isTopLevelSelectable || !topLevel) ? (
               <StyledCheckboxWrapper theme={theme}>
                 {hasOwnTreeItems ? (
                   <IndeterminateCheckbox
@@ -378,15 +383,15 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                     status={checkedStatus}
                   />
                 ) : (
-                  <Checkbox
-                    {...checkboxProps}
-                    checked={checkedStatusToBoolean(checkedStatus)}
-                  />
-                )}
+                    <Checkbox
+                      {...checkboxProps}
+                      checked={checkedStatusToBoolean(checkedStatus)}
+                    />
+                  )}
               </StyledCheckboxWrapper>
             ) : (
-              <>{labelText}</>
-            )}
+                <>{labelText}</>
+              )}
           </StyledItemWrapper>
 
           {React.Children.map(
@@ -404,8 +409,8 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                   </ul>
                 </Transition>
               ) : (
-                child
-              );
+                  child
+                );
             }
           )}
         </StyledTreeItem>

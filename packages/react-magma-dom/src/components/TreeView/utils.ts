@@ -1,14 +1,14 @@
-import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
-import { UseTreeViewProps } from './useTreeView';
-import { TreeViewSelectable } from './types';
 import React from 'react';
+import { ThemeInterface } from '../../theme/magma';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
+import { TreeItem } from './TreeItem';
 import {
   TreeItemSelectedInterface,
   TreeViewItemInterface,
 } from './TreeViewContext';
-import { TreeItem } from './TreeItem';
+import { TreeViewSelectable } from './types';
+import { UseTreeViewProps } from './useTreeView';
 
 export enum TreeNodeType {
   branch = 'branch',
@@ -445,8 +445,12 @@ const getChildrenUniqueStatuses = ({
 
 const processInitialParentStatuses = ({
   items,
+  isTopLevelSelectable,
+  selectable,
 }: {
   items: TreeViewItemInterface[];
+  isTopLevelSelectable: UseTreeViewProps['isTopLevelSelectable'];
+  selectable: TreeViewSelectable;
 }) => {
   const itemsWithSelectedChildren = items.reduce((result, item) => {
     if (
@@ -474,6 +478,14 @@ const processInitialParentStatuses = ({
       itemId: item.itemId,
     });
 
+    if (
+      !item.parentId &&
+      !isTopLevelSelectable &&
+      selectable === TreeViewSelectable.multi
+    ) {
+      return { ...item, checkedStatus: IndeterminateCheckboxStatus.unchecked };
+    }
+
     const parentStatus =
       childrenUniqueStatuses.length > 1
         ? IndeterminateCheckboxStatus.indeterminate
@@ -490,6 +502,7 @@ export const getInitialItems = ({
   checkChildren,
   selectable,
   isDisabled: isTreeViewDisabled,
+  isTopLevelSelectable,
 }: Pick<
   UseTreeViewProps,
   | 'children'
@@ -498,6 +511,7 @@ export const getInitialItems = ({
   | 'checkChildren'
   | 'selectable'
   | 'isDisabled'
+  | 'isTopLevelSelectable'
 >) => {
   const treeViewData = getTreeViewData({
     children,
@@ -538,11 +552,21 @@ export const getInitialItems = ({
       }, enhancedWithPreselectedItems)
     : enhancedWithPreselectedItems;
 
+  if (!isTopLevelSelectable) {
+    return itemsWithProcessedChildrenSelection.map(item =>
+      !item.parentId
+        ? { ...item, checkedStatus: IndeterminateCheckboxStatus.unchecked }
+        : item
+    );
+  }
+
   return selectable === TreeViewSelectable.multi &&
     checkParents &&
     preselectedItems
     ? processInitialParentStatuses({
         items: itemsWithProcessedChildrenSelection,
+        isTopLevelSelectable,
+        selectable,
       })
     : itemsWithProcessedChildrenSelection;
 };
@@ -629,12 +653,16 @@ export const toggleMulti = ({
   forceCheckedStatus,
   checkChildren,
   checkParents,
+  isTopLevelSelectable,
 }: {
   items: TreeViewItemInterface[];
   itemId: TreeViewItemInterface['itemId'];
   checkedStatus: TreeViewItemInterface['checkedStatus'];
   forceCheckedStatus?: boolean;
-} & Pick<UseTreeViewProps, 'checkChildren' | 'checkParents'>) => {
+} & Pick<
+  UseTreeViewProps,
+  'checkChildren' | 'checkParents' | 'isTopLevelSelectable'
+>) => {
   const checkedStatus =
     checkChildren && !forceCheckedStatus
       ? getMultiToggledStatus({ items, itemId })
@@ -650,13 +678,24 @@ export const toggleMulti = ({
         checkedStatus,
       })
     : itemsWithProcessedItemSelection;
-  return checkParents
+
+  const processedItems = checkParents
     ? processParentsSelection({
         items: itemsWithProcessedChildrenSelection,
         itemId,
         checkedStatus,
       })
     : itemsWithProcessedChildrenSelection;
+
+  if (!isTopLevelSelectable) {
+    return processedItems.map(item =>
+      !item.parentId
+        ? { ...item, checkedStatus: IndeterminateCheckboxStatus.unchecked }
+        : item
+    );
+  }
+
+  return processedItems;
 };
 
 const getParentIds = ({
@@ -698,10 +737,14 @@ export const toggleAllMulti = ({
   checkedStatus,
   checkChildren,
   checkParents,
+  isTopLevelSelectable,
 }: {
   items: TreeViewItemInterface[];
   checkedStatus: TreeViewItemInterface['checkedStatus'];
-} & Pick<UseTreeViewProps, 'checkChildren' | 'checkParents'>) => {
+} & Pick<
+  UseTreeViewProps,
+  'checkChildren' | 'checkParents' | 'isTopLevelSelectable'
+>) => {
   if (!checkChildren) {
     return items.map(item => {
       if (item?.isDisabled) {
@@ -727,6 +770,7 @@ export const toggleAllMulti = ({
       forceCheckedStatus: true,
       checkChildren,
       checkParents,
+      isTopLevelSelectable,
     });
   }, items);
 };

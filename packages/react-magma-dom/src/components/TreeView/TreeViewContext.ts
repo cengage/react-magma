@@ -48,6 +48,7 @@ export interface TreeViewContextInterface {
     event: React.SyntheticEvent,
     expandedItemId: string
   ) => void;
+  isTopLevelSelectable?: boolean;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
@@ -63,4 +64,5 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   items: [],
   selectItem: () => undefined,
   handleExpandedChange: () => undefined,
+  isTopLevelSelectable: true,
 });
