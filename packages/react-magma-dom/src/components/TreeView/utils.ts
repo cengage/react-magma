@@ -1,16 +1,14 @@
-import React from 'react';
-
 import { transparentize } from 'polished';
-
-import { TreeItem } from './TreeItem';
-import { TreeViewSelectable } from './types';
-import { UseTreeViewProps } from './useTreeView';
+import React from 'react';
 import { ThemeInterface } from '../../theme/magma';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
+import { TreeItem } from './TreeItem';
 import {
   TreeItemSelectedInterface,
   TreeViewItemInterface,
 } from './TreeViewContext';
+import { TreeViewSelectable } from './types';
+import { UseTreeViewProps } from './useTreeView';
 
 export enum TreeNodeType {
   branch = 'branch',
@@ -504,7 +502,7 @@ export const getInitialItems = ({
   checkChildren,
   selectable,
   isDisabled: isTreeViewDisabled,
-  isTopLevelSelectable
+  isTopLevelSelectable,
 }: Pick<
   UseTreeViewProps,
   | 'children'
@@ -556,7 +554,9 @@ export const getInitialItems = ({
 
   if (!isTopLevelSelectable) {
     return itemsWithProcessedChildrenSelection.map(item =>
-      !item.parentId ? { ...item, checkedStatus: IndeterminateCheckboxStatus.unchecked } : item
+      !item.parentId
+        ? { ...item, checkedStatus: IndeterminateCheckboxStatus.unchecked }
+        : item
     );
   }
 
@@ -679,19 +679,23 @@ export const toggleMulti = ({
       })
     : itemsWithProcessedItemSelection;
 
-  if (!isTopLevelSelectable) {
-    return itemsWithProcessedChildrenSelection.map(item =>
-      !item.parentId ? { ...item, checkedStatus: IndeterminateCheckboxStatus.unchecked } : item
-    );
-  }
-
-  return checkParents
+  const processedItems = checkParents
     ? processParentsSelection({
         items: itemsWithProcessedChildrenSelection,
         itemId,
         checkedStatus,
       })
     : itemsWithProcessedChildrenSelection;
+
+  if (!isTopLevelSelectable) {
+    return processedItems.map(item =>
+      !item.parentId
+        ? { ...item, checkedStatus: IndeterminateCheckboxStatus.unchecked }
+        : item
+    );
+  }
+
+  return processedItems;
 };
 
 const getParentIds = ({
