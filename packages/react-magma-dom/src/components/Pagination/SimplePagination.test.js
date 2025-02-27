@@ -78,6 +78,14 @@ describe('Simple Pagination', () => {
     expect(getByTestId(`${testId}-select`).value).toBe("2");
   });
 
+  it('should set the page number to 1 if the passed page is greater than the count', () => {
+    const { getByTestId } = render(
+      <Pagination type={PaginationType.simple} count={4} testId={testId} page={6} />
+    );
+
+    expect(getByTestId(`${testId}-select`).value).toBe("1");
+  });
+
   it('should set the page number to the page when both page and defaultPage are passed', () => {
     const { getByTestId } = render(
       <Pagination type={PaginationType.simple} count={4} testId={testId} defaultPage={2} page={3} />
@@ -205,7 +213,8 @@ describe('Simple Pagination', () => {
         <Pagination
           type={PaginationType.simple}
           count={3}
-          defaultPage={2}
+          defaultPage={1}
+          page={2}
           testId={testId}
         />
       );
@@ -350,7 +359,7 @@ describe('Simple Pagination', () => {
       <Pagination
         type={PaginationType.simple}
         count={4}
-        defaultPage={2}
+        page={2}
         testId={testId}
         onPageChange={onClickMock}
       />
@@ -386,6 +395,7 @@ describe('Simple Pagination', () => {
       <Pagination
         type={PaginationType.simple}
         count={3}
+        page={3}
         testId={testId}
         onPageChange={onClickMock}
       />

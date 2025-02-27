@@ -81,7 +81,7 @@ export const SimplePagination = React.forwardRef<
 
   React.useEffect(() => {
     setSelectedPage(page);
-  }, [page])
+  }, [page]);
 
   React.useEffect(() => {
     setSelectedPage(selectedPage);
