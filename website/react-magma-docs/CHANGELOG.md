@@ -1,5 +1,64 @@
 # Change Log
 
+## 5.1.2-next.2
+
+### Patch Changes
+
+- Updated dependencies [1f5f822d1]
+  - @react-magma/charts@10.0.1-next.0
+
+## 5.1.2-next.1
+
+### Patch Changes
+
+- 86176dc23: build(deps): bump elliptic from 6.5.7 to 6.6.1
+
+## 5.1.2-next.0
+
+### Patch Changes
+
+- 350fec916: chore: Manually sync main -> dev (4.8.0)
+
+## 5.1.1
+
+### Patch Changes
+
+- 999e97a66: fix(Input): Clarification that developers should use `ref` with `Input`. Add a new example for Storybook.
+- 999e97a66: build(deps): bump dom-iterator from 1.0.0 to 1.0.2 in /website/react-magma-docs
+- 999e97a66: chore: Improve TypeScript, Linting, and Styling Support in Doc MDX Files
+- 999e97a66: chore: Fix codeowners and update PR template
+- 999e97a66: build(deps): bump nanoid from 3.3.7 to 3.3.8 in /website/react-magma-docs
+- 999e97a66: feat(Charts): Change the name from 'Get Started' to 'Getting Started'.
+- 999e97a66: feat(Charts): Add the `Data Visualization` tab with pages `Getting Started`, `Chart Types` and `Chart Demos`.
+- 999e97a66: fix(Docs): Fix pre release issues.
+- 999e97a66: fix(Typography): Fix wrong size on images in the documentation.
+- 999e97a66: fix: Repointed a few broken links and fixed some styling bugs throughout the examples.
+- 999e97a66: build(deps): bump undici from 6.19.7 to 6.21.1 in /website/react-magma-docs
+- 999e97a66: chore: REVERT Upgrade uuid to 9.0.1 and @types/uuid to 9.0.8
+- 999e97a66: build(deps): bump path-to-regexp and express in /website/react-magma-docs
+- 999e97a66: build(deps): bump store2 from 2.14.2 to 2.14.4
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+- Updated dependencies [999e97a66]
+  - react-magma-dom@4.8.0
+  - @react-magma/charts@10.0.0
+  - @react-magma/dropzone@10.0.0
+  - @react-magma/schema-renderer@10.0.0
+  - @cengage-patterns/header@12.0.0
+
 ## 5.0.11-next.14
 
 ### Patch Changes

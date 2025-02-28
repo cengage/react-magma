@@ -1,10 +1,10 @@
 # @react-magma/charts
 
-## 11.0.0-next.1
+## 10.0.1-next.0
 
-### Minor Changes
+### Patch Changes
 
-- be7697292: feat(CarbonCharts): Add new charts: `Histogram`, `Scatter`, `Step`, `SparkLine`, `Boxplot`, `Bullet`, `Combo`, `Bubble`, `Gauge`, `Meter`, and `Radar`. -->
+- 1f5f822d1: build(deps): bump dompurify from 3.1.6 to 3.2.4 in /packages/charts
 
 ## 11.0.0-next.0
 
