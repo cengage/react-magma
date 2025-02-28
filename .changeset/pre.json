@@ -24,6 +24,7 @@
     "feat-charts-documentation",
     "feat-select-disabled-items-styling",
     "feat-select-disabled-items",
+    "fix-AppBar",
     "fix-DatePicker-input-wrong-number",
     "fix-Docs-pre-release-issues",
     "fix-Dropdown-click-outside",
