@@ -219,6 +219,9 @@ export const FormFieldContainer = React.forwardRef<
 
           {(errorMessage || helperMessage) && (
             <InputMessage
+              aria-describedby={
+                errorMessage ? `${errorMessage}` : `${helperMessage}`
+              }
               hasError={!!errorMessage}
               id={descriptionId}
               isInverse={isInverse}
