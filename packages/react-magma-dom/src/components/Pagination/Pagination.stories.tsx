@@ -2,7 +2,10 @@ import React from 'react';
 import { Container } from '../Container';
 import { Pagination, PageButtonSize } from '.';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { PaginationProps, PaginationType } from './Pagination';
+import {
+  PaginationProps,
+  PaginationType,
+} from './Pagination';
 
 const Template: Story<PaginationProps> = args => <Pagination {...args} />;
 
@@ -26,6 +29,16 @@ export default {
       control: {
         type: 'select',
         options: PaginationType,
+      },
+    },
+    page: {
+      control: {
+        type: 'number',
+      },
+    },
+    defaultPage: {
+      control: {
+        type: 'number',
       },
     },
     size: {
@@ -63,6 +76,7 @@ Default.args = {
   hidePreviousButton: false,
   hideNextButton: false,
   isInverse: false,
+  disabled: false,
 };
 
 export const DefaultSelected = Template.bind({});
@@ -98,23 +112,39 @@ SimplePagination.args = {
   ...Default.args,
   type: PaginationType.simple,
   count: 4,
-  defaultPage: 2,
 };
 
-export const SimplePaginationOnPageChange = () => {
-  const [page, setPage] = React.useState(1);
-  function handleChange(_, pageNumber) {
+SimplePagination.parameters = {
+  controls: { exclude: ['showFirstButton', 'showLastButton', 'size'] },
+};
+
+export const SimplePaginationOnPageChange = (
+  args: Partial<PaginationProps>
+) => {
+  const [page, setPage] = React.useState<number>(Number(args.page));
+  function handleChange(_, pageNumber: number) {
     setPage(pageNumber);
   }
   return (
     <>
       <p>onPageChange result: {page}</p>
       <Pagination
+        {...args}
         onPageChange={handleChange}
         page={page}
-        count={4}
-        type={PaginationType.simple}
+        count={args.count}
       />
     </>
   );
+};
+
+SimplePaginationOnPageChange.args = {
+  ...Default.args,
+  type: PaginationType.simple,
+  page: 3,
+  count: 4,
+};
+
+SimplePaginationOnPageChange.parameters = {
+  controls: { exclude: ['showFirstButton', 'showLastButton', 'size'] },
 };
