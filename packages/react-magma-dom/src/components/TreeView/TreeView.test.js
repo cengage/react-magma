@@ -1,11 +1,7 @@
 import React from 'react';
 import { axe } from '../../../axe-helper';
 import { TreeView, TreeItem, TreeViewSelectable } from '.';
-import {
-  render,
-  fireEvent,
-  waitFor,
-} from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import { magma } from '../../theme/magma';
 import userEvent from '@testing-library/user-event';
 import { FavoriteIcon } from 'react-magma-icons';
@@ -335,12 +331,13 @@ describe('TreeView', () => {
       expect(onExpandedChange).not.toHaveBeenCalled();
     });
 
-    it('should work correctly with expandedAll() function', () => {
+    it('should work correctly with expandedAll() and collapseAll() functions', async () => {
       const onExpandedChange = jest.fn();
       const apiRef = React.createRef();
       const { getByText } = render(
         <>
           <button onClick={() => apiRef.current.expandAll()}>Expand All</button>
+          <button onClick={() => apiRef.current.collapseAll()}>Collapse All</button>
           {getTreeItemsWithDisabled({
             selectable: TreeViewSelectable.single,
             onExpandedChange,
@@ -349,13 +346,34 @@ describe('TreeView', () => {
         </>
       );
 
+      const item = getByText('Node 1');
+
+      expect(item).toBeInTheDocument();
+      expect(item).toBeVisible();
+
       expect(getByText('Expand All')).toBeInTheDocument();
 
       userEvent.click(getByText('Expand All'));
 
-      expect(onExpandedChange).toHaveBeenCalled();
       expect(onExpandedChange).toHaveBeenCalledTimes(1);
       expect(onExpandedChange).toHaveBeenCalledWith({}, ['item1', 'item2']);
+      
+      const childItem = getByText('Child 1');
+
+      expect(childItem).toBeInTheDocument();
+      expect(childItem).toBeVisible();
+      
+      expect(getByText('Collapse All')).toBeInTheDocument();
+
+      userEvent.click(getByText('Collapse All'));
+
+      expect(onExpandedChange).toHaveBeenCalledTimes(2);
+      expect(onExpandedChange).toHaveBeenCalledWith({}, []);
+
+      await waitFor(async () => {
+        expect(childItem).not.toBeInTheDocument();
+        expect(childItem).not.toBeVisible();
+      })
     });
   });
 
