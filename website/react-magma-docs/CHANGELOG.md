@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.0.11-next.15
+
+### Patch Changes
+
+- 0a15a4d25: chore: REVERT AppBar fix
+
 ## 5.0.11-next.14
 
 ### Patch Changes
