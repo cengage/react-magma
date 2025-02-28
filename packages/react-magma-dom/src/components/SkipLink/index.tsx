@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { Hyperlink, HyperlinkProps } from '../Hyperlink';
-import { Omit } from '../../utils';
 import { I18nContext } from '../../i18n';
 import styled from '@emotion/styled';
 
 export const TARGET_ID = 'reactMagmaMainContent';
 
-export interface SkipLinkProps extends Omit<HyperlinkProps, 'children'> {
+export interface SkipLinkProps extends HyperlinkProps {
   /**
    * The text in the skip link
    * @default "Skip Navigation"
