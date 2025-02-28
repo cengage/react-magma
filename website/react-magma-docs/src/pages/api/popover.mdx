@@ -225,7 +225,7 @@ export function Example() {
 
 ## Popover Positions
 
-The `position` prop determines where the popover is displayed relative to its trigger. The available options are `PopoverPosition.bottom` (default) and `PopoverPosition.top`.
+The `position` prop sets the default position for the popover in relation to its trigger. It uses <Link to='https://floating-ui.com/'>floating-ui</Link> to move the position if there is not enough space on the screen. The available options are `PopoverPosition.bottom` (default) and `PopoverPosition.top`.
 
 ```tsx
 import React from 'react';
@@ -333,7 +333,7 @@ export function Example() {
 
 ## Disabled Popover / Disabled Trigger
 
-The `isDisabled` property will disable the ability to open the popover. For disabled trigger and enabled content, you need to place the disable button inside the trigger and use the `hoverable` property.
+The `isDisabled` property will disable the ability to open the popover. For disabled triggers with enabled content, you need to place the disabled button inside the `PopoverTrigger` and use the `hoverable` property.
 
 ```tsx
 import React from 'react';

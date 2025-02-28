@@ -67,12 +67,12 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
   isDisabled?: boolean;
   /**
    * If true, a pointer (arrow) is displayed pointing towards the trigger element.
-   * @default false
+   * @default true
    */
   hasPointer?: boolean;
   /**
    * If true, the popover is open by default when the component is first rendered.
-   * @default true
+   * @default false
    */
   openByDefault?: boolean;
   /**
