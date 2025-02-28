@@ -3906,7 +3906,6 @@ describe('TreeView', () => {
 
       // Top level should not be in the selection payload
       const selections = onSelectedItemChange.mock.calls[0][0];
-      console.log(selections);
       const hasTopLevelSelected = selections.some(item => item.itemId === 'item2');
       expect(hasTopLevelSelected).toBe(false);
     });

@@ -2340,7 +2340,7 @@ export const ComplexWithTopLevelNotSelectable = (args: Partial<TreeViewProps>) =
                 Part 5: leaf with no icon
               </>
             }
-            itemId="pt4"
+            itemId="pt5"
           >
           </TreeItem>
         </TreeView>
