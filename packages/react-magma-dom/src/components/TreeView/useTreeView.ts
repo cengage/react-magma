@@ -28,6 +28,8 @@ export interface TreeViewApi {
   clearAll(): void;
   showMore(): void;
   showLess(): void;
+  expandAll(): void;
+  collapseAll(): void;
 }
 
 export interface UseTreeViewProps {
@@ -377,7 +379,27 @@ export function useTreeView(props: UseTreeViewProps) {
               isDisabled,
             })
           );
-        }
+        },
+
+        expandAll() {
+          const expandableIds = items
+            .filter(item => item.hasOwnTreeItems)
+            .map(item => item.itemId);
+
+          setExpandedSet(new Set(expandableIds));
+
+          onExpandedChange &&
+          typeof onExpandedChange === 'function' &&
+          onExpandedChange({} as React.SyntheticEvent, expandableIds)
+        },
+
+        collapseAll() {
+          setExpandedSet(new Set());
+
+          onExpandedChange &&
+          typeof onExpandedChange === 'function' &&
+          onExpandedChange({} as React.SyntheticEvent, [])
+        },
       };
     }
   }, [selectItem, isDisabled, children]);
