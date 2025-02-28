@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.2-next.1
+
+### Patch Changes
+
+- 86176dc23: build(deps): bump elliptic from 6.5.7 to 6.6.1
+
 ## 5.1.2-next.0
 
 ### Patch Changes
