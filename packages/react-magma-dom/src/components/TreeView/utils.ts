@@ -1,19 +1,26 @@
-import { ThemeInterface } from '../../theme/magma';
 import { transparentize } from 'polished';
-import { UseTreeViewProps } from './useTreeView';
-import { TreeViewSelectable } from './types';
 import React from 'react';
+import { ThemeInterface } from '../../theme/magma';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
+import { TreeItem } from './TreeItem';
 import {
   TreeItemSelectedInterface,
   TreeViewItemInterface,
 } from './TreeViewContext';
-import { TreeItem } from './TreeItem';
+import { TreeViewSelectable } from './types';
+import { UseTreeViewProps } from './useTreeView';
 
 export enum TreeNodeType {
   branch = 'branch',
   leaf = 'leaf',
 }
+
+/**
+ * Creates a Map for fast item lookups by ID
+ */
+export const createItemsMap = (items: TreeViewItemInterface[]) => {
+  return new Map(items.map(item => [item.itemId, item]));
+};
 
 /**
  * Leaf node - 1st level has 40px of left padding.
@@ -204,36 +211,34 @@ This is used to set `hasOwnTreeItems` which manages visibility of the expandable
 const areChildrenValid = children => {
   if (!children) {
     return false;
-  } else if (!children.length && children.type !== TreeItem) {
+  }
+
+  if (!Array.isArray(children)) {
+    return children.type === TreeItem;
+  }
+
+  if (children.length === 0) {
     return false;
   }
 
-  let hasValidChild = true;
-
-  for (let i = 0; i < children.length; i++) {
-    const child = children[i];
-
-    if (typeof child === 'string') {
+  return children.some(child => {
+    if (!child || typeof child === 'string') {
       return false; // Return false if a child is a string
     }
 
-    if (child?.type !== TreeItem) {
-      return hasValidChild;
+    if (child.type === TreeItem) {
+      return true;
     }
     // Recursively check the validity of nested children
-    if (child.props.children) {
+    if (child.props?.children) {
       const nestedChildren = Array.isArray(child.props.children)
         ? child.props.children
         : [child.props.children];
-
-      if (areChildrenValid(nestedChildren)) {
-        hasValidChild = true;
-        return hasValidChild;
-      }
+      return areChildrenValid(nestedChildren);
     }
-  }
 
-  return hasValidChild;
+    return false;
+  });
 };
 
 const getTreeViewData = ({
@@ -302,9 +307,10 @@ const processItemCheckedStatus = ({
   checkedStatus: TreeViewItemInterface['checkedStatus'];
   forceCheckedStatusForDisabled?: boolean;
 }) => {
-  const item = items.find(item => item.itemId === itemId);
+  const itemsMap = createItemsMap(items);
+  const item = itemsMap.get(itemId);
 
-  if (item?.isDisabled && !forceCheckedStatusForDisabled) {
+  if (!item || (item.isDisabled && !forceCheckedStatusForDisabled)) {
     return items;
   }
 
@@ -324,7 +330,10 @@ const processChildrenSelection = ({
   checkedStatus: TreeViewItemInterface['checkedStatus'];
   forceCheckedStatusForDisabled?: boolean;
 }) => {
-  const item = items.find(item => item.itemId === itemId);
+  const itemsMap = createItemsMap(items);
+  const item = itemsMap.get(itemId);
+
+  if (!item) return items;
 
   const itemsWithProcessedItemCheckedStatus = processItemCheckedStatus({
     items,
@@ -445,8 +454,12 @@ const getChildrenUniqueStatuses = ({
 
 const processInitialParentStatuses = ({
   items,
+  isTopLevelSelectable,
+  selectable,
 }: {
   items: TreeViewItemInterface[];
+  isTopLevelSelectable: UseTreeViewProps['isTopLevelSelectable'];
+  selectable: TreeViewSelectable;
 }) => {
   const itemsWithSelectedChildren = items.reduce((result, item) => {
     if (
@@ -474,6 +487,14 @@ const processInitialParentStatuses = ({
       itemId: item.itemId,
     });
 
+    if (
+      !item.parentId &&
+      !isTopLevelSelectable &&
+      selectable === TreeViewSelectable.multi
+    ) {
+      return { ...item, checkedStatus: IndeterminateCheckboxStatus.unchecked };
+    }
+
     const parentStatus =
       childrenUniqueStatuses.length > 1
         ? IndeterminateCheckboxStatus.indeterminate
@@ -490,6 +511,7 @@ export const getInitialItems = ({
   checkChildren,
   selectable,
   isDisabled: isTreeViewDisabled,
+  isTopLevelSelectable,
 }: Pick<
   UseTreeViewProps,
   | 'children'
@@ -498,6 +520,7 @@ export const getInitialItems = ({
   | 'checkChildren'
   | 'selectable'
   | 'isDisabled'
+  | 'isTopLevelSelectable'
 >) => {
   const treeViewData = getTreeViewData({
     children,
@@ -538,11 +561,21 @@ export const getInitialItems = ({
       }, enhancedWithPreselectedItems)
     : enhancedWithPreselectedItems;
 
+  if (!isTopLevelSelectable) {
+    return itemsWithProcessedChildrenSelection.map(item =>
+      !item.parentId
+        ? { ...item, checkedStatus: IndeterminateCheckboxStatus.unchecked }
+        : item
+    );
+  }
+
   return selectable === TreeViewSelectable.multi &&
     checkParents &&
     preselectedItems
     ? processInitialParentStatuses({
         items: itemsWithProcessedChildrenSelection,
+        isTopLevelSelectable,
+        selectable,
       })
     : itemsWithProcessedChildrenSelection;
 };
@@ -574,35 +607,47 @@ const processParentsSelection = ({
   itemId: TreeViewItemInterface['itemId'];
   checkedStatus: TreeViewItemInterface['checkedStatus'];
 }) => {
-  const item = items.find(item => item.itemId === itemId);
+  const itemsMap = createItemsMap(items);
+  let currentItemId = itemId;
+  let currentItems = [...items];
 
-  if (item?.parentId === null) {
-    return items;
+  while (currentItemId != null) {
+    const currentItem = itemsMap.get(currentItemId);
+    if (!currentItem || currentItem.parentId === null) {
+      break;
+    }
+
+    const siblings = currentItems.filter(
+      i => i.parentId === currentItem.parentId
+    );
+    const isAllSiblingsHasTheSameStatus = siblings.every(
+      sibling =>
+        (sibling.checkedStatus || IndeterminateCheckboxStatus.unchecked) ===
+        checkedStatus
+    );
+
+    const parentStatus = isAllSiblingsHasTheSameStatus
+      ? checkedStatus
+      : IndeterminateCheckboxStatus.indeterminate;
+
+    const parent = itemsMap.get(currentItem.parentId);
+    if (!parent) {
+      currentItemId = null;
+      continue;
+    }
+
+    currentItems = currentItems.map(item =>
+      item.itemId === parent.itemId
+        ? { ...item, checkedStatus: parentStatus }
+        : item
+    );
+
+    itemsMap.set(parent.itemId, { ...parent, checkedStatus: parentStatus });
+
+    currentItemId = parent.itemId;
   }
 
-  const siblings = items.filter(i => i.parentId === item?.parentId);
-  const isAllSiblingsHasTheSameStatus = siblings.every(
-    item =>
-      (item.checkedStatus || IndeterminateCheckboxStatus.unchecked) ===
-      checkedStatus
-  );
-  const parentStatus = isAllSiblingsHasTheSameStatus
-    ? checkedStatus
-    : IndeterminateCheckboxStatus.indeterminate;
-
-  const parent = items.find(i => i.itemId === item?.parentId);
-
-  const nextItems = items.map(item =>
-    item.itemId === parent.itemId
-      ? { ...item, checkedStatus: parentStatus }
-      : item
-  );
-
-  return processParentsSelection({
-    items: nextItems,
-    itemId: parent.itemId,
-    checkedStatus: parentStatus,
-  });
+  return currentItems;
 };
 
 const getMultiToggledStatus = ({ items, itemId }) => {
@@ -622,6 +667,26 @@ const getMultiToggledStatus = ({ items, itemId }) => {
   return IndeterminateCheckboxStatus.unchecked;
 };
 
+const processItemsWithOptions = ({
+  items,
+  isTopLevelSelectable,
+  processedItems,
+}: {
+  items: TreeViewItemInterface[];
+  isTopLevelSelectable: boolean;
+  processedItems: TreeViewItemInterface[];
+}) => {
+  if (!isTopLevelSelectable) {
+    return processedItems.map(item =>
+      !item.parentId
+        ? { ...item, checkedStatus: IndeterminateCheckboxStatus.unchecked }
+        : item
+    );
+  }
+
+  return processedItems;
+};
+
 export const toggleMulti = ({
   items,
   itemId,
@@ -629,12 +694,16 @@ export const toggleMulti = ({
   forceCheckedStatus,
   checkChildren,
   checkParents,
+  isTopLevelSelectable,
 }: {
   items: TreeViewItemInterface[];
   itemId: TreeViewItemInterface['itemId'];
   checkedStatus: TreeViewItemInterface['checkedStatus'];
   forceCheckedStatus?: boolean;
-} & Pick<UseTreeViewProps, 'checkChildren' | 'checkParents'>) => {
+} & Pick<
+  UseTreeViewProps,
+  'checkChildren' | 'checkParents' | 'isTopLevelSelectable'
+>) => {
   const checkedStatus =
     checkChildren && !forceCheckedStatus
       ? getMultiToggledStatus({ items, itemId })
@@ -643,6 +712,7 @@ export const toggleMulti = ({
   const itemsWithProcessedItemSelection = items.map(item =>
     item.itemId === itemId ? { ...item, checkedStatus } : item
   );
+
   const itemsWithProcessedChildrenSelection = checkChildren
     ? processChildrenSelection({
         items: itemsWithProcessedItemSelection,
@@ -650,13 +720,20 @@ export const toggleMulti = ({
         checkedStatus,
       })
     : itemsWithProcessedItemSelection;
-  return checkParents
+
+  const processedItems = checkParents
     ? processParentsSelection({
         items: itemsWithProcessedChildrenSelection,
         itemId,
         checkedStatus,
       })
     : itemsWithProcessedChildrenSelection;
+
+  return processItemsWithOptions({
+    items,
+    isTopLevelSelectable,
+    processedItems,
+  });
 };
 
 const getParentIds = ({
@@ -668,7 +745,8 @@ const getParentIds = ({
   itemId: TreeViewItemInterface['itemId'];
   prevParentIds?: TreeViewItemInterface['itemId'][];
 }) => {
-  const item = items.find(item => item.itemId === itemId);
+  const itemsMap = createItemsMap(items);
+  const item = itemsMap.get(itemId);
 
   if (!item) {
     return prevParentIds;
@@ -698,22 +776,48 @@ export const toggleAllMulti = ({
   checkedStatus,
   checkChildren,
   checkParents,
+  isTopLevelSelectable,
 }: {
   items: TreeViewItemInterface[];
   checkedStatus: TreeViewItemInterface['checkedStatus'];
-} & Pick<UseTreeViewProps, 'checkChildren' | 'checkParents'>) => {
+} & Pick<
+  UseTreeViewProps,
+  'checkChildren' | 'checkParents' | 'isTopLevelSelectable'
+>) => {
+  const itemsMap = createItemsMap(items);
+
   if (!checkChildren) {
-    return items.map(item => {
+    let updatedItems = items.map(item => {
       if (item?.isDisabled) {
         return item;
       }
-
-      return {
+      const updatedItem = {
         ...item,
-        ...(checkedStatus === IndeterminateCheckboxStatus.unchecked
-          ? {}
-          : { checkedStatus }),
+        checkedStatus,
       };
+
+      itemsMap.set(item.itemId, updatedItem);
+      return updatedItem;
+    });
+
+    if (checkParents) {
+      const updatedItemIds = updatedItems
+        .filter(item => !item.isDisabled)
+        .map(item => item.itemId);
+
+      for (const itemId of updatedItemIds) {
+        updatedItems = processParentsSelection({
+          items: updatedItems,
+          itemId,
+          checkedStatus,
+        });
+      }
+    }
+
+    return processItemsWithOptions({
+      items,
+      isTopLevelSelectable,
+      processedItems: updatedItems,
     });
   }
 
@@ -727,6 +831,7 @@ export const toggleAllMulti = ({
       forceCheckedStatus: true,
       checkChildren,
       checkParents,
+      isTopLevelSelectable,
     });
   }, items);
 };
