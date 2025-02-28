@@ -1,111 +1,25 @@
-## 4.8.0-next.0
-
-## 4.8.0-next.17
-
-### Patch Changes
-
-- c7d25723e: fix(SkipLink): Fix overlap with the SkipLink component when used with AppBar.
-
-## 4.8.0-next.16
-
-### Patch Changes
-
-- 11a3361d4: fix(Table): fix min-width overflow issues.
-
-## 4.8.0-next.15
-
-### Patch Changes
-
-- 4f460ce4c: chore: Bump version to 4.8.0-next.15
-
-## 4.8.0-next.14
-
-### Patch Changes
-
-- ed14a909c: fix(MultiSelect): Fix a bug where the page refreshes when you click on a selected item.
-
-## 4.8.0-next.13
-
-### Patch Changes
-
-- e689dc0cb: fix(TimePicker): Fix input wrong number validation.
-- 9697b00b7: fix(Toast): Change property for Toast close button from `aria-label` to `title`.
-
-## 4.8.0-next.12
-
-### Patch Changes
-
-- 16aaefb40: fix(Table): fix logic for the default `rowsPerPage` value.
-
-## 4.8.0-next.11
-
-### Patch Changes
-
-- bbc13e67a: fix(Table): Reconfigured the table CSS to better allow for content within a table to overlay the container, such as dropdowns.
-
-## 4.8.0-next.10
-
-### Patch Changes
-
-- 6163bc4d7: chore: Upgrade uuid to 9.0.1 and @types/uuid to 9.0.8
-
-## 4.8.0-next.9
-
-### Patch Changes
-
-- 4c9fa50aa: fix(Dropdown): fix click outside behavior in Dropdown
-
-## 4.8.0-next.8
-
-### Patch Changes
-
-- 50117512e: fix(Toast): fix ring time duration
-
-## 4.8.0-next.7
-
-### Patch Changes
-
-- 3c1702509: fix(FormGroup): Fix validation for `InputMessage`.
-
-## 4.8.0-next.6
-
-### Minor Changes
-
-- ec5cb3cf7: feat(Select): added not-allowed pointer effect for disabled items in Select and Multi Select components
-
-## 4.8.0-next.5
-
-### Patch Changes
-
-- 285a2592d: chore: Fix remaining unit test errors
-
-## 4.8.0-next.4
-
-### Patch Changes
-
-- b95b94c7b: fix(GlobalStyles): fix @import rule warning in GlobalStyles
-
-## 4.8.0-next.3
-
-### Patch Changes
-
-- 48d786c08: build(deps): bump nanoid from 3.3.7 to 3.3.8
-
-## 4.8.0-next.2
-
-### Patch Changes
-
-- 2b097cef4: build(deps): bump path-to-regexp and express
-
-## 4.8.0-next.1
-
-### Patch Changes
-
-- 4484ad2b7: fix(NativeSelect): Add `aria-describedby` to helper and error messages to associate them with the `Select`.
+## 4.8.0
 
 ### Minor Changes
 
 - 79435c964: feat(Select): Support disabling individual items in Select and Multi Select components
+
+### Patch Changes
+
+- 4484ad2b7: fix(NativeSelect): Add `aria-describedby` to helper and error messages to associate them with the `Select`.
+- e689dc0cb: fix(TimePicker): Fix input wrong number validation.
+- 4c9fa50aa: fix(Dropdown): Fix click outside behavior in Dropdown
+- 3c1702509: fix(FormGroup): Fix validation for `InputMessage`.
+- b95b94c7b: fix(GlobalStyles): Fix @import rule warning in GlobalStyles
+- 16aaefb40: fix(Table): Fix logic for the default `rowsPerPage` value.
+- 9697b00b7: fix(Toast): Change property for Toast close button from `aria-label` to `title`.
+- ed14a909c: fix(MultiSelect): Fix a bug where the page refreshes when you click on a selected item.
+- bbc13e67a: fix(Table): Reconfigured the table CSS to better allow for content within a table to overlay the container, such as dropdowns.
+- 11a3361d4: fix(Table): Fix min-width overflow issues.
+- 50117512e: fix(Toast): Fix ring time duration.
+- 285a2592d: chore: Fix unit test errors
+- 2b097cef4: build(deps): Bump path-to-regexp and express.
+- 48d786c08: build(deps): Bump nanoid from 3.3.7 to 3.3.8.
 
 ## 4.7.0
 
