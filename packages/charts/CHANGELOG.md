@@ -1,4 +1,11 @@
 # @react-magma/charts
+
+## 10.0.1-next.0
+
+### Patch Changes
+
+- 1f5f822d1: build(deps): bump dompurify from 3.1.6 to 3.2.4 in /packages/charts
+
 ## 11.0.0-next.0
 
 ### Patch Changes

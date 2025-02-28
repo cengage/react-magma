@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.1.2-next.2
+
+### Patch Changes
+
+- Updated dependencies [1f5f822d1]
+  - @react-magma/charts@10.0.1-next.0
+
 ## 5.1.2-next.1
 
 ### Patch Changes
