@@ -88,10 +88,6 @@ exports[`SkipLink should render the skip link component 1`] = `
   z-index: 99999;
 }
 
-.emotion-1:not(:disabled):focus {
-  z-index: 99999;
-}
-
 .emotion-1 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -176,10 +172,6 @@ exports[`SkipLink should render the skip link component 1`] = `
 .emotion-1:focus {
   left: 10px;
   top: 10px;
-  z-index: 99999;
-}
-
-.emotion-1:not(:disabled):focus {
   z-index: 99999;
 }
 
