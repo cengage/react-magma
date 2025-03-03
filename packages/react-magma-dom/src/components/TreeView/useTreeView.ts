@@ -322,87 +322,121 @@ export function useTreeView(props: UseTreeViewProps) {
     [selectable, checkChildren, checkParents, items]
   );
 
+  const showMore = React.useCallback(
+    (fromSelectAll: boolean = false) => {
+      if (fromSelectAll) {
+        setItems(() => {
+          return toggleAllMulti({
+            items,
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+            checkChildren,
+            checkParents,
+          });
+        });
+      } else {
+        setItemsNeedUpdate(true);
+      }
+    },
+    [items, checkChildren, checkParents]
+  );
+
+  const showLess = React.useCallback(() => {
+    setItems(
+      getInitialItems({
+        children,
+        preselectedItems: selectedItems,
+        checkParents,
+        checkChildren,
+        selectable,
+        isDisabled,
+      })
+    );
+  }, [
+    children,
+    selectedItems,
+    checkParents,
+    checkChildren,
+    selectable,
+    isDisabled,
+  ]);
+
+  const selectAll = React.useCallback(() => {
+    if (
+      [TreeViewSelectable.single, TreeViewSelectable.single].includes(
+        selectable
+      ) ||
+      isDisabled
+    ) {
+      return;
+    }
+
+    showMore(true);
+  }, [selectable, isDisabled, items, checkChildren, checkParents]);
+
+  const clearAll = React.useCallback(() => {
+    if (isDisabled) {
+      return;
+    }
+
+    setItems(() => {
+      return toggleAllMulti({
+        items,
+        checkedStatus: IndeterminateCheckboxStatus.unchecked,
+        checkChildren,
+        checkParents,
+      });
+    });
+  }, [isDisabled, items, checkChildren, checkParents]);
+
+  const expandAll = React.useCallback(() => {
+    const expandableIds = items.reduce((ids: string[], item) => {
+      if (item.hasOwnTreeItems) {
+        ids.push(item.itemId);
+      }
+
+      return ids;
+    }, []);
+
+    setExpandedSet(new Set(expandableIds));
+
+    if (onExpandedChange && typeof onExpandedChange === 'function') {
+      const syntheticEvent = {} as React.SyntheticEvent;
+
+      onExpandedChange(syntheticEvent, expandableIds);
+    }
+  }, [items, onExpandedChange]);
+
+  const collapseAll = React.useCallback(() => {
+    setExpandedSet(new Set());
+
+    if (onExpandedChange && typeof onExpandedChange === 'function') {
+      const syntheticEvent = {} as React.SyntheticEvent;
+
+      onExpandedChange(syntheticEvent, []);
+    }
+  }, [onExpandedChange]);
+
   React.useEffect(() => {
     if (apiRef) {
       apiRef.current = {
         selectItem,
-        selectAll() {
-          if (
-            [TreeViewSelectable.single, TreeViewSelectable.single].includes(
-              selectable
-            ) ||
-            isDisabled
-          ) {
-            return;
-          }
-          this.showMore(true);
-        },
-
-        clearAll() {
-          if (isDisabled) {
-            return;
-          }
-
-          setItems(() => {
-            return toggleAllMulti({
-              items,
-              checkedStatus: IndeterminateCheckboxStatus.unchecked,
-              checkChildren,
-              checkParents,
-            });
-          });
-        },
-
-        showMore(fromSelectAll: boolean = false) {
-          if (fromSelectAll) {
-            setItems(() => {
-              return toggleAllMulti({
-                items,
-                checkedStatus: IndeterminateCheckboxStatus.checked,
-                checkChildren,
-                checkParents,
-              });
-            });
-          } else {
-            setItemsNeedUpdate(true);
-          }
-        },
-
-        showLess() {
-          setItems(
-            getInitialItems({
-              children,
-              preselectedItems: selectedItems,
-              checkParents,
-              checkChildren,
-              selectable,
-              isDisabled,
-            })
-          );
-        },
-
-        expandAll() {
-          const expandableIds = items
-            .filter(item => item.hasOwnTreeItems)
-            .map(item => item.itemId);
-
-          setExpandedSet(new Set(expandableIds));
-
-          onExpandedChange &&
-          typeof onExpandedChange === 'function' &&
-          onExpandedChange({} as React.SyntheticEvent, expandableIds)
-        },
-
-        collapseAll() {
-          setExpandedSet(new Set());
-
-          onExpandedChange &&
-          typeof onExpandedChange === 'function' &&
-          onExpandedChange({} as React.SyntheticEvent, [])
-        },
+        selectAll,
+        clearAll,
+        showMore,
+        showLess,
+        expandAll,
+        collapseAll,
       };
     }
-  }, [selectItem, isDisabled, children]);
+  }, [
+    selectItem,
+    selectAll,
+    clearAll,
+    showMore,
+    showLess,
+    expandAll,
+    collapseAll,
+  ]);
 
   React.useEffect(() => {
     if (itemsNeedUpdate) {

@@ -883,7 +883,7 @@ export function Example() {
 }
 ```
 
-## Show More / Show Less Button
+## Show More and Less Functions
 
 Use the `apiRef.showMore()` prop when using a Show All button inside a tree, and `apiRef.showLess()` when using a Show Less button.
 
@@ -1106,7 +1106,7 @@ export function Example() {
 }
 ```
 
-## Expand All / Collapse All Buttons
+## Expand and Collapse Functions
 
 Use the `apiRef.expandAll()` prop to expand all items, and the `apiRef.collapseAll()` prop to collapse them.
 
@@ -1270,7 +1270,6 @@ export function Example() {
   }
 
   const renderTreeItemsRecursively = (discipline: any[], depth: number) => {
-    console.log(discipline);
     return discipline.map(term => {
       const isDisabled =
         term.title === 'Accounting' ||
