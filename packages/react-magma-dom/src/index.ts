@@ -1,7 +1,7 @@
 import { ThemeInterface } from './theme/magma';
 
 declare module '@emotion/react' {
-  export type Theme = ThemeInterface;
+  export interface Theme extends ThemeInterface {}
 }
 
 export { Alert, AlertProps } from './components/Alert';

@@ -68,6 +68,7 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/ban-types': 'warn',
+    '@typescript-eslint/no-empty-interface': 'off',
 
     // General code quality
     'no-console': ['warn', { allow: ['warn', 'error'] }],
