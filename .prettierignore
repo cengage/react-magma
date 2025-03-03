@@ -1,0 +1,29 @@
+# Build and output directories
+dist/
+build/
+storybook-static
+packages/react-magma-landing/dist
+.cache
+public/
+coverage/
+.nyc_output
+
+# Dependencies and package management
+node_modules/
+.npmrc
+package-lock.json
+
+# IDE and system files
+.vscode
+.DS_Store
+
+# Logs
+*.log
+
+# Cache
+*_cache*
+.nx/
+
+# Environment files
+.env
+.env.*
