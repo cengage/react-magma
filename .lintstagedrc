@@ -4,7 +4,6 @@
     "jest --coverage=false --bail --findRelatedTests"
   ],
   "packages/**/*.{ts,tsx,md,mdx,js,jsx}": [
-    "prettier --write",
-    "cspell --config=.cspell.json"
+    "prettier --write"
   ]
 }

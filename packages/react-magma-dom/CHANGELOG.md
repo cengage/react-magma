@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.8.1-next.0
+
+### Patch Changes
+
+- b65154ad5: fix(SkipLink): Fix overlap with the SkipLink component when used with AppBar.
+
 ### Minor Changes
 
 - 79435c964: feat(Select): Support disabling individual items in Select and Multi Select components

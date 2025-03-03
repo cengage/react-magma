@@ -12,6 +12,7 @@
   },
   "changesets": [
     "curly-singers-dress",
+    "fix-AppBar",
     "manually-sync-4.8.7",
     "ninety-yaks-buy"
   ]
