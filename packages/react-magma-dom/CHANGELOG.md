@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.8.1-next.1
+
+### Patch Changes
+
+- 84daa4e7e: fix(Pagination): Changed the ellipsis characters to an HTML entity for accessibility compliance.
+
 ## 4.8.1-next.0
 
 ### Patch Changes
