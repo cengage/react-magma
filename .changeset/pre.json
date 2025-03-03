@@ -13,6 +13,7 @@
   "changesets": [
     "curly-singers-dress",
     "fix-AppBar",
+    "fix-Pagination-screenreader",
     "manually-sync-4.8.7",
     "ninety-yaks-buy"
   ]
