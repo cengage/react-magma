@@ -1,16 +1,18 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
-import { baseTableCellStyle, buildCellPaddingStyle } from './TableCell';
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+import { SortDoubleArrowIcon, SouthIcon, NorthIcon } from 'react-magma-icons';
+
 import {
   TableCellAlign,
   TableContext,
   TableDensity,
   TableSortDirection,
 } from './Table';
+import { baseTableCellStyle, buildCellPaddingStyle } from './TableCell';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { SortDoubleArrowIcon, SouthIcon, NorthIcon } from 'react-magma-icons';
-import { transparentize } from 'polished';
-import styled from '@emotion/styled';
 
 export interface TableHeaderCellProps
   extends React.HTMLAttributes<HTMLTableHeaderCellElement> {

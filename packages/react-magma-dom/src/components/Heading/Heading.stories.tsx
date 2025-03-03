@@ -1,12 +1,15 @@
 import React from 'react';
-import { Heading } from '.';
+
+import { Meta } from '@storybook/react/types-6-0';
+
+import { Card } from '../Card';
 import {
   TypographyContextVariant,
   TypographyColor,
   TypographyVisualStyle,
 } from '../Typography';
-import { Card } from '../Card';
-import { Meta } from '@storybook/react/types-6-0';
+
+import { Heading } from '.';
 
 export default {
   component: Heading,

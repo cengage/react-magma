@@ -1,8 +1,11 @@
 import React from 'react';
-import { Container } from '../Container';
-import { Pagination, PageButtonSize } from '.';
+
 import { Story, Meta } from '@storybook/react/types-6-0';
+
+import { Container } from '../Container';
 import { PaginationProps, PaginationType } from './Pagination';
+
+import { Pagination, PageButtonSize } from '.';
 
 const Template: Story<PaginationProps> = args => <Pagination {...args} />;
 

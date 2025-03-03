@@ -1,14 +1,16 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+
+import { InverseContext, useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { Alert } from '../Alert';
 import { AlertVariant } from '../AlertBase';
+import { Announce } from '../Announce';
 import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
-import { InverseContext, useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
 import { TypographyContextVariant, TypographyVisualStyle } from '../Typography';
-import { Announce } from '../Announce';
 
 /**
  * @children required

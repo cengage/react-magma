@@ -1,5 +1,9 @@
 import React from 'react';
+
+import { render, fireEvent } from '@testing-library/react';
+
 import { axe } from '../../../axe-helper';
+
 import {
   Button,
   ButtonColor,
@@ -8,7 +12,6 @@ import {
   ButtonTextTransform,
   ButtonVariant,
 } from '.';
-import { render, fireEvent } from '@testing-library/react';
 
 describe('Button', () => {
   it('should correctly apply the testId', () => {

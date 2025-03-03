@@ -1,5 +1,8 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+
 import { Card } from '../Card';
 import {
   DropdownAlignment,
@@ -8,7 +11,6 @@ import {
 } from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
-import styled from '@emotion/styled';
 
 /**
  * @children required

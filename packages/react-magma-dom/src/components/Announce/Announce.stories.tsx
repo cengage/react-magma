@@ -1,7 +1,10 @@
 import React from 'react';
-import { Announce } from '.';
-import { Button } from '../Button';
+
 import { Meta } from '@storybook/react/types-6-0';
+
+import { Button } from '../Button';
+
+import { Announce } from '.';
 
 export default {
   component: Announce,
@@ -9,9 +12,8 @@ export default {
 } as Meta;
 
 export const Default = () => {
-  const [announceContent, setAnnounceContent] = React.useState(
-    'Initial content'
-  );
+  const [announceContent, setAnnounceContent] =
+    React.useState('Initial content');
 
   return (
     <>

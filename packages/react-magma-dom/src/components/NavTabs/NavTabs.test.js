@@ -1,10 +1,13 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { CheckIcon } from 'react-magma-icons';
-import { NavTabs } from '.';
-import { NavTab } from './NavTab';
+
 import { render } from '@testing-library/react';
+import { CheckIcon } from 'react-magma-icons';
+
+import { NavTab } from './NavTab';
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+
+import { NavTabs } from '.';
 
 describe('NavTabs', () => {
   it('should find element by testId', () => {

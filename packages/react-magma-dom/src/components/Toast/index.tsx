@@ -1,5 +1,7 @@
-import styled from '@emotion/styled';
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+
 import { getTrapElements, useGenerateId } from '../../utils';
 import {
   AlertBase,
@@ -144,8 +146,8 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       const duration = timerTimeRemaining
         ? timerTimeRemaining
         : toastDuration
-        ? toastDuration
-        : DEFAULT_TOAST_DURATION;
+          ? toastDuration
+          : DEFAULT_TOAST_DURATION;
       const timeRemaining = duration - (Date.now() - timerStartTime);
 
       clearTimeout(timerAutoHide.current);

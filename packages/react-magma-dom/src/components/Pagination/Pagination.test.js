@@ -1,9 +1,12 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { magma } from '../../theme/magma';
-import { Pagination, PaginationType } from '.';
+
 import { render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+
+import { Pagination, PaginationType } from '.';
 
 describe('Pagination', () => {
   it('Should find element by testId', () => {
@@ -88,7 +91,7 @@ describe('Pagination', () => {
 
   it('Should change the active page when clicking the previous button', () => {
     const { getByLabelText } = render(<Pagination count={4} defaultPage={2} />);
-    let previousButton = getByLabelText('Previous Page');
+    const previousButton = getByLabelText('Previous Page');
 
     expect(previousButton).toHaveStyleRule(
       'background',
@@ -105,7 +108,7 @@ describe('Pagination', () => {
 
   it('Should change the active page when clicking the next button', () => {
     const { getByLabelText } = render(<Pagination count={4} defaultPage={3} />);
-    let nextButton = getByLabelText('Next Page');
+    const nextButton = getByLabelText('Next Page');
 
     expect(nextButton).toHaveStyleRule('background', magma.colors.neutral100);
 
@@ -127,7 +130,9 @@ describe('Pagination', () => {
   });
 
   it('Does not violate accessibility standards for classic type', () => {
-    const { container } = render(<Pagination count={4} type={PaginationType.classic}/>);
+    const { container } = render(
+      <Pagination count={4} type={PaginationType.classic} />
+    );
 
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();

@@ -1,12 +1,14 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { I18nContext } from '../../i18n';
-import { DropdownContext } from './Dropdown';
-import { IconProps, CheckIcon } from 'react-magma-icons';
-import { transparentize } from 'polished';
-import { Omit, useForkedRef } from '../../utils';
 import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+import { IconProps, CheckIcon } from 'react-magma-icons';
+
+import { DropdownContext } from './Dropdown';
+import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { Omit, useForkedRef } from '../../utils';
 
 export interface DropdownMenuItemProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {

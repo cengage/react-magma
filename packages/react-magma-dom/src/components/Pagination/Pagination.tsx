@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { ButtonColor, ButtonShape, ButtonSize, ButtonVariant } from '../Button';
+
+import styled from '@emotion/styled';
+import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
+
 import { I18nContext } from '../../i18n';
+import { ButtonColor, ButtonShape, ButtonSize, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { PageButton, pageButtonTypeSize } from './PageButton';
-import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
-import { SimplePagination } from '../Pagination/SimplePagination';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { usePagination } from './usePagination';
-import styled from '@emotion/styled';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { SimplePagination } from '../Pagination/SimplePagination';
 
 export interface BasePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {

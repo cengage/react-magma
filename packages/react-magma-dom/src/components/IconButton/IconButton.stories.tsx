@@ -1,7 +1,13 @@
 import React from 'react';
-import { IconButton, IconButtonProps } from '.';
+
 import { Global, css } from '@emotion/react';
-import { SettingsIcon, NotificationsIcon, ExpandMoreIcon } from 'react-magma-icons';
+import { Story, Meta } from '@storybook/react/types-6-0';
+import {
+  SettingsIcon,
+  NotificationsIcon,
+  ExpandMoreIcon,
+} from 'react-magma-icons';
+
 import {
   ButtonColor,
   ButtonShape,
@@ -10,10 +16,10 @@ import {
   ButtonType,
   ButtonVariant,
 } from '../Button';
-
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
-import { Story, Meta } from '@storybook/react/types-6-0';
+
+import { IconButton, IconButtonProps } from '.';
 
 const Template: Story<IconButtonProps> = args => (
   <IconButton icon={<SettingsIcon />} {...args}>
@@ -116,24 +122,28 @@ IconOnly.args = {
   onClick: () => {},
 };
 
-const AnimatedIconTemplate: Story<IconButtonProps> = (props) => {
+const AnimatedIconTemplate: Story<IconButtonProps> = props => {
   const [expanded, setExpanded] = React.useState(false);
 
   return (
     <>
-      <Global styles={css`
-        .animated-icon-button svg {
-          transition: transform 200ms;
-        }
-        
-        .animated-icon-button.expanded svg {
-          transform: rotate(180deg);
-        }
-      `} />
+      <Global
+        styles={css`
+          .animated-icon-button svg {
+            transition: transform 200ms;
+          }
+
+          .animated-icon-button.expanded svg {
+            transform: rotate(180deg);
+          }
+        `}
+      />
       <IconButton
         icon={<ExpandMoreIcon />}
         aria-label="Button"
-        className={expanded ? 'animated-icon-button expanded' : 'animated-icon-button'}
+        className={
+          expanded ? 'animated-icon-button expanded' : 'animated-icon-button'
+        }
         onClick={() => setExpanded(state => !state)}
         {...props}
       />

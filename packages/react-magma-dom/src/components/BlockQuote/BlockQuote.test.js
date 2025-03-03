@@ -1,9 +1,12 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { BlockQuote, BlockQuoteItem } from '.';
-import { magma } from '../../theme/magma';
+
 import { render } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
+
+import { BlockQuote, BlockQuoteItem } from '.';
 
 const TEXT = 'Test Text';
 
@@ -28,7 +31,7 @@ describe('BlockQuote', () => {
   it('should render the component with the correct styles', () => {
     const testId = 'test-id';
 
-    const { getByTestId } = render(<BlockQuote testId={testId}></BlockQuote>);
+    const { getByTestId } = render(<BlockQuote testId={testId} />);
 
     const blockquote = getByTestId(testId);
 
@@ -140,7 +143,7 @@ describe('BlockQuote', () => {
       <ThemeContext.Provider
         value={{ ...magma, colors: { ...magma.colors, primary: 'black' } }}
       >
-        <BlockQuote borderStyle="primary" testId={testId}></BlockQuote>
+        <BlockQuote borderStyle="primary" testId={testId} />
       </ThemeContext.Provider>
     );
 

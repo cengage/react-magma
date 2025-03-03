@@ -1,5 +1,10 @@
 import React from 'react';
+
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { SettingsIcon } from 'react-magma-icons';
+
 import { Button, ButtonColor, ButtonType } from '../Button';
+import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { Checkbox } from '../Checkbox';
 import { Combobox } from '../Combobox';
 import { DatePicker } from '../DatePicker';
@@ -9,23 +14,21 @@ import {
   DropdownContent,
   DropdownMenuItem,
 } from '../Dropdown';
-import { Form, FormProps } from '.';
 import { FormGroup } from '../FormGroup';
 import { IconButton } from '../IconButton';
 import { Input } from '../Input';
 import { Paragraph } from '../Paragraph';
 import { PasswordInput } from '../PasswordInput';
-import { RadioGroup } from '../RadioGroup';
 import { Radio } from '../Radio';
+import { RadioGroup } from '../RadioGroup';
 import { Search } from '../Search';
 import { Select } from '../Select';
 import { Textarea } from '../Textarea';
 import { TimePicker } from '../TimePicker';
 import { Toggle } from '../Toggle';
 import { Tooltip } from '../Tooltip';
-import { SettingsIcon } from 'react-magma-icons';
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
+
+import { Form, FormProps } from '.';
 
 export default {
   component: Form,
@@ -37,7 +40,10 @@ const Template: Story<FormProps> = args => (
 );
 
 const Actions = () => (
-  <ButtonGroup alignment={ButtonGroupAlignment.right} color={ButtonColor.secondary}>
+  <ButtonGroup
+    alignment={ButtonGroupAlignment.right}
+    color={ButtonColor.secondary}
+  >
     <Button>Cancel</Button>
     <Button type={ButtonType.submit} color={ButtonColor.primary}>
       Submit

@@ -1,11 +1,12 @@
 import React from 'react';
+
 import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import useFieldApi from '@data-driven-forms/react-form-renderer/use-field-api';
-import { v4 as uuidv4 } from 'uuid';
 import {
   Toggle as MagmaToggle,
   ToggleProps as MagmaToggleProps,
 } from 'react-magma-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 export type ToggleProps = MagmaToggleProps & UseFieldApiConfig;
 

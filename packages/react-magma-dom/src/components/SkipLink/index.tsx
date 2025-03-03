@@ -1,8 +1,10 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+
+import { I18nContext } from '../../i18n';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { Hyperlink, HyperlinkProps } from '../Hyperlink';
-import { I18nContext } from '../../i18n';
-import styled from '@emotion/styled';
 
 export const TARGET_ID = 'reactMagmaMainContent';
 

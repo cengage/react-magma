@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { act, render, fireEvent } from '@testing-library/react';
-import { HelperInformation } from './HelperInformation';
 import userEvent from '@testing-library/user-event';
+
+import { HelperInformation } from './HelperInformation';
 
 describe('Calendar Month', () => {
   beforeEach(() => {
@@ -13,9 +15,7 @@ describe('Calendar Month', () => {
   });
 
   it('helper information should be visible when open', async () => {
-    const { getByText } = render(
-      <HelperInformation isOpen={true} />
-    );
+    const { getByText } = render(<HelperInformation isOpen />);
 
     expect(getByText(/keyboard shortcuts/i)).toBeInTheDocument();
   });
@@ -34,7 +34,7 @@ describe('Calendar Month', () => {
     rerender(
       <>
         <button>Click</button>
-        <HelperInformation isOpen={true} onClose={onCloseSpy} />
+        <HelperInformation isOpen onClose={onCloseSpy} />
       </>
     );
 
@@ -48,9 +48,7 @@ describe('Calendar Month', () => {
   });
 
   it('should hold focus inside the helper information', () => {
-    const { getByLabelText } = render(
-      <HelperInformation isOpen={true} />
-    );
+    const { getByLabelText } = render(<HelperInformation isOpen />);
 
     const button = getByLabelText('Close Calendar Widget');
 

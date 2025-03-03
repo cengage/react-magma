@@ -1,10 +1,13 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { TreeItem, TreeView } from '.';
+
 import { render, getByTestId } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { magma } from '../../theme/magma';
 import { transparentize } from 'polished';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+
+import { TreeItem, TreeView } from '.';
 
 const labelText = 'Tree Item Node 0';
 const itemId = 'node0';

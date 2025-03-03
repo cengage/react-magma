@@ -17,4 +17,5 @@
     "markdown"
   ],
   "prettier.requireConfig": true,
+  "files.insertFinalNewline": true
 }

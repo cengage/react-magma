@@ -1,18 +1,19 @@
 import React from 'react';
-import styled from '@emotion/styled';
-import { css } from '@emotion/react';
-import { transparentize } from 'polished';
-import { TabsOrientation } from './shared';
-import { ThemeInterface } from '../../theme/magma';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { I18nContext } from '../../i18n';
 
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
 import {
   ArrowBackIosIcon,
   ExpandLessIcon,
   ExpandMoreIcon,
   ArrowForwardIosIcon,
 } from 'react-magma-icons';
+
+import { TabsOrientation } from './shared';
+import { I18nContext } from '../../i18n';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface ScrollButtonProps
   extends React.HTMLAttributes<HTMLButtonElement> {

@@ -1,13 +1,6 @@
 import React, { forwardRef, useContext, useEffect, useState } from 'react';
 
 import {
-  CheckCircleIcon,
-  CloseIcon,
-  DeleteIcon,
-  ErrorIcon,
-} from 'react-magma-icons';
-
-import {
   ButtonColor,
   ButtonVariant,
   Card,
@@ -24,13 +17,18 @@ import {
   Transition,
   Spinner,
   useIsInverse,
-  styled
+  styled,
 } from 'react-magma-dom';
+import {
+  CheckCircleIcon,
+  CloseIcon,
+  DeleteIcon,
+  ErrorIcon,
+} from 'react-magma-icons';
 
 import { FileIcon } from './FileIcon';
 import { FilePreview } from './FilePreview';
 import { formatFileSize } from './utils';
-
 
 export interface PreviewProps extends Omit<FlexProps, 'behavior'> {
   accept?: string | string[];

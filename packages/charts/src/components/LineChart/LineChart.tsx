@@ -1,4 +1,12 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+import {
+  I18nContext,
+  ThemeContext,
+  ThemeInterface,
+  I18nInterface,
+} from 'react-magma-dom';
 import {
   VictoryAxis,
   VictoryAxisProps,
@@ -12,20 +20,11 @@ import {
   VictoryVoronoiContainer,
 } from 'victory';
 
-import {
-  I18nContext,
-  ThemeContext,
-  ThemeInterface,
-  I18nInterface,
-} from 'react-magma-dom';
-
-import { magmaTheme } from './magma-charts';
-import { AxisTooltip, GraphTooltip } from './GraphTooltip';
-import { CustomScatterDataComponent } from './CustomPointComponent';
 import { CustomAxisComponent } from './CustomAxisComponent';
+import { CustomScatterDataComponent } from './CustomPointComponent';
+import { AxisTooltip, GraphTooltip } from './GraphTooltip';
 import { LegendButton } from './LegendButton';
-
-import styled from '@emotion/styled';
+import { magmaTheme } from './magma-charts';
 
 export type LineChartAxisStyle = VictoryAxisProps['style'];
 export type DataGetterPropType = VictoryLineProps['x'];

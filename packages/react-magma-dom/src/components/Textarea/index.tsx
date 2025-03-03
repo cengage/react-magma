@@ -1,19 +1,21 @@
 import * as React from 'react';
 import { useState } from 'react';
+
+import styled from '@emotion/styled';
+
+import { useIsInverse } from '../../inverse';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useGenerateId, Omit } from '../../utils';
+import {
+  FormFieldContainer,
+  FormFieldContainerBaseProps,
+} from '../FormFieldContainer';
 import {
   inputBaseStyles,
   InputBaseStylesProps,
   InputWrapperStylesProps,
   inputWrapperStyles,
 } from '../InputBase';
-import {
-  FormFieldContainer,
-  FormFieldContainerBaseProps,
-} from '../FormFieldContainer';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId, Omit } from '../../utils';
-import { useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
 
 export interface TextareaProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'>,
@@ -77,7 +79,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
     const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
 
-    const maxLengthNum = !hasCharacterCounter && maxLength ? maxLength : undefined;
+    const maxLengthNum =
+      !hasCharacterCounter && maxLength ? maxLength : undefined;
 
     const [value, setValue] = React.useState<
       string | ReadonlyArray<string> | number

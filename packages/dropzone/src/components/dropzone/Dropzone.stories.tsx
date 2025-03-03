@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { Dropzone, DropzoneProps, OnSendFileProps } from './Dropzone';
+import React, { useState } from 'react';
+
 import { Textarea, Datagrid, magma } from 'react-magma-dom';
-import React from 'react';
+
+import { Dropzone, DropzoneProps, OnSendFileProps } from './Dropzone';
 
 function csvJSON(csv: string) {
   const lines = csv.split('\n');
@@ -30,7 +31,7 @@ function csvJSON(csv: string) {
 
 const onSendFile = (props: OnSendFileProps) => {
   const { onProgress, onFinish, file } = props;
-  let percent: number = 1;
+  let percent = 1;
 
   const interval = setInterval(() => {
     percent++;
@@ -94,7 +95,7 @@ export const Default = (args: DropzoneProps) => {
         maxFiles={5}
         maxSize={1024 * 1024}
         onSendFile={onSendFile}
-        sendFiles={true}
+        sendFiles
         labelText="Upload files"
         helperMessage="Only PNG, JPG, and SVG files with a max size of 1MB"
       />

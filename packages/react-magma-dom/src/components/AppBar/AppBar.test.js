@@ -1,8 +1,11 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { AppBar } from '.';
+
 import { render } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+
+import { AppBar } from '.';
 
 describe('AppBar', () => {
   it('should find element by testId', () => {

@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
 interface TreeItemContextInterface {

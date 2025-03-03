@@ -12,6 +12,14 @@ module.exports = {
   rules: {
     'react/prop-types': [0],
 
+    // TODO : Change To errors when ready
+    'react-hooks/exhaustive-deps': 'warn',
+    '@typescript-eslint/ban-ts-comment': 'warn',
+    '@typescript-eslint/no-this-alias': 'warn',
+    'prefer-spread': 'warn',
+    'prefer-const': 'warn',
+    'no-irregular-whitespace': 'warn',
+
     // Import sorting
     'import/order': [
       'error',
@@ -45,7 +53,6 @@ module.exports = {
     'react/jsx-key': 'error',
     'react/self-closing-comp': 'warn',
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
 
     // TypeScript rules
     '@typescript-eslint/no-unused-vars': [
@@ -56,7 +63,11 @@ module.exports = {
         caughtErrorsIgnorePattern: '^_',
       },
     ],
-    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/ban-types': 'warn',
 
     // General code quality
     'no-console': ['warn', { allow: ['warn', 'error'] }],

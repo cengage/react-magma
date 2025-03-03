@@ -1,9 +1,12 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { StyledButton } from '.';
+
 import { act, render, fireEvent } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 import { transparentize } from 'polished';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+
+import { StyledButton } from '.';
 
 describe('Styled Button', () => {
   const text = 'test text';

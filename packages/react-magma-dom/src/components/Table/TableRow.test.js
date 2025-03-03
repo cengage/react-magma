@@ -1,4 +1,9 @@
 import React from 'react';
+
+import { render } from '@testing-library/react';
+
+import { magma } from '../../theme/magma';
+
 import {
   Table,
   TableBody,
@@ -9,8 +14,6 @@ import {
   TableSortDirection,
   TableHeaderCell,
 } from '.';
-import { render } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 
 describe('Table Row', () => {
   it('should find element by testId', () => {

@@ -1,16 +1,16 @@
-import { transform } from '@babel/core';
-import { Language } from 'prism-react-renderer';
 import React, { HTMLAttributes, useContext } from 'react';
-import { LiveError, LiveProvider, LivePreview } from 'react-live';
 
-import * as SCHEMA from '@react-magma/schema-renderer';
-import * as MAGMA from 'react-magma-dom';
-import * as ICONS from 'react-magma-icons';
-import styled from '@emotion/styled';
-import { es, zhCN } from 'date-fns/locale';
+import { transform } from '@babel/core';
 import * as HEADER from '@cengage-patterns/header';
+import styled from '@emotion/styled';
 import * as CHARTS from '@react-magma/charts';
 import * as DROPZONE from '@react-magma/dropzone';
+import * as SCHEMA from '@react-magma/schema-renderer';
+import { es, zhCN } from 'date-fns/locale';
+import { Language } from 'prism-react-renderer';
+import { LiveError, LiveProvider, LivePreview } from 'react-live';
+import * as MAGMA from 'react-magma-dom';
+import * as ICONS from 'react-magma-icons';
 
 import { CodeBlockContext } from './context';
 

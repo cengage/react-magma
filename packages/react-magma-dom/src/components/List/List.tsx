@@ -1,10 +1,12 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { magma, ThemeInterface } from '../../theme/magma';
-import { TypographyVisualStyle, TypographyComponent } from '../Typography';
-import { InverseContext, useIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
+
+import { InverseContext, useIsInverse } from '../../inverse';
+import { magma, ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { TypographyVisualStyle, TypographyComponent } from '../Typography';
 
 /**
  * @children required
@@ -122,8 +124,8 @@ const ListStyles = props => css`
     margin: ${props.iconSize === 'small'
       ? '0 16px 0 0'
       : props.iconSize === 'large'
-      ? '0 26px 0 0'
-      : '0 18px 0 0'};
+        ? '0 26px 0 0'
+        : '0 18px 0 0'};
   }
   p {
     font-size: 0.8em;

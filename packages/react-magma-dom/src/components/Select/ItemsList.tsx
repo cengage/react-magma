@@ -1,13 +1,12 @@
+import React from 'react';
+
 import styled from '@emotion/styled';
 import { ReferenceType } from '@floating-ui/react-dom';
 import {
   UseSelectGetItemPropsOptions,
   UseSelectGetMenuPropsOptions,
 } from 'downshift';
-import React from 'react';
-import {
-  instanceOfToBeCreatedItemObject,
-} from '.';
+
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { convertStyleValueToString } from '../../utils';
@@ -19,6 +18,8 @@ import {
 } from './components';
 import { StyledCard, StyledItem, StyledList } from './shared';
 import { isItemDisabled } from './utils';
+
+import { instanceOfToBeCreatedItemObject } from '.';
 
 interface ItemsListProps<T> {
   customComponents?: SelectComponents<T>;
@@ -122,7 +123,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
               const itemString = instanceOfToBeCreatedItemObject(item)
                 ? item.label
                 : itemToString(item);
-              const isDisabled = isItemDisabled(item)
+              const isDisabled = isItemDisabled(item);
 
               const { ref, ...otherDownshiftItemProps } = getItemProps({
                 item,

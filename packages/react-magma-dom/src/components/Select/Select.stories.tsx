@@ -1,12 +1,15 @@
-import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
+
+import { Meta, Story } from '@storybook/react/types-6-0';
 import { HelpIcon } from 'react-magma-icons';
+
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
 import { IconButton } from '../IconButton';
 import { LabelPosition } from '../Label';
 import { Tooltip } from '../Tooltip';
+
 import { MultiSelectProps, Select, SelectOptions, SelectProps } from './';
 
 const Template: Story<SelectProps<SelectOptions>> = args => (

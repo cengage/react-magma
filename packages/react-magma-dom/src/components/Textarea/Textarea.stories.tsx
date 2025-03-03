@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+
+import { Meta, Story } from '@storybook/react/types-6-0';
+
 import { Button } from '../Button';
 import { Container } from '../Container';
 import { LabelPosition } from '../Label';
-import { Meta, Story } from '@storybook/react/types-6-0';
 import { Spacer } from '../Spacer';
+
 import { Textarea, TextareaProps } from '.';
 
 const Template: Story<TextareaProps> = args => (

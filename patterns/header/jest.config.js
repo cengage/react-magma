@@ -1,4 +1,5 @@
 const baseConfig = require('../../jest.config');
+
 const name = __dirname.split('/').pop();
 module.exports = {
   ...baseConfig,

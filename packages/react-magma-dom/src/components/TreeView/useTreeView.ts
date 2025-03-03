@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { useDescendants } from '../../hooks/useDescendants';
+
 import {
   TreeItemSelectedInterface,
   TreeViewItemInterface,
 } from './TreeViewContext';
+import { TreeViewSelectable } from './types';
 import {
   getInitialExpandedIds,
   getInitialItems,
@@ -14,7 +15,7 @@ import {
   isEqualArrays,
   getChildrenIds,
 } from './utils';
-import { TreeViewSelectable } from './types';
+import { useDescendants } from '../../hooks/useDescendants';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
 export { TreeItemSelectedInterface };
@@ -277,7 +278,7 @@ export function useTreeView(props: UseTreeViewProps) {
 
     prevSelectedItemsRef.current = nextSelectedItems;
     onSelectedItemChange && onSelectedItemChange(nextSelectedItems);
-  }, [items, selectable, hasPreselectedItems]);
+  }, [items, selectable, hasPreselectedItems, onSelectedItemChange]);
 
   const selectItem = React.useCallback(
     ({
@@ -351,7 +352,7 @@ export function useTreeView(props: UseTreeViewProps) {
           });
         },
 
-        showMore(fromSelectAll: boolean = false) {
+        showMore(fromSelectAll = false) {
           if (fromSelectAll) {
             setItems(() => {
               return toggleAllMulti({
@@ -377,7 +378,7 @@ export function useTreeView(props: UseTreeViewProps) {
               isDisabled,
             })
           );
-        }
+        },
       };
     }
   }, [selectItem, isDisabled, children]);
@@ -398,7 +399,15 @@ export function useTreeView(props: UseTreeViewProps) {
 
       setItemsNeedUpdate(false);
     }
-  }, [itemsNeedUpdate, children]);
+  }, [
+    itemsNeedUpdate,
+    children,
+    selectedItems,
+    checkParents,
+    checkChildren,
+    selectable,
+    isDisabled,
+  ]);
 
   const [initialExpandedItemsNeedUpdate, setInitialExpandedItemsNeedUpdate] =
     React.useState(false);

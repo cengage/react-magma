@@ -1,17 +1,19 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+import { CloseIcon, KeyboardIcon } from 'react-magma-icons';
+
 import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { Tooltip } from '../Tooltip';
-import { CloseIcon, KeyboardIcon } from 'react-magma-icons';
 import { CalendarContext } from './CalendarContext';
-import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
-import { ThemeContext } from '../../theme/ThemeContext';
+import { CalendarHeader } from './CalendarHeader';
 import { HelperInformation } from './HelperInformation';
-import { usePrevious } from '../../utils';
-import { I18nContext } from '../../i18n';
 import { useFocusLock } from '../../hooks/useFocusLock';
-import styled from '@emotion/styled';
+import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { usePrevious } from '../../utils';
 
 interface CalendarMonthProps {
   calendarOpened?: boolean;
@@ -20,7 +22,6 @@ interface CalendarMonthProps {
   handleCloseButtonClick: (event: React.SyntheticEvent) => void;
   setDateFocused?: (value: boolean) => void;
 }
-
 
 const CalendarContainer = styled.div<{ isInverse?: boolean }>`
   background: ${props =>

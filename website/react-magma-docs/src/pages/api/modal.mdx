@@ -25,6 +25,7 @@ This can be done by supplementing the button label or link text with "(opens mod
 
 ```tsx
 import React from 'react';
+
 import {
   Button,
   Hyperlink,
@@ -32,6 +33,7 @@ import {
   Paragraph,
   VisuallyHidden,
 } from 'react-magma-dom';
+
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const buttonRef = React.useRef();
@@ -71,6 +73,7 @@ Sizes for modals include `small`, `medium`, and `large`, with `medium` being the
 
 ```tsx
 import React from 'react';
+
 import {
   Button,
   ButtonSize,
@@ -80,6 +83,7 @@ import {
   VisuallyHidden,
   ButtonGroup,
 } from 'react-magma-dom';
+
 export function Example() {
   const [showSmallModal, setShowSmallModal] = React.useState(false);
   const [showLargeModal, setShowLargeModal] = React.useState(false);
@@ -152,6 +156,7 @@ When a reference to the header is needed, use the headerRef prop. When using a c
 
 ```tsx
 import React from 'react';
+
 import {
   Button,
   ButtonColor,
@@ -169,7 +174,6 @@ import {
   ButtonGroup,
   ButtonGroupAlignment,
 } from 'react-magma-dom';
-
 import { CheckIcon } from 'react-magma-icons';
 
 export function Example() {
@@ -299,7 +303,9 @@ The close button can be hidden by using the `isCloseButtonHidden` prop. If this 
 
 ```tsx
 import React from 'react';
+
 import { Button, Modal, Paragraph } from 'react-magma-dom';
+
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const buttonRef = React.useRef();
@@ -334,7 +340,9 @@ If you would like to add a custom close button to the `Modal` be sure not to use
 
 ```tsx
 import React from 'react';
+
 import { Button, Modal, Paragraph, VisuallyHidden } from 'react-magma-dom';
+
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const [magmaCloseCalledTimes, setMagmaCloseCalledTimes] = React.useState(0);
@@ -380,6 +388,7 @@ Although we don't recommend using nested modals, the ability for one nested moda
 
 ```tsx
 import React from 'react';
+
 import {
   Button,
   Modal,
@@ -387,6 +396,7 @@ import {
   Paragraph,
   VisuallyHidden,
 } from 'react-magma-dom';
+
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const [showModal2, setShowModal2] = React.useState(false);
@@ -412,7 +422,9 @@ export function Example() {
       >
         <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
 
-        <Button onClick={() => setShowModal2(true)} ref={nestedButtonRef}>Show Modal 2</Button>
+        <Button onClick={() => setShowModal2(true)} ref={nestedButtonRef}>
+          Show Modal 2
+        </Button>
       </Modal>
       <Button onClick={() => setShowModal(true)} ref={buttonRef}>
         Show Modal
@@ -437,6 +449,7 @@ Show confirmation modal when trying to close the main modal.
 
 ```tsx
 import React from 'react';
+
 import {
   Button,
   ButtonGroup,
@@ -445,6 +458,7 @@ import {
   ModalSize,
   Paragraph,
 } from 'react-magma-dom';
+
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const [showConfirmationModal, setShowConfirmationModal] =
@@ -526,6 +540,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import {
   Button,
   Hyperlink,
@@ -535,6 +550,7 @@ import {
   Card,
   CardBody,
 } from 'react-magma-dom';
+
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const buttonRef = React.useRef();

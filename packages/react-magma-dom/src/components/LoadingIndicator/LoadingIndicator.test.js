@@ -1,8 +1,11 @@
 import React from 'react';
-import { LoadingIndicator } from '.';
+
 import { render, act } from '@testing-library/react';
+
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+
+import { LoadingIndicator } from '.';
 
 describe('Loading Indicator', () => {
   jest.setTimeout(20000);

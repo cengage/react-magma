@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import styled from '@emotion/styled';
-import { convertTextToId } from '../../utils';
+import PropTypes from 'prop-types';
 import {
   useIsInverse,
   NavTabs,
@@ -9,6 +9,8 @@ import {
   magma,
   TabsOrientation,
 } from 'react-magma-dom';
+
+import { convertTextToId } from '../../utils';
 
 export const StyledTabHeading = styled.p`
   font-size: ${magma.typeScale.size01.fontSize};

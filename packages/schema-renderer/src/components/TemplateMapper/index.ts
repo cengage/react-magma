@@ -1,8 +1,10 @@
 import * as React from 'react';
+
+import { FormTemplateRenderProps } from '@data-driven-forms/react-form-renderer';
+
 import { BasicTemplate } from '../BasicTemplate';
 import { FormTemplate } from '../FormTemplate';
 
-import { FormTemplateRenderProps } from '@data-driven-forms/react-form-renderer';
 export interface TemplateMapper {
   [key: string]: (props: FormTemplateRenderProps) => React.ReactElement;
 }

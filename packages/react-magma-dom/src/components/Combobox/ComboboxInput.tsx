@@ -1,17 +1,18 @@
+import React from 'react';
+
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { ReferenceType } from '@floating-ui/react-dom';
 import {
   UseComboboxGetComboboxPropsOptions,
   UseComboboxGetInputPropsOptions,
   UseComboboxGetToggleButtonPropsOptions,
 } from 'downshift';
-import React from 'react';
+import { transparentize } from 'polished';
+
 import { ThemeContext } from '../../theme/ThemeContext';
 import { inputBaseStyles } from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
-
-import { ReferenceType } from '@floating-ui/react-dom';
-import { transparentize } from 'polished';
 import { SelectedItemsWrapper } from '../Select/shared';
 
 const ComboBoxContainer = styled.div<{

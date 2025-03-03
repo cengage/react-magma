@@ -1,11 +1,12 @@
 import React from 'react';
+
 import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import useFieldApi from '@data-driven-forms/react-form-renderer/use-field-api';
-import { v4 as uuidv4 } from 'uuid';
 import {
   Textarea as MagmaTextarea,
   TextareaProps as MagmaTextareaProps,
 } from 'react-magma-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 export type TextareaProps = MagmaTextareaProps & UseFieldApiConfig;
 

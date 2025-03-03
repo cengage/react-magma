@@ -1,9 +1,11 @@
 import * as React from 'react';
+
 import isPropValid from '@emotion/is-prop-valid';
-import { ThemeContext } from '../../theme/ThemeContext';
+import styled from '@emotion/styled';
+
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 /**
  * @children required
@@ -19,7 +21,6 @@ export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
    */
   testId?: string;
 }
-
 
 const StyledList = styled('ol', {
   shouldForwardProp: isPropValid,

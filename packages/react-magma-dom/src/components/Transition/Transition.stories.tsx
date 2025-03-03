@@ -1,6 +1,8 @@
 import React from 'react';
-import { Transition } from '.';
+
 import { Button } from '../Button';
+
+import { Transition } from '.';
 
 const info = {
   component: Transition,

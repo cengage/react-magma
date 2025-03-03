@@ -1,4 +1,5 @@
 import React, { useLayoutEffect } from 'react';
+
 import { TabsOrientation } from './shared';
 import {
   animate,
@@ -127,7 +128,7 @@ export const ScrollSpy = ({ handleScroll }) => {
   useLayoutEffect(() => {
     const eachArea = document.querySelectorAll('[data-scrollspy]');
     const scrollables = [].slice.call(eachArea);
-    for (let scrollable of scrollables) {
+    for (const scrollable of scrollables) {
       //Fixes Jest
       if (!window.IntersectionObserver) return;
 

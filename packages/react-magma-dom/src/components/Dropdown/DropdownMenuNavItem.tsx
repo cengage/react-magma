@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { MenuItemStyles, IconWrapper } from './DropdownMenuItem';
-import { DropdownContext } from './Dropdown';
-import { IconProps } from 'react-magma-icons';
-import { Omit, useForkedRef } from '../../utils';
+
 import styled from '@emotion/styled';
+import { IconProps } from 'react-magma-icons';
+
+import { DropdownContext } from './Dropdown';
+import { MenuItemStyles, IconWrapper } from './DropdownMenuItem';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { Omit, useForkedRef } from '../../utils';
 
 export interface DropdownMenuNavItemProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> {
@@ -17,7 +19,6 @@ export interface DropdownMenuNavItemProps
    */
   to: string;
 }
-
 
 const StyledItem = styled.a<{
   disabled?: boolean;

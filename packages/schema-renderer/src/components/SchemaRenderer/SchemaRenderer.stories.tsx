@@ -1,13 +1,12 @@
 import React from 'react';
-import { Schema, SchemaRenderer, SchemaRendererProps } from './SchemaRenderer';
-
-import { componentTypes } from '../ComponentMapper';
 
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { templateTypes } from '../TemplateMapper';
-
 import { Hyperlink, InputType } from 'react-magma-dom';
+
+import { Schema, SchemaRenderer, SchemaRendererProps } from './SchemaRenderer';
+import { componentTypes } from '../ComponentMapper';
+import { templateTypes } from '../TemplateMapper';
 
 const baseSchema: Schema = {
   title: 'Form Header',
@@ -44,7 +43,7 @@ Form.args = {
         component: componentTypes.PASSWORD_INPUT,
         name: 'password',
         labelText: 'Password',
-        type: InputType.password
+        type: InputType.password,
       },
       {
         component: componentTypes.COMBOBOX,

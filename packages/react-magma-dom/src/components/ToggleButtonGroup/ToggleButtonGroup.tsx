@@ -1,11 +1,11 @@
 import * as React from 'react';
 
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useGenerateId } from '../../utils';
 import { ButtonColor, ButtonSize } from '../Button';
 import { ButtonGroup, ButtonGroupProps } from '../ButtonGroup';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
 import { ToggleButton, ToggleButtonProps } from '../ToggleButton/ToggleButton';
-import { useGenerateId } from '../../utils';
 
 /**
  * @children required

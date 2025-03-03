@@ -1,7 +1,9 @@
-import { useFocusLock } from './useFocusLock';
 import React from 'react';
+
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import { useFocusLock } from './useFocusLock';
 import { Button } from '../components/Button';
 
 const TEST_ID_BUTTON_OUTSIDE_MODAL = 'test-id-button-outside';
@@ -358,9 +360,9 @@ describe('useFocusLock', () => {
     expect(disabledButtonInsideModal).not.toHaveFocus();
 
     expect(getByText('Test text')).toHaveFocus();
-    
+
     userEvent.tab();
-    
+
     expect(getByText('Test text')).toHaveFocus();
   });
 });

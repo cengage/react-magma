@@ -6,6 +6,8 @@
  */
 
 import React, { useImperativeHandle } from 'react';
+
+import { transparentize } from 'polished';
 import {
   useDropzone,
   DropzoneOptions,
@@ -30,11 +32,10 @@ import {
   useIsInverse,
   styled,
 } from 'react-magma-dom';
-
 import { CloudUploadIcon } from 'react-magma-icons';
-import { Preview } from './Preview';
+
 import { FilePreview, FileError } from './FilePreview';
-import { transparentize } from 'polished';
+import { Preview } from './Preview';
 
 export interface OnSendFileProps {
   file: FilePreview;
@@ -148,14 +149,14 @@ const Container = styled(Flex)<
     noDrag
       ? `0px`
       : dragState === 'dragReject' || dragState === 'error'
-      ? isInverse
-        ? `1px dashed ${theme.colors.danger300}`
-        : `1px dashed ${theme.colors.danger}`
-      : dragState === 'dragActive'
-      ? `1px dashed ${theme.colors.primary}`
-      : dragState === 'dragAccept'
-      ? `1px dashed ${theme.colors.success}`
-      : `1px dashed ${theme.colors.neutral400}`};
+        ? isInverse
+          ? `1px dashed ${theme.colors.danger300}`
+          : `1px dashed ${theme.colors.danger}`
+        : dragState === 'dragActive'
+          ? `1px dashed ${theme.colors.primary}`
+          : dragState === 'dragAccept'
+            ? `1px dashed ${theme.colors.success}`
+            : `1px dashed ${theme.colors.neutral400}`};
 
   border-style: ${({ dragState = 'default' }) =>
     dragState === 'error' ? 'solid' : 'dashed'};
@@ -163,8 +164,8 @@ const Container = styled(Flex)<
     noDrag
       ? 'transparent'
       : isInverse
-      ? transparentize(0.75, theme.colors.neutral900)
-      : theme.colors.neutral200};
+        ? transparentize(0.75, theme.colors.neutral900)
+        : theme.colors.neutral200};
   outline: none;
   transition: ${({ noDrag }) => `border ${noDrag ? 0 : '.24s'} ease-in-out`};
 `;
@@ -275,12 +276,12 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
     const dragState: DragState = errorMessage
       ? 'error'
       : isDragAccept
-      ? 'dragAccept'
-      : isDragReject
-      ? 'dragReject'
-      : isDragActive
-      ? 'dragActive'
-      : 'default';
+        ? 'dragAccept'
+        : isDragReject
+          ? 'dragReject'
+          : isDragActive
+            ? 'dragActive'
+            : 'default';
 
     const handleRemoveFile = (removedFile: FilePreview) => {
       setFiles(files => files.filter(file => file !== removedFile));
@@ -375,8 +376,8 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
           maxFileError
             ? 'too-many-files'
             : minFileError
-            ? 'too-few-files'
-            : null,
+              ? 'too-few-files'
+              : null,
           { minFiles, maxFiles }
         )
       );

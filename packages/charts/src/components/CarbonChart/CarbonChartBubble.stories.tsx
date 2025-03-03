@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { CarbonChart, CarbonChartProps, CarbonChartType } from '.';
 import { Card } from 'react-magma-dom';
+
+import { CarbonChart, CarbonChartProps, CarbonChartType } from '.';
 
 export default {
   component: CarbonChart,
@@ -123,7 +125,7 @@ BubbleLinear.args = {
   },
 };
 
-// Uncomment when adding new charts. Issues: #1054, #1055, #1056 
+// Uncomment when adding new charts. Issues: #1054, #1055, #1056
 
 // export const BubbleTimeSeries = Template.bind({});
 // BubbleTimeSeries.args = {

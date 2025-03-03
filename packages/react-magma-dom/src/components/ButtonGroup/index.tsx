@@ -1,16 +1,17 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
 
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 import {
   ButtonColor,
   ButtonSize,
   ButtonVariant,
   ButtonTextTransform,
 } from '../Button';
-import { transparentize } from 'polished';
 
 export enum ButtonGroupAlignment {
   left = 'left', // default
@@ -83,7 +84,6 @@ export interface ButtonGroupContextInterface {
   isInverse?: boolean;
 }
 
-
 export const ButtonGroupContext =
   React.createContext<ButtonGroupContextInterface>({});
 
@@ -142,8 +142,8 @@ function buildNoSpaceBorderColor(props) {
 const StyledButtonGroup = styled.div<{
   alignment?: ButtonGroupAlignment;
   color?: ButtonColor;
-  isInverse?: Boolean;
-  noSpace?: Boolean;
+  isInverse?: boolean;
+  noSpace?: boolean;
   orientation?: ButtonGroupOrientation;
   variant?: ButtonVariant;
 }>`

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import styled from '@emotion/styled';
+
 import { TabsContainerContext } from './TabsContainer';
 
 interface TabPanelContainerProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -29,8 +31,8 @@ export const TabPanelsContainer = React.forwardRef<
           typeof child.props.isInverse !== 'undefined'
             ? child.props.isInverse
             : typeof props.isInverse !== 'undefined'
-            ? props.isInverse
-            : isInverseContainer;
+              ? props.isInverse
+              : isInverseContainer;
 
         return React.cloneElement(child, { index, isInverse, key: index });
       })}

@@ -1,12 +1,15 @@
 import React from 'react';
-import { AppBar, AppBarProps, AppBarPosition } from './index';
+
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { ImageIcon, FavoriteIcon, WorkIcon } from 'react-magma-icons';
+
+import { magma } from '../../theme/magma';
 import { NavTabs, NavTab } from '../NavTabs';
 import { Search } from '../Search';
 import { Spacer } from '../Spacer';
 import { TabsIconPosition } from '../Tabs';
-import { magma } from '../../theme/magma';
-import { ImageIcon, FavoriteIcon, WorkIcon } from 'react-magma-icons';
-import { Story, Meta } from '@storybook/react/types-6-0';
+
+import { AppBar, AppBarProps, AppBarPosition } from './index';
 
 const Template: Story<AppBarProps> = args => (
   <AppBar {...args}>{args.children}</AppBar>
