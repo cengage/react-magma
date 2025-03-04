@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.2-next.4
+
+### Patch Changes
+
+- 0f00b9357: docs: Update supported React version
+
 ## 5.1.2-next.3
 
 ### Patch Changes
