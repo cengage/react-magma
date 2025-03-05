@@ -1,6 +1,7 @@
 {
   "name": "react-magma-docs",
-  "version": "5.1.2-next.3",
+  "description": "React Magma docs",
+  "version": "5.1.2-next.4",
   "private": true,
   "description": "React Magma docs",
   "keywords": [
