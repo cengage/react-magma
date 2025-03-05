@@ -12,6 +12,7 @@
   },
   "changesets": [
     "curly-singers-dress",
+    "feat-TreeView-add-expandAll-and-collapseAll",
     "fix-AppBar",
     "fix-Pagination-screenreader",
     "manually-sync-4.8.7",

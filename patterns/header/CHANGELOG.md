@@ -1,5 +1,12 @@
 # Change Log
 
+## 13.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [edbc5c0a2]
+  - react-magma-dom@4.9.0-next.3
+
 ## 12.0.1-next.0
 
 ### Patch Changes

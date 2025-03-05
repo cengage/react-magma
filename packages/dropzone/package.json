@@ -1,6 +1,6 @@
 {
   "name": "@react-magma/dropzone",
-  "version": "10.0.1-next.0",
+  "version": "11.0.0-next.1",
   "publishConfig": {
     "access": "public"
   },
@@ -30,7 +30,7 @@
     "@emotion/styled": "^11.13.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.8.1-next.0",
+    "react-magma-dom": "^4.9.0-next.3",
     "react-magma-icons": "^3.0.0"
   },
   "dependencies": {
@@ -42,7 +42,7 @@
     "@emotion/styled": "^11.13.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.8.1-next.0",
+    "react-magma-dom": "^4.9.0-next.3",
     "react-magma-icons": "^3.0.0"
   }
 }
