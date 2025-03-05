@@ -2,45 +2,34 @@
   "name": "react-magma-dom",
   "version": "4.8.1-next.1",
   "description": "",
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
-  "typings": "dist/index.d.ts",
-  "sideEffects": false,
-  "files": [
-    "dist",
-    "!dist/reports",
-    "lib"
-  ],
+  "keywords": [],
+  "homepage": "https://react-magma.cengage.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/cengage/react-magma.git",
     "directory": "packages/react-magma-dom"
   },
-  "homepage": "https://react-magma.cengage.com",
+  "license": "MIT",
+  "author": "",
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "!dist/reports",
+    "lib"
+  ],
   "scripts": {
-    "test": "tsdx test",
-    "test-watch": "tsdx test --watch",
     "build": "tsdx build",
+    "postbuild": "npm run generate-properties",
     "build-watch": "tsdx watch",
-    "generate-properties": "node scripts/generateJSON.js",
     "copy-changelog": "node scripts/copy-changelog.js",
+    "generate-properties": "node scripts/generateJSON.js",
     "lint": "eslint ./src",
     "prepublishOnly": "npm run copy-changelog",
-    "postbuild": "npm run generate-properties"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
-  "peerDependencies": {
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
-    "date-fns": "^2.12.0",
-    "downshift": "^5.4.5",
-    "framer-motion": "^4.1.11",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-magma-icons": "^3.0.0",
-    "uuid": "^8.3.0"
+    "test": "tsdx test",
+    "test-watch": "tsdx test --watch"
   },
   "dependencies": {
     "@emotion/react": "^11.13.0",
@@ -56,6 +45,17 @@
     "downshift": "^5.4.5",
     "framer-motion": "^4.1.11",
     "mkdirp": "^1.0.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-magma-icons": "^3.0.0",
+    "uuid": "^8.3.0"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "date-fns": "^2.12.0",
+    "downshift": "^5.4.5",
+    "framer-motion": "^4.1.11",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-magma-icons": "^3.0.0",

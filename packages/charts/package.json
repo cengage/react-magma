@@ -1,38 +1,27 @@
 {
   "name": "@react-magma/charts",
   "version": "10.0.1-next.1",
-  "publishConfig": {
-    "access": "public"
-  },
   "license": "MIT",
-  "source": "src/index.ts",
+  "exports": {
+    ".": "./src",
+    "./src/components/CarbonChart/": "./styles.min.css"
+  },
   "main": "dist/charts.js",
-  "module": "dist/charts.modern.module.js",
   "umd:main": "dist/charts.umd.js",
+  "module": "dist/charts.modern.module.js",
+  "source": "src/index.ts",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
     "src",
     "src/components/CarbonChart/styles.min.css"
   ],
-  "engines": {
-    "npm": ">=7.3.0",
-    "node": ">=14.15.0"
-  },
   "scripts": {
     "build": "microbundle build --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx",
     "build-watch": "microbundle watch --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx",
+    "lint": "eslint ./src",
     "test": "jest",
-    "test-watch": "jest --watch",
-    "lint": "eslint ./src"
-  },
-  "peerDependencies": {
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.8.1-next.0",
-    "react-magma-icons": "^3.0.0"
+    "test-watch": "jest --watch"
   },
   "dependencies": {
     "@carbon/charts-react": "^1.14.8",
@@ -51,8 +40,19 @@
     "react-magma-dom": "^4.8.1-next.0",
     "react-magma-icons": "^3.0.0"
   },
-  "exports": {
-    ".": "./src",
-    "./src/components/CarbonChart/": "./styles.min.css"
+  "peerDependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-magma-dom": "^4.8.1-next.0",
+    "react-magma-icons": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=14.15.0",
+    "npm": ">=7.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

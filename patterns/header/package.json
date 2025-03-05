@@ -1,34 +1,24 @@
 {
-  "publishConfig": {
-    "access": "public"
-  },
+  "name": "@cengage-patterns/header",
   "version": "12.0.1-next.0",
+  "homepage": "https://react-magma.cengage.com/version/next/patterns/header/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cengage/react-magma.git",
+    "directory": "patterns/header"
+  },
   "license": "MIT",
   "main": "dist/index.js",
+  "module": "dist/header.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
     "src"
   ],
-  "engines": {
-    "node": ">=10"
-  },
   "scripts": {
     "build": "tsdx build",
-    "test": "jest",
-    "lint": "eslint ./src"
-  },
-  "peerDependencies": {
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
-    "@types/uuid": "^8.3.0",
-    "date-fns": "^2.12.0",
-    "downshift": "^5.4.5",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.8.1-next.0",
-    "react-magma-icons": "^3.0.0",
-    "uuid": "^8.3.0"
+    "lint": "eslint ./src",
+    "test": "jest"
   },
   "devDependencies": {
     "@emotion/react": "^11.13.0",
@@ -42,12 +32,22 @@
     "react-magma-icons": "^3.0.0",
     "uuid": "^8.3.0"
   },
-  "name": "@cengage-patterns/header",
-  "module": "dist/header.esm.js",
-  "homepage": "https://react-magma.cengage.com/version/next/patterns/header/",
-  "repository": {
-    "type": "git",
-    "directory": "patterns/header",
-    "url": "https://github.com/cengage/react-magma.git"
+  "peerDependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@types/uuid": "^8.3.0",
+    "date-fns": "^2.12.0",
+    "downshift": "^5.4.5",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-magma-dom": "^4.8.1-next.0",
+    "react-magma-icons": "^3.0.0",
+    "uuid": "^8.3.0"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
