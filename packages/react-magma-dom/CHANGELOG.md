@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.8.1-next.2
+
+### Patch Changes
+
+- ec6ed5466: fix(Pagination): Fix support for `page` in SimplePagination
+
 ## 4.8.1-next.1
 
 ### Patch Changes
