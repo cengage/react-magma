@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Link, navigate } from 'gatsby';
 import {
   Button,
@@ -7,6 +8,7 @@ import {
   Heading,
   Hyperlink,
 } from 'react-magma-dom';
+
 import { LayoutComponent } from '../components/LayoutComponent';
 
 const NotFoundPage = () => (

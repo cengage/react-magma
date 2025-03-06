@@ -1,7 +1,10 @@
 import React from 'react';
-import { Toggle } from '.';
-import { Card } from '../Card';
+
 import { Meta } from '@storybook/react/types-6-0';
+
+import { Card } from '../Card';
+
+import { Toggle } from '.';
 
 export default {
   component: Toggle,

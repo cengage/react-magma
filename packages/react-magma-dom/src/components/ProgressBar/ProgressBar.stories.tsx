@@ -1,10 +1,13 @@
 import React from 'react';
-import { Card, CardBody } from '../Card';
-import { ProgressBar, ProgressBarColor, ProgressBarProps } from '.';
+
 import { Story, Meta } from '@storybook/react/types-6-0';
+
 import { magma } from '../../theme/magma';
 import { Button } from '../Button';
+import { Card, CardBody } from '../Card';
 import { Input } from '../Input';
+
+import { ProgressBar, ProgressBarColor, ProgressBarProps } from '.';
 
 const Template: Story<ProgressBarProps> = args => <ProgressBar {...args} />;
 
@@ -79,23 +82,23 @@ export const CustomColor = args => {
 
   return (
     <>
-    <Card>
-    <CardBody>
-      Chart Colors
       <Card>
         <CardBody>
-          <ProgressBar {...args} color={color} />
+          Chart Colors
+          <Card>
+            <CardBody>
+              <ProgressBar {...args} color={color} />
+            </CardBody>
+          </Card>
+          <br />
+          <Card isInverse>
+            <CardBody>
+              <ProgressBar {...args} color={inverseColor} isInverse />
+            </CardBody>
+          </Card>
+          <br />
+          <Button onClick={changeBarColor}>Next Color</Button>
         </CardBody>
-      </Card>
-      <br />
-      <Card isInverse>
-        <CardBody>
-          <ProgressBar {...args} color={inverseColor} isInverse />
-        </CardBody>
-      </Card>
-      <br />
-      <Button onClick={changeBarColor}>Next Color</Button>
-      </CardBody>
       </Card>
       <br />
       <Card>

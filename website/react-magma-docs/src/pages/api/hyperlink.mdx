@@ -34,6 +34,7 @@ Links provide a lightweight option for navigation but like other interactive ele
 
 ```tsx
 import React from 'react';
+
 import { Hyperlink } from 'react-magma-dom';
 
 export function Example() {
@@ -51,6 +52,7 @@ Sometimes links can be styled as buttons in order to give them more weight on th
 
 ```tsx
 import React from 'react';
+
 import {
   ButtonColor,
   ButtonTextTransform,
@@ -107,6 +109,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import {
   Hyperlink,
   HyperlinkIconPosition,
@@ -138,7 +141,7 @@ export function Example() {
             target="_blank"
             to="./"
             hasUnderline={false}
-            icon={<KeyboardArrowLeftIcon aria-hidden={true} />}
+            icon={<KeyboardArrowLeftIcon aria-hidden />}
             iconPosition={HyperlinkIconPosition.left}
           >
             Back
@@ -149,7 +152,7 @@ export function Example() {
             target="_blank"
             to="./"
             hasUnderline={false}
-            icon={<KeyboardArrowRightIcon aria-hidden={true} />}
+            icon={<KeyboardArrowRightIcon aria-hidden />}
             iconPosition={HyperlinkIconPosition.right}
           >
             Next
@@ -161,7 +164,7 @@ export function Example() {
         styledAs="Button"
         target="_blank"
         to="./"
-        icon={<KeyboardArrowLeftIcon aria-hidden={true} />}
+        icon={<KeyboardArrowLeftIcon aria-hidden />}
         iconPosition={HyperlinkIconPosition.left}
       >
         Back
@@ -172,8 +175,8 @@ export function Example() {
         target="_blank"
         to="./"
         icon={[
-          <KeyboardArrowLeftIcon aria-hidden={true} key={0} />,
-          <KeyboardArrowRightIcon aria-hidden={true} key={1} />,
+          <KeyboardArrowLeftIcon aria-hidden key={0} />,
+          <KeyboardArrowRightIcon aria-hidden key={1} />,
         ]}
         iconPosition={HyperlinkIconPosition.both}
       >
@@ -184,7 +187,7 @@ export function Example() {
         styledAs="Button"
         target="_blank"
         to="./"
-        icon={<KeyboardArrowRightIcon aria-hidden={true} />}
+        icon={<KeyboardArrowRightIcon aria-hidden />}
         iconPosition={HyperlinkIconPosition.right}
       >
         Next
@@ -200,13 +203,13 @@ export function Example() {
               key={0}
               size={magma.iconSizes.xLarge}
               style={{ marginRight: magma.spaceScale.spacing03 }}
-              aria-hidden={true}
+              aria-hidden
             />,
             <OpenInNewIcon
               key={1}
               size={magma.iconSizes.xLarge}
               style={{ marginLeft: magma.spaceScale.spacing03 }}
-              aria-hidden={true}
+              aria-hidden
             />,
           ]}
           iconPosition={HyperlinkIconPosition.both}
@@ -223,13 +226,9 @@ export function Example() {
             <CalendarTodayIcon
               key={0}
               size={magma.iconSizes.large}
-              aria-hidden={true}
+              aria-hidden
             />,
-            <OpenInNewIcon
-              key={1}
-              size={magma.iconSizes.large}
-              aria-hidden={true}
-            />,
+            <OpenInNewIcon key={1} size={magma.iconSizes.large} aria-hidden />,
           ]}
           iconPosition={HyperlinkIconPosition.both}
         >
@@ -245,13 +244,9 @@ export function Example() {
             <CalendarTodayIcon
               key={0}
               size={magma.iconSizes.small}
-              aria-hidden={true}
+              aria-hidden
             />,
-            <OpenInNewIcon
-              key={1}
-              size={magma.iconSizes.small}
-              aria-hidden={true}
-            />,
+            <OpenInNewIcon key={1} size={magma.iconSizes.small} aria-hidden />,
           ]}
           iconPosition={HyperlinkIconPosition.both}
         >
@@ -267,13 +262,9 @@ export function Example() {
             <CalendarTodayIcon
               key={0}
               size={magma.iconSizes.xSmall}
-              aria-hidden={true}
+              aria-hidden
             />,
-            <OpenInNewIcon
-              key={1}
-              size={magma.iconSizes.xSmall}
-              aria-hidden={true}
-            />,
+            <OpenInNewIcon key={1} size={magma.iconSizes.xSmall} aria-hidden />,
           ]}
           iconPosition={HyperlinkIconPosition.both}
         >
@@ -291,6 +282,7 @@ The underline text decoration can be turned off. When a hyperlink is used within
 
 ```tsx
 import React from 'react';
+
 import {
   Hyperlink,
   Spacer,
@@ -316,7 +308,7 @@ export function Example() {
       <Hyperlink
         target="_blank"
         to="https://sallysbakingaddiction.com/triple-chocolate-layer-cake/"
-        icon={<OpenInNewIcon size={magma.iconSizes.small} aria-hidden={true} />}
+        icon={<OpenInNewIcon size={magma.iconSizes.small} aria-hidden />}
         iconPosition={HyperlinkIconPosition.right}
       >
         I love chocolate cake
@@ -335,6 +327,7 @@ Use this when you want to render something that is from another library. For exa
 
 ```tsx
 import React from 'react';
+
 import { Hyperlink } from 'react-magma-dom';
 
 // We support Link components from libraries such as react-router/reach-router/gatsby that use the `to` prop in place of `href`
@@ -355,6 +348,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Card, CardBody, Hyperlink, Paragraph } from 'react-magma-dom';
 
 export function Example() {

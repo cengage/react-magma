@@ -1,15 +1,17 @@
 import React from 'react';
-import styled from '@emotion/styled';
-import { TabsContainerContext } from './TabsContainer';
+
 import isPropValid from '@emotion/is-prop-valid';
-import { omit, Omit, getNormalizedScrollLeft } from '../../utils';
-import { useDescendants } from '../../hooks/useDescendants';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import styled from '@emotion/styled';
+
+import { TabsOrientation, TabsTextTransform } from './shared';
+import { TabsContainerContext } from './TabsContainer';
 import { ButtonNext, ButtonPrev } from './TabsScrollButtons';
 import { useTabsMeta } from './utils';
+import { useDescendants } from '../../hooks/useDescendants';
 import { I18nContext } from '../../i18n';
-import { TabsOrientation, TabsTextTransform } from './shared';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { omit, Omit, getNormalizedScrollLeft } from '../../utils';
 
 export enum TabsAlignment {
   center = 'center',
@@ -163,8 +165,8 @@ export const StyledTabs = styled('ul', { shouldForwardProp: isPropValid })<{
     props.alignment === 'center'
       ? 'center'
       : props.alignment === 'right'
-      ? 'flex-end'
-      : ''};
+        ? 'flex-end'
+        : ''};
   margin: 0;
   padding: 0;
   width: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
@@ -374,9 +376,9 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
 
       const lastChildIndex = buttonRefArray.current.length - 1;
       let newActiveTabIndex = null;
-      let previousItemKey =
+      const previousItemKey =
         orientation !== TabsOrientation.vertical ? 'ArrowLeft' : 'ArrowUp';
-      let nextItemKey =
+      const nextItemKey =
         orientation !== TabsOrientation.vertical ? 'ArrowRight' : 'ArrowDown';
 
       switch (event.key) {

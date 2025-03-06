@@ -1,7 +1,10 @@
 import React from 'react';
-import { LoadingIndicator, LoadingIndicatorType } from '.';
-import { Card, CardBody } from '../Card';
+
 import { Meta } from '@storybook/react/types-6-0';
+
+import { Card, CardBody } from '../Card';
+
+import { LoadingIndicator, LoadingIndicatorType } from '.';
 
 export default {
   component: LoadingIndicator,
@@ -40,4 +43,4 @@ Default.args = {
   message1: 'Loading...',
   message2: 'Thank you for your patience. Still loading...',
   message3: 'Sorry for the delay. This is taking longer than expected.',
-}
+};

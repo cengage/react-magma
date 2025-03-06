@@ -1,10 +1,13 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Card } from '.';
+
+import { render } from '@testing-library/react';
+
 import { CardBody } from './CardBody';
 import { CardHeading } from './CardHeading';
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
-import { render } from '@testing-library/react';
+
+import { Card } from '.';
 
 const TEXT = 'Test Text';
 

@@ -1,15 +1,17 @@
 import React from 'react';
-import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { css } from '@emotion/react';
+
 import isPropValid from '@emotion/is-prop-valid';
-import { TabsIconPosition, TabsBorderPosition, TabsContext } from './Tabs';
-import { TabsOrientation, TabsTextTransform } from './shared';
-import { resolveProps, useForkedRef } from '../../utils';
-import { useForceUpdate } from '../../hooks/useForceUpdate';
-import { TabsContainerContext } from './TabsContainer';
-import { ThemeInterface } from '../../theme/magma';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { transparentize } from 'polished';
+
+import { TabsOrientation, TabsTextTransform } from './shared';
+import { TabsIconPosition, TabsBorderPosition, TabsContext } from './Tabs';
+import { TabsContainerContext } from './TabsContainer';
+import { useForceUpdate } from '../../hooks/useForceUpdate';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { resolveProps, useForkedRef } from '../../utils';
 
 export interface TabProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -169,15 +171,15 @@ export const TabStyles = props => css`
     background-color: ${props.isActive
       ? ''
       : props.isInverse
-      ? transparentize(0.7, props.theme.colors.neutral900)
-      : transparentize(0.95, props.theme.colors.neutral900)};
+        ? transparentize(0.7, props.theme.colors.neutral900)
+        : transparentize(0.95, props.theme.colors.neutral900)};
     color: ${props.isActive
       ? props.isInverse
         ? props.theme.colors.neutral100
         : props.theme.colors.primary
       : props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+        ? props.theme.colors.neutral100
+        : props.theme.colors.neutral700};
   }
 
   &:focus {
@@ -283,8 +285,8 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
     const tabIconPosition = iconPosition
       ? iconPosition
       : orientation === 'vertical'
-      ? TabsIconPosition.left
-      : TabsIconPosition.top;
+        ? TabsIconPosition.left
+        : TabsIconPosition.top;
 
     return (
       <StyledTabsChild

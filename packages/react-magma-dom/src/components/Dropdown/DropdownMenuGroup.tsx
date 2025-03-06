@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { useGenerateId } from '../../utils';
+
 import { DropdownHeader } from './DropdownHeader';
+import { useGenerateId } from '../../utils';
 
 /**
  * @children required
@@ -13,9 +14,9 @@ export interface DropdownMenuGroupProps
   header?: React.ReactNode;
 }
 
-export const DropdownMenuGroup: React.FunctionComponent<DropdownMenuGroupProps> = (
-  props: DropdownMenuGroupProps
-) => {
+export const DropdownMenuGroup: React.FunctionComponent<
+  DropdownMenuGroupProps
+> = (props: DropdownMenuGroupProps) => {
   const { children, id: defaultId, header, ...other } = props;
 
   const id = useGenerateId(defaultId);

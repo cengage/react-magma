@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { debounce, getNormalizedScrollLeft, reactNodeToString } from '.';
 
 describe('Utils', () => {
@@ -60,7 +61,7 @@ describe('Utils', () => {
       expect(normalizedScrollLeft).toEqual(scrollLeft);
     });
   });
-  
+
   describe('reactNodeToString', () => {
     it('converts string to string', () => {
       const actual = reactNodeToString('test');
@@ -68,21 +69,21 @@ describe('Utils', () => {
 
       expect(actual).toEqual(expected);
     });
-    
+
     it('converts number to string', () => {
       const actual = reactNodeToString(123);
       const expected = '123';
 
       expect(actual).toEqual(expected);
     });
-    
+
     it('converts node to string', () => {
       const actual = reactNodeToString(<div>test</div>);
       const expected = 'test';
 
       expect(actual).toEqual(expected);
     });
-    
+
     it('converts array of nodes to string', () => {
       const actual = reactNodeToString([<div key={1}>test</div>]);
       const expected = 'test';

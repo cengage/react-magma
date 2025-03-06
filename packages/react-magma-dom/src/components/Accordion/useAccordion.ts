@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { useDescendants } from '../../hooks/useDescendants';
 
 export enum AccordionIconPosition {

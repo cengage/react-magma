@@ -1,12 +1,13 @@
 import React from 'react';
+
 import { UseFieldApiConfig } from '@data-driven-forms/react-form-renderer';
 import useFieldApi from '@data-driven-forms/react-form-renderer/use-field-api';
-import { v4 as uuidv4 } from 'uuid';
 import {
   Input as MagmaInput,
   InputType,
   InputProps as MagmaInputProps,
 } from 'react-magma-dom';
+import { v4 as uuidv4 } from 'uuid';
 
 export type InputProps = MagmaInputProps & UseFieldApiConfig;
 

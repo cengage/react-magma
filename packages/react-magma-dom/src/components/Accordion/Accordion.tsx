@@ -1,15 +1,16 @@
 import * as React from 'react';
 
-import { ThemeContext } from '../../theme/ThemeContext';
-import { InverseContext, useIsInverse } from '../../inverse';
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+
 import {
   UseAccordionProps,
   AccordionContext,
   useAccordion,
 } from './useAccordion';
+import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
-import { transparentize } from 'polished';
-import styled from '@emotion/styled';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 /**
  * @children required
@@ -96,7 +97,6 @@ export type AccordionProps =
   | AccordionSingleProps
   | AccordionMultipleControlledProps
   | AccordionSingleControlledProps;
-
 
 const StyledAccordion = styled.div<AccordionProps>`
   background: transparent;

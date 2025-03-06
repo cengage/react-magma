@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { DropdownContext } from './Dropdown';
-import { Omit, useForkedRef } from '../../utils';
-import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
-import { DropdownMenuItem, DropdownMenuItemProps } from './DropdownMenuItem';
-import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
+
 import styled from '@emotion/styled';
+
+import { DropdownContext } from './Dropdown';
+import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
+import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
+import { DropdownMenuItem, DropdownMenuItemProps } from './DropdownMenuItem';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { Omit, useForkedRef } from '../../utils';
 
 export interface DropdownExpandableMenuListItemProps
   extends Omit<DropdownMenuItemProps, 'icon'> {

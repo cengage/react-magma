@@ -1,16 +1,18 @@
 import * as React from 'react';
-import { Announce } from '../Announce';
-import { CalendarContext } from './CalendarContext';
-import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
-import { ButtonType, ButtonVariant } from '../Button';
-import { IconButton } from '../IconButton';
-import { ThemeContext } from '../../theme/ThemeContext';
+
+import styled from '@emotion/styled';
 import { addMonths, subMonths } from 'date-fns';
 import { enUS } from 'date-fns/locale';
-import { useForkedRef, usePrevious } from '../../utils';
+import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
+
+import { Announce } from '../Announce';
+import { CalendarContext } from './CalendarContext';
 import { i18nFormat as format } from './utils';
 import { I18nContext } from '../../i18n';
-import styled from '@emotion/styled';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useForkedRef, usePrevious } from '../../utils';
+import { ButtonType, ButtonVariant } from '../Button';
+import { IconButton } from '../IconButton';
 
 interface CalendarHeaderProps {
   focusHeader?: boolean;

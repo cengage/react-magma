@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
-import PropTypes from 'prop-types';
-import { Link, StaticQuery, graphql } from 'gatsby';
+
+import styled from '@emotion/styled';
 import { Location } from '@reach/router';
-import { LaunchIcon } from 'react-magma-icons';
+import { Link, StaticQuery, graphql } from 'gatsby';
+import PropTypes from 'prop-types';
 import {
   Accordion,
   AccordionButton,
@@ -11,7 +12,7 @@ import {
   Hyperlink,
   magma,
 } from 'react-magma-dom';
-import styled from '@emotion/styled';
+import { LaunchIcon } from 'react-magma-icons';
 
 const StyledWrapper = styled.div`
   margin-top: 8px;

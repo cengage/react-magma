@@ -1,9 +1,12 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Banner } from '.';
+
 import { render, fireEvent } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { Badge } from '../Badge';
+
+import { Banner } from '.';
 
 describe('Banner', () => {
   it('should find element by testId', () => {

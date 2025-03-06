@@ -1,11 +1,14 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { ButtonSize } from '../Button';
-import { ToggleButton } from '.';
+
 import { act, fireEvent, render } from '@testing-library/react';
-import { SettingsIcon } from 'react-magma-icons';
-import { magma } from '../../theme/magma';
 import { transparentize } from 'polished';
+import { SettingsIcon } from 'react-magma-icons';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+import { ButtonSize } from '../Button';
+
+import { ToggleButton } from '.';
 
 const TEXT = 'Test Text';
 const testId = 'test-id';

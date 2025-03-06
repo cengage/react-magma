@@ -1,8 +1,10 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { transparentize } from 'polished';
+
+import { ThemeContext } from '../../theme/ThemeContext';
 
 /**
  * @children required
@@ -42,7 +44,6 @@ export enum BadgeVariant {
   counter = 'counter',
   label = 'label', // default
 }
-
 
 export function buildBadgeBackground(props) {
   if (props.isInverse) {

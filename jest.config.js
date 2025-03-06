@@ -14,9 +14,7 @@ module.exports = {
     '<rootDir>/patterns/*/jest.config.js',
   ],
   roots: ['<rootDir>'],
-  setupFiles: [
-    '<rootDir>/jest.overrides.js'
-  ],
+  setupFiles: ['<rootDir>/jest.overrides.js'],
   setupFilesAfterEnv: [
     'jest-extended',
     '@testing-library/jest-dom/extend-expect',
@@ -24,9 +22,7 @@ module.exports = {
     'jest-axe/extend-expect',
     '<rootDir>/jest.setup.js',
   ],
-  snapshotSerializers: [
-    '@emotion/jest/serializer'
-  ],
+  snapshotSerializers: ['@emotion/jest/serializer'],
   testPathIgnorePatterns: [
     '/.cache/',
     '/coverage/',

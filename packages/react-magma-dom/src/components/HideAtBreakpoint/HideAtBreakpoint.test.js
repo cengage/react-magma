@@ -1,6 +1,8 @@
 import React from 'react';
-import { HideAtBreakpoint } from '.';
+
 import { render } from '@testing-library/react';
+
+import { HideAtBreakpoint } from '.';
 
 describe('Hide at Breakpoint', () => {
   it('should render the HideAtBreakpoint component', () => {

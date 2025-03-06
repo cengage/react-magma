@@ -1,8 +1,10 @@
 import React from 'react';
+
 import styled from '@emotion/styled';
+
 import { useIsInverse } from '../../inverse';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 interface TabsContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   /**

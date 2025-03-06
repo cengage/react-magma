@@ -1,9 +1,11 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+
 import { TableCellAlign, TableContext, TableDensity } from './Table';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { transparentize } from 'polished';
-import styled from '@emotion/styled';
 
 export interface TableCellProps
   extends React.HTMLAttributes<HTMLTableCellElement> {

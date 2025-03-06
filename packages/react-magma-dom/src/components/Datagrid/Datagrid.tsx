@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { useControlled } from '../../hooks/useControlled';
 import { useDataPagination } from '../../hooks/useDataPagination';
 import { XOR } from '../../utils';
@@ -224,8 +225,8 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       selectedRows.length === filteredRows.length
         ? IndeterminateCheckboxStatus.checked
         : selectedRows.length > 0
-        ? IndeterminateCheckboxStatus.indeterminate
-        : IndeterminateCheckboxStatus.unchecked;
+          ? IndeterminateCheckboxStatus.indeterminate
+          : IndeterminateCheckboxStatus.unchecked;
 
     function handleRowSelect(
       id: string | number,

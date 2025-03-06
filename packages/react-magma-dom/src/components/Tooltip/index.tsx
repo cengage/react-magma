@@ -1,9 +1,11 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+import { usePopper } from 'react-popper';
+
+import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef, useGenerateId } from '../../utils';
-import { usePopper } from 'react-popper';
-import { useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
 
 export enum TooltipPosition {
   bottom = 'bottom',

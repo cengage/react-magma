@@ -1,8 +1,11 @@
 import React from 'react';
+
+import { render } from '@testing-library/react';
+
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+
 import { ProgressRing } from '.';
-import { render } from '@testing-library/react';
 
 describe('ProgressRing', () => {
   it('should render the progress ring component', () => {

@@ -1,8 +1,10 @@
 import React from 'react';
-import { axe } from 'jest-axe';
-import { Header } from '.';
-import { magma } from 'react-magma-dom';
+
 import { render } from '@testing-library/react';
+import { axe } from 'jest-axe';
+import { magma } from 'react-magma-dom';
+
+import { Header } from '.';
 
 describe('Header', () => {
   it('should find element by testId', () => {
@@ -45,7 +47,7 @@ describe('Header', () => {
 
   it('should render a search box', () => {
     const { container } = render(
-      <Header searchProps={{ onSearch: () => {} }}></Header>
+      <Header searchProps={{ onSearch: () => {} }} />
     );
 
     expect(container.querySelector('input')).toHaveAttribute('type', 'search');

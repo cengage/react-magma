@@ -1,16 +1,15 @@
 import React from 'react';
-import { CheckIcon } from 'react-magma-icons';
+
 import { Meta, Story } from '@storybook/react/types-6-0';
-import { ToggleButton, ToggleButtonProps } from '.';
-import { Container } from '../Container';
+import { CheckIcon } from 'react-magma-icons';
+
 import { ButtonSize } from '../Button';
+import { Container } from '../Container';
+
+import { ToggleButton, ToggleButtonProps } from '.';
 
 const Template: Story<ToggleButtonProps> = args => (
-  <ToggleButton
-    {...args}
-    isChecked={args.isChecked}
-    icon={<CheckIcon />}
-  />
+  <ToggleButton {...args} isChecked={args.isChecked} icon={<CheckIcon />} />
 );
 
 export default {
@@ -46,7 +45,7 @@ export default {
 export const Icon = Template.bind({});
 Icon.args = {
   isInverse: false,
-  'aria-label': 'Check'
+  'aria-label': 'Check',
 };
 
 export const Text = args => {

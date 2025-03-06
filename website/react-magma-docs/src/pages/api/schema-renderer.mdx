@@ -26,6 +26,7 @@ Several Basic Components from `react-magma-dom` are mapped in `react-magma-schem
 
 ```tsx
 import React from 'react';
+
 import {
   SchemaRenderer,
   Schema,
@@ -86,6 +87,7 @@ The `SchemaRenderer` supports data-driven forms. This allows the creation of ful
 
 ```tsx
 import React from 'react';
+
 import {
   SchemaRenderer,
   Schema,
@@ -227,6 +229,7 @@ Instead of passing `children` some components support sub fields. This allows fo
 
 ```tsx
 import React from 'react';
+
 import {
   SchemaRenderer,
   Schema,
@@ -285,6 +288,7 @@ The `SchemaRenderer` supports field arrays for repeating groups of inputs.
 
 ```tsx
 import React from 'react';
+
 import {
   SchemaRenderer,
   Schema,
@@ -332,13 +336,14 @@ The `SchemaRenderer`
 
 ```tsx
 import React from 'react';
-import { Button, ButtonType, Toast } from 'react-magma-dom';
+
 import {
   SchemaRenderer,
   Schema,
   templateTypes,
   componentTypes,
 } from '@react-magma/schema-renderer';
+import { Button, ButtonType, Toast } from 'react-magma-dom';
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -415,6 +420,7 @@ Fields can be rendered/visable based on conditions. Please see the [data-driven-
 
 ```tsx
 import React from 'react';
+
 import {
   SchemaRenderer,
   Schema,
@@ -474,6 +480,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import {
   SchemaRenderer,
   Schema,
@@ -515,6 +522,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import {
   SchemaRenderer,
   Schema,
@@ -674,6 +682,7 @@ As validator you can provide your custom function. This function takes `value`, 
 
 ```tsx
 import React from 'react';
+
 import {
   SchemaRenderer,
   Schema,
@@ -722,6 +731,7 @@ If you do not want to trigger the async validator after every stroke, you can us
 
 ```tsx
 import React from 'react';
+
 import {
   SchemaRenderer,
   Schema,

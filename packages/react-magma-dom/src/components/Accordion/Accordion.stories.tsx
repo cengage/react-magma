@@ -1,4 +1,23 @@
 import React from 'react';
+
+import { Story, Meta } from '@storybook/react/types-6-0';
+
+import { magma } from '../../theme/magma';
+import { Button, ButtonSize, ButtonVariant } from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
+import { Combobox } from '../Combobox';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from '../Dropdown';
+import { Flex, FlexBehavior } from '../Flex';
+import { Input } from '../Input';
+import { Modal } from '../Modal';
+import { Select } from '../Select';
+import { Textarea } from '../Textarea';
+
 import {
   Accordion,
   AccordionProps,
@@ -7,23 +26,6 @@ import {
   AccordionButton,
   AccordionPanel,
 } from '.';
-import { Button, ButtonSize, ButtonVariant } from '../Button';
-import {
-  Dropdown,
-  DropdownButton,
-  DropdownContent,
-  DropdownMenuItem,
-} from '../Dropdown';
-import { Input } from '../Input';
-import { Flex, FlexBehavior } from '../Flex';
-import { Textarea } from '../Textarea';
-import { Select } from '../Select';
-import { Combobox } from '../Combobox';
-import { Modal } from '../Modal';
-import { magma } from '../../theme/magma';
-
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { ButtonGroup } from '../ButtonGroup';
 
 export default {
   component: Accordion,

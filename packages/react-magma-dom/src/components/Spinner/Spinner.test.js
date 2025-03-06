@@ -1,9 +1,12 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Spinner } from '.';
+
 import { render } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+
+import { Spinner } from '.';
 
 describe('Spinner', () => {
   it('should find element by testId', () => {

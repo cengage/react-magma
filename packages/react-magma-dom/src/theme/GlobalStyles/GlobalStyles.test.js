@@ -1,6 +1,8 @@
 import React from 'react';
-import { GlobalStyles } from '.';
+
 import { render } from '@testing-library/react';
+
+import { GlobalStyles } from '.';
 
 describe('GlobalStyles', () => {
   it('should render the global styles', () => {

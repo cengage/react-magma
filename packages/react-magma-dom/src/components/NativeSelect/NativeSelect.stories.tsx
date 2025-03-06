@@ -1,13 +1,16 @@
 import React from 'react';
+
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { HelpIcon } from 'react-magma-icons';
+
+import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
-import { NativeSelect, NativeSelectProps } from '.';
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { IconButton } from '../IconButton';
 import { LabelPosition } from '../Label';
 import { Tooltip } from '../Tooltip';
-import { IconButton } from '../IconButton';
-import { HelpIcon } from 'react-magma-icons';
-import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+
+import { NativeSelect, NativeSelectProps } from '.';
 
 const Template: Story<NativeSelectProps> = args => (
   <NativeSelect {...args}>
@@ -55,7 +58,7 @@ export const Default = Template.bind({});
 Default.args = {
   isInverse: false,
   labelText: 'Select',
-  testId: 'native-select-example'
+  testId: 'native-select-example',
 };
 
 export const Disabled = Template.bind({});

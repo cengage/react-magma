@@ -1,9 +1,12 @@
 import React from 'react';
-import { HideAtBreakpoint } from '.';
+
+import { Meta } from '@storybook/react/types-6-0';
+
+import { magma } from '../../theme/magma';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
-import { magma } from '../../theme/magma';
-import { Meta } from '@storybook/react/types-6-0';
+
+import { HideAtBreakpoint } from '.';
 
 export default {
   component: HideAtBreakpoint,

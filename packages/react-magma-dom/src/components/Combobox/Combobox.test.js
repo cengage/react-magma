@@ -1,8 +1,11 @@
 import React from 'react';
+
 import { render, fireEvent, act } from '@testing-library/react';
-import { Combobox } from '.';
+
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
+
+import { Combobox } from '.';
 
 describe('Combobox', () => {
   const labelText = 'Label';

@@ -12,9 +12,11 @@ fs.copyFile(
 
     const data = fs.readFileSync(file);
     const fd = fs.openSync(file, 'w+');
-    const buffer = Buffer.from('---\ntitle: Changelog\norder: 4\n---\n\n<PageContent componentName="changelog" type="api_intro">\n\n');
+    const buffer = Buffer.from(
+      '---\ntitle: Changelog\norder: 4\n---\n\n<PageContent componentName="changelog" type="api_intro">\n\n'
+    );
 
-    let textData = data.toString();
+    const textData = data.toString();
 
     const newBufferData = Buffer.from(textData + '\n\n</PageContent>');
 

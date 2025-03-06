@@ -1,19 +1,6 @@
 import React from 'react';
+
 import { Story, Meta } from '@storybook/react/types-6-0';
-import {
-  ButtonGroup,
-  ButtonGroupOrientation,
-  ButtonGroupAlignment,
-  ButtonGroupProps,
-} from '.';
-import {
-  Button,
-  ButtonColor,
-  ButtonVariant,
-  ButtonSize,
-  ButtonTextTransform,
-} from '../Button';
-import { IconButton } from '../IconButton';
 import {
   FavoriteIcon,
   SettingsIcon,
@@ -21,11 +8,19 @@ import {
   ExpandMoreIcon,
   AsteriskIcon,
 } from 'react-magma-icons';
+
 import {
   BreakpointsContainer,
   Breakpoint,
   BreakpointScreenSize,
 } from '../BreakpointsContainer';
+import {
+  Button,
+  ButtonColor,
+  ButtonVariant,
+  ButtonSize,
+  ButtonTextTransform,
+} from '../Button';
 import {
   Dropdown,
   DropdownButton,
@@ -33,6 +28,14 @@ import {
   DropdownMenuItem,
   DropdownSplitButton,
 } from '../Dropdown';
+import { IconButton } from '../IconButton';
+
+import {
+  ButtonGroup,
+  ButtonGroupOrientation,
+  ButtonGroupAlignment,
+  ButtonGroupProps,
+} from '.';
 
 const Template: Story<ButtonGroupProps> = args => (
   <>
@@ -246,7 +249,7 @@ export const WithDropdowns = args => {
           </DropdownContent>
         </Dropdown>
       </ButtonGroup>
-      <br/>
+      <br />
       <ButtonGroup {...args}>
         <Dropdown>
           <DropdownButton

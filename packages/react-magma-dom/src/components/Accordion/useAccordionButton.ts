@@ -40,8 +40,8 @@ export function useAccordionButton(
           ? setExpandedIndex(expandedIndex.filter(item => item !== index))
           : setExpandedIndex(expandedIndex.concat([index]))
         : isExpanded
-        ? setExpandedIndex(null)
-        : setExpandedIndex(index);
+          ? setExpandedIndex(null)
+          : setExpandedIndex(index);
     }
   };
 
@@ -70,7 +70,7 @@ export function useAccordionButton(
     if (['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) {
       event.preventDefault();
     }
-    
+
     switch (event.key) {
       case 'ArrowDown': {
         index === arrLength - 1 ? focusFirst() : focusNext();

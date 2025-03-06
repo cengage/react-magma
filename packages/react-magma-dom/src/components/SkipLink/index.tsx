@@ -1,12 +1,15 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+
+import { I18nContext } from '../../i18n';
+import { Omit } from '../../utils';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { Hyperlink, HyperlinkProps } from '../Hyperlink';
-import { I18nContext } from '../../i18n';
-import styled from '@emotion/styled';
 
 export const TARGET_ID = 'reactMagmaMainContent';
 
-export interface SkipLinkProps extends HyperlinkProps {
+export interface SkipLinkProps extends Omit<HyperlinkProps, 'children'> {
   /**
    * The text in the skip link
    * @default "Skip Navigation"
@@ -58,6 +61,9 @@ const StyledSkipLink = styled(Hyperlink)<{
     &:focus {
       left: ${props => props.positionLeft}px;
       top: ${props => props.positionTop}px;
+      z-index: 99999;
+    }
+    &:not(:disabled):focus {
       z-index: 99999;
     }
   }

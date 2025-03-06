@@ -1,13 +1,16 @@
 import React from 'react';
-import { DatePicker } from '.';
+
+import { Meta } from '@storybook/react/types-6-0';
+import { isValid } from 'date-fns';
+
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { LabelPosition } from '../Label';
-import { Meta } from '@storybook/react/types-6-0';
-import { isValid } from 'date-fns';
 import { getDateFromString, inDateRange } from './utils';
 import { Button } from '../Button';
+
+import { DatePicker } from '.';
 
 const today: Date = new Date();
 

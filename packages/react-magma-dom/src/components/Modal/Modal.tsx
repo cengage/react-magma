@@ -1,20 +1,22 @@
 import * as React from 'react';
-import ReactDOM from 'react-dom';
-import styled from '@emotion/styled';
+
 import { Global, css } from '@emotion/react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { magma , ThemeInterface } from '../../theme/magma';
-import { I18nContext } from '../../i18n';
-import { ButtonColor, ButtonVariant } from '../Button';
-import { IconButton } from '../IconButton';
-import { CloseIcon } from 'react-magma-icons';
-import { Heading } from '../Heading';
-import { TypographyVisualStyle } from '../Typography';
-import { Transition, TransitionProps } from '../Transition';
-import { omit, useGenerateId, usePrevious } from '../../utils';
-import { useFocusLock } from '../../hooks/useFocusLock';
+import styled from '@emotion/styled';
 import { transparentize } from 'polished';
+import ReactDOM from 'react-dom';
+import { CloseIcon } from 'react-magma-icons';
+
+import { useFocusLock } from '../../hooks/useFocusLock';
+import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
+import { magma, ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { omit, useGenerateId, usePrevious } from '../../utils';
+import { ButtonColor, ButtonVariant } from '../Button';
+import { Heading } from '../Heading';
+import { IconButton } from '../IconButton';
+import { Transition, TransitionProps } from '../Transition';
+import { TypographyVisualStyle } from '../Typography';
 
 export enum ModalSize {
   large = 'large',
@@ -376,7 +378,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             <ModalContainer
               aria-labelledby={header ? headingId : null}
               aria-label={!header ? ariaLabel : null}
-              aria-modal={true}
+              aria-modal
               data-testid={testId}
               id={id}
               modalCount={modalCount}

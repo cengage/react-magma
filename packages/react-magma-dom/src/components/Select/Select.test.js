@@ -1,7 +1,8 @@
-import { act, fireEvent, render } from '@testing-library/react';
 import React from 'react';
+
+import { act, fireEvent, render } from '@testing-library/react';
 import { HelpIcon } from 'react-magma-icons';
-import { Select } from '.';
+
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
@@ -9,6 +10,8 @@ import { IconButton } from '../IconButton';
 import { LabelPosition } from '../Label';
 import { Modal } from '../Modal';
 import { Tooltip } from '../Tooltip';
+
+import { Select } from '.';
 
 describe('Select', () => {
   const labelText = 'Label';
@@ -635,7 +638,7 @@ describe('Select', () => {
       const { getByLabelText, getByText } = render(
         <Select labelText={labelText} items={items} />
       );
-  
+
       const renderedSelect = getByLabelText(labelText, { selector: 'div' });
       fireEvent.click(renderedSelect);
 

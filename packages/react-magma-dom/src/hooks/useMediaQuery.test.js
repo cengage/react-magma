@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
+
 import { useMediaQuery } from './useMediaQuery';
 
 const mockMatches = query => {

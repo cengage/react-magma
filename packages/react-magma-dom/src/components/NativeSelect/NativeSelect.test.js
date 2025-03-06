@@ -1,21 +1,22 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { magma } from '../../theme/magma';
-import { NativeSelect } from '.';
+
 import { render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
-import { Tooltip } from '../Tooltip';
-import { IconButton } from '../IconButton';
 import { HelpIcon } from 'react-magma-icons';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { IconButton } from '../IconButton';
+import { Tooltip } from '../Tooltip';
+
+import { NativeSelect } from '.';
 
 describe('NativeSelect', () => {
   const testId = 'test-id';
 
   it('should find element by testId', () => {
-    const { getByTestId } = render(
-      <NativeSelect testId={testId}></NativeSelect>
-    );
+    const { getByTestId } = render(<NativeSelect testId={testId} />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
@@ -23,7 +24,7 @@ describe('NativeSelect', () => {
   it('Does not violate accessibility standards', () => {
     const { container } = render(
       <NativeSelect labelText="Test">
-        <option></option>
+        <option />
       </NativeSelect>
     );
 
@@ -33,9 +34,7 @@ describe('NativeSelect', () => {
   });
 
   it('should render a disabled select', () => {
-    const { getByTestId } = render(
-      <NativeSelect disabled testId={testId}></NativeSelect>
-    );
+    const { getByTestId } = render(<NativeSelect disabled testId={testId} />);
     const nativeselect = getByTestId(testId);
     expect(nativeselect).toHaveStyleRule(
       'color',
@@ -45,7 +44,7 @@ describe('NativeSelect', () => {
 
   it('should render a disabled inverse select', () => {
     const { getByTestId } = render(
-      <NativeSelect disabled isInverse testId={testId}></NativeSelect>
+      <NativeSelect disabled isInverse testId={testId} />
     );
     const nativeselect = getByTestId(testId);
     expect(nativeselect).toHaveStyleRule(
@@ -55,9 +54,7 @@ describe('NativeSelect', () => {
   });
 
   it('should render a default border', () => {
-    const { getByTestId } = render(
-      <NativeSelect testId={testId}></NativeSelect>
-    );
+    const { getByTestId } = render(<NativeSelect testId={testId} />);
 
     expect(getByTestId(testId).parentElement).toHaveStyleRule(
       'border',
@@ -81,9 +78,7 @@ describe('NativeSelect', () => {
   });
 
   it('should render a default inverse border', () => {
-    const { getByTestId } = render(
-      <NativeSelect isInverse testId={testId}></NativeSelect>
-    );
+    const { getByTestId } = render(<NativeSelect isInverse testId={testId} />);
 
     expect(getByTestId(testId).parentElement).toHaveStyleRule(
       'border',
@@ -94,7 +89,7 @@ describe('NativeSelect', () => {
   it('should render an error state', () => {
     const errorMessage = 'This is an error';
     const { getByTestId, getByText } = render(
-      <NativeSelect errorMessage={errorMessage} testId={testId}></NativeSelect>
+      <NativeSelect errorMessage={errorMessage} testId={testId} />
     );
 
     expect(getByTestId(testId).parentElement).toHaveStyleRule(

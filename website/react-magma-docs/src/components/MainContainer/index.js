@@ -1,10 +1,11 @@
 import React from 'react';
+
 import styled from '@emotion/styled';
+import { SkipLink, magma, Container, GlobalStyles } from 'react-magma-dom';
+
+import { DarkModeContext } from '../DarkMode/DarkModeContext';
 import { Masthead } from '../Masthead';
 import { SlidingDrawer } from '../SlidingDrawer';
-import { DarkModeContext } from '../DarkMode/DarkModeContext';
-
-import { SkipLink, magma, Container, GlobalStyles } from 'react-magma-dom';
 
 const StyledContainer = styled.div`
   background: ${magma.colors.neutral200};

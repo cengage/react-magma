@@ -1,10 +1,16 @@
 import * as React from 'react';
-import { AnimatePresence, motion, HTMLMotionProps, useReducedMotion } from 'framer-motion';
-import { MotionVariants } from '../../theme/components/transition';
 
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import {
+  AnimatePresence,
+  motion,
+  HTMLMotionProps,
+  useReducedMotion,
+} from 'framer-motion';
+
 import { reducedMotionTransitions } from '../../theme/components/reducedMotionTransition';
+import { MotionVariants } from '../../theme/components/transition';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 /**
  * @children required
@@ -121,7 +127,9 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
 
     const shouldExpand = unmountOnExit ? isOpen && unmountOnExit : true;
     const shouldReduceMotion = useReducedMotion();
-    const transitionsArr = shouldReduceMotion ? reducedMotionTransitions : theme.transitions;
+    const transitionsArr = shouldReduceMotion
+      ? reducedMotionTransitions
+      : theme.transitions;
 
     const variants = Object.keys(rest).reduce(
       (acc, key) => {

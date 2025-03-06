@@ -1,10 +1,13 @@
 import React from 'react';
-import { SkipLink } from '.';
+
+import { Meta } from '@storybook/react/types-6-0';
+
 import { ButtonVariant } from '../Button';
 import { Paragraph } from '../Paragraph';
 import { SkipLinkContent } from '../SkipLinkContent';
 import { TypographyVisualStyle } from '../Typography';
-import { Meta } from '@storybook/react/types-6-0';
+
+import { SkipLink } from '.';
 
 export default {
   component: SkipLink,

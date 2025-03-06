@@ -1,11 +1,14 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Input } from '.';
+
 import { render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
-import { magma } from '../../theme/magma';
 import { CheckIcon } from 'react-magma-icons';
+
+import { axe } from '../../../axe-helper';
 import { defaultI18n } from '../../i18n/default';
+import { magma } from '../../theme/magma';
+
+import { Input } from '.';
 
 const label = 'test label';
 
@@ -532,7 +535,7 @@ describe('Input', () => {
       const testId = 'test-id';
 
       const { getByText } = render(
-        <Input testId={testId} hasCharacterCounter={true} maxLength={2} />
+        <Input testId={testId} hasCharacterCounter maxLength={2} />
       );
       expect(getByText('2 ' + charactersAllowed)).toBeInTheDocument();
     });
@@ -541,12 +544,7 @@ describe('Input', () => {
       const testId = 'test-id';
 
       const { getByText } = render(
-        <Input
-          testId={testId}
-          hasCharacterCounter={true}
-          maxLength={2}
-          maxCount={4}
-        />
+        <Input testId={testId} hasCharacterCounter maxLength={2} maxCount={4} />
       );
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
     });

@@ -1,6 +1,8 @@
 import React from 'react';
+
 import { render, fireEvent, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
 import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
 import { getCalendarMonthWeeks } from './utils';
@@ -44,7 +46,7 @@ describe('Calendar Month', () => {
             onNextMonthClick: jest.fn(),
           }}
         >
-          <CalendarMonth calendarOpened={true} />
+          <CalendarMonth calendarOpened />
         </CalendarContext.Provider>
       );
 
@@ -119,7 +121,7 @@ describe('Calendar Month', () => {
             hideHelperInformation: jest.fn(),
           }}
         >
-          <CalendarMonth calendarOpened={true} />
+          <CalendarMonth calendarOpened />
         </CalendarContext.Provider>
       );
 
@@ -161,7 +163,7 @@ describe('Calendar Month', () => {
           showHelperInformation,
         }}
       >
-        <CalendarMonth calendarOpened={true} />
+        <CalendarMonth calendarOpened />
       </CalendarContext.Provider>
     );
 
@@ -186,7 +188,7 @@ describe('Calendar Month', () => {
           showHelperInformation: jest.fn(),
         }}
       >
-        <CalendarMonth calendarOpened={true} focusOnOpen={true} />
+        <CalendarMonth calendarOpened focusOnOpen />
       </CalendarContext.Provider>
     );
 
@@ -209,7 +211,7 @@ describe('Calendar Month', () => {
           showHelperInformation: jest.fn(),
         }}
       >
-        <CalendarMonth calendarOpened={true} />
+        <CalendarMonth calendarOpened />
       </CalendarContext.Provider>
     );
 
@@ -234,7 +236,7 @@ describe('Calendar Month', () => {
           helperInformationShown: true,
         }}
       >
-        <CalendarMonth calendarOpened={true} />
+        <CalendarMonth calendarOpened />
       </CalendarContext.Provider>
     );
 
@@ -263,7 +265,7 @@ describe('Calendar Month', () => {
       >
         <CalendarMonth
           handleCloseButtonClick={handleCloseButtonClick}
-          calendarOpened={true}
+          calendarOpened
         />
       </CalendarContext.Provider>
     );

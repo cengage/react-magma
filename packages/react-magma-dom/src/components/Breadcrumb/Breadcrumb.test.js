@@ -1,10 +1,12 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Breadcrumb, BreadcrumbItem } from '.';
 
 import { render } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+
+import { Breadcrumb, BreadcrumbItem } from '.';
 
 const LINK_TEXT = 'Test link';
 const SPAN_TEXT = 'Test span';

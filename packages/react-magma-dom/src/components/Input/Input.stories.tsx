@@ -1,15 +1,18 @@
-import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
+
+import { Meta, Story } from '@storybook/react/types-6-0';
 import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
-import { Input, InputProps } from '.';
+
 import { Button, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
 import { Card, CardBody } from '../Card';
 import { IconButton } from '../IconButton';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
-import { Tooltip } from '../Tooltip';
 import { Spacer } from '../Spacer';
-import { ButtonGroup } from '../ButtonGroup';
+import { Tooltip } from '../Tooltip';
+
+import { Input, InputProps } from '.';
 
 const Template: Story<InputProps> = args => (
   <>
@@ -212,11 +215,7 @@ export const HelpLink = args => {
         </Tooltip>
       </Input>
       <Spacer size={16} />
-      <Input 
-        labelText="Help link - hidden" 
-        isLabelVisuallyHidden 
-        {...args}
-      >
+      <Input labelText="Help link - hidden" isLabelVisuallyHidden {...args}>
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}
@@ -409,11 +408,16 @@ export const SeveralErrors = () => {
       />
       <br />
       <Input
-        errorMessage={hasErrors.emailAddress ? 'Please enter your email address' : ''}
+        errorMessage={
+          hasErrors.emailAddress ? 'Please enter your email address' : ''
+        }
         helperMessage=""
         labelText="Email address *"
         onChange={event =>
-          setInputValues(prev => ({ ...prev, emailAddress: event.target.value }))
+          setInputValues(prev => ({
+            ...prev,
+            emailAddress: event.target.value,
+          }))
         }
         required
         value={inputValues.emailAddress}

@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { useDescendants } from '../../hooks/useDescendants';
+
 import {
   TreeItemSelectedInterface,
   TreeViewItemInterface,
 } from './TreeViewContext';
+import { TreeViewSelectable } from './types';
 import {
   getInitialExpandedIds,
   getInitialItems,
@@ -14,7 +15,7 @@ import {
   isEqualArrays,
   getChildrenIds,
 } from './utils';
-import { TreeViewSelectable } from './types';
+import { useDescendants } from '../../hooks/useDescendants';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
 export { TreeItemSelectedInterface };
@@ -28,6 +29,8 @@ export interface TreeViewApi {
   clearAll(): void;
   showMore(): void;
   showLess(): void;
+  expandAll(): void;
+  collapseAll(): void;
 }
 
 export interface UseTreeViewProps {
@@ -277,7 +280,7 @@ export function useTreeView(props: UseTreeViewProps) {
 
     prevSelectedItemsRef.current = nextSelectedItems;
     onSelectedItemChange && onSelectedItemChange(nextSelectedItems);
-  }, [items, selectable, hasPreselectedItems]);
+  }, [items, selectable, hasPreselectedItems, onSelectedItemChange]);
 
   const selectItem = React.useCallback(
     ({
@@ -320,67 +323,121 @@ export function useTreeView(props: UseTreeViewProps) {
     [selectable, checkChildren, checkParents, items]
   );
 
+  const showMore = React.useCallback(
+    (fromSelectAll = false) => {
+      if (fromSelectAll) {
+        setItems(() => {
+          return toggleAllMulti({
+            items,
+            checkedStatus: IndeterminateCheckboxStatus.checked,
+            checkChildren,
+            checkParents,
+          });
+        });
+      } else {
+        setItemsNeedUpdate(true);
+      }
+    },
+    [items, checkChildren, checkParents]
+  );
+
+  const showLess = React.useCallback(() => {
+    setItems(
+      getInitialItems({
+        children,
+        preselectedItems: selectedItems,
+        checkParents,
+        checkChildren,
+        selectable,
+        isDisabled,
+      })
+    );
+  }, [
+    children,
+    selectedItems,
+    checkParents,
+    checkChildren,
+    selectable,
+    isDisabled,
+  ]);
+
+  const selectAll = React.useCallback(() => {
+    if (
+      [TreeViewSelectable.single, TreeViewSelectable.single].includes(
+        selectable
+      ) ||
+      isDisabled
+    ) {
+      return;
+    }
+
+    showMore(true);
+  }, [selectable, isDisabled, items, checkChildren, checkParents]);
+
+  const clearAll = React.useCallback(() => {
+    if (isDisabled) {
+      return;
+    }
+
+    setItems(() => {
+      return toggleAllMulti({
+        items,
+        checkedStatus: IndeterminateCheckboxStatus.unchecked,
+        checkChildren,
+        checkParents,
+      });
+    });
+  }, [isDisabled, items, checkChildren, checkParents]);
+
+  const expandAll = React.useCallback(() => {
+    const expandableIds = items.reduce((ids: string[], item) => {
+      if (item.hasOwnTreeItems) {
+        ids.push(item.itemId);
+      }
+
+      return ids;
+    }, []);
+
+    setExpandedSet(new Set(expandableIds));
+
+    if (onExpandedChange && typeof onExpandedChange === 'function') {
+      const syntheticEvent = {} as React.SyntheticEvent;
+
+      onExpandedChange(syntheticEvent, expandableIds);
+    }
+  }, [items, onExpandedChange]);
+
+  const collapseAll = React.useCallback(() => {
+    setExpandedSet(new Set());
+
+    if (onExpandedChange && typeof onExpandedChange === 'function') {
+      const syntheticEvent = {} as React.SyntheticEvent;
+
+      onExpandedChange(syntheticEvent, []);
+    }
+  }, [onExpandedChange]);
+
   React.useEffect(() => {
     if (apiRef) {
       apiRef.current = {
         selectItem,
-        selectAll() {
-          if (
-            [TreeViewSelectable.single, TreeViewSelectable.single].includes(
-              selectable
-            ) ||
-            isDisabled
-          ) {
-            return;
-          }
-          this.showMore(true);
-        },
-
-        clearAll() {
-          if (isDisabled) {
-            return;
-          }
-
-          setItems(() => {
-            return toggleAllMulti({
-              items,
-              checkedStatus: IndeterminateCheckboxStatus.unchecked,
-              checkChildren,
-              checkParents,
-            });
-          });
-        },
-
-        showMore(fromSelectAll: boolean = false) {
-          if (fromSelectAll) {
-            setItems(() => {
-              return toggleAllMulti({
-                items,
-                checkedStatus: IndeterminateCheckboxStatus.checked,
-                checkChildren,
-                checkParents,
-              });
-            });
-          } else {
-            setItemsNeedUpdate(true);
-          }
-        },
-
-        showLess() {
-          setItems(
-            getInitialItems({
-              children,
-              preselectedItems: selectedItems,
-              checkParents,
-              checkChildren,
-              selectable,
-              isDisabled,
-            })
-          );
-        }
+        selectAll,
+        clearAll,
+        showMore,
+        showLess,
+        expandAll,
+        collapseAll,
       };
     }
-  }, [selectItem, isDisabled, children]);
+  }, [
+    selectItem,
+    selectAll,
+    clearAll,
+    showMore,
+    showLess,
+    expandAll,
+    collapseAll,
+  ]);
 
   React.useEffect(() => {
     if (itemsNeedUpdate) {
@@ -398,7 +455,15 @@ export function useTreeView(props: UseTreeViewProps) {
 
       setItemsNeedUpdate(false);
     }
-  }, [itemsNeedUpdate, children]);
+  }, [
+    itemsNeedUpdate,
+    children,
+    selectedItems,
+    checkParents,
+    checkChildren,
+    selectable,
+    isDisabled,
+  ]);
 
   const [initialExpandedItemsNeedUpdate, setInitialExpandedItemsNeedUpdate] =
     React.useState(false);

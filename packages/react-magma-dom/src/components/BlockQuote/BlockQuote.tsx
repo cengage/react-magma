@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { css } from '@emotion/react';
 
-import { ThemeContext } from '../../theme/ThemeContext';
-import { Colors, ThemeInterface } from '../../theme/magma';
-import { InverseContext, useIsInverse } from '../../inverse';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+
+import { InverseContext, useIsInverse } from '../../inverse';
+import { Colors, ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 /**
  * @children required

@@ -1,11 +1,14 @@
 import React from 'react';
-import { Tab } from './Tab';
-import { CheckIcon } from 'react-magma-icons';
+
 import { render, fireEvent } from '@testing-library/react';
+import { CheckIcon } from 'react-magma-icons';
+
+import { Tab } from './Tab';
+import { TabsContainer } from './TabsContainer';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+
 import { Tabs } from '.';
-import { TabsContainer } from './TabsContainer';
 
 describe('Tab', () => {
   it('Should correctly apply the testId', () => {
@@ -71,7 +74,7 @@ describe('Tab', () => {
 
     const { getByTestId, rerender } = render(
       <Tabs>
-        <Tab testId={testId} disabled={true}>
+        <Tab testId={testId} disabled>
           Tab Text
         </Tab>
       </Tabs>
@@ -80,7 +83,10 @@ describe('Tab', () => {
 
     expect(component).toHaveProperty('disabled', true);
     expect(component).toBeDisabled();
-    expect(getByTestId('tabContainer')).toHaveStyleRule('cursor', 'not-allowed');
+    expect(getByTestId('tabContainer')).toHaveStyleRule(
+      'cursor',
+      'not-allowed'
+    );
 
     rerender(
       <Tabs>

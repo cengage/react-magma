@@ -1,5 +1,7 @@
-const eslintrc = require('../../.eslintrc');
 const propertiesJson = require('react-magma-dom/dist/properties.json');
+
+const eslintrc = require('../../.eslintrc');
+
 const propertyNames = propertiesJson.map(property => property.name);
 
 const globals = propertyNames.reduce((acc, name) => {
@@ -13,7 +15,7 @@ module.exports = {
   plugins: ['@typescript-eslint', 'mdx'],
   rules: {
     ...eslintrc.rules,
-    'complexity': 'off',
+    complexity: 'off',
     'jsx-a11y/anchor-is-valid': 'off',
     'jsx-a11y/anchor-has-content': 'off',
     'react/no-unescaped-entities': 'off',
@@ -55,9 +57,7 @@ module.exports = {
   overrides: [
     {
       files: ['*.mdx'],
-      extends: [
-        'plugin:mdx/recommended',
-      ],
+      extends: ['plugin:mdx/recommended'],
       parserOptions: {
         ecmaVersion: 2020,
         sourceType: 'module',
@@ -65,6 +65,20 @@ module.exports = {
       rules: {
         'mdx/no-unused-expressions': 'off',
         'react/no-unescaped-entities': 'off',
+        'no-unused-vars': [
+          'warn',
+          {
+            varsIgnorePattern: '^Example$',
+            args: 'none',
+          },
+        ],
+        '@typescript-eslint/no-unused-vars': [
+          'warn',
+          {
+            varsIgnorePattern: '^Example$',
+            args: 'none',
+          },
+        ],
       },
     },
   ],
