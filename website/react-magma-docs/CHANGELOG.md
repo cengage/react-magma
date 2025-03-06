@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.2-next.6
+
+### Patch Changes
+
+- 2c9c805e9: chore: update eslint and prittier configs
+
 ## 5.1.2-next.5
 
 ### Patch Changes
