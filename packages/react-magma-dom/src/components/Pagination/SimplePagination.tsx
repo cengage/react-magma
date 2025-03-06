@@ -64,24 +64,28 @@ export const SimplePagination = React.forwardRef<
     hidePreviousButton,
     id: defaultId,
     isInverse,
+    page,
     testId,
     onClick,
     onChange,
     onPageChange,
     ...other
   } = props;
+
   const theme = React.useContext(ThemeContext);
 
   const i18n = React.useContext(I18nContext);
 
   const id = useGenerateId(defaultId);
 
-  let [selectedPage, setSelectedPage] = React.useState(
-    defaultPage ? defaultPage : 1
-  );
+  let [selectedPage, setSelectedPage] = React.useState(page || defaultPage);
 
   React.useEffect(() => {
-    setSelectedPage(defaultPage ? defaultPage : selectedPage);
+    setSelectedPage(page);
+  }, [page]);
+
+  React.useEffect(() => {
+    setSelectedPage(selectedPage);
   }, [count]);
 
   function handleChange(event) {

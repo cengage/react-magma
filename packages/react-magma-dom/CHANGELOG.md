@@ -1,5 +1,17 @@
 ## 4.8.0
 
+## 4.9.0-next.3
+
+### Minor Changes
+
+- edbc5c0a2: feat(TreeView): add `expandAll` and `collapseAll`. Removed collapse/expand animations for `TreeView`.
+
+## 4.8.1-next.2
+
+### Patch Changes
+
+- ec6ed5466: fix(Pagination): Fix support for `page` in SimplePagination
+
 ## 4.8.1-next.1
 
 ### Patch Changes

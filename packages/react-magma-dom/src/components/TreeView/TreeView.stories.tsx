@@ -1134,7 +1134,11 @@ const renderTreeItemsRecursively = (terms: any[], depth: number) => {
         label={term.title}
         labelStyle={labelStyles}
         title={term.title}
-        isDisabled={term.title === 'item-title-1'}
+        isDisabled={
+          term.title === 'item-title-1' ||
+          term.title === 'item-title-3' ||
+          term.title === 'item-title-5.1'
+        }
       >
         {term.children?.length ? (
           renderTreeItemsRecursively(term.children, depth + 1)
@@ -1177,6 +1181,21 @@ const AccordionSectionWithTreeView = (props: any) => {
     }
   };
 
+  const toggleExpandAll = () => {
+    if (!isShowAll) {
+      apiRef.current?.showMore();
+      setIsShowAll(true);
+    }
+
+    setTimeout(() => {
+      apiRef.current?.expandAll();
+    }, 50);
+  };
+
+  const toggleCollapseAll = () => {
+    apiRef.current?.collapseAll();
+  };
+
   const renderTrees = () => {
     return (
       <>
@@ -1213,6 +1232,15 @@ const AccordionSectionWithTreeView = (props: any) => {
     <AccordionItem {...rest} index={customIndex} isDisabled={isDisabled}>
       <AccordionButton>{title}</AccordionButton>
       <AccordionPanel>
+        <ButtonGroup
+          size={ButtonSize.small}
+          variant={ButtonVariant.solid}
+          color={ButtonColor.subtle}
+        >
+          <Button onClick={toggleExpandAll}>Expand All</Button>
+          <Button onClick={toggleCollapseAll}>Collapse All</Button>
+        </ButtonGroup>
+        <Spacer axis={SpacerAxis.vertical} size={16} />
         {renderTrees()}
         <Spacer axis={SpacerAxis.vertical} size={16} />
         <IconButton
@@ -1250,7 +1278,13 @@ const flatTree = {
         {
           id: 'item-id-3',
           title: 'item-title-3',
-          children: [],
+          children: [
+            {
+              id: 'item-id-3.1',
+              title: 'item-title-3.1',
+              children: [],
+            },
+          ],
         },
         {
           id: 'item-id-4',
@@ -1266,7 +1300,18 @@ const flatTree = {
         {
           id: 'item-id-5',
           title: 'item-title-5',
-          children: [],
+          children: [
+            {
+              id: 'item-id-5.1',
+              title: 'item-title-5.1',
+              children: [],
+            },
+            {
+              id: 'item-id-5.2',
+              title: 'item-title-5.2',
+              children: [],
+            },
+          ],
         },
         {
           id: 'item-id-6',
@@ -1286,7 +1331,7 @@ const flatTree = {
 };
 
 // This example is used in unit tests - modifying it may cause broken tests
-export const AccordionTreeWithShowAll = (props: any) => {
+export const AccordionTreeWithShowAllAndExpandAll = (props: any) => {
   const apiRef = React.useRef<TreeViewApi>();
 
   function onSelection(items: TreeItemSelectedInterface[]) {
@@ -1305,7 +1350,7 @@ export const AccordionTreeWithShowAll = (props: any) => {
   );
 };
 
-AccordionTreeWithShowAll.parameters = {
+AccordionTreeWithShowAllAndExpandAll.parameters = {
   controls: {
     exclude: [
       'isInverse',
@@ -1322,7 +1367,9 @@ AccordionTreeWithShowAll.parameters = {
 
 // END of MAST Tree example with hidden items
 
-export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
+export const ComplexTreeWithShowAllAndExpandAll = (
+  args: Partial<TreeViewProps>
+) => {
   const treeContent = {
     id: 'tree-id',
     groupName: 'disciplines',
@@ -1529,7 +1576,7 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
   };
 
   const renderTreeItemsRecursively = (discipline: any[], depth: number) => {
-    return discipline.map(term => {
+    return discipline.map((term, index) => {
       return (
         <TreeItem
           key={term.id}
@@ -1547,6 +1594,21 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
     });
   };
 
+  const toggleExpandAll = () => {
+    if (!isShowAll) {
+      apiRef.current?.showMore();
+      setIsShowAll(true);
+    }
+
+    setTimeout(() => {
+      apiRef.current?.expandAll();
+    }, 50);
+  };
+
+  const toggleCollapseAll = () => {
+    apiRef.current?.collapseAll();
+  };
+
   return (
     <>
       <ButtonGroup
@@ -1556,6 +1618,8 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
       >
         <Button onClick={onSelectAll}>Select all</Button>
         <Button onClick={() => apiRef.current?.clearAll()}>Clear all</Button>
+        <Button onClick={toggleExpandAll}>Expand All</Button>
+        <Button onClick={toggleCollapseAll}>Collapse All</Button>
       </ButtonGroup>
 
       <Spacer size={24} axis={SpacerAxis.vertical} />
@@ -1591,14 +1655,390 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
   );
 };
 
-ComplexTreeWithShowAll.args = {
+ComplexTreeWithShowAllAndExpandAll.args = {
   checkParents: true,
   checkChildren: true,
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Disciplines',
 };
 
-ComplexTreeWithShowAll.parameters = {
+ComplexTreeWithShowAllAndExpandAll.parameters = {
+  controls: {
+    exclude: ['isInverse', 'initialExpandedItems', 'ariaLabelledBy', 'testId'],
+  },
+};
+
+export const ComplexTreeWithLargeDataSet = (args: Partial<TreeViewProps>) => {
+  const treeContent = {
+    id: 'tree-id',
+    groupName: 'disciplines',
+    items: [
+      {
+        id: 'discipline-arts-design',
+        title: 'Arts and Design',
+        children: [
+          {
+            id: 'ad-1',
+            title: 'Animation',
+            children: [
+              {
+                id: 'ad-1-1',
+                title: '2D Animation',
+                children: [
+                  {
+                    id: 'ad-1-1-1',
+                    title: 'Hand-drawn Animation',
+                    children: [],
+                  },
+                  {
+                    id: 'ad-1-1-2',
+                    title: 'Digital 2D Animation',
+                    children: [],
+                  },
+                ],
+              },
+              {
+                id: 'ad-1-2',
+                title: '3D Animation',
+                children: [
+                  {
+                    id: 'ad-1-2-1',
+                    title: 'Character Animation',
+                    children: [],
+                  },
+                  { id: 'ad-1-2-2', title: 'Motion Capture', children: [] },
+                ],
+              },
+            ],
+          },
+          {
+            id: 'ad-2',
+            title: 'Photography',
+            children: [
+              {
+                id: 'ad-2-1',
+                title: 'Wedding Photography',
+                children: [
+                  { id: 'ad-2-1-1', title: 'Bridal Portraits', children: [] },
+                  { id: 'ad-2-1-2', title: 'Candid Photography', children: [] },
+                ],
+              },
+              {
+                id: 'ad-2-2',
+                title: 'Nature Photography',
+                children: [
+                  {
+                    id: 'ad-2-2-1',
+                    title: 'Wildlife Photography',
+                    children: [
+                      {
+                        id: 'ad-2-2-1-1',
+                        title: 'Bird Photography',
+                        children: [],
+                      },
+                      {
+                        id: 'ad-2-2-1-2',
+                        title: 'Safari Photography',
+                        children: [],
+                      },
+                    ],
+                  },
+                  {
+                    id: 'ad-2-2-2',
+                    title: 'Landscape Photography',
+                    children: [
+                      {
+                        id: 'ad-2-2-2-1',
+                        title: 'Mountain Landscapes',
+                        children: [],
+                      },
+                      { id: 'ad-2-2-2-2', title: 'Seascapes', children: [] },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'discipline-business',
+        title: 'Business',
+        children: [
+          {
+            id: 'bsn-1',
+            title: 'Accounting',
+            children: [
+              {
+                id: 'bsn-1-1',
+                title: 'Financial Accounting',
+                children: [
+                  { id: 'bsn-1-1-1', title: 'Auditing', children: [] },
+                  { id: 'bsn-1-1-2', title: 'Tax Accounting', children: [] },
+                ],
+              },
+              {
+                id: 'bsn-1-2',
+                title: 'Managerial Accounting',
+                children: [
+                  { id: 'bsn-1-2-1', title: 'Cost Analysis', children: [] },
+                  { id: 'bsn-1-2-2', title: 'Budgeting', children: [] },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'discipline-cs',
+        title: 'Computer Science',
+        children: [
+          {
+            id: 'cs-1',
+            title: 'Software Engineering',
+            children: [
+              {
+                id: 'cs-1-1',
+                title: 'Backend Development',
+                children: [
+                  { id: 'cs-1-1-1', title: 'Node.js', children: [] },
+                  { id: 'cs-1-1-2', title: 'Django', children: [] },
+                ],
+              },
+              {
+                id: 'cs-1-2',
+                title: 'Frontend Development',
+                children: [
+                  { id: 'cs-1-2-1', title: 'React.js', children: [] },
+                  { id: 'cs-1-2-2', title: 'Vue.js', children: [] },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'discipline-math',
+        title: 'Mathematics',
+        children: [
+          {
+            id: 'math-1',
+            title: 'Precalculus',
+            children: [
+              {
+                id: 'math-1-1',
+                title: 'Trigonometry',
+                children: [
+                  {
+                    id: 'math-1-1-1',
+                    title: 'Sine and Cosine Functions',
+                    children: [],
+                  },
+                  {
+                    id: 'math-1-1-2',
+                    title: 'Law of Sines and Cosines',
+                    children: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'discipline-nutr',
+        title: 'Nutrition',
+        children: [
+          {
+            id: 'nutr-1',
+            title: 'Sports Nutrition',
+            children: [
+              {
+                id: 'nutr-1-1',
+                title: 'Protein',
+                children: [
+                  { id: 'nutr-1-1-1', title: 'Whey Protein', children: [] },
+                  {
+                    id: 'nutr-1-1-2',
+                    title: 'Plant-Based Protein',
+                    children: [],
+                  },
+                ],
+              },
+              {
+                id: 'nutr-1-2',
+                title: 'Supplements',
+                children: [
+                  {
+                    id: 'nutr-1-2-1',
+                    title: 'Creatine',
+                    children: [
+                      {
+                        id: 'nutr-1-2-1-1',
+                        title: 'Creatine Monohydrate',
+                        children: [],
+                      },
+                      {
+                        id: 'nutr-1-2-1-2',
+                        title: 'Creatine HCL',
+                        children: [],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    preselectedItems: [
+      {
+        itemId: 'bsn-1',
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+      },
+      {
+        itemId: 'cs-1-1-1',
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+      },
+      {
+        itemId: 'math-1-1-1',
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+      },
+    ],
+  };
+
+  const apiRef = React.useRef<TreeViewApi>();
+  const [isShowAll, setIsShowAll] = React.useState(false);
+  const [selectedItems, setSelectedItems] =
+    React.useState<TreeItemSelectedInterface[]>();
+  const total = selectedItems?.length ?? 0;
+  const { selected, indeterminate } = createControlledTags(
+    selectedItems,
+    apiRef?.current
+  );
+
+  function onSelection(items: TreeItemSelectedInterface[]) {
+    setSelectedItems(items);
+  }
+
+  const getTermsForRender = (terms: any) => {
+    if (isShowAll || terms.length <= 3) {
+      return terms;
+    } else {
+      return terms.slice(0, 3);
+    }
+  };
+
+  const toggleShowAll = () => {
+    setIsShowAll(prev => !prev);
+    if (isShowAll) {
+      apiRef.current?.showLess();
+    } else {
+      apiRef.current?.showMore();
+    }
+  };
+
+  const onSelectAll = () => {
+    if (isShowAll) {
+      apiRef.current?.showLess();
+    } else {
+      apiRef.current?.showMore();
+      setIsShowAll(prev => !prev);
+    }
+    setTimeout(() => {
+      apiRef.current?.selectAll();
+    }, 50);
+  };
+
+  const renderTreeItemsRecursively = (discipline: any[], depth: number) => {
+    return discipline.map((term, index) => {
+      return (
+        <TreeItem
+          key={term.id}
+          itemId={term.id}
+          testId={term.id}
+          label={term.title}
+        >
+          {term.children?.length ? (
+            renderTreeItemsRecursively(term.children, depth + 1)
+          ) : (
+            <></>
+          )}
+        </TreeItem>
+      );
+    });
+  };
+
+  const toggleExpandAll = () => {
+    if (!isShowAll) {
+      apiRef.current?.showMore();
+      setIsShowAll(true);
+    }
+
+    setTimeout(() => {
+      apiRef.current?.expandAll();
+    }, 50);
+  };
+
+  const toggleCollapseAll = () => {
+    apiRef.current?.collapseAll();
+  };
+
+  return (
+    <>
+      <ButtonGroup
+        size={ButtonSize.small}
+        variant={ButtonVariant.solid}
+        color={ButtonColor.subtle}
+      >
+        <Button onClick={onSelectAll}>Select all</Button>
+        <Button onClick={() => apiRef.current?.clearAll()}>Clear all</Button>
+        <Button onClick={toggleExpandAll}>Expand All</Button>
+        <Button onClick={toggleCollapseAll}>Collapse All</Button>
+      </ButtonGroup>
+
+      <Spacer size={24} axis={SpacerAxis.vertical} />
+
+      <TreeView
+        key={treeContent.id}
+        {...args}
+        preselectedItems={treeContent.preselectedItems}
+        onSelectedItemChange={onSelection}
+        apiRef={apiRef}
+      >
+        {renderTreeItemsRecursively(getTermsForRender(treeContent.items), 0)}
+      </TreeView>
+
+      <Spacer size={16} axis={SpacerAxis.vertical} />
+
+      <IconButton
+        onClick={toggleShowAll}
+        size={ButtonSize.small}
+        variant={ButtonVariant.link}
+        testId="showAllBtn"
+        icon={isShowAll ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+      >
+        {isShowAll ? 'Show Less' : 'Show All'}
+      </IconButton>
+
+      <Spacer size={24} axis={SpacerAxis.vertical} />
+
+      <p>{total} total</p>
+      <p>Selected: {selected}</p>
+      <p>Indeterminate: {indeterminate}</p>
+    </>
+  );
+};
+
+ComplexTreeWithLargeDataSet.args = {
+  checkParents: true,
+  checkChildren: true,
+  selectable: TreeViewSelectable.multi,
+  ariaLabel: 'Disciplines',
+};
+
+ComplexTreeWithLargeDataSet.parameters = {
   controls: {
     exclude: ['isInverse', 'initialExpandedItems', 'ariaLabelledBy', 'testId'],
   },

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 import { FavoriteIcon } from 'react-magma-icons';
@@ -10,7 +10,7 @@ import { magma } from '../../theme/magma';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import { Paragraph } from '../Paragraph';
 import { Tag } from '../Tag';
-import { AccordionTreeWithShowAll } from './TreeView.stories';
+import { AccordionTreeWithShowAllAndExpandAll } from './TreeView.stories';
 
 import { TreeView, TreeItem, TreeViewSelectable } from '.';
 
@@ -332,6 +332,53 @@ describe('TreeView', () => {
 
       userEvent.click(getByTestId('item2-itemwrapper'));
       expect(onExpandedChange).not.toHaveBeenCalled();
+    });
+
+    it('should work correctly with expandedAll() and collapseAll() functions', async () => {
+      const onExpandedChange = jest.fn();
+      const apiRef = React.createRef();
+      const { getByText } = render(
+        <>
+          <button onClick={() => apiRef.current.expandAll()}>Expand All</button>
+          <button onClick={() => apiRef.current.collapseAll()}>
+            Collapse All
+          </button>
+          {getTreeItemsWithDisabled({
+            selectable: TreeViewSelectable.single,
+            onExpandedChange,
+            apiRef,
+          })}
+        </>
+      );
+
+      const item = getByText('Node 1');
+
+      expect(item).toBeInTheDocument();
+      expect(item).toBeVisible();
+
+      expect(getByText('Expand All')).toBeInTheDocument();
+
+      userEvent.click(getByText('Expand All'));
+
+      expect(onExpandedChange).toHaveBeenCalledTimes(1);
+      expect(onExpandedChange).toHaveBeenCalledWith({}, ['item1', 'item2']);
+
+      const childItem = getByText('Child 1');
+
+      expect(childItem).toBeInTheDocument();
+      expect(childItem).toBeVisible();
+
+      expect(getByText('Collapse All')).toBeInTheDocument();
+
+      userEvent.click(getByText('Collapse All'));
+
+      expect(onExpandedChange).toHaveBeenCalledTimes(2);
+      expect(onExpandedChange).toHaveBeenCalledWith({}, []);
+
+      await waitFor(async () => {
+        expect(childItem).not.toBeInTheDocument();
+        expect(childItem).not.toBeVisible();
+      });
     });
   });
 
@@ -3103,7 +3150,13 @@ describe('TreeView', () => {
             {
               id: 'item-id-3',
               title: 'item-title-3',
-              children: [],
+              children: [
+                {
+                  id: 'item-id-3.1',
+                  title: 'item-title-3.1',
+                  children: [],
+                },
+              ],
             },
             {
               id: 'item-id-4',
@@ -3119,7 +3172,18 @@ describe('TreeView', () => {
             {
               id: 'item-id-5',
               title: 'item-title-5',
-              children: [],
+              children: [
+                {
+                  id: 'item-id-5.1',
+                  title: 'item-title-5.1',
+                  children: [],
+                },
+                {
+                  id: 'item-id-5.2',
+                  title: 'item-title-5.2',
+                  children: [],
+                },
+              ],
             },
             {
               id: 'item-id-6',
@@ -3213,7 +3277,7 @@ describe('TreeView', () => {
     it('renders tree with some items, and clicking show all displays the rest of the tree', () => {
       const onSelectedItemChange = jest.fn();
       const { asFragment, getByLabelText, getByTestId } = render(
-        <AccordionTreeWithShowAll
+        <AccordionTreeWithShowAllAndExpandAll
           {...propsFlatTree}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[]}
@@ -3238,7 +3302,7 @@ describe('TreeView', () => {
     it('renders tree with some items preselected, clicking show all displays the rest of the tree and preselected items remain selected', () => {
       const onSelectedItemChange = jest.fn();
       const { asFragment, getByLabelText, getByTestId } = render(
-        <AccordionTreeWithShowAll
+        <AccordionTreeWithShowAllAndExpandAll
           {...propsFlatTree}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[
@@ -3278,7 +3342,7 @@ describe('TreeView', () => {
     it('renders tree with some items preselected, deselecting preselected items, clicking show all displays the rest of the tree and preselected items remain deselected', () => {
       const onSelectedItemChange = jest.fn();
       const { asFragment, getByLabelText, getByTestId } = render(
-        <AccordionTreeWithShowAll
+        <AccordionTreeWithShowAllAndExpandAll
           {...propsFlatTree}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[
@@ -3315,7 +3379,7 @@ describe('TreeView', () => {
     it('clicking show all displays the rest of the tree, preselected items remain selected, and clicking show less maintains selected items', () => {
       const onSelectedItemChange = jest.fn();
       const { asFragment, getByLabelText, getByTestId } = render(
-        <AccordionTreeWithShowAll
+        <AccordionTreeWithShowAllAndExpandAll
           {...propsFlatTree}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[
@@ -3357,7 +3421,7 @@ describe('TreeView', () => {
     it('can uncheck all items by clicking on the parent (including hidden one)', () => {
       const onSelectedItemChange = jest.fn();
       const { asFragment, getByLabelText, getByTestId } = render(
-        <AccordionTreeWithShowAll
+        <AccordionTreeWithShowAllAndExpandAll
           {...propsTreeWithParent}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[]}
@@ -3392,6 +3456,74 @@ describe('TreeView', () => {
 
       userEvent.click(getByTestId('showAllBtn')); // show less
       expect(onSelectedItemChange).toHaveBeenCalledTimes(3);
+    });
+
+    it('expand all and collapse all should work as expected', async () => {
+      const { asFragment, getByLabelText, getByText } = render(
+        <AccordionTreeWithShowAllAndExpandAll
+          {...propsFlatTree}
+          preselectedItems={[]}
+        />
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+
+      expect(getByLabelText('item-title-1')).toBeInTheDocument();
+      expect(getByLabelText('item-title-2')).toBeInTheDocument();
+      expect(getByLabelText('item-title-3')).toBeInTheDocument();
+      expect(getByLabelText('item-title-4')).toBeInTheDocument();
+      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+
+      userEvent.click(getByText('Expand All'));
+
+      let expandedItem = null;
+
+      await waitFor(() => {
+        expect(getByLabelText('item-title-6')).toBeInTheDocument();
+
+        expandedItem = getByLabelText('item-title-4.1');
+
+        expect(expandedItem).not.toBeNull();
+        expect(expandedItem).toBeInTheDocument();
+      });
+
+      userEvent.click(getByText('Collapse All'));
+
+      await waitFor(() => {
+        expect(expandedItem).not.toBeNull();
+        expect(expandedItem).not.toBeInTheDocument();
+      });
+    });
+
+    it('expand all should work correctly with disabled items', async () => {
+      const { asFragment, getByLabelText, getByText } = render(
+        <AccordionTreeWithShowAllAndExpandAll
+          {...propsFlatTree}
+          preselectedItems={[]}
+        />
+      );
+
+      expect(asFragment()).toMatchSnapshot();
+
+      expect(getByLabelText('item-title-1')).toBeInTheDocument();
+      expect(getByLabelText('item-title-2')).toBeInTheDocument();
+      expect(getByLabelText('item-title-3')).toBeInTheDocument();
+      expect(getByLabelText('item-title-4')).toBeInTheDocument();
+      expect(getByLabelText('item-title-5')).toBeInTheDocument();
+
+      expect(getByLabelText('item-title-3')).toBeDisabled();
+
+      userEvent.click(getByText('Expand All'));
+
+      await waitFor(() => {
+        expect(getByLabelText('item-title-6')).toBeInTheDocument();
+        expect(getByLabelText('item-title-3.1')).toBeInTheDocument();
+        expect(getByLabelText('item-title-5.1')).toBeInTheDocument();
+        expect(getByLabelText('item-title-3.1')).toBeVisible();
+        expect(getByLabelText('item-title-5.1')).toBeVisible();
+        expect(getByLabelText('item-title-3.1')).toBeDisabled();
+        expect(getByLabelText('item-title-5.1')).toBeDisabled();
+      });
     });
   });
 });

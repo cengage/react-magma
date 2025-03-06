@@ -49,6 +49,7 @@ export interface TreeViewContextInterface {
     event: React.SyntheticEvent,
     expandedItemId: string
   ) => void;
+  expandedSet: Set<string>;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
@@ -64,4 +65,5 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   items: [],
   selectItem: () => undefined,
   handleExpandedChange: () => undefined,
+  expandedSet: new Set<string>(),
 });

@@ -12,10 +12,12 @@
   },
   "changesets": [
     "curly-singers-dress",
+    "feat-TreeView-add-expandAll-and-collapseAll",
     "fix-AppBar",
     "fix-Pagination-screenreader",
     "manually-sync-4.8.7",
     "ninety-yaks-buy",
-    "react-version-docs"
+    "react-version-docs",
+    "simple-pag"
   ]
 }
