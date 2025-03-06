@@ -1,10 +1,13 @@
 import React from 'react';
-import { TimePicker, TimePickerProps } from '.';
-import { Card, CardBody } from '../Card';
+
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { LabelPosition } from '../Label';
+
 import { Button } from '../Button';
+import { Card, CardBody } from '../Card';
+import { LabelPosition } from '../Label';
 import { Paragraph } from '../Paragraph';
+
+import { TimePicker, TimePickerProps } from '.';
 
 const Template: Story<TimePickerProps> = args => (
   <TimePicker {...args} labelText="Time Due" />

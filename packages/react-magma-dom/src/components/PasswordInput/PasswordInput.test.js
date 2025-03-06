@@ -1,10 +1,13 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { PasswordInput } from '.';
+
 import { act, render, fireEvent } from '@testing-library/react';
-import { magma } from '../../theme/magma';
+
+import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+import { magma } from '../../theme/magma';
+
+import { PasswordInput } from '.';
 
 describe('PasswordInput', () => {
   it('should find element by testId', () => {

@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { AccordionItem, AccordionItemProps } from '../Accordion';
+
 export interface DropdownExpandableMenuItemProps extends AccordionItemProps {
   /**
    * If true, item will be disabled; it will appear dimmed and onClick event (or any other events) will not fire

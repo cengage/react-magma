@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { HideAtBreakpoint } from '../HideAtBreakpoint';
+
 import { ThemeContext } from '../../theme/ThemeContext';
+import { HideAtBreakpoint } from '../HideAtBreakpoint';
 
 export enum BreakpointScreenSize {
   xs = 'xs', //default

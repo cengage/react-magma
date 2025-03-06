@@ -1,8 +1,11 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+
 import { jsx } from '@emotion/react';
+import styled from '@emotion/styled';
 
 import { NavTabsContext } from './NavTabs';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { omit, resolveProps, useForkedRef, XOR } from '../../utils';
 import {
   StyledTabsChild,
   StyledIcon,
@@ -10,8 +13,6 @@ import {
   TabsIconPosition,
 } from '../Tabs';
 import { TabsOrientation, TabsTextTransform } from '../Tabs/shared';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { omit, resolveProps, useForkedRef, XOR } from '../../utils';
 
 export interface BaseNavTabProps
   extends React.HTMLAttributes<HTMLAnchorElement> {
@@ -117,7 +118,15 @@ export const StyledCustomTab = React.forwardRef<any, NavTabComponentProps>(
       };
 
       const other = omit(
-        ['iconPosition', 'isInverse', 'isActive', 'isFullWidth', 'borderPosition', 'orientation', 'textTransform'],
+        [
+          'iconPosition',
+          'isInverse',
+          'isActive',
+          'isFullWidth',
+          'borderPosition',
+          'orientation',
+          'textTransform',
+        ],
         rest
       );
 
@@ -168,8 +177,8 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
     const tabIconPosition = iconPosition
       ? iconPosition
       : orientation === 'vertical'
-      ? TabsIconPosition.left
-      : TabsIconPosition.top;
+        ? TabsIconPosition.left
+        : TabsIconPosition.top;
 
     const styledTabRef = React.useRef<HTMLAnchorElement>();
 

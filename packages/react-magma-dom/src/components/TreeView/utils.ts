@@ -1,14 +1,16 @@
-import { ThemeInterface } from '../../theme/magma';
-import { transparentize } from 'polished';
-import { UseTreeViewProps } from './useTreeView';
-import { TreeViewSelectable } from './types';
 import React from 'react';
+
+import { transparentize } from 'polished';
+
+import { TreeItem } from './TreeItem';
+import { TreeViewSelectable } from './types';
+import { UseTreeViewProps } from './useTreeView';
+import { ThemeInterface } from '../../theme/magma';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import {
   TreeItemSelectedInterface,
   TreeViewItemInterface,
 } from './TreeViewContext';
-import { TreeItem } from './TreeItem';
 
 export enum TreeNodeType {
   branch = 'branch',
@@ -29,9 +31,9 @@ export enum TreeNodeType {
  */
 export function calculateOffset(
   type: TreeNodeType,
-  depth: number = 0,
-  labelElem: boolean = false,
-  negative: boolean = false
+  depth = 0,
+  labelElem = false,
+  negative = false
 ) {
   let padding = 0;
 

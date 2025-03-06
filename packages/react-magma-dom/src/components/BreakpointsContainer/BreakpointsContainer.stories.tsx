@@ -1,9 +1,12 @@
 import React from 'react';
+
 import { Meta } from '@storybook/react/types-6-0';
-import { Breakpoint, BreakpointsContainer, BreakpointScreenSize } from '.';
-import { Card } from '../Card/index';
-import { CardBody } from '../Card/CardBody';
+
 import { magma } from '../../theme/magma';
+import { CardBody } from '../Card/CardBody';
+import { Card } from '../Card/index';
+
+import { Breakpoint, BreakpointsContainer, BreakpointScreenSize } from '.';
 
 export default {
   component: BreakpointsContainer,

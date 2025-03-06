@@ -1,4 +1,8 @@
 import React from 'react';
+
+import { Meta } from '@storybook/react/types-6-0';
+
+import { magma } from '../../theme/magma';
 import { Card, CardBody } from '../Card';
 import { Checkbox } from '../Checkbox';
 import { FormGroup } from '../FormGroup';
@@ -6,8 +10,6 @@ import {
   IndeterminateCheckbox,
   IndeterminateCheckboxStatus,
 } from '../IndeterminateCheckbox';
-import { magma } from '../../theme/magma';
-import { Meta } from '@storybook/react/types-6-0';
 
 export default {
   component: IndeterminateCheckbox,
@@ -19,20 +21,20 @@ export const Default = () => {
     <FormGroup labelText="Indeterminate Checkbox Examples">
       <IndeterminateCheckbox
         color={magma.colors.primary}
-        defaultChecked={true}
+        defaultChecked
         status={IndeterminateCheckboxStatus.indeterminate}
         labelText="Indeterminate checkbox"
         id="0"
       />
       <IndeterminateCheckbox
         disabled
-        defaultChecked={true}
+        defaultChecked
         status={IndeterminateCheckboxStatus.indeterminate}
         labelText="Disabled indeterminate checkbox"
         id="1"
       />
       <IndeterminateCheckbox
-        defaultChecked={true}
+        defaultChecked
         status={IndeterminateCheckboxStatus.indeterminate}
         labelText="Error indeterminate checkbox"
         id="2"
@@ -85,8 +87,8 @@ export const Behavior = () => {
   const status: IndeterminateCheckboxStatus = checkedItems.every(Boolean)
     ? IndeterminateCheckboxStatus.checked
     : checkedItems.some(Boolean)
-    ? IndeterminateCheckboxStatus.indeterminate
-    : IndeterminateCheckboxStatus.unchecked;
+      ? IndeterminateCheckboxStatus.indeterminate
+      : IndeterminateCheckboxStatus.unchecked;
 
   function handleUpdateIndeterminateChecked(
     event: React.ChangeEvent<HTMLInputElement>

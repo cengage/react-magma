@@ -1,10 +1,19 @@
 import React from 'react';
+
+import {
+  AlignedPlacement,
+  autoUpdate,
+  flip,
+  ReferenceType,
+  useFloating,
+} from '@floating-ui/react-dom';
 import {
   useCombobox,
   UseComboboxProps,
   UseComboboxState,
   UseMultipleSelectionProps,
 } from 'downshift';
+
 import {
   instanceOfDefaultItemObject,
   InternalMultiProps,
@@ -13,16 +22,9 @@ import {
 } from '../Select';
 import { InternalCombobox } from './Combobox';
 import { MultiCombobox } from './MultiCombobox';
+import { useIsInverse } from '../../inverse';
 import { Omit, useGenerateId, XOR } from '../../utils';
 import { LabelPosition } from '../Label';
-import { useIsInverse } from '../../inverse';
-import {
-  AlignedPlacement,
-  autoUpdate,
-  flip,
-  ReferenceType,
-  useFloating,
-} from '@floating-ui/react-dom';
 
 export interface ComboboxProps<T extends SelectOptions>
   extends Omit<UseComboboxProps<T>, 'items'>,
@@ -179,8 +181,8 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
     return item && typeof item === 'string'
       ? item
       : item && instanceOfDefaultItemObject(item)
-      ? item.label
-      : '';
+        ? item.label
+        : '';
   }
 
   const hasError = !!errorMessage;

@@ -1,15 +1,18 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { TreeView, TreeItem, TreeViewSelectable } from '.';
+
 import { render, fireEvent, waitFor } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 import userEvent from '@testing-library/user-event';
-import { FavoriteIcon } from 'react-magma-icons';
 import { transparentize } from 'polished';
+import { FavoriteIcon } from 'react-magma-icons';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
-import { Tag } from '../Tag';
 import { Paragraph } from '../Paragraph';
+import { Tag } from '../Tag';
 import { AccordionTreeWithShowAllAndExpandAll } from './TreeView.stories';
+
+import { TreeView, TreeItem, TreeViewSelectable } from '.';
 
 const TEXT = 'Test Text Tree Item';
 const testId = 'tree-view';
@@ -337,7 +340,9 @@ describe('TreeView', () => {
       const { getByText } = render(
         <>
           <button onClick={() => apiRef.current.expandAll()}>Expand All</button>
-          <button onClick={() => apiRef.current.collapseAll()}>Collapse All</button>
+          <button onClick={() => apiRef.current.collapseAll()}>
+            Collapse All
+          </button>
           {getTreeItemsWithDisabled({
             selectable: TreeViewSelectable.single,
             onExpandedChange,
@@ -357,12 +362,12 @@ describe('TreeView', () => {
 
       expect(onExpandedChange).toHaveBeenCalledTimes(1);
       expect(onExpandedChange).toHaveBeenCalledWith({}, ['item1', 'item2']);
-      
+
       const childItem = getByText('Child 1');
 
       expect(childItem).toBeInTheDocument();
       expect(childItem).toBeVisible();
-      
+
       expect(getByText('Collapse All')).toBeInTheDocument();
 
       userEvent.click(getByText('Collapse All'));
@@ -373,7 +378,7 @@ describe('TreeView', () => {
       await waitFor(async () => {
         expect(childItem).not.toBeInTheDocument();
         expect(childItem).not.toBeVisible();
-      })
+      });
     });
   });
 
@@ -2836,7 +2841,7 @@ describe('TreeView', () => {
           <TreeItem label="Node 1" itemId="item1" testId="item1">
             <></>
           </TreeItem>
-          <TreeItem label="Node 2" itemId="item2" testId="item2"></TreeItem>
+          <TreeItem label="Node 2" itemId="item2" testId="item2" />
         </TreeView>
       );
 
@@ -2878,7 +2883,7 @@ describe('TreeView', () => {
           <TreeItem label="Node 1" itemId="item1" testId="item1">
             {undefined}
           </TreeItem>
-          <TreeItem label="Node 2" itemId="item2" testId="item2"></TreeItem>
+          <TreeItem label="Node 2" itemId="item2" testId="item2" />
         </TreeView>
       );
 
@@ -2892,7 +2897,7 @@ describe('TreeView', () => {
           <TreeItem label="Node 1" itemId="item1" testId="item1">
             {null}
           </TreeItem>
-          <TreeItem label="Node 2" itemId="item2" testId="item2"></TreeItem>
+          <TreeItem label="Node 2" itemId="item2" testId="item2" />
         </TreeView>
       );
 

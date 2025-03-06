@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { ButtonSize, ButtonStyles } from '../Button';
-import styled from '@emotion/styled';
+
 import { css, ClassNames } from '@emotion/react';
-import { omit, Omit } from '../../utils';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { BaseStyledButton, buttonStyles } from '../StyledButton';
-import { ThemeInterface } from '../../theme/magma';
-import { useIsInverse } from '../../inverse';
+import styled from '@emotion/styled';
 import { IconProps } from 'react-magma-icons';
+
+import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { omit, Omit } from '../../utils';
+import { ButtonSize, ButtonStyles } from '../Button';
+import { BaseStyledButton, buttonStyles } from '../StyledButton';
 
 export enum HyperlinkIconPosition {
   left = 'left',

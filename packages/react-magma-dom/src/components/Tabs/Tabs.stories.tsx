@@ -1,4 +1,25 @@
 import React from 'react';
+
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
+
+import { Tab } from './Tab';
+import { TabPanel } from './TabPanel';
+import { TabPanelsContainer } from './TabPanelsContainer';
+import { TabsContainer } from './TabsContainer';
+import { Card } from '../Card';
+import { Combobox } from '../Combobox';
+import { Container } from '../Container';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from '../Dropdown';
+import { Heading } from '../Heading';
+import { Select } from '../Select';
+import { TabsOrientation, TabsTextTransform } from './shared';
+
 import {
   Tabs,
   TabsIconPosition,
@@ -8,24 +29,6 @@ import {
   TabsScrollSpyContainer,
   TabScrollSpyPanel,
 } from '.';
-import { Tab } from './Tab';
-import { TabsContainer } from './TabsContainer';
-import { TabPanelsContainer } from './TabPanelsContainer';
-import { TabPanel } from './TabPanel';
-import { Card } from '../Card';
-import {
-  Dropdown,
-  DropdownButton,
-  DropdownContent,
-  DropdownMenuItem,
-} from '../Dropdown';
-import { Combobox } from '../Combobox';
-import { Select } from '../Select';
-import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { Heading } from '../Heading';
-import { Container } from '../Container';
-import { TabsOrientation, TabsTextTransform } from './shared';
 
 export default {
   title: 'Tabs',

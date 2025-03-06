@@ -1,7 +1,8 @@
-import { useSelect } from 'downshift';
 import * as React from 'react';
+
+import { useSelect } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
-import { SelectProps } from '.';
+
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
@@ -12,6 +13,8 @@ import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { SelectText } from './shared';
 import { isItemDisabled } from './utils';
+
+import { SelectProps } from '.';
 
 export function Select<T>(props: SelectProps<T>) {
   const {
@@ -67,7 +70,11 @@ export function Select<T>(props: SelectProps<T>) {
       i => itemToString(i) === itemToString(itemToCheck)
     );
 
-    if (itemIndex === -1 || isItemDisabled(itemToCheck) || isItemDisabled(items[itemIndex])) {
+    if (
+      itemIndex === -1 ||
+      isItemDisabled(itemToCheck) ||
+      isItemDisabled(items[itemIndex])
+    ) {
       return { [key]: null };
     }
 
@@ -190,8 +197,8 @@ export function Select<T>(props: SelectProps<T>) {
   const selectText = itemToString(selectedItem)
     ? itemToString(selectedItem)
     : typeof placeholder === 'string'
-    ? placeholder
-    : i18n.select.placeholder;
+      ? placeholder
+      : i18n.select.placeholder;
 
   return (
     <SelectContainer

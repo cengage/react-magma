@@ -51,7 +51,7 @@ export function useDescendants(): [
   (
     refArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
     ref: React.MutableRefObject<Element>
-  ) => void
+  ) => void,
 ] {
   const itemRefArray = React.useRef<React.MutableRefObject<Element>[]>([]);
 

@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { HiddenStyles } from '../../utils/UtilityStyles';
+
 import styled from '@emotion/styled';
+
+import { HiddenStyles } from '../../utils/UtilityStyles';
 
 /**
  * @children required

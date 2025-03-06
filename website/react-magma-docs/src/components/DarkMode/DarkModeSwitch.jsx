@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Toggle } from 'react-magma-dom';
+
 import { DarkModeContext } from './DarkModeContext';
 
 export const DarkModeSwitch = () => {

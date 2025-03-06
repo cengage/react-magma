@@ -1,9 +1,12 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Textarea } from '.';
+
 import { render, fireEvent } from '@testing-library/react';
-import { magma } from '../../theme/magma';
+
+import { axe } from '../../../axe-helper';
 import { defaultI18n } from '../../i18n/default';
+import { magma } from '../../theme/magma';
+
+import { Textarea } from '.';
 
 const testId = 'test-id';
 
@@ -149,7 +152,7 @@ describe('Textarea', () => {
       const testId = 'test-id';
 
       const { getByText } = render(
-        <Textarea testId={testId} hasCharacterCounter={true} maxLength={2} />
+        <Textarea testId={testId} hasCharacterCounter maxLength={2} />
       );
       expect(getByText('2 ' + charactersAllowed)).toBeInTheDocument();
     });
@@ -160,7 +163,7 @@ describe('Textarea', () => {
       const { getByText } = render(
         <Textarea
           testId={testId}
-          hasCharacterCounter={true}
+          hasCharacterCounter
           maxLength={2}
           maxCount={4}
         />

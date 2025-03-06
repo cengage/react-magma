@@ -1,11 +1,13 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
+
+import { render } from '@testing-library/react';
 import { EmailIcon } from 'react-magma-icons';
 
-import { IconSizes, List, ListItem } from '.';
-import { render } from '@testing-library/react';
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
+
+import { IconSizes, List, ListItem } from '.';
 
 const TEXT = 'List Item Text';
 

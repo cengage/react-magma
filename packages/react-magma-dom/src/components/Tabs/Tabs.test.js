@@ -1,12 +1,15 @@
 import React from 'react';
-import { Tab } from './Tab';
-import { Tabs } from '.';
-import { TabsContainer, TabsContainerContext } from './TabsContainer';
-import { TabPanelsContainer } from './TabPanelsContainer';
-import { TabPanel } from './TabPanel';
-import { magma } from '../../theme/magma';
+
 import { render, fireEvent } from '@testing-library/react';
+
+import { Tab } from './Tab';
+import { TabPanel } from './TabPanel';
+import { TabPanelsContainer } from './TabPanelsContainer';
+import { TabsContainer, TabsContainerContext } from './TabsContainer';
 import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+
+import { Tabs } from '.';
 
 describe('Tabs', () => {
   it('should correctly apply the testId', () => {

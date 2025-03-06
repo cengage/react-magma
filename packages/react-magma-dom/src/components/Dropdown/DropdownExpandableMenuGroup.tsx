@@ -1,7 +1,9 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+
 import { Accordion, AccordionIconPosition, AccordionProps } from '../Accordion';
 import { DropdownContext } from './Dropdown';
-import styled from '@emotion/styled';
 
 const StyledAccordion = styled(Accordion)`
   border: none;

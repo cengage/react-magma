@@ -1,10 +1,13 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
+
 import { getByTestId, render } from '@testing-library/react';
-import { Hyperlink, HyperlinkIconPosition } from '.';
-import { magma } from '../../theme/magma';
 import { KeyboardArrowRightIcon } from 'react-magma-icons';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
 import { ButtonSize } from '../Button';
+
+import { Hyperlink, HyperlinkIconPosition } from '.';
 
 describe('Hyperlink', () => {
   it('does not violate detectible accessibility standards', () => {
@@ -171,7 +174,7 @@ describe('Hyperlink', () => {
         <Hyperlink
           styledAs="Button"
           to="https://www.google.com"
-          hasUnderline={true}
+          hasUnderline
           testId={testId}
         >
           Google

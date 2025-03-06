@@ -1,12 +1,15 @@
 import React from 'react';
-import { BlockQuote, BlockQuoteItem, BlockQuoteItemProps } from '.';
-import { Card, CardBody } from '../Card';
+
 import { Story, Meta } from '@storybook/react/types-6-0';
+
+import { Card, CardBody } from '../Card';
 import {
   TypographyColor,
   TypographyContextVariant,
   TypographyVisualStyle,
 } from '../Typography';
+
+import { BlockQuote, BlockQuoteItem, BlockQuoteItemProps } from '.';
 
 const Template: Story<BlockQuoteItemProps> = args => (
   <BlockQuote {...args}>

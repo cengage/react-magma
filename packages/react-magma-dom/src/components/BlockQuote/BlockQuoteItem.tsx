@@ -1,15 +1,19 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
-import { ThemeContext } from '../../theme/ThemeContext';
+import styled from '@emotion/styled';
+
 import { useIsInverse } from '../../inverse';
-import { BlockQuoteProps } from '.';
+import { ThemeContext } from '../../theme/ThemeContext';
 import {
   TypographyVisualStyle,
   TypographyColor,
   TypographyContextVariant,
   TypographyComponent,
 } from '../Typography';
-import styled from '@emotion/styled';
+
+import { BlockQuoteProps } from '.';
+
 /**
  * @children required
  */

@@ -1,7 +1,9 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '@emotion/styled';
 
 /**
  * @children required
@@ -119,9 +121,9 @@ export const TableContainer = styled.div<{
   &:focus-visible {
     outline: 2px solid
       ${props =>
-    props.isInverse
-      ? props.theme.colors.focusInverse
-      : props.theme.colors.focus};
+        props.isInverse
+          ? props.theme.colors.focusInverse
+          : props.theme.colors.focus};
   }
 `;
 

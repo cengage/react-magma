@@ -1,9 +1,11 @@
+import * as React from 'react';
+
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
 import { transparentize } from 'polished';
-import * as React from 'react';
 import { ClearIcon, IconProps } from 'react-magma-icons';
+
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
@@ -227,7 +229,7 @@ export const inputWrapperStyles = (props: InputWrapperStylesProps) => css`
 
 function getInputPadding(props: InputBaseStylesProps) {
   const { inputSize, isClearable, iconPosition } = props;
-  let padding = {
+  const padding = {
     left: props.theme.spaceScale.spacing03,
     right: props.theme.spaceScale.spacing03,
   };
@@ -378,8 +380,8 @@ const IconWrapper = styled.span<{
     props.iconPosition === 'right'
       ? props.theme.spaceScale.spacing03
       : props.iconPosition === 'top'
-      ? '3px'
-      : 'auto'};
+        ? '3px'
+        : 'auto'};
   position: absolute;
   top: ${props =>
     props.iconPosition === 'top'
@@ -396,8 +398,8 @@ const IconWrapper = styled.span<{
       right: ${props.iconPosition === 'right'
         ? props.theme.spaceScale.spacing04
         : props.iconPosition === 'top'
-        ? '3px'
-        : 'auto'};
+          ? '3px'
+          : 'auto'};
       top: ${props.iconPosition === 'top'
         ? 'inherit'
         : props.theme.spaceScale.spacing04};
@@ -439,7 +441,7 @@ export function getHelpIconButtonSize(props) {
 
 function getIconButtonTransform(props) {
   const { isClickable, iconPosition, inputSize, hasChildren, theme } = props;
-  let position = { x: '', y: '' };
+  const position = { x: '', y: '' };
 
   if (iconPosition === InputIconPosition.top) {
     if (inputSize === InputSize.large) {
@@ -649,8 +651,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       icon && onIconClick
         ? InputIconPosition.right
         : icon && !props.iconPosition
-        ? InputIconPosition.left
-        : props.iconPosition;
+          ? InputIconPosition.left
+          : props.iconPosition;
 
     const [value, setValue] = React.useState<
       string | ReadonlyArray<string> | number
@@ -737,8 +739,8 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
                 type === InputType.search
                   ? isClearable
                   : inputWrapperStyle?.width
-                  ? isClearable
-                  : isClearable && inputLength > 0
+                    ? isClearable
+                    : isClearable && inputLength > 0
               }
               isInverse={useIsInverse(props.isInverse)}
               isPredictive={isPredictive}
@@ -809,7 +811,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
                   : InputSize.medium
               }
               theme={theme}
-              isClickable={true}
+              isClickable
             >
               <IconButton
                 aria-label={iconAriaLabel}

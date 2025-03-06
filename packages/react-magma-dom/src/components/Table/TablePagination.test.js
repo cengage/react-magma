@@ -1,9 +1,12 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { TablePagination } from '.';
+
 import { act, render, fireEvent, getAllByRole } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 import { transparentize } from 'polished';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+
+import { TablePagination } from '.';
 
 describe('Table Pagination', () => {
   it('should find element by testId', () => {

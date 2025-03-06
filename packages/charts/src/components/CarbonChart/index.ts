@@ -1,1 +1,1 @@
-export * from "./CarbonChart";
+export * from './CarbonChart';

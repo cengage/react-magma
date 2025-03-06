@@ -1,4 +1,5 @@
 import React from 'react';
+
 import styled from '@emotion/styled';
 
 // This is an example used in the theme documentation for decoration purposes.
@@ -27,14 +28,19 @@ const StyledDonut = styled.div`
       rgba(190, 114, 78, 1) 62%,
       rgba(210, 139, 105, 1) 91%
     );
-    box-shadow: -5px 15px 4px -14px rgb(0 0 0 / 35%),
-      -70px 50px 11px -30px rgb(0 0 0 / 6%), inset 0 -42px 30px -5px #00000014;
+    box-shadow:
+      -5px 15px 4px -14px rgb(0 0 0 / 35%),
+      -70px 50px 11px -30px rgb(0 0 0 / 6%),
+      inset 0 -42px 30px -5px #00000014;
   }
   &:after {
     content: '';
     background: pink;
-    box-shadow: inset 0 -10px 2px #ffffff33, inset 0 36px 20px -20px #ffffff69,
-      inset 0 -50px 30px -20px #0000001c, inset 0 -10px 30px 50px #ffffff66,
+    box-shadow:
+      inset 0 -10px 2px #ffffff33,
+      inset 0 36px 20px -20px #ffffff69,
+      inset 0 -50px 30px -20px #0000001c,
+      inset 0 -10px 30px 50px #ffffff66,
       inset 0 -4px 5px #00000070;
     position: absolute;
     top: -11px;

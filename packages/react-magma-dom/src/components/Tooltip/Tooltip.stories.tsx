@@ -1,20 +1,15 @@
 import React from 'react';
-import {
-  Tooltip,
-  TooltipProps,
-  TooltipPosition,
-  EnumTooltipPosition,
-} from './index';
-import { Button, ButtonSize, ButtonVariant } from '../Button';
-import { magma } from '../../theme/magma';
+
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { IconButton } from '../IconButton';
 import {
   KeyboardArrowLeftIcon,
   KeyboardArrowRightIcon,
   KeyboardArrowDownIcon,
   KeyboardArrowUpIcon,
 } from 'react-magma-icons';
+
+import { magma } from '../../theme/magma';
+import { Button, ButtonSize, ButtonVariant } from '../Button';
 import { Card, CardBody } from '../Card';
 import {
   Dropdown,
@@ -23,9 +18,17 @@ import {
   DropdownDropDirection,
   DropdownMenuItem,
 } from '../Dropdown';
+import { IconButton } from '../IconButton';
 import { Modal } from '../Modal';
-import { VisuallyHidden } from '../VisuallyHidden';
 import { Tag } from '../Tag';
+import { VisuallyHidden } from '../VisuallyHidden';
+
+import {
+  Tooltip,
+  TooltipProps,
+  TooltipPosition,
+  EnumTooltipPosition,
+} from './index';
 
 const Template: Story<TooltipProps> = args => (
   <div
@@ -223,7 +226,9 @@ export const Complex = () => {
               <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
             </Button>
             <p>
-              Some content here. Some content here. Some content here. Some content here. Some content here. Some content here. Some content here. Some content here. Some contenthere. 
+              Some content here. Some content here. Some content here. Some
+              content here. Some content here. Some content here. Some content
+              here. Some content here. Some contenthere.
             </p>
           </CardBody>
         </Card>

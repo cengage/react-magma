@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { InputMessage } from '../Input/InputMessage';
-import {  magma } from '../../theme/magma';
-import { I18nContext } from '../../i18n';
+
 import styled from '@emotion/styled';
+
+import { I18nContext } from '../../i18n';
+import { magma } from '../../theme/magma';
+import { InputMessage } from '../Input/InputMessage';
 
 export interface CharacterCounterProps
   extends React.HTMLAttributes<HTMLDivElement> {

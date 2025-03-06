@@ -1,8 +1,9 @@
 /* eslint-disable complexity */
+import React from 'react';
+
 import styled from '@emotion/styled';
 import { graphql, Link, StaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
-import React from 'react';
 import {
   magma,
   NavTab,
@@ -12,6 +13,7 @@ import {
   TabsContainer,
   useIsInverse,
 } from 'react-magma-dom';
+
 import { convertTextToId } from '../../utils';
 import { PANEL_WIDTH } from '../SlidingDrawer';
 import { SubPageTabs } from '../SubPageTabs';
@@ -235,8 +237,8 @@ export const PageContent = ({ children, componentName, type }) => {
         const apiNavTabToLink = patternsDocs
           ? patternsLink
           : dataVisualization
-          ? dataVisualizationLink
-          : apiLink;
+            ? dataVisualizationLink
+            : apiLink;
         const designNavTabToLink = designPatternDocs
           ? designPatternsLink
           : designLink;

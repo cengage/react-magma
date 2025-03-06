@@ -27,6 +27,7 @@ props:
 
 ```tsx
 import React from 'react';
+
 import {
   Table,
   TableHead,
@@ -106,6 +107,7 @@ The `hasVerticalBorders` boolean prop may be used to give table cells vertical b
 
 ```tsx
 import React from 'react';
+
 import {
   Table,
   TableHead,
@@ -151,6 +153,7 @@ The `hasHoverStyles` boolean prop may be used to visually highlight a row when h
 
 ```tsx
 import React from 'react';
+
 import {
   Table,
   TableHead,
@@ -196,6 +199,7 @@ The `hasZebraStripes` boolean prop may be used to give each alternating row a di
 
 ```tsx
 import React from 'react';
+
 import {
   Table,
   TableHead,
@@ -253,6 +257,7 @@ The `density` property controls the amount of padding inside each cell. It accep
 
 ```tsx
 import React from 'react';
+
 import {
   Table,
   TableHead,
@@ -326,6 +331,7 @@ These props do not handle the actual sorting of the table, just the visual appea
 
 ```tsx
 import React from 'react';
+
 import {
   Table,
   TableHead,
@@ -340,14 +346,17 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
-  const products = [
-    { id: 1, name: 'Cheese', price: 5, stock: 20 },
-    { id: 2, name: 'Milk', price: 5, stock: 32 },
-    { id: 3, name: 'Yogurt', price: 3, stock: 12 },
-    { id: 4, name: 'Heavy Cream', price: 10, stock: 9 },
-    { id: 5, name: 'Butter', price: 2, stock: 99 },
-    { id: 6, name: 'Sour Cream ', price: 5, stock: 86 },
-  ];
+  const products = React.useMemo(
+    () => [
+      { id: 1, name: 'Cheese', price: 5, stock: 20 },
+      { id: 2, name: 'Milk', price: 5, stock: 32 },
+      { id: 3, name: 'Yogurt', price: 3, stock: 12 },
+      { id: 4, name: 'Heavy Cream', price: 10, stock: 9 },
+      { id: 5, name: 'Butter', price: 2, stock: 99 },
+      { id: 6, name: 'Sour Cream ', price: 5, stock: 86 },
+    ],
+    []
+  );
 
   const [sortConfig, setSortConfig] = React.useState({
     key: 'name',
@@ -356,7 +365,7 @@ export function Example() {
   });
 
   const sortedItems = React.useMemo(() => {
-    let sortableItems = [...products];
+    const sortableItems = [...products];
     if (sortConfig !== null) {
       sortableItems.sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
@@ -457,6 +466,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import {
   Card,
   Table,
@@ -512,6 +522,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import {
   Table,
   TableHead,
@@ -556,6 +567,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import {
   Table,
   TableHead,
@@ -622,6 +634,7 @@ The horizontal scrolling is useful for responsive behavior to ensure that the co
 
 ```tsx
 import React from 'react';
+
 import {
   Table,
   TableHead,
@@ -679,6 +692,7 @@ Content other than just text, such as buttons, inputs and other elements can be 
 
 ```tsx
 import React from 'react';
+
 import {
   Table,
   TableHead,
@@ -738,6 +752,7 @@ This component does not handle the actual pagination of the table itself, it sim
 
 ```tsx codesandbox=magma
 import React from 'react';
+
 import {
   Table,
   TableHead,
@@ -945,6 +960,7 @@ The `TableRow` component, takes an optional `color` prop, to give contextual mea
 
 ```tsx codesandbox=magma
 import React from 'react';
+
 import {
   Table,
   TableHead,

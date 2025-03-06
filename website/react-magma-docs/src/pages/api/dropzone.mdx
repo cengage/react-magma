@@ -20,6 +20,7 @@ title: Dropzone
 
 ```tsx
 import React from 'react';
+
 import { Dropzone } from '@react-magma/dropzone';
 
 export function Example() {
@@ -40,6 +41,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Dropzone } from '@react-magma/dropzone';
 
 export function Example() {
@@ -58,8 +60,9 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Card, CardBody } from 'react-magma-dom';
+
 import { Dropzone } from '@react-magma/dropzone';
+import { Card, CardBody } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -93,15 +96,16 @@ then switched to true when needed.
 
 ```tsx
 import React from 'react';
+
 import { Dropzone } from '@react-magma/dropzone';
 import { Button, Spacer } from 'react-magma-dom';
 
 export function Example() {
-  const [sendFiles, setSendFiles] = React.useState<Boolean>(false);
+  const [sendFiles, setSendFiles] = React.useState<boolean>(false);
 
   const onSendFile = (props: OnSendFileProps) => {
     const { onProgress, onError, onFinish, file } = props;
-    let percent: number = 1;
+    let percent = 1;
 
     const interval = setInterval(() => {
       percent++;
@@ -162,6 +166,7 @@ Since the dropzone uses the [FileReader API](https://developer.mozilla.org/en-US
 
 ```tsx
 import React from 'react';
+
 import { Dropzone } from '@react-magma/dropzone';
 
 export function Example() {
@@ -202,6 +207,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Dropzone } from '@react-magma/dropzone';
 import { Textarea } from 'react-magma-dom';
 
@@ -243,23 +249,24 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Datagrid } from 'react-magma-dom';
+
 import { Dropzone } from '@react-magma/dropzone';
+import { Datagrid } from 'react-magma-dom';
 
 export function Example() {
   const [file, setFile] = React.useState<any>();
   const [columns, setColumns] = React.useState<any>();
 
   const csvToJson = csv => {
-    var lines = csv.split('\n');
-    var result = [];
-    var headers = lines[0].split(',');
+    const lines = csv.split('\n');
+    const result = [];
+    const headers = lines[0].split(',');
 
-    for (var i = 1; i < lines.length; i++) {
-      var obj = {};
-      var currentline = lines[i].split(',');
+    for (let i = 1; i < lines.length; i++) {
+      const obj = {};
+      const currentline = lines[i].split(',');
 
-      for (var j = 0; j < headers.length; j++) {
+      for (let j = 0; j < headers.length; j++) {
         obj[headers[j]] = currentline[j];
       }
 

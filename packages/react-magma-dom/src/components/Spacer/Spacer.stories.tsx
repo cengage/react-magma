@@ -1,9 +1,12 @@
 import React from 'react';
-import { Spacer, SpacerProps, SpacerAxis } from './';
-import { Card, CardBody } from '../Card';
-import { Button } from '../Button';
+
 import { Story, Meta } from '@storybook/react/types-6-0';
+
 import { magma } from '../../theme/magma';
+import { Button } from '../Button';
+import { Card, CardBody } from '../Card';
+
+import { Spacer, SpacerProps, SpacerAxis } from './';
 
 const Template: Story<SpacerProps> = args => <Spacer {...args} />;
 

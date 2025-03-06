@@ -1,6 +1,6 @@
 import React from 'react';
-import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
 
+import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
 import {
   Modal as MagmaModal,
   ModalProps as MagmaModalProps,

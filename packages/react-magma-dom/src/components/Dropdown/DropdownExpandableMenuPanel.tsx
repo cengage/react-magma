@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { AccordionPanel, AccordionPanelProps } from '../Accordion';
-import { DropdownExpandableMenuGroup } from './DropdownExpandableMenuGroup';
+
 import styled from '@emotion/styled';
 
-export interface DropdownExpandableMenuPanelProps extends AccordionPanelProps {}
+import { AccordionPanel, AccordionPanelProps } from '../Accordion';
+import { DropdownExpandableMenuGroup } from './DropdownExpandableMenuGroup';
+
+export type DropdownExpandableMenuPanelProps = AccordionPanelProps;
 
 const StyledAccordionPanel = styled(AccordionPanel)`
   padding: 0;

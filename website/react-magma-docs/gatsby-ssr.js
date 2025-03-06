@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+
 import { Layout } from './src/components/layout';
 import { MainContainer } from './src/components/MainContainer';
 

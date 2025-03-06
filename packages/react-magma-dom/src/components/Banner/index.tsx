@@ -1,5 +1,12 @@
 import * as React from 'react';
+
 import isPropValid from '@emotion/is-prop-valid';
+import styled from '@emotion/styled';
+import { CloseIcon } from 'react-magma-icons';
+
+import { I18nContext } from '../../i18n';
+import { useIsInverse } from '../../inverse';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { AlertProps } from '../Alert';
 import {
   AdditionalContentWrapper,
@@ -11,13 +18,8 @@ import {
   buildLinkHoverColor,
   VARIANT_ICON,
 } from '../AlertBase';
-import { CloseIcon } from 'react-magma-icons';
 import { Button, ButtonSize, ButtonVariant, ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { I18nContext } from '../../i18n';
-import { useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
 
 /**
  * @children required

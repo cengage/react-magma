@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { render, fireEvent } from '@testing-library/react';
-import { CalendarDay } from './CalendarDay';
-import { CalendarContext } from './CalendarContext';
 import { format } from 'date-fns';
+
+import { CalendarContext } from './CalendarContext';
+import { CalendarDay } from './CalendarDay';
 
 describe('Calendar Day', () => {
   it('renders a day', () => {

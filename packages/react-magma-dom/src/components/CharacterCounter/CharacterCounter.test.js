@@ -1,9 +1,12 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { CharacterCounter } from '.';
+
 import { render } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
+
+import { CharacterCounter } from '.';
 
 const testId = 'test-id';
 

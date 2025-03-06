@@ -1,6 +1,7 @@
-import { css } from '@emotion/react';
 import * as React from 'react';
-import { ButtonIconPosition, IconButton } from '../IconButton';
+
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import {
   ArrowDropDownIcon,
   ArrowDropUpIcon,
@@ -8,12 +9,13 @@ import {
   ArrowRightIcon,
   IconProps,
 } from 'react-magma-icons';
+
+import { ButtonIconPosition, IconButton } from '../IconButton';
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { Omit, useForkedRef, useGenerateId, XOR } from '../../utils';
 import { ButtonProps, ButtonSize } from '../Button';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
-import styled from '@emotion/styled';
 
 export interface IconOnlyDropdownButtonProps
   extends Omit<ButtonProps, 'children'> {

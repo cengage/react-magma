@@ -1,6 +1,7 @@
 import React from 'react';
-import { I18nContext } from '../../i18n';
+
 import { useControlled } from '../../hooks/useControlled';
+import { I18nContext } from '../../i18n';
 
 export interface UsePaginationProps {
   /**
@@ -134,8 +135,8 @@ export function usePagination(props: Partial<UsePaginationProps> = {}) {
     ...(siblingsStart > numberOfEdgePages + 2
       ? ['start-ellipsis']
       : numberOfEdgePages + 1 < count - numberOfEdgePages
-      ? [numberOfEdgePages + 1]
-      : []),
+        ? [numberOfEdgePages + 1]
+        : []),
 
     // Sibling pages
     ...range(siblingsStart, siblingsEnd),
@@ -144,8 +145,8 @@ export function usePagination(props: Partial<UsePaginationProps> = {}) {
     ...(siblingsEnd < count - numberOfEdgePages - 1
       ? ['end-ellipsis']
       : count - numberOfEdgePages > numberOfEdgePages
-      ? [count - numberOfEdgePages]
-      : []),
+        ? [count - numberOfEdgePages]
+        : []),
 
     ...endPages,
     ...(hideNextButton ? [] : ['next']),

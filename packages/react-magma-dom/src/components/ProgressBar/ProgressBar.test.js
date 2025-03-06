@@ -1,9 +1,12 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { magma } from '../../theme/magma';
-import { ProgressBar } from '.';
+
 import { render } from '@testing-library/react';
 import { transparentize } from 'polished';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+
+import { ProgressBar } from '.';
 
 describe('ProgressBar', () => {
   it('should find element by testId', () => {
@@ -86,9 +89,7 @@ describe('ProgressBar', () => {
   });
 
   it('should render the inverse progress bar component with primary as the default color', () => {
-    const { container } = render(
-      <ProgressBar percentage={50} isInverse={true} />
-    );
+    const { container } = render(<ProgressBar percentage={50} isInverse />);
 
     expect(container.querySelector('[role="progressbar"]')).toHaveStyleRule(
       'background',

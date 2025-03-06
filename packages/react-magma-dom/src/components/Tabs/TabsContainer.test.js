@@ -1,12 +1,15 @@
 import React from 'react';
+
 import { render } from '@testing-library/react';
+
 import { Tab } from './Tab';
-import { Tabs } from '.';
-import { TabsContainer } from './TabsContainer';
 import { TabPanel } from './TabPanel';
+import { TabPanelsContainer } from './TabPanelsContainer';
+import { TabsContainer } from './TabsContainer';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
-import { TabPanelsContainer } from './TabPanelsContainer';
+
+import { Tabs } from '.';
 
 describe('Tabs Container', () => {
   it('should correctly apply the testId', () => {
@@ -74,10 +77,7 @@ it('should render with inverse styles', () => {
     </TabsContainer>
   );
 
-  expect(getByTestId(testId)).toHaveStyleRule(
-    'background',
-    'none'
-  );
+  expect(getByTestId(testId)).toHaveStyleRule('background', 'none');
   expect(getByTestId(testId)).toHaveStyleRule('color', magma.colors.neutral100);
 });
 

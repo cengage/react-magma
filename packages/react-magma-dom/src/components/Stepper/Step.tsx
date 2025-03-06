@@ -1,13 +1,14 @@
-import styled from '@emotion/styled';
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
 import { CheckIcon, CloseIcon } from 'react-magma-icons';
 
-import { transparentize } from 'polished';
-import { useIsInverse } from '../../inverse';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
-import { HiddenStyles } from '../../utils/UtilityStyles';
 import { StepperLayout, StepperOrientation } from './Stepper';
+import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { HiddenStyles } from '../../utils/UtilityStyles';
 
 export interface StepProps extends React.HTMLAttributes<HTMLDivElement> {
   /**

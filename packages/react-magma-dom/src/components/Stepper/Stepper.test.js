@@ -1,12 +1,15 @@
+import React from 'react';
+
 import { render } from '@testing-library/react';
 import { transparentize } from 'polished';
-import React from 'react';
 import { act } from 'react-dom/test-utils';
-import { Step, Stepper, StepperLayout, StepperOrientation } from '.';
+
 import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
+
+import { Step, Stepper, StepperLayout, StepperOrientation } from '.';
 
 const TEXT = 'Test Text';
 const testId = 'test-id';
@@ -15,7 +18,7 @@ describe('Stepper', () => {
   it('should find element by testId', () => {
     const { getByTestId } = render(
       <Stepper ariaLabel="progress" testId={testId}>
-        <Step  key="step" testId="step" label="step" />
+        <Step key="step" testId="step" label="step" />
       </Stepper>
     );
 
@@ -26,8 +29,8 @@ describe('Stepper', () => {
     it('Does not violate accessibility standards', () => {
       const { container } = render(
         <Stepper ariaLabel="progress">
-          <Step  key="step1" testId="step1" label="step1" />
-          <Step  key="step2" testId="step2" label="step2" />
+          <Step key="step1" testId="step1" label="step1" />
+          <Step key="step2" testId="step2" label="step2" />
         </Stepper>
       );
 
@@ -39,8 +42,8 @@ describe('Stepper', () => {
     it('should use the custom aria-label', () => {
       const { getByLabelText } = render(
         <Stepper ariaLabel="custom" testId={testId} currentStep={0}>
-          <Step  key="step1" />
-          <Step  key="step2" />
+          <Step key="step1" />
+          <Step key="step2" />
         </Stepper>
       );
 
@@ -56,8 +59,8 @@ describe('Stepper', () => {
           layout={StepperLayout.showLabels}
           currentStep={1}
         >
-          <Step  key="step1" testId={`${testId}-1`} label={`${TEXT}-1`} />
-          <Step  key="step2" testId={`${testId}-2`} label={`${TEXT}-2`} />
+          <Step key="step1" testId={`${testId}-1`} label={`${TEXT}-1`} />
+          <Step key="step2" testId={`${testId}-2`} label={`${TEXT}-2`} />
         </Stepper>
       );
 

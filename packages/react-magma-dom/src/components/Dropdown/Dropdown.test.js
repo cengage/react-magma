@@ -1,7 +1,21 @@
 import React from 'react';
-import { AsteriskIcon, RestaurantMenuIcon } from 'react-magma-icons';
-import { Dropdown } from '.';
+
 import {
+  act,
+  render,
+  fireEvent,
+  getByTestId,
+  getByLabelText,
+} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { transparentize } from 'polished';
+import { AsteriskIcon, RestaurantMenuIcon } from 'react-magma-icons';
+
+import { magma } from '../../theme/magma';
+import { Modal } from '../Modal';
+
+import {
+  Dropdown,
   DropdownContent,
   DropdownDivider,
   DropdownHeader,
@@ -15,13 +29,7 @@ import {
   DropdownExpandableMenuListItem,
   DropdownExpandableMenuButton,
   DropdownExpandableMenuPanel,
-} from './';
-import { Modal } from '../Modal';
-import { magma } from '../../theme/magma';
-import { transparentize } from 'polished';
-
-import { act, render, fireEvent, getByTestId, getByLabelText } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+} from '.';
 
 describe('Dropdown', () => {
   it('should find element by testId', () => {
@@ -30,8 +38,8 @@ describe('Dropdown', () => {
       <Dropdown testId={testId}>
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent>
-          <DropdownMenuItem onClick={() => { }}>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem onClick={() => { }}>
+          <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => {}}>
             Menu item number two
           </DropdownMenuItem>
         </DropdownContent>
@@ -57,10 +65,10 @@ describe('Dropdown', () => {
       <Dropdown>
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent>
-          <DropdownMenuItem onClick={() => { }}>Menu item 1</DropdownMenuItem>
-          <OptionalDropdownItem onClick={() => { }} toggle />
+          <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+          <OptionalDropdownItem onClick={() => {}} toggle />
           <div>
-            <DropdownMenuItem onClick={() => { }}>FAQ</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {}}>FAQ</DropdownMenuItem>
           </div>
         </DropdownContent>
       </Dropdown>
@@ -447,17 +455,17 @@ describe('Dropdown', () => {
     const { getAllByLabelText, getByTestId } = render(
       <>
         <Dropdown testId="dropdown1" onClose={onClose1}>
-          <DropdownSplitButton
-            aria-label="Split"
-          >Toggle me 1</DropdownSplitButton>
+          <DropdownSplitButton aria-label="Split">
+            Toggle me 1
+          </DropdownSplitButton>
           <DropdownContent testId="dropdown1Content">
             <DropdownMenuItem>Menu item 1</DropdownMenuItem>
           </DropdownContent>
         </Dropdown>
         <Dropdown testId="dropdown2" onClose={onClose2}>
-          <DropdownSplitButton
-            aria-label="Split"
-          >Toggle me 2</DropdownSplitButton>
+          <DropdownSplitButton aria-label="Split">
+            Toggle me 2
+          </DropdownSplitButton>
           <DropdownContent testId="dropdown2Content">
             <DropdownMenuItem>Menu item 2</DropdownMenuItem>
           </DropdownContent>
@@ -523,9 +531,9 @@ describe('Dropdown', () => {
       <Dropdown testId="dropdown">
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent>
-          <DropdownMenuItem onClick={() => { }}>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
           <DropdownDivider />
-          <DropdownMenuItem onClick={() => { }}>Menu item 2</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
     );
@@ -554,9 +562,9 @@ describe('Dropdown', () => {
       <Dropdown testId="dropdown">
         <DropdownButton>Toggle me</DropdownButton>
         <DropdownContent>
-          <DropdownMenuItem onClick={() => { }}>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
           <DropdownDivider />
-          <DropdownMenuItem onClick={() => { }}>Menu item 2</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => {}}>Menu item 2</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
     );
@@ -778,8 +786,8 @@ describe('Dropdown', () => {
       <Dropdown activeIndex={1}>
         <DropdownButton>Toggle</DropdownButton>
         <DropdownContent>
-          <DropdownMenuItem onClick={() => { }}>aaa</DropdownMenuItem>
-          <DropdownMenuItem onClick={() => { }}>bbb</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => {}}>aaa</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => {}}>bbb</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
     );
@@ -1130,7 +1138,7 @@ describe('Dropdown', () => {
         <Dropdown>
           <DropdownButton>Expandable Items Dropdown</DropdownButton>
           <DropdownContent>
-            <DropdownExpandableMenuGroup isMulti={true}>
+            <DropdownExpandableMenuGroup isMulti>
               <DropdownExpandableMenuItem>
                 <DropdownExpandableMenuButton>
                   Pasta
@@ -1425,9 +1433,7 @@ describe('Dropdown', () => {
           <Dropdown isInverse>
             <DropdownButton>Expandable Items Dropdown</DropdownButton>
             <DropdownContent>
-              <DropdownExpandableMenuGroup
-                testId={expandableGroupId}
-              ></DropdownExpandableMenuGroup>
+              <DropdownExpandableMenuGroup testId={expandableGroupId} />
             </DropdownContent>
           </Dropdown>
         );

@@ -1,17 +1,20 @@
 import * as React from 'react';
-import { ButtonColor, ButtonShape, ButtonVariant } from '../Button';
-import { Announce } from '../Announce';
-import { I18nContext } from '../../i18n';
-import { Tooltip } from '../Tooltip';
-import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { NativeSelect } from '../..';
-import { NavButton, PaginationProps } from './';
-import { useGenerateId } from '../../utils';
-import { Spacer } from '../Spacer';
-import { VisuallyHidden } from '../VisuallyHidden';
-import { transparentize } from 'polished';
+
 import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
+
+import { NativeSelect } from '../..';
+import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useGenerateId } from '../../utils';
+import { Announce } from '../Announce';
+import { ButtonColor, ButtonShape, ButtonVariant } from '../Button';
+import { Spacer } from '../Spacer';
+import { Tooltip } from '../Tooltip';
+import { VisuallyHidden } from '../VisuallyHidden';
+
+import { NavButton, PaginationProps } from './';
 
 function buildLabelColor(props) {
   if (props.isInverse) {
@@ -68,16 +71,14 @@ export const SimplePagination = React.forwardRef<
     onPageChange,
     ...other
   } = props;
-  
+
   const theme = React.useContext(ThemeContext);
 
   const i18n = React.useContext(I18nContext);
 
   const id = useGenerateId(defaultId);
 
-  let [selectedPage, setSelectedPage] = React.useState(
-    page || defaultPage
-  );
+  let [selectedPage, setSelectedPage] = React.useState(page || defaultPage);
 
   React.useEffect(() => {
     setSelectedPage(page);

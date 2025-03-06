@@ -1,5 +1,15 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+import { CheckBoxIcon, CheckBoxOutlineBlankIcon } from 'react-magma-icons';
+
+import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { omit, reactNodeToString, useGenerateId } from '../../utils';
+import { HiddenStyles } from '../../utils/UtilityStyles';
+import { FormGroupContext } from '../FormGroup';
+import { InputMessage } from '../Input/InputMessage';
 import {
   DisplayInputStyles,
   DisplayInputActiveStyles,
@@ -7,16 +17,8 @@ import {
   buildDisplayInputBorderColor,
   buildDisplayInputFocusStyles,
 } from '../SelectionControls/InputStyles';
-import { FormGroupContext } from '../FormGroup';
-import { HiddenStyles } from '../../utils/UtilityStyles';
-import { InputMessage } from '../Input/InputMessage';
-import { CheckBoxIcon, CheckBoxOutlineBlankIcon } from 'react-magma-icons';
-import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import styled from '@emotion/styled';
-import { omit, reactNodeToString, useGenerateId } from '../../utils';
-import { useIsInverse } from '../../inverse';
-import { transparentize } from 'polished';
+import { StyledLabel } from '../SelectionControls/StyledLabel';
 
 export enum CheckboxTextPosition {
   left = 'left',
@@ -216,10 +218,10 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       descriptionId && groupDescriptionId
         ? `${groupDescriptionId} ${descriptionId}`
         : descriptionId
-        ? descriptionId
-        : groupDescriptionId
-        ? groupDescriptionId
-        : null;
+          ? descriptionId
+          : groupDescriptionId
+            ? groupDescriptionId
+            : null;
 
     const hasError = context.hasError || !!errorMessage;
 

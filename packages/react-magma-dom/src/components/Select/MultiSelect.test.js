@@ -1,16 +1,19 @@
-import { act, fireEvent, render } from '@testing-library/react';
 import React from 'react';
-import { Select as MultiSelect } from '.';
+
+import { act, fireEvent, render } from '@testing-library/react';
+
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
+
+import { Select as MultiSelect } from '.';
 
 describe('Select', () => {
   const items = ['Red', 'Blue', 'Green'];
   const labelText = 'Label';
 
   beforeAll(() => {
-    window.addEventListener('submit', (e) => {
+    window.addEventListener('submit', e => {
       e.preventDefault();
     });
   });

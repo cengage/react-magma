@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { css } from '@emotion/react';
+
 import isPropValid from '@emotion/is-prop-valid';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { ThemeContext } from '../../theme/ThemeContext';
 import {
   InfoIcon,
   CheckCircleIcon,
@@ -11,13 +12,14 @@ import {
   IconProps,
   CloseIcon,
 } from 'react-magma-icons';
+
+import { I18nContext } from '../../i18n';
+import { InverseContext, useIsInverse } from '../../inverse';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useGenerateId } from '../../utils';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { ProgressRing } from '../ProgressRing';
-import { useGenerateId } from '../../utils';
-import { I18nContext } from '../../i18n';
-import { InverseContext, useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
 
 export const VARIANT_ICON: {
   [name: string]: React.FunctionComponent<IconProps>;

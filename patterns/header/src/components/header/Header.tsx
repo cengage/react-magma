@@ -1,4 +1,6 @@
 import React from 'react';
+
+import styled from '@emotion/styled';
 import {
   AppBar,
   AppBarProps,
@@ -18,7 +20,6 @@ import {
   useIsInverse,
 } from 'react-magma-dom';
 import { MenuIcon } from 'react-magma-icons';
-import styled from '@emotion/styled';
 
 // NOTE: These props are manually copied to header.mdx
 export interface HeaderProps extends AppBarProps {

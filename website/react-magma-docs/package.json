@@ -1,14 +1,29 @@
 {
   "name": "react-magma-docs",
-  "description": "React Magma docs",
   "version": "5.1.2-next.5",
   "private": true,
+  "description": "React Magma docs",
+  "keywords": [
+    "gatsby"
+  ],
+  "homepage": "https://react-magma.cengage.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/cengage/react-magma.git",
     "directory": "packages/react-magma-docs"
   },
-  "homepage": "https://react-magma.cengage.com",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build --prefix-paths",
+    "develop": "gatsby develop",
+    "docs": "npm run develop",
+    "format": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
+    "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}'",
+    "lint:check": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --max-warnings=0",
+    "lint:fix": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --fix",
+    "serve": "gatsby serve",
+    "test": "echo \"Error: no test specified\""
+  },
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "7.10.4",
     "@cengage-patterns/header": "13.0.0-next.1",
@@ -55,20 +70,5 @@
     "semver": "^7.3.4",
     "url-loader": "^1.1.2",
     "uuid": "^8.3.0"
-  },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "build": "gatsby build --prefix-paths",
-    "develop": "gatsby develop",
-    "docs": "npm run develop",
-    "serve": "gatsby serve",
-    "format": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
-    "test": "echo \"Error: no test specified\"",
-    "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}'",
-    "lint:fix": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --fix",
-    "lint:check": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --max-warnings=0"
   }
 }

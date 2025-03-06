@@ -1,9 +1,12 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Heading } from '.';
+
 import { render } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { TypographyContextVariant, TypographyVisualStyle } from '../Typography';
+
+import { Heading } from '.';
 
 describe('Heading', () => {
   it('should find element by testId', () => {

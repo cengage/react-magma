@@ -1,15 +1,18 @@
 import React from 'react';
-import { AppBar, AppBarProps, AppBarPosition } from './index';
+
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { ImageIcon, FavoriteIcon, WorkIcon } from 'react-magma-icons';
+
+import { magma } from '../../theme/magma';
 import { NavTabs, NavTab } from '../NavTabs';
+import { Paragraph } from '../Paragraph';
 import { Search } from '../Search';
 import { SkipLink } from '../SkipLink';
 import { SkipLinkContent } from '../SkipLinkContent';
-import { Paragraph } from '../Paragraph';
 import { Spacer } from '../Spacer';
 import { TabsIconPosition } from '../Tabs';
-import { magma } from '../../theme/magma';
-import { ImageIcon, FavoriteIcon, WorkIcon } from 'react-magma-icons';
-import { Story, Meta } from '@storybook/react/types-6-0';
+
+import { AppBar, AppBarProps, AppBarPosition } from './index';
 
 const Template: Story<AppBarProps> = args => (
   <AppBar {...args}>{args.children}</AppBar>
@@ -96,10 +99,10 @@ export const WithSkipLink = () => {
         <Paragraph id="last-one">
           Turn the crank regroup can we align on lunch orders, so regroup, yet
           the last person we talked to said this would be ready, for this vendor
-          is incompetent , or pipeline. We've bootstrapped the model zeitgeist,
-          so let's schedule a standup during the sprint to review our kpis, so
-          not the long pole in my tent we're ahead of the curve on that one, and
-          we're ahead of the curve on that one.{' '}
+          is incompetent , or pipeline. We&apos;ve bootstrapped the model
+          zeitgeist, so let&apos;s schedule a standup during the sprint to
+          review our kpis, so not the long pole in my tent we&apos;re ahead of
+          the curve on that one, and we&apos;re ahead of the curve on that one.
         </Paragraph>
       </SkipLinkContent>
     </div>

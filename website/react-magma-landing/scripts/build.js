@@ -1,9 +1,10 @@
 const axios = require('axios');
 const semver = require('semver');
-const fs = require('fs');
 const copy = require('copy');
-const mkdirp = require('mkdirp');
 const ejs = require('ejs');
+const fs = require('fs');
+const mkdirp = require('mkdirp');
+
 const english = new Intl.DateTimeFormat('en');
 const path = require('path');
 

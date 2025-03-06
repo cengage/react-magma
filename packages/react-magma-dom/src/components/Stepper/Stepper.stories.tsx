@@ -1,5 +1,17 @@
 import React from 'react';
+
+import { Story, Meta } from '@storybook/react/types-6-0';
+
 import { Button } from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
+import { Container } from '../Container';
+import { Flex, FlexBehavior, FlexJustify } from '../Flex';
+import { Input } from '../Input';
+import { InputType } from '../InputBase';
+import { LabelPosition } from '../Label';
+import { ResponsiveStepperContainer } from './ResponsiveStepperContainer';
+import { Dropdown, DropdownButton, DropdownContent } from '../Dropdown';
+
 import {
   Stepper,
   StepperProps,
@@ -7,15 +19,6 @@ import {
   StepperLayout,
   StepperOrientation,
 } from './';
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { Container } from '../Container';
-import { ButtonGroup } from '../ButtonGroup';
-import { InputType } from '../InputBase';
-import { Input } from '../Input';
-import { Flex, FlexBehavior, FlexJustify } from '../Flex';
-import { LabelPosition } from '../Label';
-import { ResponsiveStepperContainer } from './ResponsiveStepperContainer';
-import { Dropdown, DropdownButton, DropdownContent } from '../Dropdown';
 
 export default {
   title: 'Stepper',
@@ -207,7 +210,7 @@ const InsideDropdownTemplate: Story<StepperProps> = args => {
               Item Content Five
             </Step>,
           ]}
-        ></ResponsiveStepperContainer>
+        />
       </DropdownContent>
     </Dropdown>
   );

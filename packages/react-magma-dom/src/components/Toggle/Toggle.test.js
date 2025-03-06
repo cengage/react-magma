@@ -1,9 +1,12 @@
 import React from 'react';
-import { Toggle } from '.';
-import { FormGroup } from '../FormGroup';
-import { magma } from '../../theme/magma';
-import { axe } from '../../../axe-helper';
+
 import { render, fireEvent } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+import { FormGroup } from '../FormGroup';
+
+import { Toggle } from '.';
 
 describe('Toggle', () => {
   it('should find element by testId', () => {
