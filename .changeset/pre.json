@@ -12,6 +12,7 @@
   },
   "changesets": [
     "curly-singers-dress",
+    "eslint-and-prittier-v2",
     "eslint-and-prittier",
     "feat-TreeView-add-expandAll-and-collapseAll",
     "fix-AppBar",
