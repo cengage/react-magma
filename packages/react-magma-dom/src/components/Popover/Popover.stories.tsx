@@ -95,7 +95,7 @@ const Template = args => (
     isInverse={args.isInverse}
   >
     <Popover {...args}>
-      <PopoverTrigger />
+      <PopoverTrigger aria-label="Popover trigger" />
       <PopoverContent>
         <span>
           This represents your entire organization’s support cases. To view
@@ -132,7 +132,11 @@ const CustomIconTemplate = args => (
     isInverse={args.isInverse}
   >
     <Popover {...args}>
-      <PopoverTrigger icon={<FilterAltIcon />} size={ButtonSize.large} />
+      <PopoverTrigger
+        icon={<FilterAltIcon />}
+        size={ButtonSize.large}
+        aria-label="Popover trigger"
+      />
       <PopoverContent>
         <FormGroup>
           <Checkbox labelText="Filter 1" isInverse={args.isInverse} />
@@ -163,7 +167,7 @@ const TextOnlyWithHoverTemplate = args => {
       isInverse={args.isInverse}
     >
       <Popover {...args}>
-        <PopoverTrigger />
+        <PopoverTrigger aria-label="Popover trigger" />
         <PopoverContent>
           <div
             style={{
@@ -203,7 +207,7 @@ const WithHeaderTemplate = args => {
       isInverse={args.isInverse}
     >
       <Popover {...args}>
-        <PopoverTrigger />
+        <PopoverTrigger aria-label="Popover trigger" />
         <PopoverContent>
           <PopoverHeader style={{ justifyContent: 'start', fontWeight: 600 }}>
             <span>Popover Header</span>
@@ -234,7 +238,7 @@ const WithFooterTemplate = args => {
       isInverse={args.isInverse}
     >
       <Popover {...args}>
-        <PopoverTrigger />
+        <PopoverTrigger aria-label="Popover trigger" />
         <PopoverContent>
           <span>
             And here’s some amazing content. It’s very engaging. Right?
@@ -265,7 +269,7 @@ const WithHeaderAndFooterTemplate = args => {
       isInverse={args.isInverse}
     >
       <Popover {...args}>
-        <PopoverTrigger />
+        <PopoverTrigger aria-label="Popover trigger" />
         <PopoverContent>
           <PopoverHeader style={{ justifyContent: 'start', fontWeight: 600 }}>
             <span>Popover Header</span>
@@ -299,7 +303,7 @@ const WithALongContentAndMaxHeightTemplate = args => {
       isInverse={args.isInverse}
     >
       <Popover {...args}>
-        <PopoverTrigger />
+        <PopoverTrigger aria-label="Popover trigger" />
         <PopoverContent>
           <PopoverHeader style={{ justifyContent: 'start', fontWeight: 600 }}>
             <span>Popover Header</span>
@@ -346,7 +350,7 @@ const SettingsExampleTemplate = args => {
       isInverse={args.isInverse}
     >
       <Popover {...args} apiRef={ref}>
-        <PopoverTrigger icon={<SettingsIcon />} />
+        <PopoverTrigger icon={<SettingsIcon />} aria-label="Popover trigger" />
         <PopoverContent>
           <FormGroup>
             <Toggle
@@ -789,7 +793,7 @@ const DisabledPopoverExample = args => {
       isInverse={args.isInverse}
     >
       <Popover {...args}>
-        <PopoverTrigger />
+        <PopoverTrigger aria-label="Popover trigger" />
         <PopoverContent>
           <div
             style={{
@@ -1015,7 +1019,7 @@ const DontShowAgainTemplate = args => {
       isInverse={args.isInverse}
     >
       <Popover {...args} openByDefault={initialOpen} apiRef={ref}>
-        <PopoverTrigger />
+        <PopoverTrigger aria-label="Popover trigger" />
         <PopoverContent>
           <span>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

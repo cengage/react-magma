@@ -38,12 +38,17 @@ interface IconTextPopoverTriggerProps extends ButtonProps {
   /**
    * The content of the component
    */
-  children?: React.ReactChild | React.ReactChild[] | string;
+  children: React.ReactChild | React.ReactChild[] | string;
   /**
    * The tab order of the component when navigating with a keyboard
    */
   tabIndex?: number;
 }
+
+export type PopoverTriggerProps = XOR<
+  IconOnlyPopoverTriggerProps,
+  IconTextPopoverTriggerProps
+>;
 
 const TriggerButtonContainer = styled.div<{
   isDisabled?: boolean;
@@ -65,11 +70,6 @@ const TriggerButtonContainer = styled.div<{
       solid 2px;
   }
 `;
-
-export type PopoverTriggerProps = XOR<
-  IconOnlyPopoverTriggerProps,
-  IconTextPopoverTriggerProps
->;
 
 export const PopoverTrigger = React.forwardRef<
   HTMLButtonElement,
@@ -107,6 +107,12 @@ export const PopoverTrigger = React.forwardRef<
           theme,
           onClick: handleClick,
           ref: ref,
+          'aria-describedby':
+            context.hoverable &&
+            !context.hasActiveElements &&
+            !context.isDisabled
+              ? context.popoverContentId.current
+              : null,
         })
       : children;
 
@@ -136,6 +142,13 @@ export const PopoverTrigger = React.forwardRef<
           size={size}
           variant={variant}
           tabIndex={tabIndex}
+          aria-describedby={
+            context.hoverable &&
+            !context.hasActiveElements &&
+            !context.isDisabled
+              ? context.popoverContentId.current
+              : null
+          }
         />
       </div>
     );
@@ -156,6 +169,13 @@ export const PopoverTrigger = React.forwardRef<
           ref={ref}
           theme={theme}
           tabIndex={tabIndex}
+          aria-describedby={
+            context.hoverable &&
+            !context.hasActiveElements &&
+            !context.isDisabled
+              ? context.popoverContentId.current
+              : null
+          }
         >
           {children}
         </Button>

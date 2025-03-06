@@ -111,6 +111,7 @@ export interface PopoverContextInterface {
   hoverable?: boolean;
   hasPointer?: boolean;
   focusTrap?: boolean;
+  hasActiveElements?: boolean;
 }
 
 const StyledContainer = styled.div`
@@ -122,7 +123,7 @@ export const PopoverContext = React.createContext<PopoverContextInterface>({
   setIsOpen: () => false,
 });
 
-export function hasActiveElements(ref) {
+export function hasActiveElementsChecker(ref) {
   return (
     Array.from(
       ref.current?.querySelectorAll(
@@ -152,6 +153,11 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     const popoverContentId = React.useRef('');
     const popoverTriggerId = React.useRef('');
     const arrowRef = React.useRef(null);
+
+    const hasActiveElements = React.useMemo(
+      () => hasActiveElementsChecker(contentRef),
+      [contentRef, contentRef.current]
+    );
 
     const {
       onClose,
@@ -195,13 +201,13 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     const isInverse = useIsInverse(resolvedProps.isInverse);
 
     const handleMouseOver = () => {
-      if (hoverable && !isDisabled && !hasActiveElements(contentRef)) {
+      if (hoverable && !isDisabled && !hasActiveElements) {
         setIsOpen(true);
       }
     };
 
     const handleMouseLeave = () => {
-      if (hoverable && !isDisabled && !hasActiveElements(contentRef)) {
+      if (hoverable && !isDisabled && !hasActiveElements) {
         setIsOpen(false);
       }
     };
@@ -270,7 +276,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
         : width;
 
     const onFocus = () => {
-      if (hoverable && !isDisabled && !hasActiveElements(contentRef)) {
+      if (hoverable && !isDisabled && !hasActiveElements) {
         openPopover();
       }
     };
@@ -299,6 +305,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           hoverable,
           hasPointer,
           focusTrap,
+          hasActiveElements,
         }}
       >
         <StyledContainer

@@ -3,7 +3,11 @@ import { Card } from '../Card';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import styled from '@emotion/styled';
-import { hasActiveElements, PopoverContext, PopoverPosition } from './Popover';
+import {
+  hasActiveElementsChecker,
+  PopoverContext,
+  PopoverPosition,
+} from './Popover';
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { Announce } from '../Announce';
 import { ThemeInterface } from '../../theme/magma';
@@ -75,7 +79,9 @@ export const PopoverContent = React.forwardRef<
   const ref = useForkedRef(forwardedRef, context.contentRef);
 
   const focusTrapRef = useFocusLock(
-    context.focusTrap && context.isOpen && hasActiveElements(context.contentRef)
+    context.focusTrap &&
+      context.isOpen &&
+      hasActiveElementsChecker(context.contentRef)
   );
 
   const styledChildren = React.Children.toArray(children).map(item =>
@@ -152,6 +158,7 @@ export const PopoverContent = React.forwardRef<
             style={{
               maxHeight: context.maxHeight ? context.maxHeight : '100%',
             }}
+            id={context.popoverContentId.current}
           >
             {header}
             <ScrollableContent theme={theme}>{content}</ScrollableContent>
