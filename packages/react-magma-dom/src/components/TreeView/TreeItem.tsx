@@ -69,11 +69,11 @@ const StyledTreeItem = styled.li<{
     & > *:first-child {
       outline-offset: -2px;
       outline: 2px solid
-      ${props =>
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
-}
+        ${props =>
+          props.isInverse
+            ? props.theme.colors.focusInverse
+            : props.theme.colors.focus};
+    }
   }
 
   > div:first-of-type {
@@ -114,9 +114,10 @@ const StyledTreeItem = styled.li<{
           ? props.isInverse
             ? transparentize(0.8, props.theme.colors.neutral900)
             : transparentize(0.95, props.theme.colors.neutral900)
-          : undefined}
+          : undefined};
     }
-  `;
+  }
+`;
 
 const IconWrapper = styled.span<{
   theme?: ThemeInterface;
@@ -207,6 +208,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       onExpandedChange,
       itemToFocus,
       handleExpandedChange,
+      isTopLevelSelectable,
     } = React.useContext(TreeViewContext);
 
     const { contextValue, handleClick, handleKeyDown } = useTreeItem(
@@ -315,16 +317,20 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       return itemToFocus === itemId ? 0 : -1;
     }, [isDisabled, itemToFocus, itemId]);
 
+    const shouldShowCheckbox =
+      selectable === TreeViewSelectable.multi &&
+      (isTopLevelSelectable !== false || !topLevel);
+
     return (
       <TreeItemContext.Provider value={contextValue}>
         <StyledTreeItem
           {...rest}
           aria-expanded={hasOwnTreeItems ? expanded : null}
           aria-selected={selectedItem}
-          aria-checked={ariaCheckedValue}
+          aria-checked={shouldShowCheckbox ? ariaCheckedValue : null}
           data-testid={testId}
           depth={itemDepth}
-          hasOwnTreeItems
+          hasOwnTreeItems={hasOwnTreeItems}
           id={itemId}
           isDisabled={isDisabled}
           isInverse={isInverse}
@@ -369,7 +375,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
               </StyledExpandWrapper>
             )}
 
-            {selectable === TreeViewSelectable.multi ? (
+            {shouldShowCheckbox ? (
               <StyledCheckboxWrapper theme={theme}>
                 {hasOwnTreeItems ? (
                   <IndeterminateCheckbox
@@ -399,6 +405,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                       key: index,
                       itemDepth,
                       parentDepth,
+                      topLevel: false,
                     })}
                   </ul>
                 </Transition>

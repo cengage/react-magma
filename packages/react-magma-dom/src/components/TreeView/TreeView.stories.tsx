@@ -83,6 +83,10 @@ export default {
       control: 'boolean',
       defaultValue: true,
     },
+    isTopLevelSelectable: {
+      control: 'boolean',
+      defaultValue: true,
+    },
   },
 } as Meta;
 
@@ -2042,4 +2046,341 @@ ComplexTreeWithLargeDataSet.parameters = {
   controls: {
     exclude: ['isInverse', 'initialExpandedItems', 'ariaLabelledBy', 'testId'],
   },
+};
+
+export const ComplexWithTopLevelNotSelectable = (
+  args: Partial<TreeViewProps>
+) => {
+  const [selectedItems, setSelectedItems] =
+    React.useState<TreeItemSelectedInterface[]>();
+
+  const [expandedItems, setExpandedItems] = React.useState<string[]>();
+  const apiRef = React.useRef<TreeViewApi>();
+
+  const { selected, indeterminate } = createControlledTags(
+    selectedItems,
+    apiRef?.current
+  );
+  const total = selectedItems?.length ?? 0;
+
+  const handleExpandedChange = (
+    event: React.SyntheticEvent,
+    expandedItems: string[]
+  ) => {
+    setExpandedItems(expandedItems);
+  };
+
+  return (
+    <>
+      <Card isInverse={args.isInverse}>
+        <TreeView
+          {...args}
+          apiRef={apiRef}
+          onSelectedItemChange={setSelectedItems}
+          onExpandedChange={handleExpandedChange}
+        >
+          <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
+            <TreeItem
+              icon={<FolderIcon aria-hidden />}
+              label={<>Chapter 1: I love tiramisu jelly beans soufflé</>}
+              itemId="pt1ch1"
+              testId="pt1ch1"
+            >
+              <TreeItem
+                icon={<ArticleIcon aria-hidden />}
+                label={<>Section 1.1: Cake donut lemon drops gingerbread</>}
+                itemId="pt1ch1.1"
+              />
+            </TreeItem>
+            <TreeItem
+              label={
+                <>
+                  Chapter 2: Chocolate bar ice cream cake liquorice icing tart
+                </>
+              }
+              itemId="pt1ch2"
+            />
+            <TreeItem
+              icon={<FolderIcon aria-hidden />}
+              label={
+                <>Chapter 3: Pudding jujubes icing fruitcake bonbon icing</>
+              }
+              itemId="pt1ch3"
+            >
+              <TreeItem
+                icon={<ArticleIcon aria-hidden />}
+                label={
+                  <>
+                    Section 3.1: Topping pudding marshmallow caramels I love pie
+                  </>
+                }
+                itemId="pt1ch3.1"
+              />
+              <TreeItem
+                icon={<ArticleIcon aria-hidden />}
+                label={
+                  <>
+                    Section 3.2: Tart sweet roll caramels candy canes sweet roll
+                  </>
+                }
+                itemId="pt1ch3.2"
+              />
+              <TreeItem
+                icon={<ArticleIcon aria-hidden />}
+                label={
+                  <>
+                    Section 3.3: Tart sweet roll caramels candy canes sweet roll
+                  </>
+                }
+                itemId="pt1ch3.3"
+              />
+            </TreeItem>
+          </TreeItem>
+          <TreeItem
+            icon={<FolderIcon aria-hidden />}
+            label={
+              <>
+                Part 2: Candy powder carrot cake cotton candy marshmallow
+                caramels croissant I love
+              </>
+            }
+            itemId="pt2"
+          >
+            <TreeItem
+              icon={<ArticleIcon aria-hidden />}
+              label={
+                <>
+                  Chapter 4: I love carrot cake sweet roll I love liquorice
+                  sweet
+                </>
+              }
+              itemId="pt2ch4"
+            />
+            <TreeItem
+              icon={<FolderIcon aria-hidden />}
+              label={
+                <>
+                  Chapter 5: Wafer I love I love sesame snaps I love muffin
+                  dragée halvah
+                </>
+              }
+              itemId="pt2ch5"
+            >
+              <TreeItem
+                icon={<ArticleIcon aria-hidden />}
+                label={
+                  <>
+                    Section 5.1: Apple pie apple pie tart macaroon topping
+                    chocolate cake
+                  </>
+                }
+                itemId="pt2ch5.1"
+                isDisabled
+              >
+                <TreeItem
+                  icon={<ArticleIcon aria-hidden />}
+                  label={
+                    <>
+                      Section 5.1.1: Apple pie apple pie tart macaroon topping
+                      chocolate cake
+                    </>
+                  }
+                  itemId="pt2ch5.1.1"
+                  isDisabled
+                />
+                <TreeItem
+                  icon={<ArticleIcon aria-hidden />}
+                  label={
+                    <>
+                      Section 5.1.2: Apple pie apple pie tart macaroon topping
+                      chocolate cake
+                    </>
+                  }
+                  itemId="pt2ch5.1.2"
+                />
+                <TreeItem
+                  icon={<ArticleIcon aria-hidden />}
+                  label={
+                    <>
+                      Section 5.1.3: Apple pie apple pie tart macaroon topping
+                      chocolate cake
+                    </>
+                  }
+                  itemId="pt2ch5.1.3"
+                >
+                  <TreeItem
+                    icon={<ArticleIcon aria-hidden />}
+                    label={
+                      <>
+                        Section 5.1.3.1: Apple pie apple pie tart macaroon
+                        topping chocolate cake
+                      </>
+                    }
+                    itemId="pt2ch5.1.3.1"
+                  />
+                  <TreeItem
+                    icon={<ArticleIcon aria-hidden />}
+                    label={
+                      <>
+                        Section 5.1.3.2: Apple pie apple pie tart macaroon
+                        topping chocolate cake
+                      </>
+                    }
+                    itemId="pt2ch5.1.3.2"
+                  />
+                  <TreeItem
+                    icon={<ArticleIcon aria-hidden />}
+                    label={
+                      <>
+                        Section 5.1.3.3: Apple pie apple pie tart macaroon
+                        topping chocolate cake
+                      </>
+                    }
+                    itemId="pt2ch5.1.3.3"
+                  />
+                </TreeItem>
+              </TreeItem>
+              <TreeItem
+                icon={<ArticleIcon aria-hidden />}
+                label={
+                  <>
+                    Section 5.2: Jelly lollipop tart gummies pie croissant
+                    sesame snaps sesame snaps
+                  </>
+                }
+                itemId="pt2ch5.2"
+              />
+              <TreeItem
+                icon={<ArticleIcon aria-hidden />}
+                label={
+                  <>
+                    Section 5.3: Bonbon chocolate bar lollipop lollipop I love
+                    chocolate cake cupcake soufflé pie
+                  </>
+                }
+                itemId="pt2ch5.3"
+              />
+            </TreeItem>
+            <TreeItem
+              icon={<ArticleIcon aria-hidden />}
+              label={<>Chapter 6: Cupcake dragée I love cookie I love</>}
+              itemId="pt2ch6"
+            />
+          </TreeItem>
+          <TreeItem
+            icon={<FolderIcon aria-hidden />}
+            label={
+              <>
+                Part 3: Sugar plum halvah shortbread apple pie I love brownie
+                gummi bears
+              </>
+            }
+            itemId="pt3"
+          >
+            <TreeItem
+              icon={<ArticleIcon aria-hidden />}
+              label={
+                <>
+                  Chapter 7: Cheesecake lollipop tootsie roll candy canes
+                  cupcake I love dessert liquorice
+                </>
+              }
+              itemId="pt3ch7"
+            />
+            <TreeItem
+              icon={<ArticleIcon aria-hidden />}
+              label={
+                <>
+                  Chapter 8: Jelly pastry jelly-o topping cookie carrot cake
+                  shortbread
+                </>
+              }
+              itemId="pt3ch8"
+            />
+            <TreeItem
+              icon={<ArticleIcon aria-hidden />}
+              label={
+                <>Chapter 9: Jelly beans sweet candy canes croissant bonbon.</>
+              }
+              itemId="pt3ch9"
+            />
+            <TreeItem
+              icon={<ArticleIcon aria-hidden />}
+              label={
+                <>
+                  Chapter 10: Wafer carrot cake powder candy canes sweet roll
+                  bear claw croissant cheesecake tart
+                </>
+              }
+              itemId="pt3ch10"
+            />
+            <TreeItem
+              icon={<ArticleIcon aria-hidden />}
+              label={
+                <>
+                  Chapter 11: Apple pie chocolate cake tiramisu bonbon I love
+                  croissant. I love chupa chups croissant tiramisu toffee cake
+                  tart
+                </>
+              }
+              itemId="pt3ch11"
+            />
+          </TreeItem>
+          <TreeItem
+            icon={<FolderIcon aria-hidden />}
+            label={<>Part 4: leaf with icon</>}
+            itemId="pt4"
+          />
+          <TreeItem label={<>Part 5: leaf with no icon</>} itemId="pt5" />
+        </TreeView>
+      </Card>
+      <br />
+      {args.selectable !== TreeViewSelectable.off && (
+        <>
+          <p>{total} total</p>
+          <p>Selected: {selected}</p>
+          {args.selectable === TreeViewSelectable.multi && (
+            <p>Indeterminate: {indeterminate}</p>
+          )}
+        </>
+      )}
+      <ButtonGroup size={ButtonSize.small} variant={ButtonVariant.solid}>
+        <Button onClick={() => apiRef.current?.selectAll()}>Select all</Button>
+        <Button onClick={() => apiRef.current?.clearAll()}>Clear all</Button>
+      </ButtonGroup>
+      <Spacer axis={SpacerAxis.vertical} size={24} />
+      <p>Expanded: {expandedItems?.join(', ')}</p>
+    </>
+  );
+};
+
+ComplexWithTopLevelNotSelectable.args = {
+  selectable: TreeViewSelectable.multi,
+  isTopLevelSelectable: false,
+  ariaLabel: 'Textbook tree',
+  initialExpandedItems: ['pt1', 'pt2ch5.1'],
+  preselectedItems: [
+    { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
+    { itemId: 'pt2ch4', checkedStatus: IndeterminateCheckboxStatus.checked },
+    {
+      itemId: 'pt2ch5.1.1',
+      checkedStatus: IndeterminateCheckboxStatus.checked,
+    },
+    {
+      itemId: 'pt2ch5.1.2',
+      checkedStatus: IndeterminateCheckboxStatus.unchecked,
+      isDisabled: true,
+    },
+    { itemId: 'pt2ch5.2', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'pt2ch5.3', checkedStatus: IndeterminateCheckboxStatus.checked },
+    {
+      itemId: 'pt2ch5.1.3',
+      checkedStatus: IndeterminateCheckboxStatus.checked,
+    },
+  ],
+  checkParents: true,
+  checkChildren: true,
+  isDisabled: false,
+  testId: 'complex-example',
 };

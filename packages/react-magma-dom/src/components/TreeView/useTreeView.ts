@@ -106,6 +106,8 @@ export interface UseTreeViewProps {
    * clearAll(): void - action that allows to unselect all items.
    * showMore(): void - action that gets called when a tree has hidden items and they get expanded.
    * showLess(): void - action that gets called when a tree has hidden items and they get collapsed.
+   * expandAll(): void - action that allows to expand all items.
+   * collapseAll(): void - action that allows to collapse all items.
    */
   apiRef?: React.MutableRefObject<TreeViewApi | undefined>;
   /**
@@ -113,6 +115,12 @@ export interface UseTreeViewProps {
    * @default false
    */
   isDisabled?: boolean;
+  /**
+   * If false, top-level items will not be selectable in multi-select mode.
+   * Their checkboxes will be hidden, and they will only function as expandable groups.
+   * @default true
+   */
+  isTopLevelSelectable?: boolean;
 }
 
 export function useTreeView(props: UseTreeViewProps) {
@@ -127,6 +135,7 @@ export function useTreeView(props: UseTreeViewProps) {
     children,
     apiRef,
     isDisabled,
+    isTopLevelSelectable = true,
   } = props;
 
   const hasPreselectedItems = Boolean(preselectedItems);
@@ -139,6 +148,7 @@ export function useTreeView(props: UseTreeViewProps) {
       checkChildren,
       selectable,
       isDisabled,
+      isTopLevelSelectable,
     })
   );
   const [hasIcons] = React.useState(() => {
@@ -149,6 +159,7 @@ export function useTreeView(props: UseTreeViewProps) {
       checkChildren,
       selectable,
       isDisabled,
+      isTopLevelSelectable,
     });
 
     return initialItems.some(item => item.icon);
@@ -192,7 +203,7 @@ export function useTreeView(props: UseTreeViewProps) {
     }
 
     return firstItem?.itemId;
-  }, [items]);
+  }, [items, selectable]);
 
   const prevSelectedItemsRef = React.useRef(null);
   const prevPreselectedItemsRef = React.useRef(preselectedItems);
@@ -215,10 +226,19 @@ export function useTreeView(props: UseTreeViewProps) {
         checkChildren,
         selectable,
         isDisabled,
+        isTopLevelSelectable,
       })
     );
     prevPreselectedItemsRef.current = preselectedItems;
-  }, [preselectedItems, checkParents, checkChildren, selectable, isDisabled]);
+  }, [
+    preselectedItems,
+    checkParents,
+    checkChildren,
+    selectable,
+    isDisabled,
+    children,
+    isTopLevelSelectable,
+  ]);
 
   React.useEffect(() => {
     if (initializationRef.current) {
@@ -232,6 +252,7 @@ export function useTreeView(props: UseTreeViewProps) {
       checkChildren,
       selectable,
       isDisabled,
+      isTopLevelSelectable,
     });
 
     setItems(prevItems => {
@@ -298,6 +319,14 @@ export function useTreeView(props: UseTreeViewProps) {
         return;
       }
 
+      if (
+        !isTopLevelSelectable &&
+        !item?.parentId &&
+        selectable === TreeViewSelectable.multi
+      ) {
+        return;
+      }
+
       setItems(prevItems => {
         if (selectable === TreeViewSelectable.single) {
           return selectSingle({
@@ -314,13 +343,14 @@ export function useTreeView(props: UseTreeViewProps) {
             checkedStatus,
             checkChildren,
             checkParents,
+            isTopLevelSelectable,
           });
         }
 
         return prevItems;
       });
     },
-    [selectable, checkChildren, checkParents, items]
+    [selectable, checkChildren, checkParents, items, isTopLevelSelectable]
   );
 
   const showMore = React.useCallback(
@@ -332,13 +362,14 @@ export function useTreeView(props: UseTreeViewProps) {
             checkedStatus: IndeterminateCheckboxStatus.checked,
             checkChildren,
             checkParents,
+            isTopLevelSelectable,
           });
         });
       } else {
         setItemsNeedUpdate(true);
       }
     },
-    [items, checkChildren, checkParents]
+    [items, checkChildren, checkParents, isTopLevelSelectable]
   );
 
   const showLess = React.useCallback(() => {
@@ -350,6 +381,7 @@ export function useTreeView(props: UseTreeViewProps) {
         checkChildren,
         selectable,
         isDisabled,
+        isTopLevelSelectable,
       })
     );
   }, [
@@ -359,11 +391,12 @@ export function useTreeView(props: UseTreeViewProps) {
     checkChildren,
     selectable,
     isDisabled,
+    isTopLevelSelectable,
   ]);
 
   const selectAll = React.useCallback(() => {
     if (
-      [TreeViewSelectable.single, TreeViewSelectable.single].includes(
+      [TreeViewSelectable.single, TreeViewSelectable.off].includes(
         selectable
       ) ||
       isDisabled
@@ -371,8 +404,23 @@ export function useTreeView(props: UseTreeViewProps) {
       return;
     }
 
-    showMore(true);
-  }, [selectable, isDisabled, items, checkChildren, checkParents]);
+    setItems(() => {
+      return toggleAllMulti({
+        items,
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+        checkChildren,
+        checkParents,
+        isTopLevelSelectable,
+      });
+    });
+  }, [
+    selectable,
+    isDisabled,
+    items,
+    checkChildren,
+    checkParents,
+    isTopLevelSelectable,
+  ]);
 
   const clearAll = React.useCallback(() => {
     if (isDisabled) {
@@ -385,9 +433,10 @@ export function useTreeView(props: UseTreeViewProps) {
         checkedStatus: IndeterminateCheckboxStatus.unchecked,
         checkChildren,
         checkParents,
+        isTopLevelSelectable,
       });
     });
-  }, [isDisabled, items, checkChildren, checkParents]);
+  }, [isDisabled, items, checkChildren, checkParents, isTopLevelSelectable]);
 
   const expandAll = React.useCallback(() => {
     const expandableIds = items.reduce((ids: string[], item) => {
@@ -437,6 +486,7 @@ export function useTreeView(props: UseTreeViewProps) {
     showLess,
     expandAll,
     collapseAll,
+    apiRef,
   ]);
 
   React.useEffect(() => {
@@ -449,6 +499,7 @@ export function useTreeView(props: UseTreeViewProps) {
           checkChildren,
           selectable,
           isDisabled,
+          isTopLevelSelectable,
         })
       );
       prevChildrenRef.current = children;
@@ -463,6 +514,7 @@ export function useTreeView(props: UseTreeViewProps) {
     checkChildren,
     selectable,
     isDisabled,
+    isTopLevelSelectable,
   ]);
 
   const [initialExpandedItemsNeedUpdate, setInitialExpandedItemsNeedUpdate] =
@@ -531,6 +583,7 @@ export function useTreeView(props: UseTreeViewProps) {
     selectItem,
     handleExpandedChange,
     expandedSet,
+    isTopLevelSelectable,
   };
 
   return { contextValue };
