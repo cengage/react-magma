@@ -15,6 +15,7 @@
     "eslint-and-prittier-v2",
     "eslint-and-prittier",
     "feat-TreeView-add-expandAll-and-collapseAll",
+    "feat-treeview-is-top-level-selectable",
     "fix-AppBar",
     "fix-Pagination-screenreader",
     "manually-sync-4.8.7",

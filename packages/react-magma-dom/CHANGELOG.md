@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.4
+
+### Minor Changes
+
+- 57e607618: feat(TreeView): Add 'isTopLevelSelectable' prop to TreeView component
+
 ## 4.9.0-next.3
 
 ### Minor Changes
