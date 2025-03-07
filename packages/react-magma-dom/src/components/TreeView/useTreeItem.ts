@@ -167,7 +167,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
     //If TreeViewSelectable.multi and top-level item is not selectable, skip selection logic
     if (
-      selectable == TreeViewSelectable.multi &&
+      selectable === TreeViewSelectable.multi &&
       topLevel &&
       !isTopLevelSelectable
     ) {
@@ -366,7 +366,11 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         }
 
         // If TreeViewSelectable.multi and top-level & not selectable, only toggle expand (no selection)
-        if ( selectable == TreeViewSelectable.multi && topLevel && !isTopLevelSelectable) {
+        if (
+          selectable == TreeViewSelectable.multi &&
+          topLevel &&
+          !isTopLevelSelectable
+        ) {
           if (hasOwnTreeItems) {
             setExpanded(!expanded);
           }
@@ -401,7 +405,11 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         }
 
         // If TreeViewSelectable.multi and top-level & not selectable, only toggle expand (no selection)
-        if ( selectable == TreeViewSelectable.multi && topLevel && !isTopLevelSelectable) {
+        if (
+          selectable === TreeViewSelectable.multi &&
+          topLevel &&
+          !isTopLevelSelectable
+        ) {
           if (hasOwnTreeItems) {
             setExpanded(!expanded);
           }
