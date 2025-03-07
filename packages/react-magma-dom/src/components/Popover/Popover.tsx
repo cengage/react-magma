@@ -1,5 +1,7 @@
-import styled from '@emotion/styled';
 import React from 'react';
+
+import styled from '@emotion/styled';
+import { useFloating } from '@floating-ui/react';
 import {
   offset,
   flip,
@@ -9,10 +11,10 @@ import {
   arrow,
   shift,
 } from '@floating-ui/react-dom';
-import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
+
 import { useIsInverse } from '../../inverse';
+import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
 import { ButtonGroupContext } from '../ButtonGroup';
-import { useFloating } from '@floating-ui/react';
 
 export enum PopoverPosition {
   bottom = 'bottom', //default
@@ -272,8 +274,8 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       width === 'target'
         ? `${refs.reference.current?.getBoundingClientRect().width}px`
         : typeof width === 'number'
-        ? `${width}px`
-        : width;
+          ? `${width}px`
+          : width;
 
     const onFocus = () => {
       if (hoverable && !isDisabled && !hasActiveElements) {

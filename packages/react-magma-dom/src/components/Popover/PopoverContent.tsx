@@ -1,18 +1,20 @@
 import * as React from 'react';
-import { Card } from '../Card';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { useForkedRef } from '../../utils';
+
 import styled from '@emotion/styled';
+import { FloatingArrow } from '@floating-ui/react';
+
 import {
   hasActiveElementsChecker,
   PopoverContext,
   PopoverPosition,
 } from './Popover';
-import { useFocusLock } from '../../hooks/useFocusLock';
-import { Announce } from '../Announce';
-import { ThemeInterface } from '../../theme/magma';
 import { PopoverHeader, PopoverFooter } from './PopoverSection';
-import { FloatingArrow } from '@floating-ui/react';
+import { useFocusLock } from '../../hooks/useFocusLock';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useForkedRef } from '../../utils';
+import { Announce } from '../Announce';
+import { Card } from '../Card';
 
 export interface PopoverContentProps
   extends React.HTMLAttributes<HTMLDivElement> {

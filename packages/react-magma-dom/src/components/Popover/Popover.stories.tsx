@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-import { Popover, PopoverApi, PopoverPosition } from './Popover';
-import { PopoverContent } from './PopoverContent';
-import { PopoverTrigger } from './PopoverTrigger';
+
 import { Meta } from '@storybook/react/types-6-0';
-import { Button, ButtonColor, ButtonSize, ButtonType } from '../Button';
-import { Card } from '../Card';
-import { PopoverHeader, PopoverFooter } from './PopoverSection';
-import { PasswordInput } from '../PasswordInput';
 import {
   ArrowDropDownIcon,
   CloseIcon,
@@ -16,16 +10,24 @@ import {
   ModeCommentIcon,
   SettingsIcon,
 } from 'react-magma-icons';
-import { FormGroup } from '../FormGroup';
-import { Checkbox, CheckboxTextPosition } from '../Checkbox';
-import { Toggle } from '../Toggle';
-import { Input } from '../Input';
-import { Form } from '../Form';
-import { Spacer } from '../Spacer';
-import { TypographyVisualStyle } from '../Typography';
-import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
-import { Hyperlink } from '../Hyperlink';
+
+import { Popover, PopoverApi, PopoverPosition } from './Popover';
+import { PopoverContent } from './PopoverContent';
+import { PopoverTrigger } from './PopoverTrigger';
 import { magma } from '../../theme/magma';
+import { Button, ButtonColor, ButtonSize, ButtonType } from '../Button';
+import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
+import { Card } from '../Card';
+import { PopoverHeader, PopoverFooter } from './PopoverSection';
+import { Checkbox, CheckboxTextPosition } from '../Checkbox';
+import { Form } from '../Form';
+import { FormGroup } from '../FormGroup';
+import { Hyperlink } from '../Hyperlink';
+import { Input } from '../Input';
+import { PasswordInput } from '../PasswordInput';
+import { Spacer } from '../Spacer';
+import { Toggle } from '../Toggle';
+import { TypographyVisualStyle } from '../Typography';
 
 export default {
   component: Popover,
@@ -355,7 +357,7 @@ const SettingsExampleTemplate = args => {
           <FormGroup>
             <Toggle
               labelText="Setting 1"
-              defaultChecked={true}
+              defaultChecked
               containerStyle={{
                 width: '100%',
                 justifyContent: 'space-between',
@@ -422,7 +424,7 @@ const CustomTriggerButtonTemplate = args => {
           <FormGroup>
             <Toggle
               labelText="Setting 1"
-              defaultChecked={true}
+              defaultChecked
               containerStyle={{
                 width: '100%',
                 justifyContent: 'space-between',
@@ -621,8 +623,8 @@ const InputExampleTemplate = args => {
                       ? magma.colors.danger200
                       : magma.colors.danger500
                     : args.isInverse
-                    ? magma.colors.success200
-                    : magma.colors.success500,
+                      ? magma.colors.success200
+                      : magma.colors.success500,
                 }}
               >
                 Includes at least 6 characters
@@ -656,8 +658,8 @@ const InputExampleTemplate = args => {
                       ? magma.colors.danger200
                       : magma.colors.danger500
                     : args.isInverse
-                    ? magma.colors.success200
-                    : magma.colors.success500,
+                      ? magma.colors.success200
+                      : magma.colors.success500,
                 }}
               >
                 Includes number
@@ -691,8 +693,8 @@ const InputExampleTemplate = args => {
                       ? magma.colors.danger200
                       : magma.colors.danger500
                     : args.isInverse
-                    ? magma.colors.success200
-                    : magma.colors.success500,
+                      ? magma.colors.success200
+                      : magma.colors.success500,
                 }}
               >
                 Includes lowercase letter
@@ -726,8 +728,8 @@ const InputExampleTemplate = args => {
                       ? magma.colors.danger200
                       : magma.colors.danger500
                     : args.isInverse
-                    ? magma.colors.success200
-                    : magma.colors.success500,
+                      ? magma.colors.success200
+                      : magma.colors.success500,
                 }}
               >
                 Includes uppercase letter
@@ -761,8 +763,8 @@ const InputExampleTemplate = args => {
                       ? magma.colors.danger200
                       : magma.colors.danger500
                     : args.isInverse
-                    ? magma.colors.success200
-                    : magma.colors.success500,
+                      ? magma.colors.success200
+                      : magma.colors.success500,
                 }}
               >
                 Includes special symbol
@@ -890,19 +892,15 @@ const ProfileExampleTemplate = args => {
       />
       <Popover {...args}>
         <PopoverTrigger>
-          <span
+          <Hyperlink
+            to="#"
             style={{
               fontWeight: 600,
-              textDecorationLine: 'underline',
-              textDecorationStyle: 'solid',
-              textUnderlinePosition: 'from-font',
-              textDecorationSkipInk: 'none',
-              cursor: 'pointer',
-              color: args.isInverse ? '#CDDEFF' : '#3942B0',
             }}
+            isInverse={args.isInverse}
           >
             Chris Evans
-          </span>
+          </Hyperlink>
         </PopoverTrigger>
 
         <PopoverContent>

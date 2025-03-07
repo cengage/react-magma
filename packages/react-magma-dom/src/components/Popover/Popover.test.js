@@ -1,11 +1,14 @@
 import React from 'react';
-import { Popover, PopoverContent, PopoverTrigger } from '.';
+
 import { act, render, waitFor } from '@testing-library/react';
-import { PopoverPosition } from './Popover';
 import userEvent from '@testing-library/user-event';
 import { FilterAltIcon } from 'react-magma-icons';
+
+import { PopoverPosition } from './Popover';
 import { PopoverHeader, PopoverFooter } from './PopoverSection';
 import { Button } from '../Button';
+
+import { Popover, PopoverContent, PopoverTrigger } from '.';
 
 describe('Popover', () => {
   it('should find element by testId', () => {

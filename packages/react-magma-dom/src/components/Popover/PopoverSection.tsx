@@ -1,8 +1,10 @@
-import styled from '@emotion/styled';
 import React from 'react';
+
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+
 import { PopoverContext } from './Popover';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { css } from '@emotion/react';
 
 enum SectionEnum {
   header = 'header',

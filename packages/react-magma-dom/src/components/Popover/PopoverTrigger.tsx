@@ -1,5 +1,9 @@
 import * as React from 'react';
-import { IconButton } from '../IconButton';
+
+import styled from '@emotion/styled';
+import { IconProps, InfoIcon } from 'react-magma-icons';
+
+import { ThemeContext } from '../../theme/ThemeContext';
 import { Omit, useForkedRef, XOR } from '../../utils';
 import {
   Button,
@@ -9,11 +13,8 @@ import {
   ButtonVariant,
   ButtonShape,
 } from '../Button';
-import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '@emotion/styled';
-import { IconProps, InfoIcon } from 'react-magma-icons';
+import { IconButton } from '../IconButton';
 import { PopoverContext } from './Popover';
-import { transparentize } from 'polished';
 
 interface IconOnlyPopoverTriggerProps extends Omit<ButtonProps, 'children'> {
   /**
@@ -64,8 +65,8 @@ const TriggerButtonContainer = styled.div<{
     outline: ${props =>
         props.isDisabled
           ? props.isInverse
-            ? props.theme.colors.neutral300
-            : transparentize(0.4, props.theme.colors.neutral500)
+            ? props.theme.colors.focusInverse
+            : props.theme.colors.focus
           : 'none'}
       solid 2px;
   }
@@ -190,9 +191,9 @@ export const PopoverTrigger = React.forwardRef<
             tabIndex
               ? tabIndex
               : (styledChildren as React.ReactElement)?.props.disabled &&
-                context.hoverable
-              ? 0
-              : -1
+                  context.hoverable
+                ? 0
+                : -1
           }
           isDisabled={
             (styledChildren as React.ReactElement)?.props.disabled &&
