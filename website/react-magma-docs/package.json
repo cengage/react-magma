@@ -1,6 +1,6 @@
 {
   "name": "react-magma-docs",
-  "version": "5.1.2-next.6",
+  "version": "5.1.2-next.7",
   "private": true,
   "description": "React Magma docs",
   "keywords": [
@@ -17,7 +17,7 @@
     "build": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "docs": "npm run develop",
-    "format": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
+    "format": "prettier --write --log-level warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
     "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}'",
     "lint:check": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --max-warnings=0",
     "lint:fix": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --fix",

@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.2-next.7
+
+### Patch Changes
+
+- f35c40983: chore: prittier script typo
+
 ## 5.1.2-next.6
 
 ### Patch Changes
