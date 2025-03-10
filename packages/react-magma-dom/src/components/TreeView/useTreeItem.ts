@@ -116,6 +116,12 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     (child: React.ReactElement<any>) => child.type === TreeItem
   );
 
+  const hasOwnTreeItems = React.useMemo(() => {
+    return treeViewItemData?.hasOwnTreeItems || treeItemChildren.length > 0;
+  }, [treeViewItemData, treeItemChildren.length]);
+
+  const [expanded, setExpanded] = React.useState(false);
+
   const ownRef = React.useRef<HTMLDivElement>(null);
   const ref = useForkedRef(forwardedRef, ownRef);
   const forceUpdate = useForceUpdate();
