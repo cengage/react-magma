@@ -2384,3 +2384,111 @@ ComplexWithTopLevelNotSelectable.args = {
   isDisabled: false,
   testId: 'complex-example',
 };
+
+export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
+  type TreeItemData = {
+    id: number;
+    name: string;
+    children: TreeItemData[] | [];
+  };
+
+  const treeContent: TreeItemData[] = [
+    {
+      id: 1,
+      name: 'Parent item empty',
+      children: [],
+      // children: [{ id: 10, name: "Child item", children: [] }],
+    },
+    {
+      id: 2,
+      name: 'Parent item with children',
+      children: [
+        {
+          id: 21,
+          name: 'Child item',
+          children: [],
+        },
+      ],
+    },
+    {
+      id: 3,
+      name: 'Parent item with children 2',
+      children: [
+        {
+          id: 31,
+          name: 'Child item 2',
+          children: [],
+        },
+      ],
+    },
+  ];
+
+  const [tree, updateTree] = React.useState(treeContent);
+
+  const renterItems = (items: TreeItemData[]) => {
+    return items.map(item => {
+      return (
+        <TreeItem key={item.id} label={item.name} itemId={item.id.toString()}>
+          {renterItems(item.children)}
+        </TreeItem>
+      );
+    });
+  };
+
+  const handleClick1 = () => {
+    const newTree = tree.map((item, index) => {
+      if (index === 0) {
+        return {
+          ...item,
+          children: [
+            ...item.children,
+            { id: 11, name: 'New child', children: [] },
+          ],
+        };
+      }
+      return item;
+    });
+
+    updateTree(newTree);
+  };
+
+  const handleClick2 = () => {
+    const newTree = tree.map((item, index) => {
+      if (index === 1) {
+        return {
+          ...item,
+          children: [
+            ...item.children,
+            { id: 22, name: 'New child', children: [] },
+          ],
+        };
+      }
+      return item;
+    });
+
+    updateTree(newTree);
+  };
+
+  return (
+    <>
+      <button onClick={handleClick1}>add child to 1 parent</button>
+      <button onClick={handleClick2}>add child to 2 parent</button>
+      <TreeView ariaLabel="icon-example">{renterItems(tree)}</TreeView>
+    </>
+  );
+};
+
+DynamicTreeItems.args = {
+  ariaLabel: 'Dynamic tree example',
+};
+
+DynamicTreeItems.parameters = {
+  controls: {
+    exclude: [
+      'isInverse',
+      'initialExpandedItems',
+      'selectable',
+      'preselectedItems',
+    ],
+  },
+};
