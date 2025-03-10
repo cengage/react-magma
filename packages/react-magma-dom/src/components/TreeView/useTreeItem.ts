@@ -98,17 +98,22 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     return (
       treeViewItemData?.checkedStatus ?? IndeterminateCheckboxStatus.unchecked
     );
-  }, [topLevel, isTopLevelSelectable, treeViewItemData]);
-
-  const hasOwnTreeItems = React.useMemo(() => {
-    return treeViewItemData?.hasOwnTreeItems;
-  }, [treeViewItemData]);
-
-  const [expanded, setExpanded] = React.useState(false);
+  }, [
+    selectable,
+    topLevel,
+    isTopLevelSelectable,
+    treeViewItemData?.checkedStatus,
+  ]);
 
   const treeItemChildren = React.Children.toArray(children).filter(
     (child: React.ReactElement<any>) => child.type === TreeItem
   );
+
+  const hasOwnTreeItems = React.useMemo(() => {
+    return treeViewItemData?.hasOwnTreeItems || treeItemChildren.length > 0;
+  }, [treeViewItemData, treeItemChildren.length]);
+
+  const [expanded, setExpanded] = React.useState(false);
 
   const ownRef = React.useRef<HTMLDivElement>(null);
   const ref = useForkedRef(forwardedRef, ownRef);
