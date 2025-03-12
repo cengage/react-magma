@@ -21,6 +21,7 @@
     "manually-sync-4.8.7",
     "ninety-yaks-buy",
     "react-version-docs",
-    "simple-pag"
+    "simple-pag",
+    "uuid"
   ]
 }
