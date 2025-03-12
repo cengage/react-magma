@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.2-next.9
+
+### Patch Changes
+
+- 8753f4a3f: build(deps-dev): bump axios from 1.7.8 to 1.8.2
+
 ## 5.1.2-next.8
 
 ### Patch Changes
