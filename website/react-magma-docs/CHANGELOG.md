@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.2-next.10
+
+### Patch Changes
+
+- 40aac2df9: build(deps): bump @babel/helpers from 7.24.5 to 7.26.10
+
 ## 5.1.2-next.9
 
 ### Patch Changes
