@@ -330,7 +330,7 @@ NumberInput.parameters = {
 export const PhoneInput = args => {
   const [inputVal, setInputVal] = React.useState('');
   const [hasError, setHasError] = React.useState(false);
-  const phonePattern = '^[0-9]{3}-[0-9]{2}-[0-9]{3}$';
+  const phonePattern = '^[0-9]{3}-[0-9]{3}-[0-9]{4}$';
 
   function handleChange(event) {
     setInputVal(event.target.value);
@@ -349,7 +349,7 @@ export const PhoneInput = args => {
       pattern={phonePattern}
       labelText={
         <>
-          Phone <br /> Format: 123-45-678
+          Phone <br /> Format: 123-456-7890
         </>
       }
       type={InputType.tel}
@@ -359,12 +359,6 @@ export const PhoneInput = args => {
       {...args}
     />
   );
-};
-
-PhoneInput.args = {
-  disabled: false,
-  helperMessage: 'Enter a phone number',
-  isClearable: false,
 };
 
 export const UrlInput = args => {
@@ -390,18 +384,12 @@ export const UrlInput = args => {
       pattern={urlPattern}
       labelText="Url"
       type={InputType.url}
-      errorMessage={hasError ? 'Please enter an url' : null}
+      errorMessage={hasError ? 'Please enter a url' : null}
       value={inputVal}
       onChange={handleChange}
       {...args}
     />
   );
-};
-
-UrlInput.args = {
-  disabled: false,
-  helperMessage: 'Enter an url',
-  isClearable: false,
 };
 
 export const SeveralErrors = () => {
