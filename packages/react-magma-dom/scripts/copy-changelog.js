@@ -16,7 +16,7 @@ fs.copyFile(
       '---\ntitle: Changelog\norder: 4\n---\n\n<PageContent componentName="changelog" type="api_intro">\n\n'
     );
 
-    let textData = data.toString();
+    const textData = data.toString();
 
     const newBufferData = Buffer.from(textData + '\n\n</PageContent>');
 

@@ -92,6 +92,7 @@ export const DropdownContent = React.forwardRef<
   return (
     <div
       ref={context.setFloating}
+      // z-index 2 is used to make the content appear above docs elements (code blocks)
       style={{ ...context.floatingStyles, zIndex: '2' }}
     >
       <StyledCard
