@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.7
+
+### Patch Changes
+
+- 52f8a985a: chore: Update to react-magma-icons v3.1.0
+
 ## 4.9.0-next.6
 
 ### Minor Changes
