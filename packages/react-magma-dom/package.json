@@ -48,7 +48,7 @@
     "mkdirp": "^1.0.4",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-icons": "^3.0.0",
+    "react-magma-icons": "^3.1.0",
     "uuid": "^11.1.0"
   },
   "peerDependencies": {
@@ -59,7 +59,7 @@
     "framer-motion": "^4.1.11",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-icons": "^3.0.0",
+    "react-magma-icons": "^3.1.0",
     "uuid": "^8.3.0 || ^9.0.0 || ^10.0.0 || ^11.0.0"
   }
 }

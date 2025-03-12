@@ -28,7 +28,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-magma-dom": "^4.9.0-next.3",
-    "react-magma-icons": "^3.0.0",
+    "react-magma-icons": "^3.1.0",
     "uuid": "^11.1.0"
   },
   "peerDependencies": {
@@ -40,7 +40,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-magma-dom": "^4.9.0-next.3",
-    "react-magma-icons": "^3.0.0",
+    "react-magma-icons": "^3.1.0",
     "uuid": "^8.3.0 || ^9.0.0 || ^10.0.0 || ^11.0.0"
   },
   "peerDependenciesMeta": {
