@@ -69,6 +69,6 @@
     "react-spring": "6.1.9",
     "semver": "^7.3.4",
     "url-loader": "^1.1.2",
-    "uuid": "^8.3.0"
+    "uuid": "^11.1.0"
   }
 }
