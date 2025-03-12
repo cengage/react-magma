@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.6
+
+### Minor Changes
+
+- 01c82272a: feat(Popover): New `Popover` component.
+
 ## 4.9.0-next.5
 
 ### Patch Changes
