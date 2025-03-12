@@ -327,7 +327,7 @@ NumberInput.parameters = {
   controls: { exclude: ['type', 'iconPosition', 'labelWidth'] },
 };
 
-export const PhoneInput = args => {
+export const PhoneInput = () => {
   const [inputVal, setInputVal] = React.useState('');
   const [hasError, setHasError] = React.useState(false);
   const phonePattern = '^[0-9]{3}-[0-9]{3}-[0-9]{4}$';
@@ -356,12 +356,11 @@ export const PhoneInput = args => {
       errorMessage={hasError ? 'Please enter a phone number' : null}
       value={inputVal}
       onChange={handleChange}
-      {...args}
     />
   );
 };
 
-export const UrlInput = args => {
+export const UrlInput = () => {
   const [inputVal, setInputVal] = React.useState('');
   const [hasError, setHasError] = React.useState(false);
   const urlPattern =
@@ -387,7 +386,6 @@ export const UrlInput = args => {
       errorMessage={hasError ? 'Please enter a url' : null}
       value={inputVal}
       onChange={handleChange}
-      {...args}
     />
   );
 };
