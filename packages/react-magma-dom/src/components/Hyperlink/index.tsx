@@ -36,7 +36,7 @@ export interface HyperlinkProps
   /**
    * The href value of the link
    */
-  to?: string;
+  to: string;
   hasUnderline?: boolean;
   /**
    * Icon to display within the component

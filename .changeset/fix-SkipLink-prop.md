@@ -1,5 +1,5 @@
 ---
-'react-magma-dom': minor
+'react-magma-dom': patch
 ---
 
-feat(SkipLink): Make the `to` prop optional
+fix(SkipLink): Make the `to` prop optional
