@@ -86,7 +86,7 @@ export const WithSkipLink = () => {
       <AppBar isInverse position={AppBarPosition.sticky}>
         AppBar content
       </AppBar>
-      <SkipLink to="#last-one" buttonText="Skip to the end!" />
+      <SkipLink buttonText="Skip to the end!" />
 
       <Paragraph>
         Peel the onion peel the onion, so the horse is out of the barn per my

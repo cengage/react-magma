@@ -29,10 +29,6 @@ export interface SkipLinkProps extends Omit<HyperlinkProps, 'children' | 'to'> {
    * @internal
    */
   testId?: string;
-  /**
-   * The href value of the link
-   */
-  to?: string;
 }
 
 const handleClick = e => {
