@@ -298,7 +298,7 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   font-size: ${props.theme.typeScale.size03.fontSize};
   line-height: ${props.theme.typeScale.size03.lineHeight};
   font-family: ${props.theme.bodyFont};
-  height: ${props.theme.spaceScale.spacing09};
+  height: 100%;
   padding: ${props.theme.spaceScale.spacing03};
   -webkit-appearance: none;
   width: 100%;
@@ -307,7 +307,6 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
   css`
     font-size: ${props.theme.typeScale.size04.fontSize};
     line-height: ${props.theme.typeScale.size04.lineHeight};
-    height: ${props.theme.spaceScale.spacing11};
     padding: ${props.theme.spaceScale.spacing04};
   `}
 
@@ -347,6 +346,20 @@ export const inputBaseStyles = (props: InputBaseStylesProps) => css`
       opacity: ${props.isInverse ? 0.4 : 0.6};
     }
   `}
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:active {
+    box-shadow: none !important;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: ${props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700} !important;
+    caret-color: ${props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700} !important;
+  }
 `;
 
 const InputContainer = styled.div<InputWrapperStylesProps>`

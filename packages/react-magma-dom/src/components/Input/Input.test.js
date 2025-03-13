@@ -415,7 +415,7 @@ describe('Input', () => {
         'font-size',
         magma.typeScale.size03.fontSize
       );
-      expect(input).toHaveStyleRule('height', magma.spaceScale.spacing09);
+      expect(input).toHaveStyleRule('height', '100%');
       expect(input).toHaveStyleRule('padding-left', magma.spaceScale.spacing09);
 
       expect(iconWrapper).toHaveStyleRule('left', magma.spaceScale.spacing03);
@@ -442,7 +442,7 @@ describe('Input', () => {
         'font-size',
         magma.typeScale.size04.fontSize
       );
-      expect(input).toHaveStyleRule('height', magma.spaceScale.spacing11);
+      expect(input).toHaveStyleRule('height', '100%');
       expect(input).toHaveStyleRule('padding', `${magma.spaceScale.spacing04}`);
     });
 

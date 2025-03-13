@@ -186,7 +186,7 @@ describe('sizes', () => {
       magma.typeScale.size02.letterSpacing
     );
     expect(input).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
-    expect(input).toHaveStyleRule('height', magma.spaceScale.spacing09);
+    expect(input).toHaveStyleRule('height', '100%');
   });
 
   it('should render a large input with correct styles', () => {
@@ -201,7 +201,7 @@ describe('sizes', () => {
     expect(label).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
 
     expect(input).toHaveStyleRule('font-size', magma.typeScale.size04.fontSize);
-    expect(input).toHaveStyleRule('height', magma.spaceScale.spacing11);
+    expect(input).toHaveStyleRule('height', '100%');
     expect(input).toHaveStyleRule('padding', `${magma.spaceScale.spacing04}`);
   });
 
