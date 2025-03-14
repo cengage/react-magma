@@ -7,6 +7,7 @@ import {
   RadioButtonUncheckedIcon,
 } from 'react-magma-icons';
 
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
@@ -113,7 +114,7 @@ const StyledFakeInput = styled.span<{
   disabled: boolean;
   color: string;
   textPosition?: RadioTextPosition;
-  theme?: any;
+  theme?: ThemeInterface;
 }>`
   ${DisplayInputStyles};
   color: ${props => buildRadioIconColor(props)};

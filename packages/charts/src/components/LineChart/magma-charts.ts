@@ -1,3 +1,5 @@
+import { ThemeInterface } from 'react-magma-dom';
+
 // *
 // * Colors
 // *
@@ -69,7 +71,7 @@ const centeredLabelStyles = { textAnchor: 'middle', ...baseLabelStyles };
 const strokeLinecap = 'round';
 const strokeLinejoin = 'round';
 
-export const magmaTheme: any = {
+export const magmaTheme: ThemeInterface = {
   area: {
     style: {
       data: {

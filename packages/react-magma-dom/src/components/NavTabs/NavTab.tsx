@@ -4,6 +4,7 @@ import { jsx } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { NavTabsContext } from './NavTabs';
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { omit, resolveProps, useForkedRef, XOR } from '../../utils';
 import {
@@ -51,7 +52,7 @@ export interface BaseNavTabProps
   /**
    * @internal
    */
-  theme?: any;
+  theme?: ThemeInterface;
 }
 
 export interface NavTabChildrenProps extends BaseNavTabProps {
@@ -98,7 +99,7 @@ const StyledTab = styled.a<{
   isInverse?: boolean;
   orientation: TabsOrientation;
   textTransform?: TabsTextTransform;
-  theme: any;
+  theme: ThemeInterface;
 }>`
   ${TabStyles}
 `;

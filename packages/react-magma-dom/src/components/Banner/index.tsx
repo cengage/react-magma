@@ -6,6 +6,7 @@ import { CloseIcon } from 'react-magma-icons';
 
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { AlertProps } from '../Alert';
 import {
@@ -178,7 +179,7 @@ const IconWrapper = styled.span`
   }
 `;
 
-function renderIcon(variant = 'info', theme: any) {
+function renderIcon(variant = 'info', theme: ThemeInterface) {
   const Icon = VARIANT_ICON[variant];
 
   return (

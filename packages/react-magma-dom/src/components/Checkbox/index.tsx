@@ -5,6 +5,7 @@ import { transparentize } from 'polished';
 import { CheckBoxIcon, CheckBoxOutlineBlankIcon } from 'react-magma-icons';
 
 import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { omit, reactNodeToString, useGenerateId } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
@@ -128,7 +129,7 @@ export const StyledFakeInput = styled.span<{
   hasError?: boolean;
   hideFocus?: boolean;
   textPosition?: CheckboxTextPosition;
-  theme?: any;
+  theme?: ThemeInterface;
 }>`
   ${DisplayInputStyles};
   border: 2px solid;
