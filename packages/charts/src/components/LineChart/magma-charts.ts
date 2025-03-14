@@ -1,5 +1,3 @@
-import { ThemeInterface } from 'react-magma-dom';
-
 // *
 // * Colors
 // *
