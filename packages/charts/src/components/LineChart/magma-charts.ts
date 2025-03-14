@@ -71,7 +71,7 @@ const centeredLabelStyles = { textAnchor: 'middle', ...baseLabelStyles };
 const strokeLinecap = 'round';
 const strokeLinejoin = 'round';
 
-export const magmaTheme: ThemeInterface = {
+export const magmaTheme: any = {
   area: {
     style: {
       data: {
