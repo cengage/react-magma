@@ -16,6 +16,8 @@ export interface ListItemProps
   extends ListProps,
     React.HTMLAttributes<HTMLDivElement> {
   /**
+   * @deprecated = true
+   * Please use DefinitionList instead
    * Boolean which changes a list item into a styled paragraph.
    */
   description?: boolean;

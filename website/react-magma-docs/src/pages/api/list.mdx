@@ -136,6 +136,8 @@ export function Example() {
 
 The `description` prop is a boolean which changes a nested list item into a styled paragraph.
 
+Should to use `Definition List` instead of this prop.
+
 ```tsx
 import React from 'react';
 
@@ -303,6 +305,38 @@ export function Example() {
       </CardBody>
     </Card>
   );
+}
+```
+
+## DefinitionList
+
+Another type of List is the `Definition List`. Should to use this list if you have terms and descriptions.
+It also provides additional information for assistive technologies.
+
+```tsx
+import React from 'react';
+
+import { DefinitionList, DefinitionListItem } from 'react-magma-dom';
+
+export function Example() {
+const data = [
+{ term: 'Coffee', description: 'A hot beverage' },
+{ term: 'Tea', description: 'Another hot beverage' },
+{ term: 'Milk', description: 'A cold beverage' },
+];
+
+return (
+  <DefinitionList>
+    {data.map((item, index) => (
+      <React.Fragment key={index}>
+        <DefinitionListItem type="term">{item.term}</DefinitionListItem>
+        <DefinitionListItem type="description">
+          {item.description}
+        </DefinitionListItem>
+      </React.Fragment>
+    ))}
+  </DefinitionList>
+);
 }
 ```
 
