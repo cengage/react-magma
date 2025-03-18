@@ -9,7 +9,7 @@ import { Hyperlink, HyperlinkProps } from '../Hyperlink';
 
 export const TARGET_ID = 'reactMagmaMainContent';
 
-export interface SkipLinkProps extends Omit<HyperlinkProps, 'children'> {
+export interface SkipLinkProps extends Omit<HyperlinkProps, 'children' | 'to'> {
   /**
    * The text in the skip link
    * @default "Skip Navigation"

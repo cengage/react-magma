@@ -24,9 +24,7 @@ export const Default = () => {
       <Paragraph>
         Press Tab on your keyboard for the Skip Navigation button to appear.
       </Paragraph>
-      <SkipLink to="#" variant={ButtonVariant.solid}>
-        Skip to content
-      </SkipLink>
+      <SkipLink variant={ButtonVariant.solid}>Skip to content</SkipLink>
       {arr.map(index => (
         <Paragraph key={index} noMargins>
           #{index}
