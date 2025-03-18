@@ -32,7 +32,7 @@ export interface TabProps
   /**
    * @internal
    */
-  theme?: any;
+  theme?: ThemeInterface;
 }
 
 export const StyledTabsChild = styled('li', {

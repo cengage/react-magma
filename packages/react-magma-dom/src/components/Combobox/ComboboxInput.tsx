@@ -10,6 +10,7 @@ import {
 } from 'downshift';
 import { transparentize } from 'polished';
 
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { inputBaseStyles } from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
@@ -18,7 +19,7 @@ import { SelectedItemsWrapper } from '../Select/shared';
 const ComboBoxContainer = styled.div<{
   hasError?: boolean;
   isInverse?: boolean;
-  theme?: any;
+  theme?: ThemeInterface;
 }>`
   display: flex;
 `;
@@ -28,7 +29,7 @@ const InputContainer = styled.div<{
   disabled?: boolean;
   isFocused?: boolean;
   isInverse?: boolean;
-  theme?: any;
+  theme?: ThemeInterface;
 }>`
   align-items: center;
   background-color: ${props =>

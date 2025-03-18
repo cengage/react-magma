@@ -12,6 +12,7 @@ import { CalendarHeader } from './CalendarHeader';
 import { HelperInformation } from './HelperInformation';
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { I18nContext } from '../../i18n';
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { usePrevious } from '../../utils';
 
@@ -63,7 +64,7 @@ const Th = styled.th<{ isInverse?: boolean }>`
   text-align: center;
 `;
 
-const HelperButton = styled.span<{ theme?: any }>`
+const HelperButton = styled.span<{ theme?: ThemeInterface }>`
   margin: ${props => props.theme.spaceScale.spacing02};
   top: ${props => props.theme.spaceScale.spacing01};
   position: absolute;
@@ -71,7 +72,7 @@ const HelperButton = styled.span<{ theme?: any }>`
   z-index: 2;
 `;
 
-const CloseButton = styled.span<{ theme?: any }>`
+const CloseButton = styled.span<{ theme?: ThemeInterface }>`
   position: absolute;
   right: ${props => props.theme.spaceScale.spacing01};
   top: ${props => props.theme.spaceScale.spacing01};

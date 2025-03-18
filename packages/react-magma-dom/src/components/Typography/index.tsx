@@ -3,6 +3,8 @@ import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
+import { ThemeInterface } from '../../theme/magma';
+
 export interface TypographyProps<T = HTMLParagraphElement>
   extends React.HTMLAttributes<T> {
   as?: string;
@@ -19,7 +21,7 @@ export interface TypographyProps<T = HTMLParagraphElement>
    * @internal
    */
   testId?: string;
-  theme?: any;
+  theme?: ThemeInterface;
   visualStyle?: TypographyVisualStyle;
 }
 

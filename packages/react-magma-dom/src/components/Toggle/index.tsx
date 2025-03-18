@@ -6,6 +6,7 @@ import { transparentize } from 'polished';
 import { CheckIcon } from 'react-magma-icons';
 
 import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
@@ -71,7 +72,7 @@ export interface ToggleProps
   /**
    * @internal
    */
-  theme?: any;
+  theme?: ThemeInterface;
   /**
    * Style properties for the part of the component that slides back and forth on the track
    */
@@ -128,7 +129,7 @@ const Track = styled.span<{
   disabled?: boolean;
   hasError?: boolean;
   isInverse?: boolean;
-  theme?: any;
+  theme?: ThemeInterface;
 }>`
   background: ${props =>
     props.isInverse
@@ -216,7 +217,7 @@ const Thumb = styled.span<{
   isChecked?: boolean;
   isInverse?: boolean;
   disabled?: boolean;
-  theme?: any;
+  theme?: ThemeInterface;
 }>`
   background: ${props =>
     props.isInverse && props.disabled
@@ -240,7 +241,7 @@ const Thumb = styled.span<{
 
 const IconContainer = styled.span<{
   disabled?: boolean;
-  theme?: any;
+  theme?: ThemeInterface;
   isChecked?: boolean;
   isInverse?: boolean;
 }>`

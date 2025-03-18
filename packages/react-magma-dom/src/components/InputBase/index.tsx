@@ -145,7 +145,7 @@ export interface InputBaseProps
   /**
    * @internal
    */
-  theme?: any;
+  theme?: ThemeInterface;
   /**
    * The type attribute of the form field
    * @default InputType.text

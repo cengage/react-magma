@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
 import { resolveProps } from '../../utils';
 import { ButtonGroupContext } from '../ButtonGroup';
 import { StyledButton } from '../StyledButton';
@@ -94,7 +95,7 @@ interface BaseButtonProps
   /**
    * @internal
    */
-  theme?: any;
+  theme?: ThemeInterface;
   /**
    * The type attribute of the button
    * ButtonType.button

@@ -3,6 +3,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 
 import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InputIconPosition, InputSize } from '../InputBase';
 
@@ -24,7 +25,7 @@ export interface LabelProps
    * @default InputSize.medium
    */
   size?: InputSize;
-  theme?: any;
+  theme?: ThemeInterface;
   /**
    * @internal
    */
@@ -34,7 +35,7 @@ export interface LabelProps
 const StyledLabel = styled.label<{
   iconPosition: InputIconPosition;
   isInverse: boolean;
-  theme: any;
+  theme: ThemeInterface;
   size: InputSize;
   labelPosition: LabelPosition;
 }>`
