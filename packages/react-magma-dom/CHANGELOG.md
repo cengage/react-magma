@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.10
+
+### Patch Changes
+
+- 9062d6c82: fix(PasswordInput): Fix webkit styles when using the password manager.
+
 ## 4.9.0-next.9
 
 ### Patch Changes
