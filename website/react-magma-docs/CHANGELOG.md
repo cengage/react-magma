@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.1.2-next.11
+
+### Patch Changes
+
+- ed6db42d3: build(deps): bump @babel/runtime from 7.24.5 to 7.26.10
+- Updated dependencies [221a7c946]
+  - react-magma-dom@4.9.0-next.9
+
 ## 5.1.2-next.10
 
 ### Patch Changes

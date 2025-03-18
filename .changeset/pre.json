@@ -20,6 +20,7 @@
     "feat-treeview-is-top-level-selectable",
     "fix-AppBar",
     "fix-Pagination-screenreader",
+    "fix-SkipLink-prop",
     "fix-Theme-update-types",
     "manually-sync-4.8.7",
     "nine-roses-beam",
@@ -28,6 +29,7 @@
     "selfish-bees-walk",
     "simple-pag",
     "support-icons3-1",
+    "tender-lizards-kneel",
     "uuid"
   ]
 }

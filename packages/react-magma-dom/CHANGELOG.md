@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.9
+
+### Patch Changes
+
+- 221a7c946: fix(SkipLink): Make the `to` prop optional
+
 ## 4.9.0-next.8
 
 ### Patch Changes
