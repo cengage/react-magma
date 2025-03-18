@@ -4,6 +4,8 @@ title: List
 props:
   - ListProps
   - ListItemProps
+  - DefinitionListProps
+  - DefinitionListItemProps
 ---
 
 <PageContent componentName="list" type="api">
@@ -136,7 +138,7 @@ export function Example() {
 
 The `description` prop is a boolean which changes a nested list item into a styled paragraph.
 
-Should to use `Definition List` instead of this prop.
+This prop has been deprecated. Use `DefinitionList` instead.
 
 ```tsx
 import React from 'react';
@@ -308,10 +310,8 @@ export function Example() {
 }
 ```
 
-## DefinitionList
-
-Another type of List is the `Definition List`. Should to use this list if you have terms and descriptions.
-It also provides additional information for assistive technologies.
+## Definition List
+Use the `DefinitionList` for groups of terms and descriptions, such as glossaries or key-value pairs.
 
 ```tsx
 import React from 'react';
@@ -349,5 +349,13 @@ return (
 ## List Item Props
 
 <ListItemProps />
+
+## Definition List Props
+
+<DefinitionListProps />
+
+## Definition List Item Props
+
+<DefinitionListItemProps />
 
 </PageContent>

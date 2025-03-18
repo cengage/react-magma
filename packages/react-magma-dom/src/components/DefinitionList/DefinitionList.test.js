@@ -4,17 +4,19 @@ import { render } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 
-import { DefinitionList, DefinitionListItem } from '.';
+import { DefinitionList, DefinitionListItem, DefinitionListType } from '.';
 
 const TERM = 'Coffee';
 const DESCRIPTION = 'A hot beverage';
 
-describe('definitionList', () => {
-  it('should render the DefinitionList component', () => {
+describe('DefinitionList', () => {
+  it('should render the DefinitionList', () => {
     const { getByText } = render(
       <DefinitionList>
-        <DefinitionListItem type={'term'}>{TERM}</DefinitionListItem>
-        <DefinitionListItem type={'description'}>
+        <DefinitionListItem type={DefinitionListType.term}>
+          {TERM}
+        </DefinitionListItem>
+        <DefinitionListItem type={DefinitionListType.description}>
           {DESCRIPTION}
         </DefinitionListItem>
       </DefinitionList>
@@ -28,8 +30,10 @@ describe('definitionList', () => {
     const testId = 'test-id';
     const { getByTestId } = render(
       <DefinitionList testId={testId}>
-        <DefinitionListItem type={'term'}>{TERM}</DefinitionListItem>
-        <DefinitionListItem type={'description'}>
+        <DefinitionListItem type={DefinitionListType.term}>
+          {TERM}
+        </DefinitionListItem>
+        <DefinitionListItem type={DefinitionListType.description}>
           {DESCRIPTION}
         </DefinitionListItem>
       </DefinitionList>
@@ -38,11 +42,13 @@ describe('definitionList', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
-  it('Does not violate accessibility standards', () => {
+  it('should does not violate accessibility standards', () => {
     const { container } = render(
       <DefinitionList>
-        <DefinitionListItem type={'term'}>{TERM}</DefinitionListItem>
-        <DefinitionListItem type={'description'}>
+        <DefinitionListItem type={DefinitionListType.term}>
+          {TERM}
+        </DefinitionListItem>
+        <DefinitionListItem type={DefinitionListType.description}>
           {DESCRIPTION}
         </DefinitionListItem>
       </DefinitionList>
@@ -53,28 +59,17 @@ describe('definitionList', () => {
     });
   });
 
-  it('should render the text only definition list item with these styles when isInverse is false', () => {
-    const testId = 'test-id';
-
+  it('should render the DefinitionList with these styles when isInverse is false', () => {
     const { container } = render(
       <DefinitionList>
-        <DefinitionListItem testId={testId + ' term'} type={'term'}>
+        <DefinitionListItem type={DefinitionListType.term}>
           Coffee
         </DefinitionListItem>
-        <DefinitionListItem testId={testId + ' desc'} type={'description'}>
+        <DefinitionListItem type={DefinitionListType.description}>
           A hot beverage
         </DefinitionListItem>
       </DefinitionList>
     );
-    expect(container.querySelector('dt')).toBeInTheDocument();
-
-    const dtElement = container.querySelector('dt');
-    const alignItems = getComputedStyle(dtElement).alignItems;
-    expect(alignItems).toBe("'center'");
-
-    const ddElement = container.querySelector('dd');
-    const marginInlineStart = getComputedStyle(ddElement).alignItems;
-    expect(marginInlineStart).toBe('flex-start');
 
     expect(container.querySelector('dl')).toHaveStyleRule(
       'margin',
@@ -86,20 +81,69 @@ describe('definitionList', () => {
     );
   });
 
-  it('should render the text only definition list item with these styles when isInverse is true', () => {
-    const testId = 'test-id';
-
+  it('should render the DefinitionList with these styles when isInverse is true', () => {
     const { container } = render(
       <DefinitionList isInverse>
-        <DefinitionListItem testId={testId + ' term'} type={'term'}>
+        <DefinitionListItem type={DefinitionListType.term}>
           Coffee
         </DefinitionListItem>
-        <DefinitionListItem testId={testId + ' desc'} type={'description'}>
+        <DefinitionListItem type={DefinitionListType.description}>
           A hot beverage
         </DefinitionListItem>
       </DefinitionList>
     );
 
     expect(container.querySelector('dl')).toHaveStyleRule('color', '#FFFFFF');
+  });
+
+  describe('DefinitionListItem', () => {
+    it('should render component with correct tags for terms and description', () => {
+      const testId = 'test-id';
+
+      const { getByTestId } = render(
+        <DefinitionList>
+          <DefinitionListItem
+            type={DefinitionListType.term}
+            testId={testId + '-term'}
+          >
+            {TERM}
+          </DefinitionListItem>
+          <DefinitionListItem
+            type={DefinitionListType.description}
+            testId={testId + '-desc'}
+          >
+            {DESCRIPTION}
+          </DefinitionListItem>
+        </DefinitionList>
+      );
+
+      const termElements = getByTestId('test-id-term');
+      const descriptionElement = getByTestId('test-id-desc');
+
+      expect(termElements.tagName).toBe('DT');
+      expect(descriptionElement.tagName).toBe('DD');
+    });
+
+    it('should render the DefinitionListItem with these default styles', () => {
+      const { container } = render(
+        <DefinitionList>
+          <DefinitionListItem type={DefinitionListType.term}>
+            Coffee
+          </DefinitionListItem>
+          <DefinitionListItem type={DefinitionListType.description}>
+            A hot beverage
+          </DefinitionListItem>
+        </DefinitionList>
+      );
+      expect(container.querySelector('dt')).toBeInTheDocument();
+
+      const dtElement = container.querySelector('dt');
+      const alignItems = getComputedStyle(dtElement).alignItems;
+      expect(alignItems).toBe('center');
+
+      const ddElement = container.querySelector('dd');
+      const marginInlineStart = getComputedStyle(ddElement).alignItems;
+      expect(marginInlineStart).toBe('flex-start');
+    });
   });
 });

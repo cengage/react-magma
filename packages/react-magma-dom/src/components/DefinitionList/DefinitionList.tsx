@@ -25,7 +25,7 @@ const DefinitionListStyles = (props: DefinitionListProps) => css`
   font-size: ${props.theme.typeScale.size03.fontSize};
 
   dt {
-    align-items: 'center';
+    align-items: center;
     font-weight: 600;
   }
 
@@ -58,14 +58,13 @@ export const DefinitionList = React.forwardRef<
   return (
     <InverseContext.Provider value={{ isInverse }}>
       <StyledDefinitionList
+        {...rest}
         as={'dl'}
         data-testid={testId}
         isInverse={isInverse}
         ref={ref}
         theme={theme}
         visualStyle={visualStyle || TypographyVisualStyle.bodyMedium}
-        style={{ margin: '10px' }}
-        {...rest}
       >
         {children}
       </StyledDefinitionList>

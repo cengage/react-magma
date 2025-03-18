@@ -5,7 +5,7 @@ import { Meta } from '@storybook/react/types-6-0';
 
 import { TypographyVisualStyle } from '../Typography';
 import { DefinitionList } from './DefinitionList';
-import { DefinitionListItem } from './DefinitionListItem';
+import { DefinitionListItem, DefinitionListType } from './DefinitionListItem';
 import { Card, CardBody } from '../Card';
 import { Paragraph } from '../Paragraph';
 
@@ -39,8 +39,10 @@ export const Simple = args => {
         <DefinitionList {...args}>
           {data.map((item, index) => (
             <React.Fragment key={index}>
-              <DefinitionListItem type="term">{item.term}</DefinitionListItem>
-              <DefinitionListItem type="description">
+              <DefinitionListItem type={DefinitionListType.term}>
+                {item.term}
+              </DefinitionListItem>
+              <DefinitionListItem type={DefinitionListType.description}>
                 {item.description}
               </DefinitionListItem>
             </React.Fragment>
@@ -75,11 +77,17 @@ export const WithMultipleTerms = args => {
             return (
               <React.Fragment key={index}>
                 {terms.map((term, i) => (
-                  <DefinitionListItem key={`term-${index}-${i}`} type="term">
+                  <DefinitionListItem
+                    key={`term-${index}-${i}`}
+                    type={DefinitionListType.term}
+                  >
                     {term}
                   </DefinitionListItem>
                 ))}
-                <DefinitionListItem key={`desc-${index}`} type="description">
+                <DefinitionListItem
+                  key={`desc-${index}`}
+                  type={DefinitionListType.description}
+                >
                   {item.description}
                 </DefinitionListItem>
               </React.Fragment>
@@ -121,13 +129,16 @@ export const WithMultipleDescriptions = args => {
 
             return (
               <React.Fragment key={index}>
-                <DefinitionListItem key={`term-${index}`} type="term">
+                <DefinitionListItem
+                  key={`term-${index}`}
+                  type={DefinitionListType.term}
+                >
                   {item.term}
                 </DefinitionListItem>
                 {descriptions.map((description, i) => (
                   <DefinitionListItem
                     key={`desc-${index}-${i}`}
-                    type="description"
+                    type={DefinitionListType.description}
                   >
                     {description}
                   </DefinitionListItem>
@@ -181,14 +192,16 @@ export const CustomStyles = args => {
           <TermStyled align={'end'}>
             {data.map((item, index) => (
               <React.Fragment key={index}>
-                <DefinitionListItem type="term">{item.term}</DefinitionListItem>
+                <DefinitionListItem type={DefinitionListType.term}>
+                  {item.term}
+                </DefinitionListItem>
               </React.Fragment>
             ))}
           </TermStyled>
           <DescriptionStyled>
             {data.map((item, index) => (
               <React.Fragment key={index}>
-                <DefinitionListItem type="description">
+                <DefinitionListItem type={DefinitionListType.description}>
                   {item.description}
                 </DefinitionListItem>
               </React.Fragment>
@@ -203,14 +216,16 @@ export const CustomStyles = args => {
           <TermStyled align={'start'}>
             {data.map((item, index) => (
               <React.Fragment key={index}>
-                <DefinitionListItem type="term">{item.term}</DefinitionListItem>
+                <DefinitionListItem type={DefinitionListType.term}>
+                  {item.term}
+                </DefinitionListItem>
               </React.Fragment>
             ))}
           </TermStyled>
           <DescriptionStyled>
             {data.map((item, index) => (
               <React.Fragment key={index}>
-                <DefinitionListItem type="description">
+                <DefinitionListItem type={DefinitionListType.description}>
                   {item.description}
                 </DefinitionListItem>
               </React.Fragment>

@@ -12,30 +12,43 @@ export interface DefinitionListItemProps
   /**
    * Types of definition list element.
    */
-  type: 'term' | 'description';
+  type: DefinitionListType;
 }
 
-const StyledDefinitionListItem = styled.dt<any>`
+export enum DefinitionListType {
+  /**
+   * Represents the term in a definition list.
+   * Will be wrapped in a <dt> (definition term) tag.
+   */
+  term = 'term',
+  /**
+   * Represents the description of a term.
+   * Will be wrapped in a <dd> (definition description) tag.
+   */
+  description = 'description',
+}
+
+const StyledDefinitionListItem = styled.dt`
   margin: 0;
   padding: 0;
 `;
 
 export const DefinitionListItem = React.forwardRef<
-  HTMLDivElement,
+  HTMLDListElement,
   DefinitionListItemProps
 >((props, ref) => {
-  const { children, testId, type, isInverse: isInverseProp } = props;
+  const { children, testId, type, isInverse: isInverseProp, ...rest } = props;
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
 
   return (
     <InverseContext.Provider value={{ isInverse }}>
       <StyledDefinitionListItem
-        as={type === 'term' ? 'dt' : 'dd'}
-        isInverse={isInverse}
+        {...rest}
+        as={type === DefinitionListType.term ? 'dt' : 'dd'}
         ref={ref}
         theme={theme}
-        testId={testId}
+        data-testid={testId}
       >
         {children}
       </StyledDefinitionListItem>
