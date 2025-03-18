@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.8
+
+### Patch Changes
+
+- 998d98378: fix(Theme): Update types for theme in the components.
+
 ## 4.9.0-next.7
 
 ### Patch Changes
