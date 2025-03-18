@@ -27,6 +27,8 @@ export enum InputType {
   password = 'password',
   search = 'search',
   text = 'text', // default
+  url = 'url',
+  tel = 'tel',
 }
 
 export enum InputIconPosition {

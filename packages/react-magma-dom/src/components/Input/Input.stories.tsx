@@ -327,6 +327,69 @@ NumberInput.parameters = {
   controls: { exclude: ['type', 'iconPosition', 'labelWidth'] },
 };
 
+export const PhoneInput = () => {
+  const [inputVal, setInputVal] = React.useState('');
+  const [hasError, setHasError] = React.useState(false);
+  const phonePattern = '^[0-9]{3}-[0-9]{3}-[0-9]{4}$';
+
+  function handleChange(event) {
+    setInputVal(event.target.value);
+  }
+
+  React.useEffect(() => {
+    if (inputVal === '' || inputVal.match(phonePattern)) {
+      setHasError(false);
+    } else {
+      setHasError(true);
+    }
+  }, [inputVal]);
+
+  return (
+    <Input
+      pattern={phonePattern}
+      labelText={
+        <>
+          Phone <br /> Format: 123-456-7890
+        </>
+      }
+      type={InputType.tel}
+      errorMessage={hasError ? 'Please enter a phone number' : null}
+      value={inputVal}
+      onChange={handleChange}
+    />
+  );
+};
+
+export const URLInput = () => {
+  const [inputVal, setInputVal] = React.useState('');
+  const [hasError, setHasError] = React.useState(false);
+  const urlPattern =
+    '^(https?:\\/\\/)?([a-zA-Z0-9.-]+)\\.([a-zA-Z]{2,})(:[0-9]+)?(\\/.*)?$';
+
+  function handleChange(event) {
+    setInputVal(event.target.value);
+  }
+
+  React.useEffect(() => {
+    if (inputVal === '' || inputVal.match(urlPattern)) {
+      setHasError(false);
+    } else {
+      setHasError(true);
+    }
+  }, [hasError, inputVal]);
+
+  return (
+    <Input
+      pattern={urlPattern}
+      labelText="URL"
+      type={InputType.url}
+      errorMessage={hasError ? 'Please enter a url' : null}
+      value={inputVal}
+      onChange={handleChange}
+    />
+  );
+};
+
 export const SeveralErrors = () => {
   const [inputValues, setInputValues] = React.useState({
     firstName: '',
