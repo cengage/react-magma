@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.11
+
+### Minor Changes
+
+- e9f383724: feat(Input): Add new types: `tel` and `url`.
+
 ## 4.9.0-next.10
 
 ### Patch Changes
