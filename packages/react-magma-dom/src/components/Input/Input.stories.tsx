@@ -360,7 +360,7 @@ export const PhoneInput = () => {
   );
 };
 
-export const UrlInput = () => {
+export const URLInput = () => {
   const [inputVal, setInputVal] = React.useState('');
   const [hasError, setHasError] = React.useState(false);
   const urlPattern =
@@ -381,7 +381,7 @@ export const UrlInput = () => {
   return (
     <Input
       pattern={urlPattern}
-      labelText="Url"
+      labelText="URL"
       type={InputType.url}
       errorMessage={hasError ? 'Please enter a url' : null}
       value={inputVal}
