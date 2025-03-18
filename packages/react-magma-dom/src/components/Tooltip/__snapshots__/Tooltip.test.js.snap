@@ -48,24 +48,6 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   left: 10px;
 }
 
-.emotion-2.emotion-2,
-.emotion-2.emotion-2:before {
-  display: block;
-  height: 8px;
-  position: absolute;
-  width: 8px;
-  z-index: -1;
-}
-
-.emotion-2.emotion-2::before {
-  content: '';
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  background: #454545;
-}
-
 .emotion-0 {
   background: #454545;
   border-radius: 8px;
@@ -113,36 +95,12 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   left: 10px;
 }
 
-.emotion-2.emotion-2,
-.emotion-2.emotion-2:before {
-  display: block;
-  height: 8px;
-  position: absolute;
-  width: 8px;
-  z-index: -1;
-}
-
-.emotion-2.emotion-2::before {
-  content: '';
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  background: #454545;
-}
-
 <div
   class="emotion-0 emotion-1"
-  data-popper-escaped="true"
-  data-popper-placement="top"
-  data-popper-reference-hidden="true"
+  data-tooltip-placement="top"
   id="tooltipID"
   role="tooltip"
 >
   Test Content
-  <span
-    class="emotion-2 emotion-3"
-    style="position: absolute; left: 0px; transform: translate(0px, 0px);"
-  />
 </div>
 `;
