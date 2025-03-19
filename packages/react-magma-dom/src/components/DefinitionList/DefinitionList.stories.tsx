@@ -177,7 +177,7 @@ export const CustomStyles = args => {
     }
   `;
 
-  const DescriptionStyled = styled.div<any>`
+  const DescriptionStyled = styled.div`
     margin-left: 24px;
     float: left;
   `;

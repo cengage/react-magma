@@ -6,15 +6,6 @@ import { DefinitionListProps } from './DefinitionList';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-export interface DefinitionListItemProps
-  extends DefinitionListProps,
-    React.HTMLAttributes<HTMLDListElement> {
-  /**
-   * Types of definition list element.
-   */
-  type: DefinitionListType;
-}
-
 export enum DefinitionListType {
   /**
    * Represents the term in a definition list.
@@ -26,6 +17,15 @@ export enum DefinitionListType {
    * Will be wrapped in a <dd> (definition description) tag.
    */
   description = 'description',
+}
+
+export interface DefinitionListItemProps
+  extends DefinitionListProps,
+    React.HTMLAttributes<HTMLDListElement> {
+  /**
+   * Types of definition list element.
+   */
+  type: DefinitionListType;
 }
 
 const StyledDefinitionListItem = styled.dt`

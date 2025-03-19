@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { InverseContext, useIsInverse } from '../../inverse';
@@ -15,14 +14,17 @@ export interface DefinitionListProps
   extends Pick<ListProps, 'isInverse' | 'testId' | 'theme' | 'visualStyle'>,
     React.HTMLAttributes<HTMLDListElement> {}
 
-const DefinitionListStyles = (props: DefinitionListProps) => css`
+const StyledDefinitionList = styled(TypographyComponent)<any>`
   margin: 0;
   padding: 0;
-  color: ${props.isInverse
-    ? props.theme.colors.neutral100
-    : props.theme.colors.neutral700};
-  line-height: ${props.theme.typeScale.size03.lineHeight};
-  font-size: ${props.theme.typeScale.size03.fontSize};
+  color: ${(props: DefinitionListProps) =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700};
+  line-height: ${(props: DefinitionListProps) =>
+    props.theme.typeScale.size03.lineHeight};
+  font-size: ${(props: DefinitionListProps) =>
+    props.theme.typeScale.size03.fontSize};
 
   dt {
     align-items: center;
@@ -32,13 +34,11 @@ const DefinitionListStyles = (props: DefinitionListProps) => css`
   dd {
     align-items: flex-start;
     font-weight: 400;
-    padding-left: ${props.theme.spaceScale.spacing08};
-    margin-bottom: ${props.theme.spaceScale.spacing05};
+    padding-left: ${(props: DefinitionListProps) =>
+      props.theme.spaceScale.spacing08};
+    margin-bottom: ${(props: DefinitionListProps) =>
+      props.theme.spaceScale.spacing05};
   }
-`;
-
-const StyledDefinitionList = styled(TypographyComponent)<any>`
-  ${DefinitionListStyles};
 `;
 
 export const DefinitionList = React.forwardRef<

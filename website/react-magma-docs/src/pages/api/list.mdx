@@ -316,7 +316,7 @@ Use the `DefinitionList` for groups of terms and descriptions, such as glossarie
 ```tsx
 import React from 'react';
 
-import { DefinitionList, DefinitionListItem } from 'react-magma-dom';
+import { Card, CardBody, Paragraph, DefinitionList, DefinitionListItem } from 'react-magma-dom';
 
 export function Example() {
 const data = [
@@ -325,18 +325,92 @@ const data = [
 { term: 'Milk', description: 'A cold beverage' },
 ];
 
-return (
-  <DefinitionList>
-    {data.map((item, index) => (
-      <React.Fragment key={index}>
-        <DefinitionListItem type="term">{item.term}</DefinitionListItem>
-        <DefinitionListItem type="description">
-          {item.description}
-        </DefinitionListItem>
-      </React.Fragment>
-    ))}
-  </DefinitionList>
-);
+const dataWithMultipleTerms = [
+  {
+    term: ['Coffee', 'Tea', 'Hot Chocolate'],
+    description: 'A hot beverage',
+  },
+  {
+    term: ['Milk', 'Lemonade', 'Margarita'],
+    description: 'A cold beverage',
+  },
+];
+
+const Row = styled.div`
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 16px;
+`;
+
+const TermStyled = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+`;
+
+const DescriptionStyled = styled.div`
+    text-align: right;
+`;
+
+  return (
+    <>
+      <Card style={{ marginBottom: '32px' }}>
+        <CardBody>
+          <Paragraph
+            visualStyle={TypographyVisualStyle.bodyLarge}
+            noTopMargin
+          >
+            Default Styles
+          </Paragraph>
+          <DefinitionList>
+            {data.map((item, index) => (
+              <React.Fragment key={index}>
+                <DefinitionListItem type="term">{item.term}</DefinitionListItem>
+                <DefinitionListItem type="description">
+                  {item.description}
+                </DefinitionListItem>
+              </React.Fragment>
+            ))}
+          </DefinitionList>
+        </CardBody>
+      </Card>
+
+      <Card style={{ marginBottom: '32px' }}>
+        <CardBody>
+          <DefinitionList>
+            <Paragraph
+              visualStyle={TypographyVisualStyle.bodyLarge}
+              noTopMargin
+            >
+              Custom Styles
+            </Paragraph>
+            {dataWithMultipleTerms.map((item, index) => (
+              <Row key={index}>
+                <TermStyled>
+                  {item.term.map((term, i) => (
+                    <DefinitionListItem
+                      key={`term-${index}-${i}`}
+                      type={DefinitionListType.term}
+                    >
+                      {term}
+                    </DefinitionListItem>
+                  ))}
+                </TermStyled>
+                <DescriptionStyled>
+                  <DefinitionListItem
+                    key={`desc-${index}`}
+                    type={DefinitionListType.description}
+                  >
+                    {item.description}
+                  </DefinitionListItem>
+                </DescriptionStyled>
+              </Row>
+            ))}
+          </DefinitionList>
+        </CardBody>
+      </Card>
+    </>
+  );
 }
 ```
 
