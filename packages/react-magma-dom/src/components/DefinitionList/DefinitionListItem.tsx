@@ -24,6 +24,8 @@ export interface DefinitionListItemProps
     React.HTMLAttributes<HTMLDListElement> {
   /**
    * Types of definition list element.
+   * term: uses a <dt> (definition term) tag
+   * description: uses a <dd> (definition description) tag
    */
   type: DefinitionListType;
 }
