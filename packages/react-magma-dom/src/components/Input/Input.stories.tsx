@@ -13,7 +13,7 @@ import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
 import { PasswordInput } from '../PasswordInput';
 import { Search } from '../Search';
-import { Spacer } from '../Spacer';
+import { Spacer, SpacerAxis } from '../Spacer';
 import { TimePicker } from '../TimePicker';
 import { Tooltip } from '../Tooltip';
 
@@ -554,7 +554,7 @@ export const AllInputs = () => {
           </Input>
         </div>
       </div>
-      <div style={{ height: '120px' }} />
+      <Spacer axis={SpacerAxis.vertical} size={120} />
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
           <Search onSearch={() => {}} isClearable />
