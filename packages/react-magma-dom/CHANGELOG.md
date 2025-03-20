@@ -1,5 +1,12 @@
 ## 4.8.0
 
+## 4.9.0-next.12
+
+### Minor Changes
+
+- 1bd563f57: feat(DefinitionList): New DefinitionList and DefinitionListItem components.
+  @deprecated List `description` prop
+
 ## 4.9.0-next.11
 
 ### Minor Changes
