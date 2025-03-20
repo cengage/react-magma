@@ -6,10 +6,15 @@ import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
 import { Button, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
 import { Card, CardBody } from '../Card';
+import { Combobox } from '../Combobox';
+import { DatePicker } from '../DatePicker';
 import { IconButton } from '../IconButton';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
+import { PasswordInput } from '../PasswordInput';
+import { Search } from '../Search';
 import { Spacer } from '../Spacer';
+import { TimePicker } from '../TimePicker';
 import { Tooltip } from '../Tooltip';
 
 import { Input, InputProps } from '.';
@@ -493,6 +498,96 @@ export const SeveralErrors = () => {
           Reset
         </Button>
       </ButtonGroup>
+    </>
+  );
+};
+
+export const AllInputs = () => {
+  const helpLinkLabel = 'Learn more';
+  const onHelpLinkClick = () => {
+    alert('Help link clicked!');
+  };
+
+  return (
+    <>
+      <div style={{ display: 'flex' }}>
+        <div style={{ flex: '0 0 auto' }}>
+          <PasswordInput labelText="Password" />
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <Input labelText="Label" />
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <TimePicker labelText="Time" />
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <DatePicker labelText="Date" />
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <Combobox
+            id="comboboxId"
+            labelText="Combobox"
+            defaultItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' },
+            ]}
+            placeholder="Hello"
+          />
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <Input
+            labelText="With two icons"
+            icon={<NotificationsIcon />}
+            iconPosition={InputIconPosition.left}
+          >
+            <Tooltip content={helpLinkLabel}>
+              <IconButton
+                aria-label={helpLinkLabel}
+                icon={<HelpIcon />}
+                onClick={onHelpLinkClick}
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          </Input>
+        </div>
+      </div>
+      <div style={{ height: '120px' }} />
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Search onSearch={() => {}} isClearable />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Input
+            labelText="Number 1-40 "
+            inputWrapperStyle={{ width: '100px' }}
+            type={InputType.number}
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Input
+            labelText="Email"
+            inputWrapperStyle={{ width: '100px' }}
+            type={InputType.email}
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Input
+            labelText="Phone"
+            inputWrapperStyle={{ width: '100px' }}
+            type={InputType.tel}
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Input
+            labelText="URL"
+            inputWrapperStyle={{ width: '100px' }}
+            type={InputType.url}
+          />
+        </div>
+      </div>
     </>
   );
 };

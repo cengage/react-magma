@@ -43,7 +43,7 @@ const InputContainer = styled.div<{
       : props.theme.colors.neutral500};
   border-radius: ${props => props.theme.borderRadius};
   display: flex;
-  min-height: ${props => props.theme.spaceScale.spacing09};
+  height: ${props => props.theme.spaceScale.spacing09};
   min-width: ${props => props.theme.spaceScale.spacing13};
   padding: 0 ${props => props.theme.spaceScale.spacing03} 0 0;
   width: 100%;
