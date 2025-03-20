@@ -673,3 +673,37 @@ export const CustomRef = CustomRefTemplate.bind({});
 CustomRef.args = {
   ...Default.args,
 };
+
+export const DropdownExpandableMenuListItemWithIcons = args => {
+  return (
+    <Dropdown {...args} width={300}>
+      <DropdownButton>Dropdown Expandable Menu List Item</DropdownButton>
+      <DropdownContent>
+        <DropdownExpandableMenuGroup isMulti={false} defaultIndex={0}>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton icon={<LocalPizzaIcon />}>
+              Pizza
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownExpandableMenuListItem>
+                Margherita
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
+                Capricciosa (no icon)
+              </DropdownExpandableMenuListItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+        </DropdownExpandableMenuGroup>
+        <DropdownDivider />
+        <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
+          Pizza marinara (with icon)
+        </DropdownExpandableMenuListItem>
+        <DropdownDivider />
+        <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
+          Pizza seafood (no icon)
+          <p style={{ marginLeft: '10px' }}>children</p>
+        </DropdownExpandableMenuListItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+};
