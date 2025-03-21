@@ -20,35 +20,6 @@ const Template: Story<SearchProps> = args => (
   </Card>
 );
 
-const ClearableTemplate: Story<SearchProps> = args => (
-  <Card isInverse={args.isInverse}>
-    <CardBody>
-      <Search
-        {...args}
-        onSearch={term => {
-          alert(term);
-        }}
-        isClearable
-      />
-    </CardBody>
-  </Card>
-);
-
-const LargeTemplate: Story<SearchProps> = args => (
-  <Card isInverse={args.isInverse}>
-    <CardBody>
-      <Search
-        {...args}
-        onSearch={term => {
-          alert(term);
-        }}
-        isClearable
-        inputSize={InputSize.large}
-      />
-    </CardBody>
-  </Card>
-);
-
 export default {
   title: 'Search',
   component: Search,
@@ -87,16 +58,6 @@ export default {
 } as Meta;
 
 export const Default = Template.bind({});
-Default.args = {
-  placeholder: 'Search',
-};
-
-export const Clearable = ClearableTemplate.bind({});
-Default.args = {
-  placeholder: 'Search',
-};
-
-export const Large = LargeTemplate.bind({});
 Default.args = {
   placeholder: 'Search',
 };
