@@ -48,7 +48,6 @@ export const DropdownExpandableMenuListItem = React.forwardRef<
   );
 
   const ref = useForkedRef(forwardedRef, ownRef);
-  const hasChildren = React.Children.count(children) > 1;
 
   React.useEffect(() => {
     if (!expandableMenuItemContext.disabled)
@@ -60,13 +59,19 @@ export const DropdownExpandableMenuListItem = React.forwardRef<
       {...other}
       disabled={disabled}
       expandableMenuButtonHasIcon={menuGroupContext.expandableMenuButtonHasIcon}
-      icon={hasChildren ? null : icon}
+      icon={
+        menuGroupContext && !menuGroupContext.isExpandablePanel ? icon : null
+      }
       isExpandablePanel={menuGroupContext.isExpandablePanel}
       ref={expandableMenuItemContext.disabled ? null : ref}
       theme={theme}
       role="menuitem"
     >
-      {children}
+      {React.Children.map(children, child =>
+        React.isValidElement(child)
+          ? React.cloneElement(child, { icon: undefined })
+          : child
+      )}
     </StyledDropdownMenuItem>
   );
 });

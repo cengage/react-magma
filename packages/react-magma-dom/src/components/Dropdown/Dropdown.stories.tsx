@@ -700,8 +700,10 @@ export const DropdownExpandableMenuListItemWithIcons = args => {
         </DropdownExpandableMenuListItem>
         <DropdownDivider />
         <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
-          Pizza seafood (no icon)
-          <p style={{ marginLeft: '10px' }}>children</p>
+          Pizza seafood
+          <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
+            Child (no icon)
+          </DropdownExpandableMenuListItem>
         </DropdownExpandableMenuListItem>
       </DropdownContent>
     </Dropdown>
