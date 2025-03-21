@@ -89,7 +89,6 @@ const StyledInput = styled.input`
   ${inputBaseStyles}
   display: flex;
   flex-grow: 1;
-  height: ${props => props.theme.spaceScale.spacing09};
   min-width: ${props => props.theme.spaceScale.spacing07};
   padding-left: ${props => props.theme.spaceScale.spacing02};
   width: 0;
