@@ -524,18 +524,6 @@ export const AllInputs = () => {
           <DatePicker labelText="Date" />
         </div>
         <div style={{ flex: '0 0 auto' }}>
-          <Combobox
-            id="comboboxId"
-            labelText="Combobox"
-            defaultItems={[
-              { label: 'Red', value: 'red' },
-              { label: 'Blue', value: 'blue' },
-              { label: 'Green', value: 'green' },
-            ]}
-            placeholder="Hello"
-          />
-        </div>
-        <div style={{ flex: '0 0 auto' }}>
           <Input
             labelText="With two icons"
             icon={<NotificationsIcon />}
@@ -585,6 +573,36 @@ export const AllInputs = () => {
             labelText="URL"
             inputWrapperStyle={{ width: '100px' }}
             type={InputType.url}
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Combobox
+            id="comboboxId"
+            labelText="Combobox"
+            defaultItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' },
+            ]}
+            placeholder="Hello"
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto', maxWidth: '400px' }}>
+          <Combobox
+            id="comboboxId-multi"
+            isMulti
+            labelText={'Combobox Multi Example'}
+            defaultItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' },
+              { label: 'Orange', value: 'orange' },
+              { label: 'Aqua', value: 'aqua' },
+              { label: 'Gold', value: 'gold' },
+              { label: 'Periwinkle', value: 'periwinkle' },
+              { label: 'Lavender', value: 'lavender' },
+              { label: 'Marigold', value: 'marigold' },
+            ]}
           />
         </div>
       </div>
