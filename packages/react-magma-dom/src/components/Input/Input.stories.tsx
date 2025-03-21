@@ -11,6 +11,7 @@ import { DatePicker } from '../DatePicker';
 import { IconButton } from '../IconButton';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
+import { NativeSelect } from '../NativeSelect';
 import { PasswordInput } from '../PasswordInput';
 import { Search } from '../Search';
 import { Spacer, SpacerAxis } from '../Spacer';
@@ -540,6 +541,17 @@ export const AllInputs = () => {
               />
             </Tooltip>
           </Input>
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <NativeSelect
+            labelText={'Native Select'}
+            fieldId={'native-select-example'}
+          >
+            <option>Red</option>
+            <option>Green</option>
+            <option>Blue</option>
+            <option>Purple mountain majesty</option>
+          </NativeSelect>
         </div>
       </div>
       <Spacer axis={SpacerAxis.vertical} size={120} />
