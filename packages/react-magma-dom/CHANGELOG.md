@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.13
+
+### Patch Changes
+
+- 7dc4a2910: fix(Search): Update `clear` and `search` icon styles
+
 ## 4.9.0-next.12
 
 ### Minor Changes
