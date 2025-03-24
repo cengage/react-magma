@@ -1,5 +1,12 @@
 ## 4.8.0
 
+## 4.9.0-next.13
+
+### Patch Changes
+
+- 1a87ef79e: fix(Input): Update the label height styling for the `Input` component.
+- 7dc4a2910: fix(Search): Update `clear` and `search` icon styles
+
 ## 4.9.0-next.12
 
 ### Minor Changes
