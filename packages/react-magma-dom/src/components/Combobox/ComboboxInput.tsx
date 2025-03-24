@@ -87,13 +87,12 @@ const InputContainer = styled.div<{
 
 const StyledInput = styled.input`
   ${inputBaseStyles}
-  border: 0;
   display: flex;
   flex-grow: 1;
-  height: ${props => props.theme.spaceScale.spacing09};
   min-width: ${props => props.theme.spaceScale.spacing07};
   padding-left: ${props => props.theme.spaceScale.spacing02};
   width: 0;
+  height: 38px;
 
   &:focus {
     outline: 0;

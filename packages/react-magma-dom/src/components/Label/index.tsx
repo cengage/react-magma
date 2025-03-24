@@ -43,7 +43,7 @@ const StyledLabel = styled.label<{
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
-  display: inline-block;
+  display: block;
   font-size: ${props =>
     props.size === InputSize.large
       ? props.theme.typeScale.size03.fontSize
