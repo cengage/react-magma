@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.5
+
+### Patch Changes
+
+- 3c710d85d: chore: Update links to include trailing slash
+
 ## 1.1.4
 
 ### Patch Changes
