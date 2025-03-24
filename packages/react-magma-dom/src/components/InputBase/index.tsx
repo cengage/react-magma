@@ -538,9 +538,9 @@ const PasswordButtonContainer = styled.span<{
 function getClearablePosition(props) {
   if (props.iconPosition === 'right' && props.icon) {
     if (props.inputSize === 'large') {
-      return '88px';
+      return props.theme.spaceScale.spacing13;
     }
-    return props.theme.spaceScale.spacing12;
+    return '72px';
   }
   if (props.inputSize === 'large') {
     return props.theme.spaceScale.spacing10;
@@ -564,7 +564,7 @@ const IsClearableContainer = styled.span<{
     ${props =>
       props.inputSize === InputSize.large
         ? props.theme.spaceScale.spacing03
-        : '7px'}
+        : '6px'}
   );
 `;
 
