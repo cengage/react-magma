@@ -59,19 +59,13 @@ export const DropdownExpandableMenuListItem = React.forwardRef<
       {...other}
       disabled={disabled}
       expandableMenuButtonHasIcon={menuGroupContext.expandableMenuButtonHasIcon}
-      icon={
-        menuGroupContext && !menuGroupContext.isExpandablePanel ? icon : null
-      }
+      icon={!menuGroupContext.isExpandablePanel ? icon : null}
       isExpandablePanel={menuGroupContext.isExpandablePanel}
       ref={expandableMenuItemContext.disabled ? null : ref}
       theme={theme}
       role="menuitem"
     >
-      {React.Children.map(children, child =>
-        React.isValidElement(child)
-          ? React.cloneElement(child, { icon: undefined })
-          : child
-      )}
+      {children}
     </StyledDropdownMenuItem>
   );
 });

@@ -682,28 +682,21 @@ export const DropdownExpandableMenuListItemWithIcons = args => {
         <DropdownExpandableMenuGroup isMulti={false} defaultIndex={0}>
           <DropdownExpandableMenuItem>
             <DropdownExpandableMenuButton icon={<LocalPizzaIcon />}>
-              Pizza
+              Specialty Pizza
             </DropdownExpandableMenuButton>
             <DropdownExpandableMenuPanel>
               <DropdownExpandableMenuListItem>
                 Margherita
               </DropdownExpandableMenuListItem>
               <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
-                Capricciosa (no icon)
+                Capricciosa
               </DropdownExpandableMenuListItem>
             </DropdownExpandableMenuPanel>
           </DropdownExpandableMenuItem>
         </DropdownExpandableMenuGroup>
         <DropdownDivider />
         <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
-          Pizza marinara (with icon)
-        </DropdownExpandableMenuListItem>
-        <DropdownDivider />
-        <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
-          Pizza seafood
-          <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
-            Child (no icon)
-          </DropdownExpandableMenuListItem>
+          Cheese Pizza
         </DropdownExpandableMenuListItem>
       </DropdownContent>
     </Dropdown>
