@@ -271,7 +271,15 @@ export function useTreeView(props: UseTreeViewProps) {
         };
       });
     });
-  }, [isDisabled]);
+  }, [
+    checkChildren,
+    checkParents,
+    children,
+    isDisabled,
+    isTopLevelSelectable,
+    preselectedItems,
+    selectable,
+  ]);
 
   React.useEffect(() => {
     const isInitialization = initializationRef.current;
@@ -526,7 +534,7 @@ export function useTreeView(props: UseTreeViewProps) {
     if (initialExpandedItems) {
       setInitialExpandedItemsNeedUpdate(true);
     }
-  }, []);
+  }, [initialExpandedItems]);
 
   const [expandedSet, setExpandedSet] = React.useState<Set<string>>(
     new Set(initialExpandedItems)

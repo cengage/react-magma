@@ -1677,6 +1677,80 @@ describe('TreeView', () => {
         fireEvent.keyDown(item0, { key: 'End' });
         expect(item3).toHaveFocus();
       });
+
+      it('should trigger onExpandedChange when expanding/collapsing items with keyboard', () => {
+        const onExpandedChange = jest.fn();
+        const { getByTestId } = render(
+          getTreeItemsOneLevelSmall({
+            onExpandedChange,
+            selectable: TreeViewSelectable.single,
+          })
+        );
+
+        const item0 = getByTestId('item0');
+        const item1 = getByTestId('item1');
+
+        userEvent.tab();
+        expect(item0).toHaveFocus();
+
+        // Navigate to item1
+        fireEvent.keyDown(item0, { key: 'ArrowDown' });
+        expect(item1).toHaveFocus();
+
+        // Expand item1 using ArrowRight
+        fireEvent.keyDown(item1, { key: 'ArrowRight' });
+        expect(item1).toHaveAttribute('aria-expanded', 'true');
+        expect(onExpandedChange).toHaveBeenCalledTimes(1);
+        expect(onExpandedChange).toHaveBeenCalledWith({}, ['item1']);
+
+        // Collapse item1 using ArrowLeft
+        fireEvent.keyDown(item1, { key: 'ArrowLeft' });
+        expect(item1).toHaveAttribute('aria-expanded', 'false');
+        expect(onExpandedChange).toHaveBeenCalledTimes(2);
+        expect(onExpandedChange).toHaveBeenCalledWith({}, []);
+      });
+
+      it('should trigger onExpandedChange when using Space key to toggle expand/collapse', () => {
+        const onExpandedChange = jest.fn();
+        const { getByTestId } = render(
+          getTreeItemsOneLevelSmall({
+            onExpandedChange,
+            selectable: TreeViewSelectable.off,
+          })
+        );
+
+        const item0 = getByTestId('item0');
+        const item1 = getByTestId('item1');
+        const item1wrapper = getByTestId('item1-itemwrapper');
+
+        userEvent.tab();
+        fireEvent.keyDown(item0, { key: 'ArrowDown' });
+        expect(item1).toHaveFocus();
+
+        // Toggle expand with Space key
+        fireEvent.keyDown(item1wrapper, { key: ' ' });
+        expect(item1).toHaveAttribute('aria-expanded', 'true');
+        expect(onExpandedChange).toHaveBeenCalledTimes(1);
+        expect(onExpandedChange).toHaveBeenCalledWith({}, ['item1']);
+
+        // Toggle collapse with Space key
+        fireEvent.keyDown(item1wrapper, { key: ' ' });
+        expect(item1).toHaveAttribute('aria-expanded', 'false');
+        expect(onExpandedChange).toHaveBeenCalledTimes(2);
+        expect(onExpandedChange).toHaveBeenCalledWith({}, []);
+
+        // Toggle expand with Enter key
+        fireEvent.keyDown(item1wrapper, { key: 'Enter' });
+        expect(item1).toHaveAttribute('aria-expanded', 'true');
+        expect(onExpandedChange).toHaveBeenCalledTimes(3);
+        expect(onExpandedChange).toHaveBeenCalledWith({}, ['item1']);
+
+        // Toggle collapse with Enter key
+        fireEvent.keyDown(item1wrapper, { key: 'Enter' });
+        expect(item1).toHaveAttribute('aria-expanded', 'false');
+        expect(onExpandedChange).toHaveBeenCalledTimes(4);
+        expect(onExpandedChange).toHaveBeenCalledWith({}, []);
+      });
     });
 
     describe('TreeViewSelectable.off', () => {
