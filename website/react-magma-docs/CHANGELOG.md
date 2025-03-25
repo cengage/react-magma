@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.2-next.12
+
+### Patch Changes
+
+- 8de591556: chore: Manually sync main -> dev after landing page update
+
 ## 5.1.2-next.11
 
 ### Patch Changes
