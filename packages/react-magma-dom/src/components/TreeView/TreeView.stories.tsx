@@ -2397,7 +2397,6 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
       id: 1,
       name: 'Parent item empty',
       children: [],
-      // children: [{ id: 10, name: "Child item", children: [] }],
     },
     {
       id: 2,
@@ -2424,71 +2423,277 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
   ];
 
   const [tree, updateTree] = React.useState(treeContent);
+  const treeViewApiRef = React.useRef<TreeViewApi>();
+
+  const addNewParentItemChecked = () => {
+    const newItemId = String(tree.length + 1);
+
+    treeViewApiRef.current?.addNewItem({
+      itemId: newItemId,
+      parentId: null,
+      icon: undefined,
+      hasOwnTreeItems: false,
+      isDisabled: undefined,
+      checkedStatus: IndeterminateCheckboxStatus.checked,
+    });
+
+    updateTree([
+      ...tree,
+      { id: Number(newItemId), name: 'New parent', children: [] },
+    ]);
+  };
+
+  const addNewParentItemUnchecked = () => {
+    const newItemId = String(tree.length + 1);
+
+    treeViewApiRef.current?.addNewItem({
+      itemId: newItemId,
+      parentId: null,
+      icon: undefined,
+      hasOwnTreeItems: false,
+      isDisabled: undefined,
+      checkedStatus: IndeterminateCheckboxStatus.unchecked,
+    });
+
+    updateTree([
+      ...tree,
+      { id: Number(newItemId), name: 'New parent', children: [] },
+    ]);
+  };
+
+  const addNewChildrenItemChecked = () => {
+    const parentItem = tree[tree.length - 1];
+
+    const newItemId =
+      parentItem &&
+      String(parentItem.id) + String(parentItem.children.length + 1);
+
+    treeViewApiRef.current?.addNewItem({
+      itemId: newItemId,
+      parentId: String(parentItem?.id),
+      icon: undefined,
+      hasOwnTreeItems: false,
+      isDisabled: undefined,
+      checkedStatus: IndeterminateCheckboxStatus.checked,
+    });
+
+    const newTree = tree.map((item, index) => {
+      if (index === tree.length - 1) {
+        return {
+          ...item,
+          children: [
+            ...item.children,
+            {
+              id: Number(newItemId),
+              name: 'New child',
+              children: [],
+            },
+          ],
+        };
+      }
+      return item;
+    });
+
+    updateTree(newTree);
+  };
+
+  const addNewChildrenItemUnchecked = () => {
+    const parentItem = tree[tree.length - 1];
+
+    const newItemId =
+      parentItem &&
+      String(parentItem.id) + String(parentItem.children.length + 1);
+
+    treeViewApiRef.current?.addNewItem({
+      itemId: newItemId,
+      parentId: String(parentItem?.id),
+      icon: undefined,
+      hasOwnTreeItems: false,
+      isDisabled: undefined,
+      checkedStatus: IndeterminateCheckboxStatus.unchecked,
+    });
+
+    const newTree = tree.map((item, index) => {
+      if (index === tree.length - 1) {
+        return {
+          ...item,
+          children: [
+            ...item.children,
+            {
+              id: Number(newItemId),
+              name: 'New child',
+              children: [],
+            },
+          ],
+        };
+      }
+      return item;
+    });
+
+    updateTree(newTree);
+  };
+
+  const addNewDisabledParentItemChecked = () => {
+    const newItemId = String(tree.length + 1);
+
+    treeViewApiRef.current?.addNewItem({
+      itemId: newItemId,
+      parentId: null,
+      icon: undefined,
+      hasOwnTreeItems: false,
+      isDisabled: true,
+      checkedStatus: IndeterminateCheckboxStatus.checked,
+    });
+
+    updateTree([
+      ...tree,
+      { id: Number(newItemId), name: 'New disabled parent', children: [] },
+    ]);
+  };
+
+  const addNewDisabledParentItemUnchecked = () => {
+    const newItemId = String(tree.length + 1);
+
+    treeViewApiRef.current?.addNewItem({
+      itemId: newItemId,
+      parentId: null,
+      icon: undefined,
+      hasOwnTreeItems: false,
+      isDisabled: true,
+      checkedStatus: IndeterminateCheckboxStatus.unchecked,
+    });
+
+    updateTree([
+      ...tree,
+      { id: Number(newItemId), name: 'New disabled parent', children: [] },
+    ]);
+  };
+
+  const addNewDisabledChildrenItemChecked = () => {
+    const parentItem = tree[tree.length - 1];
+
+    const newItemId =
+      parentItem &&
+      String(parentItem.id) + String(parentItem.children.length + 1);
+
+    treeViewApiRef.current?.addNewItem({
+      itemId: newItemId,
+      parentId: String(parentItem?.id),
+      icon: undefined,
+      hasOwnTreeItems: false,
+      isDisabled: true,
+      checkedStatus: IndeterminateCheckboxStatus.checked,
+    });
+
+    const newTree = tree.map((item, index) => {
+      if (index === tree.length - 1) {
+        return {
+          ...item,
+          children: [
+            ...item.children,
+            {
+              id: Number(newItemId),
+              name: 'New disabled child',
+              children: [],
+            },
+          ],
+        };
+      }
+      return item;
+    });
+
+    updateTree(newTree);
+  };
+
+  const addNewDisabledChildrenItemUnchecked = () => {
+    const parentItem = tree[tree.length - 1];
+
+    const newItemId =
+      parentItem &&
+      String(parentItem.id) + String(parentItem.children.length + 1);
+
+    treeViewApiRef.current?.addNewItem({
+      itemId: newItemId,
+      parentId: String(parentItem?.id),
+      icon: undefined,
+      hasOwnTreeItems: false,
+      isDisabled: true,
+      checkedStatus: IndeterminateCheckboxStatus.unchecked,
+    });
+
+    const newTree = tree.map((item, index) => {
+      if (index === tree.length - 1) {
+        return {
+          ...item,
+          children: [
+            ...item.children,
+            {
+              id: Number(newItemId),
+              name: 'New disabled child',
+              children: [],
+            },
+          ],
+        };
+      }
+      return item;
+    });
+
+    updateTree(newTree);
+  };
 
   const renterItems = (items: TreeItemData[]) => {
     return items.map(item => {
       return (
         <TreeItem key={item.id} label={item.name} itemId={item.id.toString()}>
-          {renterItems(item.children)}
+          {item.children?.length ? renterItems(item.children) : <></>}
         </TreeItem>
       );
     });
   };
 
-  const handleClick1 = () => {
-    const newTree = tree.map((item, index) => {
-      if (index === 0) {
-        return {
-          ...item,
-          children: [
-            ...item.children,
-            { id: 11, name: 'New child', children: [] },
-          ],
-        };
-      }
-      return item;
-    });
-
-    updateTree(newTree);
-  };
-
-  const handleClick2 = () => {
-    const newTree = tree.map((item, index) => {
-      if (index === 1) {
-        return {
-          ...item,
-          children: [
-            ...item.children,
-            { id: 22, name: 'New child', children: [] },
-          ],
-        };
-      }
-      return item;
-    });
-
-    updateTree(newTree);
-  };
-
   return (
     <>
-      <button onClick={handleClick1}>add child to 1 parent</button>
-      <button onClick={handleClick2}>add child to 2 parent</button>
-      <TreeView ariaLabel="icon-example">{renterItems(tree)}</TreeView>
+      <button onClick={addNewParentItemChecked}>add checked parent</button>
+      <button onClick={addNewParentItemUnchecked}>add unchecked parent</button>
+
+      <br />
+      <br />
+
+      <button onClick={addNewChildrenItemChecked}>
+        add checked children to the last parent
+      </button>
+      <button onClick={addNewChildrenItemUnchecked}>
+        add unchecked children to the last parent
+      </button>
+
+      <br />
+      <br />
+
+      <button onClick={addNewDisabledParentItemChecked}>
+        add disabled checked parent
+      </button>
+      <button onClick={addNewDisabledParentItemUnchecked}>
+        add disabled unchecked parent
+      </button>
+
+      <br />
+      <br />
+
+      <button onClick={addNewDisabledChildrenItemChecked}>
+        add checked disabled children to the last parent
+      </button>
+      <button onClick={addNewDisabledChildrenItemUnchecked}>
+        add unchecked disabled children to the last parent
+      </button>
+      <TreeView ariaLabel="icon-example" apiRef={treeViewApiRef} {...args}>
+        {renterItems(tree)}
+      </TreeView>
     </>
   );
 };
 
-DynamicTreeItems.args = {
-  ariaLabel: 'Dynamic tree example',
-};
-
 DynamicTreeItems.parameters = {
   controls: {
-    exclude: [
-      'isInverse',
-      'initialExpandedItems',
-      'selectable',
-      'preselectedItems',
-    ],
+    exclude: ['isInverse', 'initialExpandedItems', 'preselectedItems'],
   },
 };
