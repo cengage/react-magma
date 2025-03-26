@@ -21,6 +21,7 @@
     "feat-popover",
     "feat-treeview-is-top-level-selectable",
     "fix-AppBar",
+    "fix-Dropdown-add-icon-parent-level",
     "fix-Input-different-heights",
     "fix-Pagination-screenreader",
     "fix-Password-input-password-manager",

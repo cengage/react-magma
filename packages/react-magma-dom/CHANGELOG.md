@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.14
+
+### Patch Changes
+
+- 403f37554: fix(Dropdown): Added icon prop for DropdownExpandableMenuListItem
+
 ## 4.9.0-next.13
 
 ### Patch Changes
