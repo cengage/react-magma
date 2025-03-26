@@ -1710,7 +1710,7 @@ describe('TreeView', () => {
         expect(onExpandedChange).toHaveBeenCalledWith({}, []);
       });
 
-      it('should trigger onExpandedChange when using Space key to toggle expand/collapse', () => {
+      it('should trigger onExpandedChange when using Space and Enter key to toggle expand/collapse', () => {
         const onExpandedChange = jest.fn();
         const { getByTestId } = render(
           getTreeItemsOneLevelSmall({
