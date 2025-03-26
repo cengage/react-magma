@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(TreeView): TreeView component now properly handles dynamic addition of children to initially empty parent nodes.
+feat(TreeView): TreeView component now handles dynamic addition of parents and children to parent nodes.

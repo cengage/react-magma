@@ -31,6 +31,7 @@ export interface TreeViewApi {
   showLess(): void;
   expandAll(): void;
   collapseAll(): void;
+  addNewItem(item: TreeViewItemInterface): void;
 }
 
 export interface UseTreeViewProps {
@@ -466,6 +467,47 @@ export function useTreeView(props: UseTreeViewProps) {
     }
   }, [onExpandedChange]);
 
+  const addNewItem = React.useCallback(
+    (newItem: TreeViewItemInterface) => {
+      const newItems = items.map(item => {
+        if (item.itemId === newItem.parentId) {
+          item.hasOwnTreeItems = true;
+        }
+
+        return item;
+      });
+
+      const updatedItems = [...newItems, newItem];
+
+      if (newItem.parentId) {
+        setItems(
+          getInitialItems({
+            children,
+            preselectedItems: selectedItems,
+            checkParents,
+            checkChildren,
+            selectable,
+            isDisabled,
+            isTopLevelSelectable,
+            items: updatedItems,
+          })
+        );
+      } else {
+        setItems(updatedItems);
+      }
+    },
+    [
+      checkChildren,
+      checkParents,
+      children,
+      isDisabled,
+      isTopLevelSelectable,
+      items,
+      selectable,
+      selectedItems,
+    ]
+  );
+
   React.useEffect(() => {
     if (apiRef) {
       apiRef.current = {
@@ -476,6 +518,7 @@ export function useTreeView(props: UseTreeViewProps) {
         showLess,
         expandAll,
         collapseAll,
+        addNewItem,
       };
     }
   }, [
@@ -486,6 +529,7 @@ export function useTreeView(props: UseTreeViewProps) {
     showLess,
     expandAll,
     collapseAll,
+    addNewItem,
     apiRef,
   ]);
 
