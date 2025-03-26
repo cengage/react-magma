@@ -9,6 +9,7 @@ import {
   magma,
   TabsOrientation,
 } from 'react-magma-dom';
+import smoothscroll from 'smoothscroll-polyfill';
 
 import { convertTextToId } from '../../utils';
 
@@ -72,6 +73,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
   // Get the initial section ID from URL hash if it exists
   const initialSectionId = useMemo(() => {
     if (typeof window !== 'undefined') {
+      smoothscroll.polyfill();
       return window.location.hash ? window.location.hash.substring(1) : null;
     }
     return null;
@@ -116,7 +118,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
       // Reset scrolling state after animation completes
       setTimeout(() => {
         setIsScrolling(false);
-      }, 400);
+      }, 300);
 
       return true;
     },
@@ -142,9 +144,9 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
         if (!success) {
           setTimeout(() => {
             scrollToElement(initialSectionId);
-          }, 400);
+          }, 300);
         }
-      }, 300);
+      }, 200);
 
       return () => clearTimeout(timer);
     }
