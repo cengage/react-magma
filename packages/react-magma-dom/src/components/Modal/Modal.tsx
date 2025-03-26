@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Global, css } from '@emotion/react';
+import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 import ReactDOM from 'react-dom';
@@ -125,7 +125,6 @@ const ModalContainer = styled(Transition)<{
 `;
 
 const ModalBackdrop = styled(Transition)<{
-  isExiting?: boolean;
   theme: ThemeInterface;
 }>`
   backdrop-filter: blur(3px);
@@ -138,7 +137,7 @@ const ModalBackdrop = styled(Transition)<{
   position: fixed;
 `;
 
-const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
+const ModalContent = styled.div<ModalProps>`
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary600
@@ -225,7 +224,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const contentId = `${id}_content`;
 
     const [isModalOpen, setIsModalOpen] = React.useState<boolean>(props.isOpen);
-    const [isExiting, setIsExiting] = React.useState<boolean>(false);
     const [currentTarget, setCurrentTarget] = React.useState(null);
     const [modalCount, setModalCount] = React.useState<number>(0);
 
@@ -312,24 +310,17 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     }
 
     function handleClose(event?) {
-      if (event) {
-        event.stopPropagation();
-      }
-      setIsExiting(true);
+      event?.stopPropagation();
 
       setTimeout(() => {
-        setIsExiting(false);
-
         if (!props.isModalClosingControlledManually) {
           setIsModalOpen(false);
         }
 
-        if (lastFocus.current) {
-          lastFocus.current.focus();
-        }
+        lastFocus.current?.focus();
 
         props.onClose && typeof props.onClose === 'function' && props.onClose();
-      }, 300);
+      }, 0);
     }
 
     const {
@@ -397,7 +388,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 {...other}
                 data-testid="modal-content"
                 id={contentId}
-                isExiting={isExiting}
                 ref={ref}
                 theme={theme}
               >
@@ -442,7 +432,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             </ModalContainer>
             <ModalBackdrop
               data-testid="modal-backdrop"
-              isExiting={isExiting}
               onMouseDown={
                 isBackgroundClickDisabled
                   ? event => event.preventDefault()
