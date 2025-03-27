@@ -13,7 +13,6 @@ import {
   toggleAllMulti,
   isSelectedItemsChanged,
   isEqualArrays,
-  getChildrenIds,
 } from './utils';
 import { useDescendants } from '../../hooks/useDescendants';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
@@ -546,23 +545,11 @@ export function useTreeView(props: UseTreeViewProps) {
   ) => {
     setExpandedSet(prevExpandedSet => {
       const updatedExpandedSet = new Set(prevExpandedSet);
-      const childItemIds = getChildrenIds({
-        items,
-        itemId,
-      });
 
       if (updatedExpandedSet.has(itemId)) {
         updatedExpandedSet.delete(itemId);
-        childItemIds.forEach((childId: string) => {
-          updatedExpandedSet.delete(childId);
-        });
       } else {
         updatedExpandedSet.add(itemId);
-        childItemIds.forEach((childId: string) => {
-          if (initialExpandedItems?.includes(childId)) {
-            updatedExpandedSet.add(childId);
-          }
-        });
       }
 
       const expandedItemsArray = Array.from(updatedExpandedSet);
