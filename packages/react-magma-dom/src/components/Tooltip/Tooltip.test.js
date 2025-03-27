@@ -40,7 +40,7 @@ describe('Tooltip', () => {
     });
 
     const tooltip = container.querySelector('div[role="tooltip"]');
-    const arrow = getByTestId('tooltipArrow');
+    const arrow = getByTestId('tooltip-arrow');
 
     expect(tooltip).toBeInTheDocument();
     expect(arrow).toBeInTheDocument();

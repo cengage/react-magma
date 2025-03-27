@@ -120,34 +120,6 @@ export const StyledTooltip = styled.div<{
   padding: ${props => props.theme.spaceScale.spacing03}
     ${props => props.theme.spaceScale.spacing04};
   z-index: ${props => props.theme.tooltip.zIndex};
-
-  &[data-popper-placement='top'] {
-    margin-bottom: 14px;
-    & > span:last-child {
-      bottom: 10px;
-    }
-  }
-
-  &[data-popper-placement='bottom'] {
-    margin-top: 14px;
-    & > span:last-child {
-      top: 10px;
-    }
-  }
-
-  &[data-popper-placement='left'] {
-    margin-right: 14px;
-    & > span:last-child {
-      right: 10px;
-    }
-  }
-
-  &[data-popper-placement='right'] {
-    margin-left: 14px;
-    & > span:last-child {
-      left: 10px;
-    }
-  }
 `;
 
 // Using any for the ref because it is put on the passed in children which does not have a specific type
@@ -248,7 +220,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   return (
     <TooltipContainer
       {...other}
-      data-testid={testId}
+      data-testid={testId || 'tooltip'}
       onKeyDown={handleKeyDown}
       onMouseLeave={hideTooltip}
       onMouseEnter={showTooltip}
@@ -259,7 +231,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
         <div ref={refs.setFloating} style={combinedTooltipStyles}>
           <FloatingArrow
             ref={arrowElement}
-            data-testid="tooltipArrow"
+            data-testid={testId ? `${testId}-arrow` : 'tooltip-arrow'}
             context={context}
             style={{ ...arrowStyle, zIndex: 2 }}
             width={removePxStyleStrings([theme.tooltip.arrowSizeDoubled])}
