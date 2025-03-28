@@ -87,36 +87,36 @@ import React from 'react';
 import { Input, InputType } from 'react-magma-dom';
 
 export function Example() {
-const [inputVal, setInputVal] = React.useState('');
-const [hasError, setHasError] = React.useState(false);
-const phonePattern = '^[0-9]{3}-[0-9]{3}-[0-9]{4}$';
+  const [inputVal, setInputVal] = React.useState('');
+  const [hasError, setHasError] = React.useState(false);
+  const phonePattern = '^[0-9]{3}-[0-9]{3}-[0-9]{4}$';
 
-function handleChange(event) {
-  setInputVal(event.target.value);
-}
-
-React.useEffect(() => {
-  if (inputVal === '' || inputVal.match(phonePattern)) {
-    setHasError(false);
-  } else {
-    setHasError(true);
+  function handleChange(event) {
+    setInputVal(event.target.value);
   }
-}, [inputVal]);
 
-return (
-  <Input
-    pattern={phonePattern}
-    labelText={
-      <>
-        Phone <br /> Format: 123-456-7890
-      </>
+  React.useEffect(() => {
+    if (inputVal === '' || inputVal.match(phonePattern)) {
+      setHasError(false);
+    } else {
+      setHasError(true);
     }
-    type={InputType.tel}
-    errorMessage={hasError ? 'Please enter a phone number' : null}
-    value={inputVal}
-    onChange={handleChange}
-  />
-);
+  }, [inputVal]);
+
+  return (
+    <Input
+      pattern={phonePattern}
+      labelText={
+        <>
+          Phone <br /> Format: 123-456-7890
+        </>
+      }
+      type={InputType.tel}
+      errorMessage={hasError ? 'Please enter a phone number' : null}
+      value={inputVal}
+      onChange={handleChange}
+    />
+  );
 }
 ```
 

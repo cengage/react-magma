@@ -28,6 +28,7 @@ The `Popover` component is composed of two main parts: the trigger element (prov
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
@@ -60,6 +61,7 @@ By setting the `hoverable` prop to true, the popover will remain open while the 
 
 ```tsx
 import React from 'react';
+
 import { Popover, PopoverTrigger, PopoverContent } from 'react-magma-dom';
 
 export function Example() {
@@ -80,6 +82,7 @@ The `hasPointer` prop controls the display of an arrow pointer that visually con
 
 ```tsx
 import React from 'react';
+
 import { Popover, PopoverTrigger, PopoverContent } from 'react-magma-dom';
 
 export function Example() {
@@ -102,6 +105,7 @@ You can programmatically control the popover by providing an `apiRef`. The Popov
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
@@ -141,6 +145,7 @@ When the `focusTrap` prop is enabled, keyboard focus is trapped within the popov
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
@@ -173,7 +178,7 @@ export function Example() {
         <FormGroup>
           <Toggle
             labelText="Setting 1"
-            defaultChecked={true}
+            defaultChecked
             containerStyle={{
               width: '100%',
               justifyContent: 'space-between',
@@ -207,6 +212,7 @@ Customize the size of your popover using the `width` and `maxHeight` props. You 
 
 ```tsx
 import React from 'react';
+
 import { Popover, PopoverTrigger, PopoverContent } from 'react-magma-dom';
 
 export function Example() {
@@ -229,6 +235,7 @@ The `position` prop sets the default position for the popover in relation to its
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
@@ -266,6 +273,7 @@ To structure the content of your popover, use the `PopoverHeader` and `PopoverFo
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
@@ -300,6 +308,7 @@ The `PopoverTrigger` component supports both icon-only and text-based triggers. 
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
@@ -337,6 +346,7 @@ The `isDisabled` property will disable the ability to open the popover. For disa
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
@@ -376,6 +386,7 @@ The `openByDefault` property will allow Popover to open as soon as the page load
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
