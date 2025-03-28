@@ -311,57 +311,61 @@ export function Example() {
 ```
 
 ## Definition List
+
 Use the `DefinitionList` for groups of terms and descriptions, such as glossaries or key-value pairs.
 
 ```tsx
 import React from 'react';
 
-import { Card, CardBody, Paragraph, DefinitionList, DefinitionListItem } from 'react-magma-dom';
+import styled from '@emotion/styled';
+import {
+  Card,
+  CardBody,
+  Paragraph,
+  DefinitionList,
+  DefinitionListItem,
+  DefinitionListType,
+} from 'react-magma-dom';
 
 export function Example() {
-const data = [
-{ term: 'Coffee', description: 'A hot beverage' },
-{ term: 'Tea', description: 'Another hot beverage' },
-{ term: 'Milk', description: 'A cold beverage' },
-];
+  const data = [
+    { term: 'Coffee', description: 'A hot beverage' },
+    { term: 'Tea', description: 'Another hot beverage' },
+    { term: 'Milk', description: 'A cold beverage' },
+  ];
 
-const dataWithMultipleTerms = [
-  {
-    term: ['Coffee', 'Tea', 'Hot Chocolate'],
-    description: 'A hot beverage',
-  },
-  {
-    term: ['Milk', 'Lemonade', 'Margarita'],
-    description: 'A cold beverage',
-  },
-];
+  const dataWithMultipleTerms = [
+    {
+      term: ['Coffee', 'Tea', 'Hot Chocolate'],
+      description: 'A hot beverage',
+    },
+    {
+      term: ['Milk', 'Lemonade', 'Margarita'],
+      description: 'A cold beverage',
+    },
+  ];
 
-const Row = styled.div`
+  const Row = styled.div`
     display: flex;
     align-items: flex-end;
     margin-bottom: 16px;
-`;
+  `;
 
-const TermStyled = styled.div`
+  const TermStyled = styled.div`
     display: flex;
     flex-direction: column;
     text-align: left;
-`;
+  `;
 
-const DescriptionStyled = styled.div`
+  const DescriptionStyled = styled.div`
     text-align: right;
-`;
+  `;
 
   return (
     <>
       <Card style={{ marginBottom: '32px' }}>
         <CardBody>
-          <Paragraph
-            visualStyle={TypographyVisualStyle.bodyLarge}
-            noTopMargin
-          >
-            Default Styles
-          </Paragraph>
+          <Paragraph noTopMargin>Default Styles</Paragraph>
           <DefinitionList>
             {data.map((item, index) => (
               <React.Fragment key={index}>
@@ -378,12 +382,7 @@ const DescriptionStyled = styled.div`
       <Card style={{ marginBottom: '32px' }}>
         <CardBody>
           <DefinitionList>
-            <Paragraph
-              visualStyle={TypographyVisualStyle.bodyLarge}
-              noTopMargin
-            >
-              Custom Styles
-            </Paragraph>
+            <Paragraph noTopMargin>Custom Styles</Paragraph>
             {dataWithMultipleTerms.map((item, index) => (
               <Row key={index}>
                 <TermStyled>
