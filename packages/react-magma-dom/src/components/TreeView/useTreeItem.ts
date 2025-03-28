@@ -68,12 +68,10 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const { children, itemDepth, itemId, onClick, parentDepth, topLevel } = props;
 
   const {
-    initialExpandedItems,
     registerTreeItem,
     selectable,
     selectedItems,
     treeItemRefArray,
-    initialExpandedItemsNeedUpdate,
     items,
     selectItem,
     isTopLevelSelectable,
@@ -110,25 +108,13 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     return treeViewItemData?.hasOwnTreeItems;
   }, [treeViewItemData]);
 
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(() => {
+    return expandedSet.has(itemId);
+  });
 
   const treeItemChildren = React.Children.toArray(children).filter(
     (child: React.ReactElement<any>) => child.type === TreeItem
   );
-
-  const updateInitialExpanded = React.useCallback(() => {
-    if (initialExpandedItems?.length !== 0) {
-      const childrenItemIds = getChildrenItemIdsFlat(treeItemChildren);
-      const allExpanded = [...initialExpandedItems, ...childrenItemIds];
-      if (allExpanded?.some(item => item === itemId)) {
-        setExpanded(true);
-      } else {
-        setExpanded(false);
-      }
-    } else {
-      setExpanded(false);
-    }
-  }, [initialExpandedItems, treeItemChildren, itemId]);
 
   const ownRef = React.useRef<HTMLDivElement>(null);
   const ref = useForkedRef(forwardedRef, ownRef);
@@ -137,12 +123,11 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const generatedId = useGenerateId();
 
   React.useEffect(() => {
-    const isExpanded = treeViewItemData?.itemId
-      ? expandedSet.has(treeViewItemData.itemId)
-      : false;
-
-    setExpanded(isExpanded);
-  }, [expandedSet, treeViewItemData]);
+    const isExpanded = expandedSet.has(itemId);
+    if (isExpanded !== expanded) {
+      setExpanded(isExpanded);
+    }
+  }, [expandedSet, itemId, expanded]);
 
   React.useEffect(() => {
     if (!isDisabled && ownRef.current !== null) {
@@ -151,12 +136,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
     forceUpdate();
   }, [forceUpdate, isDisabled, registerTreeItem, treeItemRefArray]);
-
-  React.useEffect(() => {
-    if (initialExpandedItemsNeedUpdate) {
-      updateInitialExpanded();
-    }
-  }, [initialExpandedItemsNeedUpdate]);
 
   const checkboxChangeHandler = (
     event: React.ChangeEvent<HTMLInputElement>

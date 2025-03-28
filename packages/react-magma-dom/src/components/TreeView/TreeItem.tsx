@@ -227,7 +227,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       parentDepth,
       ref,
       selectedItems,
-      setExpanded,
     } = contextValue;
 
     const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
@@ -299,8 +298,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     };
 
     const onExpandedClicked = (event: React.SyntheticEvent) => {
-      setExpanded(state => !state);
-
       event.preventDefault();
 
       handleExpandedChange(event, itemId);
