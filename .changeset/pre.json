@@ -23,6 +23,7 @@
     "fix-AppBar",
     "fix-Dropdown-add-icon-parent-level",
     "fix-Input-different-heights",
+    "fix-Modal-closing-slow",
     "fix-Pagination-screenreader",
     "fix-Password-input-password-manager",
     "fix-Search-Update-icon-styles",

@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.15
+
+### Patch Changes
+
+- 122eb210e: fix(Modal): Delete timeout of closing modal
+
 ## 4.9.0-next.14
 
 ### Patch Changes
