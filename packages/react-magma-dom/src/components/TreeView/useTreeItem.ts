@@ -6,7 +6,7 @@ import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import { TreeItem } from './TreeItem';
 import { TreeViewContext } from './TreeViewContext';
 import { TreeViewSelectable } from './types';
-import { filterNullEntries, getChildrenItemIdsFlat } from './utils';
+import { filterNullEntries } from './utils';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { useGenerateId, useForkedRef } from '../../utils';
 
