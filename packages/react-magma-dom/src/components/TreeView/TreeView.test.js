@@ -381,6 +381,58 @@ describe('TreeView', () => {
         expect(childItem).not.toBeVisible();
       });
     });
+
+    it('should maintain expanded state of children when parent is collapsed and re-expanded', () => {
+      const { getByTestId } = render(getTreeItemsMultiLevel({}));
+
+      // Expand Parent 2
+      userEvent.click(getByTestId('item2-expand'));
+      expect(getByTestId('item2')).toHaveAttribute('aria-expanded', 'true');
+
+      // Expand Child 2 (item-child2.1)
+      userEvent.click(getByTestId('item-child2.1-expand'));
+      expect(getByTestId('item-child2.1')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+      expect(getByTestId('item-gchild2')).toBeInTheDocument();
+
+      // Further expand Grandchild 2 (item-gchild2)
+      userEvent.click(getByTestId('item-gchild2-expand'));
+      expect(getByTestId('item-gchild2')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+      expect(getByTestId('item-ggchild1')).toBeInTheDocument();
+
+      // Collapse Parent Node 2 (item2)
+      userEvent.click(getByTestId('item2-expand'));
+      expect(getByTestId('item2')).toHaveAttribute('aria-expanded', 'false');
+
+      // Child items should not be visible when parent is collapsed
+      expect(getByTestId('item-child2.1')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+
+      // Re-expand Parent Node 2 (item2)
+      userEvent.click(getByTestId('item2-expand'));
+      expect(getByTestId('item2')).toHaveAttribute('aria-expanded', 'true');
+
+      // Child 2 should still be expanded after parent is re-expanded
+      expect(getByTestId('item-child2.1')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+      expect(getByTestId('item-gchild2')).toBeVisible();
+
+      // Grandchild 2 should still be expanded too
+      expect(getByTestId('item-gchild2')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+      expect(getByTestId('item-ggchild1')).toBeVisible();
+    });
   });
 
   describe('preselectedItems', () => {
@@ -1676,6 +1728,74 @@ describe('TreeView', () => {
         fireEvent.focus(item0);
         fireEvent.keyDown(item0, { key: 'End' });
         expect(item3).toHaveFocus();
+      });
+
+      it('should trigger onExpandedChange when expanding/collapsing items with keyboard', () => {
+        const onExpandedChange = jest.fn();
+        const { getByTestId } = render(
+          getTreeItemsOneLevelSmall({
+            onExpandedChange,
+            selectable: TreeViewSelectable.single,
+          })
+        );
+
+        const item0 = getByTestId('item0');
+        const item1 = getByTestId('item1');
+
+        userEvent.tab();
+        expect(item0).toHaveFocus();
+
+        // Navigate to item1
+        fireEvent.keyDown(item0, { key: 'ArrowDown' });
+        expect(item1).toHaveFocus();
+
+        // Expand item1 using ArrowRight
+        fireEvent.keyDown(item1, { key: 'ArrowRight' });
+        expect(item1).toHaveAttribute('aria-expanded', 'true');
+        expect(onExpandedChange).toHaveBeenCalledTimes(1);
+
+        // Collapse item1 using ArrowLeft
+        fireEvent.keyDown(item1, { key: 'ArrowLeft' });
+        expect(item1).toHaveAttribute('aria-expanded', 'false');
+        expect(onExpandedChange).toHaveBeenCalledTimes(2);
+      });
+
+      it('should trigger onExpandedChange when using Space and Enter key to toggle expand/collapse', () => {
+        const onExpandedChange = jest.fn();
+        const { getByTestId } = render(
+          getTreeItemsOneLevelSmall({
+            onExpandedChange,
+            selectable: TreeViewSelectable.off,
+          })
+        );
+
+        const item0 = getByTestId('item0');
+        const item1 = getByTestId('item1');
+        const item1wrapper = getByTestId('item1-itemwrapper');
+
+        userEvent.tab();
+        fireEvent.keyDown(item0, { key: 'ArrowDown' });
+        expect(item1).toHaveFocus();
+
+        // Toggle expand with Space key
+        fireEvent.keyDown(item1wrapper, { key: ' ' });
+        expect(item1).toHaveAttribute('aria-expanded', 'true');
+        expect(onExpandedChange).toHaveBeenCalledTimes(1);
+
+        // Toggle collapse with Space key
+        fireEvent.keyDown(item1wrapper, { key: ' ' });
+        expect(item1).toHaveAttribute('aria-expanded', 'false');
+        expect(onExpandedChange).toHaveBeenCalledTimes(2);
+
+        // Toggle expand with Enter key
+        fireEvent.keyDown(item1wrapper, { key: 'Enter' });
+        expect(item1).toHaveAttribute('aria-expanded', 'true');
+        expect(onExpandedChange).toHaveBeenCalledTimes(3);
+
+        // Toggle collapse with Enter key
+        fireEvent.keyDown(item1wrapper, { key: 'Enter' });
+        expect(item1).toHaveAttribute('aria-expanded', 'false');
+        expect(onExpandedChange).toHaveBeenCalledTimes(4);
       });
     });
 
