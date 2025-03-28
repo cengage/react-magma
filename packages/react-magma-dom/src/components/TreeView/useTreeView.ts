@@ -445,6 +445,31 @@ export function useTreeView(props: UseTreeViewProps) {
     });
   }, [isDisabled, items, checkChildren, checkParents, isTopLevelSelectable]);
 
+  const handleExpandedChange = React.useCallback(
+    (event: React.SyntheticEvent, itemId: string | string[]) => {
+      setExpandedSet(prevExpandedSet => {
+        const updatedExpandedSet = new Set(prevExpandedSet);
+
+        if (Array.isArray(itemId)) {
+          itemId.forEach(id => updatedExpandedSet.add(id));
+        } else if (itemId === '') {
+          updatedExpandedSet.clear();
+        } else if (updatedExpandedSet.has(itemId)) {
+          updatedExpandedSet.delete(itemId);
+        } else {
+          updatedExpandedSet.add(itemId);
+        }
+
+        const expandedItemsArray = Array.from(updatedExpandedSet);
+        onExpandedChange &&
+          typeof onExpandedChange === 'function' &&
+          onExpandedChange(event, expandedItemsArray);
+        return updatedExpandedSet;
+      });
+    },
+    [onExpandedChange]
+  );
+
   const expandAll = React.useCallback(() => {
     const expandableIds = items.reduce((ids: string[], item) => {
       if (item.hasOwnTreeItems) {
@@ -454,24 +479,15 @@ export function useTreeView(props: UseTreeViewProps) {
       return ids;
     }, []);
 
-    setExpandedSet(new Set(expandableIds));
-
-    if (onExpandedChange && typeof onExpandedChange === 'function') {
-      const syntheticEvent = {} as React.SyntheticEvent;
-
-      onExpandedChange(syntheticEvent, expandableIds);
-    }
-  }, [items, onExpandedChange]);
+    const syntheticEvent = {} as React.SyntheticEvent;
+    handleExpandedChange(syntheticEvent, expandableIds);
+  }, [handleExpandedChange, items]);
 
   const collapseAll = React.useCallback(() => {
-    setExpandedSet(new Set());
+    const syntheticEvent = {} as React.SyntheticEvent;
 
-    if (onExpandedChange && typeof onExpandedChange === 'function') {
-      const syntheticEvent = {} as React.SyntheticEvent;
-
-      onExpandedChange(syntheticEvent, []);
-    }
-  }, [onExpandedChange]);
+    handleExpandedChange(syntheticEvent, '');
+  }, [handleExpandedChange]);
 
   React.useEffect(() => {
     if (apiRef) {
@@ -524,41 +540,11 @@ export function useTreeView(props: UseTreeViewProps) {
     isTopLevelSelectable,
   ]);
 
-  const [initialExpandedItemsNeedUpdate, setInitialExpandedItemsNeedUpdate] =
-    React.useState(false);
-
   const [treeItemRefArray, registerTreeItem] = useDescendants();
-
-  React.useEffect(() => {
-    if (initialExpandedItems) {
-      setInitialExpandedItemsNeedUpdate(true);
-    }
-  }, [initialExpandedItems]);
 
   const [expandedSet, setExpandedSet] = React.useState<Set<string>>(
     new Set(initialExpandedItems)
   );
-
-  const handleExpandedChange = (
-    event: React.SyntheticEvent,
-    itemId: string
-  ) => {
-    setExpandedSet(prevExpandedSet => {
-      const updatedExpandedSet = new Set(prevExpandedSet);
-
-      if (updatedExpandedSet.has(itemId)) {
-        updatedExpandedSet.delete(itemId);
-      } else {
-        updatedExpandedSet.add(itemId);
-      }
-
-      const expandedItemsArray = Array.from(updatedExpandedSet);
-      onExpandedChange &&
-        typeof onExpandedChange === 'function' &&
-        onExpandedChange(event, expandedItemsArray);
-      return updatedExpandedSet;
-    });
-  };
 
   const contextValue = {
     hasIcons,
@@ -570,8 +556,6 @@ export function useTreeView(props: UseTreeViewProps) {
     initialExpandedItems,
     treeItemRefArray,
     registerTreeItem,
-    initialExpandedItemsNeedUpdate,
-    setInitialExpandedItemsNeedUpdate,
     checkChildren,
     checkParents,
     items,
