@@ -4,8 +4,8 @@ import { TabsOrientation } from './shared';
 import {
   animate,
   debounce,
-  getNormalizedScrollLeft,
   detectScrollType,
+  getNormalizedScrollLeft,
 } from '../../utils';
 
 export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
@@ -122,7 +122,7 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
 export const ScrollSpy = ({ handleScroll }) => {
   const isInViewPort = (entry, offset = 0) => {
     const rect = entry.boundingClientRect;
-    return rect.top <= 0 + offset && rect.bottom >= 0 + offset;
+    return rect.top <= offset && rect.bottom >= offset;
   };
 
   useLayoutEffect(() => {
@@ -141,7 +141,7 @@ export const ScrollSpy = ({ handleScroll }) => {
         {
           root: null,
           rootMargin: '0px',
-          threshold: [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+          threshold: Array.from({ length: 1000 }, (_, i) => (i + 1) * 0.001),
         }
       );
       observer.observe(scrollable);
