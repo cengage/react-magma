@@ -216,6 +216,15 @@ export const addPxStyleStrings = (
   return pxValues.reduce((total, value) => total + value).toString() + 'px';
 };
 
+export const removePxStyleStrings = (
+  styleStrings: (string | number)[]
+): number => {
+  const numericValues: number[] = styleStrings.map(item =>
+    parseInt(item.toString().replace(/\s*px$/, ''), 10)
+  );
+  return numericValues.reduce((total, value) => total + value, 0);
+};
+
 export function getNodeText(node) {
   if (['string', 'number'].includes(typeof node)) return node;
   if (node instanceof Array) return node.map(getNodeText).join('');

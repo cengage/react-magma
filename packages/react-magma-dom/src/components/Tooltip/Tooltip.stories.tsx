@@ -236,3 +236,51 @@ export const Complex = () => {
     </>
   );
 };
+
+const CustomStylesTemplate: Story<TooltipProps> = args => {
+  const customArrowStyles = {
+    background: 'yellow',
+    height: '15px',
+    width: '15px',
+    fill: 'red',
+  };
+
+  const customContainerStyles = {
+    background: 'blue',
+    padding: '10px',
+  };
+
+  const customTooltipStyles = {
+    background: 'green',
+    padding: '10px',
+    width: '200px',
+  };
+
+  return (
+    <div
+      style={{
+        padding: '80px',
+        textAlign: 'center',
+        background: args.isInverse
+          ? magma.colors.neutral
+          : magma.colors.neutral100,
+      }}
+    >
+      <Tooltip
+        {...args}
+        arrowStyle={customArrowStyles}
+        containerStyle={customContainerStyles}
+        tooltipStyle={customTooltipStyles}
+      >
+        <Button isInverse={args.isInverse} size={ButtonSize.small}>
+          Tooltip Trigger
+        </Button>
+      </Tooltip>
+    </div>
+  );
+};
+
+export const CustomStyles = CustomStylesTemplate.bind({});
+CustomStyles.args = {
+  content: 'Lorem ipsum dolar sit amet. Vel molestie no, ut vim.',
+};

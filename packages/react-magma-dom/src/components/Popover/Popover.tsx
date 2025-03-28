@@ -1,7 +1,6 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { useFloating } from '@floating-ui/react';
 import {
   offset,
   flip,
@@ -10,7 +9,8 @@ import {
   AlignedPlacement,
   arrow,
   shift,
-} from '@floating-ui/react-dom';
+  useFloating,
+} from '@floating-ui/react';
 
 import { useIsInverse } from '../../inverse';
 import { resolveProps, useForkedRef, useGenerateId } from '../../utils';

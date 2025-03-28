@@ -815,8 +815,8 @@ export const magma = {
   },
 
   tooltip: {
-    arrowSize: '4px',
-    arrowSizeDoubled: '8px',
+    arrowSize: '6px',
+    arrowSizeDoubled: '12px',
     backgroundColor: colors.neutral700,
     fontWeight: 500,
     maxWidth: '300px',
