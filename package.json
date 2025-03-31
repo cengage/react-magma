@@ -154,5 +154,10 @@
   "engines": {
     "node": ">=18.20.4",
     "npm": ">=v10.7.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "rollup-plugin-postcss": "^4.0.2"
   }
 }

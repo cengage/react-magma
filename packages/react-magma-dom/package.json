@@ -36,10 +36,8 @@
     "@emotion/styled": "^11.13.0",
     "@floating-ui/react": "^0.26.28",
     "@floating-ui/react-dom": "^2.1.2",
-    "@popperjs/core": "^2.6.0",
     "csstype": "^3.0.8",
-    "polished": "^3.2.0",
-    "react-popper": "^2.2.4"
+    "polished": "^3.2.0"
   },
   "devDependencies": {
     "date-fns": "^2.16.1",
