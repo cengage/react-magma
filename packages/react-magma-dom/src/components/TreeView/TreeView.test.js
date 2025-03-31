@@ -381,58 +381,6 @@ describe('TreeView', () => {
         expect(childItem).not.toBeVisible();
       });
     });
-
-    it('should maintain expanded state of children when parent is collapsed and re-expanded', () => {
-      const { getByTestId } = render(getTreeItemsMultiLevel({}));
-
-      // Expand Parent 2
-      userEvent.click(getByTestId('item2-expand'));
-      expect(getByTestId('item2')).toHaveAttribute('aria-expanded', 'true');
-
-      // Expand Child 2 (item-child2.1)
-      userEvent.click(getByTestId('item-child2.1-expand'));
-      expect(getByTestId('item-child2.1')).toHaveAttribute(
-        'aria-expanded',
-        'true'
-      );
-      expect(getByTestId('item-gchild2')).toBeInTheDocument();
-
-      // Further expand Grandchild 2 (item-gchild2)
-      userEvent.click(getByTestId('item-gchild2-expand'));
-      expect(getByTestId('item-gchild2')).toHaveAttribute(
-        'aria-expanded',
-        'true'
-      );
-      expect(getByTestId('item-ggchild1')).toBeInTheDocument();
-
-      // Collapse Parent Node 2 (item2)
-      userEvent.click(getByTestId('item2-expand'));
-      expect(getByTestId('item2')).toHaveAttribute('aria-expanded', 'false');
-
-      // Child items should not be visible when parent is collapsed
-      expect(getByTestId('item-child2.1')).toHaveAttribute(
-        'aria-expanded',
-        'true'
-      );
-
-      // Re-expand Parent Node 2 (item2)
-      userEvent.click(getByTestId('item2-expand'));
-      expect(getByTestId('item2')).toHaveAttribute('aria-expanded', 'true');
-
-      // Child 2 should still be expanded after parent is re-expanded
-      expect(getByTestId('item-child2.1')).toHaveAttribute(
-        'aria-expanded',
-        'true'
-      );
-      expect(getByTestId('item-gchild2')).toBeVisible();
-
-      // Grandchild 2 should still be expanded too
-      expect(getByTestId('item-gchild2')).toHaveAttribute(
-        'aria-expanded',
-        'true'
-      );
-      expect(getByTestId('item-ggchild1')).toBeVisible();
-    });
   });
 
   describe('preselectedItems', () => {
@@ -4176,6 +4124,97 @@ describe('TreeView', () => {
         item => item.itemId === 'parent1'
       );
       expect(hasParentAfterSelectAll).toBe(false);
+    });
+  });
+
+  describe('TreeView Retains Expanded State', () => {
+    it('should maintain expanded state of children when parent is collapsed and re-expanded', () => {
+      const { getByTestId } = render(
+        <TreeView>
+          <TreeItem
+            label="Retain Node 1"
+            itemId="item1-retain"
+            testId="item1-retain"
+          >
+            <TreeItem
+              label="Retain Child 1"
+              itemId="item-child1-retain"
+              testId="item-child1-retain"
+            />
+            <TreeItem
+              label="Retain Child 2"
+              itemId="item-child2-retain"
+              testId="item-child2-retain"
+            >
+              <TreeItem
+                label="Retain Grandchild 2"
+                itemId="item-gchild2-retain"
+                testId="item-gchild2-retain"
+              >
+                <TreeItem
+                  label="Retain Great-grandchild 1"
+                  itemId="item-ggchild1-retain"
+                  testId="item-ggchild1-retain"
+                />
+                <TreeItem
+                  label="Retain Great-grandchild 2"
+                  itemId="item-ggchild2-retain"
+                  testId="item-ggchild2-retain"
+                />
+              </TreeItem>
+            </TreeItem>
+          </TreeItem>
+        </TreeView>
+      );
+
+      userEvent.click(getByTestId('item1-retain-expand'));
+      expect(getByTestId('item1-retain')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+
+      userEvent.click(getByTestId('item-child2-retain-expand'));
+      expect(getByTestId('item-child2-retain')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+      expect(getByTestId('item-gchild2-retain')).toBeInTheDocument();
+
+      userEvent.click(getByTestId('item-gchild2-retain-expand'));
+      expect(getByTestId('item-gchild2-retain')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+      expect(getByTestId('item-ggchild1-retain')).toBeInTheDocument();
+
+      userEvent.click(getByTestId('item1-retain-expand'));
+      expect(getByTestId('item1-retain')).toHaveAttribute(
+        'aria-expanded',
+        'false'
+      );
+
+      expect(getByTestId('item-child2-retain')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+
+      userEvent.click(getByTestId('item1-retain-expand'));
+      expect(getByTestId('item1-retain')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+
+      expect(getByTestId('item-child2-retain')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+      expect(getByTestId('item-gchild2-retain')).toBeVisible();
+
+      expect(getByTestId('item-gchild2-retain')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+      expect(getByTestId('item-ggchild1-retain')).toBeVisible();
     });
   });
 });
