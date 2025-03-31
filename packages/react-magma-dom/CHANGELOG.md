@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.17
+
+### Patch Changes
+
+- eeda479: fix(Tabs/Scroll Spy): Improve scroll functionality for smaller screens.
+
 ## 4.9.0-next.16
 
 ### Patch Changes
