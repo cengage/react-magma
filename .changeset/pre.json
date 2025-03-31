@@ -29,6 +29,7 @@
     "fix-Search-Update-icon-styles",
     "fix-SkipLink-prop",
     "fix-Theme-update-types",
+    "fix-tooltip-replace-popper-with-floating-ui",
     "manually-sync-4.8.7",
     "nine-roses-beam",
     "ninety-yaks-buy",

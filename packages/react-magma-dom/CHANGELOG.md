@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.16
+
+### Patch Changes
+
+- a9ebf93: fix(Tooltip): Replace Popper with Floating UI. Change default tooltip `arrowSize` and `arrowSizeDoubled`.
+
 ## 4.9.0-next.15
 
 ### Patch Changes
