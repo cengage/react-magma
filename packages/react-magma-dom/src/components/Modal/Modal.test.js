@@ -1,12 +1,15 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Modal } from '.';
+
 import { act, render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { Button } from '../Button';
+
+import { Modal } from '.';
 
 describe('Modal', () => {
   describe('a11y', () => {
@@ -63,7 +66,7 @@ describe('Modal', () => {
     );
 
     rerender(
-      <Modal header="Hello" isOpen={true}>
+      <Modal header="Hello" isOpen>
         {modalContent}
       </Modal>
     );
@@ -91,7 +94,7 @@ describe('Modal', () => {
     );
 
     rerender(
-      <Modal header="Hello" isOpen={true}>
+      <Modal header="Hello" isOpen>
         {modalContent}
       </Modal>
     );
@@ -111,7 +114,7 @@ describe('Modal', () => {
     );
 
     rerender(
-      <Modal header="Hello" isOpen={true} size="small">
+      <Modal header="Hello" isOpen size="small">
         {modalContent}
       </Modal>
     );
@@ -131,7 +134,7 @@ describe('Modal', () => {
     );
 
     rerender(
-      <Modal header="Hello" isOpen={true} size="large">
+      <Modal header="Hello" isOpen size="large">
         {modalContent}
       </Modal>
     );
@@ -151,7 +154,7 @@ describe('Modal', () => {
     );
 
     rerender(
-      <Modal header={headerText} isOpen={true}>
+      <Modal header={headerText} isOpen>
         Modal Content
       </Modal>
     );
@@ -160,7 +163,7 @@ describe('Modal', () => {
   });
 
   it('should not render a header if one is not passed in', () => {
-    const { container } = render(<Modal isOpen={true}>Modal Content</Modal>);
+    const { container } = render(<Modal isOpen>Modal Content</Modal>);
 
     expect(container.querySelector('h1')).not.toBeInTheDocument();
   });
@@ -171,7 +174,7 @@ describe('Modal', () => {
     );
 
     rerender(
-      <Modal header="Hello" isOpen={true}>
+      <Modal header="Hello" isOpen>
         Modal Content
       </Modal>
     );
@@ -191,7 +194,7 @@ describe('Modal', () => {
     );
 
     rerender(
-      <Modal header="Hello" isOpen={true} closeAriaLabel="Goodbye">
+      <Modal header="Hello" isOpen closeAriaLabel="Goodbye">
         Modal Content
       </Modal>
     );
@@ -210,7 +213,7 @@ describe('Modal', () => {
     );
 
     rerender(
-      <Modal header="Hello" isOpen={true} isCloseButtonHidden>
+      <Modal header="Hello" isOpen isCloseButtonHidden>
         Modal Content
       </Modal>
     );
@@ -244,7 +247,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" isOpen={true} onClose={onCloseSpy}>
+          <Modal header="Hello" isOpen onClose={onCloseSpy}>
             Modal Content
           </Modal>
         </>
@@ -266,7 +269,7 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            isOpen={true}
+            isOpen
             onClose={onCloseSpy}
             isModalClosingControlledManually
           >
@@ -320,7 +323,7 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            isOpen={true}
+            isOpen
             onClose={onCloseSpy}
             isModalClosingControlledManually
           >
@@ -355,7 +358,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" isOpen={true} onClose={onCloseSpy}>
+          <Modal header="Hello" isOpen onClose={onCloseSpy}>
             Modal Content
           </Modal>
         </>
@@ -396,7 +399,7 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            isOpen={true}
+            isOpen
             onClose={onCloseSpy}
             isModalClosingControlledManually
           >
@@ -441,7 +444,7 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            isOpen={true}
+            isOpen
             onEscKeyDown={onEscKeyDown}
             onClose={jest.fn()}
           >
@@ -479,12 +482,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal
-            header="Hello"
-            isOpen={true}
-            onClose={onCloseSpy}
-            testId={testId}
-          >
+          <Modal header="Hello" isOpen onClose={onCloseSpy} testId={testId}>
             Modal Content
           </Modal>
         </>
@@ -524,7 +522,7 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            isOpen={true}
+            isOpen
             onClose={onCloseSpy}
             testId={testId}
             isModalClosingControlledManually
@@ -563,12 +561,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal
-            header="Hello"
-            isOpen={true}
-            onClose={onCloseSpy}
-            testId={testId}
-          >
+          <Modal header="Hello" isOpen onClose={onCloseSpy} testId={testId}>
             {modalContent}
           </Modal>
         </>
@@ -600,7 +593,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" isOpen={true} onClose={onCloseSpy}>
+          <Modal header="Hello" isOpen onClose={onCloseSpy}>
             Modal Content
           </Modal>
         </>
@@ -624,7 +617,7 @@ describe('Modal', () => {
       );
 
       rerender(
-        <Modal header="Hello" isOpen={true} onClose={onCloseSpy}>
+        <Modal header="Hello" isOpen onClose={onCloseSpy}>
           Modal Content
         </Modal>
       );
@@ -665,7 +658,7 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            isOpen={true}
+            isOpen
             onClose={onCloseSpy}
             isEscKeyDownDisabled
           >
@@ -709,7 +702,7 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            isOpen={true}
+            isOpen
             onClose={onCloseSpy}
             isBackgroundClickDisabled
           >
@@ -750,7 +743,7 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            isOpen={true}
+            isOpen
             onClose={onCloseSpy}
             isBackgroundClickDisabled
           >
@@ -801,7 +794,7 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            isOpen={true}
+            isOpen
             onEscKeyDown={onEscKeyDown}
             onClose={jest.fn()}
           >
@@ -827,7 +820,7 @@ describe('Modal', () => {
           <button>Open</button>
           <Modal
             header="Hello"
-            isOpen={true}
+            isOpen
             onEscKeyDown={onEscKeyDown}
             onClose={jest.fn()}
           >
@@ -837,7 +830,7 @@ describe('Modal', () => {
           <button>Open Modal Two</button>
           <Modal
             header="Hello again"
-            isOpen={true}
+            isOpen
             onEscKeyDown={onEscKeyDown}
             onClose={jest.fn()}
           >
@@ -889,7 +882,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal header="Hello" isOpen={true} onClose={jest.fn()}>
+          <Modal header="Hello" isOpen onClose={jest.fn()}>
             Modal Content
           </Modal>
         </>
@@ -913,7 +906,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal isOpen={true} onClose={jest.fn()}>
+          <Modal isOpen onClose={jest.fn()}>
             <button data-testid="closeButton">Close</button>
           </Modal>
         </>
@@ -937,7 +930,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal isOpen={true} onClose={jest.fn()} isCloseButtonHidden>
+          <Modal isOpen onClose={jest.fn()} isCloseButtonHidden>
             <p>Modal Content</p>
           </Modal>
         </>
@@ -970,12 +963,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal
-            header="Hello"
-            isOpen={true}
-            onClose={jest.fn()}
-            isCloseButtonHidden
-          >
+          <Modal header="Hello" isOpen onClose={jest.fn()} isCloseButtonHidden>
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -1005,7 +993,7 @@ describe('Modal', () => {
       };
 
       const { getByText } = render(
-        <Modal headerRef={handleFocus} isOpen={true}>
+        <Modal headerRef={handleFocus} isOpen>
           <h3 ref={headerRef} tabIndex={-1}>
             Custom header using h3
           </h3>
@@ -1037,7 +1025,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal isOpen={true} onClose={jest.fn()} isCloseButtonHidden>
+          <Modal isOpen onClose={jest.fn()} isCloseButtonHidden>
             <p>Modal Content </p>
           </Modal>
         </>
@@ -1072,12 +1060,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal
-            header="Hello"
-            isOpen={true}
-            onClose={jest.fn()}
-            isCloseButtonHidden
-          >
+          <Modal header="Hello" isOpen onClose={jest.fn()} isCloseButtonHidden>
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -1128,12 +1111,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal
-            header="Hello"
-            isOpen={true}
-            onClose={jest.fn()}
-            isCloseButtonHidden
-          >
+          <Modal header="Hello" isOpen onClose={jest.fn()} isCloseButtonHidden>
             <>
               <input data-testid="yesInput" type="radio" name="radios" />
               <input data-testid="noInput" type="radio" name="radios" />
@@ -1152,7 +1130,7 @@ describe('Modal', () => {
       const { getByTestId, getByText, rerender } = render(
         <>
           <button>Open</button>
-          <Modal isOpen={true} onClose={jest.fn()} isCloseButtonHidden>
+          <Modal isOpen onClose={jest.fn()} isCloseButtonHidden>
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />
@@ -1167,7 +1145,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal isOpen={true} onClose={jest.fn()} isCloseButtonHidden>
+          <Modal isOpen onClose={jest.fn()} isCloseButtonHidden>
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="addressInput" type="text" name="address" />
@@ -1212,12 +1190,7 @@ describe('Modal', () => {
       rerender(
         <>
           <button>Open</button>
-          <Modal
-            header="Hello"
-            isOpen={true}
-            onClose={jest.fn()}
-            isCloseButtonHidden
-          >
+          <Modal header="Hello" isOpen onClose={jest.fn()} isCloseButtonHidden>
             <>
               <button data-testid="closeButton">Close</button>
               <input data-testid="emailInput" type="text" name="email" />

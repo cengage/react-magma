@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { Announce } from '../Announce';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { AmPmToggle } from './AmPmToggle';
-import { ScheduleIcon } from 'react-magma-icons';
-import { useTimePicker, UseTimePickerProps } from './useTimePicker';
 
+import styled from '@emotion/styled';
+import { ScheduleIcon } from 'react-magma-icons';
+
+import { ThemeContext } from '../../theme/ThemeContext';
+import { Announce } from '../Announce';
+import { AmPmToggle } from './AmPmToggle';
+import { useTimePicker, UseTimePickerProps } from './useTimePicker';
 import { I18nContext } from '../../i18n';
-import { VisuallyHidden } from '../VisuallyHidden';
 import { useIsInverse } from '../../inverse';
 import { FormFieldContainer } from '../FormFieldContainer';
 import { inputWrapperStyles } from '../InputBase';
-import styled from '@emotion/styled';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface TimePickerProps extends UseTimePickerProps {
   /**

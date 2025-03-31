@@ -1,11 +1,14 @@
 import React from 'react';
-import { Toast } from '.';
+
+import { Meta } from '@storybook/react/types-6-0';
+
 import { magma } from '../../theme/magma';
 import { AlertVariant } from '../AlertBase';
+import { Announce } from '../Announce';
 import { Button, ButtonSize } from '../Button';
 import { Hyperlink } from '../Hyperlink';
-import { Meta } from '@storybook/react/types-6-0';
-import { Announce } from '../Announce';
+
+import { Toast } from '.';
 
 export default {
   component: Toast,

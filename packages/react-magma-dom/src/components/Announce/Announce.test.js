@@ -1,7 +1,10 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Announce } from '.';
+
 import { render } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
+
+import { Announce } from '.';
 
 describe('Announce', () => {
   it('should find element by testId', () => {

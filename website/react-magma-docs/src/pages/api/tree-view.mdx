@@ -17,6 +17,7 @@ props:
 
 ```tsx
 import React from 'react';
+
 import { TreeView, TreeItem, Heading } from 'react-magma-dom';
 
 export function Example() {
@@ -101,6 +102,7 @@ TreeViews can have `TreeViewSelectable.single` for single select (default), `Tre
 
 ```tsx
 import React from 'react';
+
 import {
   TreeView,
   TreeItem,
@@ -234,6 +236,7 @@ If one `TreeItem` uses the `icon` prop, all other `TreeItems` should also have a
 
 ```tsx
 import React from 'react';
+
 import { TreeView, TreeItem, magma } from 'react-magma-dom';
 import { FavoriteIcon } from 'react-magma-icons';
 
@@ -246,7 +249,7 @@ export function Example() {
           icon={
             <FavoriteIcon
               style={{ color: magma.colors.primary500 }}
-              aria-hidden={true}
+              aria-hidden
             />
           }
           itemId="1"
@@ -258,7 +261,7 @@ export function Example() {
             icon={
               <FavoriteIcon
                 style={{ color: magma.colors.primary500 }}
-                aria-hidden={true}
+                aria-hidden
               />
             }
             itemId="4"
@@ -276,6 +279,7 @@ To have a `TreeItem` expanded initially, pass an array of `TreeItem` `itemId`s t
 
 ```tsx
 import React from 'react';
+
 import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
 
 export function Example() {
@@ -331,6 +335,7 @@ To have a `TreeItem` selected initially, pass an array of `{itemId: 'itemId', ch
 
 ```tsx
 import React from 'react';
+
 import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
 
 export function Example() {
@@ -386,6 +391,7 @@ _It's required to use either `ariaLabel` OR `ariaLabelledBy`._
 
 ```tsx
 import React from 'react';
+
 import { TreeView, TreeItem } from 'react-magma-dom';
 
 export function Example() {
@@ -454,6 +460,7 @@ By default, the `checkChildren` and `checkParents` props are set to true.
 
 ```tsx
 import React from 'react';
+
 import {
   TreeView,
   TreeItem,
@@ -523,6 +530,7 @@ Use the `apiRef` prop to change items selection from outside. It exposes these f
 
 ```tsx
 import React from 'react';
+
 import {
   TreeView,
   TreeItem,
@@ -710,6 +718,7 @@ Use the `isDisabled` prop to disable all items inside TreeView.
 
 ```tsx
 import React from 'react';
+
 import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
 
 export function Example() {
@@ -760,6 +769,7 @@ Pass the `isDisabled` prop to item inside `preselectedItems` prop to manage disa
 
 ```tsx
 import React from 'react';
+
 import {
   TreeView,
   TreeItem,
@@ -826,6 +836,7 @@ The following events are available: `onSelectedItemChange` and `onExpandedChange
 
 ```tsx
 import React from 'react';
+
 import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
 
 export function Example() {
@@ -883,12 +894,13 @@ export function Example() {
 }
 ```
 
-## Show More / Show Less Button
+## Show More and Less Functions
 
 Use the `apiRef.showMore()` prop when using a Show All button inside a tree, and `apiRef.showLess()` when using a Show Less button.
 
 ```tsx
 import React from 'react';
+
 import {
   ButtonSize,
   ButtonVariant,
@@ -900,7 +912,8 @@ import {
   TreeItemSelectedInterface,
   TreeView,
   TreeViewApi,
-  TreeViewSelectable
+  TreeViewSelectable,
+  TreeViewSelectable,
 } from 'react-magma-dom';
 import { KeyboardArrowUpIcon, KeyboardArrowDownIcon } from 'react-magma-icons';
 
@@ -1036,8 +1049,7 @@ export function Example() {
 
   const apiRef = React.useRef<TreeViewApi>();
   const [isShowAll, setIsShowAll] = React.useState(false);
-  const [, setSelectedItems] =
-    React.useState<TreeItemSelectedInterface[]>();
+  const [, setSelectedItems] = React.useState<TreeItemSelectedInterface[]>();
 
   function onSelection(items: TreeItemSelectedInterface[]) {
     setSelectedItems(items);
@@ -1107,10 +1119,289 @@ export function Example() {
 }
 ```
 
+## isTopLevelSelectable
+
+When set to `false` (defaults to `true`), and used with `TreeViewSelectable.multi`, the top-level parents or leaves will not be selectable.
+
+```tsx
+import React from 'react';
+
+import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <TreeView
+      ariaLabelledBy="istoplevel-animals-multi"
+      selectable={TreeViewSelectable.multi}
+      isTopLevelSelectable={false}
+    >
+      <TreeItem label="Birds" itemId="istoplevel-birds">
+        <TreeItem label="Parrots" itemId="istoplevel-parrots">
+          <TreeItem
+            label="African Grey"
+            isDisabled
+            itemId="istoplevel-african-grey"
+          />
+          <TreeItem label="Cockatiel" itemId="istoplevel-cockatiel" />
+          <TreeItem label="Budgerigar" itemId="istoplevel-budgerigar" />
+        </TreeItem>
+        <TreeItem label="Birds of Prey" itemId="istoplevel-birds-of-prey">
+          <TreeItem label="Eagles" itemId="istoplevel-eagles" />
+          <TreeItem label="Hawks" itemId="istoplevel-hawks" />
+          <TreeItem label="Falcons" itemId="istoplevel-falcons" />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Aquatic Animals" itemId="istoplevel-aquatic-animals">
+        <TreeItem label="Fish" itemId="istoplevel-fish">
+          <TreeItem label="Goldfish" itemId="istoplevel-goldfish" />
+          <TreeItem label="Betta Fish" itemId="istoplevel-betta-fish" />
+          <TreeItem label="Guppies" itemId="istoplevel-guppies" />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Marine Mammals" itemId="istoplevel-marine-mammals">
+        <TreeItem label="Dolphins" isDisabled itemId="istoplevel-dolphins" />
+        <TreeItem label="Whales" isDisabled itemId="istoplevel-whales" />
+        <TreeItem label="Seals" isDisabled itemId="istoplevel-seals" />
+      </TreeItem>
+      <TreeItem label="Land Mammals" itemId="istoplevel-land-mammals" />
+    </TreeView>
+  );
+}
+```
+
+## Expand and Collapse Functions
+
+Use the `apiRef.expandAll()` prop to expand all items, and the `apiRef.collapseAll()` prop to collapse them.
+
+```tsx
+import React from 'react';
+
+import {
+  ButtonSize,
+  ButtonVariant,
+  IndeterminateCheckboxStatus,
+  Spacer,
+  SpacerAxis,
+  TreeItem,
+  TreeItemSelectedInterface,
+  TreeView,
+  TreeViewApi,
+  TreeViewSelectable,
+  ButtonGroup,
+  Button,
+  ButtonColor,
+} from 'react-magma-dom';
+
+export function Example() {
+  const treeContent = {
+    id: 'another-tree-id',
+    groupName: 'disciplines',
+    items: [
+      {
+        id: 'another-discipline-arts-design',
+        title: 'Arts and Design',
+        children: [
+          {
+            id: 'another-ad-1',
+            title: 'Animation',
+            children: [],
+          },
+          {
+            id: 'another-ad-2',
+            title: 'Photography',
+            children: [],
+          },
+          {
+            id: 'another-ad-3',
+            title: 'Web Design',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'another-discipline-business',
+        title: 'Business',
+        children: [
+          {
+            id: 'another-bsn-1',
+            title: 'Accounting',
+            children: [],
+          },
+          {
+            id: 'another-bsn-2',
+            title: 'Finance',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'another-discipline-cs',
+        title: 'Computer Science',
+        children: [
+          {
+            id: 'another-cs-1',
+            title: 'Software Engineering',
+            children: [],
+          },
+          {
+            id: 'another-cs-2',
+            title: 'Information Technology',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'another-discipline-geography',
+        title: 'Geography',
+        children: [],
+      },
+      {
+        id: 'another-discipline-his',
+        title: 'History',
+        children: [
+          {
+            id: 'another-his-1',
+            title: 'American History',
+            children: [],
+          },
+          {
+            id: 'another-his-2',
+            title: 'World History',
+            children: [],
+          },
+          {
+            id: 'another-his-3',
+            title: 'Western Civilization',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'another-discipline-math',
+        title: 'Mathematics',
+        children: [
+          {
+            id: 'another-math-1',
+            title: 'Precalculus',
+            children: [],
+          },
+          {
+            id: 'another-math-2',
+            title: 'Calculus',
+            children: [],
+          },
+          {
+            id: 'another-math-3',
+            title: 'Finite Math',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'another-discipline-nutr',
+        title: 'Nutrition',
+        children: [
+          {
+            id: 'another-nutr-1',
+            title: 'Community Nutrition',
+            children: [],
+          },
+          {
+            id: 'another-nutr-2',
+            title: 'Sports Nutrition',
+            children: [],
+          },
+        ],
+      },
+    ],
+    preselectedItems: [
+      {
+        itemId: 'another-bsn-1',
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+      },
+      {
+        itemId: 'another-nutr-1',
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+      },
+    ],
+  };
+
+  const apiRef = React.useRef<TreeViewApi>();
+  const [, setSelectedItems] = React.useState<TreeItemSelectedInterface[]>();
+
+  function onSelection(items: TreeItemSelectedInterface[]) {
+    setSelectedItems(items);
+  }
+
+  const renderTreeItemsRecursively = (discipline: any[], depth: number) => {
+    return discipline.map(term => {
+      const isDisabled =
+        term.title === 'Accounting' ||
+        term.title === 'Computer Science' ||
+        term.title === 'Calculus' ||
+        term.title === 'Nutrition' ||
+        term.title === 'Community Nutrition';
+
+      return (
+        <TreeItem
+          key={term.id}
+          itemId={term.id}
+          testId={term.id}
+          label={term.title}
+          isDisabled={isDisabled}
+        >
+          {term.children.length ? (
+            renderTreeItemsRecursively(term.children, depth + 1)
+          ) : (
+            <></>
+          )}
+        </TreeItem>
+      );
+    });
+  };
+
+  const toggleExpandAll = () => {
+    apiRef.current.expandAll();
+  };
+
+  const toggleCollapseAll = () => {
+    apiRef.current.collapseAll();
+  };
+
+  return (
+    <>
+      <ButtonGroup
+        size={ButtonSize.small}
+        variant={ButtonVariant.solid}
+        color={ButtonColor.subtle}
+      >
+        <Button onClick={toggleExpandAll}>Expand All</Button>
+        <Button onClick={toggleCollapseAll}>Collapse All</Button>
+      </ButtonGroup>
+
+      <Spacer size={24} axis={SpacerAxis.vertical} />
+
+      <TreeView
+        key={treeContent.id}
+        preselectedItems={treeContent.preselectedItems}
+        selectable={TreeViewSelectable.multi}
+        onSelectedItemChange={onSelection}
+        apiRef={apiRef}
+      >
+        {renderTreeItemsRecursively(treeContent.items, 0)}
+      </TreeView>
+
+      <Spacer size={16} axis={SpacerAxis.vertical} />
+    </>
+  );
+}
+```
+
 ## Inverse
 
 ```tsx
 import React from 'react';
+
 import { TreeView, TreeItem, Card } from 'react-magma-dom';
 
 export function Example() {
@@ -1159,6 +1450,7 @@ Use the `labelStyle` prop to customize the `TreeItem` labels.
 
 ```tsx
 import React from 'react';
+
 import { TreeView, TreeItem, magma } from 'react-magma-dom';
 
 export function Example() {

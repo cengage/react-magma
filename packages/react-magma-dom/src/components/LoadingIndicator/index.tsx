@@ -1,10 +1,12 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+
+import { I18nContext } from '../../i18n';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { ProgressBar, ProgressBarColor } from '../ProgressBar';
 import { Spinner } from '../Spinner';
-import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
-import { I18nContext } from '../../i18n';
 
 export interface LoadingIndicatorProps
   extends React.HTMLAttributes<HTMLDivElement | HTMLSpanElement> {
@@ -111,20 +113,20 @@ export const LoadingIndicator = React.forwardRef<
   message1 = message1
     ? message1
     : type === LoadingIndicatorType.progressbar
-    ? i18n.loadingIndicator.progressBar.messages.first
-    : i18n.loadingIndicator.spinner.messages.first;
+      ? i18n.loadingIndicator.progressBar.messages.first
+      : i18n.loadingIndicator.spinner.messages.first;
 
   message2 = message2
     ? message2
     : type === LoadingIndicatorType.progressbar
-    ? i18n.loadingIndicator.progressBar.messages.second
-    : i18n.loadingIndicator.spinner.messages.second;
+      ? i18n.loadingIndicator.progressBar.messages.second
+      : i18n.loadingIndicator.spinner.messages.second;
 
   message3 = message3
     ? message3
     : type === LoadingIndicatorType.progressbar
-    ? i18n.loadingIndicator.progressBar.messages.third
-    : i18n.loadingIndicator.spinner.messages.third;
+      ? i18n.loadingIndicator.progressBar.messages.third
+      : i18n.loadingIndicator.spinner.messages.third;
 
   return (
     <StyledLoadingIndicator aria-busy="true" data-testid={testId} ref={ref}>

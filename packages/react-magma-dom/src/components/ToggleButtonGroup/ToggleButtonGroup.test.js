@@ -1,25 +1,26 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { ToggleButtonGroup } from '.';
-import { ToggleButton } from '../ToggleButton';
+
 import { render, fireEvent } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 import { transparentize } from 'polished';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+import { ToggleButton } from '../ToggleButton';
+
+import { ToggleButtonGroup } from '.';
 
 const TEXT = 'Test Text';
 const testId = 'test-id';
 
 describe('ToggleButtonGroup', () => {
   it('Should find element by testId', () => {
-    const { getByTestId } = render(
-      <ToggleButtonGroup testId={testId}></ToggleButtonGroup>
-    );
+    const { getByTestId } = render(<ToggleButtonGroup testId={testId} />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
   it('Toggle Button Groups are compliant with accessibility', () => {
-    const { container } = render(<ToggleButtonGroup></ToggleButtonGroup>);
+    const { container } = render(<ToggleButtonGroup />);
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });

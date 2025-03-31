@@ -1,5 +1,18 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+import { NorthIcon, SortDoubleArrowIcon, SouthIcon } from 'react-magma-icons';
+
+import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { Checkbox } from '../Checkbox';
+import {
+  IndeterminateCheckbox,
+  IndeterminateCheckboxStatus,
+} from '../IndeterminateCheckbox';
+
 import {
   TableContext,
   TableRowColor,
@@ -9,16 +22,6 @@ import {
   TableDensity,
   TableSortDirection,
 } from './';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { Checkbox } from '../Checkbox';
-import {
-  IndeterminateCheckbox,
-  IndeterminateCheckboxStatus,
-} from '../IndeterminateCheckbox';
-import { transparentize } from 'polished';
-import { NorthIcon, SortDoubleArrowIcon, SouthIcon } from 'react-magma-icons';
-import styled from '@emotion/styled';
-import { I18nContext } from '../../i18n';
 
 /**
  * @children required

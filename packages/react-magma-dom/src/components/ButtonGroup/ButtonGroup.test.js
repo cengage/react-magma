@@ -1,6 +1,9 @@
 import React from 'react';
+
+import { render } from '@testing-library/react';
+
 import { axe } from '../../../axe-helper';
-import { ButtonGroup, ButtonGroupOrientation, ButtonGroupAlignment } from '.';
+import { magma } from '../../theme/magma';
 import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
 import {
   Dropdown,
@@ -8,8 +11,8 @@ import {
   DropdownContent,
   DropdownMenuItem,
 } from '../Dropdown';
-import { render } from '@testing-library/react';
-import { magma } from '../../theme/magma';
+
+import { ButtonGroup, ButtonGroupOrientation, ButtonGroupAlignment } from '.';
 
 const testId = 'test-id';
 

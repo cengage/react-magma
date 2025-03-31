@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { Variant } from 'framer-motion';
+
 export type MotionVariants<T extends string> = Record<T, Variant>;
 
 export interface ThemeTransitions {
@@ -356,7 +358,7 @@ export const transitions: ThemeTransitions = {
         opacity: 1,
         transition: {
           height: { duration: 0.3, ease: 'easeInOut', delay: 0 },
-          opacity: { property: 0, duration: 0.1, delay: 0.2 }
+          opacity: { property: 0, duration: 0.1, delay: 0.2 },
         },
       },
     },

@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { css } from '@emotion/react';
+
 import isPropValid from '@emotion/is-prop-valid';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { ThemeContext } from '../../theme/ThemeContext';
 import {
   InfoIcon,
   CheckCircleIcon,
@@ -11,13 +12,15 @@ import {
   IconProps,
   CloseIcon,
 } from 'react-magma-icons';
+
+import { I18nContext } from '../../i18n';
+import { InverseContext, useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useGenerateId } from '../../utils';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { ProgressRing } from '../ProgressRing';
-import { useGenerateId } from '../../utils';
-import { I18nContext } from '../../i18n';
-import { InverseContext, useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
 
 export const VARIANT_ICON: {
   [name: string]: React.FunctionComponent<IconProps>;
@@ -311,7 +314,7 @@ const IconWrapperStyles = css`
   margin-right: 1px;
 `;
 
-const IconWrapper = styled.span<{ isToast?: boolean; theme: any }>`
+const IconWrapper = styled.span<{ isToast?: boolean; theme: ThemeInterface }>`
   ${IconWrapperStyles}
   padding: 0 ${props => props.theme.spaceScale.spacing03} 0 ${props =>
     props.theme.spaceScale.spacing04};
@@ -383,7 +386,11 @@ const AlertSpan = styled.span`
   white-space: pre-line;
 `;
 
-function renderIcon(variant = 'info', isToast?: boolean, theme?: any) {
+function renderIcon(
+  variant = 'info',
+  isToast?: boolean,
+  theme?: ThemeInterface
+) {
   const Icon = VARIANT_ICON[variant];
 
   return (

@@ -1,8 +1,11 @@
 import React from 'react';
-import { Card } from '.';
+
+import { Meta } from '@storybook/react/types-6-0';
+
 import { CardBody } from './CardBody';
 import { CardHeading } from './CardHeading';
-import { Meta } from '@storybook/react/types-6-0';
+
+import { Card } from '.';
 
 export default {
   component: Card,
@@ -21,7 +24,7 @@ export default {
   },
 } as Meta;
 
-export const Default = (args) => {
+export const Default = args => {
   return (
     <Card {...args}>
       <CardBody>

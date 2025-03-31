@@ -1,9 +1,12 @@
 import React from 'react';
-import { Card, CardBody } from '../Card';
-import { AccountCircleIcon } from 'react-magma-icons';
+
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Tag, TagColor, TagProps, TagSize } from '.';
+import { AccountCircleIcon } from 'react-magma-icons';
+
 import { Button } from '../Button';
+import { Card, CardBody } from '../Card';
+
+import { Tag, TagColor, TagProps, TagSize } from '.';
 
 const Template: Story<TagProps> = args => {
   return (

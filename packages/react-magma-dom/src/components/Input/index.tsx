@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { useState } from 'react';
+
+import styled from '@emotion/styled';
+
 import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { omit, useGenerateId } from '../../utils';
 import {
   FormFieldContainer,
@@ -15,16 +20,13 @@ import {
   isLeftOrHidden,
 } from '../InputBase';
 import { LabelPosition } from '../Label';
-import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { Theme } from '@emotion/react';
 
 const getLabelStyles = (
   props: FormFieldContainerProps &
-    React.RefAttributes<HTMLDivElement> & { theme?: Theme } & {
+    React.RefAttributes<HTMLDivElement> & { theme?: ThemeInterface } & {
       labelPosition?: LabelPosition;
       InputSize?: InputSize;
-    } & { theme: Theme }
+    } & { theme: ThemeInterface }
 ) => {
   const marginBlock = isLeftOrHidden(props)
     ? '0'

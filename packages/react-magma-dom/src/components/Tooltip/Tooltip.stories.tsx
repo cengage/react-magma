@@ -1,20 +1,15 @@
 import React from 'react';
-import {
-  Tooltip,
-  TooltipProps,
-  TooltipPosition,
-  EnumTooltipPosition,
-} from './index';
-import { Button, ButtonSize, ButtonVariant } from '../Button';
-import { magma } from '../../theme/magma';
+
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { IconButton } from '../IconButton';
 import {
   KeyboardArrowLeftIcon,
   KeyboardArrowRightIcon,
   KeyboardArrowDownIcon,
   KeyboardArrowUpIcon,
 } from 'react-magma-icons';
+
+import { magma } from '../../theme/magma';
+import { Button, ButtonSize, ButtonVariant } from '../Button';
 import { Card, CardBody } from '../Card';
 import {
   Dropdown,
@@ -23,9 +18,17 @@ import {
   DropdownDropDirection,
   DropdownMenuItem,
 } from '../Dropdown';
+import { IconButton } from '../IconButton';
 import { Modal } from '../Modal';
-import { VisuallyHidden } from '../VisuallyHidden';
 import { Tag } from '../Tag';
+import { VisuallyHidden } from '../VisuallyHidden';
+
+import {
+  Tooltip,
+  TooltipProps,
+  TooltipPosition,
+  EnumTooltipPosition,
+} from './index';
 
 const Template: Story<TooltipProps> = args => (
   <div
@@ -223,11 +226,61 @@ export const Complex = () => {
               <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
             </Button>
             <p>
-              Some content here. Some content here. Some content here. Some content here. Some content here. Some content here. Some content here. Some content here. Some contenthere. 
+              Some content here. Some content here. Some content here. Some
+              content here. Some content here. Some content here. Some content
+              here. Some content here. Some contenthere.
             </p>
           </CardBody>
         </Card>
       </div>
     </>
   );
+};
+
+const CustomStylesTemplate: Story<TooltipProps> = args => {
+  const customArrowStyles = {
+    background: 'yellow',
+    height: '15px',
+    width: '15px',
+    fill: 'red',
+  };
+
+  const customContainerStyles = {
+    background: 'blue',
+    padding: '10px',
+  };
+
+  const customTooltipStyles = {
+    background: 'green',
+    padding: '10px',
+    width: '200px',
+  };
+
+  return (
+    <div
+      style={{
+        padding: '80px',
+        textAlign: 'center',
+        background: args.isInverse
+          ? magma.colors.neutral
+          : magma.colors.neutral100,
+      }}
+    >
+      <Tooltip
+        {...args}
+        arrowStyle={customArrowStyles}
+        containerStyle={customContainerStyles}
+        tooltipStyle={customTooltipStyles}
+      >
+        <Button isInverse={args.isInverse} size={ButtonSize.small}>
+          Tooltip Trigger
+        </Button>
+      </Tooltip>
+    </div>
+  );
+};
+
+export const CustomStyles = CustomStylesTemplate.bind({});
+CustomStyles.args = {
+  content: 'Lorem ipsum dolar sit amet. Vel molestie no, ut vim.',
 };

@@ -13,15 +13,16 @@ props:
   screen.
   <br />
   <br />
-  It is the foundation for the <Link to="/patterns/header">Header Pattern</Link>,
-  a more robust, more opinionated component that also handles the rendering of several
-  components inside of it.
+  It is the foundation for the <Link to="/patterns/header">Header Pattern</Link>
+  , a more robust, more opinionated component that also handles the rendering of
+  several components inside of it.
 </LeadParagraph>
 
 ## Basic Usage
 
 ```tsx
 import React from 'react';
+
 import { AppBar } from 'react-magma-dom';
 
 export function Example() {
@@ -35,6 +36,7 @@ The `isCompact` prop will render a shorter appbar with less padding.
 
 ```tsx
 import React from 'react';
+
 import { AppBar } from 'react-magma-dom';
 
 export function Example() {
@@ -48,6 +50,7 @@ The `AppBar` works concurrently with `SkipLink` which assists keyboard navigatio
 
 ```tsx
 import React from 'react';
+
 import {
   AppBar,
   AppBarPosition,
@@ -62,7 +65,7 @@ export function Example() {
       <AppBar isInverse position={AppBarPosition.sticky}>
         AppBar content
       </AppBar>
-      <SkipLink to="#last-one">Skip to the end!</SkipLink>
+      <SkipLink>Skip to the end!</SkipLink>
 
       <Paragraph>
         Peel the onion peel the onion, so the horse is out of the barn per my
@@ -92,6 +95,7 @@ The `isInverse` prop will render an appbar with a dark background and light text
 
 ```tsx
 import React from 'react';
+
 import { AppBar } from 'react-magma-dom';
 
 export function Example() {
@@ -107,6 +111,7 @@ If the `position` is set to `sticky` or `fixed`, the app bar will have a small d
 
 ```tsx
 import React from 'react';
+
 import { AppBar, AppBarPosition, Heading, Paragraph } from 'react-magma-dom';
 
 export function Example() {
@@ -154,6 +159,7 @@ This is a more complex example of putting mutliple elements inside an `AppBar`.
 
 ```tsx
 import React from 'react';
+
 import {
   AppBar,
   NavTabs,

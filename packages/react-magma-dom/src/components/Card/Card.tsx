@@ -1,10 +1,12 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
-import { useIsInverse } from '../../inverse';
 import { transparentize } from 'polished';
+
+import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 /**
  * @children required
@@ -91,15 +93,15 @@ const StyledCard = styled.div<CardProps>`
     props.background
       ? props.background
       : props.isInverse
-      ? props.theme.colors.primary600
-      : props.theme.colors.neutral100};
+        ? props.theme.colors.primary600
+        : props.theme.colors.neutral100};
   border: 1px solid
     ${props =>
       props.background
         ? props.background
         : props.isInverse
-        ? transparentize(0.5, props.theme.colors.neutral100)
-        : props.theme.colors.neutral300};
+          ? transparentize(0.5, props.theme.colors.neutral100)
+          : props.theme.colors.neutral300};
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: ${props =>
     props.hasDropShadow ? '0 2px 6px 0 rgba(0,0,0,0.18)' : '0 0 0'};

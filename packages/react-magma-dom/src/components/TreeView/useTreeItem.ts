@@ -1,12 +1,14 @@
 import * as React from 'react';
+
 import { IconProps } from 'react-magma-icons';
+
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import { TreeItem } from './TreeItem';
 import { TreeViewContext } from './TreeViewContext';
 import { TreeViewSelectable } from './types';
+import { filterNullEntries, getChildrenItemIdsFlat } from './utils';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
 import { useGenerateId, useForkedRef } from '../../utils';
-import { filterNullEntries, getChildrenItemIdsFlat } from './utils';
 
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   /**
@@ -53,6 +55,7 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   labelStyle?: React.CSSProperties;
   /**
    * @internal
+   * Whether this item is a top-level item (no parent)
    */
   topLevel?: boolean;
 }
@@ -73,6 +76,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     initialExpandedItemsNeedUpdate,
     items,
     selectItem,
+    isTopLevelSelectable,
+    expandedSet,
   } = React.useContext(TreeViewContext);
 
   const treeViewItemData = React.useMemo(() => {
@@ -82,10 +87,18 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const isDisabled = treeViewItemData?.isDisabled;
 
   const checkedStatus = React.useMemo(() => {
+    if (
+      selectable == TreeViewSelectable.multi &&
+      topLevel &&
+      !isTopLevelSelectable
+    ) {
+      return IndeterminateCheckboxStatus.unchecked;
+    }
+
     return (
       treeViewItemData?.checkedStatus ?? IndeterminateCheckboxStatus.unchecked
     );
-  }, [treeViewItemData]);
+  }, [topLevel, isTopLevelSelectable, treeViewItemData]);
 
   const hasOwnTreeItems = React.useMemo(() => {
     return treeViewItemData?.hasOwnTreeItems;
@@ -97,11 +110,19 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     (child: React.ReactElement<any>) => child.type === TreeItem
   );
 
-  const ownRef = React.useRef<HTMLDivElement>();
+  const ownRef = React.useRef<HTMLDivElement>(null);
   const ref = useForkedRef(forwardedRef, ownRef);
   const forceUpdate = useForceUpdate();
 
   const generatedId = useGenerateId();
+
+  React.useEffect(() => {
+    const isExpanded = treeViewItemData?.itemId
+      ? expandedSet.has(treeViewItemData.itemId)
+      : false;
+
+    setExpanded(isExpanded);
+  }, [expandedSet, treeViewItemData]);
 
   React.useEffect(() => {
     if (!isDisabled && ownRef.current !== null) {
@@ -141,6 +162,15 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     const isChecked = checkedStatus === IndeterminateCheckboxStatus.checked;
 
     if (selectable === TreeViewSelectable.single && isChecked) {
+      return;
+    }
+
+    //If TreeViewSelectable.multi and top-level item is not selectable, skip selection logic
+    if (
+      selectable === TreeViewSelectable.multi &&
+      topLevel &&
+      !isTopLevelSelectable
+    ) {
       return;
     }
 
@@ -332,7 +362,22 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
         // Activates a node, i.e., performs its default action.
         if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
           setExpanded(!expanded);
-        } else if (selectable === TreeViewSelectable.single) {
+          break;
+        }
+
+        // If TreeViewSelectable.multi and top-level & not selectable, only toggle expand (no selection)
+        if (
+          selectable == TreeViewSelectable.multi &&
+          topLevel &&
+          !isTopLevelSelectable
+        ) {
+          if (hasOwnTreeItems) {
+            setExpanded(!expanded);
+          }
+          break;
+        }
+
+        if (selectable === TreeViewSelectable.single) {
           if (isChecked) {
             return;
           }
@@ -345,19 +390,33 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           // In multi-select, it toggles the selection state of the focused node.
           selectItem({
             itemId,
-            checkedStatus:
-              checkedStatus === IndeterminateCheckboxStatus.checked
-                ? IndeterminateCheckboxStatus.unchecked
-                : IndeterminateCheckboxStatus.checked,
+            checkedStatus: isChecked
+              ? IndeterminateCheckboxStatus.unchecked
+              : IndeterminateCheckboxStatus.checked,
           });
         }
         break;
       }
       case ' ': {
-        // Toggles the selection state of the focused node.
+        // If selectable=off & has children, toggle expanded:
         if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
           setExpanded(!expanded);
-        } else if (selectable === TreeViewSelectable.single) {
+          break;
+        }
+
+        // If TreeViewSelectable.multi and top-level & not selectable, only toggle expand (no selection)
+        if (
+          selectable === TreeViewSelectable.multi &&
+          topLevel &&
+          !isTopLevelSelectable
+        ) {
+          if (hasOwnTreeItems) {
+            setExpanded(!expanded);
+          }
+          break;
+        }
+
+        if (selectable === TreeViewSelectable.single) {
           if (hasOwnTreeItems) {
             setExpanded(!expanded);
           } else {

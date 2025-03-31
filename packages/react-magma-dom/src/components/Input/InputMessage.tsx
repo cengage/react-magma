@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
+
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
 import { ErrorIcon } from 'react-magma-icons';
+
+import { ThemeContext } from '../../theme/ThemeContext';
 import { Announce } from '../Announce';
 import { InputSize } from '../InputBase';
-import { transparentize } from 'polished';
-import styled from '@emotion/styled';
 
 export interface InputMessageProps
   extends React.HTMLAttributes<HTMLDivElement> {

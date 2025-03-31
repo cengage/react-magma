@@ -1,13 +1,16 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Alert } from '.';
-import { AlertVariant } from '../AlertBase';
-import { Badge } from '../Badge';
+
 import { act, render, fireEvent } from '@testing-library/react';
-import { magma } from '../../theme/magma';
+import { v4 as uuid } from 'uuid';
+
+import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
-import { v4 as uuid } from 'uuid';
+import { magma } from '../../theme/magma';
+import { AlertVariant } from '../AlertBase';
+import { Badge } from '../Badge';
+
+import { Alert } from '.';
 
 jest.mock('uuid');
 

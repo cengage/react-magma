@@ -1,23 +1,25 @@
+import React from 'react';
+
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { ReferenceType } from '@floating-ui/react-dom';
 import {
   UseComboboxGetComboboxPropsOptions,
   UseComboboxGetInputPropsOptions,
   UseComboboxGetToggleButtonPropsOptions,
 } from 'downshift';
-import React from 'react';
+import { transparentize } from 'polished';
+
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { inputBaseStyles } from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
-
-import { ReferenceType } from '@floating-ui/react-dom';
-import { transparentize } from 'polished';
 import { SelectedItemsWrapper } from '../Select/shared';
 
 const ComboBoxContainer = styled.div<{
   hasError?: boolean;
   isInverse?: boolean;
-  theme?: any;
+  theme?: ThemeInterface;
 }>`
   display: flex;
 `;
@@ -27,7 +29,7 @@ const InputContainer = styled.div<{
   disabled?: boolean;
   isFocused?: boolean;
   isInverse?: boolean;
-  theme?: any;
+  theme?: ThemeInterface;
 }>`
   align-items: center;
   background-color: ${props =>
@@ -85,13 +87,12 @@ const InputContainer = styled.div<{
 
 const StyledInput = styled.input`
   ${inputBaseStyles}
-  border: 0;
   display: flex;
   flex-grow: 1;
-  height: ${props => props.theme.spaceScale.spacing09};
   min-width: ${props => props.theme.spaceScale.spacing07};
   padding-left: ${props => props.theme.spaceScale.spacing02};
   width: 0;
+  height: 38px;
 
   &:focus {
     outline: 0;

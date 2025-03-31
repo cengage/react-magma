@@ -1,5 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React from 'react';
+
+import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import {
   Card,
@@ -25,8 +27,8 @@ import {
   GroupsIcon,
   GithubIcon,
 } from 'react-magma-icons';
+
 import { Logo } from '../Logo';
-import styled from '@emotion/styled';
 
 const StyledGrid = styled(Grid)`
   grid-template-columns: auto auto;

@@ -1,5 +1,8 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+
 import { Card } from '../Card';
 import {
   DropdownAlignment,
@@ -8,7 +11,6 @@ import {
 } from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
-import styled from '@emotion/styled';
 
 /**
  * @children required
@@ -90,6 +92,7 @@ export const DropdownContent = React.forwardRef<
   return (
     <div
       ref={context.setFloating}
+      // z-index 2 is used to make the content appear above docs elements (code blocks)
       style={{ ...context.floatingStyles, zIndex: '2' }}
     >
       <StyledCard

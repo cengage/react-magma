@@ -26,6 +26,7 @@ If no children are included, then they render in the icon-only style.
 
 ```tsx
 import React from 'react';
+
 import {
   IconButton,
   ButtonVariant,
@@ -176,6 +177,7 @@ If you find JSX being passed in as a prop directly ugly, you can assign an icon 
 
 ```tsx
 import React from 'react';
+
 import { IconButton } from 'react-magma-dom';
 import { NotificationsIcon } from 'react-magma-icons';
 
@@ -192,6 +194,7 @@ Icon buttons have default sizes for small, medium and large icon buttons respect
 
 ```tsx
 import React from 'react';
+
 import { IconButton } from 'react-magma-dom';
 import { NotificationsIcon } from 'react-magma-icons';
 
@@ -213,6 +216,7 @@ The `iconPosition` property takes the values `left` and `right`.
 
 ```tsx
 import React from 'react';
+
 import {
   ButtonColor,
   ButtonIconPosition,
@@ -246,6 +250,7 @@ Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` be
 
 ```tsx
 import React from 'react';
+
 import {
   ButtonIconPosition,
   ButtonSize,
@@ -307,6 +312,7 @@ Icon only buttons have `shape = round`, by default.
 
 ```tsx
 import React from 'react';
+
 import { ButtonShape, IconButton, ButtonGroup } from 'react-magma-dom';
 import { NotificationsIcon } from 'react-magma-icons';
 
@@ -340,6 +346,7 @@ The `isFullWidth` property will set the button to display full-width. This prope
 
 ```tsx
 import React from 'react';
+
 import { ButtonIconPosition, IconButton } from 'react-magma-dom';
 import { NotificationsIcon } from 'react-magma-icons';
 
@@ -377,6 +384,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import {
   IconButton,
   ButtonVariant,
@@ -417,8 +425,10 @@ Events do not fire on disabled buttons.
 
 ```tsx
 import React from 'react';
+
 import { IconButton, ButtonGroup } from 'react-magma-dom';
 import { NotificationsIcon } from 'react-magma-icons';
+
 export function Example() {
   const [iconButtonCounter, setIconButtonCounter] = React.useState(0);
   const [textIconButtonCounter, setTextIconButtonCounter] = React.useState(0);

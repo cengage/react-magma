@@ -1,11 +1,14 @@
 import React from 'react';
+
+import { render, screen, fireEvent } from '@testing-library/react';
+
 import { axe } from '../../../axe-helper';
-import { Datagrid } from '.';
-import { TableRowColor } from '../Table';
+import { magma } from '../../theme/magma';
 import { Button } from '../Button';
 import { usePagination } from '../Pagination/usePagination';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { magma } from '../../theme/magma';
+import { TableRowColor } from '../Table';
+
+import { Datagrid } from '.';
 
 const columns = [
   { field: 'col1', header: 'Col 1' },

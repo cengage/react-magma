@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import {
   StyledContainer,
   StyledTabsWrapper,
@@ -11,14 +12,14 @@ import {
   TabsContainerContext,
 } from '../Tabs';
 import { NavTabProps, NavTab } from './NavTab';
-import { TabsOrientation, TabsTextTransform } from '../Tabs/shared';
-import { getNormalizedScrollLeft, Omit } from '../../utils';
+import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { getNormalizedScrollLeft, Omit } from '../../utils';
+import { TabsOrientation, TabsTextTransform } from '../Tabs/shared';
 import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
 import { useTabsMeta } from '../Tabs/utils';
-import { useIsInverse } from '../../inverse';
 
-export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {}
+export type NavTabsProps = Omit<TabsProps, 'onChange'>;
 
 interface NavTabsContextInterface {
   borderPosition?: TabsBorderPosition;

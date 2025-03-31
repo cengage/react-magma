@@ -1,5 +1,7 @@
-import styled from '@emotion/styled';
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+
 import { I18nContext } from '../../i18n';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -77,8 +79,8 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
           color
             ? color
             : props.isInverse
-            ? theme.colors.tertiary
-            : theme.colors.primary
+              ? theme.colors.tertiary
+              : theme.colors.primary
         }
         data-testid={testId}
         ref={ref}

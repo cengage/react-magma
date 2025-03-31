@@ -1,8 +1,11 @@
 import React from 'react';
-import { magma } from '../../theme/magma';
-import { Toast } from '.';
-import { ToastsContainer } from './ToastsContainer';
+
 import { act, render, fireEvent, waitFor } from '@testing-library/react';
+
+import { ToastsContainer } from './ToastsContainer';
+import { magma } from '../../theme/magma';
+
+import { Toast } from '.';
 
 describe('Toast', () => {
   beforeEach(() => {

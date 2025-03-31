@@ -1,3 +1,8 @@
+import React, { HTMLAttributes, useEffect, useState } from 'react';
+
+import styled from '@emotion/styled';
+import CodeSandboxer from 'react-codesandboxer';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
   Button,
   ButtonSize,
@@ -6,11 +11,6 @@ import {
   useIsInverse,
   magma,
 } from 'react-magma-dom';
-import React, { HTMLAttributes, useEffect, useState } from 'react';
-import CodeSandboxer from 'react-codesandboxer';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-
-import styled from '@emotion/styled';
 
 const pkg = require('../../../package.json');
 

@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { AccordionButton, AccordionButtonProps } from '../Accordion';
-import { IconWrapper, menuBackground } from './DropdownMenuItem';
+
+import styled from '@emotion/styled';
 import { IconProps } from 'react-magma-icons';
-import { ThemeContext } from '../../theme/ThemeContext';
+
+import { AccordionButton, AccordionButtonProps } from '../Accordion';
 import { DropdownContext } from './Dropdown';
 import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
-import { useForkedRef } from '../../utils';
 import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
-import styled from '@emotion/styled';
+import { IconWrapper, menuBackground } from './DropdownMenuItem';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useForkedRef } from '../../utils';
 
 export interface DropdownExpandableMenuButtonProps
   extends AccordionButtonProps {

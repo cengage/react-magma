@@ -1,15 +1,24 @@
-import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
+
+import { Meta, Story } from '@storybook/react/types-6-0';
 import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
-import { Input, InputProps } from '.';
+
 import { Button, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
 import { Card, CardBody } from '../Card';
+import { Combobox } from '../Combobox';
+import { DatePicker } from '../DatePicker';
 import { IconButton } from '../IconButton';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
+import { NativeSelect } from '../NativeSelect';
+import { PasswordInput } from '../PasswordInput';
+import { Search } from '../Search';
+import { Spacer, SpacerAxis } from '../Spacer';
+import { TimePicker } from '../TimePicker';
 import { Tooltip } from '../Tooltip';
-import { Spacer } from '../Spacer';
-import { ButtonGroup } from '../ButtonGroup';
+
+import { Input, InputProps } from '.';
 
 const Template: Story<InputProps> = args => (
   <>
@@ -212,11 +221,7 @@ export const HelpLink = args => {
         </Tooltip>
       </Input>
       <Spacer size={16} />
-      <Input 
-        labelText="Help link - hidden" 
-        isLabelVisuallyHidden 
-        {...args}
-      >
+      <Input labelText="Help link - hidden" isLabelVisuallyHidden {...args}>
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}
@@ -328,6 +333,69 @@ NumberInput.parameters = {
   controls: { exclude: ['type', 'iconPosition', 'labelWidth'] },
 };
 
+export const PhoneInput = () => {
+  const [inputVal, setInputVal] = React.useState('');
+  const [hasError, setHasError] = React.useState(false);
+  const phonePattern = '^[0-9]{3}-[0-9]{3}-[0-9]{4}$';
+
+  function handleChange(event) {
+    setInputVal(event.target.value);
+  }
+
+  React.useEffect(() => {
+    if (inputVal === '' || inputVal.match(phonePattern)) {
+      setHasError(false);
+    } else {
+      setHasError(true);
+    }
+  }, [inputVal]);
+
+  return (
+    <Input
+      pattern={phonePattern}
+      labelText={
+        <>
+          Phone <br /> Format: 123-456-7890
+        </>
+      }
+      type={InputType.tel}
+      errorMessage={hasError ? 'Please enter a phone number' : null}
+      value={inputVal}
+      onChange={handleChange}
+    />
+  );
+};
+
+export const URLInput = () => {
+  const [inputVal, setInputVal] = React.useState('');
+  const [hasError, setHasError] = React.useState(false);
+  const urlPattern =
+    '^(https?:\\/\\/)?([a-zA-Z0-9.-]+)\\.([a-zA-Z]{2,})(:[0-9]+)?(\\/.*)?$';
+
+  function handleChange(event) {
+    setInputVal(event.target.value);
+  }
+
+  React.useEffect(() => {
+    if (inputVal === '' || inputVal.match(urlPattern)) {
+      setHasError(false);
+    } else {
+      setHasError(true);
+    }
+  }, [hasError, inputVal]);
+
+  return (
+    <Input
+      pattern={urlPattern}
+      labelText="URL"
+      type={InputType.url}
+      errorMessage={hasError ? 'Please enter a url' : null}
+      value={inputVal}
+      onChange={handleChange}
+    />
+  );
+};
+
 export const SeveralErrors = () => {
   const [inputValues, setInputValues] = React.useState({
     firstName: '',
@@ -409,11 +477,16 @@ export const SeveralErrors = () => {
       />
       <br />
       <Input
-        errorMessage={hasErrors.emailAddress ? 'Please enter your email address' : ''}
+        errorMessage={
+          hasErrors.emailAddress ? 'Please enter your email address' : ''
+        }
         helperMessage=""
         labelText="Email address *"
         onChange={event =>
-          setInputValues(prev => ({ ...prev, emailAddress: event.target.value }))
+          setInputValues(prev => ({
+            ...prev,
+            emailAddress: event.target.value,
+          }))
         }
         required
         value={inputValues.emailAddress}
@@ -426,6 +499,125 @@ export const SeveralErrors = () => {
           Reset
         </Button>
       </ButtonGroup>
+    </>
+  );
+};
+
+export const AllInputs = () => {
+  const helpLinkLabel = 'Learn more';
+  const onHelpLinkClick = () => {
+    alert('Help link clicked!');
+  };
+
+  return (
+    <>
+      <div style={{ display: 'flex' }}>
+        <div style={{ flex: '0 0 auto' }}>
+          <PasswordInput labelText="Password" />
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <Input labelText="Label" />
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <TimePicker labelText="Time" />
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <DatePicker labelText="Date" />
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <Input
+            labelText="With two icons"
+            icon={<NotificationsIcon />}
+            iconPosition={InputIconPosition.left}
+          >
+            <Tooltip content={helpLinkLabel}>
+              <IconButton
+                aria-label={helpLinkLabel}
+                icon={<HelpIcon />}
+                onClick={onHelpLinkClick}
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          </Input>
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <NativeSelect
+            labelText={'Native Select'}
+            fieldId={'native-select-example'}
+          >
+            <option>Red</option>
+            <option>Green</option>
+            <option>Blue</option>
+            <option>Purple mountain majesty</option>
+          </NativeSelect>
+        </div>
+      </div>
+      <Spacer axis={SpacerAxis.vertical} size={120} />
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Search onSearch={() => {}} isClearable />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Input
+            labelText="Number 1-40 "
+            inputWrapperStyle={{ width: '100px' }}
+            type={InputType.number}
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Input
+            labelText="Email"
+            inputWrapperStyle={{ width: '100px' }}
+            type={InputType.email}
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Input
+            labelText="Phone"
+            inputWrapperStyle={{ width: '100px' }}
+            type={InputType.tel}
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Input
+            labelText="URL"
+            inputWrapperStyle={{ width: '100px' }}
+            type={InputType.url}
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Combobox
+            id="comboboxId"
+            labelText="Combobox"
+            defaultItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' },
+            ]}
+            placeholder="Hello"
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto', maxWidth: '400px' }}>
+          <Combobox
+            id="comboboxId-multi"
+            isMulti
+            labelText={'Combobox Multi Example'}
+            defaultItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' },
+              { label: 'Orange', value: 'orange' },
+              { label: 'Aqua', value: 'aqua' },
+              { label: 'Gold', value: 'gold' },
+              { label: 'Periwinkle', value: 'periwinkle' },
+              { label: 'Lavender', value: 'lavender' },
+              { label: 'Marigold', value: 'marigold' },
+            ]}
+          />
+        </div>
+      </div>
     </>
   );
 };

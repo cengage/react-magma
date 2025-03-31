@@ -24,7 +24,7 @@ export function useFocusLock(
         element instanceof HTMLElement &&
         style.display !== 'none' &&
         style.visibility !== 'hidden' &&
-        !element.hasAttribute('disabled') 
+        !element.hasAttribute('disabled')
       );
     });
   };

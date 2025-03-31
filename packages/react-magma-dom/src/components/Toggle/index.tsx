@@ -1,18 +1,21 @@
 import * as React from 'react';
-import { HiddenStyles } from '../../utils/UtilityStyles';
-import { CheckIcon } from 'react-magma-icons';
-import { FormGroupContext } from '../FormGroup';
-import { InputMessage } from '../Input/InputMessage';
-import { StyledLabel } from '../SelectionControls/StyledLabel';
-import { StyledContainer } from '../SelectionControls/StyledContainer';
+
 import { css } from '@emotion/react';
-// Using the base `styled` from `emotion` until import mapping is fixed: https://github.com/emotion-js/emotion/pull/1220
-// import styled from '../../theme/styled';
 import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+import { CheckIcon } from 'react-magma-icons';
+
+import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
-import { useIsInverse } from '../../inverse';
-import { transparentize } from 'polished';
+import { HiddenStyles } from '../../utils/UtilityStyles';
+import { FormGroupContext } from '../FormGroup';
+import { InputMessage } from '../Input/InputMessage';
+import { StyledContainer } from '../SelectionControls/StyledContainer';
+import { StyledLabel } from '../SelectionControls/StyledLabel';
+// Using the base `styled` from `emotion` until import mapping is fixed: https://github.com/emotion-js/emotion/pull/1220
+// import styled from '../../theme/styled';
 
 export enum ToggleTextPosition {
   left = 'left', // default
@@ -69,7 +72,7 @@ export interface ToggleProps
   /**
    * @internal
    */
-  theme?: any;
+  theme?: ThemeInterface;
   /**
    * Style properties for the part of the component that slides back and forth on the track
    */
@@ -126,7 +129,7 @@ const Track = styled.span<{
   disabled?: boolean;
   hasError?: boolean;
   isInverse?: boolean;
-  theme?: any;
+  theme?: ThemeInterface;
 }>`
   background: ${props =>
     props.isInverse
@@ -188,7 +191,9 @@ const Track = styled.span<{
     position: absolute;
     top: 50%;
     transform: scale(1);
-    transition: opacity 1s, transform 0.25s;
+    transition:
+      opacity 1s,
+      transform 0.25s;
     width: 40px;
 
     ${props =>
@@ -212,7 +217,7 @@ const Thumb = styled.span<{
   isChecked?: boolean;
   isInverse?: boolean;
   disabled?: boolean;
-  theme?: any;
+  theme?: ThemeInterface;
 }>`
   background: ${props =>
     props.isInverse && props.disabled
@@ -236,7 +241,7 @@ const Thumb = styled.span<{
 
 const IconContainer = styled.span<{
   disabled?: boolean;
-  theme?: any;
+  theme?: ThemeInterface;
   isChecked?: boolean;
   isInverse?: boolean;
 }>`
@@ -327,10 +332,10 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
       descriptionId && groupDescriptionId
         ? `${groupDescriptionId} ${descriptionId}`
         : descriptionId
-        ? descriptionId
-        : groupDescriptionId
-        ? groupDescriptionId
-        : null;
+          ? descriptionId
+          : groupDescriptionId
+            ? groupDescriptionId
+            : null;
 
     const hasError = context.hasError || !!errorMessage;
 

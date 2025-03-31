@@ -1,9 +1,12 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
-import { TableCellAlign, TableContext, TableDensity } from './Table';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { transparentize } from 'polished';
 import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+
+import { TableCellAlign, TableContext, TableDensity } from './Table';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface TableCellProps
   extends React.HTMLAttributes<HTMLTableCellElement> {
@@ -39,7 +42,7 @@ export const baseTableCellStyle = props => css`
   }
 `;
 
-export function buildCellPaddingStyle(density, theme: any) {
+export function buildCellPaddingStyle(density, theme: ThemeInterface) {
   switch (density) {
     case 'compact':
       return `${theme.spaceScale.spacing02} ${theme.spaceScale.spacing03}`;
@@ -56,7 +59,7 @@ const StyledCell = styled.td<{
   hasVerticalBorders?: boolean;
   isInverse?: boolean;
   textAlign?: TableCellAlign;
-  theme?: any;
+  theme?: ThemeInterface;
   width?: string;
 }>`
   ${baseTableCellStyle}

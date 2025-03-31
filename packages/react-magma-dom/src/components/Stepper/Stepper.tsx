@@ -1,12 +1,13 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
 
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
-import { useIsInverse } from '../../inverse';
-import { Step, StepProps, StepStatus } from './Step';
+import styled from '@emotion/styled';
 import { transparentize } from 'polished';
+
+import { Step, StepProps, StepStatus } from './Step';
 import { I18nContext } from '../../i18n';
+import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface StepperProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -325,8 +326,8 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       return summaryViewLayout
         ? StepperLayout.summaryView
         : hideLabelsLayout
-        ? StepperLayout.hideLabels
-        : StepperLayout.showLabels;
+          ? StepperLayout.hideLabels
+          : StepperLayout.showLabels;
     };
 
     const stepContent = React.Children.map(
@@ -340,8 +341,8 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
             currentStep >= index + 1
               ? StepStatus.completed
               : currentStep >= index
-              ? StepStatus.active
-              : StepStatus.incomplete;
+                ? StepStatus.active
+                : StepStatus.incomplete;
 
           const item = React.cloneElement(child, {
             isInverse,

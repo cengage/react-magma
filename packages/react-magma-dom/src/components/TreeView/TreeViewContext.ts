@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { TreeViewSelectable } from './types';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
@@ -48,6 +49,8 @@ export interface TreeViewContextInterface {
     event: React.SyntheticEvent,
     expandedItemId: string
   ) => void;
+  expandedSet: Set<string>;
+  isTopLevelSelectable?: boolean;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
@@ -63,4 +66,6 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   items: [],
   selectItem: () => undefined,
   handleExpandedChange: () => undefined,
+  isTopLevelSelectable: true,
+  expandedSet: new Set<string>(),
 });

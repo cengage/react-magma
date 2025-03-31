@@ -1,4 +1,11 @@
 import React from 'react';
+
+import { Story, Meta } from '@storybook/react/types-6-0';
+
+import { Button, ButtonColor } from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
+import { Card, CardBody } from '../Card';
+
 import {
   Flex,
   FlexProps,
@@ -9,10 +16,6 @@ import {
   FlexJustify,
   FlexWrap,
 } from '.';
-import { Card, CardBody } from '../Card';
-import { Button, ButtonColor } from '../Button';
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { ButtonGroup } from '../ButtonGroup';
 
 export default {
   title: 'Flex',

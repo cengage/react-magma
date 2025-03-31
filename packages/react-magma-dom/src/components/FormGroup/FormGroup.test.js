@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { axe } from '../../../axe-helper';
-import { FormGroup } from '.';
-import { Checkbox } from '../Checkbox';
+
 import { render } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import { Checkbox } from '../Checkbox';
+
+import { FormGroup } from '.';
 
 describe('Form Group', () => {
   afterEach(() => {
@@ -12,7 +15,7 @@ describe('Form Group', () => {
 
   it('should assign a data-testid attribute with a testId prop', () => {
     const testId = 'test-id';
-    const { getByTestId } = render(<FormGroup testId={testId}></FormGroup>);
+    const { getByTestId } = render(<FormGroup testId={testId} />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });

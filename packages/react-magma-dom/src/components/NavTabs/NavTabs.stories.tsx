@@ -1,10 +1,11 @@
 import React from 'react';
-import { NavTabs, NavTabsProps } from '.';
-import { NavTab } from './NavTab';
-import { Card } from '../Card';
-import { magma } from '../../theme/magma';
+
 import { Meta, Story } from '@storybook/react/types-6-0';
 import { AndroidIcon, EmailIcon, NotificationsIcon } from 'react-magma-icons';
+
+import { NavTab } from './NavTab';
+import { magma } from '../../theme/magma';
+import { Card } from '../Card';
 import {
   TabsAlignment,
   TabsBorderPosition,
@@ -12,6 +13,8 @@ import {
   TabsIconPosition,
 } from '../Tabs';
 import { TabsOrientation, TabsTextTransform } from '../Tabs/shared';
+
+import { NavTabs, NavTabsProps } from '.';
 
 export default {
   component: NavTabs,

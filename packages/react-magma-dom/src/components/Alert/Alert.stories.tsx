@@ -1,11 +1,14 @@
 import React from 'react';
+
 import { Meta } from '@storybook/react/types-6-0';
-import { Alert } from './index';
+
 import { AlertVariant } from '../AlertBase';
 import { Badge } from '../Badge';
 import { Button, ButtonSize } from '../Button';
 import { Card, CardBody } from '../Card';
 import { Hyperlink } from '../Hyperlink';
+
+import { Alert } from './index';
 
 export default {
   title: 'Alert',

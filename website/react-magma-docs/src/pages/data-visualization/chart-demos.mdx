@@ -4,21 +4,12 @@ title: Chart Demos
 order: 3
 ---
 
-import { LeadParagraph } from '../../components/LeadParagraph';
-import { MagmaChartsSiteLink } from './introduction';
 import { Flex, FlexBehavior, FlexAlignItems, magma } from 'react-magma-dom';
-import { StorybookIcon } from '../../images/icons/storybook-icon';
 import { OpenInNewIcon } from 'react-magma-icons';
 
-<PageContent componentName="chart_demos" type="data_visualization">
-
-<LeadParagraph>
-  These charts provide an intuitive and easily understandable means of
-  visualizing data sets. Each chart should convey a narrative and align with the
-  content on the page where it is located. 
-</LeadParagraph>
-
-<MagmaChartsSiteLink />
+import { MagmaChartsSiteLink } from './introduction';
+import { LeadParagraph } from '../../components/LeadParagraph';
+import { StorybookIcon } from '../../images/icons/storybook-icon';
 
 export const MoreDemosLink = ({ number, path }) => (
   <Link to={path} target="_blank">
@@ -41,14 +32,25 @@ export const MoreDemosLink = ({ number, path }) => (
   </Link>
 );
 
+<PageContent componentName="chart_demos" type="data_visualization">
+
+<LeadParagraph>
+  These charts provide an intuitive and easily understandable means of
+  visualizing data sets. Each chart should convey a narrative and align with the
+  content on the page where it is located. 
+</LeadParagraph>
+
+<MagmaChartsSiteLink />
+
 ## Area (simple)
 
 Area charts share similarities with line charts, distinguished by the filled areas below the lines.
 
 ```tsx
 import React from 'react';
-import { Card } from 'react-magma-dom';
+
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
 // IMPORTANT: Uncomment the line below for the correct styles
 // import '@react-magma/charts/dist/charts.css';
 
@@ -144,8 +146,9 @@ A stacked area chart is a graph that shows how the values of multiple groups ch
 
 ```tsx
 import React from 'react';
-import { Card } from 'react-magma-dom';
+
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
 // IMPORTANT: Uncomment the line below for the correct styles
 // import '@react-magma/charts/dist/charts.css';
 
@@ -269,8 +272,9 @@ Bar charts use vertical or horizontal markers to compare values, allowing for as
 
 ```tsx
 import React from 'react';
-import { Card } from 'react-magma-dom';
+
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
 // IMPORTANT: Uncomment the line below for the correct styles
 // import '@react-magma/charts/dist/charts.css';
 
@@ -333,8 +337,9 @@ A floating bar chart uses horizontal bars to represent data, spanning between th
 
 ```tsx
 import React from 'react';
-import { Card } from 'react-magma-dom';
+
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
 // IMPORTANT: Uncomment the line below for the correct styles
 // import '@react-magma/charts/dist/charts.css';
 
@@ -402,8 +407,9 @@ A grouped bar chart, also known as a clustered bar graph, multi-set bar chart, o
 
 ```tsx
 import React from 'react';
-import { Card } from 'react-magma-dom';
+
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
 // IMPORTANT: Uncomment the line below for the correct styles
 // import '@react-magma/charts/dist/charts.css';
 
@@ -546,8 +552,9 @@ A stacked bar chart, also called a stacked bar graph or stacked column chart, co
 
 ```tsx
 import React from 'react';
-import { Card } from 'react-magma-dom';
+
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
 // IMPORTANT: Uncomment the line below for the correct styles
 // import '@react-magma/charts/dist/charts.css';
 
@@ -691,8 +698,9 @@ A donut chart is a type of pie chart with a hole in the middle. It shows the rel
 
 ```tsx
 import React from 'react';
-import { Card } from 'react-magma-dom';
+
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
 // IMPORTANT: Uncomment the line below for the correct styles
 // import '@react-magma/charts/dist/charts.css';
 
@@ -761,8 +769,9 @@ Line charts depict data at regular intervals, connecting points with lines. They
 
 ```tsx
 import React from 'react';
-import { Card } from 'react-magma-dom';
+
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
 // IMPORTANT: Uncomment the line below for the correct styles
 // import '@react-magma/charts/dist/charts.css';
 
@@ -910,8 +919,9 @@ A lollipop chart is a variation of a bar chart ideal for highlighting individual
 
 ```tsx
 import React from 'react';
-import { Card } from 'react-magma-dom';
+
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
 // IMPORTANT: Uncomment the line below for the correct styles
 // import '@react-magma/charts/dist/charts.css';
 
@@ -975,8 +985,9 @@ A pie chart visually summarizes nominal data or illustrates the distribution of 
 
 ```tsx
 import React from 'react';
-import { Card } from 'react-magma-dom';
+
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
 // IMPORTANT: Uncomment the line below for the correct styles
 // import '@react-magma/charts/dist/charts.css';
 

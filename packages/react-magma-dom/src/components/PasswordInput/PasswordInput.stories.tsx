@@ -1,9 +1,12 @@
 import React from 'react';
-import { PasswordInput, PasswordInputProps } from '.';
-import { Card, CardBody } from '../Card';
+
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { LabelPosition } from '../Label';
+
+import { Card, CardBody } from '../Card';
 import { InputSize } from '../InputBase';
+import { LabelPosition } from '../Label';
+
+import { PasswordInput, PasswordInputProps } from '.';
 
 const Template: Story<PasswordInputProps> = args => (
   <PasswordInput {...args} labelText="Password" />
@@ -40,7 +43,7 @@ export default {
       control: {
         type: 'select',
         options: InputSize,
-      }
+      },
     },
     isPasswordMaskButtonHidden: {
       defaultValue: false,
@@ -76,5 +79,5 @@ Inverse.decorators = [
 export const CustomText = Template.bind({});
 CustomText.args = {
   showPasswordButtonText: 'Mostrar',
-  hidePasswordButtonText: 'Esconder'
+  hidePasswordButtonText: 'Esconder',
 };

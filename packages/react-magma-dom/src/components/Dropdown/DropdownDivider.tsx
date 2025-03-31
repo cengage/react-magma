@@ -1,8 +1,10 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+
 import { DropdownContext } from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { transparentize } from 'polished';
-import styled from '@emotion/styled';
 
 export interface DropdownDividerProps
   extends React.HTMLAttributes<HTMLHRElement> {

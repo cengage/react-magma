@@ -26,7 +26,9 @@ export const DisplayInputStyles = props => css`
     padding: 50%;
     top: -${props.theme.spaceScale.spacing03};
     transform: scale(1);
-    transition: opacity 1s, transform 0.5s;
+    transition:
+      opacity 1s,
+      transform 0.5s;
     width: ${props.theme.spaceScale.spacing09};
   }
 `;
@@ -41,8 +43,8 @@ export function buildDisplayInputActiveBackground(props) {
   return props.isInverse
     ? props.theme.colors.neutral100
     : props.color
-    ? props.color
-    : props.theme.colors.primary;
+      ? props.color
+      : props.theme.colors.primary;
 }
 
 export function buildDisplayInputBorderColor(props) {

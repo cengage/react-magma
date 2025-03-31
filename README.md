@@ -4,7 +4,7 @@
 
 ### Setup Requirements
 
-1. Your project needs to be running **React v16.5** or greater
+1. Your project needs to be running **React v17**
 
 ### Add the react-magma components to your project
 

@@ -1,5 +1,78 @@
 # Change Log
 
+## 5.1.2-next.12
+
+### Patch Changes
+
+- 8de591556: chore: Manually sync main -> dev after landing page update
+
+## 5.1.2-next.11
+
+### Patch Changes
+
+- ed6db42d3: build(deps): bump @babel/runtime from 7.24.5 to 7.26.10
+- Updated dependencies [221a7c946]
+  - react-magma-dom@4.9.0-next.9
+
+## 5.1.2-next.10
+
+### Patch Changes
+
+- 40aac2df9: build(deps): bump @babel/helpers from 7.24.5 to 7.26.10
+
+## 5.1.2-next.9
+
+### Patch Changes
+
+- 8753f4a3f: build(deps-dev): bump axios from 1.7.8 to 1.8.2
+
+## 5.1.2-next.8
+
+### Patch Changes
+
+- Updated dependencies [8b24132b5]
+  - @react-magma/dropzone@11.0.0-next.2
+
+## 5.1.2-next.7
+
+### Patch Changes
+
+- f35c40983: chore: prittier script typo
+
+## 5.1.2-next.6
+
+### Patch Changes
+
+- 2c9c805e9: chore: update eslint and prittier configs
+
+## 5.1.2-next.5
+
+### Patch Changes
+
+- Updated dependencies [edbc5c0a2]
+  - react-magma-dom@4.9.0-next.3
+  - @react-magma/charts@11.0.0-next.2
+  - @react-magma/dropzone@11.0.0-next.1
+  - @react-magma/schema-renderer@11.0.0-next.1
+  - @cengage-patterns/header@13.0.0-next.1
+
+## 5.1.2-next.4
+
+### Patch Changes
+
+- 0f00b9357: docs: Update supported React version
+
+## 5.1.2-next.3
+
+### Patch Changes
+
+- Updated dependencies [b65154ad5]
+  - react-magma-dom@4.8.1-next.0
+  - @react-magma/charts@10.0.1-next.1
+  - @react-magma/dropzone@10.0.1-next.0
+  - @react-magma/schema-renderer@10.0.1-next.0
+  - @cengage-patterns/header@12.0.1-next.0
+
 ## 5.1.2-next.2
 
 ### Patch Changes

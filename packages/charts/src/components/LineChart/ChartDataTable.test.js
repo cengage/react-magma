@@ -1,7 +1,9 @@
 import * as React from 'react';
+
 import { render } from '@testing-library/react';
-import { basicData, explicitData } from './test/exampleChartData';
+
 import { ChartDataTable } from './ChartDataTable';
+import { basicData, explicitData } from './test/exampleChartData';
 
 describe('Chart Data Table', () => {
   describe('Basic Data', () => {

@@ -1,19 +1,20 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
-import { inputBaseStyles, inputWrapperStyles } from '../InputBase';
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+
+import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useGenerateId } from '../../utils';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
 } from '../FormFieldContainer';
-
-import { DefaultDropdownIndicator } from '../Select/components';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { useIsInverse } from '../../inverse';
-import { useGenerateId } from '../../utils';
-import { ThemeInterface } from '../../theme/magma';
-import { transparentize } from 'polished';
+import { inputBaseStyles, inputWrapperStyles } from '../InputBase';
 import { LabelPosition } from '../Label';
-import styled from '@emotion/styled';
+import { DefaultDropdownIndicator } from '../Select/components';
 
 /**
  * @children required
@@ -45,11 +46,12 @@ const StyledNativeSelectWrapper = styled.div<{
       props.isInverse && props.disabled
         ? transparentize(0.6, props.theme.colors.neutral100)
         : props.disabled
-        ? transparentize(0.4, props.theme.colors.neutral500)
-        : props.isInverse
-        ? props.theme.colors.neutral100
-        : props.theme.colors.neutral700};
-    margin: 0 ${props => props.theme.spaceScale.spacing03} 0 -${props => props.theme.spaceScale.spacing08};
+          ? transparentize(0.4, props.theme.colors.neutral500)
+          : props.isInverse
+            ? props.theme.colors.neutral100
+            : props.theme.colors.neutral700};
+    margin: 0 ${props => props.theme.spaceScale.spacing03}
+      0 -${props => props.theme.spaceScale.spacing08};
     pointer-events: none;
     z-index: 1;
   }

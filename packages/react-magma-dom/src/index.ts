@@ -1,8 +1,4 @@
-import { ThemeInterface } from './theme/magma';
-
-declare module '@emotion/react' {
-  export interface Theme extends ThemeInterface {}
-}
+import './theme/styled';
 
 export { Alert, AlertProps } from './components/Alert';
 export { AlertVariant } from './components/AlertBase';
@@ -253,6 +249,25 @@ export {
   TypographyContextVariant,
   TypographyVisualStyle,
 } from './components/Typography';
+export {
+  Popover,
+  PopoverProps,
+  PopoverPosition,
+  PopoverApi,
+} from './components/Popover';
+export {
+  PopoverTrigger,
+  PopoverTriggerProps,
+} from './components/Popover/PopoverTrigger';
+export {
+  PopoverContent,
+  PopoverContentProps,
+} from './components/Popover/PopoverContent';
+export {
+  PopoverHeader,
+  PopoverFooter,
+  PopoverSectionProps,
+} from './components/Popover/PopoverSection';
 
 export {
   VisuallyHidden,
@@ -286,6 +301,7 @@ export * from './components/List';
 export * from './components/BlockQuote';
 export * from './components/ButtonGroup';
 export * from './components/TreeView';
+export * from './components/DefinitionList';
 
 export * from './components/CharacterCounter';
 export * from './components/ToggleButton';

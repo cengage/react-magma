@@ -1,25 +1,27 @@
 import * as React from 'react';
+
+import {
+  CheckBoxIcon,
+  CheckBoxOutlineBlankIcon,
+  IndeterminateCheckBoxIcon,
+} from 'react-magma-icons';
+
+import { I18nContext } from '../../i18n';
+import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { Omit, useGenerateId } from '../../utils';
+import { Announce } from '../Announce';
 import {
   CheckboxProps,
   HiddenInput,
   HiddenLabelText,
   StyledFakeInput,
 } from '../Checkbox';
-import {
-  CheckBoxIcon,
-  CheckBoxOutlineBlankIcon,
-  IndeterminateCheckBoxIcon,
-} from 'react-magma-icons';
 import { FormGroupContext } from '../FormGroup';
 import { InputMessage } from '../Input/InputMessage';
-import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
-import { Omit, useGenerateId } from '../../utils';
+import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { VisuallyHidden } from '../VisuallyHidden';
-import { Announce } from '../Announce';
-import { I18nContext } from '../../i18n';
-import { useIsInverse } from '../../inverse';
 
 export interface IndeterminateCheckboxProps
   extends Omit<CheckboxProps, 'checked'> {
@@ -118,14 +120,14 @@ export const IndeterminateCheckbox = React.forwardRef<
         i18n.indeterminateCheckbox.isCheckedAnnounce
       )
     : isIndeterminate
-    ? replaceLabelTextForAnnounceText(
-        i18n.indeterminateCheckbox.isIndeterminateAnnounce
-      )
-    : isUnchecked
-    ? replaceLabelTextForAnnounceText(
-        i18n.indeterminateCheckbox.isUncheckedAnnounce
-      )
-    : '';
+      ? replaceLabelTextForAnnounceText(
+          i18n.indeterminateCheckbox.isIndeterminateAnnounce
+        )
+      : isUnchecked
+        ? replaceLabelTextForAnnounceText(
+            i18n.indeterminateCheckbox.isUncheckedAnnounce
+          )
+        : '';
 
   const descriptionId = errorMessage ? `${id}__desc` : null;
   const groupDescriptionId = context.descriptionId;
@@ -134,10 +136,10 @@ export const IndeterminateCheckbox = React.forwardRef<
     descriptionId && groupDescriptionId
       ? `${groupDescriptionId} ${descriptionId}`
       : descriptionId
-      ? descriptionId
-      : groupDescriptionId
-      ? groupDescriptionId
-      : null;
+        ? descriptionId
+        : groupDescriptionId
+          ? groupDescriptionId
+          : null;
 
   const hasError = context.hasError || !!errorMessage;
 

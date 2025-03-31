@@ -1,14 +1,15 @@
 import * as React from 'react';
-import { css } from '@emotion/react';
-import { transparentize } from 'polished';
 
-import { CancelIcon, IconProps } from 'react-magma-icons';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
-import { useIsInverse } from '../../inverse';
-import { Omit, XOR, getNodeText } from '../../utils';
-import { I18nContext } from '../../i18n';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+import { CancelIcon, IconProps } from 'react-magma-icons';
+
+import { I18nContext } from '../../i18n';
+import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { Omit, XOR, getNodeText } from '../../utils';
 
 export enum TagColor {
   default = 'default', // default

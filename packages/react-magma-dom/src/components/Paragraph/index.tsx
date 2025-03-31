@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import {
   TypographyVisualStyle,
@@ -46,7 +48,7 @@ export interface ParagraphProps
   /**
    * @internal
    */
-  theme?: any;
+  theme?: ThemeInterface;
   /**
    * Applies visual styles including font-size, font-weight, line-height and margins
    * @default TypographyVisualStyle.bodyMedium

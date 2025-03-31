@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { Label } from '../Label';
+
+import styled from '@emotion/styled';
+
+import { useIsInverse } from '../../inverse';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { omit, useGenerateId } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { useIsInverse } from '../../inverse';
-
-import { omit, useGenerateId } from '../../utils';
-import styled from '@emotion/styled';
+import { Label } from '../Label';
 
 const HiddenLabel = styled.label`
   ${HiddenStyles};

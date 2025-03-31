@@ -1,4 +1,12 @@
 import { ComponentMapper } from '@data-driven-forms/react-form-renderer';
+import {
+  Alert,
+  Banner,
+  Heading,
+  Hyperlink,
+  Toast,
+  Paragraph,
+} from 'react-magma-dom';
 
 import { Checkbox } from '../Checkbox';
 import { Combobox } from '../Combobox';
@@ -10,20 +18,11 @@ import { Input } from '../Input';
 import { Modal } from '../Modal';
 import { PasswordInput } from '../PasswordInput';
 import { Radio } from '../Radio';
-import { Spy } from '../Spy';
 import { Select } from '../Select';
+import { Spy } from '../Spy';
 import { Textarea } from '../Textarea';
 import { TimePicker } from '../TimePicker';
 import { Toggle } from '../Toggle';
-
-import {
-  Alert,
-  Banner,
-  Heading,
-  Hyperlink,
-  Toast,
-  Paragraph,
-} from 'react-magma-dom';
 
 export enum componentTypes {
   ALERT = 'ALERT',

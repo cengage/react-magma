@@ -1,6 +1,5 @@
 import React from 'react';
-import { axe } from '../../../axe-helper.js';
-import { Dropzone } from '.';
+
 import {
   cleanup,
   render,
@@ -8,8 +7,12 @@ import {
   fireEvent,
   waitFor,
 } from '@testing-library/react';
-import { I18nContext, defaultI18n, magma } from 'react-magma-dom';
 import userEvent from '@testing-library/user-event';
+import { I18nContext, defaultI18n, magma } from 'react-magma-dom';
+
+import { axe } from '../../../axe-helper.js';
+
+import { Dropzone } from '.';
 
 describe('File Uploader', () => {
   let files;

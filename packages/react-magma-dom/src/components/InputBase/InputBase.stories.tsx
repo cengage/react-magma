@@ -1,20 +1,22 @@
 import React from 'react';
-import { InputBase } from '../InputBase';
-import { Input } from '../Input';
-import { PasswordInput } from '../PasswordInput';
-import { DatePicker } from '../DatePicker';
-import { TimePicker } from '../TimePicker';
-import { Textarea } from '../Textarea';
+
+import styled from '@emotion/styled';
+import { Meta } from '@storybook/react/types-6-0';
+
+import { magma } from '../../theme/magma';
 import { Checkbox } from '../Checkbox';
+import { Combobox } from '../Combobox';
+import { DatePicker } from '../DatePicker';
 import { FormGroup } from '../FormGroup';
+import { Input } from '../Input';
+import { InputBase } from '../InputBase';
+import { PasswordInput } from '../PasswordInput';
 import { Radio } from '../Radio';
 import { RadioGroup } from '../RadioGroup';
-import { Toggle } from '../Toggle';
-import { Combobox } from '../Combobox';
 import { Select } from '../Select';
-import { Meta } from '@storybook/react/types-6-0';
-import { magma } from '../../theme/magma';
-import styled from '@emotion/styled';
+import { Textarea } from '../Textarea';
+import { TimePicker } from '../TimePicker';
+import { Toggle } from '../Toggle';
 
 const Container = styled.div`
   display: grid;
@@ -46,11 +48,7 @@ export const Default = args => {
           labelText="Input"
           isClearable
         />
-        <Input
-          defaultValue={0}
-          labelText="Default value `0`"
-          isClearable
-        />
+        <Input defaultValue={0} labelText="Default value `0`" isClearable />
         <PasswordInput
           errorMessage="danger will robinson."
           labelText="PasswordInput"
@@ -121,10 +119,7 @@ export const Default = args => {
           errorMessage="danger will robinson."
           isMulti
         />
-        <Toggle
-          errorMessage="danger will robinson."
-          labelText="Toggle"
-        />
+        <Toggle errorMessage="danger will robinson." labelText="Toggle" />
         <Toggle
           errorMessage="danger will robinson."
           labelText="Toggle"
@@ -138,7 +133,7 @@ Default.args = {};
 
 export const Inverse = args => {
   return (
-  <Container style={{backgroundColor: magma.colors.primary600}}>
+    <Container style={{ backgroundColor: magma.colors.primary600 }}>
       <One>
         <Input
           errorMessage="danger will robinson."
@@ -168,9 +163,21 @@ export const Inverse = args => {
           labelText="TimePicker"
           isInverse
         />
-        <Textarea errorMessage="danger will robinson." labelText="Textarea" isInverse/>
-        <Checkbox errorMessage="danger will robinson." labelText="Checkbox" isInverse/>
-        <FormGroup errorMessage="danger will robinson." labelText="FormGroup" isInverse>
+        <Textarea
+          errorMessage="danger will robinson."
+          labelText="Textarea"
+          isInverse
+        />
+        <Checkbox
+          errorMessage="danger will robinson."
+          labelText="Checkbox"
+          isInverse
+        />
+        <FormGroup
+          errorMessage="danger will robinson."
+          labelText="FormGroup"
+          isInverse
+        >
           <Checkbox labelText="Checkbox One" isInverse />
           <Checkbox labelText="Checkbox Two" isInverse />
           <Checkbox labelText="Checkbox Three" isInverse />

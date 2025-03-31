@@ -1,20 +1,23 @@
 import React from 'react';
-import { Datagrid } from '.';
+
 import { Story, Meta } from '@storybook/react/types-6-0';
+
 import { DatagridProps } from './Datagrid';
+import { magma } from '../../theme/magma';
+import { Announce } from '../Announce';
+import { Button } from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
+import { usePagination } from '../Pagination/usePagination';
+import { Spacer, SpacerAxis } from '../Spacer';
 import {
   TablePaginationProps,
   TableRowColor,
   TableSortDirection,
   TableDensity,
 } from '../Table';
-import { usePagination } from '../Pagination/usePagination';
-import { Button } from '../Button';
-import { ButtonGroup } from '../ButtonGroup';
-import { magma } from '../../theme/magma';
-import { Spacer, SpacerAxis } from '../Spacer';
-import { Announce } from '../Announce';
 import { VisuallyHidden } from '../VisuallyHidden';
+
+import { Datagrid } from '.';
 
 const rowsForPagination = [
   {
@@ -474,7 +477,7 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
         return nonSelectedItems.concat(selectedItemsToSort);
       }
     } else {
-      let sortableItems = [...products];
+      const sortableItems = [...products];
       const direction =
         sortConfig.key === 'price' ? priceDirection : stockDirection;
       sortableItems.sort((a, b) => {

@@ -1,10 +1,13 @@
 import React from 'react';
-import { SkipLink } from '.';
+
+import { Meta } from '@storybook/react/types-6-0';
+
 import { ButtonVariant } from '../Button';
 import { Paragraph } from '../Paragraph';
 import { SkipLinkContent } from '../SkipLinkContent';
 import { TypographyVisualStyle } from '../Typography';
-import { Meta } from '@storybook/react/types-6-0';
+
+import { SkipLink } from '.';
 
 export default {
   component: SkipLink,
@@ -21,9 +24,7 @@ export const Default = () => {
       <Paragraph>
         Press Tab on your keyboard for the Skip Navigation button to appear.
       </Paragraph>
-      <SkipLink to="#" variant={ButtonVariant.solid}>
-        Skip to content
-      </SkipLink>
+      <SkipLink variant={ButtonVariant.solid}>Skip to content</SkipLink>
       {arr.map(index => (
         <Paragraph key={index} noMargins>
           #{index}

@@ -1,4 +1,10 @@
 import React from 'react';
+
+import { act, render, fireEvent, getByTestId } from '@testing-library/react';
+import { transparentize } from 'polished';
+
+import { magma } from '../../theme/magma';
+
 import {
   Table,
   TableBody,
@@ -7,11 +13,6 @@ import {
   TableHeaderCell,
   TableRow,
 } from '.';
-
-import { magma } from '../../theme/magma';
-
-import { act, render, fireEvent, getByTestId } from '@testing-library/react';
-import { transparentize } from 'polished';
 
 describe('Table', () => {
   it('should find element by testId', () => {

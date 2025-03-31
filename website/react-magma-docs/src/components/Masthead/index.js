@@ -1,15 +1,17 @@
 import React from 'react';
+
+import { Header } from '@cengage-patterns/header';
+import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-import { Logo } from '../Logo';
 import {
   magma,
   AppBarPosition,
   ButtonVariant,
   IconButton,
 } from 'react-magma-dom';
-import styled from '@emotion/styled';
-import { Header } from '@cengage-patterns/header';
 import { GithubIcon } from 'react-magma-icons';
+
+import { Logo } from '../Logo';
 
 const LogoLink = styled(Link)`
   align-items: center;

@@ -1,12 +1,14 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+
+import { InverseContext, useIsInverse } from '../../inverse';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { CharacterCounter } from '../CharacterCounter';
-import { InputIconPosition, InputSize } from '../InputBase';
 import { InputMessage } from '../Input/InputMessage';
+import { InputIconPosition, InputSize } from '../InputBase';
 import { Label, LabelPosition } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { InverseContext, useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
 
 /**
  * Internal use only: Wrapper for all field components

@@ -1,10 +1,13 @@
 import React from 'react';
-import { TimePicker } from '.';
-import { render } from '@testing-library/react';
+
 import { fireEvent } from '@testing-library/dom';
+import { render } from '@testing-library/react';
+import { zhCN } from 'date-fns/locale';
+
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
-import { zhCN } from 'date-fns/locale';
+
+import { TimePicker } from '.';
 
 describe('TimePicker', () => {
   it('should render the timepicker', () => {

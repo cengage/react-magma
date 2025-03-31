@@ -1,5 +1,112 @@
 ## 4.8.0
 
+## 4.9.0-next.16
+
+### Patch Changes
+
+- a9ebf93: fix(Tooltip): Replace Popper with Floating UI. Change default tooltip `arrowSize` and `arrowSizeDoubled`.
+
+## 4.9.0-next.15
+
+### Patch Changes
+
+- 122eb210e: fix(Modal): Delete timeout of closing modal
+
+## 4.9.0-next.14
+
+### Patch Changes
+
+- 403f37554: fix(Dropdown): Added icon prop for DropdownExpandableMenuListItem
+
+## 4.9.0-next.13
+
+### Patch Changes
+
+- 1a87ef79e: fix(Input): Update the label height styling for the `Input` component.
+- 7dc4a2910: fix(Search): Update `clear` and `search` icon styles
+
+## 4.9.0-next.12
+
+### Minor Changes
+
+- 1bd563f57: feat(DefinitionList): New DefinitionList and DefinitionListItem components.
+  @deprecated List `description` prop
+
+## 4.9.0-next.11
+
+### Minor Changes
+
+- e9f383724: feat(Input): Add new types: `tel` and `url`.
+
+## 4.9.0-next.10
+
+### Patch Changes
+
+- 9062d6c82: fix(PasswordInput): Fix webkit styles when using the password manager.
+
+## 4.9.0-next.9
+
+### Patch Changes
+
+- 221a7c946: fix(SkipLink): Make the `to` prop optional
+
+## 4.9.0-next.8
+
+### Patch Changes
+
+- 998d98378: fix(Theme): Update types for theme in the components.
+
+## 4.9.0-next.7
+
+### Patch Changes
+
+- 52f8a985a: chore: Update to react-magma-icons v3.1.0
+
+## 4.9.0-next.6
+
+### Minor Changes
+
+- 01c82272a: feat(Popover): New `Popover` component.
+
+## 4.9.0-next.5
+
+### Patch Changes
+
+- f2ad9bdba: chore: update UUID support to include v8.3.0 - v11.1.0
+
+  - For UUID v8.x users: continue using @types/uuid (now an optional peer dependency)
+  - For UUID v9+ users: no need for @types/uuid package
+
+## 4.9.0-next.4
+
+### Minor Changes
+
+- 57e607618: feat(TreeView): Add 'isTopLevelSelectable' prop to TreeView component
+
+## 4.9.0-next.3
+
+### Minor Changes
+
+- edbc5c0a2: feat(TreeView): add `expandAll` and `collapseAll`. Removed collapse/expand animations for `TreeView`.
+
+## 4.8.1-next.2
+
+### Patch Changes
+
+- ec6ed5466: fix(Pagination): Fix support for `page` in SimplePagination
+
+## 4.8.1-next.1
+
+### Patch Changes
+
+- 84daa4e7e: fix(Pagination): Changed the ellipsis characters to an HTML entity for accessibility compliance.
+
+## 4.8.1-next.0
+
+### Patch Changes
+
+- b65154ad5: fix(SkipLink): Fix overlap with the SkipLink component when used with AppBar.
+
 ### Minor Changes
 
 - 79435c964: feat(Select): Support disabling individual items in Select and Multi Select components

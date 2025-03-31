@@ -1,19 +1,21 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
+import styled from '@emotion/styled';
 import { MDXProvider } from '@mdx-js/react';
+import { Link } from 'gatsby';
+import PropTypes from 'prop-types';
 import { SkipLinkContent, Heading, Alert, magma } from 'react-magma-dom';
+
 import { PageContent } from './PageContent';
 import { convertTextToId } from '../utils';
 import './layout.css';
-import { LayoutComponent } from './LayoutComponent';
-import { SimplePropsTable } from './SimplePropsTable';
-import { Divider } from './Divider';
-import { NetlifyFooter } from './NetlifyFooter';
-import styled from '@emotion/styled';
 import { CodeBlock } from './CodeBlock';
-import { Link } from 'gatsby';
-import { IconButtonProps } from '../components/IconButtonProps';
+import { Divider } from './Divider';
+import { LayoutComponent } from './LayoutComponent';
+import { NetlifyFooter } from './NetlifyFooter';
+import { SimplePropsTable } from './SimplePropsTable';
 import { ButtonProps } from '../components/ButtonProps';
+import { IconButtonProps } from '../components/IconButtonProps';
 import { LeadParagraph } from '../components/LeadParagraph';
 
 const ContentArticle = styled.article`

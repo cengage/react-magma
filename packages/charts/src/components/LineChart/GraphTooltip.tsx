@@ -1,4 +1,6 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
 import {
   StyledTooltip,
   ThemeContext,
@@ -6,8 +8,6 @@ import {
   TooltipPosition,
   ThemeInterface,
 } from 'react-magma-dom';
-
-import styled from '@emotion/styled';
 
 const StyledGraphTooltip = styled(StyledTooltip)`
   background: ${(props: any) => props.theme.colors.neutral100};

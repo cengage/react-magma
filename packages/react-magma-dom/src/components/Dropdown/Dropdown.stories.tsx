@@ -1,19 +1,6 @@
 import React from 'react';
-import {
-  Dropdown,
-  DropdownAlignment,
-  DropdownDropDirection,
-  DropdownProps,
-} from './index';
-import { DropdownButton } from './DropdownButton';
-import { DropdownContent } from './DropdownContent';
-import { DropdownDivider } from './DropdownDivider';
-import { DropdownMenuGroup } from './DropdownMenuGroup';
-import { DropdownMenuItem } from './DropdownMenuItem';
-import { DropdownMenuNavItem } from './DropdownMenuNavItem';
-import { DropdownSplitButton } from './DropdownSplitButton';
-import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
-import { Card, CardBody } from '../Card';
+
+import { Meta, Story } from '@storybook/react/types-6-0';
 import {
   LocalPizzaIcon,
   LunchDiningIcon,
@@ -21,14 +8,30 @@ import {
   RestaurantMenuIcon,
   SettingsIcon,
 } from 'react-magma-icons';
-import { Meta, Story } from '@storybook/react/types-6-0';
-import { Paragraph, Spacer, SpacerAxis } from '../..';
-import { ButtonGroup } from '../ButtonGroup';
+
+import { DropdownButton } from './DropdownButton';
+import { DropdownContent } from './DropdownContent';
+import { DropdownDivider } from './DropdownDivider';
 import { DropdownExpandableMenuButton } from './DropdownExpandableMenuButton';
+import { DropdownExpandableMenuGroup } from './DropdownExpandableMenuGroup';
 import { DropdownExpandableMenuItem } from './DropdownExpandableMenuItem';
 import { DropdownExpandableMenuListItem } from './DropdownExpandableMenuListItem';
-import { DropdownExpandableMenuGroup } from './DropdownExpandableMenuGroup';
 import { DropdownExpandableMenuPanel } from './DropdownExpandableMenuPanel';
+import { DropdownMenuGroup } from './DropdownMenuGroup';
+import { DropdownMenuItem } from './DropdownMenuItem';
+import { DropdownMenuNavItem } from './DropdownMenuNavItem';
+import { DropdownSplitButton } from './DropdownSplitButton';
+import { Paragraph, Spacer, SpacerAxis } from '../..';
+import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
+import { Card, CardBody } from '../Card';
+
+import {
+  Dropdown,
+  DropdownAlignment,
+  DropdownDropDirection,
+  DropdownProps,
+} from './index';
 
 const Template: Story<DropdownProps> = args => (
   <div style={{ margin: '150px auto', textAlign: 'center' }}>
@@ -172,7 +175,7 @@ const CustomTemplate: Story<DropdownProps> = args => (
         size={ButtonSize.large}
         variant={ButtonVariant.link}
         icon={<SettingsIcon />}
-      ></DropdownButton>
+      />
       <DropdownContent>
         <DropdownMenuItem>Menu item 1</DropdownMenuItem>
         <DropdownMenuItem>Menu item number two</DropdownMenuItem>
@@ -669,4 +672,33 @@ const CustomRefTemplate: Story<DropdownProps> = args => {
 export const CustomRef = CustomRefTemplate.bind({});
 CustomRef.args = {
   ...Default.args,
+};
+
+export const DropdownExpandableMenuListItemWithIcons = args => {
+  return (
+    <Dropdown {...args} width={300}>
+      <DropdownButton>Dropdown Expandable Menu List Item</DropdownButton>
+      <DropdownContent>
+        <DropdownExpandableMenuGroup isMulti={false} defaultIndex={0}>
+          <DropdownExpandableMenuItem>
+            <DropdownExpandableMenuButton icon={<LocalPizzaIcon />}>
+              Specialty Pizza
+            </DropdownExpandableMenuButton>
+            <DropdownExpandableMenuPanel>
+              <DropdownExpandableMenuListItem>
+                Margherita
+              </DropdownExpandableMenuListItem>
+              <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
+                Capricciosa
+              </DropdownExpandableMenuListItem>
+            </DropdownExpandableMenuPanel>
+          </DropdownExpandableMenuItem>
+        </DropdownExpandableMenuGroup>
+        <DropdownDivider />
+        <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
+          Cheese Pizza
+        </DropdownExpandableMenuListItem>
+      </DropdownContent>
+    </Dropdown>
+  );
 };

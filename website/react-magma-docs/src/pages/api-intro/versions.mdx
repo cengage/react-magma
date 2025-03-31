@@ -13,6 +13,7 @@ import {
   Tag,
   TagSize,
 } from 'react-magma-dom';
+
 import { getVersions } from '../../utils';
 
 export const NextVersionTable = () => {
@@ -75,7 +76,11 @@ export const ReleasedVersionsTable = () => {
                 <span>&nbsp;✅&nbsp;</span>
               ) : (
                 ''
-              )}&nbsp;{row.deprecated ? <Tag size={TagSize.small}>Deprecated</Tag> : null}
+              )}
+              &nbsp;
+              {row.deprecated ? (
+                <Tag size={TagSize.small}>Deprecated</Tag>
+              ) : null}
             </TableCell>
             <TableCell key={`row${i}-date`}>{row.date}</TableCell>
             <TableCell key={`row${i}-docs`}>
@@ -135,7 +140,11 @@ export const IconsTable = () => {
                 <span>&nbsp;✅&nbsp;</span>
               ) : (
                 ''
-              )}&nbsp;{row.deprecated ? <Tag size={TagSize.small}>Deprecated</Tag> : null}
+              )}
+              &nbsp;
+              {row.deprecated ? (
+                <Tag size={TagSize.small}>Deprecated</Tag>
+              ) : null}
             </TableCell>
             <TableCell key={`row${i}-date`}>{row.date}</TableCell>
             <TableCell key={`row${i}-react`}>

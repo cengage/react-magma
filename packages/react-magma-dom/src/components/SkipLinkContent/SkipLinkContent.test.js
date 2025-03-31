@@ -1,7 +1,10 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { SkipLinkContent } from '.';
+
 import { render } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
+
+import { SkipLinkContent } from '.';
 
 describe('Skip Link Content', () => {
   it('should find element by testId', () => {

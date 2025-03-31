@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { magma } from 'react-magma-dom';
 import {
   InsertDriveFileIcon,
   ImageIcon,
@@ -13,7 +15,6 @@ import {
 } from 'react-magma-icons';
 
 import { FilePreview } from './FilePreview';
-import { magma } from 'react-magma-dom';
 
 export interface FileIconProps extends IconProps {
   file: FilePreview;

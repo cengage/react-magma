@@ -4,6 +4,8 @@ title: List
 props:
   - ListProps
   - ListItemProps
+  - DefinitionListProps
+  - DefinitionListItemProps
 ---
 
 <PageContent componentName="list" type="api">
@@ -19,6 +21,7 @@ By default `List` uses an unorganized markup `<ul>`.
 
 ```tsx
 import React from 'react';
+
 import { List, ListItem } from 'react-magma-dom';
 
 export function Example() {
@@ -81,6 +84,7 @@ Another method of `List` is the ordered list `<ol>`. There are several methods o
 
 ```tsx
 import React from 'react';
+
 import { List, ListItem, olListType } from 'react-magma-dom';
 
 export function Example() {
@@ -134,8 +138,11 @@ export function Example() {
 
 The `description` prop is a boolean which changes a nested list item into a styled paragraph.
 
+This prop has been deprecated. Use `DefinitionList` instead.
+
 ```tsx
 import React from 'react';
+
 import { List, ListItem } from 'react-magma-dom';
 
 export function Example() {
@@ -183,6 +190,7 @@ An Icon `List` allows the user to use Magma Icons in place of bulleted or numeri
 
 ```tsx
 import React from 'react';
+
 import { List, ListItem, IconSizes } from 'react-magma-dom';
 import { InboxIcon, DraftsIcon, DeleteIcon } from 'react-magma-icons';
 
@@ -215,6 +223,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { List, ListItem, IconAlignment } from 'react-magma-dom';
 import { EmailIcon } from 'react-magma-icons';
 
@@ -241,6 +250,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { List, ListItem } from 'react-magma-dom';
 import { EmailIcon } from 'react-magma-icons';
 
@@ -280,6 +290,7 @@ inherit the `isInverse` prop unless specified otherwise.
 
 ```tsx
 import React from 'react';
+
 import { Card, CardBody, List, ListItem } from 'react-magma-dom';
 
 export function Example() {
@@ -299,6 +310,110 @@ export function Example() {
 }
 ```
 
+## Definition List
+Use the `DefinitionList` for groups of terms and descriptions, such as glossaries or key-value pairs.
+
+```tsx
+import React from 'react';
+
+import { Card, CardBody, Paragraph, DefinitionList, DefinitionListItem } from 'react-magma-dom';
+
+export function Example() {
+const data = [
+{ term: 'Coffee', description: 'A hot beverage' },
+{ term: 'Tea', description: 'Another hot beverage' },
+{ term: 'Milk', description: 'A cold beverage' },
+];
+
+const dataWithMultipleTerms = [
+  {
+    term: ['Coffee', 'Tea', 'Hot Chocolate'],
+    description: 'A hot beverage',
+  },
+  {
+    term: ['Milk', 'Lemonade', 'Margarita'],
+    description: 'A cold beverage',
+  },
+];
+
+const Row = styled.div`
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 16px;
+`;
+
+const TermStyled = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+`;
+
+const DescriptionStyled = styled.div`
+    text-align: right;
+`;
+
+  return (
+    <>
+      <Card style={{ marginBottom: '32px' }}>
+        <CardBody>
+          <Paragraph
+            visualStyle={TypographyVisualStyle.bodyLarge}
+            noTopMargin
+          >
+            Default Styles
+          </Paragraph>
+          <DefinitionList>
+            {data.map((item, index) => (
+              <React.Fragment key={index}>
+                <DefinitionListItem type="term">{item.term}</DefinitionListItem>
+                <DefinitionListItem type="description">
+                  {item.description}
+                </DefinitionListItem>
+              </React.Fragment>
+            ))}
+          </DefinitionList>
+        </CardBody>
+      </Card>
+
+      <Card style={{ marginBottom: '32px' }}>
+        <CardBody>
+          <DefinitionList>
+            <Paragraph
+              visualStyle={TypographyVisualStyle.bodyLarge}
+              noTopMargin
+            >
+              Custom Styles
+            </Paragraph>
+            {dataWithMultipleTerms.map((item, index) => (
+              <Row key={index}>
+                <TermStyled>
+                  {item.term.map((term, i) => (
+                    <DefinitionListItem
+                      key={`term-${index}-${i}`}
+                      type={DefinitionListType.term}
+                    >
+                      {term}
+                    </DefinitionListItem>
+                  ))}
+                </TermStyled>
+                <DescriptionStyled>
+                  <DefinitionListItem
+                    key={`desc-${index}`}
+                    type={DefinitionListType.description}
+                  >
+                    {item.description}
+                  </DefinitionListItem>
+                </DescriptionStyled>
+              </Row>
+            ))}
+          </DefinitionList>
+        </CardBody>
+      </Card>
+    </>
+  );
+}
+```
+
 ## List Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**
@@ -308,5 +423,13 @@ export function Example() {
 ## List Item Props
 
 <ListItemProps />
+
+## Definition List Props
+
+<DefinitionListProps />
+
+## Definition List Item Props
+
+<DefinitionListItemProps />
 
 </PageContent>

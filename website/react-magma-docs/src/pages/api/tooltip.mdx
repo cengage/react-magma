@@ -18,6 +18,7 @@ The Tooltip component should wrap the triggerring element. This trigger should b
 
 ```tsx
 import React from 'react';
+
 import { Tooltip, IconButton, ButtonVariant } from 'react-magma-dom';
 import { HelpOutlineIcon } from 'react-magma-icons';
 
@@ -59,6 +60,7 @@ The `Tooltip` component takes a `position` property, that accepts the following 
 
 ```tsx
 import React from 'react';
+
 import {
   Flex,
   FlexBehavior,
@@ -120,6 +122,7 @@ The default value is `false`.
 
 ```tsx
 import React from 'react';
+
 import {
   Card,
   CardBody,
@@ -170,12 +173,13 @@ The `arrowStyle` prop applies to the arrow indicator.
   Be careful changing the positioning styles for the{' '}
   <inlineCode>tooltipStyle</inlineCode> or the{' '}
   <inlineCode>arrowStyle</inlineCode> as they are brought in by an outside
-  library named [popperjs](https://popper.js.org/) to deal with overflow and
-  scrolling.
+  library named [floating-ui](https://floating-ui.com/) to deal with overflow
+  and scrolling.
 </Alert>
 
 ```tsx
 import React from 'react';
+
 import { Tooltip, IconButton, ButtonVariant } from 'react-magma-dom';
 import { HelpOutlineIcon } from 'react-magma-icons';
 
@@ -212,8 +216,8 @@ The values of some style properties are set in the Magma theme.
 
 ```jsx noCodeSandbox noRender
     tooltip: {
-      arrowSize: '4px',
-      arrowSizeDoubled: '8px',
+      arrowSize: '6px',
+      arrowSizeDoubled: '12px',
       backgroundColor: colors.neutral700,
       fontWeight: 500,
       maxWidth: '300px',
@@ -229,6 +233,7 @@ The values of some style properties are set in the Magma theme.
 
 ```tsx
 import React from 'react';
+
 import {
   Tooltip,
   EnumTooltipPosition,

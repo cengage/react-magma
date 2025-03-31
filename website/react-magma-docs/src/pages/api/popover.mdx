@@ -1,0 +1,474 @@
+---
+pageTitle: Popover API
+title: Popover
+props:
+  - Popover
+  - PopoverProps
+  - PopoverPosition
+  - PopoverApi
+  - PopoverTrigger
+  - PopoverTriggerProps
+  - PopoverContent
+  - PopoverContentProps
+  - PopoverHeader
+  - PopoverFooter
+  - PopoverSectionProps
+---
+
+<PageContent componentName="popover" type="api">
+
+<LeadParagraph>
+  A <b>Popover</b> is a small UI element that appears on top of content when
+  triggered, showing additional information or actions.
+</LeadParagraph>
+
+## Basic Usage
+
+The `Popover` component is composed of two main parts: the trigger element (provided by the `PopoverTrigger` component) and the content container (provided by the `PopoverContent` component). When the trigger is activated (via click or hover), the popover content is displayed.
+
+```tsx
+import React from 'react';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverFooter,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Popover>
+      <PopoverTrigger>Click me</PopoverTrigger>
+      <PopoverContent>
+        <PopoverHeader>
+          <div>Popover Title</div>
+        </PopoverHeader>
+        <div>This is the main content of the popover</div>
+        <PopoverFooter>
+          <div>Footer Content</div>
+        </PopoverFooter>
+      </PopoverContent>
+    </Popover>
+  );
+}
+```
+
+## Hoverable Popover
+
+By setting the `hoverable` prop to true, the popover will remain open while the pointer is over either the trigger or the content.
+
+```tsx
+import React from 'react';
+import { Popover, PopoverTrigger, PopoverContent } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Popover hoverable>
+      <PopoverTrigger aria-label="Open popover">Hover over me</PopoverTrigger>
+      <PopoverContent>
+        <div>This popover stays open on hover</div>
+      </PopoverContent>
+    </Popover>
+  );
+}
+```
+
+## Popover with Pointer
+
+The `hasPointer` prop controls the display of an arrow pointer that visually connects the popover to its trigger element. By default, `hasPointer` is `true`. Set `hasPointer={false}` to disable the pointer.
+
+```tsx
+import React from 'react';
+import { Popover, PopoverTrigger, PopoverContent } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Popover hasPointer={false}>
+      <PopoverTrigger aria-label="Open popover">
+        Click for popover without pointer
+      </PopoverTrigger>
+      <PopoverContent>
+        <div>Content without an arrow pointer</div>
+      </PopoverContent>
+    </Popover>
+  );
+}
+```
+
+## Controlled Popover with API Ref
+
+You can programmatically control the popover by providing an `apiRef`. The Popover API exposes methods such as `closePopoverManually` to close the popover when needed.
+
+```tsx
+import React from 'react';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverApi,
+  Button,
+} from 'react-magma-dom';
+
+export function Example() {
+  const popoverApiRef = React.useRef<PopoverApi>();
+
+  function handleClose(event: React.SyntheticEvent) {
+    if (popoverApiRef.current) {
+      popoverApiRef.current.closePopoverManually(event);
+    }
+  }
+
+  return (
+    <Popover apiRef={popoverApiRef}>
+      <PopoverTrigger aria-label="Toggle popover">
+        Toggle Popover
+      </PopoverTrigger>
+      <PopoverContent>
+        <div>
+          Popover Content
+          <Button onClick={handleClose}>Close Popover</Button>
+        </div>
+      </PopoverContent>
+    </Popover>
+  );
+}
+```
+
+## Focus Trap
+
+When the `focusTrap` prop is enabled, keyboard focus is trapped within the popover while it is open. This is especially useful when the popover contains interactive elements.
+
+```tsx
+import React from 'react';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverFooter,
+  FormGroup,
+  Toggle,
+  Checkbox,
+  Button,
+  ButtonSize,
+  PopoverApi,
+  CheckboxTextPosition,
+} from 'react-magma-dom';
+
+export function Example() {
+  const popoverApiRef = React.useRef<PopoverApi>();
+
+  function handleClose(event: React.SyntheticEvent) {
+    if (popoverApiRef.current) {
+      popoverApiRef.current.closePopoverManually(event);
+    }
+  }
+
+  return (
+    <Popover focusTrap width="target">
+      <PopoverTrigger aria-label="Open popover">
+        Open Focus Trap Popover
+      </PopoverTrigger>
+      <PopoverContent>
+        <FormGroup>
+          <Toggle
+            labelText="Setting 1"
+            defaultChecked={true}
+            containerStyle={{
+              width: '100%',
+              justifyContent: 'space-between',
+            }}
+          />
+          <Checkbox
+            labelText="Setting 2"
+            textPosition={CheckboxTextPosition.left}
+            labelStyle={{ width: '100%', justifyContent: 'space-between' }}
+          />
+          <Checkbox
+            labelText="Setting 3"
+            textPosition={CheckboxTextPosition.left}
+            labelStyle={{ width: '100%', justifyContent: 'space-between' }}
+          />
+        </FormGroup>
+        <PopoverFooter style={{ justifyContent: 'end', fontWeight: 600 }}>
+          <Button size={ButtonSize.small} onClick={handleClose}>
+            Apply
+          </Button>
+        </PopoverFooter>
+      </PopoverContent>
+    </Popover>
+  );
+}
+```
+
+## Custom Width and Max Height
+
+Customize the size of your popover using the `width` and `maxHeight` props. You can provide these values as strings (with units) or as numbers (interpreted as pixels). Using `width=“taget”` will set the width of the content based on the width of the trigger.
+
+```tsx
+import React from 'react';
+import { Popover, PopoverTrigger, PopoverContent } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Popover width="300px" maxHeight="200px">
+      <PopoverTrigger aria-label="Open popover">
+        Custom Size Popover
+      </PopoverTrigger>
+      <PopoverContent>
+        <div>This popover has a fixed width and maximum height</div>
+      </PopoverContent>
+    </Popover>
+  );
+}
+```
+
+## Popover Positions
+
+The `position` prop sets the default position for the popover in relation to its trigger. It uses <Link to='https://floating-ui.com/'>floating-ui</Link> to move the position if there is not enough space on the screen. The available options are `PopoverPosition.bottom` (default) and `PopoverPosition.top`.
+
+```tsx
+import React from 'react';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverPosition,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <Popover position={PopoverPosition.bottom}>
+        <PopoverTrigger aria-label="Open bottom popover">
+          Bottom Popover
+        </PopoverTrigger>
+        <PopoverContent>
+          <div>This popover appears below the trigger</div>
+        </PopoverContent>
+      </Popover>
+      <Popover position={PopoverPosition.top}>
+        <PopoverTrigger aria-label="Open top popover">
+          Top Popover
+        </PopoverTrigger>
+        <PopoverContent>
+          <div>This popover appears above the trigger</div>
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+}
+```
+
+## Popover Sections
+
+To structure the content of your popover, use the `PopoverHeader` and `PopoverFooter` components to add dedicated header and footer sections.
+
+```tsx
+import React from 'react';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverFooter,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Popover>
+      <PopoverTrigger aria-label="Open popover">
+        Sectioned Popover
+      </PopoverTrigger>
+      <PopoverContent>
+        <PopoverHeader>
+          <div>Header Section</div>
+        </PopoverHeader>
+        <div>Main content of the popover goes here</div>
+        <PopoverFooter>
+          <div>Footer Section</div>
+        </PopoverFooter>
+      </PopoverContent>
+    </Popover>
+  );
+}
+```
+
+## Popover Trigger Variants
+
+The `PopoverTrigger` component supports both icon-only and text-based triggers. For icon-only triggers, be sure to provide an appropriate `aria-label` for accessibility.
+
+```tsx
+import React from 'react';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  ButtonSize,
+  FormGroup,
+  Checkbox,
+} from 'react-magma-dom';
+import { FilterAltIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <Popover width={160}>
+      <PopoverTrigger
+        icon={<FilterAltIcon />}
+        size={ButtonSize.large}
+        aria-label="Open popover"
+      />
+      <PopoverContent>
+        <FormGroup>
+          <Checkbox labelText="Filter 1" />
+          <Checkbox labelText="Filter 2" />
+          <Checkbox labelText="Filter 3" />
+          <Checkbox labelText="Filter 4" />
+        </FormGroup>
+      </PopoverContent>
+    </Popover>
+  );
+}
+```
+
+## Disabled Popover / Disabled Trigger
+
+The `isDisabled` property will disable the ability to open the popover. For disabled triggers with enabled content, you need to place the disabled button inside the `PopoverTrigger` and use the `hoverable` property.
+
+```tsx
+import React from 'react';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  Button,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div style={{ display: 'flex', gap: 8 }}>
+      <Popover isDisabled>
+        <PopoverTrigger aria-label="Open popover">
+          Disabled Popover
+        </PopoverTrigger>
+        <PopoverContent>
+          <div>Popover is disabled</div>
+        </PopoverContent>
+      </Popover>
+      <Popover hoverable>
+        <PopoverTrigger aria-label="Open popover">
+          <Button disabled>Disabled Trigger</Button>
+        </PopoverTrigger>
+        <PopoverContent>
+          <div>Popover is enabled, trigger is disabled</div>
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+}
+```
+
+## Open by Default
+
+The `openByDefault` property will allow Popover to open as soon as the page loads. It is recommended to use localStorage to modify this behavior.
+
+**Note:** For a proper demonstration, open the example, uncheck the “Don’t show this again” checkbox, and then refresh the page.
+
+```tsx
+import React from 'react';
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  Button,
+  FormGroup,
+  Checkbox,
+  ButtonSize,
+} from 'react-magma-dom';
+
+export function Example() {
+  const popoverApiRef = React.useRef<PopoverApi>();
+
+  function handleClose(event: React.SyntheticEvent) {
+    if (popoverApiRef.current) {
+      popoverApiRef.current.closePopoverManually(event);
+    }
+  }
+
+  const sessionStorageValue = JSON.parse(
+    sessionStorage.getItem('temporaryOpenByDefault')!
+  );
+
+  const initialOpen = React.useMemo(() => {
+    return sessionStorageValue || false;
+  }, []);
+
+  const [checked, setChecked] = React.useState(() => initialOpen);
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const nextValue = !event.target.checked;
+
+    sessionStorage.setItem('temporaryOpenByDefault', JSON.stringify(nextValue));
+
+    setChecked(nextValue);
+  };
+
+  return (
+    <Popover openByDefault={initialOpen} apiRef={popoverApiRef} width={320}>
+      <PopoverTrigger />
+      <PopoverContent>
+        <span>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt.
+        </span>
+        <FormGroup
+          containerStyle={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}
+        >
+          <Checkbox
+            labelText="Don’t show this again"
+            onChange={onChange}
+            checked={!checked}
+          />
+          <Button size={ButtonSize.small} onClick={handleClose}>
+            Got it
+          </Button>
+        </FormGroup>
+      </PopoverContent>
+    </Popover>
+  );
+}
+```
+
+## Popover Props
+
+**Any additional props supplied will be provided to the wrapping div element.**
+
+<PopoverProps />
+
+## Popover Trigger Props
+
+**PopoverTrigger accept the same props as the <Link to="/api/button">Button</Link> component.**
+
+<ButtonProps />
+
+The PopoverTrigger can also accept an `icon` property, as in the <Link to="/api/icon-button">Icon Button</Link> component.
+
+<IconButtonProps />
+
+## Popover Content Props
+
+**Props supplied will be passed to the wrapping div element containing the popover content.**
+
+<PopoverContentProps />
+
+## Popover Section Props
+
+**Any additional props supplied will be provided to the wrapping section element.**
+
+<PopoverSectionProps />
+
+</PageContent>

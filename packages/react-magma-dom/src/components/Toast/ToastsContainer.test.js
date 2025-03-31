@@ -1,6 +1,8 @@
 import React from 'react';
-import { ToastsContainer } from './ToastsContainer';
+
 import { render } from '@testing-library/react';
+
+import { ToastsContainer } from './ToastsContainer';
 
 describe('Toasts Container', () => {
   it('should render a toast container', () => {

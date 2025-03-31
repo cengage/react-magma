@@ -1,8 +1,11 @@
 import React from 'react';
-import { Badge, BadgeColor, BadgeVariant } from '.';
-import { Card, CardBody } from '../Card';
-import { magma } from '../../theme/magma';
+
 import { Meta } from '@storybook/react/types-6-0';
+
+import { magma } from '../../theme/magma';
+import { Card, CardBody } from '../Card';
+
+import { Badge, BadgeColor, BadgeVariant } from '.';
 
 export default {
   component: Badge,

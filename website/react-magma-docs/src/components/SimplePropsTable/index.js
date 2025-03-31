@@ -1,4 +1,6 @@
 import React from 'react';
+
+import styled from '@emotion/styled';
 import {
   magma,
   Flex,
@@ -14,7 +16,6 @@ import {
   TypographyContextVariant,
   TypographyVisualStyle,
 } from 'react-magma-dom';
-import styled from '@emotion/styled';
 
 export const SimplePropsTable = ({ propertyValues }) => {
   const isInverse = useIsInverse();

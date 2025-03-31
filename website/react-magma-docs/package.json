@@ -1,25 +1,40 @@
 {
   "name": "react-magma-docs",
-  "description": "React Magma docs",
-  "version": "5.1.2-next.2",
+  "version": "5.1.2-next.12",
   "private": true,
+  "description": "React Magma docs",
+  "keywords": [
+    "gatsby"
+  ],
+  "homepage": "https://react-magma.cengage.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/cengage/react-magma.git",
     "directory": "packages/react-magma-docs"
   },
-  "homepage": "https://react-magma.cengage.com",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build --prefix-paths",
+    "develop": "gatsby develop",
+    "docs": "npm run develop",
+    "format": "prettier --write --log-level warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
+    "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}'",
+    "lint:check": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --max-warnings=0",
+    "lint:fix": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --fix",
+    "serve": "gatsby serve",
+    "test": "echo \"Error: no test specified\""
+  },
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "7.10.4",
-    "@cengage-patterns/header": "12.0.0",
+    "@cengage-patterns/header": "13.0.0-next.1",
     "@data-driven-forms/react-form-renderer": "^3.6.0",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mdx-js/mdx": "^1.5.5",
     "@mdx-js/react": "^1.5.5",
-    "@react-magma/charts": "^10.0.1-next.0",
-    "@react-magma/dropzone": "10.0.0",
-    "@react-magma/schema-renderer": "^10.0.0",
+    "@react-magma/charts": "^11.0.0-next.2",
+    "@react-magma/dropzone": "11.0.0-next.2",
+    "@react-magma/schema-renderer": "^11.0.0-next.1",
     "buble": "0.19.4",
     "buffer": "^6.0.3",
     "core-js": "^3.1.4",
@@ -49,26 +64,14 @@
     "react-focus-lock": "^2.9.2",
     "react-helmet": "5.2.0",
     "react-live": "^2.2.1",
-    "react-magma-dom": "^4.8.0",
-    "react-magma-icons": "^3.0.0",
+    "react-magma-dom": "^4.9.0-next.9",
+    "react-magma-icons": "^3.1.0",
     "react-spring": "6.1.9",
     "semver": "^7.3.4",
     "url-loader": "^1.1.2",
-    "uuid": "^8.3.0"
+    "uuid": "^11.1.0"
   },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "MIT",
-  "scripts": {
-    "build": "gatsby build --prefix-paths",
-    "develop": "gatsby develop",
-    "docs": "npm run develop",
-    "serve": "gatsby serve",
-    "format": "prettier --write --loglevel warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
-    "test": "echo \"Error: no test specified\"",
-    "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}'",
-    "lint:fix": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --fix",
-    "lint:check": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --max-warnings=0"
+  "devDependencies": {
+    "ajv": "^8.17.1"
   }
 }

@@ -1,20 +1,22 @@
 import * as React from 'react';
-import { IconButton } from '../IconButton';
-import { ButtonColor, ButtonVariant } from '../Button';
-import { EastIcon, WestIcon } from 'react-magma-icons';
-import { Label } from '../Label';
+
 import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
+import { transparentize } from 'polished';
+import { EastIcon, WestIcon } from 'react-magma-icons';
+
+import { useControlled } from '../../hooks/useControlled';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
-import { usePagination } from '../Pagination/usePagination';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { XOR } from '../../utils';
-import { useControlled } from '../../hooks/useControlled';
-import { transparentize } from 'polished';
+import { ButtonColor, ButtonVariant } from '../Button';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
-import { NativeSelect } from '../NativeSelect';
 import { DropdownDropDirection } from '../Dropdown';
+import { IconButton } from '../IconButton';
+import { Label } from '../Label';
+import { NativeSelect } from '../NativeSelect';
+import { usePagination } from '../Pagination/usePagination';
 
 export interface BaseTablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {

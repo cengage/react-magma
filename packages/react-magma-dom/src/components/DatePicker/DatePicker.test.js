@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
@@ -16,11 +17,13 @@ import {
   subWeeks,
 } from 'date-fns';
 import * as es from 'date-fns/locale/es';
-import { DatePicker } from '.';
+
 import { Modal } from '../Modal';
 import { ClearingTheDate } from './DatePicker.stories';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+
+import { DatePicker } from '.';
 
 describe('Date Picker', () => {
   it('should find element by testId', () => {

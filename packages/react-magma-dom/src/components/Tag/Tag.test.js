@@ -1,10 +1,13 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { magma } from '../../theme/magma';
-import { Tag, TagColor, TagSize } from '.';
+
 import { render, fireEvent, getByTestId } from '@testing-library/react';
 import { transparentize } from 'polished';
 import { AccountCircleIcon, CancelIcon } from 'react-magma-icons';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+
+import { Tag, TagColor, TagSize } from '.';
 
 const TEXT = 'Text Label';
 
@@ -24,11 +27,7 @@ describe('Tag', () => {
 
   it('Should not have a focus state', () => {
     const testId = 'tag-id';
-    const { getByTestId } = render(
-      <Tag testId={testId}>
-        {TEXT}
-      </Tag>
-    );
+    const { getByTestId } = render(<Tag testId={testId}>{TEXT}</Tag>);
     const tag = getByTestId(testId);
 
     expect(tag).not.toHaveStyleRule('outline-offset', '2px', {
@@ -395,7 +394,7 @@ describe('Tag', () => {
     });
 
     it('Should have an aria-label on the tag', () => {
-      const { getByText } = render(<Tag aria-label={TEXT}></Tag>);
+      const { getByText } = render(<Tag aria-label={TEXT} />);
 
       expect(getByText(TEXT)).toBeInTheDocument();
     });
