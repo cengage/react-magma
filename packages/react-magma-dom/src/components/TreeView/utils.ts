@@ -629,11 +629,11 @@ const processParentsSelection = ({
 }) => {
   const item = items.find(item => item.itemId === itemId);
 
-  if (item?.parentId === null) {
+  if (!item || item.parentId === null) {
     return items;
   }
 
-  const siblings = items.filter(i => i.parentId === item?.parentId);
+  const siblings = items.filter(i => i.parentId === item.parentId);
   const isAllSiblingsHasTheSameStatus = siblings.every(
     item =>
       (item.checkedStatus || IndeterminateCheckboxStatus.unchecked) ===
@@ -643,9 +643,13 @@ const processParentsSelection = ({
     ? checkedStatus
     : IndeterminateCheckboxStatus.indeterminate;
 
-  const parent = items.find(i => i.itemId === item?.parentId);
+  const parent = items.find(i => i.itemId === item.parentId);
 
-  if (!isTopLevelSelectable && !parent?.parentId) {
+  if (!parent) {
+    return items;
+  }
+
+  if (!isTopLevelSelectable && !parent.parentId) {
     return items;
   }
 

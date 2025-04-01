@@ -22,7 +22,6 @@ export interface TreeViewContextInterface {
   children?: React.ReactNode[];
   hasIcons: boolean;
   initialExpandedItems: Array<string>;
-  initialExpandedItemsNeedUpdate: boolean;
   onExpandedChange?: (
     event: React.SyntheticEvent,
     expandedItems: Array<string>
@@ -36,7 +35,6 @@ export interface TreeViewContextInterface {
   ) => void;
   selectable: TreeViewSelectable;
   selectedItems: Array<TreeItemSelectedInterface>;
-  setInitialExpandedItemsNeedUpdate: React.Dispatch<React.SetStateAction<any>>;
   treeItemRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
   itemToFocus?: string;
   checkParents: boolean;
@@ -56,11 +54,9 @@ export interface TreeViewContextInterface {
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   hasIcons: false,
   initialExpandedItems: [],
-  initialExpandedItemsNeedUpdate: false,
   registerTreeItem: (elements, element) => {},
   selectable: TreeViewSelectable.single,
   selectedItems: [],
-  setInitialExpandedItemsNeedUpdate: () => {},
   checkParents: true,
   checkChildren: true,
   items: [],
