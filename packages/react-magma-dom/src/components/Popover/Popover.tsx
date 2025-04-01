@@ -193,6 +193,20 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       }
     }, []);
 
+    React.useEffect(() => {
+      const handleEsc = event => {
+        if (event.key === 'Escape' && isOpen) {
+          closePopover(event);
+        }
+      };
+
+      window.addEventListener('keydown', handleEsc);
+
+      return () => {
+        window.removeEventListener('keydown', handleEsc);
+      };
+    }, [isOpen]);
+
     const popoverId = useGenerateId(defaultId);
 
     popoverTriggerId.current = `${popoverId}_trigger`;
@@ -235,7 +249,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     }
 
     function handleKeyDown(event: React.KeyboardEvent) {
-      if (event.key === 'Escape' && event.target !== toggleRef.current) {
+      if (event.key === 'Escape') {
         event.nativeEvent.stopImmediatePropagation();
         closePopover(event);
       }

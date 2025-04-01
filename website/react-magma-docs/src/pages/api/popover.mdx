@@ -28,6 +28,7 @@ The `Popover` component is composed of two main parts: the trigger element (prov
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
@@ -54,12 +55,52 @@ export function Example() {
 }
 ```
 
+##Inverse
+
+The `isInverse` property is an optional boolean, that reverses the colors so that the component can better appear on a dark background. The default value is `false`.
+
+```tsx
+import React from 'react';
+
+import {
+  Card,
+  CardBody,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverFooter,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Popover isInverse>
+          <PopoverTrigger>Click me</PopoverTrigger>
+          <PopoverContent>
+            <PopoverHeader>
+              <div>Popover Title</div>
+            </PopoverHeader>
+            <div>This is the main content of the popover</div>
+            <PopoverFooter>
+              <div>Footer Content</div>
+            </PopoverFooter>
+          </PopoverContent>
+        </Popover>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
 ## Hoverable Popover
 
 By setting the `hoverable` prop to true, the popover will remain open while the pointer is over either the trigger or the content.
 
 ```tsx
 import React from 'react';
+
 import { Popover, PopoverTrigger, PopoverContent } from 'react-magma-dom';
 
 export function Example() {
@@ -80,6 +121,7 @@ The `hasPointer` prop controls the display of an arrow pointer that visually con
 
 ```tsx
 import React from 'react';
+
 import { Popover, PopoverTrigger, PopoverContent } from 'react-magma-dom';
 
 export function Example() {
@@ -102,6 +144,7 @@ You can programmatically control the popover by providing an `apiRef`. The Popov
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
@@ -141,6 +184,7 @@ When the `focusTrap` prop is enabled, keyboard focus is trapped within the popov
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
@@ -173,7 +217,7 @@ export function Example() {
         <FormGroup>
           <Toggle
             labelText="Setting 1"
-            defaultChecked={true}
+            defaultChecked
             containerStyle={{
               width: '100%',
               justifyContent: 'space-between',
@@ -203,10 +247,11 @@ export function Example() {
 
 ## Custom Width and Max Height
 
-Customize the size of your popover using the `width` and `maxHeight` props. You can provide these values as strings (with units) or as numbers (interpreted as pixels). Using `width=“taget”` will set the width of the content based on the width of the trigger.
+Customize the size of your popover using the `width` and `maxHeight` props. You can provide these values as strings (with units) or as numbers (interpreted as pixels). Using `width=“target”` will set the width of the content based on the width of the trigger.
 
 ```tsx
 import React from 'react';
+
 import { Popover, PopoverTrigger, PopoverContent } from 'react-magma-dom';
 
 export function Example() {
@@ -229,6 +274,7 @@ The `position` prop sets the default position for the popover in relation to its
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
@@ -266,6 +312,7 @@ To structure the content of your popover, use the `PopoverHeader` and `PopoverFo
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
@@ -300,6 +347,7 @@ The `PopoverTrigger` component supports both icon-only and text-based triggers. 
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
@@ -337,6 +385,7 @@ The `isDisabled` property will disable the ability to open the popover. For disa
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,
@@ -376,6 +425,7 @@ The `openByDefault` property will allow Popover to open as soon as the page load
 
 ```tsx
 import React from 'react';
+
 import {
   Popover,
   PopoverTrigger,

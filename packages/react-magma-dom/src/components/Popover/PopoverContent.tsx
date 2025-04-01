@@ -54,6 +54,7 @@ const StyledCard = styled(Card)<{
         ? props.theme.colors.primary400
         : props.theme.colors.neutral300};
   width: ${props => (props.width ? props.width : '100%')};
+  max-width: 300px;
 `;
 
 const StyledAnnounce = styled(Announce)`
