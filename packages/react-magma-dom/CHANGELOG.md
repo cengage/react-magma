@@ -1,5 +1,15 @@
 ## 4.8.0
 
+## 4.9.0-next.18
+
+### Minor Changes
+
+- a3dccc9: feat(TreeView): Retain expanded/collapsed state
+
+### Patch Changes
+
+- a3dccc9: fix(TreeView): Fix TreeView Keyboard Navigation not triggering events
+
 ## 4.9.0-next.17
 
 ### Patch Changes
