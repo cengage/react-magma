@@ -4,6 +4,8 @@ import styled from '@emotion/styled';
 
 import { I18nContext } from '../../i18n';
 import { magma } from '../../theme/magma';
+import { debounce } from '../../utils';
+import { HiddenLabelText } from '../Checkbox';
 import { InputMessage } from '../Input/InputMessage';
 
 export interface CharacterCounterProps
@@ -78,7 +80,6 @@ export const CharacterCounter = React.forwardRef<
 
   const i18n = React.useContext(I18nContext);
 
-  // Temporary while both 'maxLength' and 'maxCount' are supported. To be removed in future iterations.
   const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
 
   const isOverMaxCount = inputLength > maxCharacters;
@@ -88,13 +89,10 @@ export const CharacterCounter = React.forwardRef<
 
   // Returns aria-live states based on percentage of characters within Input.
   function getAriaLiveState() {
-    if (getPercentage >= 80) {
-      if (getPercentage > 100) {
-        return 'assertive';
-      }
-      return 'polite';
+    if (getPercentage > 100) {
+      return 'assertive';
     }
-    return 'off';
+    return 'polite';
   }
 
   // As the user types, this calculates the remaining characters set by maxCount which counts down to zero then counts up if over the limit.
@@ -109,7 +107,7 @@ export const CharacterCounter = React.forwardRef<
    * When inputLength < maxCount or inputLength === maxCount, returns "# character(s) left"
    * When inputLength > maxCount, returns "# character(s) over limit"
    */
-  function characterTitle() {
+  const characterTitle = React.useMemo(() => {
     if (inputLength > 0) {
       if (inputLength < maxCharacters) {
         if (inputLength === maxCharacters - 1) {
@@ -133,21 +131,46 @@ export const CharacterCounter = React.forwardRef<
       }
       return `${maxCharacters} ${i18n.characterCounter.charactersAllowed}`;
     }
-  }
+  }, [characterLimit, inputLength, i18n.characterCounter, maxCharacters]);
+
+  // Sets the screen reader message to announce the character counter.
+  const [screenReaderMessage, setScreenReaderMessage] = React.useState('');
+
+  const debouncedSetScreenReaderMessage = React.useMemo(
+    () =>
+      debounce((statusMessage: string) => {
+        setScreenReaderMessage(statusMessage);
+      }, 500),
+    []
+  );
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      debouncedSetScreenReaderMessage(characterTitle);
+    }, 1000);
+  }, [inputLength, debouncedSetScreenReaderMessage, characterTitle]);
 
   return (
-    <div data-testid={testId} id={id} ref={ref} {...rest}>
-      <StyledInputMessage
-        aria-live={getAriaLiveState()}
-        hasCharacterCounter={hasCharacterCounter}
-        hasError={isOverMaxCount}
-        isInverse={isInverse}
-        inputLength={inputLength}
-        maxCount={maxCharacters}
-        maxLength={maxCharacters}
-      >
-        {characterTitle()}
-      </StyledInputMessage>
-    </div>
+    <>
+      <div ref={ref} data-testid={testId} {...rest} id={id}>
+        <StyledInputMessage
+          aria-live={getAriaLiveState()}
+          hasCharacterCounter={hasCharacterCounter}
+          hasError={isOverMaxCount}
+          isInverse={isInverse}
+          inputLength={inputLength}
+          maxCount={maxCharacters}
+          maxLength={maxCharacters}
+        >
+          {characterTitle}
+        </StyledInputMessage>
+        <HiddenLabelText
+          data-testid={`testId && ${testId}-hiddenLabelText`}
+          aria-live={getAriaLiveState()}
+        >
+          {screenReaderMessage}
+        </HiddenLabelText>
+      </div>
+    </>
   );
 });

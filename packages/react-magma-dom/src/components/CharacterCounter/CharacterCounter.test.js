@@ -126,22 +126,12 @@ describe('CharacterCounter', () => {
   });
 
   describe('accessibility', () => {
-    it('Should have the aria-live attribute "off" until inputLength gets to 80%', () => {
+    it('Should have the aria-live attribute "polite" until inputLength gets to 100%', () => {
       const { getByText } = render(
         <CharacterCounter inputLength={2} maxCount={4} />
       );
 
       const characterCounter = getByText('2 ' + charactersLeft).parentElement;
-
-      expect(characterCounter).toHaveAttribute('aria-live', 'off');
-    });
-
-    it('Should have the aria-live attribute "polite" when inputLength is 80% or more', () => {
-      const { getByText } = render(
-        <CharacterCounter inputLength={4} maxCount={4} />
-      );
-
-      const characterCounter = getByText('0 ' + charactersLeft).parentElement;
 
       expect(characterCounter).toHaveAttribute('aria-live', 'polite');
     });
