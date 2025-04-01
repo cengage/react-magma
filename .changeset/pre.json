@@ -22,6 +22,7 @@
     "feat-popover",
     "feat-treeview-is-top-level-selectable",
     "fix-AppBar",
+    "fix-DefinitionList-docs-errors",
     "fix-Dropdown-add-icon-parent-level",
     "fix-Input-different-heights",
     "fix-Modal-closing-slow",

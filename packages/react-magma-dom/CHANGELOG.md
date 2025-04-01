@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.19
+
+### Patch Changes
+
+- 21974cf: fix(DefinitionList): Fix issues with imports in SandBox example
+
 ## 4.9.0-next.18
 
 ### Minor Changes
