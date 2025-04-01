@@ -9,7 +9,6 @@ import {
   magma,
   TabsOrientation,
 } from 'react-magma-dom';
-import smoothscroll from 'smoothscroll-polyfill';
 
 import { convertTextToId } from '../../utils';
 
@@ -73,7 +72,6 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
   // Get the initial section ID from URL hash if it exists
   const initialSectionId = useMemo(() => {
     if (typeof window !== 'undefined') {
-      smoothscroll.polyfill();
       return window.location.hash ? window.location.hash.substring(1) : null;
     }
     return null;
