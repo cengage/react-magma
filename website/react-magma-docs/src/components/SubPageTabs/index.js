@@ -69,7 +69,12 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
 
   const hasHeadings = headings.length > 0;
 
-  // Get the initial section ID from URL hash if it exists
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
   const initialSectionId = useMemo(() => {
     if (typeof window !== 'undefined') {
       return window.location.hash ? window.location.hash.substring(1) : null;
@@ -77,50 +82,42 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
     return null;
   }, []);
 
-  const getDistanceToTop = useCallback(
-    el => Math.floor(el.getBoundingClientRect().top),
-    []
-  );
-
   const scrollToElement = useCallback(
-    (elementId, smooth = true) => {
+    elementId => {
       const element = document.getElementById(elementId);
-
       if (!element) return false;
 
       setIsScrolling(true);
 
-      const offset = -25;
-      const elementPosition = getDistanceToTop(element);
+      try {
+        const offset = -80;
+        const elementPosition =
+          element.getBoundingClientRect().top + window.pageYOffset;
 
-      window.scrollBy({
-        top: elementPosition + offset,
-        left: 0,
-        behavior: smooth ? 'smooth' : 'auto',
-      });
+        window.scrollTo(0, elementPosition + offset);
 
-      // Update URL without reloading the page
-      if (window.history && window.history.pushState) {
-        window.history.pushState(null, null, `#${elementId}`);
+        if (window.history && window.history.pushState) {
+          window.history.pushState(null, null, `#${elementId}`);
+        }
+
+        const index = headings.findIndex(
+          heading => convertTextToId(heading) === elementId
+        );
+        if (index !== -1) {
+          setActiveTab(index);
+        }
+
+        return true;
+      } catch (error) {
+        console.error('Error scrolling to element:', error);
+        return false;
+      } finally {
+        setTimeout(() => {
+          setIsScrolling(false);
+        }, 100);
       }
-
-      // Find and set the active tab
-      const index = headings.findIndex(
-        heading => convertTextToId(heading) === elementId
-      );
-
-      if (index !== -1) {
-        setActiveTab(index);
-      }
-
-      // Reset scrolling state after animation completes
-      setTimeout(() => {
-        setIsScrolling(false);
-      }, 300);
-
-      return true;
     },
-    [headings, getDistanceToTop]
+    [headings, setIsScrolling]
   );
 
   const handleAnchorLinkClick = useCallback(
@@ -134,23 +131,44 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
   );
 
   useEffect(() => {
-    if (initialSectionId && hasHeadings && !initialScrollApplied) {
+    if (
+      initialSectionId &&
+      hasHeadings &&
+      !initialScrollApplied &&
+      !isScrolling
+    ) {
+      window.scrollTo(0, 0);
+
       const timer = setTimeout(() => {
-        const success = scrollToElement(initialSectionId);
+        let success = scrollToElement(initialSectionId);
         setInitialScrollApplied(true);
 
         if (!success) {
-          setTimeout(() => {
-            scrollToElement(initialSectionId);
-          }, 300);
+          const retry1 = setTimeout(() => {
+            success = scrollToElement(initialSectionId);
+
+            if (!success) {
+              const retry2 = setTimeout(() => {
+                scrollToElement(initialSectionId);
+              }, 800);
+              return () => clearTimeout(retry2);
+            }
+          }, 400);
+          return () => clearTimeout(retry1);
         }
-      }, 200);
+      }, 500);
 
       return () => clearTimeout(timer);
+    } else {
+      setInitialScrollApplied(true);
     }
-
-    setInitialScrollApplied(true);
-  }, [initialSectionId, hasHeadings, initialScrollApplied, scrollToElement]);
+  }, [
+    initialSectionId,
+    hasHeadings,
+    initialScrollApplied,
+    scrollToElement,
+    isScrolling,
+  ]);
 
   useEffect(() => {
     if (!initialScrollApplied || isScrolling) return;
