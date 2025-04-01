@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix: Added aria-describedby to InputMessage for screenreader fixes in Firefox.
+fix: Input > Accessibility > Screenreader fix for Firefox when errorMessage and helperMessage exist simultaneously.
