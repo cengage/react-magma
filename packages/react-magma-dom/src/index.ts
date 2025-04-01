@@ -274,6 +274,16 @@ export {
   VisuallyHiddenProps,
 } from './components/VisuallyHidden';
 
+export {
+  DefinitionListItem,
+  DefinitionListType,
+  DefinitionListItemProps,
+} from './components/DefinitionList/DefinitionListItem';
+export {
+  DefinitionList,
+  DefinitionListProps,
+} from './components/DefinitionList/DefinitionList';
+
 export { magma, ThemeInterface } from './theme/magma';
 export { GlobalStyles } from './theme/GlobalStyles';
 export { ThemeContext } from './theme/ThemeContext';
@@ -301,7 +311,6 @@ export * from './components/List';
 export * from './components/BlockQuote';
 export * from './components/ButtonGroup';
 export * from './components/TreeView';
-export * from './components/DefinitionList';
 
 export * from './components/CharacterCounter';
 export * from './components/ToggleButton';

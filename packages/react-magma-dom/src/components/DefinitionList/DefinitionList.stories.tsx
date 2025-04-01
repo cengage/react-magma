@@ -186,7 +186,7 @@ export const CustomStyles = args => {
     <Card isInverse={args.isInverse}>
       <CardBody style={{ display: 'flex', flexDirection: 'column' }}>
         <DefinitionList {...args}>
-          <Paragraph visualStyle={TypographyVisualStyle.bodyLarge} noTopMargin>
+          <Paragraph visualStyle={args.visualStyle} noTopMargin>
             Right align text
           </Paragraph>
           <TermStyled align={'end'}>
@@ -210,7 +210,7 @@ export const CustomStyles = args => {
         </DefinitionList>
 
         <DefinitionList {...args}>
-          <Paragraph visualStyle={TypographyVisualStyle.bodyLarge} noTopMargin>
+          <Paragraph visualStyle={args.visualStyle} noTopMargin>
             Left align text
           </Paragraph>
           <TermStyled align={'start'}>

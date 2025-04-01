@@ -317,12 +317,14 @@ Use the `DefinitionList` for groups of terms and descriptions, such as glossarie
 ```tsx
 import React from 'react';
 
+import styled from '@emotion/styled';
 import {
   Card,
   CardBody,
   Paragraph,
   DefinitionList,
   DefinitionListItem,
+  DefinitionListType,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -363,9 +365,7 @@ export function Example() {
     <>
       <Card style={{ marginBottom: '32px' }}>
         <CardBody>
-          <Paragraph visualStyle={TypographyVisualStyle.bodyLarge} noTopMargin>
-            Default Styles
-          </Paragraph>
+          <Paragraph noTopMargin>Default Styles</Paragraph>
           <DefinitionList>
             {data.map((item, index) => (
               <React.Fragment key={index}>
@@ -382,12 +382,7 @@ export function Example() {
       <Card style={{ marginBottom: '32px' }}>
         <CardBody>
           <DefinitionList>
-            <Paragraph
-              visualStyle={TypographyVisualStyle.bodyLarge}
-              noTopMargin
-            >
-              Custom Styles
-            </Paragraph>
+            <Paragraph noTopMargin>Custom Styles</Paragraph>
             {dataWithMultipleTerms.map((item, index) => (
               <Row key={index}>
                 <TermStyled>
