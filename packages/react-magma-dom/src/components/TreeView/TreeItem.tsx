@@ -205,7 +205,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const {
       selectable,
       hasIcons,
-      onExpandedChange,
       itemToFocus,
       handleExpandedChange,
       isTopLevelSelectable,
@@ -228,7 +227,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       parentDepth,
       ref,
       selectedItems,
-      setExpanded,
     } = contextValue;
 
     const nodeType = hasOwnTreeItems ? TreeNodeType.branch : TreeNodeType.leaf;
@@ -300,13 +298,9 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     };
 
     const onExpandedClicked = (event: React.SyntheticEvent) => {
-      setExpanded(state => !state);
-
       event.preventDefault();
 
-      onExpandedChange &&
-        typeof onExpandedChange === 'function' &&
-        handleExpandedChange(event, itemId);
+      handleExpandedChange(event, itemId);
     };
 
     const tabIndex = React.useMemo(() => {
@@ -343,7 +337,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           onKeyDown={handleKeyDown}
         >
           <StyledItemWrapper
-            data-testid={`${testId || itemId}-itemwrapper`}
+            data-testid={`${testId ?? itemId}-itemwrapper`}
             depth={itemDepth}
             id={`${itemId}-itemwrapper`}
             isDisabled={isDisabled}
@@ -402,7 +396,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                   <ul role="group">
                     {React.cloneElement(child, {
                       index,
-                      key: index,
+                      key: child.props.itemId,
                       itemDepth,
                       parentDepth,
                       topLevel: false,

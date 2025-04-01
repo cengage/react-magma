@@ -1,5 +1,33 @@
 ## 4.8.0
 
+## 4.9.0-next.18
+
+### Minor Changes
+
+- a3dccc9: feat(TreeView): Retain expanded/collapsed state
+
+### Patch Changes
+
+- a3dccc9: fix(TreeView): Fix TreeView Keyboard Navigation not triggering events
+
+## 4.9.0-next.17
+
+### Patch Changes
+
+- eeda479: fix(Tabs/Scroll Spy): Improve scroll functionality for smaller screens.
+
+## 4.9.0-next.16
+
+### Patch Changes
+
+- a9ebf93: fix(Tooltip): Replace Popper with Floating UI. Change default tooltip `arrowSize` and `arrowSizeDoubled`.
+
+## 4.9.0-next.15
+
+### Patch Changes
+
+- 122eb210e: fix(Modal): Delete timeout of closing modal
+
 ## 4.9.0-next.14
 
 ### Patch Changes

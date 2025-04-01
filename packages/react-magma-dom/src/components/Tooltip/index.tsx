@@ -1,11 +1,20 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { usePopper } from 'react-popper';
+import {
+  offset,
+  flip,
+  autoUpdate,
+  AlignedPlacement,
+  arrow,
+  shift,
+  useFloating,
+  FloatingArrow,
+} from '@floating-ui/react';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useForkedRef, useGenerateId } from '../../utils';
+import { useForkedRef, useGenerateId, removePxStyleStrings } from '../../utils';
 
 export enum TooltipPosition {
   bottom = 'bottom',
@@ -111,59 +120,53 @@ export const StyledTooltip = styled.div<{
   padding: ${props => props.theme.spaceScale.spacing03}
     ${props => props.theme.spaceScale.spacing04};
   z-index: ${props => props.theme.tooltip.zIndex};
-
-  &[data-popper-placement='top'] {
-    margin-bottom: 14px;
-    & > span:last-child {
-      bottom: 10px;
-    }
-  }
-
-  &[data-popper-placement='bottom'] {
-    margin-top: 14px;
-    & > span:last-child {
-      top: 10px;
-    }
-  }
-
-  &[data-popper-placement='left'] {
-    margin-right: 14px;
-    & > span:last-child {
-      right: 10px;
-    }
-  }
-
-  &[data-popper-placement='right'] {
-    margin-left: 14px;
-    & > span:last-child {
-      left: 10px;
-    }
-  }
 `;
 
 // Using any for the ref because it is put on the passed in children which does not have a specific type
 export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   const [isVisible, setIsVisible] = React.useState<boolean>(props.open);
-  const [referenceElement, setReferenceElement] =
-    React.useState<HTMLElement>(null);
-  const [popperElement, setPopperElement] =
-    React.useState<HTMLDivElement>(null);
-  const [arrowElement, setArrowElement] = React.useState<HTMLSpanElement>(null);
+  const arrowElement = React.useRef(null);
 
-  const { styles, attributes } = usePopper(referenceElement, popperElement, {
-    modifiers: [
-      { name: 'arrow', options: { element: arrowElement } },
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 0],
-        },
-      },
+  const {
+    arrowStyle,
+    children,
+    content,
+    containerStyle,
+    id: defaultId,
+    position,
+    testId,
+    tooltipStyle,
+    ...other
+  } = props;
+
+  const isArrowVisible = React.useMemo(() => {
+    if (arrowElement.current) {
+      const computedStyle = window.getComputedStyle(arrowElement.current);
+      const isHidden =
+        computedStyle.display === 'none' ||
+        computedStyle.visibility === 'hidden' ||
+        parseFloat(computedStyle.opacity) === 0;
+
+      return !isHidden;
+    }
+  }, [arrowStyle, arrowElement, arrowElement.current]);
+
+  const { refs, floatingStyles, placement, context } = useFloating({
+    //flip() - Changes the placement of the floating element to keep it in view.
+    //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
+    //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
+    //arrow() - Positions an arrow element pointing at the reference element, ensuring proper alignment.
+    middleware: [
+      flip(),
+      shift(),
+      offset(isArrowVisible ? 14 : 0),
+      ...(isArrowVisible ? [arrow({ element: arrowElement })] : []),
     ],
-    placement: props.position || TooltipPosition.top,
+    placement: props.position || (TooltipPosition.top as AlignedPlacement),
+    whileElementsMounted: autoUpdate,
   });
 
-  const combinedRef = useForkedRef(ref, setReferenceElement);
+  const combinedRef = useForkedRef(ref, refs.setReference);
 
   React.useEffect(() => {
     const handleEsc = event => {
@@ -192,18 +195,6 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     setIsVisible(props.open);
   }
 
-  const {
-    arrowStyle,
-    children,
-    content,
-    containerStyle,
-    id: defaultId,
-    position,
-    testId,
-    tooltipStyle,
-    ...other
-  } = props;
-
   const id = useGenerateId(defaultId);
   const theme = React.useContext(ThemeContext);
 
@@ -220,18 +211,16 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
 
   const combinedTooltipStyles = {
     zIndex: theme.tooltip.zIndex,
-    ...styles.popper,
+    ...floatingStyles,
     ...tooltipStyle,
   };
-
-  const combinedArrowStyle = { ...styles.arrow, ...arrowStyle };
 
   const isInverse = useIsInverse(props.isInverse);
 
   return (
     <TooltipContainer
       {...other}
-      data-testid={testId}
+      data-testid={testId || 'tooltip'}
       onKeyDown={handleKeyDown}
       onMouseLeave={hideTooltip}
       onMouseEnter={showTooltip}
@@ -239,26 +228,31 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     >
       {tooltipTrigger}
       {isVisible && (
-        <div
-          ref={setPopperElement}
-          style={combinedTooltipStyles}
-          {...attributes.popper}
-        >
+        <div ref={refs.setFloating} style={combinedTooltipStyles}>
+          <FloatingArrow
+            ref={arrowElement}
+            data-testid={testId ? `${testId}-arrow` : 'tooltip-arrow'}
+            context={context}
+            style={{ ...arrowStyle, zIndex: 2 }}
+            width={removePxStyleStrings([theme.tooltip.arrowSizeDoubled])}
+            height={removePxStyleStrings([theme.tooltip.arrowSizeDoubled]) / 2}
+            fill={
+              isInverse
+                ? theme.tooltip.inverse.backgroundColor
+                : theme.tooltip.backgroundColor
+            }
+          />
           <StyledTooltip
             id={id}
             isInverse={isInverse}
-            position={position ? position : TooltipPosition.top}
+            position={
+              placement ? (placement as AlignedPlacement) : TooltipPosition.top
+            }
             theme={theme}
             role="tooltip"
-            {...attributes.popper}
+            data-tooltip-placement={placement ? placement : TooltipPosition.top}
           >
             {content}
-            <TooltipArrow
-              isInverse={isInverse}
-              ref={setArrowElement}
-              style={combinedArrowStyle}
-              theme={theme}
-            />
           </StyledTooltip>
         </div>
       )}

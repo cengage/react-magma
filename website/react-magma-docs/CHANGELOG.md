@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.1.2-next.13
+
+### Patch Changes
+
+- 0e1bd2b: chore: fix lintstaged config
+- 0e1bd2b: chore: fix lintstaged config
+
 ## 5.1.2-next.12
 
 ### Patch Changes
