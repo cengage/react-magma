@@ -30,8 +30,11 @@ export const StyledNavTabs = styled(NavTabs)`
   width: 272px;
   height: calc(100vh - 150px);
   margin-right: 24px;
+  align-items: stretch;
+  overflow-y: hidden;
+
   > div ul {
-    align-items: start;
+    align-items: flex-start;
     width: 100%;
     > div {
       width: 100%;
@@ -90,7 +93,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
       setIsScrolling(true);
 
       try {
-        const offset = -80;
+        const offset = -40;
         const elementPosition =
           element.getBoundingClientRect().top + window.pageYOffset;
 
@@ -173,7 +176,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
   useEffect(() => {
     if (!initialScrollApplied || isScrolling) return;
 
-    const rootMarginValue = `0px 0px -80% 0px`;
+    const rootMarginValue = `0px 0px -70% 0px`;
 
     const observer = new IntersectionObserver(
       entries => {
@@ -207,24 +210,20 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
   const renderPageNavTabs = useCallback(() => {
     if (!hasHeadings) return null;
 
-    return (
-      <StyledNavTabWrapper isInverse={isInverse}>
-        {headings.map((heading, index) => {
-          const id = convertTextToId(heading);
-          return (
-            <StyledNavTab
-              key={index}
-              to={`#${id}`}
-              isInverse={isInverse}
-              isActive={activeTab === index}
-              onClick={e => handleAnchorLinkClick(id, index, e)}
-            >
-              {heading}
-            </StyledNavTab>
-          );
-        })}
-      </StyledNavTabWrapper>
-    );
+    return headings.map((heading, index) => {
+      const id = convertTextToId(heading);
+      return (
+        <StyledNavTab
+          key={id}
+          to={`#${id}`}
+          isInverse={isInverse}
+          isActive={activeTab === index}
+          onClick={e => handleAnchorLinkClick(id, index, e)}
+        >
+          {heading}
+        </StyledNavTab>
+      );
+    });
   }, [headings, isInverse, activeTab, handleAnchorLinkClick, hasHeadings]);
 
   if (!hasHeadings) return null;
@@ -232,7 +231,6 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
   return (
     <Wrapper hasHorizontalNav={hasHorizontalNav}>
       <StyledTabHeading isInverse={isInverse}>On this page</StyledTabHeading>
-
       <StyledNavTabs
         isInverse={isInverse}
         orientation={TabsOrientation.vertical}
