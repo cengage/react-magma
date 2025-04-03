@@ -692,6 +692,468 @@ function Example() {
   path="https://storybook-preview-dev--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart-bar-stacked--vertical-stacked-bar-discrete"
 />
 
+## Boxplot
+
+A boxplot, or box and whisker plot, summarizes a set of data, showing its distribution and any outliers.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
+
+function Example() {
+  const args = {
+    type: CarbonChartType.boxplot,
+    dataSet: [
+      {
+        group: 'Q1',
+        key: 'Monday',
+        value: 65000,
+      },
+      {
+        group: 'Q1',
+        key: 'Tuesday',
+        value: 29123,
+      },
+      {
+        group: 'Q1',
+        key: 'Wednesday',
+        value: 35213,
+      },
+      {
+        group: 'Q1',
+        key: 'Thursday',
+        value: 51213,
+      },
+      {
+        group: 'Q1',
+        key: 'Friday',
+        value: 16932,
+      },
+      {
+        group: 'Q2',
+        key: 'Monday',
+        value: 32432,
+      },
+      {
+        group: 'Q2',
+        key: 'Tuesday',
+        value: 14312,
+      },
+      {
+        group: 'Q2',
+        key: 'Wednesday',
+        value: 66456,
+      },
+      {
+        group: 'Q2',
+        key: 'Thursday',
+        value: 21312,
+      },
+      {
+        group: 'Q2',
+        key: 'Friday',
+        value: 37234,
+      },
+      {
+        group: 'Q3',
+        key: 'Monday',
+        value: 5312,
+      },
+      {
+        group: 'Q3',
+        key: 'Tuesday',
+        value: 23232,
+      },
+      {
+        group: 'Q3',
+        key: 'Wednesday',
+        value: 34232,
+      },
+      {
+        group: 'Q3',
+        key: 'Thursday',
+        value: 12312,
+      },
+      {
+        group: 'Q3',
+        key: 'Friday',
+        value: 44234,
+      },
+      {
+        group: 'Q4',
+        key: 'Monday',
+        value: 32423,
+      },
+      {
+        group: 'Q4',
+        key: 'Tuesday',
+        value: 21313,
+      },
+      {
+        group: 'Q4',
+        key: 'Wednesday',
+        value: 64353,
+      },
+      {
+        group: 'Q4',
+        key: 'Thursday',
+        value: 24134,
+      },
+      {
+        group: 'Q4',
+        key: 'Friday',
+        value: 45134,
+      },
+    ],
+    options: {
+      title: 'Horizontal box plot',
+      axes: {
+        bottom: {
+          mapsTo: 'value',
+        },
+        left: {
+          scaleType: 'labels',
+          mapsTo: 'group',
+        },
+      },
+      height: '400px',
+    },
+  };
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart {...args} />
+    </Card>
+  );
+}
+```
+
+<MoreDemosLink
+  number="1"
+  path="https://storybook-preview-dev--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart-boxplot--horizontal-boxplot"
+/>
+
+## Bubble
+
+A bubble chart, or bubble plot, uses bubbles to represent data points and their relationships in a two-dimensional plot.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
+
+function Example() {
+  const args = {
+    type: CarbonChartType.bubble,
+    dataSet: [
+      {
+        group: 'Dataset 1',
+        sales: 10000,
+        profit: 32100,
+        surplus: 50000,
+      },
+      {
+        group: 'Dataset 1',
+        sales: 12000,
+        profit: 23500,
+        surplus: 34000,
+      },
+      {
+        group: 'Dataset 1',
+        sales: 14000,
+        profit: 53100,
+        surplus: 63000,
+      },
+      {
+        group: 'Dataset 1',
+        sales: 15000,
+        profit: 42300,
+        surplus: 43000,
+      },
+      {
+        group: 'Dataset 1',
+        sales: 16000,
+        profit: 12300,
+        surplus: 55000,
+      },
+      {
+        group: 'Dataset 2',
+        sales: 11000,
+        profit: 12400,
+        surplus: 25000,
+      },
+      {
+        group: 'Dataset 2',
+        sales: 13000,
+        profit: 34500,
+        surplus: 35000,
+      },
+      {
+        group: 'Dataset 2',
+        sales: 13500,
+        profit: 23100,
+        surplus: 55000,
+      },
+      {
+        group: 'Dataset 2',
+        sales: 15500,
+        profit: 63200,
+        surplus: 35000,
+      },
+      {
+        group: 'Dataset 2',
+        sales: 15750,
+        profit: 24300,
+        surplus: 64000,
+      },
+    ],
+    options: {
+      title: 'Bubble (linear)',
+      axes: {
+        bottom: {
+          title: 'No. of employees',
+          mapsTo: 'sales',
+          includeZero: false,
+        },
+        left: {
+          title: 'Annual sales',
+          mapsTo: 'profit',
+          includeZero: false,
+        },
+      },
+      bubble: {
+        radiusMapsTo: 'surplus',
+        radiusLabel: 'Surplus',
+      },
+      legend: {
+        additionalItems: [
+          {
+            type: 'radius',
+            name: 'Surplus',
+          },
+        ],
+      },
+      height: '400px',
+    },
+  };
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart {...args} />
+    </Card>
+  );
+}
+```
+
+<MoreDemosLink
+  number="5"
+  path="https://storybook-preview-dev--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart-bubble--bubble-linear"
+/>
+
+## Bullet
+
+Bullet charts are commonly used in dashboards to effectively compare metrics against target benchmarks or predefined ranges.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
+
+function Example() {
+  const args = {
+    type: CarbonChartType.bullet,
+    dataSet: [
+      {
+        title: 'Item E',
+        group: 'D3',
+        ranges: [350, 650, 980],
+        marker: 1575,
+        value: 400,
+      },
+      {
+        title: 'Item D',
+        group: 'D2',
+        ranges: [750, 1200, null],
+        marker: 1725,
+        value: 2100,
+      },
+      {
+        title: 'Item C',
+        group: 'D3',
+        ranges: [350, 500, 1005],
+        marker: 1340,
+        value: 550,
+      },
+      {
+        title: 'Item B',
+        group: 'D1',
+        ranges: [300, 895, 1600],
+        marker: 1455,
+        value: 1000,
+      },
+      {
+        title: 'Item A',
+        group: 'D1',
+        ranges: [800, 1000, 1400],
+        marker: 1275,
+        value: 250,
+      },
+    ],
+    options: {
+      title: 'Basic bullet',
+      axes: {
+        bottom: {
+          mapsTo: 'value',
+          extendLinearDomainBy: 'marker',
+        },
+        left: {
+          scaleType: 'labels',
+          mapsTo: 'title',
+        },
+        right: {
+          scaleType: 'labels-ratio',
+          mapsTo: 'title',
+        },
+      },
+      height: '251px',
+    },
+  };
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart {...args} />
+    </Card>
+  );
+}
+```
+
+## Combo
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
+
+function Example() {
+  const args = {
+    type: CarbonChartType.combo,
+    dataSet: [
+      {
+        group: 'School A',
+        date: 'Monday',
+        value: 10000,
+      },
+      {
+        group: 'School A',
+        date: 'Tuesday',
+        value: 65000,
+      },
+      {
+        group: 'School A',
+        date: 'Wednesday',
+        value: 30000,
+      },
+      {
+        group: 'School A',
+        date: 'Thursday',
+        value: 49213,
+      },
+      {
+        group: 'School A',
+        date: 'Friday',
+        value: 49213,
+      },
+      {
+        group: 'Temperature',
+        date: 'Monday',
+        temp: 70,
+      },
+      {
+        group: 'Temperature',
+        date: 'Tuesday',
+        temp: 75,
+      },
+      {
+        group: 'Temperature',
+        date: 'Wednesday',
+        temp: 31,
+      },
+      {
+        group: 'Temperature',
+        date: 'Thursday',
+        temp: 31,
+      },
+      {
+        group: 'Temperature',
+        date: 'Friday',
+        temp: 43,
+      },
+    ],
+    options: {
+      title: 'Combo (Line + Simple bar) - custom configs',
+      axes: {
+        left: {
+          mapsTo: 'value',
+          scaleType: 'linear',
+          title: 'USA Summer School Attendance',
+        },
+        right: {
+          mapsTo: 'temp',
+          scaleType: 'linear',
+          title: 'Temperature (°F)',
+          correspondingDatasets: ['Temperature'],
+        },
+        bottom: {
+          title: 'Day of the Week',
+          mapsTo: 'date',
+          scaleType: 'labels',
+        },
+      },
+      comboChartTypes: [
+        {
+          type: 'simple-bar',
+          correspondingDatasets: ['School A'],
+        },
+        {
+          type: 'line',
+          options: {
+            points: {
+              radius: 5,
+            },
+          },
+          correspondingDatasets: ['Temperature'],
+        },
+      ],
+      height: '400px',
+    },
+  };
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart {...args} />
+    </Card>
+  );
+}
+```
+
+<MoreDemosLink
+  number="11"
+  path="https://storybook-preview-dev--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart-combo--combo-line-and-simple-bar-custom-configs"
+/>
+
 ## Donut
 
 A donut chart is a type of pie chart with a hole in the middle. It shows the relationship of parts to a whole and the percentage each value contributes to the total.
@@ -761,6 +1223,221 @@ function Example() {
 <MoreDemosLink
   number="4"
   path="https://storybook-preview-dev--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart-donut--donut"
+/>
+
+## Gauge
+
+A gauge chart, also known as a dial or speedometer chart, displays a single data value quantitatively.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
+
+function Example() {
+  const args = {
+    type: CarbonChartType.gauge,
+    dataSet: [
+      {
+        group: 'value',
+        value: 42,
+      },
+      {
+        group: 'delta',
+        value: -13.37,
+      },
+    ],
+    options: {
+      title: 'Gauge semicircular -- danger status',
+      resizable: true,
+      height: '250px',
+      gauge: {
+        type: 'semi',
+        status: 'danger',
+      },
+    },
+  };
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart {...args} />
+    </Card>
+  );
+}
+```
+
+<MoreDemosLink
+  number="1"
+  path="https://storybook-preview-dev--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart-gauge--gauge-semicircular-danger-status"
+/>
+
+## Histogram
+
+A histogram is a statistical chart depicting the distribution of a continuous dataset using bars, with each bar representing a specific category or class interval.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
+
+function Example() {
+  const args = {
+    type: CarbonChartType.histogram,
+    dataSet: [
+      {
+        group: 'Dataset 1',
+        age: 20,
+      },
+      {
+        group: 'Dataset 2',
+        age: 21,
+      },
+      {
+        group: 'Dataset 2',
+        age: 23,
+      },
+      {
+        group: 'Dataset 3',
+        age: 21,
+      },
+      {
+        group: 'Dataset 3',
+        age: 23,
+      },
+      {
+        group: 'Dataset 3',
+        age: 24,
+      },
+      {
+        group: 'Dataset 1',
+        age: 30,
+      },
+      {
+        group: 'Dataset 2',
+        age: 34,
+      },
+      {
+        group: 'Dataset 1',
+        age: 35,
+      },
+      {
+        group: 'Dataset 3',
+        age: 30,
+      },
+      {
+        group: 'Dataset 1',
+        age: 40,
+      },
+      {
+        group: 'Dataset 2',
+        age: 43,
+      },
+      {
+        group: 'Dataset 1',
+        age: 45,
+      },
+      {
+        group: 'Dataset 1',
+        age: 46,
+      },
+      {
+        group: 'Dataset 3',
+        age: 40,
+      },
+      {
+        group: 'Dataset 3',
+        age: 43,
+      },
+      {
+        group: 'Dataset 3',
+        age: 45,
+      },
+      {
+        group: 'Dataset 1',
+        age: 48,
+      },
+      {
+        group: 'Dataset 1',
+        age: 50,
+      },
+      {
+        group: 'Dataset 2',
+        age: 55,
+      },
+      {
+        group: 'Dataset 2',
+        age: 66,
+      },
+      {
+        group: 'Dataset 2',
+        age: 58,
+      },
+      {
+        group: 'Dataset 1',
+        age: 70,
+      },
+      {
+        group: 'Dataset 1',
+        age: 78,
+      },
+      {
+        group: 'Dataset 3',
+        age: 71,
+      },
+      {
+        group: 'Dataset 3',
+        age: 75,
+      },
+      {
+        group: 'Dataset 2',
+        age: 83,
+      },
+      {
+        group: 'Dataset 2',
+        age: 86,
+      },
+      {
+        group: 'Dataset 1',
+        age: 87,
+      },
+    ],
+    options: {
+      title: 'Histogram (linear)',
+      axes: {
+        bottom: {
+          title: 'Age',
+          mapsTo: 'age',
+          bins: 10,
+          limitDomainToBins: true,
+        },
+        left: {
+          title: 'No. of participants',
+          scaleType: 'linear',
+          stacked: true,
+          binned: true,
+        },
+      },
+      height: '400px',
+    },
+  };
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart {...args} />
+    </Card>
+  );
+}
+```
+
+<MoreDemosLink
+  number="2"
+  path="https://storybook-preview-dev--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart-histogram--histogram-linear"
 />
 
 ## Line
@@ -979,6 +1656,65 @@ function Example() {
   path="https://storybook-preview-dev--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart-lollipop--lollipop-discrete"
 />
 
+## Meter
+
+Meter charts are used to measure the rate of change of a quantity against pre-defined targets.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
+
+function Example() {
+  const args = {
+    type: CarbonChartType.meter,
+    dataSet: [
+      {
+        group: 'Dataset 1',
+        value: 56,
+      },
+    ],
+    options: {
+      title: 'Meter Chart - with statuses',
+      meter: {
+        peak: 80,
+        status: {
+          ranges: [
+            {
+              range: [0, 50],
+              status: 'success',
+            },
+            {
+              range: [50, 60],
+              status: 'warning',
+            },
+            {
+              range: [60, 100],
+              status: 'danger',
+            },
+          ],
+        },
+      },
+      height: '100px',
+    },
+  };
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart {...args} />
+    </Card>
+  );
+}
+```
+
+<MoreDemosLink
+  number="3"
+  path="https://storybook-preview-dev--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart-meter--meter-chart-with-statuses"
+/>
+
 ## Pie
 
 A pie chart visually summarizes nominal data or illustrates the distribution of values, such as percentage distribution.
@@ -1044,5 +1780,570 @@ function Example() {
   number="4"
   path="https://storybook-preview-dev--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart-pie--pie"
 />
+
+## Radar
+
+A radar chart, or spider chart, web chart, or star chart, is a two-dimensional graph displaying multiple quantitative variables in a single visual.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
+
+function Example() {
+  const args = {
+    type: CarbonChartType.radar,
+    dataSet: [
+      {
+        product: 'Product 1',
+        feature: 'Price',
+        score: 60,
+      },
+      {
+        product: 'Product 1',
+        feature: 'Usability',
+        score: 92,
+      },
+      {
+        product: 'Product 1',
+        feature: 'Availability',
+        score: 5,
+      },
+      {
+        product: 'Product 1',
+        feature: 'Performance',
+        score: 85,
+      },
+      {
+        product: 'Product 1',
+        feature: 'Quality',
+        score: 60,
+      },
+      {
+        product: 'Product 2',
+        feature: 'Price',
+        score: 70,
+      },
+      {
+        product: 'Product 2',
+        feature: 'Usability',
+        score: 63,
+      },
+      {
+        product: 'Product 2',
+        feature: 'Availability',
+        score: 78,
+      },
+      {
+        product: 'Product 2',
+        feature: 'Performance',
+        score: 50,
+      },
+      {
+        product: 'Product 2',
+        feature: 'Quality',
+        score: 30,
+      },
+    ],
+    options: {
+      title: 'Radar',
+      radar: {
+        axes: {
+          angle: 'feature',
+          value: 'score',
+        },
+      },
+      data: {
+        groupMapsTo: 'product',
+      },
+      height: '400px',
+    },
+  };
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart {...args} />
+    </Card>
+  );
+}
+```
+
+<MoreDemosLink
+  number="2"
+  path="https://storybook-preview-dev--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart-radar--radar"
+/>
+
+## Scatter
+
+Scatter plots use data points to plot two measures along a scale, allowing exploration of correlations between different variables.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
+
+function Example() {
+  const args = {
+    type: CarbonChartType.scatter,
+    dataSet: [
+      {
+        group: 'Dataset 1',
+        employees: 5000,
+        sales: 32100,
+      },
+      {
+        group: 'Dataset 1',
+        employees: 3000,
+        sales: 25100,
+      },
+      {
+        group: 'Dataset 1',
+        employees: 8000,
+        sales: 12100,
+      },
+      {
+        group: 'Dataset 1',
+        employees: 4000,
+        sales: 53100,
+      },
+      {
+        group: 'Dataset 2',
+        employees: 5000,
+        sales: 32100,
+      },
+      {
+        group: 'Dataset 2',
+        employees: 2000,
+        sales: 34100,
+      },
+      {
+        group: 'Dataset 2',
+        employees: 4000,
+        sales: 23100,
+      },
+      {
+        group: 'Dataset 2',
+        employees: 7000,
+        sales: 14100,
+      },
+      {
+        group: 'Dataset 2',
+        employees: 6000,
+        sales: 53100,
+      },
+    ],
+    options: {
+      title: 'Scatter (linear x & y)',
+      axes: {
+        bottom: {
+          title: 'No. of employees',
+          mapsTo: 'employees',
+          scaleType: 'linear',
+        },
+        left: {
+          title: 'Annual sales',
+          mapsTo: 'sales',
+          scaleType: 'linear',
+        },
+      },
+      height: '400px',
+    },
+  };
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart {...args} />
+    </Card>
+  );
+}
+```
+
+<MoreDemosLink
+  number="5"
+  path="https://storybook-preview-dev--upbeat-sinoussi-f675aa.netlify.app/?path=/story/carbonchart-scatter--scatter-linear-x-and-y"
+/>
+
+## Sparkline
+
+A Sparkline Chart is a small, simple chart that provides a compact visual representation of trends in data.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
+
+function Example() {
+  const args = {
+    type: CarbonChartType.area,
+    dataSet: [
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:21:00.000Z',
+        value: 2,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:22:00.000Z',
+        value: 3,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:23:00.000Z',
+        value: 5,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:24:00.000Z',
+        value: 1,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:25:00.000Z',
+        value: 4,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:26:00.000Z',
+        value: 4,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:27:00.000Z',
+        value: 3,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:28:00.000Z',
+        value: 4,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:29:00.000Z',
+        value: 2,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:30:00.000Z',
+        value: 0,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:31:00.000Z',
+        value: 5,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:32:00.000Z',
+        value: 5,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:33:00.000Z',
+        value: 6,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:34:00.000Z',
+        value: 2,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:35:00.000Z',
+        value: 3,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:36:00.000Z',
+        value: 6,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:38:00.000Z',
+        value: 2,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:39:00.000Z',
+        value: 6,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:40:00.000Z',
+        value: 0,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:41:00.000Z',
+        value: 3,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:42:00.000Z',
+        value: 2,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:43:00.000Z',
+        value: 4,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:44:00.000Z',
+        value: 3,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:45:00.000Z',
+        value: 4,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:46:00.000Z',
+        value: 2,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:47:00.000Z',
+        value: 4,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:48:00.000Z',
+        value: 1,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:49:00.000Z',
+        value: 1,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:50:00.000Z',
+        value: 3,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-05-21T19:51:00.000Z',
+        value: 2,
+      },
+    ],
+    options: {
+      title: 'Sparkline',
+      height: '400px',
+      grid: {
+        x: {
+          enabled: false,
+        },
+        y: {
+          enabled: false,
+        },
+      },
+      axes: {
+        bottom: {
+          visible: false,
+          title: '2019 Annual Sales Figures',
+          mapsTo: 'date',
+          scaleType: 'time',
+        },
+        left: {
+          visible: false,
+          mapsTo: 'value',
+          scaleType: 'linear',
+        },
+      },
+      color: {
+        gradient: {
+          enabled: true,
+        },
+      },
+      points: {
+        enabled: false,
+      },
+      legend: {
+        enabled: false,
+      },
+    },
+  };
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart {...args} />
+    </Card>
+  );
+}
+```
+
+## Step
+
+A Step Chart is a type of line chart that displays data as a series of steps rather than a smooth trend.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+// IMPORTANT: Uncomment the line below for the correct styles
+// import '@react-magma/charts/dist/charts.css';
+
+function Example() {
+  const args = {
+    type: CarbonChartType.line,
+    dataSet: [
+      {
+        group: 'Dataset 1',
+        date: '2018-12-31T23:00:00.000Z',
+        value: 50000,
+        surplus: 844630247.9315708,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-01-04T23:00:00.000Z',
+        value: 65000,
+        surplus: 722253377.7025548,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-01-07T23:00:00.000Z',
+        value: null,
+        surplus: 9586.628515900247,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-01-12T23:00:00.000Z',
+        value: 49213,
+        surplus: 519710030.3060996,
+      },
+      {
+        group: 'Dataset 1',
+        date: '2019-01-16T23:00:00.000Z',
+        value: 51213,
+        surplus: 964336709.1293422,
+      },
+      {
+        group: 'Dataset 2',
+        date: '2019-01-01T23:00:00.000Z',
+        value: 0,
+        surplus: 24733.73210194359,
+      },
+      {
+        group: 'Dataset 2',
+        date: '2019-01-05T23:00:00.000Z',
+        value: 57312,
+        surplus: 2104847.5679499935,
+      },
+      {
+        group: 'Dataset 2',
+        date: '2019-01-07T23:00:00.000Z',
+        value: 27432,
+        surplus: 632664658.6542752,
+      },
+      {
+        group: 'Dataset 2',
+        date: '2019-01-14T23:00:00.000Z',
+        value: 70323,
+        surplus: 1484604165.9194114,
+      },
+      {
+        group: 'Dataset 2',
+        date: '2019-01-18T23:00:00.000Z',
+        value: 21300,
+        surplus: 228423489.25766274,
+      },
+      {
+        group: 'Dataset 3',
+        date: '2018-12-31T23:00:00.000Z',
+        value: 40000,
+        surplus: 634264360.9426379,
+      },
+      {
+        group: 'Dataset 3',
+        date: '2019-01-04T23:00:00.000Z',
+        value: null,
+        surplus: 781.4728603674881,
+      },
+      {
+        group: 'Dataset 3',
+        date: '2019-01-07T23:00:00.000Z',
+        value: 18000,
+        surplus: 210741530.6295638,
+      },
+      {
+        group: 'Dataset 3',
+        date: '2019-01-12T23:00:00.000Z',
+        value: 39213,
+        surplus: 135260712.71714658,
+      },
+      {
+        group: 'Dataset 3',
+        date: '2019-01-16T23:00:00.000Z',
+        value: 61213,
+        surplus: 313154331.2033775,
+      },
+      {
+        group: 'Dataset 4',
+        date: '2019-01-01T23:00:00.000Z',
+        value: 20000,
+        surplus: 450715657.7789645,
+      },
+      {
+        group: 'Dataset 4',
+        date: '2019-01-05T23:00:00.000Z',
+        value: 37312,
+        surplus: 60444212.38584305,
+      },
+      {
+        group: 'Dataset 4',
+        date: '2019-01-07T23:00:00.000Z',
+        value: 51432,
+        surplus: 1007946419.445114,
+      },
+      {
+        group: 'Dataset 4',
+        date: '2019-01-14T23:00:00.000Z',
+        value: 25332,
+        surplus: 281099594.1962531,
+      },
+      {
+        group: 'Dataset 4',
+        date: '2019-01-18T23:00:00.000Z',
+        value: null,
+        surplus: 1928.4268222770295,
+      },
+    ],
+    options: {
+      title: 'Step (time series)',
+      axes: {
+        bottom: {
+          title: '2019 Annual Sales Figures',
+          mapsTo: 'date',
+          scaleType: 'time',
+        },
+        left: {
+          mapsTo: 'value',
+          title: 'Conversion rate',
+          scaleType: 'linear',
+        },
+      },
+      curve: 'curveStepAfter',
+      height: '400px',
+    },
+  };
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart {...args} />
+    </Card>
+  );
+}
+```
 
 </PageContent>
