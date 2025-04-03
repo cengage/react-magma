@@ -572,7 +572,7 @@ export const ErrorMessageAndHelperMessage = () => {
         errorMessage={hasError2 ? 'Please provide name' : null}
         helperMessage="Helper text"
         labelText="Name *"
-        onChange={event => setNameValue(event.target.value)}
+        onChange={event => setNameValue2(event.target.value)}
         required
         value={nameValue2}
         ref={inputRef2}
