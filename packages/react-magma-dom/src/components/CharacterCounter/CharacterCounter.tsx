@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 import { I18nContext } from '../../i18n';
 import { magma } from '../../theme/magma';
+import { HiddenLabelText } from '../Checkbox';
 import { InputMessage } from '../Input/InputMessage';
 
 export interface CharacterCounterProps
@@ -97,6 +98,13 @@ export const CharacterCounter = React.forwardRef<
     return 'off';
   }
 
+  function getAriaLiveScreenReaderState() {
+    if (getPercentage > 100) {
+      return 'assertive';
+    }
+    return 'polite';
+  }
+
   // As the user types, this calculates the remaining characters set by maxCount which counts down to zero then counts up if over the limit.
   const characterLimit =
     maxCharacters > inputLength
@@ -139,6 +147,7 @@ export const CharacterCounter = React.forwardRef<
     <div data-testid={testId} id={id} ref={ref} {...rest}>
       <StyledInputMessage
         aria-live={getAriaLiveState()}
+        aria-hidden="true"
         hasCharacterCounter={hasCharacterCounter}
         hasError={isOverMaxCount}
         isInverse={isInverse}
@@ -148,6 +157,11 @@ export const CharacterCounter = React.forwardRef<
       >
         {characterTitle()}
       </StyledInputMessage>
+      {onkeydown && (
+        <HiddenLabelText id={id} aria-live={getAriaLiveScreenReaderState()}>
+          {characterTitle()}
+        </HiddenLabelText>
+      )}
     </div>
   );
 });
