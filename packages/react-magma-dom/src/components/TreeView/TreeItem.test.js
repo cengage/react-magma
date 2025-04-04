@@ -4,7 +4,6 @@ import { render, getByTestId } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 
-import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 
 import { TreeItem, TreeView } from '.';
@@ -71,6 +70,37 @@ describe('TreeItem', () => {
 
       expect(getByTestId(`${testId}-itemwrapper`)).toHaveStyle(
         `backgroundColor: ${backgroundColor}`
+      );
+    });
+  });
+
+  describe('additional content styles', () => {
+    it('should apply default styles', () => {
+      const { getByTestId } = render(
+        <TreeItem label={labelText} testId={testId} itemId={itemId} />
+      );
+
+      expect(getByTestId(`${testId}-itemwrapper`)).toHaveStyle(
+        `flexDirection: row`
+      );
+    });
+
+    it('should apply custom styles when additional contens is provided', () => {
+      const { getByTestId, getByText } = render(
+        <TreeItem
+          additionalContent={<>Content</>}
+          label={labelText}
+          testId={testId}
+          itemId={itemId}
+        />
+      );
+
+      expect(getByText('Content')).toBeInTheDocument();
+      expect(getByTestId(`${testId}-itemwrapper`)).toHaveStyle(
+        `flexDirection: column`
+      );
+      expect(getByTestId(`${testId}-additionalcontentrapper`)).toHaveStyle(
+        `marginBottom: 16px`
       );
     });
   });

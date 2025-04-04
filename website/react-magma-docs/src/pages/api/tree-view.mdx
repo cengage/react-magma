@@ -1397,6 +1397,120 @@ export function Example() {
 }
 ```
 
+## additionalContent
+
+The `additionalContent` prop allows the adopter to render additional custom content below the label.
+This can include any valid React node, such as text, icons, buttons, tooltips, or other components.
+
+```tsx
+import React from 'react';
+
+import {
+  Button,
+  ButtonGroup,
+  ButtonSize,
+  ButtonColor,
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+  TreeItem,
+  TreeView,
+  TreeViewSelectable,
+} from 'react-magma-dom';
+import { FolderIcon, SpaceDashboardIcon } from 'react-magma-icons';
+
+export function Example() {
+  const parrotsAdditionalContent = () => {
+    return (
+      <div style={{ width: '100%', marginTop: '12px' }}>
+        <ButtonGroup style={{ marginBottom: '16px' }}>
+          <Dropdown>
+            <DropdownButton size={ButtonSize.small} color={ButtonColor.subtle}>
+              <div style={{ display: 'flex' }}>
+                <SpaceDashboardIcon
+                  size={16}
+                  style={{
+                    flex: '0 0 auto',
+                    marginRight: '4px',
+                  }}
+                />{' '}
+                <span style={{ flex: '1 1 auto' }}>Parrots</span>
+              </div>
+            </DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>African Grey</DropdownMenuItem>
+              <DropdownMenuItem>Cockatiel</DropdownMenuItem>
+              <DropdownMenuItem>Budgerigar</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </ButtonGroup>
+      </div>
+    );
+  };
+
+  const birdsOfPrey = () => {
+    return (
+      <div style={{ marginTop: '12px' }}>
+        <Button
+          style={{ marginRight: '12px' }}
+          onClick={() => console.log('Eagles')}
+        >
+          Eagles
+        </Button>
+        <Button
+          style={{ marginRight: '12px' }}
+          onClick={() => console.log('Hawks')}
+        >
+          Hawks
+        </Button>
+        <Button onClick={() => console.log('Falcons')}>Falcons</Button>
+      </div>
+    );
+  };
+
+  return (
+    <TreeView
+      selectable={TreeViewSelectable.off}
+      initialExpandedItems={['parrots-AdditionalContent', 'birdsOfPrey']}
+    >
+      <TreeItem
+        icon={<FolderIcon aria-hidden />}
+        label={<>Birds</>}
+        itemId="birds"
+      >
+        <TreeItem label={<>Parrots</>} itemId="parrots-folder">
+          <TreeItem
+            additionalContent={parrotsAdditionalContent()}
+            label={<>Additional content</>}
+            itemId="parrots-AdditionalContent"
+          />
+        </TreeItem>
+        <TreeItem label={<>Birds of Prey</>} itemId="birdsOfPrey-folder">
+          <TreeItem
+            additionalContent={birdsOfPrey()}
+            label={<>Additional content</>}
+            itemId="birdsOfPrey"
+          />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Aquatic Animals" itemId="selectable-Aquatic Animals">
+        <TreeItem label="Fish" itemId="selectable-Fish">
+          <TreeItem label="Goldfish" itemId="selectable-Goldfish" />
+          <TreeItem label="Betta Fish" itemId="selectable-Betta Fish" />
+          <TreeItem label="Guppies" itemId="selectable-Guppies" />
+        </TreeItem>
+        <TreeItem label="Marine Mammals" itemId="selectable-Marine Mammals">
+          <TreeItem label="Dolphins" itemId="selectable-Dolphins" />
+          <TreeItem label="Whales" itemId="selectable-Whales" />
+          <TreeItem label="Seals" itemId="selectable-Seals" />
+        </TreeItem>
+      </TreeItem>
+    </TreeView>
+  );
+}
+```
+
 ## Inverse
 
 ```tsx
