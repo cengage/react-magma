@@ -20,6 +20,7 @@
     "feat-Input-new-types",
     "feat-TreeView-add-expandAll-and-collapseAll",
     "feat-TreeView-retain-expanded-collapsed-state",
+    "feat-popover-fix-comments",
     "feat-popover",
     "feat-treeview-is-top-level-selectable",
     "fix-AppBar",
