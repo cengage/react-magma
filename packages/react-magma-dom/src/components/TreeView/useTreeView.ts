@@ -30,7 +30,7 @@ export interface TreeViewApi {
   showLess(): void;
   expandAll(): void;
   collapseAll(): void;
-  addNewItem(item: TreeViewItemInterface): void;
+  addItem(item: TreeViewItemInterface): void;
 }
 
 export interface UseTreeViewProps {
@@ -490,7 +490,7 @@ export function useTreeView(props: UseTreeViewProps) {
     handleExpandedChange(syntheticEvent, '');
   }, [handleExpandedChange]);
 
-  const addNewItem = React.useCallback(
+  const addItem = React.useCallback(
     (newItem: TreeViewItemInterface) => {
       const newItems = items.map(item => {
         if (item.itemId === newItem.parentId) {
@@ -541,7 +541,7 @@ export function useTreeView(props: UseTreeViewProps) {
         showLess,
         expandAll,
         collapseAll,
-        addNewItem,
+        addItem,
       };
     }
   }, [
@@ -552,7 +552,7 @@ export function useTreeView(props: UseTreeViewProps) {
     showLess,
     expandAll,
     collapseAll,
-    addNewItem,
+    addItem,
     apiRef,
   ]);
 
