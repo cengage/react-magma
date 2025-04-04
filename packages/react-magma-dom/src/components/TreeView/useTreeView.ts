@@ -253,6 +253,7 @@ export function useTreeView(props: UseTreeViewProps) {
       selectable,
       isDisabled,
       isTopLevelSelectable,
+      items,
     });
 
     setItems(prevItems => {
@@ -499,6 +500,15 @@ export function useTreeView(props: UseTreeViewProps) {
 
         return item;
       });
+
+      if (
+        newItem.checkedStatus === IndeterminateCheckboxStatus.checked &&
+        selectable === TreeViewSelectable.single
+      ) {
+        newItems.forEach(item => {
+          item.checkedStatus = IndeterminateCheckboxStatus.unchecked;
+        });
+      }
 
       const updatedItems = [...newItems, newItem];
 
