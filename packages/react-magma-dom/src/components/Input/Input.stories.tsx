@@ -3,7 +3,13 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
 import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
 
-import { Button, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import {
+  Button,
+  ButtonColor,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
 import { Card, CardBody } from '../Card';
 import { Combobox } from '../Combobox';
@@ -115,7 +121,7 @@ Large.args = {
 };
 Large.parameters = { controls: { exclude: ['iconPosition'] } };
 
-export const IconPositions = args => {
+export const IconPositions = (args: any) => {
   return (
     <>
       <Input
@@ -184,7 +190,7 @@ Inverse.decorators = [
   ),
 ];
 
-export const HelpLink = args => {
+export const HelpLink = (args: any) => {
   const helpLinkLabel = 'Learn more';
   const onHelpLinkClick = () => {
     alert('Help link clicked!');
@@ -254,7 +260,7 @@ HelpLink.parameters = {
   },
 };
 
-export const WithTwoIcons = args => {
+export const WithTwoIcons = () => {
   const helpLinkLabel = 'Learn more';
   const onHelpLinkClick = () => {
     alert('Help link clicked!');
@@ -287,11 +293,11 @@ WithTwoIcons.parameters = {
   controls: { exclude: ['isInverse', 'type', 'iconPosition'] },
 };
 
-export const NumberInput = args => {
+export const NumberInput = (args: any) => {
   const [inputVal, setInputVal] = React.useState(1);
   const [hasError, setHasError] = React.useState(false);
 
-  function handleChange(event) {
+  function handleChange(event: any) {
     setInputVal(event.target.value);
   }
 
@@ -338,7 +344,7 @@ export const PhoneInput = () => {
   const [hasError, setHasError] = React.useState(false);
   const phonePattern = '^[0-9]{3}-[0-9]{3}-[0-9]{4}$';
 
-  function handleChange(event) {
+  function handleChange(event: any) {
     setInputVal(event.target.value);
   }
 
@@ -372,7 +378,7 @@ export const URLInput = () => {
   const urlPattern =
     '^(https?:\\/\\/)?([a-zA-Z0-9.-]+)\\.([a-zA-Z]{2,})(:[0-9]+)?(\\/.*)?$';
 
-  function handleChange(event) {
+  function handleChange(event: any) {
     setInputVal(event.target.value);
   }
 
@@ -408,9 +414,9 @@ export const SeveralErrors = () => {
     emailAddress: false,
   });
 
-  const firstNameInputRef = React.useRef();
-  const lastNameInputRef = React.useRef();
-  const emailAddressInputRef = React.useRef();
+  const firstNameInputRef = React.useRef<any>();
+  const lastNameInputRef = React.useRef<any>();
+  const emailAddressInputRef = React.useRef<any>();
 
   const submit = () => {
     setHasErrors({
@@ -495,7 +501,86 @@ export const SeveralErrors = () => {
       <br />
       <ButtonGroup>
         <Button onClick={submit}>Submit</Button>
-        <Button onClick={reset} color="secondary">
+        <Button onClick={reset} color={ButtonColor.secondary}>
+          Reset
+        </Button>
+      </ButtonGroup>
+    </>
+  );
+};
+
+export const ErrorMessageAndHelperMessage = () => {
+  const [hasError, setHasError] = React.useState(false);
+  const [hasError2, setHasError2] = React.useState(false);
+  const [nameValue, setNameValue] = React.useState('');
+  const [nameValue2, setNameValue2] = React.useState('');
+  const inputRef = React.useRef<any>();
+  const inputRef2 = React.useRef<any>();
+
+  function submit() {
+    if (nameValue === '') {
+      setHasError(true);
+      inputRef.current.focus();
+    } else {
+      setHasError(false);
+    }
+  }
+
+  function submit2() {
+    if (nameValue2 === '') {
+      setHasError2(true);
+      inputRef2.current.focus();
+    } else {
+      setHasError2(false);
+    }
+  }
+
+  function reset() {
+    setHasError(false);
+    setNameValue('');
+    inputRef.current.focus();
+  }
+
+  function reset2() {
+    setHasError2(false);
+    setNameValue2('');
+    inputRef2.current.focus();
+  }
+
+  return (
+    <>
+      <Input
+        errorMessage={hasError ? 'Please provide name' : null}
+        labelText="Name *"
+        onChange={event => setNameValue(event.target.value)}
+        required
+        value={nameValue}
+        ref={inputRef}
+      />
+      <Spacer size="12" />
+      <ButtonGroup>
+        <Button onClick={submit}>Submit</Button>
+        <Button onClick={reset} color={ButtonColor.secondary}>
+          Reset
+        </Button>
+      </ButtonGroup>
+      <br />
+      <br />
+      <br />
+      <br />
+      <Input
+        errorMessage={hasError2 ? 'Please provide name' : null}
+        helperMessage="Helper text"
+        labelText="Name *"
+        onChange={event => setNameValue2(event.target.value)}
+        required
+        value={nameValue2}
+        ref={inputRef2}
+      />
+      <Spacer size="12" />
+      <ButtonGroup>
+        <Button onClick={submit2}>Submit</Button>
+        <Button onClick={reset2} color={ButtonColor.secondary}>
           Reset
         </Button>
       </ButtonGroup>
