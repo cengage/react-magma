@@ -1397,9 +1397,9 @@ export function Example() {
 }
 ```
 
-## Add New Item Function
+## Dynamically Add TreeItem
 
-Use the `apiRef.addNewItem(item)` prop to add a new item. This function accepts an item of type `TreeViewItemInterface`. If the item includes a `parentId`, it is added as a **child**; otherwise, it is added as a **parent**.
+Use the `apiRef.addItem(item)` prop to add a new item. This function accepts an item of type `TreeViewItemInterface`. If the item includes a `parentId`, it is added as a **child**; otherwise, it is added as a **parent**.
 
 ```tsx
 import React from 'react';
@@ -1531,7 +1531,7 @@ export function Example() {
     const treeLength = items.length + 1;
     const newItemId = 'new-parent-' + treeLength;
 
-    apiRef.current.addNewItem({
+    apiRef.current.addItem({
       itemId: newItemId,
       parentId: null,
       icon: undefined,
@@ -1557,7 +1557,7 @@ export function Example() {
       parentItem &&
       String(parentItem.id) + '-' + String(parentItem.children.length + 1);
 
-    apiRef.current.addNewItem({
+    apiRef.current.addItem({
       itemId: newItemId,
       parentId: String(parentItem.id),
       icon: undefined,

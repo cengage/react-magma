@@ -104,14 +104,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     treeViewItemData?.checkedStatus,
   ]);
 
-  const hasOwnTreeItems = React.useMemo(() => {
-    return treeViewItemData?.hasOwnTreeItems;
-  }, [treeViewItemData]);
-
-  const [expanded, setExpanded] = React.useState(() => {
-    return expandedSet.has(itemId);
-  });
-
   const treeItemChildren = React.Children.toArray(children).filter(
     (child: React.ReactElement<any>) => child.type === TreeItem
   );
@@ -120,7 +112,9 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     return treeViewItemData?.hasOwnTreeItems || treeItemChildren.length > 0;
   }, [treeViewItemData, treeItemChildren.length]);
 
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(() => {
+    return expandedSet.has(itemId);
+  });
 
   const ownRef = React.useRef<HTMLDivElement>(null);
   const ref = useForkedRef(forwardedRef, ownRef);

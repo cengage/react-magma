@@ -2428,7 +2428,7 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
   const addNewParentItemChecked = () => {
     const newItemId = String(tree.length + 1);
 
-    treeViewApiRef.current?.addNewItem({
+    treeViewApiRef.current?.addItem({
       itemId: newItemId,
       parentId: null,
       icon: undefined,
@@ -2446,7 +2446,7 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
   const addNewParentItemUnchecked = () => {
     const newItemId = String(tree.length + 1);
 
-    treeViewApiRef.current?.addNewItem({
+    treeViewApiRef.current?.addItem({
       itemId: newItemId,
       parentId: null,
       icon: undefined,
@@ -2468,7 +2468,7 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
       parentItem &&
       String(parentItem.id) + String(parentItem.children.length + 1);
 
-    treeViewApiRef.current?.addNewItem({
+    treeViewApiRef.current?.addItem({
       itemId: newItemId,
       parentId: String(parentItem?.id),
       icon: undefined,
@@ -2504,7 +2504,7 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
       parentItem &&
       String(parentItem.id) + String(parentItem.children.length + 1);
 
-    treeViewApiRef.current?.addNewItem({
+    treeViewApiRef.current?.addItem({
       itemId: newItemId,
       parentId: String(parentItem?.id),
       icon: undefined,
@@ -2536,7 +2536,7 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
   const addNewDisabledParentItemChecked = () => {
     const newItemId = String(tree.length + 1);
 
-    treeViewApiRef.current?.addNewItem({
+    treeViewApiRef.current?.addItem({
       itemId: newItemId,
       parentId: null,
       icon: undefined,
@@ -2554,7 +2554,7 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
   const addNewDisabledParentItemUnchecked = () => {
     const newItemId = String(tree.length + 1);
 
-    treeViewApiRef.current?.addNewItem({
+    treeViewApiRef.current?.addItem({
       itemId: newItemId,
       parentId: null,
       icon: undefined,
@@ -2576,7 +2576,7 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
       parentItem &&
       String(parentItem.id) + String(parentItem.children.length + 1);
 
-    treeViewApiRef.current?.addNewItem({
+    treeViewApiRef.current?.addItem({
       itemId: newItemId,
       parentId: String(parentItem?.id),
       icon: undefined,
@@ -2612,7 +2612,7 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
       parentItem &&
       String(parentItem.id) + String(parentItem.children.length + 1);
 
-    treeViewApiRef.current?.addNewItem({
+    treeViewApiRef.current?.addItem({
       itemId: newItemId,
       parentId: String(parentItem?.id),
       icon: undefined,
