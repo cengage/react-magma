@@ -4127,6 +4127,155 @@ describe('TreeView', () => {
     });
   });
 
+  describe('Dynamically updating tree', () => {
+    it('should update when children are dynamically rendered inside an empty parent', () => {
+      const DynamicChildrenTest = () => {
+        const [hasChildren, setHasChildren] = React.useState(false);
+
+        return (
+          <>
+            <button
+              data-testid="add-child-btn"
+              onClick={() => setHasChildren(true)}
+            >
+              Add Child
+            </button>
+            <TreeView testId="dynamic-tree">
+              <TreeItem
+                label="Empty Parent"
+                itemId="empty-parent"
+                testId="empty-parent"
+              >
+                {hasChildren && (
+                  <TreeItem
+                    label="Dynamically Added Child"
+                    itemId="dynamic-child"
+                    testId="dynamic-child"
+                  />
+                )}
+              </TreeItem>
+            </TreeView>
+          </>
+        );
+      };
+
+      const { getByTestId, queryByTestId } = render(<DynamicChildrenTest />);
+
+      // Initially, the parent should not have an expand button
+      expect(queryByTestId('empty-parent-expand')).not.toBeInTheDocument();
+
+      // Add a child dynamically
+      userEvent.click(getByTestId('add-child-btn'));
+
+      // After adding a child, the parent should now have an expand button
+      expect(queryByTestId('empty-parent-expand')).toBeInTheDocument();
+
+      // Test expand functionality
+      userEvent.click(getByTestId('empty-parent-expand'));
+      expect(getByTestId('empty-parent')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+      expect(getByTestId('dynamic-child')).toBeInTheDocument();
+
+      // Test collapse functionality
+      userEvent.click(getByTestId('empty-parent-expand'));
+      expect(getByTestId('empty-parent')).toHaveAttribute(
+        'aria-expanded',
+        'false'
+      );
+    });
+
+    it('Supports dynamically adding children, DynamicArrayTreeTest', () => {
+      const DynamicArrayTreeTest = () => {
+        const initialTree = [
+          {
+            id: 1,
+            name: 'Parent item empty',
+            children: [],
+          },
+          {
+            id: 2,
+            name: 'Parent item with children',
+            children: [
+              {
+                id: 21,
+                name: 'Child item',
+                children: [],
+              },
+            ],
+          },
+        ];
+
+        const [tree, updateTree] = React.useState(initialTree);
+
+        const renderItems = items => {
+          return items.map(item => {
+            return (
+              <TreeItem
+                key={item.id}
+                label={item.name}
+                itemId={item.id.toString()}
+                testId={`item-${item.id}`}
+              >
+                {renderItems(item.children)}
+              </TreeItem>
+            );
+          });
+        };
+
+        const handleAddChild = () => {
+          const newTree = tree.map((item, index) => {
+            if (index === 0) {
+              return {
+                ...item,
+                children: [
+                  ...item.children,
+                  { id: 11, name: 'New child', children: [] },
+                ],
+              };
+            }
+            return item;
+          });
+
+          updateTree(newTree);
+        };
+
+        return (
+          <>
+            <button data-testid="add-child-btn" onClick={handleAddChild}>
+              Add Child
+            </button>
+            <TreeView testId="dynamic-array-tree">{renderItems(tree)}</TreeView>
+          </>
+        );
+      };
+
+      const { getByTestId, queryByTestId } = render(<DynamicArrayTreeTest />);
+
+      // Initially, the first parent should not have an expand button
+      expect(queryByTestId('item-1-expand')).not.toBeInTheDocument();
+
+      // Second parent should have an expand button since it has children
+      expect(queryByTestId('item-2-expand')).toBeInTheDocument();
+
+      // Add a child dynamically to the first parent
+      userEvent.click(getByTestId('add-child-btn'));
+
+      // After adding a child, the first parent should now have an expand button
+      expect(queryByTestId('item-1-expand')).toBeInTheDocument();
+
+      // Test expand functionality
+      userEvent.click(getByTestId('item-1-expand'));
+      expect(getByTestId('item-1')).toHaveAttribute('aria-expanded', 'true');
+      expect(getByTestId('item-11')).toBeInTheDocument();
+
+      // Test collapse functionality
+      userEvent.click(getByTestId('item-1-expand'));
+      expect(getByTestId('item-1')).toHaveAttribute('aria-expanded', 'false');
+    });
+  });
+
   describe('TreeView Retains Expanded State', () => {
     it('should maintain expanded state of children when parent is collapsed and re-expanded', () => {
       const { getByTestId } = render(
