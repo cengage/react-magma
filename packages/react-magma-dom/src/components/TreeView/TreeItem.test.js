@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { render, getByTestId } from '@testing-library/react';
+import { act, getByTestId, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 
 import { magma } from '../../theme/magma';
+import { Button } from '../Button';
 
 import { TreeItem, TreeView } from '.';
 
@@ -74,7 +75,7 @@ describe('TreeItem', () => {
     });
   });
 
-  describe('additional content styles', () => {
+  describe('additional content', () => {
     it('should apply default styles', () => {
       const { getByTestId } = render(
         <TreeItem label={labelText} testId={testId} itemId={itemId} />
@@ -85,7 +86,7 @@ describe('TreeItem', () => {
       );
     });
 
-    it('should apply custom styles when additional contens is provided', () => {
+    it('should apply custom styles when additional content is provided', () => {
       const { getByTestId, getByText } = render(
         <TreeItem
           additionalContent={<>Content</>}
@@ -99,10 +100,40 @@ describe('TreeItem', () => {
       expect(getByTestId(`${testId}-itemwrapper`)).toHaveStyle(
         `flexDirection: column`
       );
-      expect(getByTestId(`${testId}-additionalcontentrapper`)).toHaveStyle(
+      expect(getByTestId(`${testId}-additionalcontentwrapper`)).toHaveStyle(
         `marginBottom: 16px`
       );
     });
+
+    // it('should interact with additional content when clicked or space/enter are pressed', async () => {
+    //   const handleClick = jest.fn();
+    //   const additionalContent = <Button onClick={handleClick}>Click</Button>;
+    //
+    //   const { getByText } = render(
+    //     <TreeItem
+    //       additionalContent={additionalContent}
+    //       label={labelText}
+    //       testId={testId}
+    //       itemId={itemId}
+    //     />
+    //   );
+    //
+    //   const button = getByText('Click');
+    //
+    //   expect(button).toBeInTheDocument();
+    //
+    //   button.focus();
+    //
+    //   act(async () => {
+    //     userEvent.keyboard('{Enter}');
+    //     expect(handleClick).toHaveBeenCalledTimes(1);
+    //   });
+    //
+    //   act(async () => {
+    //     userEvent.keyboard(' ');
+    //     expect(handleClick).toHaveBeenCalledTimes(2);
+    //   });
+    // });
   });
 
   describe('isDisabled', () => {

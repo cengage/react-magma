@@ -415,7 +415,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 {additionalContent && (
                   <AdditionalContentWrapper
                     theme={theme}
-                    data-testid={`${testId ?? itemId}-additionalcontentrapper`}
+                    data-testid={`${testId ?? itemId}-additionalcontentwrapper`}
                     onKeyDown={handleAdditionalContentKeyDown}
                   >
                     {additionalContent}

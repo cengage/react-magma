@@ -2500,7 +2500,7 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
         <Paragraph noTopMargin visualStyle={TypographyVisualStyle.bodyXSmall}>
           Due: xx/xx/xxx · Submitted: 12 · Missing: 3
         </Paragraph>
-        <ButtonGroup style={{ marginBottom: '16px' }}>
+        <ButtonGroup>
           <Dropdown>
             <DropdownButton size={ButtonSize.small} color={ButtonColor.subtle}>
               <div style={{ display: 'flex' }}>
