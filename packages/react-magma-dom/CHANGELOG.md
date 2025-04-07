@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.21
+
+### Patch Changes
+
+- 559a2ad: fix: Input > Accessibility > Screenreader fix for Firefox when errorMessage and helperMessage exist simultaneously.
+
 ## 4.9.0-next.20
 
 ### Minor Changes

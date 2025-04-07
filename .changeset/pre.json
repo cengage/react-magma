@@ -36,6 +36,7 @@
     "fix-Theme-update-types",
     "fix-TreeView-keyboard",
     "fix-tooltip-replace-popper-with-floating-ui",
+    "inputFirefox",
     "lintstaged-v2",
     "lintstaged",
     "manually-sync-4.8.7",
