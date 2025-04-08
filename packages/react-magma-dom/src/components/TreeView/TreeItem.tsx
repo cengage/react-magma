@@ -249,6 +249,21 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           : checkedStatus === IndeterminateCheckboxStatus.checked
         : null;
 
+    const handleAdditionalContentKeyDown = (event: React.KeyboardEvent) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        const target = event.target as HTMLElement;
+        const interactiveElement = target.closest<HTMLElement>(
+          'button, [role="button"], input, select, textarea'
+        );
+
+        if (interactiveElement) {
+          event.preventDefault();
+          event.stopPropagation();
+          interactiveElement.click();
+        }
+      }
+    };
+
     const defaultIcon =
       nodeType === TreeNodeType.branch ? (
         <FolderIcon aria-hidden />
@@ -289,6 +304,16 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       </StyledLabelWrapper>
     );
 
+    const treeItemAdditionalContent = additionalContent ? (
+      <AdditionalContentWrapper
+        theme={theme}
+        id={`${itemId}-additionalcontentwrapper`}
+        data-testid={`${testId ?? itemId}-additionalcontentwrapper`}
+      >
+        {additionalContent}
+      </AdditionalContentWrapper>
+    ) : null;
+
     // Props shared by Checkbox and IndeterminateCheckbox
     const checkboxProps = {
       disabled: isDisabled,
@@ -322,17 +347,21 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       selectable === TreeViewSelectable.multi &&
       (isTopLevelSelectable !== false || !topLevel);
 
-    const handleAdditionalContentKeyDown = e => {
-      if (['Enter', ' '].includes(e.key)) {
-        const interactiveElement =
-          e.target instanceof HTMLElement &&
-          e.target.closest('button, [role="button"], input, select, textarea');
+    const onKeyDownHandler = (event: React.KeyboardEvent) => {
+      const target = event.target as HTMLElement;
 
-        if (interactiveElement) {
-          e.stopPropagation();
-          e.preventDefault();
-          interactiveElement.click();
-        }
+      if (target === event.currentTarget) {
+        handleKeyDown(event);
+        return;
+      }
+
+      const isWithinLabelOrAdditionalContent = target.closest(
+        `#${itemId}-label, #${itemId}-additionalcontentwrapper`
+      );
+
+      if (isWithinLabelOrAdditionalContent) {
+        handleAdditionalContentKeyDown(event);
+        return;
       }
     };
 
@@ -355,7 +384,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           selected={selectedItem}
           theme={theme}
           tabIndex={tabIndex}
-          onKeyDown={handleKeyDown}
+          onKeyDown={onKeyDownHandler}
         >
           <StyledItemWrapper
             additionalContent={additionalContent}
@@ -408,15 +437,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             ) : (
               <>
                 {labelText}
-                {additionalContent && (
-                  <AdditionalContentWrapper
-                    theme={theme}
-                    data-testid={`${testId ?? itemId}-additionalcontentwrapper`}
-                    onKeyDown={handleAdditionalContentKeyDown}
-                  >
-                    {additionalContent}
-                  </AdditionalContentWrapper>
-                )}
+                {treeItemAdditionalContent}
               </>
             )}
           </StyledItemWrapper>

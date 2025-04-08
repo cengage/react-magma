@@ -1719,29 +1719,28 @@ describe('TreeView', () => {
 
         const item0 = getByTestId('item0');
         const item1 = getByTestId('item1');
-        const item1wrapper = getByTestId('item1-itemwrapper');
 
         userEvent.tab();
         fireEvent.keyDown(item0, { key: 'ArrowDown' });
         expect(item1).toHaveFocus();
 
         // Toggle expand with Space key
-        fireEvent.keyDown(item1wrapper, { key: ' ' });
+        fireEvent.keyDown(item1, { key: ' ' });
         expect(item1).toHaveAttribute('aria-expanded', 'true');
         expect(onExpandedChange).toHaveBeenCalledTimes(1);
 
         // Toggle collapse with Space key
-        fireEvent.keyDown(item1wrapper, { key: ' ' });
+        fireEvent.keyDown(item1, { key: ' ' });
         expect(item1).toHaveAttribute('aria-expanded', 'false');
         expect(onExpandedChange).toHaveBeenCalledTimes(2);
 
         // Toggle expand with Enter key
-        fireEvent.keyDown(item1wrapper, { key: 'Enter' });
+        fireEvent.keyDown(item1, { key: 'Enter' });
         expect(item1).toHaveAttribute('aria-expanded', 'true');
         expect(onExpandedChange).toHaveBeenCalledTimes(3);
 
         // Toggle collapse with Enter key
-        fireEvent.keyDown(item1wrapper, { key: 'Enter' });
+        fireEvent.keyDown(item1, { key: 'Enter' });
         expect(item1).toHaveAttribute('aria-expanded', 'false');
         expect(onExpandedChange).toHaveBeenCalledTimes(4);
       });
@@ -1754,7 +1753,7 @@ describe('TreeView', () => {
             getTreeItemsOneLevelSmall({ selectable: TreeViewSelectable.off })
           );
 
-          const item1 = getByTestId('item1-itemwrapper');
+          const item1 = getByTestId('item1');
 
           userEvent.tab();
           fireEvent.keyDown(item1, { key: ' ' });
@@ -1833,12 +1832,11 @@ describe('TreeView', () => {
           );
 
           const item1 = getByTestId('item1');
-          const item1wrapper = getByTestId('item1-itemwrapper');
 
           userEvent.tab();
 
           fireEvent.focus(item1);
-          fireEvent.keyDown(item1wrapper, { key: 'Enter' });
+          fireEvent.keyDown(item1, { key: 'Enter' });
 
           expect(item1).toHaveAttribute('aria-selected', 'true');
           expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
@@ -1849,7 +1847,7 @@ describe('TreeView', () => {
             },
           ]);
 
-          fireEvent.keyDown(item1wrapper, { key: 'Enter' });
+          fireEvent.keyDown(item1, { key: 'Enter' });
 
           expect(item1).toHaveAttribute('aria-selected', 'true');
           expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
@@ -1865,12 +1863,11 @@ describe('TreeView', () => {
           );
 
           const item0 = getByTestId('item0');
-          const item0wrapper = getByTestId('item0-itemwrapper');
 
           userEvent.tab();
 
           expect(item0).toHaveAttribute('aria-selected', 'false');
-          fireEvent.keyDown(item0wrapper, { key: ' ' });
+          fireEvent.keyDown(item0, { key: ' ' });
 
           expect(item0).toHaveAttribute('aria-selected', 'true');
           expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
@@ -1881,7 +1878,7 @@ describe('TreeView', () => {
             },
           ]);
 
-          fireEvent.keyDown(item0wrapper, { key: ' ' });
+          fireEvent.keyDown(item0, { key: ' ' });
 
           expect(item0).toHaveAttribute('aria-selected', 'true');
           expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
@@ -1897,7 +1894,6 @@ describe('TreeView', () => {
           );
 
           const item1 = getByTestId('item1');
-          const item1wrapper = getByTestId('item1-itemwrapper');
 
           userEvent.tab();
 
@@ -1905,14 +1901,14 @@ describe('TreeView', () => {
           expect(item1).toHaveAttribute('aria-selected', 'false');
 
           fireEvent.focus(item1);
-          fireEvent.keyDown(item1wrapper, { key: ' ' });
+          fireEvent.keyDown(item1, { key: ' ' });
 
           expect(item1).toHaveAttribute('aria-expanded', 'true');
           expect(item1).toHaveAttribute('aria-selected', 'false');
           expect(onSelectedItemChange).not.toHaveBeenCalled();
 
           fireEvent.focus(item1);
-          fireEvent.keyDown(item1wrapper, { key: ' ' });
+          fireEvent.keyDown(item1, { key: ' ' });
 
           expect(item1).toHaveAttribute('aria-expanded', 'false');
           expect(item1).toHaveAttribute('aria-selected', 'false');
@@ -1972,7 +1968,7 @@ describe('TreeView', () => {
 
           userEvent.tab();
 
-          fireEvent.keyDown(getByTestId('item-child3-itemwrapper'), {
+          fireEvent.keyDown(getByTestId('item-child3'), {
             key: 'Enter',
           });
 
@@ -1989,7 +1985,7 @@ describe('TreeView', () => {
             },
           ]);
 
-          fireEvent.keyDown(getByTestId('item-child3-itemwrapper'), {
+          fireEvent.keyDown(getByTestId('item-child3'), {
             key: 'Enter',
           });
 
@@ -2013,7 +2009,7 @@ describe('TreeView', () => {
 
           userEvent.tab();
 
-          fireEvent.keyDown(getByTestId('item-child3-itemwrapper'), {
+          fireEvent.keyDown(getByTestId('item-child3'), {
             key: ' ',
           });
 
@@ -2030,7 +2026,7 @@ describe('TreeView', () => {
             },
           ]);
 
-          fireEvent.keyDown(getByTestId('item-child3-itemwrapper'), {
+          fireEvent.keyDown(getByTestId('item-child3'), {
             key: ' ',
           });
 
@@ -2054,7 +2050,7 @@ describe('TreeView', () => {
 
           userEvent.tab();
 
-          fireEvent.keyDown(getByTestId('item3-itemwrapper'), { key: 'Enter' });
+          fireEvent.keyDown(getByTestId('item3'), { key: 'Enter' });
 
           expect(item3).toHaveAttribute('aria-checked', 'true');
           expect(itemChild3).toHaveAttribute('aria-checked', 'true');
@@ -2069,7 +2065,7 @@ describe('TreeView', () => {
             },
           ]);
 
-          fireEvent.keyDown(getByTestId('item3-itemwrapper'), { key: 'Enter' });
+          fireEvent.keyDown(getByTestId('item3'), { key: 'Enter' });
 
           expect(item3).toHaveAttribute('aria-checked', 'false');
           expect(itemChild3).toHaveAttribute('aria-checked', 'false');
@@ -2091,7 +2087,7 @@ describe('TreeView', () => {
 
           userEvent.tab();
 
-          fireEvent.keyDown(getByTestId('item3-itemwrapper'), { key: ' ' });
+          fireEvent.keyDown(getByTestId('item3'), { key: ' ' });
 
           expect(item3).toHaveAttribute('aria-checked', 'true');
           expect(itemChild3).toHaveAttribute('aria-checked', 'true');
@@ -2106,7 +2102,7 @@ describe('TreeView', () => {
             },
           ]);
 
-          fireEvent.keyDown(getByTestId('item3-itemwrapper'), { key: ' ' });
+          fireEvent.keyDown(getByTestId('item3'), { key: ' ' });
 
           expect(item3).toHaveAttribute('aria-checked', 'false');
           expect(itemChild3).toHaveAttribute('aria-checked', 'false');
@@ -2126,7 +2122,7 @@ describe('TreeView', () => {
 
           userEvent.tab();
 
-          fireEvent.keyDown(getByTestId('item3-itemwrapper'), { key: ' ' });
+          fireEvent.keyDown(getByTestId('item3'), { key: ' ' });
 
           expect(item3).toHaveAttribute('aria-checked', 'true');
           expect(onSelectedItemChange).toHaveBeenCalledWith([
@@ -2139,7 +2135,7 @@ describe('TreeView', () => {
               checkedStatus: IndeterminateCheckboxStatus.checked,
             },
           ]);
-          fireEvent.keyDown(getByTestId('item3-itemwrapper'), {
+          fireEvent.keyDown(getByTestId('item3'), {
             key: 'ArrowRight',
           });
           expect(getByTestId('item-child3')).toHaveAttribute(
@@ -3754,13 +3750,13 @@ describe('TreeView', () => {
       userEvent.tab();
       expect(getByTestId('parent1')).toHaveFocus();
 
-      fireEvent.keyDown(getByTestId('parent1-itemwrapper'), { key: ' ' });
+      fireEvent.keyDown(getByTestId('parent1'), { key: ' ' });
       expect(getByTestId('parent1')).toHaveAttribute('aria-expanded', 'true');
       expect(onSelectedItemChange).not.toHaveBeenCalled();
       expect(queryByTestId('parent1-checkbox')).toBeNull();
       expect(getByTestId('parent1')).not.toHaveAttribute('aria-checked');
 
-      fireEvent.keyDown(getByTestId('parent1-itemwrapper'), { key: ' ' });
+      fireEvent.keyDown(getByTestId('parent1'), { key: ' ' });
       expect(getByTestId('parent1')).toHaveAttribute('aria-expanded', 'false');
       expect(onSelectedItemChange).not.toHaveBeenCalled();
       expect(getByTestId('parent1')).not.toHaveAttribute('aria-checked');
