@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, getByTestId, render, waitFor } from '@testing-library/react';
+import { fireEvent, getByTestId, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 
@@ -105,35 +105,31 @@ describe('TreeItem', () => {
       );
     });
 
-    // it('should interact with additional content when clicked or space/enter are pressed', async () => {
-    //   const handleClick = jest.fn();
-    //   const additionalContent = <Button onClick={handleClick}>Click</Button>;
-    //
-    //   const { getByText } = render(
-    //     <TreeItem
-    //       additionalContent={additionalContent}
-    //       label={labelText}
-    //       testId={testId}
-    //       itemId={itemId}
-    //     />
-    //   );
-    //
-    //   const button = getByText('Click');
-    //
-    //   expect(button).toBeInTheDocument();
-    //
-    //   button.focus();
-    //
-    //   act(async () => {
-    //     userEvent.keyboard('{Enter}');
-    //     expect(handleClick).toHaveBeenCalledTimes(1);
-    //   });
-    //
-    //   act(async () => {
-    //     userEvent.keyboard(' ');
-    //     expect(handleClick).toHaveBeenCalledTimes(2);
-    //   });
-    // });
+    it('should interact with additional content when clicked or space/enter are pressed', () => {
+      const handleClick = jest.fn();
+      const additionalContent = <Button onClick={handleClick}>Click</Button>;
+
+      const { getByText } = render(
+        <TreeItem
+          additionalContent={additionalContent}
+          label={labelText}
+          testId={testId}
+          itemId={itemId}
+        />
+      );
+
+      const button = getByText('Click');
+
+      expect(button).toBeInTheDocument();
+
+      button.focus();
+
+      fireEvent.keyDown(button, { key: 'Enter', code: 'Enter' });
+      expect(handleClick).toHaveBeenCalledTimes(1);
+
+      fireEvent.keyDown(button, { key: ' ', code: 'Space' });
+      expect(handleClick).toHaveBeenCalledTimes(2);
+    });
   });
 
   describe('isDisabled', () => {

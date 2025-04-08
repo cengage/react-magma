@@ -330,11 +330,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
         if (interactiveElement) {
           e.stopPropagation();
-
-          if (e.key === ' ' && interactiveElement.tagName !== 'BUTTON') {
-            e.preventDefault();
-          }
-
+          e.preventDefault();
           interactiveElement.click();
         }
       }
