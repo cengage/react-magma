@@ -4274,6 +4274,595 @@ describe('TreeView', () => {
       userEvent.click(getByTestId('item-1-expand'));
       expect(getByTestId('item-1')).toHaveAttribute('aria-expanded', 'false');
     });
+
+    const DynamicArrayTreeTest = ({
+      selectable = TreeViewSelectable.multi,
+      checkParents = false,
+      checkChildren = false,
+      isDisabled = false,
+    }) => {
+      const initialTree = [
+        {
+          id: 1,
+          name: 'Parent item empty',
+          children: [],
+        },
+        {
+          id: 2,
+          name: 'Parent item with children',
+          children: [
+            {
+              id: 21,
+              name: 'Child item',
+              children: [],
+            },
+          ],
+        },
+      ];
+
+      const [tree, updateTree] = React.useState(initialTree);
+      const apiRef = React.useRef();
+
+      const renderItems = items => {
+        return items.map(item => {
+          return (
+            <TreeItem
+              key={item.id}
+              label={item.name}
+              itemId={item.id.toString()}
+              testId={`item-${item.id}`}
+            >
+              {renderItems(item.children)}
+            </TreeItem>
+          );
+        });
+      };
+
+      const handleAddParent = (
+        checkedStatus = IndeterminateCheckboxStatus.unchecked
+      ) => {
+        const newItemId = String(tree.length + 1);
+
+        apiRef.current?.addItem({
+          itemId: newItemId,
+          parentId: null,
+          icon: undefined,
+          hasOwnTreeItems: false,
+          isDisabled,
+          checkedStatus,
+        });
+
+        updateTree([
+          ...tree,
+          {
+            id: Number(newItemId),
+            name: `New parent ${newItemId}`,
+            children: [],
+          },
+        ]);
+      };
+
+      const handleAddChild = (
+        checkedStatus = IndeterminateCheckboxStatus.unchecked
+      ) => {
+        const parentItem = tree[tree.length - 1];
+
+        const newItemId =
+          parentItem &&
+          String(parentItem.id) + String(parentItem.children.length + 1);
+
+        apiRef.current?.addItem({
+          itemId: newItemId,
+          parentId: String(parentItem?.id),
+          icon: undefined,
+          hasOwnTreeItems: false,
+          isDisabled,
+          checkedStatus,
+        });
+
+        const newTree = tree.map((item, index) => {
+          if (index === tree.length - 1) {
+            return {
+              ...item,
+              children: [
+                ...item.children,
+                {
+                  id: Number(newItemId),
+                  name: `New child ${newItemId}`,
+                  children: [],
+                },
+              ],
+            };
+          }
+          return item;
+        });
+
+        updateTree(newTree);
+      };
+
+      return (
+        <>
+          <button
+            data-testid="add-parent-btn"
+            onClick={() => handleAddParent()}
+          >
+            Add Unchecked Parent
+          </button>
+          <button data-testid="add-child-btn" onClick={() => handleAddChild()}>
+            Add Unchecked Child
+          </button>
+          <button
+            data-testid="add-checked-parent-btn"
+            onClick={() => handleAddParent(IndeterminateCheckboxStatus.checked)}
+          >
+            Add Checked Parent
+          </button>
+          <button
+            data-testid="add-checked-child-btn"
+            onClick={() => handleAddChild(IndeterminateCheckboxStatus.checked)}
+          >
+            Add Checked Child
+          </button>
+          <TreeView
+            testId="dynamic-array-tree"
+            selectable={selectable}
+            apiRef={apiRef}
+            checkParents={checkParents}
+            checkChildren={checkChildren}
+          >
+            {renderItems(tree)}
+          </TreeView>
+        </>
+      );
+    };
+    describe('with "selectable=multi" prop', () => {
+      it('add items with "checkParents=false" and "checkChildren=false"', () => {
+        const { getByTestId } = render(<DynamicArrayTreeTest />);
+
+        userEvent.click(getByTestId('add-parent-btn'));
+        expect(getByTestId('item-3')).toBeInTheDocument();
+        expect(getByTestId('item-3')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('3-checkbox')).toBeInTheDocument();
+        expect(getByTestId('3-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New parent 3'
+        );
+
+        userEvent.click(getByTestId('add-child-btn'));
+        userEvent.click(getByTestId('item-3-expand'));
+        expect(getByTestId('item-31')).toBeInTheDocument();
+        expect(getByTestId('item-31')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('31-checkbox')).toBeInTheDocument();
+        expect(getByTestId('31-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 31'
+        );
+
+        userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-32')).toBeInTheDocument();
+        expect(getByTestId('item-32')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('32-checkbox')).toBeInTheDocument();
+        expect(getByTestId('32-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 32'
+        );
+
+        expect(getByTestId('item-3')).toHaveAttribute('aria-checked', 'false');
+
+        userEvent.click(getByTestId('add-checked-parent-btn'));
+        expect(getByTestId('item-4')).toBeInTheDocument();
+        expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('4-checkbox')).toBeInTheDocument();
+        expect(getByTestId('4-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New parent 4'
+        );
+
+        userEvent.click(getByTestId('add-child-btn'));
+        userEvent.click(getByTestId('item-4-expand'));
+        expect(getByTestId('item-41')).toBeInTheDocument();
+        expect(getByTestId('item-41')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('41-checkbox')).toBeInTheDocument();
+        expect(getByTestId('41-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 41'
+        );
+
+        userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-42')).toBeInTheDocument();
+        expect(getByTestId('item-42')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('42-checkbox')).toBeInTheDocument();
+        expect(getByTestId('42-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 42'
+        );
+
+        expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'true');
+      });
+
+      it('add items with "checkParents=true"', () => {
+        const { getByTestId } = render(<DynamicArrayTreeTest checkParents />);
+
+        userEvent.click(getByTestId('add-parent-btn'));
+        expect(getByTestId('item-3')).toBeInTheDocument();
+        expect(getByTestId('item-3')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('3-checkbox')).toBeInTheDocument();
+        expect(getByTestId('3-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New parent 3'
+        );
+
+        userEvent.click(getByTestId('add-child-btn'));
+        userEvent.click(getByTestId('item-3-expand'));
+        expect(getByTestId('item-31')).toBeInTheDocument();
+        expect(getByTestId('item-31')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('31-checkbox')).toBeInTheDocument();
+        expect(getByTestId('31-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 31'
+        );
+
+        userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-32')).toBeInTheDocument();
+        expect(getByTestId('item-32')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('32-checkbox')).toBeInTheDocument();
+        expect(getByTestId('32-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 32'
+        );
+
+        expect(getByTestId('item-3')).toHaveAttribute('aria-checked', 'mixed');
+
+        userEvent.click(getByTestId('add-checked-parent-btn'));
+        expect(getByTestId('item-4')).toBeInTheDocument();
+        expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('4-checkbox')).toBeInTheDocument();
+        expect(getByTestId('4-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New parent 4'
+        );
+
+        userEvent.click(getByTestId('add-child-btn'));
+        userEvent.click(getByTestId('item-4-expand'));
+        expect(getByTestId('item-41')).toBeInTheDocument();
+        expect(getByTestId('item-41')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('41-checkbox')).toBeInTheDocument();
+        expect(getByTestId('41-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 41'
+        );
+
+        userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-42')).toBeInTheDocument();
+        expect(getByTestId('item-42')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('42-checkbox')).toBeInTheDocument();
+        expect(getByTestId('42-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 42'
+        );
+
+        expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'true');
+      });
+
+      it('add items with "checkChildren=true"', () => {
+        const { getByTestId } = render(<DynamicArrayTreeTest checkChildren />);
+
+        userEvent.click(getByTestId('add-parent-btn'));
+        expect(getByTestId('item-3')).toBeInTheDocument();
+        expect(getByTestId('item-3')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('3-checkbox')).toBeInTheDocument();
+        expect(getByTestId('3-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New parent 3'
+        );
+
+        userEvent.click(getByTestId('add-child-btn'));
+        userEvent.click(getByTestId('item-3-expand'));
+        expect(getByTestId('item-31')).toBeInTheDocument();
+        expect(getByTestId('item-31')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('31-checkbox')).toBeInTheDocument();
+        expect(getByTestId('31-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 31'
+        );
+
+        userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-32')).toBeInTheDocument();
+        expect(getByTestId('item-32')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('32-checkbox')).toBeInTheDocument();
+        expect(getByTestId('32-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 32'
+        );
+
+        expect(getByTestId('item-3')).toHaveAttribute('aria-checked', 'false');
+
+        userEvent.click(getByTestId('add-checked-parent-btn'));
+        expect(getByTestId('item-4')).toBeInTheDocument();
+        expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('4-checkbox')).toBeInTheDocument();
+        expect(getByTestId('4-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New parent 4'
+        );
+
+        userEvent.click(getByTestId('add-child-btn'));
+        userEvent.click(getByTestId('item-4-expand'));
+        expect(getByTestId('item-41')).toBeInTheDocument();
+        expect(getByTestId('item-41')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('41-checkbox')).toBeInTheDocument();
+        expect(getByTestId('41-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 41'
+        );
+
+        userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-42')).toBeInTheDocument();
+        expect(getByTestId('item-42')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('42-checkbox')).toBeInTheDocument();
+        expect(getByTestId('42-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 42'
+        );
+
+        expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'true');
+      });
+    });
+
+    describe('with "selectable=single" prop', () => {
+      it('add items', () => {
+        const { getByTestId } = render(
+          <DynamicArrayTreeTest selectable={TreeViewSelectable.single} />
+        );
+
+        userEvent.click(getByTestId('add-parent-btn'));
+        expect(getByTestId('item-3')).toBeInTheDocument();
+        expect(getByTestId('item-3-label')).toBeInTheDocument();
+        expect(getByTestId('item-3-label')).toHaveTextContent('New parent 3');
+
+        userEvent.click(getByTestId('add-child-btn'));
+        userEvent.click(getByTestId('item-3-expand'));
+        expect(getByTestId('item-31')).toBeInTheDocument();
+        expect(getByTestId('item-31-label')).toBeInTheDocument();
+        expect(getByTestId('item-31-label')).toHaveTextContent('New child 31');
+
+        userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-32')).toBeInTheDocument();
+        expect(getByTestId('item-32-label')).toBeInTheDocument();
+        expect(getByTestId('item-32-label')).toHaveTextContent('New child 32');
+
+        expect(getByTestId('item-32')).toHaveAttribute('aria-selected', 'true');
+
+        userEvent.click(getByTestId('add-checked-parent-btn'));
+        expect(getByTestId('item-4')).toBeInTheDocument();
+        expect(getByTestId('item-4-label')).toBeInTheDocument();
+        expect(getByTestId('item-4-label')).toHaveTextContent('New parent 4');
+
+        expect(getByTestId('item-32')).toHaveAttribute(
+          'aria-selected',
+          'false'
+        );
+        expect(getByTestId('item-4')).toHaveAttribute('aria-selected', 'true');
+
+        userEvent.click(getByTestId('add-child-btn'));
+        userEvent.click(getByTestId('item-4-expand'));
+        expect(getByTestId('item-41')).toBeInTheDocument();
+        expect(getByTestId('item-41-label')).toBeInTheDocument();
+        expect(getByTestId('item-41-label')).toHaveTextContent('New child 41');
+
+        userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-42')).toBeInTheDocument();
+        expect(getByTestId('item-42-label')).toBeInTheDocument();
+        expect(getByTestId('item-42-label')).toHaveTextContent('New child 42');
+
+        expect(getByTestId('item-4')).toHaveAttribute('aria-selected', 'false');
+        expect(getByTestId('item-42')).toHaveAttribute('aria-selected', 'true');
+      });
+
+      it('add disabled items', () => {
+        const { getByTestId } = render(
+          <DynamicArrayTreeTest
+            selectable={TreeViewSelectable.single}
+            isDisabled
+          />
+        );
+
+        userEvent.click(getByTestId('add-child-btn'));
+        userEvent.click(getByTestId('item-2-expand'));
+        expect(getByTestId('item-22')).toBeInTheDocument();
+        expect(getByTestId('item-22-label')).toBeInTheDocument();
+        expect(getByTestId('item-22-label')).toHaveTextContent('New child 22');
+
+        userEvent.click(getByTestId('item-22'));
+        expect(getByTestId('item-22')).toHaveAttribute(
+          'aria-selected',
+          'false'
+        );
+
+        userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-23')).toBeInTheDocument();
+        expect(getByTestId('item-23-label')).toBeInTheDocument();
+        expect(getByTestId('item-23-label')).toHaveTextContent('New child 23');
+
+        expect(getByTestId('item-23')).toHaveAttribute('aria-selected', 'true');
+
+        userEvent.click(getByTestId('add-parent-btn'));
+        expect(getByTestId('item-3')).toBeInTheDocument();
+        expect(getByTestId('item-3-label')).toBeInTheDocument();
+        expect(getByTestId('item-3-label')).toHaveTextContent('New parent 3');
+
+        userEvent.click(getByTestId('item-3'));
+        expect(getByTestId('item-3')).toHaveAttribute('aria-selected', 'false');
+
+        userEvent.click(getByTestId('add-checked-parent-btn'));
+        expect(getByTestId('item-4')).toBeInTheDocument();
+        expect(getByTestId('item-4-label')).toBeInTheDocument();
+        expect(getByTestId('item-4-label')).toHaveTextContent('New parent 4');
+
+        expect(getByTestId('item-23')).toHaveAttribute(
+          'aria-selected',
+          'false'
+        );
+        expect(getByTestId('item-4')).toHaveAttribute('aria-selected', 'true');
+      });
+    });
+
+    describe('with "selectable=off" prop', () => {
+      it('add items', () => {
+        const { getByTestId } = render(
+          <DynamicArrayTreeTest selectable={TreeViewSelectable.off} />
+        );
+
+        userEvent.click(getByTestId('add-parent-btn'));
+        expect(getByTestId('item-3')).toBeInTheDocument();
+        expect(getByTestId('item-3-label')).toBeInTheDocument();
+        expect(getByTestId('item-3-label')).toHaveTextContent('New parent 3');
+
+        userEvent.click(getByTestId('add-child-btn'));
+        userEvent.click(getByTestId('item-3-expand'));
+        expect(getByTestId('item-31')).toBeInTheDocument();
+        expect(getByTestId('item-31-label')).toBeInTheDocument();
+        expect(getByTestId('item-31-label')).toHaveTextContent('New child 31');
+
+        userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-32')).toBeInTheDocument();
+        expect(getByTestId('item-32-label')).toBeInTheDocument();
+        expect(getByTestId('item-32-label')).toHaveTextContent('New child 32');
+
+        expect(getByTestId('item-32')).not.toHaveAttribute('aria-selected');
+
+        userEvent.click(getByTestId('add-checked-parent-btn'));
+        expect(getByTestId('item-4')).toBeInTheDocument();
+        expect(getByTestId('item-4-label')).toBeInTheDocument();
+        expect(getByTestId('item-4-label')).toHaveTextContent('New parent 4');
+
+        expect(getByTestId('item-4')).not.toHaveAttribute('aria-selected');
+
+        userEvent.click(getByTestId('add-child-btn'));
+        userEvent.click(getByTestId('item-4-expand'));
+        expect(getByTestId('item-41')).toBeInTheDocument();
+        expect(getByTestId('item-41-label')).toBeInTheDocument();
+        expect(getByTestId('item-41-label')).toHaveTextContent('New child 41');
+
+        userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-42')).toBeInTheDocument();
+        expect(getByTestId('item-42-label')).toBeInTheDocument();
+        expect(getByTestId('item-42-label')).toHaveTextContent('New child 42');
+
+        expect(getByTestId('item-42')).not.toHaveAttribute('aria-selected');
+      });
+    });
+
+    it('add item 3 levels deep', () => {
+      const DynamicArrayTreeTestDeep = () => {
+        const initialTree = [
+          {
+            id: 1,
+            name: 'Parent item empty',
+            children: [],
+          },
+          {
+            id: 2,
+            name: 'Parent item with children',
+            children: [
+              {
+                id: 21,
+                name: 'Child item',
+                children: [],
+              },
+            ],
+          },
+        ];
+
+        const [tree, updateTree] = React.useState(initialTree);
+        const apiRef = React.useRef();
+
+        const renderItems = items => {
+          return items.map(item => {
+            return (
+              <TreeItem
+                key={item.id}
+                label={item.name}
+                itemId={item.id.toString()}
+                testId={`item-${item.id}`}
+              >
+                {renderItems(item.children)}
+              </TreeItem>
+            );
+          });
+        };
+
+        const handleAddChild = () => {
+          const newItemId = 211;
+
+          apiRef.current?.addItem({
+            itemId: newItemId,
+            parentId: '21',
+            icon: undefined,
+            hasOwnTreeItems: false,
+            isDisabled: false,
+            checkedStatus: IndeterminateCheckboxStatus.unchecked,
+          });
+
+          const newTree = tree.map(item => {
+            const newChildren = [];
+
+            for (const child of item.children) {
+              if (child.id === 21) {
+                newChildren.push({
+                  ...child,
+                  children: [
+                    ...child.children,
+                    {
+                      id: Number(newItemId),
+                      name: `New child ${newItemId}`,
+                      children: [],
+                    },
+                  ],
+                });
+              } else {
+                newChildren.push(child);
+              }
+            }
+
+            return {
+              ...item,
+              children: newChildren,
+            };
+          });
+
+          updateTree(newTree);
+        };
+
+        return (
+          <>
+            <button
+              data-testid="add-child-btn"
+              onClick={() => handleAddChild()}
+            >
+              Add Child
+            </button>
+            <TreeView
+              testId="dynamic-array-tree"
+              selectable={TreeViewSelectable.single}
+              apiRef={apiRef}
+            >
+              {renderItems(tree)}
+            </TreeView>
+          </>
+        );
+      };
+
+      const { getByTestId } = render(<DynamicArrayTreeTestDeep />);
+
+      userEvent.click(getByTestId('add-child-btn'));
+      userEvent.click(getByTestId('item-2-expand'));
+      userEvent.click(getByTestId('item-21-expand'));
+      expect(getByTestId('item-211')).toBeInTheDocument();
+      expect(getByTestId('item-211-label')).toBeInTheDocument();
+      expect(getByTestId('item-211-label')).toHaveTextContent('New child 211');
+      expect(getByTestId('item-21')).toHaveFocus();
+    });
   });
 
   describe('TreeView Retains Expanded State', () => {
