@@ -1,0 +1,57 @@
+name: Build and Publish Docs for old versions
+
+on:
+  push:
+    branches:
+      - chore/deployOldDocs
+
+jobs:
+  build-and-publish:
+    runs-on: macos-latest
+
+    strategy:
+      matrix:
+        version: ['4.1.0', '2.6.0']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup
+        uses: actions/setup-node@v2
+        with:
+          node-version-file: '.nvmrc'
+          check-latest: true
+      - name: Check Node version
+        run: node -v
+      - name: Update NPM version
+        run: npm install -g "npm@^7.6.3"
+      - name: Install
+        run: npm ci
+      - name: Configure NPM
+        run: |
+          git config --global user.name 'github-bot'
+          git config --global user.email 'github-bot@users.noreply.github.com'
+          echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} > .npmrc
+      - name: Get Alias
+        id: info
+        run: |
+          echo "::set-output name=alias::$(npm run --silent getAlias)"
+          echo "::set-output name=version::$(npm run --silent getVersion)"
+      - name: Build Docs
+        run: npm run build:docs
+        env:
+          PATH_PREFIX: /version/${{ matrix.version }}
+
+      - name: Deploy Docs to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './website/react-magma-docs/public'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy from GitHub Actions'
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+          alias: react-magma-dom@${{ matrix.version }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
