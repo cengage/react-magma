@@ -258,7 +258,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
         if (interactiveElement) {
           event.preventDefault();
-          event.stopPropagation();
           interactiveElement.click();
         }
       }
