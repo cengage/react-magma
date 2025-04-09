@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: ['4.3.0', '4.2.0', '4.1.1']
+        version: ['4.3.0', '4.5.0', '4.4.0']
         # version: ['4.5.0', '4.4.0', '4.2.0', '4.1.0', '4.1.1', '4.0.0']
 
     steps:
@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           # node-version-file: '.nvmrc'
-          node-version: 14.19.1
+          node-version: 16.20.2
           # check-latest: true
       - name: Check Node version
         run: node -v
