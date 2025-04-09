@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.2-next.15
+
+### Patch Changes
+
+- 68a5d9d: fix(docs): Fix auto-scrolling to the selected component in the documentation on the first render/on a new tab.
+
 ## 5.1.2-next.14
 
 ### Patch Changes
