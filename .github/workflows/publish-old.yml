@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: ['4.3.0', '4.5.0', '4.4.0']
-        # version: ['4.5.0', '4.4.0', '4.2.0', '4.1.0', '4.1.1', '4.0.0']
+        version: ['4.5.0']
+        # version: ['4.3.0', '4.0.0']
 
     steps:
       - name: Checkout
@@ -24,10 +24,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           # node-version-file: '.nvmrc'
-          node-version: 16.20.2
+          node-version: 18.18.2
           # check-latest: true
       - name: Check Node version
         run: node -v
+      - name: Update Dependencies
+        run: npm update
       - name: Update NPM version
         run: npm install -g "npm@^7.6.3"
       - name: Install
