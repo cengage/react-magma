@@ -704,11 +704,10 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       const isOnDateChange = onDateChange && typeof onDateChange === 'function';
       const { value } = event.target;
 
-      setValue(props.value ?? value);
+      setValue(isOnDateChange ? value : (props.value ?? value));
 
-      if (isOnDateChange) {
-        setValue(value);
-        if (!value) onDateChange(null);
+      if (isOnDateChange && !value) {
+        onDateChange(null);
       }
     }
 
