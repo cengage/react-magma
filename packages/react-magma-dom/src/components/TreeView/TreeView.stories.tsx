@@ -10,13 +10,10 @@ import {
   FolderIcon,
   KeyboardArrowDownIcon,
   KeyboardArrowUpIcon,
-  LockIcon,
   MoreHorizIcon,
   QueuePlayNextIcon,
   QuizIcon,
-  SpaceDashboardIcon,
   StarIcon,
-  VerifiedIcon,
 } from 'react-magma-icons';
 
 import {
@@ -2412,7 +2409,7 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
       <Flex
         behavior={FlexBehavior.container}
         justify={FlexJustify.spaceBetween}
-        wrap={FlexWrap.wrap}
+        wrap={FlexWrap.nowrap}
       >
         <Flex behavior={FlexBehavior.item}>
           <Hyperlink to="google.com" target="_blank" hasUnderline={false}>
@@ -2421,40 +2418,25 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
         </Flex>
         <Flex
           behavior={FlexBehavior.item}
-          style={{ marginLeft: '40px' }}
-          justify={FlexJustify.flexEnd}
-          alignContent={FlexAlignContent.flexEnd}
+          style={{ display: 'inline-flex', marginLeft: '40px' }}
         >
-          <Flex
-            behavior={FlexBehavior.container}
-            style={{ gap: '8px' }}
-            wrap={FlexWrap.nowrap}
-          >
-            <Flex behavior={FlexBehavior.item}>
-              <Tag size={TagSize.small} icon={<LockIcon />}>
-                Hidden from Students
-              </Tag>
-            </Flex>
-            <Flex behavior={FlexBehavior.item}>
-              <Dropdown>
-                <DropdownButton
-                  aria-label="Extra icon example"
-                  color={ButtonColor.secondary}
-                  size={ButtonSize.small}
-                  icon={<MoreHorizIcon />}
-                  shape={ButtonShape.fill}
-                />
-                <DropdownContent>
-                  <DropdownMenuItem
-                    icon={<EditIcon aria-hidden />}
-                    onClick={() => console.log('Rename clicked!')}
-                  >
-                    Rename
-                  </DropdownMenuItem>
-                </DropdownContent>
-              </Dropdown>
-            </Flex>
-          </Flex>
+          <Dropdown>
+            <DropdownButton
+              aria-label="Extra icon example"
+              color={ButtonColor.secondary}
+              size={ButtonSize.small}
+              icon={<MoreHorizIcon />}
+              shape={ButtonShape.fill}
+            />
+            <DropdownContent>
+              <DropdownMenuItem
+                icon={<EditIcon aria-hidden />}
+                onClick={() => console.log('Rename clicked!')}
+              >
+                Rename
+              </DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
         </Flex>
       </Flex>
     );
@@ -2487,7 +2469,10 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
               shape={ButtonShape.fill}
             />
             <DropdownContent>
-              <DropdownMenuItem icon={<EditIcon aria-hidden />}>
+              <DropdownMenuItem
+                icon={<EditIcon aria-hidden />}
+                onClick={() => console.log('Rename clicked!')}
+              >
                 Rename
               </DropdownMenuItem>
             </DropdownContent>
@@ -2506,9 +2491,7 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
         <ButtonGroup>
           <Dropdown>
             <DropdownButton size={ButtonSize.small} color={ButtonColor.subtle}>
-              <div style={{ display: 'flex' }}>
-                <SpaceDashboardIcon size={16} /> <span>10 Resources</span>
-              </div>
+              10 Resources
             </DropdownButton>
             <DropdownContent>
               <DropdownMenuItem>Menu item 1</DropdownMenuItem>
@@ -2517,9 +2500,7 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
           </Dropdown>
           <Dropdown>
             <DropdownButton size={ButtonSize.small} color={ButtonColor.subtle}>
-              <div style={{ display: 'flex' }}>
-                <VerifiedIcon size={16} /> <span>24 Standards</span>
-              </div>
+              24 Standards
             </DropdownButton>
             <DropdownContent>
               <DropdownMenuItem>Menu item 1</DropdownMenuItem>
@@ -2537,7 +2518,7 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
         <TreeItem
           label={folderLabel(
             <Paragraph
-              visualStyle={TypographyVisualStyle.headingSmall}
+              visualStyle={TypographyVisualStyle.headingXSmall}
               noMargins
             >
               English Edition
