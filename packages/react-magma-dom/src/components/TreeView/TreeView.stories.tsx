@@ -2445,7 +2445,10 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
                   shape={ButtonShape.fill}
                 />
                 <DropdownContent>
-                  <DropdownMenuItem icon={<EditIcon aria-hidden />}>
+                  <DropdownMenuItem
+                    icon={<EditIcon aria-hidden />}
+                    onClick={() => console.log('Rename clicked!')}
+                  >
                     Rename
                   </DropdownMenuItem>
                 </DropdownContent>
@@ -2504,14 +2507,7 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
           <Dropdown>
             <DropdownButton size={ButtonSize.small} color={ButtonColor.subtle}>
               <div style={{ display: 'flex' }}>
-                <SpaceDashboardIcon
-                  size={16}
-                  style={{
-                    flex: '0 0 auto',
-                    marginRight: magma.spaceScale.spacing02,
-                  }}
-                />{' '}
-                <span style={{ flex: '1 1 auto' }}>10 Resources</span>
+                <SpaceDashboardIcon size={16} /> <span>10 Resources</span>
               </div>
             </DropdownButton>
             <DropdownContent>
@@ -2522,14 +2518,7 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
           <Dropdown>
             <DropdownButton size={ButtonSize.small} color={ButtonColor.subtle}>
               <div style={{ display: 'flex' }}>
-                <VerifiedIcon
-                  size={16}
-                  style={{
-                    flex: '0 0 auto',
-                    marginRight: magma.spaceScale.spacing02,
-                  }}
-                />{' '}
-                <span style={{ flex: '1 1 auto' }}>24 Standards</span>
+                <VerifiedIcon size={16} /> <span>24 Standards</span>
               </div>
             </DropdownButton>
             <DropdownContent>
@@ -2544,12 +2533,7 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
 
   return (
     <Card isInverse={args.isInverse}>
-      <TreeView
-        {...args}
-        ariaLabelledBy={'ah-textbook'}
-        selectable={TreeViewSelectable.off}
-        initialExpandedItems={['ch5water', 'sample9']}
-      >
+      <TreeView {...args} ariaLabelledBy={'ah-textbook'}>
         <TreeItem
           label={folderLabel(
             <Paragraph
@@ -2698,10 +2682,7 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
 
 ComplexWithAdditionalContent.args = {
   ariaLabel: 'Textbook tree',
-  initialExpandedItems: [
-    'Unit 2 Cell Systems (Chapters 5-7)',
-    '5.2 Water (pp. 137-141)',
-  ],
+  initialExpandedItems: ['ch5water', 'sample9'],
   checkParents: true,
   checkChildren: true,
   isDisabled: false,
