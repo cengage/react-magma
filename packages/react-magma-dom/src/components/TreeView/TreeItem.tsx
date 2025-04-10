@@ -4,19 +4,19 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 import {
-  FolderIcon,
   ArticleIcon,
-  ExpandMoreIcon,
   ChevronRightIcon,
+  ExpandMoreIcon,
+  FolderIcon,
 } from 'react-magma-icons';
 
 import { TreeItemContext } from './TreeItemContext';
 import { TreeViewContext } from './TreeViewContext';
 import { TreeViewSelectable } from './types';
 import {
-  UseTreeItemProps,
-  useTreeItem,
   checkedStatusToBoolean,
+  useTreeItem,
+  UseTreeItemProps,
 } from './useTreeItem';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
@@ -29,12 +29,12 @@ import {
 import { Transition } from '../Transition';
 import {
   calculateOffset,
-  TreeNodeType,
   getTreeItemLabelColor,
   getTreeItemWrapperCursor,
+  TreeNodeType,
 } from './utils';
 
-export type TreeItemProps = UseTreeItemProps;
+export interface TreeItemProps extends UseTreeItemProps {}
 
 const StyledTreeItem = styled.li<{
   theme?: ThemeInterface;
@@ -107,7 +107,6 @@ const StyledTreeItem = styled.li<{
           inset-inline-start: 0;
         }
       `}
-
     &:hover {
       background: ${props =>
         !props.isDisabled
@@ -127,7 +126,8 @@ const IconWrapper = styled.span<{
   color: ${props =>
     getTreeItemLabelColor(props.isInverse, props.isDisabled, props.theme)};
   margin-right: ${props => props.theme.spaceScale.spacing03};
-  margin-left: 0px;
+  margin-left: 0;
+
   svg {
     height: ${props => props.theme.iconSizes.medium}px;
     width: ${props => props.theme.iconSizes.medium}px;
@@ -169,6 +169,7 @@ const StyledCheckboxWrapper = styled.div<{ theme?: ThemeInterface }>`
 `;
 
 const StyledItemWrapper = styled.div<{
+  additionalContent?: React.ReactNode;
   theme?: ThemeInterface;
   selectable?: TreeViewSelectable;
   nodeType: TreeNodeType;
@@ -177,6 +178,7 @@ const StyledItemWrapper = styled.div<{
   isDisabled: boolean;
 }>`
   display: flex;
+  flex-direction: ${props => (props.additionalContent ? 'column' : 'row')};
   align-items: flex-start;
   cursor: ${props =>
     getTreeItemWrapperCursor(
@@ -186,9 +188,14 @@ const StyledItemWrapper = styled.div<{
     )};
 `;
 
+const AdditionalContentWrapper = styled.div<{ theme?: ThemeInterface }>`
+  margin-bottom: ${props => props.theme.spaceScale.spacing05};
+`;
+
 export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
   (props, forwardedRef) => {
     const {
+      additionalContent,
       children,
       icon,
       index,
@@ -242,6 +249,20 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           : checkedStatus === IndeterminateCheckboxStatus.checked
         : null;
 
+    const handleAdditionalContentKeyDown = (event: React.KeyboardEvent) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        const target = event.target as HTMLElement;
+        const interactiveElement = target.closest<HTMLElement>(
+          'button, [role="button"], input, select, textarea'
+        );
+
+        if (interactiveElement) {
+          event.preventDefault();
+          interactiveElement.click();
+        }
+      }
+    };
+
     const defaultIcon =
       nodeType === TreeNodeType.branch ? (
         <FolderIcon aria-hidden />
@@ -282,6 +303,16 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       </StyledLabelWrapper>
     );
 
+    const treeItemAdditionalContent = additionalContent ? (
+      <AdditionalContentWrapper
+        theme={theme}
+        id={`${itemId}-additionalcontentwrapper`}
+        data-testid={`${testId ?? itemId}-additionalcontentwrapper`}
+      >
+        {additionalContent}
+      </AdditionalContentWrapper>
+    ) : null;
+
     // Props shared by Checkbox and IndeterminateCheckbox
     const checkboxProps = {
       disabled: isDisabled,
@@ -315,6 +346,24 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       selectable === TreeViewSelectable.multi &&
       (isTopLevelSelectable !== false || !topLevel);
 
+    const onKeyDownHandler = (event: React.KeyboardEvent) => {
+      const target = event.target as HTMLElement;
+
+      if (target === event.currentTarget) {
+        handleKeyDown(event);
+        return;
+      }
+
+      const isWithinLabelOrAdditionalContent = target.closest(
+        `#${itemId}-label, #${itemId}-additionalcontentwrapper`
+      );
+
+      if (isWithinLabelOrAdditionalContent) {
+        handleAdditionalContentKeyDown(event);
+        return;
+      }
+    };
+
     return (
       <TreeItemContext.Provider value={contextValue}>
         <StyledTreeItem
@@ -334,9 +383,10 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           selected={selectedItem}
           theme={theme}
           tabIndex={tabIndex}
-          onKeyDown={handleKeyDown}
+          onKeyDown={onKeyDownHandler}
         >
           <StyledItemWrapper
+            additionalContent={additionalContent}
             data-testid={`${testId ?? itemId}-itemwrapper`}
             depth={itemDepth}
             id={`${itemId}-itemwrapper`}
@@ -384,7 +434,10 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 )}
               </StyledCheckboxWrapper>
             ) : (
-              <>{labelText}</>
+              <>
+                {labelText}
+                {treeItemAdditionalContent}
+              </>
             )}
           </StyledItemWrapper>
 

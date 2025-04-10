@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { render, getByTestId } from '@testing-library/react';
+import { fireEvent, getByTestId, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 
-import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import { Button } from '../Button';
 
 import { TreeItem, TreeView } from '.';
 
@@ -72,6 +72,63 @@ describe('TreeItem', () => {
       expect(getByTestId(`${testId}-itemwrapper`)).toHaveStyle(
         `backgroundColor: ${backgroundColor}`
       );
+    });
+  });
+
+  describe('additional content', () => {
+    it('should apply default styles', () => {
+      const { getByTestId } = render(
+        <TreeItem label={labelText} testId={testId} itemId={itemId} />
+      );
+
+      expect(getByTestId(`${testId}-itemwrapper`)).toHaveStyle(
+        `flexDirection: row`
+      );
+    });
+
+    it('should apply custom styles when additional content is provided', () => {
+      const { getByTestId, getByText } = render(
+        <TreeItem
+          additionalContent={<>Content</>}
+          label={labelText}
+          testId={testId}
+          itemId={itemId}
+        />
+      );
+
+      expect(getByText('Content')).toBeInTheDocument();
+      expect(getByTestId(`${testId}-itemwrapper`)).toHaveStyle(
+        `flexDirection: column`
+      );
+      expect(getByTestId(`${testId}-additionalcontentwrapper`)).toHaveStyle(
+        `marginBottom: 16px`
+      );
+    });
+
+    it('should interact with additional content when clicked or space/enter are pressed', () => {
+      const handleClick = jest.fn();
+      const additionalContent = <Button onClick={handleClick}>Click</Button>;
+
+      const { getByText } = render(
+        <TreeItem
+          additionalContent={additionalContent}
+          label={labelText}
+          testId={testId}
+          itemId={itemId}
+        />
+      );
+
+      const button = getByText('Click');
+
+      expect(button).toBeInTheDocument();
+
+      button.focus();
+
+      fireEvent.keyDown(button, { key: 'Enter', code: 'Enter' });
+      expect(handleClick).toHaveBeenCalledTimes(1);
+
+      fireEvent.keyDown(button, { key: ' ', code: 'Space' });
+      expect(handleClick).toHaveBeenCalledTimes(2);
     });
   });
 
