@@ -30,6 +30,7 @@ export interface TreeViewApi {
   showLess(): void;
   expandAll(): void;
   collapseAll(): void;
+  addItem(item: TreeViewItemInterface): void;
 }
 
 export interface UseTreeViewProps {
@@ -252,6 +253,7 @@ export function useTreeView(props: UseTreeViewProps) {
       selectable,
       isDisabled,
       isTopLevelSelectable,
+      items,
     });
 
     setItems(prevItems => {
@@ -489,6 +491,56 @@ export function useTreeView(props: UseTreeViewProps) {
     handleExpandedChange(syntheticEvent, '');
   }, [handleExpandedChange]);
 
+  const addItem = React.useCallback(
+    (newItem: TreeViewItemInterface) => {
+      const newItems = items.map(item => {
+        if (item.itemId === newItem.parentId) {
+          item.hasOwnTreeItems = true;
+        }
+
+        return item;
+      });
+
+      if (
+        newItem.checkedStatus === IndeterminateCheckboxStatus.checked &&
+        selectable === TreeViewSelectable.single
+      ) {
+        newItems.forEach(item => {
+          item.checkedStatus = IndeterminateCheckboxStatus.unchecked;
+        });
+      }
+
+      const updatedItems = [...newItems, newItem];
+
+      if (newItem.parentId) {
+        setItems(
+          getInitialItems({
+            children,
+            preselectedItems: selectedItems,
+            checkParents,
+            checkChildren,
+            selectable,
+            isDisabled,
+            isTopLevelSelectable,
+            items: updatedItems,
+          })
+        );
+      } else {
+        setItems(updatedItems);
+      }
+    },
+    [
+      checkChildren,
+      checkParents,
+      children,
+      isDisabled,
+      isTopLevelSelectable,
+      items,
+      selectable,
+      selectedItems,
+    ]
+  );
+
   React.useEffect(() => {
     if (apiRef) {
       apiRef.current = {
@@ -499,6 +551,7 @@ export function useTreeView(props: UseTreeViewProps) {
         showLess,
         expandAll,
         collapseAll,
+        addItem,
       };
     }
   }, [
@@ -509,6 +562,7 @@ export function useTreeView(props: UseTreeViewProps) {
     showLess,
     expandAll,
     collapseAll,
+    addItem,
     apiRef,
   ]);
 
