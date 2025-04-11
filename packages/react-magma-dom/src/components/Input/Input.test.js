@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { render, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 import { CheckIcon } from 'react-magma-icons';
 
@@ -704,6 +705,38 @@ describe('Input', () => {
 
       const inputElement = getByLabelText('Url');
       expect(inputElement).toHaveAttribute('type', 'url');
+    });
+  });
+
+  describe('Value state', () => {
+    const inputLabel = 'Input Label';
+
+    it('should not update value when is controlled component by props', () => {
+      const value = 0;
+      const { getByLabelText } = render(
+        <Input type={InputType.number} labelText={inputLabel} value={value} />
+      );
+
+      const labelInput = getByLabelText(inputLabel);
+      expect(labelInput).toBeInTheDocument();
+
+      userEvent.type(labelInput, `123`);
+      expect(labelInput).toHaveValue(value);
+    });
+
+    it('should update value when is uncontrolled component', () => {
+      const { getByLabelText } = render(
+        <Input type={InputType.number} labelText={inputLabel} />
+      );
+
+      const labelInput = getByLabelText(inputLabel);
+      expect(labelInput).toBeInTheDocument();
+
+      userEvent.type(labelInput, `123`);
+      expect(labelInput).toHaveValue(123);
+
+      userEvent.type(labelInput, `456`);
+      expect(labelInput).toHaveValue(123456);
     });
   });
 });
