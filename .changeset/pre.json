@@ -11,6 +11,7 @@
     "react-magma-landing": "1.1.4"
   },
   "changesets": [
+    "chore-previewworkflow",
     "curly-singers-dress",
     "dropzone-types",
     "eslint-and-prittier-v2",
@@ -19,6 +20,7 @@
     "feat-Input-new-types",
     "feat-TreeView-add-expandAll-and-collapseAll",
     "feat-TreeView-retain-expanded-collapsed-state",
+    "feat-popover-fix-comments",
     "feat-popover",
     "feat-treeview-is-top-level-selectable",
     "fix-AppBar",
@@ -33,7 +35,9 @@
     "fix-Tabs-Improve-functionality-small-screen",
     "fix-Theme-update-types",
     "fix-TreeView-keyboard",
+    "fix-docs-scroll",
     "fix-tooltip-replace-popper-with-floating-ui",
+    "inputFirefox",
     "lintstaged-v2",
     "lintstaged",
     "manually-sync-4.8.7",

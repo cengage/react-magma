@@ -14,6 +14,7 @@ import { useForkedRef } from '../../utils';
 import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { LabelPosition } from '../Label';
+import { ChildrenWrapper } from '../StyledButton';
 
 export enum InputSize {
   large = 'large',
@@ -615,7 +616,7 @@ export const HelpLinkContainer = styled.span<{
         ? '0'
         : `calc(-100% - ${props.theme.spaceScale.spacing03})`}
   );
-  svg {
+  ${ChildrenWrapper} > svg {
     height: ${props => getHelpLinkSVGSize(props)};
     width: ${props => getHelpLinkSVGSize(props)};
   }
