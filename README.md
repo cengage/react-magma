@@ -348,3 +348,22 @@ If the `pre-commit` scripts prevent your commit due to a test or linting failure
 
 
 </details>
+
+#### Playwright
+To install the required browsers (Chromium, Firefox, WebKit) used by Playwright: (should be run from the root of the project)
+
+```
+npx playwright install
+```
+
+To execute all Playwright tests, use the following command:
+
+```sh
+npm run playwright:test
+```
+
+To generate and view the test report after running the tests:
+
+```sh
+npm run playwright:report
+```
