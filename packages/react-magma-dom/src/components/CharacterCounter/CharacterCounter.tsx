@@ -148,6 +148,10 @@ export const CharacterCounter = React.forwardRef<
     setTimeout(() => {
       debouncedSetScreenReaderMessage(characterTitle);
     }, 1000);
+
+    return () => {
+      debouncedSetScreenReaderMessage.clear();
+    };
   }, [inputLength, debouncedSetScreenReaderMessage, characterTitle]);
 
   return (
