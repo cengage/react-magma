@@ -1,6 +1,11 @@
 /version/latest  /version/<%= tags.latest.version %> 302
 
 /version/next/*    https://next--upbeat-sinoussi-f675aa.netlify.app/:splat   200
+
+/version/2.6.0/*   https://soft-elf-84cb2b.netlify.app/:splat   200
+
 <% versions.reverse().forEach(function(version){ %>
+<% if(version.version !== '2.6.0') { %>
 /version/<%= version.version %>/*   https://<%= version.alias %>--upbeat-sinoussi-f675aa.netlify.app/:splat   200
+<% } %>
 <% }); %>
