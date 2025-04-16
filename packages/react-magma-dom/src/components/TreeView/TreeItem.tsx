@@ -250,16 +250,37 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         : null;
 
     const handleAdditionalContentKeyDown = (event: React.KeyboardEvent) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        const target = event.target as HTMLElement;
-        const interactiveElement = target.closest<HTMLElement>(
+      const { key, target } = event;
+      const currentElement = target as HTMLElement;
+
+      const isActivationKey = key === 'Enter' || key === ' ';
+      const isArrowKey = key === 'ArrowRight' || key === 'ArrowLeft';
+
+      if (isActivationKey) {
+        const interactive = currentElement.closest<HTMLElement>(
           'button, [role="button"], input, select, textarea'
         );
-
-        if (interactiveElement) {
+        if (interactive) {
           event.preventDefault();
-          interactiveElement.click();
+          interactive.click();
         }
+      }
+
+      if (isArrowKey) {
+        event.preventDefault();
+
+        const focusable = Array.from(
+          document.querySelectorAll<HTMLElement>(
+            'button, [role="button"], [tabindex]:not([tabindex="-1"]), input, select, textarea, a[href]'
+          )
+        ).filter(el => !el.hasAttribute('disabled') && el.tabIndex >= 0);
+
+        const current = focusable.indexOf(currentElement);
+        if (current === -1) return;
+
+        const offset = key === 'ArrowRight' ? 1 : -1;
+        const next = (current + offset + focusable.length) % focusable.length;
+        focusable[next]?.focus();
       }
     };
 
