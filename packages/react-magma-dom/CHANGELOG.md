@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.23
+
+### Patch Changes
+
+- c494d79: fix(Package): Update `@types/react` version for fix types errors.
+
 ## 4.9.0-next.22
 
 ### Patch Changes

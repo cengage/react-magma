@@ -37,6 +37,7 @@
     "fix-Theme-update-types",
     "fix-TreeView-keyboard",
     "fix-docs-scroll",
+    "fix-heading-navtabs-props-error",
     "fix-tooltip-replace-popper-with-floating-ui",
     "inputFirefox",
     "lintstaged-v2",
