@@ -373,3 +373,25 @@ To generate and view the test report after running the tests:
 ```sh
 npm run playwright:report
 ```
+
+To run codegen inspector:
+
+```sh
+cd playwright
+```
+and 
+
+```sh
+npx playwright codegen
+```
+
+To see executing tests in real time:
+
+```sh
+cd playwright
+```
+and
+
+```sh
+npx playwright test --ui
+```
