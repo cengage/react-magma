@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.22
+
+### Patch Changes
+
+- b3c866f: fix(Input): Improve the logic for updating the value in the handleChange function.
+
 ## 4.9.0-next.21
 
 ### Patch Changes
