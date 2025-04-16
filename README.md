@@ -356,6 +356,12 @@ To install the required browsers (Chromium, Firefox, WebKit) used by Playwright:
 npx playwright install
 ```
 
+Also need to install this dependency:
+
+```
+npm install playwright
+```
+
 To execute all Playwright tests, use the following command:
 
 ```sh
