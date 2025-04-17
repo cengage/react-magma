@@ -12,7 +12,7 @@
 #     strategy:
 #       fail-fast: false
 #       matrix:
-#         version: ['2.6.0']
+#         version: ['4.3.0']
 
 #     steps:
 #       - name: Setup for ACT
@@ -27,43 +27,16 @@
 #           git clone https://github.com/cengage/react-magma.git .
 #           git fetch --tags
 #           git checkout react-magma-dom@${{ matrix.version }} || echo "Tag not found, continuing with main branch"
-
-#       - name: Setup Node.js
+#       - name: Setup
 #         uses: actions/setup-node@v2
 #         with:
 #           node-version: '18'
 #           check-latest: true
 #       - name: Check Node version
 #         run: node -v
-#       - name: Update NPM version
-#         run: npm install -g "npm@^7.6.3"
-#       - name: Update Node Options
-#         run: |
-#           echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
-#       - name: Update tsconfig.json for docs build
-#         run: |
-#           cp tsconfig.json tsconfig.json.backup
 
-#           # Update tsconfig.json with more permissive settings
-#           jq '.compilerOptions += {
-#             "skipLibCheck": true,
-#             "strict": false,
-#             "noImplicitAny": false,
-#             "strictNullChecks": false,
-#             "suppressImplicitAnyIndexErrors": true,
-#             "noStrictGenericChecks": true,
-#             "suppressExcessPropertyErrors": true,
-#             "noUnusedLocals": false,
-#             "noUnusedParameters": false,
-#             "noImplicitReturns": false,
-#             "declaration": false
-#           }' tsconfig.json > tsconfig.temp.json && mv tsconfig.temp.json tsconfig.json
-
-#           echo "Updated tsconfig.json for documentation build"
-#           cat tsconfig.json
-
-#       - name: Install Dependencies
-#         run: npm i --no-audit --no-fund --legacy-peer-deps
+#       - name : Install
+#         run: npm ci --legacy-peer-deps
 
 #       - name: Patch Missing _styled Export
 #         run: |
@@ -90,13 +63,8 @@
 #             echo "File $FILE_PATH not found"
 #           fi
 
-#       - name: install gatsby cli
-#         run: npm install -g gatsby-cli@2.19.0
-
 #       - name: Build Docs
-#         run: |
-#           cd website/react-magma-docs
-#           CI=false SKIP_PREFLIGHT_CHECK=true DISABLE_ESLINT_PLUGIN=true gatsby build --verbose --prefix-paths || true
+#         run: npm run build:docs
 
 #         env:
 #           PATH_PREFIX: /version/${{ matrix.version }}
