@@ -11,7 +11,7 @@ jobs:
 
     strategy:
       matrix:
-        version: ['4.0.0']
+        version: ['4.3.0']
 
     steps:
       - name: Checkout
@@ -26,20 +26,49 @@ jobs:
 
       - name: Install
         run: npm ci --legacy-peer-deps
+
+      - name: Patch Missing _styled Export
+        run: |
+          # Path to the problematic file
+          FILE_PATH="packages/react-magma-dom/dist/esm/index.js"
+
+          if [ -f "$FILE_PATH" ]; then
+            echo "Found file $FILE_PATH, applying patch..."
+
+            # Make a backup
+            cp "$FILE_PATH" "$FILE_PATH.bak"
+
+            # Create a temporary file containing the new content
+            # First add the import, then include original content
+            echo "import styled from '@emotion/styled';" > temp_file
+            echo "const _styled = styled;" >> temp_file
+            cat "$FILE_PATH" >> temp_file
+
+            # Replace original file with the patched version
+            mv temp_file "$FILE_PATH"
+
+            echo "File patched successfully"
+          else
+            echo "File $FILE_PATH not found"
+          fi
+
       - name: Configure NPM
         run: |
           git config --global user.name 'github-bot'
           git config --global user.email 'github-bot@users.noreply.github.com'
           echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} > .npmrc
+
       - name: Get Alias
         id: info
         run: |
           echo "::set-output name=alias::$(npm run --silent getAlias)"
           echo "::set-output name=version::$(npm run --silent getVersion)"
+
       - name: Build Docs
         run: npm run build:docs
         env:
           PATH_PREFIX: /version/${{ matrix.version }}
+
       - name: Deploy Docs to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
