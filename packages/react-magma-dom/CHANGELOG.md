@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.25
+
+### Patch Changes
+
+- 28de863: fix(SkipLink): Deprecate `to` prop.
+
 ## 4.9.0-next.24
 
 ### Patch Changes

@@ -33,6 +33,7 @@
     "fix-Pagination-screenreader",
     "fix-Password-input-password-manager",
     "fix-Search-Update-icon-styles",
+    "fix-SkipLink-deprecate-to-prop",
     "fix-SkipLink-prop",
     "fix-Tabs-Improve-functionality-small-screen",
     "fix-Theme-update-types",
