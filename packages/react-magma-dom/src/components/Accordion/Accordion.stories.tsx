@@ -95,6 +95,7 @@ Controlled.args = {
 export const ControlledNoMulti = Template.bind({});
 ControlledNoMulti.args = {
   index: 0,
+  isMulti: false,
 };
 
 export const ExpandCollapseAll = args => {
@@ -141,7 +142,7 @@ export const ExpandCollapseAll = args => {
         </AccordionItem>
         <AccordionItem>
           <AccordionButton>Section 3</AccordionButton>
-          <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+          <AccordionPanel>Content for section three lorem ipsum</AccordionPanel>
         </AccordionItem>
       </Accordion>
     </>
@@ -150,6 +151,7 @@ export const ExpandCollapseAll = args => {
 
 export const Inverse = Template.bind({});
 Inverse.args = {
+  defaultIndex: [0],
   isInverse: true,
 };
 
