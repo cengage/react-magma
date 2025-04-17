@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.24
+
+### Patch Changes
+
+- c942de9: fix(Dropdown): Make to display Dropdown content above other elements.
+
 ## 4.9.0-next.23
 
 ### Patch Changes

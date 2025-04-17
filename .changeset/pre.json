@@ -26,6 +26,7 @@
     "fix-AppBar",
     "fix-DefinitionList-docs-errors",
     "fix-Dropdown-add-icon-parent-level",
+    "fix-Dropdown-not-displayed-above-elements",
     "fix-Input-different-heights",
     "fix-Input-not-properly-update-value",
     "fix-Modal-closing-slow",
