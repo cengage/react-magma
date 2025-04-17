@@ -49,6 +49,11 @@ describe('Dropdown', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
     expect(getByTestId('dropdownContent')).toBeInTheDocument();
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+
+    expect(getByTestId('dropdownContentWrapper')).toBeInTheDocument();
+    expect(getByTestId('dropdownContentWrapper')).toHaveStyle({
+      zIndex: '996',
+    });
   });
 
   it('should render a custom wrapped dropdown item', () => {
