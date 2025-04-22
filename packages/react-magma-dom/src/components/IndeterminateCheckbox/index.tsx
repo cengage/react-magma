@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import styled from '@emotion/styled';
 import {
   CheckBoxIcon,
   CheckBoxOutlineBlankIcon,
@@ -8,6 +9,7 @@ import {
 
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Omit, useGenerateId } from '../../utils';
 import { Announce } from '../Announce';
@@ -46,6 +48,10 @@ export enum IndeterminateCheckboxStatus {
   unchecked = 'unchecked', //default
 }
 
+const AdditionalContentWrapper = styled.div<{ theme?: ThemeInterface }>`
+  margin-bottom: ${props => props.theme.spaceScale.spacing05};
+`;
+
 export const IndeterminateCheckbox = React.forwardRef<
   HTMLInputElement,
   IndeterminateCheckboxProps
@@ -83,6 +89,7 @@ export const IndeterminateCheckbox = React.forwardRef<
   const context = React.useContext(FormGroupContext);
 
   const {
+    additionalContent,
     color = theme.colors.primary,
     containerStyle,
     disabled,
@@ -149,7 +156,7 @@ export const IndeterminateCheckbox = React.forwardRef<
 
   return (
     <>
-      <StyledContainer style={containerStyle}>
+      <StyledContainer additionalContent style={containerStyle}>
         <HiddenInput
           {...other}
           aria-checked={ariaCheckedValue}
@@ -192,6 +199,15 @@ export const IndeterminateCheckbox = React.forwardRef<
             labelText
           )}
         </StyledLabel>
+        {additionalContent && (
+          <AdditionalContentWrapper
+            theme={theme}
+            id={`${id}-additionalcontentwrapper`}
+            data-testid={`${testId ?? id}-additionalcontentwrapper`}
+          >
+            {additionalContent}
+          </AdditionalContentWrapper>
+        )}
         <Announce>
           {showAnnounce && <VisuallyHidden>{announceText}</VisuallyHidden>}
         </Announce>

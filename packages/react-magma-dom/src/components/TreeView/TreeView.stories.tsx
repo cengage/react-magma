@@ -2416,10 +2416,7 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
             Most common activity length is 39 chars but what if longer
           </Hyperlink>
         </Flex>
-        <Flex
-          behavior={FlexBehavior.item}
-          style={{ display: 'inline-flex', marginLeft: '40px' }}
-        >
+        <Flex behavior={FlexBehavior.item}>
           <Dropdown>
             <DropdownButton
               aria-label="Extra icon example"
@@ -2450,10 +2447,7 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
         wrap={FlexWrap.nowrap}
       >
         <Flex behavior={FlexBehavior.item}>{label}</Flex>
-        <Flex
-          behavior={FlexBehavior.item}
-          style={{ display: 'inline-flex', marginLeft: '40px' }}
-        >
+        <Flex behavior={FlexBehavior.item}>
           <Paragraph
             visualStyle={TypographyVisualStyle.bodySmall}
             noMargins
@@ -2484,7 +2478,7 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
 
   const additionalContent = () => {
     return (
-      <div style={{ width: '100%' }}>
+      <>
         <Paragraph noTopMargin visualStyle={TypographyVisualStyle.bodyXSmall}>
           Due: xx/xx/xxx · Submitted: 12 · Missing: 3
         </Paragraph>
@@ -2508,7 +2502,7 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
             </DropdownContent>
           </Dropdown>
         </ButtonGroup>
-      </div>
+      </>
     );
   };
 

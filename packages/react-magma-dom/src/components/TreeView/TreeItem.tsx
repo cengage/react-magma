@@ -166,6 +166,7 @@ const StyledCheckboxWrapper = styled.div<{ theme?: ThemeInterface }>`
   margin-right: ${props => props.theme.spaceScale.spacing03};
   vertical-align: middle;
   display: inline-flex;
+  width: ${props => `calc(100% - ${props.theme.spaceScale.spacing03})`};
 `;
 
 const StyledItemWrapper = styled.div<{
@@ -336,6 +337,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     // Props shared by Checkbox and IndeterminateCheckbox
     const checkboxProps = {
+      additionalContent: additionalContent,
       disabled: isDisabled,
       hideFocus: true,
       id: `${itemId}-checkbox`,
