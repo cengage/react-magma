@@ -1,17 +1,25 @@
 const axios = require('axios');
-const semver = require('semver');
-const fs = require('fs');
 const copy = require('copy');
-const mkdirp = require('mkdirp');
 const ejs = require('ejs');
-const english = new Intl.DateTimeFormat('en');
+const fs = require('fs');
+const mkdirp = require('mkdirp');
 const path = require('path');
+const semver = require('semver');
+
+const english = new Intl.DateTimeFormat('en');
+
+const SUPPORTED_LEGACY_VERSIONS = ['2.6.0', '3.11.0'];
 
 const cleanVersions = ({ versions, time, tags }) => {
   return semver
     .sort(Object.keys(versions))
     .filter(a => a.match(/^\d+\.\d+\.\d+$/))
-    .filter(a => semver.gte(a, '2.3.2'))
+    .filter(a => {
+      if (semver.major(a) === 4) {
+        return true;
+      }
+      return SUPPORTED_LEGACY_VERSIONS.includes(a);
+    })
     .map(version => {
       return {
         version,
@@ -42,7 +50,7 @@ const versionsByReactDependency = ({ versions, time, tags }) => {
   });
 
   const latestVersions = [];
-  for (let [, value] of versionsByReactDep) {
+  for (const [, value] of versionsByReactDep) {
     const latest = value.reverse()[0];
     latestVersions.push(latest);
   }
@@ -80,8 +88,15 @@ const getAllVersions = () => {
     .then(({ data }) => filterNPM(data));
 };
 
+const prepareVersionsWithRedirects = versions => {
+  versions.v2Redirect = 'https://soft-elf-84cb2b.netlify.app/';
+  return versions;
+};
+
 mkdirp(path.resolve(__dirname, '../dist'));
 getAllVersions().then(versions => {
+  const versionsWithRedirects = prepareVersionsWithRedirects(versions);
+
   return Promise.all([
     copy(
       path.resolve(__dirname, '../static/**'),
@@ -93,7 +108,7 @@ getAllVersions().then(versions => {
     ),
     fs.writeFile(
       path.resolve(__dirname, '../dist/versions'),
-      JSON.stringify(versions, null, 2),
+      JSON.stringify(versionsWithRedirects, null, 2),
       err => {
         if (err) throw err;
         console.log('- dist/versions has been saved!');
@@ -105,7 +120,7 @@ getAllVersions().then(versions => {
         fs
           .readFileSync(path.resolve(__dirname, '../templates/index.html'))
           .toString(),
-        versions
+        versionsWithRedirects
       ),
       err => {
         if (err) throw err;
@@ -118,7 +133,7 @@ getAllVersions().then(versions => {
         fs
           .readFileSync(path.resolve(__dirname, '../templates/_redirects'))
           .toString(),
-        versions
+        versionsWithRedirects
       ),
       err => {
         if (err) throw err;
