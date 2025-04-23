@@ -230,7 +230,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     return (
       <>
-        <StyledContainer additionalContent style={containerStyle}>
+        <StyledContainer style={containerStyle}>
           <HiddenInput
             {...other}
             aria-label={reactNodeToString(labelText)}

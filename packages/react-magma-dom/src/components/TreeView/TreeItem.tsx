@@ -170,7 +170,7 @@ const StyledCheckboxWrapper = styled.div<{
   margin-right: ${props => props.theme.spaceScale.spacing03};
   vertical-align: middle;
   display: ${props => (props.hasAdditionalContent ? 'flex' : 'inline-flex')};
-  flex-direction: ${props => (props.hasAdditionalContent ? 'column' : 'row')};
+  flex-direction: column;
   width: ${props => `calc(100% - ${props.theme.spaceScale.spacing03})`};
 `;
 
@@ -288,13 +288,17 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       }
 
       if (focusTrapElement.current && !isInsideTreeItem) {
-        if (
-          interactiveElement &&
-          document.activeElement === interactiveElement
-        ) {
-          setIsInsideTreeItem(true);
-        }
+        setIsInsideTreeItem(true);
       }
+
+      // if (focusTrapElement.current && !isInsideTreeItem) {
+      //   if (
+      //     interactiveElement &&
+      //     document.activeElement === interactiveElement
+      //   ) {
+      //     setIsInsideTreeItem(true);
+      //   }
+      // }
 
       // if (
       //   focusTrapElement.current &&

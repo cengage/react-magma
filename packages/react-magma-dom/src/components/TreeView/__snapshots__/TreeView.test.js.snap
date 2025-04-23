@@ -294,9 +294,9 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% - 8px);
 }
 
@@ -309,15 +309,11 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   position: relative;
-  width: 100%;
 }
 
 .emotion-34 {
@@ -1000,9 +996,9 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% - 8px);
 }
 
@@ -1015,15 +1011,11 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   position: relative;
-  width: 100%;
 }
 
 .emotion-34 {
@@ -2220,9 +2212,9 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% - 8px);
 }
 
@@ -2235,15 +2227,11 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   position: relative;
-  width: 100%;
 }
 
 .emotion-34 {
@@ -3041,9 +3029,9 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% - 8px);
 }
 
@@ -3056,15 +3044,11 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   position: relative;
-  width: 100%;
 }
 
 .emotion-34 {
@@ -4437,9 +4421,9 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% - 8px);
 }
 
@@ -4452,15 +4436,11 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   position: relative;
-  width: 100%;
 }
 
 .emotion-34 {
@@ -5183,9 +5163,9 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% - 8px);
 }
 
@@ -5198,15 +5178,11 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   position: relative;
-  width: 100%;
 }
 
 .emotion-34 {
@@ -6503,9 +6479,9 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% - 8px);
 }
 
@@ -6518,15 +6494,11 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   position: relative;
-  width: 100%;
 }
 
 .emotion-34 {
@@ -7249,9 +7221,9 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% - 8px);
 }
 
@@ -7264,15 +7236,11 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   position: relative;
-  width: 100%;
 }
 
 .emotion-34 {
@@ -8569,9 +8537,9 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% - 8px);
 }
 
@@ -8584,15 +8552,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   position: relative;
-  width: 100%;
 }
 
 .emotion-34 {
@@ -9390,9 +9354,9 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% - 8px);
 }
 
@@ -9405,15 +9369,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   position: relative;
-  width: 100%;
 }
 
 .emotion-34 {
@@ -10786,9 +10746,9 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% - 8px);
 }
 
@@ -10801,15 +10761,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   position: relative;
-  width: 100%;
 }
 
 .emotion-34 {
@@ -11607,9 +11563,9 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% - 8px);
 }
 
@@ -11622,15 +11578,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   position: relative;
-  width: 100%;
 }
 
 .emotion-34 {
@@ -13003,9 +12955,9 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% - 8px);
 }
 
@@ -13018,15 +12970,11 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   position: relative;
-  width: 100%;
 }
 
 .emotion-34 {
@@ -13749,9 +13697,9 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   width: calc(100% - 8px);
 }
 
@@ -13764,15 +13712,11 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
   -webkit-box-flex-wrap: nowrap;
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
   position: relative;
-  width: 100%;
 }
 
 .emotion-34 {

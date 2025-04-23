@@ -149,7 +149,7 @@ export const IndeterminateCheckbox = React.forwardRef<
 
   return (
     <>
-      <StyledContainer additionalContent style={containerStyle}>
+      <StyledContainer style={containerStyle}>
         <HiddenInput
           {...other}
           aria-checked={ariaCheckedValue}
