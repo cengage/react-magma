@@ -83,7 +83,6 @@ export const IndeterminateCheckbox = React.forwardRef<
   const context = React.useContext(FormGroupContext);
 
   const {
-    additionalContent,
     color = theme.colors.primary,
     containerStyle,
     disabled,
