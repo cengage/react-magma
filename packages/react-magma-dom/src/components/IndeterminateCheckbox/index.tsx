@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import styled from '@emotion/styled';
 import {
   CheckBoxIcon,
   CheckBoxOutlineBlankIcon,
@@ -9,7 +8,6 @@ import {
 
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
-import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Omit, useGenerateId } from '../../utils';
 import { Announce } from '../Announce';
@@ -47,10 +45,6 @@ export enum IndeterminateCheckboxStatus {
   indeterminate = 'indeterminate',
   unchecked = 'unchecked', //default
 }
-
-const AdditionalContentWrapper = styled.div<{ theme?: ThemeInterface }>`
-  margin-bottom: ${props => props.theme.spaceScale.spacing05};
-`;
 
 export const IndeterminateCheckbox = React.forwardRef<
   HTMLInputElement,
@@ -199,15 +193,6 @@ export const IndeterminateCheckbox = React.forwardRef<
             labelText
           )}
         </StyledLabel>
-        {additionalContent && (
-          <AdditionalContentWrapper
-            theme={theme}
-            id={`${id}-additionalcontentwrapper`}
-            data-testid={`${testId ?? id}-additionalcontentwrapper`}
-          >
-            {additionalContent}
-          </AdditionalContentWrapper>
-        )}
         <Announce>
           {showAnnounce && <VisuallyHidden>{announceText}</VisuallyHidden>}
         </Announce>

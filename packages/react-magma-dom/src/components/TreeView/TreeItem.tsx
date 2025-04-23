@@ -33,6 +33,7 @@ import {
   getTreeItemWrapperCursor,
   TreeNodeType,
 } from './utils';
+import { useFocusLock } from '../../hooks/useFocusLock';
 
 export interface TreeItemProps extends UseTreeItemProps {}
 
@@ -162,10 +163,14 @@ const StyledExpandWrapper = styled.div<{
   height: ${props => props.theme.spaceScale.spacing06};
 `;
 
-const StyledCheckboxWrapper = styled.div<{ theme?: ThemeInterface }>`
+const StyledCheckboxWrapper = styled.div<{
+  theme?: ThemeInterface;
+  hasAdditionalContent?: boolean;
+}>`
   margin-right: ${props => props.theme.spaceScale.spacing03};
   vertical-align: middle;
-  display: inline-flex;
+  display: ${props => (props.hasAdditionalContent ? 'flex' : 'inline-flex')};
+  flex-direction: ${props => (props.hasAdditionalContent ? 'column' : 'row')};
   width: ${props => `calc(100% - ${props.theme.spaceScale.spacing03})`};
 `;
 
@@ -250,39 +255,53 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           : checkedStatus === IndeterminateCheckboxStatus.checked
         : null;
 
+    const treeItemRef = React.useRef<HTMLLIElement>(null);
+    const [isInsideTreeItem, setIsInsideTreeItem] = React.useState(false);
+    const focusTrapElement = useFocusLock(isInsideTreeItem);
+
+    // const [isInsideTreeItem, setIsInsideTreeItem] = React.useState(false);
+    // const itemRef = useFocusLock(isInsideTreeItem);
+    // const treeItemRef = React.useRef<HTMLLIElement>(null);
+
     const handleAdditionalContentKeyDown = (event: React.KeyboardEvent) => {
       const { key, target } = event;
       const currentElement = target as HTMLElement;
 
       const isActivationKey = key === 'Enter' || key === ' ';
-      const isArrowKey = key === 'ArrowRight' || key === 'ArrowLeft';
+      const isEscape = key === 'Escape';
+
+      const interactiveElement = currentElement.closest<HTMLElement>(
+        'button, [role="button"], input, select, textarea, a[href], [tabindex]:not([tabindex="-1"])'
+      );
 
       if (isActivationKey) {
-        const interactive = currentElement.closest<HTMLElement>(
-          'button, [role="button"], input, select, textarea'
-        );
-        if (interactive) {
+        if (interactiveElement) {
           event.preventDefault();
-          interactive.click();
+          interactiveElement.click();
         }
       }
 
-      if (isArrowKey) {
-        event.preventDefault();
-
-        const focusable = Array.from(
-          document.querySelectorAll<HTMLElement>(
-            'button, [role="button"], [tabindex]:not([tabindex="-1"]), input, select, textarea, a[href]'
-          )
-        ).filter(el => !el.hasAttribute('disabled') && el.tabIndex >= 0);
-
-        const current = focusable.indexOf(currentElement);
-        if (current === -1) return;
-
-        const offset = key === 'ArrowRight' ? 1 : -1;
-        const next = (current + offset + focusable.length) % focusable.length;
-        focusable[next]?.focus();
+      if (isEscape) {
+        event.stopPropagation();
+        treeItemRef.current?.focus();
+        setIsInsideTreeItem(false);
       }
+
+      if (focusTrapElement.current && !isInsideTreeItem) {
+        if (
+          interactiveElement &&
+          document.activeElement === interactiveElement
+        ) {
+          setIsInsideTreeItem(true);
+        }
+      }
+
+      // if (
+      //   focusTrapElement.current &&
+      //   document.activeElement === interactiveElement
+      // ) {
+      //   setIsInsideTreeItem(true);
+      // }
     };
 
     const defaultIcon =
@@ -337,7 +356,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     // Props shared by Checkbox and IndeterminateCheckbox
     const checkboxProps = {
-      additionalContent: additionalContent,
       disabled: isDisabled,
       hideFocus: true,
       id: `${itemId}-checkbox`,
@@ -407,6 +425,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           theme={theme}
           tabIndex={tabIndex}
           onKeyDown={onKeyDownHandler}
+          ref={treeItemRef}
         >
           <StyledItemWrapper
             additionalContent={additionalContent}
@@ -442,26 +461,32 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
               </StyledExpandWrapper>
             )}
 
-            {shouldShowCheckbox ? (
-              <StyledCheckboxWrapper theme={theme}>
-                {hasOwnTreeItems ? (
-                  <IndeterminateCheckbox
-                    {...checkboxProps}
-                    status={checkedStatus}
-                  />
-                ) : (
-                  <Checkbox
-                    {...checkboxProps}
-                    checked={checkedStatusToBoolean(checkedStatus)}
-                  />
-                )}
-              </StyledCheckboxWrapper>
-            ) : (
-              <>
-                {labelText}
-                {treeItemAdditionalContent}
-              </>
-            )}
+            <div ref={focusTrapElement} style={{ width: '100%' }}>
+              {shouldShowCheckbox ? (
+                <StyledCheckboxWrapper
+                  hasAdditionalContent={!!additionalContent}
+                  theme={theme}
+                >
+                  {hasOwnTreeItems ? (
+                    <IndeterminateCheckbox
+                      {...checkboxProps}
+                      status={checkedStatus}
+                    />
+                  ) : (
+                    <Checkbox
+                      {...checkboxProps}
+                      checked={checkedStatusToBoolean(checkedStatus)}
+                    />
+                  )}
+                  {treeItemAdditionalContent}
+                </StyledCheckboxWrapper>
+              ) : (
+                <>
+                  {labelText}
+                  {treeItemAdditionalContent}
+                </>
+              )}
+            </div>
           </StyledItemWrapper>
 
           {React.Children.map(

@@ -29,10 +29,6 @@ export enum CheckboxTextPosition {
 export interface CheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
-   * Enables additional content within the Checkbox.
-   */
-  additionalContent?: React.ReactNode;
-  /**
    * If true, element is checked (i.e. selected)
    * @default false
    */
@@ -172,10 +168,6 @@ export const StyledFakeInput = styled.span<{
   }
 `;
 
-const AdditionalContentWrapper = styled.div<{ theme?: ThemeInterface }>`
-  margin-bottom: ${props => props.theme.spaceScale.spacing05};
-`;
-
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (props, ref) => {
     const { checked, id: defaultId, defaultChecked, onChange } = props;
@@ -284,15 +276,6 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
               labelText
             )}
           </StyledLabel>
-          {additionalContent && (
-            <AdditionalContentWrapper
-              theme={theme}
-              id={`${id}-additionalcontentwrapper`}
-              data-testid={`${testId ?? id}-additionalcontentwrapper`}
-            >
-              {additionalContent}
-            </AdditionalContentWrapper>
-          )}
         </StyledContainer>
         {!!errorMessage && (
           <InputMessage id={descriptionId} hasError isInverse={isInverse}>
