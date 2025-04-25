@@ -259,11 +259,9 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const [isInsideTreeItem, setIsInsideTreeItem] = React.useState(false);
     const focusTrapElement = useFocusLock(isInsideTreeItem);
 
-    // const [isInsideTreeItem, setIsInsideTreeItem] = React.useState(false);
-    // const itemRef = useFocusLock(isInsideTreeItem);
-    // const treeItemRef = React.useRef<HTMLLIElement>(null);
-
-    const handleAdditionalContentKeyDown = (event: React.KeyboardEvent) => {
+    const handleLabelAndAdditionalContentKeyDown = (
+      event: React.KeyboardEvent
+    ) => {
       const { key, target } = event;
       const currentElement = target as HTMLElement;
 
@@ -290,22 +288,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       if (focusTrapElement.current && !isInsideTreeItem) {
         setIsInsideTreeItem(true);
       }
-
-      // if (focusTrapElement.current && !isInsideTreeItem) {
-      //   if (
-      //     interactiveElement &&
-      //     document.activeElement === interactiveElement
-      //   ) {
-      //     setIsInsideTreeItem(true);
-      //   }
-      // }
-
-      // if (
-      //   focusTrapElement.current &&
-      //   document.activeElement === interactiveElement
-      // ) {
-      //   setIsInsideTreeItem(true);
-      // }
     };
 
     const defaultIcon =
@@ -399,12 +381,13 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         return;
       }
 
+      // Checks if the event target is an interactive element inside the label or additional content section.
       const isWithinLabelOrAdditionalContent = target.closest(
         `#${itemId}-label, #${itemId}-additionalcontentwrapper`
       );
 
       if (isWithinLabelOrAdditionalContent) {
-        handleAdditionalContentKeyDown(event);
+        handleLabelAndAdditionalContentKeyDown(event);
         return;
       }
     };
