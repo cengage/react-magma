@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.1.2-next.16
+
+### Patch Changes
+
+- d294a1e: chore: added disabled workflow publish-old
+  chore: sync main with dev after PR "build: Release landing page updates #1749"
+
 ## 5.1.2-next.15
 
 ### Patch Changes
