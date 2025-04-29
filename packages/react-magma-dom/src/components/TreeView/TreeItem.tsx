@@ -264,13 +264,14 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     ) => {
       const { key, target } = event;
       const currentElement = target as HTMLElement;
+      const interactiveElements =
+        'button, [role="button"], input, select, textarea, a[href], [tabindex]:not([tabindex="-1"])';
 
       const isActivationKey = key === 'Enter' || key === ' ';
       const isEscape = key === 'Escape';
 
-      const interactiveElement = currentElement.closest<HTMLElement>(
-        'button, [role="button"], input, select, textarea, a[href], [tabindex]:not([tabindex="-1"])'
-      );
+      const interactiveElement =
+        currentElement.closest<HTMLElement>(interactiveElements);
 
       if (isActivationKey) {
         if (interactiveElement) {
@@ -297,6 +298,27 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         <ArticleIcon aria-hidden />
       );
 
+    const handleOnClick = (event: React.MouseEvent) => {
+      if (isDisabled) {
+        event.stopPropagation();
+        return;
+      }
+
+      const currentElement = event.target as HTMLElement;
+      const isInteractiveElement =
+        currentElement.closest(
+          'button, [role="button"], a[href], input, select, textarea'
+        ) !== null;
+
+      if (isInteractiveElement) {
+        return;
+      }
+
+      if (selectable === TreeViewSelectable.single) {
+        handleClick(event, itemId);
+      }
+    };
+
     const labelText = (
       <StyledLabelWrapper
         theme={theme}
@@ -305,16 +327,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         style={labelStyle}
         id={`${itemId}-label`}
         data-testid={`${testId || itemId}-label`}
-        onClick={(e: any) => {
-          if (isDisabled) {
-            e.stopPropagation();
-            return;
-          }
-
-          if (selectable === TreeViewSelectable.single) {
-            handleClick(e, itemId);
-          }
-        }}
+        onClick={handleOnClick}
       >
         {hasIcons && (
           <IconWrapper
@@ -335,6 +348,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         theme={theme}
         id={`${itemId}-additionalcontentwrapper`}
         data-testid={`${testId ?? itemId}-additionalcontentwrapper`}
+        onClick={handleOnClick}
       >
         {additionalContent}
       </AdditionalContentWrapper>
