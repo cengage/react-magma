@@ -281,9 +281,15 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       }
 
       if (isEscape) {
+        event.preventDefault();
         event.stopPropagation();
-        treeItemRef.current?.focus();
         setIsInsideTreeItem(false);
+
+        const treeItemNode = treeItemRef.current;
+        if (treeItemNode) {
+          treeItemNode.focus({ preventScroll: true });
+        }
+        return;
       }
 
       if (focusTrapElement.current && !isInsideTreeItem) {
