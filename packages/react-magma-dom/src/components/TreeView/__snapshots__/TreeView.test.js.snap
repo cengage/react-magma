@@ -1507,59 +1507,55 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                 id="item-id-1-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-1"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-1-checkbox"
+                      disabled=""
+                      id="item-id-1-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-1-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-1"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-1-checkbox"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-38 emotion-39"
+                        color="#3942B0"
                         disabled=""
-                        id="item-id-1-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-1-checkbox"
-                        style="padding: 0px;"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-38 emotion-39"
-                          color="#3942B0"
-                          disabled=""
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-40 emotion-41"
-                          data-testid="item-id-1-label"
-                          id="item-id-1-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-1
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-40 emotion-41"
+                        data-testid="item-id-1-label"
+                        id="item-id-1-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-1
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -1579,57 +1575,53 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                 id="item-id-2-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-2"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-2-checkbox"
+                      id="item-id-2-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-2-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-2"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-2-checkbox"
-                        id="item-id-2-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-2-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-2-label"
-                          id="item-id-2-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-2
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-2-label"
+                        id="item-id-2-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-2
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -1648,59 +1640,55 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                 id="item-id-3-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-3"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-3-checkbox"
+                      disabled=""
+                      id="item-id-3-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-3-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-3"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-3-checkbox"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-38 emotion-39"
+                        color="#3942B0"
                         disabled=""
-                        id="item-id-3-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-3-checkbox"
-                        style="padding: 0px;"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-38 emotion-39"
-                          color="#3942B0"
-                          disabled=""
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-40 emotion-41"
-                          data-testid="item-id-3-label"
-                          id="item-id-3-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-3
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-40 emotion-41"
+                        data-testid="item-id-3-label"
+                        id="item-id-3-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-3
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -1720,57 +1708,53 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                 id="item-id-4-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-4"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-4-checkbox"
+                      id="item-id-4-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-4-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-4"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-4-checkbox"
-                        id="item-id-4-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-4-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-4-label"
-                          id="item-id-4-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-4
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-4-label"
+                        id="item-id-4-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-4
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -1811,64 +1795,60 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-5-checkbox"
+                      id="item-id-5-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-5-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-5-checkbox"
-                        id="item-id-5-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-5-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-5-label"
-                          id="item-id-5-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-5
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-5-label"
+                        id="item-id-5-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-5
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-108 emotion-109"
                       >
-                        <div
-                          class="emotion-108 emotion-109"
-                        >
-                          No subitems are checked for item-title-5 checkbox
-                        </div>
+                        No subitems are checked for item-title-5 checkbox
                       </div>
                     </div>
                   </div>
@@ -3655,59 +3635,55 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                 id="item-id-1-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-1"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-1-checkbox"
+                      disabled=""
+                      id="item-id-1-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-1-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-1"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-1-checkbox"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-38 emotion-39"
+                        color="#3942B0"
                         disabled=""
-                        id="item-id-1-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-1-checkbox"
-                        style="padding: 0px;"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-38 emotion-39"
-                          color="#3942B0"
-                          disabled=""
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-40 emotion-41"
-                          data-testid="item-id-1-label"
-                          id="item-id-1-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-1
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-40 emotion-41"
+                        data-testid="item-id-1-label"
+                        id="item-id-1-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-1
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -3727,58 +3703,54 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                 id="item-id-2-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-2"
+                      checked=""
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-2-checkbox"
+                      id="item-id-2-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-2-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-2"
-                        checked=""
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-2-checkbox"
-                        id="item-id-2-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-2-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8.29 13.29c-.39.39-1.02.39-1.41 0L5.71 12.7a.9959.9959 0 010-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.58 7.59z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-2-label"
-                          id="item-id-2-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-2
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8.29 13.29c-.39.39-1.02.39-1.41 0L5.71 12.7a.9959.9959 0 010-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.58 7.59z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-2-label"
+                        id="item-id-2-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-2
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -3818,66 +3790,62 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-3-checkbox"
+                      disabled=""
+                      id="item-id-3-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-3-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-3-checkbox"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-38 emotion-39"
+                        color="#3942B0"
                         disabled=""
-                        id="item-id-3-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-3-checkbox"
-                        style="padding: 0px;"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-38 emotion-39"
-                          color="#3942B0"
-                          disabled=""
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-40 emotion-41"
-                          data-testid="item-id-3-label"
-                          id="item-id-3-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-3
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-40 emotion-41"
+                        data-testid="item-id-3-label"
+                        id="item-id-3-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-3
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-3 checkbox
-                        </div>
+                        No subitems are checked for item-title-3 checkbox
                       </div>
                     </div>
                   </div>
@@ -3920,64 +3888,60 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-4-checkbox"
+                      id="item-id-4-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-4-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-4-checkbox"
-                        id="item-id-4-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-4-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-92 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-92 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-4-label"
-                          id="item-id-4-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-4
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-4-label"
+                        id="item-id-4-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-4
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-4 checkbox
-                        </div>
+                        No subitems are checked for item-title-4 checkbox
                       </div>
                     </div>
                   </div>
@@ -4020,64 +3984,60 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-5-checkbox"
+                      id="item-id-5-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-5-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-5-checkbox"
-                        id="item-id-5-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-5-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-92 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-92 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-5-label"
-                          id="item-id-5-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-5
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-5-label"
+                        id="item-id-5-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-5
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-5 checkbox
-                        </div>
+                        No subitems are checked for item-title-5 checkbox
                       </div>
                     </div>
                   </div>
@@ -5714,59 +5674,55 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                 id="item-id-1-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-1"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-1-checkbox"
+                      disabled=""
+                      id="item-id-1-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-1-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-1"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-1-checkbox"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-38 emotion-39"
+                        color="#3942B0"
                         disabled=""
-                        id="item-id-1-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-1-checkbox"
-                        style="padding: 0px;"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-38 emotion-39"
-                          color="#3942B0"
-                          disabled=""
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-40 emotion-41"
-                          data-testid="item-id-1-label"
-                          id="item-id-1-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-1
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-40 emotion-41"
+                        data-testid="item-id-1-label"
+                        id="item-id-1-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-1
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -5786,57 +5742,53 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                 id="item-id-2-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-2"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-2-checkbox"
+                      id="item-id-2-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-2-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-2"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-2-checkbox"
-                        id="item-id-2-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-2-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-2-label"
-                          id="item-id-2-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-2
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-2-label"
+                        id="item-id-2-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-2
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -5876,66 +5828,62 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-3-checkbox"
+                      disabled=""
+                      id="item-id-3-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-3-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-3-checkbox"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-38 emotion-39"
+                        color="#3942B0"
                         disabled=""
-                        id="item-id-3-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-3-checkbox"
-                        style="padding: 0px;"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-38 emotion-39"
-                          color="#3942B0"
-                          disabled=""
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-40 emotion-41"
-                          data-testid="item-id-3-label"
-                          id="item-id-3-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-3
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-40 emotion-41"
+                        data-testid="item-id-3-label"
+                        id="item-id-3-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-3
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-3 checkbox
-                        </div>
+                        No subitems are checked for item-title-3 checkbox
                       </div>
                     </div>
                   </div>
@@ -5978,64 +5926,60 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-4-checkbox"
+                      id="item-id-4-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-4-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-4-checkbox"
-                        id="item-id-4-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-4-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-4-label"
-                          id="item-id-4-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-4
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-4-label"
+                        id="item-id-4-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-4
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-4 checkbox
-                        </div>
+                        No subitems are checked for item-title-4 checkbox
                       </div>
                     </div>
                   </div>
@@ -6078,64 +6022,60 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-5-checkbox"
+                      id="item-id-5-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-5-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-5-checkbox"
-                        id="item-id-5-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-5-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-5-label"
-                          id="item-id-5-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-5
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-5-label"
+                        id="item-id-5-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-5
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-5 checkbox
-                        </div>
+                        No subitems are checked for item-title-5 checkbox
                       </div>
                     </div>
                   </div>
@@ -7772,59 +7712,55 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                 id="item-id-1-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-1"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-1-checkbox"
+                      disabled=""
+                      id="item-id-1-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-1-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-1"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-1-checkbox"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-38 emotion-39"
+                        color="#3942B0"
                         disabled=""
-                        id="item-id-1-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-1-checkbox"
-                        style="padding: 0px;"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-38 emotion-39"
-                          color="#3942B0"
-                          disabled=""
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-40 emotion-41"
-                          data-testid="item-id-1-label"
-                          id="item-id-1-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-1
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-40 emotion-41"
+                        data-testid="item-id-1-label"
+                        id="item-id-1-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-1
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -7844,57 +7780,53 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                 id="item-id-2-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-2"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-2-checkbox"
+                      id="item-id-2-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-2-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-2"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-2-checkbox"
-                        id="item-id-2-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-2-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-2-label"
-                          id="item-id-2-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-2
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-2-label"
+                        id="item-id-2-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-2
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -7934,66 +7866,62 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-3-checkbox"
+                      disabled=""
+                      id="item-id-3-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-3-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-3-checkbox"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-38 emotion-39"
+                        color="#3942B0"
                         disabled=""
-                        id="item-id-3-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-3-checkbox"
-                        style="padding: 0px;"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-38 emotion-39"
-                          color="#3942B0"
-                          disabled=""
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-40 emotion-41"
-                          data-testid="item-id-3-label"
-                          id="item-id-3-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-3
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-40 emotion-41"
+                        data-testid="item-id-3-label"
+                        id="item-id-3-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-3
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-3 checkbox
-                        </div>
+                        No subitems are checked for item-title-3 checkbox
                       </div>
                     </div>
                   </div>
@@ -8036,64 +7964,60 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-4-checkbox"
+                      id="item-id-4-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-4-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-4-checkbox"
-                        id="item-id-4-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-4-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-4-label"
-                          id="item-id-4-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-4
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-4-label"
+                        id="item-id-4-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-4
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-4 checkbox
-                        </div>
+                        No subitems are checked for item-title-4 checkbox
                       </div>
                     </div>
                   </div>
@@ -8136,64 +8060,60 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-5-checkbox"
+                      id="item-id-5-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-5-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-5-checkbox"
-                        id="item-id-5-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-5-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-5-label"
-                          id="item-id-5-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-5
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-5-label"
+                        id="item-id-5-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-5
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-5 checkbox
-                        </div>
+                        No subitems are checked for item-title-5 checkbox
                       </div>
                     </div>
                   </div>
@@ -9980,59 +9900,55 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                 id="item-id-1-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-1"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-1-checkbox"
+                      disabled=""
+                      id="item-id-1-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-1-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-1"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-1-checkbox"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-38 emotion-39"
+                        color="#3942B0"
                         disabled=""
-                        id="item-id-1-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-1-checkbox"
-                        style="padding: 0px;"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-38 emotion-39"
-                          color="#3942B0"
-                          disabled=""
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-40 emotion-41"
-                          data-testid="item-id-1-label"
-                          id="item-id-1-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-1
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-40 emotion-41"
+                        data-testid="item-id-1-label"
+                        id="item-id-1-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-1
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -10052,58 +9968,54 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                 id="item-id-2-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-2"
+                      checked=""
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-2-checkbox"
+                      id="item-id-2-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-2-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-2"
-                        checked=""
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-2-checkbox"
-                        id="item-id-2-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-2-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8.29 13.29c-.39.39-1.02.39-1.41 0L5.71 12.7a.9959.9959 0 010-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.58 7.59z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-2-label"
-                          id="item-id-2-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-2
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8.29 13.29c-.39.39-1.02.39-1.41 0L5.71 12.7a.9959.9959 0 010-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.58 7.59z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-2-label"
+                        id="item-id-2-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-2
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -10143,66 +10055,62 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-3-checkbox"
+                      disabled=""
+                      id="item-id-3-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-3-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-3-checkbox"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-38 emotion-39"
+                        color="#3942B0"
                         disabled=""
-                        id="item-id-3-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-3-checkbox"
-                        style="padding: 0px;"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-38 emotion-39"
-                          color="#3942B0"
-                          disabled=""
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-40 emotion-41"
-                          data-testid="item-id-3-label"
-                          id="item-id-3-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-3
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-40 emotion-41"
+                        data-testid="item-id-3-label"
+                        id="item-id-3-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-3
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-3 checkbox
-                        </div>
+                        No subitems are checked for item-title-3 checkbox
                       </div>
                     </div>
                   </div>
@@ -10245,64 +10153,60 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-4-checkbox"
+                      id="item-id-4-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-4-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-4-checkbox"
-                        id="item-id-4-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-4-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-92 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-92 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-4-label"
-                          id="item-id-4-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-4
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-4-label"
+                        id="item-id-4-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-4
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-4 checkbox
-                        </div>
+                        No subitems are checked for item-title-4 checkbox
                       </div>
                     </div>
                   </div>
@@ -10345,64 +10249,60 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-5-checkbox"
+                      id="item-id-5-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-5-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-5-checkbox"
-                        id="item-id-5-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-5-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-92 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-92 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-5-label"
-                          id="item-id-5-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-5
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-5-label"
+                        id="item-id-5-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-5
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-5 checkbox
-                        </div>
+                        No subitems are checked for item-title-5 checkbox
                       </div>
                     </div>
                   </div>
@@ -12189,59 +12089,55 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                 id="item-id-1-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-1"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-1-checkbox"
+                      disabled=""
+                      id="item-id-1-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-1-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-1"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-1-checkbox"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-38 emotion-39"
+                        color="#3942B0"
                         disabled=""
-                        id="item-id-1-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-1-checkbox"
-                        style="padding: 0px;"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-38 emotion-39"
-                          color="#3942B0"
-                          disabled=""
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-40 emotion-41"
-                          data-testid="item-id-1-label"
-                          id="item-id-1-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-1
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-40 emotion-41"
+                        data-testid="item-id-1-label"
+                        id="item-id-1-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-1
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -12261,58 +12157,54 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                 id="item-id-2-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-2"
+                      checked=""
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-2-checkbox"
+                      id="item-id-2-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-2-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-2"
-                        checked=""
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-2-checkbox"
-                        id="item-id-2-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-2-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8.29 13.29c-.39.39-1.02.39-1.41 0L5.71 12.7a.9959.9959 0 010-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.58 7.59z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-2-label"
-                          id="item-id-2-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-2
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8.29 13.29c-.39.39-1.02.39-1.41 0L5.71 12.7a.9959.9959 0 010-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.58 7.59z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-2-label"
+                        id="item-id-2-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-2
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -12352,66 +12244,62 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-3-checkbox"
+                      disabled=""
+                      id="item-id-3-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-3-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-3-checkbox"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-38 emotion-39"
+                        color="#3942B0"
                         disabled=""
-                        id="item-id-3-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-3-checkbox"
-                        style="padding: 0px;"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-38 emotion-39"
-                          color="#3942B0"
-                          disabled=""
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-40 emotion-41"
-                          data-testid="item-id-3-label"
-                          id="item-id-3-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-3
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-40 emotion-41"
+                        data-testid="item-id-3-label"
+                        id="item-id-3-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-3
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-3 checkbox
-                        </div>
+                        No subitems are checked for item-title-3 checkbox
                       </div>
                     </div>
                   </div>
@@ -12454,64 +12342,60 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-4-checkbox"
+                      id="item-id-4-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-4-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-4-checkbox"
-                        id="item-id-4-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-4-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-92 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-92 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-4-label"
-                          id="item-id-4-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-4
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-4-label"
+                        id="item-id-4-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-4
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-4 checkbox
-                        </div>
+                        No subitems are checked for item-title-4 checkbox
                       </div>
                     </div>
                   </div>
@@ -12554,64 +12438,60 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-5-checkbox"
+                      id="item-id-5-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-5-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-5-checkbox"
-                        id="item-id-5-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-5-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-92 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-92 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-5-label"
-                          id="item-id-5-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-5
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-5-label"
+                        id="item-id-5-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-5
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-5 checkbox
-                        </div>
+                        No subitems are checked for item-title-5 checkbox
                       </div>
                     </div>
                   </div>
@@ -14248,59 +14128,55 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                 id="item-id-1-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-1"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-1-checkbox"
+                      disabled=""
+                      id="item-id-1-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-1-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-1"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-1-checkbox"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-38 emotion-39"
+                        color="#3942B0"
                         disabled=""
-                        id="item-id-1-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-1-checkbox"
-                        style="padding: 0px;"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-38 emotion-39"
-                          color="#3942B0"
-                          disabled=""
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-40 emotion-41"
-                          data-testid="item-id-1-label"
-                          id="item-id-1-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-1
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-40 emotion-41"
+                        data-testid="item-id-1-label"
+                        id="item-id-1-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-1
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -14320,57 +14196,53 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                 id="item-id-2-itemwrapper"
               >
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-label="item-title-2"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-2-checkbox"
+                      id="item-id-2-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-2-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-label="item-title-2"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-2-checkbox"
-                        id="item-id-2-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-2-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-2-label"
-                          id="item-id-2-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-2
-                        </span>
-                      </label>
-                    </div>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-2-label"
+                        id="item-id-2-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-2
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
@@ -14410,66 +14282,62 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-3-checkbox"
+                      disabled=""
+                      id="item-id-3-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-3-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-3-checkbox"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-38 emotion-39"
+                        color="#3942B0"
                         disabled=""
-                        id="item-id-3-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-3-checkbox"
-                        style="padding: 0px;"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-38 emotion-39"
-                          color="#3942B0"
-                          disabled=""
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-40 emotion-41"
-                          data-testid="item-id-3-label"
-                          id="item-id-3-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-3
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-40 emotion-41"
+                        data-testid="item-id-3-label"
+                        id="item-id-3-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-3
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-3 checkbox
-                        </div>
+                        No subitems are checked for item-title-3 checkbox
                       </div>
                     </div>
                   </div>
@@ -14512,64 +14380,60 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-4-checkbox"
+                      id="item-id-4-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-4-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-4-checkbox"
-                        id="item-id-4-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-4-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-4-label"
-                          id="item-id-4-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-4
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-4-label"
+                        id="item-id-4-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-4
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-4 checkbox
-                        </div>
+                        No subitems are checked for item-title-4 checkbox
                       </div>
                     </div>
                   </div>
@@ -14612,64 +14476,60 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                   </svg>
                 </div>
                 <div
-                  style="width: 100%;"
+                  class="emotion-30 emotion-31"
                 >
                   <div
-                    class="emotion-30 emotion-31"
+                    class="emotion-32 emotion-33"
                   >
-                    <div
-                      class="emotion-32 emotion-33"
+                    <input
+                      aria-checked="false"
+                      class="emotion-34 emotion-35"
+                      data-testid="item-id-5-checkbox"
+                      id="item-id-5-checkbox"
+                      tabindex="-1"
+                      type="checkbox"
+                    />
+                    <label
+                      class="emotion-36 emotion-37"
+                      for="item-id-5-checkbox"
+                      style="padding: 0px;"
                     >
-                      <input
-                        aria-checked="false"
-                        class="emotion-34 emotion-35"
-                        data-testid="item-id-5-checkbox"
-                        id="item-id-5-checkbox"
-                        tabindex="-1"
-                        type="checkbox"
-                      />
-                      <label
-                        class="emotion-36 emotion-37"
-                        for="item-id-5-checkbox"
-                        style="padding: 0px;"
+                      <span
+                        aria-hidden="true"
+                        class="emotion-54 emotion-39"
+                        color="#3942B0"
+                        style="margin-right: 8px;"
                       >
-                        <span
-                          aria-hidden="true"
-                          class="emotion-54 emotion-39"
-                          color="#3942B0"
-                          style="margin-right: 8px;"
+                        <svg
+                          class="icon"
+                          fill="currentColor"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          xmlns="http://www.w3.org/2000/svg"
                         >
-                          <svg
-                            class="icon"
-                            fill="currentColor"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            width="24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-                              fill-rule="evenodd"
-                            />
-                          </svg>
-                        </span>
-                        <span
-                          class="emotion-56 emotion-41"
-                          data-testid="item-id-5-label"
-                          id="item-id-5-label"
-                          style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
-                        >
-                          item-title-5
-                        </span>
-                      </label>
+                          <path
+                            d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="emotion-56 emotion-41"
+                        data-testid="item-id-5-label"
+                        id="item-id-5-label"
+                        style="overflow: hidden; text-overflow: ellipsis; width: 230px; display: inline-block;"
+                      >
+                        item-title-5
+                      </span>
+                    </label>
+                    <div
+                      aria-live="polite"
+                    >
                       <div
-                        aria-live="polite"
+                        class="emotion-76 emotion-77"
                       >
-                        <div
-                          class="emotion-76 emotion-77"
-                        >
-                          No subitems are checked for item-title-5 checkbox
-                        </div>
+                        No subitems are checked for item-title-5 checkbox
                       </div>
                     </div>
                   </div>

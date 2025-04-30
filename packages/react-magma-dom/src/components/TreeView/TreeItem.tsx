@@ -255,7 +255,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           : checkedStatus === IndeterminateCheckboxStatus.checked
         : null;
 
-    const treeItemRef = React.useRef<HTMLLIElement>(null);
     const [isInsideTreeItem, setIsInsideTreeItem] = React.useState(false);
     const focusTrapElement = useFocusLock(isInsideTreeItem);
 
@@ -285,15 +284,11 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         event.stopPropagation();
         setIsInsideTreeItem(false);
 
-        const treeItemNode = treeItemRef.current;
+        const treeItemNode = focusTrapElement.current;
         if (treeItemNode) {
           treeItemNode.focus({ preventScroll: true });
         }
         return;
-      }
-
-      if (focusTrapElement.current && !isInsideTreeItem) {
-        setIsInsideTreeItem(true);
       }
     };
 
@@ -393,6 +388,16 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       selectable === TreeViewSelectable.multi &&
       (isTopLevelSelectable !== false || !topLevel);
 
+    // Checks if the event target is an interactive element
+    // inside the label or additional content section.
+    const isWithinLabelOrAdditionalContent = (target: any): Element | null => {
+      //Need for tests
+      const safeItemId = CSS.escape(itemId);
+      return target.closest(
+        `#${safeItemId}-label, #${safeItemId}-additionalcontentwrapper`
+      );
+    };
+
     const onKeyDownHandler = (event: React.KeyboardEvent) => {
       const target = event.target as HTMLElement;
 
@@ -401,14 +406,17 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         return;
       }
 
-      // Checks if the event target is an interactive element inside the label or additional content section.
-      const isWithinLabelOrAdditionalContent = target.closest(
-        `#${itemId}-label, #${itemId}-additionalcontentwrapper`
-      );
-
-      if (isWithinLabelOrAdditionalContent) {
+      if (isWithinLabelOrAdditionalContent(target)) {
         handleLabelAndAdditionalContentKeyDown(event);
         return;
+      }
+    };
+
+    const handleFocus = (event: React.FocusEvent) => {
+      const target = event.target as HTMLElement;
+
+      if (isWithinLabelOrAdditionalContent(target)) {
+        setIsInsideTreeItem(true);
       }
     };
 
@@ -432,7 +440,8 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           theme={theme}
           tabIndex={tabIndex}
           onKeyDown={onKeyDownHandler}
-          ref={treeItemRef}
+          ref={focusTrapElement}
+          onFocus={handleFocus}
         >
           <StyledItemWrapper
             additionalContent={additionalContent}
@@ -467,33 +476,30 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 )}
               </StyledExpandWrapper>
             )}
-
-            <div ref={focusTrapElement} style={{ width: '100%' }}>
-              {shouldShowCheckbox ? (
-                <StyledCheckboxWrapper
-                  hasAdditionalContent={!!additionalContent}
-                  theme={theme}
-                >
-                  {hasOwnTreeItems ? (
-                    <IndeterminateCheckbox
-                      {...checkboxProps}
-                      status={checkedStatus}
-                    />
-                  ) : (
-                    <Checkbox
-                      {...checkboxProps}
-                      checked={checkedStatusToBoolean(checkedStatus)}
-                    />
-                  )}
-                  {treeItemAdditionalContent}
-                </StyledCheckboxWrapper>
-              ) : (
-                <>
-                  {labelText}
-                  {treeItemAdditionalContent}
-                </>
-              )}
-            </div>
+            {shouldShowCheckbox ? (
+              <StyledCheckboxWrapper
+                hasAdditionalContent={!!additionalContent}
+                theme={theme}
+              >
+                {hasOwnTreeItems ? (
+                  <IndeterminateCheckbox
+                    {...checkboxProps}
+                    status={checkedStatus}
+                  />
+                ) : (
+                  <Checkbox
+                    {...checkboxProps}
+                    checked={checkedStatusToBoolean(checkedStatus)}
+                  />
+                )}
+                {treeItemAdditionalContent}
+              </StyledCheckboxWrapper>
+            ) : (
+              <>
+                {labelText}
+                {treeItemAdditionalContent}
+              </>
+            )}
           </StyledItemWrapper>
 
           {React.Children.map(
