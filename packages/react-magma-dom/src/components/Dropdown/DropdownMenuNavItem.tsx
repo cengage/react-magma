@@ -42,18 +42,6 @@ export const DropdownMenuNavItem = React.forwardRef<
 
   const ref = useForkedRef(forwardedRef, ownRef);
 
-  const index = context.itemRefArray.current.findIndex(({ current: item }) => {
-    if (!item || !ownRef.current) return false;
-
-    return item === ownRef.current;
-  });
-
-  const isActive =
-    context.activeItemIndex >= 0 && context.activeItemIndex === index;
-
-  const isInactive =
-    context.activeItemIndex >= 0 && context.activeItemIndex !== index;
-
   React.useEffect(() => {
     context.registerDropdownMenuItem(context.itemRefArray, ownRef);
   }, []);
@@ -61,9 +49,7 @@ export const DropdownMenuNavItem = React.forwardRef<
   return (
     <StyledItem
       {...other}
-      aria-current={isActive ? 'true' : null}
       href={to}
-      isInactive={isInactive}
       isFixedWidth={context.isFixedWidth}
       isInverse={context.isInverse}
       ref={ref}
@@ -71,7 +57,11 @@ export const DropdownMenuNavItem = React.forwardRef<
       tabIndex={-1}
       theme={theme}
     >
-      {icon && <IconWrapper theme={theme}>{icon}</IconWrapper>}
+      {icon && (
+        <IconWrapper aria-hidden theme={theme}>
+          {icon}
+        </IconWrapper>
+      )}
       {children}
     </StyledItem>
   );
