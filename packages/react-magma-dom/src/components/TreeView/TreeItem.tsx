@@ -257,6 +257,9 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     const [isInsideTreeItem, setIsInsideTreeItem] = React.useState(false);
     const focusTrapElement = useFocusLock(isInsideTreeItem);
+    const [inputMethod, setInputMethod] = React.useState<'keyboard' | 'mouse'>(
+      'mouse'
+    );
 
     const handleLabelAndAdditionalContentKeyDown = (
       event: React.KeyboardEvent
@@ -358,7 +361,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     // Props shared by Checkbox and IndeterminateCheckbox
     const checkboxProps = {
       disabled: isDisabled,
-      hideFocus: true,
+      hideFocus: inputMethod !== 'keyboard',
       id: `${itemId}-checkbox`,
       inputStyle: { marginRight: theme.spaceScale.spacing03 },
       labelStyle: {
@@ -366,7 +369,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       },
       labelText: labelText,
       onChange: checkboxChangeHandler,
-      tabIndex: -1,
+      tabIndex: inputMethod === 'keyboard' ? 0 : -1,
       testId: `${itemId}-checkbox`,
     };
 
@@ -391,10 +394,11 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     // Checks if the event target is an interactive element
     // inside the label or additional content section.
     const isWithinLabelOrAdditionalContent = (target: any): Element | null => {
-      //Need for tests
+      // Need for tests
       const safeItemId = CSS.escape(itemId);
+
       return target.closest(
-        `#${safeItemId}-label, #${safeItemId}-additionalcontentwrapper`
+        `#${safeItemId}-label, #${safeItemId}-additionalcontentwrapper, #${safeItemId}-checkbox`
       );
     };
 
@@ -419,6 +423,19 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         setIsInsideTreeItem(true);
       }
     };
+
+    React.useEffect(() => {
+      const handleKeyDown = () => setInputMethod('keyboard');
+      const handleMouseDown = () => setInputMethod('mouse');
+
+      window.addEventListener('keydown', handleKeyDown);
+      window.addEventListener('mousedown', handleMouseDown);
+
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+        window.removeEventListener('mousedown', handleMouseDown);
+      };
+    }, []);
 
     return (
       <TreeItemContext.Provider value={contextValue}>
