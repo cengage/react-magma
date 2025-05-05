@@ -71,10 +71,10 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Pagination } from 'react-magma-dom';
+import { Pagination, PageButtonSize } from 'react-magma-dom';
 
 export function Example() {
-  return <Pagination size="large" count={6} page={2} />;
+  return <Pagination size={PageButtonSize.large} count={6} defaultPage={2} />;
 }
 ```
 
