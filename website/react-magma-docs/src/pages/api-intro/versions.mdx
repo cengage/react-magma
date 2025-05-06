@@ -85,7 +85,9 @@ export const ReleasedVersionsTable = () => {
             </TableCell>
             <TableCell key={`row${i}-date`}>{row.date}</TableCell>
             <TableCell key={`row${i}-docs`}>
-              {semver.gte(row.version, '4.0.0') ? (
+              {semver.gte(row.version, '4.0.0') ||
+              row.version === '3.11.0' ||
+              row.version === '2.6.0' ? (
                 <a
                   href={`https://react-magma.cengage.com/version/${row.version}`}
                 >
