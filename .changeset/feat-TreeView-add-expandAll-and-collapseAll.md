@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(TreeView): add `expandAll` and `collapseAll`. Removed collapse/expand animations for `TreeView`.
+feat(TreeView): Add `expandAll` and `collapseAll`. Removed collapse/expand animations for `TreeView`.
