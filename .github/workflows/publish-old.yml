@@ -1,0 +1,83 @@
+## This workflow is currently inactive (file extension is .yml.disabled).
+## To re-enable this workflow on GitHub, rename the file to publish-old.yml and uncomment all lines.
+
+
+## To test locally with act:
+##   1. Install act: https://github.com/nektos/act
+##   2. Install Docker (required by act)
+##   3. Run: act push -W .github/workflows/publish-old.yml.disabled
+##
+## If you need extra dependencies for act, add them in a step like:
+##       - name: Setup for ACT
+##         run: |
+##           apt-get update && apt-get install sudo -y
+##       - name: Install ACT dependencies
+##         run: |
+##           sudo apt-get install git jq -y
+##       - name: Clone Repository
+##         run: |
+##           git clone https://github.com/cengage/react-magma.git .
+##           git fetch --tags
+##           git checkout react-magma-dom@${{ matrix.version }}
+##
+
+
+name: Build and Publish Docs for old versions
+
+on:
+  push:
+    branches:
+      - chore/deployOldDocs
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        version: ['4.7.0']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: react-magma-dom@${{ matrix.version }}
+      - name: Setup
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+          check-latest: true
+
+      - name: Install
+        run: npm ci --legacy-peer-deps
+
+      - name: Configure NPM
+        run: |
+          git config --global user.name 'github-bot'
+          git config --global user.email 'github-bot@users.noreply.github.com'
+          echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} > .npmrc
+
+      - name: Get Alias
+        id: info
+        run: |
+          echo "::set-output name=alias::$(npm run --silent getAlias)"
+          echo "::set-output name=version::$(npm run --silent getVersion)"
+
+      - name: Build Docs
+        run: npm run build:docs
+        env:
+          PATH_PREFIX: /version/${{ matrix.version }}
+
+      - name: Deploy Docs to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './website/react-magma-docs/public'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy from GitHub Actions'
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+          alias: ${{ matrix.version }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
