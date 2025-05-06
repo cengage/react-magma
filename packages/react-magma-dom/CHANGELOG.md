@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.26
+
+### Patch Changes
+
+- 08199de: fix(Typography): Fixed Typescript warnings in Typography component
+
 ## 4.9.0-next.25
 
 ### Patch Changes
