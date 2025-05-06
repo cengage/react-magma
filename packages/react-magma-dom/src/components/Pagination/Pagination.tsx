@@ -96,7 +96,7 @@ export interface UncontrolledPaginationProps extends BasePaginationProps {
   /**
    * Current page number when used with onPageChange.
    */
-  page?: number;
+  page: number;
 }
 export type PaginationProps =
   | ControlledPaginationProps
