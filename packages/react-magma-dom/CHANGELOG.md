@@ -1,5 +1,11 @@
 ## 4.8.0
 
+## 4.9.0-next.27
+
+### Patch Changes
+
+- ded88ff: fix(Typography): Locked @types/react to 17.0.83 to fix Typescript errors
+
 ## 4.9.0-next.26
 
 ### Patch Changes
