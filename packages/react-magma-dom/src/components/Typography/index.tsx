@@ -6,9 +6,9 @@ import styled from '@emotion/styled';
 import { ThemeInterface } from '../../theme/magma';
 
 export interface TypographyProps<T = HTMLParagraphElement>
-  extends React.HTMLAttributes<T> {
-  as?: string;
-  children?: any;
+  extends Omit<React.HTMLAttributes<T>, 'color'> {
+  as?: React.ElementType;
+  children?: React.ReactNode;
   color?: TypographyColor;
   contextVariant?: TypographyContextVariant;
   element?: string;
