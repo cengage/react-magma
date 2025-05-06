@@ -2,13 +2,13 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "@react-magma/charts": "10.0.0",
-    "@react-magma/dropzone": "10.0.0",
-    "react-magma-dom": "4.8.0",
-    "@react-magma/schema-renderer": "10.0.0",
-    "@cengage-patterns/header": "12.0.0",
-    "react-magma-docs": "5.1.1",
-    "react-magma-landing": "1.1.4"
+    "@react-magma/charts": "11.0.0-next.2",
+    "@react-magma/dropzone": "11.0.0-next.2",
+    "react-magma-dom": "4.9.0-next.27",
+    "@react-magma/schema-renderer": "11.0.0-next.1",
+    "@cengage-patterns/header": "12.0.1-next.0",
+    "react-magma-docs": "5.1.2-next.16",
+    "react-magma-landing": "1.1.6"
   },
   "changesets": [
     "chore-deploy-old-workflow",

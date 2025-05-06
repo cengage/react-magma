@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Tabs/Scroll Spy): Improve scroll functionality for smaller screens.
+fix(Tabs): Improve scroll spy functionality for smaller screens.

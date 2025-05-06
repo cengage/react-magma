@@ -1,4 +1,4 @@
-## 4.8.0
+
 
 ## 4.9.0-next.27
 
@@ -176,6 +176,8 @@
 ### Patch Changes
 
 - b65154ad5: fix(SkipLink): Fix overlap with the SkipLink component when used with AppBar.
+
+## 4.8.0
 
 ### Minor Changes
 
