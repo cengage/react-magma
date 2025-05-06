@@ -27,7 +27,7 @@ name: Build and Publish Docs for old versions
 on:
   push:
     branches:
-      - chore/deployOldDocs
+      - chore/4.7.0docs
 
 jobs:
   build-and-publish:
