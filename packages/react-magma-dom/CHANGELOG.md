@@ -1,4 +1,8 @@
+## 4.9.0-next.28
 
+### Patch Changes
+
+- 21d554d02: fix(Pagination): Fix support for `page` in `PaginationType.simple`
 
 ## 4.9.0-next.27
 

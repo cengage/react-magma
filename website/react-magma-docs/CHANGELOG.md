@@ -1,5 +1,14 @@
 # Change Log
 
+## 5.1.2-next.17
+
+### Patch Changes
+
+- e171e4dfc: build(deps): pin @changeset/cli version to 2.16.0
+- cda4e0296: chore: Remove all old documentation links.
+- Updated dependencies [21d554d02]
+  - react-magma-dom@4.9.0-next.28
+
 ## 5.1.2-next.16
 
 ### Patch Changes
