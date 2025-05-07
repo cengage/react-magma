@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.1.2-next.18
+
+### Patch Changes
+
+- 3f3a96ab3: fix(docs): Fix pre-release issues
+- Updated dependencies [cf9c84b5a]
+  - react-magma-dom@4.9.0-next.29
+
 ## 5.1.2-next.17
 
 ### Patch Changes

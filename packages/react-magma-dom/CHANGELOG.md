@@ -1,5 +1,11 @@
 ## 4.9.0-next.28
 
+## 4.9.0-next.29
+
+### Patch Changes
+
+- cf9c84b5a: fix(Popover): Update z-index to 996.
+
 ### Patch Changes
 
 - 21d554d02: fix(Pagination): Fix support for `page` in `PaginationType.simple`
