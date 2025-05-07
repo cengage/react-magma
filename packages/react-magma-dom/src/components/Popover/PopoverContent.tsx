@@ -112,8 +112,9 @@ export const PopoverContent = React.forwardRef<
   return (
     <div
       ref={context.setFloating}
-      // z-index 2 is used to make the content appear above docs elements (code blocks)
-      style={{ ...context.floatingStyles, zIndex: 2 }}
+      // z-index 996 is used to make the content appear above docs elements (code blocks)
+      // and below the Modal component (z-index 997)
+      style={{ ...context.floatingStyles, zIndex: 996 }}
     >
       {context.isOpen && context.hasPointer && (
         <FloatingArrow
@@ -134,7 +135,7 @@ export const PopoverContent = React.forwardRef<
               : theme.colors.neutral300
           }
           strokeWidth={1}
-          style={{ zIndex: 2, transform: 'translateY(-15%)' }}
+          style={{ zIndex: 996, transform: 'translateY(-15%)' }}
         />
       )}
 
