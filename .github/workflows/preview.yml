@@ -26,12 +26,8 @@ jobs:
         run: npm ci
       - name: Test
         run: npm test
-      - name: Install Playwright dependencies
-        run: npm ci
-        working-directory: playwright
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
-        working-directory: playwright
       - name: Run Playwright tests
         run: npm run playwright:test
         timeout-minutes: 60

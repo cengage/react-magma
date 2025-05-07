@@ -356,12 +356,6 @@ To install the required browsers (Chromium, Firefox, WebKit) used by Playwright:
 npx playwright install
 ```
 
-Also need to install this dependency:
-
-```
-npm install playwright
-```
-
 To execute all Playwright tests, use the following command:
 
 ```sh
@@ -377,21 +371,11 @@ npm run playwright:report
 To run codegen inspector:
 
 ```sh
-cd playwright
-```
-and 
-
-```sh
-npx playwright codegen
+npm run playwright:codegen
 ```
 
-To see executing tests in real time:
+To see executing playwright tests in real time:
 
 ```sh
-cd playwright
-```
-and
-
-```sh
-npx playwright test --ui
+npm run playwright:realtime
 ```

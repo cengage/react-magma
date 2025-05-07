@@ -35,14 +35,14 @@ export default defineConfig({
 
   webServer: [
     {
-      command: 'cd .. && npm run storybook',
+      command: 'npm run storybook',
       url: 'http://localhost:6006/',
       timeout: 120 * 1000,
       reuseExistingServer: !process.env.CI,
     },
     // Will be used for the React Magma documentation
     // {
-    //   command: 'cd .. && npm run docs',
+    //   command: 'npm run docs',
     //   url: 'http://localhost:8000/',
     //   reuseExistingServer: !process.env.CI,
     // },
