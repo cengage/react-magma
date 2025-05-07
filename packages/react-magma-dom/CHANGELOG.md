@@ -1,4 +1,44 @@
-## 4.8.0
+## 4.9.0-next.28
+
+### Patch Changes
+
+- 21d554d02: fix(Pagination): Fix support for `page` in `PaginationType.simple`
+
+## 4.9.0-next.27
+
+### Patch Changes
+
+- ded88ff: fix(Typography): Locked @types/react to 17.0.83 to fix Typescript errors
+
+## 4.9.0-next.26
+
+### Patch Changes
+
+- 08199de: fix(Typography): Fixed Typescript warnings in Typography component
+
+## 4.9.0-next.25
+
+### Patch Changes
+
+- 28de863: fix(SkipLink): Deprecate `to` prop.
+
+## 4.9.0-next.24
+
+### Patch Changes
+
+- c942de9: fix(Dropdown): Make to display Dropdown content above other elements.
+
+## 4.9.0-next.23
+
+### Patch Changes
+
+- c494d79: fix(Package): Update `@types/react` version for fix types errors.
+
+## 4.9.0-next.22
+
+### Patch Changes
+
+- b3c866f: fix(Input): Improve the logic for updating the value in the handleChange function.
 
 ## 4.9.0-next.21
 
@@ -140,6 +180,8 @@
 ### Patch Changes
 
 - b65154ad5: fix(SkipLink): Fix overlap with the SkipLink component when used with AppBar.
+
+## 4.8.0
 
 ### Minor Changes
 
