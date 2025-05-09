@@ -701,14 +701,14 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
       props.onChange &&
         typeof props.onChange === 'function' &&
         props.onChange(event);
-      const isOnDateChange = onDateChange && typeof onDateChange === 'function';
-      const { value } = event.target;
 
-      setValue(isOnDateChange ? value : (props.value ?? value));
-
-      if (isOnDateChange && !value) {
+      setValue(event.target.value);
+      if (
+        !event.target.value &&
+        onDateChange &&
+        typeof onDateChange === 'function'
+      )
         onDateChange(null);
-      }
     }
 
     const passwordBtnWidth = () => {
