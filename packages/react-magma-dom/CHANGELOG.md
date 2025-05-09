@@ -1,5 +1,11 @@
 ## 4.9.0-next.28
 
+## 4.9.0-next.30
+
+### Patch Changes
+
+- a3d2119a2: fix(Input): revert fix(Input) Does not update value as expected #1741
+
 ## 4.9.0-next.29
 
 ### Patch Changes
