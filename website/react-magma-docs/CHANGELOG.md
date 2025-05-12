@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.3-next.0
+
+### Patch Changes
+
+- bc7de44e1: chore: Manually sync main -> dev (4.9.0)
+
 ## 5.1.2
 
 ### Patch Changes
