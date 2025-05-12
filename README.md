@@ -22,7 +22,7 @@ This site has general usage information, as well as information on all of the av
 
 ### System Dependencies
 
-Node v14.x or greater with npm 7.1.x or greater
+Node v18.20.4 or greater with npm v10.7.0 or greater
 
 ### Steps to Run Documentation locally
 
