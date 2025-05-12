@@ -1,5 +1,58 @@
 # Change Log
 
+## 5.1.2
+
+### Patch Changes
+
+- 46260e57c: build(deps): pin @changeset/cli version to 2.16.0
+- 46260e57c: chore: Remove all old documentation links.
+- 46260e57c: chore: added disabled workflow publish-old
+  chore: sync main with dev after PR "build: Release landing page updates #1749"
+- 46260e57c: chore: update preview workflow (removes edited and reopened)
+- 46260e57c: chore: prittier script typo
+- 46260e57c: chore: update eslint and prittier configs
+- 46260e57c: fix(docs): Fix auto-scrolling to the selected component in the documentation on the first render/on a new tab.
+- 46260e57c: fix(docs): Fix pre-release issues
+- 46260e57c: chore: fix lintstaged config
+- 46260e57c: chore: fix lintstaged config
+- 46260e57c: chore: Manually sync main -> dev (4.8.0)
+- 46260e57c: build(deps): bump @babel/helpers from 7.24.5 to 7.26.10
+- 46260e57c: build(deps): bump elliptic from 6.5.7 to 6.6.1
+- 46260e57c: docs: Update supported React version
+- 46260e57c: build(deps-dev): bump axios from 1.7.8 to 1.8.2
+- 46260e57c: chore: Manually sync main -> dev after landing page update
+- 46260e57c: build(deps): bump @babel/runtime from 7.24.5 to 7.26.10
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+  - @react-magma/dropzone@11.0.0
+  - react-magma-dom@4.9.0
+  - @react-magma/charts@11.0.0
+  - @react-magma/schema-renderer@11.0.0
+  - @cengage-patterns/header@12.0.1
+
 ## 5.1.2-next.18
 
 ### Patch Changes

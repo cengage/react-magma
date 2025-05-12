@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.0
+
+### Patch Changes
+
+- 46260e57c: fix(Dropzone): fix type declaration path for Dropzone component
+
 ## 11.0.0-next.2
 
 ### Patch Changes
