@@ -1,19 +1,22 @@
 import React from 'react';
-import { ButtonColor, ButtonTextTransform } from '../Button';
-import { Card, CardBody } from '../Card';
-import { Hyperlink, HyperlinkIconPosition } from '.';
-import { Flex, FlexBehavior, FlexJustify } from '../Flex';
+
 import { Meta } from '@storybook/react/types-6-0';
-import { magma } from '../../theme/magma';
-import { Paragraph } from '../Paragraph';
-import { Spacer, SpacerAxis } from '../Spacer';
-import { TypographyVisualStyle } from '../Typography';
 import {
   CalendarTodayIcon,
   KeyboardArrowLeftIcon,
   KeyboardArrowRightIcon,
   OpenInNewIcon,
 } from 'react-magma-icons';
+
+import { magma } from '../../theme/magma';
+import { ButtonColor, ButtonTextTransform } from '../Button';
+import { Card, CardBody } from '../Card';
+import { Flex, FlexBehavior, FlexJustify } from '../Flex';
+import { Paragraph } from '../Paragraph';
+import { Spacer, SpacerAxis } from '../Spacer';
+import { TypographyVisualStyle } from '../Typography';
+
+import { Hyperlink, HyperlinkIconPosition } from '.';
 
 export default {
   component: Hyperlink,
@@ -44,7 +47,7 @@ export const Default = args => {
         {...args}
         icon={
           iconPosition === HyperlinkIconPosition.both
-            ? [args.icon, <KeyboardArrowLeftIcon aria-hidden={true} key={0} />]
+            ? [args.icon, <KeyboardArrowLeftIcon aria-hidden key={0} />]
             : args.icon
         }
       >
@@ -58,7 +61,7 @@ Default.args = {
   isInverse: false,
   to: 'https://www.google.com',
   hasUnderline: false,
-  icon: <KeyboardArrowRightIcon aria-hidden={true} />,
+  icon: <KeyboardArrowRightIcon aria-hidden />,
   iconPosition: HyperlinkIconPosition.right,
 };
 
@@ -88,7 +91,7 @@ export const All = args => {
             styledAs="Button"
             target="_blank"
             to="https://www.google.com"
-            icon={<KeyboardArrowLeftIcon aria-hidden={true} />}
+            icon={<KeyboardArrowLeftIcon aria-hidden />}
             iconPosition={HyperlinkIconPosition.left}
           >
             Back
@@ -100,8 +103,8 @@ export const All = args => {
             target="_blank"
             to="https://www.google.com"
             icon={[
-              <KeyboardArrowLeftIcon aria-hidden={true} key={0} />,
-              <KeyboardArrowRightIcon aria-hidden={true} key={1} />,
+              <KeyboardArrowLeftIcon aria-hidden key={0} />,
+              <KeyboardArrowRightIcon aria-hidden key={1} />,
             ]}
             iconPosition={HyperlinkIconPosition.both}
           >
@@ -113,7 +116,7 @@ export const All = args => {
             styledAs="Button"
             target="_blank"
             to="https://www.google.com"
-            icon={<KeyboardArrowRightIcon aria-hidden={true} />}
+            icon={<KeyboardArrowRightIcon aria-hidden />}
             iconPosition={HyperlinkIconPosition.right}
           >
             Next
@@ -133,7 +136,7 @@ export const All = args => {
                 target="_blank"
                 to="#"
                 hasUnderline={false}
-                icon={<KeyboardArrowLeftIcon aria-hidden={true} />}
+                icon={<KeyboardArrowLeftIcon aria-hidden />}
                 iconPosition={HyperlinkIconPosition.left}
               >
                 Brownie
@@ -145,7 +148,7 @@ export const All = args => {
                 target="_blank"
                 to="#"
                 hasUnderline={false}
-                icon={<KeyboardArrowRightIcon aria-hidden={true} />}
+                icon={<KeyboardArrowRightIcon aria-hidden />}
                 iconPosition={HyperlinkIconPosition.right}
               >
                 Muffin
@@ -164,12 +167,7 @@ export const All = args => {
               textTransform={ButtonTextTransform.none}
               target="_blank"
               to="https://www.cengage.com/"
-              icon={
-                <OpenInNewIcon
-                  size={magma.iconSizes.small}
-                  aria-hidden={true}
-                />
-              }
+              icon={<OpenInNewIcon size={magma.iconSizes.small} aria-hidden />}
               iconPosition={HyperlinkIconPosition.right}
             >
               I love chocolate cake
@@ -216,13 +214,13 @@ export const All = args => {
                   key={0}
                   size={magma.iconSizes.xLarge}
                   style={{ marginRight: magma.spaceScale.spacing03 }}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
                 <OpenInNewIcon
                   key={1}
                   size={magma.iconSizes.xLarge}
                   style={{ marginLeft: magma.spaceScale.spacing03 }}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}
@@ -251,12 +249,12 @@ export const All = args => {
                 <CalendarTodayIcon
                   key={0}
                   size={magma.iconSizes.large}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
                 <OpenInNewIcon
                   key={1}
                   size={magma.iconSizes.large}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}
@@ -285,12 +283,12 @@ export const All = args => {
                 <CalendarTodayIcon
                   key={0}
                   size={magma.iconSizes.medium}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
                 <OpenInNewIcon
                   key={1}
                   size={magma.iconSizes.medium}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}
@@ -319,12 +317,12 @@ export const All = args => {
                 <CalendarTodayIcon
                   key={0}
                   size={magma.iconSizes.small}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
                 <OpenInNewIcon
                   key={1}
                   size={magma.iconSizes.small}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}
@@ -353,12 +351,12 @@ export const All = args => {
                 <CalendarTodayIcon
                   key={0}
                   size={magma.iconSizes.xSmall}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
                 <OpenInNewIcon
                   key={1}
                   size={magma.iconSizes.xSmall}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}
@@ -406,7 +404,7 @@ export const Inverse = args => {
             to="https://www.google.com"
             isInverse
             hasUnderline={false}
-            icon={<KeyboardArrowLeftIcon aria-hidden={true} />}
+            icon={<KeyboardArrowLeftIcon aria-hidden />}
             iconPosition={HyperlinkIconPosition.left}
           >
             Back
@@ -420,8 +418,8 @@ export const Inverse = args => {
             isInverse
             hasUnderline={false}
             icon={[
-              <KeyboardArrowLeftIcon aria-hidden={true} key={0} />,
-              <KeyboardArrowRightIcon aria-hidden={true} key={1} />,
+              <KeyboardArrowLeftIcon aria-hidden key={0} />,
+              <KeyboardArrowRightIcon aria-hidden key={1} />,
             ]}
             iconPosition={HyperlinkIconPosition.both}
           >
@@ -435,7 +433,7 @@ export const Inverse = args => {
             to="https://www.google.com"
             hasUnderline={false}
             isInverse
-            icon={<KeyboardArrowRightIcon aria-hidden={true} />}
+            icon={<KeyboardArrowRightIcon aria-hidden />}
             iconPosition={HyperlinkIconPosition.right}
           >
             Next
@@ -455,7 +453,7 @@ export const Inverse = args => {
                 target="_blank"
                 to="#"
                 hasUnderline={false}
-                icon={<KeyboardArrowLeftIcon aria-hidden={true} />}
+                icon={<KeyboardArrowLeftIcon aria-hidden />}
                 iconPosition={HyperlinkIconPosition.left}
                 isInverse
               >
@@ -468,7 +466,7 @@ export const Inverse = args => {
                 target="_blank"
                 to="#"
                 hasUnderline={false}
-                icon={<KeyboardArrowRightIcon aria-hidden={true} />}
+                icon={<KeyboardArrowRightIcon aria-hidden />}
                 iconPosition={HyperlinkIconPosition.right}
                 isInverse
               >
@@ -488,12 +486,7 @@ export const Inverse = args => {
               textTransform={ButtonTextTransform.none}
               target="_blank"
               to="https://www.cengage.com/"
-              icon={
-                <OpenInNewIcon
-                  size={magma.iconSizes.small}
-                  aria-hidden={true}
-                />
-              }
+              icon={<OpenInNewIcon size={magma.iconSizes.small} aria-hidden />}
               iconPosition={HyperlinkIconPosition.right}
               isInverse
             >
@@ -532,13 +525,13 @@ export const Inverse = args => {
                   key={0}
                   size={magma.iconSizes.xLarge}
                   style={{ marginRight: magma.spaceScale.spacing03 }}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
                 <OpenInNewIcon
                   key={1}
                   size={magma.iconSizes.xLarge}
                   style={{ marginLeft: magma.spaceScale.spacing03 }}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}
@@ -569,12 +562,12 @@ export const Inverse = args => {
                 <CalendarTodayIcon
                   key={0}
                   size={magma.iconSizes.large}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
                 <OpenInNewIcon
                   key={1}
                   size={magma.iconSizes.large}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}
@@ -605,12 +598,12 @@ export const Inverse = args => {
                 <CalendarTodayIcon
                   key={0}
                   size={magma.iconSizes.medium}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
                 <OpenInNewIcon
                   key={1}
                   size={magma.iconSizes.medium}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}
@@ -641,12 +634,12 @@ export const Inverse = args => {
                 <CalendarTodayIcon
                   key={0}
                   size={magma.iconSizes.small}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
                 <OpenInNewIcon
                   key={1}
                   size={magma.iconSizes.small}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}
@@ -677,12 +670,12 @@ export const Inverse = args => {
                 <CalendarTodayIcon
                   key={0}
                   size={magma.iconSizes.xSmall}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
                 <OpenInNewIcon
                   key={1}
                   size={magma.iconSizes.xSmall}
-                  aria-hidden={true}
+                  aria-hidden
                 />,
               ]}
               iconPosition={HyperlinkIconPosition.both}

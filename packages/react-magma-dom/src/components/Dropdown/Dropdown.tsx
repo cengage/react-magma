@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useDescendants } from '../../hooks/useDescendants';
-import { resolveProps, useForkedRef } from '../../utils';
-import { useIsInverse } from '../../inverse';
-import { ButtonGroupContext } from '../ButtonGroup';
+
 import styled from '@emotion/styled';
 import {
   AlignedPlacement,
@@ -13,6 +10,11 @@ import {
   useFloating,
 } from '@floating-ui/react-dom';
 import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
+
+import { useDescendants } from '../../hooks/useDescendants';
+import { useIsInverse } from '../../inverse';
+import { resolveProps, useForkedRef } from '../../utils';
+import { ButtonGroupContext } from '../ButtonGroup';
 
 export enum DropdownDropDirection {
   down = 'down', //default

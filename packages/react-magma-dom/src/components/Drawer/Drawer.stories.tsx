@@ -1,10 +1,12 @@
 import React from 'react';
-import { Drawer } from '.';
+
 import { Button } from '../Button';
 import { VisuallyHidden } from '../VisuallyHidden';
 import { DrawerPosition } from './Drawer';
 import { NavTab, NavTabs } from '../NavTabs';
 import { TabsOrientation } from '../Tabs/shared';
+
+import { Drawer } from '.';
 
 const info = {
   component: Drawer,

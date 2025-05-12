@@ -19,10 +19,17 @@ For expanded page content, the `Pagination` component may be added. `Pagination`
 
 ```tsx
 import React from 'react';
+
 import { Pagination } from 'react-magma-dom';
 
 export function Example() {
-  return <Pagination count={4} />;
+  const [page, setPage] = React.useState(1);
+
+  function handleChange(_, pageNumber: number) {
+    setPage(pageNumber);
+  }
+
+  return <Pagination count={10} page={page} onPageChange={handleChange} />;
 }
 ```
 
@@ -34,10 +41,24 @@ Please note that the `Pagination` props of `numberOfAdjacentPages`, `numberOfEdg
 
 ```tsx
 import React from 'react';
+
 import { Pagination, PaginationType } from 'react-magma-dom';
 
 export function Example() {
-  return <Pagination count={4} type={PaginationType.simple} />;
+  const [page, setPage] = React.useState(2);
+
+  function handleChange(_, pageNumber: number) {
+    setPage(pageNumber);
+  }
+
+  return (
+    <Pagination
+      count={8}
+      type={PaginationType.simple}
+      page={page}
+      onPageChange={handleChange}
+    />
+  );
 }
 ```
 
@@ -48,13 +69,25 @@ The default value is `false`.
 
 ```tsx
 import React from 'react';
+
 import { Card, CardBody, Pagination } from 'react-magma-dom';
 
 export function Example() {
+  const [page, setPage] = React.useState(2);
+
+  function handleChange(_, pageNumber: number) {
+    setPage(pageNumber);
+  }
+
   return (
     <Card isInverse>
       <CardBody>
-        <Pagination isInverse count={4} />
+        <Pagination
+          isInverse
+          count={4}
+          page={page}
+          onPageChange={handleChange}
+        />
       </CardBody>
     </Card>
   );
@@ -67,10 +100,24 @@ export function Example() {
 
 ```tsx
 import React from 'react';
-import { Pagination } from 'react-magma-dom';
+
+import { Pagination, PageButtonSize } from 'react-magma-dom';
 
 export function Example() {
-  return <Pagination size="large" count={4} />;
+  const [page, setPage] = React.useState(2);
+
+  function handleChange(_, pageNumber: number) {
+    setPage(pageNumber);
+  }
+
+  return (
+    <Pagination
+      size={PageButtonSize.large}
+      count={6}
+      page={page}
+      onPageChange={handleChange}
+    />
+  );
 }
 ```
 
@@ -80,6 +127,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Pagination } from 'react-magma-dom';
 
 export function Example() {
@@ -88,6 +136,7 @@ export function Example() {
   function handlePageChange(_, pageNumber) {
     setPage(pageNumber);
   }
+
   return (
     <div>
       <p>

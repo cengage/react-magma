@@ -22,6 +22,7 @@ Toggles can either be controlled or uncontrolled. If you pass in a checked prop,
 
 ```tsx
 import React from 'react';
+
 import { Toggle, FormGroup } from 'react-magma-dom';
 
 export function Example() {
@@ -33,7 +34,7 @@ export function Example() {
 
   return (
     <FormGroup labelText="Toggle one or more">
-      <Toggle defaultChecked={true} labelText="Uncontrolled Toggle" />
+      <Toggle defaultChecked labelText="Uncontrolled Toggle" />
       <Toggle
         checked={checked}
         labelText="Controlled toggle"
@@ -48,6 +49,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Toggle } from 'react-magma-dom';
 
 export function Example() {
@@ -68,6 +70,7 @@ The `required` attribute can be used on a toggle if that field is required.
 
 ```tsx
 import React from 'react';
+
 import { Toggle } from 'react-magma-dom';
 
 export function Example() {
@@ -97,6 +100,7 @@ The `textPosition` property takes the values `left` and `right`. The default val
 
 ```tsx
 import React from 'react';
+
 import { Toggle } from 'react-magma-dom';
 
 export function Example() {
@@ -124,6 +128,7 @@ Adding the `isTextVisuallyHidden` prop will make the label text available to scr
 
 ```tsx
 import React from 'react';
+
 import { Toggle } from 'react-magma-dom';
 
 export function Example() {
@@ -139,6 +144,7 @@ Please use discretion when adding custom styles.
 
 ```tsx
 import React from 'react';
+
 import { Toggle } from 'react-magma-dom';
 
 export function Example() {
@@ -162,6 +168,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Toggle, Card, CardBody } from 'react-magma-dom';
 
 export function Example() {

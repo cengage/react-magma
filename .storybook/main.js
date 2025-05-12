@@ -22,17 +22,30 @@ module.exports = {
   ],
   typescript: {
     reactDocgen: false,
-    // check: true,
   },
   webpackFinal: async config => {
     config.module.rules[0].exclude = /node_modules\/(?!(@carbon)\/).*/;
+
+    config.module.rules.push({
+      test: /node_modules\/uuid\/.*\.js$/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env'],
+          plugins: [
+            '@babel/plugin-transform-optional-chaining',
+            '@babel/plugin-transform-nullish-coalescing-operator',
+            '@babel/plugin-transform-logical-assignment-operators'
+          ]
+        }
+      }
+    });
+
     return {
       ...config,
-      // devtool: false,
       module: {
         ...config.module,
       },
-      // devtool: 'eval',
       resolve: {
         ...config.resolve,
         alias: {

@@ -22,6 +22,7 @@ props:
 
 ```tsx
 import React from 'react';
+
 import { Datagrid, Card } from 'react-magma-dom';
 
 export function Example() {
@@ -222,6 +223,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Datagrid, TableRowColor } from 'react-magma-dom';
 
 export function Example() {
@@ -272,6 +274,7 @@ Use `rowName` when using Selectable so that the aria labels on the checkboxes ca
 
 ```tsx
 import React from 'react';
+
 import { Datagrid, Card } from 'react-magma-dom';
 
 export function Example() {
@@ -497,6 +500,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Datagrid, Card } from 'react-magma-dom';
 
 export function Example() {
@@ -723,6 +727,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import {
   Datagrid,
   TableSortDirection,
@@ -850,7 +855,7 @@ export function Example() {
         return nonSelectedItems.concat(selectedItemsToSort);
       }
     } else {
-      let sortableItems = [...products];
+      const sortableItems = [...products];
       const direction =
         sortConfig.key === 'price' ? priceDirection : stockDirection;
       sortableItems.sort((a, b) => {
@@ -915,6 +920,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Button, ButtonColor, Datagrid, Card } from 'react-magma-dom';
 
 export function Example() {
@@ -1159,6 +1165,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Datagrid } from 'react-magma-dom';
 
 export function Example() {
@@ -1363,6 +1370,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Datagrid } from 'react-magma-dom';
 
 export function Example() {
@@ -1586,6 +1594,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import {
   Datagrid,
   Button,
@@ -1838,6 +1847,7 @@ Pagination controls are put on the `Datagrid` component by default. You can turn
 
 ```tsx
 import React from 'react';
+
 import { Datagrid } from 'react-magma-dom';
 
 export function Example() {
@@ -2037,6 +2047,7 @@ inherit the `isInverse` prop unless specified otherwise.
 
 ```tsx
 import React from 'react';
+
 import { Datagrid, Card } from 'react-magma-dom';
 
 export function Example() {

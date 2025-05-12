@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { UseTreeViewProps, useTreeView } from './useTreeView';
-import { TreeViewSelectable } from './types';
-import { TreeItem } from './TreeItem';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { InverseContext, useIsInverse } from '../../inverse';
-import { useTreeItem } from './useTreeItem';
-import { TreeViewContext } from './TreeViewContext';
+
 import styled from '@emotion/styled';
+
+import { TreeItem } from './TreeItem';
+import { TreeViewContext } from './TreeViewContext';
+import { TreeViewSelectable } from './types';
+import { useTreeItem } from './useTreeItem';
+import { UseTreeViewProps, useTreeView } from './useTreeView';
+import { InverseContext, useIsInverse } from '../../inverse';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface TreeViewProps
   extends Omit<React.HTMLAttributes<HTMLUListElement>, 'children'>,

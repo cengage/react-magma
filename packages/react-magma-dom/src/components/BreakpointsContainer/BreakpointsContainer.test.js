@@ -1,8 +1,11 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { BreakpointsContainer, Breakpoint } from '.';
-import { magma } from '../../theme/magma';
+
 import { render } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+
+import { BreakpointsContainer, Breakpoint } from '.';
 
 const XS_TEXT = 'xsmall text';
 const SMALL_TEXT = 'small text';

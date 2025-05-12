@@ -1,5 +1,7 @@
 import React from 'react';
-import { Container, ContainerProps } from './';
+
+import { Meta, Story } from '@storybook/react/types-6-0';
+
 import { Alert } from '../Alert';
 import { AlertVariant } from '../AlertBase';
 import { Heading } from '../Heading';
@@ -13,7 +15,8 @@ import {
   TabPanelsContainer,
   TabPanel,
 } from '../Tabs';
-import { Meta , Story} from '@storybook/react/types-6-0';
+
+import { Container, ContainerProps } from './';
 
 export default {
   component: Container,

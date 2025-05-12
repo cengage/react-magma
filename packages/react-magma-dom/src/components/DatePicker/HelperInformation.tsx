@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 
-import { IconButton } from '../IconButton';
-import { Heading } from '../Heading';
-import { ArrowBackIcon, CloseIcon } from 'react-magma-icons';
-import { TypographyVisualStyle } from '../Typography';
-
-import { I18nContext } from '../../i18n';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { useIsInverse } from '../../inverse';
 import styled from '@emotion/styled';
+import { ArrowBackIcon, CloseIcon } from 'react-magma-icons';
+
 import { useFocusLock } from '../../hooks/useFocusLock';
+import { I18nContext } from '../../i18n';
+import { useIsInverse } from '../../inverse';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { Heading } from '../Heading';
+import { IconButton } from '../IconButton';
+import { TypographyVisualStyle } from '../Typography';
 
 interface HelperInformationProps {
   isInverse?: boolean;

@@ -1,14 +1,16 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { DropdownContext } from './Dropdown';
-import { Omit, useForkedRef } from '../../utils';
-import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
-import { DropdownMenuItem, DropdownMenuItemProps } from './DropdownMenuItem';
-import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
+
 import styled from '@emotion/styled';
 
+import { DropdownContext } from './Dropdown';
+import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
+import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
+import { DropdownMenuItem, DropdownMenuItemProps } from './DropdownMenuItem';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useForkedRef } from '../../utils';
+
 export interface DropdownExpandableMenuListItemProps
-  extends Omit<DropdownMenuItemProps, 'icon'> {
+  extends DropdownMenuItemProps {
   disabled?: boolean;
   testId?: string;
 }
@@ -33,7 +35,7 @@ export const DropdownExpandableMenuListItem = React.forwardRef<
   HTMLDivElement,
   DropdownExpandableMenuListItemProps
 >((props, forwardedRef) => {
-  const { children, disabled, ...other } = props;
+  const { children, disabled, icon, ...other } = props;
 
   const ownRef = React.useRef<HTMLDivElement>();
   const theme = React.useContext(ThemeContext);
@@ -57,6 +59,7 @@ export const DropdownExpandableMenuListItem = React.forwardRef<
       {...other}
       disabled={disabled}
       expandableMenuButtonHasIcon={menuGroupContext.expandableMenuButtonHasIcon}
+      icon={!menuGroupContext.isExpandablePanel ? icon : null}
       isExpandablePanel={menuGroupContext.isExpandablePanel}
       ref={expandableMenuItemContext.disabled ? null : ref}
       theme={theme}

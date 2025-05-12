@@ -1,10 +1,13 @@
 import React from 'react';
-import { Banner, BannerProps } from '.';
+
+import { Story, Meta } from '@storybook/react/types-6-0';
+
 import { AlertVariant } from '../AlertBase';
 import { Badge } from '../Badge';
 import { Card, CardBody } from '../Card';
-import { Story, Meta } from '@storybook/react/types-6-0';
 import { Hyperlink } from '../Hyperlink';
+
+import { Banner, BannerProps } from '.';
 
 function handleActionButtonClick() {
   alert('action button clicked!');

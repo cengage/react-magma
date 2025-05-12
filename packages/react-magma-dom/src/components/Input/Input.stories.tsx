@@ -1,15 +1,30 @@
-import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
+
+import { Meta, Story } from '@storybook/react/types-6-0';
 import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
-import { Input, InputProps } from '.';
-import { Button, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+
+import {
+  Button,
+  ButtonColor,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
 import { Card, CardBody } from '../Card';
+import { Combobox } from '../Combobox';
+import { DatePicker } from '../DatePicker';
 import { IconButton } from '../IconButton';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
+import { NativeSelect } from '../NativeSelect';
+import { PasswordInput } from '../PasswordInput';
+import { Search } from '../Search';
+import { Spacer, SpacerAxis } from '../Spacer';
+import { TimePicker } from '../TimePicker';
 import { Tooltip } from '../Tooltip';
-import { Spacer } from '../Spacer';
-import { ButtonGroup } from '../ButtonGroup';
+
+import { Input, InputProps } from '.';
 
 const Template: Story<InputProps> = args => (
   <>
@@ -106,7 +121,7 @@ Large.args = {
 };
 Large.parameters = { controls: { exclude: ['iconPosition'] } };
 
-export const IconPositions = args => {
+export const IconPositions = (args: any) => {
   return (
     <>
       <Input
@@ -175,7 +190,7 @@ Inverse.decorators = [
   ),
 ];
 
-export const HelpLink = args => {
+export const HelpLink = (args: any) => {
   const helpLinkLabel = 'Learn more';
   const onHelpLinkClick = () => {
     alert('Help link clicked!');
@@ -212,11 +227,7 @@ export const HelpLink = args => {
         </Tooltip>
       </Input>
       <Spacer size={16} />
-      <Input 
-        labelText="Help link - hidden" 
-        isLabelVisuallyHidden 
-        {...args}
-      >
+      <Input labelText="Help link - hidden" isLabelVisuallyHidden {...args}>
         <Tooltip content={helpLinkLabel}>
           <IconButton
             aria-label={helpLinkLabel}
@@ -249,7 +260,7 @@ HelpLink.parameters = {
   },
 };
 
-export const WithTwoIcons = args => {
+export const WithTwoIcons = () => {
   const helpLinkLabel = 'Learn more';
   const onHelpLinkClick = () => {
     alert('Help link clicked!');
@@ -282,11 +293,11 @@ WithTwoIcons.parameters = {
   controls: { exclude: ['isInverse', 'type', 'iconPosition'] },
 };
 
-export const NumberInput = args => {
+export const NumberInput = (args: any) => {
   const [inputVal, setInputVal] = React.useState(1);
   const [hasError, setHasError] = React.useState(false);
 
-  function handleChange(event) {
+  function handleChange(event: any) {
     setInputVal(event.target.value);
   }
 
@@ -328,6 +339,69 @@ NumberInput.parameters = {
   controls: { exclude: ['type', 'iconPosition', 'labelWidth'] },
 };
 
+export const PhoneInput = () => {
+  const [inputVal, setInputVal] = React.useState('');
+  const [hasError, setHasError] = React.useState(false);
+  const phonePattern = '^[0-9]{3}-[0-9]{3}-[0-9]{4}$';
+
+  function handleChange(event: any) {
+    setInputVal(event.target.value);
+  }
+
+  React.useEffect(() => {
+    if (inputVal === '' || inputVal.match(phonePattern)) {
+      setHasError(false);
+    } else {
+      setHasError(true);
+    }
+  }, [inputVal]);
+
+  return (
+    <Input
+      pattern={phonePattern}
+      labelText={
+        <>
+          Phone <br /> Format: 123-456-7890
+        </>
+      }
+      type={InputType.tel}
+      errorMessage={hasError ? 'Please enter a phone number' : null}
+      value={inputVal}
+      onChange={handleChange}
+    />
+  );
+};
+
+export const URLInput = () => {
+  const [inputVal, setInputVal] = React.useState('');
+  const [hasError, setHasError] = React.useState(false);
+  const urlPattern =
+    '^(https?:\\/\\/)?([a-zA-Z0-9.-]+)\\.([a-zA-Z]{2,})(:[0-9]+)?(\\/.*)?$';
+
+  function handleChange(event: any) {
+    setInputVal(event.target.value);
+  }
+
+  React.useEffect(() => {
+    if (inputVal === '' || inputVal.match(urlPattern)) {
+      setHasError(false);
+    } else {
+      setHasError(true);
+    }
+  }, [hasError, inputVal]);
+
+  return (
+    <Input
+      pattern={urlPattern}
+      labelText="URL"
+      type={InputType.url}
+      errorMessage={hasError ? 'Please enter a url' : null}
+      value={inputVal}
+      onChange={handleChange}
+    />
+  );
+};
+
 export const SeveralErrors = () => {
   const [inputValues, setInputValues] = React.useState({
     firstName: '',
@@ -340,9 +414,9 @@ export const SeveralErrors = () => {
     emailAddress: false,
   });
 
-  const firstNameInputRef = React.useRef();
-  const lastNameInputRef = React.useRef();
-  const emailAddressInputRef = React.useRef();
+  const firstNameInputRef = React.useRef<any>();
+  const lastNameInputRef = React.useRef<any>();
+  const emailAddressInputRef = React.useRef<any>();
 
   const submit = () => {
     setHasErrors({
@@ -409,11 +483,16 @@ export const SeveralErrors = () => {
       />
       <br />
       <Input
-        errorMessage={hasErrors.emailAddress ? 'Please enter your email address' : ''}
+        errorMessage={
+          hasErrors.emailAddress ? 'Please enter your email address' : ''
+        }
         helperMessage=""
         labelText="Email address *"
         onChange={event =>
-          setInputValues(prev => ({ ...prev, emailAddress: event.target.value }))
+          setInputValues(prev => ({
+            ...prev,
+            emailAddress: event.target.value,
+          }))
         }
         required
         value={inputValues.emailAddress}
@@ -422,10 +501,208 @@ export const SeveralErrors = () => {
       <br />
       <ButtonGroup>
         <Button onClick={submit}>Submit</Button>
-        <Button onClick={reset} color="secondary">
+        <Button onClick={reset} color={ButtonColor.secondary}>
           Reset
         </Button>
       </ButtonGroup>
+    </>
+  );
+};
+
+export const ErrorMessageAndHelperMessage = () => {
+  const [hasError, setHasError] = React.useState(false);
+  const [hasError2, setHasError2] = React.useState(false);
+  const [nameValue, setNameValue] = React.useState('');
+  const [nameValue2, setNameValue2] = React.useState('');
+  const inputRef = React.useRef<any>();
+  const inputRef2 = React.useRef<any>();
+
+  function submit() {
+    if (nameValue === '') {
+      setHasError(true);
+      inputRef.current.focus();
+    } else {
+      setHasError(false);
+    }
+  }
+
+  function submit2() {
+    if (nameValue2 === '') {
+      setHasError2(true);
+      inputRef2.current.focus();
+    } else {
+      setHasError2(false);
+    }
+  }
+
+  function reset() {
+    setHasError(false);
+    setNameValue('');
+    inputRef.current.focus();
+  }
+
+  function reset2() {
+    setHasError2(false);
+    setNameValue2('');
+    inputRef2.current.focus();
+  }
+
+  return (
+    <>
+      <Input
+        errorMessage={hasError ? 'Please provide name' : null}
+        labelText="Name *"
+        onChange={event => setNameValue(event.target.value)}
+        required
+        value={nameValue}
+        ref={inputRef}
+      />
+      <Spacer size="12" />
+      <ButtonGroup>
+        <Button onClick={submit}>Submit</Button>
+        <Button onClick={reset} color={ButtonColor.secondary}>
+          Reset
+        </Button>
+      </ButtonGroup>
+      <br />
+      <br />
+      <br />
+      <br />
+      <Input
+        errorMessage={hasError2 ? 'Please provide name' : null}
+        helperMessage="Helper text"
+        labelText="Name *"
+        onChange={event => setNameValue2(event.target.value)}
+        required
+        value={nameValue2}
+        ref={inputRef2}
+      />
+      <Spacer size="12" />
+      <ButtonGroup>
+        <Button onClick={submit2}>Submit</Button>
+        <Button onClick={reset2} color={ButtonColor.secondary}>
+          Reset
+        </Button>
+      </ButtonGroup>
+    </>
+  );
+};
+
+export const AllInputs = () => {
+  const helpLinkLabel = 'Learn more';
+  const onHelpLinkClick = () => {
+    alert('Help link clicked!');
+  };
+
+  return (
+    <>
+      <div style={{ display: 'flex' }}>
+        <div style={{ flex: '0 0 auto' }}>
+          <PasswordInput labelText="Password" />
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <Input labelText="Label" />
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <TimePicker labelText="Time" />
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <DatePicker labelText="Date" />
+        </div>
+        <div style={{ flex: '0 0 auto' }}>
+          <Input
+            labelText="With two icons"
+            icon={<NotificationsIcon />}
+            iconPosition={InputIconPosition.left}
+          >
+            <Tooltip content={helpLinkLabel}>
+              <IconButton
+                aria-label={helpLinkLabel}
+                icon={<HelpIcon />}
+                onClick={onHelpLinkClick}
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          </Input>
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <NativeSelect
+            labelText={'Native Select'}
+            fieldId={'native-select-example'}
+          >
+            <option>Red</option>
+            <option>Green</option>
+            <option>Blue</option>
+            <option>Purple mountain majesty</option>
+          </NativeSelect>
+        </div>
+      </div>
+      <Spacer axis={SpacerAxis.vertical} size={120} />
+      <div style={{ display: 'flex', flexDirection: 'row' }}>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Search onSearch={() => {}} isClearable />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Input
+            labelText="Number 1-40 "
+            inputWrapperStyle={{ width: '100px' }}
+            type={InputType.number}
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Input
+            labelText="Email"
+            inputWrapperStyle={{ width: '100px' }}
+            type={InputType.email}
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Input
+            labelText="Phone"
+            inputWrapperStyle={{ width: '100px' }}
+            type={InputType.tel}
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Input
+            labelText="URL"
+            inputWrapperStyle={{ width: '100px' }}
+            type={InputType.url}
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto' }}>
+          <Combobox
+            id="comboboxId"
+            labelText="Combobox"
+            defaultItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' },
+            ]}
+            placeholder="Hello"
+          />
+        </div>
+        <div style={{ flex: '0 0 auto', marginTop: 'auto', maxWidth: '400px' }}>
+          <Combobox
+            id="comboboxId-multi"
+            isMulti
+            labelText={'Combobox Multi Example'}
+            defaultItems={[
+              { label: 'Red', value: 'red' },
+              { label: 'Blue', value: 'blue' },
+              { label: 'Green', value: 'green' },
+              { label: 'Orange', value: 'orange' },
+              { label: 'Aqua', value: 'aqua' },
+              { label: 'Gold', value: 'gold' },
+              { label: 'Periwinkle', value: 'periwinkle' },
+              { label: 'Lavender', value: 'lavender' },
+              { label: 'Marigold', value: 'marigold' },
+            ]}
+          />
+        </div>
+      </div>
     </>
   );
 };

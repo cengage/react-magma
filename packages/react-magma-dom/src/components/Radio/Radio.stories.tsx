@@ -1,9 +1,12 @@
 import React from 'react';
-import { Card, CardBody } from '../Card';
-import { magma } from '../../theme/magma';
-import { Radio } from '.';
-import { RadioGroup } from '../RadioGroup';
+
 import { Meta } from '@storybook/react/types-6-0';
+
+import { magma } from '../../theme/magma';
+import { Card, CardBody } from '../Card';
+import { RadioGroup } from '../RadioGroup';
+
+import { Radio } from '.';
 
 export default {
   component: Radio,

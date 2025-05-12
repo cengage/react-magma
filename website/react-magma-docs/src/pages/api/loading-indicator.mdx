@@ -18,7 +18,9 @@ By default, the Loading Indicator uses the <Link to="/api/spinner">Spinner</Link
 
 ```tsx
 import React from 'react';
+
 import { LoadingIndicator } from 'react-magma-dom';
+
 export function Example() {
   return <LoadingIndicator />;
 }
@@ -31,7 +33,9 @@ to render the <Link to="/api/progress-bar">Progress Bar</Link> component.
 
 ```tsx
 import React from 'react';
+
 import { LoadingIndicator } from 'react-magma-dom';
+
 export function Example() {
   const [percentage, setPercentage] = React.useState(0);
 
@@ -101,7 +105,9 @@ These messages can be customized by using the `message1`, `message2` and `messag
 
 ```tsx
 import React from 'react';
+
 import { LoadingIndicator } from 'react-magma-dom';
+
 export function Example() {
   return (
     <LoadingIndicator
@@ -121,12 +127,14 @@ the conditional logic to display the `LoadingIndicator` _inside_ the `Announce` 
 
 ```tsx
 import React from 'react';
+
 import {
   Announce,
   Button,
   LoadingIndicator,
   ButtonGroup,
 } from 'react-magma-dom';
+
 export function Example() {
   const [showLoader, setShowLoader] = React.useState(false);
 
@@ -151,7 +159,9 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { LoadingIndicator, Card, CardBody } from 'react-magma-dom';
+
 export function Example() {
   return (
     <Card isInverse>

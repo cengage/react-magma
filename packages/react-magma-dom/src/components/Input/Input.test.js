@@ -1,11 +1,15 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Input } from '.';
+
 import { render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
-import { magma } from '../../theme/magma';
 import { CheckIcon } from 'react-magma-icons';
+
+import { axe } from '../../../axe-helper';
 import { defaultI18n } from '../../i18n/default';
+import { magma } from '../../theme/magma';
+import { InputType } from '../InputBase';
+
+import { Input } from '.';
 
 const label = 'test label';
 
@@ -412,7 +416,7 @@ describe('Input', () => {
         'font-size',
         magma.typeScale.size03.fontSize
       );
-      expect(input).toHaveStyleRule('height', magma.spaceScale.spacing09);
+      expect(input).toHaveStyleRule('height', '100%');
       expect(input).toHaveStyleRule('padding-left', magma.spaceScale.spacing09);
 
       expect(iconWrapper).toHaveStyleRule('left', magma.spaceScale.spacing03);
@@ -439,7 +443,7 @@ describe('Input', () => {
         'font-size',
         magma.typeScale.size04.fontSize
       );
-      expect(input).toHaveStyleRule('height', magma.spaceScale.spacing11);
+      expect(input).toHaveStyleRule('height', '100%');
       expect(input).toHaveStyleRule('padding', `${magma.spaceScale.spacing04}`);
     });
 
@@ -532,7 +536,7 @@ describe('Input', () => {
       const testId = 'test-id';
 
       const { getByText } = render(
-        <Input testId={testId} hasCharacterCounter={true} maxLength={2} />
+        <Input testId={testId} hasCharacterCounter maxLength={2} />
       );
       expect(getByText('2 ' + charactersAllowed)).toBeInTheDocument();
     });
@@ -541,12 +545,7 @@ describe('Input', () => {
       const testId = 'test-id';
 
       const { getByText } = render(
-        <Input
-          testId={testId}
-          hasCharacterCounter={true}
-          maxLength={2}
-          maxCount={4}
-        />
+        <Input testId={testId} hasCharacterCounter maxLength={2} maxCount={4} />
       );
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
     });
@@ -606,6 +605,105 @@ describe('Input', () => {
 
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
       expect(onClear).toBeCalled();
+    });
+  });
+
+  describe('Input types', () => {
+    it('should have "email" type of Input', () => {
+      const labelText = 'Email';
+
+      const { getByLabelText } = render(
+        <Input labelText={labelText} type={InputType.email} />
+      );
+
+      const inputElement = getByLabelText('Email');
+      expect(inputElement).toHaveAttribute('type', 'email');
+    });
+
+    it('should have "file" type of Input', () => {
+      const labelText = 'File';
+
+      const { getByLabelText } = render(
+        <Input labelText={labelText} type={InputType.file} />
+      );
+
+      const inputElement = getByLabelText('File');
+      expect(inputElement).toHaveAttribute('type', 'file');
+    });
+
+    it('should have "number" type of Input', () => {
+      const labelText = 'Number';
+
+      const { getByLabelText } = render(
+        <Input labelText={labelText} type={InputType.number} />
+      );
+
+      const inputElement = getByLabelText('Number');
+      expect(inputElement).toHaveAttribute('type', 'number');
+    });
+
+    it('should have "password" type of Input', () => {
+      const labelText = 'Password';
+
+      const { getByLabelText } = render(
+        <Input labelText={labelText} type={InputType.password} />
+      );
+
+      const inputElement = getByLabelText('Password');
+      expect(inputElement).toHaveAttribute('type', 'password');
+    });
+
+    it('should have "search" type of Input', () => {
+      const labelText = 'Search';
+
+      const { getByLabelText } = render(
+        <Input labelText={labelText} type={InputType.search} />
+      );
+
+      const inputElement = getByLabelText('Search');
+      expect(inputElement).toHaveAttribute('type', 'search');
+    });
+
+    it('should have "text" type of Input', () => {
+      const labelText = 'Text';
+
+      const { getByLabelText } = render(
+        <Input labelText={labelText} type={InputType.text} />
+      );
+
+      const inputElement = getByLabelText('Text');
+      expect(inputElement).toHaveAttribute('type', 'text');
+    });
+
+    it('should have "text" type of Input as a default value', () => {
+      const labelText = 'Text';
+
+      const { getByLabelText } = render(<Input labelText={labelText} />);
+
+      const inputElement = getByLabelText('Text');
+      expect(inputElement).toHaveAttribute('type', 'text');
+    });
+
+    it('should have "tel" type of Input', () => {
+      const labelText = 'Phone';
+
+      const { getByLabelText } = render(
+        <Input labelText={labelText} type={InputType.tel} />
+      );
+
+      const inputElement = getByLabelText('Phone');
+      expect(inputElement).toHaveAttribute('type', 'tel');
+    });
+
+    it('should have "url" type of Input', () => {
+      const labelText = 'Url';
+
+      const { getByLabelText } = render(
+        <Input labelText={labelText} type={InputType.url} />
+      );
+
+      const inputElement = getByLabelText('Url');
+      expect(inputElement).toHaveAttribute('type', 'url');
     });
   });
 });

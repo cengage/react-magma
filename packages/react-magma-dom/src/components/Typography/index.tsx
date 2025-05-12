@@ -1,11 +1,14 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
+import { ThemeInterface } from '../../theme/magma';
+
 export interface TypographyProps<T = HTMLParagraphElement>
-  extends React.HTMLAttributes<T> {
-  as?: string;
-  children?: any;
+  extends Omit<React.HTMLAttributes<T>, 'color'> {
+  as?: React.ElementType;
+  children?: React.ReactNode;
   color?: TypographyColor;
   contextVariant?: TypographyContextVariant;
   element?: string;
@@ -18,7 +21,7 @@ export interface TypographyProps<T = HTMLParagraphElement>
    * @internal
    */
   testId?: string;
-  theme?: any;
+  theme?: ThemeInterface;
   visualStyle?: TypographyVisualStyle;
 }
 
@@ -128,10 +131,10 @@ export const paragraphLargeStyles = props => css`
   margin: ${props.noMargins
     ? '0'
     : props.noBottomMargin
-    ? `${props.theme.spaceScale.spacing06} 0 0 0`
-    : props.noTopMargin
-    ? `0 0 ${props.theme.spaceScale.spacing06} 0`
-    : `${props.theme.spaceScale.spacing06} 0`};
+      ? `${props.theme.spaceScale.spacing06} 0 0 0`
+      : props.noTopMargin
+        ? `0 0 ${props.theme.spaceScale.spacing06} 0`
+        : `${props.theme.spaceScale.spacing06} 0`};
 
   font-size: ${props.theme.typographyVisualStyles.bodyLarge.mobile.fontSize};
   line-height: ${props.theme.typographyVisualStyles.bodyLarge.mobile
@@ -168,10 +171,10 @@ export const paragraphMediumStyles = props => css`
   margin: ${props.noMargins
     ? '0'
     : props.noBottomMargin
-    ? `${props.theme.spaceScale.spacing06} 0 0 0`
-    : props.noTopMargin
-    ? `0 0 ${props.theme.spaceScale.spacing06} 0`
-    : `${props.theme.spaceScale.spacing06} 0`};
+      ? `${props.theme.spaceScale.spacing06} 0 0 0`
+      : props.noTopMargin
+        ? `0 0 ${props.theme.spaceScale.spacing06} 0`
+        : `${props.theme.spaceScale.spacing06} 0`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.bodyMedium.desktop
@@ -192,10 +195,10 @@ export const paragraphSmallStyles = props => css`
   margin: ${props.noMargins
     ? '0'
     : props.noBottomMargin
-    ? `${props.theme.spaceScale.spacing05} 0 0 0`
-    : props.noTopMargin
-    ? `0 0 ${props.theme.spaceScale.spacing05} 0`
-    : `${props.theme.spaceScale.spacing05} 0`};
+      ? `${props.theme.spaceScale.spacing05} 0 0 0`
+      : props.noTopMargin
+        ? `0 0 ${props.theme.spaceScale.spacing05} 0`
+        : `${props.theme.spaceScale.spacing05} 0`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.bodySmall.desktop.fontSize};
@@ -217,10 +220,10 @@ export const paragraphXSmallStyles = props => css`
   margin: ${props.noMargins
     ? '0'
     : props.noBottomMargin
-    ? `${props.theme.spaceScale.spacing03} 0 0 0`
-    : props.noTopMargin
-    ? `0 0 ${props.theme.spaceScale.spacing03} 0`
-    : `${props.theme.spaceScale.spacing03} 0`};
+      ? `${props.theme.spaceScale.spacing03} 0 0 0`
+      : props.noTopMargin
+        ? `0 0 ${props.theme.spaceScale.spacing03} 0`
+        : `${props.theme.spaceScale.spacing03} 0`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.bodyXSmall.desktop
@@ -275,8 +278,8 @@ export const heading2XLargeStyles = props => css`
     margin: ${props.noMargins || props.noBottomMargin
       ? '0'
       : props.noTopMargin
-      ? `0 0 ${props.theme.spaceScale.spacing06} 0`
-      : `0 0 ${props.theme.spaceScale.spacing06}`};
+        ? `0 0 ${props.theme.spaceScale.spacing06} 0`
+        : `0 0 ${props.theme.spaceScale.spacing06}`};
 
     @media (min-width: ${props.theme.breakpoints.small}px) {
       font-size: ${props.theme.typographyExpressiveVisualStyles.heading2XLarge
@@ -298,8 +301,8 @@ export const headingXLargeStyles = props => css`
   margin: ${props.noMargins || props.noBottomMargin
     ? '0'
     : props.noTopMargin
-    ? `0 0 ${props.theme.spaceScale.spacing05} 0`
-    : `0 0 ${props.theme.spaceScale.spacing05}`};
+      ? `0 0 ${props.theme.spaceScale.spacing05} 0`
+      : `0 0 ${props.theme.spaceScale.spacing05}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.headingXLarge.desktop
@@ -353,10 +356,10 @@ export const headingLargeStyles = props => css`
   margin: ${props.noMargins
     ? '0'
     : props.noBottomMargin
-    ? `${props.theme.spaceScale.spacing10} 0 0 0`
-    : props.noTopMargin
-    ? `0 0 ${props.theme.spaceScale.spacing05} 0`
-    : `${props.theme.spaceScale.spacing10} 0 ${props.theme.spaceScale.spacing05}`};
+      ? `${props.theme.spaceScale.spacing10} 0 0 0`
+      : props.noTopMargin
+        ? `0 0 ${props.theme.spaceScale.spacing05} 0`
+        : `${props.theme.spaceScale.spacing10} 0 ${props.theme.spaceScale.spacing05}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.headingLarge.desktop
@@ -411,10 +414,10 @@ export const headingMediumStyles = props => css`
   margin: ${props.noMargins
     ? '0'
     : props.noBottomMargin
-    ? `${props.theme.spaceScale.spacing09} 0 0 0`
-    : props.noTopMargin
-    ? `0 0 ${props.theme.spaceScale.spacing05} 0`
-    : `${props.theme.spaceScale.spacing09} 0 ${props.theme.spaceScale.spacing05}`};
+      ? `${props.theme.spaceScale.spacing09} 0 0 0`
+      : props.noTopMargin
+        ? `0 0 ${props.theme.spaceScale.spacing05} 0`
+        : `${props.theme.spaceScale.spacing09} 0 ${props.theme.spaceScale.spacing05}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.headingMedium.desktop
@@ -470,10 +473,10 @@ export const headingSmallStyles = props => css`
   margin: ${props.noMargins
     ? '0'
     : props.noBottomMargin
-    ? `${props.theme.spaceScale.spacing08} 0 0 0`
-    : props.noTopMargin
-    ? `0 0 ${props.theme.spaceScale.spacing05} 0`
-    : `${props.theme.spaceScale.spacing08} 0 ${props.theme.spaceScale.spacing05}`};
+      ? `${props.theme.spaceScale.spacing08} 0 0 0`
+      : props.noTopMargin
+        ? `0 0 ${props.theme.spaceScale.spacing05} 0`
+        : `${props.theme.spaceScale.spacing08} 0 ${props.theme.spaceScale.spacing05}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.headingSmall.desktop
@@ -527,10 +530,10 @@ export const headingXSmallStyles = props => css`
   margin: ${props.noMargins
     ? '0'
     : props.noBottomMargin
-    ? `${props.theme.spaceScale.spacing06} 0 0 0`
-    : props.noTopMargin
-    ? `0 0 ${props.theme.spaceScale.spacing05} 0`
-    : `${props.theme.spaceScale.spacing06} 0 ${props.theme.spaceScale.spacing05}`};
+      ? `${props.theme.spaceScale.spacing06} 0 0 0`
+      : props.noTopMargin
+        ? `0 0 ${props.theme.spaceScale.spacing05} 0`
+        : `${props.theme.spaceScale.spacing06} 0 ${props.theme.spaceScale.spacing05}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.headingXSmall.desktop
@@ -588,10 +591,10 @@ export const heading2XSmallStyles = props => css`
   margin: ${props.noMargins
     ? '0'
     : props.noBottomMargin
-    ? `${props.theme.spaceScale.spacing06} 0 0 0`
-    : props.noTopMargin
-    ? `0 0 ${props.theme.spaceScale.spacing03} 0`
-    : `${props.theme.spaceScale.spacing06} 0 ${props.theme.spaceScale.spacing03}`};
+      ? `${props.theme.spaceScale.spacing06} 0 0 0`
+      : props.noTopMargin
+        ? `0 0 ${props.theme.spaceScale.spacing03} 0`
+        : `${props.theme.spaceScale.spacing06} 0 ${props.theme.spaceScale.spacing03}`};
 
   @media (min-width: ${props.theme.breakpoints.small}px) {
     font-size: ${props.theme.typographyVisualStyles.heading2XSmall.desktop

@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { XOR } from '../../utils';
-import { css } from '@emotion/react';
-import { transparentize } from 'polished';
 
-import { ThemeContext } from '../../theme/ThemeContext';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+import { IconProps } from 'react-magma-icons';
+
 import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { XOR } from '../../utils';
 import { Button, ButtonProps, ButtonSize, ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
-import { IconProps } from 'react-magma-icons';
 import { ToggleButtonGroupContext } from '../ToggleButtonGroup/ToggleButtonGroup';
-import styled from '@emotion/styled';
 
 export interface ToggleButtonTextProps extends ButtonProps {
   /**

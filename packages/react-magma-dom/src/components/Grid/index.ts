@@ -1,2 +1,2 @@
 // export * from "./useGrid"
-export * from "./Grid"
+export * from './Grid';

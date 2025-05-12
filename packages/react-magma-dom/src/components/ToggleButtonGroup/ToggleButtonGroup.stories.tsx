@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { Meta, Story } from '@storybook/react/types-6-0';
 import {
   CheckIcon,
   FormatAlignCenterIcon,
@@ -7,11 +9,12 @@ import {
   FormatAlignRightIcon,
   SettingsIcon,
 } from 'react-magma-icons';
-import { Meta, Story } from '@storybook/react/types-6-0';
-import { ToggleButtonGroup, ToggleButtonGroupProps } from '.';
-import { ToggleButton } from '../ToggleButton';
-import { Container } from '../Container';
+
 import { ButtonSize } from '../Button';
+import { Container } from '../Container';
+import { ToggleButton } from '../ToggleButton';
+
+import { ToggleButtonGroup, ToggleButtonGroupProps } from '.';
 
 const Template: Story<ToggleButtonGroupProps> = args => (
   <ToggleButtonGroup

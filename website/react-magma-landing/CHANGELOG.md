@@ -1,18 +1,18 @@
 # Change Log
 
-## 1.1.6
+## 1.1.6-next.0
 
 ### Patch Changes
 
-- 9d508919d: Updated landing page:
+- 025ad9e: Updated landing page:
   - Added proxy redirect for version 2.6.0 to serve content from https://soft-elf-84cb2b.netlify.app/
   - Modified build script to only support specified legacy versions [2.6.0, 3.10.0, 3.11.0] and all v4.x versions
 
-## 1.1.5
+## 1.1.5-next.0
 
 ### Patch Changes
 
-- 3c710d85d: chore: Update links to include trailing slash
+- c96e41e72: chore: Update links to include trailing slash
 
 ## 1.1.4
 

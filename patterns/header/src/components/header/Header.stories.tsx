@@ -1,7 +1,6 @@
 import React from 'react';
+
 import { Meta, Story } from '@storybook/react';
-import { CengageLogo, Header, HeaderProps } from './';
-import { PersonIcon, SettingsIcon, NotificationsIcon } from 'react-magma-icons';
 import {
   AppBarPosition,
   Badge,
@@ -9,6 +8,9 @@ import {
   IconButton,
   magma,
 } from 'react-magma-dom';
+import { PersonIcon, SettingsIcon, NotificationsIcon } from 'react-magma-icons';
+
+import { CengageLogo, Header, HeaderProps } from './';
 
 const meta: Meta = {
   title: 'Patterns/Header',

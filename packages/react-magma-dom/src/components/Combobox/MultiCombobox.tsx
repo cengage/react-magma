@@ -1,19 +1,21 @@
 import * as React from 'react';
-import { instanceOfDefaultItemObject } from '../Select';
+
 import { useCombobox, useMultipleSelection } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
-import { defaultComponents } from '../Select/components';
-import { SelectContainer } from '../Select/SelectContainer';
-import { ItemsList } from '../Select/ItemsList';
-import { ComboboxInput } from './ComboboxInput';
-import { IconWrapper, SelectedItemButton } from '../Select/shared';
-import { defaultOnInputValueChange, useComboboxItems } from './shared';
-import { useForkedRef } from '../../utils';
 
-import { ThemeContext } from '../../theme/ThemeContext';
+import { instanceOfDefaultItemObject } from '../Select';
+import { ComboboxInput } from './ComboboxInput';
+import { defaultOnInputValueChange, useComboboxItems } from './shared';
 import { I18nContext } from '../../i18n';
-import { MultiComboboxProps } from '.';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useForkedRef } from '../../utils';
 import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { defaultComponents } from '../Select/components';
+import { ItemsList } from '../Select/ItemsList';
+import { SelectContainer } from '../Select/SelectContainer';
+import { IconWrapper, SelectedItemButton } from '../Select/shared';
+
+import { MultiComboboxProps } from '.';
 
 export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   const [inputValue, setInputValue] = React.useState('');
@@ -280,7 +282,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   });
 
   function itemsArrayToString(itemsArray: any[]) {
-    let allItems = [];
+    const allItems = [];
     itemsArray.map(item => {
       if (typeof item === 'string') {
         allItems.push(item);

@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
+
 import { I18nContext } from '../../i18n';
+import { useIsInverse } from '../../inverse';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useGenerateId } from '../../utils';
 import { Announce } from '../Announce';
-import { InputBase, InputSize, InputType } from '../InputBase';
 import { Button, ButtonVariant, ButtonType, ButtonSize } from '../Button';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
 } from '../FormFieldContainer';
-import { useIsInverse } from '../../inverse';
+import { InputBase, InputSize, InputType } from '../InputBase';
 import { VisuallyHidden } from '../VisuallyHidden';
-
-import { useGenerateId } from '../../utils';
 
 export interface PasswordInputProps
   extends Omit<FormFieldContainerBaseProps, 'fieldId'>,
@@ -127,7 +127,7 @@ export const PasswordInput = React.forwardRef<
     HIDE_PASSWORD_BUTTON_TEXT === i18n.password.hidden.buttonText;
 
   const buttonRef = React.useRef<HTMLButtonElement>();
-  
+
   const getButtonWidth = () => {
     if (usesDefaultText) {
       if (inputSize === InputSize.large) {
@@ -137,7 +137,7 @@ export const PasswordInput = React.forwardRef<
     } else {
       return `${buttonRef?.current?.offsetWidth}px`;
     }
-  }
+  };
 
   const getInputStyle = () => {
     if (isPasswordMaskButtonHidden) {
@@ -181,7 +181,7 @@ export const PasswordInput = React.forwardRef<
         isInverse={isInverse}
         ref={ref}
         type={passwordShown ? InputType.text : InputType.password}
-        isPasswordInput={true}
+        isPasswordInput
         width={props.width}
       >
         {!isPasswordMaskButtonHidden && (

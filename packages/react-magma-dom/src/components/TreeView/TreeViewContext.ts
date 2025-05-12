@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { TreeViewSelectable } from './types';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
@@ -21,7 +22,6 @@ export interface TreeViewContextInterface {
   children?: React.ReactNode[];
   hasIcons: boolean;
   initialExpandedItems: Array<string>;
-  initialExpandedItemsNeedUpdate: boolean;
   onExpandedChange?: (
     event: React.SyntheticEvent,
     expandedItems: Array<string>
@@ -35,7 +35,6 @@ export interface TreeViewContextInterface {
   ) => void;
   selectable: TreeViewSelectable;
   selectedItems: Array<TreeItemSelectedInterface>;
-  setInitialExpandedItemsNeedUpdate: React.Dispatch<React.SetStateAction<any>>;
   treeItemRefArray?: React.MutableRefObject<React.MutableRefObject<Element>[]>;
   itemToFocus?: string;
   checkParents: boolean;
@@ -48,19 +47,21 @@ export interface TreeViewContextInterface {
     event: React.SyntheticEvent,
     expandedItemId: string
   ) => void;
+  expandedSet: Set<string>;
+  isTopLevelSelectable?: boolean;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   hasIcons: false,
   initialExpandedItems: [],
-  initialExpandedItemsNeedUpdate: false,
   registerTreeItem: (elements, element) => {},
   selectable: TreeViewSelectable.single,
   selectedItems: [],
-  setInitialExpandedItemsNeedUpdate: () => {},
   checkParents: true,
   checkChildren: true,
   items: [],
   selectItem: () => undefined,
   handleExpandedChange: () => undefined,
+  isTopLevelSelectable: true,
+  expandedSet: new Set<string>(),
 });

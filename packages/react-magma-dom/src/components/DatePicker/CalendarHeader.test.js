@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { render, fireEvent } from '@testing-library/react';
-import { CalendarHeader } from './CalendarHeader';
-import { CalendarContext } from './CalendarContext';
 import { format } from 'date-fns';
+
+import { CalendarContext } from './CalendarContext';
+import { CalendarHeader } from './CalendarHeader';
 
 describe('Calendar Header', () => {
   it('should focus the calendar header text', () => {
@@ -29,7 +31,7 @@ describe('Calendar Header', () => {
           focusedDate: now,
         }}
       >
-        <CalendarHeader focusHeader={true} />
+        <CalendarHeader focusHeader />
       </CalendarContext.Provider>
     );
 
@@ -47,7 +49,7 @@ describe('Calendar Header', () => {
           focusedDate,
         }}
       >
-        <CalendarHeader focusHeader={true} />
+        <CalendarHeader focusHeader />
       </CalendarContext.Provider>
     );
 
@@ -67,7 +69,7 @@ describe('Calendar Header', () => {
           focusedDate,
         }}
       >
-        <CalendarHeader focusHeader={true} />
+        <CalendarHeader focusHeader />
       </CalendarContext.Provider>
     );
 

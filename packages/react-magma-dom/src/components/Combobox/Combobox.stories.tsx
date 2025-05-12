@@ -1,15 +1,18 @@
 import React from 'react';
+
+import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { Combobox, ComboboxProps, MultiComboboxProps } from '.';
-import { SelectOptions } from '../Select';
-import { LabelPosition } from '../Label';
+
+import { Button, ButtonType } from '../Button';
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
-import { Input } from '../Input';
-import { Spacer } from '../Spacer';
 import { Form } from '../Form';
-import { Button, ButtonType } from '../Button';
-import { action } from '@storybook/addon-actions';
+import { Input } from '../Input';
+import { LabelPosition } from '../Label';
+import { SelectOptions } from '../Select';
+import { Spacer } from '../Spacer';
+
+import { Combobox, ComboboxProps, MultiComboboxProps } from '.';
 
 const Template: Story<ComboboxProps<SelectOptions>> = args => (
   <Combobox {...args} />
@@ -32,9 +35,9 @@ export default {
     },
     disabled: {
       control: {
-        type: 'boolean'
-      }
-    }
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 

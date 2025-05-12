@@ -1,11 +1,13 @@
 import React, { useCallback } from 'react';
+
 import styled from '@emotion/styled';
-import { ScrollSpy } from './utils';
-import { Tabs } from './Tabs';
-import { Tab } from './Tab';
-import { TabsContainer } from './TabsContainer';
-import { toCamelCase } from '../../utils';
+
 import { TabsOrientation } from './shared';
+import { Tab } from './Tab';
+import { Tabs } from './Tabs';
+import { TabsContainer } from './TabsContainer';
+import { ScrollSpy } from './utils';
+import { toCamelCase } from '../../utils';
 
 export interface TabsScrollSpyContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -42,7 +44,7 @@ export const TabsScrollSpyContainer = React.forwardRef<
 
   const [isActive, setIsActive] = React.useState(0);
 
-  const [activeIndex, setActiveIndex] = React.useState();
+  const [activeIndex, setActiveIndex] = React.useState<number>();
 
   //Window scroll override
   React.useEffect(() => {
@@ -54,8 +56,10 @@ export const TabsScrollSpyContainer = React.forwardRef<
   React.useEffect(() => {
     options.map((option: any) => {
       /*
-      TODO: Get the last item in the array and set it to active when the user scrolls to the bottom of the page. This helps in cases where more than just the last section is visible, yet the conveyance of the active state should still remain the last item.
-
+       * Get the last item in the array and set it to active when the user scrolls to the bottom of the page.
+       * This helps in cases where more than just the last section is visible,
+       * yet the conveyance of the active state should still remain the last item.
+       * */
       const lastIndex = options.length - 1;
 
       window.onscroll = function (ev) {
@@ -66,7 +70,6 @@ export const TabsScrollSpyContainer = React.forwardRef<
           setActiveIndex(lastIndex);
         }
       };
-      */
 
       if (option.hash === isActive) {
         setActiveIndex(option.index);

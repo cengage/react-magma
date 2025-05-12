@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { StyledButton } from '../StyledButton';
+
 import { useIsInverse } from '../../inverse';
-import { ButtonGroupContext } from '../ButtonGroup';
+import { ThemeInterface } from '../../theme/magma';
 import { resolveProps } from '../../utils';
+import { ButtonGroupContext } from '../ButtonGroup';
+import { StyledButton } from '../StyledButton';
 
 export enum ButtonVariant {
   solid = 'solid', //default
@@ -93,7 +95,7 @@ interface BaseButtonProps
   /**
    * @internal
    */
-  theme?: any;
+  theme?: ThemeInterface;
   /**
    * The type attribute of the button
    * ButtonType.button

@@ -1,6 +1,10 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
+
 import { render } from '@testing-library/react';
+import { CheckIcon } from 'react-magma-icons';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
 import {
   ButtonColor,
   ButtonShape,
@@ -8,9 +12,8 @@ import {
   ButtonTextTransform,
   ButtonVariant,
 } from '../Button';
+
 import { IconButton, ButtonIconPosition } from '.';
-import { CheckIcon } from 'react-magma-icons';
-import { magma } from '../../theme/magma';
 
 describe('IconButton', () => {
   it('An icon-only button does not violate detectible accessibility standards', () => {

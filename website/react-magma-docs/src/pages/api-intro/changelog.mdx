@@ -5,6 +5,64 @@ order: 4
 
 <PageContent componentName="changelog" type="api_intro">
 
+## 4.9.0
+
+### Minor Changes
+
+- 1bd563f: feat(DefinitionList): New `DefinitionList` and `DefinitionListItem` components.
+  @deprecated List `description` prop
+- e9f3837: feat(Input): Add new types: `tel` and `url`.
+- edbc5c0: feat(TreeView): Add `expandAll` and `collapseAll`. Removed collapse/expand animations for `TreeView`.
+- a3dccc9: feat(TreeView): Retain expanded/collapsed state
+- 01c8227: feat(Popover): New `Popover` component.
+- 57e6076: feat(TreeView): Add 'isTopLevelSelectable' prop
+
+### Patch Changes
+
+- b65154a: fix(SkipLink): Fix overlap with the SkipLink component when used with AppBar.
+- 403f375: fix(Dropdown): Added icon prop for `DropdownExpandableMenuListItem`
+- c942de9: fix(Dropdown): Display Dropdown content above other elements.
+- 1a87ef7: fix(Input): Update the label height styling for the `Input` component.
+- 122eb21: fix(Modal): Delete timeout of closing modal
+- 84daa4e: fix(Pagination): Changed the ellipsis characters to an HTML entity for accessibility compliance.
+- 9062d6c: fix(PasswordInput): Fix webkit styles when using the password manager.
+- 7dc4a29: fix(Search): Update `clear` and `search` icon styles
+- 28de863: fix(SkipLink): Deprecate `to` prop.
+- eeda479: fix(Tabs): Improve scroll spy functionality for smaller screens.
+- 998d983: fix(Theme): Update types for theme in the components.
+- a3dccc9: fix(TreeView): Fix TreeView keyboard navigation not triggering events
+- ded88ff: fix(Typography): Locked @types/react to 17.0.83 to fix Typescript errors
+- a9ebf93: fix(Tooltip): Replace Popper with Floating UI. Change default tooltip `arrowSize` and `arrowSizeDoubled` in theme.
+- 559a2ad: fix(Input): Screenreader fix for Firefox when errorMessage and helperMessage exist simultaneously.
+- 21d554d: fix(Pagination): Fix support for `page` in `PaginationType.simple`
+- 52f8a98: chore: Update to react-magma-icons v3.1.0
+- f2ad9bd: chore: Update UUID support to include v8.3.0 - v11.1.0
+  - For UUID v8.x users: continue using @types/uuid (now an optional peer dependency)
+  - For UUID v9+ users: no need for @types/uuid package
+
+## 4.8.0
+
+### Minor Changes
+
+- 79435c964: feat(Select): Support disabling individual items in Select and Multi Select components
+
+### Patch Changes
+
+- 4484ad2b7: fix(NativeSelect): Add `aria-describedby` to helper and error messages to associate them with the `Select`.
+- e689dc0cb: fix(TimePicker): Fix input wrong number validation.
+- 4c9fa50aa: fix(Dropdown): Fix click outside behavior in Dropdown
+- 3c1702509: fix(FormGroup): Fix validation for `InputMessage`.
+- b95b94c7b: fix(GlobalStyles): Fix @import rule warning in GlobalStyles
+- 16aaefb40: fix(Table): Fix logic for the default `rowsPerPage` value.
+- 9697b00b7: fix(Toast): Change property for Toast close button from `aria-label` to `title`.
+- ed14a909c: fix(MultiSelect): Fix a bug where the page refreshes when you click on a selected item.
+- bbc13e67a: fix(Table): Reconfigured the table CSS to better allow for content within a table to overlay the container, such as dropdowns.
+- 11a3361d4: fix(Table): Fix min-width overflow issues.
+- 50117512e: fix(Toast): Fix ring time duration.
+- 285a2592d: chore: Fix unit test errors
+- 2b097cef4: build(deps): Bump path-to-regexp and express.
+- 48d786c08: build(deps): Bump nanoid from 3.3.7 to 3.3.8.
+
 ## 4.7.0
 
 ### Minor Changes
@@ -58,7 +116,7 @@ order: 4
 - 044da059c: fix(TimePicker): Fix AM/PM width in the `TimePicker`
 - e447c8af8: fix(Toast): Fix loading ring alignment when zooming in Safari
 - 631d01024: fix(TreeView): Improve screenreader accessibility
-- 24680b288: fix(TreeView):  Fix initialExpanded items expanding all parents
+- 24680b288: fix(TreeView): Fix initialExpanded items expanding all parents
 - c0aecada5: fix(useFocusLock): Fix the `useFocusLock` hook if the first or last element is disabled.
 - 7adf69a9f: fix(.stories.): Remove `.stories.` files from the production bundle
 

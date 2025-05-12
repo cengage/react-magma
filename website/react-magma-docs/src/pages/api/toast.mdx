@@ -28,6 +28,7 @@ Developers should always use the <Link to="/api/announce">Announce component</Li
 
 ```tsx
 import React from 'react';
+
 import { Button, Toast, Announce } from 'react-magma-dom';
 
 export function Example() {
@@ -45,9 +46,7 @@ export function Example() {
     <>
       <Button onClick={handleClick}>Show Default Toast</Button>
       <Announce>
-        {showToast && (
-          <Toast onDismiss={handleDismiss}>Default Toast</Toast>
-        )}
+        {showToast && <Toast onDismiss={handleDismiss}>Default Toast</Toast>}
       </Announce>
     </>
   );
@@ -62,6 +61,7 @@ Variants for toasts include `info`, `success`, `warning`, and `danger`, with `in
 
 ```tsx
 import React from 'react';
+
 import {
   Announce,
   Button,
@@ -177,6 +177,7 @@ Visually, toasts appear at the bottom left, but their DOM placement affects tab 
 
 ```tsx
 import React from 'react';
+
 import { Button, Announce, Toast } from 'react-magma-dom';
 
 export function Example() {
@@ -214,6 +215,7 @@ appearing on screen at once as much as possible.
 
 ```tsx
 import React from 'react';
+
 import {
   Announce,
   Button,
@@ -306,6 +308,7 @@ This is useful in cases where toasts are intended to display above a component, 
 
 ```tsx
 import React from 'react';
+
 import { Button, Toast, ToastsContainer, Announce } from 'react-magma-dom';
 
 export function Example() {
@@ -339,6 +342,7 @@ The `toastDuration` prop can be used to set the number of milliseconds that the 
 
 ```tsx
 import React from 'react';
+
 import { Button, Toast, Announce } from 'react-magma-dom';
 
 export function Example() {
@@ -370,6 +374,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Button, Toast, Announce } from 'react-magma-dom';
 
 export function Example() {
@@ -403,6 +408,7 @@ When you hover over the Toast the timer is paused. Once the mouse leaves the Toa
 
 ```tsx
 import React from 'react';
+
 import { Button, Toast, Announce } from 'react-magma-dom';
 
 export function Example() {
@@ -452,6 +458,7 @@ includes the element's background, border-radius, and fade animation.
 
 ```tsx
 import React from 'react';
+
 import { Button, Toast, Announce } from 'react-magma-dom';
 
 export function Example() {
@@ -487,6 +494,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import {
   Announce,
   Button,
@@ -612,7 +620,7 @@ export function Example() {
 Passing in the `testId` prop will pass the `testId` to the internal `Alert` element.
 
 ```html noCodeSandbox
- <Toast testId="toast-id" onDismiss={() => {}}>This is a toast</Toast>
+<Toast testId="toast-id" onDismiss="{()" =""> {}}>This is a toast</Toast>
 ```
 
 ## ToastsContainer Props

@@ -1,10 +1,13 @@
 import React from 'react';
-import { ButtonSize } from '../Button';
-import { axe } from '../../../axe-helper';
-import { magma } from '../../theme/magma';
-import { Pagination, PaginationType } from '.';
+
 import { act, render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+import { ButtonSize } from '../Button';
+
+import { Pagination, PaginationType } from '.';
 
 const testId = 'test-id';
 
@@ -48,7 +51,7 @@ describe('Simple Pagination', () => {
     const { queryByText } = render(
       <Pagination type={PaginationType.simple} count={4} hidePreviousButton />
     );
-    let previousButton = queryByText('Previous Page');
+    const previousButton = queryByText('Previous Page');
 
     expect(previousButton).not.toBeInTheDocument();
   });
@@ -57,9 +60,62 @@ describe('Simple Pagination', () => {
     const { queryByText } = render(
       <Pagination type={PaginationType.simple} count={4} hideNextButton />
     );
-    let nextButton = queryByText('Next Page');
+    const nextButton = queryByText('Next Page');
 
     expect(nextButton).not.toBeInTheDocument();
+  });
+
+  it('should set the page number to the defaultPage', () => {
+    const { getByTestId } = render(
+      <Pagination
+        type={PaginationType.simple}
+        count={4}
+        testId={testId}
+        defaultPage={2}
+      />
+    );
+
+    expect(getByTestId(`${testId}-select`).value).toBe('2');
+  });
+
+  it('should set the page number to the page', () => {
+    const { getByTestId } = render(
+      <Pagination
+        type={PaginationType.simple}
+        count={4}
+        testId={testId}
+        page={2}
+      />
+    );
+
+    expect(getByTestId(`${testId}-select`).value).toBe('2');
+  });
+
+  it('should set the page number to 1 if the passed page is greater than the count', () => {
+    const { getByTestId } = render(
+      <Pagination
+        type={PaginationType.simple}
+        count={4}
+        testId={testId}
+        page={6}
+      />
+    );
+
+    expect(getByTestId(`${testId}-select`).value).toBe('1');
+  });
+
+  it('should set the page number to the page when both page and defaultPage are passed', () => {
+    const { getByTestId } = render(
+      <Pagination
+        type={PaginationType.simple}
+        count={4}
+        testId={testId}
+        defaultPage={2}
+        page={3}
+      />
+    );
+
+    expect(getByTestId(`${testId}-select`).value).toBe('3');
   });
 
   describe('Disabled', () => {
@@ -148,9 +204,9 @@ describe('Simple Pagination', () => {
       fireEvent.change(getByTestId(`${testId}-select`), {
         target: { value: '2' },
       });
-      let option1 = getByTestId(`${testId}-option-0`);
-      let option2 = getByTestId(`${testId}-option-1`);
-      let option3 = getByTestId(`${testId}-option-2`);
+      const option1 = getByTestId(`${testId}-option-0`);
+      const option2 = getByTestId(`${testId}-option-1`);
+      const option3 = getByTestId(`${testId}-option-2`);
       expect(option1.selected).toBe(false);
       expect(option2.selected).toBe(true);
       expect(option3.selected).toBe(false);
@@ -165,12 +221,12 @@ describe('Simple Pagination', () => {
           testId={testId}
         />
       );
-      let previousButton = getByLabelText('Previous Page');
+      const previousButton = getByLabelText('Previous Page');
 
       fireEvent.click(previousButton);
-      let option1 = getByTestId(`${testId}-option-0`);
-      let option2 = getByTestId(`${testId}-option-1`);
-      let option3 = getByTestId(`${testId}-option-2`);
+      const option1 = getByTestId(`${testId}-option-0`);
+      const option2 = getByTestId(`${testId}-option-1`);
+      const option3 = getByTestId(`${testId}-option-2`);
       expect(option1.selected).toBe(false);
       expect(option2.selected).toBe(true);
       expect(option3.selected).toBe(false);
@@ -181,16 +237,17 @@ describe('Simple Pagination', () => {
         <Pagination
           type={PaginationType.simple}
           count={3}
-          defaultPage={2}
+          defaultPage={1}
+          page={2}
           testId={testId}
         />
       );
-      let nextButton = getByLabelText('Next Page');
+      const nextButton = getByLabelText('Next Page');
 
       fireEvent.click(nextButton);
-      let option1 = getByTestId(`${testId}-option-0`);
-      let option2 = getByTestId(`${testId}-option-1`);
-      let option3 = getByTestId(`${testId}-option-2`);
+      const option1 = getByTestId(`${testId}-option-0`);
+      const option2 = getByTestId(`${testId}-option-1`);
+      const option3 = getByTestId(`${testId}-option-2`);
       expect(option1.selected).toBe(false);
       expect(option2.selected).toBe(false);
       expect(option3.selected).toBe(true);
@@ -230,7 +287,7 @@ describe('Simple Pagination', () => {
         />
       );
 
-      let selecOptions = getByTestId(`${testId}-select`);
+      const selecOptions = getByTestId(`${testId}-select`);
 
       expect(selecOptions).toHaveLength(4);
     });
@@ -245,7 +302,7 @@ describe('Simple Pagination', () => {
         />
       );
 
-      let selectOptions = getByTestId(`${testId}-select`);
+      const selectOptions = getByTestId(`${testId}-select`);
 
       expect(selectOptions).toHaveLength(4);
     });
@@ -326,7 +383,7 @@ describe('Simple Pagination', () => {
       <Pagination
         type={PaginationType.simple}
         count={4}
-        defaultPage={2}
+        page={2}
         testId={testId}
         onPageChange={onClickMock}
       />
@@ -362,6 +419,7 @@ describe('Simple Pagination', () => {
       <Pagination
         type={PaginationType.simple}
         count={3}
+        page={3}
         testId={testId}
         onPageChange={onClickMock}
       />

@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
+
+import styled from '@emotion/styled';
 import { isAfter, isBefore, isSameDay } from 'date-fns';
 import { enUS } from 'date-fns/locale';
-import { CalendarContext } from './CalendarContext';
-import { I18nContext } from '../../i18n';
-import { i18nFormat as format } from './utils';
 import { transparentize } from 'polished';
-import styled from '@emotion/styled';
+
+import { CalendarContext } from './CalendarContext';
+import { i18nFormat as format } from './utils';
+import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 interface CalendarDayProps {
   day: Date;

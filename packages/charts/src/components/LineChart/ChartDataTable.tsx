@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { VictoryAxisProps } from 'victory';
 
 import { Card, Datagrid, Spinner } from 'react-magma-dom';
+import { VictoryAxisProps } from 'victory';
 
 export function toCamelCase(str: string) {
   return str
@@ -58,7 +58,7 @@ export const ChartDataTable = (props: DataTableProps) => {
       return valuesArray;
     }, []);
 
-    let baseTableData = {
+    const baseTableData = {
       columns:
         xTickValuesArray.length > 0
           ? [
@@ -79,10 +79,10 @@ export const ChartDataTable = (props: DataTableProps) => {
                 ? xTickFormat(xTickValues[tick - 1])
                 : xTickValues[tick - 1]
               : xTickFormat && Array.isArray(xTickFormat)
-              ? xTickFormat[tick - 1]
-              : xTickFormat && typeof xTickFormat === 'function'
-              ? xTickFormat(tick)
-              : tick;
+                ? xTickFormat[tick - 1]
+                : xTickFormat && typeof xTickFormat === 'function'
+                  ? xTickFormat(tick)
+                  : tick;
           agg.push({
             [xField]: tickValue,
             id: index,

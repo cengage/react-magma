@@ -18,6 +18,7 @@ Here is a most basic example:
 
 ```tsx
 import React from 'react';
+
 import { Button } from 'react-magma-dom';
 
 export function Example() {
@@ -31,6 +32,7 @@ When using a prop that takes an enum, you must import that type from React Magma
 
 ```tsx
 import React from 'react';
+
 import { Button, ButtonVariant } from 'react-magma-dom';
 
 export function Example() {
@@ -50,6 +52,7 @@ The `GlobalStyles` component can be nested inside the <Link to="/api-intro/style
 
 ```jsx noRender startExpanded
 import React from 'react';
+
 import { GlobalStyles } from 'react-magma-dom';
 
 export function Example() {
@@ -71,8 +74,9 @@ For more information about colors, see the <Link to="../../design-intro/colors/"
 
 ```tsx
 import React from 'react';
-import { magma } from 'react-magma-dom';
+
 import styled from '@emotion/styled';
+import { magma } from 'react-magma-dom';
 
 export function Example() {
   const StyledDiv = styled('div')(props => ({

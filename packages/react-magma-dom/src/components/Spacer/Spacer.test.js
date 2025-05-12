@@ -1,7 +1,10 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Spacer } from '.';
+
 import { render } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
+
+import { Spacer } from '.';
 
 describe('Spacer', () => {
   it('should find element by testId', () => {

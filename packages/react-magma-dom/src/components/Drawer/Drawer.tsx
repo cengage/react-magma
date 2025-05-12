@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Modal, ModalProps } from '../Modal';
 import { TransitionProps } from '../Transition';

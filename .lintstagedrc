@@ -1,10 +1,13 @@
 {
   "packages/!(react-magma-docs)**/*.{ts,tsx,js}": [
-    "eslint --fix",
     "jest --coverage=false --bail --findRelatedTests"
   ],
-  "packages/**/*.{ts,tsx,md,mdx,js,jsx}": [
-    "prettier --write",
-    "cspell --config=.cspell.json"
+  "packages/**/*.{ts,tsx,mdx,js,jsx,json,css}": [
+    "eslint --fix",
+    "prettier --write"
+  ],
+  "website/**/*.{ts,tsx,mdx,js,jsx,json,css}": [
+    "eslint --fix",
+    "prettier --write"
   ]
 }

@@ -28,6 +28,7 @@ If you have a need for a header with more customization or different features in
 
 ```tsx
 import React from 'react';
+
 import { Header } from '@cengage-patterns/header';
 
 export function Example() {
@@ -41,6 +42,7 @@ The `isCompact` prop will render a shorter header with less padding.
 
 ```tsx
 import React from 'react';
+
 import { Header } from '@cengage-patterns/header';
 
 export function Example() {
@@ -54,6 +56,7 @@ The `isInverse` prop will render an appbar with a dark background and light text
 
 ```tsx
 import React from 'react';
+
 import { Header } from '@cengage-patterns/header';
 
 export function Example() {
@@ -67,6 +70,7 @@ The `searchProps` prop takes an object of <Link to="/api/search/#search_props">S
 
 ```tsx
 import React from 'react';
+
 import { Header } from '@cengage-patterns/header';
 
 export function Example() {
@@ -90,6 +94,7 @@ The `callToActionProps` prop takes an object of <Link to="/api/hyperlink/#hyperl
 
 ```tsx
 import React from 'react';
+
 import { Header } from '@cengage-patterns/header';
 
 export function Example() {
@@ -114,9 +119,10 @@ The `children` are displayed at the end of the Header, after the logo, call to a
 
 ```tsx
 import React from 'react';
+
 import { Header } from '@cengage-patterns/header';
-import { NotificationsIcon, PersonIcon, SettingsIcon } from 'react-magma-icons';
 import { IconButton, ButtonVariant } from 'react-magma-dom';
+import { NotificationsIcon, PersonIcon, SettingsIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -159,8 +165,9 @@ If the `position` is set to `sticky` or `fixed`, the app bar will have a small d
 
 ```tsx
 import React from 'react';
-import { AppBarPosition, Heading, Paragraph } from 'react-magma-dom';
+
 import { Header } from '@cengage-patterns/header';
+import { AppBarPosition, Heading, Paragraph } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -214,6 +221,7 @@ The `Header` does not provide a way to display the items that are hidden at smal
 
 ```tsx
 import React from 'react';
+
 import { Header } from '@cengage-patterns/header';
 import { useMediaQuery, magma } from 'react-magma-dom';
 

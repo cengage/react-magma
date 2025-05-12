@@ -1,8 +1,10 @@
-import Highlight, { defaultProps } from 'prism-react-renderer';
 import React, { useContext, MouseEvent } from 'react';
+
 import styled from '@emotion/styled';
-import { CodeBlockContext } from './context';
+import Highlight, { defaultProps } from 'prism-react-renderer';
 import { magma, useIsInverse } from 'react-magma-dom';
+
+import { CodeBlockContext } from './context';
 import { magmaCode } from './magmaCode';
 import { magmaCodeDark } from './magmaCodeDark';
 

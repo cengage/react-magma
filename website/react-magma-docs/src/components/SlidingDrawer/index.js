@@ -1,10 +1,12 @@
 import React from 'react';
+
 import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import FocusLock from 'react-focus-lock';
-import { Logo } from '../Logo';
-import { MenuIcon, CloseIcon } from 'react-magma-icons';
 import { Container, IconButton, magma, Spacer } from 'react-magma-dom';
+import { MenuIcon, CloseIcon } from 'react-magma-icons';
+
+import { Logo } from '../Logo';
 import { MainNav } from '../MainNav';
 
 export const PANEL_WIDTH = 240;

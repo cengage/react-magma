@@ -1,17 +1,20 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+import { CloseIcon, KeyboardIcon } from 'react-magma-icons';
+
 import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { Tooltip } from '../Tooltip';
-import { CloseIcon, KeyboardIcon } from 'react-magma-icons';
 import { CalendarContext } from './CalendarContext';
-import { CalendarHeader } from './CalendarHeader';
 import { CalendarDay } from './CalendarDay';
-import { ThemeContext } from '../../theme/ThemeContext';
+import { CalendarHeader } from './CalendarHeader';
 import { HelperInformation } from './HelperInformation';
-import { usePrevious } from '../../utils';
-import { I18nContext } from '../../i18n';
 import { useFocusLock } from '../../hooks/useFocusLock';
-import styled from '@emotion/styled';
+import { I18nContext } from '../../i18n';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { usePrevious } from '../../utils';
 
 interface CalendarMonthProps {
   calendarOpened?: boolean;
@@ -20,7 +23,6 @@ interface CalendarMonthProps {
   handleCloseButtonClick: (event: React.SyntheticEvent) => void;
   setDateFocused?: (value: boolean) => void;
 }
-
 
 const CalendarContainer = styled.div<{ isInverse?: boolean }>`
   background: ${props =>
@@ -62,7 +64,7 @@ const Th = styled.th<{ isInverse?: boolean }>`
   text-align: center;
 `;
 
-const HelperButton = styled.span<{ theme?: any }>`
+const HelperButton = styled.span<{ theme?: ThemeInterface }>`
   margin: ${props => props.theme.spaceScale.spacing02};
   top: ${props => props.theme.spaceScale.spacing01};
   position: absolute;
@@ -70,7 +72,7 @@ const HelperButton = styled.span<{ theme?: any }>`
   z-index: 2;
 `;
 
-const CloseButton = styled.span<{ theme?: any }>`
+const CloseButton = styled.span<{ theme?: ThemeInterface }>`
   position: absolute;
   right: ${props => props.theme.spaceScale.spacing01};
   top: ${props => props.theme.spaceScale.spacing01};

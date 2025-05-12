@@ -1,14 +1,17 @@
 import React from 'react';
-import { Container } from '../Container';
-import { CharacterCounter, CharacterCounterProps } from '.';
+
+import { Story, Meta } from '@storybook/react/types-6-0';
 import { HelpIcon } from 'react-magma-icons';
+
 import { ButtonType, ButtonSize, ButtonVariant } from '../Button';
+import { Container } from '../Container';
 import { IconButton } from '../IconButton';
 import { Input } from '../Input';
+import { LabelPosition } from '../Label';
 import { Textarea } from '../Textarea';
 import { Tooltip } from '../Tooltip';
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { LabelPosition } from '../Label';
+
+import { CharacterCounter, CharacterCounterProps } from '.';
 
 const labelText = 'Character Counter';
 
@@ -125,7 +128,7 @@ export const MaxCountAndMaxLength = args => {
       <br />
       <Input
         maxCount={args.maxCount}
-        hasCharacterCounter={true}
+        hasCharacterCounter
         labelText="Default Character Counter, hasCharacterCounter true"
       />
       <br />
@@ -146,7 +149,7 @@ export const MaxCountAndMaxLength = args => {
       <br />
       <Input
         maxLength={args.maxLength}
-        hasCharacterCounter={true}
+        hasCharacterCounter
         labelText="Default maxLength Character Counter, hasCharacterCounter true"
       />
       <br />
@@ -169,7 +172,7 @@ export const MaxCountAndMaxLength = args => {
       <Input
         maxLength={args.maxLength}
         maxCount={args.maxCount}
-        hasCharacterCounter={true}
+        hasCharacterCounter
         labelText="MAXLENGTH + MAXCOUNT Character Counter, hasCharacterCounter true"
       />
       <br />
@@ -192,7 +195,7 @@ export const MaxCountAndMaxLength = args => {
       <br />
       <Textarea
         maxCount={args.maxCount}
-        hasCharacterCounter={true}
+        hasCharacterCounter
         labelText="Default Character Counter, hasCharacterCounter true"
       />
       <br />
@@ -213,7 +216,7 @@ export const MaxCountAndMaxLength = args => {
       <br />
       <Textarea
         maxLength={args.maxLength}
-        hasCharacterCounter={true}
+        hasCharacterCounter
         labelText="Default maxLength Character Counter, hasCharacterCounter true"
       />
       <br />
@@ -236,7 +239,7 @@ export const MaxCountAndMaxLength = args => {
       <Textarea
         maxLength={args.maxLength}
         maxCount={args.maxCount}
-        hasCharacterCounter={true}
+        hasCharacterCounter
         labelText="MAXLENGTH + MAXCOUNT Character Counter, hasCharacterCounter true"
       />
       <br />

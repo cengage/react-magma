@@ -1,11 +1,13 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+
 import {
   AccordionItemContext,
   UseAccordionItemProps,
   useAccordionItem,
 } from './useAccordionItem';
 import { ThemeInterface } from '../../theme/magma';
-import styled from '@emotion/styled';
 
 /**
  * @children required

@@ -1,18 +1,20 @@
 import * as React from 'react';
-import { instanceOfDefaultItemObject, MultiSelectProps } from '.';
+
 import { useMultipleSelection, useSelect } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
+
+import { defaultComponents } from './components';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { IconWrapper, SelectedItemButton, SelectText } from './shared';
-
-import { ThemeContext } from '../../theme/ThemeContext';
 import { I18nContext } from '../../i18n';
-import { ButtonSize, ButtonVariant } from '../Button';
-import { defaultComponents } from './components';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
+import { ButtonSize, ButtonVariant } from '../Button';
 import { isItemDisabled } from './utils';
+
+import { instanceOfDefaultItemObject, MultiSelectProps } from '.';
 
 export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
@@ -55,7 +57,11 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       i => itemToString(i) === itemToString(itemToCheck)
     );
 
-    return !isItemDisabled(itemToCheck) && itemIndex !== -1 && !isItemDisabled(items[itemIndex]);
+    return (
+      !isItemDisabled(itemToCheck) &&
+      itemIndex !== -1 &&
+      !isItemDisabled(items[itemIndex])
+    );
   }
 
   function getFilteredItemIndex(item: T, filteredItems: T[]) {
@@ -235,7 +241,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   });
 
   function itemsArrayToString(itemsArray: any[]) {
-    let allItems = [];
+    const allItems = [];
     itemsArray.map(item => {
       if (typeof item === 'string') {
         allItems.push(item);
@@ -320,7 +326,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
           })
         ) : (
           <SelectText
-            isShowPlaceholder={true}
+            isShowPlaceholder
             isInverse={isInverse}
             isDisabled={disabled}
             theme={theme}

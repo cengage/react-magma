@@ -1,11 +1,13 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+
+import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { convertStyleValueToString, useGenerateId } from '../../utils';
-import { useIsInverse } from '../../inverse';
 import { VisuallyHidden } from '../VisuallyHidden';
-import { transparentize } from 'polished';
-import styled from '@emotion/styled';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { v4 as uuidv4 } from 'uuid';
 
 export function generateId(id?: string) {
@@ -213,6 +214,15 @@ export const addPxStyleStrings = (
     return parseInt(styleString.toString().replace(/\s*px$/, ''));
   });
   return pxValues.reduce((total, value) => total + value).toString() + 'px';
+};
+
+export const removePxStyleStrings = (
+  styleStrings: (string | number)[]
+): number => {
+  const numericValues: number[] = styleStrings.map(item =>
+    parseInt(item.toString().replace(/\s*px$/, ''), 10)
+  );
+  return numericValues.reduce((total, value) => total + value, 0);
 };
 
 export function getNodeText(node) {

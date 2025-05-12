@@ -1,7 +1,10 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Drawer } from '.';
+
 import { render, fireEvent } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
+
+import { Drawer } from '.';
 
 const TEXT = 'Test Text';
 const TEST_ID = 'transition';
@@ -87,7 +90,11 @@ describe('Drawer', () => {
   });
 
   it('Does not violate accessibility standards', async () => {
-    const { baseElement } = render(<Drawer isOpen ariaLabel="drawer">{TEXT}</Drawer>);
+    const { baseElement } = render(
+      <Drawer isOpen ariaLabel="drawer">
+        {TEXT}
+      </Drawer>
+    );
     const results = await axe(baseElement);
 
     return expect(results).toHaveNoViolations();

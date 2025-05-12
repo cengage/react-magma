@@ -1,9 +1,12 @@
 import React from 'react';
-import { Card, CardBody } from '../Card';
-import { Checkbox } from '.';
-import { FormGroup } from '../FormGroup';
-import { magma } from '../../theme/magma';
+
 import { Meta } from '@storybook/react/types-6-0';
+
+import { magma } from '../../theme/magma';
+import { Card, CardBody } from '../Card';
+import { FormGroup } from '../FormGroup';
+
+import { Checkbox } from '.';
 
 export default {
   component: Checkbox,
@@ -15,11 +18,7 @@ export const Default = () => {
   return (
     <>
       <FormGroup labelText="Choose one or more">
-        <Checkbox
-          checked
-          labelText="Uncontrolled checkbox"
-          defaultChecked={true}
-        />
+        <Checkbox checked labelText="Uncontrolled checkbox" defaultChecked />
 
         <Checkbox
           labelText="Controlled checkbox"
@@ -70,7 +69,7 @@ export const Default = () => {
         <Checkbox disabled labelText="Disabled checkbox" />
 
         <Checkbox
-          defaultChecked={true}
+          defaultChecked
           disabled
           labelText="Disabled checked checkbox"
         />
@@ -142,7 +141,7 @@ export const Inverse = () => {
 
           <Checkbox
             isInverse
-            defaultChecked={true}
+            defaultChecked
             disabled
             labelText="Disabled checked checkbox"
           />
