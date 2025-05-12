@@ -1,11 +1,12 @@
 import * as React from 'react';
 
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
-import { useIsInverse } from '../../inverse';
-import { AccordionItemContext } from './useAccordionItem';
-import { Transition } from '../Transition';
 import styled from '@emotion/styled';
+
+import { AccordionItemContext } from './useAccordionItem';
+import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { Transition } from '../Transition';
 
 /**
  * @children required
@@ -19,7 +20,6 @@ export interface AccordionPanelProps
    */
   theme?: ThemeInterface;
 }
-
 
 const StyledPanel = styled.div<AccordionPanelProps>`
   background: transparent;
@@ -40,8 +40,7 @@ export const AccordionPanel = React.forwardRef<
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
 
-  const { isExpanded, panelId } =
-    React.useContext(AccordionItemContext);
+  const { isExpanded, panelId } = React.useContext(AccordionItemContext);
 
   return (
     <Transition isOpen={isExpanded} collapse unmountOnExit>

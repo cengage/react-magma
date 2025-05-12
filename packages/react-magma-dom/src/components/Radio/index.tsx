@@ -1,24 +1,28 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+import {
+  RadioButtonCheckedIcon,
+  RadioButtonUncheckedIcon,
+} from 'react-magma-icons';
+
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { useGenerateId } from '../../utils';
+import { HiddenStyles } from '../../utils/UtilityStyles';
+import { RadioContext } from '../RadioGroup';
 import {
   DisplayInputStyles,
   DisplayInputActiveStyles,
   buildDisplayInputActiveBackground,
   buildDisplayInputFocusStyles,
 } from '../SelectionControls/InputStyles';
-import { HiddenStyles } from '../../utils/UtilityStyles';
-import { RadioContext } from '../RadioGroup';
-import {
-  RadioButtonCheckedIcon,
-  RadioButtonUncheckedIcon,
-} from 'react-magma-icons';
-import { StyledLabel } from '../SelectionControls/StyledLabel';
 import { StyledContainer } from '../SelectionControls/StyledContainer';
+import { StyledLabel } from '../SelectionControls/StyledLabel';
+
 // Using the base `styled` from `emotion` until import mapping is fixed: https://github.com/emotion-js/emotion/pull/1220
 // import styled from '../../theme/styled';
-import styled from '@emotion/styled';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId } from '../../utils';
-import { transparentize } from 'polished';
 
 export enum RadioTextPosition {
   left = 'left',
@@ -110,7 +114,7 @@ const StyledFakeInput = styled.span<{
   disabled: boolean;
   color: string;
   textPosition?: RadioTextPosition;
-  theme?: any;
+  theme?: ThemeInterface;
 }>`
   ${DisplayInputStyles};
   color: ${props => buildRadioIconColor(props)};

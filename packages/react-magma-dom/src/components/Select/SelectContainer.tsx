@@ -1,11 +1,13 @@
 import React from 'react';
+
 import styled from '@emotion/styled';
+import { UseSelectGetLabelPropsOptions } from 'downshift';
+
+import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { InputMessage } from '../Input/InputMessage';
 import { Label, LabelPosition } from '../Label';
 import { VisuallyHidden } from '../VisuallyHidden';
-import { UseSelectGetLabelPropsOptions } from 'downshift';
-import { InputMessage } from '../Input/InputMessage';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { ThemeInterface } from '../../theme/magma';
 
 export const SelectContainerElement = styled.div<{
   isLabelVisuallyHidden?: boolean;

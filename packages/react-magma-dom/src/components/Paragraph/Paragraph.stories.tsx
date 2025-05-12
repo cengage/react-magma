@@ -1,8 +1,11 @@
 import React from 'react';
-import { Paragraph } from '.';
-import { TypographyContextVariant, TypographyVisualStyle } from '../Typography';
+
 import { Meta } from '@storybook/react/types-6-0';
+
 import { Card } from '../..';
+import { TypographyContextVariant, TypographyVisualStyle } from '../Typography';
+
+import { Paragraph } from '.';
 
 export default {
   component: Paragraph,

@@ -1,10 +1,13 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from '.';
-import { Button } from '../Button';
-import { magma } from '../../theme/magma';
+
 import { render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+import { Button } from '../Button';
+
+import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from '.';
 
 describe('Accordion', () => {
   it('should find element by testId', () => {

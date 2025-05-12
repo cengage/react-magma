@@ -23,6 +23,7 @@ Magma variables can also be used in the style prop to apply themed styles on the
 
 ```tsx
 import React from 'react';
+
 import { Button, Paragraph, magma } from 'react-magma-dom';
 
 export function Example() {
@@ -51,6 +52,7 @@ and `labelStyle`. In these cases, the `style` prop would have no effect because 
 
 ```tsx
 import React from 'react';
+
 import { Checkbox } from 'react-magma-dom';
 
 export function Example() {
@@ -76,8 +78,9 @@ To ensure your styles are applied, you can use use the ampersand (&) character, 
 
 ```tsx
 import React from 'react';
-import { Button } from 'react-magma-dom';
+
 import styled from '@emotion/styled';
+import { Button } from 'react-magma-dom';
 
 const StyledButton = styled(Button)`
   && {
@@ -105,6 +108,7 @@ Use the dropdown to change the theme for the demo component.
 
 ```tsx
 import React from 'react';
+
 import {
   Button,
   ButtonColor,
@@ -591,6 +595,7 @@ This isn't a recommended usage of the Magma components, however it showcases a p
 
 ```tsx
 import React from 'react';
+
 import {
   AppBar,
   Button,
@@ -624,7 +629,6 @@ import {
   Tooltip,
   ThemeContext,
 } from 'react-magma-dom';
-
 import { InfoIcon } from 'react-magma-icons';
 
 import styled from '../../theme/styled';
@@ -936,8 +940,12 @@ const StyledCardHeading = styled.h1`
   font-size: 40px;
   position: relative;
   -webkit-text-stroke-width: 4px;
-  text-shadow: -5px 1px #a15936, -5px -1px #a15936, -5px 0px 2px #a15936, -5px
-      4px 2px #a15936, 1px 4px 2px #a15936;
+  text-shadow:
+    -5px 1px #a15936,
+    -5px -1px #a15936,
+    -5px 0px 2px #a15936,
+    -5px 4px 2px #a15936,
+    1px 4px 2px #a15936;
   &:before {
     color: white;
     content: 'Doh';

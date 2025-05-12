@@ -4,6 +4,10 @@ module.exports = {
     '**/packages/**/src/**/*.{js,jsx,ts,tsx}',
     '**/patterns/**/src/**/*.{js,jsx,ts,tsx}',
     '!**/?(*.)+(spec|test|stories).{js,ts,mjs,jsx,tsx}',
+    '!**/.nx/**',
+    '!**/node_modules/**',
+    '!**/dist/**',
+    '!**/public/**',
   ],
   coverageDirectory: '<rootDir>/coverage',
   coverageReporters: ['text', 'lcov'],
@@ -14,9 +18,7 @@ module.exports = {
     '<rootDir>/patterns/*/jest.config.js',
   ],
   roots: ['<rootDir>'],
-  setupFiles: [
-    '<rootDir>/jest.overrides.js'
-  ],
+  setupFiles: ['<rootDir>/jest.overrides.js'],
   setupFilesAfterEnv: [
     'jest-extended',
     '@testing-library/jest-dom/extend-expect',
@@ -24,9 +26,7 @@ module.exports = {
     'jest-axe/extend-expect',
     '<rootDir>/jest.setup.js',
   ],
-  snapshotSerializers: [
-    '@emotion/jest/serializer'
-  ],
+  snapshotSerializers: ['@emotion/jest/serializer'],
   testPathIgnorePatterns: [
     '/.cache/',
     '/coverage/',
@@ -37,6 +37,8 @@ module.exports = {
     '/dist/',
     '/archived-packages/',
     '/react-magma-legacy-selects/',
+    '<rootDir>/.nx/',
+    '\\.d\\.ts$',
   ],
   transform: {
     '^.+\\.(j|t)s(x)?$': ['babel-jest', { cwd: __dirname }],

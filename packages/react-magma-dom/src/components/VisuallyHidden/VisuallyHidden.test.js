@@ -1,7 +1,10 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { VisuallyHidden } from '.';
+
 import { render } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
+
+import { VisuallyHidden } from '.';
 
 const TEXT = 'Test Text';
 

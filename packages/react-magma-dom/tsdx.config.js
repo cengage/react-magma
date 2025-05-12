@@ -27,6 +27,8 @@ module.exports = {
         'react-loadable',
         'react-magma-icons',
         'warning',
+        'uuid',
+        'framer-motion',
       ],
     };
 

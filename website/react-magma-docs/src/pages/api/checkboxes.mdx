@@ -21,13 +21,14 @@ The label/checkbox association will be handled via the passed in `id` if one is 
 Checkboxes can either be controlled or uncontrolled. If you pass in a `checked` prop, it is a controlled input. That means that to change the checkbox's state, you must updated the `checked` prop's value.
 If you do not want to have your checkbox be in a controlled state, but need the initial checked value to be set, pass in the `defaultChecked` prop with the value you would like on initial render.
 
-<Link to="/api/indeterminate">Indeterminate Checkboxes</Link> are similar to standard
-checkboxes but with three available statuses.
+<Link to="/api/indeterminate">Indeterminate Checkboxes</Link> are similar to
+standard checkboxes but with three available statuses.
 
 See also: <Link to="/api/radio">Radio Buttons</Link> and <Link to="/api/toggle">Toggle Switches</Link>.
 
 ```tsx
 import React from 'react';
+
 import { Checkbox, FormGroup } from 'react-magma-dom';
 
 export function Example() {
@@ -40,7 +41,7 @@ export function Example() {
   return (
     <FormGroup labelText="Choose one or more">
       <Checkbox
-        defaultChecked={true}
+        defaultChecked
         id="customId"
         labelText="Uncontrolled checkbox"
       />
@@ -63,6 +64,7 @@ By default, the checkboxes use the theme's primary color. But any other color ma
 
 ```tsx
 import React from 'react';
+
 import { Checkbox, FormGroup, magma } from 'react-magma-dom';
 
 export function Example() {
@@ -92,6 +94,7 @@ Adding the optional boolean prop `disabled` will apply disabled styles and add t
 
 ```tsx
 import React from 'react';
+
 import {
   Checkbox,
   FormGroup,
@@ -130,6 +133,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import {
   Card,
   CardBody,
@@ -183,6 +187,7 @@ The `textPosition` property takes the values `left` and `right`. The default val
 
 ```tsx
 import React from 'react';
+
 import { Checkbox, CheckboxTextPosition, FormGroup } from 'react-magma-dom';
 
 export function Example() {
@@ -204,6 +209,7 @@ The `errorMessage` prop can be used on the `FormGroup` component to display an e
 
 ```tsx
 import React from 'react';
+
 import { Checkbox, FormGroup } from 'react-magma-dom';
 
 interface CheckboxState {
@@ -271,6 +277,7 @@ An example of when to use this would be for a terms and conditions checkbox.
 
 ```tsx
 import React from 'react';
+
 import { Checkbox } from 'react-magma-dom';
 
 export function Example() {
@@ -308,6 +315,7 @@ Adding the `isTextVisuallyHidden` prop will make the label text available to scr
 
 ```tsx
 import React from 'react';
+
 import { Checkbox } from 'react-magma-dom';
 
 export function Example() {
@@ -322,6 +330,7 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 
 ```tsx
 import React from 'react';
+
 import { Checkbox } from 'react-magma-dom';
 
 export function Example() {
@@ -347,6 +356,7 @@ The `labelText` prop can either be a string, or it can be a React Node.
 
 ```tsx
 import React from 'react';
+
 import { Checkbox } from 'react-magma-dom';
 
 export function Example() {
@@ -371,6 +381,7 @@ Full example of <Link to="/api/internationalization">internationalization overri
 
 ```tsx
 import React from 'react';
+
 import {
   Checkbox,
   defaultI18n,
@@ -389,8 +400,8 @@ export function Example() {
   const status: IndeterminateCheckboxStatus = checkedItems.every(Boolean)
     ? IndeterminateCheckboxStatus.checked
     : checkedItems.some(Boolean)
-    ? IndeterminateCheckboxStatus.indeterminate
-    : IndeterminateCheckboxStatus.unchecked;
+      ? IndeterminateCheckboxStatus.indeterminate
+      : IndeterminateCheckboxStatus.unchecked;
 
   function handleUpdateIndeterminateChecked(
     event: React.ChangeEvent<HTMLInputElement>

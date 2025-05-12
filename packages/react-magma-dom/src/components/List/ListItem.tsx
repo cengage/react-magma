@@ -1,10 +1,13 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
-import { ListProps } from './';
+import styled from '@emotion/styled';
+
+import { InverseContext, useIsInverse } from '../../inverse';
 import { Colors } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { InverseContext, useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
+
+import { ListProps } from './';
 
 /**
  * @children required
@@ -13,6 +16,8 @@ export interface ListItemProps
   extends ListProps,
     React.HTMLAttributes<HTMLDivElement> {
   /**
+   * @deprecated = true
+   * Please use DefinitionList instead
    * Boolean which changes a list item into a styled paragraph.
    */
   description?: boolean;

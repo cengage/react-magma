@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import {
   AlignedPlacement,
   autoUpdate,
@@ -11,13 +13,13 @@ import {
   useSelect,
   UseSelectProps,
 } from 'downshift';
-import * as React from 'react';
+
 import { useIsInverse } from '../../inverse';
 import { Omit, useGenerateId, XOR } from '../../utils';
 import { LabelPosition } from '../Label';
+import { SelectComponents } from './components';
 import { MultiSelect } from './MultiSelect';
 import { Select as InternalSelect } from './Select';
-import { SelectComponents } from './components';
 
 export type SelectOptions =
   | string
@@ -247,8 +249,8 @@ export function Select<T>(props: XORSelectProps<T>) {
     return item && typeof item === 'string'
       ? item
       : item && instanceOfDefaultItemObject(item)
-      ? item.label
-      : '';
+        ? item.label
+        : '';
   }
 
   const hasError = !!errorMessage;

@@ -1,20 +1,22 @@
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+
+import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Global, css } from '@emotion/react';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { magma , ThemeInterface } from '../../theme/magma';
-import { I18nContext } from '../../i18n';
-import { ButtonColor, ButtonVariant } from '../Button';
-import { IconButton } from '../IconButton';
-import { CloseIcon } from 'react-magma-icons';
-import { Heading } from '../Heading';
-import { TypographyVisualStyle } from '../Typography';
-import { Transition, TransitionProps } from '../Transition';
-import { omit, useGenerateId, usePrevious } from '../../utils';
-import { useFocusLock } from '../../hooks/useFocusLock';
 import { transparentize } from 'polished';
+import ReactDOM from 'react-dom';
+import { CloseIcon } from 'react-magma-icons';
+
+import { useFocusLock } from '../../hooks/useFocusLock';
+import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
+import { magma, ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { omit, useGenerateId, usePrevious } from '../../utils';
+import { ButtonColor, ButtonVariant } from '../Button';
+import { Heading } from '../Heading';
+import { IconButton } from '../IconButton';
+import { Transition, TransitionProps } from '../Transition';
+import { TypographyVisualStyle } from '../Typography';
 
 export enum ModalSize {
   large = 'large',
@@ -123,7 +125,6 @@ const ModalContainer = styled(Transition)<{
 `;
 
 const ModalBackdrop = styled(Transition)<{
-  isExiting?: boolean;
   theme: ThemeInterface;
 }>`
   backdrop-filter: blur(3px);
@@ -136,7 +137,7 @@ const ModalBackdrop = styled(Transition)<{
   position: fixed;
 `;
 
-const ModalContent = styled.div<ModalProps & { isExiting?: boolean }>`
+const ModalContent = styled.div<ModalProps>`
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary600
@@ -223,7 +224,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const contentId = `${id}_content`;
 
     const [isModalOpen, setIsModalOpen] = React.useState<boolean>(props.isOpen);
-    const [isExiting, setIsExiting] = React.useState<boolean>(false);
     const [currentTarget, setCurrentTarget] = React.useState(null);
     const [modalCount, setModalCount] = React.useState<number>(0);
 
@@ -310,24 +310,17 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     }
 
     function handleClose(event?) {
-      if (event) {
-        event.stopPropagation();
-      }
-      setIsExiting(true);
+      event?.stopPropagation();
 
       setTimeout(() => {
-        setIsExiting(false);
-
         if (!props.isModalClosingControlledManually) {
           setIsModalOpen(false);
         }
 
-        if (lastFocus.current) {
-          lastFocus.current.focus();
-        }
+        lastFocus.current?.focus();
 
         props.onClose && typeof props.onClose === 'function' && props.onClose();
-      }, 300);
+      }, 0);
     }
 
     const {
@@ -376,7 +369,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             <ModalContainer
               aria-labelledby={header ? headingId : null}
               aria-label={!header ? ariaLabel : null}
-              aria-modal={true}
+              aria-modal
               data-testid={testId}
               id={id}
               modalCount={modalCount}
@@ -395,7 +388,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 {...other}
                 data-testid="modal-content"
                 id={contentId}
-                isExiting={isExiting}
                 ref={ref}
                 theme={theme}
               >
@@ -440,7 +432,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             </ModalContainer>
             <ModalBackdrop
               data-testid="modal-backdrop"
-              isExiting={isExiting}
               onMouseDown={
                 isBackgroundClickDisabled
                   ? event => event.preventDefault()

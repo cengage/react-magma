@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { ThemeContext } from '../../theme/ThemeContext';
+
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
 import { ErrorIcon } from 'react-magma-icons';
+
+import { ThemeContext } from '../../theme/ThemeContext';
 import { Announce } from '../Announce';
 import { InputSize } from '../InputBase';
-import { transparentize } from 'polished';
-import styled from '@emotion/styled';
 
 export interface InputMessageProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -60,9 +62,9 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
 }: InputMessageProps) => {
   const theme = React.useContext(ThemeContext);
 
-  //Conditional wrapper based on maxCount, allows Character Counter to render without the Announce component for accessibility purposes.
+  //Conditional wrapper based on maxCount or hasError, allows Character Counter or hasError prop to render without the Announce component for accessibility purposes.
   function AnnounceWrapper(props) {
-    if (maxCount) {
+    if (maxCount || hasError) {
       return props.children;
     }
     return <Announce>{props.children}</Announce>;

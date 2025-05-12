@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { ArrowDropDownIcon, IconProps } from 'react-magma-icons';
+
 import { ThemeInterface } from '../../theme/magma';
 import { IconButton, IconButtonProps } from '../IconButton';
 import { Spinner, SpinnerProps } from '../Spinner';

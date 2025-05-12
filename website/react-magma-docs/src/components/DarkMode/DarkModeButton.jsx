@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   IconButton,
   Tooltip,
@@ -6,6 +7,7 @@ import {
   TooltipPosition,
 } from 'react-magma-dom';
 import { BrightnessHighIcon, BrightnessMediumIcon } from 'react-magma-icons';
+
 import { DarkModeContext } from './DarkModeContext';
 
 export const DarkModeButton = () => {

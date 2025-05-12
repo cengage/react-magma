@@ -1,8 +1,11 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Container } from '.';
-import { magma } from '../../theme/magma';
+
 import { render } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+
+import { Container } from '.';
 
 describe('Container', () => {
   it('should find element by testId', () => {

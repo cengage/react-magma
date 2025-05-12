@@ -1,4 +1,9 @@
 import React from 'react';
+
+import styled from '@emotion/styled';
+import { ReferenceType } from '@floating-ui/react-dom';
+
+import { ThemeContext } from '../../theme/ThemeContext';
 import {
   inputBaseStyles,
   InputBaseStylesProps,
@@ -6,9 +11,6 @@ import {
   InputWrapperStylesProps,
 } from '../InputBase';
 import { defaultComponents, SelectComponents } from '../Select/components';
-import { ThemeContext } from '../../theme/ThemeContext';
-import styled from '@emotion/styled';
-import { ReferenceType } from '@floating-ui/react-dom';
 
 const StyledButton = styled.div<InputBaseStylesProps & InputWrapperStylesProps>`
   ${inputBaseStyles}

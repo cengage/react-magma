@@ -1,4 +1,6 @@
 import React from 'react';
+
+import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
 import {
   Button,
   ButtonColor,
@@ -7,8 +9,6 @@ import {
   Form,
   ButtonGroup,
 } from 'react-magma-dom';
-
-import useFormApi from '@data-driven-forms/react-form-renderer/use-form-api';
 
 export interface FormTemplateProps {
   formFields: any;

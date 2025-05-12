@@ -1,5 +1,10 @@
 import * as React from 'react';
+
 // import styled from '../../theme/styled';
+import { SearchIcon } from 'react-magma-icons';
+
+import { I18nContext } from '../../i18n';
+import { useIsInverse } from '../../inverse';
 import {
   InputBase,
   InputBaseProps,
@@ -7,9 +12,6 @@ import {
   InputSize,
   InputType,
 } from '../InputBase';
-import { I18nContext } from '../../i18n';
-import { useIsInverse } from '../../inverse';
-import { SearchIcon } from 'react-magma-icons';
 import { Spinner } from '../Spinner';
 
 export interface SearchProps extends InputBaseProps {

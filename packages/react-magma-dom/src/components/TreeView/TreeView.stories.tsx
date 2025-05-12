@@ -1,6 +1,6 @@
 import React from 'react';
-import { TreeView, TreeItem, TreeViewSelectable, TreeViewApi } from '.';
-import { magma } from '../../theme/magma';
+
+import { Meta } from '@storybook/react/types-6-0';
 import {
   ArticleIcon,
   FolderIcon,
@@ -10,9 +10,7 @@ import {
   KeyboardArrowDownIcon,
   KeyboardArrowUpIcon,
 } from 'react-magma-icons';
-import { Meta } from '@storybook/react/types-6-0';
-import { Card } from '../Card';
-import { Paragraph } from '../Paragraph';
+
 import {
   Tag,
   TagSize,
@@ -32,9 +30,14 @@ import {
   AccordionPanel,
   IconButton,
 } from '../..';
+import { magma } from '../../theme/magma';
 import { ButtonColor, ButtonSize } from '../Button';
+import { Card } from '../Card';
 import { FlexAlignContent, FlexAlignItems } from '../Flex';
+import { Paragraph } from '../Paragraph';
 import { TagColor } from '../Tag';
+
+import { TreeView, TreeItem, TreeViewSelectable, TreeViewApi } from '.';
 
 export default {
   component: TreeView,
@@ -77,6 +80,10 @@ export default {
       defaultValue: true,
     },
     checkChildren: {
+      control: 'boolean',
+      defaultValue: true,
+    },
+    isTopLevelSelectable: {
       control: 'boolean',
       defaultValue: true,
     },
@@ -236,13 +243,13 @@ export const Complex = (args: Partial<TreeViewProps>) => {
         >
           <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
             <TreeItem
-              icon={<FolderIcon aria-hidden={true} />}
+              icon={<FolderIcon aria-hidden />}
               label={<>Chapter 1: I love tiramisu jelly beans soufflé</>}
               itemId="pt1ch1"
               testId="pt1ch1"
             >
               <TreeItem
-                icon={<ArticleIcon aria-hidden={true} />}
+                icon={<ArticleIcon aria-hidden />}
                 label={<>Section 1.1: Cake donut lemon drops gingerbread</>}
                 itemId="pt1ch1.1"
               />
@@ -256,14 +263,14 @@ export const Complex = (args: Partial<TreeViewProps>) => {
               itemId="pt1ch2"
             />
             <TreeItem
-              icon={<FolderIcon aria-hidden={true} />}
+              icon={<FolderIcon aria-hidden />}
               label={
                 <>Chapter 3: Pudding jujubes icing fruitcake bonbon icing</>
               }
               itemId="pt1ch3"
             >
               <TreeItem
-                icon={<ArticleIcon aria-hidden={true} />}
+                icon={<ArticleIcon aria-hidden />}
                 label={
                   <>
                     Section 3.1: Topping pudding marshmallow caramels I love pie
@@ -272,7 +279,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                 itemId="pt1ch3.1"
               />
               <TreeItem
-                icon={<ArticleIcon aria-hidden={true} />}
+                icon={<ArticleIcon aria-hidden />}
                 label={
                   <>
                     Section 3.2: Tart sweet roll caramels candy canes sweet roll
@@ -281,7 +288,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                 itemId="pt1ch3.2"
               />
               <TreeItem
-                icon={<ArticleIcon aria-hidden={true} />}
+                icon={<ArticleIcon aria-hidden />}
                 label={
                   <>
                     Section 3.3: Tart sweet roll caramels candy canes sweet roll
@@ -292,7 +299,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
             </TreeItem>
           </TreeItem>
           <TreeItem
-            icon={<FolderIcon aria-hidden={true} />}
+            icon={<FolderIcon aria-hidden />}
             label={
               <>
                 Part 2: Candy powder carrot cake cotton candy marshmallow
@@ -302,7 +309,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
             itemId="pt2"
           >
             <TreeItem
-              icon={<ArticleIcon aria-hidden={true} />}
+              icon={<ArticleIcon aria-hidden />}
               label={
                 <>
                   Chapter 4: I love carrot cake sweet roll I love liquorice
@@ -312,7 +319,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
               itemId="pt2ch4"
             />
             <TreeItem
-              icon={<FolderIcon aria-hidden={true} />}
+              icon={<FolderIcon aria-hidden />}
               label={
                 <>
                   Chapter 5: Wafer I love I love sesame snaps I love muffin
@@ -322,7 +329,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
               itemId="pt2ch5"
             >
               <TreeItem
-                icon={<ArticleIcon aria-hidden={true} />}
+                icon={<ArticleIcon aria-hidden />}
                 label={
                   <>
                     Section 5.1: Apple pie apple pie tart macaroon topping
@@ -333,7 +340,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                 isDisabled
               >
                 <TreeItem
-                  icon={<ArticleIcon aria-hidden={true} />}
+                  icon={<ArticleIcon aria-hidden />}
                   label={
                     <>
                       Section 5.1.1: Apple pie apple pie tart macaroon topping
@@ -344,7 +351,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                   isDisabled
                 />
                 <TreeItem
-                  icon={<ArticleIcon aria-hidden={true} />}
+                  icon={<ArticleIcon aria-hidden />}
                   label={
                     <>
                       Section 5.1.2: Apple pie apple pie tart macaroon topping
@@ -354,7 +361,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                   itemId="pt2ch5.1.2"
                 />
                 <TreeItem
-                  icon={<ArticleIcon aria-hidden={true} />}
+                  icon={<ArticleIcon aria-hidden />}
                   label={
                     <>
                       Section 5.1.3: Apple pie apple pie tart macaroon topping
@@ -364,7 +371,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                   itemId="pt2ch5.1.3"
                 >
                   <TreeItem
-                    icon={<ArticleIcon aria-hidden={true} />}
+                    icon={<ArticleIcon aria-hidden />}
                     label={
                       <>
                         Section 5.1.3.1: Apple pie apple pie tart macaroon
@@ -374,7 +381,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                     itemId="pt2ch5.1.3.1"
                   />
                   <TreeItem
-                    icon={<ArticleIcon aria-hidden={true} />}
+                    icon={<ArticleIcon aria-hidden />}
                     label={
                       <>
                         Section 5.1.3.2: Apple pie apple pie tart macaroon
@@ -384,7 +391,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                     itemId="pt2ch5.1.3.2"
                   />
                   <TreeItem
-                    icon={<ArticleIcon aria-hidden={true} />}
+                    icon={<ArticleIcon aria-hidden />}
                     label={
                       <>
                         Section 5.1.3.3: Apple pie apple pie tart macaroon
@@ -396,7 +403,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                 </TreeItem>
               </TreeItem>
               <TreeItem
-                icon={<ArticleIcon aria-hidden={true} />}
+                icon={<ArticleIcon aria-hidden />}
                 label={
                   <>
                     Section 5.2: Jelly lollipop tart gummies pie croissant
@@ -406,7 +413,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
                 itemId="pt2ch5.2"
               />
               <TreeItem
-                icon={<ArticleIcon aria-hidden={true} />}
+                icon={<ArticleIcon aria-hidden />}
                 label={
                   <>
                     Section 5.3: Bonbon chocolate bar lollipop lollipop I love
@@ -417,13 +424,13 @@ export const Complex = (args: Partial<TreeViewProps>) => {
               />
             </TreeItem>
             <TreeItem
-              icon={<ArticleIcon aria-hidden={true} />}
+              icon={<ArticleIcon aria-hidden />}
               label={<>Chapter 6: Cupcake dragée I love cookie I love</>}
               itemId="pt2ch6"
             />
           </TreeItem>
           <TreeItem
-            icon={<FolderIcon aria-hidden={true} />}
+            icon={<FolderIcon aria-hidden />}
             label={
               <>
                 Part 3: Sugar plum halvah shortbread apple pie I love brownie
@@ -433,7 +440,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
             itemId="pt3"
           >
             <TreeItem
-              icon={<ArticleIcon aria-hidden={true} />}
+              icon={<ArticleIcon aria-hidden />}
               label={
                 <>
                   Chapter 7: Cheesecake lollipop tootsie roll candy canes
@@ -443,7 +450,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
               itemId="pt3ch7"
             />
             <TreeItem
-              icon={<ArticleIcon aria-hidden={true} />}
+              icon={<ArticleIcon aria-hidden />}
               label={
                 <>
                   Chapter 8: Jelly pastry jelly-o topping cookie carrot cake
@@ -453,14 +460,14 @@ export const Complex = (args: Partial<TreeViewProps>) => {
               itemId="pt3ch8"
             />
             <TreeItem
-              icon={<ArticleIcon aria-hidden={true} />}
+              icon={<ArticleIcon aria-hidden />}
               label={
                 <>Chapter 9: Jelly beans sweet candy canes croissant bonbon.</>
               }
               itemId="pt3ch9"
             />
             <TreeItem
-              icon={<ArticleIcon aria-hidden={true} />}
+              icon={<ArticleIcon aria-hidden />}
               label={
                 <>
                   Chapter 10: Wafer carrot cake powder candy canes sweet roll
@@ -470,7 +477,7 @@ export const Complex = (args: Partial<TreeViewProps>) => {
               itemId="pt3ch10"
             />
             <TreeItem
-              icon={<ArticleIcon aria-hidden={true} />}
+              icon={<ArticleIcon aria-hidden />}
               label={
                 <>
                   Chapter 11: Apple pie chocolate cake tiramisu bonbon I love
@@ -730,13 +737,13 @@ export const DefaultIcon = (args: Partial<TreeViewProps>) => {
     <>
       <TreeView {...args} onSelectedItemChange={onSelection}>
         <TreeItem
-          icon={<FavoriteIcon aria-hidden={true} />}
+          icon={<FavoriteIcon aria-hidden />}
           itemId="1"
           label={<>I have an icon</>}
           labelStyle={{ color: magma.colors.info700, fontWeight: '600' }}
         />
         <TreeItem
-          icon={<StarIcon aria-hidden={true} />}
+          icon={<StarIcon aria-hidden />}
           itemId="2"
           label={<>I have an icon</>}
           labelStyle={{ color: magma.colors.danger700, fontWeight: '700' }}
@@ -752,7 +759,7 @@ export const DefaultIcon = (args: Partial<TreeViewProps>) => {
             icon={
               <EmergencyIcon
                 style={{ color: magma.colors.danger500 }}
-                aria-hidden={true}
+                aria-hidden
               />
             }
             itemId="5"
@@ -1085,7 +1092,7 @@ export const InvalidTreeItems = (args: Partial<TreeViewProps>) => {
             </TreeItem>
           </TreeItem>
         </TreeItem>
-        <TreeItem label="Node 3 - has empty content" itemId="item3"></TreeItem>
+        <TreeItem label="Node 3 - has empty content" itemId="item3" />
         <TreeItem label="Node 4 - has child with only text" itemId="item4">
           Child of node 4 is just text
         </TreeItem>
@@ -1131,7 +1138,11 @@ const renderTreeItemsRecursively = (terms: any[], depth: number) => {
         label={term.title}
         labelStyle={labelStyles}
         title={term.title}
-        isDisabled={term.title === 'item-title-1'}
+        isDisabled={
+          term.title === 'item-title-1' ||
+          term.title === 'item-title-3' ||
+          term.title === 'item-title-5.1'
+        }
       >
         {term.children?.length ? (
           renderTreeItemsRecursively(term.children, depth + 1)
@@ -1174,6 +1185,21 @@ const AccordionSectionWithTreeView = (props: any) => {
     }
   };
 
+  const toggleExpandAll = () => {
+    if (!isShowAll) {
+      apiRef.current?.showMore();
+      setIsShowAll(true);
+    }
+
+    setTimeout(() => {
+      apiRef.current?.expandAll();
+    }, 50);
+  };
+
+  const toggleCollapseAll = () => {
+    apiRef.current?.collapseAll();
+  };
+
   const renderTrees = () => {
     return (
       <>
@@ -1210,6 +1236,15 @@ const AccordionSectionWithTreeView = (props: any) => {
     <AccordionItem {...rest} index={customIndex} isDisabled={isDisabled}>
       <AccordionButton>{title}</AccordionButton>
       <AccordionPanel>
+        <ButtonGroup
+          size={ButtonSize.small}
+          variant={ButtonVariant.solid}
+          color={ButtonColor.subtle}
+        >
+          <Button onClick={toggleExpandAll}>Expand All</Button>
+          <Button onClick={toggleCollapseAll}>Collapse All</Button>
+        </ButtonGroup>
+        <Spacer axis={SpacerAxis.vertical} size={16} />
         {renderTrees()}
         <Spacer axis={SpacerAxis.vertical} size={16} />
         <IconButton
@@ -1247,7 +1282,13 @@ const flatTree = {
         {
           id: 'item-id-3',
           title: 'item-title-3',
-          children: [],
+          children: [
+            {
+              id: 'item-id-3.1',
+              title: 'item-title-3.1',
+              children: [],
+            },
+          ],
         },
         {
           id: 'item-id-4',
@@ -1263,7 +1304,18 @@ const flatTree = {
         {
           id: 'item-id-5',
           title: 'item-title-5',
-          children: [],
+          children: [
+            {
+              id: 'item-id-5.1',
+              title: 'item-title-5.1',
+              children: [],
+            },
+            {
+              id: 'item-id-5.2',
+              title: 'item-title-5.2',
+              children: [],
+            },
+          ],
         },
         {
           id: 'item-id-6',
@@ -1283,7 +1335,7 @@ const flatTree = {
 };
 
 // This example is used in unit tests - modifying it may cause broken tests
-export const AccordionTreeWithShowAll = (props: any) => {
+export const AccordionTreeWithShowAllAndExpandAll = (props: any) => {
   const apiRef = React.useRef<TreeViewApi>();
 
   function onSelection(items: TreeItemSelectedInterface[]) {
@@ -1302,7 +1354,7 @@ export const AccordionTreeWithShowAll = (props: any) => {
   );
 };
 
-AccordionTreeWithShowAll.parameters = {
+AccordionTreeWithShowAllAndExpandAll.parameters = {
   controls: {
     exclude: [
       'isInverse',
@@ -1319,7 +1371,9 @@ AccordionTreeWithShowAll.parameters = {
 
 // END of MAST Tree example with hidden items
 
-export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
+export const ComplexTreeWithShowAllAndExpandAll = (
+  args: Partial<TreeViewProps>
+) => {
   const treeContent = {
     id: 'tree-id',
     groupName: 'disciplines',
@@ -1350,9 +1404,9 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
                     id: 'ad-2-child2-child1',
                     title: 'Pet',
                     children: [],
-                  }
+                  },
                 ],
-              }
+              },
             ],
           },
           {
@@ -1465,10 +1519,10 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
                 children: [
                   {
                     id: 'nutr-2-child2-child1',
-                    title: 'Creatine'
-                  }
+                    title: 'Creatine',
+                  },
                 ],
-              }
+              },
             ],
           },
         ],
@@ -1522,11 +1576,11 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
     }
     setTimeout(() => {
       apiRef.current?.selectAll();
-    }, 50)
+    }, 50);
   };
 
   const renderTreeItemsRecursively = (discipline: any[], depth: number) => {
-    return discipline.map(term => {
+    return discipline.map((term, index) => {
       return (
         <TreeItem
           key={term.id}
@@ -1544,6 +1598,21 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
     });
   };
 
+  const toggleExpandAll = () => {
+    if (!isShowAll) {
+      apiRef.current?.showMore();
+      setIsShowAll(true);
+    }
+
+    setTimeout(() => {
+      apiRef.current?.expandAll();
+    }, 50);
+  };
+
+  const toggleCollapseAll = () => {
+    apiRef.current?.collapseAll();
+  };
+
   return (
     <>
       <ButtonGroup
@@ -1553,6 +1622,8 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
       >
         <Button onClick={onSelectAll}>Select all</Button>
         <Button onClick={() => apiRef.current?.clearAll()}>Clear all</Button>
+        <Button onClick={toggleExpandAll}>Expand All</Button>
+        <Button onClick={toggleCollapseAll}>Collapse All</Button>
       </ButtonGroup>
 
       <Spacer size={24} axis={SpacerAxis.vertical} />
@@ -1588,15 +1659,728 @@ export const ComplexTreeWithShowAll = (args: Partial<TreeViewProps>) => {
   );
 };
 
-ComplexTreeWithShowAll.args = {
+ComplexTreeWithShowAllAndExpandAll.args = {
   checkParents: true,
   checkChildren: true,
   selectable: TreeViewSelectable.multi,
   ariaLabel: 'Disciplines',
 };
 
-ComplexTreeWithShowAll.parameters = {
+ComplexTreeWithShowAllAndExpandAll.parameters = {
   controls: {
     exclude: ['isInverse', 'initialExpandedItems', 'ariaLabelledBy', 'testId'],
   },
+};
+
+export const ComplexTreeWithLargeDataSet = (args: Partial<TreeViewProps>) => {
+  const treeContent = {
+    id: 'tree-id',
+    groupName: 'disciplines',
+    items: [
+      {
+        id: 'discipline-arts-design',
+        title: 'Arts and Design',
+        children: [
+          {
+            id: 'ad-1',
+            title: 'Animation',
+            children: [
+              {
+                id: 'ad-1-1',
+                title: '2D Animation',
+                children: [
+                  {
+                    id: 'ad-1-1-1',
+                    title: 'Hand-drawn Animation',
+                    children: [],
+                  },
+                  {
+                    id: 'ad-1-1-2',
+                    title: 'Digital 2D Animation',
+                    children: [],
+                  },
+                ],
+              },
+              {
+                id: 'ad-1-2',
+                title: '3D Animation',
+                children: [
+                  {
+                    id: 'ad-1-2-1',
+                    title: 'Character Animation',
+                    children: [],
+                  },
+                  { id: 'ad-1-2-2', title: 'Motion Capture', children: [] },
+                ],
+              },
+            ],
+          },
+          {
+            id: 'ad-2',
+            title: 'Photography',
+            children: [
+              {
+                id: 'ad-2-1',
+                title: 'Wedding Photography',
+                children: [
+                  { id: 'ad-2-1-1', title: 'Bridal Portraits', children: [] },
+                  { id: 'ad-2-1-2', title: 'Candid Photography', children: [] },
+                ],
+              },
+              {
+                id: 'ad-2-2',
+                title: 'Nature Photography',
+                children: [
+                  {
+                    id: 'ad-2-2-1',
+                    title: 'Wildlife Photography',
+                    children: [
+                      {
+                        id: 'ad-2-2-1-1',
+                        title: 'Bird Photography',
+                        children: [],
+                      },
+                      {
+                        id: 'ad-2-2-1-2',
+                        title: 'Safari Photography',
+                        children: [],
+                      },
+                    ],
+                  },
+                  {
+                    id: 'ad-2-2-2',
+                    title: 'Landscape Photography',
+                    children: [
+                      {
+                        id: 'ad-2-2-2-1',
+                        title: 'Mountain Landscapes',
+                        children: [],
+                      },
+                      { id: 'ad-2-2-2-2', title: 'Seascapes', children: [] },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'discipline-business',
+        title: 'Business',
+        children: [
+          {
+            id: 'bsn-1',
+            title: 'Accounting',
+            children: [
+              {
+                id: 'bsn-1-1',
+                title: 'Financial Accounting',
+                children: [
+                  { id: 'bsn-1-1-1', title: 'Auditing', children: [] },
+                  { id: 'bsn-1-1-2', title: 'Tax Accounting', children: [] },
+                ],
+              },
+              {
+                id: 'bsn-1-2',
+                title: 'Managerial Accounting',
+                children: [
+                  { id: 'bsn-1-2-1', title: 'Cost Analysis', children: [] },
+                  { id: 'bsn-1-2-2', title: 'Budgeting', children: [] },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'discipline-cs',
+        title: 'Computer Science',
+        children: [
+          {
+            id: 'cs-1',
+            title: 'Software Engineering',
+            children: [
+              {
+                id: 'cs-1-1',
+                title: 'Backend Development',
+                children: [
+                  { id: 'cs-1-1-1', title: 'Node.js', children: [] },
+                  { id: 'cs-1-1-2', title: 'Django', children: [] },
+                ],
+              },
+              {
+                id: 'cs-1-2',
+                title: 'Frontend Development',
+                children: [
+                  { id: 'cs-1-2-1', title: 'React.js', children: [] },
+                  { id: 'cs-1-2-2', title: 'Vue.js', children: [] },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'discipline-math',
+        title: 'Mathematics',
+        children: [
+          {
+            id: 'math-1',
+            title: 'Precalculus',
+            children: [
+              {
+                id: 'math-1-1',
+                title: 'Trigonometry',
+                children: [
+                  {
+                    id: 'math-1-1-1',
+                    title: 'Sine and Cosine Functions',
+                    children: [],
+                  },
+                  {
+                    id: 'math-1-1-2',
+                    title: 'Law of Sines and Cosines',
+                    children: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        id: 'discipline-nutr',
+        title: 'Nutrition',
+        children: [
+          {
+            id: 'nutr-1',
+            title: 'Sports Nutrition',
+            children: [
+              {
+                id: 'nutr-1-1',
+                title: 'Protein',
+                children: [
+                  { id: 'nutr-1-1-1', title: 'Whey Protein', children: [] },
+                  {
+                    id: 'nutr-1-1-2',
+                    title: 'Plant-Based Protein',
+                    children: [],
+                  },
+                ],
+              },
+              {
+                id: 'nutr-1-2',
+                title: 'Supplements',
+                children: [
+                  {
+                    id: 'nutr-1-2-1',
+                    title: 'Creatine',
+                    children: [
+                      {
+                        id: 'nutr-1-2-1-1',
+                        title: 'Creatine Monohydrate',
+                        children: [],
+                      },
+                      {
+                        id: 'nutr-1-2-1-2',
+                        title: 'Creatine HCL',
+                        children: [],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+    preselectedItems: [
+      {
+        itemId: 'bsn-1',
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+      },
+      {
+        itemId: 'cs-1-1-1',
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+      },
+      {
+        itemId: 'math-1-1-1',
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+      },
+    ],
+  };
+
+  const apiRef = React.useRef<TreeViewApi>();
+  const [isShowAll, setIsShowAll] = React.useState(false);
+  const [selectedItems, setSelectedItems] =
+    React.useState<TreeItemSelectedInterface[]>();
+  const total = selectedItems?.length ?? 0;
+  const { selected, indeterminate } = createControlledTags(
+    selectedItems,
+    apiRef?.current
+  );
+
+  function onSelection(items: TreeItemSelectedInterface[]) {
+    setSelectedItems(items);
+  }
+
+  const getTermsForRender = (terms: any) => {
+    if (isShowAll || terms.length <= 3) {
+      return terms;
+    } else {
+      return terms.slice(0, 3);
+    }
+  };
+
+  const toggleShowAll = () => {
+    setIsShowAll(prev => !prev);
+    if (isShowAll) {
+      apiRef.current?.showLess();
+    } else {
+      apiRef.current?.showMore();
+    }
+  };
+
+  const onSelectAll = () => {
+    if (isShowAll) {
+      apiRef.current?.showLess();
+    } else {
+      apiRef.current?.showMore();
+      setIsShowAll(prev => !prev);
+    }
+    setTimeout(() => {
+      apiRef.current?.selectAll();
+    }, 50);
+  };
+
+  const renderTreeItemsRecursively = (discipline: any[], depth: number) => {
+    return discipline.map((term, index) => {
+      return (
+        <TreeItem
+          key={term.id}
+          itemId={term.id}
+          testId={term.id}
+          label={term.title}
+        >
+          {term.children?.length ? (
+            renderTreeItemsRecursively(term.children, depth + 1)
+          ) : (
+            <></>
+          )}
+        </TreeItem>
+      );
+    });
+  };
+
+  const toggleExpandAll = () => {
+    if (!isShowAll) {
+      apiRef.current?.showMore();
+      setIsShowAll(true);
+    }
+
+    setTimeout(() => {
+      apiRef.current?.expandAll();
+    }, 50);
+  };
+
+  const toggleCollapseAll = () => {
+    apiRef.current?.collapseAll();
+  };
+
+  return (
+    <>
+      <ButtonGroup
+        size={ButtonSize.small}
+        variant={ButtonVariant.solid}
+        color={ButtonColor.subtle}
+      >
+        <Button onClick={onSelectAll}>Select all</Button>
+        <Button onClick={() => apiRef.current?.clearAll()}>Clear all</Button>
+        <Button onClick={toggleExpandAll}>Expand All</Button>
+        <Button onClick={toggleCollapseAll}>Collapse All</Button>
+      </ButtonGroup>
+
+      <Spacer size={24} axis={SpacerAxis.vertical} />
+
+      <TreeView
+        key={treeContent.id}
+        {...args}
+        preselectedItems={treeContent.preselectedItems}
+        onSelectedItemChange={onSelection}
+        apiRef={apiRef}
+      >
+        {renderTreeItemsRecursively(getTermsForRender(treeContent.items), 0)}
+      </TreeView>
+
+      <Spacer size={16} axis={SpacerAxis.vertical} />
+
+      <IconButton
+        onClick={toggleShowAll}
+        size={ButtonSize.small}
+        variant={ButtonVariant.link}
+        testId="showAllBtn"
+        icon={isShowAll ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+      >
+        {isShowAll ? 'Show Less' : 'Show All'}
+      </IconButton>
+
+      <Spacer size={24} axis={SpacerAxis.vertical} />
+
+      <p>{total} total</p>
+      <p>Selected: {selected}</p>
+      <p>Indeterminate: {indeterminate}</p>
+    </>
+  );
+};
+
+ComplexTreeWithLargeDataSet.args = {
+  checkParents: true,
+  checkChildren: true,
+  selectable: TreeViewSelectable.multi,
+  ariaLabel: 'Disciplines',
+};
+
+ComplexTreeWithLargeDataSet.parameters = {
+  controls: {
+    exclude: ['isInverse', 'initialExpandedItems', 'ariaLabelledBy', 'testId'],
+  },
+};
+
+export const ComplexWithTopLevelNotSelectable = (
+  args: Partial<TreeViewProps>
+) => {
+  const [selectedItems, setSelectedItems] =
+    React.useState<TreeItemSelectedInterface[]>();
+
+  const [expandedItems, setExpandedItems] = React.useState<string[]>();
+  const apiRef = React.useRef<TreeViewApi>();
+
+  const { selected, indeterminate } = createControlledTags(
+    selectedItems,
+    apiRef?.current
+  );
+  const total = selectedItems?.length ?? 0;
+
+  const handleExpandedChange = (
+    event: React.SyntheticEvent,
+    expandedItems: string[]
+  ) => {
+    setExpandedItems(expandedItems);
+  };
+
+  return (
+    <>
+      <Card isInverse={args.isInverse}>
+        <TreeView
+          {...args}
+          apiRef={apiRef}
+          onSelectedItemChange={setSelectedItems}
+          onExpandedChange={handleExpandedChange}
+        >
+          <TreeItem label={<>Part 1: Introduction</>} itemId="pt1" testId="pt1">
+            <TreeItem
+              icon={<FolderIcon aria-hidden />}
+              label={<>Chapter 1: I love tiramisu jelly beans soufflé</>}
+              itemId="pt1ch1"
+              testId="pt1ch1"
+            >
+              <TreeItem
+                icon={<ArticleIcon aria-hidden />}
+                label={<>Section 1.1: Cake donut lemon drops gingerbread</>}
+                itemId="pt1ch1.1"
+              />
+            </TreeItem>
+            <TreeItem
+              label={
+                <>
+                  Chapter 2: Chocolate bar ice cream cake liquorice icing tart
+                </>
+              }
+              itemId="pt1ch2"
+            />
+            <TreeItem
+              icon={<FolderIcon aria-hidden />}
+              label={
+                <>Chapter 3: Pudding jujubes icing fruitcake bonbon icing</>
+              }
+              itemId="pt1ch3"
+            >
+              <TreeItem
+                icon={<ArticleIcon aria-hidden />}
+                label={
+                  <>
+                    Section 3.1: Topping pudding marshmallow caramels I love pie
+                  </>
+                }
+                itemId="pt1ch3.1"
+              />
+              <TreeItem
+                icon={<ArticleIcon aria-hidden />}
+                label={
+                  <>
+                    Section 3.2: Tart sweet roll caramels candy canes sweet roll
+                  </>
+                }
+                itemId="pt1ch3.2"
+              />
+              <TreeItem
+                icon={<ArticleIcon aria-hidden />}
+                label={
+                  <>
+                    Section 3.3: Tart sweet roll caramels candy canes sweet roll
+                  </>
+                }
+                itemId="pt1ch3.3"
+              />
+            </TreeItem>
+          </TreeItem>
+          <TreeItem
+            icon={<FolderIcon aria-hidden />}
+            label={
+              <>
+                Part 2: Candy powder carrot cake cotton candy marshmallow
+                caramels croissant I love
+              </>
+            }
+            itemId="pt2"
+          >
+            <TreeItem
+              icon={<ArticleIcon aria-hidden />}
+              label={
+                <>
+                  Chapter 4: I love carrot cake sweet roll I love liquorice
+                  sweet
+                </>
+              }
+              itemId="pt2ch4"
+            />
+            <TreeItem
+              icon={<FolderIcon aria-hidden />}
+              label={
+                <>
+                  Chapter 5: Wafer I love I love sesame snaps I love muffin
+                  dragée halvah
+                </>
+              }
+              itemId="pt2ch5"
+            >
+              <TreeItem
+                icon={<ArticleIcon aria-hidden />}
+                label={
+                  <>
+                    Section 5.1: Apple pie apple pie tart macaroon topping
+                    chocolate cake
+                  </>
+                }
+                itemId="pt2ch5.1"
+                isDisabled
+              >
+                <TreeItem
+                  icon={<ArticleIcon aria-hidden />}
+                  label={
+                    <>
+                      Section 5.1.1: Apple pie apple pie tart macaroon topping
+                      chocolate cake
+                    </>
+                  }
+                  itemId="pt2ch5.1.1"
+                  isDisabled
+                />
+                <TreeItem
+                  icon={<ArticleIcon aria-hidden />}
+                  label={
+                    <>
+                      Section 5.1.2: Apple pie apple pie tart macaroon topping
+                      chocolate cake
+                    </>
+                  }
+                  itemId="pt2ch5.1.2"
+                />
+                <TreeItem
+                  icon={<ArticleIcon aria-hidden />}
+                  label={
+                    <>
+                      Section 5.1.3: Apple pie apple pie tart macaroon topping
+                      chocolate cake
+                    </>
+                  }
+                  itemId="pt2ch5.1.3"
+                >
+                  <TreeItem
+                    icon={<ArticleIcon aria-hidden />}
+                    label={
+                      <>
+                        Section 5.1.3.1: Apple pie apple pie tart macaroon
+                        topping chocolate cake
+                      </>
+                    }
+                    itemId="pt2ch5.1.3.1"
+                  />
+                  <TreeItem
+                    icon={<ArticleIcon aria-hidden />}
+                    label={
+                      <>
+                        Section 5.1.3.2: Apple pie apple pie tart macaroon
+                        topping chocolate cake
+                      </>
+                    }
+                    itemId="pt2ch5.1.3.2"
+                  />
+                  <TreeItem
+                    icon={<ArticleIcon aria-hidden />}
+                    label={
+                      <>
+                        Section 5.1.3.3: Apple pie apple pie tart macaroon
+                        topping chocolate cake
+                      </>
+                    }
+                    itemId="pt2ch5.1.3.3"
+                  />
+                </TreeItem>
+              </TreeItem>
+              <TreeItem
+                icon={<ArticleIcon aria-hidden />}
+                label={
+                  <>
+                    Section 5.2: Jelly lollipop tart gummies pie croissant
+                    sesame snaps sesame snaps
+                  </>
+                }
+                itemId="pt2ch5.2"
+              />
+              <TreeItem
+                icon={<ArticleIcon aria-hidden />}
+                label={
+                  <>
+                    Section 5.3: Bonbon chocolate bar lollipop lollipop I love
+                    chocolate cake cupcake soufflé pie
+                  </>
+                }
+                itemId="pt2ch5.3"
+              />
+            </TreeItem>
+            <TreeItem
+              icon={<ArticleIcon aria-hidden />}
+              label={<>Chapter 6: Cupcake dragée I love cookie I love</>}
+              itemId="pt2ch6"
+            />
+          </TreeItem>
+          <TreeItem
+            icon={<FolderIcon aria-hidden />}
+            label={
+              <>
+                Part 3: Sugar plum halvah shortbread apple pie I love brownie
+                gummi bears
+              </>
+            }
+            itemId="pt3"
+          >
+            <TreeItem
+              icon={<ArticleIcon aria-hidden />}
+              label={
+                <>
+                  Chapter 7: Cheesecake lollipop tootsie roll candy canes
+                  cupcake I love dessert liquorice
+                </>
+              }
+              itemId="pt3ch7"
+            />
+            <TreeItem
+              icon={<ArticleIcon aria-hidden />}
+              label={
+                <>
+                  Chapter 8: Jelly pastry jelly-o topping cookie carrot cake
+                  shortbread
+                </>
+              }
+              itemId="pt3ch8"
+            />
+            <TreeItem
+              icon={<ArticleIcon aria-hidden />}
+              label={
+                <>Chapter 9: Jelly beans sweet candy canes croissant bonbon.</>
+              }
+              itemId="pt3ch9"
+            />
+            <TreeItem
+              icon={<ArticleIcon aria-hidden />}
+              label={
+                <>
+                  Chapter 10: Wafer carrot cake powder candy canes sweet roll
+                  bear claw croissant cheesecake tart
+                </>
+              }
+              itemId="pt3ch10"
+            />
+            <TreeItem
+              icon={<ArticleIcon aria-hidden />}
+              label={
+                <>
+                  Chapter 11: Apple pie chocolate cake tiramisu bonbon I love
+                  croissant. I love chupa chups croissant tiramisu toffee cake
+                  tart
+                </>
+              }
+              itemId="pt3ch11"
+            />
+          </TreeItem>
+          <TreeItem
+            icon={<FolderIcon aria-hidden />}
+            label={<>Part 4: leaf with icon</>}
+            itemId="pt4"
+          />
+          <TreeItem label={<>Part 5: leaf with no icon</>} itemId="pt5" />
+        </TreeView>
+      </Card>
+      <br />
+      {args.selectable !== TreeViewSelectable.off && (
+        <>
+          <p>{total} total</p>
+          <p>Selected: {selected}</p>
+          {args.selectable === TreeViewSelectable.multi && (
+            <p>Indeterminate: {indeterminate}</p>
+          )}
+        </>
+      )}
+      <ButtonGroup size={ButtonSize.small} variant={ButtonVariant.solid}>
+        <Button onClick={() => apiRef.current?.selectAll()}>Select all</Button>
+        <Button onClick={() => apiRef.current?.clearAll()}>Clear all</Button>
+      </ButtonGroup>
+      <Spacer axis={SpacerAxis.vertical} size={24} />
+      <p>Expanded: {expandedItems?.join(', ')}</p>
+    </>
+  );
+};
+
+ComplexWithTopLevelNotSelectable.args = {
+  selectable: TreeViewSelectable.multi,
+  isTopLevelSelectable: false,
+  ariaLabel: 'Textbook tree',
+  initialExpandedItems: ['pt1', 'pt2ch5.1'],
+  preselectedItems: [
+    { itemId: 'pt1ch1', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'pt1', checkedStatus: IndeterminateCheckboxStatus.indeterminate },
+    { itemId: 'pt2ch4', checkedStatus: IndeterminateCheckboxStatus.checked },
+    {
+      itemId: 'pt2ch5.1.1',
+      checkedStatus: IndeterminateCheckboxStatus.checked,
+    },
+    {
+      itemId: 'pt2ch5.1.2',
+      checkedStatus: IndeterminateCheckboxStatus.unchecked,
+      isDisabled: true,
+    },
+    { itemId: 'pt2ch5.2', checkedStatus: IndeterminateCheckboxStatus.checked },
+    { itemId: 'pt2ch5.3', checkedStatus: IndeterminateCheckboxStatus.checked },
+    {
+      itemId: 'pt2ch5.1.3',
+      checkedStatus: IndeterminateCheckboxStatus.checked,
+    },
+  ],
+  checkParents: true,
+  checkChildren: true,
+  isDisabled: false,
+  testId: 'complex-example',
 };

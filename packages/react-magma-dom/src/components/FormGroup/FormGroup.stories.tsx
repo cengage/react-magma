@@ -1,8 +1,11 @@
 import React from 'react';
-import { FormGroup } from '.';
+
+import { Meta } from '@storybook/react/types-6-0';
+
 import { Checkbox } from '../Checkbox';
 import { Toggle } from '../Toggle';
-import { Meta } from '@storybook/react/types-6-0';
+
+import { FormGroup } from '.';
 
 export default {
   component: FormGroup,

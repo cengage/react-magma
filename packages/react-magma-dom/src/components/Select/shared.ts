@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
+
 import { ThemeInterface } from '../../theme/magma';
 import { Card } from '../Card';
 import { inputBaseStyles } from '../InputBase';

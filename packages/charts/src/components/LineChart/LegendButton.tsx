@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { ThemeContext, Checkbox } from 'react-magma-dom';
 
 export interface DataTableProps {

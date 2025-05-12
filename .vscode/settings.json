@@ -1,0 +1,20 @@
+{
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "mdx",
+    "html",
+    "css",
+    "json",
+    "yaml",
+    "markdown"
+  ],
+  "prettier.requireConfig": true,
+  "files.insertFinalNewline": true
+}

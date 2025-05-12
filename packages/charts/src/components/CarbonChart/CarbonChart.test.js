@@ -1,6 +1,8 @@
 import React from 'react';
-import { CarbonChart, CarbonChartType } from '.';
+
 import { render } from '@testing-library/react';
+
+import { CarbonChart, CarbonChartType } from '.';
 
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),

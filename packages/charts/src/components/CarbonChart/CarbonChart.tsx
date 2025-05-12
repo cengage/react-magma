@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { ThemeInterface, ThemeContext, useIsInverse } from 'react-magma-dom';
-import { transparentize } from 'polished';
-import styled from '@emotion/styled';
+
 import {
   AreaChart,
   StackedAreaChart,
@@ -22,6 +20,9 @@ import {
   ScatterChart,
   ComboChart,
 } from '@carbon/charts-react';
+import styled from '@emotion/styled';
+import { transparentize } from 'polished';
+import { ThemeInterface, ThemeContext, useIsInverse } from 'react-magma-dom';
 import './styles.min.css';
 
 export enum CarbonChartType {
@@ -91,8 +92,8 @@ const CarbonChartWrapper = styled.div<{
       props.isInverse
         ? props.theme.colors.neutral100
         : props.theme.colors.neutral700};
-        max-width:142px;
-        white-space: normal;
+    max-width: 142px;
+    white-space: normal;
   }
 
   .cds--modal-container {
@@ -189,8 +190,9 @@ const CarbonChartWrapper = styled.div<{
           ? transparentize(0.5, props.theme.colors.neutral100)
           : ''};
     }
-    .cds--cc--grid rect.chart-grid-backdrop.stroked{
-      stroke: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')}
+    .cds--cc--grid rect.chart-grid-backdrop.stroked {
+      stroke: ${props =>
+        props.isInverse ? props.theme.colors.neutral100 : ''};
     }
     .cds--cc--skeleton .shimmer-effect-lines {
       filter: ${props => (props.isInverse ? 'invert(1)' : '')};
@@ -199,117 +201,137 @@ const CarbonChartWrapper = styled.div<{
     .cds--cc--skeleton rect.chart-skeleton-backdrop,
     .cds--cc--grid rect.chart-grid-backdrop {
     } */
-    
-    .cds--cc--grid rect.chart-grid-backdrop{
-      fill:transparent;
+
+    .cds--cc--grid rect.chart-grid-backdrop {
+      fill: transparent;
     }
     .cds--cc--scatter circle.dot.hovered {
       padding: 10px;
     }
     .cds--cc--scatter-stacked circle.dot.hovered,
     .cds--cc--scatter-stacked circle.dot.unfilled,
-    .cds--cc--scatter circle.dot.unfilled{
+    .cds--cc--scatter circle.dot.unfilled {
       stroke-width: 6px;
       transition: 0.1s all linear;
-     
     }
     .cds--cc--scatter circle.dot.hovered {
       stroke-width: 0.5em;
       transition: 0.1s all linear;
-       filter: 
-        drop-shadow( 1px  0px 0px ${props =>
-          props.isInverse
-            ? props.theme.colors.primary600
-            : props.theme.colors.neutral100}) 
-        drop-shadow(-1px  0px 0px ${props =>
-          props.isInverse
-            ? props.theme.colors.primary600
-            : props.theme.colors.neutral100})
-        drop-shadow( 0px  1px 0px ${props =>
-          props.isInverse
-            ? props.theme.colors.primary600
-            : props.theme.colors.neutral100}) 
-        drop-shadow( 0px -1px 0px ${props =>
-          props.isInverse
-            ? props.theme.colors.primary600
-            : props.theme.colors.neutral100});
+      filter: drop-shadow(
+          1px 0px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          -1px 0px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          0px 1px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          0px -1px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        );
     }
-      .cds--cc--lollipop circle.dot.filled,
-      .cds--cc--lollipop circle.dot.hovered {
-        stroke-width: 15px;
-      }
-      .cds--cc--scatter-stacked circle.dot.hovered,
+    .cds--cc--lollipop circle.dot.filled,
+    .cds--cc--lollipop circle.dot.hovered {
+      stroke-width: 15px;
+    }
+    .cds--cc--scatter-stacked circle.dot.hovered,
     .cds--cc--scatter-stacked circle.dot.unfilled,
     .cds--cc--scatter circle.dot.unfilled,
     .cds--cc--lollipop circle.dot.filled,
-      .cds--cc--lollipop circle.dot.hovered{
-        transition: 0.1s all linear;
-        filter: 
-        drop-shadow( 1px  0px 0px ${props =>
-          props.isInverse
-            ? props.theme.colors.primary600
-            : props.theme.colors.neutral100})
-        drop-shadow(-1px  0px 0px ${props =>
-          props.isInverse
-            ? props.theme.colors.primary600
-            : props.theme.colors.neutral100})
-        drop-shadow( 0px  1px 0px ${props =>
-          props.isInverse
-            ? props.theme.colors.primary600
-            : props.theme.colors.neutral100})
-        drop-shadow( 0px -1px 0px ${props =>
-          props.isInverse
-            ? props.theme.colors.primary600
-            : props.theme.colors.neutral100});
-      }
-      .cds--cc--lollipop .cds--cc--scatter circle.dot.hovered{
-        transition: 0.1s all linear;
-        stroke-width: 1.1em;
-      }
+    .cds--cc--lollipop circle.dot.hovered {
+      transition: 0.1s all linear;
+      filter: drop-shadow(
+          1px 0px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          -1px 0px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          0px 1px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          0px -1px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        );
+    }
+    .cds--cc--lollipop .cds--cc--scatter circle.dot.hovered {
+      transition: 0.1s all linear;
+      stroke-width: 1.1em;
+    }
 
-      .cds--overflow-menu-options__btn:focus {
-        outline-color: ${props =>
-          props.isInverse ? props.theme.colors.focusInverse : ''};
-      }
+    .cds--overflow-menu-options__btn:focus {
+      outline-color: ${props =>
+        props.isInverse ? props.theme.colors.focusInverse : ''};
+    }
 
-      .cds--btn {
-        min-height: auto;
-        display: flex;
-        flex: 0 auto;
-        align-items: center;
-        text-align: center;
-        padding: 20px;
-        margin: 0;
-        line-height: ${props => props.theme.typeScale.size03.lineHeight};
-        margin: 0;
-        min-width: ${props => props.theme.spaceScale.spacing13};
-        overflow: hidden;
-        padding: ;
-        position: relative;
-        right: ${props => props.theme.spaceScale.spacing04};
-        text-align: center;
-        height: 40px;
-        font-family: ${props => props.theme.bodyFont};
-        font-size: ${props => props.theme.typeScale.size03.fontSize};
-        border-radius: ${props => props.theme.borderRadius};
-        font-weight: 500;
-      }
+    .cds--btn {
+      min-height: auto;
+      display: flex;
+      flex: 0 auto;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+      line-height: ${props => props.theme.typeScale.size03.lineHeight};
+      margin: 0;
+      min-width: ${props => props.theme.spaceScale.spacing13};
+      overflow: hidden;
+      padding:;
+      position: relative;
+      right: ${props => props.theme.spaceScale.spacing04};
+      text-align: center;
+      height: 40px;
+      font-family: ${props => props.theme.bodyFont};
+      font-size: ${props => props.theme.typeScale.size03.fontSize};
+      border-radius: ${props => props.theme.borderRadius};
+      font-weight: 500;
+    }
 
-      .cds--btn--primary {
-        background: ${props =>
+    .cds--btn--primary {
+      background: ${props =>
+        props.isInverse
+          ? props.theme.colors.tertiary500
+          : props.theme.colors.primary};
+      color: ${props => (props.isInverse ? props.theme.colors.neutral900 : '')};
+    }
+
+    *:focus {
+      outline: 2px solid
+        ${props =>
           props.isInverse
-            ? props.theme.colors.tertiary500
-            : props.theme.colors.primary};
-        color: ${props =>
-          props.isInverse ? props.theme.colors.neutral900 : ''};
-      }
-
-      *:focus {
-        outline: 2px solid
-          ${props =>
-            props.isInverse
-              ? props.theme.colors.focusInverse
-              : props.theme.colors.focus} !important;
+            ? props.theme.colors.focusInverse
+            : props.theme.colors.focus} !important;
       outline-offset: 0;
     }
     .cds--overflow-menu-options__btn:focus,
@@ -417,8 +439,8 @@ const CarbonChartWrapper = styled.div<{
   }
 
   g.center text,
-  .pie-label{
-    fill: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')} ;
+  .pie-label {
+    fill: ${props => (props.isInverse ? props.theme.colors.neutral100 : '')};
   }
 
   // Zoom responsive tweaks
@@ -490,7 +512,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     };
 
     function buildColors() {
-      let scaleColorsObj: ColorsObject = {};
+      const scaleColorsObj: ColorsObject = {};
 
       const allGroups = dataSet.map(item => {
         return 'group' in item ? item['group'] : null;

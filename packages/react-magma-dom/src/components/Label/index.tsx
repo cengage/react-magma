@@ -1,8 +1,11 @@
 import * as React from 'react';
+
+import styled from '@emotion/styled';
+
+import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { InputIconPosition, InputSize } from '../InputBase';
-import { useIsInverse } from '../../inverse';
-import styled from '@emotion/styled';
 
 export enum LabelPosition {
   left = 'left',
@@ -22,7 +25,7 @@ export interface LabelProps
    * @default InputSize.medium
    */
   size?: InputSize;
-  theme?: any;
+  theme?: ThemeInterface;
   /**
    * @internal
    */
@@ -32,7 +35,7 @@ export interface LabelProps
 const StyledLabel = styled.label<{
   iconPosition: InputIconPosition;
   isInverse: boolean;
-  theme: any;
+  theme: ThemeInterface;
   size: InputSize;
   labelPosition: LabelPosition;
 }>`
@@ -40,7 +43,7 @@ const StyledLabel = styled.label<{
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
-  display: inline-block;
+  display: block;
   font-size: ${props =>
     props.size === InputSize.large
       ? props.theme.typeScale.size03.fontSize

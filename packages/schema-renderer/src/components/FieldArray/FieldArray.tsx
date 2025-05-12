@@ -1,12 +1,8 @@
 import * as React from 'react';
-import useFieldApi from '@data-driven-forms/react-form-renderer/use-field-api';
+
 import { FieldArray as FieldArrayBase } from '@data-driven-forms/react-form-renderer';
-import {
-  Button,
-  ButtonColor,
-  ButtonType,
-  Paragraph,
-} from 'react-magma-dom';
+import useFieldApi from '@data-driven-forms/react-form-renderer/use-field-api';
+import { Button, ButtonColor, ButtonType, Paragraph } from 'react-magma-dom';
 
 import { FieldArrayItem } from './FieldArrayItem';
 

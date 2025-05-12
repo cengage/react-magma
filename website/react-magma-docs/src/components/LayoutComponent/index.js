@@ -1,7 +1,9 @@
 import React from 'react';
-import Helmet from 'react-helmet';
+
 import styled from '@emotion/styled';
+import Helmet from 'react-helmet';
 import { magma, Container, Heading } from 'react-magma-dom';
+
 import { CONTENT_MAX_WIDTH } from '../PageContent';
 import { PANEL_WIDTH } from '../SlidingDrawer';
 

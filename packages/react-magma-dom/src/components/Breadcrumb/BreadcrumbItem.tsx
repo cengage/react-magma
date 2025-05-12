@@ -1,6 +1,8 @@
-import styled from '@emotion/styled';
 import * as React from 'react';
+
+import styled from '@emotion/styled';
 import { ChevronRightIcon } from 'react-magma-icons';
+
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Hyperlink } from '../Hyperlink';

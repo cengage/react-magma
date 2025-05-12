@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { ArrowDropDownIcon, ArrowDropUpIcon } from 'react-magma-icons';
+
 import {
   Button,
   ButtonColor,
@@ -8,11 +10,10 @@ import {
   ButtonVariant,
 } from '../Button';
 import { IconButton } from '../IconButton';
-import { ArrowDropDownIcon, ArrowDropUpIcon } from 'react-magma-icons';
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { I18nContext } from '../../i18n';
-import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
 import { ButtonGroupContext } from '../ButtonGroup';
 
 export interface DropdownSplitButtonProps extends ButtonStyles {
@@ -71,12 +72,12 @@ export const DropdownSplitButton = React.forwardRef<
         aria-hidden="true"
       />
     ) : (
-        <ArrowDropDownIcon
-          size={theme.iconSizes.medium}
-          testId="caretDown"
-          aria-hidden="true"
-        />
-      );
+      <ArrowDropDownIcon
+        size={theme.iconSizes.medium}
+        testId="caretDown"
+        aria-hidden="true"
+      />
+    );
 
   function handleClick(event: React.SyntheticEvent) {
     if (resolvedContext.isOpen) {

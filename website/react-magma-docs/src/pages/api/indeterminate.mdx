@@ -27,6 +27,7 @@ The `indeterminate` status cannot be changed by direct user action, it can only 
 
 ```tsx
 import React from 'react';
+
 import {
   Checkbox,
   FormGroup,
@@ -44,8 +45,8 @@ export function Example() {
   const status: IndeterminateCheckboxStatus = checkedItems.every(Boolean)
     ? IndeterminateCheckboxStatus.checked
     : checkedItems.some(Boolean)
-    ? IndeterminateCheckboxStatus.indeterminate
-    : IndeterminateCheckboxStatus.unchecked;
+      ? IndeterminateCheckboxStatus.indeterminate
+      : IndeterminateCheckboxStatus.unchecked;
 
   function handleUpdateIndeterminateChecked(
     event: React.ChangeEvent<HTMLInputElement>
@@ -89,6 +90,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import {
   IndeterminateCheckbox,
   IndeterminateCheckboxStatus,

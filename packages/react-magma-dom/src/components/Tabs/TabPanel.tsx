@@ -1,8 +1,10 @@
 import React from 'react';
-import { TabsContainerContext } from './TabsContainer';
-import { ThemeContext } from '../../theme/ThemeContext';
+
 import styled from '@emotion/styled';
+
+import { TabsContainerContext } from './TabsContainer';
 import { ThemeInterface } from '../../theme/magma';
+import { ThemeContext } from '../../theme/ThemeContext';
 
 const StyledTabPanel = styled.div<{
   isInverse?: boolean;

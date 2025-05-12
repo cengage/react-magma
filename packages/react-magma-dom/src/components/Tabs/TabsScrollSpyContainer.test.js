@@ -1,9 +1,12 @@
 import React from 'react';
+
+import { render, fireEvent, getByAltText } from '@testing-library/react';
+import { AndroidIcon } from 'react-magma-icons';
+
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
-import { render, fireEvent, getByAltText } from '@testing-library/react';
+
 import { TabScrollSpyPanel, TabsScrollSpyContainer } from '.';
-import { AndroidIcon } from 'react-magma-icons';
 
 const TEXT = 'Test Text';
 const testIdContainer = 'container';
@@ -22,9 +25,9 @@ describe('TabsScrollSpyContainer', () => {
   it('Should change the active Tab on click', () => {
     const { getByTestId } = render(
       <TabsScrollSpyContainer>
-        <TabScrollSpyPanel tabLabel="first"></TabScrollSpyPanel>
-        <TabScrollSpyPanel tabLabel="second"></TabScrollSpyPanel>
-        <TabScrollSpyPanel tabLabel="third"></TabScrollSpyPanel>
+        <TabScrollSpyPanel tabLabel="first" />
+        <TabScrollSpyPanel tabLabel="second" />
+        <TabScrollSpyPanel tabLabel="third" />
       </TabsScrollSpyContainer>
     );
 
@@ -98,7 +101,7 @@ describe('TabsScrollSpyContainer', () => {
 
 it('Tab Panels are compliant with accessibility', () => {
   const { container } = render(
-    <TabsScrollSpyContainer aria-label="TabsScrollSpyContainer"></TabsScrollSpyContainer>
+    <TabsScrollSpyContainer aria-label="TabsScrollSpyContainer" />
   );
   return axe(container.innerHTML).then(result => {
     return expect(result).toHaveNoViolations();

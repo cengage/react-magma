@@ -17,6 +17,7 @@ props:
 
 ```tsx
 import React from 'react';
+
 import { TimePicker } from 'react-magma-dom';
 
 export function Example() {
@@ -30,6 +31,7 @@ There are multiple formats you can send in through the `value` prop. You can do 
 
 ```tsx
 import React from 'react';
+
 import { TimePicker } from 'react-magma-dom';
 
 export function Example() {
@@ -43,6 +45,7 @@ The `minutesStep` prop can be used to set the stepping interval when using the a
 
 ```tsx
 import React from 'react';
+
 import { TimePicker } from 'react-magma-dom';
 
 export function Example() {
@@ -57,6 +60,7 @@ If an error message is present, it will replace the helper text. Can be a node o
 
 ```tsx
 import React from 'react';
+
 import { TimePicker } from 'react-magma-dom';
 
 export function Example() {
@@ -70,6 +74,7 @@ The `helperMessage` appears underneath the input field. It will not appear if an
 
 ```tsx
 import React from 'react';
+
 import { TimePicker } from 'react-magma-dom';
 
 export function Example() {
@@ -81,6 +86,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Card, CardBody, TimePicker } from 'react-magma-dom';
 
 export function Example() {
@@ -98,6 +104,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Card, CardBody, Paragraph, TimePicker } from 'react-magma-dom';
 
 export function Example() {
@@ -129,6 +136,7 @@ The `value` and `onChange` props can be used for clear value.
 
 ```tsx
 import React from 'react';
+
 import { Button, TimePicker } from 'react-magma-dom';
 
 export function Example() {
@@ -158,6 +166,7 @@ The `containerStyle`, `inputStyle`, `labelStyle` and `messageStyle` props can be
 
 ```tsx
 import React from 'react';
+
 import { TimePicker } from 'react-magma-dom';
 
 export function Example() {
@@ -180,8 +189,9 @@ The `TimePicker` component supports internationalization through the `I18nContex
 
 ```tsx
 import React from 'react';
-import { I18nContext, defaultI18n, TimePicker } from 'react-magma-dom';
+
 import { zhCN } from 'date-fns/locale';
+import { I18nContext, defaultI18n, TimePicker } from 'react-magma-dom';
 
 export function Example() {
   return (

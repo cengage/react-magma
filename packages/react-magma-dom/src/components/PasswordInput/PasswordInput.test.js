@@ -1,10 +1,13 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { PasswordInput } from '.';
+
 import { act, render, fireEvent } from '@testing-library/react';
-import { magma } from '../../theme/magma';
+
+import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+import { magma } from '../../theme/magma';
+
+import { PasswordInput } from '.';
 
 describe('PasswordInput', () => {
   it('should find element by testId', () => {
@@ -183,7 +186,7 @@ describe('sizes', () => {
       magma.typeScale.size02.letterSpacing
     );
     expect(input).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
-    expect(input).toHaveStyleRule('height', magma.spaceScale.spacing09);
+    expect(input).toHaveStyleRule('height', '100%');
   });
 
   it('should render a large input with correct styles', () => {
@@ -198,7 +201,7 @@ describe('sizes', () => {
     expect(label).toHaveStyleRule('font-size', magma.typeScale.size03.fontSize);
 
     expect(input).toHaveStyleRule('font-size', magma.typeScale.size04.fontSize);
-    expect(input).toHaveStyleRule('height', magma.spaceScale.spacing11);
+    expect(input).toHaveStyleRule('height', '100%');
     expect(input).toHaveStyleRule('padding', `${magma.spaceScale.spacing04}`);
   });
 

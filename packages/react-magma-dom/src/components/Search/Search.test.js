@@ -1,9 +1,12 @@
-import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
-import { Search } from '.';
+
+import { fireEvent, render } from '@testing-library/react';
+
 import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+
+import { Search } from '.';
 
 const onSearchSpy = jest.fn();
 
@@ -45,14 +48,14 @@ describe('Search', () => {
   });
 
   it('should fire the onSearch event when the icon is clicked', () => {
-    window.getComputedStyle = (elt) => {
+    window.getComputedStyle = elt => {
       return {
-        getPropertyValue: (prop) => {
+        getPropertyValue: prop => {
           return '';
         },
       };
     };
-  
+
     const labelText = 'LABEL TEXT';
     const targetValue = 'VALUE';
     const { container, getByLabelText } = render(
@@ -108,7 +111,7 @@ describe('Search', () => {
     const onClear = jest.fn();
     const labelText = 'Search input';
     const value = 'Test Value';
-    
+
     const { getByTestId, getByLabelText } = render(
       <Search
         labelText={labelText}
@@ -118,8 +121,8 @@ describe('Search', () => {
       />
     );
 
-    const searchButton = getByLabelText('Search', { selector: 'button' })
-    
+    const searchButton = getByLabelText('Search', { selector: 'button' });
+
     fireEvent.click(searchButton);
     expect(onSearchSpy).toHaveBeenCalledWith(undefined);
 

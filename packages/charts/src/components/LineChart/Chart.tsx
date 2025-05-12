@@ -1,9 +1,6 @@
 import * as React from 'react';
-import { css } from '@emotion/react';
-import { KeyboardIcon } from 'react-magma-icons';
 
-import { LineChart, LineChartProps } from './LineChart';
-import { ChartDataTable } from './ChartDataTable';
+import { css } from '@emotion/react';
 import {
   Announce,
   ButtonVariant,
@@ -22,6 +19,10 @@ import {
   useDescendants,
   styled,
 } from 'react-magma-dom';
+import { KeyboardIcon } from 'react-magma-icons';
+
+import { ChartDataTable } from './ChartDataTable';
+import { LineChart, LineChartProps } from './LineChart';
 
 interface BaseChartProps {
   /**
@@ -119,7 +120,11 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
     setIsKeyboardInstructionsOpen(prevOpen => !prevOpen);
   }
 
-  function handleKeyboardInstructionsButtonKeydown(event: { preventDefault?: any; key?: any; shiftKey?: any; }) {
+  function handleKeyboardInstructionsButtonKeydown(event: {
+    preventDefault?: any;
+    key?: any;
+    shiftKey?: any;
+  }) {
     const { key, shiftKey } = event;
 
     switch (key) {

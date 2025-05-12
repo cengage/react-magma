@@ -1,5 +1,20 @@
 import React from 'react';
+
+import { Story, Meta } from '@storybook/react/types-6-0';
+
+import { magma } from '../../theme/magma';
+import { Announce } from '../Announce';
 import { Card } from '../Card';
+import { Combobox } from '../Combobox';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from '../Dropdown';
+import { Select } from '../Select';
+import { VisuallyHidden } from '../VisuallyHidden';
+
 import {
   Table,
   TableCell,
@@ -14,19 +29,6 @@ import {
   TableSortDirection,
   TableCellAlign,
 } from './';
-import { magma } from '../../theme/magma';
-import { Announce } from '../Announce';
-import { VisuallyHidden } from '../VisuallyHidden';
-import {
-  Dropdown,
-  DropdownButton,
-  DropdownContent,
-  DropdownMenuItem,
-} from '../Dropdown';
-import { Select } from '../Select';
-import { Combobox } from '../Combobox';
-
-import { Story, Meta } from '@storybook/react/types-6-0';
 
 const rows = [
   [
@@ -658,7 +660,7 @@ export const Sortable = args => {
   });
 
   const sortedItems = React.useMemo(() => {
-    let sortableItems = [...products];
+    const sortableItems = [...products];
     if (sortConfig !== null) {
       sortableItems.sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {

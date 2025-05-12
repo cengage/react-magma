@@ -1,5 +1,11 @@
 import * as React from 'react';
-import { StyledButton } from '../StyledButton';
+
+import styled from '@emotion/styled';
+import { IconProps } from 'react-magma-icons';
+
+import { useIsInverse } from '../../inverse';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { omit, Omit, resolveProps, XOR } from '../../utils';
 import {
   ButtonProps,
   ButtonColor,
@@ -8,12 +14,8 @@ import {
   ButtonVariant,
   ButtonTextTransform,
 } from '../Button';
-import { IconProps } from 'react-magma-icons';
-import { omit, Omit, resolveProps, XOR } from '../../utils';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { useIsInverse } from '../../inverse';
 import { ButtonGroupContext } from '../ButtonGroup';
-import styled from '@emotion/styled';
+import { StyledButton } from '../StyledButton';
 
 export enum ButtonIconPosition {
   left = 'left',

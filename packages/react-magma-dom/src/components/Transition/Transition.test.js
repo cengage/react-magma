@@ -1,7 +1,10 @@
 import React from 'react';
+
 import { screen, render, fireEvent } from '@testing-library/react';
+
+import { magma } from '../../theme/magma';
+
 import { Transition } from '.';
-import { magma } from '../../theme/magma'
 
 const TEXT = 'test test test';
 const TEST_ID = 'transition';
@@ -45,10 +48,10 @@ describe('Transition - Collapse', () => {
       </Transition>
     );
 
-      fireEvent.transitionEnd(getByTestId(TEST_ID));
-      expect(getByTestId(TEST_ID)).toHaveStyle(
-        `height:${magma.transitions.collapse.motion.exit.height}`
-      );
+    fireEvent.transitionEnd(getByTestId(TEST_ID));
+    expect(getByTestId(TEST_ID)).toHaveStyle(
+      `height:${magma.transitions.collapse.motion.exit.height}`
+    );
   });
 
   it('should render enter variant on isOpen', () => {
@@ -57,7 +60,7 @@ describe('Transition - Collapse', () => {
         {TEXT}
       </Transition>
     );
-    
+
     fireEvent.animationEnd(getByTestId(TEST_ID));
     expect(getByTestId(TEST_ID)).toHaveStyle(
       `height:${magma.transitions.collapse.motion.enter.height}`
@@ -94,7 +97,6 @@ describe('Transition - Fade', () => {
 });
 
 describe('combined', () => {
-
   it('should merge variants for exit variant', () => {
     const { getByTestId } = render(
       <Transition testId={TEST_ID} nudgeBottom fade>
@@ -126,4 +128,4 @@ describe('combined', () => {
       `opacity:${magma.transitions.fade.motion.enter.opacity}`
     );
   });
-})
+});

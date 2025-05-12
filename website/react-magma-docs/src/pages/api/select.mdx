@@ -24,6 +24,7 @@ If you are using a custom items format see the [Custom Items example](/api/selec
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -79,6 +80,7 @@ Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -118,6 +120,7 @@ Left-aligned lables are not recommended for use in standard forms; instead they 
 
 ```tsx
 import React from 'react';
+
 import { Select, LabelPosition } from 'react-magma-dom';
 
 export function Example() {
@@ -139,6 +142,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -165,6 +169,7 @@ Example:
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -235,6 +240,7 @@ using the `defaultSelectedItem` prop.
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -275,6 +281,7 @@ If an error message is present, it will replace the helper text. Can be a node o
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -301,6 +308,7 @@ The `helperMessage` appears underneath the select field. It will not appear if a
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -329,6 +337,7 @@ relied upon to take the place of the label text.
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -351,6 +360,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -432,6 +442,7 @@ If no label is required, use `isLabelVisuallyHidden` and the same inline layout 
 
 ```tsx
 import React from 'react';
+
 import {
   Select,
   LabelPosition,
@@ -502,6 +513,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Select, Card, CardBody } from 'react-magma-dom';
 
 export function Example() {
@@ -552,6 +564,7 @@ includes the changes made to the corresponding state from each action.
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -620,6 +633,7 @@ to change the state. You can see the full list of the types in the [`stateChange
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -691,6 +705,7 @@ you will have to use the handlers mentioned above in the [State Changes](/api/se
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -756,6 +771,7 @@ For both the `getA11yStatusMessage` and `getA11ySelectionMessage` functions ther
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -793,6 +809,7 @@ Full example of <Link to="/api/internationalization">internationalization overri
 
 ```tsx
 import React from 'react';
+
 import { Select, I18nContext, defaultI18n } from 'react-magma-dom';
 
 export function Example() {
@@ -843,6 +860,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -890,6 +908,7 @@ The items list menu has a default max height that can be changed in the theme or
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -923,6 +942,7 @@ custom `type`](#custom_items_typescript).
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -969,6 +989,7 @@ element with the shape of the `items` you are passing in.
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -1025,6 +1046,7 @@ Please use discretion when adding custom styles.
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -1079,8 +1101,9 @@ we use internally.
 
 ```tsx
 import React from 'react';
-import { Select } from 'react-magma-dom';
+
 import styled from '@emotion/styled';
+import { Select } from 'react-magma-dom';
 
 export function Example() {
   const CustomStyledItem = styled.li(props => ({
@@ -1168,6 +1191,7 @@ However, these can be overridden by providing custom components to the `componen
 
 ```tsx
 import React from 'react';
+
 import { Select } from 'react-magma-dom';
 
 export function Example() {
@@ -1209,9 +1233,11 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
   </inlineCode>
   ). However, in the production environment the types equate to numbers
   <br />
-  (eg: <inlineCode className="inverse">
+  (eg:{' '}
+  <inlineCode className="inverse">
     ComboboxStateChangeTypes.InputKeyDownArrowDown = 0
-  </inlineCode>).
+  </inlineCode>
+  ).
 </Alert>
 
 ### Select

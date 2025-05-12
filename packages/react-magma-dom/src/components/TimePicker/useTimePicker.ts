@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { useGenerateId, Omit } from '../../utils';
-import { FormFieldContainerBaseProps } from '../FormFieldContainer';
 
 import { enUS } from 'date-fns/locale';
+
 import { I18nContext } from '../../i18n';
+import { useGenerateId, Omit } from '../../utils';
+import { FormFieldContainerBaseProps } from '../FormFieldContainer';
 
 export interface UseTimePickerProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'> {
@@ -84,8 +85,8 @@ export function useTimePicker(props: UseTimePickerProps) {
       Number(timeHour) > 12
         ? pm
         : timeMinuteAndAmPm.length > 2
-        ? timeMinuteAndAmPm.split(' ')[1].toUpperCase()
-        : am;
+          ? timeMinuteAndAmPm.split(' ')[1].toUpperCase()
+          : am;
 
     setHour(calculateHour(Number(timeHour)));
     setMinute(timeMinute);

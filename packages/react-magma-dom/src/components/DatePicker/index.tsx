@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { CalendarContext } from './CalendarContext';
-import { CalendarMonth } from './CalendarMonth';
-import { Announce } from '../Announce';
-import { Input } from '../Input';
-import { InputType } from '../InputBase';
+
+import styled from '@emotion/styled';
+import {
+  AlignedPlacement,
+  autoUpdate,
+  flip,
+  useFloating,
+} from '@floating-ui/react-dom';
 import {
   addDays,
   endOfDay,
@@ -16,8 +19,17 @@ import {
   setHours,
   startOfDay,
 } from 'date-fns';
-import { ThemeContext } from '../../theme/ThemeContext';
+import { transparentize } from 'polished';
 import { EventIcon } from 'react-magma-icons';
+
+import { CalendarContext } from './CalendarContext';
+import { CalendarMonth } from './CalendarMonth';
+import { I18nContext } from '../../i18n';
+import { InverseContext, useIsInverse } from '../../inverse';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { Announce } from '../Announce';
+import { Input } from '../Input';
+import { InputType } from '../InputBase';
 import { VisuallyHidden } from '../VisuallyHidden';
 import {
   getCalendarMonthWeeks,
@@ -29,16 +41,6 @@ import {
   inDateRange,
 } from './utils';
 import { omit, Omit, useForkedRef, useGenerateId } from '../../utils';
-import { I18nContext } from '../../i18n';
-import { InverseContext, useIsInverse } from '../../inverse';
-import { transparentize } from 'polished';
-import styled from '@emotion/styled';
-import {
-  AlignedPlacement,
-  autoUpdate,
-  flip,
-  useFloating,
-} from '@floating-ui/react-dom';
 
 export interface DatePickerProps
   extends Omit<

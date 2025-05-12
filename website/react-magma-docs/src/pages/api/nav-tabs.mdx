@@ -24,7 +24,9 @@ The `to` prop is used to set the link's `href`.
 
 ```tsx
 import React from 'react';
+
 import { NavTab, NavTabs } from 'react-magma-dom';
+
 export function Example() {
   return (
     <NavTabs aria-label="Nav Tabs">
@@ -45,7 +47,9 @@ This prop is specified on the `NavTabs` component.
 
 ```tsx
 import React from 'react';
+
 import { NavTab, NavTabs, TabsOrientation } from 'react-magma-dom';
+
 export function Example() {
   return (
     <NavTabs
@@ -68,7 +72,9 @@ In this case, the children should be placed inside the `component` prop, instead
 
 ```tsx
 import React from 'react';
+
 import { NavTab, NavTabs } from 'react-magma-dom';
+
 export function Example() {
   // We support Link components from libraries such as react-router/reach-router/gatsby that use the `to` prop in place of `href`
   const Link = ({ to, children, ...rest }) => (
@@ -97,7 +103,9 @@ The `borderPosition` prop is specified on the `Tabs` component and will apply to
 
 ```tsx
 import React from 'react';
+
 import { NavTab, NavTabs, TabsBorderPosition } from 'react-magma-dom';
+
 export function Example() {
   return (
     <NavTabs
@@ -123,12 +131,14 @@ The `borderPosition` prop is specified on the `NavTabs` component and will apply
 
 ```tsx
 import React from 'react';
+
 import {
   NavTab,
   NavTabs,
   TabsBorderPosition,
   TabsOrientation,
 } from 'react-magma-dom';
+
 export function Example() {
   return (
     <NavTabs
@@ -151,7 +161,9 @@ The `alignment` prop determines whether the nav tabs are aligned `left`, `right`
 
 ```tsx
 import React from 'react';
+
 import { NavTab, NavTabs, TabsAlignment } from 'react-magma-dom';
+
 export function Example() {
   return (
     <NavTabs
@@ -169,7 +181,9 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { NavTab, NavTabs, TabsAlignment } from 'react-magma-dom';
+
 export function Example() {
   return (
     <NavTabs
@@ -194,6 +208,7 @@ This sets the CSS `text-transform` property.
 
 ```tsx
 import React from 'react';
+
 import { NavTabs, NavTab, TabsTextTransform } from 'react-magma-dom';
 
 export function Example() {
@@ -225,6 +240,7 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { NavTabs, NavTab, TabsTextTransform } from 'react-magma-dom';
 
 export function Example() {
@@ -252,7 +268,9 @@ Full width tabs work best when inside a smaller container.
 
 ```tsx
 import React from 'react';
+
 import { NavTab, NavTabs } from 'react-magma-dom';
+
 export function Example() {
   return (
     <NavTabs aria-label="Full-Width Nav Tabs" isFullWidth>
@@ -269,7 +287,9 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { NavTab, NavTabs, magma } from 'react-magma-dom';
+
 export function Example() {
   return (
     <NavTabs
@@ -293,7 +313,9 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { NavTab, NavTabs, TabsOrientation, magma } from 'react-magma-dom';
+
 export function Example() {
   return (
     <div style={{ display: 'flex', height: '200px', overflow: 'hidden' }}>
@@ -324,8 +346,10 @@ The `icon` prop can be used to display an icon inside the individual `NavTab` co
 
 ```tsx
 import React from 'react';
+
 import { NavTab, NavTabs } from 'react-magma-dom';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
+
 export function Example() {
   return (
     <NavTabs aria-label="Icon Only Nav Tabs">
@@ -344,8 +368,10 @@ By default, the icons appear above the children.
 
 ```tsx
 import React from 'react';
+
 import { NavTab, NavTabs } from 'react-magma-dom';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
+
 export function Example() {
   return (
     <NavTabs aria-label="Icon with Text Nav Tabs" isFullWidth>
@@ -367,8 +393,10 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { NavTab, NavTabs, TabsOrientation } from 'react-magma-dom';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
+
 export function Example() {
   return (
     <NavTabs
@@ -397,8 +425,10 @@ This prop is specified on the `NavTabs` component.
 
 ```tsx
 import React from 'react';
+
 import { NavTab, NavTabs, TabsIconPosition } from 'react-magma-dom';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
+
 export function Example() {
   return (
     <>
@@ -448,7 +478,9 @@ The `isInverse` property is an optional boolean, that reverses the colors so tha
 
 ```tsx
 import React from 'react';
+
 import { Card, CardBody, NavTab, NavTabs } from 'react-magma-dom';
+
 export function Example() {
   return (
     <Card isInverse>
@@ -470,7 +502,9 @@ export function Example() {
 
 ```tsx
 import React from 'react';
+
 import { NavTab, NavTabs, magma } from 'react-magma-dom';
+
 export function Example() {
   return (
     <NavTabs

@@ -58,7 +58,10 @@
   color: #454545;
   cursor: pointer;
   flex-shrink: 0;
-  font-family: Work Sans, Helvetica, sans-serif;
+  font-family:
+    Work Sans,
+    Helvetica,
+    sans-serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
@@ -69,7 +72,10 @@
   text-decoration: none;
   text-transform: uppercase;
   touch-action: manipulation;
-  transition: background 0.35s, border-color 0.35s, box-shadow 0.35s,
+  transition:
+    background 0.35s,
+    border-color 0.35s,
+    box-shadow 0.35s,
     color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
@@ -92,7 +98,9 @@
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%) scale(1);
-  transition: opacity 1s, transform 0.5s;
+  transition:
+    opacity 1s,
+    transform 0.5s;
   width: 28px;
 }
 

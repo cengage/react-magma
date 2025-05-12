@@ -1,4 +1,12 @@
 import React from 'react';
+
+import { Story, Meta } from '@storybook/react/types-6-0';
+
+import { magma } from '../../theme/magma';
+import { ButtonGroup } from '../ButtonGroup';
+import { Card, CardBody } from '../Card';
+import { VisuallyHidden } from '../VisuallyHidden';
+
 import {
   Button,
   ButtonProps,
@@ -9,11 +17,6 @@ import {
   ButtonType,
   ButtonVariant,
 } from '.';
-import { Card, CardBody } from '../Card';
-import { magma } from '../../theme/magma';
-import { Story, Meta } from '@storybook/react/types-6-0';
-import { ButtonGroup } from '../ButtonGroup';
-import { VisuallyHidden } from '../VisuallyHidden';
 
 const Template: Story<ButtonProps> = args => (
   <>

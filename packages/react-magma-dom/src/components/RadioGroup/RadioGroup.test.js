@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { axe } from '../../../axe-helper';
-import { RadioGroup } from '.';
-import { Radio } from '../Radio';
+
 import { render, fireEvent, waitFor } from '@testing-library/react';
+
+import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import { Radio } from '../Radio';
+
+import { RadioGroup } from '.';
 
 describe('Radio Group', () => {
   afterEach(() => {
@@ -12,7 +15,7 @@ describe('Radio Group', () => {
 
   it('should assign a data-testid attribute with a testId prop', () => {
     const testId = 'test-id';
-    const { getByTestId } = render(<RadioGroup testId={testId}></RadioGroup>);
+    const { getByTestId } = render(<RadioGroup testId={testId} />);
 
     expect(getByTestId(testId)).toBeInTheDocument();
   });

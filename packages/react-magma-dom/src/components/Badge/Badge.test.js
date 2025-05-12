@@ -1,9 +1,12 @@
 import React from 'react';
-import { axe } from '../../../axe-helper';
-import { Badge } from '.';
+
 import { render } from '@testing-library/react';
-import { magma } from '../../theme/magma';
 import { darken, lighten } from 'polished';
+
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+
+import { Badge } from '.';
 
 const TEXT = 'Test Text';
 

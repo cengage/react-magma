@@ -1,16 +1,18 @@
 import React from 'react';
-import { IconAlignment, List, olListType, ulListType } from './List';
-import { ListItem } from './ListItem';
+
+import { Meta } from '@storybook/react/types-6-0';
 import {
   DeleteIcon,
   DraftsIcon,
   FolderOpenIcon,
   InboxIcon,
 } from 'react-magma-icons';
-import { TypographyVisualStyle } from '../Typography';
+
+import { IconAlignment, List, olListType, ulListType } from './List';
+import { ListItem } from './ListItem';
 import { magma } from '../..';
 import { Card, CardBody } from '../Card';
-import { Meta } from '@storybook/react/types-6-0';
+import { TypographyVisualStyle } from '../Typography';
 
 export default {
   component: List,

@@ -1,3 +1,4 @@
+import '@emotion/react';
 import { ThemeInterface } from './magma';
 
 declare module '@emotion/react' {

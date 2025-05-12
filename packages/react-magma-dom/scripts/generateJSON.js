@@ -1,8 +1,8 @@
+const fs = require('fs');
+const mkdirp = require('mkdirp');
+const { type } = require('os');
 const TypeDoc = require('typedoc');
 const typescript = require('typescript');
-const fs = require('fs');
-const { type } = require('os');
-const mkdirp = require('mkdirp');
 
 mkdirp('dist');
 

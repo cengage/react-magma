@@ -1,6 +1,8 @@
 import * as React from 'react';
+
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+
 import {
   buildActiveBackground,
   buildActiveColor,
@@ -16,10 +18,10 @@ import {
   buildFocusBackground,
   buildFocusColor,
 } from './styles';
+import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonType, ButtonProps, ButtonSize, ButtonVariant } from '../Button';
 import { Spinner } from '../Spinner';
-import { I18nContext } from '../../i18n';
 import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface StyledButtonProps extends ButtonProps {
@@ -55,15 +57,18 @@ export const buttonStyles = props => css`
   text-decoration: none;
   text-transform: ${props.textTransform || 'uppercase'};
   touch-action: manipulation;
-  transition: background 0.35s, border-color 0.35s, box-shadow 0.35s,
+  transition:
+    background 0.35s,
+    border-color 0.35s,
+    box-shadow 0.35s,
     color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
   width: ${props.iconOnly
     ? buildButtonSize(props)
     : props.isFullWidth
-    ? '100%'
-    : 'auto'};
+      ? '100%'
+      : 'auto'};
 
   &:not(:disabled) {
     &:focus {
@@ -115,7 +120,10 @@ const SpinnerWrapper = styled.span`
   display: flex;
 `;
 
-const ChildrenWrapper = styled.span<{ isLoading: boolean; testId?: string }>`
+export const ChildrenWrapper = styled.span<{
+  isLoading: boolean;
+  testId?: string;
+}>`
   visibility: ${props => (props.isLoading ? 'hidden' : 'visible')};
   display: inline-flex;
   align-items: center;
@@ -146,8 +154,8 @@ export const StyledButton = React.forwardRef<
     size === ButtonSize.small
       ? theme.iconSizes.xSmall
       : size === ButtonSize.large
-      ? theme.iconSizes.large
-      : theme.iconSizes.medium;
+        ? theme.iconSizes.large
+        : theme.iconSizes.medium;
 
   return (
     <BaseStyledButton
