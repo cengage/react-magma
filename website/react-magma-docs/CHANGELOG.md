@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.3-next.1
+
+### Patch Changes
+
+- e0d82ef57: chore: Update README and CODEOWNERS
+
 ## 5.1.3-next.0
 
 ### Patch Changes
