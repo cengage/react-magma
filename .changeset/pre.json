@@ -8,9 +8,11 @@
     "@react-magma/schema-renderer": "11.0.0",
     "@cengage-patterns/header": "12.0.1",
     "react-magma-docs": "5.1.2",
-    "react-magma-landing": "1.1.6"
+    "react-magma-landing": "1.1.6",
+    "playwright": "1.0.0"
   },
   "changesets": [
+    "chore-Playwright-initial-configuration",
     "manually-sync-4.9.0",
     "updateReadMe"
   ]

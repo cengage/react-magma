@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.3-next.2
+
+### Patch Changes
+
+- dd32dbc44: chore: Add Playwright initial configuration and some example tests.
+
 ## 5.1.3-next.1
 
 ### Patch Changes
