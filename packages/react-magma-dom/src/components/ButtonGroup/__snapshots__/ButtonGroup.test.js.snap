@@ -971,6 +971,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-13 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -1265,6 +1266,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-13 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -1717,6 +1719,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-13 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -2018,6 +2021,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-13 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -2509,6 +2513,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-13 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -2849,6 +2854,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-13 {
+  padding-left: 0;
   padding-right: 8px;
 }
 

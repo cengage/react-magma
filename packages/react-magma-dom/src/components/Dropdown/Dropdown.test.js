@@ -9,9 +9,15 @@ import {
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
-import { AsteriskIcon, RestaurantMenuIcon } from 'react-magma-icons';
+import {
+  AsteriskIcon,
+  ReorderIcon,
+  RestaurantMenuIcon,
+  SettingsIcon,
+} from 'react-magma-icons';
 
 import { magma } from '../../theme/magma';
+import { ButtonIconPosition } from '../IconButton';
 import { Modal } from '../Modal';
 
 import {
@@ -1452,6 +1458,57 @@ describe('Dropdown', () => {
           magma.colors.neutral100
         );
       });
+    });
+  });
+
+  describe('leading icon', () => {
+    it('should be shown when icon position is right', () => {
+      const { container, getByText } = render(
+        <Dropdown>
+          <DropdownButton
+            icon={<ReorderIcon />}
+            iconPosition={ButtonIconPosition.right}
+            leadingIcon={<SettingsIcon />}
+          >
+            Toggle me
+          </DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {}}>
+              Menu item number two
+            </DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      expect(getByText('Toggle me')).toHaveStyleRule(
+        'padding-left',
+        magma.spaceScale.spacing03
+      );
+
+      expect(container.querySelectorAll('svg').length).toBe(2);
+    });
+
+    it('should not be shown when icon position is left', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownButton
+            icon={<ReorderIcon />}
+            iconPosition={ButtonIconPosition.left}
+            leadingIcon={<SettingsIcon />}
+          >
+            Toggle me
+          </DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {}}>
+              Menu item number two
+            </DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      expect(container.querySelectorAll('svg').length).toBe(1);
     });
   });
 });

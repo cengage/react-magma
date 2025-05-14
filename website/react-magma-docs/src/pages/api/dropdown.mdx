@@ -713,7 +713,7 @@ export function Example() {
 
 ## Custom Icon Button
 
-Similarly, the `DropdownButton` can be customized by using any of the props that the <Link to="/api/icon-button">Icon Button</Link> component accepts, to create a button with an icon.
+Similarly, the `DropdownButton` can be customized by using any of the props that the <Link to="/api/icon-button">Icon Button</Link> component accepts to customize the dropdown open arrow icon.
 
 ```tsx
 import React from 'react';
@@ -789,6 +789,80 @@ export function Example() {
         </Dropdown>
       </ButtonGroup>
     </>
+  );
+}
+```
+
+## Leading Icon
+
+The `DropdownButton` can be customized using the `leadingIcon` prop, which allows an icon to be placed to the left of the button text.
+
+Note: The `leadingIcon` prop will be ignored when `iconPosition` is set
+to `ButtonIconPosition.left`, as it is only intended for using on the left side
+of the button.
+
+```tsx
+import React from 'react';
+
+import {
+  ButtonGroupOrientation,
+  ButtonGroupAlignment,
+  ButtonIconPosition,
+  ButtonSize,
+  ButtonGroup,
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from 'react-magma-dom';
+import { SettingsIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <ButtonGroup
+      orientation={ButtonGroupOrientation.vertical}
+      alignment={ButtonGroupAlignment.left}
+    >
+      <Dropdown>
+        <DropdownButton
+          size={ButtonSize.small}
+          leadingIcon={<SettingsIcon />}
+          iconPosition={ButtonIconPosition.right}
+        >
+          Small leading icon
+        </DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown>
+        <DropdownButton
+          size={ButtonSize.medium}
+          leadingIcon={<SettingsIcon />}
+          iconPosition={ButtonIconPosition.right}
+        >
+          Medium leading icon
+        </DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown>
+        <DropdownButton
+          size={ButtonSize.large}
+          leadingIcon={<SettingsIcon />}
+          iconPosition={ButtonIconPosition.right}
+        >
+          Large leading icon
+        </DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </ButtonGroup>
   );
 }
 ```
@@ -986,7 +1060,7 @@ Examples may include an id, a title, event handlers or various aria attributes. 
 
 <ButtonProps />
 
-The DropdownButton can also accept an `icon` property, as in the <Link to="/api/icon-button">Icon Button</Link> component.
+The DropdownButton can also accept `icon` and `leadingIcon` properties, as in the <Link to="/api/icon-button">Icon Button</Link> component.
 
 <IconButtonProps />
 
