@@ -21,7 +21,6 @@
     "build:storybook": "build-storybook",
     "changeset": "changeset add",
     "check:pkgs": "manypkg check",
-    "check:spelling": "cspell --config=.cspell.json packages/**/*.{md,ts,js,mdx,tsx,jsx}",
     "clean": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes && rimraf node_modules",
     "clean:docs": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes --scope react-magma-docs ",
     "copy:readme": "copy README.md packages/react-magma-dom",
@@ -49,11 +48,6 @@
     "version:exit": "changeset pre exit",
     "version:pkgs": "changeset version",
     "version:prerelease": "changeset pre enter next"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   },
   "dependencies": {
     "@babel/cli": "7.27.2",
@@ -95,19 +89,13 @@
     "@types/jest": "26.0.24",
     "@types/lodash": "4.17.16",
     "@types/node": "12.20.55",
-    "@types/react": "17.0.85",
+    "@types/react": "17.0.83",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
     "autoprefixer": "10.4.21",
-    "conventional-changelog-cli": "2.2.2",
-    "conventional-changelog-conventionalcommits": "4.6.3",
     "copy": "0.3.2",
     "core-js": "3.42.0",
-    "cspell": "4.2.8",
-    "cspell-dict-es-es": "1.1.2",
-    "cspell-dict-lorem-ipsum": "1.1.2",
-    "cz-conventional-changelog": "3.3.0",
     "eslint": "7.32.0",
     "eslint-config-cengage": "2.1.4",
     "eslint-config-prettier": "7.2.0",
@@ -147,7 +135,7 @@
     "webpack-filter-warnings-plugin": "1.2.1"
   },
   "engines": {
-    "node": ">=18.20.4",
-    "npm": ">=v10.7.0"
+    "node": ">=20.19.2",
+    "npm": ">=10.8.2"
   }
 }
