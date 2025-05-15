@@ -2651,6 +2651,12 @@ export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
           </TreeItem>
         </TreeItem>
       </TreeView>
+      <Button
+        style={{ margin: '20px', width: '300px' }}
+        onClick={() => console.log('Click button!')}
+      >
+        Outside Treeview Button
+      </Button>
     </Card>
   );
 };
