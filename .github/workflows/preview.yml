@@ -6,6 +6,7 @@ on:
       - main
       - 'dev-patch'
       - 'patch-*'
+      - 'chore/react-18-upgrade'
     types: [opened, synchronize]
 jobs:
   build:

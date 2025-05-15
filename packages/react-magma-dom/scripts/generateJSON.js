@@ -1,5 +1,5 @@
 const fs = require('fs');
-const mkdirp = require('mkdirp');
+const { mkdirp } = require('mkdirp');
 const { type } = require('os');
 const TypeDoc = require('typedoc');
 const typescript = require('typescript');
