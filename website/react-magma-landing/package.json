@@ -10,10 +10,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "axios": "^1.9.0",
-    "copy": "^0.3.2",
-    "ejs": "^3.1.10",
-    "mkdirp": "^3.0.1",
-    "semver": "^7.7.2"
+    "axios": "1.9.0",
+    "copy": "0.3.2",
+    "ejs": "3.1.10",
+    "mkdirp": "3.0.1",
+    "semver": "7.7.2"
   }
 }

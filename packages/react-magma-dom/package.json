@@ -32,32 +32,32 @@
     "test-watch": "tsdx test --watch"
   },
   "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@floating-ui/react": "^0.26.28",
-    "@floating-ui/react-dom": "^2.1.2",
-    "csstype": "^3.1.3",
-    "polished": "^3.7.2"
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.0",
+    "@floating-ui/react": "0.26.28",
+    "@floating-ui/react-dom": "2.1.2",
+    "csstype": "3.1.3",
+    "polished": "3.7.2"
   },
   "devDependencies": {
-    "date-fns": "^2.30.0",
-    "downshift": "^5.4.7",
-    "framer-motion": "^4.1.17",
-    "mkdirp": "^3.0.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "date-fns": "2.30.0",
+    "downshift": "5.4.7",
+    "framer-motion": "4.1.17",
+    "mkdirp": "3.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-magma-icons": "^3.1.0",
     "uuid": "^11.1.0"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "date-fns": "^2.12.0",
-    "downshift": "^5.4.5",
-    "framer-motion": "^4.1.11",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.0",
+    "date-fns": "2.12.0",
+    "downshift": "5.4.5",
+    "framer-motion": "4.1.11",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-magma-icons": "^3.1.0",
-    "uuid": "^8.3.0 || ^9.0.0 || ^10.0.0 || ^11.0.0"
+    "uuid": "8.3.0 || ^9.0.0 || ^10.0.0 || ^11.0.0"
   }
 }
