@@ -1,8 +1,8 @@
-name: Publish Next Patch (dev-patch)
+name: Publish Next Patch (react-18)
 on:
   push:
     branches:
-      - dev-patch
+      - chore/react-18-upgrade
 jobs:
   build:
     runs-on: macos-latest
@@ -24,32 +24,6 @@ jobs:
         run: npm test
       - name: Coverage
         uses: codecov/codecov-action@v1
-      - name: Configure NPM
-        run: |
-          git config --global user.name 'github-bot'
-          git config --global user.email 'github-bot@users.noreply.github.com'
-          echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} > .npmrc
-      - name: Check if Prerelease
-        id: check_files
-        uses: andstor/file-existence-action@v1
-        with:
-          files: ".changeset/pre.json"
-      - name: Enter Prerelease Mode
-        if: steps.check_files.outputs.files_exists == 'false'
-        run: |
-          npm run version:prerelease
-          git add .changeset/pre.json
-      - name: Publish
-        run: |
-          npm run version:pkgs
-          git commit -am "chore: enter prerelease mode"
-          npm run release
-          git push --follow-tags
-      - name: Get Alias
-        id: info
-        run: |
-          echo "::set-output name=alias::$(npm run --silent getAlias)"
-          echo "::set-output name=version::$(npm run --silent getVersion)"
       - name: Build Docs
         run: npm run build:docs
       - name: Build Storybook
@@ -71,12 +45,12 @@ jobs:
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './storybook-static'
-          production-branch: patch-3.x.x
+          production-branch: chore/react-18-upgrade
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: false
-          alias: storybook-preview-dev-patch
+          alias: storybook-preview-react-18
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
