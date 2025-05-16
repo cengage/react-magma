@@ -57,7 +57,11 @@ export const DropdownMenuNavItem = React.forwardRef<
       tabIndex={-1}
       theme={theme}
     >
-      {icon && <IconWrapper theme={theme}>{icon}</IconWrapper>}
+      {icon && (
+        <IconWrapper aria-hidden theme={theme}>
+          {icon}
+        </IconWrapper>
+      )}
       {children}
     </StyledItem>
   );
