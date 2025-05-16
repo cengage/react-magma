@@ -1,5 +1,17 @@
 # Change Log
 
+## 5.1.3-next.3
+
+### Patch Changes
+
+- Updated dependencies [31a4e0318]
+- Updated dependencies [77a8687f4]
+  - react-magma-dom@4.9.1-next.0
+  - @react-magma/charts@11.0.1-next.0
+  - @react-magma/dropzone@11.0.1-next.0
+  - @react-magma/schema-renderer@11.0.1-next.0
+  - @cengage-patterns/header@12.0.2-next.0
+
 ## 5.1.3-next.2
 
 ### Patch Changes

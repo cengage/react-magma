@@ -13,6 +13,8 @@
   },
   "changesets": [
     "chore-Playwright-initial-configuration",
+    "fix-Accordion-Tooltip-Storybook-issues",
+    "fix-Playwright-tests",
     "manually-sync-4.9.0",
     "updateReadMe"
   ]

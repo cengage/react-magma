@@ -1,5 +1,12 @@
 ## 4.9.0
 
+## 4.9.1-next.0
+
+### Patch Changes
+
+- 31a4e0318: fix(Tooltip & Accordion): Fix storybook issues with Tooltip and Accordion components.
+- 77a8687f4: fix(Playwright): Fix Playwright tests to use the correct behaviour for the Accordion component.
+
 ### Minor Changes
 
 - 46260e57c: feat(DefinitionList): New `DefinitionList` and `DefinitionListItem` components.
