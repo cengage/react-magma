@@ -496,6 +496,30 @@ export function useTreeView(props: UseTreeViewProps) {
       const newItems = items.map(item => {
         if (item.itemId === newItem.parentId) {
           item.hasOwnTreeItems = true;
+
+          if (checkParents) {
+            if (
+              item.checkedStatus === IndeterminateCheckboxStatus.checked &&
+              newItem.checkedStatus !== IndeterminateCheckboxStatus.checked
+            ) {
+              item.checkedStatus = IndeterminateCheckboxStatus.indeterminate;
+            } else if (
+              item.checkedStatus ===
+                IndeterminateCheckboxStatus.indeterminate &&
+              newItem.checkedStatus === IndeterminateCheckboxStatus.checked
+            ) {
+              const allChildrenChecked = [...items, newItem]
+                .filter(child => child.parentId === item.itemId)
+                .every(
+                  child =>
+                    child.checkedStatus === IndeterminateCheckboxStatus.checked
+                );
+
+              if (allChildrenChecked) {
+                item.checkedStatus = IndeterminateCheckboxStatus.checked;
+              }
+            }
+          }
         }
 
         return item;

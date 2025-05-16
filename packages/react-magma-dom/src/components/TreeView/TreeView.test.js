@@ -4207,7 +4207,7 @@ describe('TreeView', () => {
           },
         ];
 
-        const [tree, updateTree] = React.useState(initialTree);
+        const [tree, setTree] = React.useState(initialTree);
 
         const renderItems = items => {
           return items.map(item => {
@@ -4238,7 +4238,7 @@ describe('TreeView', () => {
             return item;
           });
 
-          updateTree(newTree);
+          setTree(newTree);
         };
 
         return (
@@ -4300,7 +4300,7 @@ describe('TreeView', () => {
         },
       ];
 
-      const [tree, updateTree] = React.useState(initialTree);
+      const [tree, setTree] = React.useState(initialTree);
       const apiRef = React.useRef();
 
       const renderItems = items => {
@@ -4332,7 +4332,7 @@ describe('TreeView', () => {
           checkedStatus,
         });
 
-        updateTree([
+        setTree([
           ...tree,
           {
             id: Number(newItemId),
@@ -4377,7 +4377,7 @@ describe('TreeView', () => {
           return item;
         });
 
-        updateTree(newTree);
+        setTree(newTree);
       };
 
       return (
@@ -4522,7 +4522,7 @@ describe('TreeView', () => {
           'New parent 4'
         );
 
-        userEvent.click(getByTestId('add-child-btn'));
+        userEvent.click(getByTestId('add-checked-child-btn'));
         userEvent.click(getByTestId('item-4-expand'));
         expect(getByTestId('item-41')).toBeInTheDocument();
         expect(getByTestId('item-41')).toHaveAttribute('aria-checked', 'true');
@@ -4542,6 +4542,37 @@ describe('TreeView', () => {
         );
 
         expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'true');
+
+        userEvent.click(getByTestId('add-child-btn'));
+        expect(getByTestId('item-43')).toBeInTheDocument();
+        expect(getByTestId('item-43')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('43-checkbox')).toBeInTheDocument();
+        expect(getByTestId('43-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 43'
+        );
+
+        expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'mixed');
+
+        userEvent.click(getByTestId('add-checked-parent-btn'));
+        expect(getByTestId('item-5')).toBeInTheDocument();
+        expect(getByTestId('item-5')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('5-checkbox')).toBeInTheDocument();
+        expect(getByTestId('5-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New parent 5'
+        );
+
+        userEvent.click(getByTestId('add-child-btn'));
+        expect(getByTestId('item-43')).toBeInTheDocument();
+        expect(getByTestId('item-43')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('43-checkbox')).toBeInTheDocument();
+        expect(getByTestId('43-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 43'
+        );
+
+        expect(getByTestId('item-5')).toHaveAttribute('aria-checked', 'false');
       });
 
       it('add items with "checkChildren=true"', () => {
@@ -4774,7 +4805,7 @@ describe('TreeView', () => {
           },
         ];
 
-        const [tree, updateTree] = React.useState(initialTree);
+        const [tree, setTree] = React.useState(initialTree);
         const apiRef = React.useRef();
 
         const renderItems = items => {
@@ -4831,7 +4862,7 @@ describe('TreeView', () => {
             };
           });
 
-          updateTree(newTree);
+          setTree(newTree);
         };
 
         return (
