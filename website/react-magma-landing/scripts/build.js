@@ -2,7 +2,7 @@ const axios = require('axios');
 const copy = require('copy');
 const ejs = require('ejs');
 const fs = require('fs');
-const mkdirp = require('mkdirp');
+const { mkdirp } = require('mkdirp');
 const path = require('path');
 const semver = require('semver');
 

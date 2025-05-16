@@ -6,6 +6,7 @@ on:
       - main
       - 'dev-patch'
       - 'patch-*'
+      - 'chore/react-18-upgrade'
     types: [opened, synchronize]
 jobs:
   build:
@@ -21,9 +22,9 @@ jobs:
       - name: Check Node version
         run: node -v
       - name: Update NPM version
-        run: npm install -g "npm@^7.6.3"
+        run: npm install -g "npm@^10.8.2"
       - name: Install
-        run: npm ci
+        run: npm ci --legacy-peer-deps
       - name: Test
         run: npm test
       - name: Coverage

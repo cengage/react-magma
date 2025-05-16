@@ -24,29 +24,29 @@
     "test-watch": "jest --watch"
   },
   "dependencies": {
-    "@carbon/charts-react": "^1.14.8",
-    "d3": "^7.9.0",
-    "d3-cloud": "^1.2.7",
-    "d3-sankey": "^0.12.3",
-    "victory": "^35.4.12"
+    "@carbon/charts-react": "1.23.7",
+    "d3": "7.9.0",
+    "d3-cloud": "1.2.7",
+    "d3-sankey": "0.12.3",
+    "victory": "35.11.4"
   },
   "devDependencies": {
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
-    "dom-to-image-more": "3.1.4",
-    "identity-obj-proxy": "^3.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.9.0",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.0",
+    "dom-to-image-more": "3.6.0",
+    "identity-obj-proxy": "3.0.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-magma-dom": "4.9.0-next.27",
     "react-magma-icons": "^3.1.0"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.9.0-next.27",
-    "react-magma-icons": "^3.1.0"
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-magma-dom": "4.9.0-next.27",
+    "react-magma-icons": "3.1.0"
   },
   "engines": {
     "node": ">=14.15.0",
