@@ -143,23 +143,27 @@ test.describe('Accordion', () => {
 
     await expect(page).toHaveTitle('Accordion - Controlled ⋅ Storybook');
 
-    await expect(storyBookIframe.getByText(section1Text)).toBeVisible();
-
+    await section1Button.click();
     await section2Button.click();
     await section3Button.click();
 
     await expect(storyBookIframe.getByText(section1Text)).toBeVisible();
-    await expect(storyBookIframe.getByText(section2Text)).toBeHidden();
-    await expect(storyBookIframe.getByText(section3Text)).toBeHidden();
+    await expect(storyBookIframe.getByText(section2Text)).toBeVisible();
+    await expect(storyBookIframe.getByText(section3Text)).toBeVisible();
 
+    // Interaction with the storybook controls
     await page.getByRole('tab', { name: 'Controls (4)' }).click();
 
     await page.getByText('0', { exact: true }).click();
     await page.getByRole('textbox').fill('1');
     await page.getByRole('textbox').press('Enter');
 
+    await section1Button.click();
+    await section2Button.click();
+    await section3Button.click();
+
     await expect(storyBookIframe.getByText(section1Text)).toBeHidden();
-    await expect(storyBookIframe.getByText(section2Text)).toBeVisible();
+    await expect(storyBookIframe.getByText(section2Text)).toBeHidden();
     await expect(storyBookIframe.getByText(section3Text)).toBeHidden();
   });
 
@@ -170,15 +174,19 @@ test.describe('Accordion', () => {
       'Accordion - Controlled No Multi ⋅ Storybook'
     );
 
-    await expect(storyBookIframe.getByText(section1Text)).toBeVisible();
-
-    await section2Button.click();
-    await section3Button.click();
+    await section1Button.click();
 
     await expect(storyBookIframe.getByText(section1Text)).toBeVisible();
     await expect(storyBookIframe.getByText(section2Text)).toBeHidden();
     await expect(storyBookIframe.getByText(section3Text)).toBeHidden();
 
+    await section2Button.click();
+
+    await expect(storyBookIframe.getByText(section1Text)).toBeHidden();
+    await expect(storyBookIframe.getByText(section2Text)).toBeVisible();
+    await expect(storyBookIframe.getByText(section3Text)).toBeHidden();
+
+    // Interaction with the storybook controls
     await page.getByRole('tab', { name: 'Controls (4)' }).click();
 
     const indexValue = page.getByPlaceholder('Edit number...');
