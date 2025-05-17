@@ -115,6 +115,7 @@ export interface I18nInterface {
     calendarIconAriaLabel: string;
     calendarOpenAnnounce: string;
     calendarCloseAriaLabel: string;
+    calendarNavigateHelperInstruction: string;
     previousMonthAriaLabel: string;
     nextMonthAriaLabel: string;
     disabledDayAriaLabel: string;

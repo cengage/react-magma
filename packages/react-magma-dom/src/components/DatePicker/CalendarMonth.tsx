@@ -156,6 +156,8 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
     </Th>
   ));
 
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
   return (
     <>
       <CalendarContainer
@@ -191,6 +193,11 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
               onFocus={onCalendarTableFocus}
               theme={theme}
               role="application"
+              aria-label={
+                isSafari
+                  ? i18n.datePicker.calendarNavigateHelperInstruction
+                  : null
+              }
             >
               <tbody>
                 <tr>{tableDaysHeaders}</tr>
