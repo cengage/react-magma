@@ -7,7 +7,7 @@ on:
       - chore/deploy-v2-docs
 
 jobs:
-  build-and-publish:
+  build-deploy-v2-docs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
