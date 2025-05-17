@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.7
+
+### Patch Changes
+
+- ff7e01e24: chore: add deploy-v2-docs.yml to deploy v2 docs
+
 ## 1.1.6-next.0
 
 ### Patch Changes
