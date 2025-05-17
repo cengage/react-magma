@@ -445,6 +445,43 @@ describe('Select', () => {
     expect(renderedSelect).toHaveAttribute('disabled');
   });
 
+  it('should disable selected items in the disabled multi-select and disabled items should not be removable', () => {
+    const { getByLabelText, getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={items}
+        disabled
+      />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    expect(renderedSelect).toHaveAttribute('disabled');
+
+    expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
+    expect(getByText(items[0], { selector: 'button' })).toBeDisabled();
+    expect(getByText(items[0], { selector: 'button' })).toHaveAttribute(
+      'disabled'
+    );
+    expect(getByText(items[1], { selector: 'button' })).toBeInTheDocument();
+    expect(getByText(items[1], { selector: 'button' })).toBeDisabled();
+    expect(getByText(items[1], { selector: 'button' })).toHaveAttribute(
+      'disabled'
+    );
+    expect(getByText(items[2], { selector: 'button' })).toBeInTheDocument();
+    expect(getByText(items[2], { selector: 'button' })).toBeDisabled();
+    expect(getByText(items[2], { selector: 'button' })).toHaveAttribute(
+      'disabled'
+    );
+
+    const selectedItem = getByText(items[0], { selector: 'button' });
+    fireEvent.click(selectedItem);
+
+    expect(selectedItem).toBeInTheDocument();
+  });
+
   it('should open select when clicking the enter key', () => {
     const { getByLabelText, getByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
