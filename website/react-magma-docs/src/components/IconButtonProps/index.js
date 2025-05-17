@@ -80,6 +80,13 @@ export function IconButtonProps() {
             'If true, the component will have inverse styling to better appear on a dark background',
           defaultValue: 'false',
         },
+        leadingIcon: {
+          type: {
+            name: 'React Element',
+          },
+          required: false,
+          description: 'Leading icon to display on the left side of the button',
+        },
         shape: {
           type: {
             name: 'enum',

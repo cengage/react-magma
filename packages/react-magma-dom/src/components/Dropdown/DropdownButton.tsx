@@ -40,6 +40,10 @@ export interface IconTextDropdownButtonProps extends ButtonProps {
    */
   iconPosition?: ButtonIconPosition;
   /**
+   * Leading icon to display on the left side within the component
+   */
+  leadingIcon?: React.ReactElement<IconProps>;
+  /**
    * The content of the component
    */
   children: React.ReactChild | React.ReactChild[];
@@ -110,7 +114,7 @@ export const DropdownButton = React.forwardRef<
   const buttonIcon = getButtonIcon(context.dropDirection);
 
   let children;
-  const { icon = buttonIcon, iconPosition, ...other } = props;
+  const { icon = buttonIcon, iconPosition, leadingIcon, ...other } = props;
 
   if (!instanceOfIconOnlyDropdownButton(props)) {
     children = props.children;
@@ -145,6 +149,7 @@ export const DropdownButton = React.forwardRef<
         iconPosition={iconPositionToUse}
         id={context.dropdownButtonId.current}
         isInverse={context.isInverse}
+        leadingIcon={leadingIcon}
         onClick={handleClick}
         ref={ref}
         theme={theme}
