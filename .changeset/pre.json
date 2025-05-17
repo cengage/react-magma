@@ -13,6 +13,7 @@
   },
   "changesets": [
     "chore-Playwright-initial-configuration",
+    "chore-deploy-v2",
     "fix-Accordion-Tooltip-Storybook-issues",
     "fix-Playwright-tests",
     "manually-sync-4.9.0",

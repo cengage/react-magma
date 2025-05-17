@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.3-next.4
+
+### Patch Changes
+
+- 42f4dde60: chore: add deploy-v2-docs.yml to deploy v2 docs
+
 ## 5.1.3-next.3
 
 ### Patch Changes
