@@ -23,6 +23,7 @@ const StyledLabelComponent = styled.label<StyledLabelProps>`
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   margin: 0;
   padding: ${props => props.theme.spaceScale.spacing03} 0;
+  width: 100%;
 `;
 
 export const StyledLabel: React.FunctionComponent<StyledLabelProps> = ({
