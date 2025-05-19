@@ -1210,7 +1210,7 @@ describe('TreeView', () => {
 
     it('sets to all children of preselected and checked parent state as checked if checkParents is false and checkChildren is true', () => {
       const onSelectedItemChange = jest.fn();
-      const { getByTestId } = render(
+      render(
         getTreeItemsMultiLevel({
           onSelectedItemChange,
           selectable: TreeViewSelectable.multi,
@@ -1656,7 +1656,7 @@ describe('TreeView', () => {
       });
 
       it('should focus to the last visible item when pressing the End key', () => {
-        const { getByTestId, rerender } = render(
+        const { getByTestId } = render(
           getTreeItemsOneLevel({ initialExpandedItems: ['item-3'] })
         );
 
@@ -2151,7 +2151,7 @@ describe('TreeView', () => {
 
       it('parent should have indeterminate checkbox state and toggle children selection when some disabled children are partially selected', () => {
         const onSelectedItemChange = jest.fn();
-        const { getByTestId, debug } = render(
+        const { getByTestId } = render(
           getTreeItemsWithDisabledChildren({
             selectable: TreeViewSelectable.multi,
             preselectedItems: [
@@ -2221,7 +2221,7 @@ describe('TreeView', () => {
 
       it('parent should have unchecked checkbox state when all disabled children and all enabled children are not selected. parent should have indeterminate checkbox state when all disabled children are not selected and some enabled children are selected. parent should have indeterminate checkbox state when all disabled children are not selected and all enabled children are selected. and toggle children selection', () => {
         const onSelectedItemChange = jest.fn();
-        const { getByTestId, debug } = render(
+        const { getByTestId } = render(
           getTreeItemsWithDisabledChildren({
             selectable: TreeViewSelectable.multi,
             onSelectedItemChange,
@@ -2364,7 +2364,7 @@ describe('TreeView', () => {
 
       it('an item can be selected and disabled through preselectedItems', () => {
         const onSelectedItemChange = jest.fn();
-        const { getByTestId, debug } = render(
+        const { getByTestId } = render(
           getTreeItemsWithDisabledChildren({
             selectable: TreeViewSelectable.multi,
             preselectedItems: [
@@ -2407,7 +2407,7 @@ describe('TreeView', () => {
 
       it('should disable all items if "isDisabled" prop set to true on TreeView', () => {
         const onSelectedItemChange = jest.fn();
-        const { getByTestId, debug } = render(
+        const { getByTestId } = render(
           getTreeItemsWithDisabledChildren({
             isDisabled: true,
             selectable: TreeViewSelectable.multi,
@@ -2465,7 +2465,7 @@ describe('TreeView', () => {
   describe('when controlled outside', () => {
     it('should be able to select all enabled items outside of TreeView', () => {
       const onSelectedItemChange = jest.fn();
-      const { getByTestId, debug } = render(
+      const { getByTestId } = render(
         <TreeItemsMultiLevelControlledOutside
           onSelectedItemChange={onSelectedItemChange}
         />
@@ -2521,7 +2521,7 @@ describe('TreeView', () => {
 
     it('should not select root parent if it initially unselected and disabled during select all', () => {
       const onSelectedItemChange = jest.fn();
-      const { getByTestId, debug } = render(
+      const { getByTestId } = render(
         <TreeItemsMultiLevelControlledOutside
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[
@@ -2573,7 +2573,7 @@ describe('TreeView', () => {
       const disabledItemId = 'item-ggchild1';
 
       const onSelectedItemChange = jest.fn();
-      const { getByTestId, debug } = render(
+      const { getByTestId } = render(
         <TreeItemsMultiLevelControlledOutside
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[
@@ -2638,7 +2638,7 @@ describe('TreeView', () => {
 
     it('should not unselect root parent if it initially selected and disabled during clear all', () => {
       const onSelectedItemChange = jest.fn();
-      const { getByTestId, debug } = render(
+      const { getByTestId } = render(
         <TreeItemsMultiLevelControlledOutside
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[
@@ -2750,7 +2750,7 @@ describe('TreeView', () => {
 
   describe('toggle expanded items', () => {
     it('when selectable is TreeViewSelectable.off should expand/collapse nested items', () => {
-      const { getByTestId, queryByTestId } = render(
+      const { getByTestId } = render(
         getTreeItemsMultiLevel({ selectable: TreeViewSelectable.off })
       );
 
@@ -4620,7 +4620,8 @@ describe('TreeView', () => {
         userEvent.click(getByTestId('add-child-btn'));
         userEvent.click(getByTestId('item-4-expand'));
         expect(getByTestId('item-41')).toBeInTheDocument();
-        expect(getByTestId('item-41')).toHaveAttribute('aria-checked', 'true');
+        // newly added children should preserve their state regardless of checkChildren
+        expect(getByTestId('item-41')).toHaveAttribute('aria-checked', 'false');
         expect(getByTestId('41-checkbox')).toBeInTheDocument();
         expect(getByTestId('41-checkbox')).toHaveAttribute(
           'aria-label',

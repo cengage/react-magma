@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { useDescendants } from '../../hooks/useDescendants';
+import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import {
   TreeItemSelectedInterface,
   TreeViewItemInterface,
@@ -14,8 +16,6 @@ import {
   isSelectedItemsChanged,
   isEqualArrays,
 } from './utils';
-import { useDescendants } from '../../hooks/useDescendants';
-import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
 export { TreeItemSelectedInterface };
 
@@ -542,7 +542,7 @@ export function useTreeView(props: UseTreeViewProps) {
             children,
             preselectedItems: selectedItems,
             checkParents,
-            checkChildren,
+            checkChildren: false, // newly added children should preserve their state regardless of checkChildren
             selectable,
             isDisabled,
             isTopLevelSelectable,
@@ -554,7 +554,6 @@ export function useTreeView(props: UseTreeViewProps) {
       }
     },
     [
-      checkChildren,
       checkParents,
       children,
       isDisabled,
