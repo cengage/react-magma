@@ -326,25 +326,4 @@ More verbose description of what was added with the icon feature of the button.
 BREAKING CHANGE: description of what part of the API brakes with this commit"
 ```
 
-#### Commit Tooling
-
-To facilitate getting the commit format right, you can create your commit messages by adding the files you want to commit with `git add <files>` then by running `npm run cm`, which will step you through the individual parts of the commit message.
-
-##### Selecting a topic from the predefined list
-
-![running npm run cm shows the topic selector screen for commitizen](./readme_assets/commitizen_topic.png)
-
-##### Walking through the remaining questions
-
-![commitizen guides you through entering scope, description, optional body and footer by prompting yes or no for breaking changes](./readme_assets/commitizen_scope_thru_end.png)
-
-##### The resulting commit produced by the wizard
-
-![the resulting commit produced by commitizen](./readme_assets/commitizen_resulting_commit.png)
-
-##### Retry
-
-If the `pre-commit` scripts prevent your commit due to a test or linting failure, you can fix those items, `git add` those updates and rather than going through the commit message wizard again, you can retry with `npm run cm-retry`.
-
-
 </details>

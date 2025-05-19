@@ -19,22 +19,22 @@
     "test-watch": "jest --watch"
   },
   "dependencies": {
-    "polished": "^3.2.0",
+    "polished": "3.7.2",
     "react-dropzone": "11.3.2"
   },
   "devDependencies": {
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-magma-dom": "^4.9.0",
     "react-magma-icons": "^3.1.0"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
     "react-magma-dom": "^4.9.0-next.3",
     "react-magma-icons": "^3.1.0"
   },
