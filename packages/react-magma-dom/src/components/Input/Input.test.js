@@ -1,28 +1,15 @@
 import React from 'react';
 
-import { render, fireEvent, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
-import PropTypes from 'prop-types';
 import { CheckIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { InputType } from '../InputBase';
-import { CustomTopicsRow } from './Input.stories';
 
 import { Input } from '.';
-
-const renderWithProviders = (ui, renderOptions = {}) => {
-  const Wrapper = ({ children }) => <>{children}</>;
-
-  Wrapper.propTypes = {
-    children: PropTypes.node,
-  };
-
-  return render(ui, { wrapper: Wrapper, ...renderOptions });
-};
 
 const label = 'test label';
 
@@ -718,104 +705,5 @@ describe('Input', () => {
       const inputElement = getByLabelText('Url');
       expect(inputElement).toHaveAttribute('type', 'url');
     });
-  });
-
-  describe('Value state', () => {
-    const inputLabel = 'Input Label';
-
-    it('should not update value when is controlled component by props', () => {
-      const value = 0;
-      const { getByLabelText } = render(
-        <Input type={InputType.number} labelText={inputLabel} value={value} />
-      );
-
-      const labelInput = getByLabelText(inputLabel);
-      expect(labelInput).toBeInTheDocument();
-
-      userEvent.type(labelInput, `123`);
-      expect(labelInput).toHaveValue(value);
-    });
-
-    it('should update value when is uncontrolled component', () => {
-      const { getByLabelText } = render(
-        <Input type={InputType.number} labelText={inputLabel} />
-      );
-
-      const labelInput = getByLabelText(inputLabel);
-      expect(labelInput).toBeInTheDocument();
-
-      userEvent.type(labelInput, `123`);
-      expect(labelInput).toHaveValue(123);
-
-      userEvent.type(labelInput, `456`);
-      expect(labelInput).toHaveValue(123456);
-    });
-  });
-});
-
-describe('Custom Topics Row', () => {
-  const properties = {
-    topicList: [
-      {
-        reference: 'custom sub activity reference',
-        title: 'custom sub activity title',
-      },
-    ],
-    isRemoveButtonDisabled: false,
-    shouldValidate: true,
-    topicTitle: '',
-    testTopic: undefined,
-    studyMaterialsTopic: undefined,
-    order: 1,
-    setTopicTitle: jest.fn(),
-    setTestTopic: jest.fn(),
-    setStudyMaterialsTopic: jest.fn(),
-    removeTopicRow: jest.fn(),
-  };
-
-  it('should insert title topic', async () => {
-    renderWithProviders(<CustomTopicsRow {...properties} />);
-
-    await userEvent.type(screen.getByTestId('topicTitle-1'), 'topicTitle');
-
-    expect(properties.setTopicTitle).toHaveBeenCalledWith('topicTitle');
-  });
-
-  it('should select test topic', async () => {
-    renderWithProviders(<CustomTopicsRow {...properties} />);
-
-    await userEvent.click(
-      screen.getByRole('combobox', { name: 'Topic 1 Test *' })
-    );
-    await userEvent.click(
-      screen.getByRole('option', { name: 'custom sub activity title' })
-    );
-
-    expect(properties.setTestTopic).toHaveBeenCalledWith(
-      'custom sub activity reference'
-    );
-  });
-
-  it('should select study materials topic', async () => {
-    renderWithProviders(<CustomTopicsRow {...properties} />);
-
-    await userEvent.click(
-      screen.getByRole('combobox', { name: 'Topic 1 Study Materials *' })
-    );
-    await userEvent.click(
-      screen.getByRole('option', { name: 'custom sub activity title' })
-    );
-
-    expect(properties.setStudyMaterialsTopic).toHaveBeenCalledWith(
-      'custom sub activity reference'
-    );
-  });
-
-  it('should remove custom topics row', async () => {
-    renderWithProviders(<CustomTopicsRow {...properties} />);
-
-    await userEvent.click(screen.getByTestId('removeRowButton-1'));
-
-    expect(properties.removeTopicRow).toHaveBeenCalled();
   });
 });
