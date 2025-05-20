@@ -24,6 +24,7 @@ import { Search } from '../Search';
 import { Spacer, SpacerAxis } from '../Spacer';
 import { TimePicker } from '../TimePicker';
 import { Tooltip } from '../Tooltip';
+import { CustomTopicsRow } from './testUtils';
 
 import { Input, InputProps } from '.';
 
@@ -800,3 +801,37 @@ export function TimeInput() {
     </>
   );
 }
+
+export const CustomTopicsRowStory = () => {
+  const topicList = [
+    { reference: 'topic1', title: 'Topic 1' },
+    { reference: 'topic2', title: 'Topic 2' },
+    { reference: 'topic3', title: 'Topic 3' },
+  ];
+
+  const [topicTitle, setTopicTitle] = React.useState('');
+  const [testTopic, setTestTopic] = React.useState<string | undefined>();
+  const [studyMaterialsTopic, setStudyMaterialsTopic] = React.useState<
+    string | undefined
+  >();
+
+  const removeTopicRow = () => {
+    alert('Row removed');
+  };
+
+  return (
+    <CustomTopicsRow
+      topicList={topicList}
+      isRemoveButtonDisabled={false}
+      shouldValidate
+      topicTitle={topicTitle}
+      testTopic={testTopic}
+      studyMaterialsTopic={studyMaterialsTopic}
+      order={1}
+      setTopicTitle={setTopicTitle}
+      setTestTopic={setTestTopic}
+      setStudyMaterialsTopic={setStudyMaterialsTopic}
+      removeTopicRow={removeTopicRow}
+    />
+  );
+};
