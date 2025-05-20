@@ -8,6 +8,7 @@ on:
       - 'patch-*'
       - 'chore/react-18-upgrade'
     types: [opened, synchronize]
+
 jobs:
   build:
     runs-on: macos-latest
@@ -37,7 +38,6 @@ jobs:
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './website/react-magma-docs/public'
-          production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-pull-request-comment: true
           enable-commit-comment: true
@@ -50,12 +50,11 @@ jobs:
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './storybook-static'
-          production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: false
-          alias: storybook-preview-${{ github.event.number }}
+          alias: storybook-preview-react-18-${{ github.event.number }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
