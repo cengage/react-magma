@@ -2389,7 +2389,7 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
   type TreeItemData = {
     id: number;
     name: string;
-    children: TreeItemData[] | [];
+    children: TreeItemData[];
   };
 
   const treeContent: TreeItemData[] = [
@@ -2404,7 +2404,7 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
       children: [
         {
           id: 21,
-          name: 'Child item',
+          name: 'Child item (of parent 2)',
           children: [],
         },
       ],
@@ -2415,7 +2415,7 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
       children: [
         {
           id: 31,
-          name: 'Child item 2',
+          name: 'Child item (of parent 3)',
           children: [],
         },
       ],
@@ -2641,6 +2641,104 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
     updateTree(newTree);
   };
 
+  const addNewChildToSecondParent = (checked: boolean) => {
+    if (tree.length < 2) {
+      alert(
+        'Requires at least two top-level items to add a child to the second one.'
+      );
+      return;
+    }
+    const parentIndex = 1;
+    const parentItemInState = tree[parentIndex];
+
+    const newChildNumericId = Number(
+      String(parentItemInState.id) +
+        String(parentItemInState.children.length + 1)
+    );
+    const newChildApiId = String(newChildNumericId);
+
+    treeViewApiRef.current?.addItem({
+      itemId: newChildApiId,
+      parentId: String(parentItemInState.id),
+      checkedStatus: checked
+        ? IndeterminateCheckboxStatus.checked
+        : IndeterminateCheckboxStatus.unchecked,
+      hasOwnTreeItems: false,
+    });
+
+    const newTree = tree.map((item, index) => {
+      if (index === parentIndex) {
+        return {
+          ...item,
+          children: [
+            ...item.children,
+            {
+              id: newChildNumericId,
+              name: `New Child for '${item.name}' (${checked ? 'checked' : 'unchecked'})`,
+              children: [],
+            },
+          ],
+        };
+      }
+      return item;
+    });
+    updateTree(newTree);
+  };
+
+  const addChildToFirstGrandchild = (checked: boolean) => {
+    if (tree.length < 2 || !tree[1].children || tree[1].children.length === 0) {
+      alert('Requires the second top-level item to have at least one child.');
+      return;
+    }
+    const grandparentIndex = 1;
+    const parentIndexInGrandparentChildren = 0;
+    const targetParentItem =
+      tree[grandparentIndex].children[parentIndexInGrandparentChildren];
+
+    const newChildNumericId = Number(
+      String(targetParentItem.id) +
+        String((targetParentItem.children || []).length + 1)
+    );
+    const newChildApiId = String(newChildNumericId);
+
+    treeViewApiRef.current?.addItem({
+      itemId: newChildApiId,
+      parentId: String(targetParentItem.id),
+      checkedStatus: checked
+        ? IndeterminateCheckboxStatus.checked
+        : IndeterminateCheckboxStatus.unchecked,
+      hasOwnTreeItems: false,
+    });
+
+    const newTree = tree.map((grandparent, gpIndex) => {
+      if (gpIndex === grandparentIndex) {
+        return {
+          ...grandparent,
+          children: grandparent.children.map((parent, pIndex) => {
+            if (pIndex === parentIndexInGrandparentChildren) {
+              return {
+                ...parent,
+                children: [
+                  ...(parent.children || []),
+                  {
+                    id: newChildNumericId,
+                    name: `New Child for '${parent.name}' (${
+                      checked ? 'checked' : 'unchecked'
+                    })`,
+                    children: [],
+                  },
+                ],
+              };
+            }
+            return parent;
+          }),
+        };
+      }
+      return grandparent;
+    });
+    updateTree(newTree);
+  };
+
   const renterItems = (items: TreeItemData[]) => {
     return items.map(item => {
       return (
@@ -2685,6 +2783,24 @@ export const DynamicTreeItems = (args: Partial<TreeViewProps>) => {
       <button onClick={addNewDisabledChildrenItemUnchecked}>
         add unchecked disabled children to the last parent
       </button>
+
+      <br />
+      <br />
+      <h4>Demonstrate adding at different levels:</h4>
+      <button onClick={() => addNewChildToSecondParent(true)}>
+        Add checked child to 2nd parent
+      </button>
+      <button onClick={() => addNewChildToSecondParent(false)}>
+        Add unchecked child to 2nd parent
+      </button>
+      <br />
+      <button onClick={() => addChildToFirstGrandchild(true)}>
+        Add checked child to 1st child of 2nd parent (add grandchild)
+      </button>
+      <button onClick={() => addChildToFirstGrandchild(false)}>
+        Add unchecked child to 1st child of 2nd parent (add grandchild)
+      </button>
+      <br />
       <TreeView ariaLabel="icon-example" apiRef={treeViewApiRef} {...args}>
         {renterItems(tree)}
       </TreeView>
