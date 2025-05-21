@@ -108,8 +108,6 @@ export const defaultI18n: I18nInterface = {
     calendarIconAriaLabel: 'Toggle Calendar Widget',
     calendarOpenAnnounce: 'Calendar Widget is now open.',
     calendarCloseAriaLabel: 'Close Calendar Widget',
-    calendarNavigateHelperInstruction:
-      'Use Command + Arrow keys to navigate dates in Safari on macOS',
     previousMonthAriaLabel: 'Previous Month',
     nextMonthAriaLabel: 'Next Month',
     disabledDayAriaLabel: 'Not Available. ',
