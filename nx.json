@@ -3,6 +3,15 @@
     "build": {
       "cache": true,
       "dependsOn": ["^build"]
+    },
+    "lint": {
+      "cache": true
+    },
+    "compiler-checks": {
+      "cache": true
+    },
+    "test": {
+      "cache": true
     }
   },
   "projects": {
@@ -12,6 +21,15 @@
           "cache": true,
           "dependsOn": [],
           "outputs": ["{projectRoot}/packages/react-magma-dom/dist"]
+        },
+        "lint": {
+          "cache": true
+        },
+        "compiler-checks": {
+          "cache": true
+        },
+        "test": {
+          "cache": true
         }
       }
     },
@@ -21,6 +39,15 @@
           "cache": true,
           "dependsOn": ["react-magma-dom:build"],
           "outputs": ["{projectRoot}/packages/charts/dist"]
+        },
+        "lint": {
+          "cache": true
+        },
+        "compiler-checks": {
+          "cache": true
+        },
+        "test": {
+          "cache": true
         }
       }
     },
@@ -30,6 +57,15 @@
           "cache": true,
           "dependsOn": ["react-magma-dom:build"],
           "outputs": ["{projectRoot}/packages/dropzone/dist"]
+        },
+        "lint": {
+          "cache": true
+        },
+        "compiler-checks": {
+          "cache": true
+        },
+        "test": {
+          "cache": true
         }
       }
     },
@@ -39,6 +75,15 @@
           "cache": true,
           "dependsOn": ["react-magma-dom:build"],
           "outputs": ["{projectRoot}/packages/schema-renderer/dist"]
+        },
+        "lint": {
+          "cache": true
+        },
+        "compiler-checks": {
+          "cache": true
+        },
+        "test": {
+          "cache": true
         }
       }
     },
@@ -48,6 +93,15 @@
           "cache": true,
           "dependsOn": ["react-magma-dom:build"],
           "outputs": ["{projectRoot}/website/react-magma-docs/public"]
+        },
+        "lint": {
+          "cache": true
+        },
+        "compiler-checks": {
+          "cache": true
+        },
+        "test": {
+          "cache": true
         }
       }
     },
@@ -57,6 +111,15 @@
           "cache": true,
           "dependsOn": ["react-magma-dom:build"],
           "outputs": ["{projectRoot}/website/react-magma-landing/dist"]
+        },
+        "lint": {
+          "cache": true
+        },
+        "compiler-checks": {
+          "cache": true
+        },
+        "test": {
+          "cache": true
         }
       }
     },
@@ -66,6 +129,15 @@
           "cache": true,
           "dependsOn": ["react-magma-dom:build"],
           "outputs": ["{projectRoot}/patterns/header/dist"]
+        },
+        "lint": {
+          "cache": true
+        },
+        "compiler-checks": {
+          "cache": true
+        },
+        "test": {
+          "cache": true
         }
       }
     }

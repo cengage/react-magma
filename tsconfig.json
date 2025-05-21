@@ -19,11 +19,13 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true
   },
   "exclude": [
     "**/dist",
-    "**/node_modules"
+    "**/node_modules",
+    "**/*.stories.*"
   ],
   "ts-node": {
     "compilerOptions": {

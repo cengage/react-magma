@@ -29,7 +29,8 @@
     "lint": "eslint ./src",
     "prepublishOnly": "npm run copy-changelog",
     "test": "tsdx test",
-    "test-watch": "tsdx test --watch"
+    "test-watch": "tsdx test --watch",
+    "compiler-checks": "tsc --noEmit --project ./tsconfig.json"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

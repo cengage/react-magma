@@ -12,7 +12,8 @@
   "scripts": {
     "build": "tsdx build",
     "lint": "eslint ./src",
-    "test": "jest"
+    "test": "jest",
+    "compiler-checks": "tsc --noEmit --project ./tsconfig.json"
   },
   "dependencies": {},
   "devDependencies": {
