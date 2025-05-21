@@ -1,5 +1,11 @@
 ## 4.9.0
 
+## 4.10.0-next.2
+
+### Minor Changes
+
+- 1653b4173: feat(Dropdown & IconButton): Add leading icon capability.
+
 ## 4.10.0-next.1
 
 ### Minor Changes
