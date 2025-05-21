@@ -94,15 +94,20 @@ Disabled.args = {
 
 export const Multi = (props: MultiSelectProps<SelectOptions>) => (
   <Select
-    isMulti
     {...props}
+    isMulti
     items={[
       { label: 'Red', value: 'red' },
       { label: 'Blue', value: 'blue' },
       { label: 'Green', value: 'green' },
     ]}
+    initialSelectedItems={[{ label: 'Red', value: 'red' }]}
   />
 );
+Multi.args = {
+  ...Default.args,
+  disabled: false,
+};
 
 const helpLinkLabel = 'Learn more';
 const onHelpLinkClick = () => {
