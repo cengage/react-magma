@@ -134,13 +134,14 @@ export const CharacterCounter = React.forwardRef<
   }, [characterLimit, inputLength, i18n.characterCounter, maxCharacters]);
 
   // Sets the screen reader message to announce the character counter.
-  const [screenReaderMessage, setScreenReaderMessage] = React.useState<any>();
+  const [screenReaderMessage, setScreenReaderMessage] =
+    React.useState<string>();
 
   const debouncedSetScreenReaderMessage = React.useMemo(
     () =>
       debounce((statusMessage: string) => {
         setScreenReaderMessage(statusMessage);
-      }, 500),
+      }, 3000),
     []
   );
 
@@ -167,7 +168,10 @@ export const CharacterCounter = React.forwardRef<
           {characterTitle}
         </StyledInputMessage>
         {screenReaderMessage && (
-          <HiddenLabelText aria-live={screenReaderMessage}>
+          <HiddenLabelText
+            aria-live="assertive"
+            data-testid="screenReaderMessage"
+          >
             {screenReaderMessage}
           </HiddenLabelText>
         )}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 import { defaultI18n } from '../../i18n/default';
@@ -32,6 +32,8 @@ describe('CharacterCounter', () => {
   });
 
   it('Does not violate accessibility standards', () => {
+    jest.useRealTimers();
+
     const { container } = render(
       <CharacterCounter inputLength={2} maxCount={22} />
     );
@@ -144,6 +146,63 @@ describe('CharacterCounter', () => {
       const characterCounter = getByText('1 ' + characterOver).parentElement;
 
       expect(characterCounter).toHaveAttribute('aria-live', 'assertive');
+    });
+  });
+
+  describe('debounce behavior', () => {
+    it('should update screenReaderMessage after debounce delay', () => {
+      jest.useFakeTimers();
+
+      const { rerender, getByText, getByTestId } = render(
+        <CharacterCounter inputLength={0} maxCount={10} id="counter-id" />
+      );
+
+      expect(getByText('10 characters allowed')).toBeInTheDocument();
+
+      rerender(
+        <CharacterCounter inputLength={5} maxCount={10} id="counter-id" />
+      );
+
+      expect(getByText('5 characters left')).toBeInTheDocument();
+
+      expect(() => getByTestId('screenReaderMessage')).toThrowError();
+
+      act(() => {
+        jest.advanceTimersByTime(1000);
+      });
+
+      expect(() => getByTestId('screenReaderMessage')).toThrowError();
+
+      act(() => {
+        jest.advanceTimersByTime(1000);
+      });
+
+      expect(() => getByTestId('screenReaderMessage')).toThrowError();
+
+      act(() => {
+        jest.advanceTimersByTime(1000);
+      });
+
+      expect(() => getByTestId('screenReaderMessage')).not.toThrowError();
+      expect(getByTestId('screenReaderMessage')).toBeInTheDocument();
+      expect(getByTestId('screenReaderMessage')).toHaveTextContent(
+        '5 characters left'
+      );
+
+      rerender(
+        <CharacterCounter inputLength={15} maxCount={10} id="counter-id" />
+      );
+
+      expect(getByText('5 characters over limit')).toBeInTheDocument();
+
+      act(() => {
+        jest.advanceTimersByTime(3000);
+      });
+
+      expect(getByTestId('screenReaderMessage')).toBeInTheDocument();
+      expect(getByTestId('screenReaderMessage')).toHaveTextContent(
+        '5 characters over limit'
+      );
     });
   });
 });
