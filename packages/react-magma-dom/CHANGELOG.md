@@ -1,5 +1,11 @@
 ## 4.9.0
 
+## 4.10.0-next.1
+
+### Minor Changes
+
+- ed8a4eea7: feat(MultiSelect): Make selected items disabled when MultiSelect is disabled.
+
 ## 4.9.1-next.0
 
 ### Patch Changes
