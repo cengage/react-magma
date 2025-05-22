@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 import { act } from 'react-dom/test-utils';
@@ -13,7 +13,7 @@ import { Paragraph } from '../Paragraph';
 import { Tag } from '../Tag';
 import { AccordionTreeWithShowAllAndExpandAll } from './TreeView.stories';
 
-import { TreeView, TreeItem, TreeViewSelectable } from '.';
+import { TreeItem, TreeView, TreeViewSelectable } from '.';
 
 const TEXT = 'Test Text Tree Item';
 const testId = 'tree-view';
@@ -2454,6 +2454,69 @@ describe('TreeView', () => {
           'color',
           transparentize(0.6, magma.colors.neutral500)
         );
+      });
+    });
+
+    describe('inside and outside TreeItem', () => {
+      it('should trap focus inside TreeItem, allow interaction, then restore and move focus', () => {
+        const { getByTestId, getByText } = render(
+          <>
+            <TreeView testId="treeview" initialExpandedItems={['item']}>
+              <TreeItem label="Node" itemId="item" testId="item">
+                <TreeItem
+                  itemId="item1"
+                  testId="item1"
+                  label={<button>Button 1</button>}
+                />
+                <TreeItem
+                  itemId="item2"
+                  testId="item2"
+                  label={<button>Button 2</button>}
+                />
+                <TreeItem
+                  itemId="item3"
+                  testId="item3"
+                  label={<button>Button 3</button>}
+                />
+              </TreeItem>
+            </TreeView>
+            <button>Outside Button</button>
+          </>
+        );
+
+        const treeItem1 = getByTestId('item1');
+        const button1 = getByText('Button 1');
+        const button2 = getByText('Button 2');
+        const button3 = getByText('Button 3');
+        const outsideButton = getByText('Outside Button');
+
+        fireEvent.keyDown(treeItem1, {
+          key: 'Enter',
+          code: 'Enter',
+          ctrlKey: true,
+        });
+        expect(button1).toHaveFocus();
+
+        userEvent.tab();
+        expect(button1).toHaveFocus();
+
+        // Focus is trapped
+        userEvent.tab();
+        expect(button1).toHaveFocus();
+
+        fireEvent.keyDown(button1, { key: 'Escape', code: 'Escape' });
+        expect(treeItem1).toHaveFocus();
+
+        fireEvent.keyDown(treeItem1, { key: 'ArrowDown' });
+        userEvent.tab();
+        expect(button2).toHaveFocus();
+
+        userEvent.tab();
+        expect(button3).toHaveFocus();
+
+        // Focus is not trapped
+        userEvent.tab();
+        expect(outsideButton).toHaveFocus();
       });
     });
   });
