@@ -416,8 +416,10 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         return;
       }
 
+      // Ensure valid CSS selectors by escaping special characters (e.g., periods in itemId)
+      const safeItemId = CSS.escape(itemId);
       const isWithinLabelOrAdditionalContent = (target as HTMLElement).closest(
-        `#${itemId}-label, #${itemId}-additionalcontentwrapper`
+        `#${safeItemId}-label, #${safeItemId}-additionalcontentwrapper`
       );
 
       if (isWithinLabelOrAdditionalContent) {
