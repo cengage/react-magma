@@ -2457,8 +2457,8 @@ describe('TreeView', () => {
       });
     });
 
-    describe('inside and outside TreeItem', () => {
-      it('should trap focus inside TreeItem, allow interaction, then restore and move focus', () => {
+    describe('inside and outside TreeView', () => {
+      it('should trap focus inside TreeView, then restore and move focus outside TreeView component', () => {
         const { getByTestId, getByText } = render(
           <>
             <TreeView testId="treeview" initialExpandedItems={['item']}>
@@ -2517,6 +2517,54 @@ describe('TreeView', () => {
         // Focus is not trapped
         userEvent.tab();
         expect(outsideButton).toHaveFocus();
+      });
+
+      it('should trap focus inside parent TreeItem', () => {
+        const { getByTestId, getByText } = render(
+          <TreeView testId="treeview" initialExpandedItems={['item']}>
+            <TreeItem
+              label={<button>Parent Button</button>}
+              itemId="item"
+              testId="item"
+            >
+              <TreeItem
+                itemId="item1"
+                testId="item1"
+                label={<button>Button 1</button>}
+              />
+              <TreeItem
+                itemId="item2"
+                testId="item2"
+                label={<button>Button 2</button>}
+              />
+            </TreeItem>
+          </TreeView>
+        );
+
+        const parentItem = getByTestId('item');
+        const parentButton = getByText('Parent Button');
+        const button1 = getByText('Button 1');
+        const button2 = getByText('Button 2');
+
+        fireEvent.keyDown(parentItem, {
+          key: 'Enter',
+          code: 'Enter',
+          ctrlKey: true,
+        });
+        expect(parentButton).toHaveFocus();
+
+        userEvent.tab();
+        expect(parentButton).toHaveFocus();
+
+        fireEvent.keyDown(parentButton, { key: 'Escape', code: 'Escape' });
+        expect(parentItem).toHaveFocus();
+
+        fireEvent.keyDown(parentItem, { key: 'ArrowDown' });
+        userEvent.tab();
+        expect(button1).toHaveFocus();
+
+        userEvent.tab();
+        expect(button2).toHaveFocus();
       });
     });
   });

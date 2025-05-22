@@ -34,6 +34,7 @@ import {
   TreeNodeType,
 } from './utils';
 import { useFocusLock } from '../../hooks/useFocusLock';
+import { mergeRefs } from '../../utils';
 
 export interface TreeItemProps extends UseTreeItemProps {}
 
@@ -256,6 +257,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         : null;
 
     const [isInsideTreeItem, setIsInsideTreeItem] = React.useState(false);
+    const treeItemRef = React.useRef<HTMLLIElement>(null);
     const focusTrapElement = useFocusLock(isInsideTreeItem);
     const interactiveElements =
       'button, [role="button"], input, select, textarea, a[href], [tabindex]:not([tabindex="-1"])';
@@ -286,9 +288,9 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         event.stopPropagation();
         setIsInsideTreeItem(false);
 
-        const treeItemNode = focusTrapElement.current;
+        const treeItemNode = treeItemRef.current;
         if (treeItemNode) {
-          treeItemNode.focus({ preventScroll: true });
+          treeItemNode.focus();
         }
         return;
       }
@@ -449,7 +451,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           theme={theme}
           tabIndex={tabIndex}
           onKeyDown={onKeyDownHandler}
-          ref={focusTrapElement}
+          ref={treeItemRef}
         >
           <StyledItemWrapper
             additionalContent={additionalContent}
@@ -462,7 +464,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             selectable={selectable}
             style={style}
             theme={theme}
-            ref={ref}
+            ref={mergeRefs(ref, focusTrapElement)}
           >
             {hasOwnTreeItems && (
               <StyledExpandWrapper
