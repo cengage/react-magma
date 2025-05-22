@@ -262,19 +262,53 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const interactiveElements =
       'button, [role="button"], input, select, textarea, a[href], [tabindex]:not([tabindex="-1"])';
 
+    const getInteractiveElements = (
+      container: HTMLElement,
+      selector: string
+    ): HTMLElement[] => {
+      return Array.from(
+        container.querySelectorAll<HTMLElement>(selector)
+      ).filter(
+        el =>
+          !el.hasAttribute('tabindex') ||
+          (el.tabIndex !== undefined && el.tabIndex >= 0)
+      );
+    };
+
     const handleLabelAndAdditionalContentKeyDown = (
       event: React.KeyboardEvent
     ) => {
-      const { key, target } = event;
+      const { key, target, currentTarget, shiftKey } = event;
       const currentElement = target as HTMLElement;
-
       const isEnter = key === 'Enter';
       const isSpace = key === ' ';
       const isEscape = key === 'Escape';
+      const isTab = key === 'Tab';
       const isActivationKey = isEnter || isSpace;
 
       const interactiveElement =
         currentElement.closest<HTMLElement>(interactiveElements);
+
+      const interactiveElementsList = getInteractiveElements(
+        currentTarget as HTMLElement,
+        interactiveElements
+      );
+
+      const currentIndex = interactiveElementsList.indexOf(currentElement);
+
+      if (isTab && isInsideTreeItem) {
+        event.preventDefault();
+
+        const direction = shiftKey ? -1 : 1;
+        const total = interactiveElementsList.length;
+        const nextIndex = (currentIndex + direction + total) % total;
+
+        const elementToFocus = interactiveElementsList[nextIndex];
+        if (elementToFocus) {
+          setTimeout(() => elementToFocus.focus(), 0);
+        }
+        return;
+      }
 
       if (isActivationKey) {
         if (interactiveElement) {
@@ -402,10 +436,10 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       if (isCtrlEnter && target === currentTarget) {
         setIsInsideTreeItem(true);
 
-        const interactiveElementsList = Array.from(
-          currentTarget.querySelectorAll<HTMLElement>(interactiveElements)
-        ).filter(el => !el.hasAttribute('tabindex') || el.tabIndex !== -1);
-
+        const interactiveElementsList = getInteractiveElements(
+          currentTarget as HTMLElement,
+          interactiveElements
+        );
         const elementToFocus = interactiveElementsList[0];
 
         if (elementToFocus) {
