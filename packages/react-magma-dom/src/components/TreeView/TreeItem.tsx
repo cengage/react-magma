@@ -407,7 +407,9 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         const elementToFocus = interactiveElementsList[0];
 
         if (elementToFocus) {
-          elementToFocus.focus();
+          setTimeout(() => {
+            elementToFocus.focus();
+          }, 0);
         }
         return;
       }
