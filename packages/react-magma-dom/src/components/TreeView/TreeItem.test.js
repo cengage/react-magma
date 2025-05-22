@@ -104,32 +104,6 @@ describe('TreeItem', () => {
         `marginBottom: 16px`
       );
     });
-
-    it('should interact with additional content when clicked or space/enter are pressed', () => {
-      const handleClick = jest.fn();
-      const additionalContent = <Button onClick={handleClick}>Click</Button>;
-
-      const { getByText } = render(
-        <TreeItem
-          additionalContent={additionalContent}
-          label={labelText}
-          testId={testId}
-          itemId={itemId}
-        />
-      );
-
-      const button = getByText('Click');
-
-      expect(button).toBeInTheDocument();
-
-      button.focus();
-
-      fireEvent.keyDown(button, { key: 'Enter', code: 'Enter' });
-      expect(handleClick).toHaveBeenCalledTimes(1);
-
-      fireEvent.keyDown(button, { key: ' ', code: 'Space' });
-      expect(handleClick).toHaveBeenCalledTimes(2);
-    });
   });
 
   describe('isDisabled', () => {
@@ -195,6 +169,46 @@ describe('TreeItem', () => {
       userEvent.click(getByText(labelText));
 
       expect(onClick).toHaveBeenCalled();
+    });
+  });
+
+  describe('keyboard navigation and focus', () => {
+    it('should activate the interactive element on Enter and Space', () => {
+      const handleClick = jest.fn();
+      const { getByText } = render(
+        <TreeItem
+          label={<Button onClick={handleClick}>Button</Button>}
+          testId={testId}
+          itemId={itemId}
+        />
+      );
+      const button = getByText('Button');
+
+      expect(button).toBeInTheDocument();
+
+      button.focus();
+
+      fireEvent.keyDown(button, { key: 'Enter', code: 'Enter' });
+      expect(handleClick).toHaveBeenCalledTimes(1);
+
+      fireEvent.keyDown(button, { key: ' ', code: 'Space' });
+      expect(handleClick).toHaveBeenCalledTimes(2);
+    });
+
+    it('should return focus to the tree item on Escape', () => {
+      const { getByTestId, getByText } = render(
+        <TreeItem
+          label={<Button>Button</Button>}
+          testId={testId}
+          itemId={itemId}
+        />
+      );
+      const treeItem = getByTestId(testId);
+      const button = getByText('Button');
+      button.focus();
+      fireEvent.keyDown(button, { key: 'Escape' });
+
+      expect(treeItem).toHaveFocus();
     });
   });
 });

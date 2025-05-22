@@ -257,20 +257,19 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     const [isInsideTreeItem, setIsInsideTreeItem] = React.useState(false);
     const focusTrapElement = useFocusLock(isInsideTreeItem);
-    const [inputMethod, setInputMethod] = React.useState<'keyboard' | 'mouse'>(
-      'mouse'
-    );
+    const interactiveElements =
+      'button, [role="button"], input, select, textarea, a[href], [tabindex]:not([tabindex="-1"])';
 
     const handleLabelAndAdditionalContentKeyDown = (
       event: React.KeyboardEvent
     ) => {
       const { key, target } = event;
       const currentElement = target as HTMLElement;
-      const interactiveElements =
-        'button, [role="button"], input, select, textarea, a[href], [tabindex]:not([tabindex="-1"])';
 
-      const isActivationKey = key === 'Enter' || key === ' ';
+      const isEnter = key === 'Enter';
+      const isSpace = key === ' ';
       const isEscape = key === 'Escape';
+      const isActivationKey = isEnter || isSpace;
 
       const interactiveElement =
         currentElement.closest<HTMLElement>(interactiveElements);
@@ -295,13 +294,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       }
     };
 
-    const defaultIcon =
-      nodeType === TreeNodeType.branch ? (
-        <FolderIcon aria-hidden />
-      ) : (
-        <ArticleIcon aria-hidden />
-      );
-
     const handleOnClick = (event: React.MouseEvent) => {
       if (isDisabled) {
         event.stopPropagation();
@@ -314,6 +306,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           'button, [role="button"], a[href], input, select, textarea'
         ) !== null;
 
+      // Preventing selecting the item when clicking on interactive elements
       if (isInteractiveElement) {
         return;
       }
@@ -322,6 +315,13 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         handleClick(event, itemId);
       }
     };
+
+    const defaultIcon =
+      nodeType === TreeNodeType.branch ? (
+        <FolderIcon aria-hidden />
+      ) : (
+        <ArticleIcon aria-hidden />
+      );
 
     const labelText = (
       <StyledLabelWrapper
@@ -361,7 +361,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     // Props shared by Checkbox and IndeterminateCheckbox
     const checkboxProps = {
       disabled: isDisabled,
-      hideFocus: inputMethod !== 'keyboard',
+      hideFocus: true,
       id: `${itemId}-checkbox`,
       inputStyle: { marginRight: theme.spaceScale.spacing03 },
       labelStyle: {
@@ -369,7 +369,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       },
       labelText: labelText,
       onChange: checkboxChangeHandler,
-      tabIndex: inputMethod === 'keyboard' ? 0 : -1,
+      tabIndex: -1,
       testId: `${itemId}-checkbox`,
     };
 
@@ -391,51 +391,41 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       selectable === TreeViewSelectable.multi &&
       (isTopLevelSelectable !== false || !topLevel);
 
-    // Checks if the event target is an interactive element
-    // inside the label or additional content section.
-    const isWithinLabelOrAdditionalContent = (target: any): Element | null => {
-      // Need for tests
-      const safeItemId = CSS.escape(itemId);
-
-      return target.closest(
-        `#${safeItemId}-label, #${safeItemId}-additionalcontentwrapper, #${safeItemId}-checkbox`
-      );
-    };
-
     const onKeyDownHandler = (event: React.KeyboardEvent) => {
-      const target = event.target as HTMLElement;
+      const { key, target, currentTarget } = event;
+      const isEnter = key === 'Enter';
+      const isCtrlOrCommand = event.ctrlKey || event.metaKey;
+      const isCtrlEnter = isCtrlOrCommand && isEnter;
 
-      if (target === event.currentTarget) {
-        handleKeyDown(event);
+      if (isCtrlEnter && target === currentTarget) {
+        setIsInsideTreeItem(true);
+
+        const interactiveElementsList = Array.from(
+          currentTarget.querySelectorAll<HTMLElement>(interactiveElements)
+        ).filter(el => !el.hasAttribute('tabindex') || el.tabIndex !== -1);
+
+        const elementToFocus = interactiveElementsList[0];
+
+        if (elementToFocus) {
+          elementToFocus.focus();
+        }
         return;
       }
 
-      if (isWithinLabelOrAdditionalContent(target)) {
+      const isWithinLabelOrAdditionalContent = (target as HTMLElement).closest(
+        `#${itemId}-label, #${itemId}-additionalcontentwrapper`
+      );
+
+      if (isWithinLabelOrAdditionalContent) {
         handleLabelAndAdditionalContentKeyDown(event);
         return;
       }
-    };
 
-    const handleFocus = (event: React.FocusEvent) => {
-      const target = event.target as HTMLElement;
-
-      if (isWithinLabelOrAdditionalContent(target)) {
-        setIsInsideTreeItem(true);
+      if (target === currentTarget) {
+        handleKeyDown(event);
+        return;
       }
     };
-
-    React.useEffect(() => {
-      const handleKeyDown = () => setInputMethod('keyboard');
-      const handleMouseDown = () => setInputMethod('mouse');
-
-      window.addEventListener('keydown', handleKeyDown);
-      window.addEventListener('mousedown', handleMouseDown);
-
-      return () => {
-        window.removeEventListener('keydown', handleKeyDown);
-        window.removeEventListener('mousedown', handleMouseDown);
-      };
-    }, []);
 
     return (
       <TreeItemContext.Provider value={contextValue}>
@@ -458,7 +448,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           tabIndex={tabIndex}
           onKeyDown={onKeyDownHandler}
           ref={focusTrapElement}
-          onFocus={handleFocus}
         >
           <StyledItemWrapper
             additionalContent={additionalContent}
