@@ -315,3 +315,15 @@ export const reactNodeToString = (node: React.ReactNode): string => {
 
   return '';
 };
+
+export const mergeRefs = <T>(...refs: Array<React.Ref<T> | undefined>) => {
+  return (node: T | null) => {
+    refs.forEach(ref => {
+      if (typeof ref === 'function') {
+        ref(node);
+      } else if (ref !== null) {
+        (ref as React.MutableRefObject<T | null>).current = node;
+      }
+    });
+  };
+};

@@ -4,19 +4,19 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 import {
-  FolderIcon,
   ArticleIcon,
-  ExpandMoreIcon,
   ChevronRightIcon,
+  ExpandMoreIcon,
+  FolderIcon,
 } from 'react-magma-icons';
 
 import { TreeItemContext } from './TreeItemContext';
 import { TreeViewContext } from './TreeViewContext';
 import { TreeViewSelectable } from './types';
 import {
-  UseTreeItemProps,
-  useTreeItem,
   checkedStatusToBoolean,
+  useTreeItem,
+  UseTreeItemProps,
 } from './useTreeItem';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
@@ -29,12 +29,14 @@ import {
 import { Transition } from '../Transition';
 import {
   calculateOffset,
-  TreeNodeType,
   getTreeItemLabelColor,
   getTreeItemWrapperCursor,
+  TreeNodeType,
 } from './utils';
+import { useFocusLock } from '../../hooks/useFocusLock';
+import { mergeRefs } from '../../utils';
 
-export type TreeItemProps = UseTreeItemProps;
+export interface TreeItemProps extends UseTreeItemProps {}
 
 const StyledTreeItem = styled.li<{
   theme?: ThemeInterface;
@@ -107,7 +109,6 @@ const StyledTreeItem = styled.li<{
           inset-inline-start: 0;
         }
       `}
-
     &:hover {
       background: ${props =>
         !props.isDisabled
@@ -127,7 +128,8 @@ const IconWrapper = styled.span<{
   color: ${props =>
     getTreeItemLabelColor(props.isInverse, props.isDisabled, props.theme)};
   margin-right: ${props => props.theme.spaceScale.spacing03};
-  margin-left: 0px;
+  margin-left: 0;
+
   svg {
     height: ${props => props.theme.iconSizes.medium}px;
     width: ${props => props.theme.iconSizes.medium}px;
@@ -162,13 +164,19 @@ const StyledExpandWrapper = styled.div<{
   height: ${props => props.theme.spaceScale.spacing06};
 `;
 
-const StyledCheckboxWrapper = styled.div<{ theme?: ThemeInterface }>`
+const StyledCheckboxWrapper = styled.div<{
+  theme?: ThemeInterface;
+  hasAdditionalContent?: boolean;
+}>`
   margin-right: ${props => props.theme.spaceScale.spacing03};
   vertical-align: middle;
-  display: inline-flex;
+  display: ${props => (props.hasAdditionalContent ? 'flex' : 'inline-flex')};
+  flex-direction: column;
+  width: ${props => `calc(100% - ${props.theme.spaceScale.spacing03})`};
 `;
 
 const StyledItemWrapper = styled.div<{
+  additionalContent?: React.ReactNode;
   theme?: ThemeInterface;
   selectable?: TreeViewSelectable;
   nodeType: TreeNodeType;
@@ -177,6 +185,7 @@ const StyledItemWrapper = styled.div<{
   isDisabled: boolean;
 }>`
   display: flex;
+  flex-direction: ${props => (props.additionalContent ? 'column' : 'row')};
   align-items: flex-start;
   cursor: ${props =>
     getTreeItemWrapperCursor(
@@ -186,9 +195,14 @@ const StyledItemWrapper = styled.div<{
     )};
 `;
 
+const AdditionalContentWrapper = styled.div<{ theme?: ThemeInterface }>`
+  margin-bottom: ${props => props.theme.spaceScale.spacing05};
+`;
+
 export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
   (props, forwardedRef) => {
     const {
+      additionalContent,
       children,
       icon,
       index,
@@ -242,6 +256,107 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           : checkedStatus === IndeterminateCheckboxStatus.checked
         : null;
 
+    const [isInsideTreeItem, setIsInsideTreeItem] = React.useState(false);
+    const treeItemRef = React.useRef<HTMLLIElement>(null);
+    const focusTrapElement = useFocusLock(isInsideTreeItem);
+    const interactiveElements =
+      'button, [role="button"], input, select, textarea, a[href], [tabindex]:not([tabindex="-1"])';
+
+    const getInteractiveElements = (
+      container: HTMLElement,
+      selector: string
+    ): HTMLElement[] => {
+      return Array.from(
+        container.querySelectorAll<HTMLElement>(selector)
+      ).filter(
+        el =>
+          !el.hasAttribute('tabindex') ||
+          (el.tabIndex !== undefined && el.tabIndex >= 0)
+      );
+    };
+
+    const handleLabelAndAdditionalContentKeyDown = (
+      event: React.KeyboardEvent
+    ) => {
+      const { key, target, currentTarget, shiftKey } = event;
+      const currentElement = target as HTMLElement;
+      const isEnter = key === 'Enter';
+      const isSpace = key === ' ';
+      const isEscape = key === 'Escape';
+      const isTab = key === 'Tab';
+      const isActivationKey = isEnter || isSpace;
+      const interactiveElement =
+        currentElement.closest<HTMLElement>(interactiveElements);
+
+      if (isTab && isInsideTreeItem) {
+        event.preventDefault();
+
+        const interactiveElementsList = getInteractiveElements(
+          currentTarget as HTMLElement,
+          interactiveElements
+        );
+        // Filter list of interactive elements which are only included for current tree item
+        const currentTreeItemInteractiveElements =
+          interactiveElementsList.filter(el => {
+            const closestTreeItem = el.closest('[role="treeitem"]');
+
+            return closestTreeItem === treeItemRef.current;
+          });
+
+        const currentIndex =
+          currentTreeItemInteractiveElements.indexOf(currentElement);
+        const direction = shiftKey ? -1 : 1;
+        const total = currentTreeItemInteractiveElements.length;
+        const nextIndex = (currentIndex + direction + total) % total;
+        const elementToFocus = currentTreeItemInteractiveElements[nextIndex];
+        if (elementToFocus) {
+          setTimeout(() => elementToFocus.focus(), 0);
+        }
+        return;
+      }
+
+      if (isActivationKey) {
+        if (interactiveElement) {
+          event.preventDefault();
+          interactiveElement.click();
+        }
+      }
+
+      if (isEscape) {
+        event.preventDefault();
+        event.stopPropagation();
+        setIsInsideTreeItem(false);
+
+        const treeItemNode = treeItemRef.current;
+        if (treeItemNode) {
+          treeItemNode.focus();
+        }
+        return;
+      }
+    };
+
+    const handleOnClick = (event: React.MouseEvent) => {
+      if (isDisabled) {
+        event.stopPropagation();
+        return;
+      }
+
+      const currentElement = event.target as HTMLElement;
+      const isInteractiveElement =
+        currentElement.closest(
+          'button, [role="button"], a[href], input, select, textarea'
+        ) !== null;
+
+      // Preventing selecting the item when clicking on interactive elements
+      if (isInteractiveElement) {
+        return;
+      }
+
+      if (selectable === TreeViewSelectable.single) {
+        handleClick(event, itemId);
+      }
+    };
+
     const defaultIcon =
       nodeType === TreeNodeType.branch ? (
         <FolderIcon aria-hidden />
@@ -257,16 +372,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         style={labelStyle}
         id={`${itemId}-label`}
         data-testid={`${testId || itemId}-label`}
-        onClick={(e: any) => {
-          if (isDisabled) {
-            e.stopPropagation();
-            return;
-          }
-
-          if (selectable === TreeViewSelectable.single) {
-            handleClick(e, itemId);
-          }
-        }}
+        onClick={handleOnClick}
       >
         {hasIcons && (
           <IconWrapper
@@ -281,6 +387,17 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         {label}
       </StyledLabelWrapper>
     );
+
+    const treeItemAdditionalContent = additionalContent ? (
+      <AdditionalContentWrapper
+        theme={theme}
+        id={`${itemId}-additionalcontentwrapper`}
+        data-testid={`${testId ?? itemId}-additionalcontentwrapper`}
+        onClick={handleOnClick}
+      >
+        {additionalContent}
+      </AdditionalContentWrapper>
+    ) : null;
 
     // Props shared by Checkbox and IndeterminateCheckbox
     const checkboxProps = {
@@ -315,6 +432,46 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       selectable === TreeViewSelectable.multi &&
       (isTopLevelSelectable !== false || !topLevel);
 
+    const onKeyDownHandler = (event: React.KeyboardEvent) => {
+      const { key, target, currentTarget } = event;
+      const isEnter = key === 'Enter';
+      const isCtrlOrCommand = event.ctrlKey || event.metaKey;
+      const isCtrlEnter = isCtrlOrCommand && isEnter;
+
+      if (isCtrlEnter && target === currentTarget) {
+        setIsInsideTreeItem(true);
+
+        const interactiveElementsList = getInteractiveElements(
+          currentTarget as HTMLElement,
+          interactiveElements
+        );
+        const elementToFocus = interactiveElementsList[0];
+
+        if (elementToFocus) {
+          setTimeout(() => {
+            elementToFocus.focus();
+          }, 0);
+        }
+        return;
+      }
+
+      // Ensure valid CSS selectors by escaping special characters (e.g., periods in itemId)
+      const safeItemId = CSS.escape(itemId);
+      const isWithinLabelOrAdditionalContent = (target as HTMLElement).closest(
+        `#${safeItemId}-label, #${safeItemId}-additionalcontentwrapper`
+      );
+
+      if (isWithinLabelOrAdditionalContent) {
+        handleLabelAndAdditionalContentKeyDown(event);
+        return;
+      }
+
+      if (target === currentTarget) {
+        handleKeyDown(event);
+        return;
+      }
+    };
+
     return (
       <TreeItemContext.Provider value={contextValue}>
         <StyledTreeItem
@@ -334,9 +491,11 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           selected={selectedItem}
           theme={theme}
           tabIndex={tabIndex}
-          onKeyDown={handleKeyDown}
+          onKeyDown={onKeyDownHandler}
+          ref={treeItemRef}
         >
           <StyledItemWrapper
+            additionalContent={additionalContent}
             data-testid={`${testId ?? itemId}-itemwrapper`}
             depth={itemDepth}
             id={`${itemId}-itemwrapper`}
@@ -346,7 +505,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             selectable={selectable}
             style={style}
             theme={theme}
-            ref={ref}
+            ref={mergeRefs(ref, focusTrapElement)}
           >
             {hasOwnTreeItems && (
               <StyledExpandWrapper
@@ -368,9 +527,11 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 )}
               </StyledExpandWrapper>
             )}
-
             {shouldShowCheckbox ? (
-              <StyledCheckboxWrapper theme={theme}>
+              <StyledCheckboxWrapper
+                hasAdditionalContent={!!additionalContent}
+                theme={theme}
+              >
                 {hasOwnTreeItems ? (
                   <IndeterminateCheckbox
                     {...checkboxProps}
@@ -382,9 +543,13 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                     checked={checkedStatusToBoolean(checkedStatus)}
                   />
                 )}
+                {treeItemAdditionalContent}
               </StyledCheckboxWrapper>
             ) : (
-              <>{labelText}</>
+              <>
+                {labelText}
+                {treeItemAdditionalContent}
+              </>
             )}
           </StyledItemWrapper>
 
