@@ -215,6 +215,26 @@ const CloseBtn = styled.span<{ theme?: ThemeInterface }>`
 
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   (props, ref) => {
+    const {
+      ariaLabel,
+      children,
+      closeAriaLabel,
+      closeButtonSize,
+      containerStyle,
+      containerTransition = { slideTop: true },
+      isBackgroundClickDisabled,
+      isEscKeyDownDisabled,
+      header,
+      isCloseButtonHidden,
+      isOpen,
+      unmountOnExit = true,
+      testId,
+      isModalClosingControlledManually,
+      headerRef,
+      onClose,
+      ...rest
+    } = props;
+
     const lastFocus = React.useRef<any>();
     const headingRef = React.useRef<any>();
     const bodyRef = React.useRef<any>();
@@ -233,21 +253,21 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
     React.useEffect(() => {
       if (
-        props.isModalClosingControlledManually &&
+        isModalClosingControlledManually &&
         prevOpen &&
-        !props.isOpen &&
+        !isOpen &&
         isModalOpen
       ) {
         setIsModalOpen(false);
-      } else if (!prevOpen && props.isOpen) {
+      } else if (!prevOpen && isOpen) {
         setIsModalOpen(true);
-        if (props.headerRef && typeof props.headerRef === 'function') {
-          props.headerRef(headingRef);
+        if (headerRef && typeof headerRef === 'function') {
+          headerRef(headingRef);
         }
-      } else if (prevOpen && !props.isOpen && isModalOpen) {
+      } else if (prevOpen && !isOpen && isModalOpen) {
         handleClose();
       }
-    }, [props.isOpen]);
+    }, [isOpen]);
 
     React.useEffect(() => {
       if (isModalOpen) {
@@ -255,7 +275,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         const count = document.querySelectorAll('[aria-modal="true"]').length;
         setModalCount(count);
 
-        if (!props.isEscKeyDownDisabled) {
+        if (!isEscKeyDownDisabled) {
           document.body.addEventListener('keydown', handleEscapeKeyDown, false);
         }
       }
@@ -322,23 +342,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         props.onClose && typeof props.onClose === 'function' && props.onClose();
       }, 0);
     }
-
-    const {
-      ariaLabel,
-      children,
-      closeAriaLabel,
-      closeButtonSize,
-      containerStyle,
-      containerTransition = { slideTop: true },
-      isBackgroundClickDisabled,
-      isEscKeyDownDisabled,
-      header,
-      isCloseButtonHidden,
-      isOpen,
-      unmountOnExit = true,
-      testId,
-      ...rest
-    } = props;
 
     const isInverse = useIsInverse(props.isInverse);
 
