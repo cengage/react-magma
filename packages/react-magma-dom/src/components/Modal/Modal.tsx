@@ -243,13 +243,12 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const headingId = `${id}_heading`;
     const contentId = `${id}_content`;
 
-    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(props.isOpen);
+    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(isOpen);
     const [currentTarget, setCurrentTarget] = React.useState(null);
     const [modalCount, setModalCount] = React.useState<number>(0);
 
     const focusTrapElement = useFocusLock(isModalOpen, headingRef, bodyRef);
-
-    const prevOpen = usePrevious(props.isOpen);
+    const prevOpen = usePrevious(isOpen);
 
     React.useEffect(() => {
       if (
@@ -339,7 +338,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
         lastFocus.current?.focus();
 
-        props.onClose && typeof props.onClose === 'function' && props.onClose();
+        onClose && typeof onClose === 'function' && onClose();
       }, 0);
     }
 
