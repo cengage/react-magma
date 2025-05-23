@@ -14,6 +14,7 @@
   "changesets": [
     "chore-Playwright-initial-configuration",
     "chore-deploy-v2",
+    "feat-Dropdown-Add-leading-icon",
     "feat-multiselect-new-option-disabled",
     "fix-Accordion-Tooltip-Storybook-issues",
     "fix-Playwright-tests",
