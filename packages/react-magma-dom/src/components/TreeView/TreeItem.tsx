@@ -285,25 +285,30 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       const isEscape = key === 'Escape';
       const isTab = key === 'Tab';
       const isActivationKey = isEnter || isSpace;
-
       const interactiveElement =
         currentElement.closest<HTMLElement>(interactiveElements);
-
-      const interactiveElementsList = getInteractiveElements(
-        currentTarget as HTMLElement,
-        interactiveElements
-      );
-
-      const currentIndex = interactiveElementsList.indexOf(currentElement);
 
       if (isTab && isInsideTreeItem) {
         event.preventDefault();
 
-        const direction = shiftKey ? -1 : 1;
-        const total = interactiveElementsList.length;
-        const nextIndex = (currentIndex + direction + total) % total;
+        const interactiveElementsList = getInteractiveElements(
+          currentTarget as HTMLElement,
+          interactiveElements
+        );
+        // Filter list of interactive elements which are only included for current tree item
+        const currentTreeItemInteractiveElements =
+          interactiveElementsList.filter(el => {
+            const closestTreeItem = el.closest('[role="treeitem"]');
 
-        const elementToFocus = interactiveElementsList[nextIndex];
+            return closestTreeItem === treeItemRef.current;
+          });
+
+        const currentIndex =
+          currentTreeItemInteractiveElements.indexOf(currentElement);
+        const direction = shiftKey ? -1 : 1;
+        const total = currentTreeItemInteractiveElements.length;
+        const nextIndex = (currentIndex + direction + total) % total;
+        const elementToFocus = currentTreeItemInteractiveElements[nextIndex];
         if (elementToFocus) {
           setTimeout(() => elementToFocus.focus(), 0);
         }
