@@ -25,7 +25,7 @@
     "postbuild": "npm run generate-properties",
     "build-watch": "tsdx watch",
     "copy-changelog": "node scripts/copy-changelog.js",
-    "generate-properties": "node scripts/generateJSON.js",
+    "generate-properties": "node scripts/generateJSON.mjs",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "lint:check": "eslint ./src --max-warnings=0",
