@@ -1,3 +1,4 @@
+/* eslint-disable import/no-duplicates */
 import * as React from 'react';
 
 import styled from '@emotion/styled';
@@ -22,11 +23,13 @@ function buildCalendarDayBackground(props) {
     if (props.isChosen) {
       return props.theme.colors.tertiary;
     }
+
     return props.theme.colors.primary;
   }
   if (props.isChosen) {
     return props.theme.colors.primary;
   }
+
   return props.theme.colors.neutral100;
 }
 
@@ -38,6 +41,7 @@ function buildCalendarDayColor(props) {
     if (props.disabled) {
       return transparentize(0.6, props.theme.colors.neutral100);
     }
+
     return props.theme.colors.neutral100;
   }
 
@@ -47,6 +51,7 @@ function buildCalendarDayColor(props) {
   if (props.disabled) {
     return transparentize(0.4, props.theme.colors.neutral500);
   }
+
   return props.theme.colors.neutral;
 }
 
@@ -181,6 +186,7 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
   function onDayClick(event: React.SyntheticEvent) {
     if (disabled) {
       event.preventDefault();
+
       return;
     }
 

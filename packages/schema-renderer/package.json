@@ -12,7 +12,10 @@
   "scripts": {
     "build": "tsdx build",
     "lint": "eslint ./src",
-    "test": "jest"
+    "lint:fix": "eslint ./src --fix",
+    "lint:check": "eslint ./src --max-warnings=0",
+    "test": "jest",
+    "compiler-checks": "tsc --noEmit --project ./tsconfig.json"
   },
   "dependencies": {},
   "devDependencies": {

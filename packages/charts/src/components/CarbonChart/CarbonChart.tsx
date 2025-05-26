@@ -47,12 +47,12 @@ export enum CarbonChartType {
 }
 
 export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
-  dataSet: Array<Object>;
+  dataSet: Array<object>;
   isInverse?: boolean;
   /**
    * For a complete list of options, see Carbon Charts documentation
    */
-  options: Object;
+  options: object;
   testId?: string;
   /**
    * @internal
@@ -527,6 +527,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
             ? theme.chartColorsInverse[i]
             : theme.chartColors[i]);
         }
+
         return {};
       });
 

@@ -27,9 +27,12 @@
     "copy-changelog": "node scripts/copy-changelog.js",
     "generate-properties": "node scripts/generateJSON.js",
     "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "lint:check": "eslint ./src --max-warnings=0",
     "prepublishOnly": "npm run copy-changelog",
     "test": "tsdx test",
-    "test-watch": "tsdx test --watch"
+    "test-watch": "tsdx test --watch",
+    "compiler-checks": "tsc --noEmit --project ./tsconfig.json"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

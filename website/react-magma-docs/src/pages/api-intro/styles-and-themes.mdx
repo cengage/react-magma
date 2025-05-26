@@ -404,7 +404,7 @@ To apply component-specific theming, theme objects can be included in the theme 
 These individual theme objects will be applied globally to **only those components.**
 The theme object for each above component can be found on its documentation page. See below for an example of an individual component's theme object:
 
-```jsx noCodeSandbox noRender
+```json noCodeSandbox noRender
 tooltip: {
   arrowSize: '4px',
   arrowSizeDoubled: '8px',
@@ -427,7 +427,7 @@ One of the features of the Magma theme is a typography scale, that contains thir
 
 The `typeScale` can be set as part of the theme.
 
-```jsx noCodeSandbox noRender
+```json noCodeSandbox noRender
 typeScale: {
   size01: {
     fontSize: '12px',
@@ -498,7 +498,7 @@ typeScale: {
 Furthermore, font-size and line-height can be set in the theme for six heading levels and four paragraph relative sizes for two different screen resolutions.
 The theme also contains options for two additional typography variants for those heading and paragraph styles.
 
-```jsx noCodeSandbox noRender
+```json noCodeSandbox noRender
 typographyVisualStyles: {
   headingXLarge: {
       mobile: typeScale.size07,
@@ -568,7 +568,7 @@ Designers are advised to use values from the space scale whenever possible.
 
 The `spaceScale` can be overridden in by defining its values new theme.
 
-```jsx noCodeSandbox noRender
+```json noCodeSandbox noRender
 spaceScale: {
   spacing01: '2px',
   spacing02: '4px',
@@ -628,6 +628,7 @@ import {
   Tag,
   Tooltip,
   ThemeContext,
+  TypographyContextVariant,
 } from 'react-magma-dom';
 import { InfoIcon } from 'react-magma-icons';
 

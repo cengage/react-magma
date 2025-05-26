@@ -634,7 +634,7 @@ to change the state. You can see the full list of the types in the [`stateChange
 ```tsx
 import React from 'react';
 
-import { Select } from 'react-magma-dom';
+import { Select, SelectStateChangeTypes } from 'react-magma-dom';
 
 export function Example() {
   const [changes, updateChanges] = React.useState({});
@@ -644,6 +644,7 @@ export function Example() {
 
   function onStateChange(newChanges) {
     const { type } = newChanges;
+
     updateChanges(newChanges);
 
     switch (type) {
@@ -1140,6 +1141,7 @@ export function Example() {
 
   const CustomItem = props => {
     const { itemRef, itemString, item, ...other } = props;
+
     return (
       <CustomStyledItem {...other} ref={itemRef}>
         <ContainerSpan>

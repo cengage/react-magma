@@ -1,3 +1,4 @@
+/* eslint-disable import/no-duplicates */
 import {
   addDays,
   addMonths,
@@ -52,34 +53,42 @@ export function handleKeyPress(
   switch (key) {
     case 'ArrowUp':
       e.preventDefault();
+
       return subWeeks(prevDate, 1);
 
     case 'ArrowLeft':
       e.preventDefault();
+
       return subDays(prevDate, 1);
 
     case 'Home':
       e.preventDefault();
+
       return startOfWeek(prevDate);
 
     case 'PageUp':
       e.preventDefault();
+
       return subMonths(prevDate, 1);
 
     case 'ArrowDown':
       e.preventDefault();
+
       return addWeeks(prevDate, 1);
 
     case 'ArrowRight':
       e.preventDefault();
+
       return addDays(prevDate, 1);
 
     case 'End':
       e.preventDefault();
+
       return endOfWeek(prevDate);
 
     case 'PageDown':
       e.preventDefault();
+
       return addMonths(prevDate, 1);
 
     case 'Escape':
@@ -117,6 +126,7 @@ export function getCalendarMonthWeeks(
     }
 
     let day = null;
+
     if ((i >= prevDays && i < totalDays - nextDays) || enableOutsideDays) {
       day = addDays(currentDay, i);
     }

@@ -149,7 +149,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
 
       return !isHidden;
     }
-  }, [arrowStyle, arrowElement, arrowElement.current]);
+  }, [arrowElement]);
 
   const { refs, floatingStyles, placement, context } = useFloating({
     //flip() - Changes the placement of the floating element to keep it in view.
@@ -162,37 +162,36 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
       offset(isArrowVisible ? 14 : 0),
       ...(isArrowVisible ? [arrow({ element: arrowElement })] : []),
     ],
-    placement: props.position || (TooltipPosition.top as AlignedPlacement),
+    placement: (props.position ??
+      TooltipPosition.top) as unknown as AlignedPlacement,
     whileElementsMounted: autoUpdate,
   });
 
   const combinedRef = useForkedRef(ref, refs.setReference);
 
-  React.useEffect(() => {
-    const handleEsc = event => {
+  const hideTooltip = React.useCallback(() => {
+    setIsVisible(props.open);
+  }, [props.open]);
+
+  const handleKeyDown = React.useCallback(
+    (event: React.KeyboardEvent | KeyboardEvent) => {
       if (event.key === 'Escape') {
         hideTooltip();
       }
-    };
-    window.addEventListener('keydown', handleEsc);
+    },
+    [hideTooltip]
+  );
+
+  React.useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener('keydown', handleEsc);
+      window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
-
-  function handleKeyDown(event: React.KeyboardEvent) {
-    if (event.key === 'Escape') {
-      hideTooltip();
-    }
-  }
+  }, [handleKeyDown]);
 
   function showTooltip() {
     setIsVisible(true);
-  }
-
-  function hideTooltip() {
-    setIsVisible(props.open);
   }
 
   const id = useGenerateId(defaultId);
@@ -220,7 +219,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   return (
     <TooltipContainer
       {...other}
-      data-testid={testId || 'tooltip'}
+      data-testid={testId ?? 'tooltip'}
       onKeyDown={handleKeyDown}
       onMouseLeave={hideTooltip}
       onMouseEnter={showTooltip}
@@ -246,11 +245,13 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
             id={id}
             isInverse={isInverse}
             position={
-              placement ? (placement as AlignedPlacement) : TooltipPosition.top
+              (placement
+                ? (placement as unknown)
+                : TooltipPosition.top) as TooltipPosition
             }
             theme={theme}
             role="tooltip"
-            data-tooltip-placement={placement ? placement : TooltipPosition.top}
+            data-tooltip-placement={placement ?? TooltipPosition.top}
           >
             {content}
           </StyledTooltip>

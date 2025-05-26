@@ -52,6 +52,7 @@ export const ChartDataTable = (props: DataTableProps) => {
     const xTickValuesArray = data.reduce((valuesArray, { data: dataset }) => {
       dataset.forEach((datum: any) => {
         const value = datum.x || (xKeyValue && datum[xKeyValue]);
+
         !valuesArray.includes(value) && valuesArray.push(value);
       });
 
@@ -83,6 +84,7 @@ export const ChartDataTable = (props: DataTableProps) => {
                 : xTickFormat && typeof xTickFormat === 'function'
                   ? xTickFormat(tick)
                   : tick;
+
           agg.push({
             [xField]: tickValue,
             id: index,
@@ -104,8 +106,8 @@ export const ChartDataTable = (props: DataTableProps) => {
       });
 
       dataset.forEach((d: any, i: number) => {
-        const yValue =
-          d.y || d.y === 0 ? d.y : undefined || (yKeyValue && d[yKeyValue]);
+        const yValue = d.y || d.y === 0 ? d.y : yKeyValue && d[yKeyValue];
+
         tableData.rows[i] = {
           ...tableData.rows[i],
           id: baseTableData.rows.length > 0 ? i + 1 : i,

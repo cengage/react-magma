@@ -42,7 +42,7 @@ interface BaseChartProps {
    */
   type: string;
 }
-export interface ChartProps<T extends any>
+export interface ChartProps<T>
   extends BaseChartProps,
     Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
     LineChartProps<T> {}
@@ -135,8 +135,7 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
       case 'Tab': {
         if (
           !shiftKey &&
-          lastFocusedScatterPoint &&
-          lastFocusedScatterPoint.current &&
+          lastFocusedScatterPoint?.current &&
           pointRefArray.current.find(
             point => point.current === lastFocusedScatterPoint.current
           )
@@ -146,6 +145,8 @@ function BaseChart<T>(props: ChartProps<T>, ref: React.Ref<HTMLDivElement>) {
         }
         break;
       }
+      default:
+        break;
     }
   }
 

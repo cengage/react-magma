@@ -128,7 +128,7 @@ describe('Radio Group', () => {
     );
   });
 
-  it('Changes the selected radio when clicked', () => {
+  it('Changes the selected radio when clicked', async () => {
     const onChangeSpy = jest.fn();
     const { getByLabelText } = render(
       <RadioGroup
@@ -152,10 +152,10 @@ describe('Radio Group', () => {
 
     expect(onChangeSpy).toHaveBeenCalledTimes(1);
 
-    waitFor(() => {
-      expect(getByLabelText('Default Color')).not.toHaveAttribute('checked');
-      expect(getByLabelText('Success Color')).toHaveAttribute('checked');
-    }, 1000);
+    await waitFor(() => {
+      expect(getByLabelText('Default Color')).not.toBeChecked();
+      expect(getByLabelText('Success Color')).toBeChecked();
+    });
   });
 
   it('Does not violate accessibility standards', () => {

@@ -26,6 +26,8 @@ jobs:
         run: npm install -g "npm@^10.8.2"
       - name: Install
         run: npm ci --legacy-peer-deps
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
       - name: Test
         run: npm test
       - name: Coverage

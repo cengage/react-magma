@@ -1,5 +1,6 @@
 const { createFilePath } = require('gatsby-source-filesystem');
-const propertiesJson = require('react-magma-dom/dist/properties.json');
+// TODO: const propertiesJson = require('react-magma-dom/dist/properties.json');
+const propertiesJson = [];
 
 exports.onCreateWebpackConfig = ({ actions, plugins }) => {
   actions.setWebpackConfig({
@@ -35,16 +36,19 @@ const getPathPrefix = path => {
     if (/intro/.test(path)) {
       return 'design-intro';
     }
+
     return 'design';
   } else if (/api/.test(path)) {
     if (/intro/.test(path)) {
       return 'api-intro';
     }
+
     return 'api';
   } else if (/patterns/.test(path)) {
     if (/intro/.test(path)) {
       return 'patterns-intro';
     }
+
     return 'patterns';
   } else if (/data-visualization/.test(path)) {
     return 'data-visualization';
@@ -53,10 +57,12 @@ const getPathPrefix = path => {
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
+
   if (node.internal.type === 'Mdx') {
     const prefix = getPathPrefix(node.fileAbsolutePath);
     const filePath = createFilePath({ node, getNode });
     const fullFilePath = `/${prefix}${filePath.toLowerCase()}`;
+
     createNodeField({
       name: 'slug',
       node,

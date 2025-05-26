@@ -1,7 +1,0 @@
-.storybook
-dist
-node_modules
-coverage
-public
-.cache
-**/CHANGELOG.md

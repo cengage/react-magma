@@ -265,11 +265,13 @@ export function LineChart<T>(props: LineChartProps<T>) {
         point.current.getAttribute('data-line-index') as string,
         10
       );
+
       !acc.includes(currentLineIndex) &&
         acc.push(
           parseInt(point.current.getAttribute('data-line-index') as string, 10)
         );
     }
+
     return acc;
   };
 
@@ -305,9 +307,9 @@ export function LineChart<T>(props: LineChartProps<T>) {
       parseInt(point.current.getAttribute('data-point-index') as string, 10) ===
         pointIndex;
 
-  // eslint-disable-next-line complexity
   function handleChartContainerKeyDown(event: React.KeyboardEvent) {
     const { key, shiftKey } = event;
+
     switch (key) {
       case 'Tab': {
         event.preventDefault();
@@ -384,6 +386,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
             default: {
               const nextLowestLineIndex =
                 lineIndexes[lineIndexes.indexOf(currentLineIndex) - 1];
+
               (
                 (
                   pointRefArray.current.find(
@@ -425,6 +428,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
             default: {
               const nextHighestLineIndex =
                 lineIndexes[lineIndexes.indexOf(currentLineIndex) + 1];
+
               (
                 (
                   pointRefArray.current.find(
@@ -442,6 +446,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
 
   function handleFirstLegendButtonKeydown(event: React.KeyboardEvent) {
     const { key, shiftKey } = event;
+
     switch (key) {
       case 'Tab': {
         if (
@@ -510,7 +515,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                   }}
                   key={`line${i}`}
                   data={dataset as unknown as any[]}
-                  labelComponent={<></>}
+                  labelComponent={<React.Fragment />}
                   x={x as DataGetterPropType}
                   y={y as DataGetterPropType}
                   {...line}
@@ -541,6 +546,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                         onBlur: () => {
                           setShowXAxisLabel(true);
                           setShowTooltip(null);
+
                           return [
                             {
                               target: 'labels',
@@ -556,6 +562,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                                 setShowTooltip(
                                   `${props.datum.lineIndex}-${props.datum.index}`
                                 );
+
                                 return { active: true };
                               },
                             },
@@ -563,6 +570,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                         },
                         onFocus: () => {
                           setShowXAxisLabel(false);
+
                           return [
                             {
                               target: 'labels',
@@ -570,6 +578,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                                 setShowTooltip(
                                   `${props.datum.lineIndex}-${props.datum.index}`
                                 );
+
                                 return { active: true };
                               },
                             },
@@ -577,6 +586,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                         },
                         onMouseEnter: () => {
                           setShowXAxisLabel(false);
+
                           return [
                             {
                               target: 'labels',
@@ -584,6 +594,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
                                 setShowTooltip(
                                   `${props.datum.lineIndex}-${props.datum.index}`
                                 );
+
                                 return { active: true };
                               },
                             },

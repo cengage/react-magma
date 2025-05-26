@@ -93,11 +93,13 @@ function buildBoxShadow(props) {
           props.theme.colors.neutral100
         )}`;
       }
+
       return `0 0 0 1px ${transparentize(0.5, props.theme.colors.neutral100)}`;
     }
     if (props.disabled) {
       return `0 0 0 1px ${props.theme.colors.neutral300}`;
     }
+
     return `inset 0 0 0  1px ${props.theme.colors.neutral400}`;
   }
 }
@@ -107,7 +109,8 @@ function buildButtonBackground(props) {
     if (props.disabled) {
       // Disabled inverse state background colors
       switch (props.color) {
-        case 'primary' || 'highContrast':
+        case 'primary':
+        case 'highContrast':
           return transparentize(0.7, props.theme.colors.neutral100);
         case 'lowContrast':
           return `none`;
@@ -129,7 +132,8 @@ function buildButtonBackground(props) {
   } else if (props.disabled && !props.isInverse) {
     // Disabled state background colors
     switch (props.color) {
-      case 'primary' || 'highContrast':
+      case 'primary':
+      case 'highContrast':
         return transparentize(0.4, props.theme.colors.neutral300);
       case 'lowContrast':
         return props.theme.colors.neutral100;
@@ -155,7 +159,8 @@ function buildButtonTextColor(props) {
     if (props.disabled) {
       // Disabled inverse state text colors
       switch (props.color) {
-        case 'primary' || 'highContrast':
+        case 'primary':
+        case 'highContrast':
           return transparentize(0.6, props.theme.colors.neutral100);
 
         case 'lowContrast':
@@ -202,6 +207,7 @@ function buildSvgOpacity(props) {
       if (props.disabled) {
         return '40%';
       }
+
       return '75%';
     }
   }
@@ -209,6 +215,7 @@ function buildSvgOpacity(props) {
     if (props.disabled) {
       return '60%';
     }
+
     return '75%';
   }
   if (props.color === 'lowContrast' && props.disabled) {
@@ -216,6 +223,7 @@ function buildSvgOpacity(props) {
   } else if (props.disabled) {
     return '40%';
   }
+
   return '1';
 }
 
