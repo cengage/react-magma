@@ -138,7 +138,7 @@
     "shelljs": "0.10.0",
     "ts-node": "10.9.2",
     "tsdx": "0.14.1",
-    "typedoc": "0.19.2",
+    "typedoc": "^0.28.4",
     "typescript": "5.8.3",
     "typescript-eslint": "8.32.1",
     "webpack-filter-warnings-plugin": "1.2.1"

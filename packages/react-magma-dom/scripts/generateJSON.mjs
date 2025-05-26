@@ -1,14 +1,12 @@
-const fs = require('fs');
-const { mkdirp } = require('mkdirp');
-const { type } = require('os');
-const TypeDoc = require('typedoc');
-const typescript = require('typescript');
+import fs from 'fs';
+import { mkdirp } from 'mkdirp';
+import * as TypeDoc from 'typedoc';
+import typescript from 'typescript';
 
 mkdirp('dist');
 
-// specifically point to tsconfig, otherwise TypeDoc fails
 const tsconfig = typescript.findConfigFile(
-  '../tsconfig.js',
+  '../tsconfig.json',
   typescript.sys.fileExists
 );
 const outPath = './dist/properties.json';
@@ -24,28 +22,22 @@ const defaultDefaults = {
   isInverse: 'false',
 };
 
-const generateJson = () => {
-  const app = new TypeDoc.Application();
-
-  // If you want TypeDoc to load tsconfig.json / typedoc.json files
-  app.options.addReader(new TypeDoc.TSConfigReader());
-  app.options.addReader(new TypeDoc.TypeDocReader());
-
-  app.bootstrap({
+const generateJson = async () => {
+  const app = await TypeDoc.Application.bootstrapWithPlugins({
     tsconfig,
-    mode: 'modules',
+    entryPoints: inPath,
+    entryPointStrategy: 'expand',
     includeDeclarations: true,
     excludeExternals: true,
     stripInternal: true,
     ignoreCompilerErrors: true,
   });
 
-  const project = app.convert(app.expandInputFiles(inPath));
+  const project = await app.convert();
 
   if (project) {
-    // Project may not have converted correctly
-    // Alternatively generate JSON output
-    app.generateJson(project, outPath);
+    const json = app.serializer.projectToObject(project);
+    fs.writeFileSync(outPath, JSON.stringify(json, null, 2));
   }
 };
 
