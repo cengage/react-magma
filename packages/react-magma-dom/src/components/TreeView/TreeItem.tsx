@@ -176,7 +176,7 @@ const StyledCheckboxWrapper = styled.div<{
 `;
 
 const StyledItemWrapper = styled.div<{
-  additionalContent?: React.ReactNode;
+  hasAdditionalContent?: boolean;
   theme?: ThemeInterface;
   selectable?: TreeViewSelectable;
   nodeType: TreeNodeType;
@@ -185,7 +185,7 @@ const StyledItemWrapper = styled.div<{
   isDisabled: boolean;
 }>`
   display: flex;
-  flex-direction: ${props => (props.additionalContent ? 'column' : 'row')};
+  flex-direction: ${props => (props.hasAdditionalContent ? 'column' : 'row')};
   align-items: flex-start;
   cursor: ${props =>
     getTreeItemWrapperCursor(
@@ -275,6 +275,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       );
     };
 
+    // Handling keydown events for label and additional content
     const handleLabelAndAdditionalContentKeyDown = (
       event: React.KeyboardEvent
     ) => {
@@ -315,11 +316,9 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         return;
       }
 
-      if (isActivationKey) {
-        if (interactiveElement) {
-          event.preventDefault();
-          interactiveElement.click();
-        }
+      if (isActivationKey && interactiveElement) {
+        event.preventDefault();
+        interactiveElement.click();
       }
 
       if (isEscape) {
@@ -432,6 +431,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       selectable === TreeViewSelectable.multi &&
       (isTopLevelSelectable !== false || !topLevel);
 
+    // Handling keydown events and focus for tree item or inside label/additional content
     const onKeyDownHandler = (event: React.KeyboardEvent) => {
       const { key, target, currentTarget } = event;
       const isEnter = key === 'Enter';
@@ -495,9 +495,9 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           ref={treeItemRef}
         >
           <StyledItemWrapper
-            additionalContent={additionalContent}
             data-testid={`${testId ?? itemId}-itemwrapper`}
             depth={itemDepth}
+            hasAdditionalContent={!!additionalContent}
             id={`${itemId}-itemwrapper`}
             isDisabled={isDisabled}
             isInverse={isInverse}
