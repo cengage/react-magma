@@ -89,11 +89,6 @@
     },
     "website/react-magma-docs": {
       "targets": {
-        "build": {
-          "cache": true,
-          "dependsOn": ["react-magma-dom:build"],
-          "outputs": ["{projectRoot}/website/react-magma-docs/public"]
-        },
         "lint": {
           "cache": true
         },
