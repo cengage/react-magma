@@ -743,16 +743,16 @@ const mockEndpoint = value =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
       if (value === 'Andy') {
-        reject({ message: 'Andy is not allowed' });
+        reject(new Error('Andy is not allowed'));
       }
       resolve({ message: 'validation sucesfull' });
     }, 2000);
   });
 const asyncValidator = value =>
   mockEndpoint(value)
-    .catch(({ message }) => {
+    .catch(error => {
       // error must only throw valid react child eg: string, number, node, etc.
-      throw message;
+      throw error.message;
     })
     .then(() => {
       // possible success handler

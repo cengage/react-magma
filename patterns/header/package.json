@@ -18,6 +18,8 @@
   "scripts": {
     "build": "tsdx build",
     "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "lint:check": "eslint ./src --max-warnings=0",
     "test": "jest"
   },
   "devDependencies": {

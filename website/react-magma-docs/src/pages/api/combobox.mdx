@@ -175,7 +175,7 @@ export function Example() {
   const [changes, updateChanges] = React.useState({});
   const [highlightedIndex, updateHighlightedIndex] = React.useState<number>(-1);
   const [isOpen, updateIsOpen] = React.useState<boolean>(false);
-  const [selectedItem] = React.useState({});
+  const [selectedItem, updateSelectedItem] = React.useState({});
 
   function onStateChange(newChanges) {
     const { type } = newChanges;
@@ -1227,6 +1227,7 @@ export function Example() {
 
   const CustomItem = props => {
     const { itemRef, itemString, item, ...other } = props;
+
     return (
       <CustomStyledItem {...other} ref={itemRef}>
         <ContainerSpan>
