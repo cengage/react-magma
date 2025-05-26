@@ -343,11 +343,12 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       const currentElement = event.target as HTMLElement;
       const isInteractiveElement =
         currentElement.closest(
-          'button, [role="button"], a[href], input, select, textarea'
+          'button, [role="button"], a[href], input, select, textarea, [role="menuitem"]'
         ) !== null;
 
       // Preventing selecting the item when clicking on interactive elements
       if (isInteractiveElement) {
+        event.stopPropagation();
         return;
       }
 
