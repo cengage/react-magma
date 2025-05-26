@@ -68,11 +68,13 @@ const filterJson = () => {
 
   const sortObject = unordered => {
     const ordered = {};
+
     Object.keys(unordered)
       .sort()
       .forEach(function (key) {
         ordered[key] = unordered[key];
       });
+
     return ordered;
   };
 
@@ -93,6 +95,7 @@ const filterJson = () => {
   const findType = ({ type, id, name, elementType = {}, types = [] }) => {
     name = name || elementType.name;
     let suffix = '';
+
     if (type === 'array') {
       suffix = '[]';
     }
@@ -101,6 +104,7 @@ const filterJson = () => {
     }
     if (type === 'reference') {
       const referenceType = findById(id);
+
       if (referenceType && referenceType.kindString === 'Enumeration') {
         return {
           name: 'enum',
@@ -141,6 +145,7 @@ const filterJson = () => {
 
   const formatChild = (acc, child) => {
     const tags = formatTags((child.comment && child.comment.tags) || []);
+
     if (child && child.type) {
       return {
         ...acc,
@@ -156,6 +161,7 @@ const filterJson = () => {
         },
       };
     }
+
     return {};
   };
 
@@ -225,6 +231,6 @@ const filterJson = () => {
 
   fs.writeFileSync(outPath, JSON.stringify(jsonFinal, null, 2));
 };
-
-generateJson();
-filterJson();
+// TODO: Uncomment the following lines to run the script
+// generateJson();
+// filterJson();

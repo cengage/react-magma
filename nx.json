@@ -89,14 +89,10 @@
     },
     "website/react-magma-docs": {
       "targets": {
-        "lint": {
-          "cache": true
-        },
-        "compiler-checks": {
-          "cache": true
-        },
-        "test": {
-          "cache": true
+        "build": {
+          "cache": true,
+          "dependsOn": ["react-magma-dom:build"],
+          "outputs": ["{projectRoot}/website/react-magma-docs/public"]
         }
       }
     },
