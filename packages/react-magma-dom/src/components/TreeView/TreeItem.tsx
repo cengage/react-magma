@@ -416,6 +416,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       inputStyle: { marginRight: theme.spaceScale.spacing03 },
       labelStyle: {
         padding: 0,
+        width: '100%',
       },
       labelText: labelText,
       onChange: checkboxChangeHandler,

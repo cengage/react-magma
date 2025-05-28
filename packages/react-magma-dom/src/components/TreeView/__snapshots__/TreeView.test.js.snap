@@ -341,7 +341,6 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   line-height: 24px;
   margin: 0;
   padding: 8px 0;
-  width: 100%;
 }
 
 .emotion-38 {
@@ -1043,7 +1042,6 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   line-height: 24px;
   margin: 0;
   padding: 8px 0;
-  width: 100%;
 }
 
 .emotion-38 {
@@ -1524,7 +1522,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-1-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -1591,7 +1589,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-2-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -1657,7 +1655,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-3-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -1724,7 +1722,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-4-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -1811,7 +1809,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-5-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -2239,7 +2237,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   line-height: 24px;
   margin: 0;
   padding: 8px 0;
-  width: 100%;
 }
 
 .emotion-38 {
@@ -3056,7 +3053,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   line-height: 24px;
   margin: 0;
   padding: 8px 0;
-  width: 100%;
 }
 
 .emotion-38 {
@@ -3652,7 +3648,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-1-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -3720,7 +3716,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-2-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -3807,7 +3803,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-3-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -3904,7 +3900,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-4-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -4000,7 +3996,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-5-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -4428,7 +4424,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   line-height: 24px;
   margin: 0;
   padding: 8px 0;
-  width: 100%;
 }
 
 .emotion-38 {
@@ -5170,7 +5165,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   line-height: 24px;
   margin: 0;
   padding: 8px 0;
-  width: 100%;
 }
 
 .emotion-38 {
@@ -5691,7 +5685,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-1-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -5758,7 +5752,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-2-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -5845,7 +5839,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-3-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -5942,7 +5936,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-4-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -6038,7 +6032,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-5-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -6466,7 +6460,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   line-height: 24px;
   margin: 0;
   padding: 8px 0;
-  width: 100%;
 }
 
 .emotion-38 {
@@ -7208,7 +7201,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   line-height: 24px;
   margin: 0;
   padding: 8px 0;
-  width: 100%;
 }
 
 .emotion-38 {
@@ -7729,7 +7721,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-1-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -7796,7 +7788,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-2-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -7883,7 +7875,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-3-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -7980,7 +7972,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-4-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -8076,7 +8068,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-5-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -8504,7 +8496,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   line-height: 24px;
   margin: 0;
   padding: 8px 0;
-  width: 100%;
 }
 
 .emotion-38 {
@@ -9321,7 +9312,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   line-height: 24px;
   margin: 0;
   padding: 8px 0;
-  width: 100%;
 }
 
 .emotion-38 {
@@ -9917,7 +9907,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-1-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -9985,7 +9975,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-2-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -10072,7 +10062,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-3-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -10169,7 +10159,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-4-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -10265,7 +10255,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-5-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -10693,7 +10683,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   line-height: 24px;
   margin: 0;
   padding: 8px 0;
-  width: 100%;
 }
 
 .emotion-38 {
@@ -11510,7 +11499,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   line-height: 24px;
   margin: 0;
   padding: 8px 0;
-  width: 100%;
 }
 
 .emotion-38 {
@@ -12106,7 +12094,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-1-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -12174,7 +12162,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-2-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -12261,7 +12249,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-3-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -12358,7 +12346,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-4-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -12454,7 +12442,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-5-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -12882,7 +12870,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   line-height: 24px;
   margin: 0;
   padding: 8px 0;
-  width: 100%;
 }
 
 .emotion-38 {
@@ -13624,7 +13611,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   line-height: 24px;
   margin: 0;
   padding: 8px 0;
-  width: 100%;
 }
 
 .emotion-38 {
@@ -14145,7 +14131,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-1-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -14212,7 +14198,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-2-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -14299,7 +14285,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-3-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -14396,7 +14382,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-4-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -14492,7 +14478,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-5-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
