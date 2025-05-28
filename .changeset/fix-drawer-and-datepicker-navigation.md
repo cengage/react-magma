@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Drawer, Datepicker): Fix bugs with navigation.
+fix(Drawer): Fix bug with navigation.
