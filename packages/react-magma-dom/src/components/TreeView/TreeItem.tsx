@@ -275,7 +275,12 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       );
     };
 
-    // Handling keydown events for label and additional content
+    /**
+     * This function allows for keyboard navigation within the label and additional content of a tree item.
+     *
+     * You can navigate through interactive elements using the `Tab` key, activate them with `Enter` or `Space`,
+     * and exit outside and focus the whole tree item with `Escape`.
+     * **/
     const handleLabelAndAdditionalContentKeyDown = (
       event: React.KeyboardEvent
     ) => {
@@ -289,6 +294,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       const interactiveElement =
         currentElement.closest<HTMLElement>(interactiveElements);
 
+      // If the key is `Tab`, we navigate through interactive elements inside the tree item
       if (isTab && isInsideTreeItem) {
         event.preventDefault();
 
@@ -296,6 +302,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
           currentTarget as HTMLElement,
           interactiveElements
         );
+
         // Filter list of interactive elements which are only included for current tree item
         const currentTreeItemInteractiveElements =
           interactiveElementsList.filter(el => {
@@ -316,11 +323,13 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         return;
       }
 
+      // Pressing `Enter` or `Space` on an interactive element will trigger its click event
       if (isActivationKey && interactiveElement) {
         event.preventDefault();
         interactiveElement.click();
       }
 
+      // Moves focus outside the tree item and focuses the tree item itself when `Escape` is pressed
       if (isEscape) {
         event.preventDefault();
         event.stopPropagation();
@@ -432,13 +441,24 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       selectable === TreeViewSelectable.multi &&
       (isTopLevelSelectable !== false || !topLevel);
 
-    // Handling keydown events and focus for tree item or inside label/additional content
+    /**
+     * This function allows for keyboard navigation within the tree item.
+     *
+     * Pressing `Ctrl + Enter` or `Command + Enter` focuses the first interactive element within the tree item
+     * and locks focus inside the tree item.
+     *
+     * If the focus is within the label or additional content, it handles key events for interaction elements.
+     *
+     * It also handles the other keys to trigger the click event on the tree item.
+     * **/
     const onKeyDownHandler = (event: React.KeyboardEvent) => {
       const { key, target, currentTarget } = event;
       const isEnter = key === 'Enter';
       const isCtrlOrCommand = event.ctrlKey || event.metaKey;
       const isCtrlEnter = isCtrlOrCommand && isEnter;
 
+      // If the key is Ctrl + Enter or Command + Enter, focus the first interactive element
+      // and lock focus inside the tree item
       if (isCtrlEnter && target === currentTarget) {
         setIsInsideTreeItem(true);
 
@@ -462,11 +482,13 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         `#${safeItemId}-label, #${safeItemId}-additionalcontentwrapper`
       );
 
+      // If the target is within the label or additional content, handle key events for those areas
       if (isWithinLabelOrAdditionalContent) {
         handleLabelAndAdditionalContentKeyDown(event);
         return;
       }
 
+      // If the target is the tree item itself, handle key down for the tree item
       if (target === currentTarget) {
         handleKeyDown(event);
         return;
