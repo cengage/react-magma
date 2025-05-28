@@ -358,6 +358,11 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       />
     );
 
+    // Fix for server-side rendering
+    if (typeof document === 'undefined') {
+      return null;
+    }
+
     return ReactDOM.createPortal(
       <div ref={focusTrapElement}>
         <Global
