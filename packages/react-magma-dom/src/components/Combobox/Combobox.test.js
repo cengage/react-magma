@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, fireEvent, act } from '@testing-library/react';
+import { render, fireEvent, act, waitFor } from '@testing-library/react';
 
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
@@ -1027,7 +1027,9 @@ describe('Combobox', () => {
         });
 
         expect(onEscKeyMock).toHaveBeenCalled();
-        expect(queryByText('Modal Content')).not.toBeInTheDocument();
+        await waitFor(() => {
+          expect(queryByText('Modal Content')).not.toBeInTheDocument();
+        });
       });
     });
   });
