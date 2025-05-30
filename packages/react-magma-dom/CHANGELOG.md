@@ -1,5 +1,11 @@
 ## 4.9.0
 
+## 4.10.0-next.3
+
+### Patch Changes
+
+- 62b58ab90: fix(Drawer): Fix bug with navigation.
+
 ## 4.10.0-next.2
 
 ### Minor Changes

@@ -19,6 +19,7 @@
     "feat-multiselect-new-option-disabled",
     "fix-Accordion-Tooltip-Storybook-issues",
     "fix-Playwright-tests",
+    "fix-drawer-and-datepicker-navigation",
     "manually-sync-4.9.0",
     "updateReadMe"
   ]
