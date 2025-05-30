@@ -18,6 +18,7 @@
     "feat-Dropdown-Add-leading-icon",
     "feat-multiselect-new-option-disabled",
     "fix-Accordion-Tooltip-Storybook-issues",
+    "fix-Intermediate-Checkbox-screenreader-reads-unticked",
     "fix-Playwright-tests",
     "fix-drawer-and-datepicker-navigation",
     "manually-sync-4.9.0",

@@ -1,5 +1,11 @@
 ## 4.9.0
 
+## 4.10.0-next.4
+
+### Patch Changes
+
+- e33060d8f: fix(Intermediate Checkbox): Fix screen reading 'unticked' on indeterminate state.
+
 ## 4.10.0-next.3
 
 ### Patch Changes
