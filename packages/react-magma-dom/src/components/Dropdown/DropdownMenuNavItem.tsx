@@ -5,8 +5,10 @@ import { IconProps } from 'react-magma-icons';
 
 import { DropdownContext } from './Dropdown';
 import { MenuItemStyles, IconWrapper } from './DropdownMenuItem';
+import useDeviceDetect from '../../hooks/useDeviceDetect';
+import useOSDetect from '../../hooks/useOSDetect';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { Omit, useForkedRef } from '../../utils';
+import { Omit, useForkedRef, collectTextFromReactNode } from '../../utils';
 
 export interface DropdownMenuNavItemProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> {
@@ -46,6 +48,19 @@ export const DropdownMenuNavItem = React.forwardRef<
     context.registerDropdownMenuItem(context.itemRefArray, ownRef);
   }, []);
 
+  const { isFirefox } = useDeviceDetect();
+  const { isWindows } = useOSDetect();
+
+  const ariaLabel = React.useMemo(() => {
+    if (isWindows && isFirefox) {
+      const collectedText = collectTextFromReactNode(children);
+
+      return collectedText.length > 0 ? collectedText : undefined;
+    }
+
+    return undefined;
+  }, []);
+
   return (
     <StyledItem
       {...other}
@@ -56,6 +71,7 @@ export const DropdownMenuNavItem = React.forwardRef<
       role="menuitem"
       tabIndex={-1}
       theme={theme}
+      aria-label={ariaLabel}
     >
       {icon && <IconWrapper theme={theme}>{icon}</IconWrapper>}
       {children}
