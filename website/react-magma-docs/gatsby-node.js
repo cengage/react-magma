@@ -1,19 +1,25 @@
 const { createFilePath } = require('gatsby-source-filesystem');
-// TODO: const propertiesJson = require('react-magma-dom/dist/properties.json');
-const propertiesJson = [];
 
-exports.onCreateWebpackConfig = ({ actions, plugins }) => {
+// TODO: const propertiesJson = require('react-magma-dom/dist/properties.json');
+const propertiesJson = require('./old_properties.json');
+
+exports.onCreateWebpackConfig = ({
+  actions,
+  plugins,
+  stage,
+  loaders,
+  getConfig,
+}) => {
   actions.setWebpackConfig({
-    node: {
-      fs: 'empty',
-    },
     resolve: {
       extensions: ['.*', '.mjs', '.js', '.json'],
+      mainFields: ['browser', 'main', 'module'],
       alias: {
         path: require.resolve('path-browserify'),
       },
       fallback: {
         'object.assign/polyfill': require.resolve('object.assign/polyfill.js'),
+        fs: false,
       },
     },
     module: {
@@ -28,7 +34,31 @@ exports.onCreateWebpackConfig = ({ actions, plugins }) => {
     plugins: [
       plugins.provide({ process: 'process', Buffer: ['buffer', 'Buffer'] }),
     ],
+    cache: false,
   });
+
+  // Disable ESLint plugin in development to avoid flowtype issues
+  if (stage === 'develop') {
+    const config = getConfig();
+
+    config.plugins = config.plugins.filter(
+      plugin => plugin.constructor.name !== 'ESLintWebpackPlugin'
+    );
+    actions.replaceWebpackConfig(config);
+  }
+
+  if (stage === 'build-html' || stage === 'develop-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /form-data/,
+            use: loaders.null(),
+          },
+        ],
+      },
+    });
+  }
 };
 
 const getPathPrefix = path => {

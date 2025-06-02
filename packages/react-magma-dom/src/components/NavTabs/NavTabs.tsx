@@ -88,23 +88,28 @@ export const NavTabs = React.forwardRef<
   });
 
   const navTabsChildren = React.Children.map(children, (child, i) => {
-    const item = child as React.ReactElement<
-      React.PropsWithChildren<NavTabProps>
-    >;
+    if (React.isValidElement(child) && child.type === NavTab) {
+      const item = child as React.ReactElement<
+        React.PropsWithChildren<NavTabProps>
+      >;
 
-    if (item.type === NavTab) {
       if (!hasChildFocus && i === 0) {
         return React.cloneElement(item, { isFocused: true });
       }
+
+      return item;
     }
+
     return child;
   });
 
   function getTabsMeta() {
     const tabsNode = tabsWrapperRef.current;
     let tabsMeta;
+
     if (tabsNode) {
       const rect = tabsNode.getBoundingClientRect();
+
       tabsMeta = {
         clientWidth: tabsNode.clientWidth,
         scrollLeft: tabsNode.scrollLeft,
@@ -122,13 +127,17 @@ export const NavTabs = React.forwardRef<
     }
 
     let tabMeta;
+
     if (tabsNode) {
       const childrenArray = childrenWrapperRef.current.children;
+
       if (childrenArray.length > 0) {
         const tab = childrenArray[activeTabIndex];
+
         tabMeta = tab ? (tab as any).getBoundingClientRect() : null;
       }
     }
+
     return { tabsMeta, tabMeta };
   }
 

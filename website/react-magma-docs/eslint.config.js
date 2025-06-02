@@ -1,7 +1,7 @@
 const mdx = require('eslint-plugin-mdx');
 const globals = require('globals');
 //TODO: const propertyJson = require('react-magma-dom/dist/properties.json');
-const propertyJson = [{}];
+const propertyJson = require('./old_properties.json');
 
 const rootConfig = require('../../eslint.config.js');
 
@@ -65,56 +65,18 @@ module.exports = [
       'react/no-unescaped-entities': 'off',
     },
   },
-  // Config for MDX files, using eslint-plugin-mdx's flat config
-  {
-    ...mdx.flat, // Base MDX configuration from the plugin
 
-    // Override processor to enable code block linting and customize
+  {
+    ...mdx.flat,
     processor: mdx.createRemarkProcessor({
       lintCodeBlocks: true,
-      languageMapper: {}, // Using default from example, can be customized
+      languageMapper: {},
     }),
-
-    // Override/extend languageOptions from mdx.flat
-    languageOptions: {
-      ...(mdx.flat.languageOptions || {}), // Spread any languageOptions from mdx.flat
-      globals: {
-        ...(mdx.flat.languageOptions?.globals || {}), // Spread any globals from mdx.flat's languageOptions
-        ...globals.browser,
-        ...globals.node,
-        ...customGlobals,
-        ...propertyGlobals,
-      },
-    },
-
-    // Override/extend rules from mdx.flat
-    rules: {
-      ...(mdx.flat.rules || {}),
-      'mdx/no-unused-expressions': 'off',
-      'react/no-unescaped-entities': 'off',
-      'no-unused-vars': [
-        'warn',
-        {
-          varsIgnorePattern: '^Example$',
-          args: 'none',
-        },
-      ],
-      '@typescript-eslint/no-unused-vars': [
-        'warn',
-        {
-          varsIgnorePattern: '^Example$',
-          args: 'none',
-        },
-      ],
-      'no-irregular-whitespace': 'off',
-      'prettier/prettier': 'off',
-    },
   },
-  // Config for code blocks within MDX files
   {
     ...mdx.flatCodeBlocks,
     rules: {
-      ...(mdx.flatCodeBlocks.rules || {}),
+      ...mdx.flatCodeBlocks.rules,
       'no-var': 'error',
       'no-undef': 'error',
     },

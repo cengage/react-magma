@@ -407,9 +407,9 @@ export function Example() {
     }
   }
 
-  const sessionStorageValue = JSON.parse(
-    sessionStorage.getItem('temporaryOpenByDefault')!
-  );
+  const sessionStorageValue = typeof window !== 'undefined' 
+    ? JSON.parse(sessionStorage.getItem('temporaryOpenByDefault') || 'null')
+    : null;
 
   const initialOpen = React.useMemo(() => {
     return sessionStorageValue || false;
@@ -420,7 +420,9 @@ export function Example() {
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const nextValue = !event.target.checked;
 
-    sessionStorage.setItem('temporaryOpenByDefault', JSON.stringify(nextValue));
+    if (typeof window !== 'undefined') {
+      sessionStorage.setItem('temporaryOpenByDefault', JSON.stringify(nextValue));
+    }
 
     setChecked(nextValue);
   };

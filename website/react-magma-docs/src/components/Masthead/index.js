@@ -97,9 +97,11 @@ const HeaderLogo = (
       <IconButton
         icon={<GithubIcon />}
         variant={ButtonVariant.link}
-        onClick={() =>
-          window.open('https://github.com/cengage/react-magma', '_blank')
-        }
+        onClick={() => {
+          if (typeof window !== 'undefined') {
+            window.open('https://github.com/cengage/react-magma', '_blank');
+          }
+        }}
       />
     </RepoLink>
   </HeaderWrap>

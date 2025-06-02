@@ -31,12 +31,13 @@ const CODESANDBOX_CSS_FILE = `
 `;
 const CODESANDBOX_INDEX_FILE = `
 import * as React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import App from './App';
 
 const rootElement = document.getElementById('root');
-render(<App />, rootElement);
+const root = createRoot(rootElement);
+root.render(<App />);
 `;
 
 const CODESANDBOX_APP_FILE = `
@@ -70,6 +71,7 @@ const ActionsDiv = styled.div<{ isInverse?: boolean }>`
 
 export const Actions = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
   const isInverse = useIsInverse();
+
   return <ActionsDiv {...props} isInverse={isInverse} />;
 };
 
@@ -126,6 +128,7 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
       {(props: { error: string; isDeploying: boolean; isLoading: boolean }) => {
         const { error, isDeploying, isLoading } = props;
         const deploying = isDeploying || isLoading || false;
+
         if (error) console.log(error);
 
         return (

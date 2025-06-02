@@ -226,23 +226,21 @@ export const MainNav = ({ ...props }) => {
               title
               isPattern
             }
-            fileAbsolutePath
+            internal {
+              contentFilePath
+            }
             fields {
               slug
-            }
-            headings(depth: h2) {
-              depth
-              value
             }
           }
         }
         query NavQuery {
           designComponentDocs: allMdx(
             filter: {
-              fileAbsolutePath: { glob: "**/src/pages/design/**" }
+              internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
               frontmatter: { isPattern: { ne: true } }
             }
-            sort: { order: ASC, fields: frontmatter___title }
+            sort: { frontmatter: { title: ASC } }
           ) {
             edges {
               ...navFields
@@ -250,26 +248,32 @@ export const MainNav = ({ ...props }) => {
           }
           designPatternDocs: allMdx(
             filter: {
-              fileAbsolutePath: { glob: "**/src/pages/design/**" }
+              internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
               frontmatter: { isPattern: { eq: true } }
             }
-            sort: { order: ASC, fields: frontmatter___title }
+            sort: { frontmatter: { title: ASC } }
           ) {
             edges {
               ...navFields
             }
           }
           apiDocs: allMdx(
-            filter: { fileAbsolutePath: { glob: "**/src/pages/api/**" } }
-            sort: { order: ASC, fields: frontmatter___title }
+            filter: {
+              internal: { contentFilePath: { glob: "**/src/pages/api/**" } }
+            }
+            sort: { frontmatter: { title: ASC } }
           ) {
             edges {
               ...navFields
             }
           }
           patternsDocs: allMdx(
-            filter: { fileAbsolutePath: { glob: "**/src/pages/patterns/**" } }
-            sort: { order: ASC, fields: frontmatter___title }
+            filter: {
+              internal: {
+                contentFilePath: { glob: "**/src/pages/patterns/**" }
+              }
+            }
+            sort: { frontmatter: { title: ASC } }
           ) {
             edges {
               ...navFields
@@ -277,9 +281,11 @@ export const MainNav = ({ ...props }) => {
           }
           dataVisualization: allMdx(
             filter: {
-              fileAbsolutePath: { glob: "**/src/pages/data-visualization/**" }
+              internal: {
+                contentFilePath: { glob: "**/src/pages/data-visualization/**" }
+              }
             }
-            sort: { order: ASC, fields: frontmatter___order }
+            sort: { frontmatter: { order: ASC } }
           ) {
             edges {
               ...navFields
@@ -287,17 +293,23 @@ export const MainNav = ({ ...props }) => {
           }
           designIntro: allMdx(
             filter: {
-              fileAbsolutePath: { glob: "**/src/pages/design-intro/**" }
+              internal: {
+                contentFilePath: { glob: "**/src/pages/design-intro/**" }
+              }
             }
-            sort: { order: ASC, fields: frontmatter___order }
+            sort: { frontmatter: { order: ASC } }
           ) {
             edges {
               ...navFields
             }
           }
           apiIntro: allMdx(
-            filter: { fileAbsolutePath: { glob: "**/src/pages/api-intro/**" } }
-            sort: { order: ASC, fields: frontmatter___order }
+            filter: {
+              internal: {
+                contentFilePath: { glob: "**/src/pages/api-intro/**" }
+              }
+            }
+            sort: { frontmatter: { order: ASC } }
           ) {
             edges {
               ...navFields
@@ -305,9 +317,11 @@ export const MainNav = ({ ...props }) => {
           }
           patternsIntro: allMdx(
             filter: {
-              fileAbsolutePath: { glob: "**/src/pages/patterns-intro/**" }
+              internal: {
+                contentFilePath: { glob: "**/src/pages/patterns-intro/**" }
+              }
             }
-            sort: { order: ASC, fields: frontmatter___order }
+            sort: { frontmatter: { order: ASC } }
           ) {
             edges {
               ...navFields

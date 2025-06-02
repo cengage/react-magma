@@ -1,7 +1,5 @@
 const path = require('path');
-const { convertCompilerOptionsFromJson } = require('typescript');
 const toPath = _path => path.join(process.cwd(), _path);
-const babelConfig = require('../babel.config');
 
 module.exports = {
   stories: [
@@ -27,32 +25,24 @@ module.exports = {
     config.module.rules[0].exclude = /node_modules\/(?!(@carbon)\/).*/;
 
     config.module.rules.push({
-      test: /node_modules\/uuid\/.*\.js$/,
+      test: /node_modules\/(framer-motion|motion-dom|uuid)\/.*\.(js|mjs)$/,
+      type: 'javascript/auto',
       use: {
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env'],
-          plugins: [
-            '@babel/plugin-transform-optional-chaining',
-            '@babel/plugin-transform-nullish-coalescing-operator',
-            '@babel/plugin-transform-logical-assignment-operators'
-          ]
+          sourceType: 'unambiguous',
         }
       }
     });
 
-    return {
-      ...config,
-      module: {
-        ...config.module,
-      },
-      resolve: {
-        ...config.resolve,
-        alias: {
-          ...config.resolve.alias,
-          'react-magma-dom': toPath('packages/react-magma-dom/src'),
-        },
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve.alias,
+        'react-magma-dom': toPath('packages/react-magma-dom/src'),
       },
     };
+
+    return config;
   },
 };
