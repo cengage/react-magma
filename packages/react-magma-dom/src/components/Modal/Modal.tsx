@@ -388,8 +388,8 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           style={containerStyle}
           theme={theme}
           isOpen={isModalOpen}
+          {...containerTransition}
           unmountOnExit={unmountOnExit}
-          {...(props.containerTransition || {})}
         >
           <ModalContent
             {...other}
