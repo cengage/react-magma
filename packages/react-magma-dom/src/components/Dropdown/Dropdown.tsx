@@ -55,7 +55,6 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
    * Max-height of dropdown content
    * @default 250px
    */
-
   maxHeight?: string | number;
   /**
    * Function called when closing the dropdown menu

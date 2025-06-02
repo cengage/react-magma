@@ -1262,6 +1262,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-4 {
+  padding-left: 0;
   padding-right: 16px;
 }
 
@@ -1356,6 +1357,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-4 {
+  padding-left: 0;
   padding-right: 16px;
 }
 
@@ -1487,6 +1489,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-4 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -1581,6 +1584,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-4 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -1712,6 +1716,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 }
 
 .emotion-4 {
+  padding-left: 0;
   padding-right: 4px;
 }
 
@@ -1806,6 +1811,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 }
 
 .emotion-4 {
+  padding-left: 0;
   padding-right: 4px;
 }
 
@@ -1937,6 +1943,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-4 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -2031,6 +2038,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-4 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -2162,6 +2170,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-4 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -2256,6 +2265,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-4 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -2387,6 +2397,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-4 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -2481,6 +2492,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-4 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -2612,6 +2624,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-4 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -2706,6 +2719,7 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-4 {
+  padding-left: 0;
   padding-right: 8px;
 }
 

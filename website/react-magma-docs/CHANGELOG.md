@@ -1,5 +1,129 @@
 # Change Log
 
+## 5.1.3-next.5
+
+### Patch Changes
+
+- Updated dependencies [ed8a4eea7]
+  - react-magma-dom@4.10.0-next.1
+  - @react-magma/charts@12.0.0-next.1
+  - @react-magma/dropzone@12.0.0-next.1
+  - @react-magma/schema-renderer@12.0.0-next.1
+  - @cengage-patterns/header@13.0.0-next.1
+
+## 5.1.3-next.4
+
+### Patch Changes
+
+- 42f4dde60: chore: add deploy-v2-docs.yml to deploy v2 docs
+
+## 5.1.3-next.3
+
+### Patch Changes
+
+- Updated dependencies [31a4e0318]
+- Updated dependencies [77a8687f4]
+  - react-magma-dom@4.9.1-next.0
+  - @react-magma/charts@11.0.1-next.0
+  - @react-magma/dropzone@11.0.1-next.0
+  - @react-magma/schema-renderer@11.0.1-next.0
+  - @cengage-patterns/header@12.0.2-next.0
+
+## 5.1.3-next.2
+
+### Patch Changes
+
+- dd32dbc44: chore: Add Playwright initial configuration and some example tests.
+
+## 5.1.3-next.1
+
+### Patch Changes
+
+- e0d82ef57: chore: Update README and CODEOWNERS
+
+## 5.1.3-next.0
+
+### Patch Changes
+
+- bc7de44e1: chore: Manually sync main -> dev (4.9.0)
+
+## 5.1.2
+
+### Patch Changes
+
+- 46260e57c: build(deps): pin @changeset/cli version to 2.16.0
+- 46260e57c: chore: Remove all old documentation links.
+- 46260e57c: chore: added disabled workflow publish-old
+  chore: sync main with dev after PR "build: Release landing page updates #1749"
+- 46260e57c: chore: update preview workflow (removes edited and reopened)
+- 46260e57c: chore: prittier script typo
+- 46260e57c: chore: update eslint and prittier configs
+- 46260e57c: fix(docs): Fix auto-scrolling to the selected component in the documentation on the first render/on a new tab.
+- 46260e57c: fix(docs): Fix pre-release issues
+- 46260e57c: chore: fix lintstaged config
+- 46260e57c: chore: fix lintstaged config
+- 46260e57c: chore: Manually sync main -> dev (4.8.0)
+- 46260e57c: build(deps): bump @babel/helpers from 7.24.5 to 7.26.10
+- 46260e57c: build(deps): bump elliptic from 6.5.7 to 6.6.1
+- 46260e57c: docs: Update supported React version
+- 46260e57c: build(deps-dev): bump axios from 1.7.8 to 1.8.2
+- 46260e57c: chore: Manually sync main -> dev after landing page update
+- 46260e57c: build(deps): bump @babel/runtime from 7.24.5 to 7.26.10
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+- Updated dependencies [46260e57c]
+  - @react-magma/dropzone@11.0.0
+  - react-magma-dom@4.9.0
+  - @react-magma/charts@11.0.0
+  - @react-magma/schema-renderer@11.0.0
+  - @cengage-patterns/header@12.0.1
+
+## 5.1.2-next.18
+
+### Patch Changes
+
+- 3f3a96ab3: fix(docs): Fix pre-release issues
+- Updated dependencies [cf9c84b5a]
+  - react-magma-dom@4.9.0-next.29
+
+## 5.1.2-next.17
+
+### Patch Changes
+
+- e171e4dfc: build(deps): pin @changeset/cli version to 2.16.0
+- cda4e0296: chore: Remove all old documentation links.
+- Updated dependencies [21d554d02]
+  - react-magma-dom@4.9.0-next.28
+
+## 5.1.2-next.16
+
+### Patch Changes
+
+- d294a1e: chore: added disabled workflow publish-old
+  chore: sync main with dev after PR "build: Release landing page updates #1749"
+
 ## 5.1.2-next.15
 
 ### Patch Changes
