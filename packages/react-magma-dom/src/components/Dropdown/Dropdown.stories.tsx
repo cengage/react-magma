@@ -8,6 +8,7 @@ import {
   ReorderIcon,
   RestaurantMenuIcon,
   SettingsIcon,
+  GooglePlusIcon,
 } from 'react-magma-icons';
 
 import { DropdownButton } from './DropdownButton';
@@ -316,6 +317,18 @@ const LinkMenuTemplate: Story<DropdownProps> = args => (
           target="_blank"
         >
           Cengage
+        </DropdownMenuNavItem>
+        <DropdownMenuNavItem
+          icon={<GooglePlusIcon />}
+          to="http://www.google.com"
+          target="_blank"
+        >
+          <div>
+            <p style={{ margin: 0 }}>Google</p>
+            <p style={{ margin: 0 }}>With</p>
+            <p style={{ margin: 0 }}>Some</p>
+            <p style={{ margin: 0 }}>Text</p>
+          </div>
         </DropdownMenuNavItem>
       </DropdownContent>
     </Dropdown>
