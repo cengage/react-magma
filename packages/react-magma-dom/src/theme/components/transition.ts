@@ -39,7 +39,7 @@ export const transitions: ThemeTransitions = {
         y: '-100%',
         transition: {
           y: {
-            duration: 0.15,
+            duration: 0.5,
             ease: 'easeInOut',
           },
         },
@@ -68,7 +68,7 @@ export const transitions: ThemeTransitions = {
         y: '100%',
         transition: {
           y: {
-            duration: 0.15,
+            duration: 0.5,
             ease: 'easeInOut',
           },
         },
@@ -97,7 +97,7 @@ export const transitions: ThemeTransitions = {
         x: '100%',
         transition: {
           x: {
-            duration: 0.15,
+            duration: 0.5,
             ease: 'easeInOut',
           },
         },
@@ -126,7 +126,7 @@ export const transitions: ThemeTransitions = {
         x: '-100%',
         transition: {
           x: {
-            duration: 0.15,
+            duration: 0.5,
             ease: 'easeInOut',
           },
         },
