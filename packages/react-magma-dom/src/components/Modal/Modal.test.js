@@ -862,7 +862,7 @@ describe('Modal', () => {
       });
 
       expect(onEscKeyDown).toHaveBeenCalled();
-      expect(queryByText('Modal Two Content')).not.toBeInTheDocument();
+      expect(queryByText('Modal Content')).not.toBeInTheDocument();
     });
   });
 
