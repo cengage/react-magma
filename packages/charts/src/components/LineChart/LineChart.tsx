@@ -166,7 +166,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
     React.useState<boolean>(false);
 
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const firstLegendButtonRef = React.useRef<HTMLButtonElement>(null);
+  const firstLegendButtonRef = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
     updateWidth();

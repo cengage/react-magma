@@ -1,77 +1,83 @@
 import * as React from 'react';
 
-import { ThemeContext, Checkbox } from 'react-magma-dom';
+import { ThemeContext, Checkbox, CheckboxProps } from 'react-magma-dom';
 
-export interface DataTableProps {
-  name?: string;
-  color?: string;
+export interface LegendButtonProps
+  extends Omit<CheckboxProps, 'onClick' | 'name' | 'color' | 'labelText'> {
+  name: string;
+  color: string;
+  dataIndex: number;
+  isHidden: boolean;
+  onClick: (dataIndex: number) => void;
+  focusCurrentLine: (dataIndex: number) => void;
+  resetLineFocus: () => void;
 }
 
-export const LegendButton = React.forwardRef<HTMLButtonElement, any>(
-  (props, ref) => {
-    const {
-      children,
-      color,
-      dataIndex,
-      isHidden,
-      onClick,
-      name,
-      focusCurrentLine,
-      resetLineFocus,
-      ...other
-    } = props;
+export const LegendButton = React.forwardRef<
+  HTMLInputElement,
+  LegendButtonProps
+>((props, ref) => {
+  const {
+    children,
+    color,
+    dataIndex,
+    isHidden,
+    onClick,
+    name,
+    focusCurrentLine,
+    resetLineFocus,
+    ...other
+  } = props;
 
-    function handleClick() {
-      onClick && typeof onClick === 'function' && onClick(dataIndex);
+  function handleClick() {
+    onClick && typeof onClick === 'function' && onClick(dataIndex);
 
-      if (!isHidden) {
-        resetLineFocus &&
-          typeof resetLineFocus === 'function' &&
-          resetLineFocus();
-      }
+    if (!isHidden) {
+      resetLineFocus &&
+        typeof resetLineFocus === 'function' &&
+        resetLineFocus();
     }
-
-    function handleOnMouseEnterOrFocus() {
-      if (!isHidden) {
-        focusCurrentLine &&
-          typeof focusCurrentLine === 'function' &&
-          focusCurrentLine(dataIndex);
-      }
-    }
-
-    const theme = React.useContext(ThemeContext);
-
-    return (
-      <div
-        style={{ display: 'inline-flex' }}
-        onMouseEnter={handleOnMouseEnterOrFocus}
-        onMouseLeave={resetLineFocus}
-      >
-        <Checkbox
-          checked={!isHidden}
-          color={color}
-          containerStyle={{
-            alignItems: 'center',
-            border: '0',
-            boxShadow: '0 0 0',
-            color: theme.colors.neutral,
-            display: 'inline-flex',
-            margin: '0 36px 20px 0',
-            padding: '0',
-          }}
-          inputStyle={{
-            border: color ? `none` : `2px solid ${theme.colors.neutral800}`,
-            borderRadius: '4px',
-          }}
-          labelText={name}
-          onBlur={resetLineFocus}
-          onClick={handleClick}
-          onFocus={handleOnMouseEnterOrFocus}
-          ref={ref}
-          theme={theme}
-          {...other}
-        />
-      </div>
-    );
   }
-);
+
+  function handleOnMouseEnterOrFocus() {
+    if (!isHidden) {
+      focusCurrentLine &&
+        typeof focusCurrentLine === 'function' &&
+        focusCurrentLine(dataIndex);
+    }
+  }
+
+  const theme = React.useContext(ThemeContext);
+
+  return (
+    <div
+      style={{ display: 'inline-flex' }}
+      onMouseEnter={handleOnMouseEnterOrFocus}
+      onMouseLeave={resetLineFocus}
+    >
+      <Checkbox
+        checked={!isHidden}
+        color={color}
+        containerStyle={{
+          alignItems: 'center',
+          border: '0',
+          boxShadow: '0 0 0',
+          color: theme.colors.neutral,
+          display: 'inline-flex',
+          margin: '0 36px 20px 0',
+          padding: '0',
+        }}
+        inputStyle={{
+          border: color ? `none` : `2px solid ${theme.colors.neutral800}`,
+          borderRadius: '4px',
+        }}
+        labelText={name}
+        onBlur={resetLineFocus}
+        onClick={handleClick}
+        onFocus={handleOnMouseEnterOrFocus}
+        ref={ref}
+        {...other}
+      />
+    </div>
+  );
+});

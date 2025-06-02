@@ -384,7 +384,12 @@ export function IndexPageContent() {
             icon={<GithubIcon />}
             aria-label="Start Contributing"
             onClick={() => {
-              window.open('https://github.com/cengage/react-magma/', '_blank');
+              if (typeof window !== 'undefined') {
+                window.open(
+                  'https://github.com/cengage/react-magma/',
+                  '_blank'
+                );
+              }
             }}
           >
             Start Contributing

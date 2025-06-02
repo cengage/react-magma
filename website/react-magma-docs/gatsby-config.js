@@ -1,4 +1,5 @@
 const path = require('path');
+const { resolve } = require('path-browserify');
 
 module.exports = {
   pathPrefix: process.env.PATH_PREFIX || '/',
@@ -6,10 +7,16 @@ module.exports = {
     title: 'React Magma Docs',
   },
   flags: {
-    FAST_DEV: true,
-    FAST_REFRESH: false, //recommended for react >= 17.0.0
+    DEV_SSR: false,
   },
   plugins: [
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages`,
+      },
+    },
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
@@ -18,7 +25,6 @@ module.exports = {
         },
       },
     },
-    'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -78,15 +84,11 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
-        gatsbyRemarkPlugins: [
-          {
-            resolve: 'gatsby-remark-images',
-            options: {
-              maxWidth: 1035,
-              linkImagesToOriginal: false,
-            },
-          },
-        ],
+        extensions: [`.mdx`, `.md`],
+        mdxOptions: {
+          remarkPlugins: [],
+          rehypePlugins: [],
+        },
       },
     },
     'gatsby-transformer-sharp',
@@ -100,9 +102,8 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/react-magma-icon.svg', // This path is relative to the root of the site.
+        icon: 'src/images/react-magma-icon.svg',
       },
     },
-    'gatsby-plugin-offline',
   ],
 };

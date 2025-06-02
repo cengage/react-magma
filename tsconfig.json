@@ -25,7 +25,8 @@
   "exclude": [
     "**/dist",
     "**/node_modules",
-    "**/*.stories.*"
+    "**/*.stories.*",
+    ".storybook/**/*"
   ],
   "ts-node": {
     "compilerOptions": {
