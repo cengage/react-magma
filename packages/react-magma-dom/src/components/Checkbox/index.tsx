@@ -13,7 +13,6 @@ import { FormGroupContext } from '../FormGroup';
 import { InputMessage } from '../Input/InputMessage';
 import {
   DisplayInputStyles,
-  DisplayInputActiveStyles,
   buildDisplayInputActiveBackground,
   buildDisplayInputBorderColor,
   buildDisplayInputFocusStyles,
@@ -158,13 +157,6 @@ export const StyledFakeInput = styled.span<{
     background: ${props => buildDisplayInputActiveBackground(props)};
     top: -10px;
     left: -10px;
-  }
-
-  /* prettier-ignore */
-  ${HiddenInput}:not(:disabled):active + label & {
-    &:after {
-      ${DisplayInputActiveStyles}
-    }
   }
 `;
 

@@ -408,16 +408,6 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -543,16 +533,6 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -1109,16 +1089,6 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1244,16 +1214,6 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -2304,16 +2264,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -2439,16 +2389,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -2621,16 +2561,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-92:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-120 {
@@ -3120,16 +3050,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -3255,16 +3175,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -3437,16 +3347,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-92:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-120 {
@@ -4491,16 +4391,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -4626,16 +4516,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -5232,16 +5112,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -5367,16 +5237,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -6527,16 +6387,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -6662,16 +6512,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -7268,16 +7108,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -7403,16 +7233,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -8563,16 +8383,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -8698,16 +8508,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -8880,16 +8680,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-92:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-120 {
@@ -9379,16 +9169,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -9514,16 +9294,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -9696,16 +9466,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-92:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-120 {
@@ -10750,16 +10510,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -10885,16 +10635,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -11067,16 +10807,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-92:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-120 {
@@ -11566,16 +11296,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -11701,16 +11421,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -11883,16 +11593,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-92:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-120 {
@@ -12937,16 +12637,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -13072,16 +12762,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -13678,16 +13358,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -13813,16 +13483,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
