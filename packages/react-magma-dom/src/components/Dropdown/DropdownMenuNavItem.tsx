@@ -6,7 +6,6 @@ import { IconProps } from 'react-magma-icons';
 import { DropdownContext } from './Dropdown';
 import { MenuItemStyles, IconWrapper } from './DropdownMenuItem';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
-import useOSDetect from '../../hooks/useOSDetect';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Omit, useForkedRef, collectTextFromReactNode } from '../../utils';
 
@@ -48,8 +47,7 @@ export const DropdownMenuNavItem = React.forwardRef<
     context.registerDropdownMenuItem(context.itemRefArray, ownRef);
   }, []);
 
-  const { isFirefox } = useDeviceDetect();
-  const { isWindows } = useOSDetect();
+  const { isFirefox, isWindows } = useDeviceDetect();
 
   const ariaLabel = React.useMemo(() => {
     if (isWindows && isFirefox) {
