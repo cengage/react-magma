@@ -1,5 +1,11 @@
 ## 4.9.0
 
+## 4.10.0-next.5
+
+### Patch Changes
+
+- d87f3d640: fix(Dropdown): Add `aria-label` to NavItem for Windows + Firefox for NVDA announce.
+
 ## 4.10.0-next.4
 
 ### Patch Changes
