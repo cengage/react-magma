@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
@@ -1222,9 +1222,7 @@ describe('MultiCombobox', () => {
       });
 
       expect(onEscKeyMock).toHaveBeenCalled();
-      await waitFor(() => {
-        expect(queryByText('Modal Content')).not.toBeInTheDocument();
-      });
+      expect(queryByText('Modal Content')).not.toBeInTheDocument();
     });
   });
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, render, fireEvent, waitFor } from '@testing-library/react';
+import { act, render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { axe } from '../../../axe-helper';
@@ -297,9 +297,7 @@ describe('Modal', () => {
       });
 
       expect(onCloseSpy).not.toHaveBeenCalled();
-      await waitFor(() => {
-        expect(queryByText('Modal Content')).not.toBeInTheDocument();
-      });
+      expect(queryByText('Modal Content')).not.toBeInTheDocument();
     });
 
     it('should not force close when clicking the close button if isModalClosingControlledManually is true', async () => {
@@ -851,9 +849,7 @@ describe('Modal', () => {
       });
 
       expect(onEscKeyDown).toHaveBeenCalled();
-      await waitFor(() => {
-        expect(queryByText('Modal Two Content')).not.toBeInTheDocument();
-      });
+      expect(queryByText('Modal Two Content')).not.toBeInTheDocument();
       expect(getByText('Modal Content')).toBeInTheDocument();
 
       fireEvent.keyDown(getByText('Modal Content'), {
@@ -866,9 +862,7 @@ describe('Modal', () => {
       });
 
       expect(onEscKeyDown).toHaveBeenCalled();
-      await waitFor(() => {
-        expect(queryByText('Modal Content')).not.toBeInTheDocument();
-      });
+      expect(queryByText('Modal Two Content')).not.toBeInTheDocument();
     });
   });
 
