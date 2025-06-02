@@ -115,6 +115,7 @@ const ModalContainer = styled(Transition)<{
   theme: ThemeInterface;
   modalCount?: number;
 }>`
+  position: fixed;
   bottom: 0;
   left: 0;
   overflow-y: auto;
@@ -221,7 +222,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       closeAriaLabel,
       closeButtonSize,
       containerStyle,
-      containerTransition = { slideTop: true },
+      containerTransition,
       isBackgroundClickDisabled,
       isEscKeyDownDisabled,
       header,
@@ -387,8 +388,8 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           style={containerStyle}
           theme={theme}
           isOpen={isModalOpen}
-          {...containerTransition}
           unmountOnExit={unmountOnExit}
+          {...(props.containerTransition || {})}
         >
           <ModalContent
             {...other}
@@ -437,7 +438,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           onMouseDown={
             isBackgroundClickDisabled ? event => event.preventDefault() : null
           }
-          fade
           isOpen={isModalOpen}
           style={modalCount >= 2 && { zIndex: '998' }}
           unmountOnExit
