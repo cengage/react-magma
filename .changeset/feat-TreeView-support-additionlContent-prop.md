@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(TreeView): Add additionalContent prop.
+Feat(TreeView): Add `additionalContent` prop. Removed animation from Checkbox and Radio components.
