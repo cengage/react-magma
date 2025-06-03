@@ -12,6 +12,10 @@ import { useGenerateId, useForkedRef } from '../../utils';
 
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   /**
+   * Enables additional content within the TreeItem.
+   */
+  additionalContent?: React.ReactNode;
+  /**
    * Index number
    * private
    */
