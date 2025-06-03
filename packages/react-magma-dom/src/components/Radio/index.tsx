@@ -14,7 +14,6 @@ import { HiddenStyles } from '../../utils/UtilityStyles';
 import { RadioContext } from '../RadioGroup';
 import {
   DisplayInputStyles,
-  DisplayInputActiveStyles,
   buildDisplayInputActiveBackground,
   buildDisplayInputFocusStyles,
 } from '../SelectionControls/InputStyles';
@@ -143,12 +142,6 @@ const StyledFakeInput = styled.span<{
   &:after {
     // active state
     background: ${props => buildDisplayInputActiveBackground(props)};
-  }
-
-  ${HiddenInput}:not(:disabled):active + label & {
-    &:after {
-      ${DisplayInputActiveStyles}
-    }
   }
 `;
 

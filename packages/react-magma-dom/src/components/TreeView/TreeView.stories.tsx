@@ -3,41 +3,59 @@ import React from 'react';
 import { Meta } from '@storybook/react/types-6-0';
 import {
   ArticleIcon,
-  FolderIcon,
-  FavoriteIcon,
-  StarIcon,
+  BookIcon,
+  EditIcon,
   EmergencyIcon,
+  FavoriteIcon,
+  FolderIcon,
   KeyboardArrowDownIcon,
   KeyboardArrowUpIcon,
+  MoreHorizIcon,
+  QueuePlayNextIcon,
+  QuizIcon,
+  StarIcon,
 } from 'react-magma-icons';
 
 import {
-  Tag,
-  TagSize,
+  Accordion,
+  AccordionButton,
+  AccordionItem,
+  AccordionPanel,
   Button,
+  ButtonGroup,
+  ButtonVariant,
   Flex,
   FlexBehavior,
+  IconButton,
   IndeterminateCheckboxStatus,
-  TreeItemSelectedInterface,
-  TreeViewProps,
-  ButtonVariant,
-  ButtonGroup,
   Spacer,
   SpacerAxis,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  IconButton,
+  Tag,
+  TagSize,
+  TreeItemSelectedInterface,
+  TreeViewProps,
 } from '../..';
 import { magma } from '../../theme/magma';
-import { ButtonColor, ButtonSize } from '../Button';
+import { ButtonColor, ButtonShape, ButtonSize } from '../Button';
 import { Card } from '../Card';
-import { FlexAlignContent, FlexAlignItems } from '../Flex';
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from '../Dropdown';
+import {
+  FlexAlignContent,
+  FlexAlignItems,
+  FlexJustify,
+  FlexWrap,
+} from '../Flex';
+import { Hyperlink } from '../Hyperlink';
 import { Paragraph } from '../Paragraph';
 import { TagColor } from '../Tag';
+import { TypographyColor, TypographyVisualStyle } from '../Typography';
 
-import { TreeView, TreeItem, TreeViewSelectable, TreeViewApi } from '.';
+import { TreeItem, TreeView, TreeViewApi, TreeViewSelectable } from '.';
 
 export default {
   component: TreeView,
@@ -2812,4 +2830,271 @@ DynamicTreeItems.parameters = {
   controls: {
     exclude: ['isInverse', 'initialExpandedItems', 'preselectedItems'],
   },
+};
+
+export const ComplexWithAdditionalContent = (args: Partial<TreeViewProps>) => {
+  const treeLabel = () => {
+    return (
+      <Flex
+        behavior={FlexBehavior.container}
+        justify={FlexJustify.spaceBetween}
+        wrap={FlexWrap.nowrap}
+      >
+        <Flex behavior={FlexBehavior.item}>
+          <Hyperlink to="google.com" target="_blank" hasUnderline={false}>
+            Most common activity length is 39 chars but what if longer
+          </Hyperlink>
+        </Flex>
+        <Flex behavior={FlexBehavior.item}>
+          <Dropdown>
+            <DropdownButton
+              aria-label="Extra icon example"
+              color={ButtonColor.secondary}
+              size={ButtonSize.small}
+              icon={<MoreHorizIcon />}
+              shape={ButtonShape.fill}
+            />
+            <DropdownContent>
+              <DropdownMenuItem
+                icon={<EditIcon aria-hidden />}
+                onClick={() => console.log('Rename clicked!')}
+              >
+                Rename
+              </DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </Flex>
+      </Flex>
+    );
+  };
+
+  const folderLabel = (label: any) => {
+    return (
+      <Flex
+        behavior={FlexBehavior.container}
+        justify={FlexJustify.spaceBetween}
+        wrap={FlexWrap.nowrap}
+      >
+        <Flex behavior={FlexBehavior.item}>{label}</Flex>
+        <Flex behavior={FlexBehavior.item}>
+          <Paragraph
+            visualStyle={TypographyVisualStyle.bodySmall}
+            noMargins
+            color={TypographyColor.subdued}
+            style={{ marginRight: magma.spaceScale.spacing03 }}
+          />
+          <Dropdown>
+            <DropdownButton
+              aria-label="Extra icon example"
+              color={ButtonColor.secondary}
+              size={ButtonSize.small}
+              icon={<MoreHorizIcon />}
+              shape={ButtonShape.fill}
+            />
+            <DropdownContent>
+              <DropdownMenuItem
+                icon={<EditIcon aria-hidden />}
+                onClick={() => console.log('Rename clicked!')}
+              >
+                Rename
+              </DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </Flex>
+      </Flex>
+    );
+  };
+
+  const additionalContent = () => {
+    return (
+      <>
+        <Paragraph noTopMargin visualStyle={TypographyVisualStyle.bodyXSmall}>
+          Due: xx/xx/xxx · Submitted: 12 · Missing: 3
+        </Paragraph>
+        <ButtonGroup>
+          <Dropdown>
+            <DropdownButton size={ButtonSize.small} color={ButtonColor.subtle}>
+              10 Resources
+            </DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownButton size={ButtonSize.small} color={ButtonColor.subtle}>
+              24 Standards
+            </DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </ButtonGroup>
+      </>
+    );
+  };
+
+  return (
+    <Card isInverse={args.isInverse}>
+      <TreeView {...args} ariaLabelledBy={'ah-textbook'}>
+        <TreeItem
+          label={folderLabel(
+            <Paragraph
+              visualStyle={TypographyVisualStyle.headingXSmall}
+              noMargins
+            >
+              English Edition
+            </Paragraph>
+          )}
+          itemId="english"
+        >
+          <TreeItem
+            label={folderLabel(
+              <Paragraph
+                visualStyle={TypographyVisualStyle.headingXSmall}
+                noMargins
+              >
+                Unit 1 Relationships in Ecosystems (Chapters 2-4)
+              </Paragraph>
+            )}
+            itemId="unit1"
+          >
+            <TreeItem label="Chapter 1" itemId="unit1ch1" />
+          </TreeItem>
+          <TreeItem
+            label={folderLabel(
+              <Paragraph
+                visualStyle={TypographyVisualStyle.headingXSmall}
+                noMargins
+              >
+                Unit 2 Cell Systems (Chapters 5-7)
+              </Paragraph>
+            )}
+            itemId="unit2"
+          >
+            <TreeItem
+              label={folderLabel(
+                <span style={{ fontWeight: '600' }}>
+                  Chapter 5 Molecules in Living Systems (pp. 128-163)
+                </span>
+              )}
+              itemId="ch5"
+            >
+              <TreeItem
+                label={folderLabel(
+                  <span style={{ fontWeight: '600' }}>
+                    Chapter 5 Introductory Materials
+                  </span>
+                )}
+                itemId="ch5intro"
+              >
+                <TreeItem
+                  additionalContent={additionalContent()}
+                  label={treeLabel()}
+                  itemId="sample1"
+                  icon={<BookIcon />}
+                />
+              </TreeItem>
+              <TreeItem
+                label={folderLabel(
+                  <span style={{ fontWeight: '600' }}>
+                    5.1 Elements and Compounds (pp. 130-136)
+                  </span>
+                )}
+                itemId="ch5el"
+              >
+                <TreeItem
+                  additionalContent={additionalContent()}
+                  label={treeLabel()}
+                  itemId="sample2"
+                  icon={<BookIcon />}
+                />
+              </TreeItem>
+              <TreeItem
+                additionalContent={additionalContent()}
+                label={treeLabel()}
+                itemId="sample3"
+                icon={<BookIcon />}
+              />
+              <TreeItem
+                label={folderLabel(
+                  <span style={{ fontWeight: '600' }}>
+                    5.2 Water (pp. 137-141)
+                  </span>
+                )}
+                itemId="ch5water"
+              >
+                <TreeItem
+                  additionalContent={additionalContent()}
+                  label={treeLabel()}
+                  itemId="sample6"
+                  icon={<BookIcon />}
+                />
+
+                <TreeItem
+                  additionalContent={additionalContent()}
+                  label={treeLabel()}
+                  itemId="sample7"
+                  icon={<QuizIcon />}
+                />
+
+                <TreeItem
+                  label={<>Expanded Tree Item with Button</>}
+                  itemId="sample8"
+                  icon={<QueuePlayNextIcon />}
+                >
+                  <TreeItem
+                    additionalContent={
+                      <Button
+                        style={{ marginTop: '12px' }}
+                        onClick={() => console.log('Click button!')}
+                      >
+                        Click
+                      </Button>
+                    }
+                    label={<>Button Label</>}
+                    itemId="sample9"
+                  />
+                </TreeItem>
+              </TreeItem>
+            </TreeItem>
+          </TreeItem>
+          <TreeItem
+            label={folderLabel(
+              <Paragraph
+                visualStyle={TypographyVisualStyle.headingXSmall}
+                noMargins
+              >
+                Unit 3 Interactions in Living Systems (Chapters 8-10)
+              </Paragraph>
+            )}
+            itemId="unit3"
+          >
+            <TreeItem
+              additionalContent={additionalContent()}
+              label={treeLabel()}
+              itemId="sample10"
+              icon={<BookIcon />}
+            />
+          </TreeItem>
+        </TreeItem>
+      </TreeView>
+      <Button
+        style={{ margin: '20px', width: '300px' }}
+        onClick={() => console.log('Click button!')}
+      >
+        Outside Treeview Button
+      </Button>
+    </Card>
+  );
+};
+
+ComplexWithAdditionalContent.args = {
+  ariaLabel: 'Textbook tree',
+  initialExpandedItems: ['ch5water', 'sample9'],
+  checkParents: true,
+  checkChildren: true,
+  isDisabled: false,
+  testId: 'complex-additional-content-example',
 };

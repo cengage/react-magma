@@ -13,8 +13,17 @@
   },
   "changesets": [
     "chore-Playwright-initial-configuration",
+    "chore-deploy-v2",
+    "chore-sync-landing-version",
+    "feat-Dropdown-Add-leading-icon",
+    "feat-TreeView-support-additionlContent-prop",
+    "feat-multiselect-new-option-disabled",
     "fix-Accordion-Tooltip-Storybook-issues",
+    "fix-Dropdown-nav-item-accessibility-issue",
+    "fix-Input-not-properly-update-value",
+    "fix-Intermediate-Checkbox-screenreader-reads-unticked",
     "fix-Playwright-tests",
+    "fix-drawer-and-datepicker-navigation",
     "manually-sync-4.9.0",
     "updateReadMe"
   ]

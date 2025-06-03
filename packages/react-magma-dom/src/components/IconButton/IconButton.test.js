@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { CheckIcon } from 'react-magma-icons';
+import { CheckIcon, ReorderIcon, SettingsIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -13,7 +13,7 @@ import {
   ButtonVariant,
 } from '../Button';
 
-import { IconButton, ButtonIconPosition } from '.';
+import { ButtonIconPosition, IconButton } from '.';
 
 describe('IconButton', () => {
   it('An icon-only button does not violate detectible accessibility standards', () => {
@@ -485,6 +485,46 @@ describe('IconButton', () => {
       const svg = container.querySelector('svg');
       expect(svg).toHaveAttribute('height', '5');
       expect(svg).toHaveAttribute('width', '5');
+    });
+  });
+
+  describe('leading icon', () => {
+    it('should be shown when icon position is right', () => {
+      const { container, getByText } = render(
+        <IconButton
+          icon={<ReorderIcon />}
+          iconPosition={ButtonIconPosition.right}
+          leadingIcon={<SettingsIcon />}
+        >
+          Click me
+        </IconButton>
+      );
+
+      expect(getByText('Click me')).toHaveStyleRule(
+        'padding-left',
+        magma.spaceScale.spacing03
+      );
+
+      expect(getByText('Click me')).toHaveStyleRule(
+        'padding-right',
+        magma.spaceScale.spacing03
+      );
+
+      expect(container.querySelectorAll('svg').length).toBe(2);
+    });
+
+    it('should not be shown when icon position is left', () => {
+      const { container } = render(
+        <IconButton
+          icon={<ReorderIcon />}
+          iconPosition={ButtonIconPosition.left}
+          leadingIcon={<SettingsIcon />}
+        >
+          Click me
+        </IconButton>
+      );
+
+      expect(container.querySelectorAll('svg').length).toBe(1);
     });
   });
 });
