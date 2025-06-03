@@ -1,5 +1,11 @@
 ## 4.9.0
 
+## 4.10.0-next.7
+
+### Patch Changes
+
+- 526372655: fix(Input): Improve the logic for updating the value in the handleChange function.
+
 ## 4.10.0-next.6
 
 ### Minor Changes

@@ -20,6 +20,7 @@
     "feat-multiselect-new-option-disabled",
     "fix-Accordion-Tooltip-Storybook-issues",
     "fix-Dropdown-nav-item-accessibility-issue",
+    "fix-Input-not-properly-update-value",
     "fix-Intermediate-Checkbox-screenreader-reads-unticked",
     "fix-Playwright-tests",
     "fix-drawer-and-datepicker-navigation",
