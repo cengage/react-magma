@@ -120,7 +120,10 @@ const SpinnerWrapper = styled.span`
   display: flex;
 `;
 
-const ChildrenWrapper = styled.span<{ isLoading: boolean; testId?: string }>`
+export const ChildrenWrapper = styled.span<{
+  isLoading: boolean;
+  testId?: string;
+}>`
   visibility: ${props => (props.isLoading ? 'hidden' : 'visible')};
   display: inline-flex;
   align-items: center;

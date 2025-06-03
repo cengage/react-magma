@@ -62,9 +62,9 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
 }: InputMessageProps) => {
   const theme = React.useContext(ThemeContext);
 
-  //Conditional wrapper based on maxCount, allows Character Counter to render without the Announce component for accessibility purposes.
+  //Conditional wrapper based on maxCount or hasError, allows Character Counter or hasError prop to render without the Announce component for accessibility purposes.
   function AnnounceWrapper(props) {
-    if (maxCount) {
+    if (maxCount || hasError) {
       return props.children;
     }
     return <Announce>{props.children}</Announce>;

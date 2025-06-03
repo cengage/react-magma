@@ -1,0 +1,11 @@
+{
+  "name": "playwright",
+  "version": "1.0.0",
+  "description": "Playwright tests for React Magma",
+  "scripts": {},
+  "keywords": [],
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.51.1"
+  }
+}

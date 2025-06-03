@@ -5,8 +5,10 @@ import {
   LocalPizzaIcon,
   LunchDiningIcon,
   MenuIcon,
+  ReorderIcon,
   RestaurantMenuIcon,
   SettingsIcon,
+  GooglePlusIcon,
 } from 'react-magma-icons';
 
 import { DropdownButton } from './DropdownButton';
@@ -21,9 +23,13 @@ import { DropdownMenuGroup } from './DropdownMenuGroup';
 import { DropdownMenuItem } from './DropdownMenuItem';
 import { DropdownMenuNavItem } from './DropdownMenuNavItem';
 import { DropdownSplitButton } from './DropdownSplitButton';
-import { Paragraph, Spacer, SpacerAxis } from '../..';
+import { ButtonIconPosition, Paragraph, Spacer, SpacerAxis } from '../..';
 import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
-import { ButtonGroup } from '../ButtonGroup';
+import {
+  ButtonGroup,
+  ButtonGroupAlignment,
+  ButtonGroupOrientation,
+} from '../ButtonGroup';
 import { Card, CardBody } from '../Card';
 
 import {
@@ -311,6 +317,18 @@ const LinkMenuTemplate: Story<DropdownProps> = args => (
           target="_blank"
         >
           Cengage
+        </DropdownMenuNavItem>
+        <DropdownMenuNavItem
+          icon={<GooglePlusIcon />}
+          to="http://www.google.com"
+          target="_blank"
+        >
+          <div>
+            <p style={{ margin: 0 }}>Google</p>
+            <p style={{ margin: 0 }}>With</p>
+            <p style={{ margin: 0 }}>Some</p>
+            <p style={{ margin: 0 }}>Text</p>
+          </div>
         </DropdownMenuNavItem>
       </DropdownContent>
     </Dropdown>
@@ -702,3 +720,75 @@ export const DropdownExpandableMenuListItemWithIcons = args => {
     </Dropdown>
   );
 };
+
+const LeadingIconTemplate: Story<DropdownProps> = args => (
+  <div
+    style={{
+      margin: '150px auto',
+      textAlign: 'center',
+      display: 'flex',
+      justifyContent: 'space-evenly',
+    }}
+  >
+    <ButtonGroup
+      orientation={ButtonGroupOrientation.vertical}
+      alignment={ButtonGroupAlignment.left}
+    >
+      <Dropdown {...args}>
+        <DropdownButton
+          size={ButtonSize.small}
+          leadingIcon={<SettingsIcon />}
+          iconPosition={ButtonIconPosition.right}
+        >
+          Small leading icon
+        </DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown {...args}>
+        <DropdownButton
+          size={ButtonSize.medium}
+          leadingIcon={<SettingsIcon />}
+          iconPosition={ButtonIconPosition.right}
+        >
+          Medium leading icon
+        </DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown {...args}>
+        <DropdownButton
+          size={ButtonSize.large}
+          leadingIcon={<SettingsIcon />}
+          iconPosition={ButtonIconPosition.right}
+        >
+          Large leading icon
+        </DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </ButtonGroup>
+    <Dropdown {...args} style={{ marginLeft: '20px' }}>
+      <DropdownButton
+        icon={<ReorderIcon />}
+        leadingIcon={<SettingsIcon />}
+        iconPosition={ButtonIconPosition.left}
+      >
+        Icon left suppresses leading icon
+      </DropdownButton>
+      <DropdownContent>
+        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  </div>
+);
+
+export const LeadingIcon = LeadingIconTemplate.bind({});
+LeadingIcon.args = { ...Default.args };

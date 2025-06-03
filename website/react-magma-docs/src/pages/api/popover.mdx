@@ -208,7 +208,7 @@ export function Example() {
 
 ## Custom Width and Max Height
 
-Customize the size of your popover using the `width` and `maxHeight` props. You can provide these values as strings (with units) or as numbers (interpreted as pixels). Using `width=“taget”` will set the width of the content based on the width of the trigger.
+Customize the size of your popover using the `width` and `maxHeight` props. You can provide these values as strings (with units) or as numbers (interpreted as pixels). Using `width=“target”` will set the width of the content based on the width of the trigger.
 
 ```tsx
 import React from 'react';
@@ -389,6 +389,7 @@ import React from 'react';
 
 import {
   Popover,
+  PopoverApi,
   PopoverTrigger,
   PopoverContent,
   Button,
@@ -426,7 +427,7 @@ export function Example() {
 
   return (
     <Popover openByDefault={initialOpen} apiRef={popoverApiRef} width={320}>
-      <PopoverTrigger />
+      <PopoverTrigger aria-label="Popover trigger" />
       <PopoverContent>
         <span>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -450,6 +451,45 @@ export function Example() {
         </FormGroup>
       </PopoverContent>
     </Popover>
+  );
+}
+```
+
+## Inverse
+
+The `isInverse` property is an optional boolean, that reverses the colors so that the component can better appear on a dark background. The default value is `false`.
+
+```tsx
+import React from 'react';
+
+import {
+  Card,
+  CardBody,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverFooter,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Popover isInverse>
+          <PopoverTrigger>Click me</PopoverTrigger>
+          <PopoverContent>
+            <PopoverHeader>
+              <div>Popover Title</div>
+            </PopoverHeader>
+            <div>This is the main content of the popover</div>
+            <PopoverFooter>
+              <div>Footer Content</div>
+            </PopoverFooter>
+          </PopoverContent>
+        </Popover>
+      </CardBody>
+    </Card>
   );
 }
 ```

@@ -29,6 +29,12 @@ export interface SkipLinkProps extends Omit<HyperlinkProps, 'children' | 'to'> {
    * @internal
    */
   testId?: string;
+
+  /**
+   * The `to` prop will be removed from the SkipLink component in the next major release.
+   * @deprecated = true
+   */
+  to?: string;
 }
 
 const handleClick = e => {

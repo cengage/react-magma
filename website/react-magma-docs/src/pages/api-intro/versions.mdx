@@ -13,6 +13,7 @@ import {
   Tag,
   TagSize,
 } from 'react-magma-dom';
+import semver from 'semver';
 
 import { getVersions } from '../../utils';
 
@@ -84,11 +85,17 @@ export const ReleasedVersionsTable = () => {
             </TableCell>
             <TableCell key={`row${i}-date`}>{row.date}</TableCell>
             <TableCell key={`row${i}-docs`}>
-              <a
-                href={`https://react-magma.cengage.com/version/${row.version}`}
-              >
-                Docs
-              </a>
+              {semver.gte(row.version, '4.0.0') ||
+              row.version === '3.11.0' ||
+              row.version === '2.6.0' ? (
+                <a
+                  href={`https://react-magma.cengage.com/version/${row.version}`}
+                >
+                  Docs
+                </a>
+              ) : (
+                <></>
+              )}
             </TableCell>
             <TableCell key={`row${i}-react`}>
               {row.peerDependencies?.react}
@@ -179,8 +186,8 @@ export const IconsTable = () => {
 <PageContent componentName="react_magma_versions" type="api_intro">
 
 <LeadParagraph>
-  On an older version? Want to see the newest unreleased updates? Switch to a
-  different version of the docs at anytime.
+  On an older version? Want to see the newest unreleased updates? Switch to
+  different versions of the docs any time.
 </LeadParagraph>
 
 ## Next Version

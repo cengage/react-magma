@@ -587,7 +587,7 @@ const InputExampleTemplate = args => {
             width="320px"
           />
         </PopoverTrigger>
-        <PopoverContent>
+        <PopoverContent style={{ maxWidth: '100%' }}>
           <div
             style={{
               display: 'flex',

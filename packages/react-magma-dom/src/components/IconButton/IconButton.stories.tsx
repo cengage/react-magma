@@ -19,7 +19,7 @@ import {
 import { Card } from '../Card';
 import { CardBody } from '../Card/CardBody';
 
-import { IconButton, IconButtonProps } from '.';
+import { ButtonIconPosition, IconButton, IconButtonProps } from '.';
 
 const Template: Story<IconButtonProps> = args => (
   <IconButton icon={<SettingsIcon />} {...args}>
@@ -156,3 +156,17 @@ AnimatedIcon.args = {
   isInverse: false,
   disabled: false,
 };
+
+const LeadingIconTemplate: Story<IconButtonProps> = args => (
+  <IconButton
+    iconPosition={ButtonIconPosition.right}
+    icon={<SettingsIcon />}
+    leadingIcon={<NotificationsIcon />}
+    aria-label="Button"
+    {...args}
+  >
+    Leading Icon
+  </IconButton>
+);
+
+export const LeadingIcon = LeadingIconTemplate.bind({});
