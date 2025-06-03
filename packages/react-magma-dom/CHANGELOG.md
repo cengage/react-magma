@@ -1,5 +1,11 @@
 ## 4.9.0
 
+## 4.10.0-next.6
+
+### Minor Changes
+
+- 71c0f9961: Feat(TreeView): Add `additionalContent` prop. Removed animation from Checkbox and Radio components.
+
 ## 4.10.0-next.5
 
 ### Patch Changes
