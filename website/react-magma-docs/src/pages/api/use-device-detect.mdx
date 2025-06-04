@@ -1,0 +1,160 @@
+---
+pageTitle: useDeviceDetect Hook API
+title: useDeviceDetect Hook
+---
+
+<PageContent componentName="usedevicedetect_hook" type="api">
+
+<LeadParagraph>
+  The <inlineCode>useDeviceDetect</inlineCode> custom hook can be used to detect
+  the user’s browser and operating system based on the{' '}
+  <inlineCode>navigator.userAgent</inlineCode>. It returns a set of boolean
+  flags for common browsers (Safari, Chrome, Firefox, Edge), device type
+  (mobile), and operating systems (Windows, macOS, Linux, Android, iOS).
+</LeadParagraph>
+
+## Usage
+
+```tsx
+import React from 'react';
+
+import { useDeviceDetect } from 'react-magma-dom';
+
+export function Example() {
+  const {
+    isSafari,
+    isChrome,
+    isFirefox,
+    isEdge,
+    isMobile,
+    isWindows,
+    isMacOS,
+    isLinux,
+    isAndroid,
+    isIOS,
+  } = useDeviceDetect();
+
+  return (
+    <div>
+      <h2>Browser &amp; OS Detection</h2>
+      <ul>
+        <li>Safari: {isSafari ? '✅' : '❌'}</li>
+        <li>Chrome: {isChrome ? '✅' : '❌'}</li>
+        <li>Firefox: {isFirefox ? '✅' : '❌'}</li>
+        <li>Edge: {isEdge ? '✅' : '❌'}</li>
+        <li>Mobile: {isMobile ? '✅' : '❌'}</li>
+        <li>Windows: {isWindows ? '✅' : '❌'}</li>
+        <li>macOS: {isMacOS ? '✅' : '❌'}</li>
+        <li>Linux: {isLinux ? '✅' : '❌'}</li>
+        <li>Android: {isAndroid ? '✅' : '❌'}</li>
+        <li>iOS: {isIOS ? '✅' : '❌'}</li>
+      </ul>
+    </div>
+  );
+}
+```
+
+## Returned Values
+
+The hook returns an object containing the following boolean properties:
+
+- <inlineCode>isSafari()</inlineCode> <b>true</b> if the user agent identifies
+  Safari (excluding Chrome/Android).
+
+- <inlineCode>isChrome()</inlineCode> <b>true</b> if the user agent identifies
+  Chrome (excluding Edge).
+
+- <inlineCode>isFirefox()</inlineCode> <b>true</b> if the user agent identifies
+  Firefox.
+
+- <inlineCode>isEdge()</inlineCode> <b>true</b> if the user agent identifies
+  Microsoft Edge.
+
+- <inlineCode>isMobile()</inlineCode> <b>true</b> if the user agent contains
+  mobile indicators (e.g., “Mobi”, “Android”).
+
+- <inlineCode>isWindows()</inlineCode> <b>true</b> if the user agent contains
+  “Windows NT”.
+
+- <inlineCode>isMacOS()</inlineCode> <b>true</b> if the user agent contains
+  “Macintosh”.
+
+- <inlineCode>isLinux()</inlineCode> <b>true</b> if the user agent contains
+  “Linux” but not “Android”.
+
+- <inlineCode>isAndroid()</inlineCode> <b>true</b> if the user agent contains
+  “Android”.
+
+- <inlineCode>isIOS()</inlineCode> <b>true</b> if the user agent contains
+  “iPhone”, “iPad”, or “iPod”.
+
+## Example: Conditional Rendering Based on Browser
+
+```tsx
+import React from 'react';
+
+import { useDeviceDetect, Alert, AlertVariant, Button } from 'react-magma-dom';
+
+export function Example() {
+  const { isChrome } = useDeviceDetect();
+
+  return (
+    <>
+      {isChrome ? (
+        <Alert variant={AlertVariant.success}>
+          Thanks for using Google Chrome
+        </Alert>
+      ) : (
+        <Alert variant={AlertVariant.warning}>
+          For the best experience, please use Google Chrome.
+        </Alert>
+      )}
+      <Button onClick={() => window.location.reload()}>Reload Page</Button>
+    </>
+  );
+}
+```
+
+## Example: OS-Specific Styles
+
+```tsx
+import React from 'react';
+
+import { useDeviceDetect, Alert, AlertVariant } from 'react-magma-dom';
+
+export function Example() {
+  const { isWindows, isMacOS, isLinux, isAndroid, isIOS } = useDeviceDetect();
+
+  const osLabel = React.useMemo(() => {
+    if (isWindows) {
+      return 'Windows';
+    }
+
+    if (isMacOS) {
+      return 'macOS';
+    }
+
+    if (isLinux) {
+      return 'Linux';
+    }
+
+    if (isAndroid) {
+      return 'Android';
+    }
+
+    if (isIOS) {
+      return 'iOS';
+    }
+
+    return 'Unknown OS';
+  }, []);
+
+  return (
+    <Alert variant={AlertVariant.info}>
+      You are currently browsing on <b>{osLabel}</b>.
+    </Alert>
+  );
+}
+```
+
+</PageContent>
