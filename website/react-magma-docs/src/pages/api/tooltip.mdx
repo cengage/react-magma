@@ -16,13 +16,6 @@ props:
 
 The Tooltip component should wrap the triggerring element. This trigger should be a focusable element for accessibility, such as a button.
 
-<Alert variant="warning">
-  The child element must be able to accept a React <inlineCode>ref</inlineCode>{' '}
-  (for example, a native DOM element like <inlineCode>{'<button>'}</inlineCode>{' '}
-  or a component created with <inlineCode>React.forwardRef</inlineCode>). If the
-  child cannot accept a ref, the tooltip may not position correctly.
-</Alert>
-
 ```tsx
 import React from 'react';
 
@@ -116,6 +109,57 @@ export function Example() {
           icon={<KeyboardArrowUpIcon />}
           variant={ButtonVariant.solid}
         />
+      </Tooltip>
+    </Flex>
+  );
+}
+```
+
+## On non-interactive element
+
+The child element must be able to accept a React `ref`
+(for example, a native DOM element like `<button>`
+or a component created with `React.forwardRef`). If the
+child cannot accept a ref, the tooltip may not position correctly.
+
+<Alert variant="info">
+  You can get around this by adding a wrapping element.
+</Alert>
+
+```tsx
+import React from 'react';
+
+import { Tooltip, Flex, FlexBehavior, FlexAlignItems } from 'react-magma-dom';
+import { HelpOutlineIcon } from 'react-magma-icons';
+
+export function Example() {
+  const tooltipContentShort = (
+    <>
+      Tooltip wrapped in <b>div</b>
+    </>
+  );
+  const tooltipContentLong = (
+    <>
+      Tooltip wrapped in <b>span</b>
+    </>
+  );
+
+  return (
+    <Flex
+      behavior={FlexBehavior.container}
+      alignItems={FlexAlignItems.center}
+      spacing={2}
+    >
+      <Tooltip content={tooltipContentShort}>
+        <div style={{ width: 'fit-content', height: 'fit-content' }}>
+          <HelpOutlineIcon tabIndex="0" size={40} />
+        </div>
+      </Tooltip>
+
+      <Tooltip content={tooltipContentLong}>
+        <span>
+          <HelpOutlineIcon tabIndex="0" />
+        </span>
       </Tooltip>
     </Flex>
   );
