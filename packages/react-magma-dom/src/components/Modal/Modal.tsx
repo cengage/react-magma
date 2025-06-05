@@ -64,7 +64,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   isBackgroundClickDisabled?: boolean;
   /**
-   * If true, the close button the the modal will be suppressed
+   * If true, the close button the modal will be suppressed
    * @default false
    */
   isCloseButtonHidden?: boolean;
@@ -115,6 +115,7 @@ const ModalContainer = styled(Transition)<{
   theme: ThemeInterface;
   modalCount?: number;
 }>`
+  position: fixed;
   bottom: 0;
   left: 0;
   overflow-y: auto;
@@ -215,6 +216,26 @@ const CloseBtn = styled.span<{ theme?: ThemeInterface }>`
 
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   (props, ref) => {
+    const {
+      ariaLabel,
+      children,
+      closeAriaLabel,
+      closeButtonSize,
+      containerStyle,
+      containerTransition,
+      isBackgroundClickDisabled,
+      isEscKeyDownDisabled,
+      header,
+      isCloseButtonHidden,
+      isOpen,
+      unmountOnExit = true,
+      testId,
+      isModalClosingControlledManually,
+      headerRef,
+      onClose,
+      ...rest
+    } = props;
+
     const lastFocus = React.useRef<any>();
     const headingRef = React.useRef<any>();
     const bodyRef = React.useRef<any>();
@@ -223,31 +244,30 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const headingId = `${id}_heading`;
     const contentId = `${id}_content`;
 
-    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(props.isOpen);
+    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(isOpen);
     const [currentTarget, setCurrentTarget] = React.useState(null);
     const [modalCount, setModalCount] = React.useState<number>(0);
 
     const focusTrapElement = useFocusLock(isModalOpen, headingRef, bodyRef);
-
-    const prevOpen = usePrevious(props.isOpen);
+    const prevOpen = usePrevious(isOpen);
 
     React.useEffect(() => {
       if (
-        props.isModalClosingControlledManually &&
+        isModalClosingControlledManually &&
         prevOpen &&
-        !props.isOpen &&
+        !isOpen &&
         isModalOpen
       ) {
         setIsModalOpen(false);
-      } else if (!prevOpen && props.isOpen) {
+      } else if (!prevOpen && isOpen) {
         setIsModalOpen(true);
-        if (props.headerRef && typeof props.headerRef === 'function') {
-          props.headerRef(headingRef);
+        if (headerRef && typeof headerRef === 'function') {
+          headerRef(headingRef);
         }
-      } else if (prevOpen && !props.isOpen && isModalOpen) {
+      } else if (prevOpen && !isOpen && isModalOpen) {
         handleClose();
       }
-    }, [props.isOpen]);
+    }, [isOpen]);
 
     React.useEffect(() => {
       if (isModalOpen) {
@@ -255,7 +275,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         const count = document.querySelectorAll('[aria-modal="true"]').length;
         setModalCount(count);
 
-        if (!props.isEscKeyDownDisabled) {
+        if (!isEscKeyDownDisabled) {
           document.body.addEventListener('keydown', handleEscapeKeyDown, false);
         }
       }
@@ -319,26 +339,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
         lastFocus.current?.focus();
 
-        props.onClose && typeof props.onClose === 'function' && props.onClose();
+        onClose && typeof onClose === 'function' && onClose();
       }, 0);
     }
-
-    const {
-      ariaLabel,
-      children,
-      closeAriaLabel,
-      closeButtonSize,
-      containerStyle,
-      containerTransition = { slideTop: true },
-      isBackgroundClickDisabled,
-      isEscKeyDownDisabled,
-      header,
-      isCloseButtonHidden,
-      isOpen,
-      unmountOnExit = true,
-      testId,
-      ...rest
-    } = props;
 
     const isInverse = useIsInverse(props.isInverse);
 
@@ -356,96 +359,92 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       />
     );
 
-    return isModalOpen
-      ? ReactDOM.createPortal(
-          <div ref={focusTrapElement}>
-            <Global
-              styles={css`
-                html {
-                  overflow: ${isOpen ? 'hidden' : 'auto'};
-                }
-              `}
-            />
-            <ModalContainer
-              aria-labelledby={header ? headingId : null}
-              aria-label={!header ? ariaLabel : null}
-              aria-modal
-              data-testid={testId}
-              id={id}
-              modalCount={modalCount}
-              onClick={isBackgroundClickDisabled ? null : handleModalClick}
-              onMouseDown={
-                isBackgroundClickDisabled ? null : handleModalOnMouseDown
-              }
-              role="dialog"
-              style={containerStyle}
-              theme={theme}
-              isOpen={isModalOpen}
-              {...containerTransition}
-              unmountOnExit={unmountOnExit}
-            >
-              <ModalContent
-                {...other}
-                data-testid="modal-content"
-                id={contentId}
-                ref={ref}
-                theme={theme}
-              >
-                {header && (
-                  <ModalHeader theme={theme}>
-                    {header && (
-                      <H1
-                        id={headingId}
-                        isInverse={isInverse}
-                        level={1}
-                        ref={headingRef}
-                        visualStyle={TypographyVisualStyle.headingSmall}
-                        tabIndex={-1}
-                        theme={theme}
-                      >
-                        {header}
-                      </H1>
-                    )}
-                  </ModalHeader>
-                )}
-                <ModalWrapper ref={bodyRef} theme={theme}>
-                  {children}
-                </ModalWrapper>
-                {!isCloseButtonHidden && (
-                  <CloseBtn theme={theme}>
-                    <IconButton
-                      aria-label={
-                        closeAriaLabel
-                          ? closeAriaLabel
-                          : i18n.modal.closeAriaLabel
-                      }
-                      color={ButtonColor.primary}
-                      icon={CloseIconButton}
-                      isInverse={isInverse}
-                      onClick={handleClose}
-                      testId="modal-closebtn"
-                      variant={ButtonVariant.link}
-                    />
-                  </CloseBtn>
-                )}
-              </ModalContent>
-            </ModalContainer>
-            <ModalBackdrop
-              data-testid="modal-backdrop"
-              onMouseDown={
-                isBackgroundClickDisabled
-                  ? event => event.preventDefault()
-                  : null
-              }
-              fade
-              isOpen={isModalOpen}
-              style={modalCount >= 2 && { zIndex: '998' }}
-              unmountOnExit
-              theme={theme}
-            />
-          </div>,
-          document.getElementsByTagName('body')[0]
-        )
-      : null;
+    // Fix for server-side rendering
+    if (typeof document === 'undefined') {
+      return null;
+    }
+
+    return ReactDOM.createPortal(
+      <div ref={focusTrapElement}>
+        <Global
+          styles={css`
+            html {
+              overflow: ${isOpen ? 'hidden' : 'auto'};
+            }
+          `}
+        />
+        <ModalContainer
+          aria-labelledby={header ? headingId : null}
+          aria-label={!header ? ariaLabel : null}
+          aria-modal
+          data-testid={testId}
+          id={id}
+          modalCount={modalCount}
+          onClick={isBackgroundClickDisabled ? null : handleModalClick}
+          onMouseDown={
+            isBackgroundClickDisabled ? null : handleModalOnMouseDown
+          }
+          role="dialog"
+          style={containerStyle}
+          theme={theme}
+          isOpen={isModalOpen}
+          {...containerTransition}
+          unmountOnExit={unmountOnExit}
+        >
+          <ModalContent
+            {...other}
+            data-testid="modal-content"
+            id={contentId}
+            ref={ref}
+            theme={theme}
+          >
+            {header && (
+              <ModalHeader theme={theme}>
+                <H1
+                  id={headingId}
+                  isInverse={isInverse}
+                  level={1}
+                  ref={headingRef}
+                  visualStyle={TypographyVisualStyle.headingSmall}
+                  tabIndex={-1}
+                  theme={theme}
+                >
+                  {header}
+                </H1>
+              </ModalHeader>
+            )}
+            <ModalWrapper ref={bodyRef} theme={theme}>
+              {children}
+            </ModalWrapper>
+            {!isCloseButtonHidden && (
+              <CloseBtn theme={theme}>
+                <IconButton
+                  aria-label={
+                    closeAriaLabel ? closeAriaLabel : i18n.modal.closeAriaLabel
+                  }
+                  color={ButtonColor.primary}
+                  icon={CloseIconButton}
+                  isInverse={isInverse}
+                  onClick={handleClose}
+                  testId="modal-closebtn"
+                  variant={ButtonVariant.link}
+                />
+              </CloseBtn>
+            )}
+          </ModalContent>
+        </ModalContainer>
+        <ModalBackdrop
+          data-testid="modal-backdrop"
+          onMouseDown={
+            isBackgroundClickDisabled ? event => event.preventDefault() : null
+          }
+          isOpen={isModalOpen}
+          style={modalCount >= 2 && { zIndex: '998' }}
+          unmountOnExit
+          theme={theme}
+        />
+      </div>,
+      document.getElementsByTagName('body')[0]
+    );
   }
 );
