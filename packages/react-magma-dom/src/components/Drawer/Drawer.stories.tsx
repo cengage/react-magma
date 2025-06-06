@@ -18,6 +18,16 @@ const info = {
         options: DrawerPosition,
       },
     },
+    isInverse: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    showBackgroundOverlay: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 };
 
@@ -67,8 +77,12 @@ export const SiteNavigation = args => {
         position={DrawerPosition.right}
         ariaLabel="Site Navigation Drawer"
         closeAriaLabel="Close Navigation Drawer"
+        {...args}
       >
-        <NavTabs orientation={TabsOrientation.vertical}>
+        <NavTabs
+          orientation={TabsOrientation.vertical}
+          isInverse={args.isInverse}
+        >
           <NavTab to="#">One</NavTab>
           <NavTab to="#">Two</NavTab>
           <NavTab to="#">Three</NavTab>

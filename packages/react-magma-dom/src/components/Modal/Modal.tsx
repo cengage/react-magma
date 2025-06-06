@@ -64,7 +64,7 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   isBackgroundClickDisabled?: boolean;
   /**
-   * If true, the close button the the modal will be suppressed
+   * If true, the close button the modal will be suppressed
    * @default false
    */
   isCloseButtonHidden?: boolean;
@@ -101,6 +101,11 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default ModalSize.medium
    */
   size?: ModalSize;
+  /**
+   * @internal
+   * @default true
+   */
+  showBackgroundOverlay?: boolean;
   /**
    * @internal
    */
@@ -142,14 +147,19 @@ const ModalContent = styled.div<ModalProps>`
     props.isInverse
       ? props.theme.colors.primary600
       : props.theme.colors.neutral100};
-  border: 1px solid;
+  border: ${props =>
+    !props.showBackgroundOverlay && props.isInverse
+      ? `1px solid ${props.theme.colors.primary400}`
+      : `none`};
   border-color: ${props =>
     props.isInverse
       ? transparentize(0.5, props.theme.colors.tertiary)
       : props.theme.colors.neutral};
   border-radius: ${props => props.theme.borderRadius};
-  box-shadow: ${props =>
-    `0 2px 6px ${transparentize(0.85, props.theme.colors.neutral900)}`};
+  box-shadow: ${props => {
+    const amount = props.isInverse ? 0.82 : 0.6;
+    return `0 2px 6px ${transparentize(amount, props.theme.colors.neutral900)}`;
+  }};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
@@ -215,6 +225,27 @@ const CloseBtn = styled.span<{ theme?: ThemeInterface }>`
 
 export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   (props, ref) => {
+    const {
+      ariaLabel,
+      children,
+      closeAriaLabel,
+      closeButtonSize,
+      containerStyle,
+      containerTransition = { slideTop: true },
+      isBackgroundClickDisabled,
+      isEscKeyDownDisabled,
+      header,
+      isCloseButtonHidden,
+      isOpen,
+      unmountOnExit = true,
+      testId,
+      isModalClosingControlledManually,
+      headerRef,
+      onClose,
+      showBackgroundOverlay = true,
+      ...rest
+    } = props;
+
     const lastFocus = React.useRef<any>();
     const headingRef = React.useRef<any>();
     const bodyRef = React.useRef<any>();
@@ -223,31 +254,31 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     const headingId = `${id}_heading`;
     const contentId = `${id}_content`;
 
-    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(props.isOpen);
+    const [isModalOpen, setIsModalOpen] = React.useState<boolean>(isOpen);
     const [currentTarget, setCurrentTarget] = React.useState(null);
     const [modalCount, setModalCount] = React.useState<number>(0);
 
     const focusTrapElement = useFocusLock(isModalOpen, headingRef, bodyRef);
 
-    const prevOpen = usePrevious(props.isOpen);
+    const prevOpen = usePrevious(isOpen);
 
     React.useEffect(() => {
       if (
-        props.isModalClosingControlledManually &&
+        isModalClosingControlledManually &&
         prevOpen &&
-        !props.isOpen &&
+        !isOpen &&
         isModalOpen
       ) {
         setIsModalOpen(false);
-      } else if (!prevOpen && props.isOpen) {
+      } else if (!prevOpen && isOpen) {
         setIsModalOpen(true);
-        if (props.headerRef && typeof props.headerRef === 'function') {
-          props.headerRef(headingRef);
+        if (headerRef && typeof headerRef === 'function') {
+          headerRef(headingRef);
         }
-      } else if (prevOpen && !props.isOpen && isModalOpen) {
+      } else if (prevOpen && !isOpen && isModalOpen) {
         handleClose();
       }
-    }, [props.isOpen]);
+    }, [isOpen]);
 
     React.useEffect(() => {
       if (isModalOpen) {
@@ -255,7 +286,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         const count = document.querySelectorAll('[aria-modal="true"]').length;
         setModalCount(count);
 
-        if (!props.isEscKeyDownDisabled) {
+        if (!isEscKeyDownDisabled) {
           document.body.addEventListener('keydown', handleEscapeKeyDown, false);
         }
       }
@@ -319,26 +350,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
         lastFocus.current?.focus();
 
-        props.onClose && typeof props.onClose === 'function' && props.onClose();
+        onClose && typeof onClose === 'function' && onClose();
       }, 0);
     }
-
-    const {
-      ariaLabel,
-      children,
-      closeAriaLabel,
-      closeButtonSize,
-      containerStyle,
-      containerTransition = { slideTop: true },
-      isBackgroundClickDisabled,
-      isEscKeyDownDisabled,
-      header,
-      isCloseButtonHidden,
-      isOpen,
-      unmountOnExit = true,
-      testId,
-      ...rest
-    } = props;
 
     const isInverse = useIsInverse(props.isInverse);
 
@@ -389,6 +403,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 data-testid="modal-content"
                 id={contentId}
                 ref={ref}
+                showBackgroundOverlay={showBackgroundOverlay}
                 theme={theme}
               >
                 {header && (
@@ -430,19 +445,21 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 )}
               </ModalContent>
             </ModalContainer>
-            <ModalBackdrop
-              data-testid="modal-backdrop"
-              onMouseDown={
-                isBackgroundClickDisabled
-                  ? event => event.preventDefault()
-                  : null
-              }
-              fade
-              isOpen={isModalOpen}
-              style={modalCount >= 2 && { zIndex: '998' }}
-              unmountOnExit
-              theme={theme}
-            />
+            {showBackgroundOverlay && (
+              <ModalBackdrop
+                data-testid="modal-backdrop"
+                onMouseDown={
+                  isBackgroundClickDisabled
+                    ? event => event.preventDefault()
+                    : null
+                }
+                fade
+                isOpen={isModalOpen}
+                style={modalCount >= 2 && { zIndex: '998' }}
+                unmountOnExit
+                theme={theme}
+              />
+            )}
           </div>,
           document.getElementsByTagName('body')[0]
         )
