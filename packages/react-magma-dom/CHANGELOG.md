@@ -1,5 +1,11 @@
 ## 4.9.0
 
+## 4.10.0-next.8
+
+### Minor Changes
+
+- 670664d0f: feat(TreeView): TreeView component now handles dynamic addition of parents and children to parent nodes.
+
 ## 4.10.0-next.7
 
 ### Patch Changes
