@@ -10,8 +10,7 @@
   "license": "MIT",
   "workspaces": [
     "website/*",
-    "packages/*",
-    "patterns/*"
+    "packages/*"
   ],
   "scripts": {
     "build": "lerna run build --concurrency=6 --no-progress",

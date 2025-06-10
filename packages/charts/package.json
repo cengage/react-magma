@@ -30,8 +30,7 @@
     "@carbon/charts-react": "1.23.7",
     "d3": "7.9.0",
     "d3-cloud": "1.2.7",
-    "d3-sankey": "0.12.3",
-    "victory": "35.11.4"
+    "d3-sankey": "0.12.3"
   },
   "devDependencies": {
     "@emotion/react": "11.14.0",
