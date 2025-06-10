@@ -388,6 +388,30 @@ describe('Table', () => {
     });
   });
 
+  it('should display the title table', () => {
+    const { getByText } = render(
+      <Table tableTitle="Title table">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    const titleTable = getByText('Title table');
+
+    expect(titleTable).toBeInTheDocument();
+    expect(titleTable).toHaveStyle(`margin: ${magma.spaceScale.spacing04}`);
+  });
+
   it('should render sortable table header cells with inverse styles', () => {
     const { getByTestId } = render(
       <Table isInverse>

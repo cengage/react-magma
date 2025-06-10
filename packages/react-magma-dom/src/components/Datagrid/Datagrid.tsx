@@ -170,7 +170,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       default: defaultSelectedRows,
     });
 
-    const isControlled = selectedRowsProp ? true : false;
+    const isControlled = !!selectedRowsProp;
 
     const {
       getPageItems,

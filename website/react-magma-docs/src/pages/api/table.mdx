@@ -78,7 +78,7 @@ export function Example() {
   ];
 
   return (
-    <Table>
+    <Table tableTitle="Basic Usage table">
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -119,7 +119,7 @@ import {
 
 export function Example() {
   return (
-    <Table hasVerticalBorders>
+    <Table tableTitle="Vertical borders table" hasVerticalBorders>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -165,7 +165,7 @@ import {
 
 export function Example() {
   return (
-    <Table hasHoverStyles>
+    <Table hasHoverStyles tableTitle="Hover style table">
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -211,7 +211,7 @@ import {
 
 export function Example() {
   return (
-    <Table hasZebraStripes hasHoverStyles>
+    <Table hasZebraStripes hasHoverStyles tableTitle="Zebra Stripes table">
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -271,7 +271,7 @@ import {
 export function Example() {
   return (
     <>
-      <Table density={TableDensity.compact}>
+      <Table density={TableDensity.compact} tableTitle="Density table compact">
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -296,7 +296,7 @@ export function Example() {
         </TableBody>
       </Table>
       <br /> <br />
-      <Table density={TableDensity.loose}>
+      <Table density={TableDensity.loose} tableTitle="Density table loose">
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -395,7 +395,7 @@ export function Example() {
 
   return (
     <>
-      <Table>
+      <Table tableTitle="Sortable table">
         <TableHead>
           <TableRow>
             <TableHeaderCell
@@ -480,8 +480,14 @@ import {
 
 export function Example() {
   return (
-    <Card isInverse>
-      <Table isInverse hasZebraStripes hasVerticalBorders hasHoverStyles>
+    <Card isInverse style={{ padding: '16px' }}>
+      <Table
+        isInverse
+        hasZebraStripes
+        hasVerticalBorders
+        hasHoverStyles
+        tableTitle="Inverse table"
+      >
         <TableHead>
           <TableRow>
             <TableHeaderCell sortDirection={TableSortDirection.descending}>
@@ -535,7 +541,7 @@ import {
 
 export function Example() {
   return (
-    <Table>
+    <Table tableTitle="Cell alignment table">
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -580,7 +586,7 @@ import {
 export function Example() {
   return (
     <>
-      <Table>
+      <Table tableTitle="Cell Width table in percentage">
         <TableHead>
           <TableRow>
             <TableHeaderCell width="25%">Column 25%</TableHeaderCell>
@@ -603,7 +609,7 @@ export function Example() {
 
       <br />
 
-      <Table>
+      <Table tableTitle="Cell Width table in pixels">
         <TableHead>
           <TableRow>
             <TableHeaderCell width={200}>Column 200px</TableHeaderCell>
@@ -647,7 +653,7 @@ import {
 export function Example() {
   return (
     <>
-      <Table minWidth={920}>
+      <Table minWidth={920} tableTitle="Min-width table">
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column 1</TableHeaderCell>
@@ -706,7 +712,7 @@ import {
 
 export function Example() {
   return (
-    <Table hasVerticalBorders>
+    <Table hasVerticalBorders tableTitle="Other content table">
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column 1</TableHeaderCell>
@@ -923,7 +929,7 @@ export function Example() {
 
   return (
     <>
-      <Table>
+      <Table tableTitle="Pagination table">
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -973,7 +979,7 @@ import {
 
 export function Example() {
   return (
-    <Table>
+    <Table tableTitle="Table row color table">
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>

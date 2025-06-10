@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -845,5 +845,20 @@ describe('Datagrid', () => {
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
+  });
+
+  it('should display the title table', () => {
+    const { getByText } = render(
+      <Datagrid
+        columns={columns}
+        rows={rowsForPagination}
+        tableTitle="Datagrid title"
+      />
+    );
+
+    const titleTable = getByText('Datagrid title');
+
+    expect(titleTable).toBeInTheDocument();
+    expect(titleTable).toHaveStyle(`margin: ${magma.spaceScale.spacing04}`);
   });
 });

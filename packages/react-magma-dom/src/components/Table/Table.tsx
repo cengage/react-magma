@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { headingMediumStyles } from '../Typography';
 
 /**
  * @children required
@@ -48,6 +49,12 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   minWidth?: number;
   rowCount?: number;
   selectedItems?: Array<number>;
+  /**
+   * The title or caption of a table inside a <caption> HTML element that provides the table an accessible
+   * description.
+   * It can be a simple string or a React node, such as a heading element (e.g., <h1>, <h2>).
+   */
+  tableTitle?: React.ReactNode | string;
   /**
    * @internal
    */
@@ -133,6 +140,15 @@ export const TableWrapper = styled.div<{ minWidth: number }>`
   }
 `;
 
+export const StyledTableTitle = styled.caption<{
+  isInverse: boolean;
+  isTitleNode: boolean;
+}>`
+  ${headingMediumStyles};
+  margin: ${props => props.isTitleNode || props.theme.spaceScale.spacing04};
+  text-align: left;
+`;
+
 export const StyledTable = styled.table<{
   hasSquareCorners?: boolean;
   isInverse?: boolean;
@@ -167,6 +183,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       minWidth = 600,
       rowCount,
       selectedItems,
+      tableTitle,
       testId,
       isSortableBySelected,
       ...other
@@ -209,6 +226,16 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
               ref={ref}
               theme={theme}
             >
+              {tableTitle && (
+                <StyledTableTitle
+                  data-testid={`${testId}-table-title`}
+                  isInverse={isInverse}
+                  isTitleNode={typeof tableTitle !== 'string'}
+                  theme={theme}
+                >
+                  {tableTitle}
+                </StyledTableTitle>
+              )}
               {children}
             </StyledTable>
           </TableWrapper>
