@@ -147,14 +147,12 @@ const ModalContent = styled.div<ModalProps>`
     props.isInverse
       ? props.theme.colors.primary600
       : props.theme.colors.neutral100};
-  border: ${props =>
-    !props.showBackgroundOverlay && props.isInverse
-      ? `1px solid ${props.theme.colors.primary400}`
-      : `none`};
-  border-color: ${props =>
-    props.isInverse
-      ? transparentize(0.5, props.theme.colors.tertiary)
-      : props.theme.colors.neutral};
+  border: ${props => {
+    if (!props.showBackgroundOverlay && props.isInverse) {
+      return `1px solid ${transparentize(0.5, props.theme.colors.tertiary)}`;
+    }
+    return 'none';
+  }};
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: ${props => {
     const amount = props.isInverse ? 0.82 : 0.6;

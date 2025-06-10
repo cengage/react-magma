@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { render, fireEvent } from '@testing-library/react';
+import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -120,7 +121,7 @@ describe('Drawer', () => {
       expect(modalContent).toHaveStyle(`border: none`);
     });
 
-    it('should hide background overlay when showBackgroundOverlay is false', async () => {
+    it('should hide background overlay when showBackgroundOverlay is false and isInverse', async () => {
       const { queryByTestId } = render(
         <Drawer
           position="bottom"
@@ -138,9 +139,8 @@ describe('Drawer', () => {
 
       expect(modalContent).toBeInTheDocument();
       expect(queryByTestId(modalBackDropTestId)).not.toBeInTheDocument();
-      expect(modalContent).toHaveStyleRule(
-        `border`,
-        `1px solid ${magma.colors.primary400}`
+      expect(modalContent).toHaveStyle(
+        `border: 1px solid ${transparentize(0.5, magma.colors.tertiary)}`
       );
     });
   });
