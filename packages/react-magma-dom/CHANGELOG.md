@@ -1,5 +1,11 @@
 ## 4.9.0
 
+## 4.10.0-next.9
+
+### Minor Changes
+
+- 17f3eccd7: feat (Drawer): Add `showBackgroundOverlay` prop.
+
 ## 4.10.0-next.8
 
 ### Minor Changes
