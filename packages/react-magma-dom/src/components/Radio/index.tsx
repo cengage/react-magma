@@ -204,9 +204,9 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             theme={theme}
           >
             {context.selectedValue === value ? (
-              <RadioButtonCheckedIcon />
+              <RadioButtonCheckedIcon aria-hidden />
             ) : (
-              <RadioButtonUncheckedIcon />
+              <RadioButtonUncheckedIcon aria-hidden />
             )}
           </StyledFakeInput>
           {isTextVisuallyHidden ? (
