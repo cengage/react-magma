@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-const useDeviceDetect = () => {
+export const useDeviceDetect = () => {
   const userAgent = useMemo(() => navigator.userAgent.toLowerCase(), []);
 
   const isSafari = useMemo(
