@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.1.3-next.6
+
+### Patch Changes
+
+- 20e835b3b: chore: Add page for `useDeviceDetect` hook.
+- 76a3f90d5: chore: Add warning for `Tooltip` that the child element must be able to accept a ref.
+
 ## 5.1.3-next.5
 
 ### Patch Changes

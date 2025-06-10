@@ -14,6 +14,8 @@
   "changesets": [
     "chore-Playwright-initial-configuration",
     "chore-deploy-v2",
+    "chore-docs-add-useDeviceDetect-page",
+    "chore-docs-add-warning-for-tooltip",
     "chore-sync-landing-version",
     "feat-Dropdown-Add-leading-icon",
     "feat-TreeView-support-additionlContent-prop",
