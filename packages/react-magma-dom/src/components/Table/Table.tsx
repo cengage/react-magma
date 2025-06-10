@@ -145,7 +145,9 @@ export const StyledTableTitle = styled.caption<{
   isTitleNode: boolean;
 }>`
   ${headingMediumStyles};
-  margin: ${props => props.isTitleNode || props.theme.spaceScale.spacing04};
+  margin-bottom: ${props =>
+    props.isTitleNode || props.theme.spaceScale.spacing04};
+  margin-top: ${props => props.isTitleNode || props.theme.spaceScale.spacing04};
   text-align: left;
 `;
 

@@ -409,7 +409,10 @@ describe('Table', () => {
     const titleTable = getByText('Title table');
 
     expect(titleTable).toBeInTheDocument();
-    expect(titleTable).toHaveStyle(`margin: ${magma.spaceScale.spacing04}`);
+    expect(titleTable).toHaveStyle(`margin-top: ${magma.spaceScale.spacing04}`);
+    expect(titleTable).toHaveStyle(
+      `margin-bottom: ${magma.spaceScale.spacing04}`
+    );
   });
 
   it('should render sortable table header cells with inverse styles', () => {

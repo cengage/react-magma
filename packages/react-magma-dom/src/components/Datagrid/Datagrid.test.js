@@ -859,6 +859,9 @@ describe('Datagrid', () => {
     const titleTable = getByText('Datagrid title');
 
     expect(titleTable).toBeInTheDocument();
-    expect(titleTable).toHaveStyle(`margin: ${magma.spaceScale.spacing04}`);
+    expect(titleTable).toHaveStyle(`margin-top: ${magma.spaceScale.spacing04}`);
+    expect(titleTable).toHaveStyle(
+      `margin-bottom: ${magma.spaceScale.spacing04}`
+    );
   });
 });
