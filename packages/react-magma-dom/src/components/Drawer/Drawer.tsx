@@ -63,7 +63,11 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
           padding: '0',
           ...containerStyle,
         }}
-        containerTransition={transitionPreset[DrawerPosition[position]]}
+        containerTransition={
+          position
+            ? transitionPreset[DrawerPosition[position]]
+            : transitionPreset[DrawerPosition[DrawerPosition.top]]
+        }
         style={{ ...drawerStyle, ...style }}
         {...rest}
       />
