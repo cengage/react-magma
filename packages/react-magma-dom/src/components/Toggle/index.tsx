@@ -25,7 +25,7 @@ export enum ToggleTextPosition {
 export interface ToggleProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   /**
-   * If true, element is checked (i.e. selected)
+   * If true, an element is checked (i.e., selected)
    * @default false
    */
   checked?: boolean;
@@ -48,7 +48,7 @@ export interface ToggleProps
   hasError?: boolean;
   isInverse?: boolean;
   /**
-   * If true, label text will be hidden visually, but will still be read by assistive technology
+   * If true, a label text will be hidden visually, but will still be read by assistive technology
    * @default false
    */
   isTextVisuallyHidden?: boolean;
@@ -135,8 +135,7 @@ const Track = styled.span<{
     props.isInverse
       ? transparentize(0.8, props.theme.colors.neutral900)
       : props.theme.colors.neutral};
-  border: 2px solid;
-  border-color: ${props => buildToggleBorderColor(props)};
+  border: 2px solid ${props => buildToggleBorderColor(props)};
   border-radius: 12px;
   box-shadow: ${props =>
     props.isInverse && props.hasError
@@ -175,41 +174,6 @@ const Track = styled.span<{
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
     outline-offset: 2px;
-  }
-
-  &:before {
-    // active state
-    background: ${props => props.theme.colors.neutral};
-    border-radius: 50%;
-    content: '';
-    display: block;
-    height: 40px;
-    left: -12px;
-    opacity: 0;
-    margin-top: -22px;
-    padding: 50%;
-    position: absolute;
-    top: 50%;
-    transform: scale(1);
-    transition:
-      opacity 1s,
-      transform 0.25s;
-    width: 40px;
-
-    ${props =>
-      props.isChecked &&
-      css`
-        background: ${props.theme.colors.success};
-        left: 12px;
-      `}
-  }
-
-  ${HiddenInput}:not(:disabled):active + label & {
-    &:before {
-      opacity: 0.4;
-      transform: scale(0);
-      transition: transform 0s;
-    }
   }
 `;
 

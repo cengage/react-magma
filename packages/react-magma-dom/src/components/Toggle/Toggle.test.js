@@ -104,7 +104,10 @@ describe('Toggle', () => {
     const track = getByTestId('toggle-track');
 
     expect(toggle).toHaveAttribute('checked');
-    expect(track).toHaveStyleRule('border-color', magma.colors.success);
+    expect(track).toHaveStyleRule(
+      'border',
+      `2px solid ${magma.colors.success}`
+    );
   });
 
   it('should render a toggle with an error message', () => {
@@ -119,7 +122,7 @@ describe('Toggle', () => {
     const error = getByText(errorMessage);
 
     expect(toggle).toHaveAttribute('aria-describedby', 'testId__desc');
-    expect(track).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(track).toHaveStyleRule('border', `2px solid ${magma.colors.danger}`);
 
     expect(error).toBeInTheDocument();
     expect(error.parentElement).toHaveAttribute('id', 'testId__desc');
@@ -138,7 +141,7 @@ describe('Toggle', () => {
       />
     );
     const track = getByTestId('toggle-track');
-    expect(track).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(track).toHaveStyleRule('border', `2px solid ${magma.colors.danger}`);
   });
 
   it('should render an inverse toggle with error styling', () => {
@@ -150,7 +153,10 @@ describe('Toggle', () => {
     );
     const track = getByTestId('toggle-track');
 
-    expect(track).toHaveStyleRule('border-color', magma.colors.danger200);
+    expect(track).toHaveStyleRule(
+      'border',
+      `2px solid ${magma.colors.danger200}`
+    );
     expect(track).toHaveStyleRule(
       'box-shadow',
       `0 0 0 1px ${magma.colors.neutral100}`
@@ -171,7 +177,7 @@ describe('Toggle', () => {
     const error = getByText(errorMessage);
 
     expect(toggle).toHaveAttribute('aria-describedby', 'testId__desc');
-    expect(track).toHaveStyleRule('border-color', magma.colors.danger);
+    expect(track).toHaveStyleRule('border', `2px solid ${magma.colors.danger}`);
   });
 
   it('should render a toggle with a value passed through', () => {
