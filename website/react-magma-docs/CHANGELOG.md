@@ -1,5 +1,23 @@
 # Change Log
 
+## 5.1.3-next.6
+
+### Patch Changes
+
+- 20e835b3b: chore: Add page for `useDeviceDetect` hook.
+- 76a3f90d5: chore: Add warning for `Tooltip` that the child element must be able to accept a ref.
+
+## 5.1.3-next.5
+
+### Patch Changes
+
+- Updated dependencies [ed8a4eea7]
+  - react-magma-dom@4.10.0-next.1
+  - @react-magma/charts@12.0.0-next.1
+  - @react-magma/dropzone@12.0.0-next.1
+  - @react-magma/schema-renderer@12.0.0-next.1
+  - @cengage-patterns/header@13.0.0-next.1
+
 ## 5.1.3-next.4
 
 ### Patch Changes

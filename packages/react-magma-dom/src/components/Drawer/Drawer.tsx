@@ -41,6 +41,11 @@ export interface DrawerProps extends Omit<ModalProps, 'size'> {
    * @default DrawerPosition.top
    */
   position?: DrawerPosition;
+  /**
+   * Shows a background overlay when the drawer is open.
+   * @default true
+   */
+  showBackgroundOverlay?: boolean;
   isInverse?: boolean;
 }
 

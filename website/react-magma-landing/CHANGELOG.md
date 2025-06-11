@@ -1,5 +1,11 @@
 # Change Log
 
+## 1.1.8-next.0
+
+### Patch Changes
+
+- 587927357: chore: sync landing version with main (1.1.7)
+
 ## 1.1.6-next.0
 
 ### Patch Changes

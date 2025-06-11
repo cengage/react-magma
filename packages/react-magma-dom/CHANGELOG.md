@@ -1,5 +1,59 @@
 ## 4.9.0
 
+## 4.10.0-next.9
+
+### Minor Changes
+
+- 17f3eccd7: feat (Drawer): Add `showBackgroundOverlay` prop.
+
+## 4.10.0-next.8
+
+### Minor Changes
+
+- 670664d0f: feat(TreeView): TreeView component now handles dynamic addition of parents and children to parent nodes.
+
+## 4.10.0-next.7
+
+### Patch Changes
+
+- 526372655: fix(Input): Improve the logic for updating the value in the handleChange function.
+
+## 4.10.0-next.6
+
+### Minor Changes
+
+- 71c0f9961: Feat(TreeView): Add `additionalContent` prop. Removed animation from Checkbox and Radio components.
+
+## 4.10.0-next.5
+
+### Patch Changes
+
+- d87f3d640: fix(Dropdown): Add `aria-label` to NavItem for Windows + Firefox for NVDA announce.
+
+## 4.10.0-next.4
+
+### Patch Changes
+
+- e33060d8f: fix(Intermediate Checkbox): Fix screen reading 'unticked' on indeterminate state.
+
+## 4.10.0-next.3
+
+### Patch Changes
+
+- 62b58ab90: fix(Drawer): Fix bug with navigation.
+
+## 4.10.0-next.2
+
+### Minor Changes
+
+- 1653b4173: feat(Dropdown & IconButton): Add leading icon capability.
+
+## 4.10.0-next.1
+
+### Minor Changes
+
+- ed8a4eea7: feat(MultiSelect): Make selected items disabled when MultiSelect is disabled.
+
 ## 4.9.1-next.0
 
 ### Patch Changes

@@ -103,6 +103,11 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
   size?: ModalSize;
   /**
    * @internal
+   * @default true
+   */
+  showBackgroundOverlay?: boolean;
+  /**
+   * @internal
    */
   testId?: string;
   /**
@@ -143,14 +148,17 @@ const ModalContent = styled.div<ModalProps>`
     props.isInverse
       ? props.theme.colors.primary600
       : props.theme.colors.neutral100};
-  border: 1px solid;
-  border-color: ${props =>
-    props.isInverse
-      ? transparentize(0.5, props.theme.colors.tertiary)
-      : props.theme.colors.neutral};
+  border: ${props => {
+    if (!props.showBackgroundOverlay && props.isInverse) {
+      return `1px solid ${transparentize(0.5, props.theme.colors.tertiary)}`;
+    }
+    return 'none';
+  }};
   border-radius: ${props => props.theme.borderRadius};
-  box-shadow: ${props =>
-    `0 2px 6px ${transparentize(0.85, props.theme.colors.neutral900)}`};
+  box-shadow: ${props => {
+    const amount = props.isInverse ? 0.82 : 0.6;
+    return `0 2px 6px ${transparentize(amount, props.theme.colors.neutral900)}`;
+  }};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
@@ -233,6 +241,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       isModalClosingControlledManually,
       headerRef,
       onClose,
+      showBackgroundOverlay = true,
       ...rest
     } = props;
 
@@ -396,21 +405,24 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             data-testid="modal-content"
             id={contentId}
             ref={ref}
+            showBackgroundOverlay={showBackgroundOverlay}
             theme={theme}
           >
             {header && (
               <ModalHeader theme={theme}>
-                <H1
-                  id={headingId}
-                  isInverse={isInverse}
-                  level={1}
-                  ref={headingRef}
-                  visualStyle={TypographyVisualStyle.headingSmall}
-                  tabIndex={-1}
-                  theme={theme}
-                >
-                  {header}
-                </H1>
+                {header && (
+                  <H1
+                    id={headingId}
+                    isInverse={isInverse}
+                    level={1}
+                    ref={headingRef}
+                    visualStyle={TypographyVisualStyle.headingSmall}
+                    tabIndex={-1}
+                    theme={theme}
+                  >
+                    {header}
+                  </H1>
+                )}
               </ModalHeader>
             )}
             <ModalWrapper ref={bodyRef} theme={theme}>
@@ -433,16 +445,18 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             )}
           </ModalContent>
         </ModalContainer>
-        <ModalBackdrop
-          data-testid="modal-backdrop"
-          onMouseDown={
-            isBackgroundClickDisabled ? event => event.preventDefault() : null
-          }
-          isOpen={isModalOpen}
-          style={modalCount >= 2 && { zIndex: '998' }}
-          unmountOnExit
-          theme={theme}
-        />
+        {showBackgroundOverlay && (
+          <ModalBackdrop
+            data-testid="modal-backdrop"
+            onMouseDown={
+              isBackgroundClickDisabled ? event => event.preventDefault() : null
+            }
+            isOpen={isModalOpen}
+            style={modalCount >= 2 && { zIndex: '998' }}
+            unmountOnExit
+            theme={theme}
+          />
+        )}
       </div>,
       document.getElementsByTagName('body')[0]
     );

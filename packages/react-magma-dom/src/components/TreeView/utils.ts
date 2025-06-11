@@ -513,6 +513,7 @@ export const getInitialItems = ({
   selectable,
   isDisabled: isTreeViewDisabled,
   isTopLevelSelectable,
+  items,
 }: Pick<
   UseTreeViewProps,
   | 'children'
@@ -522,14 +523,16 @@ export const getInitialItems = ({
   | 'selectable'
   | 'isDisabled'
   | 'isTopLevelSelectable'
->) => {
-  const treeViewData = getTreeViewData({
-    children,
-    checkChildren,
-    selectable,
-    preselectedItems: rawPreselectedItems,
-    isTreeViewDisabled,
-  });
+> & { items?: TreeViewItemInterface[] }) => {
+  const treeViewData =
+    items ||
+    getTreeViewData({
+      children,
+      checkChildren,
+      selectable,
+      preselectedItems: rawPreselectedItems,
+      isTreeViewDisabled,
+    });
 
   const preselectedItems =
     rawPreselectedItems?.length && selectable === TreeViewSelectable.single

@@ -277,6 +277,9 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -291,6 +294,10 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(100% - 8px);
 }
 
 .emotion-32 {
@@ -401,16 +408,6 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -463,6 +460,9 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -533,16 +533,6 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -968,6 +958,9 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -982,6 +975,10 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(100% - 8px);
 }
 
 .emotion-32 {
@@ -1092,16 +1089,6 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1154,6 +1141,9 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -1224,16 +1214,6 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -1502,7 +1482,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-1-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -1569,7 +1549,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-2-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -1635,7 +1615,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-3-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -1702,7 +1682,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-4-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -1789,7 +1769,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-5-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -2153,6 +2133,9 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -2167,6 +2150,10 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(100% - 8px);
 }
 
 .emotion-32 {
@@ -2277,16 +2264,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -2339,6 +2316,9 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -2409,16 +2389,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -2591,16 +2561,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-92:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-120 {
@@ -2959,6 +2919,9 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -2973,6 +2936,10 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(100% - 8px);
 }
 
 .emotion-32 {
@@ -3083,16 +3050,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -3145,6 +3102,9 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -3215,16 +3175,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -3397,16 +3347,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-92:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-120 {
@@ -3608,7 +3548,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-1-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -3676,7 +3616,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-2-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -3763,7 +3703,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-3-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -3860,7 +3800,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-4-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -3956,7 +3896,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-5-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -4320,6 +4260,9 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -4334,6 +4277,10 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(100% - 8px);
 }
 
 .emotion-32 {
@@ -4444,16 +4391,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -4506,6 +4443,9 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -4576,16 +4516,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -5051,6 +4981,9 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -5065,6 +4998,10 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(100% - 8px);
 }
 
 .emotion-32 {
@@ -5175,16 +5112,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -5237,6 +5164,9 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -5307,16 +5237,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -5625,7 +5545,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-1-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -5692,7 +5612,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-2-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -5779,7 +5699,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-3-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -5876,7 +5796,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-4-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -5972,7 +5892,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-5-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -6336,6 +6256,9 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -6350,6 +6273,10 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(100% - 8px);
 }
 
 .emotion-32 {
@@ -6460,16 +6387,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -6522,6 +6439,9 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -6592,16 +6512,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -7067,6 +6977,9 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -7081,6 +6994,10 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(100% - 8px);
 }
 
 .emotion-32 {
@@ -7191,16 +7108,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -7253,6 +7160,9 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -7323,16 +7233,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -7641,7 +7541,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-1-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -7708,7 +7608,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-2-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -7795,7 +7695,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-3-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -7892,7 +7792,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-4-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -7988,7 +7888,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-5-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -8352,6 +8252,9 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -8366,6 +8269,10 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(100% - 8px);
 }
 
 .emotion-32 {
@@ -8476,16 +8383,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -8538,6 +8435,9 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -8608,16 +8508,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -8790,16 +8680,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-92:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-120 {
@@ -9158,6 +9038,9 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -9172,6 +9055,10 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(100% - 8px);
 }
 
 .emotion-32 {
@@ -9282,16 +9169,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -9344,6 +9221,9 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -9414,16 +9294,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -9596,16 +9466,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-92:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-120 {
@@ -9807,7 +9667,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-1-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -9875,7 +9735,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-2-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -9962,7 +9822,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-3-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -10059,7 +9919,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-4-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -10155,7 +10015,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-5-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -10519,6 +10379,9 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -10533,6 +10396,10 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(100% - 8px);
 }
 
 .emotion-32 {
@@ -10643,16 +10510,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -10705,6 +10562,9 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -10775,16 +10635,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -10957,16 +10807,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-92:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-120 {
@@ -11325,6 +11165,9 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -11339,6 +11182,10 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(100% - 8px);
 }
 
 .emotion-32 {
@@ -11449,16 +11296,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -11511,6 +11348,9 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -11581,16 +11421,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -11763,16 +11593,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-92:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-120 {
@@ -11974,7 +11794,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-1-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -12042,7 +11862,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-2-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -12129,7 +11949,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-3-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -12226,7 +12046,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-4-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -12322,7 +12142,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-5-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -12686,6 +12506,9 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -12700,6 +12523,10 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(100% - 8px);
 }
 
 .emotion-32 {
@@ -12810,16 +12637,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -12872,6 +12689,9 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -12942,16 +12762,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -13417,6 +13227,9 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -13431,6 +13244,10 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
   display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: calc(100% - 8px);
 }
 
 .emotion-32 {
@@ -13541,16 +13358,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   left: -10px;
 }
 
-.emotion-35:not(:disabled):active+label .emotion-38:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
 .emotion-40 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -13603,6 +13410,9 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   -webkit-align-items: flex-start;
   -webkit-box-align: flex-start;
   -ms-flex-align: flex-start;
@@ -13673,16 +13483,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   background: #3942B0;
   top: -10px;
   left: -10px;
-}
-
-.emotion-35:not(:disabled):active+label .emotion-54:after {
-  opacity: 0.4;
-  -webkit-transform: scale(0);
-  -moz-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
 }
 
 .emotion-56 {
@@ -13991,7 +13791,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-1-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -14058,7 +13858,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-2-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -14145,7 +13945,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-3-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -14242,7 +14042,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-4-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
@@ -14338,7 +14138,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                     <label
                       class="emotion-36 emotion-37"
                       for="item-id-5-checkbox"
-                      style="padding: 0px;"
+                      style="padding: 0px; width: 100%;"
                     >
                       <span
                         aria-hidden="true"
