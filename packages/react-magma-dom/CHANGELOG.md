@@ -1,5 +1,11 @@
 ## 4.9.0
 
+## 4.10.0-next.10
+
+### Minor Changes
+
+- 8c6b4baa7: feat(Toggle): Removed animation from Toggle component.
+
 ## 4.10.0-next.9
 
 ### Minor Changes

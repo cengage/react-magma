@@ -19,6 +19,7 @@
     "chore-sync-landing-version",
     "feat-Drawer-Add-Show-Background-Overlay-prop",
     "feat-Dropdown-Add-leading-icon",
+    "feat-Toogle-remove-animation",
     "feat-TreeView-support-additionlContent-prop",
     "feat-multiselect-new-option-disabled",
     "feat-treeview-dynamic-children",
