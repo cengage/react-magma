@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Header } from '@cengage-patterns/header';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import {
@@ -8,6 +7,7 @@ import {
   AppBarPosition,
   ButtonVariant,
   IconButton,
+  AppBar,
 } from 'react-magma-dom';
 import { GithubIcon } from 'react-magma-icons';
 
@@ -37,7 +37,7 @@ const LogoLink = styled(Link)`
   }
 `;
 
-const StyledHeader = styled(Header)`
+const StyledHeader = styled(AppBar)`
   box-shadow: none;
   padding: 24px;
 `;
