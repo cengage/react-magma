@@ -93,7 +93,7 @@ export const DropdownContent = React.forwardRef<
     <div
       data-testid={'dropdownContentWrapper'}
       ref={el => {
-        context.setFloating(el);
+        context.isOpen && context.setFloating(el);
       }}
       // z-index 996 is used to make the content appear above docs elements (code blocks)
       // and below the Modal component (z-index 997)
