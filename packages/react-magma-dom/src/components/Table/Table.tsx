@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { headingMediumStyles } from '../Typography';
 
 /**
  * @children required
@@ -24,6 +25,11 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
    * @default false
    */
   hasSquareCorners?: boolean;
+  /**
+   * If true, the table will have outer border
+   * @default false
+   */
+  hasOutsideBorder?: boolean;
   /**
    * If true, columns will have vertical borders
    */
@@ -49,9 +55,19 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   rowCount?: number;
   selectedItems?: Array<number>;
   /**
+   * The title or caption of a table inside a <caption> HTML element that provides the table an accessible
+   * description.
+   * It can be a simple string or a React node, such as a heading element (e.g., <h1>, <h2>).
+   */
+  tableTitle?: React.ReactNode | string;
+  /**
    * @internal
    */
   testId?: string;
+  /**
+   * @internal - used within DataGrid to handle data-grid styles
+   */
+  isDataGrid?: boolean;
 }
 
 export enum TableDensity {
@@ -133,15 +149,42 @@ export const TableWrapper = styled.div<{ minWidth: number }>`
   }
 `;
 
+export const StyledTableTitle = styled.caption<{
+  isInverse: boolean;
+  isTitleNode: boolean;
+}>`
+  ${headingMediumStyles};
+  margin-bottom: ${props =>
+    props.isTitleNode || props.theme.spaceScale.spacing04};
+  margin-top: ${props => props.isTitleNode || props.theme.spaceScale.spacing04};
+  text-align: left;
+`;
+
 export const StyledTable = styled.table<{
+  hasOutsideBorder?: boolean;
   hasSquareCorners?: boolean;
+  isDataGrid?: boolean;
   isInverse?: boolean;
   minWidth: number;
 }>`
-  border-collapse: collapse;
+  border-collapse: ${props =>
+    props.hasOutsideBorder && !props.hasSquareCorners
+      ? 'separate'
+      : 'collapse'};
   border-spacing: 0;
-  border-radius: ${props =>
-    props.hasSquareCorners ? '0' : props.theme.borderRadius};
+  border: ${props =>
+    props.hasOutsideBorder
+      ? `1px solid ${props.theme.colors.neutral300}`
+      : 'none'};
+  border-radius: ${props => {
+    if (props.hasOutsideBorder && !props.hasSquareCorners) {
+      if (props.isDataGrid) {
+        return `${props.theme.borderRadius} ${props.theme.borderRadius} 0 0`;
+      }
+      return props.theme.borderRadius;
+    }
+    return '0';
+  }};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
@@ -160,6 +203,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       children,
       density = TableDensity.normal,
       hasHoverStyles,
+      hasOutsideBorder,
       hasSquareCorners,
       hasVerticalBorders,
       hasZebraStripes,
@@ -167,8 +211,10 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       minWidth = 600,
       rowCount,
       selectedItems,
+      tableTitle,
       testId,
       isSortableBySelected,
+      isDataGrid,
       ...other
     } = props;
 
@@ -203,12 +249,24 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
             <StyledTable
               {...other}
               data-testid={testId}
+              hasOutsideBorder={hasOutsideBorder}
               hasSquareCorners={hasSquareCorners}
               isInverse={isInverse}
+              isDataGrid={isDataGrid}
               minWidth={minWidth || theme.breakpoints.small}
               ref={ref}
               theme={theme}
             >
+              {tableTitle && (
+                <StyledTableTitle
+                  data-testid={`${testId}-table-title`}
+                  isInverse={isInverse}
+                  isTitleNode={typeof tableTitle !== 'string'}
+                  theme={theme}
+                >
+                  {tableTitle}
+                </StyledTableTitle>
+              )}
               {children}
             </StyledTable>
           </TableWrapper>

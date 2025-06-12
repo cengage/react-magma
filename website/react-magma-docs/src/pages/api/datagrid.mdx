@@ -212,8 +212,8 @@ export function Example() {
   ];
 
   return (
-    <Card>
-      <Datagrid columns={columns} rows={rows} />
+    <Card style={{ padding: '16px' }}>
+      <Datagrid columns={columns} rows={rows} tableTitle="Basic usage" />
     </Card>
   );
 }
@@ -264,7 +264,14 @@ export function Example() {
     },
   ];
 
-  return <Datagrid columns={columns} rows={coloredRows} hasSquareCorners />;
+  return (
+    <Datagrid
+      columns={columns}
+      rows={coloredRows}
+      hasSquareCorners
+      tableTitle="Row color table"
+    />
+  );
 }
 ```
 
@@ -489,8 +496,13 @@ export function Example() {
   ];
 
   return (
-    <Card>
-      <Datagrid columns={columns} rows={rows} isSelectable />
+    <Card style={{ padding: '16px' }}>
+      <Datagrid
+        columns={columns}
+        rows={rows}
+        isSelectable
+        tableTitle="Selectable table"
+      />
     </Card>
   );
 }
@@ -716,8 +728,13 @@ export function Example() {
   ];
 
   return (
-    <Card>
-      <Datagrid columns={columns} rows={rows} isSelectable />
+    <Card style={{ padding: '16px' }}>
+      <Datagrid
+        columns={columns}
+        rows={rows}
+        isSelectable
+        tableTitle="Disabled Selectable Row table"
+      />
     </Card>
   );
 }
@@ -907,6 +924,7 @@ export function Example() {
         onRowSelect={handleSelectedItems}
         onHeaderSelect={handleHeaderSelect}
         sortDirection={selectedDirection}
+        tableTitle="Selectable and Sortable table"
       />
       <Announce>
         <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
@@ -1139,7 +1157,7 @@ export function Example() {
   ];
 
   return (
-    <Card>
+    <Card style={{ padding: '16px' }}>
       <strong>Selected Rows: </strong>
       <pre>{JSON.stringify(selectedRows, null, 2)}</pre>
       <Button
@@ -1155,6 +1173,7 @@ export function Example() {
         isSelectable
         selectedRows={selectedRows}
         onSelectedRowsChange={updatedSelectedRows}
+        tableTitle="Controlled Selectable Column table"
       />
     </Card>
   );
@@ -1361,7 +1380,12 @@ export function Example() {
   };
 
   return (
-    <Datagrid columns={columns} rows={rows} paginationProps={paginationProps} />
+    <Datagrid
+      columns={columns}
+      rows={rows}
+      paginationProps={paginationProps}
+      tableTitle="Pagination Defaults table"
+    />
   );
 }
 ```
@@ -1585,7 +1609,12 @@ export function Example() {
   };
 
   return (
-    <Datagrid columns={columns} rows={rows} paginationProps={paginationProps} />
+    <Datagrid
+      columns={columns}
+      rows={rows}
+      paginationProps={paginationProps}
+      tableTitle="Pagination Controlled table"
+    />
   );
 }
 ```
@@ -1836,6 +1865,7 @@ export function Example() {
       columns={columns}
       rows={rows}
       components={{ Pagination: CustomPaginationComponent }}
+      tableTitle="Custom Pagination Components table"
     />
   );
 }
@@ -2036,7 +2066,14 @@ export function Example() {
     },
   ];
 
-  return <Datagrid columns={columns} rows={rows} hasPagination={false} />;
+  return (
+    <Datagrid
+      columns={columns}
+      rows={rows}
+      hasPagination={false}
+      tableTitle="Without Pagination table"
+    />
+  );
 }
 ```
 
@@ -2083,8 +2120,13 @@ export function Example() {
   ];
 
   return (
-    <Card isInverse>
-      <Datagrid columns={columns} isInverse rows={rows} />
+    <Card isInverse style={{ padding: '16px' }}>
+      <Datagrid
+        columns={columns}
+        isInverse
+        rows={rows}
+        tableTitle="Inverse table"
+      />
     </Card>
   );
 }

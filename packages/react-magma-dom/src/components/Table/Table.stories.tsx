@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react/types-6-0';
 
 import { magma } from '../../theme/magma';
 import { Announce } from '../Announce';
@@ -17,17 +17,17 @@ import { VisuallyHidden } from '../VisuallyHidden';
 
 import {
   Table,
-  TableCell,
-  TableHead,
-  TableRow,
-  TableHeaderCell,
   TableBody,
+  TableCell,
+  TableCellAlign,
+  TableDensity,
+  TableHead,
+  TableHeaderCell,
   TablePagination,
   TableProps,
-  TableDensity,
+  TableRow,
   TableRowColor,
   TableSortDirection,
-  TableCellAlign,
 } from './';
 
 const rows = [
@@ -53,14 +53,10 @@ const rows = [
 
 const Template: Story<TableProps> = args => (
   <Card
-    style={
-      args.hasSquareCorners
-        ? { borderRadius: '0' }
-        : { borderRadius: `${magma.borderRadius}` }
-    }
+    style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     isInverse={args.isInverse}
   >
-    <Table {...args}>
+    <Table tableTitle="Basic Usage Table" {...args}>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -97,16 +93,28 @@ export default {
         type: 'number',
       },
     },
+    tableTitle: {
+      control: {
+        type: 'text',
+      },
+    },
+    hasOutsideBorder: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 
 export const Default = Template.bind({});
 Default.args = {
   hasHoverStyles: false,
+  hasOutsideBorder: false,
   hasSquareCorners: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,
   isInverse: false,
+  tableTitle: 'Basic usage table',
 };
 
 export const SquareCorners = args => {
@@ -119,7 +127,7 @@ export const SquareCorners = args => {
   );
 
   return (
-    <div style={{ background: magma.colors.primary600, padding: '20px' }}>
+    <div style={{ background: magma.colors.neutral300, padding: '16px' }}>
       <Table style={{ background: magma.colors.neutral100 }} {...args}>
         <TableHead>
           <TableRow>
@@ -144,9 +152,11 @@ export const SquareCorners = args => {
 };
 SquareCorners.args = {
   hasSquareCorners: true,
+  hasOutsideBorder: false,
   hasHoverStyles: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,
+  tableTitle: 'Square corners',
 };
 
 const rowsLong = [
@@ -313,11 +323,7 @@ export const ControlledPagination = args => {
   return (
     <Card
       isInverse={args.isInverse}
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0' }
-          : { borderRadius: `${magma.borderRadius}` }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Table {...args}>
         <TableHead>
@@ -353,6 +359,7 @@ export const ControlledPagination = args => {
 };
 ControlledPagination.args = {
   ...Default.args,
+  tableTitle: 'Controlled Pagination',
   rowsPerPage: 10,
   rowsPerPageValues: [10, 20, 50, 100],
 };
@@ -377,8 +384,11 @@ export const UncontrolledPagination = args => {
   );
 
   return (
-    <>
-      <Table>
+    <Card
+      isInverse={args.isInverse}
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
+    >
+      <Table {...args}>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -404,10 +414,12 @@ export const UncontrolledPagination = args => {
         defaultRowsPerPage={rowsPerPage}
         rowsPerPageValues={args.rowsPerPageValues}
       />
-    </>
+    </Card>
   );
 };
 UncontrolledPagination.args = {
+  ...Default.args,
+  tableTitle: 'Uncontrolled Pagination',
   defaultRowsPerPage: 10,
   rowsPerPageValues: [10, 20, 50, 100],
 };
@@ -430,7 +442,7 @@ export const PaginationWithSquareCorners = args => {
   );
 
   return (
-    <div style={{ background: magma.colors.primary600, padding: '20px' }}>
+    <div style={{ background: magma.colors.neutral300, padding: '16px' }}>
       <Table style={{ background: magma.colors.neutral100 }} {...args}>
         <TableHead>
           <TableRow>
@@ -464,9 +476,11 @@ export const PaginationWithSquareCorners = args => {
 };
 PaginationWithSquareCorners.args = {
   hasSquareCorners: true,
+  hasOutsideBorder: false,
   hasHoverStyles: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,
+  tableTitle: 'Pagination with square corners',
 };
 
 export const PaginationInverse = args => {
@@ -489,11 +503,7 @@ export const PaginationInverse = args => {
   return (
     <Card
       isInverse
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0' }
-          : { borderRadius: `${magma.borderRadius}` }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Table {...args} isInverse>
         <TableHead>
@@ -526,68 +536,71 @@ export const PaginationInverse = args => {
 PaginationInverse.args = {
   ...Default.args,
   isInverse: true,
+  tableTitle: 'Pagination inverse',
 };
 
 export const RowColors = args => {
   return (
-    <Table {...args}>
-      <TableHead>
-        <TableRow>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        <TableRow>
-          <TableCell>Lorem ipsum</TableCell>
-          <TableCell>dolar sit</TableCell>
-          <TableCell>amet</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Lorem ipsum</TableCell>
-          <TableCell>dolar sit</TableCell>
-          <TableCell>amet</TableCell>
-        </TableRow>
-        <TableRow color={TableRowColor.success}>
-          <TableCell>Lorem ipsum</TableCell>
-          <TableCell>dolar sit</TableCell>
-          <TableCell>amet</TableCell>
-        </TableRow>
-        <TableRow color={TableRowColor.danger}>
-          <TableCell>Lorem ipsum</TableCell>
-          <TableCell>dolar sit</TableCell>
-          <TableCell>amet</TableCell>
-        </TableRow>
-        <TableRow color={TableRowColor.info}>
-          <TableCell>Lorem ipsum</TableCell>
-          <TableCell>dolar sit</TableCell>
-          <TableCell>amet</TableCell>
-        </TableRow>
-        <TableRow color={TableRowColor.warning}>
-          <TableCell>Lorem ipsum</TableCell>
-          <TableCell>dolar sit</TableCell>
-          <TableCell>amet</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
+    <Card
+      isInverse={args.isInverse}
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
+    >
+      <Table {...args}>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow color={TableRowColor.success}>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow color={TableRowColor.danger}>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow color={TableRowColor.info}>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+          <TableRow color={TableRowColor.warning}>
+            <TableCell>Lorem ipsum</TableCell>
+            <TableCell>dolar sit</TableCell>
+            <TableCell>amet</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    </Card>
   );
 };
 RowColors.args = {
   ...Default.args,
   hasHoverStyles: true,
   hasZebraStripe: true,
+  tableTitle: 'Row colors',
 };
 
 export const RowColorsInverse = args => {
   return (
     <Card
       isInverse
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0' }
-          : { borderRadius: `${magma.borderRadius}` }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Table {...args}>
         <TableHead>
@@ -641,6 +654,7 @@ export const RowColorsInverse = args => {
 RowColorsInverse.args = {
   ...Default.args,
   isInverse: true,
+  tableTitle: 'Row colors Inverse',
 };
 
 export const Sortable = args => {
@@ -691,11 +705,7 @@ export const Sortable = args => {
   return (
     <Card
       isInverse={args.isInverse}
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0' }
-          : { borderRadius: `${magma.borderRadius}` }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Table {...args}>
         <TableHead>
@@ -763,17 +773,14 @@ export const Sortable = args => {
 
 Sortable.args = {
   ...Default.args,
+  tableTitle: 'Sortable Table',
 };
 
 export const WithDropdown = args => {
   return (
     <Card
       isInverse={args.isInverse}
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0' }
-          : { borderRadius: `${magma.borderRadius}` }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Table maxWidth={500} {...args}>
         <TableHead>
@@ -845,6 +852,7 @@ export const WithDropdown = args => {
 };
 WithDropdown.args = {
   ...Default.args,
+  tableTitle: 'With dropdown',
 };
 
 export const AdjustableRowNumber = args => {
@@ -867,20 +875,27 @@ export const AdjustableRowNumber = args => {
   }
 
   return (
-    <Table {...args}>
-      <TableHead>
-        <TableRow>
-          <TableHeaderCell>Number</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>{getTableRows()}</TableBody>
-    </Table>
+    <Card
+      isInverse={args.isInverse}
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
+    >
+      <Table {...args}>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Number</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>{getTableRows()}</TableBody>
+      </Table>
+    </Card>
   );
 };
 AdjustableRowNumber.args = {
+  ...Default.args,
   numberRows: 300,
+  tableTitle: 'Adjustable Row Number Table',
 };
 
 export const NoRowsPerPageControl = args => {
@@ -897,7 +912,10 @@ export const NoRowsPerPageControl = args => {
   );
 
   return (
-    <Card isInverse={args.isInverse}>
+    <Card
+      isInverse={args.isInverse}
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
+    >
       <Table {...args}>
         <TableHead>
           <TableRow>
@@ -927,4 +945,20 @@ export const NoRowsPerPageControl = args => {
       />
     </Card>
   );
+};
+NoRowsPerPageControl.args = {
+  ...Default.args,
+  numberRows: 300,
+  tableTitle: 'No Rows Per Page Control Table',
+};
+
+export const TitleTableAndOutsideBorder = Template.bind({});
+TitleTableAndOutsideBorder.args = {
+  hasHoverStyles: false,
+  hasOutsideBorder: true,
+  hasSquareCorners: false,
+  hasVerticalBorders: false,
+  hasZebraStripes: false,
+  isInverse: false,
+  tableTitle: <h2>Title table</h2>,
 };
