@@ -102,12 +102,18 @@ export default {
         type: 'text',
       },
     },
+    hasOutsideBorder: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 
 export const Default = Template.bind({});
 Default.args = {
   hasHoverStyles: false,
+  hasOutsideBorder: false,
   hasSquareCorners: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,
@@ -150,6 +156,7 @@ export const SquareCorners = args => {
 };
 SquareCorners.args = {
   hasSquareCorners: true,
+  hasOutsideBorder: false,
   hasHoverStyles: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,
@@ -481,6 +488,7 @@ export const PaginationWithSquareCorners = args => {
 };
 PaginationWithSquareCorners.args = {
   hasSquareCorners: true,
+  hasOutsideBorder: false,
   hasHoverStyles: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,

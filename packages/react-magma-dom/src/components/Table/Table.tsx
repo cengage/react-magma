@@ -26,6 +26,11 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
    */
   hasSquareCorners?: boolean;
   /**
+   * If true, the table will have outer border
+   * @default false
+   */
+  hasOutsideBorder?: boolean;
+  /**
    * If true, columns will have vertical borders
    */
   hasVerticalBorders?: boolean;
@@ -91,6 +96,7 @@ export enum TableRowColor {
 interface TableContextInterface {
   density?: TableDensity;
   hasHoverStyles?: boolean;
+  hasOutsideBorder: boolean;
   hasSquareCorners?: boolean;
   hasVerticalBorders?: boolean;
   hasZebraStripes?: boolean;
@@ -104,6 +110,7 @@ interface TableContextInterface {
 export const TableContext = React.createContext<TableContextInterface>({
   density: TableDensity.normal,
   hasHoverStyles: false,
+  hasOutsideBorder: false,
   hasSquareCorners: false,
   hasZebraStripes: false,
   hasVerticalBorders: false,
@@ -152,12 +159,17 @@ export const StyledTableTitle = styled.caption<{
 `;
 
 export const StyledTable = styled.table<{
+  hasOutsideBorder?: boolean;
   hasSquareCorners?: boolean;
   isInverse?: boolean;
   minWidth: number;
 }>`
   border-collapse: collapse;
   border-spacing: 0;
+  border: ${props =>
+    props.hasOutsideBorder
+      ? `1px solid ${props.theme.colors.neutral300}`
+      : 'none'};
   border-radius: ${props =>
     props.hasSquareCorners ? '0' : props.theme.borderRadius};
   color: ${props =>
@@ -178,6 +190,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       children,
       density = TableDensity.normal,
       hasHoverStyles,
+      hasOutsideBorder,
       hasSquareCorners,
       hasVerticalBorders,
       hasZebraStripes,
@@ -202,6 +215,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
         value={{
           density,
           hasHoverStyles,
+          hasOutsideBorder,
           hasSquareCorners,
           hasZebraStripes,
           hasVerticalBorders,
@@ -222,6 +236,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
             <StyledTable
               {...other}
               data-testid={testId}
+              hasOutsideBorder={hasOutsideBorder}
               hasSquareCorners={hasSquareCorners}
               isInverse={isInverse}
               minWidth={minWidth || theme.breakpoints.small}

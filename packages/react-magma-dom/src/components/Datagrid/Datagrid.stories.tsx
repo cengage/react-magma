@@ -322,6 +322,11 @@ export default {
         type: 'text',
       },
     },
+    hasOutsideBorder: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 
