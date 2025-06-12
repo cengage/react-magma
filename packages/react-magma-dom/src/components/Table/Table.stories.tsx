@@ -53,11 +53,7 @@ const rows = [
 
 const Template: Story<TableProps> = args => (
   <Card
-    style={
-      args.hasSquareCorners
-        ? { borderRadius: '0', padding: '16px' }
-        : { borderRadius: `${magma.borderRadius}`, padding: '16px' }
-    }
+    style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     isInverse={args.isInverse}
   >
     <Table tableTitle="Basic Usage Table" {...args}>
@@ -327,11 +323,7 @@ export const ControlledPagination = args => {
   return (
     <Card
       isInverse={args.isInverse}
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0', padding: '16px' }
-          : { borderRadius: `${magma.borderRadius}`, padding: '16px' }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Table {...args}>
         <TableHead>
@@ -394,11 +386,7 @@ export const UncontrolledPagination = args => {
   return (
     <Card
       isInverse={args.isInverse}
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0', padding: '16px' }
-          : { borderRadius: `${magma.borderRadius}`, padding: '16px' }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Table {...args}>
         <TableHead>
@@ -515,11 +503,7 @@ export const PaginationInverse = args => {
   return (
     <Card
       isInverse
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0', padding: '16px' }
-          : { borderRadius: `${magma.borderRadius}`, padding: '16px' }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Table {...args} isInverse>
         <TableHead>
@@ -559,11 +543,7 @@ export const RowColors = args => {
   return (
     <Card
       isInverse={args.isInverse}
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0', padding: '16px' }
-          : { borderRadius: `${magma.borderRadius}`, padding: '16px' }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Table {...args}>
         <TableHead>
@@ -620,11 +600,7 @@ export const RowColorsInverse = args => {
   return (
     <Card
       isInverse
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0', padding: '16px' }
-          : { borderRadius: `${magma.borderRadius}`, padding: '16px' }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Table {...args}>
         <TableHead>
@@ -729,11 +705,7 @@ export const Sortable = args => {
   return (
     <Card
       isInverse={args.isInverse}
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0', padding: '16px' }
-          : { borderRadius: `${magma.borderRadius}`, padding: '16px' }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Table {...args}>
         <TableHead>
@@ -808,11 +780,7 @@ export const WithDropdown = args => {
   return (
     <Card
       isInverse={args.isInverse}
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0', padding: '16px' }
-          : { borderRadius: `${magma.borderRadius}`, padding: '16px' }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Table maxWidth={500} {...args}>
         <TableHead>
@@ -909,11 +877,7 @@ export const AdjustableRowNumber = args => {
   return (
     <Card
       isInverse={args.isInverse}
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0', padding: '16px' }
-          : { borderRadius: `${magma.borderRadius}`, padding: '16px' }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Table {...args}>
         <TableHead>
@@ -950,11 +914,7 @@ export const NoRowsPerPageControl = args => {
   return (
     <Card
       isInverse={args.isInverse}
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0', padding: '16px' }
-          : { borderRadius: `${magma.borderRadius}`, padding: '16px' }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Table {...args}>
         <TableHead>
@@ -992,9 +952,10 @@ NoRowsPerPageControl.args = {
   tableTitle: 'No Rows Per Page Control Table',
 };
 
-export const TitleTable = Template.bind({});
-TitleTable.args = {
+export const TitleTableAndOutsideBorder = Template.bind({});
+TitleTableAndOutsideBorder.args = {
   hasHoverStyles: false,
+  hasOutsideBorder: true,
   hasSquareCorners: false,
   hasVerticalBorders: false,
   hasZebraStripes: false,

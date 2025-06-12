@@ -160,6 +160,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       rows,
       selectedRows: selectedRowsProp,
       hasPagination = true,
+      isDataGrid = true,
       onSortBySelected,
       sortDirection,
       ...other
@@ -279,7 +280,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
 
     return (
       <>
-        <Table {...other} ref={ref} aria-live="polite">
+        <Table isDataGrid={isDataGrid} {...other} ref={ref} aria-live="polite">
           <TableHead>
             <TableRow
               headerRowStatus={headerRowStatus}

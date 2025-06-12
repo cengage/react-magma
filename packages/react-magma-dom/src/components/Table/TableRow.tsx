@@ -115,8 +115,19 @@ const StyledTableRow = styled.tr<{
   outline: 0;
   vertical-align: top;
 
+  // Compensates border bottom for all rows when table has outside border
+  td {
+    border-bottom: 1px solid
+      ${props =>
+        props.isInverse
+          ? transparentize(0.6, props.theme.colors.neutral100)
+          : props.theme.colors.neutral300};
+  }
+
   &:last-child {
-    border-bottom: 0;
+    td {
+      border-bottom: 0;
+    }
     td:first-child {
       border-radius: ${props =>
         props.hasSquareCorners ? '0' : `0 0 0 ${props.theme.borderRadius}`};

@@ -64,6 +64,10 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
    * @internal
    */
   testId?: string;
+  /**
+   * @internal - used within DataGrid to handle data-grid styles
+   */
+  isDataGrid?: boolean;
 }
 
 export enum TableDensity {
@@ -96,7 +100,6 @@ export enum TableRowColor {
 interface TableContextInterface {
   density?: TableDensity;
   hasHoverStyles?: boolean;
-  hasOutsideBorder: boolean;
   hasSquareCorners?: boolean;
   hasVerticalBorders?: boolean;
   hasZebraStripes?: boolean;
@@ -110,7 +113,6 @@ interface TableContextInterface {
 export const TableContext = React.createContext<TableContextInterface>({
   density: TableDensity.normal,
   hasHoverStyles: false,
-  hasOutsideBorder: false,
   hasSquareCorners: false,
   hasZebraStripes: false,
   hasVerticalBorders: false,
@@ -161,17 +163,28 @@ export const StyledTableTitle = styled.caption<{
 export const StyledTable = styled.table<{
   hasOutsideBorder?: boolean;
   hasSquareCorners?: boolean;
+  isDataGrid?: boolean;
   isInverse?: boolean;
   minWidth: number;
 }>`
-  border-collapse: collapse;
+  border-collapse: ${props =>
+    props.hasOutsideBorder && !props.hasSquareCorners
+      ? 'separate'
+      : 'collapse'};
   border-spacing: 0;
   border: ${props =>
     props.hasOutsideBorder
       ? `1px solid ${props.theme.colors.neutral300}`
       : 'none'};
-  border-radius: ${props =>
-    props.hasSquareCorners ? '0' : props.theme.borderRadius};
+  border-radius: ${props => {
+    if (props.hasOutsideBorder && !props.hasSquareCorners) {
+      if (props.isDataGrid) {
+        return `${props.theme.borderRadius} ${props.theme.borderRadius} 0 0`;
+      }
+      return props.theme.borderRadius;
+    }
+    return '0';
+  }};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
@@ -201,6 +214,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       tableTitle,
       testId,
       isSortableBySelected,
+      isDataGrid,
       ...other
     } = props;
 
@@ -215,7 +229,6 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
         value={{
           density,
           hasHoverStyles,
-          hasOutsideBorder,
           hasSquareCorners,
           hasZebraStripes,
           hasVerticalBorders,
@@ -239,6 +252,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
               hasOutsideBorder={hasOutsideBorder}
               hasSquareCorners={hasSquareCorners}
               isInverse={isInverse}
+              isDataGrid={isDataGrid}
               minWidth={minWidth || theme.breakpoints.small}
               ref={ref}
               theme={theme}

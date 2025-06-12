@@ -147,6 +147,52 @@ export function Example() {
 }
 ```
 
+## Outside Border
+
+The `hasOutsideBorder` boolean prop may be used to give table outer border.
+
+```tsx
+import React from 'react';
+
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Table tableTitle="Outer border table" hasVerticalBorders hasOutsideBorder>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  );
+}
+```
+
 ## Hover Styles
 
 The `hasHoverStyles` boolean prop may be used to visually highlight a row when hovered over.

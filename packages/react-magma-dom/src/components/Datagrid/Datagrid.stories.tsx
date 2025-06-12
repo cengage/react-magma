@@ -226,11 +226,7 @@ const rowsForPagination = [
 const Template: Story<Omit<DatagridProps, 'selectedRows'>> = args => (
   <Card
     isInverse={args.isInverse}
-    style={
-      args.hasSquareCorners
-        ? { borderRadius: '0', padding: '16px' }
-        : { borderRadius: `${magma.borderRadius}`, padding: '16px' }
-    }
+    style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
   >
     <Datagrid tableTitle="Basic usage table" {...args}>
       Sample Text
@@ -248,11 +244,7 @@ const ControlledTemplate: Story<
   return (
     <Card
       isInverse={args.isInverse}
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0', padding: '16px' }
-          : { borderRadius: `${magma.borderRadius}`, padding: '16px' }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Datagrid
         {...args}
@@ -297,11 +289,7 @@ const ControlledPaginatedTemplate: Story<DatagridProps> = ({
   return (
     <Card
       isInverse={args.isInverse}
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0', padding: '16px' }
-          : { borderRadius: `${magma.borderRadius}`, padding: '16px' }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Datagrid {...args} paginationProps={passedInPaginationProps} />
     </Card>
@@ -566,11 +554,7 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
   return (
     <Card
       isInverse={args.isInverse}
-      style={
-        args.hasSquareCorners
-          ? { borderRadius: '0', padding: '16px' }
-          : { borderRadius: `${magma.borderRadius}`, padding: '16px' }
-      }
+      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
     >
       <Datagrid
         {...args}
@@ -699,5 +683,7 @@ PaginationWithCustomComponent.args = {
 export const TitleTable = Template.bind({});
 TitleTable.args = {
   ...defaultArgs,
+  hasOutsideBorder: true,
+  hasSquareCorners: false,
   tableTitle: <h1>Title table</h1>,
 };

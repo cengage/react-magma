@@ -864,4 +864,21 @@ describe('Datagrid', () => {
       `margin-bottom: ${magma.spaceScale.spacing04}`
     );
   });
+
+  it('should display the outer border when hasOutsideBorder is true and hasSquareCorners is false', () => {
+    const testId = 'table-test';
+
+    const { getByTestId } = render(
+      <Datagrid
+        hasOutsideBorder
+        testId={testId}
+        columns={columns}
+        rows={rowsForPagination}
+      />
+    );
+
+    expect(getByTestId(testId)).toHaveStyle(
+      `border-radius: ${magma.borderRadius} ${magma.borderRadius} 0 0`
+    );
+  });
 });
