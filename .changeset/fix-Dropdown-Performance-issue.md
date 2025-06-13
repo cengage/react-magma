@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Dropdown & Combobox & MultiCombobox): Update floating-ui logic and fix performance issue.
+fix(Dropdown & Combobox & MultiCombobox & Select): Update floating-ui logic and fix performance issue.

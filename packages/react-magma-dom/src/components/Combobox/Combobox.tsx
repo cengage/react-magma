@@ -1,17 +1,13 @@
 import * as React from 'react';
 
-import {
-  AlignedPlacement,
-  autoUpdate,
-  flip,
-  useFloating,
-} from '@floating-ui/react-dom';
+import { autoUpdate } from '@floating-ui/react-dom';
 import { useCombobox } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
 
 import { instanceOfDefaultItemObject } from '../Select';
 import { ComboboxInput } from './ComboboxInput';
 import { defaultOnInputValueChange, useComboboxItems } from './shared';
+import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
@@ -274,11 +270,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
       onInputKeyDown(event);
   }
 
-  const { floatingStyles, refs, elements, update } = useFloating({
-    middleware: [flip()],
-    placement: 'bottom-start' as AlignedPlacement,
-    whileElementsMounted: autoUpdate,
-  });
+  const { floatingStyles, refs, elements, update } = useMagmaFloating();
 
   React.useEffect(() => {
     const referenceComboboxInput = elements.reference;
