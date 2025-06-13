@@ -792,3 +792,60 @@ const LeadingIconTemplate: Story<DropdownProps> = args => (
 
 export const LeadingIcon = LeadingIconTemplate.bind({});
 LeadingIcon.args = { ...Default.args };
+export const Performance = args => {
+  const threeItems = (
+    <>
+      <Dropdown {...args}>
+        <DropdownButton>Dropdown</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown {...args}>
+        <DropdownButton>Dropdown Two</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <Dropdown {...args}>
+        <DropdownButton>Dropdown more content</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+          <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </>
+  );
+
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+      {Array.from({ length: 150 }).map((_, index) => (
+        <div key={index} style={{ margin: '8px' }}>
+          {threeItems}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+Performance.args = { ...Default.args };

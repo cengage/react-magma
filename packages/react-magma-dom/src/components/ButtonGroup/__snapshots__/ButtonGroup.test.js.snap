@@ -1398,7 +1398,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
       </div>
       <div
         data-testid="dropdownContentWrapper"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996; transform: translate(0px, 0px);"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
           class="emotion-15 emotion-16 emotion-17"
@@ -1462,7 +1462,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
       </div>
       <div
         data-testid="dropdownContentWrapper"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996; transform: translate(0px, 0px);"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
           class="emotion-15 emotion-16 emotion-17"
@@ -2153,7 +2153,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
       </div>
       <div
         data-testid="dropdownContentWrapper"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996; transform: translate(0px, 0px);"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
           class="emotion-15 emotion-16 emotion-17"
@@ -2217,7 +2217,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
       </div>
       <div
         data-testid="dropdownContentWrapper"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996; transform: translate(0px, 0px);"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
           class="emotion-15 emotion-16 emotion-17"
@@ -2986,7 +2986,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
       </div>
       <div
         data-testid="dropdownContentWrapper"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996; transform: translate(0px, 0px);"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
           class="emotion-15 emotion-16 emotion-17"
@@ -3050,7 +3050,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
       </div>
       <div
         data-testid="dropdownContentWrapper"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996; transform: translate(0px, 0px);"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
           class="emotion-15 emotion-16 emotion-17"
