@@ -266,7 +266,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       }
     }
 
-    const { refs, floatingStyles, placement, context, update, elements } =
+    const { refs, floatingStyles, placement, context, elements, update } =
       useFloating({
         //flip() - Changes the placement of the floating element to keep it in view.
         //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
