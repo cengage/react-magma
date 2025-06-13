@@ -503,7 +503,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           />
           <InverseContext.Provider value={{ isInverse }}>
             <div
-              ref={refs.setFloating}
+              ref={el => calendarOpened && refs.setFloating(el)}
               style={{ ...floatingStyles, zIndex: '998' }}
             >
               <DatePickerCalendar
