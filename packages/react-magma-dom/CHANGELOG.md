@@ -1,5 +1,11 @@
 ## 4.9.0
 
+## 4.9.1
+
+### Patch Changes
+
+- 7928647d7: fix(Dropdown & Combobox & MultiCombobox & Select & DatePicker & Popover & Tooltip): Update floating-ui logic and fix performance issue.
+
 ### Minor Changes
 
 - 46260e57c: feat(DefinitionList): New `DefinitionList` and `DefinitionListItem` components.
