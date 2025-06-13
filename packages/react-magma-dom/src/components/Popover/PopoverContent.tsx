@@ -111,7 +111,9 @@ export const PopoverContent = React.forwardRef<
 
   return (
     <div
-      ref={context.setFloating}
+      ref={el =>
+        context.isOpen && context.setFloating && context.setFloating(el)
+      }
       // z-index 996 is used to make the content appear above docs elements (code blocks)
       // and below the Modal component (z-index 997)
       style={{ ...context.floatingStyles, zIndex: 996 }}

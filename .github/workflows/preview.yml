@@ -4,7 +4,7 @@ on:
     branches:
       - dev
       - main
-      - 'dev-patch'
+      - 'dev-patch*'
       - 'patch-*'
     types: [opened, synchronize]
 jobs:

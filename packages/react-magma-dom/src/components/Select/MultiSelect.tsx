@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { autoUpdate } from '@floating-ui/react-dom';
 import { useMultipleSelection, useSelect } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
 
@@ -13,6 +14,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { isItemDisabled } from './utils';
+import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 
 import { instanceOfDefaultItemObject, MultiSelectProps } from '.';
 
@@ -22,7 +24,6 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     ariaDescribedBy,
     components: customComponents,
     errorMessage,
-    floatingElementStyles,
     hasError,
     helperMessage,
     inputStyle,
@@ -46,8 +47,6 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     onKeyUp,
     onRemoveSelectedItem,
     placeholder,
-    setFloating,
-    setReference,
     isClearable,
     initialHighlightedIndex,
   } = props;
@@ -272,6 +271,19 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     reset();
   }
 
+  const { floatingStyles, refs, elements, update } = useMagmaFloating();
+
+  React.useEffect(() => {
+    const referenceSelectButton = elements.reference;
+    const floatingItemsList = elements.floating;
+
+    if (isOpen && referenceSelectButton && floatingItemsList) {
+      return autoUpdate(referenceSelectButton, floatingItemsList, update);
+    }
+  }, [isOpen, elements, update]);
+
+  const floatingElementStyles = { ...floatingStyles, width: '100%' };
+
   return (
     <SelectContainer
       additionalContent={additionalContent}
@@ -293,7 +305,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         hasError={hasError}
         disabled={disabled}
         isInverse={isInverse}
-        setReference={setReference}
+        setReference={refs.setReference}
         style={inputStyle}
       >
         {selectedItems && selectedItems.length > 0 ? (
@@ -369,7 +381,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         itemToString={itemToString}
         maxHeight={itemListMaxHeight ?? theme.select.menu.maxHeight}
         menuStyle={menuStyle}
-        setFloating={setFloating}
+        setFloating={refs.setFloating}
         setHighlightedIndex={setHighlightedIndex}
       />
     </SelectContainer>

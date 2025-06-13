@@ -1,13 +1,6 @@
 import React from 'react';
 
 import {
-  AlignedPlacement,
-  autoUpdate,
-  flip,
-  ReferenceType,
-  useFloating,
-} from '@floating-ui/react-dom';
-import {
   useCombobox,
   UseComboboxProps,
   UseComboboxState,
@@ -38,7 +31,7 @@ export interface ComboboxProps<T extends SelectOptions>
    */
   containerStyle?: React.CSSProperties;
   /**
-   * Default selectable options. Allows for uncontrolled component and internal creation of items. Can be an array of strings or objects
+   * Default selectable options. Allows for an uncontrolled component and internal creation of items. Can be an array of strings or objects
    */
   defaultItems?: T[];
   /**
@@ -46,10 +39,6 @@ export interface ComboboxProps<T extends SelectOptions>
    * @default false
    */
   disableCreateItem?: boolean;
-  /**
-   * @internal
-   */
-  floatingElementStyles?: React.CSSProperties;
   /**
    * @internal
    */
@@ -123,14 +112,6 @@ export interface ComboboxProps<T extends SelectOptions>
    */
   onItemCreated?: (newItem: T) => void;
   /**
-   * @internal
-   */
-  setFloating?: (node: ReferenceType) => void;
-  /**
-   * @internal
-   */
-  setReference?: (node: ReferenceType) => void;
-  /**
    * Reference to the toggle button element wrapping the input in the combobox
    */
   toggleButtonRef?: React.Ref<HTMLButtonElement>;
@@ -192,44 +173,30 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
 
   const isInverse = useIsInverse(props.isInverse);
 
-  const { floatingStyles, refs } = useFloating({
-    middleware: [flip()],
-    placement: 'bottom-start' as AlignedPlacement,
-    whileElementsMounted: autoUpdate,
-  });
-
-  const floatingElementStyles = { ...floatingStyles, width: '100%' };
-
   return (
     <div style={containerStyle} data-testid={testId}>
       {isMulti && instanceOfMultiCombobox<T>(props) ? (
         <MultiCombobox
           ariaDescribedBy={descriptionId}
           errorMessage={errorMessage}
-          floatingElementStyles={floatingElementStyles}
           hasError={hasError}
           helperMessage={helperMessage}
           isInverse={isInverse}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
           messageStyle={messageStyle}
-          setFloating={refs.setFloating}
-          setReference={refs.setReference}
           {...(props as MultiComboboxProps<T>)}
         />
       ) : (
         <InternalCombobox
           ariaDescribedBy={descriptionId}
           errorMessage={errorMessage}
-          floatingElementStyles={floatingElementStyles}
           hasError={hasError}
           helperMessage={helperMessage}
           isInverse={isInverse}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
           messageStyle={messageStyle}
-          setFloating={refs.setFloating}
-          setReference={refs.setReference}
           {...(props as ComboboxProps<T>)}
         />
       )}
