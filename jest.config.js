@@ -1,5 +1,6 @@
 module.exports = {
   collectCoverage: false,
+  testEnvironment: 'jest-environment-jsdom', // jest-environment-jsdom
   collectCoverageFrom: [
     '**/packages/**/src/**/*.{js,jsx,ts,tsx}',
     '**/patterns/**/src/**/*.{js,jsx,ts,tsx}',
@@ -21,12 +22,17 @@ module.exports = {
   setupFiles: ['<rootDir>/jest.overrides.js'],
   setupFilesAfterEnv: [
     'jest-extended',
-    '@testing-library/jest-dom/extend-expect',
+    '@testing-library/jest-dom', // TODO: clarify that this is needed for all tests
     'regenerator-runtime/runtime',
     'jest-axe/extend-expect',
     '<rootDir>/jest.setup.js',
   ],
   snapshotSerializers: ['@emotion/jest/serializer'],
+  // Investigate this: https://jest-archive-august-2023.netlify.app/docs/29.0/upgrading-to-jest29
+  // snapshotFormat: {
+  //   escapeString: true,
+  //   printBasicPrototype: true,
+  // },
   testPathIgnorePatterns: [
     '/.cache/',
     '/coverage/',
