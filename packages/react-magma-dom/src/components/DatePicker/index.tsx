@@ -1,12 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import {
-  AlignedPlacement,
-  autoUpdate,
-  flip,
-  useFloating,
-} from '@floating-ui/react-dom';
+import { autoUpdate } from '@floating-ui/react-dom';
 import {
   addDays,
   endOfDay,
@@ -24,6 +19,7 @@ import { EventIcon } from 'react-magma-icons';
 
 import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
+import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -445,11 +441,16 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
 
-    const { floatingStyles, refs } = useFloating({
-      middleware: [flip()],
-      placement: 'bottom-start' as AlignedPlacement,
-      whileElementsMounted: autoUpdate,
-    });
+    const { floatingStyles, refs, elements, update } = useMagmaFloating();
+
+    React.useEffect(() => {
+      const referenceDateInput = elements.reference;
+      const floatingCalendar = elements.floating;
+
+      if (calendarOpened && referenceDateInput && floatingCalendar) {
+        return autoUpdate(referenceDateInput, floatingCalendar, update);
+      }
+    }, [calendarOpened, elements, update]);
 
     return (
       <CalendarContext.Provider
