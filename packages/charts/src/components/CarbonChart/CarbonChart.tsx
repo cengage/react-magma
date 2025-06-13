@@ -66,6 +66,7 @@ export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const CarbonChartWrapper = styled.div<{
   isInverse?: boolean;
+  groupsLength: number;
   theme: ThemeInterface;
 }>`
   .cds--data-table thead tr th {
@@ -289,6 +290,22 @@ const CarbonChartWrapper = styled.div<{
       transition: 0.1s all linear;
       stroke-width: 1.1em;
     }
+    
+    .cds--cc--tooltip {
+    ${props => {
+      const chartColors =
+        (props.isInverse
+          ? props.theme.chartColorsInverse
+          : props.theme.chartColors) || [];
+
+      return chartColors.reduce((result, color, index) => {
+        const indexNum = index + 1;
+
+        result += `.tooltip-${props.groupsLength}-1-${indexNum} { background-color: ${color}; }`;
+
+        return result;
+      }, '');
+    }}
 
     .cds--overflow-menu-options__btn:focus {
       outline-color: ${props =>
@@ -555,6 +572,8 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       });
     });
 
+    const groupsLength = Object.keys(buildColors()).length;
+
     return (
       <CarbonChartWrapper
         data-testid={testId}
@@ -562,6 +581,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         isInverse={isInverse}
         theme={theme}
         className="carbon-chart-wrapper"
+        groupsLength={groupsLength < 6 ? groupsLength : 14}
         {...rest}
       >
         <ChartType data={dataSet} options={newOptions} />
