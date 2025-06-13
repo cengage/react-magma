@@ -266,20 +266,30 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       }
     }
 
-    const { refs, floatingStyles, placement, context } = useFloating({
-      //flip() - Changes the placement of the floating element to keep it in view.
-      //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
-      //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
-      //arrow() - Positions an arrow element pointing at the reference element, ensuring proper alignment.
-      middleware: [
-        flip(),
-        shift({ padding: 12 }),
-        offset(hasPointer ? 12 : 4),
-        arrow({ element: arrowRef }),
-      ],
-      placement: position as AlignedPlacement,
-      whileElementsMounted: autoUpdate,
-    });
+    const { refs, floatingStyles, placement, context, update, elements } =
+      useFloating({
+        //flip() - Changes the placement of the floating element to keep it in view.
+        //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
+        //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
+        //arrow() - Positions an arrow element pointing at the reference element, ensuring proper alignment.
+        middleware: [
+          flip(),
+          shift({ padding: 12 }),
+          offset(hasPointer ? 12 : 4),
+          arrow({ element: arrowRef }),
+        ],
+        placement: position as AlignedPlacement,
+        whileElementsMounted: autoUpdate,
+      });
+
+    React.useEffect(() => {
+      const referenceElement = elements.reference;
+      const floatingElement = elements.floating;
+
+      if (isOpen && referenceElement && floatingElement) {
+        return autoUpdate(referenceElement, floatingElement, update);
+      }
+    }, [isOpen, elements, update]);
 
     const maxHeightString =
       typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
