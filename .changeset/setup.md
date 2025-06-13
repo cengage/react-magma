@@ -2,4 +2,4 @@
 'react-magma-docs': patch
 ---
 
-Set up dev patch 4.9.x branch
+Bring 4.9.1 changes to dev
