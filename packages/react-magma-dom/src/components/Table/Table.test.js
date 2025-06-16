@@ -444,6 +444,37 @@ describe('Table', () => {
     );
   });
 
+  it('should display the outer border when hasOutsideBorder is true and isInverse is true', () => {
+    const testId = 'table-test';
+
+    const { getByTestId } = render(
+      <Table hasOutsideBorder isInverse testId={testId}>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule('border-collapse', 'separate');
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border',
+      `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+    );
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-radius',
+      `${magma.borderRadius}`
+    );
+  });
+
   it('should not display the outer border when hasOutsideBorder is false and hasSquareCorners is true', () => {
     const testId = 'table-test';
 

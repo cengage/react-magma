@@ -159,6 +159,8 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       paginationProps = {},
       rows,
       selectedRows: selectedRowsProp,
+      hasSquareCorners,
+      hasOutsideBorder,
       hasPagination = true,
       isDataGrid = true,
       onSortBySelected,
@@ -280,7 +282,14 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
 
     return (
       <>
-        <Table isDataGrid={isDataGrid} {...other} ref={ref} aria-live="polite">
+        <Table
+          isDataGrid={isDataGrid}
+          hasOutsideBorder={hasOutsideBorder}
+          hasSquareCorners={hasSquareCorners}
+          {...other}
+          ref={ref}
+          aria-live="polite"
+        >
           <TableHead>
             <TableRow
               headerRowStatus={headerRowStatus}
@@ -332,6 +341,8 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
           <Pagination
             isInverse={props.isInverse}
             itemCount={rows.length}
+            hasOutsideBorder={hasOutsideBorder}
+            hasSquareCorners={hasSquareCorners}
             {...passedOnPaginationProps}
             {...componentsProps.pagination}
           />

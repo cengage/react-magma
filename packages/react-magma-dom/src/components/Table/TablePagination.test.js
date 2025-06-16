@@ -30,6 +30,25 @@ describe('Table Pagination', () => {
     );
   });
 
+  it('should use inverse styles when hasOutsideBorder is true', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <TablePagination
+        itemCount={20}
+        isInverse
+        hasOutsideBorder
+        testId={testId}
+      />
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule('border-top', `none`);
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border',
+      `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+    );
+  });
+
   describe('uncontrolled', () => {
     it('should change page when clicking next', () => {
       const handlePageChange = jest.fn();

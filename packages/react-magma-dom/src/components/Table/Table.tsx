@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
+import { transparentize } from 'polished';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -174,7 +175,11 @@ export const StyledTable = styled.table<{
   border-spacing: 0;
   border: ${props =>
     props.hasOutsideBorder
-      ? `1px solid ${props.theme.colors.neutral300}`
+      ? `1px solid ${
+          props.isInverse
+            ? transparentize(0.6, props.theme.colors.neutral100)
+            : props.theme.colors.neutral300
+        }`
       : 'none'};
   border-radius: ${props => {
     if (props.hasOutsideBorder && !props.hasSquareCorners) {

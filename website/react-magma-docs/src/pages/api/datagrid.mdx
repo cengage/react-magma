@@ -23,7 +23,7 @@ props:
 ```tsx
 import React from 'react';
 
-import { Datagrid, Card } from 'react-magma-dom';
+import { Datagrid } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -212,9 +212,13 @@ export function Example() {
   ];
 
   return (
-    <Card style={{ padding: '16px' }}>
-      <Datagrid columns={columns} rows={rows} tableTitle="Basic usage" />
-    </Card>
+    <Datagrid
+      columns={columns}
+      rows={rows}
+      tableTitle="Basic usage"
+      hasOutsideBorder
+      hasSquareCorners={false}
+    />
   );
 }
 ```
@@ -282,7 +286,7 @@ Use `rowName` when using Selectable so that the aria labels on the checkboxes ca
 ```tsx
 import React from 'react';
 
-import { Datagrid, Card } from 'react-magma-dom';
+import { Datagrid } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -496,14 +500,13 @@ export function Example() {
   ];
 
   return (
-    <Card style={{ padding: '16px' }}>
-      <Datagrid
-        columns={columns}
-        rows={rows}
-        isSelectable
-        tableTitle="Selectable table"
-      />
-    </Card>
+    <Datagrid
+      columns={columns}
+      rows={rows}
+      isSelectable
+      tableTitle="Selectable table"
+      hasSquareCorners={false}
+    />
   );
 }
 ```
@@ -513,7 +516,7 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Datagrid, Card } from 'react-magma-dom';
+import { Datagrid } from 'react-magma-dom';
 
 export function Example() {
   const columns = [
@@ -728,14 +731,13 @@ export function Example() {
   ];
 
   return (
-    <Card style={{ padding: '16px' }}>
-      <Datagrid
-        columns={columns}
-        rows={rows}
-        isSelectable
-        tableTitle="Disabled Selectable Row table"
-      />
-    </Card>
+    <Datagrid
+      columns={columns}
+      rows={rows}
+      isSelectable
+      tableTitle="Disabled Selectable Row table"
+      hasSquareCorners={false}
+    />
   );
 }
 ```
@@ -925,6 +927,7 @@ export function Example() {
         onHeaderSelect={handleHeaderSelect}
         sortDirection={selectedDirection}
         tableTitle="Selectable and Sortable table"
+        hasSquareCorners
       />
       <Announce>
         <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
@@ -939,7 +942,7 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Button, ButtonColor, Datagrid, Card } from 'react-magma-dom';
+import { Button, ButtonColor, Datagrid } from 'react-magma-dom';
 
 export function Example() {
   const [selectedRows, updatedSelectedRows] = React.useState<
@@ -1157,7 +1160,7 @@ export function Example() {
   ];
 
   return (
-    <Card style={{ padding: '16px' }}>
+    <>
       <strong>Selected Rows: </strong>
       <pre>{JSON.stringify(selectedRows, null, 2)}</pre>
       <Button
@@ -1174,8 +1177,9 @@ export function Example() {
         selectedRows={selectedRows}
         onSelectedRowsChange={updatedSelectedRows}
         tableTitle="Controlled Selectable Column table"
+        hasSquareCorners
       />
-    </Card>
+    </>
   );
 }
 ```
@@ -1385,6 +1389,7 @@ export function Example() {
       rows={rows}
       paginationProps={paginationProps}
       tableTitle="Pagination Defaults table"
+      hasSquareCorners={false}
     />
   );
 }
@@ -1614,6 +1619,7 @@ export function Example() {
       rows={rows}
       paginationProps={paginationProps}
       tableTitle="Pagination Controlled table"
+      hasSquareCorners={false}
     />
   );
 }
@@ -2072,6 +2078,62 @@ export function Example() {
       rows={rows}
       hasPagination={false}
       tableTitle="Without Pagination table"
+    />
+  );
+}
+```
+
+## Outside Border
+
+The `hasOutsideBorder` boolean prop may be used to give table outer border.
+
+```tsx
+import React from 'react';
+
+import { Datagrid } from 'react-magma-dom';
+
+export function Example() {
+  const columns = [
+    { field: 'col1', header: 'Col 1' },
+    { field: 'col2', header: 'Col 2' },
+    { field: 'col3', header: 'Col 3' },
+    { field: 'col4', header: 'Col 4' },
+  ];
+
+  const rows = [
+    {
+      id: 1,
+      col1: 'Lorem ipsum dolor sit amet consectetur',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+      rowName: 'Row danger',
+    },
+    {
+      id: 2,
+      col1: 'Lorem ipsum dolor sit amet',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+      rowName: 'Row info',
+    },
+    {
+      id: 3,
+      col1: 'Lorem ipsum dolor',
+      col2: 'Lorem ipsum dolor',
+      col3: 'Lorem ipsum dolor',
+      col4: 'Lorem ipsum',
+      rowName: 'Row success',
+    },
+  ];
+
+  return (
+    <Datagrid
+      columns={columns}
+      rows={rows}
+      hasSquareCorners={false}
+      hasOutsideBorder
+      tableTitle="Row color table"
     />
   );
 }
