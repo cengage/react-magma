@@ -120,7 +120,6 @@ const ModalContainer = styled(Transition)<{
   theme: ThemeInterface;
   modalCount?: number;
 }>`
-  position: fixed;
   bottom: 0;
   left: 0;
   overflow-y: auto;
@@ -453,6 +452,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             }
             isOpen={isModalOpen}
             style={modalCount >= 2 && { zIndex: '998' }}
+            {...containerTransition}
             unmountOnExit
             theme={theme}
           />
