@@ -30,6 +30,7 @@
     "fix-Playwright-tests",
     "fix-drawer-and-datepicker-navigation",
     "manually-sync-4.9.0",
+    "setup",
     "updateReadMe"
   ]
 }
