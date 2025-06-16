@@ -151,20 +151,30 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     }
   }, [arrowStyle, arrowElement, arrowElement.current]);
 
-  const { refs, floatingStyles, placement, context } = useFloating({
-    //flip() - Changes the placement of the floating element to keep it in view.
-    //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
-    //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
-    //arrow() - Positions an arrow element pointing at the reference element, ensuring proper alignment.
-    middleware: [
-      flip(),
-      shift(),
-      offset(isArrowVisible ? 14 : 0),
-      ...(isArrowVisible ? [arrow({ element: arrowElement })] : []),
-    ],
-    placement: props.position || (TooltipPosition.top as AlignedPlacement),
-    whileElementsMounted: autoUpdate,
-  });
+  const { refs, floatingStyles, placement, context, elements, update } =
+    useFloating({
+      //flip() - Changes the placement of the floating element to keep it in view.
+      //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
+      //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
+      //arrow() - Positions an arrow element pointing at the reference element, ensuring proper alignment.
+      middleware: [
+        flip(),
+        shift(),
+        offset(isArrowVisible ? 14 : 0),
+        ...(isArrowVisible ? [arrow({ element: arrowElement })] : []),
+      ],
+      placement: props.position || (TooltipPosition.top as AlignedPlacement),
+      whileElementsMounted: autoUpdate,
+    });
+
+  React.useEffect(() => {
+    const referenceElement = elements.reference;
+    const floatingTooltipContent = elements.floating;
+
+    if (isVisible && referenceElement && floatingTooltipContent) {
+      return autoUpdate(referenceElement, floatingTooltipContent, update);
+    }
+  }, [isVisible, elements, update]);
 
   const combinedRef = useForkedRef(ref, refs.setReference);
 

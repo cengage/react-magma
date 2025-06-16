@@ -1,5 +1,3 @@
-## 4.9.0
-
 ## 4.10.0-next.10
 
 ### Minor Changes
@@ -66,6 +64,14 @@
 
 - 31a4e0318: fix(Tooltip & Accordion): Fix storybook issues with Tooltip and Accordion components.
 - 77a8687f4: fix(Playwright): Fix Playwright tests to use the correct behaviour for the Accordion component.
+
+## 4.9.1
+
+### Patch Changes
+
+- 7928647d7: fix(Dropdown & Combobox & MultiCombobox & Select & DatePicker & Popover & Tooltip): Update floating-ui logic and fix performance issue.
+
+## 4.9.0
 
 ### Minor Changes
 
