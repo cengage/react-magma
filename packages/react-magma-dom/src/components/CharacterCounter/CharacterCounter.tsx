@@ -81,6 +81,7 @@ export const CharacterCounter = React.forwardRef<
 
   const i18n = React.useContext(I18nContext);
 
+  // Temporary while both 'maxLength' and 'maxCount' are supported. To be removed in future iterations.
   const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
 
   const isOverMaxCount = inputLength > maxCharacters;
