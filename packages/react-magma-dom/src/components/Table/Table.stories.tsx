@@ -4,7 +4,7 @@ import { Meta, Story } from '@storybook/react/types-6-0';
 
 import { magma } from '../../theme/magma';
 import { Announce } from '../Announce';
-import { Card } from '../Card';
+import { Card, CardBody } from '../Card';
 import { Combobox } from '../Combobox';
 import {
   Dropdown,
@@ -52,29 +52,28 @@ const rows = [
 ];
 
 const Template: Story<TableProps> = args => (
-  <Card
-    style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
-    isInverse={args.isInverse}
-  >
-    <Table tableTitle="Basic Usage Table" {...args}>
-      <TableHead>
-        <TableRow>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
-          <TableHeaderCell>Column</TableHeaderCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {rows.map((row, i) => (
-          <TableRow key={`row${i}`}>
-            {row.map((cell, j) => (
-              <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-            ))}
+  <Card isInverse={args.isInverse}>
+    <CardBody>
+      <Table tableTitle="Basic Usage Table" {...args}>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
+            <TableHeaderCell>Column</TableHeaderCell>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHead>
+        <TableBody>
+          {rows.map((row, i) => (
+            <TableRow key={`row${i}`}>
+              {row.map((cell, j) => (
+                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </CardBody>
   </Card>
 );
 
@@ -321,39 +320,38 @@ export const ControlledPagination = args => {
   );
 
   return (
-    <Card
-      isInverse={args.isInverse}
-      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
-    >
-      <Table {...args}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rowsToShow.map((row, i) => (
-            <TableRow key={`row${i}`}>
-              {row.map((cell, j) => (
-                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-              ))}
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Table {...args}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <TablePagination
-        itemCount={rowsLong.length}
-        onRowsPerPageChange={handleRowsPerPageChange}
-        onPageChange={handlePageChange}
-        page={pageIndex}
-        rowsPerPage={rowsPerPage}
-        isInverse={args.isInverse}
-        hasSquareCorners={args.hasSquareCorners}
-        rowsPerPageValues={args.rowsPerPageValues}
-      />
+          </TableHead>
+          <TableBody>
+            {rowsToShow.map((row, i) => (
+              <TableRow key={`row${i}`}>
+                {row.map((cell, j) => (
+                  <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <TablePagination
+          itemCount={rowsLong.length}
+          onRowsPerPageChange={handleRowsPerPageChange}
+          onPageChange={handlePageChange}
+          page={pageIndex}
+          rowsPerPage={rowsPerPage}
+          isInverse={args.isInverse}
+          hasSquareCorners={args.hasSquareCorners}
+          rowsPerPageValues={args.rowsPerPageValues}
+        />
+      </CardBody>
     </Card>
   );
 };
@@ -384,36 +382,35 @@ export const UncontrolledPagination = args => {
   );
 
   return (
-    <Card
-      isInverse={args.isInverse}
-      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
-    >
-      <Table {...args}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rowsToShow.map((row, i) => (
-            <TableRow key={`row${i}`}>
-              {row.map((cell, j) => (
-                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-              ))}
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Table {...args}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <TablePagination
-        itemCount={rowsLong.length}
-        onPageChange={handlePageChange}
-        onRowsPerPageChange={handleRowsPerPageChange}
-        defaultRowsPerPage={rowsPerPage}
-        rowsPerPageValues={args.rowsPerPageValues}
-      />
+          </TableHead>
+          <TableBody>
+            {rowsToShow.map((row, i) => (
+              <TableRow key={`row${i}`}>
+                {row.map((cell, j) => (
+                  <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <TablePagination
+          itemCount={rowsLong.length}
+          onPageChange={handlePageChange}
+          onRowsPerPageChange={handleRowsPerPageChange}
+          defaultRowsPerPage={rowsPerPage}
+          rowsPerPageValues={args.rowsPerPageValues}
+        />
+      </CardBody>
     </Card>
   );
 };
@@ -501,35 +498,34 @@ export const PaginationInverse = args => {
   );
 
   return (
-    <Card
-      isInverse
-      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
-    >
-      <Table {...args} isInverse>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rowsToShow.map((row, i) => (
-            <TableRow key={`row${i}`}>
-              {row.map((cell, j) => (
-                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-              ))}
+    <Card isInverse>
+      <CardBody>
+        <Table {...args} isInverse>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <TablePagination
-        itemCount={rowsLong.length}
-        isInverse
-        onPageChange={handlePageChange}
-        onRowsPerPageChange={handleRowsPerPageChange}
-      />
+          </TableHead>
+          <TableBody>
+            {rowsToShow.map((row, i) => (
+              <TableRow key={`row${i}`}>
+                {row.map((cell, j) => (
+                  <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <TablePagination
+          itemCount={rowsLong.length}
+          isInverse
+          onPageChange={handlePageChange}
+          onRowsPerPageChange={handleRowsPerPageChange}
+        />
+      </CardBody>
     </Card>
   );
 };
@@ -541,51 +537,50 @@ PaginationInverse.args = {
 
 export const RowColors = args => {
   return (
-    <Card
-      isInverse={args.isInverse}
-      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
-    >
-      <Table {...args}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow color={TableRowColor.success}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow color={TableRowColor.danger}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow color={TableRowColor.info}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow color={TableRowColor.warning}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Table {...args}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>Lorem ipsum</TableCell>
+              <TableCell>dolar sit</TableCell>
+              <TableCell>amet</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Lorem ipsum</TableCell>
+              <TableCell>dolar sit</TableCell>
+              <TableCell>amet</TableCell>
+            </TableRow>
+            <TableRow color={TableRowColor.success}>
+              <TableCell>Lorem ipsum</TableCell>
+              <TableCell>dolar sit</TableCell>
+              <TableCell>amet</TableCell>
+            </TableRow>
+            <TableRow color={TableRowColor.danger}>
+              <TableCell>Lorem ipsum</TableCell>
+              <TableCell>dolar sit</TableCell>
+              <TableCell>amet</TableCell>
+            </TableRow>
+            <TableRow color={TableRowColor.info}>
+              <TableCell>Lorem ipsum</TableCell>
+              <TableCell>dolar sit</TableCell>
+              <TableCell>amet</TableCell>
+            </TableRow>
+            <TableRow color={TableRowColor.warning}>
+              <TableCell>Lorem ipsum</TableCell>
+              <TableCell>dolar sit</TableCell>
+              <TableCell>amet</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </CardBody>
     </Card>
   );
 };
@@ -598,56 +593,55 @@ RowColors.args = {
 
 export const RowColorsInverse = args => {
   return (
-    <Card
-      isInverse
-      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
-    >
-      <Table {...args}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow color={TableRowColor.success}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow color={TableRowColor.danger}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow color={TableRowColor.info}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow color={TableRowColor.warning}>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Lorem ipsum</TableCell>
-            <TableCell>dolar sit</TableCell>
-            <TableCell>amet</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+    <Card isInverse>
+      <CardBody>
+        <Table {...args}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow color={TableRowColor.success}>
+              <TableCell>Lorem ipsum</TableCell>
+              <TableCell>dolar sit</TableCell>
+              <TableCell>amet</TableCell>
+            </TableRow>
+            <TableRow color={TableRowColor.danger}>
+              <TableCell>Lorem ipsum</TableCell>
+              <TableCell>dolar sit</TableCell>
+              <TableCell>amet</TableCell>
+            </TableRow>
+            <TableRow color={TableRowColor.info}>
+              <TableCell>Lorem ipsum</TableCell>
+              <TableCell>dolar sit</TableCell>
+              <TableCell>amet</TableCell>
+            </TableRow>
+            <TableRow color={TableRowColor.warning}>
+              <TableCell>Lorem ipsum</TableCell>
+              <TableCell>dolar sit</TableCell>
+              <TableCell>amet</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Lorem ipsum</TableCell>
+              <TableCell>dolar sit</TableCell>
+              <TableCell>amet</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Lorem ipsum</TableCell>
+              <TableCell>dolar sit</TableCell>
+              <TableCell>amet</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Lorem ipsum</TableCell>
+              <TableCell>dolar sit</TableCell>
+              <TableCell>amet</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </CardBody>
     </Card>
   );
 };
@@ -703,70 +697,71 @@ export const Sortable = args => {
   };
 
   return (
-    <Card
-      isInverse={args.isInverse}
-      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
-    >
-      <Table {...args}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell
-              onSort={() => {
-                requestSort('name');
-              }}
-              isSortable
-              sortDirection={
-                sortConfig.key === 'name'
-                  ? sortConfig.direction
-                  : TableSortDirection.none
-              }
-            >
-              Name
-            </TableHeaderCell>
-            <TableHeaderCell
-              onSort={() => {
-                requestSort('price');
-              }}
-              isSortable
-              align={TableCellAlign.right}
-              sortDirection={
-                sortConfig.key === 'price'
-                  ? sortConfig.direction
-                  : TableSortDirection.none
-              }
-            >
-              Price
-            </TableHeaderCell>
-            <TableHeaderCell
-              onSort={() => {
-                requestSort('stock');
-              }}
-              isSortable
-              align={TableCellAlign.right}
-              sortDirection={
-                sortConfig.key === 'stock'
-                  ? sortConfig.direction
-                  : TableSortDirection.none
-              }
-            >
-              In Stock
-            </TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {sortedItems.map(item => (
-            <TableRow key={item.id}>
-              <TableCell>{item.name}</TableCell>
-              <TableCell align={TableCellAlign.right}>${item.price}</TableCell>
-              <TableCell align={TableCellAlign.right}>{item.stock}</TableCell>
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Table {...args}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell
+                onSort={() => {
+                  requestSort('name');
+                }}
+                isSortable
+                sortDirection={
+                  sortConfig.key === 'name'
+                    ? sortConfig.direction
+                    : TableSortDirection.none
+                }
+              >
+                Name
+              </TableHeaderCell>
+              <TableHeaderCell
+                onSort={() => {
+                  requestSort('price');
+                }}
+                isSortable
+                align={TableCellAlign.right}
+                sortDirection={
+                  sortConfig.key === 'price'
+                    ? sortConfig.direction
+                    : TableSortDirection.none
+                }
+              >
+                Price
+              </TableHeaderCell>
+              <TableHeaderCell
+                onSort={() => {
+                  requestSort('stock');
+                }}
+                isSortable
+                align={TableCellAlign.right}
+                sortDirection={
+                  sortConfig.key === 'stock'
+                    ? sortConfig.direction
+                    : TableSortDirection.none
+                }
+              >
+                In Stock
+              </TableHeaderCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {sortedItems.map(item => (
+              <TableRow key={item.id}>
+                <TableCell>{item.name}</TableCell>
+                <TableCell align={TableCellAlign.right}>
+                  ${item.price}
+                </TableCell>
+                <TableCell align={TableCellAlign.right}>{item.stock}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
 
-      <Announce>
-        <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
-      </Announce>
+        <Announce>
+          <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
+        </Announce>
+      </CardBody>
     </Card>
   );
 };
@@ -778,75 +773,74 @@ Sortable.args = {
 
 export const WithDropdown = args => {
   return (
-    <Card
-      isInverse={args.isInverse}
-      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
-    >
-      <Table maxWidth={500} {...args}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-            <TableCell>
-              <Dropdown isInverse={args.isInverse}>
-                <DropdownButton>Basic Dropdown</DropdownButton>
-                <DropdownContent>
-                  <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-                  <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-                </DropdownContent>
-              </Dropdown>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-            <TableCell>
-              <Select
-                labelText="Select Example"
-                items={[
-                  { label: 'Red', value: 'red' },
-                  { label: 'Blue', value: 'blue' },
-                  { label: 'Green', value: 'green' },
-                  { label: 'Yellow', value: 'yellow' },
-                ]}
-                isInverse={args.isInverse}
-              />
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-            <TableCell>
-              <Combobox
-                isMulti
-                labelText="ComboBox Example"
-                defaultItems={[
-                  { label: 'Pink', value: 'pink' },
-                  { label: 'Orange', value: 'orange' },
-                  { label: 'Purple', value: 'purple' },
-                ]}
-                isInverse={args.isInverse}
-              />
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Table maxWidth={500} {...args}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+              <TableCell>
+                <Dropdown isInverse={args.isInverse}>
+                  <DropdownButton>Basic Dropdown</DropdownButton>
+                  <DropdownContent>
+                    <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+                    <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                    <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                    <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                    <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                    <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                    <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                  </DropdownContent>
+                </Dropdown>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+              <TableCell>
+                <Select
+                  labelText="Select Example"
+                  items={[
+                    { label: 'Red', value: 'red' },
+                    { label: 'Blue', value: 'blue' },
+                    { label: 'Green', value: 'green' },
+                    { label: 'Yellow', value: 'yellow' },
+                  ]}
+                  isInverse={args.isInverse}
+                />
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+              <TableCell>
+                <Combobox
+                  isMulti
+                  labelText="ComboBox Example"
+                  defaultItems={[
+                    { label: 'Pink', value: 'pink' },
+                    { label: 'Orange', value: 'orange' },
+                    { label: 'Purple', value: 'purple' },
+                  ]}
+                  isInverse={args.isInverse}
+                />
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </CardBody>
     </Card>
   );
 };
@@ -875,20 +869,19 @@ export const AdjustableRowNumber = args => {
   }
 
   return (
-    <Card
-      isInverse={args.isInverse}
-      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
-    >
-      <Table {...args}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Number</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>{getTableRows()}</TableBody>
-      </Table>
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Table {...args}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Number</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>{getTableRows()}</TableBody>
+        </Table>
+      </CardBody>
     </Card>
   );
 };
@@ -912,37 +905,36 @@ export const NoRowsPerPageControl = args => {
   );
 
   return (
-    <Card
-      isInverse={args.isInverse}
-      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
-    >
-      <Table {...args}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rowsToShow.map((row, i) => (
-            <TableRow key={`row${i}`}>
-              {row.map((cell, j) => (
-                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-              ))}
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Table {...args}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <TablePagination
-        itemCount={rowsLong.length}
-        onPageChange={handlePageChange}
-        page={pageIndex}
-        rowsPerPage={rowsPerPage}
-        isInverse={args.isInverse}
-        hasSquareCorners={args.hasSquareCorners}
-      />
+          </TableHead>
+          <TableBody>
+            {rowsToShow.map((row, i) => (
+              <TableRow key={`row${i}`}>
+                {row.map((cell, j) => (
+                  <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <TablePagination
+          itemCount={rowsLong.length}
+          onPageChange={handlePageChange}
+          page={pageIndex}
+          rowsPerPage={rowsPerPage}
+          isInverse={args.isInverse}
+          hasSquareCorners={args.hasSquareCorners}
+        />
+      </CardBody>
     </Card>
   );
 };

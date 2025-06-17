@@ -506,6 +506,54 @@ export function Example() {
 }
 ```
 
+## Table title
+
+The `tableTitle` defines the title or caption of the table using the native `<caption>` HTML element for improved accessibility.
+
+Accepts either a plain string or a React node (e.g., a heading like `<h2>`) to allow flexible formatting.
+
+```tsx
+import React from 'react';
+
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Table tableTitle="Table title" hasVerticalBorders hasOutsideBorder>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  );
+}
+```
+
 ## Inverse
 
 `IsInverse` is an optional boolean prop, that may be used when a table is displayed on a dark background.
@@ -515,6 +563,7 @@ import React from 'react';
 
 import {
   Card,
+  CardBody,
   Table,
   TableHead,
   TableRow,
@@ -526,45 +575,47 @@ import {
 
 export function Example() {
   return (
-    <Card isInverse style={{ padding: '16px' }}>
-      <Table
-        isInverse
-        hasZebraStripes
-        hasVerticalBorders
-        hasHoverStyles
-        tableTitle="Inverse table"
-      >
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell sortDirection={TableSortDirection.descending}>
-              Column
-            </TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-            <TableCell>Lorem ipsum dolor</TableCell>
-            <TableCell>Lorem ipsum dolor</TableCell>
-            <TableCell>Lorem ipsum</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Lorem ipsum dolor sit amet</TableCell>
-            <TableCell>Lorem ipsum dolor</TableCell>
-            <TableCell>Lorem ipsum dolor</TableCell>
-            <TableCell>Lorem ipsum</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Lorem ipsum dolor sit amet</TableCell>
-            <TableCell>Lorem ipsum dolor</TableCell>
-            <TableCell>Lorem ipsum dolor</TableCell>
-            <TableCell>Lorem ipsum</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+    <Card isInverse>
+      <CardBody>
+        <Table
+          isInverse
+          hasZebraStripes
+          hasVerticalBorders
+          hasHoverStyles
+          tableTitle="Inverse table"
+        >
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell sortDirection={TableSortDirection.descending}>
+                Column
+              </TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Lorem ipsum dolor sit amet</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Lorem ipsum dolor sit amet</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </CardBody>
     </Card>
   );
 }

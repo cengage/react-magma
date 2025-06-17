@@ -103,6 +103,7 @@ const StyledTableRow = styled.tr<{
   hasSquareCorners?: boolean;
   hasHoverStyles?: boolean;
   hasZebraStripes?: boolean;
+  isDataGrid?: boolean;
   isInverse?: boolean;
 }>`
   border-bottom: 1px solid
@@ -115,7 +116,7 @@ const StyledTableRow = styled.tr<{
   outline: 0;
   vertical-align: top;
 
-  // Compensates border bottom for all rows when table has outside border
+  // Compensates border bottom for all rows (except last one) when table has outside border
   td {
     border-bottom: 1px solid
       ${props =>
@@ -125,16 +126,22 @@ const StyledTableRow = styled.tr<{
   }
 
   &:last-child {
+    border-bottom: 0;
+
     td {
       border-bottom: 0;
     }
     td:first-child {
       border-radius: ${props =>
-        props.hasSquareCorners ? '0' : `0 0 0 ${props.theme.borderRadius}`};
+        props.hasSquareCorners || props.isDataGrid
+          ? '0'
+          : `0 0 0 ${props.theme.borderRadius}`};
     }
     td:last-child {
       border-radius: ${props =>
-        props.hasSquareCorners ? '0' : `0 0 ${props.theme.borderRadius} 0`};
+        props.hasSquareCorners || props.isDataGrid
+          ? '0'
+          : `0 0 ${props.theme.borderRadius} 0`};
     }
   }
 
@@ -308,6 +315,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         hasHoverStyles={tableContext.hasHoverStyles && !isHeaderRow}
         hasZebraStripes={tableContext.hasZebraStripes}
         isInverse={tableContext.isInverse}
+        isDataGrid={tableContext.isDataGrid}
         ref={ref}
         theme={theme}
       >

@@ -104,6 +104,7 @@ interface TableContextInterface {
   hasSquareCorners?: boolean;
   hasVerticalBorders?: boolean;
   hasZebraStripes?: boolean;
+  isDataGrid?: boolean;
   isInverse?: boolean;
   isSelectable?: boolean;
   rowCount?: number;
@@ -117,6 +118,7 @@ export const TableContext = React.createContext<TableContextInterface>({
   hasSquareCorners: false,
   hasZebraStripes: false,
   hasVerticalBorders: false,
+  isDataGrid: false,
   isInverse: false,
   isSelectable: false,
   isSortableBySelected: false,
@@ -182,7 +184,7 @@ export const StyledTable = styled.table<{
         }`
       : 'none'};
   border-radius: ${props => {
-    if (props.hasOutsideBorder && !props.hasSquareCorners) {
+    if (!props.hasSquareCorners) {
       if (props.isDataGrid) {
         return `${props.theme.borderRadius} ${props.theme.borderRadius} 0 0`;
       }
@@ -238,6 +240,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           hasZebraStripes,
           hasVerticalBorders,
           isInverse: isInverse,
+          isDataGrid: isDataGrid,
           isSelectable,
           isSortableBySelected,
           rowCount,

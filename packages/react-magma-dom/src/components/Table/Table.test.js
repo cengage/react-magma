@@ -415,91 +415,6 @@ describe('Table', () => {
     );
   });
 
-  it('should display the outer border when hasOutsideBorder is true and hasSquareCorners is false', () => {
-    const testId = 'table-test';
-
-    const { getByTestId } = render(
-      <Table hasOutsideBorder testId={testId}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>heading 1</TableHeaderCell>
-            <TableHeaderCell>heading 2</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>cell 1</TableCell>
-            <TableCell>cell 2</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    );
-
-    expect(getByTestId(testId)).toHaveStyle('border-collapse: separate');
-    expect(getByTestId(testId)).toHaveStyle(
-      `border: 1px solid ${magma.colors.neutral300}`
-    );
-    expect(getByTestId(testId)).toHaveStyle(
-      `border-radius: ${magma.borderRadius}`
-    );
-  });
-
-  it('should display the outer border when hasOutsideBorder is true and isInverse is true', () => {
-    const testId = 'table-test';
-
-    const { getByTestId } = render(
-      <Table hasOutsideBorder isInverse testId={testId}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>heading 1</TableHeaderCell>
-            <TableHeaderCell>heading 2</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>cell 1</TableCell>
-            <TableCell>cell 2</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    );
-
-    expect(getByTestId(testId)).toHaveStyleRule('border-collapse', 'separate');
-    expect(getByTestId(testId)).toHaveStyleRule(
-      'border',
-      `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
-    );
-    expect(getByTestId(testId)).toHaveStyleRule(
-      'border-radius',
-      `${magma.borderRadius}`
-    );
-  });
-
-  it('should not display the outer border when hasOutsideBorder is false and hasSquareCorners is true', () => {
-    const testId = 'table-test';
-
-    const { getByTestId } = render(
-      <Table hasOutsideBorder={false} hasSquareCorners testId={testId}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>heading 1</TableHeaderCell>
-            <TableHeaderCell>heading 2</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>cell 1</TableCell>
-            <TableCell>cell 2</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    );
-
-    expect(getByTestId(testId)).toHaveStyle('border-collapse: collapse');
-    expect(getByTestId(testId)).toHaveStyle(`border: none`);
-    expect(getByTestId(testId)).toHaveStyle(`border-radius: 0`);
-  });
-
   it('should render sortable table header cells with inverse styles', () => {
     const { getByTestId } = render(
       <Table isInverse>
@@ -536,5 +451,95 @@ describe('Table', () => {
         target: ':hover',
       }
     );
+  });
+
+  describe('Outer border', () => {
+    it('should display the outer border when hasOutsideBorder is true and hasSquareCorners is false', () => {
+      const testId = 'table-test';
+
+      const { getByTestId } = render(
+        <Table hasOutsideBorder testId={testId}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>heading 1</TableHeaderCell>
+              <TableHeaderCell>heading 2</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>cell 1</TableCell>
+              <TableCell>cell 2</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
+
+      expect(getByTestId(testId)).toHaveStyle('border-collapse: separate');
+      expect(getByTestId(testId)).toHaveStyle(
+        `border: 1px solid ${magma.colors.neutral300}`
+      );
+      expect(getByTestId(testId)).toHaveStyle(
+        `border-radius: ${magma.borderRadius}`
+      );
+    });
+
+    it('should display the outer border when hasOutsideBorder is true and isInverse is true', () => {
+      const testId = 'table-test';
+
+      const { getByTestId } = render(
+        <Table hasOutsideBorder isInverse testId={testId}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>heading 1</TableHeaderCell>
+              <TableHeaderCell>heading 2</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>cell 1</TableCell>
+              <TableCell>cell 2</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'border-collapse',
+        'separate'
+      );
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'border',
+        `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+      );
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'border-radius',
+        `${magma.borderRadius}`
+      );
+    });
+
+    it('should not display the outer border when hasOutsideBorder is false and hasSquareCorners is true', () => {
+      const testId = 'table-test';
+
+      const { getByTestId } = render(
+        <Table hasOutsideBorder={false} hasSquareCorners testId={testId}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>heading 1</TableHeaderCell>
+              <TableHeaderCell>heading 2</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>cell 1</TableCell>
+              <TableCell>cell 2</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
+
+      expect(getByTestId(testId)).toHaveStyle('border-collapse: collapse');
+      expect(getByTestId(testId)).toHaveStyle(`border: none`);
+      expect(getByTestId(testId)).toHaveStyle(`border-radius: 0`);
+    });
   });
 });

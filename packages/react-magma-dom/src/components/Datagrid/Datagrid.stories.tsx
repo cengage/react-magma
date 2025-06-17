@@ -1,20 +1,20 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react/types-6-0';
 
 import { DatagridProps } from './Datagrid';
 import { magma } from '../../theme/magma';
 import { Announce } from '../Announce';
 import { Button } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
-import { Card } from '../Card';
+import { Card, CardBody } from '../Card';
 import { usePagination } from '../Pagination/usePagination';
 import { Spacer, SpacerAxis } from '../Spacer';
 import {
+  TableDensity,
   TablePaginationProps,
   TableRowColor,
   TableSortDirection,
-  TableDensity,
 } from '../Table';
 import { VisuallyHidden } from '../VisuallyHidden';
 
@@ -224,13 +224,12 @@ const rowsForPagination = [
 ];
 
 const Template: Story<Omit<DatagridProps, 'selectedRows'>> = args => (
-  <Card
-    isInverse={args.isInverse}
-    style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
-  >
-    <Datagrid tableTitle="Basic usage table" {...args}>
-      Sample Text
-    </Datagrid>
+  <Card isInverse={args.isInverse}>
+    <CardBody>
+      <Datagrid tableTitle="Basic usage table" {...args}>
+        Sample Text
+      </Datagrid>
+    </CardBody>
   </Card>
 );
 
@@ -242,17 +241,16 @@ const ControlledTemplate: Story<
   >([1]);
 
   return (
-    <Card
-      isInverse={args.isInverse}
-      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
-    >
-      <Datagrid
-        {...args}
-        selectedRows={selectedRows}
-        onSelectedRowsChange={updatedSelectedRows}
-      >
-        Sample Text
-      </Datagrid>
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Datagrid
+          {...args}
+          selectedRows={selectedRows}
+          onSelectedRowsChange={updatedSelectedRows}
+        >
+          Sample Text
+        </Datagrid>
+      </CardBody>
     </Card>
   );
 };
@@ -287,11 +285,10 @@ const ControlledPaginatedTemplate: Story<DatagridProps> = ({
   };
 
   return (
-    <Card
-      isInverse={args.isInverse}
-      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
-    >
-      <Datagrid {...args} paginationProps={passedInPaginationProps} />
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Datagrid {...args} paginationProps={passedInPaginationProps} />
+      </CardBody>
     </Card>
   );
 };
@@ -552,24 +549,23 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
   }
 
   return (
-    <Card
-      isInverse={args.isInverse}
-      style={{ borderRadius: `${magma.borderRadius}`, padding: '16px' }}
-    >
-      <Datagrid
-        {...args}
-        rows={sortedItems}
-        columns={productColumns}
-        onSortBySelected={() => {
-          requestSort('name');
-        }}
-        onRowSelect={handleRowSelect}
-        onHeaderSelect={handleHeaderSelect}
-        sortDirection={selectedDirection}
-      />
-      <Announce>
-        <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
-      </Announce>
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Datagrid
+          {...args}
+          rows={sortedItems}
+          columns={productColumns}
+          onSortBySelected={() => {
+            requestSort('name');
+          }}
+          onRowSelect={handleRowSelect}
+          onHeaderSelect={handleHeaderSelect}
+          sortDirection={selectedDirection}
+        />
+        <Announce>
+          <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
+        </Announce>
+      </CardBody>
     </Card>
   );
 };

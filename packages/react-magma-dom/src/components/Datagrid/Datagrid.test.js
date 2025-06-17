@@ -878,6 +878,9 @@ describe('Datagrid', () => {
     );
 
     expect(getByTestId(testId)).toHaveStyle(
+      `border: 1px solid ${magma.colors.neutral300}`
+    );
+    expect(getByTestId(testId)).toHaveStyle(
       `border-radius: ${magma.borderRadius} ${magma.borderRadius} 0 0`
     );
   });
