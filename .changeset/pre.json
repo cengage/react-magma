@@ -28,6 +28,7 @@
     "fix-Input-not-properly-update-value",
     "fix-Intermediate-Checkbox-screenreader-reads-unticked",
     "fix-Playwright-tests",
+    "fix-RadioButton-hide-decorative-icons-from-assistive-technology",
     "fix-drawer-and-datepicker-navigation",
     "manually-sync-4.9.0",
     "setup",

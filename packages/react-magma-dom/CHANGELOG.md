@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.9.2-next.0
+
+### Patch Changes
+
+- d6480e22a: fix(RadioButton): Add `aria-hidden` to decorative icons in RadioButton component to hide them from assistive technology.
+
 ### Minor Changes
 
 - 8c6b4baa7: feat(Toggle): Removed animation from Toggle component.
