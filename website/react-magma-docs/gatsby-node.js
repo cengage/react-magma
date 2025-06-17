@@ -1,4 +1,5 @@
 const { createFilePath } = require('gatsby-source-filesystem');
+const path = require('path');
 
 // TODO: const propertiesJson = require('react-magma-dom/dist/properties.json');
 const propertiesJson = require('./old_properties.json');
@@ -89,9 +90,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === 'Mdx') {
-    const prefix = getPathPrefix(node.fileAbsolutePath);
+    const parent = getNode(node.parent);
+    const fileAbsolutePath = parent && parent.absolutePath;
+    const prefix = getPathPrefix(fileAbsolutePath);
     const filePath = createFilePath({ node, getNode });
-    const fullFilePath = `/${prefix}${filePath.toLowerCase()}`;
+    // Extract only the filename from the file path
+    const fileName = `/${path.basename(filePath)}/`;
+    const fullFilePath = `/${prefix}${fileName.toLowerCase()}`;
 
     createNodeField({
       name: 'slug',
