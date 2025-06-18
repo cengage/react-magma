@@ -9,7 +9,6 @@ module.exports = {
     name,
     color: 'magenta',
   },
-  projects: ['.'],
   rootDir: '../..',
   testMatch: [`**/${name}/**/?(*.)+(spec|test).{js,jsx,ts,mjs,tsx}`],
 };

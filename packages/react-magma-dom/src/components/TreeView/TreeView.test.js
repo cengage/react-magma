@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { render, fireEvent, waitFor } from '@testing-library/react';
+import { render, fireEvent, waitFor, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
-import { act } from 'react-dom/test-utils';
 import { FavoriteIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
