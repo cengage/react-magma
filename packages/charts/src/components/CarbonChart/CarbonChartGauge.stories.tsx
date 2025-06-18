@@ -54,29 +54,27 @@ GaugeSemicircularDangerStatus.args = {
   },
 };
 
-// Uncomment when adding new charts. Issues: #1054, #1055, #1056
-
-// export const GaugeCircularWarningStatus = Template.bind({});
-// GaugeCircularWarningStatus.args = {
-//   isInverse: false,
-//   type: CarbonChartType.gauge,
-//   dataSet: [
-//     {
-//       group: 'value',
-//       value: 42,
-//     },
-//     {
-//       group: 'delta',
-//       value: -13.37,
-//     },
-//   ],
-//   options: {
-//     title: 'Gauge circular -- warning status',
-//     resizable: true,
-//     height: '250px',
-//     gauge: {
-//       status: 'warning',
-//       type: 'full',
-//     },
-//   },
-// };
+export const GaugeCircularWarningStatus = Template.bind({});
+GaugeCircularWarningStatus.args = {
+  isInverse: false,
+  type: CarbonChartType.gauge,
+  dataSet: [
+    {
+      group: 'value',
+      value: 42,
+    },
+    {
+      group: 'delta',
+      value: -13.37,
+    },
+  ],
+  options: {
+    title: 'Gauge circular -- warning status',
+    resizable: true,
+    height: '250px',
+    gauge: {
+      status: 'warning',
+      type: 'full',
+    },
+  },
+};
