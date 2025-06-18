@@ -74,15 +74,11 @@ const getPathPrefix = path => {
     }
 
     return 'api';
-  } else if (/patterns/.test(path)) {
-    if (/intro/.test(path)) {
-      return 'patterns-intro';
-    }
-
-    return 'patterns';
   } else if (/data-visualization/.test(path)) {
     return 'data-visualization';
   }
+
+  return '';
 };
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -91,7 +87,9 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   if (node.internal.type === 'Mdx') {
     const prefix = getPathPrefix(node.fileAbsolutePath);
     const filePath = createFilePath({ node, getNode });
-    const fullFilePath = `/${prefix}${filePath.toLowerCase()}`;
+    const fullFilePath = prefix
+      ? `/${prefix}${filePath.toLowerCase()}`
+      : filePath.toLowerCase();
 
     createNodeField({
       name: 'slug',
@@ -101,10 +99,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 };
 
-exports.onCreatePage = async ({
-  page,
-  actions: { createPage, deletePage },
-}) => {
+exports.onCreatePage = ({ page, actions: { createPage, deletePage } }) => {
   const { frontmatter } = page.context;
 
   if (frontmatter) {
