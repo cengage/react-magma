@@ -16,6 +16,7 @@ export const TableBody = React.forwardRef<
   TableBodyProps
 >((props, ref) => {
   const { children, testId, ...other } = props;
+
   return (
     <tbody {...other} ref={ref} data-testid={testId}>
       {children}

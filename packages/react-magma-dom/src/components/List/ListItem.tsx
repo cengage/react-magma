@@ -39,6 +39,7 @@ function getListDisplay(props) {
   if (props.icon) {
     return 'grid';
   }
+
   return 'list-item';
 }
 

@@ -187,6 +187,7 @@ const Wrapper = styled.div<{ isInverse?: boolean }>`
   font-weight: 500;
   padding: ${({ theme }) => theme.spaceScale.spacing01};
 `;
+
 export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
   (props, ref) => {
     const {
@@ -348,6 +349,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
     ) => {
       if (code === null) return null;
       const error = i18n.dropzone.errors[code];
+
       switch (code) {
         case 'too-many-files':
           return `${error.message} ${constraints.maxFiles} ${i18n.dropzone.files}.`;
@@ -394,6 +396,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                 onFinish: setFinished,
                 onProgress: setProgress,
               });
+
             return file;
           });
         });

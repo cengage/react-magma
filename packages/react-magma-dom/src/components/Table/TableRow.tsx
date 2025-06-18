@@ -227,6 +227,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
     React.Children.forEach(children, (child: any) => {
       if (child.type.displayName === 'TableHeaderCell') {
         isHeaderRow = true;
+
         return;
       }
     });

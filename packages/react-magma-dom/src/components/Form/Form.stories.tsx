@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 import { SettingsIcon } from 'react-magma-icons';
 
 import { Button, ButtonColor, ButtonType } from '../Button';
@@ -35,7 +35,7 @@ export default {
   title: 'Form',
 } as Meta;
 
-const Template: Story<FormProps> = args => (
+const Template: StoryFn<FormProps> = args => (
   <Form {...args}>{args.children}</Form>
 );
 
@@ -104,20 +104,26 @@ const Fields = () => (
   </>
 );
 
-export const Default = Template.bind({});
-Default.args = {
-  actions: <Actions />,
-  children: <p>Form sections come here</p>,
-  header: 'Form Header',
-  isInverse: false,
+export const Default = {
+  render: Template,
+
+  args: {
+    actions: <Actions />,
+    children: <p>Form sections come here</p>,
+    header: 'Form Header',
+    isInverse: false,
+  },
 };
 
-export const Expanded = Template.bind({});
-Expanded.args = {
-  ...Default.args,
-  children: <Fields />,
-  description: 'Some description',
-  errorMessage: 'Some error message',
-  isInverse: true,
-  style: { padding: '4px 16px 16px' },
+export const Expanded = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    children: <Fields />,
+    description: 'Some description',
+    errorMessage: 'Some error message',
+    isInverse: true,
+    style: { padding: '4px 16px 16px' },
+  },
 };

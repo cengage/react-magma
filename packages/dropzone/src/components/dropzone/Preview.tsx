@@ -141,6 +141,7 @@ const formatError = (
   const messageSuffix = Array.isArray(accept)
     ? `one of ${accept.join(', ')}`
     : accept;
+
   switch (error.code) {
     case 'file-too-large':
       return {
@@ -168,7 +169,6 @@ const formatError = (
 };
 
 export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
-  // eslint-disable-next-line complexity
   (props, ref) => {
     const {
       accept,
@@ -201,11 +201,13 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
 
       useEffect(() => {
         let mounted = true;
+
         setTimeout(() => {
           if (mounted) {
             setDone(true);
           }
         }, 1000);
+
         return () => {
           mounted = false;
         };
@@ -319,6 +321,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
                   { accept, minSize, maxSize },
                   i18n.dropzone.bytes
                 );
+
                 return (
                   <React.Fragment key={code}>
                     <ErrorHeader

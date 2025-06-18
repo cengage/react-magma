@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 
 import { AlertVariant } from '../AlertBase';
 import { Badge } from '../Badge';
@@ -20,7 +20,7 @@ const AdditionalBadge = (
   </>
 );
 
-const Template: Story<BannerProps> = args => (
+const Template: StoryFn<BannerProps> = args => (
   <>
     <Banner {...args} additionalContent={AdditionalBadge}>
       Default (info) banner with&nbsp;
@@ -92,20 +92,25 @@ export default {
   title: 'Banner',
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {};
-
-export const Inverse = Template.bind({});
-Inverse.args = {
-  isInverse: true,
+export const Default = {
+  render: Template,
+  args: {},
 };
 
-Inverse.decorators = [
-  Story => (
-    <Card isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
+export const Inverse = {
+  render: Template,
+
+  args: {
+    isInverse: true,
+  },
+
+  decorators: [
+    Story => (
+      <Card isInverse>
+        <CardBody>
+          <Story />
+        </CardBody>
+      </Card>
+    ),
+  ],
+};

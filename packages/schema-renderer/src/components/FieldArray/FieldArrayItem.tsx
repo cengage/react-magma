@@ -20,6 +20,7 @@ export const FieldArrayItem = ({
   const editedFields = React.useMemo(() => {
     return fields.map((field: any) => {
       const computedName = field.name ? `${name}.${field.name}` : uuidv4();
+
       return {
         ...field,
         name: computedName,

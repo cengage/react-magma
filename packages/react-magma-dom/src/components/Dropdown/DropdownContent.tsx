@@ -86,6 +86,7 @@ export const DropdownContent = React.forwardRef<
     if (child.type?.displayName === 'DropdownExpandableMenuGroup') {
       hasExpandableItems = true;
     }
+
     return;
   });
 

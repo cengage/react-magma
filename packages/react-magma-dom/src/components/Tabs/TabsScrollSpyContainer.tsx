@@ -49,6 +49,7 @@ export const TabsScrollSpyContainer = React.forwardRef<
   //Window scroll override
   React.useEffect(() => {
     const html = document.querySelector('html');
+
     html.style.scrollBehavior = 'auto';
   }, []);
 
@@ -113,6 +114,7 @@ export const TabsScrollSpyContainer = React.forwardRef<
 
   const tabScrollSpyPanelChildren = React.Children.map(children, child => {
     const item = child as React.ReactElement;
+
     if (item.props) {
       return { icon: item.props.icon };
     }
@@ -130,6 +132,7 @@ export const TabsScrollSpyContainer = React.forwardRef<
         };
       }
     );
+
     setOptions(optionsFromSections);
   }, ['section']);
 

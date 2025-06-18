@@ -105,6 +105,7 @@ export const DropdownSplitButton = React.forwardRef<
     ) {
       return '0';
     }
+
     return theme.spaceScale.spacing01;
   }
 

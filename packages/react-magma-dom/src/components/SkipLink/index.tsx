@@ -51,6 +51,7 @@ const handleClick = e => {
   if (targetHeading) {
     targetHeading.setAttribute('tabIndex', '-1');
     targetHeading.focus();
+
     return;
   }
   targetAnchor.focus();

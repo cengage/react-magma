@@ -7,12 +7,12 @@ const eslintPluginReactHooks = require("eslint-plugin-react-hooks");
 const eslintPluginPrettier = require("eslint-plugin-prettier");
 const eslintConfigPrettier = require("eslint-config-prettier");
 const tseslint = require('typescript-eslint');
+const eslintPluginStorybook = require("eslint-plugin-storybook");
 
 module.exports = tseslint.config(
     // 1. Global ignores
     {
         ignores: [
-            ".storybook/**",
             "dist/**",
             "node_modules/**",
             "coverage/**",
@@ -20,7 +20,6 @@ module.exports = tseslint.config(
             ".cache/**",
             "**/CHANGELOG.md",
             "esm/**", "lib/**", "tmp/**",
-            "**/*.stories.**",
             "**/reports/**", "**/.eslintrc.js", "eslint.config.js", // ignore self
             "**/plugins/**", "**/static/**", "**/__snapshots__/**", ".nx/**",
             "**/*.d.ts",
@@ -184,4 +183,16 @@ module.exports = tseslint.config(
             "prettier/prettier": "warn",
         },
     },
+    // 8. Storybook plugin configuration
+    {
+        files: ["**/*.stories.{js,jsx,ts,tsx}"],
+        plugins: {
+            'storybook': eslintPluginStorybook,
+        },
+        rules: {
+            // Disable React hooks rules for Storybook files to allow hooks in render functions
+            "react-hooks/rules-of-hooks": "off",
+            "react-hooks/exhaustive-deps": "off"
+        }
+    }
 );

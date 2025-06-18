@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 import {
   FavoriteIcon,
   SettingsIcon,
@@ -37,7 +37,7 @@ import {
   ButtonGroupProps,
 } from '.';
 
-const Template: Story<ButtonGroupProps> = args => (
+const Template: StoryFn<ButtonGroupProps> = args => (
   <>
     <ButtonGroup {...args}>
       <Button>Cancel</Button>
@@ -122,230 +122,240 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  ...Default.args,
-  orientation: ButtonGroupOrientation.horizontal,
-  noSpace: false,
+export const Default = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    orientation: ButtonGroupOrientation.horizontal,
+    noSpace: false,
+  },
 };
 
-export const SmallBreakpoint = args => {
-  return (
-    <BreakpointsContainer>
-      <Breakpoint screenSize={BreakpointScreenSize.xs}>
-        <ButtonGroup {...args} orientation={ButtonGroupOrientation.vertical}>
-          <Button>1</Button>
-          <Button>2</Button>
-          <Button>3</Button>
-          <Button>4</Button>
-          <Button>5</Button>
-        </ButtonGroup>
-      </Breakpoint>
+export const SmallBreakpoint = {
+  render: args => {
+    return (
+      <BreakpointsContainer>
+        <Breakpoint screenSize={BreakpointScreenSize.xs}>
+          <ButtonGroup {...args} orientation={ButtonGroupOrientation.vertical}>
+            <Button>1</Button>
+            <Button>2</Button>
+            <Button>3</Button>
+            <Button>4</Button>
+            <Button>5</Button>
+          </ButtonGroup>
+        </Breakpoint>
 
-      <Breakpoint screenSize={BreakpointScreenSize.small}>
+        <Breakpoint screenSize={BreakpointScreenSize.small}>
+          <ButtonGroup {...args}>
+            <Button>1</Button>
+            <Button>2</Button>
+            <Button>3</Button>
+            <Button>4</Button>
+            <Button>5</Button>
+          </ButtonGroup>
+        </Breakpoint>
+      </BreakpointsContainer>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    orientation: ButtonGroupOrientation.horizontal,
+    alignment: ButtonGroupAlignment.fill,
+  },
+};
+
+export const WithDropdowns = {
+  render: args => {
+    return (
+      <>
         <ButtonGroup {...args}>
-          <Button>1</Button>
-          <Button>2</Button>
-          <Button>3</Button>
-          <Button>4</Button>
-          <Button>5</Button>
+          <Button>Favorite</Button>
+          <Dropdown>
+            <DropdownButton>Settings</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownButton>Notifications</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
         </ButtonGroup>
-      </Breakpoint>
-    </BreakpointsContainer>
-  );
-};
-SmallBreakpoint.args = {
-  ...Default.args,
-  orientation: ButtonGroupOrientation.horizontal,
-  alignment: ButtonGroupAlignment.fill,
-};
-
-export const WithDropdowns = args => {
-  return (
-    <>
-      <ButtonGroup {...args}>
-        <Button>Favorite</Button>
-        <Dropdown>
-          <DropdownButton>Settings</DropdownButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-        <Dropdown>
-          <DropdownButton>Notifications</DropdownButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-      </ButtonGroup>
-      <br />
-      <ButtonGroup {...args}>
-        <Dropdown>
-          <DropdownButton>Settings</DropdownButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-        <Button>Favorite</Button>
-        <Dropdown>
-          <DropdownButton>Notifications</DropdownButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-      </ButtonGroup>
-      <br />
-      <ButtonGroup {...args}>
-        <Dropdown>
-          <DropdownButton>Settings</DropdownButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-        <Dropdown>
-          <DropdownButton>Notifications</DropdownButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-        <Button>Favorite</Button>
-      </ButtonGroup>
-      <br />
-      <ButtonGroup {...args}>
-        <Dropdown>
-          <DropdownButton>Settings</DropdownButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-        <Dropdown>
-          <DropdownButton>Notifications</DropdownButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-        <Dropdown>
-          <DropdownButton>Favorites</DropdownButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
-            <DropdownMenuItem>Menu item 3</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-      </ButtonGroup>
-      <br />
-      <ButtonGroup {...args}>
-        <Dropdown>
-          <DropdownButton
-            aria-label="Extra icon example"
-            size={ButtonSize.large}
-            icon={<SettingsIcon />}
-          />
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-        <Dropdown>
-          <DropdownButton
-            aria-label="Extra icon example"
-            size={ButtonSize.large}
-            icon={<AsteriskIcon />}
-          />
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-      </ButtonGroup>
-    </>
-  );
+        <br />
+        <ButtonGroup {...args}>
+          <Dropdown>
+            <DropdownButton>Settings</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Button>Favorite</Button>
+          <Dropdown>
+            <DropdownButton>Notifications</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </ButtonGroup>
+        <br />
+        <ButtonGroup {...args}>
+          <Dropdown>
+            <DropdownButton>Settings</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownButton>Notifications</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Button>Favorite</Button>
+        </ButtonGroup>
+        <br />
+        <ButtonGroup {...args}>
+          <Dropdown>
+            <DropdownButton>Settings</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownButton>Notifications</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownButton>Favorites</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+              <DropdownMenuItem>Menu item 3</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </ButtonGroup>
+        <br />
+        <ButtonGroup {...args}>
+          <Dropdown>
+            <DropdownButton
+              aria-label="Extra icon example"
+              size={ButtonSize.large}
+              icon={<SettingsIcon />}
+            />
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownButton
+              aria-label="Extra icon example"
+              size={ButtonSize.large}
+              icon={<AsteriskIcon />}
+            />
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </ButtonGroup>
+      </>
+    );
+  },
 };
 
-export const WithSplitButton = args => {
-  return (
-    <>
-      <ButtonGroup {...args}>
-        <Button>Start</Button>
-        <Dropdown>
-          <DropdownSplitButton onClick={() => {}} aria-label={''}>
-            Split Button
-          </DropdownSplitButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-        <Button>End</Button>
-      </ButtonGroup>
-      <br />
-      <ButtonGroup {...args}>
-        <Button>Start</Button>
-        <Dropdown>
-          <DropdownSplitButton onClick={() => {}} aria-label={''}>
-            Split Button
-          </DropdownSplitButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-        <Dropdown>
-          <DropdownSplitButton onClick={() => {}} aria-label={''}>
-            Split Button
-          </DropdownSplitButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-      </ButtonGroup>
-      <br />
-      <ButtonGroup {...args}>
-        <Dropdown>
-          <DropdownSplitButton onClick={() => {}} aria-label={''}>
-            Split Button 1
-          </DropdownSplitButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-        <Dropdown>
-          <DropdownSplitButton onClick={() => {}} aria-label={''}>
-            Split Button 2
-          </DropdownSplitButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-        <Dropdown>
-          <DropdownSplitButton onClick={() => {}} aria-label={''}>
-            Split Button 3
-          </DropdownSplitButton>
-          <DropdownContent>
-            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          </DropdownContent>
-        </Dropdown>
-      </ButtonGroup>
-    </>
-  );
+export const WithSplitButton = {
+  render: args => {
+    return (
+      <>
+        <ButtonGroup {...args}>
+          <Button>Start</Button>
+          <Dropdown>
+            <DropdownSplitButton onClick={() => {}} aria-label={''}>
+              Split Button
+            </DropdownSplitButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Button>End</Button>
+        </ButtonGroup>
+        <br />
+        <ButtonGroup {...args}>
+          <Button>Start</Button>
+          <Dropdown>
+            <DropdownSplitButton onClick={() => {}} aria-label={''}>
+              Split Button
+            </DropdownSplitButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownSplitButton onClick={() => {}} aria-label={''}>
+              Split Button
+            </DropdownSplitButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </ButtonGroup>
+        <br />
+        <ButtonGroup {...args}>
+          <Dropdown>
+            <DropdownSplitButton onClick={() => {}} aria-label={''}>
+              Split Button 1
+            </DropdownSplitButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownSplitButton onClick={() => {}} aria-label={''}>
+              Split Button 2
+            </DropdownSplitButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownSplitButton onClick={() => {}} aria-label={''}>
+              Split Button 3
+            </DropdownSplitButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </ButtonGroup>
+      </>
+    );
+  },
 };

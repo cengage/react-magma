@@ -65,6 +65,7 @@ function borderColors(props) {
     if (props.disabled) {
       return transparentize(0.85, props.theme.colors.neutral100);
     }
+
     return transparentize(0.5, props.theme.colors.neutral100);
   }
   if (props.hasError) {
@@ -73,6 +74,7 @@ function borderColors(props) {
   if (props.disabled) {
     return props.theme.colors.neutral300;
   }
+
   return props.theme.colors.neutral500;
 }
 
@@ -215,6 +217,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
           </StyledAdditionalContentWrapper>
         );
       }
+
       return props.children;
     }
 

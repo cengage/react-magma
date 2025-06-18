@@ -154,6 +154,7 @@ export const PopoverTrigger = React.forwardRef<
       </div>
     );
   }
+
   return (
     <div ref={context.setReference} style={{ width: 'fit-content' }}>
       {typeof children === 'string' ? (

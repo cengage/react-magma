@@ -407,9 +407,10 @@ export function Example() {
     }
   }
 
-  const sessionStorageValue = typeof window !== 'undefined' 
-    ? JSON.parse(sessionStorage.getItem('temporaryOpenByDefault') || 'null')
-    : null;
+  const sessionStorageValue =
+    typeof window !== 'undefined'
+      ? JSON.parse(sessionStorage.getItem('temporaryOpenByDefault') || 'null')
+      : null;
 
   const initialOpen = React.useMemo(() => {
     return sessionStorageValue || false;
@@ -421,7 +422,10 @@ export function Example() {
     const nextValue = !event.target.checked;
 
     if (typeof window !== 'undefined') {
-      sessionStorage.setItem('temporaryOpenByDefault', JSON.stringify(nextValue));
+      sessionStorage.setItem(
+        'temporaryOpenByDefault',
+        JSON.stringify(nextValue)
+      );
     }
 
     setChecked(nextValue);

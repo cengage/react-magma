@@ -236,6 +236,7 @@ function getInputPadding(props: InputBaseStylesProps) {
     left: props.theme.spaceScale.spacing03,
     right: props.theme.spaceScale.spacing03,
   };
+
   if (inputSize === 'large') {
     if (isClearable) {
       if (iconPosition === 'right') {
@@ -275,6 +276,7 @@ function getInputPadding(props: InputBaseStylesProps) {
       }
     }
   }
+
   return padding;
 }
 
@@ -429,11 +431,13 @@ function getIconButtonSVGSize(props) {
     if (inputSize === InputSize.large) {
       return `${theme.iconSizes.medium}px`;
     }
+
     return `${theme.iconSizes.small}px`;
   }
   if (inputSize === InputSize.large) {
     return `${theme.iconSizes.large}px`;
   }
+
   return `${theme.iconSizes.medium}px`;
 }
 
@@ -443,6 +447,7 @@ function getHelpLinkSVGSize(props) {
   if (inputSize === InputSize.large) {
     return `${theme.iconSizes.medium}px`;
   }
+
   return `${theme.iconSizes.small}px`;
 }
 
@@ -452,6 +457,7 @@ export function getHelpIconButtonSize(props) {
   if (inputSize === InputSize.large) {
     return theme.spaceScale.spacing09;
   }
+
   return theme.spaceScale.spacing07;
 }
 
@@ -467,6 +473,7 @@ function getIconButtonTransform(props) {
       position.x = '-28px';
       position.y = '5px';
     }
+
     return position;
   }
 
@@ -483,6 +490,7 @@ function getIconButtonTransform(props) {
       position.x = '-35px';
       position.y = '6px';
     }
+
     return position;
   }
 
@@ -493,6 +501,7 @@ function getIconButtonTransform(props) {
     position.x = '-24px';
     position.y = '7px';
   }
+
   return position;
 }
 
@@ -541,11 +550,13 @@ function getClearablePosition(props) {
     if (props.inputSize === 'large') {
       return props.theme.spaceScale.spacing13;
     }
+
     return '72px';
   }
   if (props.inputSize === 'large') {
     return props.theme.spaceScale.spacing10;
   }
+
   return '34px';
 }
 
@@ -579,11 +590,13 @@ function getIconSize(
       if (iconPosition === InputIconPosition.top) {
         return theme.iconSizes.medium;
       }
+
       return theme.iconSizes.large;
     default:
       if (iconPosition === InputIconPosition.top) {
         return theme.iconSizes.small;
       }
+
       return theme.iconSizes.medium;
   }
 }
@@ -714,6 +727,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
     const passwordBtnWidth = () => {
       const btnWidth =
         children?.props?.children?.[0]?.ref?.current?.offsetWidth;
+
       if (typeof btnWidth === 'number') {
         return btnWidth;
       } else {
@@ -722,6 +736,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
         if (props.inputSize === InputSize.large) {
           return 64;
         }
+
         return 54;
       }
     };

@@ -135,7 +135,9 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
       (acc, key) => {
         if (rest[key] && transitionsArr[key]) {
           const themeVariant = transitionsArr[key];
+
           rest[key] = undefined;
+
           return {
             baseStyle: {
               ...acc.baseStyle,
@@ -170,6 +172,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
             },
           };
         }
+
         return acc;
       },
       { motion: customTransition, baseStyle: {} }

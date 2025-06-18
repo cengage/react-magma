@@ -91,6 +91,7 @@ function moveImportsToScope(data: PreviewData): PreviewData {
   const newData = { ...data };
 
   const imports = [];
+
   while ((singleImportMatch = findAllImports.exec(data.code)) !== null) {
     const singleImportString = singleImportMatch[0];
     const findPackageName = /.*'(.+)'.*/;

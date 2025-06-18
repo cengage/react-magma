@@ -35,6 +35,7 @@ export const DropdownExpandableMenuGroup = React.forwardRef<
         if (c.type?.displayName === 'DropdownExpandableMenuButton') {
           if (c.props.icon) {
             expandableMenuButtonHasIcon = true;
+
             return;
           }
         }

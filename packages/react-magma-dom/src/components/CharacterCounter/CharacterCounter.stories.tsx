@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 import { HelpIcon } from 'react-magma-icons';
 
 import { ButtonType, ButtonSize, ButtonVariant } from '../Button';
@@ -15,7 +15,7 @@ import { CharacterCounter, CharacterCounterProps } from '.';
 
 const labelText = 'Character Counter';
 
-const Template: Story<CharacterCounterProps> = args => (
+const Template: StoryFn<CharacterCounterProps> = args => (
   <>
     <Input {...args} testId="test-this-id" labelText={labelText} />
   </>
@@ -81,194 +81,208 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  isInverse: false,
+export const Default = {
+  render: Template,
+
+  args: {
+    isInverse: false,
+  },
 };
 
-export const WithChildren = args => {
-  const helpLinkLabel = 'Learn more';
-  const onHelpLinkClick = () => {
-    alert('Help link clicked!');
-  };
-  return (
-    <Input labelText={labelText} {...args}>
-      <Tooltip content={helpLinkLabel}>
-        <IconButton
-          aria-label={helpLinkLabel}
-          icon={<HelpIcon />}
-          onClick={onHelpLinkClick}
-          type={ButtonType.button}
-          size={ButtonSize.small}
-          variant={ButtonVariant.link}
+export const WithChildren = {
+  render: args => {
+    const helpLinkLabel = 'Learn more';
+    const onHelpLinkClick = () => {
+      alert('Help link clicked!');
+    };
+
+    return (
+      <Input labelText={labelText} {...args}>
+        <Tooltip content={helpLinkLabel}>
+          <IconButton
+            aria-label={helpLinkLabel}
+            icon={<HelpIcon />}
+            onClick={onHelpLinkClick}
+            type={ButtonType.button}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+          />
+        </Tooltip>
+      </Input>
+    );
+  },
+
+  args: {
+    ...Default.args,
+  },
+};
+
+export const TextArea = {
+  render: args => {
+    return <Textarea labelText={labelText} {...args} />;
+  },
+
+  args: {
+    ...Default.args,
+  },
+
+  parameters: { controls: { exclude: ['isClearable'] } },
+};
+
+export const MaxCountAndMaxLength = {
+  render: args => {
+    return (
+      <>
+        <h1>Input</h1>
+        MAXCOUNT
+        <br />
+        <Input maxCount={args.maxCount} labelText="Default Character Counter" />
+        <br />
+        <Input
+          maxCount={args.maxCount}
+          hasCharacterCounter
+          labelText="Default Character Counter, hasCharacterCounter true"
         />
-      </Tooltip>
-    </Input>
-  );
-};
-WithChildren.args = {
-  ...Default.args,
-};
+        <br />
+        <Input
+          maxCount={args.maxCount}
+          hasCharacterCounter={false}
+          labelText="Default Character Counter, hasCharacterCounter false"
+        />
+        <br />
+        <br />
+        <br />
+        MAXLENGTH
+        <br />
+        <Input
+          maxLength={args.maxLength}
+          labelText="Default maxLength Character Counter"
+        />
+        <br />
+        <Input
+          maxLength={args.maxLength}
+          hasCharacterCounter
+          labelText="Default maxLength Character Counter, hasCharacterCounter true"
+        />
+        <br />
+        <Input
+          maxLength={args.maxLength}
+          hasCharacterCounter={false}
+          labelText="Default maxLength Character Counter, hasCharacterCounter false"
+        />
+        <br />
+        <br />
+        <br />
+        MAXLENGTH + MAXCOUNT
+        <br />
+        <Input
+          maxLength={args.maxLength}
+          maxCount={args.maxCount}
+          labelText="MAXLENGTH + MAXCOUNT Character Counter"
+        />
+        <br />
+        <Input
+          maxLength={args.maxLength}
+          maxCount={args.maxCount}
+          hasCharacterCounter
+          labelText="MAXLENGTH + MAXCOUNT Character Counter, hasCharacterCounter true"
+        />
+        <br />
+        <Input
+          maxLength={args.maxLength}
+          maxCount={args.maxCount}
+          hasCharacterCounter={false}
+          labelText="MAXLENGTH + MAXCOUNT Character Counter, hasCharacterCounter false"
+        />
+        <br />
+        <br />
+        <br />
+        <h1>Textarea</h1>
+        MAXCOUNT
+        <br />
+        <Textarea
+          maxCount={args.maxCount}
+          labelText="Default Character Counter"
+        />
+        <br />
+        <Textarea
+          maxCount={args.maxCount}
+          hasCharacterCounter
+          labelText="Default Character Counter, hasCharacterCounter true"
+        />
+        <br />
+        <Textarea
+          maxCount={args.maxCount}
+          hasCharacterCounter={false}
+          labelText="Default Character Counter, hasCharacterCounter false"
+        />
+        <br />
+        <br />
+        <br />
+        MAXLENGTH
+        <br />
+        <Textarea
+          maxLength={args.maxLength}
+          labelText="Default maxLength Character Counter"
+        />
+        <br />
+        <Textarea
+          maxLength={args.maxLength}
+          hasCharacterCounter
+          labelText="Default maxLength Character Counter, hasCharacterCounter true"
+        />
+        <br />
+        <Textarea
+          maxLength={args.maxLength}
+          hasCharacterCounter={false}
+          labelText="Default maxLength Character Counter, hasCharacterCounter false"
+        />
+        <br />
+        <br />
+        <br />
+        MAXLENGTH + MAXCOUNT
+        <br />
+        <Textarea
+          maxLength={args.maxLength}
+          maxCount={args.maxCount}
+          labelText="MAXLENGTH + MAXCOUNT Character Counter"
+        />
+        <br />
+        <Textarea
+          maxLength={args.maxLength}
+          maxCount={args.maxCount}
+          hasCharacterCounter
+          labelText="MAXLENGTH + MAXCOUNT Character Counter, hasCharacterCounter true"
+        />
+        <br />
+        <Textarea
+          maxLength={args.maxLength}
+          maxCount={args.maxCount}
+          hasCharacterCounter={false}
+          labelText="MAXLENGTH + MAXCOUNT Character Counter, hasCharacterCounter false"
+        />
+        <br />
+        <br />
+      </>
+    );
+  },
 
-export const TextArea = args => {
-  return <Textarea labelText={labelText} {...args} />;
-};
-TextArea.args = {
-  ...Default.args,
-};
-TextArea.parameters = { controls: { exclude: ['isClearable'] } };
+  args: {
+    maxCount: 10,
+    maxLength: 5,
+  },
 
-export const MaxCountAndMaxLength = args => {
-  return (
-    <>
-      <h1>Input</h1>
-      MAXCOUNT
-      <br />
-      <Input maxCount={args.maxCount} labelText="Default Character Counter" />
-      <br />
-      <Input
-        maxCount={args.maxCount}
-        hasCharacterCounter
-        labelText="Default Character Counter, hasCharacterCounter true"
-      />
-      <br />
-      <Input
-        maxCount={args.maxCount}
-        hasCharacterCounter={false}
-        labelText="Default Character Counter, hasCharacterCounter false"
-      />
-      <br />
-      <br />
-      <br />
-      MAXLENGTH
-      <br />
-      <Input
-        maxLength={args.maxLength}
-        labelText="Default maxLength Character Counter"
-      />
-      <br />
-      <Input
-        maxLength={args.maxLength}
-        hasCharacterCounter
-        labelText="Default maxLength Character Counter, hasCharacterCounter true"
-      />
-      <br />
-      <Input
-        maxLength={args.maxLength}
-        hasCharacterCounter={false}
-        labelText="Default maxLength Character Counter, hasCharacterCounter false"
-      />
-      <br />
-      <br />
-      <br />
-      MAXLENGTH + MAXCOUNT
-      <br />
-      <Input
-        maxLength={args.maxLength}
-        maxCount={args.maxCount}
-        labelText="MAXLENGTH + MAXCOUNT Character Counter"
-      />
-      <br />
-      <Input
-        maxLength={args.maxLength}
-        maxCount={args.maxCount}
-        hasCharacterCounter
-        labelText="MAXLENGTH + MAXCOUNT Character Counter, hasCharacterCounter true"
-      />
-      <br />
-      <Input
-        maxLength={args.maxLength}
-        maxCount={args.maxCount}
-        hasCharacterCounter={false}
-        labelText="MAXLENGTH + MAXCOUNT Character Counter, hasCharacterCounter false"
-      />
-      <br />
-      <br />
-      <br />
-      <h1>Textarea</h1>
-      MAXCOUNT
-      <br />
-      <Textarea
-        maxCount={args.maxCount}
-        labelText="Default Character Counter"
-      />
-      <br />
-      <Textarea
-        maxCount={args.maxCount}
-        hasCharacterCounter
-        labelText="Default Character Counter, hasCharacterCounter true"
-      />
-      <br />
-      <Textarea
-        maxCount={args.maxCount}
-        hasCharacterCounter={false}
-        labelText="Default Character Counter, hasCharacterCounter false"
-      />
-      <br />
-      <br />
-      <br />
-      MAXLENGTH
-      <br />
-      <Textarea
-        maxLength={args.maxLength}
-        labelText="Default maxLength Character Counter"
-      />
-      <br />
-      <Textarea
-        maxLength={args.maxLength}
-        hasCharacterCounter
-        labelText="Default maxLength Character Counter, hasCharacterCounter true"
-      />
-      <br />
-      <Textarea
-        maxLength={args.maxLength}
-        hasCharacterCounter={false}
-        labelText="Default maxLength Character Counter, hasCharacterCounter false"
-      />
-      <br />
-      <br />
-      <br />
-      MAXLENGTH + MAXCOUNT
-      <br />
-      <Textarea
-        maxLength={args.maxLength}
-        maxCount={args.maxCount}
-        labelText="MAXLENGTH + MAXCOUNT Character Counter"
-      />
-      <br />
-      <Textarea
-        maxLength={args.maxLength}
-        maxCount={args.maxCount}
-        hasCharacterCounter
-        labelText="MAXLENGTH + MAXCOUNT Character Counter, hasCharacterCounter true"
-      />
-      <br />
-      <Textarea
-        maxLength={args.maxLength}
-        maxCount={args.maxCount}
-        hasCharacterCounter={false}
-        labelText="MAXLENGTH + MAXCOUNT Character Counter, hasCharacterCounter false"
-      />
-      <br />
-      <br />
-    </>
-  );
-};
-
-MaxCountAndMaxLength.args = {
-  maxCount: 10,
-  maxLength: 5,
-};
-MaxCountAndMaxLength.parameters = {
-  controls: {
-    exclude: [
-      'isClearable',
-      'helperMessage',
-      'errorMessage',
-      'isInverse',
-      'labelPosition',
-      'hasCharacterCounter',
-      'value',
-    ],
+  parameters: {
+    controls: {
+      exclude: [
+        'isClearable',
+        'helperMessage',
+        'errorMessage',
+        'isInverse',
+        'labelPosition',
+        'hasCharacterCounter',
+        'value',
+      ],
+    },
   },
 };

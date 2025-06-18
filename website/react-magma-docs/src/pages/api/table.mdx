@@ -366,6 +366,7 @@ export function Example() {
 
   const sortedItems = React.useMemo(() => {
     const sortableItems = [...products];
+
     if (sortConfig !== null) {
       sortableItems.sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
@@ -374,14 +375,17 @@ export function Example() {
         if (a[sortConfig.key] > b[sortConfig.key]) {
           return sortConfig.direction === TableSortDirection.ascending ? 1 : -1;
         }
+
         return 0;
       });
     }
+
     return sortableItems;
   }, [products, sortConfig]);
 
   const requestSort = key => {
     let direction = TableSortDirection.ascending;
+
     if (
       sortConfig &&
       sortConfig.key === key &&
@@ -390,6 +394,7 @@ export function Example() {
       direction = TableSortDirection.descending;
     }
     const message = `Table is sorted by ${key}, ${direction}`;
+
     setSortConfig({ key, direction, message });
   };
 

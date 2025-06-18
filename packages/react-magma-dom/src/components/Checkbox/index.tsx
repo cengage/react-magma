@@ -109,6 +109,7 @@ function buildCheckIconColor(props) {
     if (props.isInverse) {
       return transparentize(0.6, props.theme.colors.neutral100);
     }
+
     return props.theme.colors.neutral300;
   }
   if (props.isInverse) {
@@ -117,6 +118,7 @@ function buildCheckIconColor(props) {
   if (props.isChecked || props.isIndeterminate) {
     return props.color;
   }
+
   return props.theme.colors.neutral700;
 }
 
