@@ -19,6 +19,7 @@ module.exports = {
     getAbsolutePath("@storybook/addon-controls"),
     getAbsolutePath("@storybook/addon-measure"),
     getAbsolutePath("@storybook/addon-essentials"),
+    getAbsolutePath("@storybook/addon-webpack5-compiler-babel")
   ],
 
   typescript: {
@@ -55,9 +56,7 @@ module.exports = {
     options: {}
   },
 
-  docs: {
-    autodocs: true
-  }
+  docs: {}
 };
 
 function getAbsolutePath(value) {
