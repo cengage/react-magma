@@ -72,7 +72,21 @@ export const Layout = ({ children, pageContext }) => {
     <LayoutComponent title={title} heading={heading}>
       <MDXProvider
         components={{
-          code: CodeBlock,
+          // Inline code: simple highlight for single backticks
+          code: ({ children: codeChildren }) => {
+            return <code>{codeChildren}</code>;
+          },
+          // Code blocks: use CodeBlock component
+          pre: ({ children: preChildren }) => {
+            if (preChildren && preChildren.props) {
+              return (
+                <CodeBlock children={preChildren} {...preChildren.props} />
+              );
+            }
+
+            return <pre>{preChildren}</pre>;
+          },
+
           table: Table,
           h1: SmartDocsHeading,
           h2: SectionHeading,
@@ -90,7 +104,6 @@ export const Layout = ({ children, pageContext }) => {
           ButtonProps,
           IconButtonProps,
           SimplePropsTable,
-          pre: props => <div {...props} />,
           ...properties.reduce((acc, { name, properties }) => {
             return {
               ...acc,
