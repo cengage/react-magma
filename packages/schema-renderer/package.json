@@ -25,7 +25,7 @@
     "react-dom": "^17.0.2",
     "react-dropzone": "11.3.2",
     "react-magma-dom": "^4.10.0-next.1",
-    "react-magma-icons": "^3.1.0",
+    "react-magma-icons": "^3.2.0",
     "tsdx": "^0.14.1",
     "uuid": "^11.1.0"
   },
@@ -38,7 +38,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-magma-dom": "^4.10.0-next.1",
-    "react-magma-icons": "^3.1.0",
+    "react-magma-icons": "^3.2.0",
     "uuid": "^8.3.0 || ^9.0.0 || ^10.0.0 || ^11.0.0"
   },
   "engines": {
