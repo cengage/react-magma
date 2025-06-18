@@ -12,7 +12,6 @@ module.exports = {
     name,
     color: 'yellow',
   },
-  projects: ['.'],
   rootDir: '../..',
   testMatch: [`**/${name}/**/?(*.)+(spec|test).{js,ts,tsx,mjs}`],
   moduleNameMapper: {
