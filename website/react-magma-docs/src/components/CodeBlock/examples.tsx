@@ -15,6 +15,7 @@ function calculateStartExpanded(code: string, startExpanded: boolean) {
   if (startExpanded) return startExpanded;
   const AUTO_EXPAND_LINE_COUNT_THRESHOLD = 5;
   const lineCount = code.split(/\r\n|\r|\n/).length;
+
   return lineCount <= AUTO_EXPAND_LINE_COUNT_THRESHOLD;
 }
 

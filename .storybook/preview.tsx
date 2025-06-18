@@ -1,9 +1,11 @@
-import { StoryContext } from '@storybook/react';
 import * as React from 'react';
-import { GlobalStyles } from '../packages/react-magma-dom/src/theme/GlobalStyles';
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
-const withMagma = (StoryFn: Function, context: StoryContext) => {
+import { StoryContext } from '@storybook/react';
+import { INITIAL_VIEWPORTS } from 'storybook/viewport';
+
+import { GlobalStyles } from '../packages/react-magma-dom/src/theme/GlobalStyles';
+
+const withMagma = (StoryFn: () => JSX.Element, _context: StoryContext) => {
   return (
     <div>
       <GlobalStyles />

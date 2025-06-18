@@ -124,6 +124,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
 
   React.useEffect(() => {
     const isExpanded = expandedSet.has(itemId);
+
     if (isExpanded !== expanded) {
       setExpanded(isExpanded);
     }
@@ -175,6 +176,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       itemId &&
       filteredArrayCurrent?.findIndex(({ current: item }) => {
         if (!item || !ownRef.current) return false;
+
         return item === ownRef.current;
       })
     );
@@ -205,6 +207,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     const filteredRefArray = filterNullEntries(treeItemRefArray);
     const curr = filteredRefArray['current'];
     const arrLength = curr.length;
+
     focusIndex = getFocusIndex(curr);
 
     let newIndex = focusIndex + 1;
@@ -219,6 +222,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       next.closest<HTMLElement>('[role=treeitem]').focus();
     } else {
       const nextNext = curr?.[focusIndex + 2]?.current as HTMLDivElement;
+
       if (nextNext) {
         nextNext.closest<HTMLElement>('[role=treeitem]').focus();
       } else {
@@ -258,6 +262,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const focusSelf = () => {
     const filteredRefArray = filterNullEntries(treeItemRefArray);
     const curr = filteredRefArray['current'];
+
     focusIndex = getFocusIndex(curr);
 
     (curr?.[focusIndex].current as HTMLDivElement)

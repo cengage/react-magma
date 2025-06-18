@@ -52,8 +52,10 @@ export function buildDisplayInputBorderColor(props) {
     if (props.isInverse) {
       return props.theme.colors.danger300;
     }
+
     return props.theme.colors.danger;
   }
+
   return 'transparent';
 }
 

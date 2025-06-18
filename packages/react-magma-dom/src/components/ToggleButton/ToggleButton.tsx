@@ -81,6 +81,7 @@ export function setIconWidth(props: ToggleButtonIconProps) {
   if (props.size === ButtonSize.large) {
     return props.theme.spaceScale.spacing11;
   }
+
   return props.theme.spaceScale.spacing09;
 }
 
@@ -90,6 +91,7 @@ export function setBackgroundColor(props) {
     if (props.isInverse) {
       return transparentize(0.5, props.theme.colors.neutral900);
     }
+
     return transparentize(0.5, props.theme.colors.neutral300);
   }
 }

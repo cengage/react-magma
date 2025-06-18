@@ -23,6 +23,7 @@ const GroupedCheckbox = (props: CheckboxProps) => {
     type: 'checkbox',
     value: props.value,
   });
+
   return <MagmaCheckbox {...props} {...input} />;
 };
 

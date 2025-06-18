@@ -94,6 +94,7 @@ export function usePagination(props: Partial<UsePaginationProps> = {}) {
 
   const range = (start, end) => {
     const length = end - start + 1;
+
     return Array.from({ length }, (_, i) => start + i);
   };
 

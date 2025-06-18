@@ -624,6 +624,7 @@ export function Example() {
   function changeFocusedMessage() {
     setFocused(prevFocused => {
       setMessage(!prevFocused ? 'Yes' : 'No');
+
       return !prevFocused;
     });
   }

@@ -186,11 +186,13 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
       if (isInverse) {
         return transparentize(0.6, theme.colors.neutral100);
       }
+
       return theme.colors.neutral500;
     }
     if (isInverse) {
       return theme.colors.neutral100;
     }
+
     return theme.colors.neutral;
   };
 

@@ -11,8 +11,10 @@ function buildListHoverColor(props) {
     if (props.isInverse) {
       return props.theme.colors.primary600;
     }
+
     return props.theme.colors.neutral200;
   }
+
   return 'transparent';
 }
 
@@ -21,8 +23,10 @@ function buildListFocusColor(props) {
     if (props.isInverse) {
       return props.theme.colors.focusInverse;
     }
+
     return props.theme.colors.focus;
   }
+
   return 'transparent';
 }
 
@@ -31,11 +35,13 @@ function buildListItemColor(props) {
     if (props.isInverse) {
       return transparentize(0.6, props.theme.colors.neutral100);
     }
+
     return transparentize(0.4, props.theme.colors.neutral500);
   }
   if (props.isInverse) {
     return props.theme.colors.neutral100;
   }
+
   return props.theme.colors.neutral700;
 }
 
@@ -135,29 +141,35 @@ export const SelectedItemsWrapper = styled.span`
 
 function buildSelectedItemButtonBackground(props) {
   const { isInverse, disabled } = props;
+
   if (disabled) {
     if (isInverse) {
       return transparentize(0.7, props.theme.colors.neutral100);
     }
+
     return props.theme.colors.neutral300;
   }
   if (isInverse) {
     return props.theme.colors.tertiary;
   }
+
   return props.theme.colors.primary;
 }
 
 function buildSelectedItemButtonColor(props) {
   const { isInverse, disabled } = props;
+
   if (disabled) {
     if (isInverse) {
       return transparentize(0.6, props.theme.colors.neutral100);
     }
+
     return transparentize(0.4, props.theme.colors.neutral500);
   }
   if (isInverse) {
     return props.theme.colors.primary600;
   }
+
   return props.theme.colors.neutral100;
 }
 

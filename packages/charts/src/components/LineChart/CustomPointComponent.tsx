@@ -42,6 +42,7 @@ export const CustomScatterDataComponent = (
     unregisterPoint,
     ...other
   } = props;
+
   return (
     <Point
       {...other}

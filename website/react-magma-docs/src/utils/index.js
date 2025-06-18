@@ -67,9 +67,11 @@ export async function getVersions(repo = 'dom') {
 
   try {
     const versions = await allVersionsPromise;
+
     return versions;
   } catch (err) {
     console.error(err);
+
     return err;
   }
 }

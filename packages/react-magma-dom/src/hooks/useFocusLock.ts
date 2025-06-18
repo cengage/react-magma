@@ -20,6 +20,7 @@ export function useFocusLock(
       ) || []
     ).filter((element): element is HTMLElement => {
       const style = window.getComputedStyle(element);
+
       return (
         element instanceof HTMLElement &&
         style.display !== 'none' &&
@@ -51,6 +52,7 @@ export function useFocusLock(
         (body.current.firstChild as HTMLElement).setAttribute('tabIndex', '-1');
         (body.current.firstChild as HTMLElement).focus();
       }
+
       return () => {
         observer.disconnect();
       };
@@ -72,6 +74,7 @@ export function useFocusLock(
         // If no focusable items are
         if (length === 0) {
           event.preventDefault();
+
           return;
         }
 
@@ -89,6 +92,7 @@ export function useFocusLock(
         if (!shiftKey && document.activeElement === lastItem) {
           event.preventDefault();
           firstItem.focus();
+
           return;
         }
 
@@ -100,6 +104,7 @@ export function useFocusLock(
         ) {
           event.preventDefault();
           lastItem.focus();
+
           return;
         }
       }

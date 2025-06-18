@@ -40,6 +40,7 @@ const getLabelStyles = (
         props.theme.spaceScale.spacing03
       })`;
   let minHeight: string;
+
   if (props.labelPosition === LabelPosition.left) {
     minHeight =
       props.InputSize === InputSize.large
@@ -64,6 +65,7 @@ const StyledFormFieldContainer = styled(FormFieldContainer)<{
     ${props => {
       const { marginBlock, marginInline, maxWidth, minHeight, justifyContent } =
         getLabelStyles(props);
+
       return `
         margin-block: ${marginBlock};
         margin-inline: ${marginInline};

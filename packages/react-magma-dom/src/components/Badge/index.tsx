@@ -102,6 +102,7 @@ export function buildBadgeTextColor(props) {
   if (props.color === BadgeColor.light) {
     return props.theme.colors.neutral700;
   }
+
   return props.theme.colors.neutral100;
 }
 
@@ -110,8 +111,10 @@ export function buildBadgeBorderColor(props) {
     if (props.isInverse) {
       return transparentize(0.3, props.theme.colors.neutral100);
     }
+
     return props.color;
   }
+
   return 'transparent';
 }
 

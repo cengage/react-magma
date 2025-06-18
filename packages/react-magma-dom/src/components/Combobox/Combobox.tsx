@@ -118,6 +118,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         const inputValue = isCreatedItem(displayItems[0])
           ? ''
           : changes.inputValue;
+
         return {
           ...changes,
           inputValue,
@@ -127,6 +128,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         const inputValue = isCreatedItem(displayItems[0])
           ? ''
           : changes.inputValue;
+
         return {
           ...changes,
           inputValue,
@@ -161,6 +163,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     if (isTypeahead) {
       return allItems;
     }
+
     return allItems.current.findIndex(
       i => itemToString(i) === itemToString(itemToCheck)
     ) !== -1
@@ -244,6 +247,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
 
     if (inputRef.current) {
       const inputElement = inputRef.current.querySelector('input');
+
       if (inputElement) {
         inputElement.focus();
       }

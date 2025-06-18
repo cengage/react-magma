@@ -42,15 +42,17 @@ export default {
   },
 } as Meta;
 
-export const Default = args => {
-  return <DatePicker {...args} />;
-};
+export const Default = {
+  render: args => {
+    return <DatePicker {...args} />;
+  },
 
-Default.args = {
-  labelText: 'Date',
-  minDate: today,
-  errorMessage: '',
-  helperMessage: '',
+  args: {
+    labelText: 'Date',
+    minDate: today,
+    errorMessage: '',
+    helperMessage: '',
+  },
 };
 
 export const NonDefaultFormats = () => {
@@ -95,112 +97,121 @@ export const NonDefaultFormats = () => {
   );
 };
 
-export const Inverse = args => {
-  return (
-    <div style={{ background: magma.colors.primary600, padding: '0 12px' }}>
-      <br />
-      <DatePicker {...args} />
-      <br />
-    </div>
-  );
+export const Inverse = {
+  render: args => {
+    return (
+      <div style={{ background: magma.colors.primary600, padding: '0 12px' }}>
+        <br />
+        <DatePicker {...args} />
+        <br />
+      </div>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    isInverse: true,
+  },
 };
 
-Inverse.args = {
-  ...Default.args,
-  isInverse: true,
-};
+export const ClearingTheDate = {
+  render: args => {
+    const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
+      undefined
+    );
 
-export const ClearingTheDate = args => {
-  const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
-    undefined
-  );
-
-  function handleDateChange(newChosenDate: Date) {
-    setChosenDate(newChosenDate);
-  }
-
-  return (
-    <div>
-      <p>
-        <strong>Chosen Date: </strong>
-        {chosenDate && (
-          <span>
-            {`${
-              chosenDate.getMonth() + 1
-            }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
-          </span>
-        )}
-      </p>
-      <DatePicker
-        {...args}
-        onDateChange={handleDateChange}
-        onChange={() => {}}
-        value={chosenDate}
-        isClearable
-      />
-      <br />
-      <Button onClick={() => handleDateChange(null)}>Clear Date</Button>
-    </div>
-  );
-};
-
-export const Events = args => {
-  const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
-    undefined
-  );
-  const [changedValue, setChangedValue] = React.useState<string | Date>('');
-
-  function handleChange(value: string | Date, event: React.EventChangeHandler) {
-    setChangedValue(value);
-  }
-
-  function handleDateChange(newChosenDate: Date) {
-    setChosenDate(newChosenDate);
-  }
-
-  function hasErrorMessage() {
-    const convertedMinDate = getDateFromString(args.minDate);
-    const convertedMaxDate = getDateFromString(args.maxDate);
-
-    if (!chosenDate) {
-      return;
-    } else if (!inDateRange(chosenDate, convertedMinDate, convertedMaxDate)) {
-      return `Please enter a date within the range ${args.minDate} - ${args.maxDate}`;
-    } else if (!isValid(chosenDate)) {
-      return 'Please enter a valid date';
+    function handleDateChange(newChosenDate: Date) {
+      setChosenDate(newChosenDate);
     }
 
-    return;
-  }
-
-  return (
-    <>
-      <p>
-        <strong>Chosen Date: </strong>
-        {chosenDate && (
-          <span>
-            {`${
-              chosenDate.getMonth() + 1
-            }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
-          </span>
-        )}
-      </p>
-      <p>
-        <strong>Changed Value: </strong>
-        {changedValue && <span>{changedValue}</span>}
-      </p>
-      <DatePicker
-        {...args}
-        onDateChange={handleDateChange}
-        onChange={handleChange}
-        errorMessage={hasErrorMessage()}
-      />
-    </>
-  );
+    return (
+      <div>
+        <p>
+          <strong>Chosen Date: </strong>
+          {chosenDate && (
+            <span>
+              {`${
+                chosenDate.getMonth() + 1
+              }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+            </span>
+          )}
+        </p>
+        <DatePicker
+          {...args}
+          onDateChange={handleDateChange}
+          onChange={() => {}}
+          value={chosenDate}
+          isClearable
+        />
+        <br />
+        <Button onClick={() => handleDateChange(null)}>Clear Date</Button>
+      </div>
+    );
+  },
 };
 
-Events.args = {
-  ...Default.args,
-  minDate: '04/23/2024',
-  maxDate: '04/20/2025',
+export const Events = {
+  render: args => {
+    const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
+      undefined
+    );
+    const [changedValue, setChangedValue] = React.useState<string | Date>('');
+
+    function handleChange(
+      value: string | Date,
+      event: React.EventChangeHandler
+    ) {
+      setChangedValue(value);
+    }
+
+    function handleDateChange(newChosenDate: Date) {
+      setChosenDate(newChosenDate);
+    }
+
+    function hasErrorMessage() {
+      const convertedMinDate = getDateFromString(args.minDate);
+      const convertedMaxDate = getDateFromString(args.maxDate);
+
+      if (!chosenDate) {
+        return;
+      } else if (!inDateRange(chosenDate, convertedMinDate, convertedMaxDate)) {
+        return `Please enter a date within the range ${args.minDate} - ${args.maxDate}`;
+      } else if (!isValid(chosenDate)) {
+        return 'Please enter a valid date';
+      }
+
+      return;
+    }
+
+    return (
+      <>
+        <p>
+          <strong>Chosen Date: </strong>
+          {chosenDate && (
+            <span>
+              {`${
+                chosenDate.getMonth() + 1
+              }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+            </span>
+          )}
+        </p>
+        <p>
+          <strong>Changed Value: </strong>
+          {changedValue && <span>{changedValue}</span>}
+        </p>
+        <DatePicker
+          {...args}
+          onDateChange={handleDateChange}
+          onChange={handleChange}
+          errorMessage={hasErrorMessage()}
+        />
+      </>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    minDate: '04/23/2024',
+    maxDate: '04/20/2025',
+  },
 };

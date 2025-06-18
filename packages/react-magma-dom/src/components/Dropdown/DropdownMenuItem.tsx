@@ -44,11 +44,13 @@ export function menuColors(props) {
     if (props.isInverse) {
       return transparentize(0.6, props.theme.colors.neutral100);
     }
+
     return transparentize(0.4, props.theme.colors.neutral500);
   }
   if (props.isInverse) {
     return props.theme.colors.neutral100;
   }
+
   return props.theme.colors.neutral700;
 }
 
@@ -59,6 +61,7 @@ export function menuBackground(props) {
   if (props.isInverse) {
     return props.theme.colors.primary600;
   }
+
   return props.theme.colors.neutral200;
 }
 

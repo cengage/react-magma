@@ -207,10 +207,12 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
     React.useEffect(() => {
       if (!props.disableAutoDismiss) {
         const focusableElements = getTrapElements(containerElement);
+
         focusableElements.forEach(element => {
           element.addEventListener('focus', handlePause);
           element.addEventListener('blur', handleResume);
         });
+
         return () => {
           focusableElements.forEach(element => {
             element.removeEventListener('focus', handlePause);

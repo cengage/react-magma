@@ -110,6 +110,7 @@ describe('SchemaRenderer', () => {
           onCancel={handleCancel}
         />
       );
+
       expect(getByText('Custom Submit Label')).toBeVisible();
       expect(getByText('Custom Cancel Label')).toBeVisible();
     });
@@ -146,6 +147,7 @@ describe('SchemaRenderer', () => {
         },
       ],
     };
+
     it('should render checkboxes', () => {
       const { getByLabelText, getByText } = render(
         <SchemaRenderer
@@ -174,6 +176,7 @@ describe('SchemaRenderer', () => {
           onCancel={handleCancel}
         />
       );
+
       fireEvent.click(getByText('Submit'));
       expect(getByText('Required')).toBeVisible();
     });
@@ -201,6 +204,7 @@ describe('SchemaRenderer', () => {
           onCancel={jest.fn()}
         />
       );
+
       expect(
         getByText('This is the content of custom component')
       ).toBeVisible();
@@ -270,6 +274,7 @@ describe('SchemaRenderer', () => {
         },
       ],
     };
+
     it('should render Toggle', async () => {
       const { getByLabelText, getByText } = render(
         <SchemaRenderer
@@ -278,6 +283,7 @@ describe('SchemaRenderer', () => {
           onCancel={handleCancel}
         />
       );
+
       expect(getByLabelText('Toggle')).toBeInTheDocument();
       fireEvent.click(getByText('Submit'));
       expect(handleSubmit).toHaveBeenCalledWith(
@@ -319,6 +325,7 @@ describe('SchemaRenderer', () => {
         },
       ],
     };
+
     it('should render radio buttons', () => {
       const { getByLabelText, getByText, getAllByRole } = render(
         <SchemaRenderer
@@ -349,6 +356,7 @@ describe('SchemaRenderer', () => {
           onCancel={handleCancel}
         />
       );
+
       fireEvent.click(getByText('Submit'));
       expect(getByText('Required')).toBeVisible();
     });

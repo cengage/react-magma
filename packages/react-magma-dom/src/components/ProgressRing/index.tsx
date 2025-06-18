@@ -53,12 +53,15 @@ export const ProgressRing = React.forwardRef<HTMLDivElement, ProgressRingProps>(
           setPercentage(prevPercentage => {
             if (!mountedRef.current) {
               clearInterval(interval!);
+
               return prevPercentage;
             }
             if (prevPercentage <= 2) {
               clearInterval(interval!);
+
               return 0;
             }
+
             return prevPercentage - 2;
           });
         }, intervalDuration);

@@ -461,9 +461,11 @@ export function useTreeView(props: UseTreeViewProps) {
         }
 
         const expandedItemsArray = Array.from(updatedExpandedSet);
+
         onExpandedChange &&
           typeof onExpandedChange === 'function' &&
           onExpandedChange(event, expandedItemsArray);
+
         return updatedExpandedSet;
       });
     },
@@ -480,6 +482,7 @@ export function useTreeView(props: UseTreeViewProps) {
     }, []);
 
     const syntheticEvent = {} as React.SyntheticEvent;
+
     handleExpandedChange(syntheticEvent, expandableIds);
   }, [handleExpandedChange, items]);
 

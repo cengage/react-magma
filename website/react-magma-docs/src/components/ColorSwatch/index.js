@@ -71,6 +71,7 @@ export const ColorSwatch = ({
   passesLightTest,
 }) => {
   const isInverse = useIsInverse();
+
   return (
     <SwatchContainer isInverse={isInverse}>
       <SwatchColor color={color}>

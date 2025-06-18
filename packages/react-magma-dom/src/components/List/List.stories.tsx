@@ -60,246 +60,264 @@ export default {
   },
 } as Meta;
 
-export const Simple = args => {
-  return (
-    <Card isInverse={args.isInverse}>
-      <CardBody>
-        <List {...args}>
-          <ListItem>English: Hello</ListItem>
-          <ListItem>Spanish: Hola</ListItem>
-          <ListItem>French: Bonjour</ListItem>
-          <ListItem>German: Hallo</ListItem>
-          <ListItem>Italian: Ciao</ListItem>
-          <ListItem>Portuguese: Olá</ListItem>
-        </List>
-      </CardBody>
-    </Card>
-  );
-};
-Simple.args = {
-  spacingStyle: magma.spaceScale.spacing07,
-  isOrdered: false,
-  isReversed: false,
-  isInverse: false,
-  visualStyle: TypographyVisualStyle.headingMedium,
-  listType: ulListType.square,
-};
-Simple.parameters = {
-  controls: { exclude: ['iconAlign'] },
+export const Simple = {
+  render: args => {
+    return (
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <List {...args}>
+            <ListItem>English: Hello</ListItem>
+            <ListItem>Spanish: Hola</ListItem>
+            <ListItem>French: Bonjour</ListItem>
+            <ListItem>German: Hallo</ListItem>
+            <ListItem>Italian: Ciao</ListItem>
+            <ListItem>Portuguese: Olá</ListItem>
+          </List>
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    spacingStyle: magma.spaceScale.spacing07,
+    isOrdered: false,
+    isReversed: false,
+    isInverse: false,
+    visualStyle: TypographyVisualStyle.headingMedium,
+    listType: ulListType.square,
+  },
+
+  parameters: {
+    controls: { exclude: ['iconAlign'] },
+  },
 };
 
-export const UnorderedList = args => {
-  return (
-    <Card isInverse={args.isInverse}>
-      <CardBody>
-        <List {...args}>
-          <ListItem>
-            Mammals
-            <List isOrdered={args.isOrdered}>
-              <ListItem>
-                Dogs
-                <List isOrdered={args.isOrdered}>
-                  <ListItem>German Shepherd</ListItem>
-                  <ListItem>Labrador Retriever</ListItem>
-                  <ListItem>American Bully</ListItem>
-                </List>
-              </ListItem>
-              <ListItem>
-                Cats
-                <List isOrdered={args.isOrdered}>
-                  <ListItem>Siamese</ListItem>
-                  <ListItem>Persian</ListItem>
-                  <ListItem>Bengal</ListItem>
-                </List>
-              </ListItem>
-            </List>
-          </ListItem>
-          <ListItem>
-            Reptiles
-            <List isOrdered={args.isOrdered}>
-              <ListItem>
-                Snakes
-                <List isOrdered={args.isOrdered}>
-                  <ListItem>Python</ListItem>
-                  <ListItem>Boa Constrictor</ListItem>
-                  <ListItem>Corn Snake</ListItem>
-                </List>
-              </ListItem>
-              <ListItem>
-                Lizards
-                <List isOrdered={args.isOrdered}>
-                  <ListItem>Geckos</ListItem>
-                  <ListItem>Iguanas</ListItem>
-                  <ListItem>Chameleons</ListItem>
-                </List>
-              </ListItem>
-            </List>
-          </ListItem>
-          <ListItem>
-            Birds
-            <List isOrdered={args.isOrdered}>
-              <ListItem>
-                Parrots
-                <List isOrdered={args.isOrdered}>
-                  <ListItem>African Grey</ListItem>
-                  <ListItem>Cockatiel</ListItem>
-                  <ListItem>Budgerigar</ListItem>
-                </List>
-              </ListItem>
-              <ListItem>
-                Birds of Prey
-                <List isOrdered={args.isOrdered}>
-                  <ListItem>Eagles</ListItem>
-                  <ListItem>Hawks</ListItem>
-                  <ListItem>Falcons</ListItem>
-                </List>
-              </ListItem>
-            </List>
-          </ListItem>
-        </List>
-      </CardBody>
-    </Card>
-  );
-};
-UnorderedList.args = {
-  spacingStyle: magma.spaceScale.spacing04,
-  isOrdered: false,
-};
-UnorderedList.parameters = {
-  controls: { exclude: ['visualStyle', 'iconAlign'] },
+export const UnorderedList = {
+  render: args => {
+    return (
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <List {...args}>
+            <ListItem>
+              Mammals
+              <List isOrdered={args.isOrdered}>
+                <ListItem>
+                  Dogs
+                  <List isOrdered={args.isOrdered}>
+                    <ListItem>German Shepherd</ListItem>
+                    <ListItem>Labrador Retriever</ListItem>
+                    <ListItem>American Bully</ListItem>
+                  </List>
+                </ListItem>
+                <ListItem>
+                  Cats
+                  <List isOrdered={args.isOrdered}>
+                    <ListItem>Siamese</ListItem>
+                    <ListItem>Persian</ListItem>
+                    <ListItem>Bengal</ListItem>
+                  </List>
+                </ListItem>
+              </List>
+            </ListItem>
+            <ListItem>
+              Reptiles
+              <List isOrdered={args.isOrdered}>
+                <ListItem>
+                  Snakes
+                  <List isOrdered={args.isOrdered}>
+                    <ListItem>Python</ListItem>
+                    <ListItem>Boa Constrictor</ListItem>
+                    <ListItem>Corn Snake</ListItem>
+                  </List>
+                </ListItem>
+                <ListItem>
+                  Lizards
+                  <List isOrdered={args.isOrdered}>
+                    <ListItem>Geckos</ListItem>
+                    <ListItem>Iguanas</ListItem>
+                    <ListItem>Chameleons</ListItem>
+                  </List>
+                </ListItem>
+              </List>
+            </ListItem>
+            <ListItem>
+              Birds
+              <List isOrdered={args.isOrdered}>
+                <ListItem>
+                  Parrots
+                  <List isOrdered={args.isOrdered}>
+                    <ListItem>African Grey</ListItem>
+                    <ListItem>Cockatiel</ListItem>
+                    <ListItem>Budgerigar</ListItem>
+                  </List>
+                </ListItem>
+                <ListItem>
+                  Birds of Prey
+                  <List isOrdered={args.isOrdered}>
+                    <ListItem>Eagles</ListItem>
+                    <ListItem>Hawks</ListItem>
+                    <ListItem>Falcons</ListItem>
+                  </List>
+                </ListItem>
+              </List>
+            </ListItem>
+          </List>
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    spacingStyle: magma.spaceScale.spacing04,
+    isOrdered: false,
+  },
+
+  parameters: {
+    controls: { exclude: ['visualStyle', 'iconAlign'] },
+  },
 };
 
-export const OrderedList = args => {
-  return (
-    <Card isInverse={args.isInverse}>
-      <CardBody>
-        <List {...args} listType={olListType.uppercaseRoman}>
-          <ListItem>
-            Fruits
-            <List
-              isOrdered={args.isOrdered}
-              listType={olListType.lowercaseRoman}
-            >
-              <ListItem>Apples</ListItem>
-              <ListItem>Bananas</ListItem>
-              <ListItem>Oranges</ListItem>
-            </List>
-          </ListItem>
-          <ListItem>
-            Vegetables
-            <List
-              isOrdered={args.isOrdered}
-              listType={olListType.lowercaseRoman}
-            >
-              <ListItem>
-                Leafy greens
-                <List
-                  isOrdered={args.isOrdered}
-                  listType={olListType.lowercase}
-                >
-                  <ListItem>Spinach</ListItem>
-                  <ListItem>Kale</ListItem>
-                </List>
-              </ListItem>
-              <ListItem>
-                Root vegetables
-                <List
-                  isOrdered={args.isOrdered}
-                  listType={olListType.lowercase}
-                >
-                  <ListItem>Carrots</ListItem>
-                  <ListItem>Potatoes</ListItem>
-                </List>
-              </ListItem>
-            </List>
-          </ListItem>
-          <ListItem>
-            Dairy
-            <List
-              isOrdered={args.isOrdered}
-              listType={olListType.lowercaseRoman}
-            >
-              <ListItem>Milk</ListItem>
-              <ListItem>Cheese</ListItem>
-            </List>
-          </ListItem>
-        </List>
-      </CardBody>
-    </Card>
-  );
-};
-OrderedList.args = {
-  spacingStyle: magma.spaceScale.spacing04,
-  isOrdered: true,
-  hasStart: 10,
-};
-OrderedList.parameters = {
-  controls: { exclude: ['visualStyle', 'iconAlign', 'listType'] },
+export const OrderedList = {
+  render: args => {
+    return (
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <List {...args} listType={olListType.uppercaseRoman}>
+            <ListItem>
+              Fruits
+              <List
+                isOrdered={args.isOrdered}
+                listType={olListType.lowercaseRoman}
+              >
+                <ListItem>Apples</ListItem>
+                <ListItem>Bananas</ListItem>
+                <ListItem>Oranges</ListItem>
+              </List>
+            </ListItem>
+            <ListItem>
+              Vegetables
+              <List
+                isOrdered={args.isOrdered}
+                listType={olListType.lowercaseRoman}
+              >
+                <ListItem>
+                  Leafy greens
+                  <List
+                    isOrdered={args.isOrdered}
+                    listType={olListType.lowercase}
+                  >
+                    <ListItem>Spinach</ListItem>
+                    <ListItem>Kale</ListItem>
+                  </List>
+                </ListItem>
+                <ListItem>
+                  Root vegetables
+                  <List
+                    isOrdered={args.isOrdered}
+                    listType={olListType.lowercase}
+                  >
+                    <ListItem>Carrots</ListItem>
+                    <ListItem>Potatoes</ListItem>
+                  </List>
+                </ListItem>
+              </List>
+            </ListItem>
+            <ListItem>
+              Dairy
+              <List
+                isOrdered={args.isOrdered}
+                listType={olListType.lowercaseRoman}
+              >
+                <ListItem>Milk</ListItem>
+                <ListItem>Cheese</ListItem>
+              </List>
+            </ListItem>
+          </List>
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    spacingStyle: magma.spaceScale.spacing04,
+    isOrdered: true,
+    hasStart: 10,
+  },
+
+  parameters: {
+    controls: { exclude: ['visualStyle', 'iconAlign', 'listType'] },
+  },
 };
 
-export const WithLinks = args => {
-  return (
-    <Card isInverse={args.isInverse}>
-      <CardBody>
-        <List {...args}>
-          <ListItem>
-            Mammals
-            <List>
-              <ListItem>
-                Dogs
-                <List>
-                  <ListItem>
-                    <a href="https://images.pexels.com/photos/333083/pexels-photo-333083.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                      German Shepherd
-                    </a>
-                    <ListItem description>
-                      Courageous, energetic, loyal
+export const WithLinks = {
+  render: args => {
+    return (
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <List {...args}>
+            <ListItem>
+              Mammals
+              <List>
+                <ListItem>
+                  Dogs
+                  <List>
+                    <ListItem>
+                      <a href="https://images.pexels.com/photos/333083/pexels-photo-333083.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                        German Shepherd
+                      </a>
+                      <ListItem description>
+                        Courageous, energetic, loyal
+                      </ListItem>
                     </ListItem>
-                  </ListItem>
-                  <ListItem>
-                    <a href="https://images.pexels.com/photos/15971943/pexels-photo-15971943/free-photo-of-black-labrador-retriever.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                      Labrador Retriever
-                    </a>
-                    <ListItem description>
-                      Friendly, outgoing, high-spirited
+                    <ListItem>
+                      <a href="https://images.pexels.com/photos/15971943/pexels-photo-15971943/free-photo-of-black-labrador-retriever.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                        Labrador Retriever
+                      </a>
+                      <ListItem description>
+                        Friendly, outgoing, high-spirited
+                      </ListItem>
                     </ListItem>
-                  </ListItem>
-                  <ListItem>
-                    <a href="https://images.pexels.com/photos/6007510/pexels-photo-6007510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-                      American Bully
-                    </a>
-                    <ListItem description>
-                      Strong, athletic, affectionate
+                    <ListItem>
+                      <a href="https://images.pexels.com/photos/6007510/pexels-photo-6007510.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+                        American Bully
+                      </a>
+                      <ListItem description>
+                        Strong, athletic, affectionate
+                      </ListItem>
                     </ListItem>
-                  </ListItem>
-                </List>
-              </ListItem>
-              <ListItem>Cats</ListItem>
-            </List>
-          </ListItem>
-        </List>
-      </CardBody>
-    </Card>
-  );
-};
-WithLinks.parameters = { controls: { exclude: ['visualStyle', 'iconAlign'] } };
+                  </List>
+                </ListItem>
+                <ListItem>Cats</ListItem>
+              </List>
+            </ListItem>
+          </List>
+        </CardBody>
+      </Card>
+    );
+  },
 
-export const WithIcons = args => {
-  return (
-    <List {...args}>
-      <ListItem icon={<InboxIcon />} iconBackground="neutral">
-        Inbox
-      </ListItem>
-      <ListItem icon={<DraftsIcon />}>Drafts</ListItem>
-      <ListItem icon={<DeleteIcon />}>Trash</ListItem>
-      <ListItem icon={<FolderOpenIcon />}>Spam</ListItem>
-    </List>
-  );
+  parameters: { controls: { exclude: ['visualStyle', 'iconAlign'] } },
 };
 
-WithIcons.args = {
-  spacingStyle: magma.spaceScale.spacing06,
-};
-WithIcons.parameters = {
-  controls: { exclude: ['isInverse', 'listType', 'isOrdered', 'isReversed'] },
+export const WithIcons = {
+  render: args => {
+    return (
+      <List {...args}>
+        <ListItem icon={<InboxIcon />} iconBackground="neutral">
+          Inbox
+        </ListItem>
+        <ListItem icon={<DraftsIcon />}>Drafts</ListItem>
+        <ListItem icon={<DeleteIcon />}>Trash</ListItem>
+        <ListItem icon={<FolderOpenIcon />}>Spam</ListItem>
+      </List>
+    );
+  },
+
+  args: {
+    spacingStyle: magma.spaceScale.spacing06,
+  },
+
+  parameters: {
+    controls: { exclude: ['isInverse', 'listType', 'isOrdered', 'isReversed'] },
+  },
 };

@@ -108,6 +108,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
       const { value: newSelectedValue } = event.target;
+
       props.onChange &&
         typeof props.onChange === 'function' &&
         props.onChange(event);

@@ -1,5 +1,7 @@
-import { dirname, join } from "path";
+import { dirname, join } from 'path';
+
 const path = require('path');
+
 const toPath = _path => path.join(process.cwd(), _path);
 
 module.exports = {
@@ -12,14 +14,9 @@ module.exports = {
   ],
 
   addons: [
-    getAbsolutePath("@storybook/addon-docs"),
-    getAbsolutePath("@storybook/addon-actions"),
-    getAbsolutePath("@storybook/addon-a11y"),
-    getAbsolutePath("@storybook/addon-toolbars"),
-    getAbsolutePath("@storybook/addon-controls"),
-    getAbsolutePath("@storybook/addon-measure"),
-    getAbsolutePath("@storybook/addon-essentials"),
-    getAbsolutePath("@storybook/addon-webpack5-compiler-babel")
+    getAbsolutePath('@storybook/addon-docs'),
+    getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('@storybook/addon-webpack5-compiler-babel'),
   ],
 
   typescript: {
@@ -36,8 +33,8 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           sourceType: 'unambiguous',
-        }
-      }
+        },
+      },
     });
 
     config.resolve = {
@@ -52,13 +49,13 @@ module.exports = {
   },
 
   framework: {
-    name: getAbsolutePath("@storybook/react-webpack5"),
-    options: {}
+    name: getAbsolutePath('@storybook/react-webpack5'),
+    options: {},
   },
 
-  docs: {}
+  docs: {},
 };
 
 function getAbsolutePath(value) {
-  return dirname(require.resolve(join(value, "package.json")));
+  return dirname(require.resolve(join(value, 'package.json')));
 }

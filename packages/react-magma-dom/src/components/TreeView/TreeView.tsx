@@ -76,7 +76,9 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                   itemDepth: 0,
                   topLevel: true,
                 });
+
                 treeItemIndex++;
+
                 return item;
               }
             })}

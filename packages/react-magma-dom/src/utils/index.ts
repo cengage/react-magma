@@ -37,17 +37,21 @@ export type XOR<T, U> = T | U extends object
 
 export function usePrevious(value) {
   const ref = React.useRef();
+
   React.useEffect(() => {
     ref.current = value;
   });
+
   return ref.current;
 }
 
 export function debounce(func, wait) {
   let timeout;
+
   function debounced(...args) {
     // tslint:disable-next-line
     const context = this;
+
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(() => {
       timeout = null;
@@ -71,6 +75,7 @@ export function detectScrollType() {
   }
 
   const dummy = document.createElement('div');
+
   dummy.appendChild(document.createTextNode('ABCD'));
   dummy.dir = 'rtl';
   dummy.style.fontSize = '14px';
@@ -151,6 +156,7 @@ export function animate(property, element, to, options: any = {}) {
 
     if (time >= 1) {
       requestAnimationFrame(() => {});
+
       return;
     }
 
@@ -162,6 +168,7 @@ export function animate(property, element, to, options: any = {}) {
   }
 
   requestAnimationFrame(step);
+
   return cancel;
 }
 
@@ -183,6 +190,7 @@ export function useForkedRef(...refs) {
     if (refs.every(ref => ref === null)) {
       return null;
     }
+
     return (node: any) => {
       refs.forEach(ref => {
         assignRef(ref, node);
@@ -213,6 +221,7 @@ export const addPxStyleStrings = (
   const pxValues: number[] = styleStrings.map(styleString => {
     return parseInt(styleString.toString().replace(/\s*px$/, ''));
   });
+
   return pxValues.reduce((total, value) => total + value).toString() + 'px';
 };
 
@@ -222,6 +231,7 @@ export const removePxStyleStrings = (
   const numericValues: number[] = styleStrings.map(item =>
     parseInt(item.toString().replace(/\s*px$/, ''), 10)
   );
+
   return numericValues.reduce((total, value) => total + value, 0);
 };
 

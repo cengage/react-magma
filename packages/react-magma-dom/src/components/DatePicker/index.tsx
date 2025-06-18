@@ -259,6 +259,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         'saturday',
       ];
       const { startOfWeek } = i18n.datePicker;
+
       return getCalendarMonthWeeks(
         date,
         enableOutsideDates,
@@ -304,6 +305,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     function handleInputChange(event) {
       const { value } = event.target;
       const day = new Date(value);
+
       setCalendarOpened(false);
 
       props.onInputChange &&
@@ -361,6 +363,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           onDateChange,
           iconRef
         );
+
         if (newChosenDate) {
           if (minDate && maxDate) {
             if (
