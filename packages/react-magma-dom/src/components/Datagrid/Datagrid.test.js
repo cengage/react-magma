@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, screen, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -845,5 +845,43 @@ describe('Datagrid', () => {
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
+  });
+
+  it('should display the title table', () => {
+    const { getByText } = render(
+      <Datagrid
+        columns={columns}
+        rows={rowsForPagination}
+        tableTitle="Datagrid title"
+      />
+    );
+
+    const titleTable = getByText('Datagrid title');
+
+    expect(titleTable).toBeInTheDocument();
+    expect(titleTable).toHaveStyle(`margin-top: ${magma.spaceScale.spacing04}`);
+    expect(titleTable).toHaveStyle(
+      `margin-bottom: ${magma.spaceScale.spacing04}`
+    );
+  });
+
+  it('should display the outer border when hasOutsideBorder is true and hasSquareCorners is false', () => {
+    const testId = 'table-test';
+
+    const { getByTestId } = render(
+      <Datagrid
+        hasOutsideBorder
+        testId={testId}
+        columns={columns}
+        rows={rowsForPagination}
+      />
+    );
+
+    expect(getByTestId(testId)).toHaveStyle(
+      `border: 1px solid ${magma.colors.neutral300}`
+    );
+    expect(getByTestId(testId)).toHaveStyle(
+      `border-radius: ${magma.borderRadius} ${magma.borderRadius} 0 0`
+    );
   });
 });

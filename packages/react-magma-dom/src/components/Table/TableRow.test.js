@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
+import { transparentize } from 'polished';
 
 import { magma } from '../../theme/magma';
 
@@ -29,6 +30,72 @@ describe('Table Row', () => {
     );
 
     expect(getByTestId(testId)).toBeInTheDocument();
+  });
+
+  it('should have border bottom', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <Table>
+        <TableBody>
+          <TableRow testId={testId}>
+            <TableCell />
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-bottom',
+      `1px solid ${magma.colors.neutral300}`
+    );
+  });
+
+  it('should have border bottom when table row is inverse', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <Table isInverse>
+        <TableBody>
+          <TableRow testId={testId}>
+            <TableCell />
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-bottom',
+      `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+    );
+  });
+
+  it('should not have border bottom when table row has color', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <Table>
+        <TableBody>
+          <TableRow testId={testId} color={TableRowColor.info}>
+            <TableCell />
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId(testId)).toHaveStyle('border-bottom: 0');
+  });
+
+  it('should not have border bottom when table row has zebra stripe and does not have pagination', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <Table hasZebraStripes hasTablePagination={false}>
+        <TableBody>
+          <TableRow testId={testId}>
+            <TableCell />
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    expect(getByTestId(testId)).toHaveStyle('border-bottom: 0');
   });
 
   describe('colors', () => {

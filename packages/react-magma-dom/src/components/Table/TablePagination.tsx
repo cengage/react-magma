@@ -7,7 +7,7 @@ import { EastIcon, WestIcon } from 'react-magma-icons';
 import { useControlled } from '../../hooks/useControlled';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
-import { ThemeInterface } from '../../theme/magma';
+import { magma, ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { XOR } from '../../utils';
 import { ButtonColor, ButtonVariant } from '../Button';
@@ -53,6 +53,11 @@ export interface BaseTablePaginationProps
    * @default true
    */
   hasSquareCorners?: boolean;
+  /**
+   * If true, the table paginator will have outer border
+   * @default false
+   */
+  hasOutsideBorder?: boolean;
 }
 
 export interface ControlledPageProps {
@@ -99,9 +104,20 @@ export type TablePaginationProps = BaseTablePaginationProps &
   PagePaginationProps &
   RowsPaginationProps;
 
+function getBorder(hasOutsideBorder: boolean, isInverse: boolean) {
+  return hasOutsideBorder
+    ? `1px solid ${
+        isInverse
+          ? transparentize(0.6, magma.colors.neutral100)
+          : magma.colors.neutral300
+      }`
+    : 'none';
+}
+
 const StyledContainer = styled.div<{
   isInverse?: boolean;
   theme: ThemeInterface;
+  hasOutsideBorder?: boolean;
   hasSquareCorners?: boolean;
 }>`
   align-items: center;
@@ -109,14 +125,12 @@ const StyledContainer = styled.div<{
     props.isInverse
       ? transparentize(0.9, props.theme.colors.neutral100)
       : props.theme.colors.neutral200};
-  border-top: 1px solid
-    ${props =>
-      props.isInverse
-        ? transparentize(0.6, props.theme.colors.neutral100)
-        : props.theme.colors.neutral300};
   display: flex;
   justify-content: flex-end;
   padding: ${props => props.theme.spaceScale.spacing02};
+  border-left: ${props => getBorder(props.hasOutsideBorder, props.isInverse)};
+  border-right: ${props => getBorder(props.hasOutsideBorder, props.isInverse)};
+  border-bottom: ${props => getBorder(props.hasOutsideBorder, props.isInverse)};
   border-radius: ${props =>
     props.hasSquareCorners
       ? '0'
@@ -202,6 +216,7 @@ export const TablePagination = React.forwardRef<
     page: pageProp,
     rowsPerPage: rowsPerPageProp,
     rowsPerPageValues = [10, 20, 50, 100],
+    hasOutsideBorder,
     hasSquareCorners = true,
     ...other
   } = props;
@@ -268,6 +283,7 @@ export const TablePagination = React.forwardRef<
       {...other}
       data-testid={testId}
       isInverse={isInverse}
+      hasOutsideBorder={hasOutsideBorder}
       hasSquareCorners={hasSquareCorners}
       ref={ref}
       theme={theme}
