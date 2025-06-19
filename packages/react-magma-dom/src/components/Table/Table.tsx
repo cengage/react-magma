@@ -22,6 +22,11 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
    */
   hasHoverStyles?: boolean;
   /**
+   *  If true, the table will have additional styles for table.
+   *  @default false
+   */
+  hasTablePagination?: boolean;
+  /**
    * If true, the table will have square edges
    * @default false
    */
@@ -65,10 +70,6 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
    * @internal
    */
   testId?: string;
-  /**
-   * @internal - used within DataGrid to handle data-grid styles
-   */
-  isDataGrid?: boolean;
 }
 
 export enum TableDensity {
@@ -102,9 +103,9 @@ interface TableContextInterface {
   density?: TableDensity;
   hasHoverStyles?: boolean;
   hasSquareCorners?: boolean;
+  hasTablePagination?: boolean;
   hasVerticalBorders?: boolean;
   hasZebraStripes?: boolean;
-  isDataGrid?: boolean;
   isInverse?: boolean;
   isSelectable?: boolean;
   rowCount?: number;
@@ -116,9 +117,9 @@ export const TableContext = React.createContext<TableContextInterface>({
   density: TableDensity.normal,
   hasHoverStyles: false,
   hasSquareCorners: false,
+  hasTablePagination: false,
   hasZebraStripes: false,
   hasVerticalBorders: false,
-  isDataGrid: false,
   isInverse: false,
   isSelectable: false,
   isSortableBySelected: false,
@@ -166,7 +167,7 @@ export const StyledTableTitle = styled.caption<{
 export const StyledTable = styled.table<{
   hasOutsideBorder?: boolean;
   hasSquareCorners?: boolean;
-  isDataGrid?: boolean;
+  hasTablePagination?: boolean;
   isInverse?: boolean;
   minWidth: number;
 }>`
@@ -185,7 +186,7 @@ export const StyledTable = styled.table<{
       : 'none'};
   border-radius: ${props => {
     if (!props.hasSquareCorners) {
-      if (props.isDataGrid) {
+      if (props.hasTablePagination) {
         return `${props.theme.borderRadius} ${props.theme.borderRadius} 0 0`;
       }
       return props.theme.borderRadius;
@@ -212,6 +213,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       hasHoverStyles,
       hasOutsideBorder,
       hasSquareCorners,
+      hasTablePagination,
       hasVerticalBorders,
       hasZebraStripes,
       isSelectable,
@@ -221,7 +223,6 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       tableTitle,
       testId,
       isSortableBySelected,
-      isDataGrid,
       ...other
     } = props;
 
@@ -237,10 +238,10 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           density,
           hasHoverStyles,
           hasSquareCorners,
+          hasTablePagination: hasTablePagination,
           hasZebraStripes,
           hasVerticalBorders,
           isInverse: isInverse,
-          isDataGrid: isDataGrid,
           isSelectable,
           isSortableBySelected,
           rowCount,
@@ -259,8 +260,8 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
               data-testid={testId}
               hasOutsideBorder={hasOutsideBorder}
               hasSquareCorners={hasSquareCorners}
+              hasTablePagination={hasTablePagination}
               isInverse={isInverse}
-              isDataGrid={isDataGrid}
               minWidth={minWidth || theme.breakpoints.small}
               ref={ref}
               theme={theme}

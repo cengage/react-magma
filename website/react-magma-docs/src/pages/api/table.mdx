@@ -853,6 +853,8 @@ It also takes the function `onRowsPerPageChange`.
 
 This component does not handle the actual pagination of the table itself, it simply provides the UI and allows for the consumer to do the sorting.
 
+**NOTE:** When using the `TablePagination`, it is recommended to set the `Table` component's `hasOutsideBorder` and `hasSquareCorners` props for proper styling, and also add the `hasTablePagination` to the `Table` component.
+
 ```tsx codesandbox=magma
 import React from 'react';
 
@@ -1026,7 +1028,12 @@ export function Example() {
 
   return (
     <>
-      <Table tableTitle="Pagination table">
+      <Table
+        tableTitle="Pagination table"
+        hasTablePagination
+        hasOutsideBorder={false}
+        hasSquareCorners={false}
+      >
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -1051,6 +1058,8 @@ export function Example() {
         onPageChange={handlePageChange}
         page={pageIndex}
         rowsPerPage={rowsPerPage}
+        hasOutsideBorder={false}
+        hasSquareCorners={false}
       />
     </>
   );

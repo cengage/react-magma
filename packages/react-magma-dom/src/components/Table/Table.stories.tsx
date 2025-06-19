@@ -348,6 +348,7 @@ export const ControlledPagination = args => {
           page={pageIndex}
           rowsPerPage={rowsPerPage}
           isInverse={args.isInverse}
+          hasOutsideBorder={args.hasOutsideBorder}
           hasSquareCorners={args.hasSquareCorners}
           rowsPerPageValues={args.rowsPerPageValues}
         />
@@ -360,6 +361,7 @@ ControlledPagination.args = {
   tableTitle: 'Controlled Pagination',
   rowsPerPage: 10,
   rowsPerPageValues: [10, 20, 50, 100],
+  hasTablePagination: true,
 };
 
 export const UncontrolledPagination = args => {
@@ -404,10 +406,13 @@ export const UncontrolledPagination = args => {
           </TableBody>
         </Table>
         <TablePagination
+          isInverse={args.isInverse}
           itemCount={rowsLong.length}
           onPageChange={handlePageChange}
           onRowsPerPageChange={handleRowsPerPageChange}
           defaultRowsPerPage={rowsPerPage}
+          hasOutsideBorder={args.hasOutsideBorder}
+          hasSquareCorners={args.hasSquareCorners}
           rowsPerPageValues={args.rowsPerPageValues}
         />
       </CardBody>
@@ -419,6 +424,7 @@ UncontrolledPagination.args = {
   tableTitle: 'Uncontrolled Pagination',
   defaultRowsPerPage: 10,
   rowsPerPageValues: [10, 20, 50, 100],
+  hasTablePagination: true,
 };
 
 export const PaginationWithSquareCorners = args => {
@@ -466,12 +472,14 @@ export const PaginationWithSquareCorners = args => {
         page={pageIndex}
         rowsPerPage={rowsPerPage}
         isInverse={args.isInverse}
+        hasOutsideBorder={args.hasOutsideBorder}
         hasSquareCorners={args.hasSquareCorners}
       />
     </div>
   );
 };
 PaginationWithSquareCorners.args = {
+  hasTablePagination: true,
   hasSquareCorners: true,
   hasOutsideBorder: false,
   hasHoverStyles: false,
@@ -524,6 +532,8 @@ export const PaginationInverse = args => {
           isInverse
           onPageChange={handlePageChange}
           onRowsPerPageChange={handleRowsPerPageChange}
+          hasOutsideBorder={args.hasOutsideBorder}
+          hasSquareCorners={args.hasSquareCorners}
         />
       </CardBody>
     </Card>
@@ -533,6 +543,7 @@ PaginationInverse.args = {
   ...Default.args,
   isInverse: true,
   tableTitle: 'Pagination inverse',
+  hasTablePagination: true,
 };
 
 export const RowColors = args => {
@@ -932,6 +943,7 @@ export const NoRowsPerPageControl = args => {
           page={pageIndex}
           rowsPerPage={rowsPerPage}
           isInverse={args.isInverse}
+          hasOutsideBorder={args.hasOutsideBorder}
           hasSquareCorners={args.hasSquareCorners}
         />
       </CardBody>
@@ -942,6 +954,7 @@ NoRowsPerPageControl.args = {
   ...Default.args,
   numberRows: 300,
   tableTitle: 'No Rows Per Page Control Table',
+  hasTablePagination: true,
 };
 
 export const TitleTableAndOutsideBorder = Template.bind({});

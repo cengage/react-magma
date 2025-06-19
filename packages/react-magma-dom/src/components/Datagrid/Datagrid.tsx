@@ -162,7 +162,6 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
       hasSquareCorners,
       hasOutsideBorder,
       hasPagination = true,
-      isDataGrid = true,
       onSortBySelected,
       sortDirection,
       ...other
@@ -283,9 +282,9 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
     return (
       <>
         <Table
-          isDataGrid={isDataGrid}
           hasOutsideBorder={hasOutsideBorder}
           hasSquareCorners={hasSquareCorners}
+          hasTablePagination={hasPagination}
           {...other}
           ref={ref}
           aria-live="polite"
