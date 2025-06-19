@@ -322,7 +322,7 @@ export const ControlledPagination = args => {
   return (
     <Card isInverse={args.isInverse}>
       <CardBody>
-        <Table {...args}>
+        <Table {...args} hasTablePagination>
           <TableHead>
             <TableRow>
               <TableHeaderCell>Column</TableHeaderCell>
@@ -361,7 +361,6 @@ ControlledPagination.args = {
   tableTitle: 'Controlled Pagination',
   rowsPerPage: 10,
   rowsPerPageValues: [10, 20, 50, 100],
-  hasTablePagination: true,
 };
 
 export const UncontrolledPagination = args => {
@@ -386,7 +385,7 @@ export const UncontrolledPagination = args => {
   return (
     <Card isInverse={args.isInverse}>
       <CardBody>
-        <Table {...args}>
+        <Table {...args} hasTablePagination>
           <TableHead>
             <TableRow>
               <TableHeaderCell>Column</TableHeaderCell>
@@ -424,7 +423,6 @@ UncontrolledPagination.args = {
   tableTitle: 'Uncontrolled Pagination',
   defaultRowsPerPage: 10,
   rowsPerPageValues: [10, 20, 50, 100],
-  hasTablePagination: true,
 };
 
 export const PaginationWithSquareCorners = args => {
@@ -446,7 +444,11 @@ export const PaginationWithSquareCorners = args => {
 
   return (
     <div style={{ background: magma.colors.neutral300, padding: '16px' }}>
-      <Table style={{ background: magma.colors.neutral100 }} {...args}>
+      <Table
+        style={{ background: magma.colors.neutral100 }}
+        {...args}
+        hasTablePagination
+      >
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -479,7 +481,6 @@ export const PaginationWithSquareCorners = args => {
   );
 };
 PaginationWithSquareCorners.args = {
-  hasTablePagination: true,
   hasSquareCorners: true,
   hasOutsideBorder: false,
   hasHoverStyles: false,
@@ -508,7 +509,7 @@ export const PaginationInverse = args => {
   return (
     <Card isInverse>
       <CardBody>
-        <Table {...args} isInverse>
+        <Table {...args} isInverse hasTablePagination>
           <TableHead>
             <TableRow>
               <TableHeaderCell>Column</TableHeaderCell>
@@ -543,7 +544,6 @@ PaginationInverse.args = {
   ...Default.args,
   isInverse: true,
   tableTitle: 'Pagination inverse',
-  hasTablePagination: true,
 };
 
 export const RowColors = args => {
@@ -918,7 +918,7 @@ export const NoRowsPerPageControl = args => {
   return (
     <Card isInverse={args.isInverse}>
       <CardBody>
-        <Table {...args}>
+        <Table {...args} hasTablePagination>
           <TableHead>
             <TableRow>
               <TableHeaderCell>Column</TableHeaderCell>
@@ -954,7 +954,6 @@ NoRowsPerPageControl.args = {
   ...Default.args,
   numberRows: 300,
   tableTitle: 'No Rows Per Page Control Table',
-  hasTablePagination: true,
 };
 
 export const TitleTableAndOutsideBorder = Template.bind({});
