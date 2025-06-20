@@ -114,6 +114,11 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    * @internal
    */
   theme?: ThemeInterface;
+  /**
+   * Shows the drawer transition animation
+   * @internal
+   */
+  hasDrawerAnimation?: boolean;
 }
 
 const ModalContainer = styled(Transition)<{
@@ -240,6 +245,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       isModalClosingControlledManually,
       headerRef,
       onClose,
+      hasDrawerAnimation,
       showBackgroundOverlay = true,
       ...rest
     } = props;
@@ -398,6 +404,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           isOpen={isModalOpen}
           {...containerTransition}
           unmountOnExit={unmountOnExit}
+          hasDrawerAnimation={hasDrawerAnimation}
         >
           <ModalContent
             {...other}
@@ -450,9 +457,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             onMouseDown={
               isBackgroundClickDisabled ? event => event.preventDefault() : null
             }
+            fade={hasDrawerAnimation}
             isOpen={isModalOpen}
             style={modalCount >= 2 && { zIndex: '998' }}
-            {...containerTransition}
             unmountOnExit
             theme={theme}
           />

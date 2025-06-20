@@ -68,6 +68,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
             ? transitionPreset[DrawerPosition[position]]
             : transitionPreset[DrawerPosition[DrawerPosition.top]]
         }
+        hasDrawerAnimation
         style={{ ...drawerStyle, ...style }}
         {...rest}
       />
