@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.9.2-next.1
+
+### Patch Changes
+
+- 70b8ba0a5: fix(CharacterCounter): Fixed screenreader properly conveying the remainder in a character counter on user input.
+
 ## 4.9.2-next.0
 
 ### Patch Changes
