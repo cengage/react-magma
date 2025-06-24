@@ -1,5 +1,4 @@
 const { createFilePath } = require('gatsby-source-filesystem');
-const path = require('path');
 
 // TODO: const propertiesJson = require('react-magma-dom/dist/properties.json');
 const propertiesJson = require('./old_properties.json');
@@ -62,46 +61,16 @@ exports.onCreateWebpackConfig = ({
   }
 };
 
-const getPathPrefix = path => {
-  if (/design/.test(path)) {
-    if (/intro/.test(path)) {
-      return 'design-intro';
-    }
-
-    return 'design';
-  } else if (/api/.test(path)) {
-    if (/intro/.test(path)) {
-      return 'api-intro';
-    }
-
-    return 'api';
-  } else if (/patterns/.test(path)) {
-    if (/intro/.test(path)) {
-      return 'patterns-intro';
-    }
-
-    return 'patterns';
-  } else if (/data-visualization/.test(path)) {
-    return 'data-visualization';
-  }
-};
-
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === 'Mdx') {
-    const parent = getNode(node.parent);
-    const fileAbsolutePath = parent && parent.absolutePath;
-    const prefix = getPathPrefix(fileAbsolutePath);
-    const filePath = createFilePath({ node, getNode });
-    // Extract only the filename from the file path
-    const fileName = `/${path.basename(filePath)}/`;
-    const fullFilePath = `/${prefix}${fileName.toLowerCase()}`;
+    const slug = createFilePath({ node, getNode, basePath: `pages` });
 
     createNodeField({
       name: 'slug',
       node,
-      value: fullFilePath,
+      value: slug,
     });
   }
 };
