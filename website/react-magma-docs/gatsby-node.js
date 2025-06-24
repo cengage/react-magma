@@ -61,16 +61,44 @@ exports.onCreateWebpackConfig = ({
   }
 };
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+exports.onCreateNode = async ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === 'Mdx') {
+    // Dynamically import ESM modules
+    const unified = (await import('unified')).unified;
+    const remarkParse = (await import('remark-parse')).default;
+    const remarkMdx = (await import('remark-mdx')).default;
+    const visit = (await import('unist-util-visit')).visit;
+
     const slug = createFilePath({ node, getNode, basePath: `pages` });
+    const content = node.body;
+    const tree = unified().use(remarkParse).use(remarkMdx).parse(content);
+    const pageNavigationHeadings = [];
+
+    visit(tree, 'heading', headingNode => {
+      if (headingNode.depth === 2) {
+        const text = headingNode.children
+          .filter(n => n.type === 'text' || n.type === 'inlineCode')
+          .map(n => n.value)
+          .join('');
+
+        if (text) {
+          pageNavigationHeadings.push(text);
+        }
+      }
+    });
 
     createNodeField({
       name: 'slug',
       node,
       value: slug,
+    });
+
+    createNodeField({
+      name: `headings`,
+      node,
+      value: pageNavigationHeadings,
     });
   }
 };

@@ -231,6 +231,7 @@ export const MainNav = ({ ...props }) => {
             }
             fields {
               slug
+              headings
             }
           }
         }
