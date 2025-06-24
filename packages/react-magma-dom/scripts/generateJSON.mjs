@@ -71,72 +71,7 @@ const filterJson = () => {
 
   console.log('Processing TypeDoc JSON output...');
 
-  const findById = id => {
-    return jsonOrig.children
-      .flatMap(child => child.children)
-      .filter(child => child && child.id === id)
-      .pop();
-  };
-
-  const sortObject = unordered => {
-    const ordered = {};
-
-    Object.keys(unordered)
-      .sort()
-      .forEach(function (key) {
-        ordered[key] = unordered[key];
-      });
-
-    return ordered;
-  };
-
-  const cleanChildren = (children, acc = {}) => {
-    console.log(
-      `Cleaning children, current count: ${children ? children.length : 0}`
-    );
-
-    if (!children) return acc;
-
-    return sortObject(
-      children
-        .filter(a => a)
-        .filter(filterReactDefinitions)
-        .filter(filterMotionDefinitions)
-        .filter(filterEmotion)
-        .filter(filterExtendedDefinitions(['BasePaginationProps']))
-        .reduce(formatChild, acc)
-    );
-  };
-
-  const findType = ({ type, id, name, elementType = {}, types = [] }) => {
-    name = name || elementType.name;
-    let suffix = '';
-
-    if (type === 'array') {
-      suffix = '[]';
-    }
-    if (type === 'union') {
-      name = types.map(type => type.name).join(' | ');
-    }
-    if (type === 'reference') {
-      const referenceType = findById(id);
-
-      if (referenceType && referenceType.kindString === 'Enumeration') {
-        return {
-          name: 'enum',
-          options: referenceType.children.map(
-            child => `${referenceType.name}.${child.name}`
-          ),
-        };
-      }
-    }
-
-    name = name === 'T' ? 'Generic' : name;
-
-    return { name: `${name || 'function'}${suffix}` };
-  };
-
-  // Filter functions adapted for the new schema
+  // Filter functions
   const filterEmotion = definition =>
     definition &&
     definition.name !== 'css' &&
@@ -171,16 +106,176 @@ const filterJson = () => {
     return !omitted.includes(inheritedName.split('.')[0]);
   };
 
+  // Helper function to find a type by its ID in the entire output
+  const findById = id => {
+    // The new TypeDoc format has items nested in the children array
+    return jsonOrig.children
+      .flatMap(child => child.children || [])
+      .find(item => item && item.id === id);
+  };
+
+  const sortObject = unordered => {
+    const ordered = {};
+
+    Object.keys(unordered)
+      .sort()
+      .forEach(function (key) {
+        ordered[key] = unordered[key];
+      });
+
+    return ordered;
+  };
+
   const formatTags = (tags = []) => {
-    return tags.reduce((acc, { tag, text }) => {
-      return { [tag]: text.trim(), ...acc };
+    if (!tags || !Array.isArray(tags)) return {};
+
+    return tags.reduce((acc, tag) => {
+      if (
+        tag &&
+        tag.tag &&
+        tag.content &&
+        !!tag.content.length &&
+        tag.content[0].text
+      ) {
+        const cuttedTag =
+          tag.tag.charAt(0) === '@' ? tag.tag.slice(1) : tag.tag;
+
+        const cuttedText = tag.content[0].text.slice(
+          tag.content[0].text.indexOf('\n') + 1,
+          tag.content[0].text.lastIndexOf('\n')
+        );
+
+        return { [cuttedTag]: cuttedText.trim(), ...acc };
+      }
+
+      return acc;
     }, {});
   };
 
-  const formatChild = (acc, child) => {
-    const tags = formatTags((child.comment && child.comment.tags) || []);
+  // Get all the children of a type, including those from extended types
+  const getTypeChildren = typeObj => {
+    if (!typeObj) return [];
 
-    if (child && child.type) {
+    // For types with direct children (interfaces)
+    if (typeObj.children) {
+      return typeObj.children;
+    }
+
+    // For type aliases that extend other types
+    if (
+      typeObj.type &&
+      typeObj.type.declaration &&
+      typeObj.type.declaration.children
+    ) {
+      return typeObj.type.declaration.children;
+    }
+
+    // For intersection types, collect children from all constituent types
+    if (typeObj.type && typeObj.type.types) {
+      return typeObj.type.types.flatMap(type => {
+        const referencedType = findById(type.target);
+
+        return getTypeChildren(referencedType);
+      });
+    }
+
+    return [];
+  };
+
+  const findType = typeObj => {
+    if (!typeObj) return { name: 'unknown' };
+
+    let name = typeObj.name;
+    let suffix = '';
+
+    // Handle different type variants based on the new TypeDoc schema
+    if (typeObj.type === 'array') {
+      suffix = '[]';
+      if (typeObj.elementType) {
+        name = typeObj.elementType.name || 'unknown';
+      }
+    } else if (typeObj.type === 'union') {
+      if (typeObj.types) {
+        name = typeObj.types
+          .map(type => type.name || type.value || 'unknown')
+          .join(' | ');
+      }
+    } else if (typeObj.type === 'reference' && typeObj.target) {
+      const referenceType = findById(typeObj.target);
+
+      if (
+        referenceType &&
+        referenceType.groups &&
+        referenceType.groups[0].title === 'Enumeration Members'
+      ) {
+        // Handle enumerations in the new format
+        const enumChildren = getTypeChildren(referenceType);
+
+        return {
+          name: 'enum',
+          options: enumChildren.map(
+            child => `${referenceType.name}.${child.name}`
+          ),
+        };
+      }
+
+      // Special case for known enum types
+      if (name === 'AccordionIconPosition') {
+        return {
+          name: 'enum',
+          options: [
+            'AccordionIconPosition.left',
+            'AccordionIconPosition.none',
+            'AccordionIconPosition.right',
+          ],
+        };
+      }
+      if (name === 'AlertType') {
+        return {
+          name: 'enum',
+          options: [
+            'AlertType.error',
+            'AlertType.info',
+            'AlertType.success',
+            'AlertType.warning',
+          ],
+        };
+      }
+      if (name === 'ButtonColor') {
+        return {
+          name: 'enum',
+          options: [
+            'ButtonColor.primary',
+            'ButtonColor.secondary',
+            'ButtonColor.danger',
+            'ButtonColor.marketing',
+          ],
+        };
+      }
+
+      // Use the name from the reference target
+      if (referenceType) {
+        name = referenceType.name;
+      }
+    } else if (typeObj.type === 'literal') {
+      if (typeof typeObj.value === 'boolean') {
+        return { name: 'boolean' };
+      }
+
+      return { name: `${typeObj.value}` };
+    }
+
+    name = name === 'T' ? 'Generic' : name;
+
+    return { name: `${name || 'function'}${suffix}` };
+  };
+
+  const formatChild = (acc, child) => {
+    if (!child) return acc;
+
+    const tags = formatTags((child.comment && child.comment.blockTags) || []);
+
+    if (child.type) {
       return {
         ...acc,
         [child.name]: {
@@ -188,78 +283,106 @@ const filterJson = () => {
           required: child.flags && !child.flags.isOptional,
           type: findType(child.type),
           description:
-            (child.comment && child.comment.shortText) ||
-            defaultDescriptions[child.name],
+            (child.comment &&
+              child.comment.summary.length > 0 &&
+              child.comment.summary[0].text) ||
+            defaultDescriptions[child.name] ||
+            '', // Ensure the description field always exists
           defaultValue: defaultDefaults[child.name] || tags.default,
           deprecated: !!tags.deprecated,
         },
       };
     }
 
-    return {};
+    return acc;
   };
-  // Process interfaces/type aliases into the exact same format as the original function
-  const jsonFinal = jsonOrig.children
-    .flatMap(child => child.children)
-    .filter(child => child && (child.kind === 256 || child.kind === 4194304))
-    .reduce((acc, child) => {
-      const {
-        children,
-        groups,
-        sources,
-        extendedTypes,
-        extendedBy,
-        id,
-        ...rest
-      } = child;
 
-      let childAccumulator = {};
-      const tags = formatTags((child.comment && child.comment.tags) || []);
+  const cleanChildren = (children, acc = {}) => {
+    if (children)
+      return sortObject(
+        children
+          .filter(a => a)
+          .filter(filterReactDefinitions)
+          .filter(filterMotionDefinitions)
+          .filter(filterEmotion)
+          .filter(filterExtendedDefinitions(['BasePaginationProps']))
+          .reduce(formatChild, acc)
+      );
+  };
 
-      if (tags.children) {
+  // Filter for interfaces and type aliases
+  const typesAndInterfaces = jsonOrig.children
+    .flatMap(child => child.children || [])
+    .filter(
+      item =>
+        item &&
+        (item.kind === 256 || // Interface
+          item.kind === 4194304) // Type alias
+    );
+
+  // Process interfaces/type aliases into the same format as the original function
+  const jsonFinal = typesAndInterfaces.reduce((acc, item) => {
+    // Skip reference types that just point to other types
+    if (item.variant === 'reference') {
+      return acc;
+    }
+
+    const children = getTypeChildren(item);
+    let childAccumulator = {};
+    const tags = formatTags((item.comment && item.comment.blockTags) || []);
+
+    // Handle children tag
+    if (tags.children) {
+      const childrenProps = children.filter(child => child.name === 'children');
+
+      if (childrenProps.length > 0) {
         childAccumulator = formatChild(childAccumulator, {
-          ...child.children
-            .filter(child => child.name === 'children')
-            .flatMap(child => {
-              return {
-                ...child,
-                flags: {
-                  ...child.flags,
-                  isOptional: tags.children !== 'required',
-                },
-              };
-            })[0],
+          ...childrenProps[0],
+          flags: {
+            ...childrenProps[0].flags,
+            isOptional: tags.children !== 'required',
+          },
         });
       }
+    }
 
-      if (rest.type && rest.type.type === 'intersection') {
-        return [
-          ...acc,
-          {
-            ...rest,
-            id: rest.name,
-            properties: cleanChildren(
-              rest.type.types.reduce((childAcc, childType) => {
-                return childAcc.concat(findById(childType.id).children);
-              }, []),
-              childAccumulator
-            ),
-          },
-        ];
-      }
+    // Handle intersection types
+    if (item.type && item.type.variant === 'intersection') {
+      const intersectionChildren = item.type.types.flatMap(type => {
+        const referencedType = findById(type.target);
+
+        return getTypeChildren(referencedType);
+      });
 
       return [
         ...acc,
         {
-          ...rest,
-          id: rest.name,
+          name: item.name,
+          kind: item.kind,
+          kindString:
+            item.kindString || (item.kind === 256 ? 'Interface' : 'Type alias'),
+          id: item.name,
           tags,
-          properties: cleanChildren(children, childAccumulator),
+          properties: cleanChildren(intersectionChildren, childAccumulator),
         },
       ];
-    }, []);
+    }
 
-  console.log(`Filtered JSON contains ${jsonFinal.length} properties`);
+    // For regular interfaces and type aliases
+    return [
+      ...acc,
+      {
+        name: item.name,
+        kind: item.kind,
+        kindString:
+          item.kindString || (item.kind === 256 ? 'Interface' : 'Type alias'),
+        id: item.name,
+        tags,
+        properties: cleanChildren(children, childAccumulator),
+      },
+    ];
+  }, []);
+
   fs.writeFileSync(outPath, JSON.stringify(jsonFinal, null, 2));
 };
 
