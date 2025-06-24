@@ -1,7 +1,5 @@
 const { createFilePath } = require('gatsby-source-filesystem');
-
-// TODO: const propertiesJson = require('react-magma-dom/dist/properties.json');
-const propertiesJson = require('./old_properties.json');
+const propertiesJson = require('react-magma-dom/dist/properties.json');
 
 exports.onCreateWebpackConfig = ({
   actions,
