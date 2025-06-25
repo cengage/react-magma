@@ -15,6 +15,7 @@ export default {
 
 export const Default = () => {
   const [checked, updateChecked] = React.useState(false);
+
   return (
     <>
       <FormGroup labelText="Choose one or more">
@@ -87,6 +88,7 @@ export const Default = () => {
 
 export const Inverse = () => {
   const [checked, updateChecked] = React.useState(false);
+
   return (
     <Card isInverse>
       <CardBody>

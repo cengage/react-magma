@@ -84,6 +84,7 @@ function getStyles(theme, isInverse: boolean) {
 
 export const GlobalStyles: React.FunctionComponent = () => {
   const isInverse = useIsInverse();
+
   return (
     <ThemeContext.Consumer>
       {theme => (

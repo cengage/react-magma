@@ -7,6 +7,7 @@ export function useComboboxItems(defaultItems, items) {
 
   function updateItemsRef(newItem) {
     const newItems = [...allItems.current, newItem];
+
     allItems.current = newItems;
     setDisplayItems(newItems);
   }
@@ -14,6 +15,7 @@ export function useComboboxItems(defaultItems, items) {
   React.useEffect(() => {
     if (!afterInitialRender.current) {
       afterInitialRender.current = true;
+
       return;
     }
 

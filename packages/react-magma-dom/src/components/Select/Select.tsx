@@ -112,6 +112,7 @@ export function Select<T>(props: SelectProps<T>) {
 
   function stateReducer(state, actionAndChanges) {
     const { type, changes } = actionAndChanges;
+
     switch (type) {
       case useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter:
         return {
@@ -126,6 +127,7 @@ export function Select<T>(props: SelectProps<T>) {
             selectedItem: state.selectedItem,
           };
         }
+
         return changes;
       default:
         return changes;

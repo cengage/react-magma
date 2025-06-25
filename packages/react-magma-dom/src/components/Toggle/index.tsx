@@ -89,13 +89,16 @@ export function buildIconContainerColor(props) {
       if (props.isChecked) {
         return transparentize(0.6, props.theme.colors.neutral100);
       }
+
       return 'transparent';
     }
+
     return props.theme.colors.success200;
   }
   if (props.disabled) {
     return transparentize(0.6, props.theme.colors.neutral);
   }
+
   return props.theme.colors.neutral100;
 }
 
@@ -104,6 +107,7 @@ function buildToggleBorderColor(props) {
     if (props.hasError) {
       return props.theme.colors.danger200;
     }
+
     return transparentize(0.5, props.theme.colors.neutral100);
   }
 
@@ -113,6 +117,7 @@ function buildToggleBorderColor(props) {
   if (props.isChecked) {
     return props.theme.colors.success;
   }
+
   return props.theme.colors.neutral;
 }
 

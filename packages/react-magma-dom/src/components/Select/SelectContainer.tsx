@@ -132,6 +132,7 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
         </StyledAdditionalContentWrapper>
       );
     }
+
     return props.children;
   }
 

@@ -83,28 +83,31 @@ const info = {
 
 export default info;
 
-export const Default = args => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  return (
-    <div>
-      <Transition
-        isOpen={isOpen}
-        {...args}
-        style={{ overflow: 'hidden', height: '250px', width: '250px' }}
-      >
-        <div
-          style={{
-            height: '250px',
-            width: '200px',
-            margin: '0 auto',
-            borderTop: '5px solid #546817',
-            backgroundColor: '#bada55',
-          }}
-        />
-      </Transition>
-      <Button onClick={() => setIsOpen(!isOpen)}>
-        {isOpen ? 'hide' : 'show'}
-      </Button>
-    </div>
-  );
+export const Default = {
+  render: args => {
+    const [isOpen, setIsOpen] = React.useState(false);
+
+    return (
+      <div>
+        <Transition
+          isOpen={isOpen}
+          {...args}
+          style={{ overflow: 'hidden', height: '250px', width: '250px' }}
+        >
+          <div
+            style={{
+              height: '250px',
+              width: '200px',
+              margin: '0 auto',
+              borderTop: '5px solid #546817',
+              backgroundColor: '#bada55',
+            }}
+          />
+        </Transition>
+        <Button onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? 'hide' : 'show'}
+        </Button>
+      </div>
+    );
+  },
 };

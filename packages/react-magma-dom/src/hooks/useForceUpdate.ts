@@ -5,5 +5,6 @@ export function useForceUpdate() {
   const update = React.useCallback(() => {
     setTick(tick => tick + 1);
   }, []);
+
   return update;
 }

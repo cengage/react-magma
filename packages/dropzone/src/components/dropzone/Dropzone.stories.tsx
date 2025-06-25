@@ -81,172 +81,186 @@ export default {
   },
 };
 
-export const Default = (args: DropzoneProps) => {
-  return (
-    <div
-      style={{
-        background: args.isInverse ? magma.colors.primary600 : 'none',
-        padding: '24px',
-      }}
-    >
-      <Dropzone
-        {...args}
-        accept={['.png', '.jpg', '.svg']}
-        maxFiles={5}
-        maxSize={1024 * 1024}
-        onSendFile={onSendFile}
-        sendFiles
-        labelText="Upload files"
-        helperMessage="Only PNG, JPG, and SVG files with a max size of 1MB"
-      />
-    </div>
-  );
+export const Default = {
+  render: (args: DropzoneProps) => {
+    return (
+      <div
+        style={{
+          background: args.isInverse ? magma.colors.primary600 : 'none',
+          padding: '24px',
+        }}
+      >
+        <Dropzone
+          {...args}
+          accept={['.png', '.jpg', '.svg']}
+          maxFiles={5}
+          maxSize={1024 * 1024}
+          onSendFile={onSendFile}
+          sendFiles
+          labelText="Upload files"
+          helperMessage="Only PNG, JPG, and SVG files with a max size of 1MB"
+        />
+      </div>
+    );
+  },
 };
 
-export const NoLimits = (args: DropzoneProps) => {
-  return (
-    <div
-      style={{
-        background: args.isInverse ? magma.colors.primary600 : 'none',
-        padding: '24px',
-      }}
-    >
-      <Dropzone
-        {...args}
-        onSendFile={onSendFile}
-        labelText="Upload files"
-        helperMessage="It's a free for all, upload anything."
-      />
-    </div>
-  );
+export const NoLimits = {
+  render: (args: DropzoneProps) => {
+    return (
+      <div
+        style={{
+          background: args.isInverse ? magma.colors.primary600 : 'none',
+          padding: '24px',
+        }}
+      >
+        <Dropzone
+          {...args}
+          onSendFile={onSendFile}
+          labelText="Upload files"
+          helperMessage="It's a free for all, upload anything."
+        />
+      </div>
+    );
+  },
 };
 
-export const Image = (args: DropzoneProps) => {
-  const [file, setFile] = useState<string>();
+export const Image = {
+  render: (args: DropzoneProps) => {
+    const [file, setFile] = useState<string>();
 
-  const onSendFile = (props: OnSendFileProps) => {
-    const { file, onFinish } = props;
-    const reader = new FileReader();
-    reader.onload = function (evt) {
-      setFile(
-        (evt &&
-          evt.target &&
-          evt.target.result &&
-          evt.target.result.toString()) ||
-          ''
-      );
-      onFinish && onFinish({ file });
+    const onSendFile = (props: OnSendFileProps) => {
+      const { file, onFinish } = props;
+      const reader = new FileReader();
+
+      reader.onload = function (evt) {
+        setFile(
+          (evt &&
+            evt.target &&
+            evt.target.result &&
+            evt.target.result.toString()) ||
+            ''
+        );
+        onFinish && onFinish({ file });
+      };
+      reader.readAsDataURL(file);
     };
-    reader.readAsDataURL(file);
-  };
 
-  const onDeleteFile = () => {
-    setFile(undefined);
-  };
+    const onDeleteFile = () => {
+      setFile(undefined);
+    };
 
-  return (
-    <div
-      style={{
-        background: args.isInverse ? magma.colors.primary600 : 'none',
-        padding: '24px',
-      }}
-    >
-      <Dropzone
-        {...args}
-        onSendFile={onSendFile}
-        accept={['image/*']}
-        helperMessage="Only Image files"
-        sendFiles
-        onDeleteFile={onDeleteFile}
-      />
-      {file && <img src={file} alt="" />}
-    </div>
-  );
+    return (
+      <div
+        style={{
+          background: args.isInverse ? magma.colors.primary600 : 'none',
+          padding: '24px',
+        }}
+      >
+        <Dropzone
+          {...args}
+          onSendFile={onSendFile}
+          accept={['image/*']}
+          helperMessage="Only Image files"
+          sendFiles
+          onDeleteFile={onDeleteFile}
+        />
+        {file && <img src={file} alt="" />}
+      </div>
+    );
+  },
 };
 
-export const Text = (args: DropzoneProps) => {
-  const [file, setFile] = useState<string>();
+export const Text = {
+  render: (args: DropzoneProps) => {
+    const [file, setFile] = useState<string>();
 
-  const onSendFile = (props: OnSendFileProps) => {
-    const { file, onFinish } = props;
-    const reader = new FileReader();
-    reader.onload = function (evt) {
-      setFile(
-        (evt &&
-          evt.target &&
-          evt.target.result &&
-          evt.target.result.toString()) ||
-          ''
-      );
-      onFinish && onFinish({ file });
+    const onSendFile = (props: OnSendFileProps) => {
+      const { file, onFinish } = props;
+      const reader = new FileReader();
+
+      reader.onload = function (evt) {
+        setFile(
+          (evt &&
+            evt.target &&
+            evt.target.result &&
+            evt.target.result.toString()) ||
+            ''
+        );
+        onFinish && onFinish({ file });
+      };
+      reader.readAsText(file);
     };
-    reader.readAsText(file);
-  };
 
-  const onDeleteFile = () => {
-    setFile(undefined);
-  };
+    const onDeleteFile = () => {
+      setFile(undefined);
+    };
 
-  return (
-    <div
-      style={{
-        background: args.isInverse ? magma.colors.primary600 : 'none',
-        padding: '24px',
-      }}
-    >
-      <Dropzone
-        {...args}
-        onSendFile={onSendFile}
-        accept={['.txt', '.csv']}
-        helperMessage="Only TXT or CSV files"
-        sendFiles
-        onDeleteFile={onDeleteFile}
-      />
-      {file && <Textarea textareaStyle={{ height: '250px' }} value={file} />}
-    </div>
-  );
+    return (
+      <div
+        style={{
+          background: args.isInverse ? magma.colors.primary600 : 'none',
+          padding: '24px',
+        }}
+      >
+        <Dropzone
+          {...args}
+          onSendFile={onSendFile}
+          accept={['.txt', '.csv']}
+          helperMessage="Only TXT or CSV files"
+          sendFiles
+          onDeleteFile={onDeleteFile}
+        />
+        {file && <Textarea textareaStyle={{ height: '250px' }} value={file} />}
+      </div>
+    );
+  },
 };
 
-export const Csv = (args: DropzoneProps) => {
-  const [file, setFile] = useState<any>();
-  const [columns, setColumns] = useState<any>();
+export const Csv = {
+  render: (args: DropzoneProps) => {
+    const [file, setFile] = useState<any>();
+    const [columns, setColumns] = useState<any>();
 
-  const onSendFile = (props: OnSendFileProps) => {
-    const { file, onFinish } = props;
-    const reader = new FileReader();
-    reader.onload = function (evt) {
-      const [columns, rows] =
-        (evt &&
-          evt.target &&
-          evt.target.result &&
-          csvJSON(evt.target.result.toString())) ||
-        [];
-      setColumns(columns);
-      setFile(rows);
-      onFinish && onFinish({ file });
+    const onSendFile = (props: OnSendFileProps) => {
+      const { file, onFinish } = props;
+      const reader = new FileReader();
+
+      reader.onload = function (evt) {
+        const [columns, rows] =
+          (evt &&
+            evt.target &&
+            evt.target.result &&
+            csvJSON(evt.target.result.toString())) ||
+          [];
+
+        setColumns(columns);
+        setFile(rows);
+        onFinish && onFinish({ file });
+      };
+      reader.readAsText(file);
     };
-    reader.readAsText(file);
-  };
-  const onDeleteFile = () => {
-    setFile(undefined);
-  };
+    const onDeleteFile = () => {
+      setFile(undefined);
+    };
 
-  return (
-    <div
-      style={{
-        background: args.isInverse ? magma.colors.primary600 : 'none',
-        padding: '24px',
-      }}
-    >
-      <Dropzone
-        {...args}
-        onSendFile={onSendFile}
-        accept={['.csv']}
-        helperMessage="Only CSV files"
-        sendFiles
-        onDeleteFile={onDeleteFile}
-      />
-      {file && <Datagrid columns={columns} rows={file} />}
-    </div>
-  );
+    return (
+      <div
+        style={{
+          background: args.isInverse ? magma.colors.primary600 : 'none',
+          padding: '24px',
+        }}
+      >
+        <Dropzone
+          {...args}
+          onSendFile={onSendFile}
+          accept={['.csv']}
+          helperMessage="Only CSV files"
+          sendFiles
+          onDeleteFile={onDeleteFile}
+        />
+        {file && <Datagrid columns={columns} rows={file} />}
+      </div>
+    );
+  },
 };

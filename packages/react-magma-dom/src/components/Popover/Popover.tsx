@@ -135,6 +135,7 @@ export function hasActiveElementsChecker(ref) {
       ) ?? []
     ).filter((element: HTMLElement) => {
       const style = window.getComputedStyle(element);
+
       return (
         element instanceof HTMLElement &&
         style.display !== 'none' &&
@@ -245,6 +246,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       if (hoverable && !isDisabled) {
         // Check for active elements right when hovering
         const hasActive = hasActiveElementsChecker(contentRef);
+
         if (!hasActive) {
           setIsOpen(true);
         }

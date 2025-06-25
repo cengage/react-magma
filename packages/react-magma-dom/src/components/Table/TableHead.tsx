@@ -16,6 +16,7 @@ export const TableHead = React.forwardRef<
   TableHeadProps
 >((props, ref) => {
   const { children, testId, ...other } = props;
+
   return (
     <thead {...other} ref={ref} data-testid={testId}>
       {children}

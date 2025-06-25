@@ -1,4 +1,7 @@
+import { dirname, join } from 'path';
+
 const path = require('path');
+
 const toPath = _path => path.join(process.cwd(), _path);
 
 module.exports = {
@@ -6,21 +9,18 @@ module.exports = {
     '../packages/react-magma-dom/src/components/**/*.stories.tsx',
     '../packages/charts/src/components/**/*.stories.tsx',
     '../packages/dropzone/src/components/**/*.stories.tsx',
-    '../packages/schema-renderer/src/components/**/*.stories.tsx',
-    '../patterns/header/src/components/**/*.stories.tsx',
   ],
+
   addons: [
-    '@storybook/addon-docs',
-    '@storybook/addon-actions',
-    '@storybook/addon-a11y',
-    '@storybook/addon-toolbars',
-    '@storybook/addon-controls',
-    '@storybook/addon-measure',
-    '@storybook/addon-essentials',
+    getAbsolutePath('@storybook/addon-docs'),
+    getAbsolutePath('@storybook/addon-a11y'),
+    getAbsolutePath('@storybook/addon-webpack5-compiler-babel'),
   ],
+
   typescript: {
     reactDocgen: false,
   },
+
   webpackFinal: async config => {
     config.module.rules[0].exclude = /node_modules\/(?!(@carbon)\/).*/;
 
@@ -31,8 +31,8 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           sourceType: 'unambiguous',
-        }
-      }
+        },
+      },
     });
 
     config.resolve = {
@@ -45,4 +45,15 @@ module.exports = {
 
     return config;
   },
+
+  framework: {
+    name: getAbsolutePath('@storybook/react-webpack5'),
+    options: {},
+  },
+
+  docs: {},
 };
+
+function getAbsolutePath(value) {
+  return dirname(require.resolve(join(value, 'package.json')));
+}

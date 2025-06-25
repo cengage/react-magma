@@ -117,6 +117,7 @@ function buildButtonAlignment(props) {
   if (props.alignment === ButtonGroupAlignment.fill) {
     return 'stretch';
   }
+
   return 'start';
 }
 
@@ -128,6 +129,7 @@ function buildNoSpaceBorderColor(props) {
     if (props.color === ButtonColor.subtle) {
       return transparentize(0.8, props.theme.colors.neutral300);
     }
+
     return props.theme.colors.neutral100;
   }
   if (props.color === ButtonColor.secondary) {
@@ -136,6 +138,7 @@ function buildNoSpaceBorderColor(props) {
   if (props.color === ButtonColor.subtle) {
     return props.theme.colors.neutral300;
   }
+
   return props.theme.colors.neutral100;
 }
 

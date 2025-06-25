@@ -146,12 +146,14 @@ export const ToggleButtonGroup = React.forwardRef<
     const item = child as React.ReactElement<
       React.PropsWithChildren<ToggleButtonProps>
     >;
+
     if (item.type === ToggleButton && exclusive) {
       return React.cloneElement(item, {
         key: index,
         isChecked: selectedValues.includes(item.props.value?.toString()),
       });
     }
+
     return child;
   });
 

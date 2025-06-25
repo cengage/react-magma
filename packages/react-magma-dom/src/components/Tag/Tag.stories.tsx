@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 import { AccountCircleIcon } from 'react-magma-icons';
 
 import { Button } from '../Button';
@@ -8,7 +8,7 @@ import { Card, CardBody } from '../Card';
 
 import { Tag, TagColor, TagProps, TagSize } from '.';
 
-const Template: Story<TagProps> = args => {
+const Template: StoryFn<TagProps> = args => {
   return (
     <Card isInverse={args.isInverse}>
       <CardBody>
@@ -147,99 +147,109 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  disabled: false,
-  isInverse: false,
+export const Default = {
+  render: Template,
+
+  args: {
+    disabled: false,
+    isInverse: false,
+  },
 };
 
-export const OnClick = args => {
-  const [counter, setCounter] = React.useState<number>(0);
-  function updateCounter() {
-    setCounter(count => count + 1);
-  }
-  return (
-    <Card isInverse={args.isInverse}>
-      <CardBody>
-        <p>
-          <strong>Counter: </strong> <span>{counter}</span>
-        </p>
-        <Tag {...args} onClick={updateCounter}>
-          Text Label
-        </Tag>
-      </CardBody>
-    </Card>
-  );
-};
-OnClick.args = {};
+export const OnClick = {
+  render: args => {
+    const [counter, setCounter] = React.useState<number>(0);
 
-export const WithDelete = args => {
-  const [isVisibleDefault, setIsVisibleDefault] = React.useState(true);
-  const [isVisibleIcon, setIsVisibleIcon] = React.useState(true);
-  const [isVisibleSmall, setIsVisibleSmall] = React.useState(true);
-  const [isVisibleSmallIcon, setIsVisibleSmallIcon] = React.useState(true);
+    function updateCounter() {
+      setCounter(count => count + 1);
+    }
 
-  return (
-    <Card isInverse={args.isInverse}>
-      <CardBody>
-        <p>
-          {isVisibleDefault && (
-            <Tag {...args} onDelete={() => setIsVisibleDefault(false)}>
-              Delete
-            </Tag>
-          )}
-        </p>
-        <p>
-          {isVisibleIcon && (
-            <Tag
-              {...args}
-              onDelete={() => setIsVisibleIcon(false)}
-              icon={<AccountCircleIcon />}
-            >
-              Delete Icon
-            </Tag>
-          )}
-        </p>
-        <p>
-          {isVisibleSmall && (
-            <Tag
-              size={TagSize.small}
-              {...args}
-              onDelete={() => setIsVisibleSmall(false)}
-            >
-              Delete Small
-            </Tag>
-          )}
-        </p>
-        <p>
-          {isVisibleSmallIcon && (
-            <Tag
-              size={TagSize.small}
-              {...args}
-              onDelete={() => setIsVisibleSmallIcon(false)}
-              icon={<AccountCircleIcon />}
-            >
-              Delete Icon Small
-            </Tag>
-          )}
-        </p>
+    return (
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <p>
+            <strong>Counter: </strong> <span>{counter}</span>
+          </p>
+          <Tag {...args} onClick={updateCounter}>
+            Text Label
+          </Tag>
+        </CardBody>
+      </Card>
+    );
+  },
 
-        <Button
-          isInverse={args.isInverse}
-          onClick={() => {
-            setIsVisibleDefault(true);
-            setIsVisibleIcon(true);
-            setIsVisibleSmall(true);
-            setIsVisibleSmallIcon(true);
-          }}
-        >
-          Make all tags visible
-        </Button>
-      </CardBody>
-    </Card>
-  );
+  args: {},
 };
 
-WithDelete.args = {
-  ...Default.args,
+export const WithDelete = {
+  render: args => {
+    const [isVisibleDefault, setIsVisibleDefault] = React.useState(true);
+    const [isVisibleIcon, setIsVisibleIcon] = React.useState(true);
+    const [isVisibleSmall, setIsVisibleSmall] = React.useState(true);
+    const [isVisibleSmallIcon, setIsVisibleSmallIcon] = React.useState(true);
+
+    return (
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <p>
+            {isVisibleDefault && (
+              <Tag {...args} onDelete={() => setIsVisibleDefault(false)}>
+                Delete
+              </Tag>
+            )}
+          </p>
+          <p>
+            {isVisibleIcon && (
+              <Tag
+                {...args}
+                onDelete={() => setIsVisibleIcon(false)}
+                icon={<AccountCircleIcon />}
+              >
+                Delete Icon
+              </Tag>
+            )}
+          </p>
+          <p>
+            {isVisibleSmall && (
+              <Tag
+                size={TagSize.small}
+                {...args}
+                onDelete={() => setIsVisibleSmall(false)}
+              >
+                Delete Small
+              </Tag>
+            )}
+          </p>
+          <p>
+            {isVisibleSmallIcon && (
+              <Tag
+                size={TagSize.small}
+                {...args}
+                onDelete={() => setIsVisibleSmallIcon(false)}
+                icon={<AccountCircleIcon />}
+              >
+                Delete Icon Small
+              </Tag>
+            )}
+          </p>
+
+          <Button
+            isInverse={args.isInverse}
+            onClick={() => {
+              setIsVisibleDefault(true);
+              setIsVisibleIcon(true);
+              setIsVisibleSmall(true);
+              setIsVisibleSmallIcon(true);
+            }}
+          >
+            Make all tags visible
+          </Button>
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    ...Default.args,
+  },
 };

@@ -72,6 +72,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     if (isItemDisabled(filteredItems[index])) {
       return -1;
     }
+
     return index;
   }
 
@@ -139,6 +140,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
 
   function stateReducer(state, actionAndChanges) {
     const { type, changes } = actionAndChanges;
+
     switch (type) {
       case useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter:
         return {
@@ -153,6 +155,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
             selectedItem: state.selectedItem,
           };
         }
+
         return changes;
       default:
         return changes;
@@ -242,6 +245,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
 
   function itemsArrayToString(itemsArray: any[]) {
     const allItems = [];
+
     itemsArray.map(item => {
       if (typeof item === 'string') {
         allItems.push(item);
@@ -299,6 +303,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         {selectedItems && selectedItems.length > 0 ? (
           selectedItems.map((multiSelectedItem, index) => {
             const multiSelectedItemString = itemToString(multiSelectedItem);
+
             return (
               <SelectedItemButton
                 aria-label={i18n.multiSelect.selectedItemButtonAriaLabel.replace(

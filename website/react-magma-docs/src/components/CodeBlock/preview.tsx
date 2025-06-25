@@ -1,11 +1,9 @@
 import React, { HTMLAttributes, useContext } from 'react';
 
 import { transform } from '@babel/core';
-import * as HEADER from '@cengage-patterns/header';
 import styled from '@emotion/styled';
 import * as CHARTS from '@react-magma/charts';
 import * as DROPZONE from '@react-magma/dropzone';
-import * as SCHEMA from '@react-magma/schema-renderer';
 import { es, zhCN } from 'date-fns/locale';
 import { Language } from 'prism-react-renderer';
 import { LiveError, LiveProvider, LivePreview } from 'react-live';
@@ -66,8 +64,6 @@ export const Preview = ({ ...props }: PreviewProps) => {
           ...MAGMA,
           ...ICONS,
           ICONS,
-          ...HEADER,
-          ...SCHEMA,
           ...DROPZONE,
           ...CHARTS,
         }}
@@ -91,6 +87,7 @@ function moveImportsToScope(data: PreviewData): PreviewData {
   const newData = { ...data };
 
   const imports = [];
+
   while ((singleImportMatch = findAllImports.exec(data.code)) !== null) {
     const singleImportString = singleImportMatch[0];
     const findPackageName = /.*'(.+)'.*/;

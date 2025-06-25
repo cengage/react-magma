@@ -260,6 +260,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         onClick={(e: any) => {
           if (isDisabled) {
             e.stopPropagation();
+
             return;
           }
 

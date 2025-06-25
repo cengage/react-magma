@@ -69,6 +69,7 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
         tabsWrapperRef.current,
         theme.direction
       );
+
       // use 1 for the potential rounding error with browser zooms.
       showStartScroll = isRtl
         ? scrollLeft < scrollWidth - clientWidth - 1
@@ -90,6 +91,7 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
     const handleResize = debounce(updateScrollButtonState, 100);
 
     window.addEventListener('resize', handleResize);
+
     return () => {
       handleResize.clear();
       window.removeEventListener('resize', handleResize);
@@ -122,12 +124,14 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
 export const ScrollSpy = ({ handleScroll }) => {
   const isInViewPort = (entry, offset = 0) => {
     const rect = entry.boundingClientRect;
+
     return rect.top <= offset && rect.bottom >= offset;
   };
 
   useLayoutEffect(() => {
     const eachArea = document.querySelectorAll('[data-scrollspy]');
     const scrollables = [].slice.call(eachArea);
+
     for (const scrollable of scrollables) {
       //Fixes Jest
       if (!window.IntersectionObserver) return;
@@ -144,6 +148,7 @@ export const ScrollSpy = ({ handleScroll }) => {
           threshold: Array.from({ length: 1000 }, (_, i) => (i + 1) * 0.001),
         }
       );
+
       observer.observe(scrollable);
     }
   }, [handleScroll]);

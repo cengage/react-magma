@@ -74,6 +74,7 @@ export function useTimePicker(props: UseTimePickerProps) {
       `^([01]?[0-9]|2[0-3]):[0-5][0-9]( (${amPmRegex}))?$`,
       'g'
     );
+
     return timeRegex.test(passedInTime);
   }
 

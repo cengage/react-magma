@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { graphql, Link, StaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import {
   magma,
@@ -24,17 +24,11 @@ const NAV_TABS = {
   API_INTRO: 'api_intro',
   DESIGN: 'design',
   DESIGN_INTRO: 'design_intro',
-  PATTERNS: 'patterns',
-  PATTERNS_INTRO: 'patterns_intro',
   DATA_VISUALIZATION: 'data_visualization',
 };
 
 // Special case pages that don't have secondary navigation.
-const PAGES_NO_NAV = [
-  'contribution_guidelines',
-  'getting_started_patterns',
-  'select_migration',
-];
+const PAGES_NO_NAV = ['contribution_guidelines', 'select_migration'];
 
 const TabsWrapper = styled.div`
   position: sticky;
@@ -119,246 +113,160 @@ function getDataNode(data, name) {
 
 export const PageContent = ({ children, componentName, type }) => {
   const isInverse = useIsInverse();
+  const data = useStaticQuery(graphql`
+    query SideNavQuery {
+      designComponentDocs: allMdx(
+        filter: {
+          internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
+        }
+        sort: { frontmatter: { title: ASC } }
+      ) {
+        edges {
+          ...navFields
+        }
+      }
+      apiDocs: allMdx(
+        filter: {
+          internal: { contentFilePath: { glob: "**/src/pages/api/**" } }
+        }
+        sort: { frontmatter: { title: ASC } }
+      ) {
+        edges {
+          ...navFields
+        }
+      }
+      dataVisualization: allMdx(
+        filter: {
+          internal: {
+            contentFilePath: { glob: "**/src/pages/data-visualization/**" }
+          }
+        }
+        sort: { frontmatter: { order: ASC } }
+      ) {
+        edges {
+          ...navFields
+        }
+      }
+      designIntro: allMdx(
+        filter: {
+          internal: {
+            contentFilePath: { glob: "**/src/pages/design-intro/**" }
+          }
+        }
+        sort: { frontmatter: { order: ASC } }
+      ) {
+        edges {
+          ...navFields
+        }
+      }
+      apiIntro: allMdx(
+        filter: {
+          internal: { contentFilePath: { glob: "**/src/pages/api-intro/**" } }
+        }
+        sort: { frontmatter: { order: ASC } }
+      ) {
+        edges {
+          ...navFields
+        }
+      }
+    }
+  `);
+
+  const apiDocs = getDataNode(data.apiDocs, componentName);
+  const designDocs = getDataNode(data.designComponentDocs, componentName);
+
+  const dataVisualization = getDataNode(data.dataVisualization, componentName);
+
+  const designIntro = getDataNode(data.designIntro, componentName);
+  const apiIntro = getDataNode(data.apiIntro, componentName);
+
+  const designLink = designDocs?.node.fields.slug;
+  const apiLink = apiDocs?.node.fields.slug;
+  const dataVisualizationLink = dataVisualization?.node.fields.slug;
+
+  const hasDocs = !!(apiDocs || designDocs || dataVisualization);
+
+  let apiNavTabToLink = apiLink;
+
+  if (dataVisualization) {
+    apiNavTabToLink = dataVisualizationLink;
+  }
+
+  const designNavTabToLink = designLink;
+
+  const getPageData = () => {
+    if (dataVisualization) {
+      if (type === NAV_TABS.DATA_VISUALIZATION) {
+        return dataVisualization;
+      }
+    }
+    if (apiDocs || designDocs) {
+      if (type === NAV_TABS.API) {
+        return apiDocs;
+      }
+      if (type === NAV_TABS.DESIGN) {
+        return designDocs;
+      }
+    }
+    if (designIntro || apiIntro) {
+      if (type === NAV_TABS.API_INTRO) {
+        return apiIntro;
+      }
+      if (type === NAV_TABS.DESIGN_INTRO) {
+        return designIntro;
+      }
+    }
+  };
 
   return (
-    <StaticQuery
-      query={graphql`
-        query SideNavQuery {
-          designComponentDocs: allMdx(
-            filter: {
-              internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
-              frontmatter: { isPattern: { ne: true } }
-            }
-            sort: { frontmatter: { title: ASC } }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          designPatternDocs: allMdx(
-            filter: {
-              internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
-              frontmatter: { isPattern: { eq: true } }
-            }
-            sort: { frontmatter: { title: ASC } }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          apiDocs: allMdx(
-            filter: {
-              internal: { contentFilePath: { glob: "**/src/pages/api/**" } }
-            }
-            sort: { frontmatter: { title: ASC } }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          patternsDocs: allMdx(
-            filter: {
-              internal: {
-                contentFilePath: { glob: "**/src/pages/patterns/**" }
-              }
-            }
-            sort: { frontmatter: { title: ASC } }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          dataVisualization: allMdx(
-            filter: {
-              internal: {
-                contentFilePath: { glob: "**/src/pages/data-visualization/**" }
-              }
-            }
-            sort: { frontmatter: { order: ASC } }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          designIntro: allMdx(
-            filter: {
-              internal: {
-                contentFilePath: { glob: "**/src/pages/design-intro/**" }
-              }
-            }
-            sort: { frontmatter: { order: ASC } }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          apiIntro: allMdx(
-            filter: {
-              internal: {
-                contentFilePath: { glob: "**/src/pages/api-intro/**" }
-              }
-            }
-            sort: { frontmatter: { order: ASC } }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          patternsIntro: allMdx(
-            filter: {
-              internal: {
-                contentFilePath: { glob: "**/src/pages/patterns-intro/**" }
-              }
-            }
-            sort: { frontmatter: { order: ASC } }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-        }
-      `}
-      render={data => {
-        const apiDocs = getDataNode(data.apiDocs, componentName);
-        const designDocs = getDataNode(data.designComponentDocs, componentName);
-        const patternsDocs = getDataNode(data.patternsDocs, componentName);
-        const designPatternDocs = getDataNode(
-          data.designPatternDocs,
-          componentName
-        );
-        const dataVisualization = getDataNode(
-          data.dataVisualization,
-          componentName
-        );
+    <>
+      {hasDocs ? (
+        <>
+          <StyledTabsContainer isInverse={isInverse}>
+            <TabsWrapper>
+              <StyledTabs aria-label="">
+                {apiDocs ? (
+                  <NavTab
+                    component={<Link to={apiNavTabToLink}>Implementation</Link>}
+                    isActive={type === NAV_TABS.API}
+                  />
+                ) : null}
+                {designDocs ? (
+                  <NavTab
+                    component={<Link to={designNavTabToLink}>Design</Link>}
+                    isActive={type === NAV_TABS.DESIGN}
+                  />
+                ) : null}
+              </StyledTabs>
+            </TabsWrapper>
 
-        const designIntro = getDataNode(data.designIntro, componentName);
-        const apiIntro = getDataNode(data.apiIntro, componentName);
-        const patternsIntro = getDataNode(data.patternsIntro, componentName);
-
-        const designLink = designDocs?.node.fields.slug;
-        const apiLink = apiDocs?.node.fields.slug;
-        const patternsLink = patternsDocs?.node.fields.slug;
-        const designPatternsLink = designPatternDocs?.node.fields.slug;
-        const dataVisualizationLink = dataVisualization?.node.fields.slug;
-
-        const hasDocs = !!(
-          apiDocs ||
-          designDocs ||
-          patternsDocs ||
-          designPatternDocs ||
-          dataVisualization
-        );
-
-        let apiNavTabToLink = apiLink;
-
-        if (patternsDocs) {
-          apiNavTabToLink = patternsLink;
-        } else if (dataVisualization) {
-          apiNavTabToLink = dataVisualizationLink;
-        }
-
-        let designNavTabToLink = designLink;
-
-        if (designPatternDocs) {
-          designNavTabToLink = designPatternsLink;
-        }
-
-        const getPageData = () => {
-          if (designPatternDocs || patternsDocs) {
-            if (type === NAV_TABS.DESIGN) {
-              return designPatternDocs;
-            }
-            if (type === NAV_TABS.API) {
-              return patternsDocs;
-            }
-          }
-          if (dataVisualization) {
-            if (type === NAV_TABS.DATA_VISUALIZATION) {
-              return dataVisualization;
-            }
-          }
-          if (apiDocs || designDocs) {
-            if (type === NAV_TABS.API) {
-              return apiDocs;
-            }
-            if (type === NAV_TABS.DESIGN) {
-              return designDocs;
-            }
-          }
-          if (designIntro || patternsIntro || apiIntro) {
-            if (type === NAV_TABS.API_INTRO) {
-              return apiIntro;
-            }
-            if (type === NAV_TABS.DESIGN_INTRO) {
-              return designIntro;
-            }
-            if (type === NAV_TABS.PATTERNS_INTRO) {
-              return patternsIntro;
-            }
-          }
-        };
-
-        return (
-          <>
-            {hasDocs ? (
-              <>
-                <StyledTabsContainer isInverse={isInverse}>
-                  <TabsWrapper>
-                    <StyledTabs aria-label="">
-                      {apiDocs || patternsDocs ? (
-                        <NavTab
-                          component={
-                            <Link to={apiNavTabToLink}>Implementation</Link>
-                          }
-                          isActive={type === NAV_TABS.API}
-                        />
-                      ) : null}
-                      {designDocs || designPatternDocs ? (
-                        <NavTab
-                          component={
-                            <Link to={designNavTabToLink}>Design</Link>
-                          }
-                          isActive={type === NAV_TABS.DESIGN}
-                        />
-                      ) : null}
-                    </StyledTabs>
-                  </TabsWrapper>
-
-                  <StyledTabPanelsContainer>
-                    <StyledTabPanel>
-                      <Content>{children}</Content>
-                      <PageNavigation>
-                        <SubPageTabs
-                          pageData={getPageData()}
-                          hasHorizontalNav={hasDocs}
-                        />
-                      </PageNavigation>
-                    </StyledTabPanel>
-                  </StyledTabPanelsContainer>
-                </StyledTabsContainer>
-              </>
-            ) : (
-              <div
-                style={{ display: 'flex', background: magma.colors.neutral100 }}
-              >
-                {PAGES_NO_NAV.includes(componentName) ? (
-                  <ContentOutsideDocs>{children}</ContentOutsideDocs>
-                ) : (
-                  <Content>{children}</Content>
-                )}
-
+            <StyledTabPanelsContainer>
+              <StyledTabPanel>
+                <Content>{children}</Content>
                 <PageNavigation>
                   <SubPageTabs
                     pageData={getPageData()}
                     hasHorizontalNav={hasDocs}
                   />
                 </PageNavigation>
-              </div>
-            )}
-          </>
-        );
-      }}
-    />
+              </StyledTabPanel>
+            </StyledTabPanelsContainer>
+          </StyledTabsContainer>
+        </>
+      ) : (
+        <div style={{ display: 'flex', background: magma.colors.neutral100 }}>
+          {PAGES_NO_NAV.includes(componentName) ? (
+            <ContentOutsideDocs>{children}</ContentOutsideDocs>
+          ) : (
+            <Content>{children}</Content>
+          )}
+
+          <PageNavigation>
+            <SubPageTabs pageData={getPageData()} hasHorizontalNav={hasDocs} />
+          </PageNavigation>
+        </div>
+      )}
+    </>
   );
 };
 
@@ -370,8 +278,6 @@ PageContent.propTypes = {
     'api_intro',
     'design',
     'design_intro',
-    'patterns',
-    'patterns_intro',
     'data_visualization',
   ]),
 };

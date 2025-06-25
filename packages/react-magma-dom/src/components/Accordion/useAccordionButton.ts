@@ -59,6 +59,7 @@ export function useAccordionButton(
 
   const focusLast = () => {
     const arrLength = buttonRefArray.current.length;
+
     (
       buttonRefArray.current[arrLength - 1].current as HTMLButtonElement
     ).focus();

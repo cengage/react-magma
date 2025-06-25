@@ -73,11 +73,13 @@ export function getTreeItemLabelColor(
     if (isInverse) {
       return transparentize(0.6, theme.colors.neutral100);
     }
+
     return transparentize(0.6, theme.colors.neutral500);
   }
   if (isInverse) {
     return theme.colors.neutral100;
   }
+
   return theme.colors.neutral700;
 }
 
@@ -126,6 +128,7 @@ export function getChildrenItemIds(children, status = '') {
           child.props.children,
           childStatus
         );
+
         itemIds = itemIds.concat(nestedItemIds);
       }
     }
@@ -146,6 +149,7 @@ export function getChildrenItemIdsFlat(children) {
 
       if (child.props?.children) {
         const nestedItemIds = getChildrenItemIdsFlat(child.props.children);
+
         itemIds = itemIds.concat(nestedItemIds);
       }
     }
@@ -158,10 +162,12 @@ export function getChildrenItemIdsFlat(children) {
 export function filterNullEntries(obj) {
   if (Array.isArray(obj.current)) {
     const filteredArray = obj.current.filter(item => item?.current !== null);
+
     if (filteredArray.length > 0) {
       return { current: filteredArray };
     }
   }
+
   return {};
 }
 
@@ -230,6 +236,7 @@ const areChildrenValid = children => {
 
       if (areChildrenValid(nestedChildren)) {
         hasValidChild = true;
+
         return hasValidChild;
       }
     }
@@ -416,6 +423,7 @@ const getChildren = ({
   itemId: TreeViewItemInterface['itemId'];
 }) => {
   const childrenIds = getChildrenIds({ items, itemId });
+
   return items.filter(item => childrenIds.includes(item.itemId));
 };
 
@@ -501,6 +509,7 @@ const filterTopLevelItemsIfNeeded = (
 
   return preselectedItems.filter(item => {
     const itemData = treeViewData.find(i => i.itemId === item.itemId);
+
     return itemData ? itemData.parentId !== null : false;
   });
 };
@@ -789,6 +798,7 @@ export const toggleAllMulti = ({
       ) {
         return item;
       }
+
       return { ...item, checkedStatus };
     });
   }
@@ -798,6 +808,7 @@ export const toggleAllMulti = ({
       if (item.isDisabled || item.parentId === null) {
         return item;
       }
+
       return { ...item, checkedStatus };
     });
   }
@@ -807,6 +818,7 @@ export const toggleAllMulti = ({
       if (item.isDisabled) {
         return item;
       }
+
       return { ...item, checkedStatus };
     });
   }

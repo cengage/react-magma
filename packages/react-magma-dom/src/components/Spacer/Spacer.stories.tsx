@@ -1,14 +1,12 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 
 import { magma } from '../../theme/magma';
 import { Button } from '../Button';
 import { Card, CardBody } from '../Card';
 
 import { Spacer, SpacerProps, SpacerAxis } from './';
-
-const Template: Story<SpacerProps> = args => <Spacer {...args} />;
 
 export default {
   title: 'Spacer',
@@ -23,24 +21,26 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  size: magma.spaceScale.spacing07,
+export const Default = {
+  args: {
+    size: magma.spaceScale.spacing07,
+  },
 };
 
-export const ExampleWithContent = Template.bind({});
-ExampleWithContent.args = {
-  ...Default.args,
-};
+export const ExampleWithContent = {
+  args: {
+    ...Default.args,
+  },
 
-ExampleWithContent.decorators = [
-  Story => (
-    <Card>
-      <CardBody>
-        <Button>Button 1</Button>
-        <Story />
-        <Button>Button 2</Button>
-      </CardBody>
-    </Card>
-  ),
-];
+  decorators: [
+    Story => (
+      <Card>
+        <CardBody>
+          <Button>Button 1</Button>
+          <Story />
+          <Button>Button 2</Button>
+        </CardBody>
+      </Card>
+    ),
+  ],
+};
