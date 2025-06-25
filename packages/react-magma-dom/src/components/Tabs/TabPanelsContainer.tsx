@@ -4,7 +4,8 @@ import styled from '@emotion/styled';
 
 import { TabsContainerContext } from './TabsContainer';
 
-interface TabPanelContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TabPanelContainerProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   isInverse?: boolean;
   /**
    * @internal
