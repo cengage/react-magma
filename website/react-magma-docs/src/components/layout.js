@@ -9,14 +9,14 @@ import { SkipLinkContent, Heading, Alert, magma } from 'react-magma-dom';
 import { PageContent } from './PageContent';
 import { convertTextToId } from '../utils';
 import './layout.css';
+import { ButtonProps } from './ButtonProps';
 import { CodeBlock } from './CodeBlock';
 import { Divider } from './Divider';
+import { IconButtonProps } from './IconButtonProps';
 import { LayoutComponent } from './LayoutComponent';
+import { LeadParagraph } from './LeadParagraph';
 import { NetlifyFooter } from './NetlifyFooter';
 import { SimplePropsTable } from './SimplePropsTable';
-import { ButtonProps } from '../components/ButtonProps';
-import { IconButtonProps } from '../components/IconButtonProps';
-import { LeadParagraph } from '../components/LeadParagraph';
 
 const ContentArticle = styled.article`
   @media (max-width: 1025px) {
