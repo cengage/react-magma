@@ -298,10 +298,10 @@ export function IndexPageContent() {
       <StyledGrid gridGap={magma.spaceScale.spacing06}>
         <CenterBlock>
           <Heading level={2}>Working smarter, not&nbsp;harder</Heading>
-          <p>
+          <div>
             Standardized components support collaboration, reinforce branding,
             and provide a consistent look and user experience.
-          </p>
+          </div>
         </CenterBlock>
 
         <StyledGridItem gridColumn="1">
@@ -374,11 +374,11 @@ export function IndexPageContent() {
         </StyledGridItem>
         <CenterBlock>
           <Heading level={2}>Want to contribute?</Heading>
-          <p>
+          <div>
             We welcome all ideas and feedback to help us produce the best
             possible experience for our users. If you're interested in
             contributing, review our contribution guidelines to get started.
-          </p>
+          </div>
 
           <IconButton
             icon={<GithubIcon />}

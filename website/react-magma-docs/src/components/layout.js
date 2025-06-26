@@ -73,20 +73,14 @@ export const Layout = ({ children, pageContext }) => {
       <MDXProvider
         components={{
           // Inline code: simple highlight for single backticks
-          code: ({ children: codeChildren }) => {
-            return <code>{codeChildren}</code>;
-          },
-          // Code blocks: use CodeBlock component
+          code: props => <code>{props.children}</code>,
           pre: ({ children: preChildren }) => {
             if (preChildren && preChildren.props) {
               return (
                 <CodeBlock children={preChildren} {...preChildren.props} />
               );
             }
-
-            return <pre>{preChildren}</pre>;
           },
-
           table: Table,
           h1: SmartDocsHeading,
           h2: SectionHeading,

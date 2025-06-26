@@ -65,7 +65,6 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === 'Mdx') {
-    // Dynamically import ESM modules
     const unified = (await import('unified')).unified;
     const remarkParse = (await import('remark-parse')).default;
     const remarkMdx = (await import('remark-mdx')).default;
@@ -76,6 +75,7 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
     const tree = unified().use(remarkParse).use(remarkMdx).parse(content);
     const pageNavigationHeadings = [];
 
+    // Extracting headings navigation from the MDX content
     visit(tree, 'heading', headingNode => {
       if (headingNode.depth === 2) {
         const text = headingNode.children
