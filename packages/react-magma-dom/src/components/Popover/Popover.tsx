@@ -250,7 +250,9 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
 
     function handleKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Escape') {
-        event.nativeEvent.stopImmediatePropagation();
+        if (isOpen) {
+          event.stopPropagation();
+        }
         closePopover(event);
       }
     }

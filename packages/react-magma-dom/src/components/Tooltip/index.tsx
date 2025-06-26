@@ -193,6 +193,9 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
 
   function handleKeyDown(event: React.KeyboardEvent) {
     if (event.key === 'Escape') {
+      if (isVisible) {
+        event.stopPropagation();
+      }
       hideTooltip();
     }
   }
