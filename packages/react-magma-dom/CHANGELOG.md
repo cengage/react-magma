@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.2
+
+### Minor Changes
+
+- 233c19c1e: feat(icons): Update react-magma-icons version to 3.2.0. New icons: Phishing, QuestionMark, Target, Media, Notebook
+
 ## 4.9.2-next.1
 
 ### Patch Changes
