@@ -374,11 +374,11 @@ export function IndexPageContent() {
         </StyledGridItem>
         <CenterBlock>
           <Heading level={2}>Want to contribute?</Heading>
-          <div>
+          <p>
             We welcome all ideas and feedback to help us produce the best
             possible experience for our users. If you're interested in
             contributing, review our contribution guidelines to get started.
-          </div>
+          </p>
 
           <IconButton
             icon={<GithubIcon />}

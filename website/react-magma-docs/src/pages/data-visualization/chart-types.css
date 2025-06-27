@@ -136,7 +136,7 @@
   width: 144px;
 }
 
-img {
+.chart-types-image {
   display: block;
   border-style: none;
   max-width: 144px;
