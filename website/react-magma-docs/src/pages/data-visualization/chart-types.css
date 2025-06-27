@@ -52,8 +52,7 @@
 
 .description > a {
   background-color: #ffffff;
-  border: 1px solid;
-  border-color: #d4d4d4;
+  border: 1px solid #d4d4d4;
   border-radius: 8px;
   color: #454545;
   cursor: pointer;
@@ -65,7 +64,6 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
-  margin: 0;
   padding: 6px 8px;
   position: relative;
   text-align: center;
@@ -81,7 +79,7 @@
   white-space: nowrap;
   width: fit-content;
   outline: none !important;
-  margin-top: auto;
+  margin: auto 0 0;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
   overflow: hidden;
@@ -136,4 +134,16 @@
 .item > figure > span {
   border: none !important;
   width: 144px;
+}
+
+img {
+  display: block;
+  border-style: none;
+  max-width: 144px;
+  margin: auto;
+  padding: 0;
+}
+
+.card-content {
+  margin-bottom: 0;
 }
