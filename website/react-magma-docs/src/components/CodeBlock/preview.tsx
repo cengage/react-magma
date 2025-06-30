@@ -68,7 +68,8 @@ export const Preview = ({ ...props }: PreviewProps) => {
           ICONS,
           ...HEADER,
           ...SCHEMA,
-          ...DROPZONE,
+          // @ts-expect-error This is a workaround for the way DROPZONE exports its components
+          ...DROPZONE.default,
           ...CHARTS,
         }}
         noInline
@@ -91,6 +92,7 @@ function moveImportsToScope(data: PreviewData): PreviewData {
   const newData = { ...data };
 
   const imports = [];
+
   while ((singleImportMatch = findAllImports.exec(data.code)) !== null) {
     const singleImportString = singleImportMatch[0];
     const findPackageName = /.*'(.+)'.*/;
