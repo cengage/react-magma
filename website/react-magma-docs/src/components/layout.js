@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { MDXProvider } from '@mdx-js/react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
-import { SkipLinkContent, Heading, Alert, magma } from 'react-magma-dom';
+import { Alert, Heading, magma, SkipLinkContent } from 'react-magma-dom';
 
 import { PageContent } from './PageContent';
 import { convertTextToId } from '../utils';
@@ -75,11 +75,7 @@ export const Layout = ({ children, pageContext }) => {
           // Inline code: simple highlight for single backticks
           code: props => <code>{props.children}</code>,
           pre: ({ children: preChildren }) => {
-            if (preChildren && preChildren.props) {
-              return (
-                <CodeBlock children={preChildren} {...preChildren.props} />
-              );
-            }
+            return <CodeBlock children={preChildren} {...preChildren.props} />;
           },
           table: Table,
           h1: SmartDocsHeading,
