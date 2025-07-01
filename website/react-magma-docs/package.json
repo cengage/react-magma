@@ -43,7 +43,7 @@
     "eslint-webpack-plugin": "^5.0.1",
     "file-loader": "3.0.1",
     "framer-motion": "12.14.0",
-    "gatsby": "^5.14.3",
+    "gatsby": "^5.14.5",
     "gatsby-plugin-image": "^3.14.0",
     "gatsby-plugin-manifest": "^5.14.0",
     "gatsby-plugin-mdx": "^5.14.1",

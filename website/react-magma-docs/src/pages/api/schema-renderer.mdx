@@ -15,10 +15,7 @@ title: Schema Renderer
   pages and forms at runtime.
 </LeadParagraph>
 
-<Alert variant="warning">
-  The Schema Renderer is currently early beta. It is a work in progress and may
-  have breaking changes.
-</Alert>
+<Alert variant="warning">The Schema Renderer is currently early beta. It is a work in progress and may have breaking changes.</Alert>
 
 ## Basic Template
 
@@ -212,9 +209,15 @@ const schema: Schema = {
 };
 
 export function Example() {
+  const initialValues = {
+    'form-date-picker': '2025-07-01',
+    'form-time-picker': '12:00',
+  }
+
   return (
     <div>
       <SchemaRenderer
+        initialValues={initialValues}
         schema={schema}
         onSubmit={values => alert(JSON.stringify(values, null, 2))}
       />

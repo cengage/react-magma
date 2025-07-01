@@ -15,11 +15,7 @@ props:
   component is the button that will jump the user to the main content area.
 </LeadParagraph>
 
-<Alert variant="info">
-  Due to the nature of SkipLinks the best way to view the examples is to click
-  "EDIT IN CODESANDBOX". When codesandbox loads click "open in new window" and
-  hit tab to give focus to the SkipLink.
-</Alert>
+<Alert variant="info">Due to the nature of SkipLinks the best way to view the examples is to click "EDIT IN CODESANDBOX". When codesandbox loads click "open in new window" and hit tab to give focus to the SkipLink.</Alert>
 
 ## Basic Usage
 
@@ -45,7 +41,7 @@ const SideNav = ({ length }) => {
     <nav>
       {[...Array(length).keys()].map(index => (
         <div key={index}>
-          <Hyperlink to={`#${index}`}>Link ${index}</Hyperlink>
+          <Hyperlink to={`#${index}`}>Link {index +1}</Hyperlink>
         </div>
       ))}
     </nav>
@@ -56,7 +52,7 @@ export function Example() {
   return (
     <div>
       <SkipLink buttonText="Skip to main content" />
-      <SideNav length={500} />
+      <SideNav length={5} />
       <SkipLinkContent>
         <Paragraph>Content to jump to.</Paragraph>
       </SkipLinkContent>
@@ -94,7 +90,7 @@ const SideNav = ({ length }) => {
     <nav>
       {[...Array(length).keys()].map(index => (
         <div key={index}>
-          <Hyperlink to={`#${index}`}>Link ${index}</Hyperlink>
+          <Hyperlink to={`#${index}`}>Link {index +1}</Hyperlink>
         </div>
       ))}
     </nav>
@@ -108,7 +104,7 @@ export function Example() {
         buttonText="Skip to main content"
         variant={ButtonVariant.solid}
       />
-      <SideNav length={500} />
+      <SideNav length={5} />
       <SkipLinkContent>
         <Paragraph>Content to jump to.</Paragraph>
       </SkipLinkContent>
@@ -137,7 +133,7 @@ const SideNav = ({ length }) => {
     <nav>
       {[...Array(length).keys()].map(index => (
         <div key={index}>
-          <Hyperlink to={`#${index}`}>Link ${index}</Hyperlink>
+          <Hyperlink to={`#${index}`}>Link {index +1}</Hyperlink>
         </div>
       ))}
     </nav>
@@ -148,7 +144,7 @@ export function Example() {
   return (
     <div>
       <SkipLink buttonText="Skip to main content" />
-      <SideNav length={500} />
+      <SideNav length={5} />
       <SkipLinkContent>
         <Paragraph>Content to jump to.</Paragraph>
       </SkipLinkContent>
@@ -178,7 +174,7 @@ const SideNav = ({ length }) => {
     <nav>
       {[...Array(length).keys()].map(index => (
         <div key={index}>
-          <Hyperlink to={`#${index}`}>Link ${index}</Hyperlink>
+          <Hyperlink to={`#${index}`}>Link {index +1}</Hyperlink>
         </div>
       ))}
     </nav>
@@ -193,7 +189,7 @@ export function Example() {
         positionLeft={25}
         positionTop={25}
       />
-      <SideNav length={500} />
+      <SideNav length={5} />
       <SkipLinkContent>
         <Paragraph>Content to jump to.</Paragraph>
       </SkipLinkContent>
