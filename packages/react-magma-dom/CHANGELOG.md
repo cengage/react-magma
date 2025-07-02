@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.3
+
+### Minor Changes
+
+- 54520e840: feat(Table & Datagrid): Added new prop `tableTitle` to `Table` and `Datagrid` which supports a captioned title above each Table and Datagrid. Added new props `hasOutsideBorder`, `hasTablePagination` to `Table`.
+
 ## 4.10.0-next.2
 
 ### Minor Changes
