@@ -78,7 +78,7 @@ export function Example() {
   ];
 
   return (
-    <Table tableTitle="Basic Usage table">
+    <Table tableTitle="Basic Usage table" hasOutsideBorder>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -119,7 +119,11 @@ import {
 
 export function Example() {
   return (
-    <Table tableTitle="Vertical borders table" hasVerticalBorders>
+    <Table
+      tableTitle="Vertical borders table"
+      hasVerticalBorders
+      hasOutsideBorder
+    >
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -211,7 +215,7 @@ import {
 
 export function Example() {
   return (
-    <Table hasHoverStyles tableTitle="Hover style table">
+    <Table hasHoverStyles tableTitle="Hover style table" hasOutsideBorder>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -257,7 +261,12 @@ import {
 
 export function Example() {
   return (
-    <Table hasZebraStripes hasHoverStyles tableTitle="Zebra Stripes table">
+    <Table
+      hasZebraStripes
+      hasHoverStyles
+      hasOutsideBorder
+      tableTitle="Zebra Stripes table"
+    >
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -317,7 +326,11 @@ import {
 export function Example() {
   return (
     <>
-      <Table density={TableDensity.compact} tableTitle="Density table compact">
+      <Table
+        density={TableDensity.compact}
+        tableTitle="Density table compact"
+        hasOutsideBorder
+      >
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -342,7 +355,11 @@ export function Example() {
         </TableBody>
       </Table>
       <br /> <br />
-      <Table density={TableDensity.loose} tableTitle="Density table loose">
+      <Table
+        density={TableDensity.loose}
+        tableTitle="Density table loose"
+        hasOutsideBorder
+      >
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -441,7 +458,7 @@ export function Example() {
 
   return (
     <>
-      <Table tableTitle="Sortable table">
+      <Table tableTitle="Sortable table" hasOutsideBorder>
         <TableHead>
           <TableRow>
             <TableHeaderCell
@@ -579,6 +596,7 @@ export function Example() {
       <CardBody>
         <Table
           isInverse
+          hasOutsideBorder
           hasZebraStripes
           hasVerticalBorders
           hasHoverStyles
@@ -638,7 +656,7 @@ import {
 
 export function Example() {
   return (
-    <Table tableTitle="Cell alignment table">
+    <Table tableTitle="Cell alignment table" hasOutsideBorder>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -683,7 +701,7 @@ import {
 export function Example() {
   return (
     <>
-      <Table tableTitle="Cell Width table in percentage">
+      <Table tableTitle="Cell Width table in percentage" hasOutsideBorder>
         <TableHead>
           <TableRow>
             <TableHeaderCell width="25%">Column 25%</TableHeaderCell>
@@ -706,7 +724,7 @@ export function Example() {
 
       <br />
 
-      <Table tableTitle="Cell Width table in pixels">
+      <Table tableTitle="Cell Width table in pixels" hasOutsideBorder>
         <TableHead>
           <TableRow>
             <TableHeaderCell width={200}>Column 200px</TableHeaderCell>
@@ -750,7 +768,7 @@ import {
 export function Example() {
   return (
     <>
-      <Table minWidth={920} tableTitle="Min-width table">
+      <Table minWidth={920} tableTitle="Min-width table" hasOutsideBorder>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column 1</TableHeaderCell>
@@ -809,7 +827,7 @@ import {
 
 export function Example() {
   return (
-    <Table hasVerticalBorders tableTitle="Other content table">
+    <Table hasVerticalBorders tableTitle="Other content table" hasOutsideBorder>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column 1</TableHeaderCell>
@@ -1085,7 +1103,7 @@ import {
 
 export function Example() {
   return (
-    <Table tableTitle="Table row color table">
+    <Table tableTitle="Table row color table" hasOutsideBorder>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
