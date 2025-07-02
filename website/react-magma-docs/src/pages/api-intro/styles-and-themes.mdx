@@ -405,18 +405,20 @@ These individual theme objects will be applied globally to **only those componen
 The theme object for each above component can be found on its documentation page. See below for an example of an individual component's theme object:
 
 ```json noCodeSandbox noRender
-tooltip: {
-  arrowSize: '4px',
-  arrowSizeDoubled: '8px',
-  backgroundColor: colors.neutral,
-  fontWeight: 600,
-  maxWidth: '300px',
-  textColor: colors.neutral100,
-  typeScale: typeScale.size01,
-  zIndex: 999,
-  inverse: {
-    backgroundColor: colors.neutral100,
-    textColor: colors.neutral,
+{
+  "tooltip": {
+    "arrowSize": "4px",
+    "arrowSizeDoubled": "8px",
+    "backgroundColor": "colors.neutral",
+    "fontWeight": 600,
+    "maxWidth": "300px",
+    "textColor": "colors.neutral100",
+    "typeScale": "typeScale.size01",
+    "zIndex": 999,
+    "inverse": {
+      "backgroundColor": "colors.neutral100",
+      "textColor": "colors.neutral"
+    }
   }
 }
 ```
@@ -428,69 +430,71 @@ One of the features of the Magma theme is a typography scale, that contains thir
 The `typeScale` can be set as part of the theme.
 
 ```json noCodeSandbox noRender
-typeScale: {
-  size01: {
-    fontSize: '12px',
-    letterSpacing: '.32px',
-    lineHeight: '16px',
-  },
-  size02: {
-    fontSize: '14px',
-    letterSpacing: '.16px',
-    lineHeight: '20px',
-  },
-  size03: {
-    fontSize: '16px',
-    letterSpacing: '.32px',
-    lineHeight: '24px',
-  },
-  size04: {
-    fontSize: '18px',
-    lineHeight: '24px',
-  },
-  size05: {
-    fontSize: '20px',
-    lineHeight: '32px',
-  },
-  size06: {
-    fontSize: '24px',
-    lineHeight: '32px',
-  },
-  size07: {
-    fontSize: '28px',
-    lineHeight: '40px',
-  },
-  size08: {
-    fontSize: '32px',
-    lineHeight: '40px',
-  },
-  size09: {
-    fontSize: '36px',
-    lineHeight: '48px',
-  },
-  size10: {
-    fontSize: '42px',
-    lineHeight: '48px',
-  },
-  size11: {
-    fontSize: '48px',
-    lineHeight: '56px',
-  },
-  size12: {
-    fontSize: '52px',
-    lineHeight: '68px',
-  },
-  size13: {
-    fontSize: '54px',
-    lineHeight: '64px',
-  },
-  size14: {
-    fontSize: '60px',
-    lineHeight: '72px',
-  },
-  size15: {
-    fontSize: '72px',
-    lineHeight: '84px',
+{
+  "typeScale": {
+    "size01": {
+      "fontSize": "12px",
+      "letterSpacing": ".32px",
+      "lineHeight": "16px"
+    },
+    "size02": {
+      "fontSize": "14px",
+      "letterSpacing": ".16px",
+      "lineHeight": "20px"
+    },
+    "size03": {
+      "fontSize": "16px",
+      "letterSpacing": ".32px",
+      "lineHeight": "24px"
+    },
+    "size04": {
+      "fontSize": "18px",
+      "lineHeight": "24px"
+    },
+    "size05": {
+      "fontSize": "20px",
+      "lineHeight": "32px"
+    },
+    "size06": {
+      "fontSize": "24px",
+      "lineHeight": "32px"
+    },
+    "size07": {
+      "fontSize": "28px",
+      "lineHeight": "40px"
+    },
+    "size08": {
+      "fontSize": "32px",
+      "lineHeight": "40px"
+    },
+    "size09": {
+      "fontSize": "36px",
+      "lineHeight": "48px"
+    },
+    "size10": {
+      "fontSize": "42px",
+      "lineHeight": "48px"
+    },
+    "size11": {
+      "fontSize": "48px",
+      "lineHeight": "56px"
+    },
+    "size12": {
+      "fontSize": "52px",
+      "lineHeight": "68px"
+    },
+    "size13": {
+      "fontSize": "54px",
+      "lineHeight": "64px"
+    },
+    "size14": {
+      "fontSize": "60px",
+      "lineHeight": "72px"
+    },
+    "size15": {
+      "fontSize": "72px",
+      "lineHeight": "84px"
+    }
   }
 }
 ```
@@ -499,66 +503,64 @@ Furthermore, font-size and line-height can be set in the theme for six heading l
 The theme also contains options for two additional typography variants for those heading and paragraph styles.
 
 ```json noCodeSandbox noRender
-typographyVisualStyles: {
-  headingXLarge: {
-      mobile: typeScale.size07,
-      desktop: typeScale.size09,
-      fontWeight: 600,
+{
+  "typographyVisualStyles": {
+    "headingXLarge": {
+      "mobile": "typeScale.size07",
+      "desktop": "typeScale.size09",
+      "fontWeight": 600
     },
-    headingLarge: {
-      mobile: typeScale.size06,
-      desktop: typeScale.size07,
-      fontWeight: 600,
+    "headingLarge": {
+      "mobile": "typeScale.size06",
+      "desktop": "typeScale.size07",
+      "fontWeight": 600
     },
-    headingMedium: {
-      mobile: typeScale.size05,
-      desktop: typeScale.size06,
-      fontWeight: 600,
+    "headingMedium": {
+      "mobile": "typeScale.size05",
+      "desktop": "typeScale.size06",
+      "fontWeight": 600
+    }
+  },
+  "typographyExpressiveVisualStyles": {
+    "heading2XLarge": {
+      "mobile": "typeScale.size11",
+      "desktop": "typeScale.size15",
+      "fontWeight": 500
     },
-  ...
-},
-typographyExpressiveVisualStyles: {
-  heading2XLarge: {
-    mobile: typeScale.size11,
-    desktop: typeScale.size15,
-    fontWeight: 500,
+    "headingXLarge": {
+      "mobile": "typeScale.size09",
+      "desktop": "typeScale.size11",
+      "fontWeight": 600
+    },
+    "headingLarge": {
+      "mobile": "typeScale.size07",
+      "desktop": "typeScale.size09",
+      "fontWeight": 600
+    },
+    "headingMedium": {
+      "mobile": "typeScale.size06",
+      "desktop": "typeScale.size07",
+      "fontWeight": 600
+    }
   },
-  headingXLarge: {
-    mobile: typeScale.size09,
-    desktop: typeScale.size11,
-    fontWeight: 600,
-  },
-  headingLarge: {
-    mobile: typeScale.size07,
-    desktop: typeScale.size09,
-    fontWeight: 600,
-  },
-  headingMedium: {
-    mobile: typeScale.size06,
-    desktop: typeScale.size07,
-    fontWeight: 600,
-  },
-  ...
-},
-typographyNarrativeVisualStyles: {
-  headingXLarge: {
-    mobile: typeScale.size07,
-    desktop: typeScale.size08,
-    fontWeight: 700
-  },
-  headingLarge: {
-    mobile: typeScale.size06,
-    desktop: typeScale.size07,
-    fontWeight: 700
-  },
-  headingMedium: {
-    mobile: typeScale.size05,
-    desktop: typeScale.size06,
-    fontWeight: 700
-  },
-  ...
+  "typographyNarrativeVisualStyles": {
+    "headingXLarge": {
+      "mobile": "typeScale.size07",
+      "desktop": "typeScale.size08",
+      "fontWeight": 700
+    },
+    "headingLarge": {
+      "mobile": "typeScale.size06",
+      "desktop": "typeScale.size07",
+      "fontWeight": 700
+    },
+    "headingMedium": {
+      "mobile": "typeScale.size05",
+      "desktop": "typeScale.size06",
+      "fontWeight": 700
+    }
+  }
 }
-
 ```
 
 ## Space Scale
@@ -569,21 +571,23 @@ Designers are advised to use values from the space scale whenever possible.
 The `spaceScale` can be overridden in by defining its values new theme.
 
 ```json noCodeSandbox noRender
-spaceScale: {
-  spacing01: '2px',
-  spacing02: '4px',
-  spacing03: '8px',
-  spacing04: '12px',
-  spacing05: '16px',
-  spacing06: '24px',
-  spacing07: '28px',
-  spacing08: '32px',
-  spacing09: '40px',
-  spacing10: '48px',
-  spacing11: '56px',
-  spacing12: '64px',
-  spacing13: '96px',
-  spacing14: '160px'
+{
+  "spaceScale": {
+    "spacing01": "2px",
+    "spacing02": "4px",
+    "spacing03": "8px",
+    "spacing04": "12px",
+    "spacing05": "16px",
+    "spacing06": "24px",
+    "spacing07": "28px",
+    "spacing08": "32px",
+    "spacing09": "40px",
+    "spacing10": "48px",
+    "spacing11": "56px",
+    "spacing12": "64px",
+    "spacing13": "96px",
+    "spacing14": "160px"
+  }
 }
 ```
 
