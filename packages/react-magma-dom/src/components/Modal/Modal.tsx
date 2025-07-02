@@ -125,6 +125,7 @@ const ModalContainer = styled(Transition)<{
   theme: ThemeInterface;
   modalCount?: number;
 }>`
+  position: fixed;
   bottom: 0;
   left: 0;
   overflow-y: auto;
@@ -454,9 +455,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         {showBackgroundOverlay && (
           <ModalBackdrop
             data-testid="modal-backdrop"
-            onMouseDown={
-              isBackgroundClickDisabled ? event => event.preventDefault() : null
-            }
+            onMouseDown={isBackgroundClickDisabled ? undefined : handleClose}
             fade={hasDrawerAnimation}
             isOpen={isModalOpen}
             style={modalCount >= 2 && { zIndex: '998' }}
