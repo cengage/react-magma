@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, render, fireEvent, getAllByRole } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
@@ -18,15 +18,75 @@ describe('Table Pagination', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
-  it('should use inverse styles', () => {
+  it('should use styles when hasOutsideBorder is true and hasSquareCorners is true', () => {
     const testId = 'test-id';
     const { getByTestId } = render(
-      <TablePagination itemCount={20} isInverse testId={testId} />
+      <TablePagination
+        itemCount={20}
+        hasOutsideBorder
+        hasSquareCorners
+        testId={testId}
+      />
     );
 
     expect(getByTestId(testId)).toHaveStyleRule(
-      'border-top',
+      'border-left',
+      `1px solid ${magma.colors.neutral300}`
+    );
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-right',
+      `1px solid ${magma.colors.neutral300}`
+    );
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-bottom',
+      `1px solid ${magma.colors.neutral300}`
+    );
+    expect(getByTestId(testId)).toHaveStyle('border-radius: 0');
+  });
+
+  it('should use inverse styles when hasOutsideBorder is true and hasSquareCorners is true', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <TablePagination
+        itemCount={20}
+        isInverse
+        hasOutsideBorder
+        hasSquareCorners
+        testId={testId}
+      />
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-left',
       `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+    );
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-right',
+      `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+    );
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'border-bottom',
+      `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+    );
+    expect(getByTestId(testId)).toHaveStyle('border-radius: 0');
+  });
+
+  it('should use styles when hasOutsideBorder is false and hasSquareCorners is false', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <TablePagination
+        hasSquareCorners={false}
+        itemCount={20}
+        isInverse
+        testId={testId}
+      />
+    );
+
+    expect(getByTestId(testId)).toHaveStyle('border-left : none');
+    expect(getByTestId(testId)).toHaveStyle('border-right : none');
+    expect(getByTestId(testId)).toHaveStyle('border-bottom : none');
+    expect(getByTestId(testId)).toHaveStyle(
+      `border-radius: 0 0 ${magma.borderRadius} ${magma.borderRadius}`
     );
   });
 
