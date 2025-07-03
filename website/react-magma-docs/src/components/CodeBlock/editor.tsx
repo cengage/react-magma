@@ -1,7 +1,7 @@
 import React, { useContext, MouseEvent } from 'react';
 
 import styled from '@emotion/styled';
-import Highlight, { defaultProps } from 'prism-react-renderer';
+import { Highlight } from 'prism-react-renderer';
 import { magma, useIsInverse } from 'react-magma-dom';
 
 import { CodeBlockContext } from './context';
@@ -52,7 +52,6 @@ export const Editor = ({ ...props }: EditorProps) => {
 
   return (
     <Highlight
-      {...defaultProps}
       code={props.children}
       language={context.language}
       theme={isInverse ? magmaCodeDark : magmaCode}
