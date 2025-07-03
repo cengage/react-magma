@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -58,6 +58,7 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
+
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'start');
       });
@@ -75,6 +76,7 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
+
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'center');
       });
@@ -92,6 +94,7 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
+
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'end');
       });
@@ -109,6 +112,7 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
+
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'stretch');
       });
@@ -126,6 +130,7 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
+
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'space-between');
       });
@@ -165,6 +170,7 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
+
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'start');
       });
@@ -182,6 +188,7 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
+
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'center');
       });
@@ -199,6 +206,7 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
+
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'end');
       });
@@ -216,6 +224,7 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
+
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'stretch');
       });
@@ -233,6 +242,7 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
+
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'start');
       });
@@ -405,7 +415,7 @@ describe('ButtonGroup', () => {
   });
 
   describe('With dropdowns', () => {
-    it('Snapshot: Horizontal & center alignment', () => {
+    it('Snapshot: Horizontal & center alignment', async () => {
       const { container } = render(
         <ButtonGroup
           orientation={ButtonGroupOrientation.horizontal}
@@ -427,10 +437,12 @@ describe('ButtonGroup', () => {
         </ButtonGroup>
       );
 
-      expect(container).toMatchSnapshot();
+      await waitFor(() => {
+        expect(container).toMatchSnapshot();
+      });
     });
 
-    it('Snapshot: noSpace', () => {
+    it('Snapshot: noSpace', async () => {
       const { container } = render(
         <ButtonGroup
           noSpace
@@ -453,10 +465,12 @@ describe('ButtonGroup', () => {
         </ButtonGroup>
       );
 
-      expect(container).toMatchSnapshot();
+      await waitFor(() => {
+        expect(container).toMatchSnapshot();
+      });
     });
 
-    it('Snapshot: Vertical & fill alignment', () => {
+    it('Snapshot: Vertical & fill alignment', async () => {
       const { container } = render(
         <ButtonGroup
           orientation={ButtonGroupOrientation.vertical}
@@ -478,7 +492,9 @@ describe('ButtonGroup', () => {
         </ButtonGroup>
       );
 
-      expect(container).toMatchSnapshot();
+      await waitFor(() => {
+        expect(container).toMatchSnapshot();
+      });
     });
   });
 });

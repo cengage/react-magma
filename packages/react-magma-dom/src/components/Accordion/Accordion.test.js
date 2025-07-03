@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { act } from 'react';
 
 import { render, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { axe } from '../../../axe-helper';
-import { magma } from '../../theme/magma';
 import { Button } from '../Button';
 
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel } from '.';
 
 describe('Accordion', () => {
+  beforeAll(() => {
+    window.scrollTo = jest.fn();
+  });
+
   it('should find element by testId', () => {
     const testId = 'test-id';
+
     const { getByTestId } = render(
       <Accordion testId={testId} defaultIndex={[0]}>
         <AccordionItem>
@@ -83,10 +87,10 @@ describe('Accordion', () => {
     expect(btn.firstChild.firstChild.nodeName).toBe('svg');
   });
 
-  it('should not allow focusabled elements to be focused when accordion is collapsed', () => {
+  it('should not allow focusabled elements to be focused when accordion is collapsed', async () => {
     const testId = 'test-id';
 
-    const { queryByTestId, getByText } = render(
+    const { queryByTestId } = render(
       <Accordion>
         <AccordionItem>
           <AccordionButton>Button 1</AccordionButton>
@@ -101,15 +105,16 @@ describe('Accordion', () => {
       </Accordion>
     );
 
-    userEvent.tab();
+    await userEvent.tab();
 
     expect(queryByTestId(testId)).not.toEqual(document.activeElement);
   });
 
   describe('keyboard behavior', () => {
-    it('should navigate to the next item and back to the first item when pressing the down arrow', () => {
+    it('should navigate to the next item and back to the first item when pressing the down arrow', async () => {
       const testId1 = 'test-id1';
       const testId2 = 'test-id2';
+
       const { getByTestId } = render(
         <Accordion>
           <AccordionItem>
@@ -126,18 +131,23 @@ describe('Accordion', () => {
       const btn1 = getByTestId(testId1);
       const btn2 = getByTestId(testId2);
 
-      fireEvent.focus(btn1);
-      fireEvent.keyDown(btn1, { key: 'ArrowDown' });
+      act(() => {
+        btn1.focus();
+      });
+
+      await userEvent.keyboard('{Arrowdown}');
 
       expect(btn2).toHaveFocus();
 
-      fireEvent.keyDown(btn2, { key: 'ArrowDown' });
+      await userEvent.keyboard('{Arrowdown}');
+
       expect(btn1).toHaveFocus();
     });
 
-    it('should navigate to the previous item and back to the last item when pressing the down arrow', () => {
+    it('should navigate to the previous item and back to the last item when pressing the down arrow', async () => {
       const testId1 = 'test-id1';
       const testId2 = 'test-id2';
+
       const { getByTestId } = render(
         <Accordion>
           <AccordionItem>
@@ -154,18 +164,23 @@ describe('Accordion', () => {
       const btn1 = getByTestId(testId1);
       const btn2 = getByTestId(testId2);
 
-      fireEvent.focus(btn2);
-      fireEvent.keyDown(btn2, { key: 'ArrowUp' });
+      act(() => {
+        btn2.focus();
+      });
+
+      await userEvent.keyboard('{ArrowUp}');
 
       expect(btn1).toHaveFocus();
 
-      fireEvent.keyDown(btn1, { key: 'ArrowUp' });
+      await userEvent.keyboard('{ArrowUp}');
+
       expect(btn2).toHaveFocus();
     });
 
-    it('should focus to the first item when pressing the home key', () => {
+    it('should focus to the first item when pressing the home key', async () => {
       const testId1 = 'test-id1';
       const testId2 = 'test-id2';
+
       const { getByTestId } = render(
         <Accordion>
           <AccordionItem>
@@ -182,15 +197,19 @@ describe('Accordion', () => {
       const btn1 = getByTestId(testId1);
       const btn2 = getByTestId(testId2);
 
-      fireEvent.focus(btn2);
-      fireEvent.keyDown(btn2, { key: 'Home' });
+      act(() => {
+        btn2.focus();
+      });
+
+      await userEvent.keyboard('{Home}');
 
       expect(btn1).toHaveFocus();
     });
 
-    it('should focus to the last item when pressing the end key', () => {
+    it('should focus to the last item when pressing the end key', async () => {
       const testId1 = 'test-id1';
       const testId2 = 'test-id2';
+
       const { getByTestId } = render(
         <Accordion>
           <AccordionItem>
@@ -207,14 +226,15 @@ describe('Accordion', () => {
       const btn1 = getByTestId(testId1);
       const btn2 = getByTestId(testId2);
 
-      fireEvent.focus(btn1);
-      fireEvent.keyDown(btn1, { key: 'End' });
+      btn1.focus();
+
+      await userEvent.keyboard('{End}');
 
       expect(btn2).toHaveFocus();
     });
   });
 
-  it('should fire the onExpandedChange event', () => {
+  it('should fire the onExpandedChange event', async () => {
     const testId = 'test-id';
     const handleExpandedChange = jest.fn();
 
@@ -231,13 +251,13 @@ describe('Accordion', () => {
 
     expect(handleExpandedChange).not.toHaveBeenCalled();
 
-    fireEvent.click(btn);
+    await userEvent.click(btn);
 
     expect(handleExpandedChange).toHaveBeenCalled();
   });
 
   describe('no multiple', () => {
-    it('should render the first panel closed by default and open and close it when clicking its button', () => {
+    it('should render the first panel closed by default and open and close it when clicking its button', async () => {
       const { getByText, queryByText } = render(
         <Accordion isMulti={false}>
           <AccordionItem>
@@ -257,19 +277,19 @@ describe('Accordion', () => {
       expect(btn1).toHaveAttribute('aria-expanded', 'false');
       expect(panel1).not.toBeInTheDocument();
 
-      fireEvent.click(btn1);
+      await userEvent.click(btn1);
 
       panel1 = getByText(/panel 1/i);
 
       expect(btn1).toHaveAttribute('aria-expanded', 'true');
       expect(panel1).toHaveAttribute('aria-hidden', 'false');
 
-      fireEvent.click(btn1);
+      await userEvent.click(btn1);
 
       expect(btn1).toHaveAttribute('aria-expanded', 'false');
     });
 
-    it('should close first panel and open the second panel when the second button button', () => {
+    it('should close first panel and open the second panel when the second button button', async () => {
       const { getByText, queryByText } = render(
         <Accordion defaultIndex={0} isMulti={false}>
           <AccordionItem>
@@ -294,7 +314,8 @@ describe('Accordion', () => {
       expect(panel1).toHaveAttribute('aria-hidden', 'false');
       expect(panel2).not.toBeInTheDocument();
 
-      fireEvent.click(btn2);
+      await userEvent.click(btn2);
+
       panel2 = getByText(/panel 2/i);
 
       expect(btn1).toHaveAttribute('aria-expanded', 'false');
@@ -347,7 +368,7 @@ describe('Accordion', () => {
       expect(panel2).toHaveAttribute('aria-hidden', 'false');
     });
 
-    it('should leave the first panel open and open and close the second panel when clicking the second button', () => {
+    it('should leave the first panel open and open and close the second panel when clicking the second button', async () => {
       const { getByText, queryByText, debug } = render(
         <Accordion isMulti defaultIndex={[0]}>
           <AccordionItem>
@@ -368,7 +389,7 @@ describe('Accordion', () => {
       expect(panel1).toHaveAttribute('aria-hidden', 'false');
       expect(panel2).not.toBeInTheDocument();
 
-      fireEvent.click(btn2);
+      await userEvent.click(btn2);
 
       panel2 = getByText(/panel 2/i);
 

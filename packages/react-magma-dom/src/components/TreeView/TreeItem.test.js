@@ -1,10 +1,9 @@
 import React from 'react';
 
-import { render, getByTestId } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 
-import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 
 import { TreeItem, TreeView } from '.';
@@ -35,6 +34,7 @@ describe('TreeItem', () => {
       const { getByText } = render(
         <TreeItem label={labelText} testId={testId} itemId={itemId} />
       );
+
       expect(getByText(labelText)).toBeInTheDocument();
     });
   });
@@ -124,7 +124,7 @@ describe('TreeItem', () => {
   });
 
   describe('onClick', () => {
-    it('gets called when the item is clicked', () => {
+    it('gets called when the item is clicked', async () => {
       const onClick = jest.fn();
       const { getByText } = render(
         <TreeItem
@@ -135,7 +135,7 @@ describe('TreeItem', () => {
         />
       );
 
-      userEvent.click(getByText(labelText));
+      await userEvent.click(getByText(labelText));
 
       expect(onClick).toHaveBeenCalled();
     });
