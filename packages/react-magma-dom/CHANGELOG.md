@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.4
+
+### Patch Changes
+
+- 9627817d6: fix(Popover, Tooltip): Fix an issue when pressing `Escape` doesn't stop bubbling (Focus issue).
+
 ## 4.10.0-next.3
 
 ### Minor Changes
