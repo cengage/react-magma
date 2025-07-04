@@ -74,6 +74,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     if (isTypeahead) {
       return allItems;
     }
+
     return (
       allItems.current.findIndex(
         i => itemToString(i) === itemToString(itemToCheck)
@@ -115,6 +116,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         typeof item === 'object' && item.react_magma__created_item
           ? item.value
           : itemToString(item);
+
       return (
         (selectedItems.findIndex(
           selectedItem => itemToString(selectedItem) === itemToString(item)
@@ -183,10 +185,12 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   function stateReducer(state, actionAndChanges) {
     const { type, changes } = actionAndChanges;
+
     switch (type) {
       case useCombobox.stateChangeTypes.InputKeyDownEnter: {
         const newSelectedItem =
           getFilteredItems(displayItems)[state.highlightedIndex];
+
         return {
           ...changes,
           ...(newSelectedItem && {
@@ -283,6 +287,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   function itemsArrayToString(itemsArray: any[]) {
     const allItems = [];
+
     itemsArray.map(item => {
       if (typeof item === 'string') {
         allItems.push(item);
@@ -311,6 +316,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
     if (inputRef.current) {
       const inputElement = inputRef.current.querySelector('input');
+
       if (inputElement) {
         inputElement.focus();
       }

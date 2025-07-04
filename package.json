@@ -10,15 +10,14 @@
   "license": "MIT",
   "workspaces": [
     "website/*",
-    "packages/*",
-    "patterns/*"
+    "packages/*"
   ],
   "scripts": {
     "build": "lerna run build --concurrency=6 --no-progress",
     "build:docs": "lerna run build --scope react-magma-docs --no-progress",
     "build:landing": "node website/react-magma-landing/scripts/build.js",
     "build:lite": "lerna run build --ignore react-magma-docs --concurrency=6 --no-progress",
-    "build:storybook": "build-storybook",
+    "build:storybook": "storybook build",
     "changeset": "changeset add",
     "check:pkgs": "manypkg check",
     "clean": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes && rimraf node_modules",
@@ -43,7 +42,7 @@
     "prepare": "husky install",
     "publish": "npm run copy:readme && lerna publish",
     "release": "changeset publish",
-    "storybook": "NODE_OPTIONS='--max-old-space-size=4096' start-storybook -p 6006",
+    "storybook": "NODE_OPTIONS='--max-old-space-size=4096' storybook dev -p 6006",
     "test": "lerna run test --ignore react-magma-docs --ignore react-magma-landing --concurrency=6 --no-progress",
     "test-dom": "lerna run test --scope react-magma-dom -- --watch --coverage=false",
     "test-watch": "jest --watch",
@@ -80,15 +79,11 @@
     "@eslint/eslintrc": "3.3.1",
     "@eslint/js": "9.27.0",
     "@manypkg/cli": "0.24.0",
-    "@storybook/addon-a11y": "6.5.16",
-    "@storybook/addon-actions": "6.5.16",
-    "@storybook/addon-controls": "6.5.16",
-    "@storybook/addon-docs": "6.5.16",
-    "@storybook/addon-essentials": "6.5.16",
-    "@storybook/addon-measure": "6.5.16",
-    "@storybook/addon-toolbars": "6.5.16",
-    "@storybook/addons": "6.5.16",
-    "@storybook/react": "6.5.16",
+    "@storybook/addon-a11y": "9.0.11",
+    "@storybook/addon-docs": "9.0.11",
+    "@storybook/addon-webpack5-compiler-babel": "^3.0.6",
+    "@storybook/react": "9.0.11",
+    "@storybook/react-webpack5": "9.0.11",
     "@testing-library/dom": "7.31.2",
     "@testing-library/jest-dom": "5.17.0",
     "@testing-library/react": "11.2.7",
@@ -101,6 +96,7 @@
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "8.32.1",
     "@typescript-eslint/parser": "8.32.1",
+    "assert": "^2.1.0",
     "autoprefixer": "10.4.21",
     "copy": "0.3.2",
     "core-js": "^3.42.0",
@@ -116,6 +112,7 @@
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "5.2.0",
     "eslint-plugin-unicorn": "59.0.1",
+    "eslint-plugin-storybook": "^9.0.11",
     "globals": "16.1.0",
     "husky": "9.1.7",
     "jest": "26.6.3",
@@ -138,6 +135,7 @@
     "regenerator-runtime": "0.14.1",
     "rollup-plugin-postcss": "4.0.2",
     "shelljs": "0.10.0",
+    "storybook": "9.0.11",
     "ts-node": "10.9.2",
     "tsdx": "0.14.1",
     "typedoc": "0.19.2",
@@ -148,5 +146,8 @@
   "engines": {
     "node": ">=20.19.2",
     "npm": ">=10.8.2"
+  },
+  "overrides": {
+    "storybook": "$storybook"
   }
 }

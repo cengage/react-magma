@@ -24,17 +24,11 @@ const NAV_TABS = {
   API_INTRO: 'api_intro',
   DESIGN: 'design',
   DESIGN_INTRO: 'design_intro',
-  PATTERNS: 'patterns',
-  PATTERNS_INTRO: 'patterns_intro',
   DATA_VISUALIZATION: 'data_visualization',
 };
 
 // Special case pages that don't have secondary navigation.
-const PAGES_NO_NAV = [
-  'contribution_guidelines',
-  'getting_started_patterns',
-  'select_migration',
-];
+const PAGES_NO_NAV = ['contribution_guidelines', 'select_migration'];
 
 const TabsWrapper = styled.div`
   position: sticky;
@@ -65,7 +59,6 @@ const StyledTabPanel = styled(TabPanel)`
   flex-direction: row;
   justify-content: center;
   padding: 0;
-
   &::before {
     content: '';
     visibility: hidden;
@@ -114,7 +107,9 @@ const PageNavigation = styled.div`
 
 function getDataNode(data, name) {
   return data?.edges.find(item => {
-    return convertTextToId(item.node.frontmatter.title.toLowerCase()) === name;
+    const title = item.node.frontmatter.title;
+
+    return title && convertTextToId(title.toLowerCase()) === name;
   });
 }
 
@@ -126,18 +121,6 @@ export const PageContent = ({ children, componentName, type }) => {
       designComponentDocs: allMdx(
         filter: {
           internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
-          frontmatter: { isPattern: { ne: true } }
-        }
-        sort: { frontmatter: { title: ASC } }
-      ) {
-        edges {
-          ...navFields
-        }
-      }
-      designPatternDocs: allMdx(
-        filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
-          frontmatter: { isPattern: { eq: true } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -148,16 +131,6 @@ export const PageContent = ({ children, componentName, type }) => {
       apiDocs: allMdx(
         filter: {
           internal: { contentFilePath: { glob: "**/src/pages/api/**" } }
-        }
-        sort: { frontmatter: { title: ASC } }
-      ) {
-        edges {
-          ...navFields
-        }
-      }
-      patternsDocs: allMdx(
-        filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/patterns/**" } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -199,68 +172,32 @@ export const PageContent = ({ children, componentName, type }) => {
           ...navFields
         }
       }
-      patternsIntro: allMdx(
-        filter: {
-          internal: {
-            contentFilePath: { glob: "**/src/pages/patterns-intro/**" }
-          }
-        }
-        sort: { frontmatter: { order: ASC } }
-      ) {
-        edges {
-          ...navFields
-        }
-      }
     }
   `);
 
   const apiDocs = getDataNode(data.apiDocs, componentName);
   const designDocs = getDataNode(data.designComponentDocs, componentName);
-  const patternsDocs = getDataNode(data.patternsDocs, componentName);
-  const designPatternDocs = getDataNode(data.designPatternDocs, componentName);
+
   const dataVisualization = getDataNode(data.dataVisualization, componentName);
 
   const designIntro = getDataNode(data.designIntro, componentName);
   const apiIntro = getDataNode(data.apiIntro, componentName);
-  const patternsIntro = getDataNode(data.patternsIntro, componentName);
 
   const designLink = designDocs?.node.fields.slug;
   const apiLink = apiDocs?.node.fields.slug;
-  const patternsLink = patternsDocs?.node.fields.slug;
-  const designPatternsLink = designPatternDocs?.node.fields.slug;
   const dataVisualizationLink = dataVisualization?.node.fields.slug;
 
-  const hasDocs = !!(
-    apiDocs ||
-    designDocs ||
-    patternsDocs ||
-    designPatternDocs ||
-    dataVisualization
-  );
+  const hasDocs = !!(apiDocs || designDocs || dataVisualization);
 
   let apiNavTabToLink = apiLink;
 
-  if (patternsDocs) {
-    apiNavTabToLink = patternsLink;
-  } else if (dataVisualization) {
+  if (dataVisualization) {
     apiNavTabToLink = dataVisualizationLink;
   }
 
-  let designNavTabToLink = designLink;
-
-  if (designPatternDocs) {
-    designNavTabToLink = designPatternsLink;
-  }
+  const designNavTabToLink = designLink;
 
   const getPageData = () => {
-    if (designPatternDocs || patternsDocs) {
-      if (type === NAV_TABS.DESIGN) {
-        return designPatternDocs;
-      }
-      if (type === NAV_TABS.API) {
-        return patternsDocs;
-      }
-    }
     if (dataVisualization) {
       if (type === NAV_TABS.DATA_VISUALIZATION) {
         return dataVisualization;
@@ -274,15 +211,12 @@ export const PageContent = ({ children, componentName, type }) => {
         return designDocs;
       }
     }
-    if (designIntro || patternsIntro || apiIntro) {
+    if (designIntro || apiIntro) {
       if (type === NAV_TABS.API_INTRO) {
         return apiIntro;
       }
       if (type === NAV_TABS.DESIGN_INTRO) {
         return designIntro;
-      }
-      if (type === NAV_TABS.PATTERNS_INTRO) {
-        return patternsIntro;
       }
     }
   };
@@ -294,13 +228,13 @@ export const PageContent = ({ children, componentName, type }) => {
           <StyledTabsContainer isInverse={isInverse}>
             <TabsWrapper>
               <StyledTabs aria-label="">
-                {apiDocs || patternsDocs ? (
+                {apiDocs ? (
                   <NavTab
                     component={<Link to={apiNavTabToLink}>Implementation</Link>}
                     isActive={type === NAV_TABS.API}
                   />
                 ) : null}
-                {designDocs || designPatternDocs ? (
+                {designDocs ? (
                   <NavTab
                     component={<Link to={designNavTabToLink}>Design</Link>}
                     isActive={type === NAV_TABS.DESIGN}
@@ -347,8 +281,6 @@ PageContent.propTypes = {
     'api_intro',
     'design',
     'design_intro',
-    'patterns',
-    'patterns_intro',
     'data_visualization',
   ]),
 };

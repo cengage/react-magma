@@ -86,6 +86,7 @@ export function buildButtonBackground(props) {
       ) {
         return 'none';
       }
+
       return transparentize(0.7, props.theme.colors.neutral100);
     }
     if (props.variant === 'link') {
@@ -94,6 +95,7 @@ export function buildButtonBackground(props) {
     if (props.color === 'secondary' || props.color === 'subtle') {
       return props.theme.colors.neutral100;
     }
+
     return props.theme.colors.neutral300;
   }
 
@@ -116,6 +118,7 @@ export function buildButtonBackground(props) {
     if (props.color === 'success') {
       return props.theme.colors.success500;
     }
+
     return props.theme.colors.tertiary500;
   }
 
@@ -147,6 +150,7 @@ export function buildBorderWidth(props) {
       return '1px solid';
     }
   }
+
   return 0;
 }
 
@@ -158,8 +162,10 @@ export function buildBorderColor(props) {
       if (props.color === 'secondary' || props.color === 'subtle') {
         return transparentize(0.8, props.theme.colors.neutral100);
       }
+
       return 'none';
     }
+
     return props.theme.colors.neutral300;
   }
 
@@ -205,8 +211,10 @@ export function buildColor(props) {
       ) {
         return transparentize(0.7, props.theme.colors.neutral100);
       }
+
       return transparentize(0.6, props.theme.colors.neutral100);
     }
+
     return transparentize(0.4, props.theme.colors.neutral500);
   }
 
@@ -218,12 +226,14 @@ export function buildColor(props) {
       if (props.variant === 'link') {
         return props.theme.colors.success300;
       }
+
       return props.theme.colors.neutral100;
     }
     if (props.variant === 'link') {
       if (props.color === 'danger') {
         return props.theme.colors.danger200;
       }
+
       return props.theme.colors.tertiary500;
     }
     if (props.color === 'secondary') {
@@ -235,6 +245,7 @@ export function buildColor(props) {
     if (props.color === 'danger') {
       return props.theme.colors.neutral100;
     }
+
     return props.theme.colors.primary700;
   }
 
@@ -277,12 +288,14 @@ export function buildFocusBackground(props) {
     if (props.variant === 'link') {
       return props.theme.colors.danger100;
     }
+
     return props.theme.colors.danger600;
   }
   if (props.color === 'success') {
     if (props.variant === 'link') {
       return props.theme.colors.success100;
     }
+
     return props.theme.colors.success600;
   }
   if (props.color === 'secondary') {
@@ -290,12 +303,14 @@ export function buildFocusBackground(props) {
       // solid && inverse
       return transparentize(0.7, props.theme.colors.neutral900);
     }
+
     return props.theme.colors.primary100;
   }
   if (props.color === 'subtle') {
     if (props.isInverse) {
       return transparentize(0.7, props.theme.colors.neutral900);
     }
+
     return transparentize(0.95, props.theme.colors.neutral900);
   }
   // primary
@@ -305,6 +320,7 @@ export function buildFocusBackground(props) {
   if (props.variant === 'link') {
     return props.theme.colors.primary100;
   }
+
   return props.theme.colors.primary600;
 }
 
@@ -331,6 +347,7 @@ export function buildFocusColor(props) {
     if (props.isInverse) {
       return props.theme.colors.tertiary500;
     }
+
     return props.theme.colors.primary;
   }
 
@@ -338,6 +355,7 @@ export function buildFocusColor(props) {
     if (props.isInverse) {
       return props.theme.colors.neutral100;
     }
+
     return props.theme.colors.neutral700;
   }
 
@@ -345,6 +363,7 @@ export function buildFocusColor(props) {
     if (props.color === 'success') {
       return props.theme.colors.success600;
     }
+
     return props.theme.colors.primary;
   }
 
@@ -367,8 +386,10 @@ export function buildFocusColor(props) {
     if (props.color === 'success') {
       return props.theme.colors.neutral100;
     }
+
     return props.theme.colors.primary700;
   }
+
   return props.theme.colors.neutral100;
 }
 
@@ -379,6 +400,7 @@ export function buildActiveBackground(props) {
     if (props.variant !== 'solid' && props.isInverse) {
       return transparentize(0.7, props.theme.colors.neutral900);
     }
+
     return props.theme.colors.secondary700;
   }
   if (props.color === 'danger') {
@@ -386,6 +408,7 @@ export function buildActiveBackground(props) {
       if (props.variant !== 'solid') {
         return transparentize(0.5, props.theme.colors.neutral900);
       }
+
       return props.theme.colors.danger700;
     }
     if (props.variant !== 'solid') {
@@ -397,8 +420,10 @@ export function buildActiveBackground(props) {
       if (props.isInverse) {
         return transparentize(0.5, props.theme.colors.neutral900);
       }
+
       return props.theme.colors.success200;
     }
+
     return props.theme.colors.success700;
   }
   if (props.color === 'secondary') {
@@ -410,6 +435,7 @@ export function buildActiveBackground(props) {
     if (props.isInverse) {
       return transparentize(0.5, props.theme.colors.neutral900);
     }
+
     return transparentize(0.9, props.theme.colors.neutral900);
   }
   if (props.variant === 'solid' && props.isInverse) {
@@ -420,6 +446,7 @@ export function buildActiveBackground(props) {
     if (props.isInverse) {
       return transparentize(0.5, props.theme.colors.neutral900);
     }
+
     return props.theme.colors.primary200;
   }
 
@@ -441,6 +468,7 @@ export function buildActiveColor(props) {
       if (props.isInverse) {
         return props.theme.colors.danger200;
       }
+
       return props.theme.colors.danger700;
     }
   }
@@ -448,6 +476,7 @@ export function buildActiveColor(props) {
     if (props.isInverse) {
       return props.theme.colors.success300;
     }
+
     return props.theme.colors.success700;
   }
 
@@ -455,12 +484,14 @@ export function buildActiveColor(props) {
     if (props.isInverse) {
       return props.theme.colors.tertiary500;
     }
+
     return props.theme.colors.primary600;
   }
   if (props.color === 'subtle') {
     if (props.isInverse) {
       return props.theme.colors.neutral100;
     }
+
     return props.theme.colors.neutral700;
   }
   if (
@@ -492,5 +523,6 @@ export function buildActiveColor(props) {
   if (props.color === 'marketing' && !props.isInverse) {
     return props.theme.colors.primary600;
   }
+
   return props.theme.colors.neutral100;
 }

@@ -11,7 +11,10 @@ title: Icon
   element, and draw attention to important information.
 </LeadParagraph>
 
-<Alert variant="warning"><strong>Important!</strong> Icons are now imported from <code>react-magma-icons</code>which must be installed as a peer dependency.</Alert>
+<Alert variant="warning">
+  <strong>Important!</strong> Icons are now imported from{' '}
+  <code>react-magma-icons</code>which must be installed as a peer dependency.
+</Alert>
 
 ## Basic Usage
 
@@ -118,6 +121,7 @@ export function Example() {
         .sort((a, b) => {
           a = a.toLowerCase();
           b = b.toLowerCase();
+
           return a > b ? 1 : a < b ? -1 : 0;
         })
         .map((category, idx) => {

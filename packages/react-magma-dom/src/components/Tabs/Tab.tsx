@@ -116,6 +116,7 @@ function buildTabStylesColor(props) {
     if (props.isActive) {
       return props.theme.colors.neutral100;
     }
+
     return transparentize(0.3, props.theme.colors.neutral100);
   }
 
@@ -125,6 +126,7 @@ function buildTabStylesColor(props) {
   if (props.isActive) {
     return props.theme.colors.primary;
   }
+
   return props.theme.colors.neutral500;
 }
 

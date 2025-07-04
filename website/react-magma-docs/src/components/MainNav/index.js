@@ -16,11 +16,9 @@ import { LaunchIcon } from 'react-magma-icons';
 
 const StyledWrapper = styled.div`
   margin-top: 8px;
-
   *:focus {
     outline-offset: 0;
   }
-
   @media (max-width: 1024px) {
     margin-top: 4px;
   }
@@ -40,17 +38,14 @@ const StyledAccordionItem = styled(AccordionItem)`
     margin: 12px 0;
     padding-left: ${magma.spaceScale.spacing05};
   }
-
   button {
     &[aria-expanded='true'] {
       box-shadow: inset 0 1px 0 0 ${magma.colors.neutral300};
     }
-
     svg {
       color: ${magma.colors.neutral700};
     }
   }
-
   > div {
     height: ${props => (props.isOpen ? '100% !important' : '')};
   }
@@ -58,7 +53,6 @@ const StyledAccordionItem = styled(AccordionItem)`
 
 const StyledAccordionPanel = styled(AccordionPanel)`
   padding: 0;
-
   &[aria-hidden='false'] {
     box-shadow: inset 0 -1px 0 0 ${magma.colors.neutral300};
     padding-bottom: 10px;
@@ -109,7 +103,6 @@ const Heading2 = styled.h2`
 const StyledAccordionButton = styled(AccordionButton)`
   border-top: 0;
   ${headingStyles};
-
   &:hover {
     ${LinkHoverStyles};
   }
@@ -139,7 +132,6 @@ const ListItem = styled.li`
 
 const StyledLink = styled(Link)`
   ${LinkStyles};
-
   &:hover {
     ${LinkHoverStyles}
   }
@@ -150,11 +142,9 @@ const StyledHyperlink = styled(Hyperlink)`
   &:hover {
     ${LinkHoverStyles}
   }
-
   &:not([disabled]):hover {
     ${LinkHoverStyles}
   }
-
   &:not([disabled]):focus {
     color: inherit;
   }
@@ -181,19 +171,15 @@ const StyledLink2 = styled(Link)`
   padding: 6px 26px;
   position: relative;
   text-decoration: none;
-
   &:hover {
     ${LinkHoverStyles};
   }
-
   &:focus {
     color: ${magma.colors.neutral700};
   }
-
   &:focus:before {
     ${StyledActiveLink2};
   }
-
   &[aria-current='page']:before {
     ${StyledActiveLink2};
   }
@@ -207,11 +193,8 @@ function defaultPanelIndex(location) {
   if (location.pathname.includes('api')) {
     return [1];
   }
-  if (location.pathname.includes('patterns')) {
-    return [2];
-  }
   if (location.pathname.includes('data-visualization')) {
-    return [3];
+    return [2];
   }
 }
 
@@ -236,7 +219,6 @@ export const MainNav = ({ ...props }) => {
       node {
         frontmatter {
           title
-          isPattern
         }
         internal {
           contentFilePath
@@ -251,7 +233,6 @@ export const MainNav = ({ ...props }) => {
       designComponentDocs: allMdx(
         filter: {
           internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
-          frontmatter: { isPattern: { ne: true } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -262,7 +243,6 @@ export const MainNav = ({ ...props }) => {
       designPatternDocs: allMdx(
         filter: {
           internal: { contentFilePath: { glob: "**/src/pages/design/**" } }
-          frontmatter: { isPattern: { eq: true } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -273,16 +253,6 @@ export const MainNav = ({ ...props }) => {
       apiDocs: allMdx(
         filter: {
           internal: { contentFilePath: { glob: "**/src/pages/api/**" } }
-        }
-        sort: { frontmatter: { title: ASC } }
-      ) {
-        edges {
-          ...navFields
-        }
-      }
-      patternsDocs: allMdx(
-        filter: {
-          internal: { contentFilePath: { glob: "**/src/pages/patterns/**" } }
         }
         sort: { frontmatter: { title: ASC } }
       ) {
@@ -317,18 +287,6 @@ export const MainNav = ({ ...props }) => {
       apiIntro: allMdx(
         filter: {
           internal: { contentFilePath: { glob: "**/src/pages/api-intro/**" } }
-        }
-        sort: { frontmatter: { order: ASC } }
-      ) {
-        edges {
-          ...navFields
-        }
-      }
-      patternsIntro: allMdx(
-        filter: {
-          internal: {
-            contentFilePath: { glob: "**/src/pages/patterns-intro/**" }
-          }
         }
         sort: { frontmatter: { order: ASC } }
       ) {
@@ -409,20 +367,6 @@ export const MainNav = ({ ...props }) => {
                       </ListItem>
                     ))}
                   </List>
-                  <Heading3>Patterns</Heading3>
-                  <List>
-                    {data.designPatternDocs.edges.map(({ node }) => (
-                      <ListItem key={node.fields.slug}>
-                        <StyledLink2
-                          activeStyle={activeStyle}
-                          onClick={props.handleClick}
-                          to={node.fields.slug}
-                        >
-                          {node.frontmatter.title}
-                        </StyledLink2>
-                      </ListItem>
-                    ))}
-                  </List>
                 </StyledAccordionPanel>
               </StyledAccordionItem>
 
@@ -463,45 +407,6 @@ export const MainNav = ({ ...props }) => {
                   </List>
                 </StyledAccordionPanel>
               </StyledAccordionItem>
-
-              <StyledAccordionItem
-                isOpen={isAccordionItemOpen(location, 'patterns')}
-              >
-                <StyledAccordionButton>
-                  <Heading2>Patterns</Heading2>
-                </StyledAccordionButton>
-                <StyledAccordionPanel>
-                  <Heading3>Intro</Heading3>
-                  <List>
-                    {data.patternsIntro.edges.map(({ node }) => (
-                      <ListItem key={node.fields.slug}>
-                        <StyledLink2
-                          activeStyle={activeStyle}
-                          onClick={props.handleClick}
-                          to={node.fields.slug}
-                        >
-                          {node.frontmatter.title}
-                        </StyledLink2>
-                      </ListItem>
-                    ))}
-                  </List>
-                  <Heading3>API</Heading3>
-                  <List>
-                    {data.patternsDocs.edges.map(({ node }) => (
-                      <ListItem key={node.fields.slug}>
-                        <StyledLink2
-                          activeStyle={activeStyle}
-                          onClick={props.handleClick}
-                          to={node.fields.slug}
-                        >
-                          {node.frontmatter.title}
-                        </StyledLink2>
-                      </ListItem>
-                    ))}
-                  </List>
-                </StyledAccordionPanel>
-              </StyledAccordionItem>
-
               <StyledAccordionItem
                 isOpen={isAccordionItemOpen(location, 'data-visualization')}
               >

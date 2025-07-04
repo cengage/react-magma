@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 
 import { magma } from '../../theme/magma';
 import { ButtonGroup } from '../ButtonGroup';
@@ -18,7 +18,7 @@ import {
   ButtonVariant,
 } from '.';
 
-const Template: Story<ButtonProps> = args => (
+const Template: StoryFn<ButtonProps> = args => (
   <>
     <Button {...args}>Default</Button>
     <Button {...args} color={ButtonColor.secondary}>
@@ -120,52 +120,64 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  isInverse: false,
-  isFullWidth: false,
-  disabled: false,
+export const Default = {
+  render: Template,
+
+  args: {
+    isInverse: false,
+    isFullWidth: false,
+    disabled: false,
+  },
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  isInverse: false,
-  isFullWidth: false,
-  disabled: true,
+export const Disabled = {
+  render: Template,
+
+  args: {
+    isInverse: false,
+    isFullWidth: false,
+    disabled: true,
+  },
 };
 
-export const Inverse = Template.bind({});
-Inverse.args = {
-  ...Default.args,
-  isInverse: true,
+export const Inverse = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    isInverse: true,
+  },
+
+  decorators: [
+    Story => (
+      <Card background={magma.colors.primary600} isInverse>
+        <CardBody>
+          <Story />
+        </CardBody>
+      </Card>
+    ),
+  ],
 };
 
-export const InverseDisabled = Template.bind({});
-InverseDisabled.args = {
-  ...Default.args,
-  disabled: true,
-  isInverse: true,
+export const InverseDisabled = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    disabled: true,
+    isInverse: true,
+  },
+
+  decorators: [
+    Story => (
+      <Card background={magma.colors.primary600} isInverse>
+        <CardBody>
+          <Story />
+        </CardBody>
+      </Card>
+    ),
+  ],
 };
-
-Inverse.decorators = [
-  Story => (
-    <Card background={magma.colors.primary600} isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
-
-InverseDisabled.decorators = [
-  Story => (
-    <Card background={magma.colors.primary600} isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
 
 export const All = () => {
   return (
@@ -296,31 +308,34 @@ export const All = () => {
   );
 };
 
-export const LoadingButton = args => {
-  const [isLoading, setIsLoading] = React.useState(args.isLoading);
-  React.useEffect(() => {
-    if (isLoading) {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 4000);
-    }
-  }, [isLoading]);
+export const LoadingButton = {
+  render: args => {
+    const [isLoading, setIsLoading] = React.useState(args.isLoading);
 
-  return (
-    <>
-      <p>Click the button below to show the loading state</p>
-      <VisuallyHidden>
-        <span role="status">{isLoading ? 'Loading...' : 'Ready'}</span>
-      </VisuallyHidden>
-      <ButtonGroup>
-        <Button
-          {...args}
-          isLoading={isLoading}
-          onClick={() => setIsLoading(true)}
-        >
-          Save
-        </Button>
-      </ButtonGroup>
-    </>
-  );
+    React.useEffect(() => {
+      if (isLoading) {
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 4000);
+      }
+    }, [isLoading]);
+
+    return (
+      <>
+        <p>Click the button below to show the loading state</p>
+        <VisuallyHidden>
+          <span role="status">{isLoading ? 'Loading...' : 'Ready'}</span>
+        </VisuallyHidden>
+        <ButtonGroup>
+          <Button
+            {...args}
+            isLoading={isLoading}
+            onClick={() => setIsLoading(true)}
+          >
+            Save
+          </Button>
+        </ButtonGroup>
+      </>
+    );
+  },
 };

@@ -117,11 +117,15 @@ const Template = args => (
   </Card>
 );
 
-export const Default = Template.bind({});
-Default.args = {
-  width: 320,
+export const Default = {
+  render: Template,
+
+  args: {
+    width: 320,
+  },
+
+  parameters: { controls: { exclude: ['hoverable'] } },
 };
-Default.parameters = { controls: { exclude: ['hoverable'] } };
 
 const CustomIconTemplate = args => (
   <Card
@@ -151,11 +155,15 @@ const CustomIconTemplate = args => (
   </Card>
 );
 
-export const CustomIcon = CustomIconTemplate.bind({});
-CustomIcon.args = {
-  width: 160,
+export const CustomIcon = {
+  render: CustomIconTemplate,
+
+  args: {
+    width: 160,
+  },
+
+  parameters: { controls: { exclude: ['hoverable'] } },
 };
-CustomIcon.parameters = { controls: { exclude: ['hoverable'] } };
 
 const TextOnlyWithHoverTemplate = args => {
   return (
@@ -191,10 +199,13 @@ const TextOnlyWithHoverTemplate = args => {
   );
 };
 
-export const TextOnlyWithHover = TextOnlyWithHoverTemplate.bind({});
-TextOnlyWithHover.args = {
-  width: 320,
-  hoverable: true,
+export const TextOnlyWithHover = {
+  render: TextOnlyWithHoverTemplate,
+
+  args: {
+    width: 320,
+    hoverable: true,
+  },
 };
 
 const WithHeaderTemplate = args => {
@@ -223,9 +234,12 @@ const WithHeaderTemplate = args => {
   );
 };
 
-export const WithHeader = WithHeaderTemplate.bind({});
-WithHeader.args = {
-  width: 320,
+export const WithHeader = {
+  render: WithHeaderTemplate,
+
+  args: {
+    width: 320,
+  },
 };
 
 const WithFooterTemplate = args => {
@@ -254,9 +268,12 @@ const WithFooterTemplate = args => {
   );
 };
 
-export const WithFooter = WithFooterTemplate.bind({});
-WithFooter.args = {
-  width: 320,
+export const WithFooter = {
+  render: WithFooterTemplate,
+
+  args: {
+    width: 320,
+  },
 };
 
 const WithHeaderAndFooterTemplate = args => {
@@ -288,9 +305,12 @@ const WithHeaderAndFooterTemplate = args => {
   );
 };
 
-export const WithHeaderAndFooter = WithHeaderAndFooterTemplate.bind({});
-WithHeaderAndFooter.args = {
-  width: 320,
+export const WithHeaderAndFooter = {
+  render: WithHeaderAndFooterTemplate,
+
+  args: {
+    width: 320,
+  },
 };
 
 const WithALongContentAndMaxHeightTemplate = args => {
@@ -331,11 +351,13 @@ const WithALongContentAndMaxHeightTemplate = args => {
   );
 };
 
-export const WithALongContentAndMaxHeight =
-  WithALongContentAndMaxHeightTemplate.bind({});
-WithALongContentAndMaxHeight.args = {
-  width: 320,
-  maxHeight: 200,
+export const WithALongContentAndMaxHeight = {
+  render: WithALongContentAndMaxHeightTemplate,
+
+  args: {
+    width: 320,
+    maxHeight: 200,
+  },
 };
 
 const SettingsExampleTemplate = args => {
@@ -392,11 +414,15 @@ const SettingsExampleTemplate = args => {
   );
 };
 
-export const SettingsExample = SettingsExampleTemplate.bind({});
-SettingsExample.args = {
-  width: 280,
+export const SettingsExample = {
+  render: SettingsExampleTemplate,
+
+  args: {
+    width: 280,
+  },
+
+  parameters: { controls: { exclude: ['hoverable'] } },
 };
-SettingsExample.parameters = { controls: { exclude: ['hoverable'] } };
 
 const CustomTriggerButtonTemplate = args => {
   const ref = React.useRef<PopoverApi>(null);
@@ -459,11 +485,15 @@ const CustomTriggerButtonTemplate = args => {
   );
 };
 
-export const CustomTriggerButton = CustomTriggerButtonTemplate.bind({});
-CustomTriggerButton.args = {
-  width: 'target',
+export const CustomTriggerButton = {
+  render: CustomTriggerButtonTemplate,
+
+  args: {
+    width: 'target',
+  },
+
+  parameters: { controls: { exclude: ['hoverable'] } },
 };
-CustomTriggerButton.parameters = { controls: { exclude: ['hoverable'] } };
 
 const FormExampleTemplate = args => {
   return (
@@ -504,9 +534,11 @@ const FormExampleTemplate = args => {
   );
 };
 
-export const FormExample = FormExampleTemplate.bind({});
-FormExample.args = {};
-FormExample.parameters = { controls: { exclude: ['hoverable'] } };
+export const FormExample = {
+  render: FormExampleTemplate,
+  args: {},
+  parameters: { controls: { exclude: ['hoverable'] } },
+};
 
 const InputExampleTemplate = args => {
   const [state, setState] = React.useState<string>('');
@@ -777,10 +809,13 @@ const InputExampleTemplate = args => {
   );
 };
 
-export const InputExample = InputExampleTemplate.bind({});
-InputExample.args = {
-  hasPointer: false,
-  width: 'target',
+export const InputExample = {
+  render: InputExampleTemplate,
+
+  args: {
+    hasPointer: false,
+    width: 'target',
+  },
 };
 
 const DisabledPopoverExample = args => {
@@ -817,11 +852,14 @@ const DisabledPopoverExample = args => {
   );
 };
 
-export const DisabledPopover = DisabledPopoverExample.bind({});
-DisabledPopover.args = {
-  width: 320,
-  isDisabled: true,
-  hoverable: true,
+export const DisabledPopover = {
+  render: DisabledPopoverExample,
+
+  args: {
+    width: 320,
+    isDisabled: true,
+    hoverable: true,
+  },
 };
 
 const DisabledTriggerExample = args => {
@@ -860,10 +898,13 @@ const DisabledTriggerExample = args => {
   );
 };
 
-export const DisabledTrigger = DisabledTriggerExample.bind({});
-DisabledTrigger.args = {
-  width: 320,
-  hoverable: true,
+export const DisabledTrigger = {
+  render: DisabledTriggerExample,
+
+  args: {
+    width: 320,
+    hoverable: true,
+  },
 };
 
 const ProfileExampleTemplate = args => {
@@ -981,9 +1022,11 @@ const ProfileExampleTemplate = args => {
   );
 };
 
-export const ProfileExample = ProfileExampleTemplate.bind({});
-ProfileExample.args = {};
-ProfileExample.parameters = { controls: { exclude: ['hoverable'] } };
+export const ProfileExample = {
+  render: ProfileExampleTemplate,
+  args: {},
+  parameters: { controls: { exclude: ['hoverable'] } },
+};
 
 const DontShowAgainTemplate = args => {
   const sessionStorageValue = JSON.parse(
@@ -1050,9 +1093,13 @@ const DontShowAgainTemplate = args => {
   );
 };
 
-export const DontShowAgain = DontShowAgainTemplate.bind({});
-DontShowAgain.args = {
-  width: 320,
-  openByDefault: true,
+export const DontShowAgain = {
+  render: DontShowAgainTemplate,
+
+  args: {
+    width: 320,
+    openByDefault: true,
+  },
+
+  parameters: { controls: { exclude: ['hoverable'] } },
 };
-DontShowAgain.parameters = { controls: { exclude: ['hoverable'] } };

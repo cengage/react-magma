@@ -253,6 +253,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       if (isModalOpen) {
         lastFocus.current = document.activeElement;
         const count = document.querySelectorAll('[aria-modal="true"]').length;
+
         setModalCount(count);
 
         if (!props.isEscKeyDownDisabled) {
@@ -295,6 +296,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         const modalsInDom = document.querySelectorAll(
           '[aria-modal="true"]'
         ).length;
+
         if (modalCount <= 1 && modalsInDom !== 1) {
           if (
             document.getElementById(id).contains(event.target as HTMLDivElement)

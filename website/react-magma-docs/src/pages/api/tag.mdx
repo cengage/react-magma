@@ -80,9 +80,11 @@ import { Tag } from 'react-magma-dom';
 
 export function Example() {
   const [counter, setCounter] = React.useState<number>(0);
+
   function updateCounter() {
     setCounter(count => count + 1);
   }
+
   return (
     <>
       <p>

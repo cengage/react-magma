@@ -21,11 +21,13 @@ function buildLabelColor(props) {
     if (props.disabled) {
       return transparentize(0.8, props.theme.colors.neutral100);
     }
+
     return props.theme.colors.neutral100;
   }
   if (props.disabled) {
     return props.theme.colors.neutral500;
   }
+
   return props.theme.colors.neutral700;
 }
 

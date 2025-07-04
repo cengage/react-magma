@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react/types-6-0';
 
 import { Alert } from '../Alert';
 import { AlertVariant } from '../AlertBase';
@@ -23,72 +23,84 @@ export default {
   title: 'Container',
 } as Meta;
 
-const Template: Story<ContainerProps> = args => (
+const Template: StoryFn<ContainerProps> = args => (
   <Container {...args}>{args.children}</Container>
 );
 
-export const Default = Template.bind({});
-Default.args = {
-  children: (
-    <div>
-      <NavTabs aria-label="Sample Nav Tabs" style={{ marginBottom: '16px' }}>
-        <NavTab isActive to="#">
-          NavTab One
-        </NavTab>
-        <NavTab to="#">NavTab Two</NavTab>
-      </NavTabs>
-      <Heading level={2}>Content Heading</Heading>
-      <Paragraph>
-        Container content goes here. This content has a{' '}
-        <Hyperlink to="#">hyperlink</Hyperlink>.
-      </Paragraph>
+export const Default = {
+  render: Template,
 
-      <TabsContainer activeIndex={1} style={{ marginBottom: '16px' }}>
-        <Tabs aria-label="Sample Tabs">
-          <Tab>First tab</Tab>
-          <Tab>Second tab</Tab>
-        </Tabs>
+  args: {
+    children: (
+      <div>
+        <NavTabs aria-label="Sample Nav Tabs" style={{ marginBottom: '16px' }}>
+          <NavTab isActive to="#">
+            NavTab One
+          </NavTab>
+          <NavTab to="#">NavTab Two</NavTab>
+        </NavTabs>
+        <Heading level={2}>Content Heading</Heading>
+        <Paragraph>
+          Container content goes here. This content has a{' '}
+          <Hyperlink to="#">hyperlink</Hyperlink>.
+        </Paragraph>
 
-        <TabPanelsContainer>
-          <TabPanel>
-            <div>
-              <Alert variant={AlertVariant.success} isDismissible>
-                This is a success alert.{' '}
-                <Hyperlink to="#">Follow this link</Hyperlink>
-              </Alert>
-              Main page
-            </div>
-          </TabPanel>
-          <TabPanel>
-            <div>
-              <Alert variant={AlertVariant.warning} isDismissible>
-                This is a warning alert.{' '}
-                <Hyperlink to="#">Follow this link</Hyperlink>
-              </Alert>
-              FAQ
-            </div>
-          </TabPanel>
-        </TabPanelsContainer>
-      </TabsContainer>
-    </div>
-  ),
-  isInverse: false,
+        <TabsContainer activeIndex={1} style={{ marginBottom: '16px' }}>
+          <Tabs aria-label="Sample Tabs">
+            <Tab>First tab</Tab>
+            <Tab>Second tab</Tab>
+          </Tabs>
+
+          <TabPanelsContainer>
+            <TabPanel>
+              <div>
+                <Alert variant={AlertVariant.success} isDismissible>
+                  This is a success alert.{' '}
+                  <Hyperlink to="#">Follow this link</Hyperlink>
+                </Alert>
+                Main page
+              </div>
+            </TabPanel>
+            <TabPanel>
+              <div>
+                <Alert variant={AlertVariant.warning} isDismissible>
+                  This is a warning alert.{' '}
+                  <Hyperlink to="#">Follow this link</Hyperlink>
+                </Alert>
+                FAQ
+              </div>
+            </TabPanel>
+          </TabPanelsContainer>
+        </TabsContainer>
+      </div>
+    ),
+    isInverse: false,
+  },
 };
 
-export const Inverse = Template.bind({});
-Inverse.args = {
-  ...Default.args,
-  isInverse: true,
+export const Inverse = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    isInverse: true,
+  },
 };
 
-export const MaxWidth = Template.bind({});
-MaxWidth.args = {
-  ...Default.args,
-  maxWidth: '1024px',
+export const MaxWidth = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    maxWidth: '1024px',
+  },
 };
 
-export const Gutters = Template.bind({});
-Gutters.args = {
-  ...Default.args,
-  gutterWidth: 80,
+export const Gutters = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    gutterWidth: 80,
+  },
 };

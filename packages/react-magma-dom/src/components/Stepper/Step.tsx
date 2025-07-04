@@ -86,6 +86,7 @@ function buildStepCircleOutlineColors(props) {
 
 function buildStepCircleBackgroundColors(props) {
   const { isInverse, stepStatus, hasError, theme } = props;
+
   if (isInverse) {
     if (stepStatus === StepStatus.completed && !hasError) {
       return theme.colors.tertiary500;
@@ -121,10 +122,12 @@ function buildStepLabelColors(props) {
 
 function buildStepSvgColors(props) {
   const { theme, hasError, isInverse } = props;
+
   if (isInverse) {
     if (hasError) {
       return theme.colors.neutral100;
     }
+
     return theme.colors.primary600;
   } else {
     return theme.colors.neutral100;

@@ -133,6 +133,7 @@ export const PasswordInput = React.forwardRef<
       if (inputSize === InputSize.large) {
         return '64px';
       }
+
       return '54px';
     } else {
       return `${buttonRef?.current?.offsetWidth}px`;

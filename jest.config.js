@@ -2,7 +2,6 @@ module.exports = {
   collectCoverage: false,
   collectCoverageFrom: [
     '**/packages/**/src/**/*.{js,jsx,ts,tsx}',
-    '**/patterns/**/src/**/*.{js,jsx,ts,tsx}',
     '!**/?(*.)+(spec|test|stories).{js,ts,mjs,jsx,tsx}',
     '!**/.nx/**',
     '!**/node_modules/**',
@@ -13,10 +12,7 @@ module.exports = {
   coverageReporters: ['text', 'lcov'],
   modulePaths: ['<rootDir>'],
   moduleDirectories: ['node_modules'],
-  projects: [
-    '<rootDir>/packages/*/jest.config.js',
-    '<rootDir>/patterns/*/jest.config.js',
-  ],
+  projects: ['<rootDir>/packages/*/jest.config.js'],
   roots: ['<rootDir>'],
   setupFiles: ['<rootDir>/jest.overrides.js'],
   setupFilesAfterEnv: [

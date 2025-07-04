@@ -23,6 +23,7 @@ export const VisuallyHidden: React.FunctionComponent<
   VisuallyHiddenProps
 > = props => {
   const { children, testId, ...other } = props;
+
   return (
     <VisuallyHiddenDiv {...other} data-testid={testId}>
       {children}

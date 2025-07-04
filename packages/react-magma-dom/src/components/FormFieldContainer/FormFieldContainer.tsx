@@ -135,6 +135,7 @@ function InputPositionWrapper(props) {
   if (props.labelPosition === LabelPosition.left) {
     return <StyledInputWrapper>{props.children}</StyledInputWrapper>;
   }
+
   return props.children;
 }
 

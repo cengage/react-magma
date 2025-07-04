@@ -17,6 +17,7 @@ export const SkipLinkContent: React.FunctionComponent<
   SkipLinkContentProps
 > = props => {
   const { children, testId } = props;
+
   return (
     <div
       data-testid={testId}

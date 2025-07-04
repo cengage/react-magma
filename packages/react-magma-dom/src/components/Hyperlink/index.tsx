@@ -135,6 +135,7 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
         <ClassNames>
           {({ css: composedCss }) => {
             const className = composedCss(composedStyle);
+
             return (children as (props: object) => React.ReactNode)({
               to,
               className,

@@ -224,8 +224,10 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
     function getTabsMeta() {
       const tabsNode = tabsWrapperRef.current;
       let tabsMeta;
+
       if (tabsNode) {
         const rect = tabsNode.getBoundingClientRect();
+
         tabsMeta = {
           clientWidth: tabsNode.clientWidth,
           scrollLeft: tabsNode.scrollLeft,
@@ -243,13 +245,17 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       }
 
       let tabMeta;
+
       if (tabsNode) {
         const childrenArray = childrenWrapperRef.current.children;
+
         if (childrenArray.length > 0) {
           const tab = childrenArray[activeTabIndex];
+
           tabMeta = tab ? (tab as any).getBoundingClientRect() : null;
         }
       }
+
       return { tabsMeta, tabMeta };
     }
 
@@ -273,6 +279,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           Number(tabsMeta[scrollStart]) +
           (Number(tabMeta[start]) - Number(tabsMeta[start])) -
           prevButtonOffset;
+
         scroll(nextScrollStart);
       } else if (tabMeta[end] > Number(tabsMeta[end]) - nextButtonOffset) {
         // right side of button is out of view
@@ -280,6 +287,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           Number(tabsMeta[scrollStart]) +
           (Number(tabMeta[end]) - Number(tabsMeta[end])) +
           nextButtonOffset;
+
         scroll(nextScrollStart);
       }
     }
@@ -314,6 +322,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
         (event.target as HTMLInputElement).children[0].hasAttribute('disabled')
       ) {
         event.preventDefault();
+
         return undefined;
       }
 
@@ -370,6 +379,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       const target = event.target as HTMLButtonElement;
 
       const role = target.getAttribute('role');
+
       if (role !== 'tab') {
         return;
       }

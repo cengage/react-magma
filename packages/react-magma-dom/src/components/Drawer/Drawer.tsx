@@ -52,6 +52,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       ...theme.drawer.default,
       ...theme.drawer[DrawerPosition[position]],
     } as React.CSSProperties;
+
     return (
       <Modal
         containerStyle={{

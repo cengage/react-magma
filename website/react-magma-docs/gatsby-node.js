@@ -102,10 +102,7 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
   }
 };
 
-exports.onCreatePage = async ({
-  page,
-  actions: { createPage, deletePage },
-}) => {
+exports.onCreatePage = ({ page, actions: { createPage, deletePage } }) => {
   const { frontmatter } = page.context;
 
   if (frontmatter) {
