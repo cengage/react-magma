@@ -34,7 +34,7 @@ const parseFlags = (values: string[]): Partial<Record<FlagKey, boolean>> => {
 
   return flagKeys.reduce(
     (acc, key) => {
-      if (normalized.includes(key)) {
+      if (normalized?.includes(key)) {
         acc[key] = true;
       }
 
