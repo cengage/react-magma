@@ -209,7 +209,7 @@ A project can have multiple theme files that are triggered conditionally by the 
 
 The code below is an example of a theme file (applying to all components), including a themes for all valid individual components (only applies to those components - see subsection below for more information).
 
-```jsx noCodeSandbox noRender
+```jsx-noCodeSandbox-noRender
 import { magma } from 'react-magma-dom';
 
 const typeScale = {
@@ -404,7 +404,7 @@ To apply component-specific theming, theme objects can be included in the theme 
 These individual theme objects will be applied globally to **only those components.**
 The theme object for each above component can be found on its documentation page. See below for an example of an individual component's theme object:
 
-```json noCodeSandbox noRender
+```json-noCodeSandbox-noRender
 {
   "tooltip": {
     "arrowSize": "4px",
@@ -429,7 +429,7 @@ One of the features of the Magma theme is a typography scale, that contains thir
 
 The `typeScale` can be set as part of the theme.
 
-```json noCodeSandbox noRender
+```json-noCodeSandbox-noRender
 {
   "typeScale": {
     "size01": {
@@ -502,7 +502,7 @@ The `typeScale` can be set as part of the theme.
 Furthermore, font-size and line-height can be set in the theme for six heading levels and four paragraph relative sizes for two different screen resolutions.
 The theme also contains options for two additional typography variants for those heading and paragraph styles.
 
-```json noCodeSandbox noRender
+```json-noCodeSandbox-noRender
 {
   "typographyVisualStyles": {
     "headingXLarge": {
@@ -570,7 +570,7 @@ Designers are advised to use values from the space scale whenever possible.
 
 The `spaceScale` can be overridden in by defining its values new theme.
 
-```json noCodeSandbox noRender
+```json-noCodeSandbox-noRender
 {
   "spaceScale": {
     "spacing01": "2px",

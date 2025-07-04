@@ -30,8 +30,6 @@ export const Example = ({ ...props }: ExampleProps) => {
     calculateStartExpanded(props.code, context.startExpanded)
   );
   const toggleExpanded = () => setExpanded(!expanded);
-  const isJSON = context.language === 'json';
-  const isShScript = (context.language as string) === 'sh';
 
   return (
     <div>
@@ -43,9 +41,7 @@ export const Example = ({ ...props }: ExampleProps) => {
           )}
         </ActionsLeft>
         {!context.noCopy && <CopyAction code={props.code} />}
-        {!context.noCodeSandbox && !isJSON && !isShScript && (
-          <CodeSandboxAction code={props.code} />
-        )}
+        {!context.noCodeSandbox && <CodeSandboxAction code={props.code} />}
       </Actions>
       <Editor expanded={expanded} onClick={toggleExpanded}>
         {props.code}

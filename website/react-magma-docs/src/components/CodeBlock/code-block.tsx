@@ -18,6 +18,32 @@ interface CodeBlockProps extends HTMLAttributes<HTMLDivElement> {
   noBorder?: boolean;
 }
 
+const flagKeys = [
+  'noRender',
+  'noCode',
+  'startExpanded',
+  'noCopy',
+  'noCodeSandbox',
+  'noBorder',
+];
+
+type FlagKey = (typeof flagKeys)[number];
+
+const parseFlags = (values: string[]): Partial<Record<FlagKey, boolean>> => {
+  const normalized = values.map(v => v.trim());
+
+  return flagKeys.reduce(
+    (acc, key) => {
+      if (normalized.includes(key)) {
+        acc[key] = true;
+      }
+
+      return acc;
+    },
+    {} as Partial<Record<FlagKey, boolean>>
+  );
+};
+
 export const CodeBlock = ({
   noCode = false,
   noRender = false,
@@ -25,26 +51,30 @@ export const CodeBlock = ({
   noCopy = false,
   noCodeSandbox = false,
   noBorder = false,
+  children,
+  themeName,
   title = 'Code Example',
   ...props
 }: CodeBlockProps) => {
-  const language = props.className?.replace(/language-/, '') as Language;
+  const language = props.className?.split('-')[1] as Language;
+  const values: string[] = props.className.split('-').slice(2);
+  const flags = parseFlags(values);
 
   return (
     <CodeBlockContext.Provider
       value={{
         language,
-        noRender,
-        noCode,
-        noCopy,
-        noCodeSandbox,
-        noBorder,
-        startExpanded,
+        noRender: flags.noRender ?? noRender,
+        noCode: flags.noCode ?? noCode,
+        noCopy: flags.noCopy ?? noCopy,
+        noCodeSandbox: flags.noCodeSandbox ?? noCodeSandbox,
+        noBorder: flags.noBorder ?? noBorder,
+        startExpanded: flags.startExpanded ?? startExpanded,
         title,
-        themeNameOverride: props.themeName,
+        themeNameOverride: themeName,
       }}
     >
-      <Example title={title} code={props.children} />
+      <Example title={title} code={children} />
     </CodeBlockContext.Provider>
   );
 };

@@ -26,7 +26,7 @@ If there is an h1 heading inside the SkipLinkContent, the h1 will receive focus.
 
 Because the `SkipLink` and `SkipLinkContent` work based on an `id`, it is important that you only have one pair of these elements on a page.
 
-```tsx noRender
+```tsx-noRender
 import React from 'react';
 
 import {
@@ -52,7 +52,7 @@ export function Example() {
   return (
     <div>
       <SkipLink buttonText="Skip to main content" />
-      <SideNav length={5} />
+      <SideNav length={500} />
       <SkipLinkContent>
         <Paragraph>Content to jump to.</Paragraph>
       </SkipLinkContent>
@@ -74,7 +74,7 @@ IsInverse is can be either `true` or `false`, and is used when the SkipLink is t
 
 For more information, see the <Link to="/api/button">Button Component documentation</Link>.
 
-```tsx noRender
+```tsx-noRender
 import React from 'react';
 
 import {
@@ -104,7 +104,7 @@ export function Example() {
         buttonText="Skip to main content"
         variant={ButtonVariant.solid}
       />
-      <SideNav length={5} />
+      <SideNav length={500} />
       <SkipLinkContent>
         <Paragraph>Content to jump to.</Paragraph>
       </SkipLinkContent>
@@ -118,7 +118,7 @@ export function Example() {
 
 By default, the text inside the button says "Skip Navigation". This can be overridden using the `buttonText` prop.
 
-```tsx noRender
+```tsx-noRender
 import React from 'react';
 
 import {
@@ -144,7 +144,7 @@ export function Example() {
   return (
     <div>
       <SkipLink buttonText="Skip to main content" />
-      <SideNav length={5} />
+      <SideNav length={500} />
       <SkipLinkContent>
         <Paragraph>Content to jump to.</Paragraph>
       </SkipLinkContent>
@@ -159,7 +159,7 @@ export function Example() {
 By default, the `SkipLink` is fixed positioned 10px from the top and 10px from left of the screen. This can be customized using the optional `positionLeft`
 and `positionTop` properties, which take numeric values.
 
-```tsx noRender
+```tsx-noRender
 import React from 'react';
 
 import {
@@ -189,7 +189,7 @@ export function Example() {
         positionLeft={25}
         positionTop={25}
       />
-      <SideNav length={5} />
+      <SideNav length={500} />
       <SkipLinkContent>
         <Paragraph>Content to jump to.</Paragraph>
       </SkipLinkContent>
