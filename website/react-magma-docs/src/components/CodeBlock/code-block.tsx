@@ -30,7 +30,7 @@ const flagKeys = [
 type FlagKey = (typeof flagKeys)[number];
 
 const parseFlags = (values: string[]): Partial<Record<FlagKey, boolean>> => {
-  const normalized = values.map(v => v.trim());
+  const normalized = values?.map(v => v.trim());
 
   return flagKeys.reduce(
     (acc, key) => {
