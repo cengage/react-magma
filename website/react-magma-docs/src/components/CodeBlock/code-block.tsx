@@ -57,7 +57,7 @@ export const CodeBlock = ({
   ...props
 }: CodeBlockProps) => {
   const language = props.className?.split('-')[1] as Language;
-  const values: string[] = props.className.split('-').slice(2);
+  const values: string[] = props.className?.split('-').slice(2);
   const flags = parseFlags(values);
 
   return (
