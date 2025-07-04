@@ -13,6 +13,7 @@ import {
   MoreHorizIcon,
   QueuePlayNextIcon,
   QuizIcon,
+  SpaceDashboardIcon,
   StarIcon,
 } from 'react-magma-icons';
 
@@ -28,10 +29,15 @@ import {
   FlexBehavior,
   IconButton,
   IndeterminateCheckboxStatus,
+  Popover,
+  PopoverApi,
+  PopoverContent,
+  PopoverTrigger,
   Spacer,
   SpacerAxis,
   Tag,
   TagSize,
+  Tooltip,
   TreeItemSelectedInterface,
   TreeViewProps,
 } from '../..';
@@ -3098,3 +3104,128 @@ ComplexWithAdditionalContent.args = {
   isDisabled: false,
   testId: 'complex-additional-content-example',
 };
+
+export function TreeViewWithDifferentElements() {
+  const parrotsInDropdown = () => {
+    return (
+      <div style={{ width: '100%', marginTop: '12px' }}>
+        <ButtonGroup style={{ marginBottom: '16px' }}>
+          <Dropdown>
+            <DropdownButton size={ButtonSize.small} color={ButtonColor.subtle}>
+              <div style={{ display: 'flex' }}>
+                <SpaceDashboardIcon
+                  size={16}
+                  style={{
+                    flex: '0 0 auto',
+                    marginRight: '4px',
+                  }}
+                />{' '}
+                <span style={{ flex: '1 1 auto' }}>Parrots</span>
+              </div>
+            </DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>African Grey</DropdownMenuItem>
+              <DropdownMenuItem>Cockatiel</DropdownMenuItem>
+              <DropdownMenuItem>Budgerigar</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </ButtonGroup>
+      </div>
+    );
+  };
+
+  const popoverApiRef = React.useRef<PopoverApi>();
+
+  const birdsOfPreyInPopover = () => {
+    return (
+      <>
+        <Popover hasPointer={false} focusTrap={false} apiRef={popoverApiRef}>
+          <PopoverTrigger aria-label="Open popover">Eagles</PopoverTrigger>
+          <PopoverContent>
+            <div>Large, powerful birds known for their soaring flight.</div>
+          </PopoverContent>
+        </Popover>
+        <Popover hasPointer={false} focusTrap>
+          <PopoverTrigger
+            aria-label="Open popover"
+            color={ButtonColor.secondary}
+          >
+            Owls
+          </PopoverTrigger>
+          <PopoverContent>
+            <div>
+              Nocturnal birds with distinctive facial discs and silent flight.{' '}
+              <Button
+                onClick={event => apiRef.current?.closePopoverManually(event)}
+              >
+                Ok
+              </Button>
+            </div>
+          </PopoverContent>
+        </Popover>
+      </>
+    );
+  };
+
+  const pinguinsInTooltip = () => {
+    return (
+      <Tooltip content="Pinguins are flightless birds that live in the Southern Hemisphere.">
+        <Button size={ButtonSize.small}>Pinguins description</Button>
+      </Tooltip>
+    );
+  };
+
+  return (
+    <TreeView
+      selectable={TreeViewSelectable.off}
+      initialExpandedItems={[
+        'parrots-AdditionalContent',
+        'birdsOfPrey',
+        'pinguins',
+      ]}
+    >
+      <TreeItem
+        icon={<FolderIcon aria-hidden />}
+        label={<>Birds</>}
+        itemId="birds"
+      >
+        <TreeItem label={<>Parrots (Dropdown)</>} itemId="parrots-folder">
+          <TreeItem
+            additionalContent={parrotsInDropdown()}
+            label={<>Additional content</>}
+            itemId="parrots-AdditionalContent"
+          />
+        </TreeItem>
+        <TreeItem
+          label={<>Birds of Prey (Popover)</>}
+          itemId="birdsOfPrey-folder"
+        >
+          <TreeItem
+            additionalContent={birdsOfPreyInPopover()}
+            label={<>Additional content</>}
+            itemId="birdsOfPrey"
+          />
+        </TreeItem>
+        <TreeItem label={<>Pinguins (Tooltip)</>} itemId="pinguins-folder">
+          <TreeItem
+            additionalContent={pinguinsInTooltip()}
+            label={<>Additional content</>}
+            itemId="pinguins"
+          />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Aquatic Animals" itemId="selectable-Aquatic Animals">
+        <TreeItem label="Fish" itemId="selectable-Fish">
+          <TreeItem label="Goldfish" itemId="selectable-Goldfish" />
+          <TreeItem label="Betta Fish" itemId="selectable-Betta Fish" />
+          <TreeItem label="Guppies" itemId="selectable-Guppies" />
+        </TreeItem>
+        <TreeItem label="Marine Mammals" itemId="selectable-Marine Mammals">
+          <TreeItem label="Dolphins" itemId="selectable-Dolphins" />
+          <TreeItem label="Whales" itemId="selectable-Whales" />
+          <TreeItem label="Seals" itemId="selectable-Seals" />
+        </TreeItem>
+      </TreeItem>
+    </TreeView>
+  );
+}
