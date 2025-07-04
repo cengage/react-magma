@@ -78,13 +78,12 @@ exports.onCreateNode = async ({ node, actions, getNode }) => {
     // Extracting headings navigation from the MDX content
     visit(tree, 'heading', headingNode => {
       if (headingNode.depth === 2) {
-        const text = headingNode.children
-          .filter(n => n.type === 'text' || n.type === 'inlineCode')
-          .map(n => n.value)
-          .join('');
+        const heading = headingNode.children?.reduce((previous, current) => {
+          return current.type === 'text' ? previous + current.value : previous;
+        }, '');
 
-        if (text) {
-          pageNavigationHeadings.push(text);
+        if (heading) {
+          pageNavigationHeadings.push(heading);
         }
       }
     });
