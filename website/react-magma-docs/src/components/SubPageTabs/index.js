@@ -73,8 +73,12 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
   const hasHeadings = headings.length > 0;
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.hash) {
-      window.scrollTo(0, 0);
+    if (typeof window !== 'undefined' && !window.location.hash) {
+      const timeout = setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 100);
+
+      return () => clearTimeout(timeout);
     }
   }, []);
 
