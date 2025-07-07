@@ -78,7 +78,7 @@ const RepoLink = styled.span`
   display: flex;
   align-items: center;
   position: relative;
-  left: 52px;
+  padding-right: 12px;
 `;
 
 const HeaderLogo = (
@@ -112,10 +112,10 @@ export const Masthead = props => {
     <StyledHeader
       breakpoint={magma.breakpoints.medium}
       isCompact
-      logo={HeaderLogo}
       position={AppBarPosition.sticky}
       style={{ gridArea: 'masthead' }}
     >
+      {HeaderLogo}
       {props.children}
     </StyledHeader>
   );
