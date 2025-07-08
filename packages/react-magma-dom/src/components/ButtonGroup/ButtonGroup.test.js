@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
+import { CheckIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -11,8 +12,9 @@ import {
   DropdownContent,
   DropdownMenuItem,
 } from '../Dropdown';
+import { IconButton } from '../IconButton';
 
-import { ButtonGroup, ButtonGroupOrientation, ButtonGroupAlignment } from '.';
+import { ButtonGroup, ButtonGroupAlignment, ButtonGroupOrientation } from '.';
 
 const testId = 'test-id';
 
@@ -480,5 +482,52 @@ describe('ButtonGroup', () => {
 
       expect(container).toMatchSnapshot();
     });
+  });
+});
+
+describe('Size', () => {
+  const icon = <CheckIcon />;
+
+  it('Large', () => {
+    const { container } = render(
+      <ButtonGroup>
+        <IconButton icon={icon} size={ButtonSize.large}>
+          Large
+        </IconButton>
+      </ButtonGroup>
+    );
+
+    const svg = container.querySelector('svg');
+
+    expect(svg).toHaveAttribute('height', '24');
+    expect(svg).toHaveAttribute('width', '24');
+  });
+
+  it('Medium', () => {
+    const { container } = render(
+      <ButtonGroup>
+        <IconButton icon={icon} size={ButtonSize.medium}>
+          Medium
+        </IconButton>
+      </ButtonGroup>
+    );
+
+    const svg = container.querySelector('svg');
+    expect(svg).toHaveAttribute('height', '20');
+    expect(svg).toHaveAttribute('width', '20');
+  });
+
+  it('Small', () => {
+    const { container } = render(
+      <ButtonGroup>
+        <IconButton icon={icon} size={ButtonSize.small}>
+          Small
+        </IconButton>
+      </ButtonGroup>
+    );
+
+    const svg = container.querySelector('svg');
+    expect(svg).toHaveAttribute('height', '16');
+    expect(svg).toHaveAttribute('width', '16');
   });
 });

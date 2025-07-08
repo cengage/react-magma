@@ -2,39 +2,41 @@ import React from 'react';
 
 import {
   act,
-  render,
   fireEvent,
-  getByTestId,
   getByLabelText,
+  getByTestId,
+  render,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 import {
   AsteriskIcon,
+  CheckIcon,
   ReorderIcon,
   RestaurantMenuIcon,
   SettingsIcon,
 } from 'react-magma-icons';
 
 import { magma } from '../../theme/magma';
+import { ButtonSize } from '../Button';
 import { ButtonIconPosition } from '../IconButton';
 import { Modal } from '../Modal';
 
 import {
   Dropdown,
+  DropdownButton,
   DropdownContent,
   DropdownDivider,
-  DropdownHeader,
-  DropdownMenuItem,
-  DropdownMenuGroup,
-  DropdownSplitButton,
-  DropdownButton,
-  DropdownMenuNavItem,
+  DropdownExpandableMenuButton,
   DropdownExpandableMenuGroup,
   DropdownExpandableMenuItem,
   DropdownExpandableMenuListItem,
-  DropdownExpandableMenuButton,
   DropdownExpandableMenuPanel,
+  DropdownHeader,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuNavItem,
+  DropdownSplitButton,
 } from '.';
 
 describe('Dropdown', () => {
@@ -1509,6 +1511,56 @@ describe('Dropdown', () => {
       );
 
       expect(container.querySelectorAll('svg').length).toBe(1);
+    });
+  });
+
+  describe('Size', () => {
+    const icon = <CheckIcon />;
+
+    it('Large', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownButton icon={icon} size={ButtonSize.large}>
+            Large
+          </DropdownButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+
+      const svg = container.querySelector('svg');
+
+      expect(svg).toHaveAttribute('height', '24');
+      expect(svg).toHaveAttribute('width', '24');
+    });
+
+    it('Medium', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownButton icon={icon} size={ButtonSize.medium}>
+            Medium
+          </DropdownButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', '20');
+      expect(svg).toHaveAttribute('width', '20');
+    });
+
+    it('Small', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownButton icon={icon} size={ButtonSize.small}>
+            Small
+          </DropdownButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', '16');
+      expect(svg).toHaveAttribute('width', '16');
     });
   });
 });
