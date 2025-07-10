@@ -85,7 +85,7 @@ function getIconPadding(props) {
   }
 }
 
-function getIconSize(size, theme) {
+export function getIconSize(size, theme) {
   switch (size) {
     case 'large':
       return theme.iconSizes.medium;

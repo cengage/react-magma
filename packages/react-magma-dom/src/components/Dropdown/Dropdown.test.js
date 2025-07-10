@@ -1563,4 +1563,52 @@ describe('Dropdown', () => {
       expect(svg).toHaveAttribute('width', magma.iconSizes.xSmall.toString());
     });
   });
+
+  describe('Size for Dropdown split button', () => {
+    it('Large', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownSplitButton size={ButtonSize.large} aria-label="Split Large">
+            Large
+          </DropdownSplitButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.medium.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.medium.toString());
+    });
+
+    it('Medium', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownSplitButton
+            size={ButtonSize.medium}
+            aria-label="Split Medium"
+          >
+            Medium
+          </DropdownSplitButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.small.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.small.toString());
+    });
+
+    it('Small', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownSplitButton size={ButtonSize.small} aria-label="Split Small">
+            Small
+          </DropdownSplitButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.xSmall.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.xSmall.toString());
+    });
+  });
 });
