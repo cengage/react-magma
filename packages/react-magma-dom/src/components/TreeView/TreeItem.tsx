@@ -354,9 +354,8 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         'button, [role="button"], a[href], input, select, textarea, [role="menuitem"]'
       );
 
-      // Preventing selecting the item when clicking on interactive elements
+      // Preventing selecting the item when clicking on interactive elements when `selectable` is `single`
       if (interactiveElement) {
-        interactiveElement.click();
         event.stopPropagation();
         return;
       }
@@ -381,7 +380,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         style={labelStyle}
         id={`${itemId}-label`}
         data-testid={`${testId || itemId}-label`}
-        onClick={handleOnClick}
       >
         {hasIcons && (
           <IconWrapper
@@ -402,7 +400,6 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         theme={theme}
         id={`${itemId}-additionalcontentwrapper`}
         data-testid={`${testId ?? itemId}-additionalcontentwrapper`}
-        onClick={handleOnClick}
       >
         {additionalContent}
       </AdditionalContentWrapper>
@@ -530,6 +527,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             style={style}
             theme={theme}
             ref={mergeRefs(ref, focusTrapElement)}
+            onClick={handleOnClick}
           >
             {hasOwnTreeItems && (
               <StyledExpandWrapper
