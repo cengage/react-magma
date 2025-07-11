@@ -159,7 +159,7 @@ const OneDisabledElemet = () => {
 };
 
 describe('useFocusLock', () => {
-  it('should focus on active element', () => {
+  it('should focus on active element', async () => {
     const { getByTestId } = render(<OneActiveElemet />);
 
     const buttonOutsideModal = getByTestId(TEST_ID_BUTTON_OUTSIDE_MODAL);
@@ -169,7 +169,7 @@ describe('useFocusLock', () => {
       getByTestId(TEST_ID_FIRST_ACTIVE_BUTTON_INSIDE_MODAL)
     ).toThrow();
 
-    userEvent.click(buttonOutsideModal);
+    await userEvent.click(buttonOutsideModal);
 
     const activeButtonInsideModal = getByTestId(
       TEST_ID_FIRST_ACTIVE_BUTTON_INSIDE_MODAL
@@ -180,7 +180,7 @@ describe('useFocusLock', () => {
     expect(activeButtonInsideModal).toHaveFocus();
   });
 
-  it('should stay inside the modal after pressing tab if there is one active element', () => {
+  it('should stay inside the modal after pressing tab if there is one active element', async () => {
     const { getByTestId } = render(<OneActiveElemet />);
 
     const buttonOutsideModal = getByTestId(TEST_ID_BUTTON_OUTSIDE_MODAL);
@@ -190,7 +190,7 @@ describe('useFocusLock', () => {
       getByTestId(TEST_ID_FIRST_ACTIVE_BUTTON_INSIDE_MODAL)
     ).toThrow();
 
-    userEvent.click(buttonOutsideModal);
+    await userEvent.click(buttonOutsideModal);
 
     const activeButtonInsideModal = getByTestId(
       TEST_ID_FIRST_ACTIVE_BUTTON_INSIDE_MODAL
@@ -200,17 +200,17 @@ describe('useFocusLock', () => {
     expect(activeButtonInsideModal).not.toBeDisabled();
     expect(activeButtonInsideModal).toHaveFocus();
 
-    userEvent.tab();
+    await userEvent.tab();
 
     expect(activeButtonInsideModal).toHaveFocus();
   });
 
-  it('should focus on first active element if first element in the modal is disabled', () => {
+  it('should focus on first active element if first element in the modal is disabled', async () => {
     const { getByTestId } = render(<FirstElementIsDisabled />);
 
     const buttonOutsideModal = getByTestId(TEST_ID_BUTTON_OUTSIDE_MODAL);
 
-    userEvent.click(buttonOutsideModal);
+    await userEvent.click(buttonOutsideModal);
 
     const activeButtonInsideModal = getByTestId(
       TEST_ID_FIRST_ACTIVE_BUTTON_INSIDE_MODAL
@@ -228,12 +228,12 @@ describe('useFocusLock', () => {
     expect(activeButtonInsideModal).toHaveFocus();
   });
 
-  it('should focus on last active element after shift + tab', () => {
+  it('should focus on last active element after shift + tab', async () => {
     const { getByTestId } = render(<TwoActiveElemets />);
 
     const buttonOutsideModal = getByTestId(TEST_ID_BUTTON_OUTSIDE_MODAL);
 
-    userEvent.click(buttonOutsideModal);
+    await userEvent.click(buttonOutsideModal);
 
     const firstActiveButtonInsideModal = getByTestId(
       TEST_ID_FIRST_ACTIVE_BUTTON_INSIDE_MODAL
@@ -246,24 +246,25 @@ describe('useFocusLock', () => {
     expect(firstActiveButtonInsideModal).not.toBeDisabled();
     expect(firstActiveButtonInsideModal).toHaveFocus();
 
-    userEvent.tab({ shift: true });
+    await userEvent.tab({ shift: true });
 
     expect(firstActiveButtonInsideModal).not.toHaveFocus();
     expect(secondActiveButtonInsideModal).toBeInTheDocument();
     expect(secondActiveButtonInsideModal).not.toBeDisabled();
     expect(secondActiveButtonInsideModal).toHaveFocus();
 
-    userEvent.tab({ shift: true });
+    await userEvent.tab({ shift: true });
 
     expect(secondActiveButtonInsideModal).not.toHaveFocus();
     expect(firstActiveButtonInsideModal).toHaveFocus();
   });
-  it('should focus on first active element after last tab', () => {
+
+  it('should focus on first active element after last tab', async () => {
     const { getByTestId } = render(<TwoActiveElemets />);
 
     const buttonOutsideModal = getByTestId(TEST_ID_BUTTON_OUTSIDE_MODAL);
 
-    userEvent.click(buttonOutsideModal);
+    await userEvent.click(buttonOutsideModal);
 
     const firstActiveButtonInsideModal = getByTestId(
       TEST_ID_FIRST_ACTIVE_BUTTON_INSIDE_MODAL
@@ -276,25 +277,25 @@ describe('useFocusLock', () => {
     expect(firstActiveButtonInsideModal).not.toBeDisabled();
     expect(firstActiveButtonInsideModal).toHaveFocus();
 
-    userEvent.tab();
+    await userEvent.tab();
 
     expect(firstActiveButtonInsideModal).not.toHaveFocus();
     expect(secondActiveButtonInsideModal).toBeInTheDocument();
     expect(secondActiveButtonInsideModal).not.toBeDisabled();
     expect(secondActiveButtonInsideModal).toHaveFocus();
 
-    userEvent.tab();
+    await userEvent.tab();
 
     expect(secondActiveButtonInsideModal).not.toHaveFocus();
     expect(firstActiveButtonInsideModal).toHaveFocus();
   });
 
-  it('should focus correctly if first and last elements are disabled', () => {
+  it('should focus correctly if first and last elements are disabled', async () => {
     const { getByTestId } = render(<FirstAndLastElementsAreDisabled />);
 
     const buttonOutsideModal = getByTestId(TEST_ID_BUTTON_OUTSIDE_MODAL);
 
-    userEvent.click(buttonOutsideModal);
+    await userEvent.click(buttonOutsideModal);
 
     const firstActiveButtonInsideModal = getByTestId(
       TEST_ID_FIRST_ACTIVE_BUTTON_INSIDE_MODAL
@@ -317,7 +318,7 @@ describe('useFocusLock', () => {
     expect(firstActiveButtonInsideModal).not.toBeDisabled();
     expect(firstActiveButtonInsideModal).toHaveFocus();
 
-    userEvent.tab();
+    await userEvent.tab();
 
     expect(firstActiveButtonInsideModal).not.toHaveFocus();
 
@@ -329,14 +330,14 @@ describe('useFocusLock', () => {
     expect(secondDisabledButtonInsideModal).toBeDisabled();
     expect(secondDisabledButtonInsideModal).not.toHaveFocus();
 
-    userEvent.tab();
+    await userEvent.tab();
 
     expect(secondActiveButtonInsideModal).not.toHaveFocus();
     expect(secondDisabledButtonInsideModal).not.toHaveFocus();
     expect(firstDisabledButtonInsideModal).not.toHaveFocus();
     expect(firstActiveButtonInsideModal).toHaveFocus();
 
-    userEvent.tab({ shift: true });
+    await userEvent.tab({ shift: true });
 
     expect(firstActiveButtonInsideModal).not.toHaveFocus();
     expect(firstDisabledButtonInsideModal).not.toHaveFocus();
@@ -344,12 +345,12 @@ describe('useFocusLock', () => {
     expect(secondActiveButtonInsideModal).toHaveFocus();
   });
 
-  it('should focus on last active element if there is no tabbable elements', () => {
+  it('should focus on last active element if there is no tabbable elements', async () => {
     const { getByTestId, getByText } = render(<OneDisabledElemet />);
 
     const buttonOutsideModal = getByTestId(TEST_ID_BUTTON_OUTSIDE_MODAL);
 
-    userEvent.click(buttonOutsideModal);
+    await userEvent.click(buttonOutsideModal);
 
     const disabledButtonInsideModal = getByTestId(
       TEST_ID_FIRST_DISABLED_BUTTON_INSIDE_MODAL
@@ -361,7 +362,7 @@ describe('useFocusLock', () => {
 
     expect(getByText('Test text')).toHaveFocus();
 
-    userEvent.tab();
+    await userEvent.tab();
 
     expect(getByText('Test text')).toHaveFocus();
   });

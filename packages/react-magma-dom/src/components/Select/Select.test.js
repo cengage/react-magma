@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { HelpIcon } from 'react-magma-icons';
 
 import { defaultI18n } from '../../i18n/default';
@@ -12,12 +12,13 @@ import { Modal } from '../Modal';
 import { Tooltip } from '../Tooltip';
 
 import { Select } from '.';
+import userEvent from '@testing-library/user-event';
 
 describe('Select', () => {
   const labelText = 'Label';
   const items = ['Red', 'Blue', 'Green'];
 
-  it('should render a select with items', () => {
+  it('should render a select with items', async () => {
     const { getByLabelText, getByText } = render(
       <Select labelText={labelText} items={items} />
     );
@@ -26,35 +27,40 @@ describe('Select', () => {
 
     expect(renderedSelect).toBeInTheDocument();
 
-    fireEvent.click(renderedSelect);
+    await userEvent.click(renderedSelect);
 
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
-  it('should render a select with a passed in placeholder', () => {
+  it('should render a select with a passed in placeholder', async () => {
     const placeholder = 'Test';
 
     const { getByText } = render(
       <Select labelText={labelText} items={items} placeholder={placeholder} />
     );
 
-    expect(getByText(placeholder)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(placeholder)).toBeInTheDocument();
+    });
   });
 
-  it('should render a select with the default i18n placeholder', () => {
+  it('should render a select with the default i18n placeholder', async () => {
     const { getByText } = render(
       <Select labelText={labelText} items={items} />
     );
 
-    expect(getByText(defaultI18n.select.placeholder)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(defaultI18n.select.placeholder)).toBeInTheDocument();
+    });
   });
 
-  it('should accept items in the default object format', () => {
+  it('should accept items in the default object format', async () => {
     const items = [
       { label: 'Red', value: 'red' },
       { label: 'Blue', value: 'blue' },
       { label: 'Green', value: 'green' },
     ];
+
     const { getByLabelText, getByText } = render(
       <Select labelText={labelText} items={items} />
     );
@@ -63,12 +69,12 @@ describe('Select', () => {
 
     expect(renderedSelect).toBeInTheDocument();
 
-    fireEvent.click(renderedSelect);
+    await userEvent.click(renderedSelect);
 
     expect(getByText(items[0].label)).toBeInTheDocument();
   });
 
-  it('should accept items in a custom item format', () => {
+  it('should accept items in a custom item format', async () => {
     function itemToString(item) {
       return item ? item.representation : '';
     }
@@ -99,19 +105,19 @@ describe('Select', () => {
 
     expect(renderedSelect).toBeInTheDocument();
 
-    fireEvent.click(renderedSelect);
+    await userEvent.click(renderedSelect);
 
     expect(getByText(items[0].representation)).toBeInTheDocument();
   });
 
-  it('should render an items list with the default max height', () => {
+  it('should render an items list with the default max height', async () => {
     const { container, getByLabelText } = render(
       <Select labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    fireEvent.click(renderedSelect);
+    await userEvent.click(renderedSelect);
 
     expect(container.querySelector('ul')).toHaveStyleRule(
       'max-height',
@@ -119,8 +125,9 @@ describe('Select', () => {
     );
   });
 
-  it('should render an items list with the passed in max height as a string', () => {
+  it('should render an items list with the passed in max height as a string', async () => {
     const maxHeight = '100px';
+
     const { container, getByLabelText } = render(
       <Select
         itemListMaxHeight={maxHeight}
@@ -131,7 +138,7 @@ describe('Select', () => {
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    fireEvent.click(renderedSelect);
+    await userEvent.click(renderedSelect);
 
     expect(container.querySelector('ul')).toHaveStyleRule(
       'max-height',
@@ -139,8 +146,9 @@ describe('Select', () => {
     );
   });
 
-  it('should render an items list with the passed in max height as a number', () => {
+  it('should render an items list with the passed in max height as a number', async () => {
     const maxHeight = 50;
+
     const { container, getByLabelText } = render(
       <Select
         itemListMaxHeight={maxHeight}
@@ -151,7 +159,7 @@ describe('Select', () => {
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    fireEvent.click(renderedSelect);
+    await userEvent.click(renderedSelect);
 
     expect(container.querySelector('ul')).toHaveStyleRule(
       'max-height',
@@ -159,12 +167,13 @@ describe('Select', () => {
     );
   });
 
-  it('should render custom item component', () => {
+  it('should render custom item component', async () => {
     const items = [
       { id: '0', label: 'Red', value: 'red' },
       { id: '1', label: 'Blue', value: 'blue' },
       { id: '2', label: 'Green', value: 'green' },
     ];
+
     const CustomItem = props => {
       const { itemRef, item, itemString } = props;
 
@@ -174,6 +183,7 @@ describe('Select', () => {
         </li>
       );
     };
+
     const { getByLabelText, getByText, getByTestId } = render(
       <Select
         labelText={labelText}
@@ -184,46 +194,40 @@ describe('Select', () => {
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    fireEvent.click(renderedSelect);
+    await userEvent.click(renderedSelect);
 
     expect(getByText(items[0].label)).toBeInTheDocument();
     expect(getByTestId(items[0].id)).toBeInTheDocument();
   });
 
-  it('should not select an item when typing and select is closed', () => {
-    // Use fake timers here for downshift's debounce on input change.
-    jest.useFakeTimers();
-
+  it('should not select an item when typing and select is closed', async () => {
     const { getByLabelText, getByTestId } = render(
       <Select labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    renderedSelect.focus();
+    act(() => {
+      renderedSelect.focus();
+    });
 
-    fireEvent.keyDown(renderedSelect, { key: 'r' });
-
-    act(() => jest.runAllTimers());
+    await userEvent.keyboard('r');
 
     expect(getByTestId('selectedItemText').textContent).not.toEqual(items[0]);
-
-    jest.useRealTimers();
   });
 
-  it('should allow for selection of an item', () => {
+  it('should allow for selection of an item', async () => {
     const { getByLabelText, getByText, getByTestId } = render(
       <Select labelText={labelText} items={items} />
     );
 
-    fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
-
-    fireEvent.click(getByText(items[0]));
+    await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
+    await userEvent.click(getByText(items[0]));
 
     expect(getByTestId('selectedItemText').textContent).toEqual(items[0]);
   });
 
-  it('should call the passed in onIsOpenChange function on select open', () => {
+  it('should call the passed in onIsOpenChange function on select open', async () => {
     const onIsOpenChange = jest.fn();
 
     const { getByLabelText } = render(
@@ -234,13 +238,14 @@ describe('Select', () => {
       />
     );
 
-    fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
+    await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
 
     expect(onIsOpenChange).toHaveBeenCalled();
   });
 
-  it('should allow for a controlled select', () => {
+  it('should allow for a controlled select', async () => {
     let selectedItem = 'Red';
+
     const { getByLabelText, getByText, getByTestId, rerender } = render(
       <Select
         labelText={labelText}
@@ -252,9 +257,8 @@ describe('Select', () => {
 
     expect(getByTestId('selectedItemText').textContent).toEqual('Red');
 
-    fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
-
-    fireEvent.click(getByText(items[1]));
+    await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
+    await userEvent.click(getByText(items[1]));
 
     expect(selectedItem).toEqual(items[1]);
 
@@ -270,41 +274,49 @@ describe('Select', () => {
     expect(getByTestId('selectedItemText').textContent).toEqual(items[1]);
   });
 
-  it('should have an initial selected item', () => {
+  it('should have an initial selected item', async () => {
     const { getByTestId } = render(
       <Select labelText={labelText} items={items} initialSelectedItem="Red" />
     );
 
-    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
+    await waitFor(() => {
+      expect(getByTestId('selectedItemText').textContent).toEqual('Red');
+    });
   });
 
-  it('should not select an item that is not in the items list', () => {
+  it('should not select an item that is not in the items list', async () => {
     const { getByTestId } = render(
       <Select labelText={labelText} items={items} selectedItem="Pink" />
     );
 
-    expect(getByTestId('selectedItemText').textContent).not.toEqual('Pink');
+    await waitFor(() => {
+      expect(getByTestId('selectedItemText').textContent).not.toEqual('Pink');
+    });
   });
 
-  it('should not use the initial selected item if it is not in the items list', () => {
+  it('should not use the initial selected item if it is not in the items list', async () => {
     const { getByTestId } = render(
       <Select labelText={labelText} items={items} initialSelectedItem="Pink" />
     );
 
-    expect(getByTestId('selectedItemText').textContent).not.toEqual('Pink');
+    await waitFor(() => {
+      expect(getByTestId('selectedItemText').textContent).not.toEqual('Pink');
+    });
   });
 
-  it('should disable the select', () => {
+  it('should disable the select', async () => {
     const { getByLabelText } = render(
       <Select labelText={labelText} items={items} disabled />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    expect(renderedSelect).toHaveAttribute('disabled');
+    await waitFor(() => {
+      expect(renderedSelect).toHaveAttribute('disabled');
+    });
   });
 
-  it('should allow a selection to be cleared', () => {
+  it('should allow a selection to be cleared', async () => {
     const { getByTestId } = render(
       <Select
         labelText={labelText}
@@ -316,14 +328,13 @@ describe('Select', () => {
 
     expect(getByTestId('selectedItemText').textContent).toEqual('Red');
 
-    fireEvent.click(getByTestId('clearIndicator'));
+    await userEvent.click(getByTestId('clearIndicator'));
 
     expect(getByTestId('selectedItemText').textContent).not.toEqual('Red');
-
     expect(getByTestId('selectTriggerButton')).toHaveFocus();
   });
 
-  it('should select the default selected item when cleared', () => {
+  it('should select the default selected item when cleared', async () => {
     const { getByTestId } = render(
       <Select
         labelText={labelText}
@@ -336,12 +347,12 @@ describe('Select', () => {
 
     expect(getByTestId('selectedItemText').textContent).toEqual('Red');
 
-    fireEvent.click(getByTestId('clearIndicator'));
+    await userEvent.click(getByTestId('clearIndicator'));
 
     expect(getByTestId('selectedItemText').textContent).toEqual('Blue');
   });
 
-  it('should not select the default selected item when cleared if it is not in the items list', () => {
+  it('should not select the default selected item when cleared if it is not in the items list', async () => {
     const { getByTestId } = render(
       <Select
         labelText={labelText}
@@ -354,44 +365,44 @@ describe('Select', () => {
 
     expect(getByTestId('selectedItemText').textContent).toEqual('Red');
 
-    fireEvent.click(getByTestId('clearIndicator'));
+    await userEvent.click(getByTestId('clearIndicator'));
 
     expect(getByTestId('selectedItemText').textContent).not.toEqual('Pink');
   });
 
-  it('should open select when clicking the enter key', () => {
+  it('should open select when clicking the enter key', async () => {
     const { getByLabelText, getByText } = render(
       <Select labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    renderedSelect.focus();
-
-    fireEvent.keyDown(renderedSelect, {
-      key: 'Enter',
+    act(() => {
+      renderedSelect.focus();
     });
+
+    await userEvent.keyboard('{Enter}');
 
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
-  it('should open select when clicking the spacebar', () => {
+  it('should open select when clicking the spacebar', async () => {
     const { getByLabelText, getByText } = render(
       <Select labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    renderedSelect.focus();
-
-    fireEvent.keyDown(renderedSelect, {
-      key: ' ',
+    act(() => {
+      renderedSelect.focus();
     });
+
+    await userEvent.keyboard(' ');
 
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
-  it('should close the menu when escape key is pressed, and retain the active modal', () => {
+  it('should close the menu when escape key is pressed, and retain the active modal', async () => {
     const { getByLabelText, getByText, getByTestId, queryByText } = render(
       <Modal testId="modal" isOpen>
         <Select labelText={labelText} items={items} />
@@ -400,58 +411,49 @@ describe('Select', () => {
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    renderedSelect.focus();
-
-    fireEvent.keyDown(renderedSelect, {
-      key: ' ',
+    act(() => {
+      renderedSelect.focus();
     });
+
+    await userEvent.keyboard(' ');
 
     expect(getByText(items[0])).toBeInTheDocument();
 
-    fireEvent.keyDown(getByLabelText(labelText, { selector: 'div' }), {
-      key: 'Escape',
-      code: 27,
-    });
+    await userEvent.keyboard('{Escape}');
 
     expect(queryByText(items[0], { selector: 'Red' })).not.toBeInTheDocument();
-
     expect(getByTestId('modal')).toBeInTheDocument();
   });
 
-  it('should not open select when clicking another key other than the enter or spacebar', () => {
-    // Use fake timers here for downshift's debounce on input change.
-    jest.useFakeTimers();
-
+  it('should not open select when clicking another key other than the enter or spacebar', async () => {
     const { getByLabelText, queryByText } = render(
       <Select labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    renderedSelect.focus();
-
-    fireEvent.keyDown(renderedSelect, {
-      key: 'a',
+    act(() => {
+      renderedSelect.focus();
     });
 
-    act(() => jest.runAllTimers());
+    await userEvent.keyboard('a');
 
     expect(queryByText(items[0])).not.toBeInTheDocument();
-
-    jest.useRealTimers();
   });
 
-  it('should show an error message', () => {
+  it('should show an error message', async () => {
     const errorMessage = 'This is an error';
 
     const { getByText } = render(
       <Select labelText={labelText} items={items} errorMessage={errorMessage} />
     );
 
-    expect(getByText(errorMessage)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(errorMessage)).toBeInTheDocument();
+    });
   });
 
-  it('should show an helper message', () => {
+  it('should show an helper message', async () => {
     const helperMessage = 'This is an error';
 
     const { getByText } = render(
@@ -462,10 +464,12 @@ describe('Select', () => {
       />
     );
 
-    expect(getByText(helperMessage)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(helperMessage)).toBeInTheDocument();
+    });
   });
 
-  it('should show a left aligned label', () => {
+  it('should show a left aligned label', async () => {
     const { getByTestId } = render(
       <Select
         labelText={labelText}
@@ -474,13 +478,15 @@ describe('Select', () => {
       />
     );
 
-    expect(getByTestId('selectContainerElement')).toHaveStyleRule(
-      'display',
-      'flex'
-    );
+    await waitFor(() => {
+      expect(getByTestId('selectContainerElement')).toHaveStyleRule(
+        'display',
+        'flex'
+      );
+    });
   });
 
-  it('Should have a defined width for label when labelPosition is "left"', () => {
+  it('Should have a defined width for label when labelPosition is "left"', async () => {
     const { getByText } = render(
       <Select
         items={items}
@@ -489,10 +495,13 @@ describe('Select', () => {
         labelWidth={20}
       />
     );
-    expect(getByText(labelText)).toHaveStyle('flex-basis: 20%');
+
+    await waitFor(() => {
+      expect(getByText(labelText)).toHaveStyle('flex-basis: 20%');
+    });
   });
 
-  it('should allow you to send in your own components', () => {
+  it('should allow you to send in your own components', async () => {
     const ClearIndicator = () => (
       <button data-testid="customClearIndicator">Clear</button>
     );
@@ -509,7 +518,9 @@ describe('Select', () => {
       />
     );
 
-    expect(getByTestId('customClearIndicator')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByTestId('customClearIndicator')).toBeInTheDocument();
+    });
   });
 
   describe('additional content', () => {
@@ -519,7 +530,7 @@ describe('Select', () => {
       alert('Help link clicked!');
     };
 
-    it('Should accept additional content', () => {
+    it('Should accept additional content', async () => {
       const { getByTestId } = render(
         <Select
           additionalContent={
@@ -540,10 +551,12 @@ describe('Select', () => {
         />
       );
 
-      expect(getByTestId('Icon Button')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(getByTestId('Icon Button')).toBeInTheDocument();
+      });
     });
 
-    it('Should accept additional content to the right of the multi-select label', () => {
+    it('Should accept additional content to the right of the multi-select label', async () => {
       const { getByTestId } = render(
         <Select
           additionalContent={
@@ -565,10 +578,12 @@ describe('Select', () => {
         />
       );
 
-      expect(getByTestId('Icon Button')).toBeInTheDocument();
+      await waitFor(() => {
+        expect(getByTestId('Icon Button')).toBeInTheDocument();
+      });
     });
 
-    it('When label position is left, should accept additional content to display inline with the label and select', () => {
+    it('When label position is left, should accept additional content to display inline with the label and select', async () => {
       const { getByTestId } = render(
         <Select
           additionalContent={
@@ -590,14 +605,16 @@ describe('Select', () => {
         />
       );
 
-      expect(getByTestId('selectContainerElement')).toBeInTheDocument();
-      expect(getByTestId('selectContainerElement')).toHaveStyleRule(
-        'display',
-        'flex'
-      );
+      await waitFor(() => {
+        expect(getByTestId('selectContainerElement')).toBeInTheDocument();
+        expect(getByTestId('selectContainerElement')).toHaveStyleRule(
+          'display',
+          'flex'
+        );
+      });
     });
 
-    it('When label position is left and isLabelVisuallyHidden is true, should accept additional content to display along select with a visually hidden label', () => {
+    it('When label position is left and isLabelVisuallyHidden is true, should accept additional content to display along select with a visually hidden label', async () => {
       const { getByTestId, getByText } = render(
         <Select
           additionalContent={
@@ -620,27 +637,30 @@ describe('Select', () => {
         />
       );
 
-      expect(getByText(labelText)).toHaveStyleRule('height', '1px');
-
-      expect(getByTestId('selectContainerElement')).toBeInTheDocument();
-      expect(getByTestId('selectContainerElement')).toHaveStyleRule(
-        'display',
-        'flex'
-      );
+      await waitFor(() => {
+        expect(getByText(labelText)).toHaveStyleRule('height', '1px');
+        expect(getByTestId('selectContainerElement')).toBeInTheDocument();
+        expect(getByTestId('selectContainerElement')).toHaveStyleRule(
+          'display',
+          'flex'
+        );
+      });
     });
 
-    it('Should handle disabled items', () => {
+    it('Should handle disabled items', async () => {
       const items = [
         { label: 'Red', value: 'red', disabled: true },
         { label: 'Blue', value: 'blue', disabled: false },
         { label: 'Green', value: 'green' },
       ];
+
       const { getByLabelText, getByText } = render(
         <Select labelText={labelText} items={items} />
       );
 
       const renderedSelect = getByLabelText(labelText, { selector: 'div' });
-      fireEvent.click(renderedSelect);
+
+      await userEvent.click(renderedSelect);
 
       expect(getByText('Red')).toHaveAttribute('aria-disabled', 'true');
       expect(getByText('Blue')).toHaveAttribute('aria-disabled', 'false');
@@ -649,37 +669,44 @@ describe('Select', () => {
   });
 
   describe('events', () => {
-    it('onBlur', () => {
+    it('onBlur', async () => {
       const onBlur = jest.fn();
 
-      const { getByLabelText } = render(
+      const { findByLabelText } = render(
         <Select labelText={labelText} items={items} onBlur={onBlur} />
       );
 
-      const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+      const renderedSelect = await findByLabelText(labelText, {
+        selector: 'div',
+      });
 
-      renderedSelect.focus();
-
-      fireEvent.blur(renderedSelect);
+      act(() => {
+        renderedSelect.focus();
+        renderedSelect.blur();
+      });
 
       expect(onBlur).toHaveBeenCalled();
     });
 
-    it('onFocus', () => {
+    it('onFocus', async () => {
       const onFocus = jest.fn();
 
-      const { getByLabelText } = render(
+      const { findByLabelText } = render(
         <Select labelText={labelText} items={items} onFocus={onFocus} />
       );
 
-      const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+      const renderedSelect = await findByLabelText(labelText, {
+        selector: 'div',
+      });
 
-      renderedSelect.focus();
+      act(() => {
+        renderedSelect.focus();
+      });
 
       expect(onFocus).toHaveBeenCalled();
     });
 
-    it('onKeyDown', () => {
+    it('onKeyDown', async () => {
       const onKeyDown = jest.fn();
 
       const { getByLabelText } = render(
@@ -688,12 +715,16 @@ describe('Select', () => {
 
       const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-      fireEvent.keyDown(renderedSelect, { key: 'Enter' });
+      act(() => {
+        renderedSelect.focus();
+      });
+
+      await userEvent.keyboard('{Enter}');
 
       expect(onKeyDown).toHaveBeenCalled();
     });
 
-    it('onKeyUp', () => {
+    it('onKeyUp', async () => {
       const onKeyUp = jest.fn();
 
       const { getByLabelText } = render(
@@ -702,7 +733,12 @@ describe('Select', () => {
 
       const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-      fireEvent.keyUp(renderedSelect, { key: 'Enter' });
+      act(() => {
+        renderedSelect.focus();
+      });
+
+      await userEvent.keyboard('{Enter}');
+      await userEvent.keyboard('{Enter}');
 
       expect(onKeyUp).toHaveBeenCalled();
     });
