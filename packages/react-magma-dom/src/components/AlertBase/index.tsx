@@ -386,6 +386,19 @@ const AlertSpan = styled.span`
   white-space: pre-line;
 `;
 
+function getAriaLabelIcon(variant: string): string {
+  switch (variant) {
+    case 'success':
+      return 'success icon';
+    case 'warning':
+      return 'warning icon';
+    case 'danger':
+      return 'danger icon';
+    default:
+      return 'info icon';
+  }
+}
+
 function renderIcon(
   variant = 'info',
   isToast?: boolean,
@@ -394,7 +407,12 @@ function renderIcon(
   const Icon = VARIANT_ICON[variant];
 
   return (
-    <IconWrapper isToast={isToast} theme={theme}>
+    <IconWrapper
+      aria-label={getAriaLabelIcon(variant)}
+      role="img"
+      isToast={isToast}
+      theme={theme}
+    >
       <Icon size={theme.iconSizes.medium} />
     </IconWrapper>
   );
