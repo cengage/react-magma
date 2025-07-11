@@ -13,7 +13,7 @@ import {
   CloseIcon,
 } from 'react-magma-icons';
 
-import { I18nContext } from '../../i18n';
+import { I18nContext, I18nInterface } from '../..';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -386,29 +386,30 @@ const AlertSpan = styled.span`
   white-space: pre-line;
 `;
 
-function getAriaLabelIcon(variant: string): string {
+function getAriaLabelIcon(variant: string, i18n: I18nInterface): string {
   switch (variant) {
     case 'success':
-      return 'success icon';
+      return i18n.alertVariants.success;
     case 'warning':
-      return 'warning icon';
+      return i18n.alertVariants.warning;
     case 'danger':
-      return 'danger icon';
+      return i18n.alertVariants.danger;
     default:
-      return 'info icon';
+      return i18n.alertVariants.info;
   }
 }
 
 function renderIcon(
   variant = 'info',
   isToast?: boolean,
-  theme?: ThemeInterface
+  theme?: ThemeInterface,
+  i18n?: I18nInterface
 ) {
   const Icon = VARIANT_ICON[variant];
 
   return (
     <IconWrapper
-      aria-label={getAriaLabelIcon(variant)}
+      aria-label={getAriaLabelIcon(variant, i18n)}
       role="img"
       isToast={isToast}
       theme={theme}
@@ -502,7 +503,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
             theme={theme}
             variant={variant}
           >
-            {renderIcon(variant, isToast, theme)}
+            {renderIcon(variant, isToast, theme, i18n)}
             <AlertContents
               additionalContent={additionalContent}
               isDismissible={isDismissible}
