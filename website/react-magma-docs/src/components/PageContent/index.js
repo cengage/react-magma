@@ -107,12 +107,15 @@ const PageNavigation = styled.div`
 
 function getDataNode(data, name) {
   return data?.edges.find(item => {
-    return convertTextToId(item.node.frontmatter.title.toLowerCase()) === name;
+    const title = item.node.frontmatter.title;
+
+    return title && convertTextToId(title.toLowerCase()) === name;
   });
 }
 
 export const PageContent = ({ children, componentName, type }) => {
   const isInverse = useIsInverse();
+
   const data = useStaticQuery(graphql`
     query SideNavQuery {
       designComponentDocs: allMdx(

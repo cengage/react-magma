@@ -29,7 +29,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/static/images`,
       },
     },
     {
@@ -71,6 +71,15 @@ module.exports = {
       resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-images',
+            options: {
+              maxWidth: 1035,
+              linkImagesToOriginal: false,
+            },
+          },
+        ],
         mdxOptions: {
           remarkPlugins: [],
           rehypePlugins: [],
@@ -79,6 +88,7 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-image',
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -88,7 +98,7 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/react-magma-icon.svg',
+        icon: 'static/images/react-magma-icon.svg',
       },
     },
   ],

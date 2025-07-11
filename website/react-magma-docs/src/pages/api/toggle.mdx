@@ -117,14 +117,7 @@ export function Example() {
 
 Adding the `isTextVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
 
-<Alert variant="warning">
-  Use caution when using the <inlineCode>isTextVisuallyHidden</inlineCode> prop;
-  it should only be used in rare circumstances when the purpose of the toggle is
-  conveyed in another way. While screen readers will announce the label when the
-  toggle gains focus, it is still best to have a visual label. This is
-  especially helpful for individuals with cognitive disabilities and users who
-  have fine motor control limitations.
-</Alert>
+<Alert variant="warning">Use caution when using the <code>isTextVisuallyHidden</code> prop; it should only be used in rare circumstances when the purpose of the toggle is conveyed in another way. While screen readers will announce the label when the toggle gains focus, it is still best to have a visual label. This is especially helpful for individuals with cognitive disabilities and users who have fine motor control limitations.</Alert>
 
 ```tsx
 import React from 'react';
@@ -187,7 +180,7 @@ export function Example() {
 
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.
 
-```html noCodeSandbox
+```html-noCodeSandbox
 <Toggle labelText="Toggle label" testId="toggle-testid" />
 ```
 

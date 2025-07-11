@@ -66,15 +66,19 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
   const isInverse = useIsInverse();
 
   const headings = useMemo(
-    () => pageData?.node?.headings?.map(heading => heading.value) || [],
-    [pageData?.node?.headings]
+    () => pageData?.node?.fields.headings || [],
+    [pageData?.node?.fields.headings]
   );
 
   const hasHeadings = headings.length > 0;
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.hash) {
-      window.scrollTo(0, 0);
+    if (typeof window !== 'undefined' && !window.location.hash) {
+      const timeout = setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 100);
+
+      return () => clearTimeout(timeout);
     }
   }, []);
 

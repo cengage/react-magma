@@ -43,16 +43,8 @@ export function Example() {
 
 Set initial state using the `initialSelectedItem`, `initialSelectedItems`, and `initialHighlightedIndex` props.
 
-<Alert variant="info">
-  When using any of the <inlineCode className="inverse">initial*</inlineCode>{' '}
-  props be aware that passing in the controlled version of that prop will
-  overwrite the initial version.
-  <br />
-  <br />
-  <strong>Ex: </strong>
-  <inlineCode className="inverse">selectedItem</inlineCode> takes precedence
-  over <inlineCode className="inverse">initialSelectedItem</inlineCode>
-</Alert>
+<Alert variant="info">When using any of the <code className="inverse">initial*</code> props be aware that passing in the controlled version of that prop will overwrite the initial version.<br />
+<strong>Ex: </strong><code className="inverse">selectedItem</code> takes precedence over <code className="inverse">initialSelectedItem</code></Alert>
 
 ```tsx
 import React from 'react';
@@ -152,12 +144,7 @@ export function Example() {
 
 ## Generic State Change
 
-<Alert variant="warning">
-  Using <inlineCode>onStateChange</inlineCode> and controlling every piece of{' '}
-  <inlineCode>state</inlineCode> will result in losing most of the functionality
-  that has been built in to this component. Only use this feature as a last
-  resort.
-</Alert>
+<Alert variant="warning">Using <code>onStateChange</code> and controlling every piece of <code>state</code> will result in losing most of the functionality that has been built in to this component. Only use this feature as a last resort.</Alert>
 
 `onStateChange` is called when any internal state is changed. Therefore, it is best used when using the
 `combobox` in a controlled state.
@@ -1013,10 +1000,7 @@ By default each component accepts an array of `items` with either a `string` or 
 for each `item`. If you need to pass in a custom shape for your `items` you can pass in an additional prop named `itemToString`
 which is a function that returns the string representation of your `item` which will be applied as the label.
 
-<Alert variant="warning">
-  <strong>WARNING</strong> Your function must include a{' '}
-  <inlineCode>null</inlineCode> check.
-</Alert>
+<Alert variant="warning"><strong>WARNING</strong> Your function must include a <code>null</code> check.</Alert>
 
 If you are using a custom shape for your `items` in a `typescript` project refer to our example of [using your
 custom `type`](/api/combobox#custom_items_typescript).
@@ -1180,11 +1164,7 @@ By default each item will be rendered with the `itemToString` value in a styled 
 would just like to be able to fully customize the look of your items you can pass in an `Item` component that uses the `props` that
 we use internally.
 
-<Alert variant="warning">
-  Be aware. You must pass a <inlineCode>ref</inlineCode> to your custom item
-  component to make sure the functionality of the entire{' '}
-  <inlineCode>Combobox</inlineCode> continues to work.
-</Alert>
+<Alert variant="warning">Be aware. You must pass a <code>ref</code> to your custom item component to make sure the functionality of the entire <code>Combobox</code> continues to work.</Alert>
 
 ```tsx
 import React from 'react';
@@ -1402,86 +1382,31 @@ The `type` property in the `changes` object that is returned from the `onStateCh
 corresponds to a `stateChangeTypes` property. The list of all the possible types for a `combobox` or a
 `multi-combobox` are listed below.
 
-<Alert variant="info" style={{ maxWidth: '100%', overflow: 'scroll' }}>
-  In the development environment these types equate to strings
-  <br />
-  (eg:{' '}
-  <inlineCode className="inverse">
-    ComboboxStateChangeTypes.InputKeyDownArrowDown =
-    '__input_keydown_arrow_down__'
-  </inlineCode>
-  ). However, in the production environment the types equate to numbers
-  <br />
-  (eg:
-  <inlineCode className="inverse">
-    ComboboxStateChangeTypes.InputKeyDownArrowDown = 0
-  </inlineCode>
-  ).
-</Alert>
+<Alert variant="info" style={{ maxWidth: '100%', overflow: 'scroll' }}>In the development environment these types equate to strings<br/> (eg: <code className="inverse">ComboboxStateChangeTypes.InputKeyDownArrowDown = '__input_keydown_arrow_down__'</code>). However, in the production environment the types equate to numbers<br />(eg:<code className="inverse">ComboboxStateChangeTypes.InputKeyDownArrowDown = 0</code>).</Alert>
 
 ### Combobox
 
 <div style={{ overflowX: 'scroll' }}>
   <ul>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.InputKeyDownArrowDown</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.InputKeyDownArrowUp</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.InputKeyDownEscape</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.InputKeyDownHome</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.InputKeyDownEnd</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.InputKeyDownEnter</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.InputChange</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.InputBlur</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.MenuMouseLeave</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.ItemMouseMove</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.ItemClick</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.ToggleButtonClick</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.FunctionToggleMenu</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.FunctionOpenMenu</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.FunctionCloseMenu</inlineCode>
-    </li>
-    <li>
-      <inlineCode>
-        ComboboxStateChangeTypes.FunctionSetHighlightedIndex
-      </inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.FunctionSelectItem</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.FunctionSetInputValue</inlineCode>
-    </li>
-    <li>
-      <inlineCode>ComboboxStateChangeTypes.FunctionReset</inlineCode>
-    </li>
+    <li><code>ComboboxStateChangeTypes.InputKeyDownArrowDown</code></li>
+    <li><code>ComboboxStateChangeTypes.InputKeyDownArrowUp</code></li>
+    <li><code>ComboboxStateChangeTypes.InputKeyDownEscape</code></li>
+    <li><code>ComboboxStateChangeTypes.InputKeyDownHome</code></li>
+    <li><code>ComboboxStateChangeTypes.InputKeyDownEnd</code></li>
+    <li><code>ComboboxStateChangeTypes.InputKeyDownEnter</code></li>
+    <li><code>ComboboxStateChangeTypes.InputChange</code></li>
+    <li><code>ComboboxStateChangeTypes.InputBlur</code></li>
+    <li><code>ComboboxStateChangeTypes.MenuMouseLeave</code></li>
+    <li><code>ComboboxStateChangeTypes.ItemMouseMove</code></li>
+    <li><code>ComboboxStateChangeTypes.ItemClick</code></li>
+    <li><code>ComboboxStateChangeTypes.ToggleButtonClick</code></li>
+    <li><code>ComboboxStateChangeTypes.FunctionToggleMenu</code></li>
+    <li><code>ComboboxStateChangeTypes.FunctionOpenMenu</code></li>
+    <li><code>ComboboxStateChangeTypes.FunctionCloseMenu</code></li>
+    <li><code>ComboboxStateChangeTypes.FunctionSetHighlightedIndex</code></li>
+    <li><code>ComboboxStateChangeTypes.FunctionSelectItem</code></li>
+    <li><code>ComboboxStateChangeTypes.FunctionSetInputValue</code></li>
+    <li><code>ComboboxStateChangeTypes.FunctionReset</code></li>
   </ul>
 </div>
 
@@ -1489,67 +1414,19 @@ corresponds to a `stateChangeTypes` property. The list of all the possible types
 
 <div style={{ overflowX: 'scroll' }}>
   <ul>
-    <li>
-      <inlineCode>
-        MultipleSelectionStateChangeTypes.SelectedItemClick
-      </inlineCode>
-    </li>
-    <li>
-      <inlineCode>
-        MultipleSelectionStateChangeTypes.SelectedItemKeyDownDelete
-      </inlineCode>
-    </li>
-    <li>
-      <inlineCode>
-        MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace
-      </inlineCode>
-    </li>
-    <li>
-      <inlineCode>
-        MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext
-      </inlineCode>
-    </li>
-    <li>
-      <inlineCode>
-        MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious
-      </inlineCode>
-    </li>
-    <li>
-      <inlineCode>
-        MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious
-      </inlineCode>
-    </li>
-    <li>
-      <inlineCode>
-        MultipleSelectionStateChangeTypes.DropdownKeyDownBackspace
-      </inlineCode>
-    </li>
-    <li>
-      <inlineCode>MultipleSelectionStateChangeTypes.DropdownClick</inlineCode>
-    </li>
-    <li>
-      <inlineCode>
-        MultipleSelectionStateChangeTypes.FunctionAddSelectedItem
-      </inlineCode>
-    </li>
-    <li>
-      <inlineCode>
-        MultipleSelectionStateChangeTypes.FunctionRemoveSelectedItem
-      </inlineCode>
-    </li>
-    <li>
-      <inlineCode>
-        MultipleSelectionStateChangeTypes.FunctionSetSelectedItems
-      </inlineCode>
-    </li>
-    <li>
-      <inlineCode>
-        MultipleSelectionStateChangeTypes.FunctionSetActiveIndex
-      </inlineCode>
-    </li>
-    <li>
-      <inlineCode>MultipleSelectionStateChangeTypes.FunctionReset</inlineCode>
-    </li>
+    <li><code>MultipleSelectionStateChangeTypes.SelectedItemClick</code></li>
+    <li><code>MultipleSelectionStateChangeTypes.SelectedItemKeyDownDelete</code></li>
+    <li><code>MultipleSelectionStateChangeTypes.SelectedItemKeyDownBackspace</code></li>
+    <li><code>MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationNext</code></li>
+    <li><code>MultipleSelectionStateChangeTypes.SelectedItemKeyDownNavigationPrevious</code></li>
+    <li><code>MultipleSelectionStateChangeTypes.DropdownKeyDownNavigationPrevious</code></li>
+    <li><code>MultipleSelectionStateChangeTypes.DropdownKeyDownBackspace</code></li>
+    <li><code>MultipleSelectionStateChangeTypes.DropdownClick</code></li>
+    <li><code>MultipleSelectionStateChangeTypes.FunctionAddSelectedItem</code></li>
+    <li><code>MultipleSelectionStateChangeTypes.FunctionRemoveSelectedItem</code></li>
+    <li><code>MultipleSelectionStateChangeTypes.FunctionSetSelectedItems</code></li>
+    <li><code>MultipleSelectionStateChangeTypes.FunctionSetActiveIndex</code></li>
+    <li><code>MultipleSelectionStateChangeTypes.FunctionReset</code></li>
   </ul>
 </div>
 

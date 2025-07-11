@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 
 import styled from '@emotion/styled';
 import { Location } from '@reach/router';
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import PropTypes from 'prop-types';
 import {
   Accordion,
@@ -225,6 +225,7 @@ export const MainNav = ({ ...props }) => {
         }
         fields {
           slug
+          headings
         }
       }
     }
