@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FilterAltIcon } from 'react-magma-icons';
 
@@ -44,8 +44,8 @@ describe('Popover', () => {
 
     expect(container).toBeInTheDocument();
     expect(popoverTrigger).toBeInTheDocument();
-    const popoverContent = getByTestId('popoverContent');
 
+    const popoverContent = getByTestId('popoverContent');
     const popoverContentDialog = container.querySelector('div[role="dialog"]');
     const spanContent = getByText('Content');
 
@@ -56,9 +56,7 @@ describe('Popover', () => {
     expect(popoverContentDialog).not.toBeVisible();
     expect(spanContent).not.toBeVisible();
 
-    await act(async () => {
-      popoverTrigger.click();
-    });
+    await userEvent.click(popoverTrigger);
 
     expect(popoverContent).toBeVisible();
     expect(popoverContentDialog).toBeVisible();
@@ -67,6 +65,7 @@ describe('Popover', () => {
 
   it('should render the popover with custom icon on trigger', () => {
     const triggerTestId = 'trigger-test-id';
+
     const { container, getByTestId } = render(
       <Popover>
         <PopoverTrigger icon={<FilterAltIcon testId={triggerTestId} />} />
@@ -75,6 +74,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverTrigger = container.querySelector('button');
     const customIcon = getByTestId(triggerTestId);
 
@@ -87,6 +87,7 @@ describe('Popover', () => {
   it('should render the popover with custom text on trigger', () => {
     const triggerTestId = 'trigger-test-id';
     const customText = 'Custom Text';
+
     const { getByTestId } = render(
       <Popover>
         <PopoverTrigger testId={triggerTestId}>{customText}</PopoverTrigger>
@@ -95,6 +96,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverTrigger = getByTestId(triggerTestId);
 
     expect(popoverTrigger).toBeInTheDocument();
@@ -113,6 +115,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverTrigger = container.querySelector('button');
     const popoverContent = getByTestId('popoverContent');
 
@@ -120,31 +123,30 @@ describe('Popover', () => {
     expect(popoverTrigger).toBeInTheDocument();
     expect(popoverContent).not.toBeVisible();
 
-    await act(async () => {
-      popoverTrigger.click();
-    });
+    await userEvent.click(popoverTrigger);
 
     expect(popoverContent).toBeVisible();
+
     const buttons = popoverContent.querySelectorAll('button');
 
     expect(buttons[0]).toHaveFocus();
 
-    userEvent.tab();
+    await userEvent.tab();
 
     expect(buttons[0]).not.toHaveFocus();
     expect(buttons[1]).toHaveFocus();
 
-    userEvent.tab();
+    await userEvent.tab();
 
     expect(buttons[1]).not.toHaveFocus();
     expect(buttons[2]).toHaveFocus();
 
-    userEvent.tab();
+    await userEvent.tab();
 
     expect(buttons[2]).not.toHaveFocus();
     expect(buttons[0]).toHaveFocus();
 
-    userEvent.tab({ shift: true });
+    await userEvent.tab({ shift: true });
 
     expect(buttons[0]).not.toHaveFocus();
     expect(buttons[2]).toHaveFocus();
@@ -159,6 +161,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverTrigger = container.querySelector('button');
     const popoverContent = getByTestId('popoverContent');
 
@@ -166,17 +169,15 @@ describe('Popover', () => {
     expect(popoverTrigger).toBeInTheDocument();
     expect(popoverContent).not.toBeVisible();
 
-    await act(async () => {
-      popoverTrigger.click();
-    });
+    await userEvent.click(popoverTrigger);
 
     expect(popoverContent).toBeVisible();
 
-    userEvent.tab();
+    await userEvent.tab();
 
     expect(popoverContent.querySelector('button')).toHaveFocus();
 
-    userEvent.keyboard('{esc}');
+    await userEvent.keyboard('{Escape}');
 
     expect(popoverContent).not.toBeVisible();
   });
@@ -190,6 +191,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverTrigger = container.querySelector('button');
     const popoverContent = getByTestId('popoverContent');
     const spanContent = getByText('Content');
@@ -199,20 +201,18 @@ describe('Popover', () => {
     expect(popoverContent).not.toBeVisible();
     expect(spanContent).not.toBeVisible();
 
-    await act(async () => {
-      popoverTrigger.click();
-    });
+    await userEvent.click(popoverTrigger);
 
     expect(popoverContent).toBeVisible();
     expect(spanContent).toBeVisible();
 
-    userEvent.tab();
+    await userEvent.tab();
 
     expect(popoverContent).not.toBeVisible();
     expect(spanContent).not.toBeVisible();
   });
 
-  it('should render the popover component with pointer, positioned bottom by default', () => {
+  it('should render the popover component with pointer, positioned bottom by default', async () => {
     const { getByTestId, container } = render(
       <Popover hasPointer>
         <PopoverTrigger />
@@ -221,9 +221,10 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverTrigger = container.querySelector('button');
 
-    userEvent.click(popoverTrigger);
+    await userEvent.click(popoverTrigger);
 
     const popoverContent = getByTestId('popoverContent');
 
@@ -235,7 +236,7 @@ describe('Popover', () => {
     expect(popoverArrow).toHaveAttribute('data-popover-placement', 'bottom');
   });
 
-  it('should render the popover component with pointer, positioned top', () => {
+  it('should render the popover component with pointer, positioned top', async () => {
     const { getByTestId, container } = render(
       <Popover hasPointer position={PopoverPosition.top}>
         <PopoverTrigger />
@@ -244,9 +245,10 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverTrigger = container.querySelector('button');
 
-    userEvent.click(popoverTrigger);
+    await userEvent.click(popoverTrigger);
 
     const popoverContent = getByTestId('popoverContent');
 
@@ -267,6 +269,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverTrigger = container.querySelector('button');
 
     expect(container).toBeInTheDocument();
@@ -283,17 +286,13 @@ describe('Popover', () => {
     expect(popoverContentDialog).not.toBeVisible();
     expect(spanContent).not.toBeVisible();
 
-    await act(async () => {
-      userEvent.hover(popoverTrigger);
-    });
+    await userEvent.hover(popoverTrigger);
 
     expect(popoverContent).toBeVisible();
     expect(popoverContentDialog).toBeVisible();
     expect(spanContent).toBeVisible();
 
-    await act(async () => {
-      userEvent.unhover(popoverTrigger);
-    });
+    await userEvent.unhover(popoverTrigger);
 
     expect(popoverContent).not.toBeVisible();
     expect(popoverContentDialog).not.toBeVisible();
@@ -310,6 +309,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverTrigger = container.querySelector('button');
 
     expect(container).toBeInTheDocument();
@@ -326,9 +326,7 @@ describe('Popover', () => {
     expect(popoverContentDialog).not.toBeVisible();
     expect(spanContent).not.toBeVisible();
 
-    await act(async () => {
-      userEvent.hover(popoverTrigger);
-    });
+    await userEvent.hover(popoverTrigger);
 
     expect(popoverContent).not.toBeVisible();
     expect(popoverContentDialog).not.toBeVisible();
@@ -345,6 +343,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverTrigger = container.querySelector('button');
 
     expect(container).toBeInTheDocument();
@@ -354,9 +353,7 @@ describe('Popover', () => {
     const popoverContentDialog = container.querySelector('div[role="dialog"]');
     const spanContent = getByText('Content');
 
-    await act(async () => {
-      popoverTrigger.click();
-    });
+    await userEvent.click(popoverTrigger);
 
     expect(popoverContent).not.toBeVisible();
     expect(popoverContentDialog).not.toBeVisible();
@@ -372,6 +369,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
@@ -387,6 +385,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
@@ -402,6 +401,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
@@ -423,6 +423,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverContent = getByTestId('popoverContent');
     const popoverHeader = getByText('Header');
     const popoverFooter = getByText('Footer');
@@ -453,6 +454,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
@@ -469,6 +471,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
@@ -484,6 +487,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
@@ -493,9 +497,7 @@ describe('Popover', () => {
   it('should close popover manually on button with api ref', async () => {
     const triggerTestId = 'trigger-test-id';
     const closeButtonTestId = 'close-button-test-id';
-
     const popoverApiRef = React.createRef();
-
     const onClose = event => {
       popoverApiRef.current.closePopoverManually(event);
     };
@@ -511,6 +513,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverContent = getByTestId('popoverContent');
     const triggerButton = getByTestId(triggerTestId);
     const closeButton = getByTestId(closeButtonTestId);
@@ -518,20 +521,15 @@ describe('Popover', () => {
     expect(popoverContent).toBeInTheDocument();
     expect(triggerButton).toBeInTheDocument();
     expect(closeButton).toBeInTheDocument();
-
     expect(popoverContent).not.toBeVisible();
     expect(closeButton).not.toBeVisible();
 
-    await act(async () => {
-      triggerButton.click();
-    });
+    await userEvent.click(triggerButton);
 
     expect(popoverContent).toBeVisible();
     expect(closeButton).toBeVisible();
 
-    await act(async () => {
-      closeButton.click();
-    });
+    await userEvent.click(closeButton);
 
     expect(popoverContent).not.toBeVisible();
     expect(closeButton).not.toBeVisible();
@@ -546,6 +544,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
@@ -561,6 +560,7 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
+
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();

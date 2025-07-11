@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
 import { transparentize } from 'polished';
-import { act } from 'react-dom/test-utils';
 
 import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';

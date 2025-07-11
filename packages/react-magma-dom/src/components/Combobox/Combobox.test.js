@@ -1,17 +1,18 @@
 import React from 'react';
 
-import { render, fireEvent, act } from '@testing-library/react';
+import { render, act, waitFor } from '@testing-library/react';
 
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
 
 import { Combobox } from '.';
+import userEvent from '@testing-library/user-event';
 
 describe('Combobox', () => {
   const labelText = 'Label';
   const items = ['Red', 'Blue', 'Green'];
 
-  it('should render a combobox with items', () => {
+  it('should render a combobox with items', async () => {
     const { getByLabelText, getByText } = render(
       <Combobox labelText={labelText} items={items} />
     );
@@ -20,17 +21,18 @@ describe('Combobox', () => {
 
     expect(renderedCombobox).toBeInTheDocument();
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
-  it('should accept items in the default object format', () => {
+  it('should accept items in the default object format', async () => {
     const items = [
       { label: 'Red', value: 'red' },
       { label: 'Blue', value: 'blue' },
       { label: 'Green', value: 'green' },
     ];
+
     const { getByLabelText, getByText } = render(
       <Combobox labelText={labelText} items={items} />
     );
@@ -39,12 +41,12 @@ describe('Combobox', () => {
 
     expect(renderedCombobox).toBeInTheDocument();
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(getByText(items[0].label)).toBeInTheDocument();
   });
 
-  it('should accept items in a custom item format', () => {
+  it('should accept items in a custom item format', async () => {
     function itemToString(item) {
       return item ? item.representation : '';
     }
@@ -79,19 +81,19 @@ describe('Combobox', () => {
 
     expect(renderedCombobox).toBeInTheDocument();
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(getByText(items[0].representation)).toBeInTheDocument();
   });
 
-  it('should render an items list with the default max height', () => {
+  it('should render an items list with the default max height', async () => {
     const { container, getByLabelText } = render(
       <Combobox labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(container.querySelector('ul')).toHaveStyleRule(
       'max-height',
@@ -99,8 +101,9 @@ describe('Combobox', () => {
     );
   });
 
-  it('should render an items list with the passed in max height as a string', () => {
+  it('should render an items list with the passed in max height as a string', async () => {
     const maxHeight = '100px';
+
     const { container, getByLabelText } = render(
       <Combobox
         itemListMaxHeight={maxHeight}
@@ -111,7 +114,7 @@ describe('Combobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(container.querySelector('ul')).toHaveStyleRule(
       'max-height',
@@ -119,8 +122,9 @@ describe('Combobox', () => {
     );
   });
 
-  it('should render an items list with the passed in max height as a number', () => {
+  it('should render an items list with the passed in max height as a number', async () => {
     const maxHeight = 50;
+
     const { container, getByLabelText } = render(
       <Combobox
         itemListMaxHeight={maxHeight}
@@ -131,7 +135,7 @@ describe('Combobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(container.querySelector('ul')).toHaveStyleRule(
       'max-height',
@@ -139,7 +143,7 @@ describe('Combobox', () => {
     );
   });
 
-  it('should render custom item component', () => {
+  it('should render custom item component', async () => {
     const items = [
       { id: '0', label: 'Red', value: 'red' },
       { id: '1', label: 'Blue', value: 'blue' },
@@ -154,6 +158,7 @@ describe('Combobox', () => {
         </li>
       );
     };
+
     const { getByLabelText, getByText, getByTestId } = render(
       <Combobox
         labelText={labelText}
@@ -164,48 +169,55 @@ describe('Combobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(getByText(items[0].label)).toBeInTheDocument();
     expect(getByTestId(items[0].id)).toBeInTheDocument();
   });
 
-  it('should allow for selection of an item', () => {
+  it('should allow for selection of an item', async () => {
     const { getByLabelText, getByText } = render(
       <Combobox labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
-    fireEvent.click(getByText(items[0]));
+    await userEvent.click(getByText(items[0]));
 
-    expect(renderedCombobox.value).toEqual(items[0]);
+    await waitFor(() => {
+      expect(renderedCombobox.value).toEqual(items[0]);
+    });
   });
 
-  it('should allow for selection of an item using keyboard navigation', () => {
-    const { getByLabelText, getByText } = render(
+  it('should allow for selection of an item using keyboard navigation', async () => {
+    const { getByLabelText } = render(
       <Combobox labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    renderedCombobox.focus();
+    act(() => {
+      renderedCombobox.focus();
+    });
 
-    fireEvent.keyDown(renderedCombobox, { key: 'ArrowDown' });
-    fireEvent.keyDown(renderedCombobox, { key: 'ArrowDown' });
-    fireEvent.keyDown(renderedCombobox, { key: 'Enter' });
+    await userEvent.keyboard('{ArrowDown}');
+    await userEvent.keyboard('{ArrowDown}');
+    await userEvent.keyboard('{Enter}');
 
     expect(renderedCombobox.value).toEqual(items[1]);
 
-    renderedCombobox.blur();
+    act(() => {
+      renderedCombobox.blur();
+    });
 
     expect(renderedCombobox.value).toEqual(items[1]);
   });
 
-  it('should call the passed in onIsOpenChange function on combobox open', () => {
+  it('should call the passed in onIsOpenChange function on combobox open', async () => {
     const onIsOpenChange = jest.fn();
+
     const { getByLabelText } = render(
       <Combobox
         labelText={labelText}
@@ -214,13 +226,14 @@ describe('Combobox', () => {
       />
     );
 
-    fireEvent.click(getByLabelText(labelText, { selector: 'input' }));
+    await userEvent.click(getByLabelText(labelText, { selector: 'input' }));
 
     expect(onIsOpenChange).toHaveBeenCalled();
   });
 
-  it('should allow for a controlled combobox', () => {
+  it('should allow for a controlled combobox', async () => {
     let selectedItem = 'Red';
+
     const { getByLabelText, getByText, rerender } = render(
       <Combobox
         labelText={labelText}
@@ -234,9 +247,8 @@ describe('Combobox', () => {
 
     expect(renderedCombobox.value).toEqual('Red');
 
-    fireEvent.click(renderedCombobox);
-
-    fireEvent.click(getByText(items[1]));
+    await userEvent.click(renderedCombobox);
+    await userEvent.click(getByText(items[1]));
 
     expect(selectedItem).toEqual(items[1]);
 
@@ -252,24 +264,26 @@ describe('Combobox', () => {
     expect(renderedCombobox.value).toEqual(items[1]);
   });
 
-  it('should allow for the creation of an item', () => {
+  it('should allow for the creation of an item', async () => {
     const { getByLabelText, getByText } = render(
       <Combobox labelText={labelText} items={items} initialSelectedItem="Red" />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'Yellow' } });
+    await userEvent.clear(renderedCombobox);
+    await userEvent.type(renderedCombobox, 'Yellow');
 
     const createItem = getByText('Create "Yellow"');
 
     expect(createItem).toBeInTheDocument();
-    fireEvent.click(createItem);
+
+    await userEvent.click(createItem);
 
     expect(renderedCombobox.value).toEqual('Yellow');
   });
 
-  it('should allow for creation of a custom item', () => {
+  it('should allow for creation of a custom item', async () => {
     function itemToString(item) {
       return item ? item.representation : '';
     }
@@ -302,7 +316,7 @@ describe('Combobox', () => {
       },
     ];
 
-    const { getByLabelText, getByText } = render(
+    const { findByLabelText, getByText } = render(
       <Combobox
         labelText={labelText}
         defaultItems={items}
@@ -311,19 +325,23 @@ describe('Combobox', () => {
       />
     );
 
-    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+    const renderedCombobox = await findByLabelText(labelText, {
+      selector: 'input',
+    });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'Yellow' } });
+    await userEvent.clear(renderedCombobox);
+    await userEvent.type(renderedCombobox, 'Yellow');
 
     const createItem = getByText('Create "Yellow"');
 
     expect(createItem).toBeInTheDocument();
-    fireEvent.click(createItem);
+
+    await userEvent.click(createItem);
 
     expect(renderedCombobox.value).toEqual('Yellow');
   });
 
-  it('should allow for creation of a custom item with controlled items', () => {
+  it('should allow for creation of a custom item with controlled items', async () => {
     let selectedItem = '';
     let items = [
       {
@@ -380,12 +398,14 @@ describe('Combobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'Yellow' } });
+    await userEvent.clear(renderedCombobox);
+    await userEvent.type(renderedCombobox, 'Yellow');
 
     const createItem = getByText('Create "Yellow"');
 
     expect(createItem).toBeInTheDocument();
-    fireEvent.click(createItem);
+
+    await userEvent.click(createItem);
 
     expect(selectedItem.representation).toEqual('Yellow');
 
@@ -403,13 +423,15 @@ describe('Combobox', () => {
 
     expect(renderedCombobox.value).toEqual('Yellow');
 
-    fireEvent.change(renderedCombobox, { target: { value: 'Y' } });
+    await userEvent.clear(renderedCombobox);
+    await userEvent.type(renderedCombobox, 'Y');
 
     expect(getByText('Yellow')).toBeInTheDocument();
   });
 
-  it('should not break when passing null in for the items prop', () => {
+  it('should not break when passing null in for the items prop', async () => {
     let items = ['Red', 'Blue', 'Green'];
+
     const { getByLabelText, getByText, rerender } = render(
       <>
         <button onClick={() => (items = null)}>Clear items</button>
@@ -419,11 +441,11 @@ describe('Combobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(getByText('Red')).toBeInTheDocument();
 
-    fireEvent.click(getByText('Clear items'));
+    await userEvent.click(getByText('Clear items'));
 
     rerender(
       <>
@@ -432,12 +454,12 @@ describe('Combobox', () => {
       </>
     );
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(getByText(/no options/i)).toBeInTheDocument();
   });
 
-  it('should disable the creation of an item', () => {
+  it('should disable the creation of an item', async () => {
     const { getByLabelText, queryByText } = render(
       <Combobox
         disableCreateItem
@@ -449,26 +471,29 @@ describe('Combobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'Yellow' } });
+    await userEvent.clear(renderedCombobox);
+    await userEvent.type(renderedCombobox, 'Yellow');
 
     const createItem = queryByText('Create "Yellow"');
 
     expect(createItem).not.toBeInTheDocument();
   });
 
-  it('should have an initial selected item', () => {
+  it('should have an initial selected item', async () => {
     const { getByLabelText } = render(
       <Combobox labelText={labelText} items={items} initialSelectedItem="Red" />
     );
 
-    expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual(
-      'Red'
-    );
+    await waitFor(() => {
+      expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual(
+        'Red'
+      );
+    });
   });
 
   describe('isTypeahead', () => {
     describe('when isTypeahead is true,', () => {
-      it('should be able to select an item that is not in the items list', () => {
+      it('should be able to select an item that is not in the items list', async () => {
         const { getByLabelText } = render(
           <Combobox
             labelText={labelText}
@@ -478,12 +503,14 @@ describe('Combobox', () => {
           />
         );
 
-        expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual(
-          'Pink'
-        );
+        await waitFor(() => {
+          expect(
+            getByLabelText(labelText, { selector: 'input' }).value
+          ).toEqual('Pink');
+        });
       });
 
-      it('should be able to use the initial selected item even if it is not in the items list', () => {
+      it('should be able to use the initial selected item even if it is not in the items list', async () => {
         const { getByLabelText } = render(
           <Combobox
             labelText={labelText}
@@ -493,12 +520,14 @@ describe('Combobox', () => {
           />
         );
 
-        expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual(
-          'Pink'
-        );
+        await waitFor(() => {
+          expect(
+            getByLabelText(labelText, { selector: 'input' }).value
+          ).toEqual('Pink');
+        });
       });
 
-      it('and isLoading is true, list loading indicator is visible', () => {
+      it('and isLoading is true, list loading indicator is visible', async () => {
         const { getByText, queryByTestId } = render(
           <Combobox
             labelText={labelText}
@@ -508,11 +537,14 @@ describe('Combobox', () => {
             disableCreateItem
           />
         );
-        expect(getByText(/loading.../i)).toBeInTheDocument();
-        expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+
+        await waitFor(() => {
+          expect(getByText(/loading.../i)).toBeInTheDocument();
+          expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+        });
       });
 
-      it('and isLoading is false, no loading indicator is visible', () => {
+      it('and isLoading is false, no loading indicator is visible', async () => {
         const { queryByText, queryByTestId } = render(
           <Combobox
             labelText={labelText}
@@ -522,13 +554,16 @@ describe('Combobox', () => {
             disableCreateItem
           />
         );
-        expect(queryByText(/loading.../i)).not.toBeInTheDocument();
-        expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+
+        await waitFor(() => {
+          expect(queryByText(/loading.../i)).not.toBeInTheDocument();
+          expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+        });
       });
     });
 
     describe('when isTypeahead is false,', () => {
-      it('should not select an item that is not in the items list', () => {
+      it('should not select an item that is not in the items list', async () => {
         const { getByLabelText } = render(
           <Combobox
             labelText={labelText}
@@ -538,12 +573,14 @@ describe('Combobox', () => {
           />
         );
 
-        expect(
-          getByLabelText(labelText, { selector: 'input' }).textContent
-        ).not.toEqual('Pink');
+        await waitFor(() => {
+          expect(
+            getByLabelText(labelText, { selector: 'input' }).textContent
+          ).not.toEqual('Pink');
+        });
       });
 
-      it('should not use the initial selected item if it is not in the items list', () => {
+      it('should not use the initial selected item if it is not in the items list', async () => {
         const { getByLabelText } = render(
           <Combobox
             labelText={labelText}
@@ -553,12 +590,14 @@ describe('Combobox', () => {
           />
         );
 
-        expect(
-          getByLabelText(labelText, { selector: 'input' }).textContent
-        ).not.toEqual('Pink');
+        await waitFor(() => {
+          expect(
+            getByLabelText(labelText, { selector: 'input' }).textContent
+          ).not.toEqual('Pink');
+        });
       });
 
-      it('and isLoading is true, input loading indicator is visible', () => {
+      it('and isLoading is true, input loading indicator is visible', async () => {
         const { queryByText, getByTestId } = render(
           <Combobox
             labelText={labelText}
@@ -567,11 +606,14 @@ describe('Combobox', () => {
             isLoading
           />
         );
-        expect(getByTestId('loadingIndicator')).toBeInTheDocument();
-        expect(queryByText(/loading.../i)).not.toBeInTheDocument();
+
+        await waitFor(() => {
+          expect(getByTestId('loadingIndicator')).toBeInTheDocument();
+          expect(queryByText(/loading.../i)).not.toBeInTheDocument();
+        });
       });
 
-      it('and isLoading is false, no loading indicator is visible', () => {
+      it('and isLoading is false, no loading indicator is visible', async () => {
         const { queryByText, queryByTestId } = render(
           <Combobox
             labelText={labelText}
@@ -580,23 +622,28 @@ describe('Combobox', () => {
             isLoading={false}
           />
         );
-        expect(queryByText(/loading.../i)).not.toBeInTheDocument();
-        expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+
+        await waitFor(() => {
+          expect(queryByText(/loading.../i)).not.toBeInTheDocument();
+          expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+        });
       });
     });
   });
 
-  it('should disable the combobox', () => {
+  it('should disable the combobox', async () => {
     const { getByLabelText } = render(
       <Combobox labelText={labelText} items={items} disabled />
     );
 
-    expect(getByLabelText(labelText, { selector: 'input' })).toHaveAttribute(
-      'disabled'
-    );
+    await waitFor(() => {
+      expect(getByLabelText(labelText, { selector: 'input' })).toHaveAttribute(
+        'disabled'
+      );
+    });
   });
 
-  it('should allow a selection to be cleared', () => {
+  it('should allow a selection to be cleared', async () => {
     const { getByLabelText } = render(
       <Combobox
         labelText={labelText}
@@ -610,12 +657,12 @@ describe('Combobox', () => {
 
     expect(renderedCombobox.value).toEqual('Red');
 
-    fireEvent.click(getByLabelText(/reset/i));
+    await userEvent.click(getByLabelText(/reset/i));
 
     expect(renderedCombobox.value).not.toEqual('Red');
   });
 
-  it('should select the default selected item when cleared', () => {
+  it('should select the default selected item when cleared', async () => {
     const { getByLabelText, getByTestId } = render(
       <Combobox
         labelText={labelText}
@@ -630,14 +677,14 @@ describe('Combobox', () => {
       'Red'
     );
 
-    fireEvent.click(getByTestId('clearIndicator'));
+    await userEvent.click(getByTestId('clearIndicator'));
 
     expect(getByLabelText(labelText, { selector: 'input' }).value).toEqual(
       'Blue'
     );
   });
 
-  it('should not select the default selected item when cleared if it is not in the items list', () => {
+  it('should not select the default selected item when cleared if it is not in the items list', async () => {
     const { getByLabelText, getByTestId } = render(
       <Combobox
         labelText={labelText}
@@ -652,60 +699,63 @@ describe('Combobox', () => {
       'Red'
     );
 
-    fireEvent.click(getByTestId('clearIndicator'));
+    await userEvent.click(getByTestId('clearIndicator'));
 
     expect(getByLabelText(labelText, { selector: 'input' }).value).not.toEqual(
       'Pink'
     );
   });
 
-  it('should filter items based on text in the combobox', () => {
+  it('should filter items based on text in the combobox', async () => {
     const { getByLabelText, getByText, queryByText } = render(
       <Combobox labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'R' } });
+    await userEvent.clear(renderedCombobox);
+    await userEvent.type(renderedCombobox, 'R');
 
     expect(getByText('Red')).toBeInTheDocument();
     expect(queryByText('Blue')).not.toBeInTheDocument();
     expect(queryByText('Green')).not.toBeInTheDocument();
 
-    fireEvent.change(renderedCombobox, { target: { value: '' } });
+    await userEvent.clear(renderedCombobox);
 
     expect(getByText('Red')).toBeInTheDocument();
     expect(getByText('Blue')).toBeInTheDocument();
     expect(getByText('Green')).toBeInTheDocument();
   });
 
-  it('should highlight the first item in the list after typing', () => {
+  it('should highlight the first item in the list after typing', async () => {
     const { getByLabelText, getByText } = render(
       <Combobox labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'R' } });
+    await userEvent.clear(renderedCombobox);
+    await userEvent.type(renderedCombobox, 'R');
 
     expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
   });
 
-  it('should select the first item highlighted in items list on enter', () => {
+  it('should select the first item highlighted in items list on enter', async () => {
     const { getByLabelText } = render(
       <Combobox labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'R' } });
+    await userEvent.clear(renderedCombobox);
+    await userEvent.type(renderedCombobox, 'R');
 
-    fireEvent.keyDown(renderedCombobox, { key: 'Enter' });
+    await userEvent.keyboard('{Enter}');
 
     expect(renderedCombobox.value).toEqual('Red');
   });
 
-  it('should not change the selected item if no item list after filter', () => {
+  it('should not change the selected item if no item list after filter', async () => {
     const { getByLabelText } = render(
       <Combobox labelText={labelText} items={items} selectedItem="Red" />
     );
@@ -714,15 +764,16 @@ describe('Combobox', () => {
 
     expect(renderedCombobox.value).toEqual('Red');
 
-    fireEvent.change(renderedCombobox, { target: { value: 'P' } });
-
-    fireEvent.keyDown(renderedCombobox, { key: 'Enter' });
+    await userEvent.clear(renderedCombobox);
+    await userEvent.type(renderedCombobox, 'P');
+    await userEvent.keyboard('{Enter}');
 
     expect(renderedCombobox.value).toEqual('Red');
   });
 
-  it('should show an error message', () => {
+  it('should show an error message', async () => {
     const errorMessage = 'This is an error';
+
     const { getByText } = render(
       <Combobox
         labelText={labelText}
@@ -731,11 +782,14 @@ describe('Combobox', () => {
       />
     );
 
-    expect(getByText(errorMessage)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(errorMessage)).toBeInTheDocument();
+    });
   });
 
-  it('should show an helper message', () => {
+  it('should show an helper message', async () => {
     const helperMessage = 'This is an error';
+
     const { getByText } = render(
       <Combobox
         labelText={labelText}
@@ -744,21 +798,25 @@ describe('Combobox', () => {
       />
     );
 
-    expect(getByText(helperMessage)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(helperMessage)).toBeInTheDocument();
+    });
   });
 
-  it('should show a left aligned label', () => {
+  it('should show a left aligned label', async () => {
     const { getByTestId } = render(
       <Combobox labelText={labelText} items={items} labelPosition="left" />
     );
 
-    expect(getByTestId('selectContainerElement')).toHaveStyleRule(
-      'display',
-      'flex'
-    );
+    await waitFor(() => {
+      expect(getByTestId('selectContainerElement')).toHaveStyleRule(
+        'display',
+        'flex'
+      );
+    });
   });
 
-  it('Should have a defined width for label when labelPosition is "left"', () => {
+  it('Should have a defined width for label when labelPosition is "left"', async () => {
     const { getByText } = render(
       <Combobox
         items={items}
@@ -767,18 +825,23 @@ describe('Combobox', () => {
         labelWidth={20}
       />
     );
-    expect(getByText(labelText)).toHaveStyle('flex-basis: 20%');
+
+    await waitFor(() => {
+      expect(getByText(labelText)).toHaveStyle('flex-basis: 20%');
+    });
   });
 
-  it('should show loading indicator', () => {
+  it('should show loading indicator', async () => {
     const { getByTestId } = render(
       <Combobox labelText={labelText} items={items} isLoading />
     );
 
-    expect(getByTestId('loadingIndicator')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByTestId('loadingIndicator')).toBeInTheDocument();
+    });
   });
 
-  it('should allow you to send in your own components', () => {
+  it('should allow you to send in your own components', async () => {
     const ClearIndicator = () => (
       <button data-testid="customClearIndicator">Clear</button>
     );
@@ -800,76 +863,94 @@ describe('Combobox', () => {
       />
     );
 
-    expect(getByTestId('customClearIndicator')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByTestId('customClearIndicator')).toBeInTheDocument();
+    });
   });
 
   describe('events', () => {
-    it('onBlur', () => {
+    it('onBlur', async () => {
       const onBlur = jest.fn();
-      ``;
 
-      const { getByLabelText } = render(
+      const { findByLabelText } = render(
         <Combobox labelText={labelText} items={items} onInputBlur={onBlur} />
       );
 
-      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+      const renderedCombobox = await findByLabelText(labelText, {
+        selector: 'input',
+      });
 
-      renderedCombobox.focus();
-
-      fireEvent.blur(renderedCombobox);
+      act(() => {
+        renderedCombobox.focus();
+        renderedCombobox.blur();
+      });
 
       expect(onBlur).toHaveBeenCalled();
     });
 
-    it('onBlur should empty input if no selected item', () => {
+    it('onBlur should empty input if no selected item', async () => {
       const { getByLabelText } = render(
         <Combobox labelText={labelText} items={items} />
       );
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-      renderedCombobox.focus();
-      fireEvent.change(renderedCombobox, { target: { value: 'yel' } });
+      act(() => {
+        renderedCombobox.focus();
+      });
 
-      fireEvent.blur(renderedCombobox);
+      await userEvent.type(renderedCombobox, 'yel');
+
+      act(() => {
+        renderedCombobox.blur();
+      });
 
       expect(renderedCombobox.value).toEqual('');
     });
 
-    it('onBlur should give input value of selected item  after input has been changed but nothing new selected', () => {
+    it('onBlur should give input value of selected item  after input has been changed but nothing new selected', async () => {
       const { getByLabelText, getByText } = render(
         <Combobox labelText={labelText} items={items} />
       );
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-      fireEvent.click(renderedCombobox);
+      await userEvent.click(renderedCombobox);
+      await userEvent.click(getByText(items[0]));
 
-      fireEvent.click(getByText(items[0]));
+      act(() => {
+        renderedCombobox.focus();
+      });
 
-      renderedCombobox.focus();
-      fireEvent.change(renderedCombobox, { target: { value: 'yel' } });
+      await userEvent.clear(renderedCombobox);
+      await userEvent.type(renderedCombobox, 'yel');
 
-      fireEvent.blur(renderedCombobox);
+      act(() => {
+        renderedCombobox.blur();
+      });
 
       expect(renderedCombobox.value).toEqual(items[0]);
     });
 
-    it('onFocus', () => {
+    it('onFocus', async () => {
       const onFocus = jest.fn();
 
-      const { getByLabelText } = render(
+      const { findByLabelText } = render(
         <Combobox labelText={labelText} items={items} onInputFocus={onFocus} />
       );
 
-      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+      const renderedCombobox = await findByLabelText(labelText, {
+        selector: 'input',
+      });
 
-      renderedCombobox.focus();
+      act(() => {
+        renderedCombobox.focus();
+      });
 
       expect(onFocus).toHaveBeenCalled();
     });
 
-    it('onKeyDown', () => {
+    it('onKeyDown', async () => {
       const onKeyDown = jest.fn();
 
       const { getByLabelText } = render(
@@ -882,12 +963,12 @@ describe('Combobox', () => {
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-      fireEvent.keyDown(renderedCombobox, { key: 'Enter' });
+      await userEvent.type(renderedCombobox, '{Enter}');
 
       expect(onKeyDown).toHaveBeenCalled();
     });
 
-    it('onKeyUp', () => {
+    it('onKeyUp', async () => {
       const onKeyUp = jest.fn();
 
       const { getByLabelText } = render(
@@ -896,12 +977,12 @@ describe('Combobox', () => {
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-      fireEvent.keyUp(renderedCombobox, { key: 'Enter' });
+      await userEvent.type(renderedCombobox, '{Enter}');
 
       expect(onKeyUp).toHaveBeenCalled();
     });
 
-    it('onInputValueChange', () => {
+    it('onInputValueChange', async () => {
       const onInputValueChange = jest.fn();
 
       const { getByLabelText } = render(
@@ -914,9 +995,9 @@ describe('Combobox', () => {
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-      fireEvent.change(renderedCombobox, { target: { value: 'Red' } });
+      await userEvent.type(renderedCombobox, 'Red');
 
-      expect(onInputValueChange).toBeCalledWith(
+      expect(onInputValueChange).toHaveBeenCalledWith(
         expect.objectContaining({
           inputValue: 'Red',
         }),
@@ -924,7 +1005,7 @@ describe('Combobox', () => {
       );
     });
 
-    it('onInputChange', () => {
+    it('onInputChange', async () => {
       const onInputChange = jest.fn();
 
       const { getByLabelText } = render(
@@ -937,9 +1018,9 @@ describe('Combobox', () => {
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-      fireEvent.change(renderedCombobox, { target: { value: 'Red' } });
+      await userEvent.type(renderedCombobox, 'Red');
 
-      expect(onInputChange).toBeCalledWith(
+      expect(onInputChange).toHaveBeenCalledWith(
         expect.objectContaining({
           inputValue: 'Red',
         })
@@ -953,16 +1034,7 @@ describe('Combobox', () => {
         { label: 'Green', value: 'green' },
       ];
 
-      beforeEach(() => {
-        jest.useFakeTimers();
-      });
-
-      afterEach(() => {
-        jest.useRealTimers();
-        jest.resetAllMocks();
-      });
-
-      it('should close the menu when escape key is pressed, and retain the active modal', () => {
+      it('should close the menu when escape key is pressed, and retain the active modal', async () => {
         const { getByLabelText, queryByText, getByText } = render(
           <Modal testId="modal" isOpen>
             Modal Content
@@ -976,55 +1048,44 @@ describe('Combobox', () => {
 
         expect(renderedCombobox).toBeInTheDocument();
 
-        fireEvent.click(renderedCombobox);
+        await userEvent.click(renderedCombobox);
 
         expect(getByText(items[0].label)).toBeInTheDocument();
 
-        fireEvent.keyDown(getByLabelText(labelText, { selector: 'input' }), {
-          key: 'Escape',
-          code: 27,
-        });
+        await userEvent.keyboard('{Escape}');
 
         expect(
           queryByText(items[2], { selector: 'Red' })
         ).not.toBeInTheDocument();
-
         expect(getByText('Modal Content')).toBeInTheDocument();
       });
 
       it('should close the modal on escape after menu is closed on escape', async () => {
         const onEscKeyMock = jest.fn();
-        const { getByLabelText, queryByText, getByText, debug } = render(
+
+        const { getByLabelText, queryByText, getByText } = render(
           <Modal testId="modal" isOpen onEscKeyDown={onEscKeyMock}>
             Modal Content
             <Combobox labelText={labelText} items={items} />
           </Modal>
         );
+
         const renderedCombobox = getByLabelText(labelText, {
           selector: 'input',
         });
-        fireEvent.click(renderedCombobox);
+
+        await userEvent.click(renderedCombobox);
+
         expect(getByText(items[0].label)).toBeInTheDocument();
 
-        fireEvent.keyDown(getByLabelText(labelText, { selector: 'input' }), {
-          key: 'Escape',
-          code: 27,
-        });
+        await userEvent.keyboard('{Escape}');
 
         expect(
           queryByText(items[2], { selector: 'Red' })
         ).not.toBeInTheDocument();
-
         expect(getByText('Modal Content')).toBeInTheDocument();
 
-        fireEvent.keyDown(getByText('Modal Content'), {
-          key: 'Escape',
-          code: 27,
-        });
-
-        await act(async () => {
-          jest.runAllTimers();
-        });
+        await userEvent.keyboard('{Escape}');
 
         expect(onEscKeyMock).toHaveBeenCalled();
         expect(queryByText('Modal Content')).not.toBeInTheDocument();
