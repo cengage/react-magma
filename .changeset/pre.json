@@ -25,6 +25,7 @@
     "feat-multiselect-new-option-disabled",
     "feat-treeview-dynamic-children",
     "fix-Accordion-Tooltip-Storybook-issues",
+    "fix-Drawer-missing-animation",
     "fix-Dropdown-nav-item-accessibility-issue",
     "fix-Input-not-properly-update-value",
     "fix-Intermediate-Checkbox-screenreader-reads-unticked",

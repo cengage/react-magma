@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.5
+
+### Patch Changes
+
+- 0aa9f0ab1: fix(Drawer): Fix missing animation for sliding in.
+
 ## 4.10.0-next.4
 
 ### Patch Changes
