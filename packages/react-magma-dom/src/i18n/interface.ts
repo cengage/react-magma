@@ -306,4 +306,10 @@ export interface I18nInterface {
       cancel: string;
     };
   };
+  alertVariants: {
+    info: string;
+    success: string;
+    warning: string;
+    danger: string;
+  };
 }

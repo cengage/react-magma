@@ -326,4 +326,10 @@ export const defaultI18n: I18nInterface = {
     optional: 'optional',
     navigationLabel: 'Navigation for the wizard',
   },
+  alertVariants: {
+    info: 'info icon',
+    success: 'success icon',
+    warning: 'warning icon',
+    danger: 'danger icon',
+  },
 };
