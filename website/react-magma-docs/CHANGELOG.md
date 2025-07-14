@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.3-next.8
+
+### Patch Changes
+
+- 5d7dfe9d1: chore: fix react-magma-dom next version
+
 ## 5.1.3-next.7
 
 ### Patch Changes

@@ -16,6 +16,7 @@
     "chore-deploy-v2",
     "chore-docs-add-useDeviceDetect-page",
     "chore-docs-add-warning-for-tooltip",
+    "chore-fix-dom-version",
     "chore-sync-landing-version",
     "feat-Drawer-Add-Show-Background-Overlay-prop",
     "feat-Dropdown-Add-leading-icon",
