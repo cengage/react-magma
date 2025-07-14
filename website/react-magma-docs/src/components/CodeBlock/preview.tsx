@@ -64,7 +64,8 @@ export const Preview = ({ ...props }: PreviewProps) => {
           ...MAGMA,
           ...ICONS,
           ICONS,
-          ...DROPZONE,
+          // @ts-expect-error This is a workaround for the way DROPZONE exports its components
+          ...DROPZONE.default,
           ...CHARTS,
         }}
         noInline

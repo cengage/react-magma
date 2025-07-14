@@ -30,7 +30,7 @@ If there is an h1 heading inside the SkipLinkContent, the h1 will receive focus.
 
 Because the `SkipLink` and `SkipLinkContent` work based on an `id`, it is important that you only have one pair of these elements on a page.
 
-```tsx noRender
+```tsx-noRender
 import React from 'react';
 
 import {
@@ -45,7 +45,7 @@ const SideNav = ({ length }) => {
     <nav>
       {[...Array(length).keys()].map(index => (
         <div key={index}>
-          <Hyperlink to={`#${index}`}>Link ${index}</Hyperlink>
+          <Hyperlink to={`#${index}`}>Link {index +1}</Hyperlink>
         </div>
       ))}
     </nav>
@@ -78,7 +78,7 @@ IsInverse is can be either `true` or `false`, and is used when the SkipLink is t
 
 For more information, see the <Link to="/api/button">Button Component documentation</Link>.
 
-```tsx noRender
+```tsx-noRender
 import React from 'react';
 
 import {
@@ -94,7 +94,7 @@ const SideNav = ({ length }) => {
     <nav>
       {[...Array(length).keys()].map(index => (
         <div key={index}>
-          <Hyperlink to={`#${index}`}>Link ${index}</Hyperlink>
+          <Hyperlink to={`#${index}`}>Link {index +1}</Hyperlink>
         </div>
       ))}
     </nav>
@@ -122,7 +122,7 @@ export function Example() {
 
 By default, the text inside the button says "Skip Navigation". This can be overridden using the `buttonText` prop.
 
-```tsx noRender
+```tsx-noRender
 import React from 'react';
 
 import {
@@ -137,7 +137,7 @@ const SideNav = ({ length }) => {
     <nav>
       {[...Array(length).keys()].map(index => (
         <div key={index}>
-          <Hyperlink to={`#${index}`}>Link ${index}</Hyperlink>
+          <Hyperlink to={`#${index}`}>Link {index +1}</Hyperlink>
         </div>
       ))}
     </nav>
@@ -163,7 +163,7 @@ export function Example() {
 By default, the `SkipLink` is fixed positioned 10px from the top and 10px from left of the screen. This can be customized using the optional `positionLeft`
 and `positionTop` properties, which take numeric values.
 
-```tsx noRender
+```tsx-noRender
 import React from 'react';
 
 import {
@@ -178,7 +178,7 @@ const SideNav = ({ length }) => {
     <nav>
       {[...Array(length).keys()].map(index => (
         <div key={index}>
-          <Hyperlink to={`#${index}`}>Link ${index}</Hyperlink>
+          <Hyperlink to={`#${index}`}>Link {index +1}</Hyperlink>
         </div>
       ))}
     </nav>

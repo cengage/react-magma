@@ -4,19 +4,19 @@ import styled from '@emotion/styled';
 import { MDXProvider } from '@mdx-js/react';
 import { Link } from 'gatsby';
 import PropTypes from 'prop-types';
-import { SkipLinkContent, Heading, Alert, magma } from 'react-magma-dom';
+import { Alert, Heading, magma, SkipLinkContent } from 'react-magma-dom';
 
 import { PageContent } from './PageContent';
 import { convertTextToId } from '../utils';
 import './layout.css';
+import { ButtonProps } from './ButtonProps';
 import { CodeBlock } from './CodeBlock';
 import { Divider } from './Divider';
+import { IconButtonProps } from './IconButtonProps';
 import { LayoutComponent } from './LayoutComponent';
+import { LeadParagraph } from './LeadParagraph';
 import { NetlifyFooter } from './NetlifyFooter';
 import { SimplePropsTable } from './SimplePropsTable';
-import { ButtonProps } from '../components/ButtonProps';
-import { IconButtonProps } from '../components/IconButtonProps';
-import { LeadParagraph } from '../components/LeadParagraph';
 
 const ContentArticle = styled.article`
   @media (max-width: 1025px) {
@@ -72,7 +72,11 @@ export const Layout = ({ children, pageContext }) => {
     <LayoutComponent title={title} heading={heading}>
       <MDXProvider
         components={{
-          code: CodeBlock,
+          // Inline code: simple highlight for single backticks
+          code: props => <code>{props.children}</code>,
+          pre: ({ children: preChildren }) => {
+            return <CodeBlock children={preChildren} {...preChildren.props} />;
+          },
           table: Table,
           h1: SmartDocsHeading,
           h2: SectionHeading,
@@ -90,7 +94,6 @@ export const Layout = ({ children, pageContext }) => {
           ButtonProps,
           IconButtonProps,
           SimplePropsTable,
-          pre: props => <div {...props} />,
           ...properties.reduce((acc, { name, properties }) => {
             return {
               ...acc,

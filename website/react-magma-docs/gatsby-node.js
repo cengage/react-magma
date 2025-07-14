@@ -59,40 +59,43 @@ exports.onCreateWebpackConfig = ({
   }
 };
 
-const getPathPrefix = path => {
-  if (/design/.test(path)) {
-    if (/intro/.test(path)) {
-      return 'design-intro';
-    }
-
-    return 'design';
-  } else if (/api/.test(path)) {
-    if (/intro/.test(path)) {
-      return 'api-intro';
-    }
-
-    return 'api';
-  } else if (/data-visualization/.test(path)) {
-    return 'data-visualization';
-  }
-
-  return '';
-};
-
-exports.onCreateNode = ({ node, actions, getNode }) => {
+exports.onCreateNode = async ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === 'Mdx') {
-    const prefix = getPathPrefix(node.fileAbsolutePath);
-    const filePath = createFilePath({ node, getNode });
-    const fullFilePath = prefix
-      ? `/${prefix}${filePath.toLowerCase()}`
-      : filePath.toLowerCase();
+    const unified = (await import('unified')).unified;
+    const remarkParse = (await import('remark-parse')).default;
+    const remarkMdx = (await import('remark-mdx')).default;
+    const visit = (await import('unist-util-visit')).visit;
+
+    const slug = createFilePath({ node, getNode, basePath: `pages` });
+    const content = node.body;
+    const tree = unified().use(remarkParse).use(remarkMdx).parse(content);
+    const pageNavigationHeadings = [];
+
+    // Extracting headings navigation from the MDX content
+    visit(tree, 'heading', headingNode => {
+      if (headingNode.depth === 2) {
+        const heading = headingNode.children?.reduce((previous, current) => {
+          return current.type === 'text' ? previous + current.value : previous;
+        }, '');
+
+        if (heading) {
+          pageNavigationHeadings.push(heading);
+        }
+      }
+    });
 
     createNodeField({
       name: 'slug',
       node,
-      value: fullFilePath,
+      value: slug,
+    });
+
+    createNodeField({
+      name: `headings`,
+      node,
+      value: pageNavigationHeadings,
     });
   }
 };

@@ -13,15 +13,15 @@ If children are included with these buttons (usually text), then they render in 
 If no children are included, then they render in the icon-only style.
 
 <Alert>
-  For icon only buttons you <strong>must</strong> include an{' '}
-  <inlineCode className="inverse">aria-label</inlineCode> property that
-  accurately describes the function of the button, so that screen-reader users
-  will know the button's purpose.
+  For icon only buttons you <strong>must</strong> include an
+  <code className="inverse">aria-label</code> property that accurately describes
+  the function of the button, so that screen-reader users will know the button's
+  purpose.
 </Alert>
 <Alert>
-  For icon buttons with text, an{' '}
-  <inlineCode className="inverse">aria-label</inlineCode> is not needed, as the
-  function of the button should be described in the visible button text.
+  For icon buttons with text, an <code className="inverse">aria-label</code> is
+  not needed, as the function of the button should be described in the visible
+  button text.
 </Alert>
 
 ```tsx
@@ -478,7 +478,7 @@ export function Example() {
 
 Passing in the `testId` prop will add the `data-testid` attribute to the button element for easier querying in tests.
 
-```html noCodeSandbox
+```html-noCodeSandbox
 <IconButton testId="test-id" aria-label="Test">
   <svg
     aria-hidden="true"

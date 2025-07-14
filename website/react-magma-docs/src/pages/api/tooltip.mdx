@@ -170,11 +170,10 @@ The `tooltipStyle` prop applies to the tooltip popover content itself, and inclu
 The `arrowStyle` prop applies to the arrow indicator.
 
 <Alert variant="warning">
-  Be careful changing the positioning styles for the{' '}
-  <inlineCode>tooltipStyle</inlineCode> or the{' '}
-  <inlineCode>arrowStyle</inlineCode> as they are brought in by an outside
-  library named [floating-ui](https://floating-ui.com/) to deal with overflow
-  and scrolling.
+  Be careful changing the positioning styles for the <code>tooltipStyle</code>{' '}
+  or the <code>arrowStyle</code> as they are brought in by an outside library
+  named <Link to={`https://floating-ui.com/`}>floating-ui</Link> to deal with
+  overflow and scrolling.
 </Alert>
 
 ```tsx
@@ -214,21 +213,23 @@ export function Example() {
 
 The values of some style properties are set in the Magma theme.
 
-```json noCodeSandbox noRender
-    tooltip: {
-      arrowSize: '6px',
-      arrowSizeDoubled: '12px',
-      backgroundColor: colors.neutral700,
-      fontWeight: 500,
-      maxWidth: '300px',
-      textColor: colors.neutral100,
-      typeScale: typeScale.size01,
-      zIndex: 999,
-      inverse: {
-        backgroundColor: colors.neutral100,
-        textColor: colors.neutral700,
-      },
+```json-noCodeSandbox-noRender
+{
+  "tooltip": {
+    "arrowSize": "6px",
+    "arrowSizeDoubled": "12px",
+    "backgroundColor": "colors.neutral700",
+    "fontWeight": 500,
+    "maxWidth": "300px",
+    "textColor": "colors.neutral100",
+    "typeScale": "typeScale.size01",
+    "zIndex": 999,
+    "inverse": {
+      "backgroundColor": "colors.neutral100",
+      "textColor": "colors.neutral700"
     }
+  }
+}
 ```
 
 ```tsx
