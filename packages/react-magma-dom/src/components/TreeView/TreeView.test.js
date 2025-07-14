@@ -12,6 +12,13 @@ import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import { Paragraph } from '../Paragraph';
 import { Tag } from '../Tag';
 import { AccordionTreeWithShowAllAndExpandAll } from './TreeView.stories';
+import {
+  Button,
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from '../..';
 
 import { TreeItem, TreeView, TreeViewSelectable } from '.';
 
@@ -5093,5 +5100,52 @@ describe('TreeView', () => {
       );
       expect(getByTestId('item-ggchild1-retain')).toBeVisible();
     });
+  });
+
+  it('should call event once when label or additional content has interactive elements', async () => {
+    const onSelectedItemChange = jest.fn();
+    const handleClick = jest.fn();
+
+    const label = (
+      <Dropdown>
+        <DropdownButton />
+        <DropdownContent>
+          <DropdownMenuItem
+            onClick={handleClick}
+            data-testid="dropdown-menu-item"
+          >
+            Rename
+          </DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    const additionalContent = (
+      <Button onClick={handleClick} testId="click-button">
+        Click
+      </Button>
+    );
+
+    const { getByTestId } = render(
+      <TreeView
+        selectable={TreeViewSelectable.multi}
+        onSelectedItemChange={onSelectedItemChange}
+      >
+        <TreeItem
+          additionalContent={additionalContent}
+          label={label}
+          itemId="item"
+          testId="item"
+        />
+      </TreeView>
+    );
+
+    userEvent.click(getByTestId('item-label'));
+    userEvent.click(getByTestId('dropdown-menu-item'));
+
+    expect(handleClick).toHaveBeenCalledTimes(1);
+
+    userEvent.click(getByTestId('click-button'));
+    expect(handleClick).toHaveBeenCalledTimes(2);
   });
 });
