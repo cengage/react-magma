@@ -1,5 +1,4 @@
 module.exports = {
-  collectCoverage: false,
   collectCoverageFrom: [
     '**/packages/**/src/**/*.{js,jsx,ts,tsx}',
     '!**/?(*.)+(spec|test|stories).{js,ts,mjs,jsx,tsx}',
@@ -12,13 +11,11 @@ module.exports = {
   coverageReporters: ['text', 'lcov'],
   modulePaths: ['<rootDir>'],
   moduleDirectories: ['node_modules'],
-  projects: ['<rootDir>/packages/*/jest.config.js'],
   roots: ['<rootDir>'],
-  setupFiles: ['<rootDir>/jest.overrides.js'],
+  setupFiles: [],
   setupFilesAfterEnv: [
-    'jest-extended',
-    '@testing-library/jest-dom/extend-expect',
-    'regenerator-runtime/runtime',
+    '<rootDir>/jest.overrides.js',
+    '@testing-library/jest-dom',
     'jest-axe/extend-expect',
     '<rootDir>/jest.setup.js',
   ],
@@ -39,8 +36,11 @@ module.exports = {
   transform: {
     '^.+\\.(j|t)s(x)?$': ['babel-jest', { cwd: __dirname }],
   },
-  watchPlugins: [
-    'jest-watch-typeahead/filename',
-    'jest-watch-typeahead/testname',
-  ],
+  testEnvironment: 'jsdom',
+  moduleNameMapper: {
+    '^react$': '<rootDir>/node_modules/react',
+    '^react-dom$': '<rootDir>/node_modules/react-dom',
+    '^react-dom/client$': '<rootDir>/node_modules/react-dom/client',
+    '^@testing-library/react$': '<rootDir>/node_modules/@testing-library/react',
+  },
 };

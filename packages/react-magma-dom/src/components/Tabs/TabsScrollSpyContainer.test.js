@@ -7,6 +7,7 @@ import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 
 import { TabScrollSpyPanel, TabsScrollSpyContainer } from '.';
+import userEvent from '@testing-library/user-event';
 
 const TEXT = 'Test Text';
 const testIdContainer = 'container';
@@ -22,7 +23,7 @@ describe('TabsScrollSpyContainer', () => {
     expect(getByTestId(testIdContainer)).toBeInTheDocument();
   });
 
-  it('Should change the active Tab on click', () => {
+  it('Should change the active Tab on click', async () => {
     const { getByTestId } = render(
       <TabsScrollSpyContainer>
         <TabScrollSpyPanel tabLabel="first" />
@@ -31,7 +32,7 @@ describe('TabsScrollSpyContainer', () => {
       </TabsScrollSpyContainer>
     );
 
-    fireEvent.click(getByTestId('tab0'));
+    await userEvent.click(getByTestId('tab0'));
 
     expect(getByTestId('tab0')).toHaveStyleRule(
       'color',
@@ -46,7 +47,7 @@ describe('TabsScrollSpyContainer', () => {
       magma.colors.neutral500
     );
 
-    fireEvent.click(getByTestId('tab1'));
+    await userEvent.click(getByTestId('tab1'));
 
     expect(getByTestId('tab0')).toHaveStyleRule(
       'color',
@@ -61,7 +62,7 @@ describe('TabsScrollSpyContainer', () => {
       magma.colors.neutral500
     );
 
-    fireEvent.click(getByTestId('tab2'));
+    await userEvent.click(getByTestId('tab2'));
 
     expect(getByTestId('tab0')).toHaveStyleRule(
       'color',
@@ -87,15 +88,18 @@ describe('TabsScrollSpyContainer', () => {
     expect(getByTestId('tab0')).toHaveTextContent('first');
   });
 
-  it('Should set the window.location.href on click', () => {
+  it('Should set the window.location.href on click', async () => {
     const { container } = render(
       <TabsScrollSpyContainer>
         <TabScrollSpyPanel tabLabel="first">{TEXT}</TabScrollSpyPanel>
       </TabsScrollSpyContainer>
     );
+
     const tab0 = container.querySelector('button[data-scrollspy-id="first"]');
-    fireEvent.click(tab0);
-    expect(window.location.href).toInclude('#first');
+
+    await userEvent.click(tab0);
+
+    expect(window.location.hash).toBe('#first');
   });
 });
 
@@ -103,6 +107,7 @@ it('Tab Panels are compliant with accessibility', () => {
   const { container } = render(
     <TabsScrollSpyContainer aria-label="TabsScrollSpyContainer" />
   );
+
   return axe(container.innerHTML).then(result => {
     return expect(result).toHaveNoViolations();
   });
@@ -145,6 +150,7 @@ describe('TabScrollSpyPanel', () => {
     const { container } = render(
       <TabScrollSpyPanel tabLabel={tabLabel}>{TEXT}</TabScrollSpyPanel>
     );
+
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
