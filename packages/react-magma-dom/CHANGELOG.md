@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.3
+
+### Minor Changes
+
+- 22a0a5396: feat (Button): Update icon size for `Button`, `Icon button`, `Dropdown button`, `Button group` and `Toggle button`.
+
 ## 4.9.2-next.2
 
 ### Patch Changes

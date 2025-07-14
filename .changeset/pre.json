@@ -18,6 +18,7 @@
     "chore-docs-add-warning-for-tooltip",
     "chore-fix-dom-version",
     "chore-sync-landing-version",
+    "feat-Button-update-icon-size",
     "feat-Drawer-Add-Show-Background-Overlay-prop",
     "feat-Dropdown-Add-leading-icon",
     "feat-Table-DataGrid-Caption-as-title-of-table",
