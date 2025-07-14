@@ -12,10 +12,11 @@ import { MotionVariants } from '../../theme/components/transition';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-/**
- * @children required
- */
 export interface TransitionProps extends HTMLMotionProps<'div'> {
+  /**
+   * @children optional
+   */
+  children?: React.ReactNode | undefined;
   /**
    * If `true`, the element will unmount when `in={false}` and animation is done
    * @default false

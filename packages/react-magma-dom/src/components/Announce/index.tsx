@@ -1,9 +1,10 @@
 import * as React from 'react';
 
-/**
- * @children required
- */
 export interface AnnounceProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Value of the `aria-live` attribute
    * @default AnnouncePoliteness.polite

@@ -6,11 +6,11 @@ import { transparentize } from 'polished';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 
-/**
- * @children required
- */
-
 export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * The color variant of the badge
    * @default BadgeColor.primary

@@ -12,12 +12,13 @@ import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-/**
- * @children required
- */
 interface BaseAccordionProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @internal
    */

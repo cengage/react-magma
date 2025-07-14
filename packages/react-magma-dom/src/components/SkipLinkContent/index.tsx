@@ -2,11 +2,12 @@ import * as React from 'react';
 
 import { TARGET_ID } from '../SkipLink';
 
-/**
- * @children required
- */
 export interface SkipLinkContentProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @internal
    */

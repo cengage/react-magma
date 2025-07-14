@@ -8,11 +8,12 @@ import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Transition } from '../Transition';
 
-/**
- * @children required
- */
 export interface AccordionPanelProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   testId?: string;
   isInverse?: boolean;
   /**

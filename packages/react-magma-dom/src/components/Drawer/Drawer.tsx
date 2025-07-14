@@ -20,10 +20,11 @@ const transitionPreset: {
   right: { slideRight: true },
 };
 
-/**
- * @children required
- */
 export interface DrawerProps extends Omit<ModalProps, 'size'> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @internal
    */

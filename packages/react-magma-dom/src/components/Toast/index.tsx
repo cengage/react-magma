@@ -11,10 +11,11 @@ import {
 } from '../AlertBase';
 import { ToastsContext } from './ToastsContainer';
 
-/**
- * @children required
- */
 export interface ToastProps extends AlertBaseProps {
+  /**
+   * @children required
+   */
+  children: React.ReactNode | undefined;
   /**
    * CSS properties for the alert component within the toast container
    */

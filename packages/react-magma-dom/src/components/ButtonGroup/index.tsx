@@ -26,10 +26,11 @@ export enum ButtonGroupOrientation {
   vertical = 'vertical',
 }
 
-/**
- * @children required
- */
 export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Alignment of the dropdown content
    * @default ButtonGroupAlignment.left

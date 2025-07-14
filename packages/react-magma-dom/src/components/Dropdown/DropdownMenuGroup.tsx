@@ -3,11 +3,12 @@ import * as React from 'react';
 import { DropdownHeader } from './DropdownHeader';
 import { useGenerateId } from '../../utils';
 
-/**
- * @children required
- */
 export interface DropdownMenuGroupProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Header text to use for the menu group
    */

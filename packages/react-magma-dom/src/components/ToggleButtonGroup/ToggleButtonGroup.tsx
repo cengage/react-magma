@@ -7,10 +7,11 @@ import { ButtonColor, ButtonSize } from '../Button';
 import { ButtonGroup, ButtonGroupProps } from '../ButtonGroup';
 import { ToggleButton, ToggleButtonProps } from '../ToggleButton/ToggleButton';
 
-/**
- * @children required
- */
 export interface ToggleButtonGroupProps extends ButtonGroupProps {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Description for aria-describedby
    */

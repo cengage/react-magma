@@ -4,11 +4,12 @@ import styled from '@emotion/styled';
 
 import { HiddenStyles } from '../../utils/UtilityStyles';
 
-/**
- * @children required
- */
 export interface VisuallyHiddenProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @internal
    */

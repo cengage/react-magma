@@ -13,10 +13,11 @@ const HiddenLabel = styled.label`
   ${HiddenStyles};
 `;
 
-/**
- * @children required
- */
 export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Action that fires when the radio group loses focus
    */

@@ -7,10 +7,11 @@ import { InverseContext, useIsInverse } from '../../inverse';
 import { Colors, ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-/**
- * @children required
- */
 export interface BlockQuoteProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Style properties for the left border color which accept custom CSS hex values.
    */

@@ -9,10 +9,11 @@ import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 
-/**
- * @children required
- */
 export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Style properties for the component container element
    */

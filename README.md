@@ -45,7 +45,7 @@ git clone git@github.com:cengage/react-magma.git
 npm ci
 ```
 
-3.  Run Storybook to view examples of each component with
+3. Run Storybook to view examples of each component with
 
 ```
 npm run storybook
@@ -166,7 +166,6 @@ The heading for the docs page can be created by using markdown with the followin
 
 The URL following the name of the component is the link to respective Designs Docs page, and is optional. The `api` string indicates that the page is in the `Component API`.
 
-
 #### CodeSandbox Examples
 
 Create a basic usage example and an example for each of the different use cases of the component, using [CodeSandbox](https://https://codesandbox.io/).
@@ -187,11 +186,12 @@ export function Example() {
 The property tables that we use are generated automatically, but require some wiring up. The interface in the typescript file must be annotated with typedoc comments. You will also need to add the needed props to the frontmatter in the `mdx` file. This will allow for our props table component to match the props referenced in the frontmatter to build out the props table. For example:
 
 ```typescript
-/**
- * @children required
- */
 export interface SomeComponentProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * The description for a component prop.
    * @default "the default prop value"
@@ -252,7 +252,7 @@ All commits will have a topic and short description with an optional subject.
 
 There is a short version of the format that will pass the `commit-msg` check and a longer version for handling changes that need more explanation and for marking commits that contain breaking changes.
 
-#### Commit Message Components:
+#### Commit Message Components
 
 - type (required)
 - subject

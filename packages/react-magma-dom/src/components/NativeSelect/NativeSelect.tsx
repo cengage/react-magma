@@ -16,12 +16,13 @@ import { inputBaseStyles, inputWrapperStyles } from '../InputBase';
 import { LabelPosition } from '../Label';
 import { DefaultDropdownIndicator } from '../Select/components';
 
-/**
- * @children required
- */
 export interface NativeSelectProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize'>,
     React.SelectHTMLAttributes<HTMLSelectElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Content above the select. For use with Icon Buttons to relay information.
    */

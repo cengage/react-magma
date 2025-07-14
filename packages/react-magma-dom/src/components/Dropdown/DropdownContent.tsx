@@ -12,11 +12,12 @@ import {
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 
-/**
- * @children required
- */
 export interface DropdownContentProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   isInverse?: boolean;
   /**
    * @internal

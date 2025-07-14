@@ -10,10 +10,11 @@ import {
   TypographyProps,
 } from '../Typography';
 
-/**
- * @children required
- */
 export interface HeadingProps extends TypographyProps<HTMLHeadingElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @internal
    */

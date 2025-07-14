@@ -6,11 +6,12 @@ import { CardContext } from './Card';
 import { Heading } from '../Heading';
 import { TypographyColor, TypographyVisualStyle } from '../Typography';
 
-/**
- * @children required
- */
 export interface CardHeadingProps
   extends React.LabelHTMLAttributes<HTMLHeadingElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Number to indicate which level heading will render (e.g. h1, h2 etc.)
    * @default 4

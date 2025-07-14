@@ -22,10 +22,11 @@ import {
 import { Button, ButtonSize, ButtonVariant, ButtonColor } from '../Button';
 import { IconButton } from '../IconButton';
 
-/**
- * @children required
- */
 export interface BannerProps extends AlertProps {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * The text displayed inside of the action button
    */

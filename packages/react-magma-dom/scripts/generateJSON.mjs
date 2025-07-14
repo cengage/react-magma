@@ -219,40 +219,6 @@ const filterJson = () => {
         };
       }
 
-      // Special case for known enum types
-      if (name === 'AccordionIconPosition') {
-        return {
-          name: 'enum',
-          options: [
-            'AccordionIconPosition.left',
-            'AccordionIconPosition.none',
-            'AccordionIconPosition.right',
-          ],
-        };
-      }
-      if (name === 'AlertType') {
-        return {
-          name: 'enum',
-          options: [
-            'AlertType.error',
-            'AlertType.info',
-            'AlertType.success',
-            'AlertType.warning',
-          ],
-        };
-      }
-      if (name === 'ButtonColor') {
-        return {
-          name: 'enum',
-          options: [
-            'ButtonColor.primary',
-            'ButtonColor.secondary',
-            'ButtonColor.danger',
-            'ButtonColor.marketing',
-          ],
-        };
-      }
-
       // Use the name from the reference target
       if (referenceType) {
         name = referenceType.name;
