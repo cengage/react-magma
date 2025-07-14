@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.9.2-next.2
+
+### Patch Changes
+
+- 5cc90df6d: fix(Alert): Add aria-label and role="img" for icon.
+
 ## 4.10.0-next.5
 
 ### Patch Changes
