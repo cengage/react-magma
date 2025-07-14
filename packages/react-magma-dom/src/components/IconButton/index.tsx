@@ -85,14 +85,14 @@ function getIconPadding(props) {
   }
 }
 
-function getIconSize(size, theme) {
+export function getIconSize(size, theme) {
   switch (size) {
     case 'large':
-      return theme.iconSizes.large;
-    case 'small':
-      return theme.iconSizes.small;
-    default:
       return theme.iconSizes.medium;
+    case 'small':
+      return theme.iconSizes.xSmall;
+    default:
+      return theme.iconSizes.small;
   }
 }
 

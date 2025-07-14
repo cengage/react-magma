@@ -219,9 +219,9 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
         aria-hidden="true"
         class="icon"
         fill="currentColor"
-        height="32"
+        height="24"
         viewBox="0 0 24 24"
-        width="32"
+        width="24"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -453,9 +453,9 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
         aria-hidden="true"
         class="icon"
         fill="currentColor"
-        height="20"
+        height="16"
         viewBox="0 0 24 24"
-        width="20"
+        width="16"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -687,9 +687,9 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
         aria-hidden="true"
         class="icon"
         fill="currentColor"
-        height="24"
+        height="20"
         viewBox="0 0 24 24"
-        width="24"
+        width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -921,9 +921,9 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
         aria-hidden="true"
         class="icon"
         fill="currentColor"
-        height="24"
+        height="20"
         viewBox="0 0 24 24"
-        width="24"
+        width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -1155,9 +1155,9 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
         aria-hidden="true"
         class="icon"
         fill="currentColor"
-        height="24"
+        height="20"
         viewBox="0 0 24 24"
-        width="24"
+        width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -1382,9 +1382,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
         aria-hidden="true"
         class="icon"
         fill="currentColor"
-        height="32"
+        height="24"
         viewBox="0 0 24 24"
-        width="32"
+        width="24"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -1609,9 +1609,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
         aria-hidden="true"
         class="icon"
         fill="currentColor"
-        height="24"
+        height="20"
         viewBox="0 0 24 24"
-        width="24"
+        width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -1836,9 +1836,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
         aria-hidden="true"
         class="icon"
         fill="currentColor"
-        height="20"
+        height="16"
         viewBox="0 0 24 24"
-        width="20"
+        width="16"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -2063,9 +2063,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
         aria-hidden="true"
         class="icon"
         fill="currentColor"
-        height="24"
+        height="20"
         viewBox="0 0 24 24"
-        width="24"
+        width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -2290,9 +2290,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
         aria-hidden="true"
         class="icon"
         fill="currentColor"
-        height="24"
+        height="20"
         viewBox="0 0 24 24"
-        width="24"
+        width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -2517,9 +2517,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
         aria-hidden="true"
         class="icon"
         fill="currentColor"
-        height="24"
+        height="20"
         viewBox="0 0 24 24"
-        width="24"
+        width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -2744,9 +2744,9 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
         aria-hidden="true"
         class="icon"
         fill="currentColor"
-        height="24"
+        height="20"
         viewBox="0 0 24 24"
-        width="24"
+        width="20"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
