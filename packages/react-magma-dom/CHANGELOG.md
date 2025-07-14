@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.4
+
+### Patch Changes
+
+- b9362f7d9: fix(TreeItem): Fixed issue with twice calling event.
+
 ## 4.10.0-next.3
 
 ### Minor Changes
