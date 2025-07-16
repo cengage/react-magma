@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.11
+
+### Minor Changes
+
+- 11fb83f0f: chore: fix react-magma-dom next version
+
 ## 4.10.0-next.4
 
 ### Patch Changes
