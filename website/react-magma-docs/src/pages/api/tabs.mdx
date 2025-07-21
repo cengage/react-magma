@@ -1122,9 +1122,85 @@ export function Example() {
 }
 ```
 
-### Custom Component Disclaimer
+## CustomTab
 
-When using the `component` props in the `Tab` component we will disregard anything passed in as children. If you are using Typescript and try to put a `component` prop and give the `Tab` children, you will get a TypeError that looks something like this: `Types of property 'component' are incompatible. Type 'Element' is not assignable to type 'never'.`. This comes from a custom `XOR` type utility that was created, but we do not have the ability to make the error message clearer.
+You can use `CustomTab` to fully customize the look and feel of your tabs, while keeping all accessibility and keyboard navigation features.
+
+```tsx
+import React from 'react';
+
+import styled from '@emotion/styled';
+import {
+  Badge,
+  BadgeColor,
+  BadgeVariant,
+  Button,
+  CustomTab,
+  TabPanel,
+  TabPanelsContainer,
+  Tabs,
+  TabsContainer,
+} from 'react-magma-dom';
+
+export function Example() {
+  const StyledTabsContainer = styled(TabsContainer)`
+    [data-testid='tabsWrapper'] {
+      overflow-x: visible;
+    }
+  `;
+
+  const StyledButton = styled(Button)`
+    margin-inline: 10px;
+  `;
+
+  const K12Button = styled.button`
+    height: 48px;
+    padding: 0px 25px;
+    background-color: #8beafd;
+    border-radius: 100px;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 32px;
+    color: #163555;
+    border: none;
+    position: relative;
+  `;
+
+  return (
+    <StyledTabsContainer>
+      <Tabs aria-label="Sample Tabs">
+        <CustomTab>
+          <StyledButton>Magma Button</StyledButton>
+        </CustomTab>
+        <CustomTab>
+          <K12Button>
+            FAQ
+            <Badge
+              style={{
+                position: 'absolute',
+                top: '-10px',
+                right: '-10px',
+              }}
+              color={BadgeColor.danger}
+              variant={BadgeVariant.counter}
+            >
+              1
+            </Badge>
+          </K12Button>
+        </CustomTab>
+      </Tabs>
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Magma Button Content</div>
+        </TabPanel>
+        <TabPanel>
+          <div>FAQ Content</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </StyledTabsContainer>
+  );
+}
+```
 
 ## Tabs Container Props
 

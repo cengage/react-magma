@@ -220,6 +220,7 @@ export {
 } from './components/Tabs';
 export { TabsOrientation, TabsTextTransform } from './components/Tabs/shared';
 export { Tab } from './components/Tabs/Tab';
+export { CustomTab } from './components/Tabs/CustomTab';
 export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
 export { TabPanel } from './components/Tabs/TabPanel';
 export { TabsScrollSpyContainer } from './components/Tabs/TabsScrollSpyContainer';
