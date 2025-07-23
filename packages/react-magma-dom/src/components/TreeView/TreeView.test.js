@@ -19,6 +19,7 @@ import {
   DropdownContent,
   DropdownMenuItem,
 } from '../..';
+import { getTreeItemLabelColor } from './utils';
 
 import { TreeItem, TreeView, TreeViewSelectable } from '.';
 
@@ -5147,5 +5148,51 @@ describe('TreeView', () => {
 
     userEvent.click(getByTestId('click-button'));
     expect(handleClick).toHaveBeenCalledTimes(2);
+  });
+
+  describe('expand arrow size and color', () => {
+    it('should have default styles', () => {
+      const { getByTestId } = render(
+        <TreeView testId={testId}>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1')).toBeInTheDocument();
+      expect(getByTestId('item1-expand')).toBeInTheDocument();
+      expect(getByTestId('item1-expand')).toHaveStyle({
+        width: '24px',
+        height: '24px',
+        color: getTreeItemLabelColor(false, false, magma),
+      });
+    });
+
+    it('should have custom styles', () => {
+      const { getByTestId } = render(
+        <TreeView expandIconColor="red" expandIconSize={32} testId={testId}>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1')).toBeInTheDocument();
+      expect(getByTestId('item1-expand')).toBeInTheDocument();
+      expect(getByTestId('item1-expand')).toHaveStyle({
+        width: '32px',
+        height: '32px',
+        color: 'red',
+      });
+    });
   });
 });

@@ -49,6 +49,8 @@ export interface TreeViewContextInterface {
   ) => void;
   expandedSet: Set<string>;
   isTopLevelSelectable?: boolean;
+  expandIconSize?: number;
+  expandIconColor?: string;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
@@ -64,4 +66,6 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   handleExpandedChange: () => undefined,
   isTopLevelSelectable: true,
   expandedSet: new Set<string>(),
+  expandIconSize: 24,
+  expandIconColor: undefined,
 });

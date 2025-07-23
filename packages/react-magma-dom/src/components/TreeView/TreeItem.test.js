@@ -211,4 +211,38 @@ describe('TreeItem', () => {
       expect(treeItem).toHaveFocus();
     });
   });
+  describe('hover styles', () => {
+    it('should have default hover color', () => {
+      const { getByTestId } = render(
+        <TreeItem label={labelText} testId={testId} itemId={itemId} />
+      );
+
+      expect(getByTestId(testId)).toBeInTheDocument();
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'background',
+        transparentize(0.95, magma.colors.neutral900),
+        {
+          target: ':hover',
+        }
+      );
+    });
+
+    it('should have custom hover color', () => {
+      const { getByTestId } = render(
+        <TreeItem
+          label={labelText}
+          testId={testId}
+          itemId={itemId}
+          hoverColor={magma.colors.blue500}
+        />
+      );
+
+      expect(getByTestId(testId)).toBeInTheDocument();
+      userEvent.hover(getByTestId(testId));
+
+      expect(getByTestId(testId)).toHaveStyle({
+        background: magma.colors.blue500,
+      });
+    });
+  });
 });

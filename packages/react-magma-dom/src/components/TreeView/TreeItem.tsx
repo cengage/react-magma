@@ -47,6 +47,7 @@ const StyledTreeItem = styled.li<{
   selected?: boolean;
   selectableType?: TreeViewSelectable;
   isDisabled?: boolean;
+  hoverColor?: string;
 }>`
   color: ${props =>
     props.isInverse
@@ -112,9 +113,11 @@ const StyledTreeItem = styled.li<{
     &:hover {
       background: ${props =>
         !props.isDisabled
-          ? props.isInverse
-            ? transparentize(0.8, props.theme.colors.neutral900)
-            : transparentize(0.95, props.theme.colors.neutral900)
+          ? props.hoverColor
+            ? props.hoverColor
+            : props.isInverse
+              ? transparentize(0.8, props.theme.colors.neutral900)
+              : transparentize(0.95, props.theme.colors.neutral900)
           : undefined};
     }
   }
@@ -150,18 +153,23 @@ const StyledLabelWrapper = styled.span<{
 `;
 
 const StyledExpandWrapper = styled.div<{
-  theme?: ThemeInterface;
+  color?: string;
   isDisabled?: boolean;
   isInverse?: boolean;
+  size?: number;
+  theme?: ThemeInterface;
 }>`
   display: inline-block;
   vertical-align: middle;
   margin-right: ${props => props.theme.spaceScale.spacing03};
   color: ${props =>
+    props.color ||
     getTreeItemLabelColor(props.isInverse, props.isDisabled, props.theme)};
   border-radius: 0;
-  width: ${props => props.theme.spaceScale.spacing06};
-  height: ${props => props.theme.spaceScale.spacing06};
+  width: ${({ size, theme }) =>
+    size !== undefined ? `${size}px` : theme.spaceScale.spacing06};
+  height: ${({ size, theme }) =>
+    size !== undefined ? `${size}px` : theme.spaceScale.spacing06};
 `;
 
 const StyledCheckboxWrapper = styled.div<{
@@ -177,6 +185,7 @@ const StyledCheckboxWrapper = styled.div<{
 
 const StyledItemWrapper = styled.div<{
   hasAdditionalContent?: boolean;
+  hasCustomIconSize?: boolean;
   theme?: ThemeInterface;
   selectable?: TreeViewSelectable;
   nodeType: TreeNodeType;
@@ -186,7 +195,7 @@ const StyledItemWrapper = styled.div<{
 }>`
   display: flex;
   flex-direction: ${props => (props.hasAdditionalContent ? 'column' : 'row')};
-  align-items: flex-start;
+  align-items: ${props => (props.hasCustomIconSize ? 'center' : 'flex-start')};
   cursor: ${props =>
     getTreeItemWrapperCursor(
       props.isDisabled,
@@ -204,6 +213,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const {
       additionalContent,
       children,
+      hoverColor,
       icon,
       index,
       label,
@@ -211,17 +221,20 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       style,
       testId,
       topLevel,
+      treeItemStyles,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse();
 
     const {
-      selectable,
+      expandIconColor,
+      expandIconSize,
+      handleExpandedChange,
       hasIcons,
       itemToFocus,
-      handleExpandedChange,
       isTopLevelSelectable,
+      selectable,
     } = React.useContext(TreeViewContext);
 
     const { contextValue, handleClick, handleKeyDown } = useTreeItem(
@@ -495,107 +508,113 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     return (
       <TreeItemContext.Provider value={contextValue}>
-        <StyledTreeItem
-          {...rest}
-          aria-expanded={hasOwnTreeItems ? expanded : null}
-          aria-selected={selectedItem}
-          aria-checked={shouldShowCheckbox ? ariaCheckedValue : null}
-          data-testid={testId}
-          depth={itemDepth}
-          hasOwnTreeItems={hasOwnTreeItems}
-          id={itemId}
-          isDisabled={isDisabled}
-          isInverse={isInverse}
-          nodeType={nodeType}
-          role="treeitem"
-          selectableType={selectable}
-          selected={selectedItem}
-          theme={theme}
-          tabIndex={tabIndex}
-          onKeyDown={onKeyDownHandler}
-          ref={treeItemRef}
-        >
-          <StyledItemWrapper
-            data-testid={`${testId ?? itemId}-itemwrapper`}
+        <div style={treeItemStyles}>
+          <StyledTreeItem
+            {...rest}
+            aria-expanded={hasOwnTreeItems ? expanded : null}
+            aria-selected={selectedItem}
+            aria-checked={shouldShowCheckbox ? ariaCheckedValue : null}
+            data-testid={testId}
             depth={itemDepth}
-            hasAdditionalContent={!!additionalContent}
-            id={`${itemId}-itemwrapper`}
+            hasOwnTreeItems={hasOwnTreeItems}
+            id={itemId}
             isDisabled={isDisabled}
             isInverse={isInverse}
             nodeType={nodeType}
-            selectable={selectable}
-            style={style}
+            role="treeitem"
+            selectableType={selectable}
+            selected={selectedItem}
             theme={theme}
-            ref={mergeRefs(ref, focusTrapElement)}
-            onClick={handleOnClick}
+            tabIndex={tabIndex}
+            onKeyDown={onKeyDownHandler}
+            ref={treeItemRef}
+            hoverColor={hoverColor}
           >
-            {hasOwnTreeItems && (
-              <StyledExpandWrapper
-                aria-hidden={Boolean(!expanded)}
-                data-testid={`${testId || itemId}-expand`}
-                isDisabled={isDisabled}
-                isInverse={isInverse}
-                onClick={event => {
-                  if (!isDisabled) {
-                    onExpandedClicked(event);
-                  }
-                }}
-                theme={theme}
-              >
-                {expanded ? (
-                  <ExpandMoreIcon aria-hidden />
-                ) : (
-                  <ChevronRightIcon aria-hidden />
-                )}
-              </StyledExpandWrapper>
-            )}
-            {shouldShowCheckbox ? (
-              <StyledCheckboxWrapper
-                hasAdditionalContent={!!additionalContent}
-                theme={theme}
-              >
-                {hasOwnTreeItems ? (
-                  <IndeterminateCheckbox
-                    {...checkboxProps}
-                    status={checkedStatus}
-                  />
-                ) : (
-                  <Checkbox
-                    {...checkboxProps}
-                    checked={checkedStatusToBoolean(checkedStatus)}
-                  />
-                )}
-                {treeItemAdditionalContent}
-              </StyledCheckboxWrapper>
-            ) : (
-              <>
-                {labelText}
-                {treeItemAdditionalContent}
-              </>
-            )}
-          </StyledItemWrapper>
-
-          {React.Children.map(
-            children,
-            (child: React.ReactElement<any>, index) => {
-              return child?.type === TreeItem ? (
-                <Transition isOpen={expanded} unmountOnExit>
-                  <ul role="group">
-                    {React.cloneElement(child, {
-                      index,
-                      key: child.props.itemId,
-                      itemDepth,
-                      parentDepth,
-                      topLevel: false,
-                    })}
-                  </ul>
-                </Transition>
+            <StyledItemWrapper
+              data-testid={`${testId ?? itemId}-itemwrapper`}
+              depth={itemDepth}
+              hasAdditionalContent={!!additionalContent}
+              hasCustomIconSize={!!expandIconSize}
+              id={`${itemId}-itemwrapper`}
+              isDisabled={isDisabled}
+              isInverse={isInverse}
+              nodeType={nodeType}
+              selectable={selectable}
+              style={style}
+              theme={theme}
+              ref={mergeRefs(ref, focusTrapElement)}
+              onClick={handleOnClick}
+            >
+              {hasOwnTreeItems && (
+                <StyledExpandWrapper
+                  aria-hidden={Boolean(!expanded)}
+                  size={expandIconSize}
+                  color={expandIconColor}
+                  data-testid={`${testId || itemId}-expand`}
+                  isDisabled={isDisabled}
+                  isInverse={isInverse}
+                  onClick={event => {
+                    if (!isDisabled) {
+                      onExpandedClicked(event);
+                    }
+                  }}
+                  theme={theme}
+                >
+                  {expanded ? (
+                    <ExpandMoreIcon aria-hidden size={expandIconSize} />
+                  ) : (
+                    <ChevronRightIcon aria-hidden size={expandIconSize} />
+                  )}
+                </StyledExpandWrapper>
+              )}
+              {shouldShowCheckbox ? (
+                <StyledCheckboxWrapper
+                  hasAdditionalContent={!!additionalContent}
+                  theme={theme}
+                >
+                  {hasOwnTreeItems ? (
+                    <IndeterminateCheckbox
+                      {...checkboxProps}
+                      status={checkedStatus}
+                    />
+                  ) : (
+                    <Checkbox
+                      {...checkboxProps}
+                      checked={checkedStatusToBoolean(checkedStatus)}
+                    />
+                  )}
+                  {treeItemAdditionalContent}
+                </StyledCheckboxWrapper>
               ) : (
-                child
-              );
-            }
-          )}
-        </StyledTreeItem>
+                <>
+                  {labelText}
+                  {treeItemAdditionalContent}
+                </>
+              )}
+            </StyledItemWrapper>
+
+            {React.Children.map(
+              children,
+              (child: React.ReactElement<any>, index) => {
+                return child?.type === TreeItem ? (
+                  <Transition isOpen={expanded} unmountOnExit>
+                    <ul role="group">
+                      {React.cloneElement(child, {
+                        index,
+                        key: child.props.itemId,
+                        itemDepth,
+                        parentDepth,
+                        topLevel: false,
+                      })}
+                    </ul>
+                  </Transition>
+                ) : (
+                  child
+                );
+              }
+            )}
+          </StyledTreeItem>
+        </div>
       </TreeItemContext.Provider>
     );
   }
