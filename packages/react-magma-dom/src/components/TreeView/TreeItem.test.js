@@ -211,6 +211,7 @@ describe('TreeItem', () => {
       expect(treeItem).toHaveFocus();
     });
   });
+
   describe('hover styles', () => {
     it('should have default hover color', () => {
       const { getByTestId } = render(
@@ -233,16 +234,18 @@ describe('TreeItem', () => {
           label={labelText}
           testId={testId}
           itemId={itemId}
-          hoverColor={magma.colors.blue500}
+          hoverColor={magma.colors.primary500}
         />
       );
 
       expect(getByTestId(testId)).toBeInTheDocument();
-      userEvent.hover(getByTestId(testId));
-
-      expect(getByTestId(testId)).toHaveStyle({
-        background: magma.colors.blue500,
-      });
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'background',
+        magma.colors.primary500,
+        {
+          target: ':hover',
+        }
+      );
     });
   });
 });

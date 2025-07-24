@@ -73,14 +73,9 @@ export interface UseTreeViewProps {
   checkChildren?: boolean;
   children?: React.ReactNode[] | React.ReactNode;
   /**
-   * Size for the expand/collapse icon.
-   * @default 24
+   * Expand icon styles.
    */
-  expandIconSize?: number;
-  /**
-   * Color for the expand/collapse icon.
-   */
-  expandIconColor?: string;
+  expandIconStyles?: ExpandIconStylesProps;
   /**
    * If true, every item is disabled
    * @default false
@@ -132,6 +127,18 @@ export interface UseTreeViewProps {
   testId?: string;
 }
 
+interface ExpandIconStylesProps {
+  /**
+   * Size for the expand/collapse icon.
+   * @default 24
+   */
+  size?: number;
+  /**
+   * Color for the expand/collapse icon.
+   */
+  color?: string;
+}
+
 export function useTreeView(props: UseTreeViewProps) {
   const {
     selectable = TreeViewSelectable.single,
@@ -145,8 +152,7 @@ export function useTreeView(props: UseTreeViewProps) {
     apiRef,
     isDisabled,
     isTopLevelSelectable = true,
-    expandIconSize,
-    expandIconColor,
+    expandIconStyles,
   } = props;
 
   const hasPreselectedItems = Boolean(preselectedItems);
@@ -650,8 +656,7 @@ export function useTreeView(props: UseTreeViewProps) {
     selectItem,
     handleExpandedChange,
     expandedSet,
-    expandIconSize,
-    expandIconColor,
+    expandIconStyles,
     isTopLevelSelectable,
   };
 

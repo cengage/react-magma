@@ -5175,7 +5175,7 @@ describe('TreeView', () => {
 
     it('should have custom styles', () => {
       const { getByTestId } = render(
-        <TreeView expandIconColor="red" expandIconSize={32} testId={testId}>
+        <TreeView expandIconStyles={{ size: 32, color: 'red' }} testId={testId}>
           <TreeItem label="Node 1" itemId="item1" testId="item1">
             <TreeItem
               label="Child 1"

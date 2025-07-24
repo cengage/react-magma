@@ -3234,8 +3234,7 @@ export function CustomExpandIconArrowAndTreeItemStyles() {
   return (
     <TreeView
       initialExpandedItems={['Dogs', 'Cats']}
-      expandIconSize={32}
-      expandIconColor="#3942B0"
+      expandIconStyles={{ size: 32, color: '#3942B0' }}
     >
       <TreeItem
         hoverColor="#ACF0C1"

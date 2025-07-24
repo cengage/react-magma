@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { TreeViewSelectable } from './types';
+import { magma } from '../../theme/magma';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
 export interface TreeItemSelectedInterface {
@@ -16,6 +17,11 @@ export interface TreeViewItemInterface {
   checkedStatus: IndeterminateCheckboxStatus;
   hasOwnTreeItems: boolean;
   isDisabled?: boolean;
+}
+
+export interface ExpandIconInterface {
+  size?: number;
+  color?: string;
 }
 
 export interface TreeViewContextInterface {
@@ -49,8 +55,7 @@ export interface TreeViewContextInterface {
   ) => void;
   expandedSet: Set<string>;
   isTopLevelSelectable?: boolean;
-  expandIconSize?: number;
-  expandIconColor?: string;
+  expandIconStyles?: ExpandIconInterface;
 }
 
 export const TreeViewContext = React.createContext<TreeViewContextInterface>({
@@ -66,6 +71,8 @@ export const TreeViewContext = React.createContext<TreeViewContextInterface>({
   handleExpandedChange: () => undefined,
   isTopLevelSelectable: true,
   expandedSet: new Set<string>(),
-  expandIconSize: 24,
-  expandIconColor: undefined,
+  expandIconStyles: {
+    size: magma.iconSizes.medium,
+    color: undefined,
+  },
 });

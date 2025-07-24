@@ -112,16 +112,23 @@ const StyledTreeItem = styled.li<{
       `}
     &:hover {
       background: ${props =>
-        !props.isDisabled
-          ? props.hoverColor
-            ? props.hoverColor
-            : props.isInverse
-              ? transparentize(0.8, props.theme.colors.neutral900)
-              : transparentize(0.95, props.theme.colors.neutral900)
-          : undefined};
+        getHoverBackground({
+          isDisabled: props.isDisabled,
+          hoverColor: props.hoverColor,
+          isInverse: props.isInverse,
+          theme: props.theme,
+        })};
     }
   }
 `;
+
+function getHoverBackground({ isDisabled, hoverColor, isInverse, theme }) {
+  if (isDisabled) return undefined;
+  if (hoverColor) return hoverColor;
+
+  const transparency = isInverse ? 0.8 : 0.95;
+  return transparentize(transparency, theme.colors.neutral900);
+}
 
 const IconWrapper = styled.span<{
   theme?: ThemeInterface;
@@ -228,8 +235,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const isInverse = useIsInverse();
 
     const {
-      expandIconColor,
-      expandIconSize,
+      expandIconStyles,
       handleExpandedChange,
       hasIcons,
       itemToFocus,
@@ -534,7 +540,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
               data-testid={`${testId ?? itemId}-itemwrapper`}
               depth={itemDepth}
               hasAdditionalContent={!!additionalContent}
-              hasCustomIconSize={!!expandIconSize}
+              hasCustomIconSize={!!expandIconStyles?.size}
               id={`${itemId}-itemwrapper`}
               isDisabled={isDisabled}
               isInverse={isInverse}
@@ -548,8 +554,8 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
               {hasOwnTreeItems && (
                 <StyledExpandWrapper
                   aria-hidden={Boolean(!expanded)}
-                  size={expandIconSize}
-                  color={expandIconColor}
+                  size={expandIconStyles?.size}
+                  color={expandIconStyles?.color}
                   data-testid={`${testId || itemId}-expand`}
                   isDisabled={isDisabled}
                   isInverse={isInverse}
@@ -561,9 +567,12 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                   theme={theme}
                 >
                   {expanded ? (
-                    <ExpandMoreIcon aria-hidden size={expandIconSize} />
+                    <ExpandMoreIcon aria-hidden size={expandIconStyles?.size} />
                   ) : (
-                    <ChevronRightIcon aria-hidden size={expandIconSize} />
+                    <ChevronRightIcon
+                      aria-hidden
+                      size={expandIconStyles?.size}
+                    />
                   )}
                 </StyledExpandWrapper>
               )}
