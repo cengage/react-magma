@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Table):Fix incorrect table pagination.
+fix(TablePagination): Update `newRowsPerPage` to return a number instead of a string
