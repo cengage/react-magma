@@ -1153,7 +1153,7 @@ export function Example() {
     margin-inline: 10px;
   `;
 
-  const K12Button = styled.button`
+  const CustomButton = styled.button`
     height: 48px;
     padding: 0px 25px;
     background-color: #8beafd;
@@ -1173,20 +1173,7 @@ export function Example() {
           <StyledButton>Magma Button</StyledButton>
         </CustomTab>
         <CustomTab>
-          <K12Button>
-            FAQ
-            <Badge
-              style={{
-                position: 'absolute',
-                top: '-10px',
-                right: '-10px',
-              }}
-              color={BadgeColor.danger}
-              variant={BadgeVariant.counter}
-            >
-              1
-            </Badge>
-          </K12Button>
+          <CustomButton>FAQ</CustomButton>
         </CustomTab>
       </Tabs>
       <TabPanelsContainer>

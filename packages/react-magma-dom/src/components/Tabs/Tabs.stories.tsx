@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 
-import { Badge, BadgeColor, BadgeVariant } from '../Badge';
 import { Button } from '../Button';
 import { Tab } from './Tab';
 import { TabPanel } from './TabPanel';
@@ -441,7 +440,7 @@ const StyledButton = styled(Button)`
   margin-inline: 10px;
 `;
 
-const K12Button = styled.button`
+const CustomButton = styled.button`
   height: 48px;
   padding: 0px 25px;
   background-color: #8beafd;
@@ -462,20 +461,7 @@ export const CustomTabExample: Story<TabsProps> = args => (
         </StyledButton>
       </CustomTab>
       <CustomTab>
-        <K12Button>
-          FAQ
-          <Badge
-            style={{
-              position: 'absolute',
-              top: '-10px',
-              right: '6px',
-            }}
-            color={BadgeColor.danger}
-            variant={BadgeVariant.counter}
-          >
-            1
-          </Badge>
-        </K12Button>
+        <CustomButton>FAQ</CustomButton>
       </CustomTab>
     </Tabs>
     <TabPanelsContainer>
