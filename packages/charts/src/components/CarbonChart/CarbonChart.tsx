@@ -480,7 +480,6 @@ interface ColorsObject {
 export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
   (props, ref) => {
     const {
-      children,
       testId,
       isInverse: isInverseProp,
       type,
@@ -517,20 +516,36 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       const allGroups = dataSet.map(item => {
         return 'group' in item ? item['group'] : null;
       });
-      const uniqueGroups = allGroups.filter(
-        (g, index) => allGroups.indexOf(g) === index
-      );
-
-      uniqueGroups.forEach((group, i) => {
-        if (uniqueGroups.length <= theme.chartColors.length) {
-          return (scaleColorsObj[group || ('null' as any)] = isInverse
-            ? theme.chartColorsInverse[i]
-            : theme.chartColors[i]);
-        }
-        return {};
+      const allColors = dataSet.map(item => {
+        return 'color' in item ? item['color'] : null;
       });
 
+      const uniqueGroups = getUniqueValues(allGroups);
+      const uniqueColors = getUniqueValues(allColors);
+
+      if (uniqueColors.length > 0) {
+        uniqueGroups.forEach((group, i) => {
+          scaleColorsObj[group] = uniqueColors[i % uniqueColors.length];
+        });
+      } else {
+        uniqueGroups.forEach((group, i) => {
+          if (uniqueGroups.length <= theme.chartColors.length) {
+            return (scaleColorsObj[group || ('null' as any)] = isInverse
+              ? theme.chartColorsInverse[i]
+              : theme.chartColors[i]);
+          }
+          return {};
+        });
+      }
       return scaleColorsObj;
+    }
+
+    function getUniqueValues(data: unknown[]): string[] {
+      return data
+        .filter(
+          (value, index) => data.indexOf(value) === index && value !== null
+        )
+        .map(value => String(value));
     }
 
     const newOptions = {

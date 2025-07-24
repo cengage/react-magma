@@ -629,3 +629,118 @@ AreaEmptyState.args = {
     height: '400px',
   },
 };
+
+export const AreaTimeSeriesWithCustomColors = Template.bind({});
+AreaTimeSeriesWithCustomColors.args = {
+  isInverse: false,
+  type: CarbonChartType.area,
+  dataSet: [
+    {
+      group: 'Dataset 1',
+      date: '2019-01-01T05:00:00.000Z',
+      value: 0,
+      color: 'red',
+    },
+    {
+      group: 'Dataset 1',
+      date: '2019-01-06T05:00:00.000Z',
+      value: 57312,
+      color: 'red',
+    },
+    {
+      group: 'Dataset 1',
+      date: '2019-01-08T05:00:00.000Z',
+      value: 21432,
+      color: 'red',
+    },
+    {
+      group: 'Dataset 1',
+      date: '2019-01-15T05:00:00.000Z',
+      value: 70323,
+      color: 'red',
+    },
+    {
+      group: 'Dataset 1',
+      date: '2019-01-19T05:00:00.000Z',
+      value: 21300,
+      color: 'red',
+    },
+    {
+      group: 'Dataset 2',
+      date: '2019-01-01T05:00:00.000Z',
+      value: 50000,
+      color: 'green',
+    },
+    {
+      group: 'Dataset 2',
+      date: '2019-01-05T05:00:00.000Z',
+      value: 15000,
+      color: 'green',
+    },
+    {
+      group: 'Dataset 2',
+      date: '2019-01-08T05:00:00.000Z',
+      value: 20000,
+      color: 'green',
+    },
+    {
+      group: 'Dataset 2',
+      date: '2019-01-13T05:00:00.000Z',
+      value: 39213,
+      color: 'green',
+    },
+    {
+      group: 'Dataset 2',
+      date: '2019-01-19T05:00:00.000Z',
+      value: 61213,
+      color: 'green',
+    },
+    {
+      group: 'Dataset 3',
+      date: '2019-01-02T05:00:00.000Z',
+      value: 10,
+      color: 'yellow',
+    },
+    {
+      group: 'Dataset 3',
+      date: '2019-01-06T05:00:00.000Z',
+      value: 37312,
+      color: 'yellow',
+    },
+    {
+      group: 'Dataset 3',
+      date: '2019-01-08T05:00:00.000Z',
+      value: 51432,
+      color: 'yellow',
+    },
+    {
+      group: 'Dataset 3',
+      date: '2019-01-13T05:00:00.000Z',
+      value: 40323,
+      color: 'yellow',
+    },
+    {
+      group: 'Dataset 3',
+      date: '2019-01-19T05:00:00.000Z',
+      value: 31300,
+      color: 'yellow',
+    },
+  ],
+
+  options: {
+    title: 'Area (time series) with custom colors',
+    axes: {
+      bottom: {
+        title: '2019 Annual Sales Figures',
+        mapsTo: 'date',
+        scaleType: 'time',
+      },
+      left: {
+        mapsTo: 'value',
+        title: 'Conversion rate',
+        scaleType: 'linear',
+      },
+    },
+    height: '400px',
+  },
+};
