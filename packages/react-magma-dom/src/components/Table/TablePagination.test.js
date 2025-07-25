@@ -147,7 +147,7 @@ describe('Table Pagination', () => {
       fireEvent.change(rowsSelect, { target: { value: 20 } });
 
       expect(handlePageChange).toHaveBeenCalledWith(expect.any(Object), 1);
-      expect(handleRowsPerPageChange).toHaveBeenCalledWith('20');
+      expect(handleRowsPerPageChange).toHaveBeenCalledWith(20);
       expect(getByText(/1-20/i)).toBeInTheDocument();
       expect(appliedSelection).toHaveDisplayValue('20');
     });

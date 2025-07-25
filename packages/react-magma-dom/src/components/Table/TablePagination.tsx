@@ -157,7 +157,7 @@ interface RowsPerPageControllerProps {
   /**
    * Event that fires when the number of rows per page changes
    */
-  handleRowsPerPageChange?: (value: any) => void;
+  handleRowsPerPageChange?: (value: number) => void;
   /**
    * Values added to the rows per page select
    */
@@ -184,7 +184,7 @@ const RowsPerPageController = (props: RowsPerPageControllerProps) => {
         {i18n.table.pagination.rowsPerPageLabel}:
       </RowsPerPageLabel>
       <NativeSelect
-        onChange={event => handleRowsPerPageChange(event.target.value)}
+        onChange={event => handleRowsPerPageChange(+event.target.value)}
         aria-label={i18n.table.pagination.rowsPerPageLabel}
         style={{ minWidth: 80 }}
         testId="rowPerPageSelect"
