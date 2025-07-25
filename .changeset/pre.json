@@ -36,6 +36,7 @@
     "fix-Playwright-tests",
     "fix-Popover-and-Tooltip-focus-issue",
     "fix-RadioButton-hide-decorative-icons-from-assistive-technology",
+    "fix-Table-incorrect-pagination",
     "fix-TreeItem-calls-events-twice",
     "fix-character-counter-accessibility",
     "fix-drawer-and-datepicker-navigation",

@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.12
+
+### Patch Changes
+
+- 0d47a8541: fix(TablePagination): Update `newRowsPerPage` to return a number instead of a string
+
 ## 4.10.0-next.11
 
 ### Minor Changes
