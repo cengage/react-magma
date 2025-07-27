@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.13
+
+### Minor Changes
+
+- fed299bae: feat (Tabs): added `CustomTab` component.
+
 ## 4.10.0-next.12
 
 ### Patch Changes
