@@ -24,10 +24,11 @@ export enum ModalSize {
   small = 'small',
 }
 
-/**
- * @children required
- */
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Custom aria label ONLY for modals that do not have a header
    */

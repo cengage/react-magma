@@ -7,11 +7,12 @@ import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Hyperlink } from '../Hyperlink';
 
-/**
- * @children required
- */
 export interface BreadcrumbItemProps
   extends React.HTMLAttributes<HTMLLIElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @internal
    */

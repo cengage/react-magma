@@ -1,10 +1,11 @@
 import * as React from 'react';
 
-/**
- * @children required
- */
 export interface TableHeadProps
   extends React.HTMLAttributes<HTMLTableSectionElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @internal
    */

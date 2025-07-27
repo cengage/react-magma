@@ -5,7 +5,8 @@ import styled from '@emotion/styled';
 import { AccordionPanel, AccordionPanelProps } from '../Accordion';
 import { DropdownExpandableMenuGroup } from './DropdownExpandableMenuGroup';
 
-export type DropdownExpandableMenuPanelProps = AccordionPanelProps;
+// Used interface because of the gatsby build error with the type
+export interface DropdownExpandableMenuPanelProps extends AccordionPanelProps {}
 
 const StyledAccordionPanel = styled(AccordionPanel)`
   padding: 0;

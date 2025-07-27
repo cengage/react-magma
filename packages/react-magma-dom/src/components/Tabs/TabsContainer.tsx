@@ -6,7 +6,8 @@ import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-interface TabsContainerProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TabsContainerProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The index of the current active tab. You can use this for managing state of the tabs component by your custom logic.
    */

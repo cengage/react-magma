@@ -23,11 +23,12 @@ import {
   TableSortDirection,
 } from './';
 
-/**
- * @children required
- */
 export interface TableRowProps
   extends React.HTMLAttributes<HTMLTableRowElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * The color scheme of the table row, giving contextual meaning to the content
    */

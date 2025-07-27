@@ -211,7 +211,10 @@ export {
   TableRowProps,
 } from './components/Table';
 
-export { TabsContainer } from './components/Tabs/TabsContainer';
+export {
+  TabsContainer,
+  TabsContainerProps,
+} from './components/Tabs/TabsContainer';
 export {
   Tabs,
   TabsAlignment,
@@ -220,7 +223,10 @@ export {
 } from './components/Tabs';
 export { TabsOrientation, TabsTextTransform } from './components/Tabs/shared';
 export { Tab } from './components/Tabs/Tab';
-export { TabPanelsContainer } from './components/Tabs/TabPanelsContainer';
+export {
+  TabPanelsContainer,
+  TabPanelContainerProps,
+} from './components/Tabs/TabPanelsContainer';
 export { TabPanel } from './components/Tabs/TabPanel';
 export { TabsScrollSpyContainer } from './components/Tabs/TabsScrollSpyContainer';
 export { TabScrollSpyPanel } from './components/Tabs/TabScrollSpyPanel';

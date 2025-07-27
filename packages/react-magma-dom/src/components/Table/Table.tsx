@@ -5,10 +5,11 @@ import styled from '@emotion/styled';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-/**
- * @children required
- */
 export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Relative padding of the table cells
    * @default TableDensity.normal

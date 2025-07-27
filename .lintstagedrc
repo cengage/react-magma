@@ -1,9 +1,9 @@
 {
-  "packages/**/*.{ts,tsx,mdx,js,jsx,json,css}": [
+  "packages/**/*.{ts,tsx,js,jsx,json,css}": [
     "eslint --fix",
     "prettier --write"
   ],
-  "website/**/*.{ts,tsx,mdx,js,jsx,json,css}": [
+  "website/**/*.{ts,tsx,js,jsx,json,css}": [
     "eslint --fix",
     "prettier --write"
   ]

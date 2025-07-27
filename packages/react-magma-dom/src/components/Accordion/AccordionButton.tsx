@@ -15,12 +15,13 @@ import {
 } from './useAccordionButton';
 import { Transition } from '../Transition';
 
-/**
- * @children required
- */
 export interface AccordionButtonProps
   extends UseAccordionButtonProps,
     React.HTMLAttributes<HTMLButtonElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * For use in components repurposing Accordion with custom keyboard navigation with it's elements.
    * @internal

@@ -67,10 +67,11 @@ export interface DatagridComponentsProps {
   >;
 }
 
-/**
- * @children required
- */
 export interface BaseDatagridProps extends TableProps {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Column data to be displayed in the table header
    */

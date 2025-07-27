@@ -50,10 +50,11 @@ export enum FlexWrap {
   wrapReverse = 'wrap-reverse',
 }
 
-/**
- * @children required
- */
 export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Defines the align-content style property. It's applied for all screen sizes.
    * @default FlexAlignContent.stretch

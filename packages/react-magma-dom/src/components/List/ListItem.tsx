@@ -9,12 +9,13 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 import { ListProps } from './';
 
-/**
- * @children required
- */
 export interface ListItemProps
   extends ListProps,
     React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @deprecated = true
    * Please use DefinitionList instead

@@ -7,11 +7,12 @@ import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { convertStyleValueToString } from '../../utils';
 
-/**
- * @children required
- */
 export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
   isInverse?: boolean;
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Left/right padding, set by CSS.  If a number is provided, value will be in pixels
    * @default theme.spaceScale.spacing06

@@ -7,11 +7,12 @@ import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-/**
- * @children required
- */
 export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
   isInverse?: boolean;
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * The text the screen reader will announce that describes your breadcrumb.
    */

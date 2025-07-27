@@ -27,7 +27,7 @@
     "docs": "lerna run --scope react-magma-docs develop",
     "fix:all": "npm run format && npm run lint:fix",
     "fix:pkgs": "manypkg fix",
-    "format": "prettier --write --log-level warn \"**/src/**/*.{js,jsx,ts,tsx,mdx,json,html,css,yml,yaml,graphql}\"",
+    "format": "prettier --write --log-level warn \"**/src/**/*.{js,jsx,ts,tsx,json,html,css,yml,yaml,graphql}\"",
     "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
     "compiler-checks": "lerna run compiler-checks --concurrency=6 --no-progress",
@@ -135,7 +135,7 @@
     "storybook": "9.0.12",
     "ts-node": "10.9.2",
     "tsdx": "0.14.1",
-    "typedoc": "0.19.2",
+    "typedoc": "^0.28.5",
     "typescript": "5.8.3",
     "typescript-eslint": "8.34.1",
     "webpack-filter-warnings-plugin": "1.2.1"

@@ -23,12 +23,12 @@ export enum TagSize {
   small = 'small',
 }
 
-/**
- * @children required
- */
-
 export interface BaseTagProps
   extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'onClick'> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Color changes between 'primary', 'low contrast', and 'high contrast' style variants between each Tag.
    * @default TagColor.default

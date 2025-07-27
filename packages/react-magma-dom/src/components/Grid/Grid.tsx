@@ -63,10 +63,11 @@ export enum GridAutoFlow {
   columnDense = 'column-dense',
 }
 
-/**
- * @children required
- */
 export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Defines the display style property. Sets grid or inline-grid.
    * @default GridDisplay.grid
@@ -116,10 +117,11 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   as?: string;
 }
 
-/**
- * @children required
- */
 export interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Defines the span of a column on a grid item.
    */

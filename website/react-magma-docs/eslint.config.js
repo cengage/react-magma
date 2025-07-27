@@ -1,7 +1,6 @@
 const mdx = require('eslint-plugin-mdx');
 const globals = require('globals');
-//TODO: const propertyJson = require('react-magma-dom/dist/properties.json');
-const propertyJson = require('./old_properties.json');
+const propertyJson = require('react-magma-dom/dist/properties.json');
 
 const rootConfig = require('../../eslint.config.js');
 

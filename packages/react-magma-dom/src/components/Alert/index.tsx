@@ -2,10 +2,11 @@ import * as React from 'react';
 
 import { AlertBase, AlertVariant } from '../AlertBase';
 
-/**
- * @children required
- */
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Enables additional right aligned children within the Alert.
    */
