@@ -27,7 +27,7 @@
     "docs": "lerna run --scope react-magma-docs develop",
     "fix:all": "npm run format && npm run lint:fix",
     "fix:pkgs": "manypkg fix",
-    "format": "prettier --write --log-level warn \"**/src/**/*.{js,jsx,ts,tsx,mdx,json,html,css,yml,yaml,graphql}\"",
+    "format": "prettier --write --log-level warn \"**/src/**/*.{js,jsx,ts,tsx,json,html,css,yml,yaml,graphql}\"",
     "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
     "compiler-checks": "lerna run compiler-checks --concurrency=6 --no-progress",

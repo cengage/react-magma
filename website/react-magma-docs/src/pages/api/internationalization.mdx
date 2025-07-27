@@ -19,12 +19,7 @@ There are some values in the context that are used to localize date and time. Th
 - `locale` is a `date-fns` locale object. You can [see the available objects here](https://github.com/date-fns/date-fns/tree/master/src/locale).
   Example of a locale import: `import { es } from 'date-fns/locale'`.
 
-  <Alert variant="warning">
-    The locale in the default object is null to prevent the date-fns library
-    from being bundled in your project when you are not using any of its
-    functionality. When you use a component that depends on the date-fns
-    library, React Magma will default your locale to enUS.
-  </Alert>
+  <Alert variant="warning">The locale in the default object is null to prevent the date-fns library from being bundled in your project when you are not using any of its functionality. When you use a component that depends on the date-fns library, React Magma will default your locale to enUS.</Alert>
 
 - `dateFormat` is a list of acceptable date formats as strings: `'MM/dd/yyyy' | 'dd/MM/yyyy' | 'yyyy/MM/dd' | 'yyyy/dd/MM'`.
 
