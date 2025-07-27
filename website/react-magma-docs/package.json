@@ -17,10 +17,10 @@
     "build": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "docs": "npm run develop",
-    "format": "prettier --write --log-level warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,md,mdx,json,html,css,yml,yaml,graphql}\"",
-    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}'",
+    "format": "prettier --write --log-level warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,json,html,css,yml,yaml,graphql}\"",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:check": "eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --max-warnings=0",
-    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --fix",
+    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
     "serve": "gatsby serve",
     "test": "echo \"Error: no test specified\""
   },
