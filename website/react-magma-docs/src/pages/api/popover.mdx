@@ -101,7 +101,7 @@ export function Example() {
 
 ## Controlled Popover with API Ref
 
-You can programmatically control the popover by providing an `apiRef`. The Popover API exposes methods such as `closePopoverManually` to close the popover when needed.
+You can programmatically control the popover by providing an `apiRef`. The Popover API exposes methods such as `openPopoverManually` and `closePopoverManually` to open and close the popover when needed.
 
 ```tsx
 import React from 'react';
@@ -123,9 +123,15 @@ export function Example() {
     }
   }
 
+  function handleOpen(event: React.SyntheticEvent) {
+    if (popoverApiRef.current) {
+      popoverApiRef.current.openPopoverManually(event);
+    }
+  }
+
   return (
     <Popover apiRef={popoverApiRef}>
-      <PopoverTrigger aria-label="Toggle popover">
+      <PopoverTrigger aria-label="Toggle popover" onKeyDown={handleOpen}>
         Toggle Popover
       </PopoverTrigger>
       <PopoverContent>
