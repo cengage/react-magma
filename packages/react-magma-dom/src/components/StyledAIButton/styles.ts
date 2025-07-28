@@ -1,0 +1,157 @@
+import { transparentize } from 'polished';
+
+import { AIButtonVariant } from '../AIButton';
+
+const DEFAULT_STYLE_PROPS = {
+  shape: 'fill',
+  size: 'medium',
+  textTransform: 'uppercase',
+  variant: 1,
+};
+
+export function buildPropsWithDefaultAIButtonStyles(props) {
+  return { ...DEFAULT_STYLE_PROPS, ...props };
+}
+
+export function buildAIButtonBorderRadius(props) {
+  switch (props.shape) {
+    case 'round':
+      return '100%';
+    case 'leftCap':
+      return `${props.theme.borderRadius} 0 0 ${props.theme.borderRadius}`;
+    case 'rightCap':
+      return `0 ${props.theme.borderRadius} ${props.theme.borderRadius} 0`;
+    default:
+      //fill
+      return props.theme.borderRadius;
+  }
+}
+
+export function buildAIButtonFontSize(props) {
+  switch (props.size) {
+    case 'small':
+      return props.theme.typeScale.size01.fontSize;
+    case 'large':
+      return props.theme.typeScale.size04.fontSize;
+    default:
+      //medium
+      return props.theme.typeScale.size03.fontSize;
+  }
+}
+
+export function buildAIButtonLineHeight(props) {
+  switch (props.size) {
+    case 'small':
+      return props.theme.typeScale.size01.lineHeight;
+    case 'large':
+      return props.theme.typeScale.size04.lineHeight;
+    default:
+      //medium
+      return props.theme.typeScale.size03.lineHeight;
+  }
+}
+
+export function buildAIButtonSize(props) {
+  switch (props.size) {
+    case 'small':
+      return props.theme.spaceScale.spacing07;
+    case 'large':
+      return props.theme.spaceScale.spacing11;
+    default:
+      //medium
+      return props.theme.spaceScale.spacing09;
+  }
+}
+
+export function buildAIButtonPadding(props) {
+  switch (props.size) {
+    case 'small':
+      return `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing03}`;
+    case 'large':
+      return `${props.theme.spaceScale.spacing04} ${props.theme.spaceScale.spacing06}`;
+    default:
+      //medium
+      return `${props.theme.spaceScale.spacing04} ${props.theme.spaceScale.spacing05}`;
+  }
+}
+
+export function buildAIButtonBackground(props) {
+  props = buildPropsWithDefaultAIButtonStyles(props);
+
+  if (props.disabled) {
+    if (props.isInverse) {
+      return transparentize(0.7, props.theme.colors.neutral100);
+    }
+
+    return props.theme.colors.neutral300;
+  }
+
+  if (props.variant === AIButtonVariant.variantA) {
+    return `linear-gradient(268deg, ${props.rightColor ?? props.theme.colors.aiColors.variantA.right} 0%, ${props.leftColor ?? props.theme.colors.aiColors.variantA.left} 100%)`;
+  } else {
+    return `linear-gradient(268deg, ${props.rightColor ?? props.theme.colors.aiColors.variantB.right} 0%, ${props.leftColor ?? props.theme.colors.aiColors.variantB.left} 100%)`;
+  }
+}
+
+export function buildAIBorderColor(props) {
+  props = buildPropsWithDefaultAIButtonStyles(props);
+
+  if (props.disabled) {
+    if (props.isInverse) {
+      return 'none';
+    }
+    return props.theme.colors.neutral300;
+  }
+
+  if (props.variant === AIButtonVariant.variantA) {
+    return `linear-gradient(268deg, ${props.rightColor ?? props.theme.colors.aiColors.variantA.right} 0%, ${props.leftColor ?? props.theme.colors.aiColors.variantA.left} 100%)`;
+  } else {
+    return `linear-gradient(268deg, ${props.rightColor ?? props.theme.colors.aiColors.variantB.right} 0%, ${props.leftColor ?? props.theme.colors.aiColors.variantB.left} 100%)`;
+  }
+}
+
+export function buildAIColor(props) {
+  props = buildPropsWithDefaultAIButtonStyles(props);
+
+  if (props.disabled) {
+    if (props.isInverse) {
+      return transparentize(0.6, props.theme.colors.neutral100);
+    }
+    return transparentize(0.4, props.theme.colors.neutral500);
+  }
+
+  return props.theme.colors.neutral100;
+}
+
+export function buildAIFocusBackground(props) {
+  props = buildPropsWithDefaultAIButtonStyles(props);
+
+  if (props.variant === AIButtonVariant.variantA) {
+    return `linear-gradient(268deg, ${props.hoverColor ?? props.theme.colors.aiColors.variantA.hover} 0%, ${props.hoverColor ?? props.theme.colors.aiColors.variantA.hover} 100%)`;
+  } else {
+    return `linear-gradient(268deg, ${props.hoverColor ?? props.theme.colors.aiColors.variantB.hover} 0%, ${props.hoverColor ?? props.theme.colors.aiColors.variantB.hover} 100%)`;
+  }
+}
+
+// Same styles for hover and focus
+export function buildAIFocusColor(props) {
+  props = buildPropsWithDefaultAIButtonStyles(props);
+
+  return props.theme.colors.neutral100;
+}
+
+export function buildAIActiveBackground(props) {
+  props = buildPropsWithDefaultAIButtonStyles(props);
+
+  if (props.variant === AIButtonVariant.variantA) {
+    return `linear-gradient(268deg, ${props.pressedColor ?? props.theme.colors.aiColors.variantA.pressed} 0%, ${props.pressedColor ?? props.theme.colors.aiColors.variantA.pressed} 100%)`;
+  } else {
+    return `linear-gradient(268deg, ${props.pressedColor ?? props.theme.colors.aiColors.variantB.pressed} 0%, ${props.pressedColor ?? props.theme.colors.aiColors.variantB.pressed} 100%)`;
+  }
+}
+
+export function buildAIActiveColor(props) {
+  props = buildPropsWithDefaultAIButtonStyles(props);
+
+  return props.theme.colors.neutral100;
+}

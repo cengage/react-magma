@@ -1,0 +1,315 @@
+---
+pageTitle: AI Button API
+title: AI Button
+props:
+  - IconOnlyAIButtonProps
+  - ContentAIButtonProps
+---
+
+<PageContent componentName="ai_button" type="api">
+
+<LeadParagraph>
+  AIButton is a customizable button component with animated gradients, icon
+  support, and flexible sizing. It is designed for modern interfaces and
+  supports both text and icon-only usage.
+</LeadParagraph>
+
+## Basic Usage
+
+When using multiple buttons, they should be wrapped in a ButtonGroup.
+
+```tsx
+import React from 'react';
+
+import { AIButton } from 'react-magma-dom';
+
+export function Example() {
+  return <AIButton>Click me</AIButton>;
+}
+```
+
+## Icon Only Button
+
+For icon-only buttons, you must provide an `aria-label` for accessibility.
+
+```tsx
+import React from 'react';
+
+import { AIButton } from 'react-magma-dom';
+
+export function Example() {
+  return <AIButton leadingIcon aria-label="AI Action" />;
+}
+```
+
+## Leading and Trailing Icons
+
+You can add icons to the left or right of the button text using `leadingIcon` and `trailingIcon` props.
+
+```tsx
+import React from 'react';
+
+import { AIButton, ButtonGroup } from 'react-magma-dom';
+import { SettingsIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <ButtonGroup>
+      <AIButton leadingIcon={<SettingsIcon />}>Leading custom icon</AIButton>
+      <AIButton leadingIcon={false} trailingIcon={<SettingsIcon />}>
+        Trailing custom icon
+      </AIButton>
+      <AIButton trailingIcon={<SettingsIcon />}>Both Icons</AIButton>
+    </ButtonGroup>
+  );
+}
+```
+
+## Sizes
+
+AIButton supports `small`, `medium` (default), and `large` sizes.
+
+```tsx
+import React from 'react';
+
+import { AIButton, AIButtonSize, ButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup>
+      <AIButton size={AIButtonSize.small}>Small</AIButton>
+      <AIButton size={AIButtonSize.medium}>Medium</AIButton>
+      <AIButton size={AIButtonSize.large}>Large</AIButton>
+    </ButtonGroup>
+  );
+}
+```
+
+## Variants
+
+There are two gradient variants: `variantA` (default) and `variantB`.
+
+```tsx
+import React from 'react';
+
+import { AIButton, AIButtonVariant, ButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup>
+      <AIButton variant={AIButtonVariant.variantA}>Variant A</AIButton>
+      <AIButton variant={AIButtonVariant.variantB}>Variant B</AIButton>
+    </ButtonGroup>
+  );
+}
+```
+
+## Shapes
+
+Shapes include `fill` (default), `leftCap`, `rightCap`, and `round` (used for icon-only buttons).
+
+```tsx
+import React from 'react';
+
+import { AIButton, AIButtonShape, ButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup>
+      <AIButton shape={AIButtonShape.fill}>Fill</AIButton>
+      <AIButton shape={AIButtonShape.leftCap}>Left Cap</AIButton>
+      <AIButton shape={AIButtonShape.rightCap}>Right Cap</AIButton>
+      <AIButton shape={AIButtonShape.round} leadingIcon aria-label="Round" />
+    </ButtonGroup>
+  );
+}
+```
+
+## Text Transform
+
+Text can be `uppercase` (default) or `none`.
+
+```tsx
+import React from 'react';
+
+import { AIButton, AIButtonTextTransform, ButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup>
+      <AIButton textTransform={AIButtonTextTransform.uppercase}>
+        UPPERCASE
+      </AIButton>
+      <AIButton textTransform={AIButtonTextTransform.none}>
+        Normal Text
+      </AIButton>
+    </ButtonGroup>
+  );
+}
+```
+
+## Full Width
+
+Set `isFullWidth` to make the button expand to the container width.
+
+```tsx
+import React from 'react';
+
+import { AIButton } from 'react-magma-dom';
+
+export function Example() {
+  return <AIButton isFullWidth>Full Width</AIButton>;
+}
+```
+
+## Animated Gradient
+
+The `isAnimated` prop can be used to set gradient animation to background in the AI Button.
+Because of the problems that animation can create for people who are sensitive to such things,
+we automatically disable it in the AI Button if we detect that the `prefers-reduced-motion` media query is set.
+
+```tsx
+import React from 'react';
+
+import { AIButton, AIButtonVariant, ButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ButtonGroup>
+      <AIButton isAnimated>Animated Gradient</AIButton>
+      <AIButton isAnimated variant={AIButtonVariant.variantB}>
+        Animated Second Gradient
+      </AIButton>
+      <AIButton isAnimated leftColor="#f00" rightColor="#0f0">
+        Animated Custom Gradient
+      </AIButton>
+    </ButtonGroup>
+  );
+}
+```
+
+## Custom Colors
+
+You can override gradient colors using `leftColor`, `rightColor`, `hoverColor`, and `pressedColor`.
+
+```tsx
+import React from 'react';
+
+import { AIButton } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <AIButton
+      leftColor="#00f"
+      rightColor="#0ff"
+      hoverColor="#0f0"
+      pressedColor="#f00"
+    >
+      Custom Colors
+    </AIButton>
+  );
+}
+```
+
+## Loading State
+
+Set `isLoading` to show a spinner and disable the button.
+
+```tsx
+import React from 'react';
+
+import { AIButton, ButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoadingIcon, setIsLoadingIcon] = React.useState(false);
+
+  React.useEffect(() => {
+    if (isLoading) {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 4000);
+    }
+
+    if (isLoadingIcon) {
+      setTimeout(() => {
+        setIsLoadingIcon(false);
+      }, 4000);
+    }
+  }, [isLoading, isLoadingIcon]);
+
+  return (
+    <ButtonGroup>
+      <AIButton isLoading={isLoading} onClick={() => setIsLoading(true)}>
+        Loading Button
+      </AIButton>
+      <AIButton
+        isLoading={isLoadingIcon}
+        onClick={() => setIsLoadingIcon(true)}
+      />
+    </ButtonGroup>
+  );
+}
+```
+
+## Disabled State
+
+Set `disabled` to disable the button.
+
+```tsx
+import React from 'react';
+
+import { AIButton } from 'react-magma-dom';
+
+export function Example() {
+  return <AIButton disabled>Disabled</AIButton>;
+}
+```
+
+## Inverse
+
+Use `isInverse` for dark backgrounds.
+
+```tsx
+import React from 'react';
+
+import { AIButton, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <AIButton isInverse>Inverse</AIButton>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Event Handling
+
+The `onClick` event fires when the button is clicked or activated by keyboard.
+
+```tsx
+import React from 'react';
+
+import { AIButton } from 'react-magma-dom';
+
+export function Example() {
+  return <AIButton onClick={() => alert('Clicked!')}>Click Me</AIButton>;
+}
+```
+
+## Content AI Button Props
+
+**This component uses `forwardRef`. The ref is applied to the `button` element.**
+
+All of the [standard button attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button) can be provided as props and will be applied to the `button` element that gets rendered.
+
+<ContentAIButtonProps />
+
+## Icon Only AI Button Props
+
+<IconOnlyAIButtonProps />
+
+</PageContent>
