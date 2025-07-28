@@ -112,6 +112,7 @@ import {
   PopoverContent,
   PopoverApi,
   Button,
+  magma,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -123,24 +124,50 @@ export function Example() {
     }
   }
 
-  function handleOpen(event: React.SyntheticEvent) {
-    if (popoverApiRef.current) {
+  function handleOpen(event: React.KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
       popoverApiRef.current.openPopoverManually(event);
     }
   }
 
   return (
-    <Popover apiRef={popoverApiRef}>
-      <PopoverTrigger aria-label="Toggle popover" onKeyDown={handleOpen}>
-        Toggle Popover
-      </PopoverTrigger>
-      <PopoverContent>
-        <div>
-          Popover Content
-          <Button onClick={handleClose}>Close Popover</Button>
-        </div>
-      </PopoverContent>
-    </Popover>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <Popover apiRef={popoverApiRef}>
+        <PopoverTrigger aria-label="Toggle popover">
+          Toggle Popover
+        </PopoverTrigger>
+        <PopoverContent>
+          <div>
+            Popover Content
+            <Button onClick={handleClose}>Close Popover</Button>
+          </div>
+        </PopoverContent>
+      </Popover>
+
+      <Popover apiRef={popoverApiRef}>
+        <PopoverTrigger>
+          <span
+            tabIndex={0}
+            role="button"
+            style={{
+              textDecoration: 'underline',
+              cursor: 'pointer',
+              color: magma.colors.primary,
+            }}
+            onKeyDown={handleOpen}
+          >
+            Press Enter or Space to open popover
+          </span>
+        </PopoverTrigger>
+        <PopoverContent>
+          <div>
+            Popover Content
+            <Button onClick={handleClose}>Close Popover</Button>
+          </div>
+        </PopoverContent>
+      </Popover>
+    </div>
   );
 }
 ```
