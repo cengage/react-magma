@@ -15,7 +15,13 @@ import { Popover, PopoverApi, PopoverPosition } from './Popover';
 import { PopoverContent } from './PopoverContent';
 import { PopoverTrigger } from './PopoverTrigger';
 import { magma } from '../../theme/magma';
-import { Button, ButtonColor, ButtonSize, ButtonType } from '../Button';
+import {
+  Button,
+  ButtonColor,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from '../Button';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { Card } from '../Card';
 import { PopoverHeader, PopoverFooter } from './PopoverSection';
@@ -23,7 +29,9 @@ import { Checkbox, CheckboxTextPosition } from '../Checkbox';
 import { Form } from '../Form';
 import { FormGroup } from '../FormGroup';
 import { Hyperlink } from '../Hyperlink';
+import { IconButton } from '../IconButton';
 import { Input } from '../Input';
+import { Paragraph } from '../Paragraph';
 import { PasswordInput } from '../PasswordInput';
 import { Spacer } from '../Spacer';
 import { Toggle } from '../Toggle';
@@ -1056,3 +1064,71 @@ DontShowAgain.args = {
   openByDefault: true,
 };
 DontShowAgain.parameters = { controls: { exclude: ['hoverable'] } };
+
+export const ProgrammaticallyOpening = args => {
+  const popoverApiRef = React.useRef<PopoverApi>();
+
+  function handleClose(event: React.SyntheticEvent) {
+    popoverApiRef.current?.closePopoverManually(event);
+  }
+
+  function handleOpenPopover(event: React.KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      popoverApiRef.current?.openPopoverManually(event);
+    }
+  }
+
+  return (
+    <Card
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        height: '300px',
+        justifyContent: 'center',
+      }}
+      isInverse={args.isInverse}
+    >
+      <Popover {...args} isInverse apiRef={popoverApiRef}>
+        <PopoverTrigger>
+          <span
+            tabIndex={0}
+            role="button"
+            style={{
+              textDecoration: 'underline',
+              color: magma.colors.primary,
+              cursor: 'pointer',
+            }}
+            onKeyDown={handleOpenPopover}
+          >
+            Press Enter or Space to open popover
+          </span>
+        </PopoverTrigger>
+        <PopoverContent>
+          <PopoverHeader>
+            <div>Popover Header</div>
+          </PopoverHeader>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Paragraph noMargins isInverse>
+              Popover Content
+            </Paragraph>
+          </div>
+          <PopoverFooter style={{ justifyContent: 'end' }}>
+            <div>
+              <IconButton
+                icon={<CloseIcon />}
+                aria-label="Close"
+                size={ButtonSize.small}
+                isInverse
+                variant={ButtonVariant.link}
+                onClick={handleClose}
+              >
+                Close
+              </IconButton>
+            </div>
+          </PopoverFooter>
+        </PopoverContent>
+      </Popover>
+    </Card>
+  );
+};

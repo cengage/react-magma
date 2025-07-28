@@ -23,6 +23,7 @@ export enum PopoverPosition {
 
 export interface PopoverApi {
   closePopoverManually(event): void;
+  openPopoverManually(event): void;
 }
 export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -81,6 +82,7 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
    * The ref object that allows Popover manipulation.
    * Actions available:
    * closePopoverManually(event): void - Closes the popover manually.
+   * openPopoverManually(event): void - Opens the popover manually.
    */
   apiRef?: React.MutableRefObject<PopoverApi | undefined>;
   /**
@@ -184,6 +186,9 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
         apiRef.current = {
           closePopoverManually(event) {
             closePopover(event);
+          },
+          openPopoverManually(event) {
+            openPopover();
           },
         };
       }
