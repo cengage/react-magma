@@ -64,155 +64,153 @@ MeterChartWithStatuses.args = {
   },
 };
 
-// Uncomment when adding new charts. Issues: #1054, #1055, #1056
+export const MeterChartNoStatus = Template.bind({});
+MeterChartNoStatus.args = {
+  isInverse: false,
+  type: CarbonChartType.meter,
+  dataSet: [
+    {
+      group: 'Dataset 1',
+      value: 56,
+    },
+  ],
+  options: {
+    title: 'Meter Chart - no status',
+    meter: {
+      peak: 70,
+    },
+    height: '100px',
+  },
+};
 
-// export const MeterChartNoStatus = Template.bind({});
-// MeterChartNoStatus.args = {
-//   isInverse: false,
-//   type: CarbonChartType.meter,
-//   dataSet: [
-//     {
-//       group: 'Dataset 1',
-//       value: 56,
-//     },
-//   ],
-//   options: {
-//     title: 'Meter Chart - no status',
-//     meter: {
-//       peak: 70,
-//     },
-//     height: '100px',
-//   },
-// };
+export const ProportionalMeterChart = Template.bind({});
+ProportionalMeterChart.args = {
+  isInverse: false,
+  type: CarbonChartType.meter,
+  dataSet: [
+    {
+      group: 'emails',
+      value: 202,
+    },
+    {
+      group: 'photos',
+      value: 654,
+    },
+    {
+      group: 'text messages',
+      value: 723,
+    },
+    {
+      group: 'other',
+      value: 120,
+    },
+  ],
+  options: {
+    title: 'Proportional Meter Chart',
+    height: '130px',
+    meter: {
+      proportional: {
+        total: 2000,
+        unit: 'GB',
+      },
+    },
+    color: {
+      pairing: {
+        option: 2,
+      },
+    },
+  },
+};
 
-// export const ProportionalMeterChart = Template.bind({});
-// ProportionalMeterChart.args = {
-//   isInverse: false,
-//   type: CarbonChartType.meter,
-//   dataSet: [
-//     {
-//       group: 'emails',
-//       value: 202,
-//     },
-//     {
-//       group: 'photos',
-//       value: 654,
-//     },
-//     {
-//       group: 'text messages',
-//       value: 723,
-//     },
-//     {
-//       group: 'other',
-//       value: 120,
-//     },
-//   ],
-//   options: {
-//     title: 'Proportional Meter Chart',
-//     height: '130px',
-//     meter: {
-//       proportional: {
-//         total: 2000,
-//         unit: 'GB',
-//       },
-//     },
-//     color: {
-//       pairing: {
-//         option: 2,
-//       },
-//     },
-//   },
-// };
+export const ProportionalMeterChartPeakAndStatuses = Template.bind({});
+ProportionalMeterChartPeakAndStatuses.args = {
+  isInverse: false,
+  type: CarbonChartType.meter,
+  dataSet: [
+    {
+      group: 'emails',
+      value: 202,
+    },
+    {
+      group: 'photos',
+      value: 654,
+    },
+    {
+      group: 'text messages',
+      value: 723,
+    },
+    {
+      group: 'other',
+      value: 120,
+    },
+  ],
+  options: {
+    title: 'Proportional Meter Chart - peak and statuses',
+    height: '130px',
+    meter: {
+      peak: 1800,
+      proportional: {
+        total: 2000,
+        unit: 'GB',
+      },
+      status: {
+        ranges: [
+          {
+            range: [0, 800],
+            status: 'success',
+          },
+          {
+            range: [800, 1800],
+            status: 'warning',
+          },
+          {
+            range: [1800, 2000],
+            status: 'danger',
+          },
+        ],
+      },
+    },
+    color: {
+      pairing: {
+        option: 2,
+      },
+    },
+  },
+};
 
-// export const ProportionalMeterChartPeakAndStatuses = Template.bind({});
-// ProportionalMeterChartPeakAndStatuses.args = {
-//   isInverse: false,
-//   type: CarbonChartType.meter,
-//   dataSet: [
-//     {
-//       group: 'emails',
-//       value: 202,
-//     },
-//     {
-//       group: 'photos',
-//       value: 654,
-//     },
-//     {
-//       group: 'text messages',
-//       value: 723,
-//     },
-//     {
-//       group: 'other',
-//       value: 120,
-//     },
-//   ],
-//   options: {
-//     title: 'Proportional Meter Chart - peak and statuses',
-//     height: '130px',
-//     meter: {
-//       peak: 1800,
-//       proportional: {
-//         total: 2000,
-//         unit: 'GB',
-//       },
-//       status: {
-//         ranges: [
-//           {
-//             range: [0, 800],
-//             status: 'success',
-//           },
-//           {
-//             range: [800, 1800],
-//             status: 'warning',
-//           },
-//           {
-//             range: [1800, 2000],
-//             status: 'danger',
-//           },
-//         ],
-//       },
-//     },
-//     color: {
-//       pairing: {
-//         option: 2,
-//       },
-//     },
-//   },
-// };
-
-// export const ProportionalMeterChartTruncated = Template.bind({});
-// ProportionalMeterChartTruncated.args = {
-//   isInverse: false,
-//   type: CarbonChartType.meter,
-//   dataSet: [
-//     {
-//       group: 'emails',
-//       value: 202,
-//     },
-//     {
-//       group: 'photos',
-//       value: 654,
-//     },
-//     {
-//       group: 'text messages',
-//       value: 723,
-//     },
-//     {
-//       group: 'other',
-//       value: 120,
-//     },
-//   ],
-//   options: {
-//     title: 'Proportional Meter Chart (truncated)',
-//     height: '130px',
-//     meter: {
-//       proportional: {
-//         total: 2000,
-//         unit: 'MB',
-//         totalFormatter: e => `custom total string for: ${e}`,
-//         breakdownFormatter: e =>
-//           `You are using ${e.datasetsTotal} GB of the space this label is really long will need to be truncated with a tooltip Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
-//       },
-//     },
-//   },
-// };
+export const ProportionalMeterChartTruncated = Template.bind({});
+ProportionalMeterChartTruncated.args = {
+  isInverse: false,
+  type: CarbonChartType.meter,
+  dataSet: [
+    {
+      group: 'emails',
+      value: 202,
+    },
+    {
+      group: 'photos',
+      value: 654,
+    },
+    {
+      group: 'text messages',
+      value: 723,
+    },
+    {
+      group: 'other',
+      value: 120,
+    },
+  ],
+  options: {
+    title: 'Proportional Meter Chart (truncated)',
+    height: '130px',
+    meter: {
+      proportional: {
+        total: 2000,
+        unit: 'MB',
+        totalFormatter: e => `custom total string for: ${e}`,
+        breakdownFormatter: e =>
+          `You are using ${e.datasetsTotal} GB of the space this label is really long will need to be truncated with a tooltip Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`,
+      },
+    },
+  },
+};
