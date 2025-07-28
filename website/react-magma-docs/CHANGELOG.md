@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-next.10
+
+### Minor Changes
+
+- 141106421: chore: Add new charts to the docs - `Combo`, `Step` and `Sparkline`. Uncomment existing charts - `Bubble`, `Gauge`, `Meter`, `Radar`, `Boxplot`, `Bullet`, `Histogram` and `Scatter`.
+
 ## 5.1.3-next.9
 
 ### Patch Changes
