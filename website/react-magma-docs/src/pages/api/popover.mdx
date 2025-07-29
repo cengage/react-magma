@@ -112,28 +112,26 @@ import {
   PopoverContent,
   PopoverApi,
   Button,
-  magma,
+  Spacer,
 } from 'react-magma-dom';
 
 export function Example() {
-  const popoverApiRef = React.useRef<PopoverApi>();
+  const closePopoverApiRef = React.useRef<PopoverApi>();
+  const openPopoverApiRef = React.useRef<PopoverApi>();
 
   function handleClose(event: React.SyntheticEvent) {
-    if (popoverApiRef.current) {
-      popoverApiRef.current.closePopoverManually(event);
+    if (closePopoverApiRef.current) {
+      closePopoverApiRef.current.closePopoverManually(event);
     }
   }
 
   function handleOpen(event: React.KeyboardEvent) {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      popoverApiRef.current.openPopoverManually(event);
-    }
+    openPopoverApiRef.current.openPopoverManually(event);
   }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <Popover apiRef={popoverApiRef}>
+      <Popover apiRef={closePopoverApiRef}>
         <PopoverTrigger aria-label="Toggle popover">
           Toggle Popover
         </PopoverTrigger>
@@ -144,26 +142,29 @@ export function Example() {
           </div>
         </PopoverContent>
       </Popover>
+      <Spacer axis={SpacerAxis.vertical} size={16} />
 
-      <Popover apiRef={popoverApiRef}>
-        <PopoverTrigger>
-          <span
-            tabIndex={0}
-            role="button"
-            style={{
-              textDecoration: 'underline',
-              cursor: 'pointer',
-              color: magma.colors.primary,
-            }}
-            onKeyDown={handleOpen}
-          >
-            Press Enter or Space to open popover
-          </span>
-        </PopoverTrigger>
+      <Button
+        variant={ButtonVariant.link}
+        size={ButtonSize.small}
+        onClick={handleOpen}
+        style={{ width: '120px' }}
+      >
+        Open Popover
+      </Button>
+      <Popover apiRef={openPopoverApiRef}>
+        <PopoverTrigger aria-label="Toggle popover">Popover</PopoverTrigger>
         <PopoverContent>
           <div>
             Popover Content
-            <Button onClick={handleClose}>Close Popover</Button>
+            <Spacer axis={SpacerAxis.horizontal} size={8} />
+            <Button
+              variant={ButtonVariant.link}
+              size={ButtonSize.small}
+              onClick={handleClose}
+            >
+              Close Popover
+            </Button>
           </div>
         </PopoverContent>
       </Popover>
