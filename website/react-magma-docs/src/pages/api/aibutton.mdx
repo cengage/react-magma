@@ -16,15 +16,13 @@ props:
 
 ## Basic Usage
 
-When using multiple buttons, they should be wrapped in a ButtonGroup.
-
 ```tsx
 import React from 'react';
 
 import { AIButton } from 'react-magma-dom';
 
 export function Example() {
-  return <AIButton>Click me</AIButton>;
+  return <AIButton>AI Trigger</AIButton>;
 }
 ```
 
@@ -104,6 +102,27 @@ export function Example() {
 }
 ```
 
+You can override gradient colors using `leftColor`, `rightColor`, `hoverColor`, and `pressedColor`.
+
+```tsx
+import React from 'react';
+
+import { AIButton } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <AIButton
+      leftColor="#00f"
+      rightColor="#0ff"
+      hoverColor="#0f0"
+      pressedColor="#f00"
+    >
+      Custom Colors
+    </AIButton>
+  );
+}
+```
+
 ## Shapes
 
 Shapes include `fill` (default), `leftCap`, `rightCap`, and `round` (used for icon-only buttons).
@@ -138,10 +157,10 @@ export function Example() {
   return (
     <ButtonGroup>
       <AIButton textTransform={AIButtonTextTransform.uppercase}>
-        UPPERCASE
+        Uppercase transform
       </AIButton>
       <AIButton textTransform={AIButtonTextTransform.none}>
-        Normal Text
+        No Text Transform
       </AIButton>
     </ButtonGroup>
   );
@@ -166,7 +185,7 @@ export function Example() {
 
 The `isAnimated` prop can be used to set gradient animation to background in the AI Button.
 Because of the problems that animation can create for people who are sensitive to such things,
-we automatically disable it in the AI Button if we detect that the `prefers-reduced-motion` media query is set.
+we automatically turn off the animation for users who have `Reduced Motion` turned on.
 
 ```tsx
 import React from 'react';
@@ -184,29 +203,6 @@ export function Example() {
         Animated Custom Gradient
       </AIButton>
     </ButtonGroup>
-  );
-}
-```
-
-## Custom Colors
-
-You can override gradient colors using `leftColor`, `rightColor`, `hoverColor`, and `pressedColor`.
-
-```tsx
-import React from 'react';
-
-import { AIButton } from 'react-magma-dom';
-
-export function Example() {
-  return (
-    <AIButton
-      leftColor="#00f"
-      rightColor="#0ff"
-      hoverColor="#0f0"
-      pressedColor="#f00"
-    >
-      Custom Colors
-    </AIButton>
   );
 }
 ```
@@ -288,15 +284,34 @@ export function Example() {
 
 ## Event Handling
 
-The `onClick` event fires when the button is clicked or activated by keyboard.
+The `onClick` event will fire when the button is clicked, or when the enter or space bar key is pressed.
+Events do not fire on disabled buttons.
 
 ```tsx
 import React from 'react';
 
-import { AIButton } from 'react-magma-dom';
+import { AIButton, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
-  return <AIButton onClick={() => alert('Clicked!')}>Click Me</AIButton>;
+  const [counter, setCounter] = React.useState<number>(0);
+
+  function handleUpdateCounter() {
+    setCounter(count => count + 1);
+  }
+
+  return (
+    <>
+      <p>
+        <strong>Counter: </strong> <span id="counter">{counter}</span>
+      </p>
+      <ButtonGroup>
+        <AIButton onClick={handleUpdateCounter}>Click me</AIButton>
+        <AIButton disabled onClick={handleUpdateCounter}>
+          Click me
+        </AIButton>
+      </ButtonGroup>
+    </>
+  );
 }
 ```
 

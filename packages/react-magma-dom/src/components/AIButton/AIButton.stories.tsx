@@ -3,9 +3,9 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { SettingsIcon } from 'react-magma-icons';
 
-import { magma } from '../../theme/magma';
 import { ButtonGroup } from '../ButtonGroup';
 import { Card, CardBody } from '../Card';
+import { Spacer } from '../Spacer';
 import { VisuallyHidden } from '../VisuallyHidden';
 
 import {
@@ -19,16 +19,21 @@ import {
 } from '.';
 
 const Template: Story<AIButtonProps> = args => (
-  <>
-    <AIButton {...args}>Variant A</AIButton>
-    <AIButton {...args} variant={AIButtonVariant.variantB}>
-      Variant B
-    </AIButton>
-    <p>
-      <AIButton {...args} />
-      <AIButton {...args} variant={AIButtonVariant.variantB} />
-    </p>
-  </>
+  <Card isInverse={args.isInverse}>
+    <CardBody>
+      <ButtonGroup>
+        <AIButton {...args}>Variant A</AIButton>
+        <AIButton variant={AIButtonVariant.variantB} {...args}>
+          Variant B
+        </AIButton>
+      </ButtonGroup>
+      <Spacer size={16} />
+      <ButtonGroup>
+        <AIButton {...args} />
+        <AIButton variant={AIButtonVariant.variantB} {...args} />
+      </ButtonGroup>
+    </CardBody>
+  </Card>
 );
 
 export default {
@@ -106,77 +111,6 @@ Default.args = {
   disabled: false,
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  isInverse: false,
-  isFullWidth: false,
-  disabled: true,
-};
-
-export const Inverse = Template.bind({});
-Inverse.args = {
-  ...Default.args,
-  isInverse: true,
-};
-
-export const InverseDisabled = Template.bind({});
-InverseDisabled.args = {
-  ...Default.args,
-  disabled: true,
-  isInverse: true,
-};
-
-Inverse.decorators = [
-  Story => (
-    <Card background={magma.colors.primary600} isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
-
-InverseDisabled.decorators = [
-  Story => (
-    <Card background={magma.colors.primary600} isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
-
-export const All = () => {
-  return (
-    <>
-      <Card>
-        <CardBody>
-          <ButtonGroup>
-            <AIButton variant={AIButtonVariant.variantA}>Variant A</AIButton>
-            <AIButton variant={AIButtonVariant.variantB}>Variant B</AIButton>
-          </ButtonGroup>
-        </CardBody>
-      </Card>
-      <Card isInverse>
-        <CardBody>
-          <ButtonGroup>
-            <AIButton
-              aria-label="Variant A"
-              variant={AIButtonVariant.variantA}
-              isInverse
-            />
-            <AIButton
-              aria-label="Variant B"
-              variant={AIButtonVariant.variantB}
-              isInverse
-            />
-          </ButtonGroup>
-        </CardBody>
-      </Card>
-    </>
-  );
-};
-
 export const LoadingButton = args => {
   const [isLoading, setIsLoading] = React.useState(args.isLoading);
   const [isLoadingIcon, setIsLoadingIcon] = React.useState(args.isLoading);
@@ -202,16 +136,16 @@ export const LoadingButton = args => {
       </VisuallyHidden>
       <ButtonGroup>
         <AIButton
-          {...args}
           isLoading={isLoading}
           onClick={() => setIsLoading(true)}
+          {...args}
         >
           Save
         </AIButton>
         <AIButton
-          {...args}
           isLoading={isLoadingIcon}
           onClick={() => setIsLoadingIcon(true)}
+          {...args}
         />
       </ButtonGroup>
     </>
@@ -224,10 +158,10 @@ export const AnimatedButtons = args => {
       <Card>
         <CardBody>
           <ButtonGroup>
-            <AIButton isAnimated variant={AIButtonVariant.variantA}>
+            <AIButton isAnimated variant={AIButtonVariant.variantA} {...args}>
               Animated Variant A
             </AIButton>
-            <AIButton isAnimated variant={AIButtonVariant.variantB}>
+            <AIButton isAnimated variant={AIButtonVariant.variantB} {...args}>
               Animated Variant B
             </AIButton>
           </ButtonGroup>
@@ -241,12 +175,14 @@ export const AnimatedButtons = args => {
               aria-label="Animated Variant A"
               variant={AIButtonVariant.variantA}
               isInverse
+              {...args}
             />
             <AIButton
               isAnimated
               aria-label="Animated Variant B"
               variant={AIButtonVariant.variantB}
               isInverse
+              {...args}
             />
           </ButtonGroup>
         </CardBody>
@@ -259,27 +195,32 @@ export const AllCases = args => {
   return (
     <ButtonGroup>
       {/* Icon only*/}
-      <AIButton leadingIcon aria-label="AI Button Icon Only" />
+      <AIButton leadingIcon aria-label="AI Button Icon Only" {...args} />
 
       {/* Custom Leading Icon */}
       <AIButton
         leadingIcon={<SettingsIcon />}
         aria-label="AI Button Custom Icon Only"
+        {...args}
       />
 
       {/* Leading Icon + children */}
-      <AIButton leadingIcon>Text with icon</AIButton>
+      <AIButton leadingIcon {...args}>
+        Text with icon
+      </AIButton>
 
       {/* Leading Icon = false */}
-      <AIButton leadingIcon={false}>Text without icon</AIButton>
+      <AIButton leadingIcon={false} {...args}>
+        Text without icon
+      </AIButton>
 
       {/* Leading Icon + Trailing Icon + children */}
-      <AIButton leadingIcon trailingIcon={<SettingsIcon />}>
+      <AIButton leadingIcon trailingIcon={<SettingsIcon />} {...args}>
         Text with both icons
       </AIButton>
 
       {/* Leading Icon = false + Trailing Icon + children */}
-      <AIButton leadingIcon={false} trailingIcon={<SettingsIcon />}>
+      <AIButton leadingIcon={false} trailingIcon={<SettingsIcon />} {...args}>
         Text with trailing icon
       </AIButton>
     </ButtonGroup>

@@ -3,6 +3,9 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { AutoAwesomeIcon } from 'react-magma-icons';
 
+import { StyledAIButtonTemplate } from './StyledAIButtonTemplate';
+import { ThemeContext } from '../../theme/ThemeContext';
+
 import {
   AIButtonShape,
   AIButtonSize,
@@ -10,12 +13,9 @@ import {
   AIButtonType,
   AIButtonVariant,
   BaseAIButtonProps,
-} from '../AIButton';
-import { StyledAIButtonTemplate } from './StyledAIButtonTemplate';
-import { ThemeContext } from '../../theme/ThemeContext';
+} from '.';
 
 export interface StyledAIButtonProps extends BaseAIButtonProps {
-  href?: string;
   iconOnly?: boolean;
   trailingIcon?: React.ReactElement;
   leadingIcon?: boolean | React.ReactElement;
@@ -23,9 +23,9 @@ export interface StyledAIButtonProps extends BaseAIButtonProps {
 
 export function getIconSize(size, theme) {
   switch (size) {
-    case 'large':
+    case AIButtonSize.large:
       return theme.iconSizes.medium;
-    case 'small':
+    case AIButtonSize.small:
       return theme.iconSizes.xSmall;
     default:
       return theme.iconSizes.small;
@@ -130,7 +130,7 @@ export const StyledAIButton = React.forwardRef<
             size: leadingIcon.props.size
               ? leadingIcon.props.size
               : getIconSize(size, theme),
-            'aria-label': ariaLabel || 'AI Button Icon',
+            'aria-label': ariaLabel,
             'aria-hidden': 'true',
           })
         )}

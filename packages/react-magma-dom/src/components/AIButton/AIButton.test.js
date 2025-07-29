@@ -6,7 +6,6 @@ import { axe } from '../../../axe-helper';
 
 import {
   AIButton,
-  AIButtonColor,
   AIButtonShape,
   AIButtonSize,
   AIButtonTextTransform,
@@ -68,14 +67,14 @@ describe('AIButton', () => {
     expect(getByText(buttonText)).toBeInTheDocument();
   });
 
-  it('A text-only button does not violate detectible accessibility standards', () => {
+  it('variantA text-only button does not violate detectable accessibility standards', () => {
     const { container } = render(<AIButton>click</AIButton>);
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
   });
 
-  it('A button in the loading state does not violate detectible accessibility standards', () => {
+  it('variantA button in the loading state does not violate detectable accessibility standards', () => {
     const { container } = render(<AIButton isLoading>click</AIButton>);
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();

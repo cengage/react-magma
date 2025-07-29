@@ -6,7 +6,7 @@ import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { resolveProps, XOR } from '../../utils';
 import { ButtonGroupContext } from '../ButtonGroup';
-import { StyledAIButton } from '../StyledAIButton';
+import { StyledAIButton } from './StyledAIButton';
 
 export enum AIButtonVariant {
   variantA = 1, //default
@@ -37,7 +37,8 @@ export enum AIButtonType {
   reset = 'reset',
 }
 
-export interface AIButtonStyles {
+export interface BaseAIButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   /**
    * Set the button to display full-width.
    * @default false
@@ -66,14 +67,9 @@ export interface AIButtonStyles {
   textTransform?: AIButtonTextTransform;
   /**
    * The variant of the button
-   * @default AIButtonVariant.primary
+   * @default AIButtonVariant.variantA
    */
   variant?: AIButtonVariant;
-}
-
-export interface BaseAIButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    AIButtonStyles {
   /**
    * @internal
    */
@@ -84,7 +80,7 @@ export interface BaseAIButtonProps
   theme?: ThemeInterface;
   /**
    * The type attribute of the button
-   * ButtonType.button
+   * @default AIButtonType.button
    */
   type?: AIButtonType;
   /**
@@ -96,11 +92,11 @@ export interface BaseAIButtonProps
    */
   rightColor?: string;
   /**
-   * Sets the gradient color when the button is hovered.
+   * Sets the color when the button is hovered.
    */
   hoverColor?: string;
   /**
-   * Sets the gradient color when the button is pressed (active).
+   * Sets the color when the button is pressed (active).
    */
   pressedColor?: string;
   /**

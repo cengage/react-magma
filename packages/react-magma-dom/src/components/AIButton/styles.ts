@@ -1,6 +1,6 @@
 import { transparentize } from 'polished';
 
-import { AIButtonVariant } from '../AIButton';
+import { AIButtonShape, AIButtonSize, AIButtonVariant } from '.';
 
 const DEFAULT_STYLE_PROPS = {
   shape: 'fill',
@@ -15,11 +15,11 @@ export function buildPropsWithDefaultAIButtonStyles(props) {
 
 export function buildAIButtonBorderRadius(props) {
   switch (props.shape) {
-    case 'round':
+    case AIButtonShape.round:
       return '100%';
-    case 'leftCap':
+    case AIButtonShape.leftCap:
       return `${props.theme.borderRadius} 0 0 ${props.theme.borderRadius}`;
-    case 'rightCap':
+    case AIButtonShape.rightCap:
       return `0 ${props.theme.borderRadius} ${props.theme.borderRadius} 0`;
     default:
       //fill
@@ -29,9 +29,9 @@ export function buildAIButtonBorderRadius(props) {
 
 export function buildAIButtonFontSize(props) {
   switch (props.size) {
-    case 'small':
+    case AIButtonSize.small:
       return props.theme.typeScale.size01.fontSize;
-    case 'large':
+    case AIButtonSize.large:
       return props.theme.typeScale.size04.fontSize;
     default:
       //medium
@@ -41,9 +41,9 @@ export function buildAIButtonFontSize(props) {
 
 export function buildAIButtonLineHeight(props) {
   switch (props.size) {
-    case 'small':
+    case AIButtonSize.small:
       return props.theme.typeScale.size01.lineHeight;
-    case 'large':
+    case AIButtonSize.large:
       return props.theme.typeScale.size04.lineHeight;
     default:
       //medium
@@ -53,9 +53,9 @@ export function buildAIButtonLineHeight(props) {
 
 export function buildAIButtonSize(props) {
   switch (props.size) {
-    case 'small':
+    case AIButtonSize.small:
       return props.theme.spaceScale.spacing07;
-    case 'large':
+    case AIButtonSize.large:
       return props.theme.spaceScale.spacing11;
     default:
       //medium
@@ -65,9 +65,9 @@ export function buildAIButtonSize(props) {
 
 export function buildAIButtonPadding(props) {
   switch (props.size) {
-    case 'small':
+    case AIButtonSize.small:
       return `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing03}`;
-    case 'large':
+    case AIButtonSize.large:
       return `${props.theme.spaceScale.spacing04} ${props.theme.spaceScale.spacing06}`;
     default:
       //medium
@@ -75,8 +75,8 @@ export function buildAIButtonPadding(props) {
   }
 }
 
-export function buildAIButtonBackground(props) {
-  props = buildPropsWithDefaultAIButtonStyles(props);
+export function buildAIButtonBackground(initialProps) {
+  const props = buildPropsWithDefaultAIButtonStyles(initialProps);
 
   if (props.disabled) {
     if (props.isInverse) {
@@ -93,8 +93,8 @@ export function buildAIButtonBackground(props) {
   }
 }
 
-export function buildAIBorderColor(props) {
-  props = buildPropsWithDefaultAIButtonStyles(props);
+export function buildAIBorderColor(initialProps) {
+  const props = buildPropsWithDefaultAIButtonStyles(initialProps);
 
   if (props.disabled) {
     if (props.isInverse) {
@@ -110,8 +110,8 @@ export function buildAIBorderColor(props) {
   }
 }
 
-export function buildAIColor(props) {
-  props = buildPropsWithDefaultAIButtonStyles(props);
+export function buildAIColor(initialProps) {
+  const props = buildPropsWithDefaultAIButtonStyles(initialProps);
 
   if (props.disabled) {
     if (props.isInverse) {
@@ -123,8 +123,8 @@ export function buildAIColor(props) {
   return props.theme.colors.neutral100;
 }
 
-export function buildAIFocusBackground(props) {
-  props = buildPropsWithDefaultAIButtonStyles(props);
+export function buildAIFocusBackground(initialProps) {
+  const props = buildPropsWithDefaultAIButtonStyles(initialProps);
 
   if (props.variant === AIButtonVariant.variantA) {
     return `linear-gradient(268deg, ${props.hoverColor ?? props.theme.colors.aiColors.variantA.hover} 0%, ${props.hoverColor ?? props.theme.colors.aiColors.variantA.hover} 100%)`;
@@ -134,14 +134,14 @@ export function buildAIFocusBackground(props) {
 }
 
 // Same styles for hover and focus
-export function buildAIFocusColor(props) {
-  props = buildPropsWithDefaultAIButtonStyles(props);
+export function buildAIFocusColor(initialProps) {
+  const props = buildPropsWithDefaultAIButtonStyles(initialProps);
 
   return props.theme.colors.neutral100;
 }
 
-export function buildAIActiveBackground(props) {
-  props = buildPropsWithDefaultAIButtonStyles(props);
+export function buildAIActiveBackground(initialProps) {
+  const props = buildPropsWithDefaultAIButtonStyles(initialProps);
 
   if (props.variant === AIButtonVariant.variantA) {
     return `linear-gradient(268deg, ${props.pressedColor ?? props.theme.colors.aiColors.variantA.pressed} 0%, ${props.pressedColor ?? props.theme.colors.aiColors.variantA.pressed} 100%)`;
@@ -150,8 +150,8 @@ export function buildAIActiveBackground(props) {
   }
 }
 
-export function buildAIActiveColor(props) {
-  props = buildPropsWithDefaultAIButtonStyles(props);
+export function buildAIActiveColor(initialProps) {
+  const props = buildPropsWithDefaultAIButtonStyles(initialProps);
 
   return props.theme.colors.neutral100;
 }

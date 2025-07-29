@@ -5,9 +5,9 @@ import styled from '@emotion/styled';
 
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { AIButtonSize, AIButtonType } from '../AIButton';
 import { Spinner } from '../Spinner';
 import { VisuallyHidden } from '../VisuallyHidden';
+import { StyledAIButtonProps } from './StyledAIButton';
 import {
   buildAIActiveBackground,
   buildAIActiveColor,
@@ -23,7 +23,7 @@ import {
   buildAIFocusColor,
 } from './styles';
 
-import { StyledAIButtonProps } from '.';
+import { AIButtonSize, AIButtonType } from '.';
 
 const gradientAnimation = keyframes`
   0% {

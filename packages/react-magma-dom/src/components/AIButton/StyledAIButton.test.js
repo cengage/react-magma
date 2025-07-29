@@ -1,13 +1,12 @@
 import React from 'react';
 
 import { act, render, fireEvent } from '@testing-library/react';
-import { transparentize } from 'polished';
 
+import { StyledAIButton } from './StyledAIButton';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
-import { AIButtonVariant } from '../AIButton';
 
-import { StyledAIButton } from '.';
+import { AIButtonVariant } from '.';
 
 describe('Styled AI Button', () => {
   const text = 'test text';
