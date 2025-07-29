@@ -116,34 +116,20 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
-  const closePopoverApiRef = React.useRef<PopoverApi>();
-  const openPopoverApiRef = React.useRef<PopoverApi>();
+  const popoverApiRef = React.useRef<PopoverApi>();
 
   function handleClose(event: React.SyntheticEvent) {
-    if (closePopoverApiRef.current) {
-      closePopoverApiRef.current.closePopoverManually(event);
+    if (popoverApiRef.current) {
+      popoverApiRef.current.closePopoverManually(event);
     }
   }
 
   function handleOpen(event: React.KeyboardEvent) {
-    openPopoverApiRef.current.openPopoverManually(event);
+    popoverApiRef.current.openPopoverManually(event);
   }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-      <Popover apiRef={closePopoverApiRef}>
-        <PopoverTrigger aria-label="Toggle popover">
-          Toggle Popover
-        </PopoverTrigger>
-        <PopoverContent>
-          <div>
-            Popover Content
-            <Button onClick={handleClose}>Close Popover</Button>
-          </div>
-        </PopoverContent>
-      </Popover>
-      <Spacer axis={SpacerAxis.vertical} size={16} />
-
       <Button
         variant={ButtonVariant.link}
         size={ButtonSize.small}
@@ -152,7 +138,7 @@ export function Example() {
       >
         Open Popover
       </Button>
-      <Popover apiRef={openPopoverApiRef}>
+      <Popover apiRef={popoverApiRef}>
         <PopoverTrigger aria-label="Toggle popover">Popover</PopoverTrigger>
         <PopoverContent>
           <div>
