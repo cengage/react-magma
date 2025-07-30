@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.14
+
+### Minor Changes
+
+- 6cb134f09: feat(Popover): Add support programmatically opening.
+
 ## 4.10.0-next.13
 
 ### Minor Changes
