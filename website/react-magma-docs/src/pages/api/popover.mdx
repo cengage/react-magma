@@ -101,7 +101,7 @@ export function Example() {
 
 ## Controlled Popover with API Ref
 
-You can programmatically control the popover by providing an `apiRef`. The Popover API exposes methods such as `closePopoverManually` to close the popover when needed.
+You can programmatically control the popover by providing an `apiRef`. The Popover API exposes methods such as `openPopoverManually` and `closePopoverManually` to open and close the popover when needed.
 
 ```tsx
 import React from 'react';
@@ -112,6 +112,7 @@ import {
   PopoverContent,
   PopoverApi,
   Button,
+  Spacer,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -123,18 +124,37 @@ export function Example() {
     }
   }
 
+  function handleOpen(event: React.KeyboardEvent) {
+    popoverApiRef.current.openPopoverManually(event);
+  }
+
   return (
-    <Popover apiRef={popoverApiRef}>
-      <PopoverTrigger aria-label="Toggle popover">
-        Toggle Popover
-      </PopoverTrigger>
-      <PopoverContent>
-        <div>
-          Popover Content
-          <Button onClick={handleClose}>Close Popover</Button>
-        </div>
-      </PopoverContent>
-    </Popover>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <Button
+        variant={ButtonVariant.link}
+        size={ButtonSize.small}
+        onClick={handleOpen}
+        style={{ width: '120px' }}
+      >
+        Open Popover
+      </Button>
+      <Popover apiRef={popoverApiRef}>
+        <PopoverTrigger aria-label="Toggle popover">Popover</PopoverTrigger>
+        <PopoverContent>
+          <div>
+            Popover Content
+            <Spacer axis={SpacerAxis.horizontal} size={8} />
+            <Button
+              variant={ButtonVariant.link}
+              size={ButtonSize.small}
+              onClick={handleClose}
+            >
+              Close Popover
+            </Button>
+          </div>
+        </PopoverContent>
+      </Popover>
+    </div>
   );
 }
 ```
