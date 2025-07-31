@@ -53,9 +53,9 @@ const SpanTextRight = styled.span<SpanProps>`
 
 function getIconPadding(props) {
   switch (props.size) {
-    case 'large':
+    case AIButtonSize.large:
       return props.theme.spaceScale.spacing05;
-    case 'small':
+    case AIButtonSize.small:
       return props.theme.spaceScale.spacing02;
     default:
       return props.theme.spaceScale.spacing03;

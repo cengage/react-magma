@@ -136,16 +136,16 @@ export const LoadingButton = args => {
       </VisuallyHidden>
       <ButtonGroup>
         <AIButton
+          {...args}
           isLoading={isLoading}
           onClick={() => setIsLoading(true)}
-          {...args}
         >
           Save
         </AIButton>
         <AIButton
+          {...args}
           isLoading={isLoadingIcon}
           onClick={() => setIsLoadingIcon(true)}
-          {...args}
         />
       </ButtonGroup>
     </>
@@ -158,10 +158,10 @@ export const AnimatedButtons = args => {
       <Card>
         <CardBody>
           <ButtonGroup>
-            <AIButton isAnimated variant={AIButtonVariant.variantA} {...args}>
+            <AIButton {...args} isAnimated variant={AIButtonVariant.variantA}>
               Animated Variant A
             </AIButton>
-            <AIButton isAnimated variant={AIButtonVariant.variantB} {...args}>
+            <AIButton {...args} isAnimated variant={AIButtonVariant.variantB}>
               Animated Variant B
             </AIButton>
           </ButtonGroup>
@@ -171,18 +171,18 @@ export const AnimatedButtons = args => {
         <CardBody>
           <ButtonGroup>
             <AIButton
+              {...args}
               isAnimated
               aria-label="Animated Variant A"
               variant={AIButtonVariant.variantA}
               isInverse
-              {...args}
             />
             <AIButton
+              {...args}
               isAnimated
               aria-label="Animated Variant B"
               variant={AIButtonVariant.variantB}
               isInverse
-              {...args}
             />
           </ButtonGroup>
         </CardBody>
@@ -195,34 +195,38 @@ export const AllCases = args => {
   return (
     <ButtonGroup>
       {/* Icon only*/}
-      <AIButton leadingIcon aria-label="AI Button Icon Only" {...args} />
+      <AIButton {...args} leadingIcon aria-label="AI Button Icon Only" />
 
       {/* Custom Leading Icon */}
       <AIButton
+        {...args}
         leadingIcon={<SettingsIcon />}
         aria-label="AI Button Custom Icon Only"
-        {...args}
       />
 
       {/* Leading Icon + children */}
-      <AIButton leadingIcon {...args}>
+      <AIButton {...args} leadingIcon>
         Text with icon
       </AIButton>
 
       {/* Leading Icon = false */}
-      <AIButton leadingIcon={false} {...args}>
+      <AIButton {...args} leadingIcon={false}>
         Text without icon
       </AIButton>
 
       {/* Leading Icon + Trailing Icon + children */}
-      <AIButton leadingIcon trailingIcon={<SettingsIcon />} {...args}>
+      <AIButton {...args} leadingIcon trailingIcon={<SettingsIcon />}>
         Text with both icons
       </AIButton>
 
       {/* Leading Icon = false + Trailing Icon + children */}
-      <AIButton leadingIcon={false} trailingIcon={<SettingsIcon />} {...args}>
+      <AIButton {...args} leadingIcon={false} trailingIcon={<SettingsIcon />}>
         Text with trailing icon
       </AIButton>
     </ButtonGroup>
   );
+};
+
+AllCases.args = {
+  ...Default.args,
 };

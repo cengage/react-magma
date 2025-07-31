@@ -269,13 +269,24 @@ Use `isInverse` for dark backgrounds.
 ```tsx
 import React from 'react';
 
-import { AIButton, Card, CardBody } from 'react-magma-dom';
+import {
+  AIButton,
+  AIButtonVariant,
+  Card,
+  CardBody,
+  ButtonGroup,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
     <Card isInverse>
       <CardBody>
-        <AIButton isInverse>Inverse</AIButton>
+        <ButtonGroup>
+          <AIButton isInverse>Inverse Variant A</AIButton>
+          <AIButton isInverse variant={AIButtonVariant.variantB}>
+            Inverse Variant B
+          </AIButton>
+        </ButtonGroup>
       </CardBody>
     </Card>
   );
