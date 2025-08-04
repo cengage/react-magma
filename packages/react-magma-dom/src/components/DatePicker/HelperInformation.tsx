@@ -6,8 +6,9 @@ import { ArrowBackIcon, CloseIcon } from 'react-magma-icons';
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { Heading } from '../Heading';
 import { IconButton } from '../IconButton';
 import { TypographyVisualStyle } from '../Typography';
@@ -67,10 +68,22 @@ const StyledPopup = styled.div`
   position: relative;
 `;
 
-const StyledNavContainer = styled.div`
+const StyledNavContainer = styled.div<{
+  isInverse?: boolean;
+}>`
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.primary600
+      : props.theme.colors.neutral200};
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 2px;
+  padding: ${props => props.theme.spaceScale.spacing03};
+  border-bottom: 1px solid
+    ${props =>
+      props.isInverse
+        ? props.theme.colors.primary400
+        : props.theme.colors.neutral300};
 `;
 const StyledContent = styled.div<{
   isInverse?: boolean;
@@ -83,13 +96,22 @@ const StyledContent = styled.div<{
       : props?.theme?.colors?.neutral700};
 
   h2 {
-    margin: 10px 0 12px 0;
+    margin: 16px 0 12px 0;
   }
+  padding: 0 ${props => props.theme?.spaceScale.spacing05}
+    ${props => props.theme?.spaceScale.spacing02};
 `;
 
 const StyledDescription = styled.p`
   font-family: ${props => props.theme.bodyFont};
   margin: 0;
+`;
+
+const CloseButton = styled.span<{ theme?: ThemeInterface }>`
+  position: absolute;
+  right: ${props => props.theme.spaceScale.spacing01};
+  top: ${props => props.theme.spaceScale.spacing01};
+  z-index: 1;
 `;
 
 export const HelperInformation: React.FunctionComponent<
@@ -103,30 +125,46 @@ export const HelperInformation: React.FunctionComponent<
 
   return (
     <StyledPopup ref={helperInformationRef}>
-      <StyledNavContainer>
+      <StyledNavContainer
+        data-testid="helper-navigation-container"
+        isInverse={isInverse}
+        theme={theme}
+      >
         <IconButton
           icon={<ArrowBackIcon />}
           isInverse={isInverse}
           size={ButtonSize.small}
-          style={{ top: '4px', left: '-12px' }}
           variant={ButtonVariant.link}
           onClick={props.onReturnBack}
+          style={{
+            fontWeight: 600,
+            fontSize: theme.typeScale.size02.fontSize,
+            lineHeight: theme.typeScale.size02.lineHeight,
+            color: isInverse
+              ? theme.colors.tertiary500
+              : theme.colors.primary500,
+          }}
         >
           Back to Calendar
         </IconButton>
-        <IconButton
-          aria-label={i18n.datePicker.calendarCloseAriaLabel}
-          color={ButtonColor.secondary}
-          icon={<CloseIcon />}
-          isInverse={isInverse}
-          size={ButtonSize.medium}
-          style={{ left: '16px', margin: '4px' }}
-          type={ButtonType.button}
-          onClick={props.onClose}
-          variant={ButtonVariant.link}
-        />
+        <CloseButton theme={theme}>
+          <IconButton
+            aria-label={i18n.datePicker.calendarCloseAriaLabel}
+            icon={<CloseIcon />}
+            isInverse={isInverse}
+            size={ButtonSize.medium}
+            type={ButtonType.button}
+            onClick={props.onClose}
+            variant={ButtonVariant.link}
+            style={{
+              color: isInverse
+                ? theme.colors.neutral100
+                : theme.colors.neutral900,
+            }}
+          />
+        </CloseButton>
       </StyledNavContainer>
-      <StyledContent isInverse={isInverse}>
+      <StyledContent isInverse={isInverse} theme={theme}>
         <Heading
           level={2}
           visualStyle={TypographyVisualStyle.headingXSmall}

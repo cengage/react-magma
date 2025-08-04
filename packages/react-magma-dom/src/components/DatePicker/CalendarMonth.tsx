@@ -15,6 +15,7 @@ import { I18nContext } from '../../i18n';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { usePrevious } from '../../utils';
+import { Hyperlink } from '../Hyperlink';
 
 interface CalendarMonthProps {
   calendarOpened?: boolean;
@@ -29,12 +30,15 @@ const CalendarContainer = styled.div<{ isInverse?: boolean }>`
     props.isInverse
       ? props.theme.colors.primary500
       : props.theme.colors.neutral100};
-  padding: 0 ${props => props.theme.spaceScale.spacing05}
-    ${props => props.theme.spaceScale.spacing03};
   overflow: visible;
+
+  &:focus {
+    border-radius: ${props => props.theme.borderRadius};
+  }
 `;
 
 const MonthContainer = styled.div<{ isInverse?: boolean }>`
+  position: relative;
   background: ${props =>
     props.isInverse
       ? props.theme.colors.primary500
@@ -43,6 +47,9 @@ const MonthContainer = styled.div<{ isInverse?: boolean }>`
   text-align: center;
   user-select: none;
   vertical-align: top;
+  padding: ${props => props.theme.spaceScale.spacing09}
+    ${props => props.theme.spaceScale.spacing03}
+    ${props => props.theme.spaceScale.spacing03};
 `;
 
 const Table = styled.table`
@@ -66,9 +73,9 @@ const Th = styled.th<{ isInverse?: boolean }>`
 
 const HelperButton = styled.span<{ theme?: ThemeInterface }>`
   margin: ${props => props.theme.spaceScale.spacing02};
-  top: ${props => props.theme.spaceScale.spacing01};
+  top: ${props => props.theme.spaceScale.spacing02};
   position: absolute;
-  left: ${props => props.theme.spaceScale.spacing01};
+  left: ${props => props.theme.spaceScale.spacing02};
   z-index: 2;
 `;
 
@@ -77,7 +84,65 @@ const CloseButton = styled.span<{ theme?: ThemeInterface }>`
   right: ${props => props.theme.spaceScale.spacing01};
   top: ${props => props.theme.spaceScale.spacing01};
   z-index: 1;
-  margin: ${props => props.theme.spaceScale.spacing02};
+`;
+
+const HeaderWrapper = styled.div<{
+  theme?: ThemeInterface;
+  isInverse?: boolean;
+}>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.primary600
+      : props.theme.colors.neutral200};
+  padding: 11px ${props => props.theme.spaceScale.spacing03};
+  border-bottom: 1px solid
+    ${props =>
+      props.isInverse
+        ? props.theme.colors.primary400
+        : props.theme.colors.neutral300};
+  width: 100%;
+`;
+
+const Divider = styled.span<{
+  isInverse?: boolean;
+  theme?: ThemeInterface;
+}>`
+  margin-right: ${props => props.theme.spaceScale.spacing04};
+  width: ${props => props.theme.spaceScale.spacing02};
+  height: ${props => props.theme.spaceScale.spacing02};
+  border-radius: 50%;
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral300
+      : props.theme.colors.neutral400};
+`;
+
+const TodayWrapper = styled.div<{
+  isInverse?: boolean;
+  theme?: ThemeInterface;
+}>`
+  display: flex;
+  align-items: center;
+  margin-top: ${props => props.theme.spaceScale.spacing01};
+  margin-left: 38px;
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
+  font-weight: 600;
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.tertiary500
+      : props.theme.colors.primary500};
+
+  &:hover {
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.primary600};
+  }
 `;
 
 export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
@@ -152,7 +217,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
       isInverse={context.isInverse}
       aria-label={i18n.days.long[day]}
     >
-      {i18n.days.min[day]}
+      {i18n.days.short[day]}
     </Th>
   ));
 
@@ -195,7 +260,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
               <tbody>
                 <tr>{tableDaysHeaders}</tr>
                 {context
-                  .buildCalendarMonth(context.focusedDate)
+                  .buildCalendarMonth(context.focusedDate, true)
                   .map((week, i) => (
                     <tr key={i}>
                       {week.map((day, dayOfWeek) => (
@@ -211,35 +276,67 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                   ))}
               </tbody>
             </Table>
-            <Tooltip
-              content={'Keyboard instructions'}
-              tooltipStyle={{ position: 'fixed' }}
-            >
-              <HelperButton theme={theme}>
+            <HeaderWrapper theme={theme} isInverse={context.isInverse}>
+              <Tooltip
+                content={'Keyboard instructions'}
+                tooltipStyle={{ position: 'fixed' }}
+              >
+                <HelperButton theme={theme}>
+                  <IconButton
+                    ref={helperButtonRef}
+                    aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
+                    icon={<KeyboardIcon />}
+                    onClick={context.showHelperInformation}
+                    size={ButtonSize.small}
+                    onFocus={turnOffDateFocused}
+                    type={ButtonType.button}
+                    variant={ButtonVariant.link}
+                    style={{
+                      color: context.isInverse
+                        ? theme.colors.neutral100
+                        : theme.colors.neutral900,
+                    }}
+                  />
+                </HelperButton>
+              </Tooltip>
+              <TodayWrapper
+                data-testid="todayWrapper"
+                isInverse={context.isInverse}
+                theme={theme}
+                onClick={e => context.setFocusedTodayDate(e)}
+                onKeyDown={e => context.setFocusedTodayDate(e)}
+              >
+                <Divider
+                  data-testid="divider"
+                  theme={theme}
+                  isInverse={context.isInverse}
+                />
+                <Hyperlink
+                  aria-label={i18n.datePicker.navigateToCurrentDateAriaLabel}
+                  target="_self"
+                  to="#"
+                  hasUnderline={false}
+                >
+                  Today
+                </Hyperlink>
+              </TodayWrapper>
+              <CloseButton theme={theme}>
                 <IconButton
-                  ref={helperButtonRef}
-                  aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
-                  icon={<KeyboardIcon />}
-                  onClick={context.showHelperInformation}
-                  size={ButtonSize.small}
-                  onFocus={turnOffDateFocused}
+                  aria-label={i18n.datePicker.calendarCloseAriaLabel}
+                  color={ButtonColor.secondary}
+                  icon={<CloseIcon />}
+                  onClick={props.handleCloseButtonClick}
+                  size={ButtonSize.medium}
                   type={ButtonType.button}
                   variant={ButtonVariant.link}
+                  style={{
+                    color: context.isInverse
+                      ? theme.colors.neutral100
+                      : theme.colors.neutral900,
+                  }}
                 />
-              </HelperButton>
-            </Tooltip>
-
-            <CloseButton theme={theme}>
-              <IconButton
-                aria-label={i18n.datePicker.calendarCloseAriaLabel}
-                color={ButtonColor.secondary}
-                icon={<CloseIcon />}
-                onClick={props.handleCloseButtonClick}
-                size={ButtonSize.medium}
-                type={ButtonType.button}
-                variant={ButtonVariant.link}
-              />
-            </CloseButton>
+              </CloseButton>
+            </HeaderWrapper>
           </MonthContainer>
         )}
       </CalendarContainer>

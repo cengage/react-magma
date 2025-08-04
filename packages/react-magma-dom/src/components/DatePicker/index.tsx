@@ -159,7 +159,7 @@ const DatePickerCalendar = styled.div<{
   opacity: ${props => (props.opened ? '1' : '0')};
   overflow: hidden;
   transition: opacity 0.2s ease-in-out 0s;
-  width: 320px;
+  width: 298px;
 `;
 
 export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
@@ -216,6 +216,15 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       iconRef.current.focus();
       setCalendarOpened(false);
     }
+    const setFocusedCurrentDate = (event: React.SyntheticEvent) => {
+      if (
+        ('key' in event && (event.key === ' ' || event.key === 'Enter')) ||
+        event.type === 'click'
+      ) {
+        event.preventDefault?.();
+        setFocusedDate(new Date());
+      }
+    };
 
     function setDateFromConsumer(date: Date): Date {
       const convertedDate = getDateFromString(date);
@@ -470,6 +479,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           onNextMonthClick,
           onDateChange: handleDaySelection,
           setDateFocused,
+          setFocusedTodayDate: setFocusedCurrentDate,
           onClose: closeHelperInformation,
         }}
       >
