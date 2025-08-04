@@ -216,9 +216,14 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       iconRef.current.focus();
       setCalendarOpened(false);
     }
+
     const setFocusedCurrentDate = (event: React.SyntheticEvent) => {
+      const isKeyboardEvent = event.type === 'keydown';
+
       if (
-        ('key' in event && (event.key === ' ' || event.key === 'Enter')) ||
+        (isKeyboardEvent &&
+          ((event as React.KeyboardEvent).key === ' ' ||
+            (event as React.KeyboardEvent).key === 'Enter')) ||
         event.type === 'click'
       ) {
         event.preventDefault?.();
