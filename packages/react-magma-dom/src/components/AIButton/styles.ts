@@ -16,7 +16,7 @@ export function buildPropsWithDefaultAIButtonStyles(props) {
 export function buildAIButtonBorderRadius(props) {
   switch (props.shape) {
     case AIButtonShape.round:
-      return '100%';
+      return props.iconOnly ? '100%' : '2rem';
     case AIButtonShape.leftCap:
       return `${props.theme.borderRadius} 0 0 ${props.theme.borderRadius}`;
     case AIButtonShape.rightCap:
@@ -154,4 +154,8 @@ export function buildAIActiveColor(initialProps) {
   const props = buildPropsWithDefaultAIButtonStyles(initialProps);
 
   return props.theme.colors.neutral100;
+}
+
+export function buildBoxShadow(props) {
+  return `0 1px 6px ${transparentize(0.5, props.theme.colors.primary400)}`;
 }

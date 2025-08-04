@@ -21,6 +21,7 @@ import {
   buildAIColor,
   buildAIFocusBackground,
   buildAIFocusColor,
+  buildBoxShadow,
 } from './styles';
 
 import { AIButtonSize, AIButtonType } from '.';
@@ -39,6 +40,7 @@ export const buttonStyles = props => css`
   border: 0;
   border-color: ${buildAIBorderColor(props)};
   border-radius: ${buildAIButtonBorderRadius(props)};
+  box-shadow: ${buildBoxShadow(props)};
   color: ${buildAIColor(props)};
   cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
   display: ${props.isFullWidth ? 'flex' : 'inline-flex'};

@@ -10,6 +10,7 @@ exports[`AIButton Base AIButton Snapshot should render with large size 1`] = `
   border: 0;
   border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
   border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -141,6 +142,7 @@ exports[`AIButton Base AIButton Snapshot should render with large size 1`] = `
   border: 0;
   border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
   border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -306,6 +308,7 @@ exports[`AIButton Base AIButton Snapshot should render with small size 1`] = `
   border: 0;
   border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
   border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -437,6 +440,7 @@ exports[`AIButton Base AIButton Snapshot should render with small size 1`] = `
   border: 0;
   border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
   border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -601,7 +605,8 @@ exports[`AIButton Base AIButton Snapshot should render with updated shape 1`] = 
   background: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
   border: 0;
   border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
-  border-radius: 100%;
+  border-radius: 2rem;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -732,7 +737,8 @@ exports[`AIButton Base AIButton Snapshot should render with updated shape 1`] = 
   background: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
   border: 0;
   border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
-  border-radius: 100%;
+  border-radius: 2rem;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -898,6 +904,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated textTransfor
   border: 0;
   border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
   border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1029,6 +1036,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated textTransfor
   border: 0;
   border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
   border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1194,6 +1202,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated variant 1`] 
   border: 0;
   border-color: linear-gradient(268deg, #178037 0%, #3942B0 100%);
   border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -1325,6 +1334,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated variant 1`] 
   border: 0;
   border-color: linear-gradient(268deg, #178037 0%, #3942B0 100%);
   border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;

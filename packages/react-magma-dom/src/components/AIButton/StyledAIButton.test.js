@@ -257,7 +257,7 @@ describe('Styled AI Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('border-radius', '100%');
+        expect(button).toHaveStyleRule('border-radius', '2rem');
       });
     });
 
