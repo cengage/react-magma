@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.15
+
+### Minor Changes
+
+- 660e33738: feat(TreeView): Add new expandIconStyles prop for TreeView. Add styles customization support and hoverColor prop for TreeItem.
+
 ## 4.10.0-next.14
 
 ### Minor Changes
