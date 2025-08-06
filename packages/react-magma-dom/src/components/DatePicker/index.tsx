@@ -159,7 +159,7 @@ const DatePickerCalendar = styled.div<{
   opacity: ${props => (props.opened ? '1' : '0')};
   overflow: hidden;
   transition: opacity 0.2s ease-in-out 0s;
-  width: 298px;
+  width: 320px;
 `;
 
 export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
@@ -226,7 +226,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             (event as React.KeyboardEvent).key === 'Enter')) ||
         event.type === 'click'
       ) {
-        event.preventDefault?.();
+        event.preventDefault();
         setFocusedDate(new Date());
       }
     };

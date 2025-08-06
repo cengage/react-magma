@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { isAfter, isBefore, isSameDay } from 'date-fns';
+import { isAfter, isBefore, isSameDay, isSameMonth } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import { transparentize } from 'polished';
 
@@ -31,42 +31,45 @@ function buildCalendarDayBackground(props) {
 }
 
 function buildCalendarDayColor(props) {
-  if (props.isInverse) {
-    if (props.isChosen) {
-      return props.theme.colors.primary600;
+  const { isInverse, isChosen, disabled, isDayInCurrentMonth, theme } = props;
+  if (isInverse) {
+    if (isChosen) {
+      return theme.colors.primary600;
     }
-    if (props.disabled) {
-      return transparentize(0.6, props.theme.colors.neutral100);
+    if (disabled) {
+      return transparentize(0.6, theme.colors.neutral100);
     }
-    return props.theme.colors.neutral100;
+    if (!isDayInCurrentMonth && !disabled) {
+      return transparentize(0.3, theme.colors.neutral100);
+    }
+    return theme.colors.neutral100;
   }
 
-  if (props.isChosen) {
-    return props.theme.colors.neutral100;
+  if (isChosen) {
+    return theme.colors.neutral100;
   }
-  if (props.disabled) {
-    return transparentize(0.4, props.theme.colors.neutral500);
+  if (disabled) {
+    return transparentize(0.4, theme.colors.neutral500);
   }
-  return props.theme.colors.neutral700;
+  if (!isDayInCurrentMonth && !disabled) {
+    return theme.colors.neutral500;
+  }
+  return { color: theme.colors.neutral700 };
 }
 
 function buildTodayCalendarDayColor(props) {
-  if (props.isInverse) {
-    return props.isChosen
-      ? props.theme.colors.primary600
-      : props.theme.colors.secondary500;
+  const { isInverse, isChosen, theme } = props;
+  if (isInverse) {
+    return isChosen ? theme.colors.primary600 : theme.colors.secondary500;
   }
-  return props.isChosen
-    ? props.theme.colors.neutral100
-    : props.theme.colors.primary500;
+  return isChosen ? theme.colors.neutral100 : theme.colors.primary500;
 }
 
 function buildChosenDayBorder(props) {
-  if (props.isChosen) {
+  const { isInverse, isChosen, theme } = props;
+  if (isChosen) {
     return `1px solid ${
-      props.isInverse
-        ? props.theme.colors.primary600
-        : props.theme.colors.neutral100
+      isInverse ? theme.colors.primary600 : theme.colors.neutral100
     }`;
   }
 }
@@ -96,10 +99,11 @@ const CalendarDayCell = styled.td<{
   padding: 0;
   position: relative;
   text-align: center;
-  width: ${props => props.theme.spaceScale.spacing09};
+  width: 44px;
 `;
 
 const CalendarDayInner = styled.button<{
+  isDayInCurrentMonth?: boolean;
   isChosen?: boolean;
   isFocused?: boolean;
   isInverse?: boolean;
@@ -169,7 +173,7 @@ const TodayIndicator = styled.span<{
 }>`
   position: absolute;
   bottom: 5px;
-  transform: translateX(-50%);
+  left: 18px;
   width: 5px;
   height: 5px;
   border-radius: 50%;
@@ -192,6 +196,8 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
   } = React.useContext(CalendarContext);
   const [focused, setFocused] = React.useState<boolean>(false);
   const { day, dayFocusable } = props;
+
+  console.log('dayRef', dayRef);
 
   React.useEffect(() => {
     if (dateFocused && isSameDay(props.day, focusedDate)) {
@@ -228,6 +234,7 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     const sameDateAsFocusedDate = isSameDay(day, focusedDate);
     const sameDateAsChosenDate = isSameDay(day, chosenDate);
     const sameDateAsToday = isSameDay(day, new Date());
+    const isDayInCurrentMonth = isSameMonth(day, focusedDate);
     const locale = i18n.locale || enUS;
     const ariaLabel = `${
       disabled ? i18n.datePicker.disabledDayAriaLabel : ''
@@ -249,6 +256,7 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
           disabled={disabled}
           data-testid="calendar-day"
           isChosen={sameDateAsChosenDate}
+          isDayInCurrentMonth={isDayInCurrentMonth}
           isFocused={dayFocusable && sameDateAsFocusedDate}
           isInverse={isInverse}
           isSameDateAsToday={sameDateAsToday}
