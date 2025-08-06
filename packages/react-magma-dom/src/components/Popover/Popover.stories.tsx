@@ -11,7 +11,12 @@ import {
   SettingsIcon,
 } from 'react-magma-icons';
 
-import { Popover, PopoverApi, PopoverPosition } from './Popover';
+import {
+  Popover,
+  PopoverApi,
+  PopoverPosition,
+  PopoverAlignment,
+} from './Popover';
 import { PopoverContent } from './PopoverContent';
 import { PopoverTrigger } from './PopoverTrigger';
 import { magma } from '../../theme/magma';
@@ -51,6 +56,12 @@ export default {
       control: {
         type: 'select',
         options: PopoverPosition,
+      },
+    },
+    alignment: {
+      control: {
+        type: 'select',
+        options: PopoverAlignment,
       },
     },
     hoverable: {

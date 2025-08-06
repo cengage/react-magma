@@ -254,6 +254,7 @@ export {
   Popover,
   PopoverProps,
   PopoverPosition,
+  PopoverAlignment,
   PopoverApi,
 } from './components/Popover';
 export {

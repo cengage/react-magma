@@ -31,7 +31,6 @@ exports[`Popover should render the popover with isInverse prop 1`] = `
   white-space: nowrap;
   border: 1px solid #5D65CB;
   width: 100%;
-  max-width: 300px;
 }
 
 .emotion-3 {
@@ -89,7 +88,6 @@ exports[`Popover should render the popover with isInverse prop 1`] = `
   white-space: nowrap;
   border: 1px solid #5D65CB;
   width: 100%;
-  max-width: 300px;
 }
 
 .emotion-3 {
@@ -178,7 +176,6 @@ exports[`Popover should render the popover with pointer by default 1`] = `
   white-space: nowrap;
   border: 1px solid #D4D4D4;
   width: 100%;
-  max-width: 300px;
 }
 
 .emotion-3 {
@@ -236,7 +233,6 @@ exports[`Popover should render the popover with pointer by default 1`] = `
   white-space: nowrap;
   border: 1px solid #D4D4D4;
   width: 100%;
-  max-width: 300px;
 }
 
 .emotion-3 {
@@ -325,7 +321,6 @@ exports[`Popover should render the popover with target width 1`] = `
   white-space: nowrap;
   border: 1px solid #D4D4D4;
   width: 0px;
-  max-width: 300px;
 }
 
 .emotion-3 {
@@ -383,7 +378,6 @@ exports[`Popover should render the popover with target width 1`] = `
   white-space: nowrap;
   border: 1px solid #D4D4D4;
   width: 0px;
-  max-width: 300px;
 }
 
 .emotion-3 {
@@ -472,7 +466,6 @@ exports[`Popover should render the popover without pointer 1`] = `
   white-space: nowrap;
   border: 1px solid #D4D4D4;
   width: 100%;
-  max-width: 300px;
 }
 
 .emotion-3 {
@@ -530,7 +523,6 @@ exports[`Popover should render the popover without pointer 1`] = `
   white-space: nowrap;
   border: 1px solid #D4D4D4;
   width: 100%;
-  max-width: 300px;
 }
 
 .emotion-3 {
