@@ -152,6 +152,10 @@ export const LoadingButton = args => {
   );
 };
 
+LoadingButton.args = {
+  ...Default.args,
+};
+
 export const AnimatedButtons = args => {
   return (
     <>
@@ -189,6 +193,10 @@ export const AnimatedButtons = args => {
       </Card>
     </>
   );
+};
+
+AnimatedButtons.args = {
+  ...Default.args,
 };
 
 export const AllCases = args => {

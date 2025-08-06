@@ -50,12 +50,14 @@ export const buttonStyles = props => css`
   font-weight: 500;
   height: ${buildAIButtonSize(props)};
   justify-content: center;
-  letter-spacing: ${props.size === 'small'
+  letter-spacing: ${props.size === AIButtonSize.small
     ? props.theme.typeScale.size01.letterSpacing
     : 'inherit'};
   line-height: ${buildAIButtonLineHeight(props)};
   margin: 0;
-  min-width: ${props.size === 'small' ? '0' : props.theme.spaceScale.spacing13};
+  min-width: ${props.size === AIButtonSize.small
+    ? '0'
+    : props.theme.spaceScale.spacing13};
   overflow: hidden;
   padding: ${buildAIButtonPadding(props)};
   position: relative;
@@ -145,7 +147,7 @@ export const buttonStyles = props => css`
   }
 
   > * {
-    position: ${props.isLoading ? 'absolute' : 'relative'};
+    position: 'relative';
     z-index: 2;
   }
 

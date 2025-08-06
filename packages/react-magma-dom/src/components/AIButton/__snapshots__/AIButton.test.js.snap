@@ -107,7 +107,7 @@ exports[`AIButton Base AIButton Snapshot should render with large size 1`] = `
 }
 
 .emotion-0>* {
-  position: relative;
+  position: 'relative';
   z-index: 2;
 }
 
@@ -239,7 +239,7 @@ exports[`AIButton Base AIButton Snapshot should render with large size 1`] = `
 }
 
 .emotion-0>* {
-  position: relative;
+  position: 'relative';
   z-index: 2;
 }
 
@@ -405,7 +405,7 @@ exports[`AIButton Base AIButton Snapshot should render with small size 1`] = `
 }
 
 .emotion-0>* {
-  position: relative;
+  position: 'relative';
   z-index: 2;
 }
 
@@ -537,7 +537,7 @@ exports[`AIButton Base AIButton Snapshot should render with small size 1`] = `
 }
 
 .emotion-0>* {
-  position: relative;
+  position: 'relative';
   z-index: 2;
 }
 
@@ -703,7 +703,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated shape 1`] = 
 }
 
 .emotion-0>* {
-  position: relative;
+  position: 'relative';
   z-index: 2;
 }
 
@@ -835,7 +835,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated shape 1`] = 
 }
 
 .emotion-0>* {
-  position: relative;
+  position: 'relative';
   z-index: 2;
 }
 
@@ -1001,7 +1001,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated textTransfor
 }
 
 .emotion-0>* {
-  position: relative;
+  position: 'relative';
   z-index: 2;
 }
 
@@ -1133,7 +1133,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated textTransfor
 }
 
 .emotion-0>* {
-  position: relative;
+  position: 'relative';
   z-index: 2;
 }
 
@@ -1299,7 +1299,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated variant 1`] 
 }
 
 .emotion-0>* {
-  position: relative;
+  position: 'relative';
   z-index: 2;
 }
 
@@ -1431,7 +1431,7 @@ exports[`AIButton Base AIButton Snapshot should render with updated variant 1`] 
 }
 
 .emotion-0>* {
-  position: relative;
+  position: 'relative';
   z-index: 2;
 }
 
