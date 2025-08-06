@@ -106,7 +106,7 @@ export interface BaseAIButtonProps
   isAnimated?: boolean;
 }
 
-export interface ContentAIButtonProps extends BaseAIButtonProps {
+export interface TextAIButtonProps extends BaseAIButtonProps {
   /**
    * The content of the component
    */
@@ -133,7 +133,7 @@ export interface IconOnlyAIButtonProps extends BaseAIButtonProps {
   children?: never;
 }
 
-export type AIButtonProps = XOR<ContentAIButtonProps, IconOnlyAIButtonProps>;
+export type AIButtonProps = XOR<TextAIButtonProps, IconOnlyAIButtonProps>;
 
 export const AIButton = React.forwardRef<HTMLButtonElement, AIButtonProps>(
   (props, ref) => {

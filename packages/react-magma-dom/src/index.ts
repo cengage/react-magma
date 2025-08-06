@@ -8,7 +8,7 @@ export {
   AIButtonType,
   AIButtonVariant,
   IconOnlyAIButtonProps,
-  ContentAIButtonProps,
+  TextAIButtonProps,
 } from './components/AIButton';
 export { Alert, AlertProps } from './components/Alert';
 export { AlertVariant } from './components/AlertBase';
