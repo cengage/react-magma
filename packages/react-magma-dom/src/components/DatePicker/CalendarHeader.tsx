@@ -14,7 +14,7 @@ import { i18nFormat as format } from './utils';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef, usePrevious } from '../../utils';
-import { ButtonType, ButtonVariant } from '../Button';
+import { ButtonColor, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 
 interface CalendarHeaderProps {
@@ -116,16 +116,12 @@ export const CalendarHeader = React.forwardRef<
             'MMMM yyyy',
             locale
           )}`}
+          color={ButtonColor.subtle}
           icon={<KeyboardArrowLeftIcon />}
           type={ButtonType.button}
           variant={ButtonVariant.link}
           onClick={onPrevMonthClick}
-          style={{
-            margin: '6px',
-            color: props.isInverse
-              ? theme.colors.neutral100
-              : theme.colors.neutral900,
-          }}
+          style={{ margin: '6px' }}
         />
         <IconButton
           aria-label={`${i18n.datePicker.nextMonthAriaLabel} ${format(
@@ -134,15 +130,11 @@ export const CalendarHeader = React.forwardRef<
             locale
           )}`}
           icon={<KeyboardArrowRightIcon />}
+          color={ButtonColor.subtle}
           type={ButtonType.button}
           variant={ButtonVariant.link}
           onClick={onNextMonthClick}
-          style={{
-            margin: '6px',
-            color: props.isInverse
-              ? theme.colors.neutral100
-              : theme.colors.neutral900,
-          }}
+          style={{ margin: '6px' }}
         />
       </NavigationWrapper>
     </CalendarHeaderContainer>

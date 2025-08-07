@@ -197,10 +197,8 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
   const [focused, setFocused] = React.useState<boolean>(false);
   const { day, dayFocusable } = props;
 
-  console.log('dayRef', dayRef);
-
   React.useEffect(() => {
-    if (dateFocused && isSameDay(props.day, focusedDate)) {
+    if (dateFocused && isSameDay(day, focusedDate)) {
       dayRef.current.focus();
       setFocused(true);
     } else {

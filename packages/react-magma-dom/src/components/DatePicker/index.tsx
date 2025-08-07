@@ -227,7 +227,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         event.type === 'click'
       ) {
         event.preventDefault();
-        setFocusedDate(new Date());
+        setFocusedDate(setDefaultFocusedDate());
       }
     };
 
