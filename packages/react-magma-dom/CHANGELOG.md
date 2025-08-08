@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.16
+
+### Patch Changes
+
+- ca3025673: fix(Button): Fix styles for `round` button.
+
 ## 4.10.0-next.15
 
 ### Minor Changes

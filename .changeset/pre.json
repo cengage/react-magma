@@ -43,6 +43,7 @@
     "fix-RadioButton-hide-decorative-icons-from-assistive-technology",
     "fix-Table-incorrect-pagination",
     "fix-TreeItem-calls-events-twice",
+    "fix-button-round-styles",
     "fix-character-counter-accessibility",
     "fix-drawer-and-datepicker-navigation",
     "icons-v",
