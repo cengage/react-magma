@@ -22,6 +22,7 @@ interface CalendarMonthProps {
   isInverse?: boolean;
   handleCloseButtonClick: (event: React.SyntheticEvent) => void;
   setDateFocused?: (value: boolean) => void;
+  additionalContent?: React.ReactNode;
 }
 
 const CalendarContainer = styled.div<{ isInverse?: boolean }>`
@@ -242,6 +243,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             </CloseButton>
           </MonthContainer>
         )}
+        {props.additionalContent && props.additionalContent}
       </CalendarContainer>
     </>
   );

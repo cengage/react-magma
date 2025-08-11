@@ -38,6 +38,11 @@ import {
 } from './utils';
 import { omit, Omit, useForkedRef, useGenerateId } from '../../utils';
 
+export interface DatePickerApi {
+  openDatePickerManually(event): void;
+  closeDatePickerManually(event): void;
+}
+
 export interface DatePickerProps
   extends Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
@@ -133,6 +138,26 @@ export interface DatePickerProps
    * Event that will fire when the text input gains focus
    */
   onInputFocus?: (event: React.FocusEvent) => void;
+  /**
+   * @internal
+   */
+  additionalContent?: any;
+  /**
+   * @internal
+   */
+  additionalInputContent?: any;
+  /**
+   * @internal
+   */
+  apiRef?: React.MutableRefObject<DatePickerApi | undefined>;
+  /**
+   * @internal
+   */
+  setAdditionalInputContent?: (value: string) => void;
+  /**
+   * @internal
+   */
+  onClear?: (event: React.MouseEvent) => void;
 }
 
 const DatePickerContainer = styled.div`
@@ -184,6 +209,30 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     );
 
     const ref = useForkedRef(forwardedRef, inputRef);
+
+    React.useEffect(() => {
+      if (props.apiRef) {
+        props.apiRef.current = {
+          closeDatePickerManually(event) {
+            handleCloseButtonClick(event);
+          },
+          openDatePickerManually(event) {
+            toggleCalendarOpened();
+            inputRef.current.focus();
+          },
+        };
+      }
+    }, []);
+
+    React.useEffect(() => {
+      if (additionalContent && chosenDate) {
+        if (!props.additionalInputContent && props.setAdditionalInputContent) {
+          props.setAdditionalInputContent('12:00 AM');
+        }
+
+        setFocusedDate(chosenDate);
+      }
+    }, [chosenDate]);
 
     React.useEffect(() => {
       if (!calendarOpened) {
@@ -280,6 +329,9 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     function onDateChange(day: Date) {
       setChosenDate(day);
+
+      if (additionalContent) return;
+
       setCalendarOpened(false);
     }
 
@@ -306,11 +358,28 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         typeof props.onInputChange === 'function' &&
         props.onInputChange(event);
 
-      const isValidDay = isValidDateFromString(value, day);
+      let isValidDay;
 
-      props.onChange &&
-        typeof props.onChange === 'function' &&
-        props.onChange(isValidDay ? day.toISOString() : value, event);
+      if (additionalContent) {
+        const cuttedValue = value.split(' ')[0];
+
+        isValidDay = isValidDateFromString(cuttedValue, day);
+
+        const validDay = new Date(cuttedValue);
+
+        props.onChange &&
+          typeof props.onChange === 'function' &&
+          props.onChange(
+            isValidDay ? validDay.toISOString() : cuttedValue,
+            event
+          );
+      } else {
+        isValidDay = isValidDateFromString(value, day);
+
+        props.onChange &&
+          typeof props.onChange === 'function' &&
+          props.onChange(isValidDay ? day.toISOString() : value, event);
+      }
     }
 
     function handleInputFocus(event: React.FocusEvent) {
@@ -321,12 +390,34 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     function handleInputBlur(event: React.FocusEvent) {
       const { value } = inputRef.current;
-      const day = parse(value, i18n.dateFormat, new Date());
+      const day = parse(
+        additionalContent ? value.split(' ')[0] : value,
+        i18n.dateFormat,
+        new Date()
+      );
 
-      if (isValidDateFromString(value, day)) {
-        handleDateChange(day, event);
+      let isValidDay;
+
+      if (additionalContent) {
+        const cuttedValue = value.split(' ')[0];
+
+        isValidDay = isValidDateFromString(cuttedValue, day);
+
+        const validDay = new Date(cuttedValue);
+
+        if (isValidDay) {
+          handleDateChange(validDay, event);
+        } else {
+          reset && typeof reset === 'function' && reset();
+        }
       } else {
-        reset && typeof reset === 'function' && reset();
+        isValidDay = isValidDateFromString(value, day);
+
+        if (isValidDay) {
+          handleDateChange(day, event);
+        } else {
+          reset && typeof reset === 'function' && reset();
+        }
       }
 
       props.onInputBlur &&
@@ -393,6 +484,9 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         props.onChange(day?.toISOString(), event);
 
       onDateChange(day);
+
+      if (additionalContent) return;
+
       setFocusedDate(
         isAfter(setHours(day, 12), minDate) ? day : setDefaultFocusedDate
       );
@@ -400,6 +494,9 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     function handleDaySelection(day: Date, event: React.SyntheticEvent) {
       handleDateChange(day, event);
+
+      if (additionalContent) return;
+
       inputRef.current.focus();
     }
 
@@ -426,7 +523,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       setCalendarOpened(opened => !opened);
     }
 
-    const { placeholder, testId, ...rest } = props;
+    const { placeholder, testId, additionalContent, ...rest } = props;
     const other = omit(
       ['onDateChange', 'onInputChange', 'onInputBlur', 'onInputFocus'],
       rest
@@ -439,7 +536,13 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     const dateFormat = i18n.dateFormat;
 
-    const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
+    let inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
+
+    if (inputValue && props.additionalInputContent) {
+      inputValue = `${inputValue} ${props.additionalInputContent}`;
+    } else if (props.additionalInputContent) {
+      setChosenDate(new Date());
+    }
 
     const { floatingStyles, refs, elements, update } = useMagmaFloating();
 
@@ -522,6 +625,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
                   handleCloseButtonClick={handleCloseButtonClick}
                   calendarOpened={calendarOpened}
                   setDateFocused={setDateFocused}
+                  additionalContent={additionalContent}
                 />
               </DatePickerCalendar>
             </div>

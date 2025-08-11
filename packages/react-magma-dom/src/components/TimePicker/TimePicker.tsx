@@ -98,7 +98,6 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       helperMessage,
       inputStyle,
       labelPosition,
-      labelStyle,
       labelText,
       labelWidth,
       minutesStep,
@@ -137,6 +136,9 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         : i18n.timePicker.pmButtonAriaLabel
     }`;
 
+    console.log(props.value);
+    console.log(time);
+
     return (
       <FormFieldContainer
         {...other}
@@ -153,6 +155,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           isInverse={isInverse}
           hasError={!!errorMessage}
           theme={theme}
+          style={inputStyle}
         >
           <ScheduleIcon
             color={
