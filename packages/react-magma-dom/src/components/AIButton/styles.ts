@@ -6,7 +6,7 @@ const DEFAULT_STYLE_PROPS = {
   shape: 'fill',
   size: 'medium',
   textTransform: 'uppercase',
-  variant: 1,
+  variant: 'variantA',
 };
 
 export function buildPropsWithDefaultAIButtonStyles(props) {

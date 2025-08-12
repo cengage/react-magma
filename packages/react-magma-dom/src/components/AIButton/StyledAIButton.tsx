@@ -124,13 +124,13 @@ export const StyledAIButton = React.forwardRef<
         shape={shape || AIButtonShape.round}
         size={size || AIButtonSize.medium}
         variant={variant || AIButtonVariant.variantA}
+        aria-label={ariaLabel}
       >
         {React.Children.only(
           React.cloneElement(leadingIcon, {
             size: leadingIcon.props.size
               ? leadingIcon.props.size
               : getIconSize(size, theme),
-            'aria-label': ariaLabel,
             'aria-hidden': 'true',
           })
         )}

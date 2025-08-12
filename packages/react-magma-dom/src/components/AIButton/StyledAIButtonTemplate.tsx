@@ -147,7 +147,6 @@ export const buttonStyles = props => css`
   }
 
   > * {
-    position: 'relative';
     z-index: 2;
   }
 

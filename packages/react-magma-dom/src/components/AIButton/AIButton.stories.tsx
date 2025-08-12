@@ -29,8 +29,12 @@ const Template: Story<AIButtonProps> = args => (
       </ButtonGroup>
       <Spacer size={16} />
       <ButtonGroup>
-        <AIButton {...args} />
-        <AIButton variant={AIButtonVariant.variantB} {...args} />
+        <AIButton {...args} aria-label="AI Button Variant A" />
+        <AIButton
+          variant={AIButtonVariant.variantB}
+          {...args}
+          aria-label="AI Button Variant B"
+        />
       </ButtonGroup>
     </CardBody>
   </Card>
@@ -146,6 +150,7 @@ export const LoadingButton = args => {
           {...args}
           isLoading={isLoadingIcon}
           onClick={() => setIsLoadingIcon(true)}
+          aria-label="Loading Icon Button"
         />
       </ButtonGroup>
     </>

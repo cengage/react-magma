@@ -9,8 +9,8 @@ import { ButtonGroupContext } from '../ButtonGroup';
 import { StyledAIButton } from './StyledAIButton';
 
 export enum AIButtonVariant {
-  variantA = 1, //default
-  variantB = 2,
+  variantA = 'variantA', //default
+  variantB = 'variantB',
 }
 
 export enum AIButtonShape {
