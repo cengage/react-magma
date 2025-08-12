@@ -136,9 +136,6 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         : i18n.timePicker.pmButtonAriaLabel
     }`;
 
-    console.log(props.value);
-    console.log(time);
-
     return (
       <FormFieldContainer
         {...other}
