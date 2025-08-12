@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.17
+
+### Minor Changes
+
+- bb8306ebd: feat(Popover): Add the `alignment` prop and allow customization of the width.
+
 ## 4.10.0-next.16
 
 ### Patch Changes
