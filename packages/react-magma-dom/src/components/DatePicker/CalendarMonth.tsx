@@ -55,7 +55,6 @@ const MonthContainer = styled.div<{ isInverse?: boolean }>`
 const Table = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
-  margin-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
 const Th = styled.th<{ isInverse?: boolean }>`
@@ -63,26 +62,27 @@ const Th = styled.th<{ isInverse?: boolean }>`
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
-  font-size: ${props => props.theme.typeScale.size02.fontSize};
-  line-height: ${props => props.theme.typeScale.size02.lineHeight};
-  font-weight: normal;
+      : props.theme.colors.neutral500};
+  font-size: ${props => props.theme.typeScale.size01.fontSize};
+  line-height: ${props => props.theme.typeScale.size01.lineHeight};
   padding: 0;
   text-align: center;
+  font-weight: 600;
+  text-transform: uppercase;
 `;
 
 const HelperButton = styled.span<{ theme?: ThemeInterface }>`
   margin: ${props => props.theme.spaceScale.spacing02};
-  top: ${props => props.theme.spaceScale.spacing02};
+  top: -1px;
   position: absolute;
-  left: ${props => props.theme.spaceScale.spacing02};
+  left: 0;
   z-index: 2;
 `;
 
 const CloseButton = styled.span<{ theme?: ThemeInterface }>`
   position: absolute;
-  right: ${props => props.theme.spaceScale.spacing01};
-  top: ${props => props.theme.spaceScale.spacing01};
+  right: 3px;
+  top: 3px;
   z-index: 1;
 `;
 
@@ -128,7 +128,7 @@ const TodayWrapper = styled.div<{
   display: flex;
   align-items: center;
   margin-top: ${props => props.theme.spaceScale.spacing01};
-  margin-left: 38px;
+  margin-left: ${props => props.theme.spaceScale.spacing09};
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
   font-weight: 600;
@@ -287,7 +287,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                     aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
                     icon={<KeyboardIcon />}
                     onClick={context.showHelperInformation}
-                    size={ButtonSize.small}
                     onFocus={turnOffDateFocused}
                     type={ButtonType.button}
                     variant={ButtonVariant.link}
@@ -323,7 +322,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
               <CloseButton theme={theme}>
                 <IconButton
                   aria-label={i18n.datePicker.calendarCloseAriaLabel}
-                  color={ButtonColor.secondary}
+                  color={ButtonColor.subtle}
                   icon={<CloseIcon />}
                   onClick={props.handleCloseButtonClick}
                   size={ButtonSize.medium}

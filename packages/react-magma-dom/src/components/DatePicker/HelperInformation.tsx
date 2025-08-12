@@ -8,7 +8,7 @@ import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { Heading } from '../Heading';
 import { IconButton } from '../IconButton';
 import { TypographyVisualStyle } from '../Typography';
@@ -109,8 +109,8 @@ const StyledDescription = styled.p`
 
 const CloseButton = styled.span<{ theme?: ThemeInterface }>`
   position: absolute;
-  right: ${props => props.theme.spaceScale.spacing01};
-  top: ${props => props.theme.spaceScale.spacing01};
+  right: 3px;
+  top: 3px;
   z-index: 1;
 `;
 
@@ -150,6 +150,7 @@ export const HelperInformation: React.FunctionComponent<
         <CloseButton theme={theme}>
           <IconButton
             aria-label={i18n.datePicker.calendarCloseAriaLabel}
+            color={ButtonColor.subtle}
             icon={<CloseIcon />}
             isInverse={isInverse}
             size={ButtonSize.medium}

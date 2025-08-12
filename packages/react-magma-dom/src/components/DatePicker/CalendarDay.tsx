@@ -54,7 +54,7 @@ function buildCalendarDayColor(props) {
   if (!isDayInCurrentMonth && !disabled) {
     return theme.colors.neutral500;
   }
-  return { color: theme.colors.neutral700 };
+  return theme.colors.neutral700;
 }
 
 function buildTodayCalendarDayColor(props) {
@@ -99,7 +99,7 @@ const CalendarDayCell = styled.td<{
   padding: 0;
   position: relative;
   text-align: center;
-  width: 44px;
+  width: calc(${props => props.theme.spaceScale.spacing09} + 3px);
 `;
 
 const CalendarDayInner = styled.button<{
@@ -120,14 +120,13 @@ const CalendarDayInner = styled.button<{
   font-weight: ${props => (props.isSameDateAsToday ? 700 : 500)};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   display: flex;
-  height: calc(${props => props.theme.spaceScale.spacing09} - 4px);
+  height: ${props => props.theme.spaceScale.spacing09};
   justify-content: center;
-  margin: ${props => props.theme.spaceScale.spacing01};
   overflow: hidden;
   outline-offset: 0;
   position: relative;
   transition: background 0.5s ease-in-out 0s;
-  width: calc(${props => props.theme.spaceScale.spacing09} - 4px);
+  width: calc(${props => props.theme.spaceScale.spacing09} + 3px);
 
   &:focus {
     outline: 2px solid
@@ -136,6 +135,9 @@ const CalendarDayInner = styled.button<{
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
     border: ${props => buildChosenDayBorder(props)};
+    width: ${props => props.theme.spaceScale.spacing09};
+    height: calc(${props => props.theme.spaceScale.spacing09} - 4px);
+    margin: 1px;
   }
 
   &:before {

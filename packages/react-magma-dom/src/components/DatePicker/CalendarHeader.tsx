@@ -121,7 +121,7 @@ export const CalendarHeader = React.forwardRef<
           type={ButtonType.button}
           variant={ButtonVariant.link}
           onClick={onPrevMonthClick}
-          style={{ margin: '6px' }}
+          style={{ marginRight: theme.spaceScale.spacing02 }}
         />
         <IconButton
           aria-label={`${i18n.datePicker.nextMonthAriaLabel} ${format(
@@ -134,7 +134,7 @@ export const CalendarHeader = React.forwardRef<
           type={ButtonType.button}
           variant={ButtonVariant.link}
           onClick={onNextMonthClick}
-          style={{ margin: '6px' }}
+          style={{ marginLeft: theme.spaceScale.spacing02 }}
         />
       </NavigationWrapper>
     </CalendarHeaderContainer>
