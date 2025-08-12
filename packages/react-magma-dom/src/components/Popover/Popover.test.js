@@ -4,7 +4,7 @@ import { act, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FilterAltIcon } from 'react-magma-icons';
 
-import { PopoverPosition } from './Popover';
+import { PopoverAlignment, PopoverPosition } from './Popover';
 import { PopoverHeader, PopoverFooter } from './PopoverSection';
 import { Button } from '../Button';
 
@@ -615,5 +615,73 @@ describe('Popover', () => {
 
     expect(popoverContent).toBeInTheDocument();
     expect(popoverContent).toMatchSnapshot();
+  });
+
+  describe('PopoverAlignment', () => {
+    it('should render Popover with default alignment', () => {
+      const { getByTestId, container } = render(
+        <Popover>
+          <PopoverTrigger />
+          <PopoverContent>
+            <span>Content</span>
+          </PopoverContent>
+        </Popover>
+      );
+      const popoverTrigger = container.querySelector('button');
+      userEvent.click(popoverTrigger);
+
+      const popoverContent = getByTestId('popoverContent');
+      expect(popoverContent).toBeInTheDocument();
+
+      const popoverArrow = getByTestId('popoverArrow');
+      expect(popoverArrow).toHaveAttribute('data-popover-placement', 'bottom');
+    });
+
+    it('should render Popover with start alignment and bottom position', () => {
+      const { getByTestId, container } = render(
+        <Popover
+          alignment={PopoverAlignment.start}
+          position={PopoverPosition.bottom}
+        >
+          <PopoverTrigger />
+          <PopoverContent>
+            <span>Content</span>
+          </PopoverContent>
+        </Popover>
+      );
+      const popoverTrigger = container.querySelector('button');
+      userEvent.click(popoverTrigger);
+
+      const popoverContent = getByTestId('popoverContent');
+      expect(popoverContent).toBeInTheDocument();
+
+      const popoverArrow = getByTestId('popoverArrow');
+      expect(popoverArrow).toHaveAttribute(
+        'data-popover-placement',
+        'bottom-start'
+      );
+    });
+
+    it('should render Popover with end alignment and top position', () => {
+      const { getByTestId, container } = render(
+        <Popover
+          alignment={PopoverAlignment.end}
+          position={PopoverPosition.top}
+        >
+          <PopoverTrigger />
+          <PopoverContent>
+            <span>Content</span>
+          </PopoverContent>
+        </Popover>
+      );
+      const popoverTrigger = container.querySelector('button');
+      userEvent.click(popoverTrigger);
+
+      const popoverContent = getByTestId('popoverContent');
+      expect(popoverContent).toBeInTheDocument();
+
+      const popoverArrow = getByTestId('popoverArrow');
+      expect(popoverArrow).toHaveAttribute('data-popover-placement', 'top-end');
+    });
   });
 });

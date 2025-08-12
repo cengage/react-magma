@@ -5,6 +5,7 @@ props:
   - Popover
   - PopoverProps
   - PopoverPosition
+  - PopoverAlignment
   - PopoverApi
   - PopoverTrigger
   - PopoverTriggerProps
@@ -280,6 +281,53 @@ export function Example() {
         </PopoverTrigger>
         <PopoverContent>
           <div>This popover appears above the trigger</div>
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+}
+```
+
+## Popover Alignment
+
+The `alignment` prop sets the default alignment of the `Popover` in relation to its trigger. It uses <Link to='https://floating-ui.com/docs/useFloating#placement'>floating-ui's/placement</Link> to align the `Popover` content to the `center`, `left` or `right` side of Popover trigger button.
+The available options are `PopoverAlignment.center` (default), `PopoverAlignment.start`, and `PopoverAlignment.end`.
+
+```tsx
+import React from 'react';
+
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverAlignment,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <Popover alignment={PopoverAlignment.center}>
+        <PopoverTrigger aria-label="Open center popover alignment">
+          Center alignment Popover
+        </PopoverTrigger>
+        <PopoverContent>
+          <div>This popover is aligned in the center of the trigger</div>
+        </PopoverContent>
+      </Popover>
+      <Popover alignment={PopoverAlignment.start}>
+        <PopoverTrigger aria-label="Open start popover alignment">
+          Start alignment Popover
+        </PopoverTrigger>
+        <PopoverContent>
+          <div>This popover is aligned on the left side of the trigger</div>
+        </PopoverContent>
+      </Popover>
+      <Popover alignment={PopoverAlignment.end}>
+        <PopoverTrigger aria-label="Open end popover alignment">
+          End alignment Popover
+        </PopoverTrigger>
+        <PopoverContent>
+          <div>This popover is aligned on the right side of the trigger</div>
         </PopoverContent>
       </Popover>
     </div>
