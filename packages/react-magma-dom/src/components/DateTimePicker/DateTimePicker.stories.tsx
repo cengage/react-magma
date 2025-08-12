@@ -50,5 +50,4 @@ Default.args = {
   minDate: today,
   errorMessage: '',
   helperMessage: '',
-  defaultDate: today,
 };

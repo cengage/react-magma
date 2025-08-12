@@ -212,6 +212,9 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                   ))}
               </tbody>
             </Table>
+
+            {props.additionalContent && props.additionalContent}
+
             <Tooltip
               content={'Keyboard instructions'}
               tooltipStyle={{ position: 'fixed' }}
@@ -243,7 +246,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             </CloseButton>
           </MonthContainer>
         )}
-        {props.additionalContent && props.additionalContent}
       </CalendarContainer>
     </>
   );
