@@ -113,6 +113,7 @@ export const defaultI18n: I18nInterface = {
     disabledDayAriaLabel: 'Not Available. ',
     selectedDayAriaLabel: '(Selected)',
     todayAriaLabel: '(Today)',
+    today: 'Today',
     navigateToCurrentDateAriaLabel: 'Navigate to current month and year',
     helpModal: {
       header: 'Keyboard Shortcuts',

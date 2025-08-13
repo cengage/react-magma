@@ -69,6 +69,7 @@ const Th = styled.th<{ isInverse?: boolean }>`
   text-align: center;
   font-weight: 600;
   text-transform: uppercase;
+  padding-bottom: ${props => props.theme.spaceScale.spacing03};
 `;
 
 const HelperButton = styled.span<{ theme?: ThemeInterface }>`
@@ -283,6 +284,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
               >
                 <HelperButton theme={theme}>
                   <IconButton
+                    color={ButtonColor.subtle}
                     ref={helperButtonRef}
                     aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
                     icon={<KeyboardIcon />}
@@ -316,7 +318,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                   to="#"
                   hasUnderline={false}
                 >
-                  Today
+                  {i18n.datePicker.today}
                 </Hyperlink>
               </TodayWrapper>
               <CloseButton theme={theme}>

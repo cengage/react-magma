@@ -96,7 +96,8 @@ const StyledContent = styled.div<{
       : props?.theme?.colors?.neutral700};
 
   h2 {
-    margin: 16px 0 12px 0;
+    margin: ${props => props.theme?.spaceScale.spacing05} 0
+      ${props => props.theme?.spaceScale.spacing04} 0;
   }
   padding: 0 ${props => props.theme?.spaceScale.spacing05}
     ${props => props.theme?.spaceScale.spacing02};
@@ -131,6 +132,7 @@ export const HelperInformation: React.FunctionComponent<
         theme={theme}
       >
         <IconButton
+          color={ButtonColor.subtle}
           icon={<ArrowBackIcon />}
           isInverse={isInverse}
           size={ButtonSize.small}

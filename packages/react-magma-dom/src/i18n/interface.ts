@@ -120,6 +120,7 @@ export interface I18nInterface {
     disabledDayAriaLabel: string;
     selectedDayAriaLabel: string;
     todayAriaLabel: string;
+    today: string;
     navigateToCurrentDateAriaLabel: string;
 
     helpModal: {
