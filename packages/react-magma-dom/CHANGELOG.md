@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.18
+
+### Minor Changes
+
+- 6893e3223: feat (AIButton): Create `AIButton` component.
+
 ## 4.10.0-next.17
 
 ### Minor Changes

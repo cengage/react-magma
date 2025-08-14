@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.2.0-next.11
+
+### Patch Changes
+
+- 8887aeeba: chore: fix instructions and update message for `LineChart`
+- Updated dependencies [6893e3223]
+  - react-magma-dom@4.10.0-next.18
+
 ## 5.2.0-next.10
 
 ### Minor Changes
