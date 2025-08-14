@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Button, ButtonColor, ButtonSize, styled, ThemeContext } from '../..';
+import styled from '@emotion/styled';
+
+import { Button, ButtonColor, ButtonSize, ThemeContext } from '../..';
 import { DatePicker } from '../DatePicker';
 import { LabelPosition } from '../Label';
 import { TimePicker } from '../TimePicker';
@@ -85,6 +87,10 @@ export interface DateTimePickerProps
    */
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
   /**
+   * Event that will fire when time is changed
+   */
+  onTimeChange?: (time: string) => void;
+  /**
    * Event that will fire when the text input loses focus
    */
   onInputBlur?: (event: React.FocusEvent) => void;
@@ -98,8 +104,11 @@ export interface DateTimePickerProps
   onInputFocus?: (event: React.FocusEvent) => void;
 }
 
-const DoneButtonWrapper = styled.div`
-  background-color: ${props => props.theme.colors.neutral200};
+const DoneButtonWrapper = styled.div<{ isInverse?: boolean }>`
+  background-color: ${props =>
+    props.isInverse
+      ? props.theme.colors.primary600
+      : props.theme.colors.neutral200};
   padding: 16px;
   margin: 0 -16px -8px;
   display: flex;
@@ -110,7 +119,7 @@ export const DateTimePicker = React.forwardRef<
   HTMLInputElement,
   DateTimePickerProps
 >((props, forwardedRef) => {
-  const { testId, ...other } = props;
+  const { onTimeChange, value, defaultDate, testId, ...other } = props;
 
   const getTimeFromDate = (date: Date | number) => {
     if (!date) return '';
@@ -123,7 +132,7 @@ export const DateTimePicker = React.forwardRef<
     });
   };
 
-  const initialTime = getTimeFromDate(props.defaultDate);
+  const initialTime = getTimeFromDate(value ?? defaultDate);
 
   const theme = React.useContext(ThemeContext);
   const datePickerApiRef = React.useRef(null);
@@ -150,14 +159,14 @@ export const DateTimePicker = React.forwardRef<
       return;
     }
 
-    const cuttedValue = value.split(' ');
+    const timeMatch = value.match(/\b(\d{1,2}:\d{2}\s?[AP]M)\b/i);
 
-    const index = cuttedValue.findIndex(item => item.includes(':'));
-
-    if (index > -1) {
-      setAdditionalInputContent(cuttedValue.slice(index).join(' '));
-      previousTime.current = cuttedValue.slice(index).join(' ');
+    if (timeMatch) {
+      const timeValue = timeMatch[1];
+      setAdditionalInputContent(timeValue);
+      previousTime.current = timeValue;
     } else {
+      const cuttedValue = value.split(' ');
       if (cuttedValue[0] && cuttedValue[0] !== '') {
         setAdditionalInputContent(previousTime.current);
       } else {
@@ -167,10 +176,18 @@ export const DateTimePicker = React.forwardRef<
     }
   };
 
-  const onTimeChange = (value: string) => {
+  const onTimeHandleChange = (value: string) => {
     setAdditionalInputContent(value);
     previousTime.current = value;
+
+    onTimeChange && onTimeChange(value);
   };
+
+  React.useEffect(() => {
+    if (!value && !defaultDate) {
+      handleClear();
+    }
+  }, [value, defaultDate]);
 
   return (
     <DatePicker
@@ -184,11 +201,13 @@ export const DateTimePicker = React.forwardRef<
       onClear={handleClear}
       data-testid={testId}
       ref={forwardedRef}
+      value={value}
+      defaultDate={defaultDate}
       additionalContent={
         <>
           <TimePicker
             value={!additionalInputContent ? undefined : additionalInputContent}
-            onChange={onTimeChange}
+            onChange={onTimeHandleChange}
             labelPosition={LabelPosition.left}
             inputStyle={{ width: '100%' }}
             labelText="Time"
@@ -198,7 +217,7 @@ export const DateTimePicker = React.forwardRef<
               borderTop: `1px solid ${theme.colors.neutral300}`,
             }}
           />
-          <DoneButtonWrapper theme={theme}>
+          <DoneButtonWrapper theme={theme} isInverse={props.isInverse}>
             <Button
               onClick={handleDoneClick}
               size={ButtonSize.small}
