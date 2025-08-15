@@ -225,7 +225,11 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     }, []);
 
     React.useEffect(() => {
-      if (additionalContent && chosenDate) {
+      if (
+        additionalContent &&
+        chosenDate &&
+        inputRef.current !== document.activeElement
+      ) {
         if (!props.additionalInputContent && props.setAdditionalInputContent) {
           props.setAdditionalInputContent('12:00 AM');
         }
@@ -366,6 +370,12 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         isValidDay = isValidDateFromString(cuttedValue, day);
 
         const validDay = new Date(cuttedValue);
+
+        const pattern = /^\d{2}\/\d{2}\/\d{4}$/;
+
+        if (pattern.test(cuttedValue)) {
+          setChosenDate(validDay);
+        }
 
         props.onChange &&
           typeof props.onChange === 'function' &&

@@ -119,7 +119,7 @@ export const DateTimePicker = React.forwardRef<
   HTMLInputElement,
   DateTimePickerProps
 >((props, forwardedRef) => {
-  const { onTimeChange, value, defaultDate, testId, ...other } = props;
+  const { onTimeChange, value, defaultDate, ...other } = props;
 
   const getTimeFromDate = (date: Date | number) => {
     if (!date) return '';
@@ -186,6 +186,11 @@ export const DateTimePicker = React.forwardRef<
   React.useEffect(() => {
     if (!value && !defaultDate) {
       handleClear();
+    } else if (value) {
+      const newTime = getTimeFromDate(value);
+
+      setAdditionalInputContent(newTime);
+      previousTime.current = newTime;
     }
   }, [value, defaultDate]);
 
@@ -199,7 +204,6 @@ export const DateTimePicker = React.forwardRef<
       setAdditionalInputContent={setAdditionalInputContent}
       isClearable
       onClear={handleClear}
-      data-testid={testId}
       ref={forwardedRef}
       value={value}
       defaultDate={defaultDate}

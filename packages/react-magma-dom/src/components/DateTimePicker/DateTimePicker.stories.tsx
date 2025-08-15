@@ -108,9 +108,10 @@ export const ClearingTheDateAndTime = args => {
 export function Example() {
   return (
     <DateTimePicker
-      defaultDate={new Date(2025, 1, 0, 8, 20)}
-      labelText="Selected Date"
-      value={new Date(2000, 1, 0, 10, 30)}
+      labelText="Date Time Picker Label"
+      value={new Date('2024-03-15 10:30:00')}
+      helperMessage="asdasdasd"
+      messageStyle={{ fontSize: '24px' }}
     />
   );
 }
