@@ -121,6 +121,7 @@ const BackToCalendarWrapper = styled.span<{
   theme?: ThemeInterface;
   isInverse?: boolean;
 }>`
+  margin-top: ${props => props.theme.spaceScale.spacing03};
   font-weight: 600;
   font-size: ${props => props.theme.typeScale.size02.fontSize};
   line-height: ${props => props.theme.typeScale.size02.lineHeight};
