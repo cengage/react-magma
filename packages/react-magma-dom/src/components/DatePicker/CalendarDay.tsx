@@ -118,7 +118,6 @@ const CalendarDayCell = styled.td<{
   padding: 0;
   position: relative;
   text-align: center;
-  width: 43px;
 `;
 
 const CalendarDayInner = styled.button<{

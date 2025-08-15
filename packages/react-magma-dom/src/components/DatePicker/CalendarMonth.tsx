@@ -106,6 +106,7 @@ const HeaderWrapper = styled.div<{
         ? props.theme.colors.primary400
         : props.theme.colors.neutral300};
   width: 100%;
+  height: 44px;
 `;
 
 const Divider = styled.span<{

@@ -122,6 +122,7 @@ export interface I18nInterface {
     todayAriaLabel: string;
     today: string;
     navigateToCurrentDateAriaLabel: string;
+    backToCalendarAriaLabel: string;
 
     helpModal: {
       header: string;

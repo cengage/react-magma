@@ -10,6 +10,7 @@ import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { Heading } from '../Heading';
+import { Hyperlink, HyperlinkIconPosition } from '../Hyperlink';
 import { IconButton } from '../IconButton';
 import { TypographyVisualStyle } from '../Typography';
 
@@ -71,10 +72,6 @@ const StyledPopup = styled.div`
 const StyledNavContainer = styled.div<{
   isInverse?: boolean;
 }>`
-  background: ${props =>
-    props.isInverse
-      ? props.theme.colors.primary600
-      : props.theme.colors.neutral200};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -84,6 +81,11 @@ const StyledNavContainer = styled.div<{
       props.isInverse
         ? props.theme.colors.primary400
         : props.theme.colors.neutral300};
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.primary600
+      : props.theme.colors.neutral200};
+  height: 44px;
 `;
 const StyledContent = styled.div<{
   isInverse?: boolean;
@@ -115,6 +117,30 @@ const CloseButton = styled.span<{ theme?: ThemeInterface }>`
   z-index: 1;
 `;
 
+const BackToCalendarWrapper = styled.span<{
+  theme?: ThemeInterface;
+  isInverse?: boolean;
+}>`
+  font-weight: 600;
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.tertiary500
+      : props.theme.colors.primary500};
+
+  &:hover {
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.primary600};
+  }
+  svg {
+    height: 20px;
+    width: 20px;
+  }
+`;
+
 export const HelperInformation: React.FunctionComponent<
   HelperInformationProps
 > = (props: HelperInformationProps) => {
@@ -131,24 +157,20 @@ export const HelperInformation: React.FunctionComponent<
         isInverse={isInverse}
         theme={theme}
       >
-        <IconButton
-          color={ButtonColor.subtle}
-          icon={<ArrowBackIcon />}
-          isInverse={isInverse}
-          size={ButtonSize.small}
-          variant={ButtonVariant.link}
-          onClick={props.onReturnBack}
-          style={{
-            fontWeight: 600,
-            fontSize: theme.typeScale.size02.fontSize,
-            lineHeight: theme.typeScale.size02.lineHeight,
-            color: isInverse
-              ? theme.colors.tertiary500
-              : theme.colors.primary500,
-          }}
-        >
-          Back to Calendar
-        </IconButton>
+        <BackToCalendarWrapper isInverse={isInverse} theme={theme}>
+          <Hyperlink
+            aria-label={i18n.datePicker.backToCalendarAriaLabel}
+            target="_self"
+            to="#"
+            icon={<ArrowBackIcon />}
+            iconPosition={HyperlinkIconPosition.left}
+            hasUnderline={false}
+            isInverse={isInverse}
+            onClick={props.onReturnBack}
+          >
+            Back to Calendar
+          </Hyperlink>
+        </BackToCalendarWrapper>
         <CloseButton theme={theme}>
           <IconButton
             aria-label={i18n.datePicker.calendarCloseAriaLabel}
