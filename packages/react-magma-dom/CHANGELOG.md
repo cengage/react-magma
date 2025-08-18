@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.19
+
+### Minor Changes
+
+- 3788a341e: feat (Date Picker): Add new button `Today` for navigation. Add and updated aria-label attributes for components. Update styles.
+
 ## 4.10.0-next.18
 
 ### Minor Changes
