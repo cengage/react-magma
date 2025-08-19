@@ -46,6 +46,10 @@ export const StyledSelect = styled.div<{ isInverse: boolean; theme: Theme }>`
     ul[role='listbox'] {
       scrollbar-color: ${props =>
         props.isInverse ? 'rgba(0, 0, 0, 0.4) rgba(0, 0, 0, 0.2)' : 'auto'};
+
+      li {
+        margin: 0;
+      }
     }
   }
 `;
