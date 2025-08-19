@@ -36,6 +36,7 @@ const ChildrenContainer = styled.div`
 
 interface SelectTriggerButtonInterface<T> {
   ariaDescribedBy?: string;
+  ariaLabel?: string;
   children: React.ReactNode | React.ReactNode[];
   customComponents?: SelectComponents<T>;
   disabled?: boolean;
@@ -50,6 +51,7 @@ interface SelectTriggerButtonInterface<T> {
 export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
   const {
     ariaDescribedBy,
+    ariaLabel,
     children,
     customComponents,
     hasError,
@@ -71,6 +73,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
     <div ref={setReference}>
       <StyledButton
         {...toggleButtonProps}
+        aria-label={ariaLabel}
         aria-describedby={ariaDescribedBy}
         data-testid="selectTriggerButton"
         disabled={disabled}

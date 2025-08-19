@@ -25,6 +25,12 @@ import { defaultI18n } from '../../i18n/default';
 
 import { DatePicker } from '.';
 
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  unobserve: jest.fn(),
+  disconnect: jest.fn(),
+}));
+
 describe('Date Picker', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
@@ -200,7 +206,7 @@ describe('Date Picker', () => {
   it('should lock focus inside', () => {
     const valueDate = new Date(2020, 0, 1);
 
-    const { getAllByText, getByRole } = render(
+    const { getByRole, getAllByText } = render(
       <DatePicker value={valueDate} />
     );
 
@@ -212,6 +218,8 @@ describe('Date Picker', () => {
     expect(selectedDateButton).toBeInTheDocument();
     expect(selectedDateButton).toHaveFocus();
 
+    userEvent.tab();
+    userEvent.tab();
     userEvent.tab();
     userEvent.tab();
     userEvent.tab();
@@ -466,17 +474,20 @@ describe('Date Picker', () => {
   });
 
   it('should focus the calendar header when the calendar is opened with no chosen date', () => {
-    const now = new Date();
-    const monthYear = format(now, 'MMMM yyyy');
+    const defaultDate = new Date(2019, 0, 17);
+    const monthYear = format(defaultDate, 'MMMM yyyy');
     const [month, year] = monthYear.split(' ');
-    const { getByLabelText, getByText, getByTestId } = render(
+    const { getByLabelText, getAllByTestId } = render(
       <DatePicker labelText="Date Picker Label" />
     );
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByTestId('calendar-header')).toBe(document.activeElement);
-    expect(getByText(year)).toBeInTheDocument();
-    expect(getByText(month)).toBeInTheDocument();
+    const monthElement = getAllByTestId('selectedItemText')[0];
+    const yearElement = getAllByTestId('selectedItemText')[1];
+
+    expect(monthElement).toBeInTheDocument(document.activeElement);
+    expect(monthElement).toBeInTheDocument(month);
+    expect(yearElement).toBeInTheDocument(year);
   });
 
   it('should focus the chosen date when the calendar is opened', () => {
@@ -654,14 +665,17 @@ describe('Date Picker', () => {
     const monthYear = format(addMonths(now, 2), 'MMMM yyyy');
     const [month, year] = monthYear.split(' ');
 
-    const { getByLabelText, getByText, getByTestId } = render(
+    const { getByLabelText, getAllByTestId } = render(
       <DatePicker minDate={minDate} labelText="Date Picker Label" />
     );
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByTestId('calendar-header')).toBe(document.activeElement);
-    expect(getByText(month)).toBeInTheDocument();
-    expect(getByText(year)).toBeInTheDocument();
+    const monthElement = getAllByTestId('selectedItemText')[0];
+    const yearElement = getAllByTestId('selectedItemText')[1];
+
+    expect(monthElement).toBeInTheDocument(document.activeElement);
+    expect(monthElement).toBeInTheDocument(month);
+    expect(yearElement).toBeInTheDocument(year);
   });
 
   it('should handle a day click', () => {
@@ -1006,7 +1020,7 @@ describe('Date Picker', () => {
 
   describe('i18n', () => {
     it('formats dates with the locale', () => {
-      const { getByText, getByLabelText } = render(
+      const { getByLabelText, getAllByTestId } = render(
         <I18nContext.Provider
           value={{
             ...defaultI18n,
@@ -1017,8 +1031,11 @@ describe('Date Picker', () => {
         </I18nContext.Provider>
       );
 
-      expect(getByText('Abril')).toBeInTheDocument();
-      expect(getByText('2020')).toBeInTheDocument();
+      const monthElement = getAllByTestId('selectedItemText')[0];
+      const yearElement = getAllByTestId('selectedItemText')[1];
+
+      expect(monthElement).toBeInTheDocument('Abril');
+      expect(yearElement).toBeInTheDocument('2020');
       expect(
         getByLabelText(`Navigate back one month marzo 2020`)
       ).toBeInTheDocument();

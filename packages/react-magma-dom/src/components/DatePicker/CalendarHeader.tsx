@@ -13,21 +13,22 @@ import { CalendarContext } from './CalendarContext';
 import { i18nFormat as format } from './utils';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useForkedRef, usePrevious } from '../../utils';
 import { ButtonColor, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
+import { MonthPicker } from './MonthPicker';
+import { YearPicker } from './YearPicker';
 
 interface CalendarHeaderProps {
   focusHeader?: boolean;
   isInverse?: boolean;
+  monthContainerHeight?: number;
 }
 
 const CalendarHeaderContainer = styled.div`
   align-items: center;
   display: flex;
   padding: ${props => props.theme.spaceScale.spacing03} 0
-    ${props => props.theme.spaceScale.spacing03}
-    ${props => props.theme.spaceScale.spacing03};
+    ${props => props.theme.spaceScale.spacing03} 0;
   justify-content: space-between;
 `;
 
@@ -41,43 +42,28 @@ const CalendarHeaderText = styled.div<{ isInverse?: boolean }>`
   line-height: ${props => props.theme.typeScale.size03.lineHeight};
   text-align: center;
   justify-content: center;
-  align-items: center; 
-  font-weight: 600; 
-  
+  align-items: center;
+  font-weight: 600;
+
   &:focus {
-    outline: 2px solid
-      ${props =>
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+    outline: none;
+  }
 `;
 
-const MonthYearWrapper = styled.span`
-  display: inline-flex;
+const MonthYearWrapper = styled.div`
+  display: flex;
   gap: ${props => props.theme.spaceScale.spacing03};
 `;
 
-const NavigationWrapper = styled.span`
+const NavigationWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
-
-export const CalendarHeader = React.forwardRef<
-  HTMLDivElement,
+export const CalendarHeader: React.FunctionComponent<
   CalendarHeaderProps
->((props, forwardedRef) => {
-  const calendarHeader = React.useRef<HTMLDivElement>();
+> = props => {
   const { focusedDate, onPrevMonthClick, onNextMonthClick } =
     React.useContext(CalendarContext);
-  const prevFocusHeader = usePrevious(props.focusHeader);
-  const ref = useForkedRef(forwardedRef, calendarHeader);
-
-  React.useEffect(() => {
-    if (!prevFocusHeader && props.focusHeader) {
-      calendarHeader.current.focus();
-    }
-  }, [props.focusHeader]);
-
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
@@ -96,16 +82,22 @@ export const CalendarHeader = React.forwardRef<
   return (
     <CalendarHeaderContainer theme={theme}>
       <CalendarHeaderText
-        data-testid="calendar-header"
         tabIndex={-1}
         theme={theme}
-        ref={ref}
         isInverse={props.isInverse}
       >
         <Announce>
           <MonthYearWrapper theme={theme}>
-            <span>{month}</span>
-            <span>{year}</span>
+            <MonthPicker
+              currentMonth={month}
+              isInverse={props.isInverse}
+              monthContainerHeight={props.monthContainerHeight}
+            />
+            <YearPicker
+              currentYear={Number(year)}
+              isInverse={props.isInverse}
+              monthContainerHeight={props.monthContainerHeight}
+            />
           </MonthYearWrapper>
         </Announce>
       </CalendarHeaderText>
@@ -139,4 +131,4 @@ export const CalendarHeader = React.forwardRef<
       </NavigationWrapper>
     </CalendarHeaderContainer>
   );
-});
+};

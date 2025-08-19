@@ -1,48 +1,12 @@
 import React from 'react';
 
 import { render, fireEvent } from '@testing-library/react';
-import { format } from 'date-fns';
+import userEvent from '@testing-library/user-event';
 
 import { CalendarContext } from './CalendarContext';
 import { CalendarHeader } from './CalendarHeader';
 
 describe('Calendar Header', () => {
-  it('should focus the calendar header text', () => {
-    const now = new Date();
-    const month = format(now, 'MMMM');
-    const year = format(now, 'yyyy');
-
-    const { getByText, getByTestId, rerender } = render(
-      <CalendarContext.Provider
-        value={{
-          onPrevMonthClick: jest.fn(),
-          onNextMonthClick: jest.fn(),
-          focusedDate: now,
-        }}
-      >
-        <CalendarHeader focusHeader={false} />
-      </CalendarContext.Provider>
-    );
-
-    rerender(
-      <CalendarContext.Provider
-        value={{
-          onPrevMonthClick: jest.fn(),
-          onNextMonthClick: jest.fn(),
-          focusedDate: now,
-        }}
-      >
-        <CalendarHeader focusHeader />
-      </CalendarContext.Provider>
-    );
-
-    const monthElement = getByText(month);
-    const yearElement = getByText(year);
-    expect(monthElement).toBeInTheDocument();
-    expect(yearElement).toBeInTheDocument();
-    expect(getByTestId('calendar-header')).toBe(document.activeElement);
-  });
-
   it('should call to move forward a month when clicking the next month button', () => {
     const focusedDate = new Date(2019, 0, 17);
     const onNextMonthClick = jest.fn();
@@ -84,5 +48,61 @@ describe('Calendar Header', () => {
     );
     fireEvent.click(prevBtn);
     expect(onPrevMonthClick).toHaveBeenCalled();
+  });
+
+  it('should select the new month of the calendar.', () => {
+    const focusedDate = new Date(2019, 0, 17);
+    const onDateChange = jest.fn();
+
+    const { getByRole, getAllByTestId } = render(
+      <CalendarContext.Provider
+        value={{
+          onDateChange,
+          focusedDate,
+        }}
+      >
+        <CalendarHeader />
+      </CalendarContext.Provider>
+    );
+
+    const monthElement = getAllByTestId('selectedItemText')[0];
+    expect(monthElement).toBeInTheDocument();
+
+    userEvent.click(monthElement);
+    expect(getByRole('option', { name: 'February' })).toBeInTheDocument();
+    expect(getByRole('option', { name: 'March' })).toBeInTheDocument();
+    expect(getByRole('option', { name: 'April' })).toBeInTheDocument();
+
+    userEvent.click(getByRole('option', { name: 'April' }));
+    expect(onDateChange).toHaveBeenCalled();
+    expect(monthElement).toBeInTheDocument();
+  });
+
+  it('should select the new year of the calendar.', () => {
+    const focusedDate = new Date(2019, 0, 17);
+    const onDateChange = jest.fn();
+
+    const { getByRole, getAllByTestId } = render(
+      <CalendarContext.Provider
+        value={{
+          onDateChange,
+          focusedDate,
+        }}
+      >
+        <CalendarHeader />
+      </CalendarContext.Provider>
+    );
+
+    const yearElement = getAllByTestId('selectedItemText')[1];
+    expect(yearElement).toBeInTheDocument();
+
+    userEvent.click(yearElement);
+    expect(getByRole('option', { name: '2019' })).toBeInTheDocument();
+    expect(getByRole('option', { name: '2020' })).toBeInTheDocument();
+    expect(getByRole('option', { name: '2021' })).toBeInTheDocument();
+
+    userEvent.click(getByRole('option', { name: '2021' }));
+    expect(onDateChange).toHaveBeenCalled();
+    expect(yearElement).toBeInTheDocument();
   });
 });

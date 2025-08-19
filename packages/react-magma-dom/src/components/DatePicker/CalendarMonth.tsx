@@ -47,8 +47,7 @@ const MonthContainer = styled.div<{ isInverse?: boolean }>`
   text-align: center;
   user-select: none;
   vertical-align: top;
-  padding: ${props => props.theme.spaceScale.spacing09}
-    ${props => props.theme.spaceScale.spacing03}
+  padding: 45px ${props => props.theme.spaceScale.spacing03}
     ${props => props.theme.spaceScale.spacing03};
 `;
 
@@ -61,7 +60,7 @@ const Th = styled.th<{ isInverse?: boolean }>`
   border: 0;
   color: ${props =>
     props.isInverse
-      ? props.theme.colors.neutral100
+      ? `rgba(255, 255, 255, 0.70)`
       : props.theme.colors.neutral500};
   font-size: ${props => props.theme.typeScale.size01.fontSize};
   line-height: ${props => props.theme.typeScale.size01.lineHeight};
@@ -151,14 +150,30 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   props: CalendarMonthProps
 ) => {
   const lastFocus = React.useRef<any>();
-  const headingRef = React.useRef<any>();
   const helperButtonRef = React.useRef<any>();
   const context = React.useContext(CalendarContext);
   const [dayFocusable, setDayFocusable] = React.useState<boolean>(false);
-  const [focusHeader, setFocusHeader] = React.useState<boolean>(false);
   const prevCalendarOpened = usePrevious(props.calendarOpened);
+  const focusTrapElement = useFocusLock(props.calendarOpened);
+  const monthContainerRef = React.useRef<HTMLDivElement>(null);
+  const [monthContainerHeight, setMonthContainerHeight] =
+    React.useState<number>(0);
 
-  const focusTrapElement = useFocusLock(props.calendarOpened, headingRef);
+  React.useEffect(() => {
+    if (!monthContainerRef.current) return;
+
+    const observer = new ResizeObserver(entries => {
+      for (const entry of entries) {
+        setMonthContainerHeight(entry.contentRect.height);
+      }
+    });
+
+    observer.observe(monthContainerRef.current);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   React.useEffect(() => {
     if (!prevCalendarOpened && props.calendarOpened) {
@@ -168,14 +183,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
         setDayFocusable(true);
         context.setDateFocused(true);
       }
-    }
-
-    if (props.calendarOpened && !props.focusOnOpen && !focusHeader) {
-      setFocusHeader(true);
-    }
-
-    if (prevCalendarOpened && !props.calendarOpened) {
-      setFocusHeader(false);
     }
   }, [props.calendarOpened, props.focusOnOpen]);
 
@@ -246,10 +253,10 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             data-visible="true"
             isInverse={context.isInverse}
             theme={theme}
+            ref={monthContainerRef}
           >
             <CalendarHeader
-              ref={headingRef}
-              focusHeader={focusHeader}
+              monthContainerHeight={monthContainerHeight}
               isInverse={context.isInverse}
             />
 

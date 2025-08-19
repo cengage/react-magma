@@ -292,9 +292,9 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       );
     }
 
-    function onDateChange(day: Date) {
+    function onDateChange(day: Date, openCalendar?: boolean) {
       setChosenDate(day);
-      setCalendarOpened(false);
+      setCalendarOpened(openCalendar ?? false);
     }
 
     function reset() {
@@ -338,7 +338,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       const day = parse(value, i18n.dateFormat, new Date());
 
       if (isValidDateFromString(value, day)) {
-        handleDateChange(day, event);
+        handleDateChange(day, event, calendarOpened);
       } else {
         reset && typeof reset === 'function' && reset();
       }
@@ -396,7 +396,8 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     function handleDateChange(
       day: Date,
-      event: React.SyntheticEvent | React.ChangeEvent
+      event: React.SyntheticEvent | React.ChangeEvent,
+      openCalendar?: boolean
     ) {
       props.onDateChange &&
         typeof props.onDateChange === 'function' &&
@@ -406,14 +407,18 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         typeof props.onChange === 'function' &&
         props.onChange(day?.toISOString(), event);
 
-      onDateChange(day);
+      onDateChange(day, openCalendar);
       setFocusedDate(
         isAfter(setHours(day, 12), minDate) ? day : setDefaultFocusedDate
       );
     }
 
-    function handleDaySelection(day: Date, event: React.SyntheticEvent) {
-      handleDateChange(day, event);
+    function handleDaySelection(
+      day: Date,
+      event: React.SyntheticEvent,
+      openCalendar?: boolean
+    ) {
+      handleDateChange(day, event, openCalendar);
       inputRef.current.focus();
     }
 

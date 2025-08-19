@@ -118,6 +118,10 @@ export interface SelectProps<T extends SelectOptions>
    */
   additionalContent?: React.ReactNode;
   /**
+   * @internal
+   */
+  ariaLabelTriggerButton?: string;
+  /**
    * Id of the element that describes the select trigger button
    */
   ariaDescribedBy?: string;
@@ -215,6 +219,7 @@ export const MultipleSelectionStateChangeTypes =
 
 export function Select<T>(props: XORSelectProps<T>) {
   const {
+    ariaLabelTriggerButton,
     containerStyle,
     id: defaultId,
     isMulti,
@@ -258,6 +263,7 @@ export function Select<T>(props: XORSelectProps<T>) {
       ) : (
         <InternalSelect
           ariaDescribedBy={descriptionId}
+          ariaLabelTriggerButton={ariaLabelTriggerButton}
           errorMessage={errorMessage}
           hasError={hasError}
           helperMessage={helperMessage}
