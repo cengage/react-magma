@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 12.0.0-next.3
+
+### Minor Changes
+
+- 4d04e84e8: feat (CarbonCharts): Add supporting custom colors.
+
 ## 12.0.0-next.2
 
 ### Patch Changes

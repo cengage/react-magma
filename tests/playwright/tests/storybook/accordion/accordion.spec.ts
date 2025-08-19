@@ -76,7 +76,8 @@ test.describe('Accordion', () => {
   });
 
   test('Default', async ({ page }) => {
-    await page.getByRole('link', { name: 'Default' }).click();
+    await page.getByRole('button', { name: 'Accordion' }).click();
+    await page.locator('#accordion--default').click();
 
     await expect(page).toHaveTitle('Accordion - Default ⋅ Storybook');
 
@@ -113,6 +114,7 @@ test.describe('Accordion', () => {
   });
 
   test('No Multi', async ({ page }) => {
+    await page.getByRole('button', { name: 'Accordion' }).click();
     await page.getByRole('link', { name: 'No Multi', exact: true }).click();
 
     await expect(page).toHaveTitle('Accordion - No Multi ⋅ Storybook');
@@ -139,6 +141,7 @@ test.describe('Accordion', () => {
   });
 
   test('Controlled', async ({ page }) => {
+    await page.getByRole('button', { name: 'Accordion' }).click();
     await page.getByRole('link', { name: 'Controlled', exact: true }).click();
 
     await expect(page).toHaveTitle('Accordion - Controlled ⋅ Storybook');
@@ -168,6 +171,7 @@ test.describe('Accordion', () => {
   });
 
   test('Controlled No Multi', async ({ page }) => {
+    await page.getByRole('button', { name: 'Accordion' }).click();
     await page.getByRole('link', { name: 'Controlled No Multi' }).click();
 
     await expect(page).toHaveTitle(
@@ -200,6 +204,7 @@ test.describe('Accordion', () => {
   });
 
   test('Expand Collapse all', async ({ page }) => {
+    await page.getByRole('button', { name: 'Accordion' }).click();
     await page.getByRole('link', { name: 'Expand Collapse All' }).click();
 
     await expect(page).toHaveTitle(
@@ -241,7 +246,8 @@ test.describe('Accordion', () => {
   });
 
   test('Inverse', async ({ page }) => {
-    await page.getByRole('link', { name: 'Inverse' }).click();
+    await page.getByRole('button', { name: 'Accordion' }).click();
+    await page.locator('#accordion--inverse').click();
 
     await expect(page).toHaveTitle('Accordion - Inverse ⋅ Storybook');
 
@@ -278,6 +284,7 @@ test.describe('Accordion', () => {
   });
 
   test('With Dropdown', async ({ page }) => {
+    await page.getByRole('button', { name: 'Accordion' }).click();
     await page.getByRole('link', { name: 'With Dropdown' }).click();
 
     const personalInfoButton = storyBookIframe.getByRole('button', {

@@ -1,5 +1,15 @@
 import './theme/styled';
 
+export {
+  AIButton,
+  AIButtonShape,
+  AIButtonSize,
+  AIButtonTextTransform,
+  AIButtonType,
+  AIButtonVariant,
+  IconOnlyAIButtonProps,
+  TextAIButtonProps,
+} from './components/AIButton';
 export { Alert, AlertProps } from './components/Alert';
 export { AlertVariant } from './components/AlertBase';
 export { Announce, AnnounceProps } from './components/Announce';
@@ -254,6 +264,7 @@ export {
   Popover,
   PopoverProps,
   PopoverPosition,
+  PopoverAlignment,
   PopoverApi,
 } from './components/Popover';
 export {

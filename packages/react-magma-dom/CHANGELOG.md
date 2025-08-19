@@ -1,5 +1,41 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.19
+
+### Minor Changes
+
+- 3788a341e: feat (Date Picker): Add new button `Today` for navigation. Add and updated aria-label attributes for components. Update styles.
+
+## 4.10.0-next.18
+
+### Minor Changes
+
+- 6893e3223: feat (AIButton): Create `AIButton` component.
+
+## 4.10.0-next.17
+
+### Minor Changes
+
+- bb8306ebd: feat(Popover): Add the `alignment` prop and allow customization of the width.
+
+## 4.10.0-next.16
+
+### Patch Changes
+
+- ca3025673: fix(Button): Fix styles for `round` button.
+
+## 4.10.0-next.15
+
+### Minor Changes
+
+- 660e33738: feat(TreeView): Add new expandIconStyles prop for TreeView. Add styles customization support and hoverColor prop for TreeItem.
+
+## 4.10.0-next.14
+
+### Minor Changes
+
+- 6cb134f09: feat(Popover): Add support programmatically opening.
+
 ## 4.10.0-next.13
 
 ### Minor Changes

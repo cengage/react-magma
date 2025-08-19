@@ -15,7 +15,7 @@ export function buildPropsWithDefaultButtonStyles(props) {
 export function buildButtonBorderRadius(props) {
   switch (props.shape) {
     case 'round':
-      return '100%';
+      return props.iconOnly ? '100%' : '2rem';
     case 'leftCap':
       return `${props.theme.borderRadius} 0 0 ${props.theme.borderRadius}`;
     case 'rightCap':

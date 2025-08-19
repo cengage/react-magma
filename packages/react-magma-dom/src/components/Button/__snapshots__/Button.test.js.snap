@@ -603,7 +603,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 100%;
+  border-radius: 2rem;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;
@@ -693,7 +693,7 @@ exports[`Button Base Button Snapshot should render with updated shape 1`] = `
   background: #3942B0;
   border: 0;
   border-color: #3942B0;
-  border-radius: 100%;
+  border-radius: 2rem;
   color: #FFFFFF;
   cursor: pointer;
   display: -webkit-inline-box;

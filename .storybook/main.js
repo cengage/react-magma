@@ -27,7 +27,7 @@ module.exports = {
     config.module.rules[0].exclude = /node_modules\/(?!(@carbon)\/).*/;
 
     config.module.rules.push({
-      test: /node_modules\/uuid\/.*\.js$/,
+      test: /node_modules\/(uuid|victory.*?)\/.*\.js$/,
       use: {
         loader: 'babel-loader',
         options: {
@@ -35,7 +35,8 @@ module.exports = {
           plugins: [
             '@babel/plugin-transform-optional-chaining',
             '@babel/plugin-transform-nullish-coalescing-operator',
-            '@babel/plugin-transform-logical-assignment-operators'
+            '@babel/plugin-transform-logical-assignment-operators',
+            '@babel/plugin-proposal-class-properties'
           ]
         }
       }
