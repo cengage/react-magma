@@ -217,7 +217,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       setCalendarOpened(false);
     }
 
-    const setFocusedCurrentDate = (event: React.SyntheticEvent) => {
+    const setFocusedTodayDate = (event: React.SyntheticEvent) => {
       const isKeyboardEvent = event.type === 'keydown';
 
       if (
@@ -484,7 +484,8 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           onNextMonthClick,
           onDateChange: handleDaySelection,
           setDateFocused,
-          setFocusedTodayDate: setFocusedCurrentDate,
+          setFocusedTodayDate,
+          setFocusedDate,
           onClose: closeHelperInformation,
         }}
       >
