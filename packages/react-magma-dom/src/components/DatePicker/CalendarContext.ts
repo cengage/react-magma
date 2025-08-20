@@ -21,6 +21,7 @@ export interface CalendarContextInterface {
   onPrevMonthClick: () => void;
   onNextMonthClick: () => void;
   setDateFocused: (value: boolean) => void;
+  setFocusedDate: (day: Date) => void;
   setFocusedTodayDate: (event: React.SyntheticEvent) => void;
 }
 
@@ -42,5 +43,6 @@ export const CalendarContext = React.createContext<CalendarContextInterface>({
   onPrevMonthClick: () => {},
   onNextMonthClick: () => {},
   setDateFocused: (value: boolean) => {},
+  setFocusedDate: (day: Date) => {},
   setFocusedTodayDate: (event: React.SyntheticEvent) => {},
 });
