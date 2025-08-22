@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-next.12
+
+### Patch Changes
+
+- 685b29014: fix (Date Picker): Update focus behaviour - shifting focus to selected date.
+
 ## 5.2.0-next.11
 
 ### Patch Changes

@@ -37,6 +37,7 @@
     "feat-treeview-dynamic-children",
     "fix-Accordion-Tooltip-Storybook-issues",
     "fix-Alert-add_aria-label-for-icon",
+    "fix-DatePicker-update-focus-behaviour",
     "fix-Drawer-missing-animation",
     "fix-Dropdown-nav-item-accessibility-issue",
     "fix-Input-not-properly-update-value",
