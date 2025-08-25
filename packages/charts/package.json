@@ -3,8 +3,12 @@
   "version": "12.0.0-next.4",
   "license": "MIT",
   "exports": {
-    ".": "./src",
-    "./src/components/CarbonChart/": "./styles.min.css"
+    ".": {
+      "import": "./dist/charts.modern.module.js",
+      "require": "./dist/charts.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/charts.css": "./dist/charts.css"
   },
   "main": "dist/charts.js",
   "umd:main": "dist/charts.umd.js",
