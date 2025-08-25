@@ -9,9 +9,10 @@ import { CalendarHeader } from './CalendarHeader';
 describe('Calendar Header', () => {
   it('should focus the calendar header text', () => {
     const now = new Date();
-    const monthYear = format(now, 'MMMM yyyy');
+    const month = format(now, 'MMMM');
+    const year = format(now, 'yyyy');
 
-    const { getByText, rerender } = render(
+    const { getByText, getByTestId, rerender } = render(
       <CalendarContext.Provider
         value={{
           onPrevMonthClick: jest.fn(),
@@ -35,11 +36,15 @@ describe('Calendar Header', () => {
       </CalendarContext.Provider>
     );
 
-    expect(getByText(monthYear)).toBe(document.activeElement.firstChild);
+    const monthElement = getByText(month);
+    const yearElement = getByText(year);
+    expect(monthElement).toBeInTheDocument();
+    expect(yearElement).toBeInTheDocument();
+    expect(getByTestId('calendar-header')).toBe(document.activeElement);
   });
 
   it('should call to move forward a month when clicking the next month button', () => {
-    const focusedDate = new Date('January 17, 2019');
+    const focusedDate = new Date(2019, 0, 17);
     const onNextMonthClick = jest.fn();
     const { getByLabelText } = render(
       <CalendarContext.Provider
@@ -53,13 +58,15 @@ describe('Calendar Header', () => {
       </CalendarContext.Provider>
     );
 
-    fireEvent.click(getByLabelText(/Next Month/i));
-
+    const nextBtn = getByLabelText(label =>
+      label.toLowerCase().includes('navigate forward one month')
+    );
+    fireEvent.click(nextBtn);
     expect(onNextMonthClick).toHaveBeenCalled();
   });
 
   it('should call to move backward a month when clicking the previous month button', () => {
-    const focusedDate = new Date('January 17, 2019');
+    const focusedDate = new Date(2019, 0, 17);
     const onPrevMonthClick = jest.fn();
     const { getByLabelText } = render(
       <CalendarContext.Provider
@@ -72,9 +79,10 @@ describe('Calendar Header', () => {
         <CalendarHeader focusHeader />
       </CalendarContext.Provider>
     );
-
-    fireEvent.click(getByLabelText(/Previous Month/i));
-
+    const prevBtn = getByLabelText(label =>
+      label.toLowerCase().includes('navigate back one month')
+    );
+    fireEvent.click(prevBtn);
     expect(onPrevMonthClick).toHaveBeenCalled();
   });
 });

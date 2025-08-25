@@ -3229,3 +3229,64 @@ export function TreeViewWithDifferentElements() {
     </TreeView>
   );
 }
+
+export function CustomExpandIconArrowAndTreeItemStyles() {
+  return (
+    <TreeView
+      initialExpandedItems={['Dogs', 'Cats']}
+      expandIconStyles={{ size: 32, color: '#3942B0' }}
+    >
+      <TreeItem
+        hoverColor="#ACF0C1"
+        icon={<FolderIcon aria-hidden />}
+        label="Mammals"
+        itemId="Mammals"
+        treeItemStyles={{
+          backgroundColor: '#E8E9F8',
+        }}
+      >
+        <TreeItem label="Dogs" itemId="Dogs" hoverColor="#ACF0C1">
+          <TreeItem
+            label="German Shepherd"
+            itemId="German Shepherd"
+            hoverColor="#ACF0C1"
+          />
+          <TreeItem
+            label="Labrador Retriever"
+            itemId="Labrador Retriever"
+            hoverColor="#ACF0C1"
+          />
+          <TreeItem
+            label="American Bully"
+            itemId="American Bully"
+            hoverColor="#ACF0C1"
+          />
+        </TreeItem>
+        <TreeItem label="Cats" itemId="Cats" hoverColor="#ACF0C1">
+          <TreeItem label="Siamese" itemId="Siamese" hoverColor="#ACF0C1" />
+          <TreeItem label="Persian" itemId="Persian" hoverColor="#ACF0C1" />
+          <TreeItem label="Bengal" itemId="Bengal" hoverColor="#ACF0C1" />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Birds" itemId="Birds">
+        <TreeItem label="Parrots" itemId="Parrots">
+          <TreeItem label="African Grey" itemId="African Grey" />
+          <TreeItem label="Cockatiel" itemId="Cockatiel" />
+          <TreeItem label="Budgerigar" itemId="Budgerigar" />
+        </TreeItem>
+        <TreeItem label="Birds of Prey" itemId="Birds of Prey">
+          <TreeItem label="Eagles" itemId="Eagles" />
+          <TreeItem label="Hawks" itemId="Hawks" />
+          <TreeItem label="Falcons" itemId="Falcons" />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem
+        label="Amphibians"
+        itemId="Amphibians"
+        treeItemStyles={{
+          backgroundColor: '#A6DEFF',
+        }}
+      />
+    </TreeView>
+  );
+}

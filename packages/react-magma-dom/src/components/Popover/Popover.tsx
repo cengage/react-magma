@@ -6,10 +6,10 @@ import {
   flip,
   autoUpdate,
   ReferenceType,
-  AlignedPlacement,
   arrow,
   shift,
   useFloating,
+  AlignedPlacement,
 } from '@floating-ui/react';
 
 import { useIsInverse } from '../../inverse';
@@ -21,8 +21,23 @@ export enum PopoverPosition {
   top = 'top',
 }
 
+export enum PopoverAlignment {
+  center = 'center', //default
+  start = 'start',
+  end = 'end',
+}
+
+export type PopoverPlacement =
+  | 'bottom'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'top'
+  | 'top-start'
+  | 'top-end';
+
 export interface PopoverApi {
   closePopoverManually(event): void;
+  openPopoverManually(event): void;
 }
 export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -81,6 +96,7 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
    * The ref object that allows Popover manipulation.
    * Actions available:
    * closePopoverManually(event): void - Closes the popover manually.
+   * openPopoverManually(event): void - Opens the popover manually.
    */
   apiRef?: React.MutableRefObject<PopoverApi | undefined>;
   /**
@@ -89,11 +105,16 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default false
    */
   focusTrap?: boolean;
+  /**
+   * Alignment of the popover content
+   * @default PopoverAlignment.center
+   */
+  alignment?: PopoverAlignment;
 }
 
 export interface PopoverContextInterface {
   floatingStyles?: React.CSSProperties;
-  position?: PopoverPosition;
+  position?: PopoverPlacement;
   closePopover?: (event: React.SyntheticEvent | React.KeyboardEvent) => void;
   popoverTriggerId?: React.MutableRefObject<string>;
   popoverContentId?: React.MutableRefObject<string>;
@@ -176,6 +197,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       id: defaultId,
       apiRef,
       focusTrap,
+      alignment = PopoverAlignment.center,
       ...other
     } = props;
 
@@ -184,6 +206,9 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
         apiRef.current = {
           closePopoverManually(event) {
             closePopover(event);
+          },
+          openPopoverManually(event) {
+            openPopover();
           },
         };
       }
@@ -268,21 +293,38 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       }
     }
 
-    const { refs, floatingStyles, placement, context, elements, update } =
-      useFloating({
-        //flip() - Changes the placement of the floating element to keep it in view.
-        //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
-        //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
-        //arrow() - Positions an arrow element pointing at the reference element, ensuring proper alignment.
-        middleware: [
-          flip(),
-          shift({ padding: 12 }),
-          offset(hasPointer ? 12 : 4),
-          arrow({ element: arrowRef }),
-        ],
-        placement: position as AlignedPlacement,
-        whileElementsMounted: autoUpdate,
-      });
+    const [placement, setPlacement] = React.useState('bottom');
+
+    function changePlacement(
+      position: PopoverPosition,
+      alignment: PopoverAlignment
+    ) {
+      const placementMap = new Map([
+        ['bottom-start', 'bottom-start'],
+        ['bottom-end', 'bottom-end'],
+        ['bottom-center', 'bottom'],
+        ['top-start', 'top-start'],
+        ['top-end', 'top-end'],
+        ['top-center', 'top'],
+      ]);
+      const contentPosition = `${position}-${alignment}`;
+      setPlacement(placementMap.get(contentPosition) ?? 'bottom');
+    }
+
+    const { refs, floatingStyles, context, elements, update } = useFloating({
+      //flip() - Changes the placement of the floating element to keep it in view.
+      //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
+      //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
+      //arrow() - Positions an arrow element pointing at the reference element, ensuring proper alignment.
+      middleware: [
+        flip(),
+        shift({ padding: 12 }),
+        offset(hasPointer ? 12 : 4),
+        arrow({ element: arrowRef }),
+      ],
+      placement: placement as AlignedPlacement,
+      whileElementsMounted: autoUpdate,
+    });
 
     React.useEffect(() => {
       const referenceElement = elements.reference;
@@ -292,6 +334,10 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
         return autoUpdate(referenceElement, floatingElement, update);
       }
     }, [isOpen, elements, update]);
+
+    React.useEffect(() => {
+      changePlacement(position, alignment);
+    }, [position, alignment]);
 
     const maxHeightString =
       typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
@@ -313,7 +359,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       <PopoverContext.Provider
         value={{
           floatingStyles,
-          position: placement as AlignedPlacement,
+          position: placement as PopoverPlacement,
           closePopover,
           popoverTriggerId,
           popoverContentId,

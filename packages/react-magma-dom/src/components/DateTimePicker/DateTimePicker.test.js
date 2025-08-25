@@ -348,7 +348,7 @@ describe('DateTimePicker', () => {
 
       expect(calendar).toBeVisible();
       expect(getByText('31')).toBeVisible();
-      expect(getByText('31')).toBeDisabled();
+      expect(getByText('31')).toHaveAttribute('aria-disabled', 'true');
     });
 
     it('should respect maxDate when provided', () => {
@@ -372,7 +372,7 @@ describe('DateTimePicker', () => {
 
       expect(calendar).toBeVisible();
       expect(getByText('31')).toBeVisible();
-      expect(getByText('31')).toBeDisabled();
+      expect(getByText('31')).toHaveAttribute('aria-disabled', 'true');
     });
   });
 

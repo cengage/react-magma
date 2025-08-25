@@ -270,6 +270,20 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       setCalendarOpened(false);
     }
 
+    const setFocusedTodayDate = (event: React.SyntheticEvent) => {
+      const isKeyboardEvent = event.type === 'keydown';
+
+      if (
+        (isKeyboardEvent &&
+          ((event as React.KeyboardEvent).key === ' ' ||
+            (event as React.KeyboardEvent).key === 'Enter')) ||
+        event.type === 'click'
+      ) {
+        event.preventDefault();
+        setFocusedDate(setDefaultFocusedDate());
+      }
+    };
+
     function setDateFromConsumer(date: Date): Date {
       const convertedDate = getDateFromString(date);
       const convertedMinDate = getDateFromString(props.minDate);
@@ -583,6 +597,8 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           onNextMonthClick,
           onDateChange: handleDaySelection,
           setDateFocused,
+          setFocusedTodayDate,
+          setFocusedDate,
           onClose: closeHelperInformation,
         }}
       >

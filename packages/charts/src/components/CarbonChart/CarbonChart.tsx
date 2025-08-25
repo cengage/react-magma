@@ -497,7 +497,6 @@ interface ColorsObject {
 export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
   (props, ref) => {
     const {
-      children,
       testId,
       isInverse: isInverseProp,
       type,
@@ -537,12 +536,15 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       const uniqueGroups = allGroups.filter(
         (g, index) => allGroups.indexOf(g) === index
       );
+      const customColors = ((options as any).colors as string[]) || [];
+      const allColors = [...customColors, ...theme.chartColors];
+      const allInverseColors = [...customColors, ...theme.chartColorsInverse];
 
       uniqueGroups.forEach((group, i) => {
-        if (uniqueGroups.length <= theme.chartColors.length) {
+        if (uniqueGroups.length <= allColors.length) {
           return (scaleColorsObj[group || ('null' as any)] = isInverse
-            ? theme.chartColorsInverse[i]
-            : theme.chartColors[i]);
+            ? allInverseColors[i]
+            : allColors[i]);
         }
         return {};
       });

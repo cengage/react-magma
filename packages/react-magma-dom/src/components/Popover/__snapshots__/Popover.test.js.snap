@@ -325,7 +325,7 @@ exports[`Popover should render the popover with target width 1`] = `
   white-space: nowrap;
   border: 1px solid #D4D4D4;
   width: 0px;
-  max-width: 300px;
+  max-width: 0px;
 }
 
 .emotion-3 {
@@ -383,7 +383,7 @@ exports[`Popover should render the popover with target width 1`] = `
   white-space: nowrap;
   border: 1px solid #D4D4D4;
   width: 0px;
-  max-width: 300px;
+  max-width: 0px;
 }
 
 .emotion-3 {
