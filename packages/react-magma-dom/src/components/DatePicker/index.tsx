@@ -419,11 +419,10 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         typeof props.onChange === 'function' &&
         props.onChange(day?.toISOString(), event);
 
-      onDateChange(day, openCalendar);
-      setFocusedDate(day);
-      // setFocusedDate(
-      //   isAfter(setHours(day, 12), minDate) ? day : setDefaultFocusedDate
-      // );
+      onDateChange(day);
+      setFocusedDate(
+        isAfter(setHours(day, 12), minDate) ? day : setDefaultFocusedDate
+      );
     }
 
     function handleDaySelection(
