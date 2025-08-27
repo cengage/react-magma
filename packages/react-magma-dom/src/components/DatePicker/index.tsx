@@ -33,6 +33,8 @@ import {
   getNextMonthFromDate,
   getPrevMonthFromDate,
   handleKeyPress,
+  setMonthForDate,
+  setYearForDate,
   i18nFormat as format,
   inDateRange,
 } from './utils';
@@ -217,7 +219,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       setCalendarOpened(false);
     }
 
-    const setFocusedCurrentDate = (event: React.SyntheticEvent) => {
+    const setFocusedTodayDate = (event: React.SyntheticEvent) => {
       const isKeyboardEvent = event.type === 'keydown';
 
       if (
@@ -290,6 +292,16 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       setFocusedDate(
         isSameMonth(newDate, minDate) ? setDefaultFocusedDate : newDate
       );
+    }
+
+    function setMonthFocusedDate(monthNumber: number) {
+      const newDate = setMonthForDate(focusedDate, monthNumber);
+      setFocusedDate(newDate);
+    }
+
+    function setYearFocusedDate(yearNumber: number) {
+      const newDate = setYearForDate(focusedDate, yearNumber);
+      setFocusedDate(newDate);
     }
 
     function onDateChange(day: Date, openCalendar?: boolean) {
@@ -408,18 +420,22 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         props.onChange(day?.toISOString(), event);
 
       onDateChange(day, openCalendar);
-      setFocusedDate(
-        isAfter(setHours(day, 12), minDate) ? day : setDefaultFocusedDate
-      );
+      setFocusedDate(day);
+      // setFocusedDate(
+      //   isAfter(setHours(day, 12), minDate) ? day : setDefaultFocusedDate
+      // );
     }
 
     function handleDaySelection(
       day: Date,
       event: React.SyntheticEvent,
-      openCalendar?: boolean
+      openCalendar?: boolean,
+      focusInput?: boolean
     ) {
       handleDateChange(day, event, openCalendar);
-      inputRef.current.focus();
+      if (focusInput ?? true) {
+        inputRef.current.focus();
+      }
     }
 
     function handleCalendarBlur(event: React.SyntheticEvent) {
@@ -489,7 +505,9 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           onNextMonthClick,
           onDateChange: handleDaySelection,
           setDateFocused,
-          setFocusedTodayDate: setFocusedCurrentDate,
+          setFocusedTodayDate,
+          setMonthFocusedDate,
+          setYearFocusedDate,
           onClose: closeHelperInformation,
         }}
       >

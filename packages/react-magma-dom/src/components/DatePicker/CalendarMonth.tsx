@@ -156,24 +156,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   const prevCalendarOpened = usePrevious(props.calendarOpened);
   const focusTrapElement = useFocusLock(props.calendarOpened);
   const monthContainerRef = React.useRef<HTMLDivElement>(null);
-  const [monthContainerHeight, setMonthContainerHeight] =
-    React.useState<number>(0);
-
-  React.useEffect(() => {
-    if (!monthContainerRef.current) return;
-
-    const observer = new ResizeObserver(entries => {
-      for (const entry of entries) {
-        setMonthContainerHeight(entry.contentRect.height);
-      }
-    });
-
-    observer.observe(monthContainerRef.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, []);
 
   React.useEffect(() => {
     if (!prevCalendarOpened && props.calendarOpened) {
@@ -255,10 +237,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             theme={theme}
             ref={monthContainerRef}
           >
-            <CalendarHeader
-              monthContainerHeight={monthContainerHeight}
-              isInverse={context.isInverse}
-            />
+            <CalendarHeader isInverse={context.isInverse} />
 
             <Table
               onBlur={onCalendarTableBlur}

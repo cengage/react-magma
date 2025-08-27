@@ -52,12 +52,12 @@ describe('Calendar Header', () => {
 
   it('should select the new month of the calendar.', () => {
     const focusedDate = new Date(2019, 0, 17);
-    const onDateChange = jest.fn();
+    const setMonthFocusedDate = jest.fn();
 
-    const { getByRole, getAllByTestId } = render(
+    const { getByTestId } = render(
       <CalendarContext.Provider
         value={{
-          onDateChange,
+          setMonthFocusedDate,
           focusedDate,
         }}
       >
@@ -65,27 +65,21 @@ describe('Calendar Header', () => {
       </CalendarContext.Provider>
     );
 
-    const monthElement = getAllByTestId('selectedItemText')[0];
-    expect(monthElement).toBeInTheDocument();
+    const month = getByTestId('month-picker');
+    expect(month).toBeInTheDocument();
 
-    userEvent.click(monthElement);
-    expect(getByRole('option', { name: 'February' })).toBeInTheDocument();
-    expect(getByRole('option', { name: 'March' })).toBeInTheDocument();
-    expect(getByRole('option', { name: 'April' })).toBeInTheDocument();
-
-    userEvent.click(getByRole('option', { name: 'April' }));
-    expect(onDateChange).toHaveBeenCalled();
-    expect(monthElement).toBeInTheDocument();
+    fireEvent.change(month, { target: { value: 5 } });
+    expect(setMonthFocusedDate).toHaveBeenCalledWith(5);
   });
 
   it('should select the new year of the calendar.', () => {
     const focusedDate = new Date(2019, 0, 17);
-    const onDateChange = jest.fn();
+    const setYearFocusedDate = jest.fn();
 
-    const { getByRole, getAllByTestId } = render(
+    const { getByTestId } = render(
       <CalendarContext.Provider
         value={{
-          onDateChange,
+          setYearFocusedDate,
           focusedDate,
         }}
       >
@@ -93,16 +87,10 @@ describe('Calendar Header', () => {
       </CalendarContext.Provider>
     );
 
-    const yearElement = getAllByTestId('selectedItemText')[1];
-    expect(yearElement).toBeInTheDocument();
+    const year = getByTestId('year-picker');
+    expect(year).toBeInTheDocument();
 
-    userEvent.click(yearElement);
-    expect(getByRole('option', { name: '2019' })).toBeInTheDocument();
-    expect(getByRole('option', { name: '2020' })).toBeInTheDocument();
-    expect(getByRole('option', { name: '2021' })).toBeInTheDocument();
-
-    userEvent.click(getByRole('option', { name: '2021' }));
-    expect(onDateChange).toHaveBeenCalled();
-    expect(yearElement).toBeInTheDocument();
+    fireEvent.change(year, { target: { value: 2030 } });
+    expect(setYearFocusedDate).toHaveBeenCalledWith(2030);
   });
 });

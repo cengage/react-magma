@@ -15,13 +15,16 @@ export interface CalendarContextInterface {
   onDateChange: (
     day: Date,
     event: React.SyntheticEvent,
-    openCalendar?: boolean
+    openCalendar?: boolean,
+    focusInput?: boolean
   ) => void;
   onKeyDown: (event: React.KeyboardEvent) => void;
   onPrevMonthClick: () => void;
   onNextMonthClick: () => void;
   setDateFocused: (value: boolean) => void;
   setFocusedTodayDate: (event: React.SyntheticEvent) => void;
+  setMonthFocusedDate: (monthNumber: number) => void;
+  setYearFocusedDate: (yearNumber: number) => void;
 }
 
 export const CalendarContext = React.createContext<CalendarContextInterface>({
@@ -36,11 +39,14 @@ export const CalendarContext = React.createContext<CalendarContextInterface>({
   onDateChange: (
     newDate: Date,
     event: React.SyntheticEvent,
-    openCalendar?: boolean
+    openCalendar?: boolean,
+    focusInput?: boolean
   ) => {},
   onKeyDown: (event: React.KeyboardEvent) => {},
   onPrevMonthClick: () => {},
   onNextMonthClick: () => {},
   setDateFocused: (value: boolean) => {},
   setFocusedTodayDate: (event: React.SyntheticEvent) => {},
+  setMonthFocusedDate: (monthNumber: number) => {},
+  setYearFocusedDate: (yearNumber: number) => {},
 });

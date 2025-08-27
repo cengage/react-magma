@@ -10,7 +10,7 @@ import {
 
 import { Announce } from '../Announce';
 import { CalendarContext } from './CalendarContext';
-import { i18nFormat as format } from './utils';
+import { i18nFormat as format, getCurrentMonthAndYear } from './utils';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonColor, ButtonType, ButtonVariant } from '../Button';
@@ -21,7 +21,6 @@ import { YearPicker } from './YearPicker';
 interface CalendarHeaderProps {
   focusHeader?: boolean;
   isInverse?: boolean;
-  monthContainerHeight?: number;
 }
 
 const CalendarHeaderContainer = styled.div`
@@ -66,18 +65,8 @@ export const CalendarHeader: React.FunctionComponent<
     React.useContext(CalendarContext);
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
-
   const locale = i18n.locale || enUS;
-
-  const currentMonth = format(focusedDate, 'MMMM yyyy', locale);
-
-  const capitalizeCurrentMonth =
-    currentMonth &&
-    currentMonth.charAt(0).toUpperCase() + currentMonth.slice(1);
-
-  const [month, year] = capitalizeCurrentMonth
-    ? capitalizeCurrentMonth.split(' ')
-    : ['', ''];
+  const monthAndYear = getCurrentMonthAndYear(focusedDate, locale);
 
   return (
     <CalendarHeaderContainer theme={theme}>
@@ -89,14 +78,12 @@ export const CalendarHeader: React.FunctionComponent<
         <Announce>
           <MonthYearWrapper theme={theme}>
             <MonthPicker
-              currentMonth={month}
+              currentMonth={monthAndYear.month}
               isInverse={props.isInverse}
-              monthContainerHeight={props.monthContainerHeight}
             />
             <YearPicker
-              currentYear={Number(year)}
+              currentYear={Number(monthAndYear.year)}
               isInverse={props.isInverse}
-              monthContainerHeight={props.monthContainerHeight}
             />
           </MonthYearWrapper>
         </Announce>

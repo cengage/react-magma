@@ -7,28 +7,20 @@ import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
 import { getCalendarMonthWeeks } from './utils';
 
-const originalResizeObserver = global.ResizeObserver;
-
 describe('Calendar Month', () => {
   beforeEach(() => {
     jest.useFakeTimers();
-    global.ResizeObserver = jest.fn().mockImplementation(() => ({
-      observe: jest.fn(),
-      unobserve: jest.fn(),
-      disconnect: jest.fn(),
-    }));
   });
 
   afterEach(() => {
     jest.useRealTimers();
     jest.resetAllMocks();
-    global.ResizeObserver = originalResizeObserver;
   });
 
   describe('focus trap', () => {
     it('should handle tab and loop it through the calendar month', () => {
       const focusedDate = new Date(2019, 0, 18);
-      const { getByLabelText, getByText, rerender } = render(
+      const { getByLabelText, getByText, getByTestId, rerender } = render(
         <CalendarContext.Provider
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
@@ -60,15 +52,15 @@ describe('Calendar Month', () => {
         </CalendarContext.Provider>
       );
 
-      expect(getByLabelText('January')).toHaveFocus();
+      expect(getByTestId('month-picker')).toHaveFocus();
       userEvent.tab();
-      expect(getByLabelText('2019')).toHaveFocus();
+      expect(getByTestId('year-picker')).toHaveFocus();
       userEvent.tab();
       expect(getByLabelText(/Navigate back/i)).toHaveFocus();
       userEvent.tab();
       expect(getByLabelText(/Navigate forward/i)).toHaveFocus();
       userEvent.tab();
-      expect(getByText(/18/i)).toHaveFocus();
+      expect(getByText('18')).toHaveFocus();
       userEvent.tab();
       expect(getByLabelText(/help/i)).toHaveFocus();
       userEvent.tab();
@@ -76,7 +68,7 @@ describe('Calendar Month', () => {
       userEvent.tab();
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
       userEvent.tab();
-      expect(getByLabelText('January')).toHaveFocus();
+      expect(getByTestId('month-picker')).toHaveFocus();
     });
 
     it('should not attempt to loop through the modal if there are no tabbable elements', () => {
@@ -106,7 +98,7 @@ describe('Calendar Month', () => {
 
     it('should handle shift + tab and loop it through the modal', () => {
       const focusedDate = new Date(2019, 0, 18);
-      const { getByLabelText, getByText, rerender } = render(
+      const { getByLabelText, getByText, getByTestId, rerender } = render(
         <CalendarContext.Provider
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
@@ -142,7 +134,7 @@ describe('Calendar Month', () => {
         </CalendarContext.Provider>
       );
 
-      expect(getByLabelText('January')).toHaveFocus();
+      expect(getByTestId('month-picker')).toHaveFocus();
 
       userEvent.tab({ shift: true });
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
@@ -154,7 +146,7 @@ describe('Calendar Month', () => {
       expect(getByLabelText(/help/i)).toHaveFocus();
 
       userEvent.tab({ shift: true });
-      expect(getByText(/18/i)).toHaveFocus();
+      expect(getByText('18')).toHaveFocus();
 
       userEvent.tab({ shift: true });
       expect(getByLabelText(/Navigate forward/i)).toHaveFocus();
@@ -163,10 +155,10 @@ describe('Calendar Month', () => {
       expect(getByLabelText(/Navigate back/i)).toHaveFocus();
 
       userEvent.tab({ shift: true });
-      expect(getByLabelText('2019')).toHaveFocus();
+      expect(getByTestId('year-picker')).toHaveFocus();
 
       userEvent.tab({ shift: true });
-      expect(getByLabelText('January')).toHaveFocus();
+      expect(getByTestId('month-picker')).toHaveFocus();
 
       userEvent.tab({ shift: true });
       expect(getByLabelText(/close calendar/i)).toHaveFocus();

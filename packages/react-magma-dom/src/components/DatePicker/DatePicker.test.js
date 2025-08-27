@@ -25,12 +25,6 @@ import { defaultI18n } from '../../i18n/default';
 
 import { DatePicker } from '.';
 
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  unobserve: jest.fn(),
-  disconnect: jest.fn(),
-}));
-
 describe('Date Picker', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
@@ -89,8 +83,8 @@ describe('Date Picker', () => {
 
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getAllByText(day)[0]).toBeInTheDocument();
-    fireEvent.click(getAllByText(day)[0]);
+    expect(getAllByText(day)[1]).toBeInTheDocument();
+    fireEvent.click(getAllByText(day)[1]);
 
     expect(getByText('Chosen Date:').nextSibling.innerHTML).toEqual(chosenDate);
 
@@ -115,8 +109,8 @@ describe('Date Picker', () => {
 
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getAllByText(day)[0]).toBeInTheDocument();
-    fireEvent.click(getAllByText(day)[0]);
+    expect(getAllByText(day)[1]).toBeInTheDocument();
+    fireEvent.click(getAllByText(day)[1]);
 
     expect(getByText('Chosen Date:').nextSibling.innerHTML).toEqual(chosenDate);
 
@@ -477,13 +471,13 @@ describe('Date Picker', () => {
     const defaultDate = new Date(2019, 0, 17);
     const monthYear = format(defaultDate, 'MMMM yyyy');
     const [month, year] = monthYear.split(' ');
-    const { getByLabelText, getAllByTestId } = render(
+    const { getByLabelText, getByTestId } = render(
       <DatePicker labelText="Date Picker Label" />
     );
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    const monthElement = getAllByTestId('selectedItemText')[0];
-    const yearElement = getAllByTestId('selectedItemText')[1];
+    const monthElement = getByTestId('month-picker');
+    const yearElement = getByTestId('year-picker');
 
     expect(monthElement).toBeInTheDocument(document.activeElement);
     expect(monthElement).toBeInTheDocument(month);
@@ -665,13 +659,13 @@ describe('Date Picker', () => {
     const monthYear = format(addMonths(now, 2), 'MMMM yyyy');
     const [month, year] = monthYear.split(' ');
 
-    const { getByLabelText, getAllByTestId } = render(
+    const { getByLabelText, getByTestId } = render(
       <DatePicker minDate={minDate} labelText="Date Picker Label" />
     );
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    const monthElement = getAllByTestId('selectedItemText')[0];
-    const yearElement = getAllByTestId('selectedItemText')[1];
+    const monthElement = getByTestId('month-picker');
+    const yearElement = getByTestId('year-picker');
 
     expect(monthElement).toBeInTheDocument(document.activeElement);
     expect(monthElement).toBeInTheDocument(month);
@@ -1020,7 +1014,7 @@ describe('Date Picker', () => {
 
   describe('i18n', () => {
     it('formats dates with the locale', () => {
-      const { getByLabelText, getAllByTestId } = render(
+      const { getByLabelText, getByTestId } = render(
         <I18nContext.Provider
           value={{
             ...defaultI18n,
@@ -1031,8 +1025,8 @@ describe('Date Picker', () => {
         </I18nContext.Provider>
       );
 
-      const monthElement = getAllByTestId('selectedItemText')[0];
-      const yearElement = getAllByTestId('selectedItemText')[1];
+      const monthElement = getByTestId('month-picker');
+      const yearElement = getByTestId('year-picker');
 
       expect(monthElement).toBeInTheDocument('Abril');
       expect(yearElement).toBeInTheDocument('2020');
@@ -1268,4 +1262,37 @@ describe('Date Picker', () => {
       expect(datePickerInput).toHaveAttribute('value', 'November 21, 2022');
     });
   });
+
+  // it('should change month and year correctly', () => {
+  //   const defaultDate = new Date(2019, 0, 17);
+  //   const { getAllByText, getByText, getAllByTestId } = render(
+  //     <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
+  //   );
+
+  //   const currentMonth = getAllByTestId('selectedItemText')[0];
+  //   const currentYear = getAllByTestId('selectedItemText')[1];
+  //   userEvent.click(currentMonth);
+
+  //   expect(getAllByText('January')[0]).toBeInTheDocument();
+  //   expect(getByText('February')).toBeInTheDocument();
+  //   expect(getByText('March')).toBeInTheDocument();
+  //   expect(getByText('April')).toBeInTheDocument();
+
+  //   userEvent.click(getByText('April'));
+
+  //   expect(currentMonth).toHaveTextContent('April');
+  //   expect(getAllByTestId('selectedItemText')[1]).toHaveTextContent('2019');
+
+  //   userEvent.click(currentYear);
+
+  //   expect(getAllByText('2019')[0]).toBeInTheDocument();
+  //   expect(getByText('2021')).toBeInTheDocument();
+  //   expect(getByText('2022')).toBeInTheDocument();
+  //   expect(getByText('2023')).toBeInTheDocument();
+
+  //   userEvent.click(getByText('2022'));
+
+  //   expect(currentMonth).toHaveTextContent('April');
+  //   expect(currentYear).toHaveTextContent('2022');
+  // });
 });
