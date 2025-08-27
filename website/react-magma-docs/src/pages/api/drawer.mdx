@@ -197,6 +197,51 @@ export function Example() {
 }
 ```
 
+## Animations
+
+The `isAnimated` prop controls whether the drawer has sliding animations when opening and closing. By default, animations are disabled (`isAnimated={false}`).
+
+```tsx
+import React from 'react';
+
+import {
+  Button,
+  Drawer,
+  DrawerPosition,
+  VisuallyHidden,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [showDrawer, setShowDrawer] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
+
+  return (
+    <>
+      <Drawer
+        closeAriaLabel="Close drawer"
+        header="Animated Drawer"
+        isAnimated
+        isOpen={showDrawer}
+        onClose={() => {
+          setShowDrawer(false);
+          buttonRef.current.focus();
+        }}
+        position={DrawerPosition.left}
+      >
+        <p>This drawer slides in from the left with animation.</p>
+        <p>
+          <Button>This is a button</Button>
+        </p>
+      </Drawer>
+      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
+        Show Animated Drawer
+        <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
+      </Button>
+    </>
+  );
+}
+```
+
 ## Internationalization
 
 If you're using strings in your component, they must be internationalized.
