@@ -12,12 +12,7 @@ export interface CalendarContextInterface {
   showHelperInformation: () => void;
   hideHelperInformation: () => void;
   onClose: (event?: React.SyntheticEvent) => void;
-  onDateChange: (
-    day: Date,
-    event: React.SyntheticEvent,
-    openCalendar?: boolean,
-    focusInput?: boolean
-  ) => void;
+  onDateChange: (day: Date, event: React.SyntheticEvent) => void;
   onKeyDown: (event: React.KeyboardEvent) => void;
   onPrevMonthClick: () => void;
   onNextMonthClick: () => void;
@@ -37,12 +32,7 @@ export const CalendarContext = React.createContext<CalendarContextInterface>({
   showHelperInformation: () => {},
   hideHelperInformation: () => {},
   onClose: () => {},
-  onDateChange: (
-    newDate: Date,
-    event: React.SyntheticEvent,
-    openCalendar?: boolean,
-    focusInput?: boolean
-  ) => {},
+  onDateChange: (newDate: Date, event: React.SyntheticEvent) => {},
   onKeyDown: (event: React.KeyboardEvent) => {},
   onPrevMonthClick: () => {},
   onNextMonthClick: () => {},

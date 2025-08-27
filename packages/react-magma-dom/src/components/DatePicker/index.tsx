@@ -304,9 +304,9 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       setFocusedDate(newDate);
     }
 
-    function onDateChange(day: Date, openCalendar?: boolean) {
+    function onDateChange(day: Date) {
       setChosenDate(day);
-      setCalendarOpened(openCalendar ?? false);
+      setCalendarOpened(false);
     }
 
     function reset() {
@@ -350,7 +350,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       const day = parse(value, i18n.dateFormat, new Date());
 
       if (isValidDateFromString(value, day)) {
-        handleDateChange(day, event, calendarOpened);
+        handleDateChange(day, event);
       } else {
         reset && typeof reset === 'function' && reset();
       }
@@ -408,8 +408,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     function handleDateChange(
       day: Date,
-      event: React.SyntheticEvent | React.ChangeEvent,
-      openCalendar?: boolean
+      event: React.SyntheticEvent | React.ChangeEvent
     ) {
       props.onDateChange &&
         typeof props.onDateChange === 'function' &&
@@ -420,21 +419,12 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         props.onChange(day?.toISOString(), event);
 
       onDateChange(day);
-      setFocusedDate(
-        isAfter(setHours(day, 12), minDate) ? day : setDefaultFocusedDate
-      );
+      setFocusedDate(day);
     }
 
-    function handleDaySelection(
-      day: Date,
-      event: React.SyntheticEvent,
-      openCalendar?: boolean,
-      focusInput?: boolean
-    ) {
-      handleDateChange(day, event, openCalendar);
-      if (focusInput ?? true) {
-        inputRef.current.focus();
-      }
+    function handleDaySelection(day: Date, event: React.SyntheticEvent) {
+      handleDateChange(day, event);
+      inputRef.current.focus();
     }
 
     function handleCalendarBlur(event: React.SyntheticEvent) {
@@ -505,6 +495,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           onDateChange: handleDaySelection,
           setDateFocused,
           setFocusedTodayDate,
+          setFocusedDate,
           setMonthFocusedDate,
           setYearFocusedDate,
           onClose: closeHelperInformation,

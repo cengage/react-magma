@@ -1262,37 +1262,4 @@ describe('Date Picker', () => {
       expect(datePickerInput).toHaveAttribute('value', 'November 21, 2022');
     });
   });
-
-  // it('should change month and year correctly', () => {
-  //   const defaultDate = new Date(2019, 0, 17);
-  //   const { getAllByText, getByText, getAllByTestId } = render(
-  //     <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
-  //   );
-
-  //   const currentMonth = getAllByTestId('selectedItemText')[0];
-  //   const currentYear = getAllByTestId('selectedItemText')[1];
-  //   userEvent.click(currentMonth);
-
-  //   expect(getAllByText('January')[0]).toBeInTheDocument();
-  //   expect(getByText('February')).toBeInTheDocument();
-  //   expect(getByText('March')).toBeInTheDocument();
-  //   expect(getByText('April')).toBeInTheDocument();
-
-  //   userEvent.click(getByText('April'));
-
-  //   expect(currentMonth).toHaveTextContent('April');
-  //   expect(getAllByTestId('selectedItemText')[1]).toHaveTextContent('2019');
-
-  //   userEvent.click(currentYear);
-
-  //   expect(getAllByText('2019')[0]).toBeInTheDocument();
-  //   expect(getByText('2021')).toBeInTheDocument();
-  //   expect(getByText('2022')).toBeInTheDocument();
-  //   expect(getByText('2023')).toBeInTheDocument();
-
-  //   userEvent.click(getByText('2022'));
-
-  //   expect(currentMonth).toHaveTextContent('April');
-  //   expect(currentYear).toHaveTextContent('2022');
-  // });
 });
