@@ -13,6 +13,7 @@
   },
   "changesets": [
     "chore-Playwright-initial-configuration",
+    "chore-css-prop",
     "chore-deploy-v2",
     "chore-docs-add-useDeviceDetect-page",
     "chore-docs-add-warning-for-tooltip",
@@ -37,6 +38,7 @@
     "feat-treeview-dynamic-children",
     "fix-Accordion-Tooltip-Storybook-issues",
     "fix-Alert-add_aria-label-for-icon",
+    "fix-DatePicker-update-focus-behaviour",
     "fix-Drawer-missing-animation",
     "fix-Dropdown-nav-item-accessibility-issue",
     "fix-Input-not-properly-update-value",

@@ -214,8 +214,9 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     chosenDate,
     maxDate,
     minDate,
-    setDateFocused,
     onDateChange,
+    setDateFocused,
+    setFocusedDate,
     isInverse,
   } = React.useContext(CalendarContext);
   const [focused, setFocused] = React.useState<boolean>(false);
@@ -243,6 +244,14 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     }
 
     onDateChange(day, event);
+  }
+
+  function onFocusDay(event: React.SyntheticEvent) {
+    if (disabled || !isSameMonth(day, focusedDate)) {
+      event.preventDefault();
+      return;
+    }
+    setFocusedDate(day);
   }
 
   const disabled: boolean =
@@ -286,6 +295,7 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
           state={dayState}
           isInverse={isInverse}
           onClick={onDayClick}
+          onMouseDown={onFocusDay}
           ref={dayRef}
           tabIndex={sameDateAsFocusedDate ? 0 : -1}
           type="button"

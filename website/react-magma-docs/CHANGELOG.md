@@ -1,5 +1,17 @@
 # Change Log
 
+## 5.2.0-next.13
+
+### Patch Changes
+
+- 531bdb9b0: chore: add documentation for css prop and emotion v11 media query overrides
+
+## 5.2.0-next.12
+
+### Patch Changes
+
+- 685b29014: fix (Date Picker): Update focus behaviour - shifting focus to selected date.
+
 ## 5.2.0-next.11
 
 ### Patch Changes

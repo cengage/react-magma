@@ -249,4 +249,63 @@ describe('Calendar Day', () => {
 
     expect(onDateChange).not.toHaveBeenCalled();
   });
+
+  describe('focus date', () => {
+    it('should call setFocusedDate on mouseDown when the day is in current month', () => {
+      const defaultDate = new Date(2019, 0, 17);
+      const setFocusedDate = jest.fn();
+
+      const { getByText } = render(
+        <CalendarContext.Provider
+          value={{
+            setFocusedDate,
+            focusedDate: new Date(2019, 0, 17),
+          }}
+        >
+          <table>
+            <tbody>
+              <tr>
+                <CalendarDay day={defaultDate} />
+                <CalendarDay day={new Date(2019, 0, 18)} />
+                <CalendarDay day={new Date(2019, 0, 19)} />
+                <CalendarDay day={new Date(2019, 0, 20)} />
+              </tr>
+            </tbody>
+          </table>
+        </CalendarContext.Provider>
+      );
+
+      fireEvent.mouseDown(getByText('20'));
+
+      expect(setFocusedDate).toHaveBeenCalled();
+    });
+
+    it('should not call setFocusedDate on mouseDown when the day is not in current month or is disabled', () => {
+      const defaultDate = new Date(2019, 0, 17);
+      const nextMonthDay = new Date(2019, 1, 1);
+      const setFocusedDate = jest.fn();
+
+      const { getByText } = render(
+        <CalendarContext.Provider
+          value={{
+            setFocusedDate,
+            focusedDate: new Date(2019, 0, 17),
+          }}
+        >
+          <table>
+            <tbody>
+              <tr>
+                <CalendarDay day={defaultDate} />
+                <CalendarDay disabled day={nextMonthDay} />
+              </tr>
+            </tbody>
+          </table>
+        </CalendarContext.Provider>
+      );
+
+      fireEvent.mouseDown(getByText('1'));
+
+      expect(setFocusedDate).not.toHaveBeenCalled();
+    });
+  });
 });
