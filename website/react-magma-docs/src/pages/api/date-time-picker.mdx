@@ -8,8 +8,8 @@ props:
 <PageContent componentName="date_time_picker" type="api">
 
 <LeadParagraph>
-  Use the date&time input when you want the user to input a date and time in the
-  format you choose.
+  Use the Date and Time Picker input when you want the user to input both a date
+  and time in the format you choose.
 </LeadParagraph>
 
 ## Basic Usage
@@ -26,7 +26,7 @@ export function Example() {
 
 ## Default Date and Time
 
-By default, no date and time values are selected. You can add default values, by using the `defaultDate` prop.
+By default, no date and time values are selected. You can add default values, by using the `defaultValue` prop.
 
 ```tsx
 import React from 'react';
@@ -36,7 +36,7 @@ import { DateTimePicker } from 'react-magma-dom';
 export function Example() {
   return (
     <DateTimePicker
-      defaultDate={new Date(2025, 1, 0, 9, 30)}
+      defaultValue={new Date(2025, 1, 0, 9, 30)}
       labelText="Default Date"
     />
   );
@@ -45,7 +45,7 @@ export function Example() {
 
 ## Value
 
-The `value` prop can also be used so set the date value externally. It will override the `defaultDate` if both are passed.
+The `value` prop can also be used so set the date value externally. It will override the `defaultValue` if both are passed.
 If time is not selected, it will automatically default to 12:00 AM.
 
 ```tsx
@@ -56,7 +56,7 @@ import { DateTimePicker } from 'react-magma-dom';
 export function Example() {
   return (
     <DateTimePicker
-      defaultDate={new Date(2025, 1, 0, 8, 20)}
+      defaultValue={new Date(2025, 1, 0, 8, 20)}
       labelText="Selected Date"
       value={new Date(2000, 1, 0, 10, 30)}
     />
@@ -170,8 +170,8 @@ import { DateTimePicker } from 'react-magma-dom';
 export function Example() {
   return (
     <DateTimePicker
-      placeholder="Your birthday (format mm/dd/yyyy hh:mm AM)"
-      labelText="Birthday"
+      placeholder="Select appointment date and time (format mm/dd/yyyy hh:mm AM)"
+      labelText="Appointment Date & Time"
     />
   );
 }
@@ -220,7 +220,7 @@ export function Example() {
   return (
     <Card isInverse>
       <CardBody>
-        <DateTimePicker labelText="Inversed Date&Time" isInverse />
+        <DateTimePicker labelText="Inverse Date&Time" isInverse />
       </CardBody>
     </Card>
   );
@@ -316,6 +316,36 @@ export function Example() {
 }
 ```
 
+### On Time Change
+
+The `onTimeChange` function is called when the user changes the time using the time picker in the <Link to="/api/date-pickers">TimePicker</Link> component.
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker } from 'react-magma-dom';
+
+export function Example() {
+  const [chosenTime, setChosenTime] = React.useState<string | undefined>(
+    undefined
+  );
+
+  function handleTimeChange(newChosenTime: string) {
+    setChosenTime(newChosenTime);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Chosen Time: </strong>
+        {chosenTime}
+      </p>
+      <DateTimePicker labelText="Date&Time" onTimeChange={handleTimeChange} />
+    </div>
+  );
+}
+```
+
 ### Focus Events
 
 ```tsx
@@ -350,13 +380,9 @@ export function Example() {
 }
 ```
 
-### On Change
+### On Done
 
-The `onChange` event works for <Link to="/api/date-pickers">DatePicker</Link> and called in multiple instances when internal values are changed and can be used as a generic state change event when you do not want to use each function separately.
-
-- _onInputChange:_ The `value` parameter will return a string. If it is not what we consider a valid date, it will simply be the string typed in to the `input` (ie: 01/21). If we consider the `input` value to be a valid date, it will be the ISO string representation of the date entered.
-- _onDateChange:_ The `value` parameter will return the ISO string representation of the date chosen with the calendar widget.
-- _onInputBlur:_ If the `input` value is considered a valid date the `onChange` function will be called with the ISO string representation of the date in the input being returned in the `value` argument of the function.
+The `onDone` function is called when the user clicks the "Done" button.
 
 ```tsx
 import React from 'react';
@@ -364,35 +390,21 @@ import React from 'react';
 import { DateTimePicker } from 'react-magma-dom';
 
 export function Example() {
-  const [changedValue, setChangedValue] = React.useState<string | Date>('');
+  const [isDone, setIsDone] = React.useState<boolean>(false);
 
-  function handleChange(value: string | Date, event: React.EventChangeHandler) {
-    setChangedValue(value);
+  function handleDone(event: React.SyntheticEvent) {
+    setIsDone(true);
   }
 
   return (
     <div>
       <p>
-        <strong>Changed Value: </strong>
-        {changedValue}
+        <strong>Is Done?: </strong>
+        {isDone ? 'Yes' : 'No'}
       </p>
-      <DateTimePicker onChange={handleChange} labelText="Date&Time" />
+      <DateTimePicker onDone={handleDone} labelText="Date&Time" />
     </div>
   );
-}
-```
-
-## Keyboard Navigation
-
-The `DatePicker` is keyboard navigable for allowing the user to navigate between days, weeks, and months.
-
-```tsx
-import React from 'react';
-
-import { DateTimePicker } from 'react-magma-dom';
-
-export function Example() {
-  return <DateTimePicker labelText="Date&Time" />;
 }
 ```
 
@@ -463,6 +475,15 @@ export function Example() {
             friday: 'Viernes',
             saturday: 'Sábado',
           },
+          short: {
+            monday: 'Dom',
+            tuesday: 'Lun',
+            wednesday: 'Mar',
+            thursday: 'Mié',
+            friday: 'Jue',
+            saturday: 'Vie',
+            sunday: 'Sáb',
+          },
         },
         datePicker: {
           ...defaultI18n.datePicker,
@@ -474,6 +495,8 @@ export function Example() {
           nextMonthAriaLabel: 'Próximo Mes',
           disabledDayAriaLabel: 'No disponible. ',
           selectedDayAriaLabel: '(Seleccionado)',
+          todayAriaLabel: '(Hoy)',
+          today: 'Hoy',
         },
         timePicker: {
           hoursAriaLabel: 'Horas',
@@ -488,7 +511,11 @@ export function Example() {
         locale: es,
       }}
     >
-      <DateTimePicker labelText="Español" />
+      <DateTimePicker
+        labelText="Español"
+        timePickerLabelText="Hora"
+        buttonLabelText="Hecho"
+      />
     </I18nContext.Provider>
   );
 }

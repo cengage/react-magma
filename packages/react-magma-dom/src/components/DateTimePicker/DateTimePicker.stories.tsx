@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { Meta } from '@storybook/react';
+import { es } from 'date-fns/locale';
 
-import { Button, magma } from '../..';
+import { Button, defaultI18n, I18nContext, magma } from '../..';
 import { LabelPosition } from '../Label';
 
 import { DateTimePicker } from '.';
@@ -34,7 +35,7 @@ export default {
         type: 'number',
       },
     },
-    defaultDate: {
+    defaultValue: {
       control: {
         type: 'date',
       },
@@ -104,14 +105,3 @@ export const ClearingTheDateAndTime = args => {
     </div>
   );
 };
-
-export function Example() {
-  return (
-    <DateTimePicker
-      labelText="Date Time Picker Label"
-      value={new Date('2024-03-15 10:30:00')}
-      helperMessage="asdasdasd"
-      messageStyle={{ fontSize: '24px' }}
-    />
-  );
-}

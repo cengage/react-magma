@@ -37,10 +37,10 @@ describe('DateTimePicker', () => {
 
   describe('Default Date and Time', () => {
     it('should render with a default date and time', () => {
-      const defaultDate = new Date('January 17, 2019 10:30 AM');
+      const defaultValue = new Date('January 17, 2019 10:30 AM');
       const { getByDisplayValue } = render(
         <DateTimePicker
-          defaultDate={defaultDate}
+          defaultValue={defaultValue}
           labelText="Date Time Picker Label"
         />
       );
@@ -48,11 +48,11 @@ describe('DateTimePicker', () => {
       expect(getByDisplayValue('01/17/2019 10:30 AM')).toBeInTheDocument();
     });
 
-    it('should format time correctly from defaultDate', () => {
-      const defaultDate = new Date('2024-03-15 14:45:00');
+    it('should format time correctly from defaultValue', () => {
+      const defaultValue = new Date('2024-03-15 14:45:00');
       const { getByDisplayValue } = render(
         <DateTimePicker
-          defaultDate={defaultDate}
+          defaultValue={defaultValue}
           labelText="Date Time Picker Label"
         />
       );
@@ -74,12 +74,12 @@ describe('DateTimePicker', () => {
 
   describe('Value Prop', () => {
     it('should set the value to the date and time in the value prop', () => {
-      const defaultDate = new Date('January 17, 2019 09:15 AM');
+      const defaultValue = new Date('January 17, 2019 09:15 AM');
       const valueDate = new Date('January 23, 2019 14:45:00');
 
       const { getByDisplayValue } = render(
         <DateTimePicker
-          defaultDate={defaultDate}
+          defaultValue={defaultValue}
           labelText="Date Time Picker Label"
           value={valueDate}
         />
@@ -88,13 +88,13 @@ describe('DateTimePicker', () => {
       expect(getByDisplayValue('01/23/2019 2:45 PM')).toBeInTheDocument();
     });
 
-    it('should prioritize value over defaultDate', () => {
-      const defaultDate = new Date('2020-01-01 10:00:00');
+    it('should prioritize value over defaultValue', () => {
+      const defaultValue = new Date('2020-01-01 10:00:00');
       const valueDate = new Date('2020-12-25 15:30:00');
 
       const { getByDisplayValue } = render(
         <DateTimePicker
-          defaultDate={defaultDate}
+          defaultValue={defaultValue}
           value={valueDate}
           labelText="Date Time Picker Label"
         />
@@ -271,10 +271,10 @@ describe('DateTimePicker', () => {
     });
 
     it('should clear time when input is completely cleared', () => {
-      const defaultDate = new Date('2024-03-15 14:30:00');
+      const defaultValue = new Date('2024-03-15 14:30:00');
       const { getByDisplayValue } = render(
         <DateTimePicker
-          defaultDate={defaultDate}
+          defaultValue={defaultValue}
           labelText="Date Time Picker Label"
         />
       );
@@ -294,7 +294,7 @@ describe('DateTimePicker', () => {
         <DateTimePicker
           labelText="Date Time Picker Label"
           onDateChange={onDateChange}
-          defaultDate={new Date('2024-03-15')}
+          defaultValue={new Date('2024-03-15')}
         />
       );
 
@@ -661,7 +661,7 @@ describe('DateTimePicker', () => {
       const { getByLabelText, getByTestId, getByDisplayValue } = render(
         <DateTimePicker
           labelText="Date Time Picker Label"
-          defaultDate={new Date('2024-03-15 10:30:00')}
+          defaultValue={new Date('2024-03-15 10:30:00')}
         />
       );
 

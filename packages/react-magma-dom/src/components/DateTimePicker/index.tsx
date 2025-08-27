@@ -2,7 +2,13 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
-import { Button, ButtonColor, ButtonSize, ThemeContext } from '../..';
+import {
+  Button,
+  ButtonColor,
+  ButtonSize,
+  I18nContext,
+  ThemeContext,
+} from '../..';
 import { DatePicker } from '../DatePicker';
 import { LabelPosition } from '../Label';
 import { TimePicker } from '../TimePicker';
@@ -10,12 +16,12 @@ import { TimePicker } from '../TimePicker';
 export interface DateTimePickerProps
   extends Omit<
     React.InputHTMLAttributes<HTMLInputElement>,
-    'value' | 'onChange'
+    'value' | 'onChange' | 'defaultValue'
   > {
   /**
-   * Default selected date value
+   * Default selected date and time values
    */
-  defaultDate?: Date;
+  defaultValue?: Date;
   /**
    * Content of the error message. If a value is provided, the component will be styled to show an error state
    */
@@ -47,6 +53,14 @@ export interface DateTimePickerProps
    */
   labelText: React.ReactNode;
   /**
+   * Text for time picker label
+   */
+  timePickerLabelText?: React.ReactNode;
+  /**
+   * Text for button label
+   */
+  buttonLabelText?: React.ReactNode;
+  /**
    * Maximum date allowed to be chosen in the calendar
    */
   maxDate?: Date;
@@ -76,13 +90,6 @@ export interface DateTimePickerProps
    */
   value?: Date;
   /**
-   * Event fired in multiple instances when internal values are changed and can be used as a generic state change event
-   */
-  onChange?: (
-    value: string,
-    event: React.ChangeEvent | React.SyntheticEvent
-  ) => void;
-  /**
    * Event that will fire when day is changed
    */
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
@@ -102,6 +109,10 @@ export interface DateTimePickerProps
    * Event that will fire when the text input gains focus
    */
   onInputFocus?: (event: React.FocusEvent) => void;
+  /**
+   * Event that will fire when the done button is clicked
+   */
+  onDone?: (event: React.SyntheticEvent) => void;
 }
 
 const DoneButtonWrapper = styled.div<{ isInverse?: boolean }>`
@@ -119,7 +130,18 @@ export const DateTimePicker = React.forwardRef<
   HTMLInputElement,
   DateTimePickerProps
 >((props, forwardedRef) => {
-  const { onTimeChange, value, defaultDate, ...other } = props;
+  const {
+    onTimeChange,
+    onDone,
+    placeholder,
+    value,
+    defaultValue,
+    labelText,
+    timePickerLabelText,
+    buttonLabelText,
+    ...other
+  } = props;
+  const i18n = React.useContext(I18nContext);
 
   const getTimeFromDate = (date: Date | number) => {
     if (!date) return '';
@@ -132,7 +154,7 @@ export const DateTimePicker = React.forwardRef<
     });
   };
 
-  const initialTime = getTimeFromDate(value ?? defaultDate);
+  const initialTime = getTimeFromDate(value ?? defaultValue);
 
   const theme = React.useContext(ThemeContext);
   const datePickerApiRef = React.useRef(null);
@@ -141,8 +163,10 @@ export const DateTimePicker = React.forwardRef<
     initialTime || ''
   );
 
-  const handleDoneClick = () => {
+  const handleDoneClick = (event: React.SyntheticEvent) => {
     datePickerApiRef.current?.closeDatePickerManually();
+
+    onDone && onDone(event);
   };
 
   const handleClear = () => {
@@ -184,7 +208,7 @@ export const DateTimePicker = React.forwardRef<
   };
 
   React.useEffect(() => {
-    if (!value && !defaultDate) {
+    if (!value && !defaultValue) {
       handleClear();
     } else if (value) {
       const newTime = getTimeFromDate(value);
@@ -192,21 +216,26 @@ export const DateTimePicker = React.forwardRef<
       setAdditionalInputContent(newTime);
       previousTime.current = newTime;
     }
-  }, [value, defaultDate]);
+  }, [value, defaultValue]);
+
+  const dateFormat = i18n.dateFormat;
+  const updatedPlaceholder = placeholder
+    ? placeholder
+    : `${dateFormat.toLowerCase()} hh:mm AM`;
 
   return (
     <DatePicker
-      labelText="Pick a date and time"
+      labelText={labelText ?? 'Pick a date and time'}
       apiRef={datePickerApiRef}
       additionalInputContent={additionalInputContent}
-      placeholder="mm/dd/yyyy hh:mm AM"
+      placeholder={updatedPlaceholder}
       onInputChange={onInputChange}
       setAdditionalInputContent={setAdditionalInputContent}
       isClearable
       onClear={handleClear}
       ref={forwardedRef}
       value={value}
-      defaultDate={defaultDate}
+      defaultDate={defaultValue}
       additionalContent={
         <>
           <TimePicker
@@ -214,7 +243,7 @@ export const DateTimePicker = React.forwardRef<
             onChange={onTimeHandleChange}
             labelPosition={LabelPosition.left}
             inputStyle={{ width: '100%' }}
-            labelText="Time"
+            labelText={timePickerLabelText ?? 'Time'}
             containerStyle={{
               padding: '16px',
               margin: '0 -16px',
@@ -227,7 +256,7 @@ export const DateTimePicker = React.forwardRef<
               size={ButtonSize.small}
               color={ButtonColor.subtle}
             >
-              Done
+              {buttonLabelText ?? 'Done'}
             </Button>
           </DoneButtonWrapper>
         </>
