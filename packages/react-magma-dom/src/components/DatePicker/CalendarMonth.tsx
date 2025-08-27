@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
+import { transparentize } from 'polished';
 import { CloseIcon, KeyboardIcon } from 'react-magma-icons';
 
 import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
@@ -60,7 +61,7 @@ const Th = styled.th<{ isInverse?: boolean }>`
   border: 0;
   color: ${props =>
     props.isInverse
-      ? `rgba(255, 255, 255, 0.70)`
+      ? transparentize(0.3, props.theme.colors.neutral100)
       : props.theme.colors.neutral500};
   font-size: ${props => props.theme.typeScale.size01.fontSize};
   line-height: ${props => props.theme.typeScale.size01.lineHeight};
