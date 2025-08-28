@@ -109,7 +109,7 @@ describe('TimePicker', () => {
 
       fireEvent.change(hoursInput, { target: { value: '9' } });
 
-      expect(onChange).toHaveBeenCalledWith('09: AM');
+      expect(onChange).toHaveBeenCalledWith('09:00 AM');
     });
   });
 
@@ -226,7 +226,7 @@ describe('TimePicker', () => {
 
       fireEvent.change(minutesInput, { target: { value: '9' } });
 
-      expect(onChange).toHaveBeenCalledWith(':09 AM');
+      expect(onChange).toHaveBeenCalledWith('12:09 AM');
     });
 
     it('should render with a custom step attribute', () => {

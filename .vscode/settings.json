@@ -16,5 +16,12 @@
     "markdown"
   ],
   "prettier.requireConfig": true,
-  "files.insertFinalNewline": true
+  "files.insertFinalNewline": true,
+  "jest.nodeEnv": {
+    "PATH": "/home/nikita-orliak/.nvm/versions/node/v18.20.8/bin:/usr/local/bin:/usr/bin:/bin:${env:PATH}",
+    "SHELL": "/bin/bash"
+  },
+  "jest.jestCommandLine": "/home/nikita-orliak/.nvm/versions/node/v18.20.8/bin/npm test --",
+  "jest.rootPath": "packages/react-magma-dom",
+  "jest.runMode": "on-demand"
 }
