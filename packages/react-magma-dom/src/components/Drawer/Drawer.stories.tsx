@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Button } from '../Button';
 import { VisuallyHidden } from '../VisuallyHidden';
-import { DrawerPosition } from './Drawer';
+import { DrawerPosition, DrawerProps } from './Drawer';
 import { NavTab, NavTabs } from '../NavTabs';
 import { TabsOrientation } from '../Tabs/shared';
 
@@ -28,12 +28,21 @@ const info = {
         type: 'boolean',
       },
     },
+    isAnimated: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 };
 
 export default info;
 
-export const Default = args => {
+export const Default = (
+  args: React.JSX.IntrinsicAttributes &
+    DrawerProps &
+    React.RefAttributes<HTMLDivElement>
+) => {
   const [showDrawer, setShowDrawer] = React.useState(false);
   const buttonRef = React.useRef<HTMLButtonElement | null>(null);
 
@@ -62,7 +71,11 @@ export const Default = args => {
   );
 };
 
-export const SiteNavigation = args => {
+export const SiteNavigation = (
+  args: React.JSX.IntrinsicAttributes &
+    DrawerProps &
+    React.RefAttributes<HTMLDivElement>
+) => {
   const [showDrawer, setShowDrawer] = React.useState(false);
   const buttonRef = React.useRef<HTMLButtonElement | null>(null);
 
