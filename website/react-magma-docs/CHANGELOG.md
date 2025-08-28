@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-next.13
+
+### Patch Changes
+
+- 531bdb9b0: chore: add documentation for css prop and emotion v11 media query overrides
+
 ## 5.2.0-next.12
 
 ### Patch Changes

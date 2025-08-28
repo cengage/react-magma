@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.20
+
+### Patch Changes
+
+- 02cc380d6: feat(Drawer): add isAnimated prop to control slide animation
+
 ## 4.10.0-next.19
 
 ### Minor Changes
