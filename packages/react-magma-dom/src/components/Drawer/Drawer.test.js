@@ -144,4 +144,38 @@ describe('Drawer', () => {
       );
     });
   });
+
+  describe('isAnimated prop', () => {
+    const drawerContent = 'Animated drawer content';
+
+    it('should not have transform property when isAnimated is false (default)', () => {
+      const { getByTestId } = render(
+        <Drawer position="left" header="Hello" isOpen testId={TEST_ID}>
+          {drawerContent}
+        </Drawer>
+      );
+
+      const transition = getByTestId(TEST_ID);
+
+      expect(transition.style.transform).toBe('');
+    });
+
+    it('should have transform property when isAnimated is true', () => {
+      const { getByTestId } = render(
+        <Drawer
+          position="left"
+          header="Hello"
+          isAnimated
+          isOpen
+          testId={TEST_ID}
+        >
+          {drawerContent}
+        </Drawer>
+      );
+
+      const transition = getByTestId(TEST_ID);
+
+      expect(transition.style.transform).toContain('translate');
+    });
+  });
 });
