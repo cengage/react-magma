@@ -43,6 +43,7 @@
     "fix-DatePicker-update-focus-behaviour",
     "fix-Drawer-missing-animation",
     "fix-Dropdown-nav-item-accessibility-issue",
+    "fix-Dropzone-add-dropzoneOptions-in-props",
     "fix-Input-not-properly-update-value",
     "fix-Intermediate-Checkbox-screenreader-reads-unticked",
     "fix-Playwright-tests",

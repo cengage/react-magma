@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.22
+
+### Patch Changes
+
+- 60cb97f7f: fix(Dropzone): Passing `dropzoneOptions` prop to `Dropzone`.
+
 ## 4.10.0-next.21
 
 ### Minor Changes
