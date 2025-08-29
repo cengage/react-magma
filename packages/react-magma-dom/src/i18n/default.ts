@@ -116,6 +116,8 @@ export const defaultI18n: I18nInterface = {
     today: 'Today',
     navigateToCurrentDateAriaLabel: 'Navigate to current month and year',
     backToCalendarAriaLabel: 'Back to Calendar',
+    selectMonth: 'Select a month',
+    selectYear: 'Select a year',
     helpModal: {
       header: 'Keyboard Shortcuts',
       helpButtonAriaLabel: 'Calendar Widget Help',

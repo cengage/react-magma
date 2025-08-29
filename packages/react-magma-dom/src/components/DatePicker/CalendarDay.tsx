@@ -291,6 +291,7 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
           aria-current={sameDateAsToday ? 'date' : undefined}
           aria-selected={sameDateAsChosenDate}
           data-testid="calendar-day"
+          disabled={disabled}
           state={dayState}
           isInverse={isInverse}
           onClick={onDayClick}

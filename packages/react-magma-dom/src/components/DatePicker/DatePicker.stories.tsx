@@ -23,6 +23,11 @@ export default {
         type: 'date',
       },
     },
+    maxDate: {
+      control: {
+        type: 'date',
+      },
+    },
     isClearable: {
       control: {
         type: 'boolean',

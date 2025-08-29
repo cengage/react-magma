@@ -167,7 +167,11 @@ export const HelperInformation: React.FunctionComponent<
             iconPosition={HyperlinkIconPosition.left}
             hasUnderline={false}
             isInverse={isInverse}
-            onClick={props.onReturnBack}
+            onClick={e => {
+              // Avoid scrolling to the top of the page
+              e.preventDefault();
+              props.onReturnBack();
+            }}
           >
             Back to Calendar
           </Hyperlink>
