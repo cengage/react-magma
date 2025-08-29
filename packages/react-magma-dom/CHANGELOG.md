@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.21
+
+### Minor Changes
+
+- e142c0f77: feat (Date Picker): Provide ability to more quickly change the month and/or year. Update aria-labels and styles.
+
 ## 4.10.0-next.20
 
 ### Patch Changes
