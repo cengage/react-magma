@@ -19,6 +19,8 @@ export interface CalendarContextInterface {
   setDateFocused: (value: boolean) => void;
   setFocusedDate: (day: Date) => void;
   setFocusedTodayDate: (event: React.SyntheticEvent) => void;
+  setMonthFocusedDate: (monthNumber: number) => void;
+  setYearFocusedDate: (yearNumber: number) => void;
 }
 
 export const CalendarContext = React.createContext<CalendarContextInterface>({
@@ -37,4 +39,6 @@ export const CalendarContext = React.createContext<CalendarContextInterface>({
   setDateFocused: (value: boolean) => {},
   setFocusedDate: (day: Date) => {},
   setFocusedTodayDate: (event: React.SyntheticEvent) => {},
+  setMonthFocusedDate: (monthNumber: number) => {},
+  setYearFocusedDate: (yearNumber: number) => {},
 });

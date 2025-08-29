@@ -33,6 +33,8 @@ import {
   getNextMonthFromDate,
   getPrevMonthFromDate,
   handleKeyPress,
+  setMonthForDate,
+  setYearForDate,
   i18nFormat as format,
   inDateRange,
 } from './utils';
@@ -345,6 +347,16 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       );
     }
 
+    function setMonthFocusedDate(monthNumber: number) {
+      const newDate = setMonthForDate(focusedDate, monthNumber);
+      setFocusedDate(newDate);
+    }
+
+    function setYearFocusedDate(yearNumber: number) {
+      const newDate = setYearForDate(focusedDate, yearNumber);
+      setFocusedDate(newDate);
+    }
+
     function onDateChange(day: Date) {
       setChosenDate(day);
 
@@ -511,9 +523,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
       if (additionalContent) return;
 
-      setFocusedDate(
-        isAfter(setHours(day, 12), minDate) ? day : setDefaultFocusedDate
-      );
+      setFocusedDate(day);
     }
 
     function handleDaySelection(day: Date, event: React.SyntheticEvent) {
@@ -599,6 +609,8 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           setDateFocused,
           setFocusedTodayDate,
           setFocusedDate,
+          setMonthFocusedDate,
+          setYearFocusedDate,
           onClose: closeHelperInformation,
         }}
       >

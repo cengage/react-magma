@@ -52,13 +52,15 @@ describe('Calendar Month', () => {
         </CalendarContext.Provider>
       );
 
-      expect(getByTestId('calendar-header')).toHaveFocus();
+      expect(getByTestId('month-picker')).toHaveFocus();
+      userEvent.tab();
+      expect(getByTestId('year-picker')).toHaveFocus();
       userEvent.tab();
       expect(getByLabelText(/Navigate back/i)).toHaveFocus();
       userEvent.tab();
       expect(getByLabelText(/Navigate forward/i)).toHaveFocus();
       userEvent.tab();
-      expect(getByText(/18/i)).toHaveFocus();
+      expect(getByText('18')).toHaveFocus();
       userEvent.tab();
       expect(getByLabelText(/help/i)).toHaveFocus();
       userEvent.tab();
@@ -66,7 +68,7 @@ describe('Calendar Month', () => {
       userEvent.tab();
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
       userEvent.tab();
-      expect(getByLabelText(/Navigate back/i)).toHaveFocus();
+      expect(getByTestId('month-picker')).toHaveFocus();
     });
 
     it('should not attempt to loop through the modal if there are no tabbable elements', () => {
@@ -132,7 +134,7 @@ describe('Calendar Month', () => {
         </CalendarContext.Provider>
       );
 
-      expect(getByTestId('calendar-header')).toHaveFocus();
+      expect(getByTestId('month-picker')).toHaveFocus();
 
       userEvent.tab({ shift: true });
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
@@ -144,13 +146,19 @@ describe('Calendar Month', () => {
       expect(getByLabelText(/help/i)).toHaveFocus();
 
       userEvent.tab({ shift: true });
-      expect(getByText(/18/i)).toHaveFocus();
+      expect(getByText('18')).toHaveFocus();
 
       userEvent.tab({ shift: true });
       expect(getByLabelText(/Navigate forward/i)).toHaveFocus();
 
       userEvent.tab({ shift: true });
       expect(getByLabelText(/Navigate back/i)).toHaveFocus();
+
+      userEvent.tab({ shift: true });
+      expect(getByTestId('year-picker')).toHaveFocus();
+
+      userEvent.tab({ shift: true });
+      expect(getByTestId('month-picker')).toHaveFocus();
 
       userEvent.tab({ shift: true });
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
