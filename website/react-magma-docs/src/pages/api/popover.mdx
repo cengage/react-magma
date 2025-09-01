@@ -58,7 +58,7 @@ export function Example() {
 
 ## Hoverable Popover
 
-By setting the `hoverable` prop to true, the popover will remain open while the pointer is over either the trigger or the content.
+By setting the `hoverable` prop to true, the popover will remain open while the pointer is over either the trigger or the content. Note that this feature only works when the popover content contains no interactive elements (buttons, inputs, links, etc.). If interactive elements are detected, the popover will automatically use click behavior instead.
 
 ```tsx
 import React from 'react';
