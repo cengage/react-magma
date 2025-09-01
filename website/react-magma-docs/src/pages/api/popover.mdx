@@ -179,6 +179,7 @@ import {
   ButtonSize,
   PopoverApi,
   CheckboxTextPosition,
+  Card,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -191,38 +192,44 @@ export function Example() {
   }
 
   return (
-    <Popover focusTrap width="target">
-      <PopoverTrigger aria-label="Open popover">
-        Open Focus Trap Popover
-      </PopoverTrigger>
-      <PopoverContent>
-        <FormGroup>
-          <Toggle
-            labelText="Setting 1"
-            defaultChecked
-            containerStyle={{
-              width: '100%',
-              justifyContent: 'space-between',
-            }}
-          />
-          <Checkbox
-            labelText="Setting 2"
-            textPosition={CheckboxTextPosition.left}
-            labelStyle={{ width: '100%', justifyContent: 'space-between' }}
-          />
-          <Checkbox
-            labelText="Setting 3"
-            textPosition={CheckboxTextPosition.left}
-            labelStyle={{ width: '100%', justifyContent: 'space-between' }}
-          />
-        </FormGroup>
-        <PopoverFooter style={{ justifyContent: 'end', fontWeight: 600 }}>
-          <Button size={ButtonSize.small} onClick={handleClose}>
-            Apply
-          </Button>
-        </PopoverFooter>
-      </PopoverContent>
-    </Popover>
+    <Card
+      style={{
+        width: 'fit-content',
+      }}
+    >
+      <Popover focusTrap width="target" apiRef={popoverApiRef}>
+        <PopoverTrigger aria-label="Open popover">
+          Open Focus Trap Popover
+        </PopoverTrigger>
+        <PopoverContent>
+          <FormGroup>
+            <Toggle
+              labelText="Setting 1"
+              defaultChecked
+              containerStyle={{
+                width: '100%',
+                justifyContent: 'space-between',
+              }}
+            />
+            <Checkbox
+              labelText="Setting 2"
+              textPosition={CheckboxTextPosition.left}
+              labelStyle={{ width: '100%', justifyContent: 'space-between' }}
+            />
+            <Checkbox
+              labelText="Setting 3"
+              textPosition={CheckboxTextPosition.left}
+              labelStyle={{ width: '100%', justifyContent: 'space-between' }}
+            />
+          </FormGroup>
+          <PopoverFooter style={{ justifyContent: 'end', fontWeight: 600 }}>
+            <Button size={ButtonSize.small} onClick={handleClose}>
+              Apply
+            </Button>
+          </PopoverFooter>
+        </PopoverContent>
+      </Popover>
+    </Card>
   );
 }
 ```
