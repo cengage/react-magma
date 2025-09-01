@@ -83,8 +83,8 @@ describe('Date Picker', () => {
 
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getAllByText(day)[1]).toBeInTheDocument();
-    fireEvent.click(getAllByText(day)[1]);
+    expect(getAllByText(day)[0]).toBeInTheDocument();
+    fireEvent.click(getAllByText(day)[0]);
 
     expect(getByText('Chosen Date:').nextSibling.innerHTML).toEqual(chosenDate);
 
@@ -109,8 +109,8 @@ describe('Date Picker', () => {
 
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getAllByText(day)[1]).toBeInTheDocument();
-    fireEvent.click(getAllByText(day)[1]);
+    expect(getAllByText(day)[0]).toBeInTheDocument();
+    fireEvent.click(getAllByText(day)[0]);
 
     expect(getByText('Chosen Date:').nextSibling.innerHTML).toEqual(chosenDate);
 

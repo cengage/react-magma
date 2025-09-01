@@ -194,6 +194,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
     const iconRef = React.useRef<HTMLButtonElement>();
+    const previousIconRef = React.useRef<HTMLButtonElement>();
     const inputRef = React.useRef<HTMLInputElement>();
     const lastFocus = React.useRef<any>();
     const id: string = useGenerateId(props.id);
@@ -255,6 +256,10 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       }
       if (props.value === null) setChosenDate(undefined);
     }, [props.value]);
+
+    React.useEffect(() => {
+      previousIconRef.current = iconRef.current;
+    }, []);
 
     function showHelperInformation() {
       lastFocus.current = document.activeElement;
@@ -443,8 +448,6 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
         if (isValidDay) {
           handleDateChange(validDay, event);
-        } else {
-          reset && typeof reset === 'function' && reset();
         }
       } else {
         isValidDay = isValidDateFromString(value, day);
@@ -549,6 +552,10 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     }
 
     function handleCloseButtonClick(event: React.SyntheticEvent) {
+      if (!iconRef.current && previousIconRef.current) {
+        iconRef.current = previousIconRef.current;
+      }
+
       iconRef.current.focus();
       setCalendarOpened(false);
     }
