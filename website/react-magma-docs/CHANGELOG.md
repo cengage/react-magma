@@ -1,5 +1,14 @@
 # Change Log
 
+## 5.2.0-next.14
+
+### Patch Changes
+
+- ed22933f2: chore: Add clarification to the `hoverable` prop for Popover.
+- 4e907ab49: fix (Date Picker): Improve test cases to fix failing test during the build.
+- Updated dependencies [97483b1c2]
+  - react-magma-dom@4.10.0-next.23
+
 ## 5.2.0-next.13
 
 ### Patch Changes

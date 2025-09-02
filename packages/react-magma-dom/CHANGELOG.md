@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.23
+
+### Patch Changes
+
+- 97483b1c2: fix(Popover): Update hardcoded PopoverPlacement to use literal types.
+
 ## 4.10.0-next.22
 
 ### Patch Changes
