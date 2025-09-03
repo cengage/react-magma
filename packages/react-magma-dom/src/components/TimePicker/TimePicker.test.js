@@ -62,6 +62,15 @@ describe('TimePicker', () => {
       expect(hoursInput.value).toEqual('');
     });
 
+    it('should auto fill the hour input if the minute one was entered first', () => {
+      const { getByTestId } = render(<TimePicker label="label" />);
+
+      const minutesInput = getByTestId('minutesTimeInput');
+      fireEvent.change(minutesInput, { target: { value: '30' } });
+
+      expect(getByTestId('hoursTimeInput').value).toEqual('12');
+    });
+
     it('should call the onKeyDown when backspace is clicked on the hours input', () => {
       const onKeyDown = jest.fn();
       const { getByTestId } = render(
@@ -109,7 +118,7 @@ describe('TimePicker', () => {
 
       fireEvent.change(hoursInput, { target: { value: '9' } });
 
-      expect(onChange).toHaveBeenCalledWith('09: AM');
+      expect(onChange).toHaveBeenCalledWith('09:00 AM');
     });
   });
 
@@ -166,6 +175,15 @@ describe('TimePicker', () => {
       fireEvent.keyDown(minutesInput, { key: 'Backspace' });
 
       expect(minutesInput.value).toEqual('');
+    });
+
+    it('should auto fill the minute input if the hour one was entered first', () => {
+      const { getByTestId } = render(<TimePicker label="label" />);
+
+      const hoursInput = getByTestId('hoursTimeInput');
+      fireEvent.change(hoursInput, { target: { value: '12' } });
+
+      expect(getByTestId('minutesTimeInput').value).toEqual('00');
     });
 
     it('should focus the hour input if the left arrow key is clicked', () => {
@@ -226,7 +244,7 @@ describe('TimePicker', () => {
 
       fireEvent.change(minutesInput, { target: { value: '9' } });
 
-      expect(onChange).toHaveBeenCalledWith(':09 AM');
+      expect(onChange).toHaveBeenCalledWith('12:09 AM');
     });
 
     it('should render with a custom step attribute', () => {

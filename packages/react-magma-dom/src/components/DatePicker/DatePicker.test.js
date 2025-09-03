@@ -70,15 +70,17 @@ describe('Date Picker', () => {
 
   it('should clear input and Chosen Date value after clicking on isClearable X button', () => {
     const labelText = 'Date Picker Label';
-    const now = new Date();
+    const valueDate = new Date(2025, 8, 1);
     const day =
-      format(now, 'dd')[0] === '0' ? format(now, 'dd')[1] : format(now, 'dd');
+      format(valueDate, 'dd')[0] === '0'
+        ? format(valueDate, 'dd')[1]
+        : format(valueDate, 'dd');
     const chosenDate = `${
-      now.getMonth() + 1
-    }/${now.getDate()}/${now.getFullYear()}`;
+      valueDate.getMonth() + 2
+    }/${valueDate.getDate()}/${valueDate.getFullYear()}`;
 
     const { getByText, getAllByText, getByTestId, getByLabelText } = render(
-      <ClearingTheDate labelText={labelText} />
+      <ClearingTheDate labelText={labelText} defaultDate={valueDate} />
     );
 
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));
@@ -96,15 +98,17 @@ describe('Date Picker', () => {
 
   it('should clear input and Chosen Date value after clicking on Clear Date button', () => {
     const labelText = 'Date Picker Label';
-    const now = new Date();
+    const valueDate = new Date(2025, 6, 1);
     const day =
-      format(now, 'dd')[0] === '0' ? format(now, 'dd')[1] : format(now, 'dd');
+      format(valueDate, 'dd')[0] === '0'
+        ? format(valueDate, 'dd')[1]
+        : format(valueDate, 'dd');
     const chosenDate = `${
-      now.getMonth() + 1
-    }/${now.getDate()}/${now.getFullYear()}`;
+      valueDate.getMonth() + 2
+    }/${valueDate.getDate()}/${valueDate.getFullYear()}`;
 
     const { getByText, getAllByText, getByLabelText } = render(
-      <ClearingTheDate labelText={labelText} />
+      <ClearingTheDate labelText={labelText} defaultDate={valueDate} />
     );
 
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));

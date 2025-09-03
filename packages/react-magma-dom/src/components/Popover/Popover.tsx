@@ -293,23 +293,11 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       }
     }
 
-    const [placement, setPlacement] = React.useState('bottom');
-
-    function changePlacement(
-      position: PopoverPosition,
-      alignment: PopoverAlignment
-    ) {
-      const placementMap = new Map([
-        ['bottom-start', 'bottom-start'],
-        ['bottom-end', 'bottom-end'],
-        ['bottom-center', 'bottom'],
-        ['top-start', 'top-start'],
-        ['top-end', 'top-end'],
-        ['top-center', 'top'],
-      ]);
-      const contentPosition = `${position}-${alignment}`;
-      setPlacement(placementMap.get(contentPosition) ?? 'bottom');
-    }
+    const placement = React.useMemo(() => {
+      return alignment === PopoverAlignment.center
+        ? position
+        : `${position}-${alignment}`;
+    }, [position, alignment]);
 
     const { refs, floatingStyles, context, elements, update } = useFloating({
       //flip() - Changes the placement of the floating element to keep it in view.
@@ -334,10 +322,6 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
         return autoUpdate(referenceElement, floatingElement, update);
       }
     }, [isOpen, elements, update]);
-
-    React.useEffect(() => {
-      changePlacement(position, alignment);
-    }, [position, alignment]);
 
     const maxHeightString =
       typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
