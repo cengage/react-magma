@@ -200,7 +200,7 @@ describe('DateTimePicker', () => {
 
       userEvent.type(hoursInput, '9');
 
-      expect(onTimeChange).toHaveBeenCalledWith('09: AM');
+      expect(onTimeChange).toHaveBeenCalledWith('09:00 AM');
     });
 
     it('should show time in input when time is selected', () => {
@@ -267,7 +267,7 @@ describe('DateTimePicker', () => {
 
       const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
 
-      expect(input).toHaveAttribute('value', `${today} 09: AM`);
+      expect(input).toHaveAttribute('value', `${today} 09:00 AM`);
     });
 
     it('should clear time when input is completely cleared', () => {

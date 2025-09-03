@@ -24,7 +24,7 @@ interface CalendarMonthProps {
   isInverse?: boolean;
   handleCloseButtonClick: (event: React.SyntheticEvent) => void;
   setDateFocused?: (value: boolean) => void;
-  additionalContent?: React.ReactNode;
+  dateTimePickerContent?: React.ReactNode;
 }
 
 const CalendarContainer = styled.div<{ isInverse?: boolean }>`
@@ -266,7 +266,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                   ))}
               </tbody>
             </Table>
-            {props.additionalContent && props.additionalContent}
+            {props.dateTimePickerContent && props.dateTimePickerContent}
             <HeaderWrapper theme={theme} isInverse={context.isInverse}>
               <Tooltip
                 content={'Keyboard instructions'}

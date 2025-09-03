@@ -76,9 +76,61 @@ Inverse.args = {
 
 export const ClearingTheDateAndTime = args => {
   const [chosenDate, setChosenDate] = React.useState<Date | null>(null);
+  const [chosenTime, setChosenTime] = React.useState<string | null>(null);
 
   function handleDateChange(newChosenDate: Date | null) {
-    setChosenDate(newChosenDate);
+    let newDate = newChosenDate;
+
+    if (chosenTime && newChosenDate) {
+      const [timePart, ampm] = chosenTime.split(' ');
+      let [hours, minutes] = timePart.split(':').map(Number);
+
+      if (ampm) {
+        if (ampm.toLowerCase() === 'pm' && hours < 12) {
+          hours += 12;
+        }
+        if (ampm.toLowerCase() === 'am' && hours === 12) {
+          hours = 0;
+        }
+      }
+
+      newDate = new Date(
+        newChosenDate.getFullYear(),
+        newChosenDate.getMonth(),
+        newChosenDate.getDate(),
+        hours,
+        minutes
+      );
+    }
+
+    setChosenDate(newDate);
+  }
+
+  function handleTimeChange(newChosenTime: string | null) {
+    setChosenTime(newChosenTime);
+
+    if (chosenDate && newChosenTime) {
+      const [timePart, ampm] = newChosenTime.split(' ');
+      let [hours, minutes] = timePart.split(':').map(Number);
+
+      if (ampm) {
+        if (ampm.toLowerCase() === 'pm' && hours < 12) {
+          hours += 12;
+        }
+        if (ampm.toLowerCase() === 'am' && hours === 12) {
+          hours = 0;
+        }
+      }
+
+      const newDate = new Date(
+        chosenDate.getFullYear(),
+        chosenDate.getMonth(),
+        chosenDate.getDate(),
+        hours,
+        minutes
+      );
+      setChosenDate(newDate);
+    }
   }
 
   return (
@@ -93,15 +145,21 @@ export const ClearingTheDateAndTime = args => {
           </span>
         )}
       </p>
+      <p>
+        <strong>Chosen Time: </strong>
+        {chosenTime && <span>{chosenTime}</span>}
+      </p>
       <DateTimePicker
         {...args}
         onDateChange={handleDateChange}
-        onChange={() => {}}
+        onTimeChange={handleTimeChange}
         value={chosenDate}
         isClearable
       />
       <br />
-      <Button onClick={() => handleDateChange(null)}>Clear Date</Button>
+      <Button onClick={() => handleDateChange(null)}>
+        Clear Date and Time
+      </Button>
     </div>
   );
 };

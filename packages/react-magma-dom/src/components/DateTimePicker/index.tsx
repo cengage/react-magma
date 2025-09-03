@@ -120,8 +120,9 @@ const DoneButtonWrapper = styled.div<{ isInverse?: boolean }>`
     props.isInverse
       ? props.theme.colors.primary600
       : props.theme.colors.neutral200};
-  padding: 16px;
-  margin: 0 -16px -8px;
+  padding: ${props => props.theme.spaceScale.spacing05};
+  margin: ${props =>
+    `0 -${props.theme.spaceScale.spacing05} -${props.theme.spaceScale.spacing03}`};
   display: flex;
   justify-content: flex-end;
 `;
@@ -236,7 +237,7 @@ export const DateTimePicker = React.forwardRef<
       ref={forwardedRef}
       value={value}
       defaultDate={defaultValue}
-      additionalContent={
+      dateTimePickerContent={
         <>
           <TimePicker
             value={!additionalInputContent ? undefined : additionalInputContent}
@@ -245,8 +246,8 @@ export const DateTimePicker = React.forwardRef<
             inputStyle={{ width: '100%' }}
             labelText={timePickerLabelText ?? 'Time'}
             containerStyle={{
-              padding: '16px',
-              margin: '0 -16px',
+              padding: theme.spaceScale.spacing05,
+              margin: `0 -${theme.spaceScale.spacing05}`,
               borderTop: `1px solid ${theme.colors.neutral300}`,
             }}
           />

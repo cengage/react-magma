@@ -143,7 +143,7 @@ export interface DatePickerProps
   /**
    * @internal
    */
-  additionalContent?: any;
+  dateTimePickerContent?: any;
   /**
    * @internal
    */
@@ -229,7 +229,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     React.useEffect(() => {
       if (
-        additionalContent &&
+        dateTimePickerContent &&
         chosenDate &&
         inputRef.current !== document.activeElement
       ) {
@@ -365,7 +365,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     function onDateChange(day: Date) {
       setChosenDate(day);
 
-      if (additionalContent) return;
+      if (dateTimePickerContent) return;
 
       setCalendarOpened(false);
     }
@@ -395,23 +395,23 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
       let isValidDay;
 
-      if (additionalContent) {
-        const cuttedValue = value.split(' ')[0];
+      if (dateTimePickerContent) {
+        const splitValue = value.split(' ')[0];
 
-        isValidDay = isValidDateFromString(cuttedValue, day);
+        isValidDay = isValidDateFromString(splitValue, day);
 
-        const validDay = new Date(cuttedValue);
+        const validDay = new Date(splitValue);
 
         const pattern = /^\d{2}\/\d{2}\/\d{4}$/;
 
-        if (pattern.test(cuttedValue)) {
+        if (pattern.test(splitValue)) {
           setChosenDate(validDay);
         }
 
         props.onChange &&
           typeof props.onChange === 'function' &&
           props.onChange(
-            isValidDay ? validDay.toISOString() : cuttedValue,
+            isValidDay ? validDay.toISOString() : splitValue,
             event
           );
       } else {
@@ -432,19 +432,19 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     function handleInputBlur(event: React.FocusEvent) {
       const { value } = inputRef.current;
       const day = parse(
-        additionalContent ? value.split(' ')[0] : value,
+        dateTimePickerContent ? value.split(' ')[0] : value,
         i18n.dateFormat,
         new Date()
       );
 
       let isValidDay;
 
-      if (additionalContent) {
-        const cuttedValue = value.split(' ')[0];
+      if (dateTimePickerContent) {
+        const splitValue = value.split(' ')[0];
 
-        isValidDay = isValidDateFromString(cuttedValue, day);
+        isValidDay = isValidDateFromString(splitValue, day);
 
-        const validDay = new Date(cuttedValue);
+        const validDay = new Date(splitValue);
 
         if (isValidDay) {
           handleDateChange(validDay, event);
@@ -524,7 +524,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
       onDateChange(day);
 
-      if (additionalContent) return;
+      if (dateTimePickerContent) return;
 
       setFocusedDate(day);
     }
@@ -532,7 +532,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     function handleDaySelection(day: Date, event: React.SyntheticEvent) {
       handleDateChange(day, event);
 
-      if (additionalContent) return;
+      if (dateTimePickerContent) return;
 
       inputRef.current.focus();
     }
@@ -564,7 +564,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       setCalendarOpened(opened => !opened);
     }
 
-    const { placeholder, testId, additionalContent, ...rest } = props;
+    const { placeholder, testId, dateTimePickerContent, ...rest } = props;
     const other = omit(
       ['onDateChange', 'onInputChange', 'onInputBlur', 'onInputFocus'],
       rest
@@ -670,7 +670,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
                   handleCloseButtonClick={handleCloseButtonClick}
                   calendarOpened={calendarOpened}
                   setDateFocused={setDateFocused}
-                  additionalContent={additionalContent}
+                  dateTimePickerContent={dateTimePickerContent}
                 />
               </DatePickerCalendar>
             </div>
