@@ -164,6 +164,23 @@ export function hasActiveElementsChecker(ref) {
   );
 }
 
+export function isElementInteractive(element: EventTarget | null): boolean {
+  if (!element || !(element instanceof HTMLElement)) return false;
+
+  const tag = element.tagName.toLowerCase();
+
+  if (
+    ['button', 'input', 'select', 'textarea', 'a'].includes(tag) ||
+    element.hasAttribute('tabindex')
+  ) {
+    if (tag === 'a' && !(element as HTMLAnchorElement).href) return false;
+
+    return !element.hasAttribute('disabled');
+  }
+
+  return false;
+}
+
 export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
   (props, forwardedRef) => {
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -266,8 +283,12 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     function closePopover(event) {
       setIsOpen(false);
 
-      if (toggleRef.current !== event.target && !hoverable) {
-        toggleRef.current.focus();
+      if (event && event.type === 'blur') {
+        const relatedTarget = event.relatedTarget;
+
+        if (!isElementInteractive(relatedTarget) && !hoverable) {
+          toggleRef.current?.focus();
+        }
       }
 
       onClose && typeof onClose === 'function' && onClose(event);
@@ -279,6 +300,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           event.stopPropagation();
         }
         closePopover(event);
+        toggleRef.current?.focus();
       }
     }
 
