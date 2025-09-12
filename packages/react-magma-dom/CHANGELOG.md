@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.25
+
+### Patch Changes
+
+- a67f9311b: fix(Drawer): Fix forced height to 300px.
+
 ## 4.10.0-next.24
 
 ### Minor Changes
