@@ -966,3 +966,49 @@ TitleTableAndOutsideBorder.args = {
   isInverse: false,
   tableTitle: <h2>Title table</h2>,
 };
+
+export const CustomRowSpanAndColSpan = args => {
+  return (
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Table {...args}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell
+                rowSpan={2}
+                style={{ textAlign: 'center', verticalAlign: 'middle' }}
+              >
+                Column with custom Row Span
+              </TableHeaderCell>
+              <TableHeaderCell colSpan={3} style={{ textAlign: 'center' }}>
+                Column with custom Col Span
+              </TableHeaderCell>
+            </TableRow>
+            <TableRow>
+              <TableHeaderCell>Sub Column 1</TableHeaderCell>
+              <TableHeaderCell>Sub Column 2</TableHeaderCell>
+              <TableHeaderCell>Sub Column 3</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row, i) => (
+              <TableRow key={`row${i}`}>
+                {row.map((cell, j) => (
+                  <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </CardBody>
+    </Card>
+  );
+};
+CustomRowSpanAndColSpan.args = {
+  hasSquareCorners: false,
+  hasOutsideBorder: true,
+  hasHoverStyles: false,
+  hasVerticalBorders: true,
+  hasZebraStripes: false,
+  tableTitle: 'Custom Row Span and Col Span',
+};
