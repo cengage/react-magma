@@ -542,4 +542,34 @@ describe('Table', () => {
       expect(getByTestId(testId)).toHaveStyle(`border-radius: 0`);
     });
   });
+
+  describe('TableHeaderCell rowSpan and colSpan', () => {
+    it('should render with the correct rowSpan', () => {
+      const { getByText } = render(
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell rowSpan={2}>Row Header</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      );
+      const th = getByText('Row Header').closest('th');
+      expect(th).toHaveAttribute('rowspan', '2');
+    });
+
+    it('should render with the correct colSpan', () => {
+      const { getByText } = render(
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell colSpan={3}>Col Header</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      );
+      const th = getByText('Col Header').closest('th');
+      expect(th).toHaveAttribute('colspan', '3');
+    });
+  });
 });
