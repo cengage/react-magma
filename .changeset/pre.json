@@ -58,6 +58,7 @@
     "fix-button-round-styles",
     "fix-character-counter-accessibility",
     "fix-docs-line-chart-instructions",
+    "fix-docs-popover-broken-focus-section",
     "fix-drawer-and-datepicker-navigation",
     "icons-v",
     "manually-sync-4.9.0",
