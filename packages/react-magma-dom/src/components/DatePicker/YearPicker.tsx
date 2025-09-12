@@ -48,7 +48,12 @@ export const YearPicker: React.FunctionComponent<YearPickerProps> = (
         value={currentYear}
       >
         {years.map(year => (
-          <option key={year.value} value={year.value}>
+          <option
+            key={year.value}
+            value={year.value}
+            // Need to apply it for NVDA to only read the selected option
+            aria-hidden={currentYear !== year.value}
+          >
             {year.label}
           </option>
         ))}

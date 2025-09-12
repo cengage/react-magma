@@ -39,7 +39,12 @@ export const MonthPicker: React.FunctionComponent<MonthPickerProps> = props => {
         value={getNumberMonthByLabel(currentMonth)}
       >
         {months.map(month => (
-          <option key={month.value} value={month.value}>
+          <option
+            key={month.value}
+            value={month.value}
+            // Need to apply it for NVDA to only read the selected option
+            aria-hidden={currentMonth !== month.label}
+          >
             {month.label}
           </option>
         ))}
