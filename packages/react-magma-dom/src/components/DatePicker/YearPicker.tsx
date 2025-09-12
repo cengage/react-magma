@@ -41,7 +41,7 @@ export const YearPicker: React.FunctionComponent<YearPickerProps> = (
   return (
     <StyledSelect isInverse={isInverse} theme={theme}>
       <NativeSelect
-        aria-label={`${currentYear}. ${i18n.datePicker.selectYear}`}
+        aria-label={i18n.datePicker.selectYear}
         data-testid="year-picker"
         fieldId={''}
         onChange={e => onYearChange(Number(e.target.value))}
