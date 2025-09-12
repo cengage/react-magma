@@ -113,7 +113,10 @@ import {
   PopoverContent,
   PopoverApi,
   Button,
+  ButtonSize,
+  ButtonVariant,
   Spacer,
+  SpacerAxis,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -305,7 +308,14 @@ import {
 
 export function Example() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 8,
+        marginLeft: 40,
+      }}
+    >
       <Popover alignment={PopoverAlignment.center}>
         <PopoverTrigger aria-label="Open center popover alignment">
           Center alignment Popover

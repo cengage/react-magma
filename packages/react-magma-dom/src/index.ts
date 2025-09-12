@@ -153,6 +153,7 @@ export { Label, LabelPosition } from './components/Label';
 export {
   LoadingIndicator,
   LoadingIndicatorProps,
+  LoadingIndicatorType,
 } from './components/LoadingIndicator';
 export { NativeSelect, NativeSelectProps } from './components/NativeSelect';
 export { NavTabs } from './components/NavTabs';
