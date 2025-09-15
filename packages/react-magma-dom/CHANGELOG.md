@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.26
+
+### Patch Changes
+
+- 74286d980: fix(Table): Added new props `colSpan` and `rowSpan` for TableHeaderCell;
+
 ## 4.10.0-next.25
 
 ### Patch Changes
