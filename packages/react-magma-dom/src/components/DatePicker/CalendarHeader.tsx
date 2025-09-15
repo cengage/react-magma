@@ -27,7 +27,7 @@ const CalendarHeaderContainer = styled.div`
   align-items: center;
   display: flex;
   padding: ${props => props.theme.spaceScale.spacing03} 0
-    ${props => props.theme.spaceScale.spacing03} 0;
+    ${props => props.theme.spaceScale.spacing05};
   justify-content: space-between;
 `;
 

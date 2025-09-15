@@ -37,7 +37,7 @@ export function Example() {
   return (
     <DateTimePicker
       defaultValue={new Date(2025, 1, 0, 9, 30)}
-      labelText="Default Date"
+      labelText="Default Value"
     />
   );
 }
@@ -199,7 +199,6 @@ export function Example() {
         {chosenTime && <span>{chosenTime}</span>}
       </p>
       <DateTimePicker
-        {...args}
         onDateChange={handleDateChange}
         onTimeChange={handleTimeChange}
         value={chosenDate}
@@ -257,11 +256,7 @@ import { DateTimePicker } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <DateTimePicker
-      labelText="Error *"
-      errorMessage="You made an error"
-      required
-    />
+    <DateTimePicker labelText="Error *" errorMessage="You made an error" />
   );
 }
 ```
@@ -540,6 +535,37 @@ export function Example() {
             thursday: 'Jue',
             friday: 'Vie',
             saturday: 'Sab',
+          },
+        },
+        months: {
+          ...defaultI18n.months,
+          short: {
+            january: 'Ene',
+            february: 'Feb',
+            march: 'Mar',
+            april: 'Abr',
+            may: 'May',
+            june: 'Jun',
+            july: 'Jul',
+            august: 'Ago',
+            september: 'Sep',
+            october: 'Oct',
+            november: 'Nov',
+            december: 'Dic',
+          },
+          long: {
+            january: 'Enero',
+            february: 'Febrero',
+            march: 'Marzo',
+            april: 'Abril',
+            may: 'Mayo',
+            june: 'Junio',
+            july: 'Julio',
+            august: 'Agosto',
+            september: 'Septiembre',
+            october: 'Octubre',
+            november: 'Noviembre',
+            december: 'Diciembre',
           },
         },
         datePicker: {

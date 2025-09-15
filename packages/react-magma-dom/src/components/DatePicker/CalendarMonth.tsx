@@ -53,9 +53,11 @@ const MonthContainer = styled.div<{ isInverse?: boolean }>`
     ${props => props.theme.spaceScale.spacing03};
 `;
 
-const Table = styled.table`
+const Table = styled.table<{ dateTimePickerContent?: boolean }>`
   border-collapse: collapse;
   border-spacing: 0;
+  margin-bottom: ${props =>
+    props.dateTimePickerContent && props.theme.spaceScale.spacing03};
 `;
 
 const Th = styled.th<{ isInverse?: boolean }>`
@@ -246,6 +248,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
               onFocus={onCalendarTableFocus}
               theme={theme}
               role="application"
+              dateTimePickerContent={!!props.dateTimePickerContent}
             >
               <tbody>
                 <tr>{tableDaysHeaders}</tr>
