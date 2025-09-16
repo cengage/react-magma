@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.27
+
+### Patch Changes
+
+- b49950955: fix(Popover): Fix a bug with several popovers
+
 ## 4.10.0-next.26
 
 ### Patch Changes

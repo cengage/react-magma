@@ -54,6 +54,7 @@
     "fix-Intermediate-Checkbox-screenreader-reads-unticked",
     "fix-Playwright-tests",
     "fix-Popover-and-Tooltip-focus-issue",
+    "fix-Popover-blur-behavior",
     "fix-Popover-code-improvements",
     "fix-RadioButton-hide-decorative-icons-from-assistive-technology",
     "fix-React-Magma-docs-before-release",
