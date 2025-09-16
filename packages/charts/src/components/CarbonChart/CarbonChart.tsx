@@ -19,6 +19,7 @@ import {
   MeterChart,
   ScatterChart,
   ComboChart,
+  ChartOptions,
 } from '@carbon/charts-react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
@@ -52,7 +53,7 @@ export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * For a complete list of options, see Carbon Charts documentation
    */
-  options: Object;
+  options: ChartOptions;
   testId?: string;
   /**
    * @internal
@@ -559,6 +560,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         scale: buildColors(),
       },
       tooltip: {
+        ...(options?.tooltip || {}),
         truncation: {
           type: 'none',
         },
