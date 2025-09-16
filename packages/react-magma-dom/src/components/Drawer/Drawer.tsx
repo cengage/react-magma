@@ -64,10 +64,9 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
-    const drawerPosition: DrawerPosition = position ?? DrawerPosition.top;
     const drawerStyle = {
       ...theme.drawer.default,
-      ...theme.drawer[drawerPosition],
+      ...theme.drawer[DrawerPosition[position]],
     } as React.CSSProperties;
 
     let containerTransition: Omit<TransitionProps, 'isOpen'> | undefined;

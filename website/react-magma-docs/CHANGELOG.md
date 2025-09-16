@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-next.15
+
+### Patch Changes
+
+- bc0ce2fb4: chore: Fix broken `Focus Trap` section.
+
 ## 5.2.0-next.14
 
 ### Patch Changes
