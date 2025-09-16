@@ -29,6 +29,23 @@ export const MonthPicker: React.FunctionComponent<MonthPickerProps> = props => {
     setMonthFocusedDate(month);
   }
 
+  const getTextWidth = (text: string, font: string) => {
+    const canvas = document.createElement('canvas');
+    const context = canvas.getContext('2d');
+
+    context.font = font;
+
+    return context.measureText(text).width;
+  };
+
+  const width = React.useMemo(() => {
+    const currentLabel = currentMonth;
+    const font = `${theme.typeScale.size03.fontSize} ${theme.bodyFont}`;
+    const padding = parseInt(theme.spaceScale.spacing03, 10) * 2;
+
+    return Math.ceil(getTextWidth(currentLabel, font) + padding);
+  }, [currentMonth]);
+
   return (
     <StyledSelect isInverse={isInverse} theme={theme}>
       <NativeSelect
@@ -37,6 +54,7 @@ export const MonthPicker: React.FunctionComponent<MonthPickerProps> = props => {
         fieldId={''}
         onChange={e => onMonthChange(Number(e.target.value))}
         value={getNumberMonthByLabel(currentMonth)}
+        style={{ width }}
       >
         {months.map(month => (
           <option key={month.value} value={month.value}>

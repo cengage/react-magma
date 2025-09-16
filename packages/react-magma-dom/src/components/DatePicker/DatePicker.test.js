@@ -25,6 +25,11 @@ import { defaultI18n } from '../../i18n/default';
 
 import { DatePicker } from '.';
 
+HTMLCanvasElement.prototype.getContext = () => ({
+  font: '',
+  measureText: text => ({ width: text.length * 8 }),
+});
+
 describe('Date Picker', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';

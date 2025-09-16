@@ -51,7 +51,7 @@ const CalendarHeaderText = styled.div<{ isInverse?: boolean }>`
 
 const MonthYearWrapper = styled.div`
   display: flex;
-  gap: ${props => props.theme.spaceScale.spacing03};
+  gap: ${props => props.theme.spaceScale.spacing01};
 `;
 
 const NavigationWrapper = styled.div`
