@@ -12,6 +12,7 @@
     "playwright": "1.0.0"
   },
   "changesets": [
+    "chart-fixbuild",
     "chore-Playwright-initial-configuration",
     "chore-css-prop",
     "chore-deploy-v2",
@@ -20,6 +21,7 @@
     "chore-docs-add-warning-for-tooltip",
     "chore-fix-dom-version-again",
     "chore-fix-dom-version",
+    "chore-fixbuild",
     "chore-sync-landing-version",
     "feat-Button-update-icon-size",
     "feat-CarbonCharts-support_custom-colors",

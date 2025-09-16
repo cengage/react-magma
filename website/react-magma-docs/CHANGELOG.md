@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.2.0-next.16
+
+### Patch Changes
+
+- 4b9cfef65: chore: fix build by removing bad changeset
+- Updated dependencies [f51613699]
+  - @react-magma/charts@12.0.0-next.4
+
 ## 5.2.0-next.15
 
 ### Patch Changes

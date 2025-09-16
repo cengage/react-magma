@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 12.0.0-next.4
+
+### Minor Changes
+
+- f51613699: fix(charts): fix build
+
 ## 12.0.0-next.3
 
 ### Minor Changes
