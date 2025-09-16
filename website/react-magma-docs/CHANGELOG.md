@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-next.17
+
+### Patch Changes
+
+- 5d393b464: fix(Definition List, Loading Indicator, Native Select, Nav Tabs, Popover): Fix docs issues.
+
 ## 5.2.0-next.16
 
 ### Patch Changes

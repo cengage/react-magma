@@ -56,6 +56,7 @@
     "fix-Popover-and-Tooltip-focus-issue",
     "fix-Popover-code-improvements",
     "fix-RadioButton-hide-decorative-icons-from-assistive-technology",
+    "fix-React-Magma-docs-before-release",
     "fix-Table-Support-colSpan-and-rowSpan",
     "fix-Table-incorrect-pagination",
     "fix-TreeItem-calls-events-twice",
