@@ -2,4 +2,4 @@
 '@react-magma/charts': minor
 ---
 
-fix build
+feat: charts allow tooltip option customization
