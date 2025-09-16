@@ -7,8 +7,19 @@ import {
   DoneIcon,
   FilterAltIcon,
   HeadphonesIcon,
+  KeyboardArrowRightIcon,
   ModeCommentIcon,
   SettingsIcon,
+  AccessibilityNewIcon,
+  AccessTimeIcon,
+  AccountBalanceIcon,
+  CheckBoxIcon,
+  DirectionsRunIcon,
+  HouseIcon,
+  LandscapeIcon,
+  RadarIcon,
+  EcoIcon,
+  AirIcon,
 } from 'react-magma-icons';
 
 import {
@@ -31,6 +42,7 @@ import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { Card } from '../Card';
 import { PopoverHeader, PopoverFooter } from './PopoverSection';
 import { Checkbox, CheckboxTextPosition } from '../Checkbox';
+import { Flex, FlexBehavior, FlexDirection, FlexJustify } from '../Flex';
 import { Form } from '../Form';
 import { FormGroup } from '../FormGroup';
 import { Hyperlink } from '../Hyperlink';
@@ -1141,5 +1153,90 @@ export const ProgrammaticallyOpening = args => {
         </PopoverContent>
       </Popover>
     </Card>
+  );
+};
+
+export const SeveralPopovers = () => {
+  return (
+    <Flex behavior={FlexBehavior.container} style={{ paddingLeft: '36px' }}>
+      <Flex
+        behavior={FlexBehavior.both}
+        direction={FlexDirection.row}
+        justify={FlexJustify.spaceAround}
+        style={{ borderStyle: 'dashed', width: '95%' }}
+      >
+        {[
+          {
+            label: 'Responsibility & Control',
+            icon: <EcoIcon />,
+            background: magma.colors.primary400,
+          },
+          {
+            label: 'Competition',
+            icon: <DirectionsRunIcon />,
+            background: '#711E6E',
+          },
+          {
+            label: 'Task Planning',
+            icon: <CheckBoxIcon />,
+            background: magma.colors.info600,
+          },
+          {
+            label: 'Expectations',
+            icon: <AccessibilityNewIcon />,
+            background: '#005249',
+          },
+          {
+            label: 'Wellness',
+            icon: <AirIcon />,
+            background: '#9D8600',
+          },
+          {
+            label: 'Time Management',
+            icon: <AccessTimeIcon />,
+            background: '#8F0033',
+          },
+          {
+            label: 'College Involvement',
+            icon: <AccountBalanceIcon />,
+            background: '#B84900',
+          },
+          {
+            label: 'Family Involvement',
+            icon: <HouseIcon />,
+            background: '#1EA746',
+          },
+          {
+            label: 'Precision',
+            icon: <RadarIcon />,
+            background: '#00A393',
+          },
+          {
+            label: 'Performance',
+            icon: <LandscapeIcon />,
+            background: '#B12FAD',
+          },
+        ].map(({ label, icon, background }) => (
+          <Popover key={label} position={PopoverPosition.top}>
+            <PopoverTrigger>
+              <IconButton
+                aria-label={label}
+                icon={icon}
+                size={ButtonSize.medium}
+                style={{ background: background }}
+              />
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverHeader>
+                <div>{label}</div>
+              </PopoverHeader>
+              <Button variant={ButtonVariant.link}>
+                View Resources <KeyboardArrowRightIcon />
+              </Button>
+            </PopoverContent>
+          </Popover>
+        ))}
+      </Flex>
+    </Flex>
   );
 };
