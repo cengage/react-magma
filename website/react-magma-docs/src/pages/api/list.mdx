@@ -369,8 +369,10 @@ export function Example() {
           <DefinitionList>
             {data.map((item, index) => (
               <React.Fragment key={index}>
-                <DefinitionListItem type="term">{item.term}</DefinitionListItem>
-                <DefinitionListItem type="description">
+                <DefinitionListItem type={DefinitionListType.term}>
+                  {item.term}
+                </DefinitionListItem>
+                <DefinitionListItem type={DefinitionListType.description}>
                   {item.description}
                 </DefinitionListItem>
               </React.Fragment>

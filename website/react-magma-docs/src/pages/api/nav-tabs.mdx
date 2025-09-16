@@ -30,7 +30,7 @@ import { NavTab, NavTabs } from 'react-magma-dom';
 export function Example() {
   return (
     <NavTabs aria-label="Nav Tabs">
-      <NavTab isActive to="#">
+      <NavTab isActive to="javascript:void(0)">
         Current Page
       </NavTab>
       <NavTab to="http://google.com">Link to Google</NavTab>
@@ -56,10 +56,10 @@ export function Example() {
       aria-label="Vertical Nav Tabs"
       orientation={TabsOrientation.vertical}
     >
-      <NavTab isActive to="#">
+      <NavTab isActive to="javascript:void(0)">
         Link 1
       </NavTab>
-      <NavTab to="#">Link 2</NavTab>
+      <NavTab to="javascript:void(0)">Link 2</NavTab>
     </NavTabs>
   );
 }
@@ -112,10 +112,10 @@ export function Example() {
       aria-label="Border Top Nav Tabs"
       borderPosition={TabsBorderPosition.top}
     >
-      <NavTab isActive to="#">
+      <NavTab isActive to="javascript:void(0)">
         Link 1
       </NavTab>
-      <NavTab to="#">Link 2</NavTab>
+      <NavTab to="javascript:void(0)">Link 2</NavTab>
     </NavTabs>
   );
 }
@@ -146,10 +146,10 @@ export function Example() {
       borderPosition={TabsBorderPosition.right}
       orientation={TabsOrientation.vertical}
     >
-      <NavTab isActive to="#">
+      <NavTab isActive to="javascript:void(0)">
         Link 1
       </NavTab>
-      <NavTab to="#">Link 2</NavTab>
+      <NavTab to="javascript:void(0)">Link 2</NavTab>
     </NavTabs>
   );
 }
@@ -170,10 +170,10 @@ export function Example() {
       aria-label="Center Aligned Nav Tabs"
       alignment={TabsAlignment.center}
     >
-      <NavTab isActive to="#">
+      <NavTab isActive to="javascript:void(0)">
         Link 1
       </NavTab>
-      <NavTab to="#">Link 2</NavTab>
+      <NavTab to="javascript:void(0)">Link 2</NavTab>
     </NavTabs>
   );
 }
@@ -190,10 +190,10 @@ export function Example() {
       aria-label="Right Aligned Nav Tabs"
       alignment={TabsAlignment.right}
     >
-      <NavTab isActive to="#">
+      <NavTab isActive to="javascript:void(0)">
         Link 1
       </NavTab>
-      <NavTab to="#">Link 2</NavTab>
+      <NavTab to="javascript:void(0)">Link 2</NavTab>
     </NavTabs>
   );
 }
@@ -215,19 +215,19 @@ export function Example() {
   return (
     <>
       <NavTabs textTransform={TabsTextTransform.uppercase}>
-        <NavTab isActive to="#">
+        <NavTab isActive to="javascript:void(0)">
           First uppercase
         </NavTab>
-        <NavTab to="#">Second uppercase</NavTab>
+        <NavTab to="javascript:void(0)">Second uppercase</NavTab>
       </NavTabs>
       <br />
       <br />
       <br />
       <NavTabs textTransform={TabsTextTransform.none}>
-        <NavTab isActive to="#">
+        <NavTab isActive to="javascript:void(0)">
           First lowercase
         </NavTab>
-        <NavTab to="#">Second lowercase</NavTab>
+        <NavTab to="javascript:void(0)">Second lowercase</NavTab>
       </NavTabs>
     </>
   );
@@ -246,13 +246,16 @@ import { NavTabs, NavTab, TabsTextTransform } from 'react-magma-dom';
 export function Example() {
   return (
     <NavTabs>
-      <NavTab isActive to="#">
+      <NavTab isActive to="javascript:void(0)">
         All caps (default)
       </NavTab>
-      <NavTab to="#" textTransform={TabsTextTransform.none}>
+      <NavTab to="javascript:void(0)" textTransform={TabsTextTransform.none}>
         No Text Transform
       </NavTab>
-      <NavTab to="#" textTransform={TabsTextTransform.uppercase}>
+      <NavTab
+        to="javascript:void(0)"
+        textTransform={TabsTextTransform.uppercase}
+      >
         Uppercase transform
       </NavTab>
     </NavTabs>
@@ -274,10 +277,10 @@ import { NavTab, NavTabs } from 'react-magma-dom';
 export function Example() {
   return (
     <NavTabs aria-label="Full-Width Nav Tabs" isFullWidth>
-      <NavTab isActive to="#">
+      <NavTab isActive to="javascript:void(0)">
         Link 1
       </NavTab>
-      <NavTab to="#">Link 2</NavTab>
+      <NavTab to="javascript:void(0)">Link 2</NavTab>
     </NavTabs>
   );
 }
@@ -296,14 +299,16 @@ export function Example() {
       aria-label="Sample Scrollable Nav Tabs"
       backgroundColor={magma.colors.neutral200}
     >
-      <NavTab to="#">First item with a longer text label</NavTab>
-      <NavTab to="#">Second item</NavTab>
-      <NavTab to="#">Third item</NavTab>
-      <NavTab to="#">Fourth item</NavTab>
-      <NavTab to="#">Fifth item</NavTab>
-      <NavTab to="#">Sixth item</NavTab>
-      <NavTab to="#">Seventh item</NavTab>
-      <NavTab to="#">Eighth item</NavTab>
+      <NavTab to="javascript:void(0)">
+        First item with a longer text label
+      </NavTab>
+      <NavTab to="javascript:void(0)">Second item</NavTab>
+      <NavTab to="javascript:void(0)">Third item</NavTab>
+      <NavTab to="javascript:void(0)">Fourth item</NavTab>
+      <NavTab to="javascript:void(0)">Fifth item</NavTab>
+      <NavTab to="javascript:void(0)">Sixth item</NavTab>
+      <NavTab to="javascript:void(0)">Seventh item</NavTab>
+      <NavTab to="javascript:void(0)">Eighth item</NavTab>
     </NavTabs>
   );
 }
@@ -324,12 +329,12 @@ export function Example() {
         backgroundColor={magma.colors.neutral200}
         orientation={TabsOrientation.vertical}
       >
-        <NavTab to="#">First item</NavTab>
-        <NavTab to="#">Second item</NavTab>
-        <NavTab to="#">Third item</NavTab>
-        <NavTab to="#">Fourth item</NavTab>
-        <NavTab to="#">Fifth item</NavTab>
-        <NavTab to="#">Sixth item</NavTab>
+        <NavTab to="javascript:void(0)">First item</NavTab>
+        <NavTab to="javascript:void(0)">Second item</NavTab>
+        <NavTab to="javascript:void(0)">Third item</NavTab>
+        <NavTab to="javascript:void(0)">Fourth item</NavTab>
+        <NavTab to="javascript:void(0)">Fifth item</NavTab>
+        <NavTab to="javascript:void(0)">Sixth item</NavTab>
       </NavTabs>
     </div>
   );
@@ -353,9 +358,22 @@ import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <NavTabs aria-label="Icon Only Nav Tabs">
-      <NavTab aria-label="Email" icon={<EmailIcon />} to="#" isActive />
-      <NavTab aria-label="Android" icon={<AndroidIcon />} to="#" />
-      <NavTab aria-label="Notifications" icon={<NotificationsIcon />} to="#" />
+      <NavTab
+        aria-label="Email"
+        icon={<EmailIcon />}
+        to="javascript:void(0)"
+        isActive
+      />
+      <NavTab
+        aria-label="Android"
+        icon={<AndroidIcon />}
+        to="javascript:void(0)"
+      />
+      <NavTab
+        aria-label="Notifications"
+        icon={<NotificationsIcon />}
+        to="javascript:void(0)"
+      />
     </NavTabs>
   );
 }
@@ -375,13 +393,13 @@ import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <NavTabs aria-label="Icon with Text Nav Tabs" isFullWidth>
-      <NavTab icon={<EmailIcon />} isActive to="#">
+      <NavTab icon={<EmailIcon />} isActive to="javascript:void(0)">
         First item with a longer text label
       </NavTab>
-      <NavTab icon={<AndroidIcon />} to="#">
+      <NavTab icon={<AndroidIcon />} to="javascript:void(0)">
         Second item
       </NavTab>
-      <NavTab icon={<NotificationsIcon />} to="#">
+      <NavTab icon={<NotificationsIcon />} to="javascript:void(0)">
         Third item
       </NavTab>
     </NavTabs>
@@ -403,13 +421,13 @@ export function Example() {
       aria-label="Vertical Icon with Text Nav Tabs"
       orientation={TabsOrientation.vertical}
     >
-      <NavTab icon={<EmailIcon />} isActive to="#">
+      <NavTab icon={<EmailIcon />} isActive to="javascript:void(0)">
         First item with a longer text label
       </NavTab>
-      <NavTab icon={<AndroidIcon />} to="#">
+      <NavTab icon={<AndroidIcon />} to="javascript:void(0)">
         Second item
       </NavTab>
-      <NavTab icon={<NotificationsIcon />} to="#">
+      <NavTab icon={<NotificationsIcon />} to="javascript:void(0)">
         Third item
       </NavTab>
     </NavTabs>
@@ -436,13 +454,13 @@ export function Example() {
         aria-label="Icon Position Left Nav Tabs"
         iconPosition={TabsIconPosition.left}
       >
-        <NavTab icon={<EmailIcon />} isActive to="#">
+        <NavTab icon={<EmailIcon />} isActive to="javascript:void(0)">
           First item with a longer text label
         </NavTab>
-        <NavTab icon={<AndroidIcon />} to="#">
+        <NavTab icon={<AndroidIcon />} to="javascript:void(0)">
           Second item
         </NavTab>
-        <NavTab icon={<NotificationsIcon />} to="#">
+        <NavTab icon={<NotificationsIcon />} to="javascript:void(0)">
           Third item
         </NavTab>
       </NavTabs>
@@ -455,13 +473,13 @@ export function Example() {
         aria-label="Icon Position Right Nav Tabs"
         iconPosition={TabsIconPosition.right}
       >
-        <NavTab icon={<EmailIcon />} isActive to="#">
+        <NavTab icon={<EmailIcon />} isActive to="javascript:void(0)">
           First item with a longer text label
         </NavTab>
-        <NavTab icon={<AndroidIcon />} to="#">
+        <NavTab icon={<AndroidIcon />} to="javascript:void(0)">
           Second item
         </NavTab>
-        <NavTab icon={<NotificationsIcon />} to="#">
+        <NavTab icon={<NotificationsIcon />} to="javascript:void(0)">
           Third item
         </NavTab>
       </NavTabs>
@@ -486,11 +504,11 @@ export function Example() {
     <Card isInverse>
       <CardBody>
         <NavTabs aria-label="Sample Inverse Colors Nav Tabs" isInverse>
-          <NavTab isActive to="#">
+          <NavTab isActive to="javascript:void(0)">
             First link
           </NavTab>
-          <NavTab to="#">Second link</NavTab>
-          <NavTab to="#">Third link</NavTab>
+          <NavTab to="javascript:void(0)">Second link</NavTab>
+          <NavTab to="javascript:void(0)">Third link</NavTab>
         </NavTabs>
       </CardBody>
     </Card>
@@ -512,11 +530,11 @@ export function Example() {
       backgroundColor={magma.colors.neutral800}
       isInverse
     >
-      <NavTab isActive to="#">
+      <NavTab isActive to="javascript:void(0)">
         First link
       </NavTab>
-      <NavTab to="#">Second link</NavTab>
-      <NavTab to="#">Third link</NavTab>
+      <NavTab to="javascript:void(0)">Second link</NavTab>
+      <NavTab to="javascript:void(0)">Third link</NavTab>
     </NavTabs>
   );
 }
