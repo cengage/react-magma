@@ -8,7 +8,6 @@ import {
   KeyboardArrowRightIcon,
 } from 'react-magma-icons';
 
-import { Announce } from '../Announce';
 import { CalendarContext } from './CalendarContext';
 import { i18nFormat as format, getCurrentMonthAndYear } from './utils';
 import { I18nContext } from '../../i18n';
