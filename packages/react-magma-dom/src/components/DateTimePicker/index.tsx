@@ -226,7 +226,7 @@ export const DateTimePicker = React.forwardRef<
 
   return (
     <DatePicker
-      labelText={labelText ?? 'Pick a date and time'}
+      labelText={labelText ?? i18n.dateTimePickerLabel}
       apiRef={datePickerApiRef}
       additionalInputContent={additionalInputContent}
       placeholder={updatedPlaceholder}

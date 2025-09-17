@@ -4,6 +4,7 @@ export const defaultI18n: I18nInterface = {
   locale: null,
   dateFormat: 'MM/dd/yyyy',
   timeFormat: '12',
+  dateTimePickerLabel: 'Pick a date and time',
   example:
     'i18n defaults must be set in packages/react-magma-dom/src/i18n/default.ts',
   months: {

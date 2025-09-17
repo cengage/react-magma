@@ -10,6 +10,7 @@ export interface I18nInterface {
     | 'yyyy/dd/MM'
     | 'MMMM d, yyyy';
   timeFormat: '12' | '24';
+  dateTimePickerLabel: string;
   months: {
     long: {
       january: string;
