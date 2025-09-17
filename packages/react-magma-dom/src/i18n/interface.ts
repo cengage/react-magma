@@ -10,7 +10,6 @@ export interface I18nInterface {
     | 'yyyy/dd/MM'
     | 'MMMM d, yyyy';
   timeFormat: '12' | '24';
-  dateTimePickerLabel: string;
   months: {
     long: {
       january: string;
@@ -159,6 +158,7 @@ export interface I18nInterface {
       };
     };
   };
+  dateTimePickerLabel: string;
   dropdown: {
     menuItemSelectedAriaLabel: string;
     toggleMenuAriaLabel: string;
