@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 12.0.0-next.5
+
+### Major Changes
+
+- 7e66c38ec: chore: fix @react-magma/charts package to include styles and correct exports
+
 ## 12.0.0-next.4
 
 ### Minor Changes

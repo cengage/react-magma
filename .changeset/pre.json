@@ -14,6 +14,8 @@
   "changesets": [
     "chart-fixbuild",
     "chore-Playwright-initial-configuration",
+    "chore-charts-imports copy",
+    "chore-charts-imports",
     "chore-css-prop",
     "chore-deploy-v2",
     "chore-docs-add-clarification-to-popover",
