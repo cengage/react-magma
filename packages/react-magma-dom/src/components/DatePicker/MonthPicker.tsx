@@ -49,7 +49,7 @@ export const MonthPicker: React.FunctionComponent<MonthPickerProps> = props => {
   return (
     <StyledSelect isInverse={isInverse} theme={theme}>
       <NativeSelect
-        aria-label={`${currentMonth}. ${i18n.datePicker.selectMonth}`}
+        aria-label={i18n.datePicker.selectMonth}
         data-testid="month-picker"
         fieldId={''}
         onChange={e => onMonthChange(Number(e.target.value))}
