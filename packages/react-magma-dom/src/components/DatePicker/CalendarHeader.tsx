@@ -75,18 +75,16 @@ export const CalendarHeader: React.FunctionComponent<
         theme={theme}
         isInverse={props.isInverse}
       >
-        <Announce>
-          <MonthYearWrapper theme={theme}>
-            <MonthPicker
-              currentMonth={monthAndYear.month}
-              isInverse={props.isInverse}
-            />
-            <YearPicker
-              currentYear={Number(monthAndYear.year)}
-              isInverse={props.isInverse}
-            />
-          </MonthYearWrapper>
-        </Announce>
+        <MonthYearWrapper theme={theme}>
+          <MonthPicker
+            currentMonth={monthAndYear.month}
+            isInverse={props.isInverse}
+          />
+          <YearPicker
+            currentYear={Number(monthAndYear.year)}
+            isInverse={props.isInverse}
+          />
+        </MonthYearWrapper>
       </CalendarHeaderText>
       <NavigationWrapper>
         <IconButton
