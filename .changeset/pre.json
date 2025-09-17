@@ -47,6 +47,7 @@
     "feat-treeview-dynamic-children",
     "fix-Accordion-Tooltip-Storybook-issues",
     "fix-Alert-add_aria-label-for-icon",
+    "fix-DatePicker-VO-announces-month-year-twice",
     "fix-DatePicker-improve-tests",
     "fix-DatePicker-update-focus-behaviour",
     "fix-Drawer-height-forced-to-300px",

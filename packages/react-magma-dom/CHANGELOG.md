@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.30
+
+### Patch Changes
+
+- e6d8f9922: fix (Date Picker): Update aria label for month and year.
+
 ## 4.10.0-next.29
 
 ### Patch Changes
