@@ -158,6 +158,7 @@ export interface I18nInterface {
       };
     };
   };
+  dateTimePickerLabel: string;
   dropdown: {
     menuItemSelectedAriaLabel: string;
     toggleMenuAriaLabel: string;

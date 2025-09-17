@@ -1,10 +1,14 @@
 import React from 'react';
 
 import { render, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import { CalendarContext } from './CalendarContext';
 import { CalendarHeader } from './CalendarHeader';
+
+HTMLCanvasElement.prototype.getContext = () => ({
+  font: '',
+  measureText: text => ({ width: text.length * 8 }),
+});
 
 describe('Calendar Header', () => {
   it('should call to move forward a month when clicking the next month button', () => {

@@ -15,7 +15,7 @@ export const StyledSelect = styled.div<{ isInverse: boolean; theme: Theme }>`
           props.isInverse
             ? props.theme.colors.focusInverse
             : props.theme.colors.focus};
-      outline-offset: ${props => props.theme.spaceScale.spacing01};
+      outline-offset: 0;
     }
 
     select {

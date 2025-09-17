@@ -27,7 +27,7 @@ const CalendarHeaderContainer = styled.div`
   align-items: center;
   display: flex;
   padding: ${props => props.theme.spaceScale.spacing03} 0
-    ${props => props.theme.spaceScale.spacing03} 0;
+    ${props => props.theme.spaceScale.spacing05};
   justify-content: space-between;
 `;
 
@@ -51,7 +51,7 @@ const CalendarHeaderText = styled.div<{ isInverse?: boolean }>`
 
 const MonthYearWrapper = styled.div`
   display: flex;
-  gap: ${props => props.theme.spaceScale.spacing03};
+  gap: ${props => props.theme.spaceScale.spacing01};
 `;
 
 const NavigationWrapper = styled.div`
