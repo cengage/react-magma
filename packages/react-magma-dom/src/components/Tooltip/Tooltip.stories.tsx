@@ -6,6 +6,7 @@ import {
   KeyboardArrowRightIcon,
   KeyboardArrowDownIcon,
   KeyboardArrowUpIcon,
+  HelpOutlineIcon,
 } from 'react-magma-icons';
 
 import { magma } from '../../theme/magma';
@@ -18,6 +19,7 @@ import {
   DropdownDropDirection,
   DropdownMenuItem,
 } from '../Dropdown';
+import { Flex, FlexAlignItems, FlexBehavior } from '../Flex';
 import { IconButton } from '../IconButton';
 import { Modal } from '../Modal';
 import { Tag } from '../Tag';
@@ -281,3 +283,43 @@ export const CustomStyles = CustomStylesTemplate.bind({});
 CustomStyles.args = {
   content: 'Lorem ipsum dolar sit amet. Vel molestie no, ut vim.',
 };
+
+export function Example() {
+  const tooltipContentShort = (
+    <>
+      Tooltip wrapped in <b>div</b>
+    </>
+  );
+  const tooltipContentLong = (
+    <>
+      Tooltip wrapped in <b>span</b>
+    </>
+  );
+
+  return (
+    <Flex
+      behavior={FlexBehavior.container}
+      alignItems={FlexAlignItems.center}
+      spacing={2}
+    >
+      <Tooltip content={tooltipContentShort}>
+        <div style={{ width: 'fit-content', height: 'fit-content' }}>
+          <HelpOutlineIcon
+            tabIndex="0"
+            size={40}
+            aria-label={'Tooltip wrapped in div'}
+          />
+        </div>
+      </Tooltip>
+
+      <Tooltip content={tooltipContentLong}>
+        <span>
+          <HelpOutlineIcon
+            tabIndex="0"
+            aria-label={'Tooltip wrapped in span'}
+          />
+        </span>
+      </Tooltip>
+    </Flex>
+  );
+}
