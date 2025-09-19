@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-next.18
+
+### Patch Changes
+
+- a212c0f1e: chore: Fix small bugs in the documentation.
+
 ## 5.2.0-next.17
 
 ### Patch Changes
