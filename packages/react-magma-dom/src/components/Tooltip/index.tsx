@@ -14,7 +14,12 @@ import {
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useForkedRef, useGenerateId, removePxStyleStrings } from '../../utils';
+import {
+  useForkedRef,
+  useGenerateId,
+  removePxStyleStrings,
+  isNonInteractive,
+} from '../../utils';
 
 export enum TooltipPosition {
   bottom = 'bottom',
@@ -215,8 +220,12 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     throw new Error('Tooltip children can only be one element.');
   }
 
+  const nonInteractive = isNonInteractive(children);
+
   const tooltipTrigger = React.cloneElement(children, {
     'aria-describedby': isVisible ? id : null,
+    ...(nonInteractive &&
+      children.props.tabIndex === undefined && { tabIndex: 0 }),
     onBlur: hideTooltip,
     onFocus: showTooltip,
     ref: combinedRef,

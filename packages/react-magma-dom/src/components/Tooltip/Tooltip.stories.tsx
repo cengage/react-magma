@@ -6,6 +6,7 @@ import {
   KeyboardArrowRightIcon,
   KeyboardArrowDownIcon,
   KeyboardArrowUpIcon,
+  HelpOutlineIcon,
 } from 'react-magma-icons';
 
 import { magma } from '../../theme/magma';
@@ -18,6 +19,7 @@ import {
   DropdownDropDirection,
   DropdownMenuItem,
 } from '../Dropdown';
+import { Flex, FlexBehavior, FlexAlignItems } from '../Flex';
 import { IconButton } from '../IconButton';
 import { Modal } from '../Modal';
 import { Tag } from '../Tag';
@@ -280,4 +282,46 @@ const CustomStylesTemplate: Story<TooltipProps> = args => {
 export const CustomStyles = CustomStylesTemplate.bind({});
 CustomStyles.args = {
   content: 'Lorem ipsum dolar sit amet. Vel molestie no, ut vim.',
+};
+
+export const OnNonInteractiveElements = () => {
+  const tooltipContentShort = (
+    <>
+      Tooltip wrapped in <b>div</b>
+    </>
+  );
+  const tooltipContentLong = (
+    <>
+      Tooltip wrapped in <b>span</b>
+    </>
+  );
+
+  return (
+    <div
+      style={{
+        padding: '80px',
+        display: 'flex',
+        justifyContent: 'center',
+        background: magma.colors.neutral100,
+      }}
+    >
+      <Flex
+        behavior={FlexBehavior.container}
+        alignItems={FlexAlignItems.center}
+        spacing={2}
+      >
+        <Tooltip content={tooltipContentShort}>
+          <div style={{ width: 'fit-content', height: 'fit-content' }}>
+            <HelpOutlineIcon size={40} />
+          </div>
+        </Tooltip>
+
+        <Tooltip content={tooltipContentLong}>
+          <span>
+            <HelpOutlineIcon />
+          </span>
+        </Tooltip>
+      </Flex>
+    </div>
+  );
 };

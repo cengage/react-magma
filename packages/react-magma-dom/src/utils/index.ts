@@ -345,3 +345,94 @@ export const mergeRefs = <T>(...refs: Array<React.Ref<T> | undefined>) => {
     });
   };
 };
+
+export const isNonInteractive = (
+  children: React.ReactElement<any, string | React.JSXElementConstructor<any>> &
+    React.ReactNode
+) => {
+  const childType = children.type;
+
+  if (typeof childType === 'string') {
+    const nonInteractiveElements = [
+      'div',
+      'span',
+      'p',
+      'img',
+      'svg',
+      'i',
+      'b',
+      'strong',
+      'em',
+      'small',
+      'abbr',
+      'label',
+      'pre',
+      'code',
+      's',
+      'sub',
+      'sup',
+      'mark',
+      'q',
+      'dfn',
+      'var',
+      'samp',
+      'kbd',
+      'u',
+      'time',
+      'data',
+      'wbr',
+      'br',
+      'hr',
+      'caption',
+      'col',
+      'colgroup',
+      'thead',
+      'tbody',
+      'tfoot',
+      'tr',
+      'th',
+      'td',
+      'ol',
+      'ul',
+      'li',
+      'dl',
+      'dt',
+      'dd',
+      'article',
+      'section',
+      'nav',
+      'aside',
+      'header',
+      'footer',
+      'main',
+      'figure',
+      'figcaption',
+      'details',
+      'summary',
+      'dialog',
+      'menu',
+      'menuitem',
+      'fieldset',
+      'legend',
+      'output',
+      'progress',
+      'meter',
+      'template',
+      'slot',
+      'picture',
+      'source',
+      'track',
+      'map',
+      'area',
+      'bdi',
+      'bdo',
+      'ruby',
+      'rt',
+      'rp',
+      'wbr',
+    ];
+    return nonInteractiveElements.includes(childType.toLowerCase());
+  }
+
+  return false;
+};

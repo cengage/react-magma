@@ -282,6 +282,17 @@ describe('Tooltip', () => {
     console.error = originalError;
   });
 
+  it('should add tabIndex="0" to non-interactive elements without tabIndex', () => {
+    const { container } = render(
+      <Tooltip content={CONTENT_TEXT}>
+        <span>Non-interactive span</span>
+      </Tooltip>
+    );
+
+    const triggerElement = container.querySelector('span');
+    expect(triggerElement).toHaveAttribute('tabIndex', '0');
+  });
+
   it('Does not violate accessibility standards', () => {
     const { container } = render(
       <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
