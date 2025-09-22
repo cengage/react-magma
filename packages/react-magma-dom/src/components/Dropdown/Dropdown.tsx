@@ -55,7 +55,6 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
    * Max-height of dropdown content
    * @default 250px
    */
-
   maxHeight?: string | number;
   /**
    * Function called when closing the dropdown menu
@@ -275,7 +274,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       setPlacement(placementMap.get(contentPosition) ?? 'bottom-start');
     };
 
-    const { refs, floatingStyles } = useFloating({
+    const { refs, floatingStyles, elements, update } = useFloating({
       middleware: [flip(), offset(2)],
       placement: placement as AlignedPlacement,
       whileElementsMounted: autoUpdate,
@@ -284,6 +283,20 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     React.useEffect(() => {
       changePlacement(dropDirection, alignment);
     }, [dropDirection, alignment]);
+
+    // Need cleanup state to avoid memory leaks
+    React.useEffect(() => {
+      const referenceDropdownButton = elements.reference;
+      const floatingDropdownContent = elements.floating;
+
+      if (isOpen && referenceDropdownButton && floatingDropdownContent) {
+        return autoUpdate(
+          referenceDropdownButton,
+          floatingDropdownContent,
+          update
+        );
+      }
+    }, [isOpen, elements, update]);
 
     const contextValue = React.useMemo(
       () => ({

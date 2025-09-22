@@ -7,23 +7,48 @@ import {
   DoneIcon,
   FilterAltIcon,
   HeadphonesIcon,
+  KeyboardArrowRightIcon,
   ModeCommentIcon,
   SettingsIcon,
+  AccessibilityNewIcon,
+  AccessTimeIcon,
+  AccountBalanceIcon,
+  CheckBoxIcon,
+  DirectionsRunIcon,
+  HouseIcon,
+  LandscapeIcon,
+  RadarIcon,
+  EcoIcon,
+  AirIcon,
 } from 'react-magma-icons';
 
-import { Popover, PopoverApi, PopoverPosition } from './Popover';
+import {
+  Popover,
+  PopoverApi,
+  PopoverPosition,
+  PopoverAlignment,
+} from './Popover';
 import { PopoverContent } from './PopoverContent';
 import { PopoverTrigger } from './PopoverTrigger';
 import { magma } from '../../theme/magma';
-import { Button, ButtonColor, ButtonSize, ButtonType } from '../Button';
+import {
+  Button,
+  ButtonColor,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+} from '../Button';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { Card } from '../Card';
 import { PopoverHeader, PopoverFooter } from './PopoverSection';
 import { Checkbox, CheckboxTextPosition } from '../Checkbox';
+import { Flex, FlexBehavior, FlexDirection, FlexJustify } from '../Flex';
 import { Form } from '../Form';
 import { FormGroup } from '../FormGroup';
 import { Hyperlink } from '../Hyperlink';
+import { IconButton } from '../IconButton';
 import { Input } from '../Input';
+import { Paragraph } from '../Paragraph';
 import { PasswordInput } from '../PasswordInput';
 import { Spacer } from '../Spacer';
 import { Toggle } from '../Toggle';
@@ -43,6 +68,12 @@ export default {
       control: {
         type: 'select',
         options: PopoverPosition,
+      },
+    },
+    alignment: {
+      control: {
+        type: 'select',
+        options: PopoverAlignment,
       },
     },
     hoverable: {
@@ -1056,3 +1087,156 @@ DontShowAgain.args = {
   openByDefault: true,
 };
 DontShowAgain.parameters = { controls: { exclude: ['hoverable'] } };
+
+export const ProgrammaticallyOpening = args => {
+  const popoverApiRef = React.useRef<PopoverApi>();
+
+  function handleClose(event: React.SyntheticEvent) {
+    popoverApiRef.current?.closePopoverManually(event);
+  }
+
+  function handleOpenPopover(event: React.KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      popoverApiRef.current?.openPopoverManually(event);
+    }
+  }
+
+  return (
+    <Card
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        height: '300px',
+        justifyContent: 'center',
+      }}
+      isInverse={args.isInverse}
+    >
+      <Popover {...args} isInverse apiRef={popoverApiRef}>
+        <PopoverTrigger>
+          <span
+            tabIndex={0}
+            role="button"
+            style={{
+              textDecoration: 'underline',
+              color: magma.colors.primary,
+              cursor: 'pointer',
+            }}
+            onKeyDown={handleOpenPopover}
+          >
+            Press Enter or Space to open popover
+          </span>
+        </PopoverTrigger>
+        <PopoverContent>
+          <PopoverHeader>
+            <div>Popover Header</div>
+          </PopoverHeader>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Paragraph noMargins isInverse>
+              Popover Content
+            </Paragraph>
+          </div>
+          <PopoverFooter style={{ justifyContent: 'end' }}>
+            <div>
+              <IconButton
+                icon={<CloseIcon />}
+                aria-label="Close"
+                size={ButtonSize.small}
+                isInverse
+                variant={ButtonVariant.link}
+                onClick={handleClose}
+              >
+                Close
+              </IconButton>
+            </div>
+          </PopoverFooter>
+        </PopoverContent>
+      </Popover>
+    </Card>
+  );
+};
+
+export const SeveralPopovers = () => {
+  return (
+    <Flex behavior={FlexBehavior.container} style={{ paddingLeft: '36px' }}>
+      <Flex
+        behavior={FlexBehavior.both}
+        direction={FlexDirection.row}
+        justify={FlexJustify.spaceAround}
+        style={{ borderStyle: 'dashed', width: '95%' }}
+      >
+        {[
+          {
+            label: 'Responsibility & Control',
+            icon: <EcoIcon />,
+            background: magma.colors.primary400,
+          },
+          {
+            label: 'Competition',
+            icon: <DirectionsRunIcon />,
+            background: '#711E6E',
+          },
+          {
+            label: 'Task Planning',
+            icon: <CheckBoxIcon />,
+            background: magma.colors.info600,
+          },
+          {
+            label: 'Expectations',
+            icon: <AccessibilityNewIcon />,
+            background: '#005249',
+          },
+          {
+            label: 'Wellness',
+            icon: <AirIcon />,
+            background: '#9D8600',
+          },
+          {
+            label: 'Time Management',
+            icon: <AccessTimeIcon />,
+            background: '#8F0033',
+          },
+          {
+            label: 'College Involvement',
+            icon: <AccountBalanceIcon />,
+            background: '#B84900',
+          },
+          {
+            label: 'Family Involvement',
+            icon: <HouseIcon />,
+            background: '#1EA746',
+          },
+          {
+            label: 'Precision',
+            icon: <RadarIcon />,
+            background: '#00A393',
+          },
+          {
+            label: 'Performance',
+            icon: <LandscapeIcon />,
+            background: '#B12FAD',
+          },
+        ].map(({ label, icon, background }) => (
+          <Popover key={label} position={PopoverPosition.top}>
+            <PopoverTrigger>
+              <IconButton
+                aria-label={label}
+                icon={icon}
+                size={ButtonSize.medium}
+                style={{ background: background }}
+              />
+            </PopoverTrigger>
+            <PopoverContent>
+              <PopoverHeader>
+                <div>{label}</div>
+              </PopoverHeader>
+              <Button variant={ButtonVariant.link}>
+                View Resources <KeyboardArrowRightIcon />
+              </Button>
+            </PopoverContent>
+          </Popover>
+        ))}
+      </Flex>
+    </Flex>
+  );
+};

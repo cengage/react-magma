@@ -6,6 +6,7 @@ import {
   KeyboardArrowRightIcon,
   KeyboardArrowDownIcon,
   KeyboardArrowUpIcon,
+  HelpOutlineIcon,
 } from 'react-magma-icons';
 
 import { magma } from '../../theme/magma';
@@ -18,6 +19,7 @@ import {
   DropdownDropDirection,
   DropdownMenuItem,
 } from '../Dropdown';
+import { Flex, FlexAlignItems, FlexBehavior } from '../Flex';
 import { IconButton } from '../IconButton';
 import { Modal } from '../Modal';
 import { Tag } from '../Tag';
@@ -34,7 +36,8 @@ const Template: Story<TooltipProps> = args => (
   <div
     style={{
       padding: '80px',
-      textAlign: 'center',
+      display: 'flex',
+      justifyContent: 'center',
       background: args.isInverse
         ? magma.colors.neutral
         : magma.colors.neutral100,
@@ -136,7 +139,8 @@ export const Complex = () => {
       <div
         style={{
           padding: '50px',
-          textAlign: 'center',
+          display: 'flex',
+          justifyContent: 'center',
         }}
       >
         <Tooltip position={EnumTooltipPosition.right} content={longContent}>
@@ -167,72 +171,66 @@ export const Complex = () => {
             variant={ButtonVariant.solid}
           />
         </Tooltip>
-        <Card>
-          <CardBody>
-            <Dropdown dropDirection={DropdownDropDirection.up}>
-              <DropdownButton>Basic Dropdown</DropdownButton>
-              <DropdownContent>
-                <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-                <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-                <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
-              </DropdownContent>
-            </Dropdown>
-            <Modal
-              header="Modal Title"
-              onClose={() => setShowModal(false)}
-              isOpen={showModal}
-            >
-              <p>This is a modal with too many tooltips</p>
-              <Tooltip
-                position={EnumTooltipPosition.bottom}
-                content={longContent}
-              >
-                <IconButton
-                  aria-label="Bottom"
-                  icon={<KeyboardArrowDownIcon />}
-                  variant={ButtonVariant.solid}
-                />
-              </Tooltip>
-              <Tooltip position={EnumTooltipPosition.top} content={longContent}>
-                <IconButton
-                  aria-label="Top"
-                  icon={<KeyboardArrowUpIcon />}
-                  variant={ButtonVariant.solid}
-                />
-              </Tooltip>
-              <Tooltip
-                position={EnumTooltipPosition.right}
-                content={longContent}
-              >
-                <IconButton
-                  aria-label="Right"
-                  icon={<KeyboardArrowRightIcon />}
-                  variant={ButtonVariant.solid}
-                />
-              </Tooltip>
-              <Tooltip
-                position={EnumTooltipPosition.left}
-                content={longContent}
-              >
-                <IconButton
-                  aria-label="Left"
-                  icon={<KeyboardArrowLeftIcon />}
-                  variant={ButtonVariant.solid}
-                />
-              </Tooltip>
-            </Modal>
-            <Button onClick={() => setShowModal(true)}>
-              Show Modal
-              <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
-            </Button>
-            <p>
-              Some content here. Some content here. Some content here. Some
-              content here. Some content here. Some content here. Some content
-              here. Some content here. Some contenthere.
-            </p>
-          </CardBody>
-        </Card>
       </div>
+      <Card>
+        <CardBody>
+          <Dropdown dropDirection={DropdownDropDirection.up}>
+            <DropdownButton>Basic Dropdown</DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+              <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+              <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Modal
+            header="Modal Title"
+            onClose={() => setShowModal(false)}
+            isOpen={showModal}
+          >
+            <p>This is a modal with too many tooltips</p>
+            <Tooltip
+              position={EnumTooltipPosition.bottom}
+              content={longContent}
+            >
+              <IconButton
+                aria-label="Bottom"
+                icon={<KeyboardArrowDownIcon />}
+                variant={ButtonVariant.solid}
+              />
+            </Tooltip>
+            <Tooltip position={EnumTooltipPosition.top} content={longContent}>
+              <IconButton
+                aria-label="Top"
+                icon={<KeyboardArrowUpIcon />}
+                variant={ButtonVariant.solid}
+              />
+            </Tooltip>
+            <Tooltip position={EnumTooltipPosition.right} content={longContent}>
+              <IconButton
+                aria-label="Right"
+                icon={<KeyboardArrowRightIcon />}
+                variant={ButtonVariant.solid}
+              />
+            </Tooltip>
+            <Tooltip position={EnumTooltipPosition.left} content={longContent}>
+              <IconButton
+                aria-label="Left"
+                icon={<KeyboardArrowLeftIcon />}
+                variant={ButtonVariant.solid}
+              />
+            </Tooltip>
+          </Modal>
+          <Button onClick={() => setShowModal(true)}>
+            Show Modal
+            <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+          </Button>
+          <p>
+            Some content here. Some content here. Some content here. Some
+            content here. Some content here. Some content here. Some content
+            here. Some content here. Some contenthere.
+          </p>
+        </CardBody>
+      </Card>
     </>
   );
 };
@@ -260,7 +258,8 @@ const CustomStylesTemplate: Story<TooltipProps> = args => {
     <div
       style={{
         padding: '80px',
-        textAlign: 'center',
+        display: 'flex',
+        justifyContent: 'center',
         background: args.isInverse
           ? magma.colors.neutral
           : magma.colors.neutral100,
@@ -284,3 +283,43 @@ export const CustomStyles = CustomStylesTemplate.bind({});
 CustomStyles.args = {
   content: 'Lorem ipsum dolar sit amet. Vel molestie no, ut vim.',
 };
+
+export function Example() {
+  const tooltipContentShort = (
+    <>
+      Tooltip wrapped in <b>div</b>
+    </>
+  );
+  const tooltipContentLong = (
+    <>
+      Tooltip wrapped in <b>span</b>
+    </>
+  );
+
+  return (
+    <Flex
+      behavior={FlexBehavior.container}
+      alignItems={FlexAlignItems.center}
+      spacing={2}
+    >
+      <Tooltip content={tooltipContentShort}>
+        <div style={{ width: 'fit-content', height: 'fit-content' }}>
+          <HelpOutlineIcon
+            tabIndex="0"
+            size={40}
+            aria-label={'Tooltip wrapped in div'}
+          />
+        </div>
+      </Tooltip>
+
+      <Tooltip content={tooltipContentLong}>
+        <span>
+          <HelpOutlineIcon
+            tabIndex="0"
+            aria-label={'Tooltip wrapped in span'}
+          />
+        </span>
+      </Tooltip>
+    </Flex>
+  );
+}

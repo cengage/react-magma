@@ -510,7 +510,9 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
       class="emotion-2 emotion-3"
     >
       <span
+        aria-label="danger icon"
         class="emotion-4 emotion-5"
+        role="img"
       >
         <svg
           class="icon"
@@ -765,7 +767,9 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
       class="emotion-2 emotion-3"
     >
       <span
+        aria-label="info icon"
         class="emotion-4 emotion-5"
+        role="img"
       >
         <svg
           class="icon"
@@ -1020,7 +1024,9 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
       class="emotion-2 emotion-3"
     >
       <span
+        aria-label="warning icon"
         class="emotion-4 emotion-5"
+        role="img"
       >
         <svg
           class="icon"
@@ -1275,7 +1281,9 @@ exports[`Alert should render an alert with default variant 1`] = `
       class="emotion-2 emotion-3"
     >
       <span
+        aria-label="info icon"
         class="emotion-4 emotion-5"
+        role="img"
       >
         <svg
           class="icon"

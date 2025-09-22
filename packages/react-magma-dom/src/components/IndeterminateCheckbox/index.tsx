@@ -158,7 +158,11 @@ export const IndeterminateCheckbox = React.forwardRef<
           data-testid={testId}
           disabled={disabled}
           id={id}
-          ref={ref}
+          ref={el => {
+            if (el) el.indeterminate = isIndeterminate;
+            if (typeof ref === 'function') ref(el);
+            else if (ref) ref.current = el;
+          }}
           type="checkbox"
           onChange={handleChange}
         />

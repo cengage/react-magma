@@ -22,7 +22,7 @@ This site has general usage information, as well as information on all of the av
 
 ### System Dependencies
 
-Node v14.x or greater with npm 7.1.x or greater
+Node v18.20.4 or greater with npm v10.7.0 or greater
 
 ### Steps to Run Documentation locally
 
@@ -348,3 +348,34 @@ If the `pre-commit` scripts prevent your commit due to a test or linting failure
 
 
 </details>
+
+#### Playwright
+To install the required browsers (Chromium, Firefox, WebKit) used by Playwright: (should be run from the root of the project)
+
+```
+npx playwright install
+```
+
+To execute all Playwright tests, use the following command:
+
+```sh
+npm run playwright:test
+```
+
+To generate and view the test report after running the tests:
+
+```sh
+npm run playwright:report
+```
+
+To run codegen inspector:
+
+```sh
+npm run playwright:codegen
+```
+
+To see executing playwright tests in real time:
+
+```sh
+npm run playwright:realtime
+```

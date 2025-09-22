@@ -1,11 +1,13 @@
 import * as React from 'react';
 
+import { autoUpdate } from '@floating-ui/react-dom';
 import { useCombobox } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
 
 import { instanceOfDefaultItemObject } from '../Select';
 import { ComboboxInput } from './ComboboxInput';
 import { defaultOnInputValueChange, useComboboxItems } from './shared';
+import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
@@ -271,6 +273,19 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
       onInputKeyDown(event);
   }
 
+  const { floatingStyles, refs, elements, update } = useMagmaFloating();
+
+  React.useEffect(() => {
+    const referenceComboboxInput = elements.reference;
+    const floatingItemsList = elements.floating;
+
+    if (isOpen && referenceComboboxInput && floatingItemsList) {
+      return autoUpdate(referenceComboboxInput, floatingItemsList, update);
+    }
+  }, [isOpen, elements, update]);
+
+  const floatingElementStyles = { ...floatingStyles, width: '100%' };
+
   return (
     <SelectContainer
       descriptionId={ariaDescribedBy}
@@ -313,7 +328,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         onInputKeyPress={onInputKeyPress}
         onInputKeyUp={onInputKeyUp}
         placeholder={placeholder}
-        setReference={setReference}
+        setReference={refs.setReference}
         toggleButtonRef={toggleButtonRef}
       >
         {isClearable && selectedItem && (
@@ -341,7 +356,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         isLoading={isLoading && isTypeahead}
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
-        setFloating={setFloating}
+        setFloating={refs.setFloating}
       />
     </SelectContainer>
   );

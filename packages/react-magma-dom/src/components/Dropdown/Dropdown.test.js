@@ -2,33 +2,41 @@ import React from 'react';
 
 import {
   act,
-  render,
   fireEvent,
-  getByTestId,
   getByLabelText,
+  getByTestId,
+  render,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
-import { AsteriskIcon, RestaurantMenuIcon } from 'react-magma-icons';
+import {
+  AsteriskIcon,
+  CheckIcon,
+  ReorderIcon,
+  RestaurantMenuIcon,
+  SettingsIcon,
+} from 'react-magma-icons';
 
 import { magma } from '../../theme/magma';
+import { ButtonSize } from '../Button';
+import { ButtonIconPosition } from '../IconButton';
 import { Modal } from '../Modal';
 
 import {
   Dropdown,
+  DropdownButton,
   DropdownContent,
   DropdownDivider,
-  DropdownHeader,
-  DropdownMenuItem,
-  DropdownMenuGroup,
-  DropdownSplitButton,
-  DropdownButton,
-  DropdownMenuNavItem,
+  DropdownExpandableMenuButton,
   DropdownExpandableMenuGroup,
   DropdownExpandableMenuItem,
   DropdownExpandableMenuListItem,
-  DropdownExpandableMenuButton,
   DropdownExpandableMenuPanel,
+  DropdownHeader,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuNavItem,
+  DropdownSplitButton,
 } from '.';
 
 describe('Dropdown', () => {
@@ -1452,6 +1460,155 @@ describe('Dropdown', () => {
           magma.colors.neutral100
         );
       });
+    });
+  });
+
+  describe('leading icon', () => {
+    it('should be shown when icon position is right', () => {
+      const { container, getByText } = render(
+        <Dropdown>
+          <DropdownButton
+            icon={<ReorderIcon />}
+            iconPosition={ButtonIconPosition.right}
+            leadingIcon={<SettingsIcon />}
+          >
+            Toggle me
+          </DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {}}>
+              Menu item number two
+            </DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      expect(getByText('Toggle me')).toHaveStyleRule(
+        'padding-left',
+        magma.spaceScale.spacing03
+      );
+
+      expect(container.querySelectorAll('svg').length).toBe(2);
+    });
+
+    it('should not be shown when icon position is left', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownButton
+            icon={<ReorderIcon />}
+            iconPosition={ButtonIconPosition.left}
+            leadingIcon={<SettingsIcon />}
+          >
+            Toggle me
+          </DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem onClick={() => {}}>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {}}>
+              Menu item number two
+            </DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      );
+
+      expect(container.querySelectorAll('svg').length).toBe(1);
+    });
+  });
+
+  describe('Size', () => {
+    const icon = <CheckIcon />;
+
+    it('Large', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownButton icon={icon} size={ButtonSize.large}>
+            Large
+          </DropdownButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+
+      const svg = container.querySelector('svg');
+
+      expect(svg).toHaveAttribute('height', magma.iconSizes.medium.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.medium.toString());
+    });
+
+    it('Medium', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownButton icon={icon} size={ButtonSize.medium}>
+            Medium
+          </DropdownButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.small.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.small.toString());
+    });
+
+    it('Small', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownButton icon={icon} size={ButtonSize.small}>
+            Small
+          </DropdownButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.xSmall.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.xSmall.toString());
+    });
+  });
+
+  describe('Size for Dropdown split button', () => {
+    it('Large', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownSplitButton size={ButtonSize.large} aria-label="Split Large">
+            Large
+          </DropdownSplitButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.medium.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.medium.toString());
+    });
+
+    it('Medium', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownSplitButton
+            size={ButtonSize.medium}
+            aria-label="Split Medium"
+          >
+            Medium
+          </DropdownSplitButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.small.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.small.toString());
+    });
+
+    it('Small', () => {
+      const { container } = render(
+        <Dropdown>
+          <DropdownSplitButton size={ButtonSize.small} aria-label="Split Small">
+            Small
+          </DropdownSplitButton>
+          <DropdownContent />
+        </Dropdown>
+      );
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.xSmall.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.xSmall.toString());
     });
   });
 });

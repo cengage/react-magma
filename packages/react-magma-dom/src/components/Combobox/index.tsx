@@ -1,13 +1,6 @@
 import React from 'react';
 
 import {
-  AlignedPlacement,
-  autoUpdate,
-  flip,
-  ReferenceType,
-  useFloating,
-} from '@floating-ui/react-dom';
-import {
   useCombobox,
   UseComboboxProps,
   UseComboboxState,
@@ -38,7 +31,7 @@ export interface ComboboxProps<T extends SelectOptions>
    */
   containerStyle?: React.CSSProperties;
   /**
-   * Default selectable options. Allows for uncontrolled component and internal creation of items. Can be an array of strings or objects
+   * Default selectable options. Allows for an uncontrolled component and internal creation of items. Can be an array of strings or objects
    */
   defaultItems?: T[];
   /**

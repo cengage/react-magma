@@ -1,7 +1,8 @@
 import * as React from 'react';
 
+import { Theme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { isAfter, isBefore, isSameDay } from 'date-fns';
+import { isAfter, isBefore, isSameDay, isSameMonth } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import { transparentize } from 'polished';
 
@@ -17,47 +18,97 @@ interface CalendarDayProps {
   onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
 }
 
-function buildCalendarDayBackground(props) {
-  if (props.isInverse) {
-    if (props.isChosen) {
-      return props.theme.colors.tertiary;
-    }
-    return props.theme.colors.primary;
+type CalendarDayState = {
+  isChosen: boolean;
+  disabled: boolean;
+  isDayInCurrentMonth: boolean;
+  isToday: boolean;
+};
+
+function getCalendarDayBackground(
+  isInverse: boolean,
+  isChosen: boolean,
+  theme: Theme
+) {
+  if (isInverse) {
+    return isChosen ? theme.colors.tertiary : theme.colors.primary;
   }
-  if (props.isChosen) {
-    return props.theme.colors.primary;
-  }
-  return props.theme.colors.neutral100;
+  return isChosen ? theme.colors.primary : theme.colors.neutral100;
 }
 
-function buildCalendarDayColor(props) {
-  if (props.isInverse) {
-    if (props.isChosen) {
-      return props.theme.colors.neutral700;
-    }
-    if (props.disabled) {
-      return transparentize(0.6, props.theme.colors.neutral100);
-    }
-    return props.theme.colors.neutral100;
+const getTodayColor = (isChosen: boolean, isInverse: boolean, theme: Theme) => {
+  if (isInverse) {
+    return isChosen ? theme.colors.primary600 : theme.colors.secondary500;
+  }
+  return isChosen ? theme.colors.neutral100 : theme.colors.primary500;
+};
+
+const getChosenDayColor = (isInverse: boolean, theme: Theme) => {
+  return isInverse ? theme.colors.primary600 : theme.colors.neutral100;
+};
+
+const getDisabledColor = (isInverse: boolean, theme: Theme) => {
+  return isInverse
+    ? transparentize(0.6, theme.colors.neutral100)
+    : transparentize(0.4, theme.colors.neutral500);
+};
+
+const getNotCurrentMonthColor = (isInverse: boolean, theme: Theme) => {
+  return isInverse
+    ? transparentize(0.3, theme.colors.neutral100)
+    : theme.colors.neutral500;
+};
+
+const getCurrentMonthColor = (isInverse: boolean, theme: Theme) => {
+  return isInverse ? theme.colors.neutral100 : theme.colors.neutral700;
+};
+
+const getCalendarDayColor = (
+  state: CalendarDayState,
+  isInverse: boolean,
+  theme: any
+) => {
+  if (state.isToday) return getTodayColor(state.isChosen, isInverse, theme);
+  if (state.disabled) return getDisabledColor(isInverse, theme);
+  if (state.isChosen) return getChosenDayColor(isInverse, theme);
+  if (!state.isDayInCurrentMonth && !state.disabled)
+    return getNotCurrentMonthColor(isInverse, theme);
+  return getCurrentMonthColor(isInverse, theme);
+};
+
+function getChosenDayBorder(
+  isInverse: boolean,
+  isChosen: boolean,
+  theme: Theme
+) {
+  if (isChosen) {
+    return `1px solid ${
+      isInverse ? theme.colors.primary600 : theme.colors.neutral100
+    }`;
+  }
+}
+
+function getChosenDayHover(
+  isChosen: boolean,
+  isInverse: boolean,
+  theme: Theme
+) {
+  if (isChosen) {
+    return isInverse ? theme.colors.neutral200 : theme.colors.primary600;
   }
 
-  if (props.isChosen) {
-    return props.theme.colors.neutral100;
-  }
-  if (props.disabled) {
-    return transparentize(0.4, props.theme.colors.neutral500);
-  }
-  return props.theme.colors.neutral;
+  return isInverse ? theme.colors.primary600 : theme.colors.neutral200;
 }
+
+const getCalendarDayFontSize = (state: CalendarDayState) => {
+  if (state.isToday) return 700;
+  return !state.isDayInCurrentMonth || state.disabled ? 400 : 500;
+};
 
 const CalendarDayCell = styled.td<{
-  isInverse?: boolean;
+  isInverse: boolean;
+  theme: Theme;
 }>`
-  border: 1px solid
-    ${props =>
-      props.isInverse
-        ? props.theme.colors.primary200
-        : props.theme.colors.neutral300};
   color: ${props =>
     props.isInverse ? props.theme.colors.danger : props.theme.colors.neutral};
   font-size: ${props => props.theme.typeScale.size03.fontSize};
@@ -67,30 +118,33 @@ const CalendarDayCell = styled.td<{
   padding: 0;
   position: relative;
   text-align: center;
-  width: ${props => props.theme.spaceScale.spacing09};
 `;
 
 const CalendarDayInner = styled.button<{
-  isChosen?: boolean;
-  isFocused?: boolean;
+  state: CalendarDayState;
   isInverse?: boolean;
-  disabled?: boolean;
+  theme: Theme;
 }>`
   align-items: center;
-  background: ${props => buildCalendarDayBackground(props)};
+  background: ${props =>
+    getCalendarDayBackground(
+      props.isInverse,
+      props.state.isChosen,
+      props.theme
+    )};
   border: 2px solid transparent;
-  border-radius: 100%;
-  color: ${props => buildCalendarDayColor(props)};
-  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+  color: ${props =>
+    getCalendarDayColor(props.state, props.isInverse, props.theme)};
+  font-weight: ${props => getCalendarDayFontSize(props.state)};
+  cursor: ${props => (props.state.disabled ? 'not-allowed' : 'pointer')};
   display: flex;
-  height: calc(${props => props.theme.spaceScale.spacing09} - 4px);
+  height: ${props => props.theme.spaceScale.spacing09};
   justify-content: center;
-  margin: ${props => props.theme.spaceScale.spacing01};
   overflow: hidden;
   outline-offset: 0;
   position: relative;
   transition: background 0.5s ease-in-out 0s;
-  width: calc(${props => props.theme.spaceScale.spacing09} - 4px);
+  width: 43px;
 
   &:focus {
     outline: 2px solid
@@ -98,6 +152,11 @@ const CalendarDayInner = styled.button<{
         props.isInverse
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
+    border: ${props =>
+      getChosenDayBorder(props.isInverse, props.state.isChosen, props.theme)};
+    width: ${props => props.theme.spaceScale.spacing09};
+    height: 36px;
+    margin: 1px;
   }
 
   &:before {
@@ -117,8 +176,11 @@ const CalendarDayInner = styled.button<{
 
   &:hover {
     &:before {
-      opacity: ${props => (props.disabled ? 0 : 0.1)};
+      opacity: ${props => (props.state.disabled ? 0 : 0.1)};
     }
+    border: none;
+    background: ${props =>
+      getChosenDayHover(props.state.isChosen, props.isInverse, props.theme)};
   }
 `;
 
@@ -128,22 +190,18 @@ const EmptyCell = styled.td`
 `;
 
 const TodayIndicator = styled.span<{
-  isInverse?: boolean;
+  isInverse: boolean;
+  isChosen: boolean;
+  theme: Theme;
 }>`
-  border-left: 8px solid
-    ${props =>
-      props.isInverse
-        ? props.theme.colors.secondary
-        : props.theme.colors.primary};
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
-  bottom: -6px;
-  display: block;
-  height: 0;
   position: absolute;
-  transform: rotate(45deg);
-  right: -2px;
-  width: 0;
+  bottom: 5px;
+  left: 19px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: ${props =>
+    getTodayColor(props.isChosen, props.isInverse, props.theme)};
 `;
 
 export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
@@ -156,15 +214,16 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     chosenDate,
     maxDate,
     minDate,
-    setDateFocused,
     onDateChange,
+    setDateFocused,
+    setFocusedDate,
     isInverse,
   } = React.useContext(CalendarContext);
   const [focused, setFocused] = React.useState<boolean>(false);
-  const { day, dayFocusable } = props;
+  const { day } = props;
 
   React.useEffect(() => {
-    if (dateFocused && isSameDay(props.day, focusedDate)) {
+    if (dateFocused && isSameDay(day, focusedDate)) {
       dayRef.current.focus();
       setFocused(true);
     } else {
@@ -187,6 +246,14 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     onDateChange(day, event);
   }
 
+  function onFocusDay(event: React.SyntheticEvent) {
+    if (disabled || !isSameMonth(day, focusedDate)) {
+      event.preventDefault();
+      return;
+    }
+    setFocusedDate(day);
+  }
+
   const disabled: boolean =
     (maxDate ? isAfter(props.day, maxDate) : false) ||
     (minDate ? isBefore(props.day, minDate) : false);
@@ -198,12 +265,19 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     const sameDateAsFocusedDate = isSameDay(day, focusedDate);
     const sameDateAsChosenDate = isSameDay(day, chosenDate);
     const sameDateAsToday = isSameDay(day, new Date());
+    const isDayInCurrentMonth = isSameMonth(day, focusedDate);
     const locale = i18n.locale || enUS;
     const ariaLabel = `${
       disabled ? i18n.datePicker.disabledDayAriaLabel : ''
     } ${format(day, 'EEEE, MMMM do yyyy', locale)} ${
       sameDateAsToday ? i18n.datePicker.todayAriaLabel : ''
     } ${sameDateAsChosenDate ? i18n.datePicker.selectedDayAriaLabel : ''}`;
+    const dayState: CalendarDayState = {
+      isChosen: sameDateAsChosenDate,
+      disabled,
+      isDayInCurrentMonth,
+      isToday: sameDateAsToday,
+    };
 
     return (
       <CalendarDayCell
@@ -214,11 +288,14 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
         <CalendarDayInner
           aria-disabled={disabled}
           aria-label={ariaLabel}
+          aria-current={sameDateAsToday ? 'date' : undefined}
+          aria-selected={sameDateAsChosenDate}
+          data-testid="calendar-day"
           disabled={disabled}
-          isChosen={sameDateAsChosenDate}
-          isFocused={dayFocusable && sameDateAsFocusedDate}
+          state={dayState}
           isInverse={isInverse}
           onClick={onDayClick}
+          onMouseDown={onFocusDay}
           ref={dayRef}
           tabIndex={sameDateAsFocusedDate ? 0 : -1}
           type="button"
@@ -229,8 +306,9 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
         {sameDateAsToday && (
           <TodayIndicator
             data-testid="todayIndicator"
-            theme={theme}
             isInverse={isInverse}
+            isChosen={sameDateAsChosenDate}
+            theme={theme}
           />
         )}
       </CalendarDayCell>

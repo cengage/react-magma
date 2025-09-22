@@ -1,13 +1,6 @@
 import * as React from 'react';
 
 import {
-  AlignedPlacement,
-  autoUpdate,
-  flip,
-  useFloating,
-} from '@floating-ui/react-dom';
-import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
-import {
   useMultipleSelection,
   UseMultipleSelectionProps,
   useSelect,
@@ -274,22 +267,18 @@ export function Select<T>(props: XORSelectProps<T>) {
       {isMulti && instanceOfMultiSelect<T>(props) ? (
         <MultiSelect
           ariaDescribedBy={descriptionId}
-          floatingElementStyles={floatingElementStyles}
           hasError={hasError}
           id={id}
           isInverse={isInverse}
           itemToString={itemToString}
           labelPosition={labelPosition || LabelPosition.top}
           labelWidth={labelWidth}
-          setFloating={refs.setFloating}
-          setReference={refs.setReference}
           {...(props as MultiSelectProps<T>)}
         />
       ) : (
         <InternalSelect
           ariaDescribedBy={descriptionId}
           errorMessage={errorMessage}
-          floatingElementStyles={floatingElementStyles}
           hasError={hasError}
           helperMessage={helperMessage}
           id={id}

@@ -104,8 +104,7 @@ export const ChartDataTable = (props: DataTableProps) => {
       });
 
       dataset.forEach((d: any, i: number) => {
-        const yValue =
-          d.y || d.y === 0 ? d.y : undefined || (yKeyValue && d[yKeyValue]);
+        const yValue = d.y !== undefined ? d.y : yKeyValue && d[yKeyValue];
         tableData.rows[i] = {
           ...tableData.rows[i],
           id: baseTableData.rows.length > 0 ? i + 1 : i,

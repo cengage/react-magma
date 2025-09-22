@@ -98,6 +98,34 @@ export function Example() {
 }
 ```
 
+## Emotion v11 Migration: Media Query Overrides
+
+**Important**: If you've upgraded from Emotion v10 to v11, you may notice that media query overrides no longer work as expected. This is due to changes in CSS specificity handling in Emotion v11.
+
+### ✅ Correct way to override media queries (Emotion v11+):
+
+Style the component directly and target the media queries within the styled component:
+
+```tsx
+import React from 'react';
+
+import styled from '@emotion/styled';
+import { CardBody } from 'react-magma-dom';
+
+const CustomCardBody = styled(CardBody)`
+  padding: '16px';
+  background: lightblue;
+
+  @media (min-width: 600px) {
+    padding: '48px';
+    background: lightgray;
+  }
+`;
+export function Example() {
+  return <CustomCardBody>Hello world</CustomCardBody>;
+}
+```
+
 ## Using Themes
 
 By default, all components in the React Magma library use the Magma theme. You can use the ThemeContext to pass in a custom theme.

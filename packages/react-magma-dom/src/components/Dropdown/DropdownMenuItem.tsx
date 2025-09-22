@@ -146,6 +146,10 @@ export const DropdownMenuItem = React.forwardRef<
   });
 
   function handleClick(event: React.SyntheticEvent | React.KeyboardEvent) {
+    //Prevent checkbox selection when using dropdown menu item
+    event.preventDefault();
+    event.stopPropagation();
+
     if (context.activeItemIndex >= 0) {
       context.setActiveItemIndex(index);
     }

@@ -6,9 +6,11 @@ import { ArrowBackIcon, CloseIcon } from 'react-magma-icons';
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonColor, ButtonSize, ButtonType, ButtonVariant } from '../Button';
 import { Heading } from '../Heading';
+import { Hyperlink, HyperlinkIconPosition } from '../Hyperlink';
 import { IconButton } from '../IconButton';
 import { TypographyVisualStyle } from '../Typography';
 
@@ -67,10 +69,23 @@ const StyledPopup = styled.div`
   position: relative;
 `;
 
-const StyledNavContainer = styled.div`
+const StyledNavContainer = styled.div<{
+  isInverse?: boolean;
+}>`
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 2px;
+  padding: ${props => props.theme.spaceScale.spacing03};
+  border-bottom: 1px solid
+    ${props =>
+      props.isInverse
+        ? props.theme.colors.primary400
+        : props.theme.colors.neutral300};
+  background: ${props =>
+    props.isInverse
+      ? props.theme.colors.primary600
+      : props.theme.colors.neutral200};
+  height: 44px;
 `;
 const StyledContent = styled.div<{
   isInverse?: boolean;
@@ -83,13 +98,48 @@ const StyledContent = styled.div<{
       : props?.theme?.colors?.neutral700};
 
   h2 {
-    margin: 10px 0 12px 0;
+    margin: ${props => props.theme?.spaceScale.spacing05} 0
+      ${props => props.theme?.spaceScale.spacing04} 0;
   }
+  padding: 0 ${props => props.theme?.spaceScale.spacing05}
+    ${props => props.theme?.spaceScale.spacing02};
 `;
 
 const StyledDescription = styled.p`
   font-family: ${props => props.theme.bodyFont};
   margin: 0;
+`;
+
+const CloseButton = styled.span<{ theme?: ThemeInterface }>`
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  z-index: 1;
+`;
+
+const BackToCalendarWrapper = styled.span<{
+  theme?: ThemeInterface;
+  isInverse?: boolean;
+}>`
+  margin-top: ${props => props.theme.spaceScale.spacing03};
+  font-weight: 600;
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.tertiary500
+      : props.theme.colors.primary500};
+
+  &:hover {
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.primary600};
+  }
+  svg {
+    height: 20px;
+    width: 20px;
+  }
 `;
 
 export const HelperInformation: React.FunctionComponent<
@@ -103,30 +153,48 @@ export const HelperInformation: React.FunctionComponent<
 
   return (
     <StyledPopup ref={helperInformationRef}>
-      <StyledNavContainer>
-        <IconButton
-          icon={<ArrowBackIcon />}
-          isInverse={isInverse}
-          size={ButtonSize.small}
-          style={{ top: '4px', left: '-12px' }}
-          variant={ButtonVariant.link}
-          onClick={props.onReturnBack}
-        >
-          Back to Calendar
-        </IconButton>
-        <IconButton
-          aria-label={i18n.datePicker.calendarCloseAriaLabel}
-          color={ButtonColor.secondary}
-          icon={<CloseIcon />}
-          isInverse={isInverse}
-          size={ButtonSize.medium}
-          style={{ left: '16px', margin: '4px' }}
-          type={ButtonType.button}
-          onClick={props.onClose}
-          variant={ButtonVariant.link}
-        />
+      <StyledNavContainer
+        data-testid="helper-navigation-container"
+        isInverse={isInverse}
+        theme={theme}
+      >
+        <BackToCalendarWrapper isInverse={isInverse} theme={theme}>
+          <Hyperlink
+            aria-label={i18n.datePicker.backToCalendarAriaLabel}
+            target="_self"
+            to="#"
+            icon={<ArrowBackIcon />}
+            iconPosition={HyperlinkIconPosition.left}
+            hasUnderline={false}
+            isInverse={isInverse}
+            onClick={e => {
+              // Avoid scrolling to the top of the page
+              e.preventDefault();
+              props.onReturnBack();
+            }}
+          >
+            Back to Calendar
+          </Hyperlink>
+        </BackToCalendarWrapper>
+        <CloseButton theme={theme}>
+          <IconButton
+            aria-label={i18n.datePicker.calendarCloseAriaLabel}
+            color={ButtonColor.subtle}
+            icon={<CloseIcon />}
+            isInverse={isInverse}
+            size={ButtonSize.medium}
+            type={ButtonType.button}
+            onClick={props.onClose}
+            variant={ButtonVariant.link}
+            style={{
+              color: isInverse
+                ? theme.colors.neutral100
+                : theme.colors.neutral900,
+            }}
+          />
+        </CloseButton>
       </StyledNavContainer>
-      <StyledContent isInverse={isInverse}>
+      <StyledContent isInverse={isInverse} theme={theme}>
         <Heading
           level={2}
           visualStyle={TypographyVisualStyle.headingXSmall}

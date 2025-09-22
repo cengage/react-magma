@@ -6,10 +6,10 @@ import {
   flip,
   autoUpdate,
   ReferenceType,
-  AlignedPlacement,
   arrow,
   shift,
   useFloating,
+  AlignedPlacement,
 } from '@floating-ui/react';
 
 import { useIsInverse } from '../../inverse';
@@ -21,8 +21,23 @@ export enum PopoverPosition {
   top = 'top',
 }
 
+export enum PopoverAlignment {
+  center = 'center', //default
+  start = 'start',
+  end = 'end',
+}
+
+export type PopoverPlacement =
+  | 'bottom'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'top'
+  | 'top-start'
+  | 'top-end';
+
 export interface PopoverApi {
   closePopoverManually(event): void;
+  openPopoverManually(event): void;
 }
 export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -81,6 +96,7 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
    * The ref object that allows Popover manipulation.
    * Actions available:
    * closePopoverManually(event): void - Closes the popover manually.
+   * openPopoverManually(event): void - Opens the popover manually.
    */
   apiRef?: React.MutableRefObject<PopoverApi | undefined>;
   /**
@@ -89,11 +105,16 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default false
    */
   focusTrap?: boolean;
+  /**
+   * Alignment of the popover content
+   * @default PopoverAlignment.center
+   */
+  alignment?: PopoverAlignment;
 }
 
 export interface PopoverContextInterface {
   floatingStyles?: React.CSSProperties;
-  position?: PopoverPosition;
+  position?: PopoverPlacement;
   closePopover?: (event: React.SyntheticEvent | React.KeyboardEvent) => void;
   popoverTriggerId?: React.MutableRefObject<string>;
   popoverContentId?: React.MutableRefObject<string>;
@@ -143,6 +164,23 @@ export function hasActiveElementsChecker(ref) {
   );
 }
 
+export function isElementInteractive(element: EventTarget | null): boolean {
+  if (!element || !(element instanceof HTMLElement)) return false;
+
+  const tag = element.tagName.toLowerCase();
+
+  if (
+    ['button', 'input', 'select', 'textarea', 'a'].includes(tag) ||
+    element.hasAttribute('tabindex')
+  ) {
+    if (tag === 'a' && !(element as HTMLAnchorElement).href) return false;
+
+    return !element.hasAttribute('disabled');
+  }
+
+  return false;
+}
+
 export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
   (props, forwardedRef) => {
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -176,6 +214,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       id: defaultId,
       apiRef,
       focusTrap,
+      alignment = PopoverAlignment.center,
       ...other
     } = props;
 
@@ -184,6 +223,9 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
         apiRef.current = {
           closePopoverManually(event) {
             closePopover(event);
+          },
+          openPopoverManually(event) {
+            openPopover();
           },
         };
       }
@@ -241,8 +283,12 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     function closePopover(event) {
       setIsOpen(false);
 
-      if (toggleRef.current !== event.target && !hoverable) {
-        toggleRef.current.focus();
+      if (event && event.type === 'blur') {
+        const relatedTarget = event.relatedTarget;
+
+        if (!isElementInteractive(relatedTarget) && !hoverable) {
+          toggleRef.current?.focus();
+        }
       }
 
       onClose && typeof onClose === 'function' && onClose(event);
@@ -250,8 +296,11 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
 
     function handleKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Escape') {
-        event.nativeEvent.stopImmediatePropagation();
+        if (isOpen) {
+          event.stopPropagation();
+        }
         closePopover(event);
+        toggleRef.current?.focus();
       }
     }
 
@@ -266,7 +315,13 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       }
     }
 
-    const { refs, floatingStyles, placement, context } = useFloating({
+    const placement = React.useMemo(() => {
+      return alignment === PopoverAlignment.center
+        ? position
+        : `${position}-${alignment}`;
+    }, [position, alignment]);
+
+    const { refs, floatingStyles, context, elements, update } = useFloating({
       //flip() - Changes the placement of the floating element to keep it in view.
       //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
       //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
@@ -277,9 +332,18 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
         offset(hasPointer ? 12 : 4),
         arrow({ element: arrowRef }),
       ],
-      placement: position as AlignedPlacement,
+      placement: placement as AlignedPlacement,
       whileElementsMounted: autoUpdate,
     });
+
+    React.useEffect(() => {
+      const referenceElement = elements.reference;
+      const floatingElement = elements.floating;
+
+      if (isOpen && referenceElement && floatingElement) {
+        return autoUpdate(referenceElement, floatingElement, update);
+      }
+    }, [isOpen, elements, update]);
 
     const maxHeightString =
       typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
@@ -301,7 +365,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       <PopoverContext.Provider
         value={{
           floatingStyles,
-          position: placement as AlignedPlacement,
+          position: placement as PopoverPlacement,
           closePopover,
           popoverTriggerId,
           popoverContentId,

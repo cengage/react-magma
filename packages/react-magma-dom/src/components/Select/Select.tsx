@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { autoUpdate } from '@floating-ui/react-dom';
 import { useSelect } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
 
@@ -13,6 +14,7 @@ import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { SelectText } from './shared';
 import { isItemDisabled } from './utils';
+import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 
 import { SelectProps } from '.';
 
@@ -50,8 +52,6 @@ export function Select<T>(props: SelectProps<T>) {
     messageStyle,
     placeholder,
     selectedItem: passedInSelectedItem,
-    setReference,
-    setFloating,
     initialHighlightedIndex,
   } = props;
 
@@ -200,6 +200,19 @@ export function Select<T>(props: SelectProps<T>) {
       ? placeholder
       : i18n.select.placeholder;
 
+  const { floatingStyles, refs, elements, update } = useMagmaFloating();
+
+  React.useEffect(() => {
+    const referenceSelectButton = elements.reference;
+    const floatingItemsList = elements.floating;
+
+    if (isOpen && referenceSelectButton && floatingItemsList) {
+      return autoUpdate(referenceSelectButton, floatingItemsList, update);
+    }
+  }, [isOpen, elements, update]);
+
+  const floatingElementStyles = { ...floatingStyles, width: '100%' };
+
   return (
     <SelectContainer
       additionalContent={additionalContent}
@@ -221,7 +234,7 @@ export function Select<T>(props: SelectProps<T>) {
         disabled={disabled}
         hasError={hasError}
         isInverse={isInverse}
-        setReference={setReference}
+        setReference={refs.setReference}
         style={inputStyle}
         toggleButtonProps={toggleButtonProps}
       >
@@ -267,7 +280,7 @@ export function Select<T>(props: SelectProps<T>) {
         itemToString={itemToString}
         maxHeight={itemListMaxHeight ?? theme.select.menu.maxHeight}
         menuStyle={menuStyle}
-        setFloating={setFloating}
+        setFloating={refs.setFloating}
         setHighlightedIndex={setHighlightedIndex}
       />
     </SelectContainer>

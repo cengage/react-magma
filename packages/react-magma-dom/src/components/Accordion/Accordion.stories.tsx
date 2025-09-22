@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react/types-6-0';
 
 import { magma } from '../../theme/magma';
 import { Button, ButtonSize, ButtonVariant } from '../Button';
@@ -20,11 +20,11 @@ import { Textarea } from '../Textarea';
 
 import {
   Accordion,
-  AccordionProps,
+  AccordionButton,
   AccordionIconPosition,
   AccordionItem,
-  AccordionButton,
   AccordionPanel,
+  AccordionProps,
 } from '.';
 
 export default {
@@ -87,18 +87,79 @@ NoMulti.args = {
   isMulti: false,
 };
 
-export const Controlled = Template.bind({});
+export const Controlled = (args: any) => {
+  const [expandedIndex, setExpandedIndex] = React.useState<number[]>([]);
+
+  const handleExpandedChange = (index: number) => {
+    expandedIndex.includes(index)
+      ? setExpandedIndex(expandedIndex.filter(item => item !== index))
+      : setExpandedIndex(expandedIndex.concat([index]));
+  };
+
+  return (
+    <Accordion
+      {...args}
+      index={expandedIndex}
+      onExpandedChange={handleExpandedChange}
+    >
+      <AccordionItem>
+        <AccordionButton>Section 1</AccordionButton>
+        <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Section 2</AccordionButton>
+        <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Section 3</AccordionButton>
+        <AccordionPanel>Content for section three lorem ipsum</AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  );
+};
+
 Controlled.args = {
+  isMulti: true,
   index: [0],
 };
 
-export const ControlledNoMulti = Template.bind({});
-ControlledNoMulti.args = {
-  index: 0,
+export const ControlledNoMulti = (args: any) => {
+  const [expandedIndex, setExpandedIndex] = React.useState<number | null>(null);
+
+  const handleExpandedChange = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
+  return (
+    <Accordion
+      {...args}
+      index={expandedIndex}
+      onExpandedChange={handleExpandedChange}
+    >
+      <AccordionItem>
+        <AccordionButton>Section 1</AccordionButton>
+        <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Section 2</AccordionButton>
+        <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>Section 3</AccordionButton>
+        <AccordionPanel>Content for section three lorem ipsum</AccordionPanel>
+      </AccordionItem>
+    </Accordion>
+  );
 };
 
-export const ExpandCollapseAll = args => {
-  const [expandedIndex, setExpandedIndex] = React.useState([]);
+ControlledNoMulti.args = {
+  isMulti: false,
+  index: 0,
+  isMulti: false,
+};
+
+export const ExpandCollapseAll = (args: any) => {
+  const [expandedIndex, setExpandedIndex] = React.useState<number[]>([]);
 
   const isAllExpanded = expandedIndex.length > 0;
 
@@ -110,7 +171,7 @@ export const ExpandCollapseAll = args => {
     }
   };
 
-  const handleExpandedChange = index => {
+  const handleExpandedChange = (index: number) => {
     if (expandedIndex.includes(index)) {
       setExpandedIndex(expandedIndex.filter(item => item !== index));
     } else {
@@ -141,7 +202,7 @@ export const ExpandCollapseAll = args => {
         </AccordionItem>
         <AccordionItem>
           <AccordionButton>Section 3</AccordionButton>
-          <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+          <AccordionPanel>Content for section three lorem ipsum</AccordionPanel>
         </AccordionItem>
       </Accordion>
     </>
@@ -150,6 +211,7 @@ export const ExpandCollapseAll = args => {
 
 export const Inverse = Template.bind({});
 Inverse.args = {
+  defaultIndex: [0],
   isInverse: true,
 };
 
@@ -160,7 +222,7 @@ Inverse.decorators = [
     </div>
   ),
 ];
-export const WithDropdown = args => {
+export const WithDropdown = (args: any) => {
   const [showModal, setShowModal] = React.useState(false);
 
   return (
@@ -231,7 +293,12 @@ export const WithDropdown = args => {
                   ]}
                 />
               </Flex>
-              <Flex behavior={FlexBehavior.item} xs={12} md={6}>
+              <Flex
+                behavior={FlexBehavior.item}
+                xs={12}
+                md={6}
+                style={{ marginTop: '28px' }}
+              >
                 <Dropdown>
                   <DropdownButton>Basic Dropdown</DropdownButton>
                   <DropdownContent>
@@ -263,7 +330,12 @@ export const WithDropdown = args => {
                 <Button>This is a button</Button>
               </p>
             </Modal>
-            <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+            <Button
+              onClick={() => setShowModal(true)}
+              style={{ marginTop: '12px' }}
+            >
+              Show Modal
+            </Button>
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
