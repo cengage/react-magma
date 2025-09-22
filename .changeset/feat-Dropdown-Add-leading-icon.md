@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(Dropdown & IconButton): Add `leadingIcon` prop
+feat(Dropdown & IconButton): Add `leadingIcon` prop.

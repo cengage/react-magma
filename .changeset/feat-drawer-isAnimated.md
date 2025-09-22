@@ -1,5 +1,5 @@
 ---
-'react-magma-dom': patch
+'react-magma-dom': minor
 ---
 
-feat(Drawer): Add 1isAnimated1 prop to control slide animation
+feat(Drawer): Add `isAnimated` prop to control slide animation.
