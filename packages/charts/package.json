@@ -16,8 +16,7 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "src",
-    "src/components/CarbonChart/styles.min.css"
+    "src"
   ],
   "scripts": {
     "build": "microbundle build --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx,@emotion/react=EmotionReact,@emotion/styled=EmotionStyled,@carbon/charts-react=CarbonChartsReact",

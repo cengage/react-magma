@@ -26,7 +26,6 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     defaultSelectedItem,
     disableCreateItem,
     errorMessage,
-    floatingElementStyles,
     hasError,
     helperMessage,
     initialSelectedItem,
@@ -59,8 +58,6 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     onItemCreated,
     placeholder,
     selectedItem: passedInSelectedItem,
-    setFloating,
-    setReference,
     toggleButtonRef,
   } = props;
 

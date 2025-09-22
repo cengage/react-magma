@@ -596,12 +596,6 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       }
     }, [calendarOpened, elements, update]);
 
-    const { floatingStyles, refs } = useFloating({
-      middleware: [flip()],
-      placement: 'bottom-start' as AlignedPlacement,
-      whileElementsMounted: autoUpdate,
-    });
-
     return (
       <CalendarContext.Provider
         value={{

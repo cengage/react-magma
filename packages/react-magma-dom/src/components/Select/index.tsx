@@ -124,10 +124,6 @@ export interface SelectProps<T extends SelectOptions>
   /**
    * @internal
    */
-  floatingElementStyles?: React.CSSProperties;
-  /**
-   * @internal
-   */
   hasError?: boolean;
   /**
    * Reference to the trigger button element in the select
@@ -161,14 +157,6 @@ export interface SelectProps<T extends SelectOptions>
    * Event that will fire when a keypress is released while focused on the trigger button
    */
   onKeyUp?: (event: React.KeyboardEvent) => void;
-  /**
-   * @internal
-   */
-  setFloating?: (node: ReferenceType) => void;
-  /**
-   * @internal
-   */
-  setReference?: (node: ReferenceType) => void;
 }
 
 export interface MultiSelectProps<T extends SelectOptions>
@@ -254,14 +242,6 @@ export function Select<T>(props: XORSelectProps<T>) {
 
   const isInverse = useIsInverse(props.isInverse);
 
-  const { floatingStyles, refs } = useFloating({
-    middleware: [flip()],
-    placement: 'bottom-start' as AlignedPlacement,
-    whileElementsMounted: autoUpdate,
-  });
-
-  const floatingElementStyles = { ...floatingStyles, width: '100%' };
-
   return (
     <div style={containerStyle} data-testid={testId}>
       {isMulti && instanceOfMultiSelect<T>(props) ? (
@@ -287,8 +267,6 @@ export function Select<T>(props: XORSelectProps<T>) {
           labelPosition={labelPosition || LabelPosition.top}
           labelWidth={labelWidth}
           messageStyle={messageStyle}
-          setFloating={refs.setFloating}
-          setReference={refs.setReference}
           {...(props as SelectProps<T>)}
         />
       )}

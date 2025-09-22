@@ -8,10 +8,6 @@ import { magma } from '../../theme/magma';
 
 import { Drawer } from '.';
 
-import { axe } from '../../../axe-helper';
-
-import { Drawer } from '.';
-
 const TEXT = 'Test Text';
 const TEST_ID = 'transition';
 

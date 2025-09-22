@@ -109,7 +109,6 @@ function getBorderBottom(isInverse: boolean) {
 
 const StyledTableRow = styled.tr<{
   color?: string;
-  hasSquareCorners?: boolean;
   hasHoverStyles?: boolean;
   hasSquareCorners?: boolean;
   hasTablePagination?: boolean;
@@ -317,7 +316,6 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
       <StyledTableRow
         {...other}
         data-testid={testId}
-        hasSquareCorners={tableContext.hasSquareCorners}
         hasHoverStyles={tableContext.hasHoverStyles && !isHeaderRow}
         hasSquareCorners={tableContext.hasSquareCorners}
         hasTablePagination={tableContext.hasTablePagination}

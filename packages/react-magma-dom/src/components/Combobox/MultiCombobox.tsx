@@ -27,7 +27,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     defaultItems,
     disableCreateItem,
     errorMessage,
-    floatingElementStyles,
     hasError,
     hasPersistentMenu = false,
     helperMessage,
@@ -59,8 +58,6 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     onIsOpenChange,
     onItemCreated,
     onRemoveSelectedItem,
-    setReference,
-    setFloating,
     placeholder,
     toggleButtonRef,
   } = props;

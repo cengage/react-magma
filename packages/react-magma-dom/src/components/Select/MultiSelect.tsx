@@ -24,7 +24,6 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     ariaDescribedBy,
     components: customComponents,
     errorMessage,
-    floatingElementStyles,
     hasError,
     helperMessage,
     inputStyle,

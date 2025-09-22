@@ -25,7 +25,6 @@ export function Select<T>(props: SelectProps<T>) {
     components: customComponents,
     defaultSelectedItem,
     errorMessage,
-    floatingElementStyles,
     hasError,
     helperMessage,
     inputStyle,

@@ -10,9 +10,6 @@ HTMLCanvasElement.prototype.getContext = () => ({
   measureText: text => ({ width: text.length * 8 }),
 });
 
-import { CalendarContext } from './CalendarContext';
-import { CalendarHeader } from './CalendarHeader';
-
 describe('Calendar Header', () => {
   it('should call to move forward a month when clicking the next month button', () => {
     const focusedDate = new Date(2019, 0, 17);
