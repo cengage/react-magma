@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.31
+
+### Patch Changes
+
+- 41fde26f5: fix(Tooltip): Fix issue with screenreaders on non interactive elements.
+
 ## 4.10.0-next.30
 
 ### Patch Changes
