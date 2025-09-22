@@ -1,5 +1,5 @@
 name: Build and Deploy Docs for V2.6.0
-# This workflow is triggered on push to the chore/deploy-v2-docs branch.
+# This workflow is triggered on push to the chore/deploy-v2-docs branch .
 
 on:
   push:
@@ -17,7 +17,7 @@ jobs:
       - name: Setup
         uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: '16'
           check-latest: true
 
       - name: Install
