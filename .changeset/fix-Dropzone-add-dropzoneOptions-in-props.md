@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Dropzone): Passing `dropzoneOptions` prop to `Dropzone`.
+fix(Dropzone): Pass `dropzoneOptions` prop to `Dropzone`.

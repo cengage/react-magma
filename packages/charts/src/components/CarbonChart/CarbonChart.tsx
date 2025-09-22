@@ -209,6 +209,7 @@ const CarbonChartWrapper = styled.div<{
     .cds--cc--grid rect.chart-grid-backdrop {
       fill: transparent;
     }
+    .cds--cc--scatter circle.dot,
     .cds--cc--scatter circle.dot.hovered {
       padding: 10px;
     }
@@ -217,6 +218,36 @@ const CarbonChartWrapper = styled.div<{
     .cds--cc--scatter circle.dot.unfilled {
       stroke-width: 6px;
       transition: 0.1s all linear;
+    }
+    .cds--cc--scatter circle.dot {
+      filter: drop-shadow(
+            1px 0px 0px
+              ${props =>
+                props.isInverse
+                  ? props.theme.colors.primary600
+                  : props.theme.colors.neutral100}
+          )
+          drop-shadow(
+            -1px 0px 0px
+              ${props =>
+                props.isInverse
+                  ? props.theme.colors.primary600
+                  : props.theme.colors.neutral100}
+          )
+          drop-shadow(
+            0px 1px 0px
+              ${props =>
+                props.isInverse
+                  ? props.theme.colors.primary600
+                  : props.theme.colors.neutral100}
+          )
+          drop-shadow(
+            0px -1px 0px
+              ${props =>
+                props.isInverse
+                  ? props.theme.colors.primary600
+                  : props.theme.colors.neutral100}
+          );
     }
     .cds--cc--scatter circle.dot.hovered {
       stroke-width: 0.5em;
@@ -250,14 +281,17 @@ const CarbonChartWrapper = styled.div<{
                 : props.theme.colors.neutral100}
         );
     }
+    .cds--cc--lollipop circle.dot,
     .cds--cc--lollipop circle.dot.filled,
     .cds--cc--lollipop circle.dot.hovered {
       stroke-width: 15px;
     }
+    .cds--cc--scatter-stacked circle.dot,
     .cds--cc--scatter-stacked circle.dot.hovered,
     .cds--cc--scatter-stacked circle.dot.unfilled,
     .cds--cc--scatter circle.dot.unfilled,
     .cds--cc--lollipop circle.dot.filled,
+    .cds--cc--lollipop circle.dot,
     .cds--cc--lollipop circle.dot.hovered {
       transition: 0.1s all linear;
       filter: drop-shadow(

@@ -2,4 +2,4 @@
 '@react-magma/charts': minor
 ---
 
-feat (CarbonCharts): Add supporting custom colors.
+feat (CarbonCharts): Support custom colors.
