@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(TreeView): Add new expandIconStyles prop for TreeView. Add styles customization support and hoverColor prop for TreeItem.
+feat(TreeView): New `expandIconStyles` and `hoverColor` props and more styles customization support 

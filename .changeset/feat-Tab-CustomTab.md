@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat (Tabs): added `CustomTab` component.
+feat(Tabs): New `CustomTab` component.

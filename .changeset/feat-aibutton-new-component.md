@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat (AIButton): Create `AIButton` component.
+feat(AIButton): New `AIButton` component.
