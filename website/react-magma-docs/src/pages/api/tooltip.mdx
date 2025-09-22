@@ -124,6 +124,12 @@ child cannot accept a ref, the tooltip may not position correctly.
 
 <Alert variant="info">
   You can get around this by adding a wrapping element.
+  <br />
+  <br />
+  <b>For accessibility:</b> When using Tooltip on a non-interactive element, you
+  should add <inlineCode>aria-label</inlineCode> with the tooltip content to the
+  trigger element. This ensures screen readers will announce the tooltip
+  content.
 </Alert>
 
 ```tsx
@@ -152,13 +158,20 @@ export function Example() {
     >
       <Tooltip content={tooltipContentShort}>
         <div style={{ width: 'fit-content', height: 'fit-content' }}>
-          <HelpOutlineIcon tabIndex="0" size={40} />
+          <HelpOutlineIcon
+            tabIndex="0"
+            size={40}
+            aria-label={'Tooltip wrapped in div'}
+          />
         </div>
       </Tooltip>
 
       <Tooltip content={tooltipContentLong}>
         <span>
-          <HelpOutlineIcon tabIndex="0" />
+          <HelpOutlineIcon
+            tabIndex="0"
+            aria-label={'Tooltip wrapped in span'}
+          />
         </span>
       </Tooltip>
     </Flex>
