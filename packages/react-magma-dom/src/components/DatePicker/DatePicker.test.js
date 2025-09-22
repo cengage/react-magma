@@ -530,33 +530,33 @@ describe('Date Picker', () => {
   it('should go to the previous month when the previous month button is clicked', () => {
     const defaultDate = new Date(2019, 0, 17);
     const labelText = 'Date Picker Label';
-    const { getByLabelText, getAllByText } = render(
+    const { getByLabelText, getByText } = render(
       <DatePicker defaultDate={defaultDate} labelText={labelText} />
     );
 
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getAllByText(/january/i)[0]).toBeInTheDocument();
+    expect(getByText(/january/i)).toBeInTheDocument();
 
     fireEvent.click(getByLabelText(/Navigate back/i));
 
-    expect(getAllByText(/december/i)[0]).toBeInTheDocument();
+    expect(getByText(/december/i)).toBeInTheDocument();
   });
 
   it('should go to the next month when the next month button is clicked', () => {
     const defaultDate = new Date(2019, 0, 17);
     const labelText = 'Date Picker Label';
-    const { getByLabelText, getAllByText } = render(
+    const { getByLabelText, getByText } = render(
       <DatePicker defaultDate={defaultDate} labelText={labelText} />
     );
 
     fireEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getAllByText(/january/i)[0]).toBeInTheDocument();
+    expect(getByText(/january/i)).toBeInTheDocument();
 
     fireEvent.click(getByLabelText(/Navigate forward/i));
 
-    expect(getAllByText(/february/i)[0]).toBeInTheDocument();
+    expect(getByText(/february/i)).toBeInTheDocument();
   });
 
   it('should close the calendar when the close button is clicked', () => {

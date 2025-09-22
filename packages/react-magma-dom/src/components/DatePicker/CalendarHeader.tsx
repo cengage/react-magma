@@ -16,8 +16,6 @@ import { ButtonColor, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { MonthPicker } from './MonthPicker';
 import { YearPicker } from './YearPicker';
-import { Announce, AnnouncePoliteness } from '../Announce';
-import { VisuallyHidden } from '../VisuallyHidden';
 
 interface CalendarHeaderProps {
   focusHeader?: boolean;
@@ -86,11 +84,6 @@ export const CalendarHeader: React.FunctionComponent<
             isInverse={props.isInverse}
           />
         </MonthYearWrapper>
-        <VisuallyHidden>
-          <Announce politeness={AnnouncePoliteness.polite} aria-atomic="true">
-            {monthAndYear.month} {monthAndYear.year}
-          </Announce>
-        </VisuallyHidden>
       </CalendarHeaderText>
       <NavigationWrapper>
         <IconButton
