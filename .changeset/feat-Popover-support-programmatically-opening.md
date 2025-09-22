@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(Popover): Add support programmatically opening.
+feat(Popover): Support programmatically opening component with `openPopoverManually`.

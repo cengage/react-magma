@@ -88,7 +88,7 @@
 
 ### Minor Changes
 
-- bb8306ebd: feat(Popover): Add the `alignment` prop and allow customization of the width.
+- bb8306ebd: feat(Popover): Add `alignment` prop and allow customization of the width.
 
 ## 4.10.0-next.16
 

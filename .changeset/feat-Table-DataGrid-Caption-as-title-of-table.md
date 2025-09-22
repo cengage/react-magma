@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(Table & Datagrid): Added new prop `tableTitle` to `Table` and `Datagrid` which supports a captioned title above each Table and Datagrid. Added new props `hasOutsideBorder`, `hasTablePagination` to `Table`.
+feat(Table & Datagrid): New prop `tableTitle` which supports a captioned title above each Table and Datagrid. New props `hasOutsideBorder`, `hasTablePagination` to `Table`.

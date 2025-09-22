@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(CharacterCounter): Fixed screenreader properly conveying the remainder in a character counter on user input.
+fix(CharacterCounter): Fix screenreader properly conveying the remainder on user input.
