@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 12.0.0-next.6
+
+### Patch Changes
+
+- 80132e4a8: fix(charts): Add white outline to scatter points
+
 ## 12.0.0-next.5
 
 ### Major Changes
