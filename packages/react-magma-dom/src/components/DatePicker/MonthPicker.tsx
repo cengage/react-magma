@@ -13,7 +13,8 @@ export interface MonthPickerProps {
 
 export const MonthPicker: React.FunctionComponent<MonthPickerProps> = props => {
   const { currentMonth, isInverse } = props;
-  const { setMonthFocusedDate } = React.useContext(CalendarContext);
+  const { setMonthFocusedDate, minDate, maxDate, focusedDate } =
+    React.useContext(CalendarContext);
   const i18n = React.useContext(I18nContext);
   const monthsLabels = i18n.months.long;
   const theme = React.useContext(ThemeContext);
@@ -24,6 +25,28 @@ export const MonthPicker: React.FunctionComponent<MonthPickerProps> = props => {
 
   const getNumberMonthByLabel = (label: string) =>
     months.find(month => month.label === label)?.value;
+
+  const isMonthDisabled = (monthValue: number) => {
+    const currentYear = new Date(focusedDate).getFullYear();
+
+    if (minDate) {
+      const minYear = minDate.getFullYear();
+      const minMonth = minDate.getMonth();
+      if (currentYear === minYear && monthValue < minMonth) {
+        return true;
+      }
+    }
+
+    if (maxDate) {
+      const maxYear = maxDate.getFullYear();
+      const maxMonth = maxDate.getMonth();
+      if (currentYear === maxYear && monthValue > maxMonth) {
+        return true;
+      }
+    }
+
+    return false;
+  };
 
   function onMonthChange(month: number) {
     setMonthFocusedDate(month);
@@ -49,13 +72,17 @@ export const MonthPicker: React.FunctionComponent<MonthPickerProps> = props => {
       <NativeSelect
         aria-label={i18n.datePicker.selectMonth}
         data-testid="month-picker"
-        fieldId={''}
+        fieldId={'month-picker-id'}
         onChange={e => onMonthChange(Number(e.target.value))}
         value={getNumberMonthByLabel(currentMonth)}
         style={{ width }}
       >
         {months.map(month => (
-          <option key={month.value} value={month.value}>
+          <option
+            key={month.value}
+            value={month.value}
+            disabled={isMonthDisabled(month.value)}
+          >
             {month.label}
           </option>
         ))}

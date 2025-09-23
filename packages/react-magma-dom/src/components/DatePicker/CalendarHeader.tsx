@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { addMonths, subMonths } from 'date-fns';
+import { addMonths, subMonths, startOfMonth } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import {
   KeyboardArrowLeftIcon,
@@ -16,7 +16,7 @@ import { ButtonColor, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { MonthPicker } from './MonthPicker';
 import { YearPicker } from './YearPicker';
-import { Announce, AnnouncePoliteness } from '../Announce';
+import { Announce } from '../Announce';
 import { VisuallyHidden } from '../VisuallyHidden';
 
 interface CalendarHeaderProps {
@@ -62,12 +62,49 @@ const NavigationWrapper = styled.div`
 export const CalendarHeader: React.FunctionComponent<
   CalendarHeaderProps
 > = props => {
-  const { focusedDate, onPrevMonthClick, onNextMonthClick } =
-    React.useContext(CalendarContext);
+  const {
+    focusedDate,
+    onPrevMonthClick,
+    onNextMonthClick,
+    minDate,
+    maxDate,
+    setFocusedDate,
+  } = React.useContext(CalendarContext);
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
   const locale = i18n.locale || enUS;
   const monthAndYear = getCurrentMonthAndYear(focusedDate, locale);
+  const minDateOrDefault = minDate ?? new Date(1900, 0, 1);
+  const maxDateOrDefault = maxDate ?? new Date(2099, 11, 31);
+
+  const isDisabledPrevMonth =
+    startOfMonth(subMonths(focusedDate, 1)) < startOfMonth(minDateOrDefault);
+  const isDisabledNextMonth =
+    startOfMonth(addMonths(focusedDate, 1)) > startOfMonth(maxDateOrDefault);
+
+  const onClickPrevMonth = () => {
+    if (startOfMonth(maxDateOrDefault) >= startOfMonth(focusedDate)) {
+      onPrevMonthClick();
+      return;
+    }
+    if (!isDisabledPrevMonth && isDisabledNextMonth) {
+      setFocusedDate(maxDateOrDefault);
+      return;
+    }
+    onPrevMonthClick();
+  };
+
+  const onClickNextMonth = () => {
+    if (startOfMonth(minDateOrDefault) <= startOfMonth(focusedDate)) {
+      onNextMonthClick();
+      return;
+    }
+    if (isDisabledPrevMonth && !isDisabledNextMonth) {
+      setFocusedDate(minDateOrDefault);
+      return;
+    }
+    onNextMonthClick();
+  };
 
   return (
     <CalendarHeaderContainer theme={theme}>
@@ -87,7 +124,7 @@ export const CalendarHeader: React.FunctionComponent<
           />
         </MonthYearWrapper>
         <VisuallyHidden>
-          <Announce politeness={AnnouncePoliteness.polite} aria-atomic="true">
+          <Announce aria-atomic="true">
             {monthAndYear.month} {monthAndYear.year}
           </Announce>
         </VisuallyHidden>
@@ -100,10 +137,11 @@ export const CalendarHeader: React.FunctionComponent<
             locale
           )}`}
           color={ButtonColor.subtle}
+          disabled={isDisabledPrevMonth}
           icon={<KeyboardArrowLeftIcon />}
           type={ButtonType.button}
           variant={ButtonVariant.link}
-          onClick={onPrevMonthClick}
+          onClick={onClickPrevMonth}
           style={{ marginRight: theme.spaceScale.spacing02 }}
         />
         <IconButton
@@ -114,9 +152,10 @@ export const CalendarHeader: React.FunctionComponent<
           )}`}
           icon={<KeyboardArrowRightIcon />}
           color={ButtonColor.subtle}
+          disabled={isDisabledNextMonth}
           type={ButtonType.button}
           variant={ButtonVariant.link}
-          onClick={onNextMonthClick}
+          onClick={onClickNextMonth}
           style={{ marginLeft: theme.spaceScale.spacing02 }}
         />
       </NavigationWrapper>
