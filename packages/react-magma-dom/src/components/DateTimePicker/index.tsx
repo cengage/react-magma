@@ -133,6 +133,7 @@ export const DateTimePicker = React.forwardRef<
 >((props, forwardedRef) => {
   const {
     onTimeChange,
+    onInputChange,
     onDone,
     placeholder,
     value,
@@ -175,7 +176,7 @@ export const DateTimePicker = React.forwardRef<
     previousTime.current = '';
   };
 
-  const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
 
     if (!value) {
@@ -199,6 +200,8 @@ export const DateTimePicker = React.forwardRef<
         previousTime.current = '';
       }
     }
+
+    onInputChange && onInputChange(event);
   };
 
   const onTimeHandleChange = (value: string) => {
@@ -226,11 +229,12 @@ export const DateTimePicker = React.forwardRef<
 
   return (
     <DatePicker
+      {...other}
       labelText={labelText ?? i18n.dateTimePickerLabel}
       apiRef={datePickerApiRef}
       additionalInputContent={additionalInputContent}
       placeholder={updatedPlaceholder}
-      onInputChange={onInputChange}
+      onInputChange={handleInputChange}
       setAdditionalInputContent={setAdditionalInputContent}
       isClearable
       onClear={handleClear}
@@ -262,7 +266,6 @@ export const DateTimePicker = React.forwardRef<
           </DoneButtonWrapper>
         </>
       }
-      {...other}
     />
   );
 });

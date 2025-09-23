@@ -345,8 +345,17 @@ export function Example() {
   const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
     undefined
   );
+  const [error, setError] = React.useState<string | undefined>(
+    'Date cannot be empty'
+  );
 
   function handleDateChange(newChosenDate: Date) {
+    if (!newChosenDate) {
+      setError('Date cannot be empty');
+    } else {
+      setError(undefined);
+    }
+
     setChosenDate(newChosenDate);
   }
 
@@ -362,7 +371,11 @@ export function Example() {
           </span>
         )}
       </p>
-      <DateTimePicker labelText="Date&Time" onDateChange={handleDateChange} />
+      <DateTimePicker
+        labelText="Date&Time"
+        onDateChange={handleDateChange}
+        errorMessage={error}
+      />
     </div>
   );
 }
@@ -381,8 +394,17 @@ export function Example() {
   const [chosenTime, setChosenTime] = React.useState<string | undefined>(
     undefined
   );
+  const [error, setError] = React.useState<string | undefined>(
+    'Time cannot be empty'
+  );
 
   function handleTimeChange(newChosenTime: string) {
+    if (!newChosenTime) {
+      setError('Time cannot be empty');
+    } else {
+      setError(undefined);
+    }
+
     setChosenTime(newChosenTime);
   }
 
@@ -392,7 +414,11 @@ export function Example() {
         <strong>Chosen Time: </strong>
         {chosenTime}
       </p>
-      <DateTimePicker labelText="Date&Time" onTimeChange={handleTimeChange} />
+      <DateTimePicker
+        labelText="Date&Time"
+        onTimeChange={handleTimeChange}
+        errorMessage={error}
+      />
     </div>
   );
 }
