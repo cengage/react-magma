@@ -47,6 +47,7 @@
     "fix-Accordion-Tooltip-Storybook-issues",
     "fix-Alert-add_aria-label-for-icon",
     "fix-DatePicker-update-focus-behaviour",
+    "fix-DateTimePicker-add-error-to-examples",
     "fix-Drawer-missing-animation",
     "fix-Dropdown-nav-item-accessibility-issue",
     "fix-Dropzone-add-dropzoneOptions-in-props",

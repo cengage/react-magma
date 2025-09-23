@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-next.19
+
+### Patch Changes
+
+- 7b17e058a: chore: Add error to `onDateChange` and `onTimeChange` examples.
+
 ## 5.2.0-next.18
 
 ### Patch Changes
