@@ -1270,5 +1270,59 @@ describe('Date Picker', () => {
       fireEvent.blur(datePickerInput);
       expect(datePickerInput).toHaveAttribute('value', 'November 21, 2022');
     });
+
+    it('should move focus on the previous month button when maxDate is reached', () => {
+      const defaultDate = new Date(2019, 0, 17);
+      const maxDate = new Date(2019, 2, 17);
+      const labelText = 'Date Picker Label';
+      const { getByLabelText, getAllByText } = render(
+        <DatePicker
+          defaultDate={defaultDate}
+          labelText={labelText}
+          maxDate={maxDate}
+        />
+      );
+
+      const prevMonthButton = getByLabelText(/Navigate back/i);
+      const nextMonthButton = getByLabelText(/Navigate forward/i);
+
+      fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+      expect(getAllByText(/january/i)[0]).toBeInTheDocument();
+
+      fireEvent.click(nextMonthButton);
+      expect(getAllByText(/february/i)[0]).toBeInTheDocument();
+
+      fireEvent.click(nextMonthButton);
+      expect(getAllByText(/march/i)[0]).toBeInTheDocument();
+      expect(nextMonthButton).toBeDisabled();
+      expect(prevMonthButton).toHaveFocus();
+    });
+
+    it('should move focus on the next month button when minDate is reached', () => {
+      const defaultDate = new Date(2019, 2, 17);
+      const minDate = new Date(2019, 0, 1);
+      const labelText = 'Date Picker Label';
+      const { getByLabelText, getAllByText } = render(
+        <DatePicker
+          defaultDate={defaultDate}
+          labelText={labelText}
+          minDate={minDate}
+        />
+      );
+
+      const prevMonthButton = getByLabelText(/Navigate back/i);
+      const nextMonthButton = getByLabelText(/Navigate forward/i);
+
+      fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+      expect(getAllByText(/march/i)[0]).toBeInTheDocument();
+
+      fireEvent.click(prevMonthButton);
+      expect(getAllByText(/february/i)[0]).toBeInTheDocument();
+
+      fireEvent.click(prevMonthButton);
+      expect(getAllByText(/january/i)[0]).toBeInTheDocument();
+      expect(prevMonthButton).toBeDisabled();
+      expect(nextMonthButton).toHaveFocus();
+    });
   });
 });

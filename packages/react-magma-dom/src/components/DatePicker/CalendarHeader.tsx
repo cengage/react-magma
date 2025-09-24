@@ -10,6 +10,7 @@ import {
 
 import { CalendarContext } from './CalendarContext';
 import { i18nFormat as format, getCurrentMonthAndYear } from './utils';
+import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonColor, ButtonType, ButtonVariant } from '../Button';
@@ -76,13 +77,32 @@ export const CalendarHeader: React.FunctionComponent<
   const monthAndYear = getCurrentMonthAndYear(focusedDate, locale);
   const minDateOrDefault = minDate ?? new Date(1900, 0, 1);
   const maxDateOrDefault = maxDate ?? new Date(2099, 11, 31);
+  const { isSafari } = useDeviceDetect();
+  const previousMonthRef = React.useRef<HTMLButtonElement>();
+  const nextMonthRef = React.useRef<HTMLButtonElement>();
 
-  const isDisabledPrevMonth =
-    startOfMonth(subMonths(focusedDate, 1)) < startOfMonth(minDateOrDefault);
-  const isDisabledNextMonth =
-    startOfMonth(addMonths(focusedDate, 1)) > startOfMonth(maxDateOrDefault);
+  const isDateEarlierThanMinDate = (numberMonths: number) => {
+    return (
+      startOfMonth(subMonths(focusedDate, numberMonths)) <
+      startOfMonth(minDateOrDefault)
+    );
+  };
+
+  const isDateLaterThanMaxDate = (numberMonths: number) => {
+    return (
+      startOfMonth(addMonths(focusedDate, numberMonths)) >
+      startOfMonth(maxDateOrDefault)
+    );
+  };
+
+  const isDisabledPrevMonth = isDateEarlierThanMinDate(1);
+  const isDisabledNextMonth = isDateLaterThanMaxDate(1);
 
   const onClickPrevMonth = () => {
+    if (isDateEarlierThanMinDate(2)) {
+      nextMonthRef.current?.focus();
+    }
+
     if (startOfMonth(maxDateOrDefault) >= startOfMonth(focusedDate)) {
       onPrevMonthClick();
       return;
@@ -95,6 +115,10 @@ export const CalendarHeader: React.FunctionComponent<
   };
 
   const onClickNextMonth = () => {
+    if (isDateLaterThanMaxDate(2)) {
+      previousMonthRef.current?.focus();
+    }
+
     if (startOfMonth(minDateOrDefault) <= startOfMonth(focusedDate)) {
       onNextMonthClick();
       return;
@@ -123,11 +147,13 @@ export const CalendarHeader: React.FunctionComponent<
             isInverse={props.isInverse}
           />
         </MonthYearWrapper>
-        <VisuallyHidden>
-          <Announce aria-atomic="true">
-            {monthAndYear.month} {monthAndYear.year}
-          </Announce>
-        </VisuallyHidden>
+        {!isSafari && (
+          <VisuallyHidden>
+            <Announce aria-atomic="true">
+              {monthAndYear.month} {monthAndYear.year}
+            </Announce>
+          </VisuallyHidden>
+        )}
       </CalendarHeaderText>
       <NavigationWrapper>
         <IconButton
@@ -142,6 +168,7 @@ export const CalendarHeader: React.FunctionComponent<
           type={ButtonType.button}
           variant={ButtonVariant.link}
           onClick={onClickPrevMonth}
+          ref={previousMonthRef}
           style={{ marginRight: theme.spaceScale.spacing02 }}
         />
         <IconButton
@@ -156,6 +183,7 @@ export const CalendarHeader: React.FunctionComponent<
           type={ButtonType.button}
           variant={ButtonVariant.link}
           onClick={onClickNextMonth}
+          ref={nextMonthRef}
           style={{ marginLeft: theme.spaceScale.spacing02 }}
         />
       </NavigationWrapper>
