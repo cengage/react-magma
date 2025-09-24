@@ -74,8 +74,6 @@ export const CalendarHeader: React.FunctionComponent<
   const i18n = React.useContext(I18nContext);
   const locale = i18n.locale || enUS;
   const monthAndYear = getCurrentMonthAndYear(focusedDate, locale);
-  const [monthAndYearAnnouncement, setMonthAndYearAnnouncement] =
-    React.useState(`${monthAndYear.month} ${monthAndYear.year}`);
   const minDateOrDefault = minDate ?? new Date(1900, 0, 1);
   const maxDateOrDefault = maxDate ?? new Date(2099, 11, 31);
   const previousMonthRef = React.useRef<HTMLButtonElement>();
@@ -99,8 +97,6 @@ export const CalendarHeader: React.FunctionComponent<
   const isDisabledNextMonth = isDateLaterThanMaxDate(1);
 
   const onClickPrevMonth = () => {
-    setMonthAndYearAnnouncement(`${monthAndYear.month} ${monthAndYear.year}`);
-
     if (isDateEarlierThanMinDate(2)) {
       nextMonthRef.current?.focus();
     }
@@ -117,8 +113,6 @@ export const CalendarHeader: React.FunctionComponent<
   };
 
   const onClickNextMonth = () => {
-    setMonthAndYearAnnouncement(`${monthAndYear.month} ${monthAndYear.year}`);
-
     if (isDateLaterThanMaxDate(2)) {
       previousMonthRef.current?.focus();
     }
@@ -152,8 +146,8 @@ export const CalendarHeader: React.FunctionComponent<
           />
         </MonthYearWrapper>
         <VisuallyHidden>
-          <Announce aria-atomic="true" key={monthAndYearAnnouncement}>
-            {monthAndYearAnnouncement}
+          <Announce aria-atomic="true">
+            {monthAndYear.month} {monthAndYear.year}
           </Announce>
         </VisuallyHidden>
       </CalendarHeaderText>
