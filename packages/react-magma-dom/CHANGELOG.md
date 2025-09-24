@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.32
+
+### Patch Changes
+
+- 5f26119b6: fix (Date Picker): Add an announcement during the change to the next or previous month.
+
 ## 4.10.0-next.31
 
 ### Patch Changes
