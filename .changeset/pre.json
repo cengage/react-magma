@@ -47,6 +47,7 @@
     "fix-Accordion-Tooltip-Storybook-issues",
     "fix-Alert-add_aria-label-for-icon",
     "fix-DatePicker-add-announcement-next-previous-buttons",
+    "fix-DatePicker-fix-color-issue",
     "fix-DatePicker-update-focus-behaviour",
     "fix-DateTimePicker-add-error-to-examples",
     "fix-Drawer-missing-animation",

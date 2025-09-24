@@ -1,5 +1,11 @@
 ## 4.10.0-next.10
 
+## 4.10.0-next.33
+
+### Patch Changes
+
+- 84b9c9f0b: fix(DatePicker): Fix a small color issue for a11y.
+
 ## 4.10.0-next.32
 
 ### Patch Changes
