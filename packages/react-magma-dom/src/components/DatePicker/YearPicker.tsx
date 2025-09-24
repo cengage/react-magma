@@ -34,6 +34,11 @@ export const YearPicker: React.FunctionComponent<YearPickerProps> = (
     value: year,
   }));
 
+  // Show the current year as a disabled option if it's not in the range between minDate and maxDate
+  const showCurrentYearOption = !years.some(year => year.value === currentYear);
+  const isCurrentYearBeforeRange = currentYear < minYear;
+  const isCurrentYearAfterRange = currentYear > maxYear;
+
   function onYearChange(year: number) {
     setYearFocusedDate(year);
   }
@@ -43,15 +48,25 @@ export const YearPicker: React.FunctionComponent<YearPickerProps> = (
       <NativeSelect
         aria-label={i18n.datePicker.selectYear}
         data-testid="year-picker"
-        fieldId={''}
+        fieldId={'year-picker-id'}
         onChange={e => onYearChange(Number(e.target.value))}
         value={currentYear}
       >
+        {showCurrentYearOption && isCurrentYearBeforeRange && (
+          <option value={currentYear} disabled>
+            {currentYear}
+          </option>
+        )}
         {years.map(year => (
           <option key={year.value} value={year.value}>
             {year.label}
           </option>
         ))}
+        {showCurrentYearOption && isCurrentYearAfterRange && (
+          <option value={currentYear} disabled>
+            {currentYear}
+          </option>
+        )}
       </NativeSelect>
     </StyledSelect>
   );
