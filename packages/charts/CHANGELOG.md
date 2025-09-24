@@ -1,5 +1,20 @@
 # @react-magma/charts
 
+## 12.0.0
+
+### Major Changes
+
+- ef8a2740a: chore: fix @react-magma/charts package to include styles and correct exports
+
+### Minor Changes
+
+- ef8a2740a: fix(charts): fix build
+- ef8a2740a: feat (CarbonCharts): Support custom colors.
+
+### Patch Changes
+
+- ef8a2740a: fix(charts): Add white outline to scatter points
+
 ## 12.0.0-next.5
 
 ### Major Changes

@@ -1,3 +1,46 @@
+## 4.10.0
+
+### Minor Changes
+
+- ef8a2740a: feat(Button): Update icon size for `Button`, `IconButton`, `DropdownButton`, `ButtonGroup` and `ToggleButton`.
+- ef8a2740a: feat(DatePicker): Add new `Today` button for navigation and update styles.
+- ef8a2740a: feat(DatePicker): Provide ability to more quickly change the month and/or year. Update aria-labels and styles.
+- ef8a2740a: feat(Drawer): Add `showBackgroundOverlay` prop.
+- ef8a2740a: feat(Dropdown & IconButton): Add `leadingIcon` prop.
+- ef8a2740a: feat(Popover): Add the `alignment` prop and allow customization of the width.
+- ef8a2740a: feat(Popover): Support programmatically opening component with `openPopoverManually`.
+- ef8a2740a: feat(Tabs): New `CustomTab` component.
+- ef8a2740a: feat(Table & Datagrid): New prop `tableTitle` which supports a captioned title above each Table and Datagrid. New props `hasOutsideBorder`, `hasTablePagination` to `Table`.
+- ef8a2740a: feat(TimePicker): Add auto fill functionality.
+- ef8a2740a: feat(Toggle): Remove animation.
+- ef8a2740a: feat(TreeView): New `additionalContent` prop. Removed animation from Checkbox and Radio components.
+- ef8a2740a: feat(TreeView): New `expandIconStyles` and `hoverColor` props and more styles customization support.
+- ef8a2740a: feat(AIButton): New `AIButton` component.
+- ef8a2740a: feat(DateTimePicker): New `DateTimePicker` component.
+- ef8a2740a: feat(Drawer): Add `isAnimated` prop to control slide animation.
+- ef8a2740a: feat(MultiSelect): Make selected items disabled when component is disabled.
+- ef8a2740a: feat(TreeView): Component now handles dynamic addition of parents and children to parent nodes.
+- ef8a2740a: feat(react-magma-icons): Update react-magma-icons version to 3.2.0. New icons: Phishing, QuestionMark, Target, Media, Notebook.
+
+### Patch Changes
+
+- ef8a2740a: chore(Chart): updated @react-magma/charts package to include all necessary styles directly in the package and corrected named exports for better usability, eliminating the need to import styles from /dist.
+- ef8a2740a: fix(Alert): Add `aria-label` and `role="img"` for icon.
+- ef8a2740a: fix(DatePicker): Add an announcement during the change to the next or previous month.
+- ef8a2740a: fix(Drawer): Fix missing animation for sliding in.
+- ef8a2740a: fix(Dropdown): Add `aria-label` to NavItem for Windows + Firefox for NVDA announce.
+- ef8a2740a: fix(Dropzone): Pass `dropzoneOptions` prop to `Dropzone`.
+- ef8a2740a: fix(Input): Improve the logic for updating the value in the `handleChange` function.
+- ef8a2740a: fix(IndeterminateCheckbox): Fix screenreader reading 'unticked' on indeterminate state.
+- ef8a2740a: fix(Popover & Tooltip): Fix an issue when pressing `Escape` doesn't stop bubbling.
+- ef8a2740a: fix(Popover): Fix a bug with several popovers on the same page.
+- ef8a2740a: fix(RadioButton): Add `aria-hidden` to decorative icons to hide them from assistive technology.
+- ef8a2740a: fix(Table): New props `colSpan` and `rowSpan` for TableHeaderCell
+- ef8a2740a: fix(TablePagination): Update `newRowsPerPage` to return a number instead of a string
+- ef8a2740a: fix(Tooltip): Fix issue with screenreaders on non interactive elements.
+- ef8a2740a: fix(TreeItem): Fixed issue with twice calling event.
+- ef8a2740a: fix(Button): Fix styles for `round` button.
+- ef8a2740a: fix(CharacterCounter): Fix screenreader properly conveying the remainder on user input.
 
 ## 4.10.0
 

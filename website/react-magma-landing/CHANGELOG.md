@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.1.8
+
+### Patch Changes
+
+- ef8a2740a: chore: add deploy-v2-docs.yml to deploy v2 docs
+- ef8a2740a: chore: sync landing version with main (1.1.7)
+
 ## 1.1.8-next.0
 
 ### Patch Changes

@@ -1,5 +1,76 @@
 # Change Log
 
+## 5.2.0
+
+### Minor Changes
+
+- ef8a2740a: chore: Add new charts to the docs - `Combo`, `Step` and `Sparkline`. Uncomment existing charts - `Bubble`, `Gauge`, `Meter`, `Radar`, `Boxplot`, `Bullet`, `Histogram` and `Scatter`.
+
+### Patch Changes
+
+- ef8a2740a: chore: Add Playwright initial configuration and some example tests.
+- ef8a2740a: chore: add documentation for css prop and emotion v11 media query overrides
+- ef8a2740a: chore: Add clarification to the `hoverable` prop for Popover.
+- ef8a2740a: chore: Add page for `useDeviceDetect` hook.
+- ef8a2740a: chore: Add warning for `Tooltip` that the child element must be able to accept a ref.
+- ef8a2740a: chore: fix react-magma-dom next version
+- ef8a2740a: fix(Tooltip & Accordion): Fix storybook issues with Tooltip and Accordion components.
+- ef8a2740a: fix(Date Picker): Update focus behaviour to shift focus to selected date
+- ef8a2740a: chore: Add error to `onDateChange` and `onTimeChange` examples.
+- ef8a2740a: fix(Definition List, Loading Indicator, Native Select, Nav Tabs, Popover): Fix docs issues.
+- ef8a2740a: chore: fix instructions and update message for `LineChart`
+- ef8a2740a: chore: Fix broken `Focus Trap` section.
+- ef8a2740a: chore: Fix small bugs in the documentation.
+- ef8a2740a: chore: Manually sync main -> dev (4.9.0)
+- ef8a2740a: Bring 4.9.1 changes to dev
+- ef8a2740a: chore: Update README and CODEOWNERS
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+  - @react-magma/charts@12.0.0
+  - react-magma-dom@4.10.0
+  - @react-magma/dropzone@12.0.0
+  - @react-magma/schema-renderer@12.0.0
+  - @cengage-patterns/header@13.0.0
+
 ## 5.2.0-next.18
 
 ### Patch Changes
