@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { addMonths, subMonths } from 'date-fns';
+import { addMonths, subMonths, startOfMonth } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import {
   KeyboardArrowLeftIcon,
@@ -16,6 +16,8 @@ import { ButtonColor, ButtonType, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { MonthPicker } from './MonthPicker';
 import { YearPicker } from './YearPicker';
+import { Announce } from '../Announce';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 interface CalendarHeaderProps {
   focusHeader?: boolean;
@@ -60,12 +62,71 @@ const NavigationWrapper = styled.div`
 export const CalendarHeader: React.FunctionComponent<
   CalendarHeaderProps
 > = props => {
-  const { focusedDate, onPrevMonthClick, onNextMonthClick } =
-    React.useContext(CalendarContext);
+  const {
+    focusedDate,
+    onPrevMonthClick,
+    onNextMonthClick,
+    minDate,
+    maxDate,
+    setFocusedDate,
+  } = React.useContext(CalendarContext);
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
   const locale = i18n.locale || enUS;
   const monthAndYear = getCurrentMonthAndYear(focusedDate, locale);
+  const minDateOrDefault = minDate ?? new Date(1900, 0, 1);
+  const maxDateOrDefault = maxDate ?? new Date(2099, 11, 31);
+  const previousMonthRef = React.useRef<HTMLButtonElement>();
+  const nextMonthRef = React.useRef<HTMLButtonElement>();
+
+  const isDateEarlierThanMinDate = (numberMonths: number) => {
+    return (
+      startOfMonth(subMonths(focusedDate, numberMonths)) <
+      startOfMonth(minDateOrDefault)
+    );
+  };
+
+  const isDateLaterThanMaxDate = (numberMonths: number) => {
+    return (
+      startOfMonth(addMonths(focusedDate, numberMonths)) >
+      startOfMonth(maxDateOrDefault)
+    );
+  };
+
+  const isDisabledPrevMonth = isDateEarlierThanMinDate(1);
+  const isDisabledNextMonth = isDateLaterThanMaxDate(1);
+
+  const onClickPrevMonth = () => {
+    if (isDateEarlierThanMinDate(2)) {
+      nextMonthRef.current?.focus();
+    }
+
+    if (startOfMonth(maxDateOrDefault) >= startOfMonth(focusedDate)) {
+      onPrevMonthClick();
+      return;
+    }
+    if (!isDisabledPrevMonth && isDisabledNextMonth) {
+      setFocusedDate(maxDateOrDefault);
+      return;
+    }
+    onPrevMonthClick();
+  };
+
+  const onClickNextMonth = () => {
+    if (isDateLaterThanMaxDate(2)) {
+      previousMonthRef.current?.focus();
+    }
+
+    if (startOfMonth(minDateOrDefault) <= startOfMonth(focusedDate)) {
+      onNextMonthClick();
+      return;
+    }
+    if (isDisabledPrevMonth && !isDisabledNextMonth) {
+      setFocusedDate(minDateOrDefault);
+      return;
+    }
+    onNextMonthClick();
+  };
 
   return (
     <CalendarHeaderContainer theme={theme}>
@@ -84,6 +145,11 @@ export const CalendarHeader: React.FunctionComponent<
             isInverse={props.isInverse}
           />
         </MonthYearWrapper>
+        <VisuallyHidden>
+          <Announce aria-atomic="true">
+            {monthAndYear.month} {monthAndYear.year}
+          </Announce>
+        </VisuallyHidden>
       </CalendarHeaderText>
       <NavigationWrapper>
         <IconButton
@@ -93,10 +159,12 @@ export const CalendarHeader: React.FunctionComponent<
             locale
           )}`}
           color={ButtonColor.subtle}
+          disabled={isDisabledPrevMonth}
           icon={<KeyboardArrowLeftIcon />}
           type={ButtonType.button}
           variant={ButtonVariant.link}
-          onClick={onPrevMonthClick}
+          onClick={onClickPrevMonth}
+          ref={previousMonthRef}
           style={{ marginRight: theme.spaceScale.spacing02 }}
         />
         <IconButton
@@ -107,9 +175,11 @@ export const CalendarHeader: React.FunctionComponent<
           )}`}
           icon={<KeyboardArrowRightIcon />}
           color={ButtonColor.subtle}
+          disabled={isDisabledNextMonth}
           type={ButtonType.button}
           variant={ButtonVariant.link}
-          onClick={onNextMonthClick}
+          onClick={onClickNextMonth}
+          ref={nextMonthRef}
           style={{ marginLeft: theme.spaceScale.spacing02 }}
         />
       </NavigationWrapper>
