@@ -72,6 +72,21 @@ export interface Colors {
 
   border: string;
   borderInverse: string;
+
+  aiColors: {
+    variantA: {
+      right: string;
+      left: string;
+      hover: string;
+      pressed: string;
+    };
+    variantB: {
+      right: string;
+      left: string;
+      hover: string;
+      pressed: string;
+    };
+  };
 }
 
 export interface Breakpoints {
@@ -476,6 +491,21 @@ const colors = {
 
   border: neutralColors.neutral300,
   borderInverse: 'rgba(255,255,255,0.25)',
+
+  aiColors: {
+    variantA: {
+      right: '#C3419A',
+      left: '#3942B0',
+      hover: '#3942B0',
+      pressed: '#292F7C',
+    },
+    variantB: {
+      right: '#178037',
+      left: '#3942B0',
+      hover: '#3942B0',
+      pressed: '#292F7C',
+    },
+  },
 };
 
 const spaceScale = {

@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { Global, css } from '@emotion/react';
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { css, Global } from '@emotion/react';
+import { Meta, Story } from '@storybook/react/types-6-0';
 import {
-  SettingsIcon,
-  NotificationsIcon,
   ExpandMoreIcon,
+  NotificationsIcon,
+  SettingsIcon,
 } from 'react-magma-icons';
 
 import {
@@ -16,10 +16,9 @@ import {
   ButtonType,
   ButtonVariant,
 } from '../Button';
-import { Card } from '../Card';
-import { CardBody } from '../Card/CardBody';
+import { Card, CardBody } from '../Card';
 
-import { IconButton, IconButtonProps } from '.';
+import { ButtonIconPosition, IconButton, IconButtonProps } from '.';
 
 const Template: Story<IconButtonProps> = args => (
   <IconButton icon={<SettingsIcon />} {...args}>
@@ -156,3 +155,17 @@ AnimatedIcon.args = {
   isInverse: false,
   disabled: false,
 };
+
+const LeadingIconTemplate: Story<IconButtonProps> = args => (
+  <IconButton
+    iconPosition={ButtonIconPosition.right}
+    icon={<SettingsIcon />}
+    leadingIcon={<NotificationsIcon />}
+    aria-label="Button"
+    {...args}
+  >
+    Leading Icon
+  </IconButton>
+);
+
+export const LeadingIcon = LeadingIconTemplate.bind({});

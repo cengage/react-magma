@@ -78,7 +78,7 @@ export function Example() {
   ];
 
   return (
-    <Table>
+    <Table tableTitle="Basic Usage table" hasOutsideBorder>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -119,7 +119,57 @@ import {
 
 export function Example() {
   return (
-    <Table hasVerticalBorders>
+    <Table
+      tableTitle="Vertical borders table"
+      hasVerticalBorders
+      hasOutsideBorder
+    >
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  );
+}
+```
+
+## Outside Border
+
+The `hasOutsideBorder` boolean prop may be used to give table outer border.
+
+```tsx
+import React from 'react';
+
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Table tableTitle="Outer border table" hasVerticalBorders hasOutsideBorder>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -165,7 +215,7 @@ import {
 
 export function Example() {
   return (
-    <Table hasHoverStyles>
+    <Table hasHoverStyles tableTitle="Hover style table" hasOutsideBorder>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -211,7 +261,12 @@ import {
 
 export function Example() {
   return (
-    <Table hasZebraStripes hasHoverStyles>
+    <Table
+      hasZebraStripes
+      hasHoverStyles
+      hasOutsideBorder
+      tableTitle="Zebra Stripes table"
+    >
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -271,7 +326,11 @@ import {
 export function Example() {
   return (
     <>
-      <Table density={TableDensity.compact}>
+      <Table
+        density={TableDensity.compact}
+        tableTitle="Density table compact"
+        hasOutsideBorder
+      >
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -296,7 +355,11 @@ export function Example() {
         </TableBody>
       </Table>
       <br /> <br />
-      <Table density={TableDensity.loose}>
+      <Table
+        density={TableDensity.loose}
+        tableTitle="Density table loose"
+        hasOutsideBorder
+      >
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -395,7 +458,7 @@ export function Example() {
 
   return (
     <>
-      <Table>
+      <Table tableTitle="Sortable table" hasOutsideBorder>
         <TableHead>
           <TableRow>
             <TableHeaderCell
@@ -460,6 +523,54 @@ export function Example() {
 }
 ```
 
+## Table title
+
+The `tableTitle` defines the title or caption of the table using the native `<caption>` HTML element for improved accessibility.
+
+Accepts either a plain string or a React node (e.g., a heading like `<h2>`) to allow flexible formatting.
+
+```tsx
+import React from 'react';
+
+import {
+  Table,
+  TableHead,
+  TableRow,
+  TableHeaderCell,
+  TableBody,
+  TableCell,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Table tableTitle="Table title" hasVerticalBorders hasOutsideBorder>
+      <TableHead>
+        <TableRow>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+          <TableHeaderCell>Column</TableHeaderCell>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+        <TableRow>
+          <TableCell>Lorem ipsum dolor sit amet</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum dolor</TableCell>
+          <TableCell>Lorem ipsum</TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  );
+}
+```
+
 ## Inverse
 
 `IsInverse` is an optional boolean prop, that may be used when a table is displayed on a dark background.
@@ -469,6 +580,7 @@ import React from 'react';
 
 import {
   Card,
+  CardBody,
   Table,
   TableHead,
   TableRow,
@@ -481,38 +593,47 @@ import {
 export function Example() {
   return (
     <Card isInverse>
-      <Table isInverse hasZebraStripes hasVerticalBorders hasHoverStyles>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell sortDirection={TableSortDirection.descending}>
-              Column
-            </TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-            <TableCell>Lorem ipsum dolor</TableCell>
-            <TableCell>Lorem ipsum dolor</TableCell>
-            <TableCell>Lorem ipsum</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Lorem ipsum dolor sit amet</TableCell>
-            <TableCell>Lorem ipsum dolor</TableCell>
-            <TableCell>Lorem ipsum dolor</TableCell>
-            <TableCell>Lorem ipsum</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Lorem ipsum dolor sit amet</TableCell>
-            <TableCell>Lorem ipsum dolor</TableCell>
-            <TableCell>Lorem ipsum dolor</TableCell>
-            <TableCell>Lorem ipsum</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
+      <CardBody>
+        <Table
+          isInverse
+          hasOutsideBorder
+          hasZebraStripes
+          hasVerticalBorders
+          hasHoverStyles
+          tableTitle="Inverse table"
+        >
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell sortDirection={TableSortDirection.descending}>
+                Column
+              </TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Lorem ipsum dolor sit amet</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Lorem ipsum dolor sit amet</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum dolor</TableCell>
+              <TableCell>Lorem ipsum</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </CardBody>
     </Card>
   );
 }
@@ -535,7 +656,7 @@ import {
 
 export function Example() {
   return (
-    <Table>
+    <Table tableTitle="Cell alignment table" hasOutsideBorder>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>
@@ -580,7 +701,7 @@ import {
 export function Example() {
   return (
     <>
-      <Table>
+      <Table tableTitle="Cell Width table in percentage" hasOutsideBorder>
         <TableHead>
           <TableRow>
             <TableHeaderCell width="25%">Column 25%</TableHeaderCell>
@@ -603,7 +724,7 @@ export function Example() {
 
       <br />
 
-      <Table>
+      <Table tableTitle="Cell Width table in pixels" hasOutsideBorder>
         <TableHead>
           <TableRow>
             <TableHeaderCell width={200}>Column 200px</TableHeaderCell>
@@ -647,7 +768,7 @@ import {
 export function Example() {
   return (
     <>
-      <Table minWidth={920}>
+      <Table minWidth={920} tableTitle="Min-width table" hasOutsideBorder>
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column 1</TableHeaderCell>
@@ -706,7 +827,7 @@ import {
 
 export function Example() {
   return (
-    <Table hasVerticalBorders>
+    <Table hasVerticalBorders tableTitle="Other content table" hasOutsideBorder>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column 1</TableHeaderCell>
@@ -749,6 +870,8 @@ The `TablePagination` takes props for `count`, which is the total number of rows
 It also takes the function `onRowsPerPageChange`.
 
 This component does not handle the actual pagination of the table itself, it simply provides the UI and allows for the consumer to do the sorting.
+
+**NOTE:** When using the `TablePagination`, it is recommended to set the `Table` component's `hasOutsideBorder` and `hasSquareCorners` props for proper styling, and also add the `hasTablePagination` to the `Table` component.
 
 ```tsx codesandbox=magma
 import React from 'react';
@@ -923,7 +1046,12 @@ export function Example() {
 
   return (
     <>
-      <Table>
+      <Table
+        tableTitle="Pagination table"
+        hasTablePagination
+        hasOutsideBorder={false}
+        hasSquareCorners={false}
+      >
         <TableHead>
           <TableRow>
             <TableHeaderCell>Column</TableHeaderCell>
@@ -948,6 +1076,8 @@ export function Example() {
         onPageChange={handlePageChange}
         page={pageIndex}
         rowsPerPage={rowsPerPage}
+        hasOutsideBorder={false}
+        hasSquareCorners={false}
       />
     </>
   );
@@ -973,7 +1103,7 @@ import {
 
 export function Example() {
   return (
-    <Table>
+    <Table tableTitle="Table row color table" hasOutsideBorder>
       <TableHead>
         <TableRow>
           <TableHeaderCell>Column</TableHeaderCell>

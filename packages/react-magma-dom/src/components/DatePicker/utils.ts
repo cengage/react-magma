@@ -10,6 +10,8 @@ import {
   isAfter,
   isBefore,
   isSameDay,
+  setMonth,
+  setYear,
   startOfMonth,
   startOfWeek,
   subDays,
@@ -146,4 +148,25 @@ export function i18nFormat(date, formatStr = 'PP', locale = enUS) {
 
 export function getDateFromString(date) {
   return date ? (date instanceof Date ? date : new Date(date)) : null;
+}
+
+export function getCurrentMonthAndYear(date: Date, locale: Locale) {
+  const currentDate = i18nFormat(date, 'MMMM yyyy', locale);
+
+  const capitalizeCurrentMonth =
+    currentDate && currentDate.charAt(0).toUpperCase() + currentDate.slice(1);
+
+  const [month, year] = capitalizeCurrentMonth
+    ? capitalizeCurrentMonth.split(' ')
+    : ['', ''];
+
+  return { month, year };
+}
+
+export function setMonthForDate(prevDate, numberMonth: number) {
+  return startOfMonth(setMonth(prevDate, numberMonth));
+}
+
+export function setYearForDate(prevDate, numberYear: number) {
+  return setYear(prevDate, numberYear);
 }

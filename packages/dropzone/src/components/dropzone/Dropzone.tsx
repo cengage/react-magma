@@ -264,6 +264,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       accept,
       onDrop,
       noDrag,
+      ...dropzoneOptions,
     });
 
     useImperativeHandle<HTMLInputElement | null, HTMLInputElement | null>(

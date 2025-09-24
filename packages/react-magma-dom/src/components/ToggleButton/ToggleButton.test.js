@@ -2,7 +2,7 @@ import React from 'react';
 
 import { act, fireEvent, render } from '@testing-library/react';
 import { transparentize } from 'polished';
-import { SettingsIcon } from 'react-magma-icons';
+import { CheckIcon, SettingsIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -250,6 +250,56 @@ describe('ToggleButton', () => {
       act(() => {
         expect(onClickMock).toHaveBeenCalled();
       });
+    });
+  });
+
+  describe('Size', () => {
+    const icon = <CheckIcon />;
+
+    it('Large', () => {
+      const { container } = render(
+        <ToggleButton
+          size={ButtonSize.large}
+          icon={icon}
+          value={value}
+          testId={testId}
+        />
+      );
+
+      const svg = container.querySelector('svg');
+
+      expect(svg).toHaveAttribute('height', magma.iconSizes.medium.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.medium.toString());
+    });
+
+    it('Medium', () => {
+      const { container } = render(
+        <ToggleButton
+          size={ButtonSize.medium}
+          icon={icon}
+          value={value}
+          testId={testId}
+        />
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.small.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.small.toString());
+    });
+
+    it('Small', () => {
+      const { container } = render(
+        <ToggleButton
+          size={ButtonSize.small}
+          icon={icon}
+          value={value}
+          testId={testId}
+        />
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.xSmall.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.xSmall.toString());
     });
   });
 });

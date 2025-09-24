@@ -21,6 +21,11 @@ export interface TabProps
   icon?: React.ReactElement<any> | React.ReactElement<any>[];
   isInverse?: boolean;
   /**
+   * If true, the tab will have no styles and will render the children directly.
+   * @internal
+   */
+  unstyled?: boolean;
+  /**
    * Determines whether the tab appears in all-caps
    * @default TabsTextTransform.uppercase
    */
@@ -45,52 +50,52 @@ export const StyledTabsChild = styled('li', {
   isInverse?: boolean;
   orientation: TabsOrientation;
   theme: ThemeInterface;
+  unstyled?: boolean;
 }>`
-  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
-  flex-grow: 0;
-  flex-shrink: ${props => (props.isFullWidth ? '1' : '0')};
-  height: ${props => (props.orientation === 'vertical' ? 'auto' : '100%')};
   list-style: none;
   margin: 0;
-  max-width: ${props => (props.isFullWidth ? '100%' : '250px')};
   padding: 0;
   position: relative;
   white-space: normal;
-  width: ${props =>
-    props.isFullWidth || props.orientation === 'vertical' ? '100%' : 'auto'};
 
-  &:after {
-    background: ${props =>
-      props.isInverse
-        ? props.theme.colors.tertiary
-        : props.theme.colors.primary};
-    border-radius: 2px;
-    content: '';
-    display: block;
-    height: 4px;
-    opacity: ${props => (props.isActive ? '1' : '0')};
-    position: absolute;
-    transition: 0.4s all;
-    width: auto;
-
-    bottom: ${props => (props.borderPosition === 'top' ? 'auto' : '0')};
-    left: ${props => (props.isActive ? '0' : '50%')};
-    right: ${props => (props.isActive ? '0' : '50%')};
-    top: ${props => (props.borderPosition === 'top' ? '0' : 'auto')};
-
-    ${props =>
-      props.orientation === 'vertical' &&
-      css`
-        height: auto;
-
-        bottom: ${props.isActive ? '0' : '50%'};
-        left: ${props.borderPosition === 'right' ? 'auto' : '0'};
-        right: ${props.borderPosition === 'right' ? '0' : 'auto'};
-        top: ${props.isActive ? '0' : '50%'};
-
-        width: 4px;
-      `}
-  }
+  ${props =>
+    !props.unstyled &&
+    css`
+      cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
+      flex-grow: 0;
+      flex-shrink: ${props.isFullWidth ? '1' : '0'};
+      height: ${props.orientation === 'vertical' ? 'auto' : '100%'};
+      max-width: ${props.isFullWidth ? '100%' : '250px'};
+      width: ${props.isFullWidth || props.orientation === 'vertical'
+        ? '100%'
+        : 'auto'};
+      &:after {
+        background: ${props.isInverse
+          ? props.theme.colors.tertiary
+          : props.theme.colors.primary};
+        border-radius: 2px;
+        content: '';
+        display: block;
+        height: 4px;
+        opacity: ${props.isActive ? '1' : '0'};
+        position: absolute;
+        transition: 0.4s all;
+        width: auto;
+        bottom: ${props.borderPosition === 'top' ? 'auto' : '0'};
+        left: ${props.isActive ? '0' : '50%'};
+        right: ${props.isActive ? '0' : '50%'};
+        top: ${props.borderPosition === 'top' ? '0' : 'auto'};
+        ${props.orientation === 'vertical' &&
+        css`
+          height: auto;
+          bottom: ${props.isActive ? '0' : '50%'};
+          left: ${props.borderPosition === 'right' ? 'auto' : '0'};
+          right: ${props.borderPosition === 'right' ? '0' : 'auto'};
+          top: ${props.isActive ? '0' : '50%'};
+          width: 4px;
+        `}
+      }
+    `}
 `;
 
 function getFlexDirection(position: TabsIconPosition) {
@@ -200,8 +205,9 @@ const StyledTab = styled('button', { shouldForwardProp: isPropValid })<{
   orientation: TabsOrientation;
   textTransform: TabsTextTransform;
   theme: ThemeInterface;
+  unstyled?: boolean;
 }>`
-  ${TabStyles}
+  ${props => (props.unstyled ? '' : TabStyles)}
 `;
 
 function getIconMargin(props) {
@@ -241,7 +247,8 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
   (props, forwardedRef) => {
     const contextProps = React.useContext(TabsContext);
     const resolvedProps = resolveProps(contextProps, props);
-    const { children, icon, disabled, testId, ...rest } = resolvedProps;
+    const { children, icon, disabled, testId, unstyled, ...rest } =
+      resolvedProps;
     const { activeTabIndex } = React.useContext(TabsContainerContext);
     const { buttonRefArray, registerTabButton } = React.useContext(TabsContext);
     const ownRef = React.useRef<HTMLDivElement>();
@@ -277,16 +284,61 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       registerTabButton(buttonRefArray, ownRef);
 
       forceUpdate();
-    }, []);
+    }, [buttonRefArray, forceUpdate, registerTabButton]);
 
     const theme = React.useContext(ThemeContext);
     const isIconOnly = !children;
 
-    const tabIconPosition = iconPosition
-      ? iconPosition
-      : orientation === 'vertical'
-        ? TabsIconPosition.left
-        : TabsIconPosition.top;
+    let tabIconPosition = iconPosition;
+    if (!tabIconPosition) {
+      tabIconPosition =
+        orientation === 'vertical'
+          ? TabsIconPosition.left
+          : TabsIconPosition.top;
+    }
+
+    if (unstyled) {
+      const child = React.Children.only(children) as React.ReactElement;
+
+      const {
+        // props to remove from rest
+        borderPosition: _borderPosition,
+        buttonRefArray: _buttonRefArray,
+        changeHandler: _changeHandler,
+        iconPosition: _iconPosition,
+        isFullWidth: _isFullWidth,
+        isInverse: _isInverse,
+        orientation: _orientation,
+        registerTabButton: _registerTabButton,
+        textTransform: _textTransform,
+        ...clonedElProps
+      } = rest;
+
+      return (
+        <StyledTabsChild
+          borderPosition={borderPosition}
+          data-testid="tabContainer"
+          disabled={disabled}
+          isActive={isActive}
+          isFullWidth={isFullWidth}
+          isInverse={isInverse}
+          orientation={orientation}
+          role="presentation"
+          theme={theme}
+          unstyled
+        >
+          {React.cloneElement(child, {
+            ...clonedElProps,
+            'aria-selected': isActive,
+            disabled,
+            onClick: e => handleClick(index, e),
+            ref,
+            role: 'tab',
+            tabIndex: isActive ? 0 : -1,
+          })}
+        </StyledTabsChild>
+      );
+    }
 
     return (
       <StyledTabsChild

@@ -11,7 +11,8 @@
   "workspaces": [
     "website/*",
     "packages/*",
-    "patterns/*"
+    "patterns/*",
+    "tests/*"
   ],
   "scripts": {
     "build": "lerna run build --concurrency=6 --no-progress",
@@ -34,6 +35,10 @@
     "getAlias": "node ./packages/react-magma-dom/scripts/getAlias.js",
     "getVersion": "node ./packages/react-magma-dom/scripts/getVersion.js",
     "postinstall": "npm run build:lite",
+    "playwright:test": "lerna exec --scope playwright -- npx playwright test",
+    "playwright:report": "lerna exec --scope playwright -- npx playwright show-report",
+    "playwright:codegen": "lerna exec --scope playwright -- npx playwright codegen",
+    "playwright:realtime": "lerna exec --scope playwright -- npx playwright test --ui",
     "lint": "eslint \"**/src/**/*.{js,jsx,ts,tsx,mdx}\"",
     "lint:ci": "eslint --max-warnings 0 \"**/src/**/*.{js,jsx,ts,tsx,mdx}\"",
     "lint:fix": "eslint --fix \"**/src/**/*.{js,jsx,ts,tsx,mdx}\"",

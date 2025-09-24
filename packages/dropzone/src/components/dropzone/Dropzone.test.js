@@ -587,6 +587,24 @@ describe('File Uploader', () => {
     await flushPromises(rerender, ui);
     expect(onRemoveFileSpy).toHaveBeenCalledTimes(1);
   });
+
+  it('dropzoneOptions should be passed to Dropzone', async () => {
+    const data = createDtWithFiles(images);
+    const testId = 'testId';
+
+    const ui = <Dropzone testId={testId} dropzoneOptions={{ maxFiles: 1 }} />;
+
+    const { getByTestId, getAllByText, rerender } = render(ui);
+
+    const dropzone = getByTestId(testId);
+    fireDrop(dropzone, data);
+
+    await flushPromises(rerender, ui);
+
+    expect(
+      getAllByText(/You must upload a maximum of/i)[0]
+    ).toBeInTheDocument();
+  });
 });
 
 async function flushPromises(rerender, ui) {

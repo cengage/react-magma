@@ -1,5 +1,45 @@
 # @react-magma/charts
 
+## 12.0.0-next.5
+
+### Major Changes
+
+- 7e66c38ec: chore: fix @react-magma/charts package to include styles and correct exports
+
+## 12.0.0-next.4
+
+### Minor Changes
+
+- f51613699: fix(charts): fix build
+
+## 12.0.0-next.3
+
+### Minor Changes
+
+- 4d04e84e8: feat (CarbonCharts): Add supporting custom colors.
+
+## 12.0.0-next.2
+
+### Patch Changes
+
+- Updated dependencies [22a0a5396]
+  - react-magma-dom@4.10.0-next.3
+
+## 12.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [ed8a4eea7]
+  - react-magma-dom@4.10.0-next.1
+
+## 11.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [31a4e0318]
+- Updated dependencies [77a8687f4]
+  - react-magma-dom@4.9.1-next.0
+
 ## 11.0.0
 
 ## 11.0.0-next.2

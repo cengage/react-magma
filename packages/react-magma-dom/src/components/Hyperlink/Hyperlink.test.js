@@ -119,7 +119,7 @@ describe('Hyperlink', () => {
       'font-size',
       magma.typeScale.size04.fontSize
     );
-    expect(element).toHaveStyleRule('border-radius', '100%');
+    expect(element).toHaveStyleRule('border-radius', '2rem');
     expect(element).toHaveStyleRule('height', magma.spaceScale.spacing11);
   });
 

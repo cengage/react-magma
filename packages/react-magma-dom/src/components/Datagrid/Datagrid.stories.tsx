@@ -1,19 +1,20 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react/types-6-0';
 
 import { DatagridProps } from './Datagrid';
 import { magma } from '../../theme/magma';
 import { Announce } from '../Announce';
 import { Button } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
+import { Card, CardBody } from '../Card';
 import { usePagination } from '../Pagination/usePagination';
 import { Spacer, SpacerAxis } from '../Spacer';
 import {
+  TableDensity,
   TablePaginationProps,
   TableRowColor,
   TableSortDirection,
-  TableDensity,
 } from '../Table';
 import { VisuallyHidden } from '../VisuallyHidden';
 
@@ -223,7 +224,13 @@ const rowsForPagination = [
 ];
 
 const Template: Story<Omit<DatagridProps, 'selectedRows'>> = args => (
-  <Datagrid {...args}>Sample Text</Datagrid>
+  <Card isInverse={args.isInverse}>
+    <CardBody>
+      <Datagrid tableTitle="Basic usage table" {...args}>
+        Sample Text
+      </Datagrid>
+    </CardBody>
+  </Card>
 );
 
 const ControlledTemplate: Story<
@@ -234,13 +241,17 @@ const ControlledTemplate: Story<
   >([1]);
 
   return (
-    <Datagrid
-      {...args}
-      selectedRows={selectedRows}
-      onSelectedRowsChange={updatedSelectedRows}
-    >
-      Sample Text
-    </Datagrid>
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Datagrid
+          {...args}
+          selectedRows={selectedRows}
+          onSelectedRowsChange={updatedSelectedRows}
+        >
+          Sample Text
+        </Datagrid>
+      </CardBody>
+    </Card>
   );
 };
 
@@ -273,7 +284,13 @@ const ControlledPaginatedTemplate: Story<DatagridProps> = ({
     onRowsPerPageChange: handleRowsPerPageChange,
   };
 
-  return <Datagrid {...args} paginationProps={passedInPaginationProps} />;
+  return (
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Datagrid {...args} paginationProps={passedInPaginationProps} />
+      </CardBody>
+    </Card>
+  );
 };
 
 export default {
@@ -281,6 +298,16 @@ export default {
   title: 'Datagrid',
   argTypes: {
     isInverse: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    tableTitle: {
+      control: {
+        type: 'text',
+      },
+    },
+    hasOutsideBorder: {
       control: {
         type: 'boolean',
       },
@@ -340,18 +367,23 @@ const defaultArgs = {
 };
 
 export const Default = Template.bind({});
-Default.args = defaultArgs;
+Default.args = {
+  ...defaultArgs,
+  tableTitle: 'Default',
+};
 
 export const ColoredRows = Template.bind({});
 ColoredRows.args = {
   ...defaultArgs,
   rows: coloredRows,
+  tableTitle: 'Colored rows',
 };
 
 export const Selectable = Template.bind({});
 Selectable.args = {
   ...defaultArgs,
   isSelectable: true,
+  tableTitle: 'Selectable',
 };
 
 export const SelectableAndSortable: Story<DatagridProps> = ({
@@ -517,40 +549,45 @@ export const SelectableAndSortable: Story<DatagridProps> = ({
   }
 
   return (
-    <>
-      <Datagrid
-        {...args}
-        rows={sortedItems}
-        columns={productColumns}
-        onSortBySelected={() => {
-          requestSort('name');
-        }}
-        onRowSelect={handleRowSelect}
-        onHeaderSelect={handleHeaderSelect}
-        sortDirection={selectedDirection}
-      />
-      <Announce>
-        <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
-      </Announce>
-    </>
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Datagrid
+          {...args}
+          rows={sortedItems}
+          columns={productColumns}
+          onSortBySelected={() => {
+            requestSort('name');
+          }}
+          onRowSelect={handleRowSelect}
+          onHeaderSelect={handleHeaderSelect}
+          sortDirection={selectedDirection}
+        />
+        <Announce>
+          <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
+        </Announce>
+      </CardBody>
+    </Card>
   );
 };
 
 SelectableAndSortable.args = {
   isSelectable: true,
   isSortableBySelected: true,
+  tableTitle: 'Selectable and sortable',
 };
 
 export const ControlledSelectable = ControlledTemplate.bind({});
 ControlledSelectable.args = {
   ...defaultArgs,
   isSelectable: true,
+  tableTitle: 'Controlled selectable',
 };
 
 export const DisabledSelectableRow = Template.bind({});
 DisabledSelectableRow.args = {
   ...defaultArgs,
   isSelectable: true,
+  tableTitle: 'Disabled selectable row',
   rows: [
     ...defaultArgs.rows,
     {
@@ -567,6 +604,7 @@ DisabledSelectableRow.args = {
 export const PaginationChangedDefaults = Template.bind({});
 PaginationChangedDefaults.args = {
   ...defaultArgs,
+  tableTitle: 'Pagination changed defaults',
   paginationProps: {
     defaultPage: 2,
     defaultRowsPerPage: 5,
@@ -577,6 +615,7 @@ PaginationChangedDefaults.args = {
 export const ControlledPagination = ControlledPaginatedTemplate.bind({});
 ControlledPagination.args = {
   ...defaultArgs,
+  tableTitle: 'Controlled pagination',
   paginationProps: {
     rowsPerPageValues: [5, 10, 20],
   },
@@ -586,6 +625,7 @@ export const WithoutPagination = Template.bind({});
 WithoutPagination.args = {
   ...defaultArgs,
   hasPagination: false,
+  tableTitle: 'Without pagination',
 };
 
 const CustomPaginationComponent: React.FunctionComponent<
@@ -630,7 +670,16 @@ const CustomPaginationComponent: React.FunctionComponent<
 export const PaginationWithCustomComponent = Template.bind({});
 PaginationWithCustomComponent.args = {
   ...defaultArgs,
+  tableTitle: 'Pagination with custom component',
   components: {
     Pagination: CustomPaginationComponent,
   },
+};
+
+export const TitleTable = Template.bind({});
+TitleTable.args = {
+  ...defaultArgs,
+  hasOutsideBorder: true,
+  hasSquareCorners: false,
+  tableTitle: <h1>Title table</h1>,
 };
