@@ -10,7 +10,6 @@ import {
 
 import { CalendarContext } from './CalendarContext';
 import { i18nFormat as format, getCurrentMonthAndYear } from './utils';
-import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonColor, ButtonType, ButtonVariant } from '../Button';
@@ -75,9 +74,10 @@ export const CalendarHeader: React.FunctionComponent<
   const i18n = React.useContext(I18nContext);
   const locale = i18n.locale || enUS;
   const monthAndYear = getCurrentMonthAndYear(focusedDate, locale);
+  const [monthAndYearAnnouncement, setMonthAndYearAnnouncement] =
+    React.useState(`${monthAndYear.month} ${monthAndYear.year}`);
   const minDateOrDefault = minDate ?? new Date(1900, 0, 1);
   const maxDateOrDefault = maxDate ?? new Date(2099, 11, 31);
-  const { isMacOS } = useDeviceDetect();
   const previousMonthRef = React.useRef<HTMLButtonElement>();
   const nextMonthRef = React.useRef<HTMLButtonElement>();
 
@@ -99,6 +99,8 @@ export const CalendarHeader: React.FunctionComponent<
   const isDisabledNextMonth = isDateLaterThanMaxDate(1);
 
   const onClickPrevMonth = () => {
+    setMonthAndYearAnnouncement(`${monthAndYear.month} ${monthAndYear.year}`);
+
     if (isDateEarlierThanMinDate(2)) {
       nextMonthRef.current?.focus();
     }
@@ -115,6 +117,8 @@ export const CalendarHeader: React.FunctionComponent<
   };
 
   const onClickNextMonth = () => {
+    setMonthAndYearAnnouncement(`${monthAndYear.month} ${monthAndYear.year}`);
+
     if (isDateLaterThanMaxDate(2)) {
       previousMonthRef.current?.focus();
     }
@@ -147,13 +151,11 @@ export const CalendarHeader: React.FunctionComponent<
             isInverse={props.isInverse}
           />
         </MonthYearWrapper>
-        {!isMacOS && (
-          <VisuallyHidden>
-            <Announce aria-atomic="true">
-              {monthAndYear.month} {monthAndYear.year}
-            </Announce>
-          </VisuallyHidden>
-        )}
+        <VisuallyHidden>
+          <Announce aria-atomic="true" key={monthAndYearAnnouncement}>
+            {monthAndYearAnnouncement}
+          </Announce>
+        </VisuallyHidden>
       </CalendarHeaderText>
       <NavigationWrapper>
         <IconButton
