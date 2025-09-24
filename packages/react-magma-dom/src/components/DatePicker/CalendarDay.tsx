@@ -47,7 +47,15 @@ const getChosenDayColor = (isInverse: boolean, theme: Theme) => {
   return isInverse ? theme.colors.primary600 : theme.colors.neutral100;
 };
 
-const getDisabledColor = (isInverse: boolean, theme: Theme) => {
+const getDisabledColor = (
+  isChosen: boolean,
+  isInverse: boolean,
+  theme: Theme
+) => {
+  if (isChosen) {
+    return isInverse ? theme.colors.primary600 : theme.colors.neutral100;
+  }
+
   return isInverse
     ? transparentize(0.6, theme.colors.neutral100)
     : transparentize(0.4, theme.colors.neutral500);
@@ -69,7 +77,7 @@ const getCalendarDayColor = (
   theme: any
 ) => {
   if (state.isToday) return getTodayColor(state.isChosen, isInverse, theme);
-  if (state.disabled) return getDisabledColor(isInverse, theme);
+  if (state.disabled) return getDisabledColor(state.isChosen, isInverse, theme);
   if (state.isChosen) return getChosenDayColor(isInverse, theme);
   if (!state.isDayInCurrentMonth && !state.disabled)
     return getNotCurrentMonthColor(isInverse, theme);
