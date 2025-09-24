@@ -77,7 +77,7 @@ export const CalendarHeader: React.FunctionComponent<
   const monthAndYear = getCurrentMonthAndYear(focusedDate, locale);
   const minDateOrDefault = minDate ?? new Date(1900, 0, 1);
   const maxDateOrDefault = maxDate ?? new Date(2099, 11, 31);
-  const { isSafari } = useDeviceDetect();
+  const { isMacOS } = useDeviceDetect();
   const previousMonthRef = React.useRef<HTMLButtonElement>();
   const nextMonthRef = React.useRef<HTMLButtonElement>();
 
@@ -147,7 +147,7 @@ export const CalendarHeader: React.FunctionComponent<
             isInverse={props.isInverse}
           />
         </MonthYearWrapper>
-        {!isSafari && (
+        {!isMacOS && (
           <VisuallyHidden>
             <Announce aria-atomic="true">
               {monthAndYear.month} {monthAndYear.year}
