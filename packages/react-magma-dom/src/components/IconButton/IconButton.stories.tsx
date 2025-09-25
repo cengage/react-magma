@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { css, Global } from '@emotion/react';
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react/types-6-0';
 import {
   ExpandMoreIcon,
   NotificationsIcon,
@@ -20,7 +20,7 @@ import { Card, CardBody } from '../Card';
 
 import { ButtonIconPosition, IconButton, IconButtonProps } from '.';
 
-const Template: Story<IconButtonProps> = args => (
+const Template: StoryFn<IconButtonProps> = args => (
   <IconButton icon={<SettingsIcon />} {...args}>
     Button
   </IconButton>
@@ -69,59 +69,68 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.argTypes = {
-  textTransform: {
-    control: {
-      type: 'select',
-      options: ButtonTextTransform,
+export const Default = {
+  render: Template,
+
+  argTypes: {
+    textTransform: {
+      control: {
+        type: 'select',
+        options: ButtonTextTransform,
+      },
     },
+  },
+
+  args: {
+    isInverse: false,
+    isFullWidth: false,
+    disabled: false,
   },
 };
 
-Default.args = {
-  isInverse: false,
-  isFullWidth: false,
-  disabled: false,
-};
+export const Inverse = {
+  render: Template,
 
-export const Inverse = Template.bind({});
-Inverse.argTypes = {
-  textTransform: {
-    control: {
-      type: 'select',
-      options: ButtonTextTransform,
+  argTypes: {
+    textTransform: {
+      control: {
+        type: 'select',
+        options: ButtonTextTransform,
+      },
     },
   },
+
+  args: {
+    ...Default.args,
+    isInverse: true,
+  },
+
+  decorators: [
+    Story => (
+      <Card isInverse>
+        <CardBody>
+          <Story />
+        </CardBody>
+      </Card>
+    ),
+  ],
 };
 
-Inverse.args = {
-  ...Default.args,
-  isInverse: true,
-};
-Inverse.decorators = [
-  Story => (
-    <Card isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
-
-const IconOnlyTemplate: Story<IconButtonProps> = args => (
+const IconOnlyTemplate: StoryFn<IconButtonProps> = args => (
   <IconButton icon={<NotificationsIcon />} aria-label="Button" {...args} />
 );
 
-export const IconOnly = IconOnlyTemplate.bind({});
+export const IconOnly = {
+  render: IconOnlyTemplate,
 
-IconOnly.args = {
-  isInverse: false,
-  disabled: false,
-  onClick: () => {},
+  args: {
+    isInverse: false,
+    disabled: false,
+    onClick: () => {},
+  },
 };
 
-const AnimatedIconTemplate: Story<IconButtonProps> = props => {
+const AnimatedIconTemplate: StoryFn<IconButtonProps> = props => {
   const [expanded, setExpanded] = React.useState(false);
 
   return (
@@ -150,13 +159,16 @@ const AnimatedIconTemplate: Story<IconButtonProps> = props => {
   );
 };
 
-export const AnimatedIcon = AnimatedIconTemplate.bind({});
-AnimatedIcon.args = {
-  isInverse: false,
-  disabled: false,
+export const AnimatedIcon = {
+  render: AnimatedIconTemplate,
+
+  args: {
+    isInverse: false,
+    disabled: false,
+  },
 };
 
-const LeadingIconTemplate: Story<IconButtonProps> = args => (
+const LeadingIconTemplate: StoryFn<IconButtonProps> = args => (
   <IconButton
     iconPosition={ButtonIconPosition.right}
     icon={<SettingsIcon />}
@@ -168,4 +180,6 @@ const LeadingIconTemplate: Story<IconButtonProps> = args => (
   </IconButton>
 );
 
-export const LeadingIcon = LeadingIconTemplate.bind({});
+export const LeadingIcon = {
+  render: LeadingIconTemplate,
+};

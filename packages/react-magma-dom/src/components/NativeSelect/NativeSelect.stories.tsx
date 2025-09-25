@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 import { HelpIcon } from 'react-magma-icons';
 
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
@@ -12,7 +12,7 @@ import { Tooltip } from '../Tooltip';
 
 import { NativeSelect, NativeSelectProps } from '.';
 
-const Template: Story<NativeSelectProps> = args => (
+const Template: StoryFn<NativeSelectProps> = args => (
   <NativeSelect {...args}>
     <option>Red</option>
     <option>Green</option>
@@ -54,20 +54,26 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  isInverse: false,
-  labelText: 'Select',
-  testId: 'native-select-example',
+export const Default = {
+  render: Template,
+
+  args: {
+    isInverse: false,
+    labelText: 'Select',
+    testId: 'native-select-example',
+  },
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
-  ...Default.args,
-  disabled: true,
+export const Disabled = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    disabled: true,
+  },
 };
 
-const WithContentTemplate: Story<NativeSelectProps> = args => {
+const WithContentTemplate: StoryFn<NativeSelectProps> = args => {
   const helpLinkLabel = 'Learn more';
   const onHelpLinkClick = () => {
     alert('Help link clicked!');
@@ -95,83 +101,107 @@ const WithContentTemplate: Story<NativeSelectProps> = args => {
   );
 };
 
-export const WithContent = WithContentTemplate.bind({});
-WithContent.args = {
-  ...Default.args,
+export const WithContent = {
+  render: WithContentTemplate,
+
+  args: {
+    ...Default.args,
+  },
 };
 
-export const HasError = Template.bind({});
-HasError.args = {
-  ...Default.args,
-  errorMessage: 'This is an error.',
+export const HasError = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    errorMessage: 'This is an error.',
+  },
 };
 
-export const HelperMessage = Template.bind({});
-HelperMessage.args = {
-  ...Default.args,
-  helperMessage: 'Helper message appears here',
+export const HelperMessage = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    helperMessage: 'Helper message appears here',
+  },
 };
 
-export const Inverse = Template.bind({});
-Inverse.args = {
-  ...Default.args,
-  isInverse: true,
+export const Inverse = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    isInverse: true,
+  },
+
+  decorators: [
+    Story => (
+      <Card isInverse>
+        <CardBody>
+          <Story />
+        </CardBody>
+      </Card>
+    ),
+  ],
 };
 
-export const InverseDisabled = Template.bind({});
-InverseDisabled.args = {
-  ...Default.args,
-  isInverse: true,
-  disabled: true,
+export const InverseDisabled = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    isInverse: true,
+    disabled: true,
+  },
+
+  decorators: [
+    Story => (
+      <Card isInverse>
+        <CardBody>
+          <Story />
+        </CardBody>
+      </Card>
+    ),
+  ],
 };
 
-export const HasErrorInverse = Template.bind({});
-HasErrorInverse.args = {
-  ...Default.args,
-  isInverse: true,
-  errorMessage: 'This is an error.',
+export const HasErrorInverse = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    isInverse: true,
+    errorMessage: 'This is an error.',
+  },
+
+  decorators: [
+    Story => (
+      <Card isInverse>
+        <CardBody>
+          <Story />
+        </CardBody>
+      </Card>
+    ),
+  ],
 };
 
-export const HelperMessageInverse = Template.bind({});
-HelperMessageInverse.args = {
-  ...Default.args,
-  isInverse: true,
-  helperMessage: 'Helper message appears here',
-};
+export const HelperMessageInverse = {
+  render: Template,
 
-InverseDisabled.decorators = [
-  Story => (
-    <Card isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
-HelperMessageInverse.decorators = [
-  Story => (
-    <Card isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
-HasErrorInverse.decorators = [
-  Story => (
-    <Card isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
-Inverse.decorators = [
-  Story => (
-    <Card isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
+  args: {
+    ...Default.args,
+    isInverse: true,
+    helperMessage: 'Helper message appears here',
+  },
+
+  decorators: [
+    Story => (
+      <Card isInverse>
+        <CardBody>
+          <Story />
+        </CardBody>
+      </Card>
+    ),
+  ],
+};

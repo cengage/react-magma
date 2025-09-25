@@ -48,118 +48,124 @@ export default {
   },
 } as Meta;
 
-export const Default = args => {
-  return <DateTimePicker {...args} />;
+export const Default = {
+  render: args => {
+    return <DateTimePicker {...args} />;
+  },
+
+  args: {
+    labelText: 'Date',
+    minDate: today,
+    errorMessage: '',
+    helperMessage: '',
+  },
 };
 
-Default.args = {
-  labelText: 'Date',
-  minDate: today,
-  errorMessage: '',
-  helperMessage: '',
+export const Inverse = {
+  render: args => {
+    return (
+      <div style={{ background: magma.colors.primary600, padding: '0 12px' }}>
+        <br />
+        <DateTimePicker {...args} />
+        <br />
+      </div>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    isInverse: true,
+  },
 };
 
-export const Inverse = args => {
-  return (
-    <div style={{ background: magma.colors.primary600, padding: '0 12px' }}>
-      <br />
-      <DateTimePicker {...args} />
-      <br />
-    </div>
-  );
-};
+export const ClearingTheDateAndTime = {
+  render: args => {
+    const [chosenDate, setChosenDate] = React.useState<Date | null>(null);
+    const [chosenTime, setChosenTime] = React.useState<string | null>(null);
 
-Inverse.args = {
-  ...Default.args,
-  isInverse: true,
-};
+    function handleDateChange(newChosenDate: Date | null) {
+      let newDate = newChosenDate;
 
-export const ClearingTheDateAndTime = args => {
-  const [chosenDate, setChosenDate] = React.useState<Date | null>(null);
-  const [chosenTime, setChosenTime] = React.useState<string | null>(null);
+      if (chosenTime && newChosenDate) {
+        const [timePart, ampm] = chosenTime.split(' ');
+        let [hours, minutes] = timePart.split(':').map(Number);
 
-  function handleDateChange(newChosenDate: Date | null) {
-    let newDate = newChosenDate;
-
-    if (chosenTime && newChosenDate) {
-      const [timePart, ampm] = chosenTime.split(' ');
-      let [hours, minutes] = timePart.split(':').map(Number);
-
-      if (ampm) {
-        if (ampm.toLowerCase() === 'pm' && hours < 12) {
-          hours += 12;
+        if (ampm) {
+          if (ampm.toLowerCase() === 'pm' && hours < 12) {
+            hours += 12;
+          }
+          if (ampm.toLowerCase() === 'am' && hours === 12) {
+            hours = 0;
+          }
         }
-        if (ampm.toLowerCase() === 'am' && hours === 12) {
-          hours = 0;
-        }
+
+        newDate = new Date(
+          newChosenDate.getFullYear(),
+          newChosenDate.getMonth(),
+          newChosenDate.getDate(),
+          hours,
+          minutes
+        );
       }
 
-      newDate = new Date(
-        newChosenDate.getFullYear(),
-        newChosenDate.getMonth(),
-        newChosenDate.getDate(),
-        hours,
-        minutes
-      );
-    }
-
-    setChosenDate(newDate);
-  }
-
-  function handleTimeChange(newChosenTime: string | null) {
-    setChosenTime(newChosenTime);
-
-    if (chosenDate && newChosenTime) {
-      const [timePart, ampm] = newChosenTime.split(' ');
-      let [hours, minutes] = timePart.split(':').map(Number);
-
-      if (ampm) {
-        if (ampm.toLowerCase() === 'pm' && hours < 12) {
-          hours += 12;
-        }
-        if (ampm.toLowerCase() === 'am' && hours === 12) {
-          hours = 0;
-        }
-      }
-
-      const newDate = new Date(
-        chosenDate.getFullYear(),
-        chosenDate.getMonth(),
-        chosenDate.getDate(),
-        hours,
-        minutes
-      );
       setChosenDate(newDate);
     }
-  }
 
-  return (
-    <div>
-      <p>
-        <strong>Chosen Date: </strong>
-        {chosenDate && (
-          <span>
-            {`${
-              chosenDate.getMonth() + 1
-            }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
-          </span>
-        )}
-      </p>
-      <p>
-        <strong>Chosen Time: </strong>
-        {chosenTime && <span>{chosenTime}</span>}
-      </p>
-      <DateTimePicker
-        {...args}
-        onDateChange={handleDateChange}
-        onTimeChange={handleTimeChange}
-        value={chosenDate}
-        isClearable
-      />
-      <br />
-      <Button onClick={() => handleDateChange(null)}>
-        Clear Date and Time
-      </Button>
-    </div>
-  );
+    function handleTimeChange(newChosenTime: string | null) {
+      setChosenTime(newChosenTime);
+
+      if (chosenDate && newChosenTime) {
+        const [timePart, ampm] = newChosenTime.split(' ');
+        let [hours, minutes] = timePart.split(':').map(Number);
+
+        if (ampm) {
+          if (ampm.toLowerCase() === 'pm' && hours < 12) {
+            hours += 12;
+          }
+          if (ampm.toLowerCase() === 'am' && hours === 12) {
+            hours = 0;
+          }
+        }
+
+        const newDate = new Date(
+          chosenDate.getFullYear(),
+          chosenDate.getMonth(),
+          chosenDate.getDate(),
+          hours,
+          minutes
+        );
+        setChosenDate(newDate);
+      }
+    }
+
+    return (
+      <div>
+        <p>
+          <strong>Chosen Date: </strong>
+          {chosenDate && (
+            <span>
+              {`${
+                chosenDate.getMonth() + 1
+              }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+            </span>
+          )}
+        </p>
+        <p>
+          <strong>Chosen Time: </strong>
+          {chosenTime && <span>{chosenTime}</span>}
+        </p>
+        <DateTimePicker
+          {...args}
+          onDateChange={handleDateChange}
+          onTimeChange={handleTimeChange}
+          value={chosenDate}
+          isClearable
+        />
+        <br />
+        <Button onClick={() => handleDateChange(null)}>
+          Clear Date and Time
+        </Button>
+      </div>
+    );
+  },
 };

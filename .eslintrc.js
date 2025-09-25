@@ -86,6 +86,14 @@ module.exports = {
     // Prettier integration
     'prettier/prettier': ['warn', { usePrettierrc: true }],
   },
+    overrides: [
+    {
+      files: ['**/*.stories.tsx', '**/*.stories.ts', '**/*.stories.jsx', '**/*.stories.js'],
+      rules: {
+        'react-hooks/rules-of-hooks': 'warn',
+      },
+    },
+  ],
   settings: {
     react: {
       version: 'detect',

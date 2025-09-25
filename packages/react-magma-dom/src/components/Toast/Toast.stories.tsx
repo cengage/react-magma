@@ -38,79 +38,89 @@ export default {
   },
 } as Meta;
 
-export const Default = args => {
-  const [showToast, setShowToast] = React.useState(false);
+export const Default = {
+  render: args => {
+    const [showToast, setShowToast] = React.useState(false);
 
-  function handleClick() {
-    setShowToast(true);
-  }
+    function handleClick() {
+      setShowToast(true);
+    }
 
-  function handleDismiss() {
-    setShowToast(false);
-  }
+    function handleDismiss() {
+      setShowToast(false);
+    }
 
-  return (
-    <div
-      style={{ background: args.isInverse ? magma.colors.primary600 : 'none' }}
-    >
-      <Button
-        size={ButtonSize.small}
-        onClick={handleClick}
-        isInverse={args.isInverse}
+    return (
+      <div
+        style={{
+          background: args.isInverse ? magma.colors.primary600 : 'none',
+        }}
       >
-        Show Default Toast
-      </Button>
-      <Announce>
-        {showToast ? (
-          <Toast onDismiss={handleDismiss} {...args}>
-            Default Toast
-          </Toast>
-        ) : null}
-      </Announce>
-    </div>
-  );
+        <Button
+          size={ButtonSize.small}
+          onClick={handleClick}
+          isInverse={args.isInverse}
+        >
+          Show Default Toast
+        </Button>
+        <Announce>
+          {showToast ? (
+            <Toast onDismiss={handleDismiss} {...args}>
+              Default Toast
+            </Toast>
+          ) : null}
+        </Announce>
+      </div>
+    );
+  },
+
+  args: {
+    variant: AlertVariant.info,
+    toastDuration: 5000,
+    disableAutoDismiss: false,
+    isInverse: false,
+  },
 };
-Default.args = {
-  variant: AlertVariant.info,
-  toastDuration: 5000,
-  disableAutoDismiss: false,
-  isInverse: false,
-};
 
-export const TwoLine = args => {
-  const [showToast, setShowToast] = React.useState(false);
+export const TwoLine = {
+  render: args => {
+    const [showToast, setShowToast] = React.useState(false);
 
-  function handleClick() {
-    setShowToast(true);
-  }
+    function handleClick() {
+      setShowToast(true);
+    }
 
-  function handleDismiss() {
-    setShowToast(false);
-  }
+    function handleDismiss() {
+      setShowToast(false);
+    }
 
-  return (
-    <div
-      style={{ background: args.isInverse ? magma.colors.primary600 : 'none' }}
-    >
-      <Button
-        size={ButtonSize.small}
-        onClick={handleClick}
-        isInverse={args.isInverse}
+    return (
+      <div
+        style={{
+          background: args.isInverse ? magma.colors.primary600 : 'none',
+        }}
       >
-        Show two line Toast
-      </Button>
-      <Announce>
-        {showToast ? (
-          <Toast onDismiss={handleDismiss} {...args}>
-            Toast with a breaking line of content which will appear exactly
-            right now! Oh, and here is a <Hyperlink to="#">hyperlink</Hyperlink>{' '}
-            for fun.
-          </Toast>
-        ) : null}
-      </Announce>
-    </div>
-  );
-};
-TwoLine.args = {
-  ...Default.args,
+        <Button
+          size={ButtonSize.small}
+          onClick={handleClick}
+          isInverse={args.isInverse}
+        >
+          Show two line Toast
+        </Button>
+        <Announce>
+          {showToast ? (
+            <Toast onDismiss={handleDismiss} {...args}>
+              Toast with a breaking line of content which will appear exactly
+              right now! Oh, and here is a{' '}
+              <Hyperlink to="#">hyperlink</Hyperlink> for fun.
+            </Toast>
+          ) : null}
+        </Announce>
+      </div>
+    );
+  },
+
+  args: {
+    ...Default.args,
+  },
 };
