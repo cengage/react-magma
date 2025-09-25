@@ -1,5 +1,11 @@
 # Change Log
 
+## 12.0.0
+
+### Patch Changes
+
+- ef8a2740a: fix(Dropzone): Pass `dropzoneOptions` prop to `Dropzone`.
+
 ## 12.0.0-next.2
 
 ### Patch Changes

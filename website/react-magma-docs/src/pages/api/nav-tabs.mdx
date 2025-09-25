@@ -263,6 +263,67 @@ export function Example() {
 }
 ```
 
+## Text Transform
+
+#### For all NavTabs
+
+Options for the `textTransform` prop for navtabs include `uppercase` and `none`, with `uppercase` (all caps) being the default value.
+This sets the CSS `text-transform` property.
+
+```tsx
+import React from 'react';
+
+import { NavTabs, NavTab, TabsTextTransform } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <NavTabs textTransform={TabsTextTransform.uppercase}>
+        <NavTab isActive to="#">
+          First uppercase
+        </NavTab>
+        <NavTab to="#">Second uppercase</NavTab>
+      </NavTabs>
+      <br />
+      <br />
+      <br />
+      <NavTabs textTransform={TabsTextTransform.none}>
+        <NavTab isActive to="#">
+          First lowercase
+        </NavTab>
+        <NavTab to="#">Second lowercase</NavTab>
+      </NavTabs>
+    </>
+  );
+}
+```
+
+#### For a certain Tab
+
+`textTransform` prop can also be used for `NavTab` component.
+
+```tsx
+import React from 'react';
+
+import { NavTabs, NavTab, TabsTextTransform } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <NavTabs>
+      <NavTab isActive to="#">
+        All caps (default)
+      </NavTab>
+      <NavTab to="#" textTransform={TabsTextTransform.none}>
+        No Text Transform
+      </NavTab>
+      <NavTab to="#" textTransform={TabsTextTransform.uppercase}>
+        Uppercase transform
+      </NavTab>
+    </NavTabs>
+  );
+}
+```
+
 ## Full-Width
 
 The `isFullWidth` prop is an optional boolean that will cause the tabs to take up the full width of their container. The `isFullWidth` prop is specified on the `NavTabs` component.
