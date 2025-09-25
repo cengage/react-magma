@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.1-next.0
+
+### Patch Changes
+
+- 24a508621: chore: Manually sync main -> dev (4.10.0)
+
 ## 5.2.0
 
 ### Minor Changes
