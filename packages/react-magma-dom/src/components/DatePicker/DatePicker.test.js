@@ -18,10 +18,10 @@ import {
 } from 'date-fns';
 import * as es from 'date-fns/locale/es';
 
-import { Modal } from '../Modal';
-import { ClearingTheDate } from './DatePicker.stories';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+import { Button } from '../Button';
+import { Modal } from '../Modal';
 
 import { DatePicker } from '.';
 
@@ -29,6 +29,38 @@ HTMLCanvasElement.prototype.getContext = () => ({
   font: '',
   measureText: text => ({ width: text.length * 8 }),
 });
+
+const ClearingTheDate = args => {
+  const [chosenDate, setChosenDate] = React.useState(undefined);
+
+  function handleDateChange(newChosenDate) {
+    setChosenDate(newChosenDate);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Chosen Date: </strong>
+        {chosenDate && (
+          <span>
+            {`${
+              chosenDate.getMonth() + 1
+            }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+          </span>
+        )}
+      </p>
+      <DatePicker
+        {...args}
+        onDateChange={handleDateChange}
+        onChange={() => {}}
+        value={chosenDate}
+        isClearable
+      />
+      <br />
+      <Button onClick={() => handleDateChange(null)}>Clear Date</Button>
+    </div>
+  );
+};
 
 describe('Date Picker', () => {
   it('should find element by testId', () => {

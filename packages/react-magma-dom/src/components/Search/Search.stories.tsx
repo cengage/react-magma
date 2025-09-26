@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 
 import { Card, CardBody } from '../Card';
 import { InputSize } from '../InputBase';
 
 import { Search, SearchProps } from '.';
 
-const Template: Story<SearchProps> = args => (
+const Template: StoryFn<SearchProps> = args => (
   <Card isInverse={args.isInverse}>
     <CardBody>
       <Search
@@ -57,7 +57,10 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  placeholder: 'Search',
+export const Default = {
+  render: Template,
+
+  args: {
+    placeholder: 'Search',
+  },
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react/types-6-0';
 import { CheckIcon } from 'react-magma-icons';
 
 import { ButtonSize } from '../Button';
@@ -8,7 +8,7 @@ import { Container } from '../Container';
 
 import { ToggleButton, ToggleButtonProps } from '.';
 
-const Template: Story<ToggleButtonProps> = args => (
+const Template: StoryFn<ToggleButtonProps> = args => (
   <ToggleButton {...args} isChecked={args.isChecked} icon={<CheckIcon />} />
 );
 
@@ -42,36 +42,45 @@ export default {
   },
 } as Meta;
 
-export const Icon = Template.bind({});
-Icon.args = {
-  isInverse: false,
-  'aria-label': 'Check',
+export const Icon = {
+  render: Template,
+
+  args: {
+    isInverse: false,
+    'aria-label': 'Check',
+  },
 };
 
-export const Text = args => {
-  return (
-    <ToggleButton value="1" isChecked={args.isChecked} {...args}>
-      Toggle
-    </ToggleButton>
-  );
-};
-Text.args = {
-  ...Icon.args,
+export const Text = {
+  render: args => {
+    return (
+      <ToggleButton value="1" isChecked={args.isChecked} {...args}>
+        Toggle
+      </ToggleButton>
+    );
+  },
+
+  args: {
+    ...Icon.args,
+  },
 };
 
-export const TextAndIcon = args => {
-  return (
-    <ToggleButton
-      value="1"
-      isChecked={args.isChecked}
-      aria-label="Check icon"
-      icon={<CheckIcon />}
-      {...args}
-    >
-      Toggle
-    </ToggleButton>
-  );
-};
-TextAndIcon.args = {
-  ...Icon.args,
+export const TextAndIcon = {
+  render: args => {
+    return (
+      <ToggleButton
+        value="1"
+        isChecked={args.isChecked}
+        aria-label="Check icon"
+        icon={<CheckIcon />}
+        {...args}
+      >
+        Toggle
+      </ToggleButton>
+    );
+  },
+
+  args: {
+    ...Icon.args,
+  },
 };

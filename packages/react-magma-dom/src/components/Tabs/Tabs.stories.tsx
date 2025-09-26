@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryObj, StoryFn, Meta } from '@storybook/react/types-6-0';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 
 import { Button } from '../Button';
@@ -82,7 +82,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<TabsProps> = args => (
+const Template: StoryFn<TabsProps> = args => (
   <TabsContainer>
     <Tabs aria-label="Sample Tabs" {...args}>
       <Tab>Main Page</Tab>
@@ -104,11 +104,13 @@ const Template: Story<TabsProps> = args => (
   </TabsContainer>
 );
 
-export const Default = Template.bind({});
-Default.args = {};
-Default.parameters = { controls: { exclude: ['iconPosition'] } };
+export const Default = {
+  render: Template,
+  args: {},
+  parameters: { controls: { exclude: ['iconPosition'] } },
+};
 
-const IconTemplate: Story<TabsProps> = args => (
+const IconTemplate: StoryFn<TabsProps> = args => (
   <TabsContainer>
     <Tabs aria-label="Sample Tabs" {...args}>
       <Tab icon={<EmailIcon />}>First item</Tab>
@@ -129,13 +131,16 @@ const IconTemplate: Story<TabsProps> = args => (
   </TabsContainer>
 );
 
-export const Icon = IconTemplate.bind({});
-Icon.args = {
-  ...Default.args,
-  iconPosition: TabsIconPosition.left,
+export const Icon = {
+  render: IconTemplate,
+
+  args: {
+    ...Default.args,
+    iconPosition: TabsIconPosition.left,
+  },
 };
 
-const IconOnlyTemplate: Story<TabsProps> = args => (
+const IconOnlyTemplate: StoryFn<TabsProps> = args => (
   <TabsContainer>
     <Tabs aria-label="Sample Tabs" {...args}>
       <Tab icon={<EmailIcon />} aria-label="email" />
@@ -156,11 +161,15 @@ const IconOnlyTemplate: Story<TabsProps> = args => (
   </TabsContainer>
 );
 
-export const IconOnly = IconOnlyTemplate.bind({});
-IconOnly.args = { ...Default.args };
-IconOnly.parameters = { ...Default.parameters };
+export const IconOnly = {
+  render: IconOnlyTemplate,
+  args: { ...Default.args },
+  parameters: { ...Default.parameters },
+};
 
-const ScrollingTemplate: Story<TabsProps & { activeIndex: number }> = args => (
+const ScrollingTemplate: StoryFn<
+  TabsProps & { activeIndex: number }
+> = args => (
   <div>
     <TabsContainer
       style={{
@@ -226,13 +235,17 @@ const ScrollingTemplate: Story<TabsProps & { activeIndex: number }> = args => (
   </div>
 );
 
-export const Scrolling = ScrollingTemplate.bind({});
-Scrolling.args = {
-  ...Default.args,
-  orientation: TabsOrientation.vertical,
-  activeIndex: 0,
+export const Scrolling = {
+  render: ScrollingTemplate,
+
+  args: {
+    ...Default.args,
+    orientation: TabsOrientation.vertical,
+    activeIndex: 0,
+  },
+
+  parameters: { ...Default.parameters },
 };
-Scrolling.parameters = { ...Default.parameters };
 
 const scrollContent = (
   <>
@@ -273,7 +286,7 @@ const scrollContent = (
   </>
 );
 
-const ScrollSpyTemplate: Story<TabsProps> = args => (
+const ScrollSpyTemplate: StoryFn<TabsProps> = args => (
   <TabsScrollSpyContainer isInverse={args.isInverse}>
     <TabScrollSpyPanel tabLabel="Card 1">
       <Heading level={4}>Area 1</Heading>
@@ -298,17 +311,21 @@ const ScrollSpyTemplate: Story<TabsProps> = args => (
   </TabsScrollSpyContainer>
 );
 
-export const ScrollSpy = ScrollSpyTemplate.bind({});
-ScrollSpy.args = {
-  ...Default.args,
-};
-ScrollSpy.parameters = {
-  controls: {
-    exclude: ['iconPosition', 'alignment', 'borderPosition', 'orientation'],
+export const ScrollSpy = {
+  render: ScrollSpyTemplate,
+
+  args: {
+    ...Default.args,
+  },
+
+  parameters: {
+    controls: {
+      exclude: ['iconPosition', 'alignment', 'borderPosition', 'orientation'],
+    },
   },
 };
 
-const ScrollSpyTemplateIcons: Story<TabsProps> = args => (
+const ScrollSpyTemplateIcons: StoryFn<TabsProps> = args => (
   <TabsScrollSpyContainer isInverse={args.isInverse}>
     <TabScrollSpyPanel icon={<AndroidIcon />} tabLabel="Card 1">
       <Heading level={4}>Area 1</Heading>
@@ -333,17 +350,21 @@ const ScrollSpyTemplateIcons: Story<TabsProps> = args => (
   </TabsScrollSpyContainer>
 );
 
-export const ScrollSpyIcons = ScrollSpyTemplateIcons.bind({});
-ScrollSpyIcons.args = {
-  ...Default.args,
-};
-ScrollSpyIcons.parameters = {
-  controls: {
-    exclude: ['iconPosition', 'alignment', 'borderPosition', 'orientation'],
+export const ScrollSpyIcons = {
+  render: ScrollSpyTemplateIcons,
+
+  args: {
+    ...Default.args,
+  },
+
+  parameters: {
+    controls: {
+      exclude: ['iconPosition', 'alignment', 'borderPosition', 'orientation'],
+    },
   },
 };
 
-const InverseTemplate: Story<TabsProps> = args => (
+const InverseTemplate: StoryFn<TabsProps> = args => (
   <Card isInverse={args.isInverse}>
     <TabsContainer>
       <Tabs aria-label="Sample Tabs" {...args}>
@@ -367,14 +388,18 @@ const InverseTemplate: Story<TabsProps> = args => (
   </Card>
 );
 
-export const Inverse = InverseTemplate.bind({});
-Inverse.args = {
-  ...Default.args,
-  isInverse: true,
-};
-Inverse.parameters = { ...Default.parameters };
+export const Inverse = {
+  render: InverseTemplate,
 
-const WithDropdownTemplate: Story<TabsProps> = args => (
+  args: {
+    ...Default.args,
+    isInverse: true,
+  },
+
+  parameters: { ...Default.parameters },
+};
+
+const WithDropdownTemplate: StoryFn<TabsProps> = args => (
   <Card>
     <TabsContainer>
       <Tabs aria-label="Sample Tabs" {...args}>
@@ -424,11 +449,15 @@ const WithDropdownTemplate: Story<TabsProps> = args => (
   </Card>
 );
 
-export const WithDropdown = WithDropdownTemplate.bind({});
-WithDropdown.args = {
-  ...Default.args,
+export const WithDropdown = {
+  render: WithDropdownTemplate,
+
+  args: {
+    ...Default.args,
+  },
+
+  parameters: { ...Default.parameters },
 };
-WithDropdown.parameters = { ...Default.parameters };
 
 const StyledTabsContainer = styled(TabsContainer)`
   [data-testid='tabsWrapper'] {
@@ -451,29 +480,31 @@ const CustomButton = styled.button`
   color: #163555;
 `;
 
-export const CustomTabExample: Story<TabsProps> = args => (
-  <StyledTabsContainer>
-    <Tabs aria-label="Sample Tabs" {...args}>
-      <Tab>Default Tab</Tab>
-      <CustomTab>
-        <StyledButton>
-          <span>Magma Button</span>
-        </StyledButton>
-      </CustomTab>
-      <CustomTab>
-        <CustomButton>FAQ</CustomButton>
-      </CustomTab>
-    </Tabs>
-    <TabPanelsContainer>
-      <TabPanel>
-        <div>Page 1</div>
-      </TabPanel>
-      <TabPanel>
-        <div>Page 2</div>
-      </TabPanel>
-      <TabPanel>
-        <div>Page 3</div>
-      </TabPanel>
-    </TabPanelsContainer>
-  </StyledTabsContainer>
-);
+export const CustomTabExample: StoryObj<TabsProps> = {
+  render: args => (
+    <StyledTabsContainer>
+      <Tabs aria-label="Sample Tabs" {...args}>
+        <Tab>Default Tab</Tab>
+        <CustomTab>
+          <StyledButton>
+            <span>Magma Button</span>
+          </StyledButton>
+        </CustomTab>
+        <CustomTab>
+          <CustomButton>FAQ</CustomButton>
+        </CustomTab>
+      </Tabs>
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Page 1</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Page 2</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Page 3</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </StyledTabsContainer>
+  ),
+};

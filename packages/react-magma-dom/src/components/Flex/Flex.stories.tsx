@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 
 import { Button, ButtonColor } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
@@ -54,7 +54,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<FlexProps> = args => (
+const Template: StoryFn<FlexProps> = args => (
   <Flex behavior={FlexBehavior.container} {...args}>
     <Flex behavior={FlexBehavior.item} xs={12}>
       <Card>
@@ -94,12 +94,15 @@ const Template: Story<FlexProps> = args => (
   </Flex>
 );
 
-export const Default = Template.bind({});
-Default.args = {
-  spacing: 2,
+export const Default = {
+  render: Template,
+
+  args: {
+    spacing: 2,
+  },
 };
 
-const TemplateFixedWidth: Story<FlexProps> = args => (
+const TemplateFixedWidth: StoryFn<FlexProps> = args => (
   <Flex behavior={FlexBehavior.container} {...args}>
     <Flex behavior={FlexBehavior.item}>
       <Card width={200}>
@@ -119,13 +122,15 @@ const TemplateFixedWidth: Story<FlexProps> = args => (
   </Flex>
 );
 
-export const FixedWidth = TemplateFixedWidth.bind({});
-FixedWidth.args = {
-  spacing: 2,
-  justify: FlexJustify.center,
+export const FixedWidth = {
+  render: TemplateFixedWidth,
+
+  args: {
+    spacing: 2,
+  },
 };
 
-const TemplateAutoWidth: Story<FlexProps> = args => (
+const TemplateAutoWidth: StoryFn<FlexProps> = args => (
   <Flex behavior={FlexBehavior.container} {...args}>
     <Flex behavior={FlexBehavior.item} xs>
       <Card>
@@ -145,12 +150,15 @@ const TemplateAutoWidth: Story<FlexProps> = args => (
   </Flex>
 );
 
-export const AutoWidth = TemplateAutoWidth.bind({});
-AutoWidth.args = {
-  spacing: 2,
+export const AutoWidth = {
+  render: TemplateAutoWidth,
+
+  args: {
+    spacing: 2,
+  },
 };
 
-const TemplateOneSetWidth: Story<FlexProps> = args => (
+const TemplateOneSetWidth: StoryFn<FlexProps> = args => (
   <Flex behavior={FlexBehavior.container} {...args}>
     <Flex behavior={FlexBehavior.item} xs={6}>
       <Card>
@@ -170,12 +178,15 @@ const TemplateOneSetWidth: Story<FlexProps> = args => (
   </Flex>
 );
 
-export const OneSetWidth = TemplateOneSetWidth.bind({});
-OneSetWidth.args = {
-  spacing: 2,
+export const OneSetWidth = {
+  render: TemplateOneSetWidth,
+
+  args: {
+    spacing: 2,
+  },
 };
 
-const TemplateContainerOnly: Story<FlexProps> = args => (
+const TemplateContainerOnly: StoryFn<FlexProps> = args => (
   <Card>
     <Flex behavior={FlexBehavior.container} {...args}>
       <ButtonGroup>
@@ -186,13 +197,16 @@ const TemplateContainerOnly: Story<FlexProps> = args => (
   </Card>
 );
 
-export const ContainerOnly = TemplateContainerOnly.bind({});
-ContainerOnly.args = {
-  spacing: 0,
-  justify: FlexJustify.flexEnd,
+export const ContainerOnly = {
+  render: TemplateContainerOnly,
+
+  args: {
+    spacing: 0,
+    justify: FlexJustify.flexEnd,
+  },
 };
 
-const TemplateNested: Story<FlexProps> = args => (
+const TemplateNested: StoryFn<FlexProps> = args => (
   <Flex behavior={FlexBehavior.container} spacing={1} {...args}>
     <Flex behavior={FlexBehavior.both} xs={12} spacing={3}>
       <Flex behavior={FlexBehavior.item} xs={4}>
@@ -248,14 +262,13 @@ const TemplateNested: Story<FlexProps> = args => (
   </Flex>
 );
 
-export const Nested = TemplateNested.bind({});
-FixedWidth.args = {
-  spacing: 2,
+export const Nested = {
+  render: TemplateNested,
 };
 
 const cardStyles = { height: '100%', 'text-align': 'center' };
 
-const TemplateOtherProps: Story<FlexProps> = args => (
+const TemplateOtherProps: StoryFn<FlexProps> = args => (
   <Flex behavior={FlexBehavior.container} {...args}>
     <Flex behavior={FlexBehavior.item}>
       <Card style={cardStyles}>
@@ -284,10 +297,13 @@ const TemplateOtherProps: Story<FlexProps> = args => (
   </Flex>
 );
 
-export const OtherProps = TemplateOtherProps.bind({});
-OtherProps.args = {
-  spacing: 2,
-  alignItems: FlexAlignItems.center,
-  justify: FlexJustify.center,
-  wrap: FlexWrap.nowrap,
+export const OtherProps = {
+  render: TemplateOtherProps,
+
+  args: {
+    spacing: 2,
+    alignItems: FlexAlignItems.center,
+    justify: FlexJustify.center,
+    wrap: FlexWrap.nowrap,
+  },
 };

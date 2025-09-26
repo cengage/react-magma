@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 
 import { Card, CardBody } from '../Card';
 import { InputSize } from '../InputBase';
@@ -8,7 +8,7 @@ import { LabelPosition } from '../Label';
 
 import { PasswordInput, PasswordInputProps } from '.';
 
-const Template: Story<PasswordInputProps> = args => (
+const Template: StoryFn<PasswordInputProps> = args => (
   <PasswordInput {...args} labelText="Password" />
 );
 
@@ -54,30 +54,42 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {};
-
-export const Error = Template.bind({});
-Error.args = {
-  errorMessage: 'Please correct this error',
+export const Default = {
+  render: Template,
+  args: {},
 };
 
-export const Inverse = Template.bind({});
-Inverse.args = {
-  isInverse: true,
-};
-Inverse.decorators = [
-  Story => (
-    <Card isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
+export const Error = {
+  render: Template,
 
-export const CustomText = Template.bind({});
-CustomText.args = {
-  showPasswordButtonText: 'Mostrar',
-  hidePasswordButtonText: 'Esconder',
+  args: {
+    errorMessage: 'Please correct this error',
+  },
+};
+
+export const Inverse = {
+  render: Template,
+
+  args: {
+    isInverse: true,
+  },
+
+  decorators: [
+    Story => (
+      <Card isInverse>
+        <CardBody>
+          <Story />
+        </CardBody>
+      </Card>
+    ),
+  ],
+};
+
+export const CustomText = {
+  render: Template,
+
+  args: {
+    showPasswordButtonText: 'Mostrar',
+    hidePasswordButtonText: 'Esconder',
+  },
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react/types-6-0';
 import {
   CheckIcon,
   FormatAlignCenterIcon,
@@ -16,7 +16,7 @@ import { ToggleButton } from '../ToggleButton';
 
 import { ToggleButtonGroup, ToggleButtonGroupProps } from '.';
 
-const Template: Story<ToggleButtonGroupProps> = args => (
+const Template: StoryFn<ToggleButtonGroupProps> = args => (
   <ToggleButtonGroup
     onChange={(event, value) => console.log('on change is called', value)}
     value="two"
@@ -102,68 +102,77 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  isInverse: false,
+export const Default = {
+  render: Template,
+
+  args: {
+    isInverse: false,
+  },
 };
 
-export const AlignmentExample = args => {
-  return (
-    <ToggleButtonGroup {...args}>
-      <ToggleButton
-        aria-label="Left align"
-        icon={<FormatAlignLeftIcon />}
-        value="left"
-        testId="left"
-      />
-      <ToggleButton
-        aria-label="Center align"
-        icon={<FormatAlignCenterIcon />}
-        value="center"
-        testId="center"
-      />
-      <ToggleButton
-        aria-label="Right align"
-        icon={<FormatAlignRightIcon />}
-        value="right"
-        testId="right"
-      />
-      <ToggleButton
-        aria-label="Justify align"
-        icon={<FormatAlignJustifyIcon />}
-        value="justify"
-        testId="justify"
-      />
-    </ToggleButtonGroup>
-  );
-};
-AlignmentExample.args = {
-  noSpace: true,
-  enforced: true,
-  exclusive: true,
-  ...Default.args,
+export const AlignmentExample = {
+  render: args => {
+    return (
+      <ToggleButtonGroup {...args}>
+        <ToggleButton
+          aria-label="Left align"
+          icon={<FormatAlignLeftIcon />}
+          value="left"
+          testId="left"
+        />
+        <ToggleButton
+          aria-label="Center align"
+          icon={<FormatAlignCenterIcon />}
+          value="center"
+          testId="center"
+        />
+        <ToggleButton
+          aria-label="Right align"
+          icon={<FormatAlignRightIcon />}
+          value="right"
+          testId="right"
+        />
+        <ToggleButton
+          aria-label="Justify align"
+          icon={<FormatAlignJustifyIcon />}
+          value="justify"
+          testId="justify"
+        />
+      </ToggleButtonGroup>
+    );
+  },
+
+  args: {
+    noSpace: true,
+    enforced: true,
+    exclusive: true,
+    ...Default.args,
+  },
 };
 
-export const DifferentToggleButtons = args => {
-  return (
-    <ToggleButtonGroup size={ButtonSize.medium} {...args}>
-      <ToggleButton
-        aria-label="Settings icon"
-        icon={<SettingsIcon />}
-        value="settings"
-      />
-      <ToggleButton value="text">Text</ToggleButton>
-      <ToggleButton
-        icon={<SettingsIcon />}
-        value="iconAndText"
-        size={ButtonSize.small}
-      >
-        Icon and Text
-      </ToggleButton>
-    </ToggleButtonGroup>
-  );
-};
-DifferentToggleButtons.args = {
-  noSpace: false,
-  ...Default.args,
+export const DifferentToggleButtons = {
+  render: args => {
+    return (
+      <ToggleButtonGroup size={ButtonSize.medium} {...args}>
+        <ToggleButton
+          aria-label="Settings icon"
+          icon={<SettingsIcon />}
+          value="settings"
+        />
+        <ToggleButton value="text">Text</ToggleButton>
+        <ToggleButton
+          icon={<SettingsIcon />}
+          value="iconAndText"
+          size={ButtonSize.small}
+        >
+          Icon and Text
+        </ToggleButton>
+      </ToggleButtonGroup>
+    );
+  },
+
+  args: {
+    noSpace: false,
+    ...Default.args,
+  },
 };

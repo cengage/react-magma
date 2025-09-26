@@ -38,74 +38,78 @@ const info = {
 
 export default info;
 
-export const Default = (
-  args: React.JSX.IntrinsicAttributes &
-    DrawerProps &
-    React.RefAttributes<HTMLDivElement>
-) => {
-  const [showDrawer, setShowDrawer] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement | null>(null);
+export const Default = {
+  render: (
+    args: React.JSX.IntrinsicAttributes &
+      DrawerProps &
+      React.RefAttributes<HTMLDivElement>
+  ) => {
+    const [showDrawer, setShowDrawer] = React.useState(false);
+    const buttonRef = React.useRef<HTMLButtonElement | null>(null);
 
-  return (
-    <>
-      <Drawer
-        header="Drawer Title"
-        onClose={() => {
-          setShowDrawer(false);
-          buttonRef.current?.focus();
-        }}
-        isOpen={showDrawer}
-        closeAriaLabel="Close drawer"
-        {...args}
-      >
-        <p>This is a Drawer, doing Drawer things.</p>
-        <p>
-          <Button>This is a button</Button>
-        </p>
-      </Drawer>
-      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
-        Show Drawer
-        <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
-      </Button>
-    </>
-  );
+    return (
+      <>
+        <Drawer
+          header="Drawer Title"
+          onClose={() => {
+            setShowDrawer(false);
+            buttonRef.current?.focus();
+          }}
+          isOpen={showDrawer}
+          closeAriaLabel="Close drawer"
+          {...args}
+        >
+          <p>This is a Drawer, doing Drawer things.</p>
+          <p>
+            <Button>This is a button</Button>
+          </p>
+        </Drawer>
+        <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
+          Show Drawer
+          <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
+        </Button>
+      </>
+    );
+  },
 };
 
-export const SiteNavigation = (
-  args: React.JSX.IntrinsicAttributes &
-    DrawerProps &
-    React.RefAttributes<HTMLDivElement>
-) => {
-  const [showDrawer, setShowDrawer] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement | null>(null);
+export const SiteNavigation = {
+  render: (
+    args: React.JSX.IntrinsicAttributes &
+      DrawerProps &
+      React.RefAttributes<HTMLDivElement>
+  ) => {
+    const [showDrawer, setShowDrawer] = React.useState(false);
+    const buttonRef = React.useRef<HTMLButtonElement | null>(null);
 
-  return (
-    <>
-      <Drawer
-        onClose={() => {
-          setShowDrawer(false);
-          buttonRef.current?.focus();
-        }}
-        isOpen={showDrawer}
-        position={DrawerPosition.right}
-        ariaLabel="Site Navigation Drawer"
-        closeAriaLabel="Close Navigation Drawer"
-        {...args}
-      >
-        <NavTabs
-          orientation={TabsOrientation.vertical}
-          isInverse={args.isInverse}
+    return (
+      <>
+        <Drawer
+          onClose={() => {
+            setShowDrawer(false);
+            buttonRef.current?.focus();
+          }}
+          isOpen={showDrawer}
+          position={DrawerPosition.right}
+          ariaLabel="Site Navigation Drawer"
+          closeAriaLabel="Close Navigation Drawer"
+          {...args}
         >
-          <NavTab to="#">One</NavTab>
-          <NavTab to="#">Two</NavTab>
-          <NavTab to="#">Three</NavTab>
-          <NavTab to="#">Four</NavTab>
-        </NavTabs>
-      </Drawer>
-      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
-        Show Drawer
-        <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
-      </Button>
-    </>
-  );
+          <NavTabs
+            orientation={TabsOrientation.vertical}
+            isInverse={args.isInverse}
+          >
+            <NavTab to="#">One</NavTab>
+            <NavTab to="#">Two</NavTab>
+            <NavTab to="#">Three</NavTab>
+            <NavTab to="#">Four</NavTab>
+          </NavTabs>
+        </Drawer>
+        <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
+          Show Drawer
+          <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
+        </Button>
+      </>
+    );
+  },
 };

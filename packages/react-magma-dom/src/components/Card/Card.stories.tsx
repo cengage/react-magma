@@ -24,21 +24,23 @@ export default {
   },
 } as Meta;
 
-export const Default = args => {
-  return (
-    <Card {...args}>
-      <CardBody>
-        <CardHeading>Card Heading</CardHeading>
-        Some content
-      </CardBody>
-    </Card>
-  );
-};
+export const Default = {
+  render: args => {
+    return (
+      <Card {...args}>
+        <CardBody>
+          <CardHeading>Card Heading</CardHeading>
+          Some content
+        </CardBody>
+      </Card>
+    );
+  },
 
-Default.args = {
-  isInverse: false,
-  align: '',
-  background: '',
-  calloutType: '',
-  width: null,
+  args: {
+    isInverse: false,
+    align: '',
+    background: '',
+    calloutType: '',
+    width: null,
+  },
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 import { Card } from 'react-magma-dom';
 
 import { CarbonChart, CarbonChartProps, CarbonChartType } from '.';
@@ -23,58 +23,64 @@ export default {
   },
 } as Meta;
 
-const Template: Story<CarbonChartProps> = args => (
+const Template: StoryFn<CarbonChartProps> = args => (
   <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
     <CarbonChart {...args} />
   </Card>
 );
 
-export const GaugeSemicircularDangerStatus = Template.bind({});
-GaugeSemicircularDangerStatus.args = {
-  isInverse: false,
-  type: CarbonChartType.gauge,
-  dataSet: [
-    {
-      group: 'value',
-      value: 42,
-    },
-    {
-      group: 'delta',
-      value: -13.37,
-    },
-  ],
-  options: {
-    title: 'Gauge semicircular -- danger status',
-    resizable: true,
-    height: '250px',
-    gauge: {
-      type: 'semi',
-      status: 'danger',
+export const GaugeSemicircularDangerStatus = {
+  render: Template,
+
+  args: {
+    isInverse: false,
+    type: CarbonChartType.gauge,
+    dataSet: [
+      {
+        group: 'value',
+        value: 42,
+      },
+      {
+        group: 'delta',
+        value: -13.37,
+      },
+    ],
+    options: {
+      title: 'Gauge semicircular -- danger status',
+      resizable: true,
+      height: '250px',
+      gauge: {
+        type: 'semi',
+        status: 'danger',
+      },
     },
   },
 };
 
-export const GaugeCircularWarningStatus = Template.bind({});
-GaugeCircularWarningStatus.args = {
-  isInverse: false,
-  type: CarbonChartType.gauge,
-  dataSet: [
-    {
-      group: 'value',
-      value: 42,
-    },
-    {
-      group: 'delta',
-      value: -13.37,
-    },
-  ],
-  options: {
-    title: 'Gauge circular -- warning status',
-    resizable: true,
-    height: '250px',
-    gauge: {
-      status: 'warning',
-      type: 'full',
+export const GaugeCircularWarningStatus = {
+  render: Template,
+
+  args: {
+    isInverse: false,
+    type: CarbonChartType.gauge,
+    dataSet: [
+      {
+        group: 'value',
+        value: 42,
+      },
+      {
+        group: 'delta',
+        value: -13.37,
+      },
+    ],
+    options: {
+      title: 'Gauge circular -- warning status',
+      resizable: true,
+      height: '250px',
+      gauge: {
+        status: 'warning',
+        type: 'full',
+      },
     },
   },
 };

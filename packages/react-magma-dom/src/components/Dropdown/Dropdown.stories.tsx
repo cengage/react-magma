@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react/types-6-0';
 import {
   LocalPizzaIcon,
   LunchDiningIcon,
@@ -39,7 +39,7 @@ import {
   DropdownProps,
 } from './index';
 
-const Template: Story<DropdownProps> = args => (
+const Template: StoryFn<DropdownProps> = args => (
   <div style={{ margin: '150px auto', textAlign: 'center' }}>
     <Dropdown {...args}>
       <DropdownButton>Basic Dropdown</DropdownButton>
@@ -52,7 +52,7 @@ const Template: Story<DropdownProps> = args => (
   </div>
 );
 
-const HeaderIconTemplate: Story<DropdownProps> = args => (
+const HeaderIconTemplate: StoryFn<DropdownProps> = args => (
   <div style={{ margin: '150px auto', textAlign: 'center' }}>
     <Dropdown {...args}>
       <DropdownButton>Full Content Dropdown</DropdownButton>
@@ -105,18 +105,24 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {};
-
-export const HeaderAndIcons = HeaderIconTemplate.bind({});
-Default.args = {};
-
-export const OnClickOutside = Template.bind({});
-OnClickOutside.args = {
-  ...Default.args,
+export const Default = {
+  render: Template,
+  args: {},
 };
 
-const AlignmentTemplate: Story<DropdownProps> = args => (
+export const HeaderAndIcons = {
+  render: HeaderIconTemplate,
+};
+
+export const OnClickOutside = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+  },
+};
+
+const AlignmentTemplate: StoryFn<DropdownProps> = args => (
   <div style={{ margin: '150px auto', textAlign: 'center' }}>
     <Dropdown
       {...args}
@@ -154,10 +160,12 @@ const AlignmentTemplate: Story<DropdownProps> = args => (
   </div>
 );
 
-export const AlignmentButton = AlignmentTemplate.bind({});
-AlignmentButton.args = { ...Default.args };
+export const AlignmentButton = {
+  render: AlignmentTemplate,
+  args: { ...Default.args },
+};
 
-const LargeTemplate: Story<DropdownProps> = args => (
+const LargeTemplate: StoryFn<DropdownProps> = args => (
   <div style={{ margin: '150px auto', textAlign: 'center' }}>
     <Dropdown {...args}>
       <DropdownButton size={ButtonSize.large}>Basic Dropdown</DropdownButton>
@@ -169,10 +177,12 @@ const LargeTemplate: Story<DropdownProps> = args => (
   </div>
 );
 
-export const LargeButton = LargeTemplate.bind({});
-LargeButton.args = { ...Default.args };
+export const LargeButton = {
+  render: LargeTemplate,
+  args: { ...Default.args },
+};
 
-const CustomTemplate: Story<DropdownProps> = args => (
+const CustomTemplate: StoryFn<DropdownProps> = args => (
   <div style={{ margin: '150px auto', textAlign: 'center' }}>
     <Dropdown {...args}>
       <DropdownButton
@@ -202,10 +212,12 @@ const CustomTemplate: Story<DropdownProps> = args => (
   </div>
 );
 
-export const CustomIconButton = CustomTemplate.bind({});
-CustomIconButton.args = { ...Default.args };
+export const CustomIconButton = {
+  render: CustomTemplate,
+  args: { ...Default.args },
+};
 
-const SmallTemplate: Story<DropdownProps> = args => (
+const SmallTemplate: StoryFn<DropdownProps> = args => (
   <div style={{ margin: '150px auto', textAlign: 'center' }}>
     <Dropdown {...args}>
       <DropdownButton size={ButtonSize.small}>Basic Dropdown</DropdownButton>
@@ -217,10 +229,12 @@ const SmallTemplate: Story<DropdownProps> = args => (
   </div>
 );
 
-export const SmallButton = SmallTemplate.bind({});
-SmallButton.args = { ...Default.args };
+export const SmallButton = {
+  render: SmallTemplate,
+  args: { ...Default.args },
+};
 
-const SplitTemplate: Story<DropdownProps> = args => (
+const SplitTemplate: StoryFn<DropdownProps> = args => (
   <div style={{ margin: '150px auto', textAlign: 'center' }}>
     <Dropdown {...args}>
       <DropdownSplitButton aria-label="Split" size={ButtonSize.medium}>
@@ -296,10 +310,13 @@ const SplitTemplate: Story<DropdownProps> = args => (
     </Dropdown>
   </div>
 );
-export const SplitButton = SplitTemplate.bind({});
-SplitButton.args = { ...Default.args };
 
-const LinkMenuTemplate: Story<DropdownProps> = args => (
+export const SplitButton = {
+  render: SplitTemplate,
+  args: { ...Default.args },
+};
+
+const LinkMenuTemplate: StoryFn<DropdownProps> = args => (
   <div style={{ margin: '150px auto', textAlign: 'center' }}>
     <Dropdown {...args}>
       <DropdownButton>Dropdown of links</DropdownButton>
@@ -335,317 +352,333 @@ const LinkMenuTemplate: Story<DropdownProps> = args => (
   </div>
 );
 
-export const LinkMenu = LinkMenuTemplate.bind({});
-LinkMenu.args = { ...Default.args };
-
-export const Inverse = HeaderIconTemplate.bind({});
-Inverse.args = {
-  ...Default.args,
-  isInverse: true,
+export const LinkMenu = {
+  render: LinkMenuTemplate,
+  args: { ...Default.args },
 };
 
-Inverse.decorators = [
-  Story => (
-    <Card isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
+export const Inverse = {
+  render: HeaderIconTemplate,
 
-export const NoItems = args => {
-  return (
-    <ButtonGroup>
-      <Dropdown width="500px" {...args} testId="dropdown">
-        <DropdownButton>Dropdown without items</DropdownButton>
-        <DropdownContent style={{ padding: '12px' }}>
-          <>
-            <span
+  args: {
+    ...Default.args,
+    isInverse: true,
+  },
+
+  decorators: [
+    Story => (
+      <Card isInverse>
+        <CardBody>
+          <Story />
+        </CardBody>
+      </Card>
+    ),
+  ],
+};
+
+export const NoItems = {
+  render: args => {
+    return (
+      <ButtonGroup>
+        <Dropdown width="500px" {...args} testId="dropdown">
+          <DropdownButton>Dropdown without items</DropdownButton>
+          <DropdownContent style={{ padding: '12px' }}>
+            <>
+              <span
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <span style={{ flex: '1 1 auto' }}>
+                  <Paragraph noMargins isInverse={args.isInverse}>
+                    Current take: 1 of 3
+                  </Paragraph>
+                </span>
+                <span style={{ flex: '0 0 auto' }}>
+                  <Paragraph noMargins isInverse={args.isInverse}>
+                    Points possible: 10
+                  </Paragraph>
+                </span>
+              </span>
+              <Paragraph noMargins isInverse={args.isInverse}>
+                Grade uses: Best attempt
+              </Paragraph>
+              <Spacer size={12} />
+              <DropdownDivider />
+              <Spacer size={12} />
+              <Paragraph noMargins isInverse={args.isInverse}>
+                Credit/No Credit Activity
+              </Paragraph>
+              In this activity you must achieve 80% or higher to receive credit
+              <Spacer size={12} />
+            </>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown width="500px" {...args}>
+          <DropdownButton>Dropdown without items, with button</DropdownButton>
+          <DropdownContent style={{ padding: '12px' }}>
+            <>
+              <Paragraph noMargins isInverse={args.isInverse}>
+                Bacon ipsum dolor amet capicola turkey chicken cupim pastrami
+                pork spare ribs shankle ball tip. Shank doner burgdoggen tri-tip
+                corned beef meatloaf pig ground round. Ball tip t-bone cow
+                chicken.{' '}
+              </Paragraph>
+              <Button isInverse={args.isInverse}>Foo</Button>
+            </>
+          </DropdownContent>
+        </Dropdown>
+      </ButtonGroup>
+    );
+  },
+};
+
+export const ExpandableItems = {
+  render: args => {
+    return (
+      <Dropdown {...args}>
+        <DropdownButton>Expandable Items Dropdown</DropdownButton>
+        <DropdownContent>
+          <DropdownExpandableMenuGroup>
+            <DropdownExpandableMenuItem>
+              <DropdownExpandableMenuButton>Pasta</DropdownExpandableMenuButton>
+              <DropdownExpandableMenuPanel>
+                <DropdownExpandableMenuListItem>
+                  Fresh
+                </DropdownExpandableMenuListItem>
+                <DropdownExpandableMenuListItem>
+                  Processed
+                </DropdownExpandableMenuListItem>
+              </DropdownExpandableMenuPanel>
+            </DropdownExpandableMenuItem>
+            <DropdownExpandableMenuItem>
+              <DropdownExpandableMenuButton>
+                Prosciutto
+              </DropdownExpandableMenuButton>
+              <DropdownExpandableMenuPanel>
+                <DropdownExpandableMenuListItem>
+                  Domestic
+                </DropdownExpandableMenuListItem>
+                <DropdownExpandableMenuListItem>
+                  Speck
+                </DropdownExpandableMenuListItem>
+              </DropdownExpandableMenuPanel>
+            </DropdownExpandableMenuItem>
+          </DropdownExpandableMenuGroup>
+        </DropdownContent>
+      </Dropdown>
+    );
+  },
+};
+
+export const ExpandableItemsWithIcons = {
+  render: args => {
+    return (
+      <Dropdown {...args} width={220}>
+        <DropdownButton>Expandable Items Dropdown</DropdownButton>
+        <DropdownContent>
+          <DropdownExpandableMenuGroup isMulti={false} defaultIndex={0}>
+            <DropdownExpandableMenuItem>
+              <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+                Longer title area breaking lines within the
+                DropdownExpandableMenuButton component
+              </DropdownExpandableMenuButton>
+              <DropdownExpandableMenuPanel>
+                <DropdownExpandableMenuListItem disabled>
+                  Fresh
+                </DropdownExpandableMenuListItem>
+                <DropdownExpandableMenuListItem>
+                  Processed
+                </DropdownExpandableMenuListItem>
+              </DropdownExpandableMenuPanel>
+            </DropdownExpandableMenuItem>
+            <DropdownExpandableMenuItem disabled>
+              <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
+                Prosciutto
+              </DropdownExpandableMenuButton>
+              <DropdownExpandableMenuPanel>
+                <DropdownExpandableMenuListItem>
+                  Domestic
+                </DropdownExpandableMenuListItem>
+                <DropdownExpandableMenuListItem>
+                  Speck
+                </DropdownExpandableMenuListItem>
+              </DropdownExpandableMenuPanel>
+            </DropdownExpandableMenuItem>
+          </DropdownExpandableMenuGroup>
+          <DropdownDivider />
+          <DropdownMenuItem icon={<LocalPizzaIcon />}>Pizza</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+  },
+};
+
+export const ExpandableItemsWithIconsAndConsoleWarning = {
+  render: args => {
+    return (
+      <Dropdown {...args} width={220}>
+        <DropdownButton>Expandable Items Dropdown</DropdownButton>
+        <DropdownContent>
+          <DropdownExpandableMenuGroup isMulti={false} defaultIndex={1}>
+            <DropdownExpandableMenuItem>
+              <DropdownExpandableMenuButton>Pasta</DropdownExpandableMenuButton>
+              <DropdownExpandableMenuPanel>
+                <DropdownExpandableMenuListItem>
+                  Fresh
+                </DropdownExpandableMenuListItem>
+                <DropdownExpandableMenuListItem>
+                  Processed
+                </DropdownExpandableMenuListItem>
+              </DropdownExpandableMenuPanel>
+            </DropdownExpandableMenuItem>
+            <DropdownExpandableMenuItem>
+              <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
+                Prosciutto
+              </DropdownExpandableMenuButton>
+              <DropdownExpandableMenuPanel>
+                <DropdownExpandableMenuListItem>
+                  Domestic
+                </DropdownExpandableMenuListItem>
+                <DropdownExpandableMenuListItem>
+                  Speck
+                </DropdownExpandableMenuListItem>
+                <DropdownExpandableMenuGroup>
+                  <DropdownExpandableMenuItem>
+                    <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
+                      Pasta
+                    </DropdownExpandableMenuButton>
+                    <DropdownExpandableMenuPanel>
+                      <DropdownExpandableMenuListItem>
+                        Fresh
+                      </DropdownExpandableMenuListItem>
+                      <DropdownExpandableMenuListItem>
+                        Processed
+                      </DropdownExpandableMenuListItem>
+                    </DropdownExpandableMenuPanel>
+                  </DropdownExpandableMenuItem>
+                  <DropdownExpandableMenuItem>
+                    <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
+                      Prosciutto
+                    </DropdownExpandableMenuButton>
+                    <DropdownExpandableMenuPanel>
+                      <DropdownExpandableMenuListItem>
+                        Domestic
+                      </DropdownExpandableMenuListItem>
+                      <DropdownExpandableMenuListItem>
+                        Speck
+                      </DropdownExpandableMenuListItem>
+                    </DropdownExpandableMenuPanel>
+                  </DropdownExpandableMenuItem>
+                </DropdownExpandableMenuGroup>
+              </DropdownExpandableMenuPanel>
+            </DropdownExpandableMenuItem>
+          </DropdownExpandableMenuGroup>
+          <DropdownDivider />
+          <DropdownMenuItem icon={<LocalPizzaIcon />}>Pizza</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+  },
+};
+
+export const FlippedItems = {
+  render: args => {
+    const sampleDropdown = (
+      dropDirection: DropdownDropDirection,
+      buttonName: string
+    ) => (
+      <Dropdown {...args} dropDirection={dropDirection}>
+        <DropdownButton>{buttonName}</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two </DropdownMenuItem>
+          <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number three </DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    return (
+      <>
+        <div style={{ display: 'flex' }}>
+          <div style={{ flex: 1 }}>
+            <Paragraph>Vertical Overflow Down to Up</Paragraph>
+            <div
               style={{
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
+                width: '400px',
+                height: '400px',
+                border: '2px solid black',
+                overflowY: 'scroll',
               }}
             >
-              <span style={{ flex: '1 1 auto' }}>
-                <Paragraph noMargins isInverse={args.isInverse}>
-                  Current take: 1 of 3
-                </Paragraph>
-              </span>
-              <span style={{ flex: '0 0 auto' }}>
-                <Paragraph noMargins isInverse={args.isInverse}>
-                  Points possible: 10
-                </Paragraph>
-              </span>
-            </span>
-            <Paragraph noMargins isInverse={args.isInverse}>
-              Grade uses: Best attempt
-            </Paragraph>
-            <Spacer size={12} />
-            <DropdownDivider />
-            <Spacer size={12} />
-            <Paragraph noMargins isInverse={args.isInverse}>
-              Credit/No Credit Activity
-            </Paragraph>
-            In this activity you must achieve 80% or higher to receive credit
-            <Spacer size={12} />
-          </>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown width="500px" {...args}>
-        <DropdownButton>Dropdown without items, with button</DropdownButton>
-        <DropdownContent style={{ padding: '12px' }}>
-          <>
-            <Paragraph noMargins isInverse={args.isInverse}>
-              Bacon ipsum dolor amet capicola turkey chicken cupim pastrami pork
-              spare ribs shankle ball tip. Shank doner burgdoggen tri-tip corned
-              beef meatloaf pig ground round. Ball tip t-bone cow chicken.{' '}
-            </Paragraph>
-            <Button isInverse={args.isInverse}>Foo</Button>
-          </>
-        </DropdownContent>
-      </Dropdown>
-    </ButtonGroup>
-  );
-};
-
-export const ExpandableItems = args => {
-  return (
-    <Dropdown {...args}>
-      <DropdownButton>Expandable Items Dropdown</DropdownButton>
-      <DropdownContent>
-        <DropdownExpandableMenuGroup>
-          <DropdownExpandableMenuItem>
-            <DropdownExpandableMenuButton>Pasta</DropdownExpandableMenuButton>
-            <DropdownExpandableMenuPanel>
-              <DropdownExpandableMenuListItem>
-                Fresh
-              </DropdownExpandableMenuListItem>
-              <DropdownExpandableMenuListItem>
-                Processed
-              </DropdownExpandableMenuListItem>
-            </DropdownExpandableMenuPanel>
-          </DropdownExpandableMenuItem>
-          <DropdownExpandableMenuItem>
-            <DropdownExpandableMenuButton>
-              Prosciutto
-            </DropdownExpandableMenuButton>
-            <DropdownExpandableMenuPanel>
-              <DropdownExpandableMenuListItem>
-                Domestic
-              </DropdownExpandableMenuListItem>
-              <DropdownExpandableMenuListItem>
-                Speck
-              </DropdownExpandableMenuListItem>
-            </DropdownExpandableMenuPanel>
-          </DropdownExpandableMenuItem>
-        </DropdownExpandableMenuGroup>
-      </DropdownContent>
-    </Dropdown>
-  );
-};
-
-export const ExpandableItemsWithIcons = args => {
-  return (
-    <Dropdown {...args} width={220}>
-      <DropdownButton>Expandable Items Dropdown</DropdownButton>
-      <DropdownContent>
-        <DropdownExpandableMenuGroup isMulti={false} defaultIndex={0}>
-          <DropdownExpandableMenuItem>
-            <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
-              Longer title area breaking lines within the
-              DropdownExpandableMenuButton component
-            </DropdownExpandableMenuButton>
-            <DropdownExpandableMenuPanel>
-              <DropdownExpandableMenuListItem disabled>
-                Fresh
-              </DropdownExpandableMenuListItem>
-              <DropdownExpandableMenuListItem>
-                Processed
-              </DropdownExpandableMenuListItem>
-            </DropdownExpandableMenuPanel>
-          </DropdownExpandableMenuItem>
-          <DropdownExpandableMenuItem disabled>
-            <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
-              Prosciutto
-            </DropdownExpandableMenuButton>
-            <DropdownExpandableMenuPanel>
-              <DropdownExpandableMenuListItem>
-                Domestic
-              </DropdownExpandableMenuListItem>
-              <DropdownExpandableMenuListItem>
-                Speck
-              </DropdownExpandableMenuListItem>
-            </DropdownExpandableMenuPanel>
-          </DropdownExpandableMenuItem>
-        </DropdownExpandableMenuGroup>
-        <DropdownDivider />
-        <DropdownMenuItem icon={<LocalPizzaIcon />}>Pizza</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
-  );
-};
-
-export const ExpandableItemsWithIconsAndConsoleWarning = args => {
-  return (
-    <Dropdown {...args} width={220}>
-      <DropdownButton>Expandable Items Dropdown</DropdownButton>
-      <DropdownContent>
-        <DropdownExpandableMenuGroup isMulti={false} defaultIndex={1}>
-          <DropdownExpandableMenuItem>
-            <DropdownExpandableMenuButton>Pasta</DropdownExpandableMenuButton>
-            <DropdownExpandableMenuPanel>
-              <DropdownExpandableMenuListItem>
-                Fresh
-              </DropdownExpandableMenuListItem>
-              <DropdownExpandableMenuListItem>
-                Processed
-              </DropdownExpandableMenuListItem>
-            </DropdownExpandableMenuPanel>
-          </DropdownExpandableMenuItem>
-          <DropdownExpandableMenuItem>
-            <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
-              Prosciutto
-            </DropdownExpandableMenuButton>
-            <DropdownExpandableMenuPanel>
-              <DropdownExpandableMenuListItem>
-                Domestic
-              </DropdownExpandableMenuListItem>
-              <DropdownExpandableMenuListItem>
-                Speck
-              </DropdownExpandableMenuListItem>
-              <DropdownExpandableMenuGroup>
-                <DropdownExpandableMenuItem>
-                  <DropdownExpandableMenuButton icon={<RestaurantMenuIcon />}>
-                    Pasta
-                  </DropdownExpandableMenuButton>
-                  <DropdownExpandableMenuPanel>
-                    <DropdownExpandableMenuListItem>
-                      Fresh
-                    </DropdownExpandableMenuListItem>
-                    <DropdownExpandableMenuListItem>
-                      Processed
-                    </DropdownExpandableMenuListItem>
-                  </DropdownExpandableMenuPanel>
-                </DropdownExpandableMenuItem>
-                <DropdownExpandableMenuItem>
-                  <DropdownExpandableMenuButton icon={<LunchDiningIcon />}>
-                    Prosciutto
-                  </DropdownExpandableMenuButton>
-                  <DropdownExpandableMenuPanel>
-                    <DropdownExpandableMenuListItem>
-                      Domestic
-                    </DropdownExpandableMenuListItem>
-                    <DropdownExpandableMenuListItem>
-                      Speck
-                    </DropdownExpandableMenuListItem>
-                  </DropdownExpandableMenuPanel>
-                </DropdownExpandableMenuItem>
-              </DropdownExpandableMenuGroup>
-            </DropdownExpandableMenuPanel>
-          </DropdownExpandableMenuItem>
-        </DropdownExpandableMenuGroup>
-        <DropdownDivider />
-        <DropdownMenuItem icon={<LocalPizzaIcon />}>Pizza</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
-  );
-};
-
-export const FlippedItems = args => {
-  const sampleDropdown = (
-    dropDirection: DropdownDropDirection,
-    buttonName: string
-  ) => (
-    <Dropdown {...args} dropDirection={dropDirection}>
-      <DropdownButton>{buttonName}</DropdownButton>
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two </DropdownMenuItem>
-        <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number three </DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
-  );
-
-  return (
-    <>
-      <div style={{ display: 'flex' }}>
-        <div style={{ flex: 1 }}>
-          <Paragraph>Vertical Overflow Down to Up</Paragraph>
-          <div
-            style={{
-              width: '400px',
-              height: '400px',
-              border: '2px solid black',
-              overflowY: 'scroll',
-            }}
-          >
-            <Spacer size={300} axis={SpacerAxis.vertical} />
-            <div style={{ textAlign: 'center' }}>
-              {sampleDropdown(DropdownDropDirection.down, 'down to up')}
+              <Spacer size={300} axis={SpacerAxis.vertical} />
+              <div style={{ textAlign: 'center' }}>
+                {sampleDropdown(DropdownDropDirection.down, 'down to up')}
+              </div>
+              <Spacer size={300} axis={SpacerAxis.vertical} />
             </div>
-            <Spacer size={300} axis={SpacerAxis.vertical} />
           </div>
-        </div>
 
-        <div style={{ flex: 2 }}>
-          <Paragraph>Horizontal Overflow Right to Left</Paragraph>
-          <div
-            style={{
-              width: '600px',
-              height: '200px',
-              border: '2px solid black',
-              overflowX: 'scroll',
-              paddingLeft: '250px',
-            }}
-          >
-            <Spacer size={900} axis={SpacerAxis.horizontal} />
-            {sampleDropdown(DropdownDropDirection.right, 'right to left')}
-          </div>
-        </div>
-      </div>
-      <div style={{ display: 'flex' }}>
-        <div style={{ flex: 1 }}>
-          <Paragraph>Vertical Overflow Up to Down</Paragraph>
-          <div
-            style={{
-              width: '400px',
-              height: '400px',
-              border: '2px solid black',
-              overflowY: 'scroll',
-            }}
-          >
-            <Spacer size={300} axis={SpacerAxis.vertical} />
-            <div style={{ textAlign: 'center' }}>
-              {sampleDropdown(DropdownDropDirection.up, 'up to down')}
+          <div style={{ flex: 2 }}>
+            <Paragraph>Horizontal Overflow Right to Left</Paragraph>
+            <div
+              style={{
+                width: '600px',
+                height: '200px',
+                border: '2px solid black',
+                overflowX: 'scroll',
+                paddingLeft: '250px',
+              }}
+            >
+              <Spacer size={900} axis={SpacerAxis.horizontal} />
+              {sampleDropdown(DropdownDropDirection.right, 'right to left')}
             </div>
-            <Spacer size={300} axis={SpacerAxis.vertical} />
           </div>
         </div>
+        <div style={{ display: 'flex' }}>
+          <div style={{ flex: 1 }}>
+            <Paragraph>Vertical Overflow Up to Down</Paragraph>
+            <div
+              style={{
+                width: '400px',
+                height: '400px',
+                border: '2px solid black',
+                overflowY: 'scroll',
+              }}
+            >
+              <Spacer size={300} axis={SpacerAxis.vertical} />
+              <div style={{ textAlign: 'center' }}>
+                {sampleDropdown(DropdownDropDirection.up, 'up to down')}
+              </div>
+              <Spacer size={300} axis={SpacerAxis.vertical} />
+            </div>
+          </div>
 
-        <div style={{ flex: 2 }}>
-          <Paragraph>Horizontal Overflow Left to Right</Paragraph>
-          <div
-            style={{
-              width: '600px',
-              height: '200px',
-              border: '2px solid black',
-              overflowX: 'scroll',
-              paddingLeft: '250px',
-            }}
-          >
-            <Spacer size={900} axis={SpacerAxis.horizontal} />
-            {sampleDropdown(DropdownDropDirection.left, 'left to right')}
+          <div style={{ flex: 2 }}>
+            <Paragraph>Horizontal Overflow Left to Right</Paragraph>
+            <div
+              style={{
+                width: '600px',
+                height: '200px',
+                border: '2px solid black',
+                overflowX: 'scroll',
+                paddingLeft: '250px',
+              }}
+            >
+              <Spacer size={900} axis={SpacerAxis.horizontal} />
+              {sampleDropdown(DropdownDropDirection.left, 'left to right')}
+            </div>
           </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  },
 };
 
-const CustomRefTemplate: Story<DropdownProps> = args => {
+const CustomRefTemplate: StoryFn<DropdownProps> = args => {
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const splitButtonRef = React.useRef<HTMLButtonElement>(null);
 
@@ -687,41 +720,46 @@ const CustomRefTemplate: Story<DropdownProps> = args => {
   );
 };
 
-export const CustomRef = CustomRefTemplate.bind({});
-CustomRef.args = {
-  ...Default.args,
+export const CustomRef = {
+  render: CustomRefTemplate,
+
+  args: {
+    ...Default.args,
+  },
 };
 
-export const DropdownExpandableMenuListItemWithIcons = args => {
-  return (
-    <Dropdown {...args} width={300}>
-      <DropdownButton>Dropdown Expandable Menu List Item</DropdownButton>
-      <DropdownContent>
-        <DropdownExpandableMenuGroup isMulti={false} defaultIndex={0}>
-          <DropdownExpandableMenuItem>
-            <DropdownExpandableMenuButton icon={<LocalPizzaIcon />}>
-              Specialty Pizza
-            </DropdownExpandableMenuButton>
-            <DropdownExpandableMenuPanel>
-              <DropdownExpandableMenuListItem>
-                Margherita
-              </DropdownExpandableMenuListItem>
-              <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
-                Capricciosa
-              </DropdownExpandableMenuListItem>
-            </DropdownExpandableMenuPanel>
-          </DropdownExpandableMenuItem>
-        </DropdownExpandableMenuGroup>
-        <DropdownDivider />
-        <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
-          Cheese Pizza
-        </DropdownExpandableMenuListItem>
-      </DropdownContent>
-    </Dropdown>
-  );
+export const DropdownExpandableMenuListItemWithIcons = {
+  render: args => {
+    return (
+      <Dropdown {...args} width={300}>
+        <DropdownButton>Dropdown Expandable Menu List Item</DropdownButton>
+        <DropdownContent>
+          <DropdownExpandableMenuGroup isMulti={false} defaultIndex={0}>
+            <DropdownExpandableMenuItem>
+              <DropdownExpandableMenuButton icon={<LocalPizzaIcon />}>
+                Specialty Pizza
+              </DropdownExpandableMenuButton>
+              <DropdownExpandableMenuPanel>
+                <DropdownExpandableMenuListItem>
+                  Margherita
+                </DropdownExpandableMenuListItem>
+                <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
+                  Capricciosa
+                </DropdownExpandableMenuListItem>
+              </DropdownExpandableMenuPanel>
+            </DropdownExpandableMenuItem>
+          </DropdownExpandableMenuGroup>
+          <DropdownDivider />
+          <DropdownExpandableMenuListItem icon={<LocalPizzaIcon />}>
+            Cheese Pizza
+          </DropdownExpandableMenuListItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+  },
 };
 
-const LeadingIconTemplate: Story<DropdownProps> = args => (
+const LeadingIconTemplate: StoryFn<DropdownProps> = args => (
   <div
     style={{
       margin: '150px auto',
@@ -790,62 +828,67 @@ const LeadingIconTemplate: Story<DropdownProps> = args => (
   </div>
 );
 
-export const LeadingIcon = LeadingIconTemplate.bind({});
-LeadingIcon.args = { ...Default.args };
-export const Performance = args => {
-  const threeItems = (
-    <>
-      <Dropdown {...args}>
-        <DropdownButton>Dropdown</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown {...args}>
-        <DropdownButton>Dropdown Two</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-      <Dropdown {...args}>
-        <DropdownButton>Dropdown more content</DropdownButton>
-        <DropdownContent>
-          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-          <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
-        </DropdownContent>
-      </Dropdown>
-    </>
-  );
-
-  return (
-    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-      {Array.from({ length: 150 }).map((_, index) => (
-        <div key={index} style={{ margin: '8px' }}>
-          {threeItems}
-        </div>
-      ))}
-    </div>
-  );
+export const LeadingIcon = {
+  render: LeadingIconTemplate,
+  args: { ...Default.args },
 };
 
-Performance.args = { ...Default.args };
+export const Performance = {
+  render: args => {
+    const threeItems = (
+      <>
+        <Dropdown {...args}>
+          <DropdownButton>Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown {...args}>
+          <DropdownButton>Dropdown Two</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+        <Dropdown {...args}>
+          <DropdownButton>Dropdown more content</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+            <DropdownMenuItem disabled>Disabled item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </>
+    );
+
+    return (
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        {Array.from({ length: 150 }).map((_, index) => (
+          <div key={index} style={{ margin: '8px' }}>
+            {threeItems}
+          </div>
+        ))}
+      </div>
+    );
+  },
+
+  args: { ...Default.args },
+};

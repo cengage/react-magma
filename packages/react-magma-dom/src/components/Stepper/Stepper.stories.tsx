@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 
 import { Button } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
@@ -82,7 +82,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<StepperProps> = args => {
+const Template: StoryFn<StepperProps> = args => {
   const [currentStep, setCurrentStep] = React.useState(0);
 
   const [numberOfSteps, setNumberOfSteps] = React.useState(4);
@@ -180,7 +180,7 @@ const Template: Story<StepperProps> = args => {
   );
 };
 
-const InsideDropdownTemplate: Story<StepperProps> = args => {
+const InsideDropdownTemplate: StoryFn<StepperProps> = args => {
   return (
     <Dropdown>
       <DropdownButton>Stepper</DropdownButton>
@@ -216,7 +216,7 @@ const InsideDropdownTemplate: Story<StepperProps> = args => {
   );
 };
 
-const RealisticLabels: Story<StepperProps> = args => {
+const RealisticLabels: StoryFn<StepperProps> = args => {
   const [currentStep, setCurrentStep] = React.useState(0);
 
   const handleOnNext = () => {
@@ -299,7 +299,7 @@ const RealisticLabels: Story<StepperProps> = args => {
   );
 };
 
-const ErrorTemplate: Story<StepperProps> = args => {
+const ErrorTemplate: StoryFn<StepperProps> = args => {
   return (
     <ResponsiveStepperContainer
       currentStep={2}
@@ -349,25 +349,38 @@ const ErrorTemplate: Story<StepperProps> = args => {
   );
 };
 
-export const Default = Template.bind({});
-Default.args = {};
-
-export const Vertical = Template.bind({});
-Vertical.args = {
-  ...Default.args,
-  orientation: StepperOrientation.vertical,
+export const Default = {
+  render: Template,
+  args: {},
 };
 
-export const InsideDropdown = InsideDropdownTemplate.bind({});
-InsideDropdown.args = {
-  ...Default.args,
-  orientation: StepperOrientation.vertical,
+export const Vertical = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    orientation: StepperOrientation.vertical,
+  },
 };
 
-export const RealWorldExample = RealisticLabels.bind({});
-RealWorldExample.args = {
-  stepLabel: 'Module',
+export const InsideDropdown = {
+  render: InsideDropdownTemplate,
+
+  args: {
+    ...Default.args,
+    orientation: StepperOrientation.vertical,
+  },
 };
 
-export const WithError = ErrorTemplate.bind({});
-WithError.args = {};
+export const RealWorldExample = {
+  render: RealisticLabels,
+
+  args: {
+    stepLabel: 'Module',
+  },
+};
+
+export const WithError = {
+  render: ErrorTemplate,
+  args: {},
+};

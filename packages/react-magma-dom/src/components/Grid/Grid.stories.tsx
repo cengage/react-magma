@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 
 import { Grid, GridProps, GridItem } from './Grid';
 
@@ -10,7 +10,7 @@ export default {
   argTypes: {},
 } as Meta;
 
-const Template: Story<GridProps> = args => (
+const Template: StoryFn<GridProps> = args => (
   <Grid
     gridTemplateColumns="repeat(4, 1fr)"
     gridTemplateRows="auto"
@@ -28,4 +28,6 @@ const Template: Story<GridProps> = args => (
   </Grid>
 );
 
-export const Default = Template.bind({});
+export const Default = {
+  render: Template,
+};
