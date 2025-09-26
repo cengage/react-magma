@@ -124,9 +124,7 @@ export default {
 
 export const Default = {
   render: Template,
-
   args: {
-    ...Default.args,
     orientation: ButtonGroupOrientation.horizontal,
     noSpace: false,
   },
@@ -160,7 +158,6 @@ export const SmallBreakpoint = {
   },
 
   args: {
-    ...Default.args,
     orientation: ButtonGroupOrientation.horizontal,
     alignment: ButtonGroupAlignment.fill,
   },
