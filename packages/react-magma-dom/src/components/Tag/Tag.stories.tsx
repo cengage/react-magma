@@ -159,11 +159,9 @@ export const Default = {
 export const OnClick = {
   render: args => {
     const [counter, setCounter] = React.useState<number>(0);
-
     function updateCounter() {
       setCounter(count => count + 1);
     }
-
     return (
       <Card isInverse={args.isInverse}>
         <CardBody>

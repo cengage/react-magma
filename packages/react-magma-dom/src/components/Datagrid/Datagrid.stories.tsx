@@ -1,19 +1,20 @@
 import React from 'react';
 
-import { StoryObj, StoryFn, Meta } from '@storybook/react/types-6-0';
+import { StoryObj, Meta, StoryFn } from '@storybook/react/types-6-0';
 
 import { DatagridProps } from './Datagrid';
 import { magma } from '../../theme/magma';
 import { Announce } from '../Announce';
 import { Button } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
+import { Card, CardBody } from '../Card';
 import { usePagination } from '../Pagination/usePagination';
 import { Spacer, SpacerAxis } from '../Spacer';
 import {
+  TableDensity,
   TablePaginationProps,
   TableRowColor,
   TableSortDirection,
-  TableDensity,
 } from '../Table';
 import { VisuallyHidden } from '../VisuallyHidden';
 
@@ -223,7 +224,13 @@ const rowsForPagination = [
 ];
 
 const Template: StoryFn<Omit<DatagridProps, 'selectedRows'>> = args => (
-  <Datagrid {...args}>Sample Text</Datagrid>
+  <Card isInverse={args.isInverse}>
+    <CardBody>
+      <Datagrid tableTitle="Basic usage table" {...args}>
+        Sample Text
+      </Datagrid>
+    </CardBody>
+  </Card>
 );
 
 const ControlledTemplate: StoryFn<
@@ -234,13 +241,17 @@ const ControlledTemplate: StoryFn<
   >([1]);
 
   return (
-    <Datagrid
-      {...args}
-      selectedRows={selectedRows}
-      onSelectedRowsChange={updatedSelectedRows}
-    >
-      Sample Text
-    </Datagrid>
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Datagrid
+          {...args}
+          selectedRows={selectedRows}
+          onSelectedRowsChange={updatedSelectedRows}
+        >
+          Sample Text
+        </Datagrid>
+      </CardBody>
+    </Card>
   );
 };
 
@@ -273,7 +284,13 @@ const ControlledPaginatedTemplate: StoryFn<DatagridProps> = ({
     onRowsPerPageChange: handleRowsPerPageChange,
   };
 
-  return <Datagrid {...args} paginationProps={passedInPaginationProps} />;
+  return (
+    <Card isInverse={args.isInverse}>
+      <CardBody>
+        <Datagrid {...args} paginationProps={passedInPaginationProps} />
+      </CardBody>
+    </Card>
+  );
 };
 
 export default {
@@ -281,6 +298,16 @@ export default {
   title: 'Datagrid',
   argTypes: {
     isInverse: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    tableTitle: {
+      control: {
+        type: 'text',
+      },
+    },
+    hasOutsideBorder: {
       control: {
         type: 'boolean',
       },
@@ -341,7 +368,11 @@ const defaultArgs = {
 
 export const Default = {
   render: Template,
-  args: defaultArgs,
+
+  args: {
+    ...defaultArgs,
+    tableTitle: 'Default',
+  },
 };
 
 export const ColoredRows = {
@@ -350,6 +381,7 @@ export const ColoredRows = {
   args: {
     ...defaultArgs,
     rows: coloredRows,
+    tableTitle: 'Colored rows',
   },
 };
 
@@ -359,6 +391,7 @@ export const Selectable = {
   args: {
     ...defaultArgs,
     isSelectable: true,
+    tableTitle: 'Selectable',
   },
 };
 
@@ -414,7 +447,6 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
       }
 
       const message = `Table is sorted by ${key}, ${direction}`;
-
       setSortConfig({ key, message });
     };
 
@@ -465,7 +497,6 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
           product => !selectedItems.includes(product.id)
         );
         let sortOrder = 0;
-
         if (sortConfig !== null) {
           if (selectedItemsToSort.length < 2) {
             sortOrder =
@@ -480,7 +511,6 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
               sortOrder =
                 selectedDirection === TableSortDirection.ascending ? 1 : -1;
             }
-
             return sortOrder;
           });
         }
@@ -495,7 +525,6 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
         const sortableItems = [...products];
         const direction =
           sortConfig.key === 'price' ? priceDirection : stockDirection;
-
         sortableItems.sort((a, b) => {
           if (a[sortConfig.key] < b[sortConfig.key]) {
             return direction === TableSortDirection.ascending ? -1 : 1;
@@ -503,10 +532,8 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
           if (a[sortConfig.key] > b[sortConfig.key]) {
             return direction === TableSortDirection.ascending ? 1 : -1;
           }
-
           return 0;
         });
-
         return sortableItems;
       }
     }, [sortConfig]);
@@ -527,7 +554,6 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
     function handleHeaderSelect(ev: React.ChangeEvent<HTMLInputElement>) {
       if (ev.target.checked && selectedItems.length === 0) {
         const checkedIds = [];
-
         products.filter(prod => checkedIds.push(prod.id));
         setSelectedItems(checkedIds);
       } else {
@@ -536,28 +562,31 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
     }
 
     return (
-      <>
-        <Datagrid
-          {...args}
-          rows={sortedItems}
-          columns={productColumns}
-          onSortBySelected={() => {
-            requestSort('name');
-          }}
-          onRowSelect={handleRowSelect}
-          onHeaderSelect={handleHeaderSelect}
-          sortDirection={selectedDirection}
-        />
-        <Announce>
-          <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
-        </Announce>
-      </>
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <Datagrid
+            {...args}
+            rows={sortedItems}
+            columns={productColumns}
+            onSortBySelected={() => {
+              requestSort('name');
+            }}
+            onRowSelect={handleRowSelect}
+            onHeaderSelect={handleHeaderSelect}
+            sortDirection={selectedDirection}
+          />
+          <Announce>
+            <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
+          </Announce>
+        </CardBody>
+      </Card>
     );
   },
 
   args: {
     isSelectable: true,
     isSortableBySelected: true,
+    tableTitle: 'Selectable and sortable',
   },
 };
 
@@ -567,6 +596,7 @@ export const ControlledSelectable = {
   args: {
     ...defaultArgs,
     isSelectable: true,
+    tableTitle: 'Controlled selectable',
   },
 };
 
@@ -576,6 +606,7 @@ export const DisabledSelectableRow = {
   args: {
     ...defaultArgs,
     isSelectable: true,
+    tableTitle: 'Disabled selectable row',
     rows: [
       ...defaultArgs.rows,
       {
@@ -595,6 +626,7 @@ export const PaginationChangedDefaults = {
 
   args: {
     ...defaultArgs,
+    tableTitle: 'Pagination changed defaults',
     paginationProps: {
       defaultPage: 2,
       defaultRowsPerPage: 5,
@@ -608,6 +640,7 @@ export const ControlledPagination = {
 
   args: {
     ...defaultArgs,
+    tableTitle: 'Controlled pagination',
     paginationProps: {
       rowsPerPageValues: [5, 10, 20],
     },
@@ -620,6 +653,7 @@ export const WithoutPagination = {
   args: {
     ...defaultArgs,
     hasPagination: false,
+    tableTitle: 'Without pagination',
   },
 };
 
@@ -667,8 +701,20 @@ export const PaginationWithCustomComponent = {
 
   args: {
     ...defaultArgs,
+    tableTitle: 'Pagination with custom component',
     components: {
       Pagination: CustomPaginationComponent,
     },
+  },
+};
+
+export const TitleTable = {
+  render: Template,
+
+  args: {
+    ...defaultArgs,
+    hasOutsideBorder: true,
+    hasSquareCorners: false,
+    tableTitle: <h1>Title table</h1>,
   },
 };

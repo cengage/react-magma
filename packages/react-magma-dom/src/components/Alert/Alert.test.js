@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { act, render, fireEvent } from '@testing-library/react';
+import {
+  act,
+  render,
+  fireEvent,
+  getAllByAltText,
+  getAllByLabelText,
+} from '@testing-library/react';
 import { v4 as uuid } from 'uuid';
 
 import { axe } from '../../../axe-helper';
@@ -208,5 +214,50 @@ describe('Alert', () => {
     );
 
     expect(getByText('Test Component')).toBeInTheDocument();
+  });
+
+  describe('Icon accessibility', () => {
+    it('should render icon with role="img" and default aria-label', () => {
+      const { getAllByLabelText } = render(<Alert>Default Info Alert</Alert>);
+      const icon = getAllByLabelText('info icon')[0];
+      expect(icon).toBeInTheDocument();
+      expect(icon).toHaveAttribute('role', 'img');
+    });
+
+    it('should render icon with role="img" and aria-label="info icon"', () => {
+      const { getAllByLabelText } = render(
+        <Alert variant={AlertVariant.info}>Info Alert</Alert>
+      );
+      const icon = getAllByLabelText('info icon')[0];
+      expect(icon).toBeInTheDocument();
+      expect(icon).toHaveAttribute('role', 'img');
+    });
+
+    it('should render icon with role="img" and aria-label="success icon"', () => {
+      const { getAllByLabelText } = render(
+        <Alert variant={AlertVariant.success}>Success Alert</Alert>
+      );
+      const icon = getAllByLabelText('success icon')[0];
+      expect(icon).toBeInTheDocument();
+      expect(icon).toHaveAttribute('role', 'img');
+    });
+
+    it('should render icon with role="img" and aria-label="warning icon"', () => {
+      const { getAllByLabelText } = render(
+        <Alert variant={AlertVariant.warning}>Warning Alert</Alert>
+      );
+      const icon = getAllByLabelText('warning icon')[0];
+      expect(icon).toBeInTheDocument();
+      expect(icon).toHaveAttribute('role', 'img');
+    });
+
+    it('should render icon with role="img" and aria-label="danger icon"', () => {
+      const { getAllByLabelText } = render(
+        <Alert variant={AlertVariant.danger}>Danger Alert</Alert>
+      );
+      const icon = getAllByLabelText('danger icon')[0];
+      expect(icon).toBeInTheDocument();
+      expect(icon).toHaveAttribute('role', 'img');
+    });
   });
 });

@@ -235,6 +235,34 @@ export function Example() {
 }
 ```
 
+## Leading Icon
+
+The `Icon Button` can be customized using the `leadingIcon` prop, which allows an icon to be placed to the left of the button text.
+
+Note: The `leadingIcon` prop will be ignored when `iconPosition` is set
+to `ButtonIconPosition.left`, as it is only intended for using on the left side
+of the button.
+
+```tsx
+import React from 'react';
+
+import { ButtonIconPosition, IconButton } from 'react-magma-dom';
+import { NotificationsIcon, SettingsIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <IconButton
+      aria-label="Button"
+      iconPosition={ButtonIconPosition.right}
+      icon={<SettingsIcon />}
+      leadingIcon={<NotificationsIcon />}
+    >
+      Leading Icon
+    </IconButton>
+  );
+}
+```
+
 ## Sizes
 
 Sizes for `IconButtons` include `small`, `medium`, and `large`, with `medium` being the default value.

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react/types-6-0';
 
 import { magma } from '../../theme/magma';
 import { Button, ButtonSize, ButtonVariant } from '../Button';
@@ -20,11 +20,11 @@ import { Textarea } from '../Textarea';
 
 import {
   Accordion,
-  AccordionProps,
+  AccordionButton,
   AccordionIconPosition,
   AccordionItem,
-  AccordionButton,
   AccordionPanel,
+  AccordionProps,
 } from '.';
 
 export default {
@@ -94,24 +94,85 @@ export const NoMulti = {
 };
 
 export const Controlled = {
-  render: Template,
+  render: (args: any) => {
+    const [expandedIndex, setExpandedIndex] = React.useState<number[]>([]);
+
+    const handleExpandedChange = (index: number) => {
+      expandedIndex.includes(index)
+        ? setExpandedIndex(expandedIndex.filter(item => item !== index))
+        : setExpandedIndex(expandedIndex.concat([index]));
+    };
+
+    return (
+      <Accordion
+        {...args}
+        index={expandedIndex}
+        onExpandedChange={handleExpandedChange}
+      >
+        <AccordionItem>
+          <AccordionButton>Section 1</AccordionButton>
+          <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+        </AccordionItem>
+        <AccordionItem>
+          <AccordionButton>Section 2</AccordionButton>
+          <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+        </AccordionItem>
+        <AccordionItem>
+          <AccordionButton>Section 3</AccordionButton>
+          <AccordionPanel>Content for section three lorem ipsum</AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    );
+  },
 
   args: {
+    isMulti: true,
     index: [0],
   },
 };
 
 export const ControlledNoMulti = {
-  render: Template,
+  render: (args: any) => {
+    const [expandedIndex, setExpandedIndex] = React.useState<number | null>(
+      null
+    );
+
+    const handleExpandedChange = (index: number) => {
+      setExpandedIndex(expandedIndex === index ? null : index);
+    };
+
+    return (
+      <Accordion
+        {...args}
+        index={expandedIndex}
+        onExpandedChange={handleExpandedChange}
+      >
+        <AccordionItem>
+          <AccordionButton>Section 1</AccordionButton>
+          <AccordionPanel>Content for section one lorem ipsum</AccordionPanel>
+        </AccordionItem>
+        <AccordionItem>
+          <AccordionButton>Section 2</AccordionButton>
+          <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+        </AccordionItem>
+        <AccordionItem>
+          <AccordionButton>Section 3</AccordionButton>
+          <AccordionPanel>Content for section three lorem ipsum</AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    );
+  },
 
   args: {
+    isMulti: false,
     index: 0,
+    isMulti: false,
   },
 };
 
 export const ExpandCollapseAll = {
-  render: args => {
-    const [expandedIndex, setExpandedIndex] = React.useState([]);
+  render: (args: any) => {
+    const [expandedIndex, setExpandedIndex] = React.useState<number[]>([]);
 
     const isAllExpanded = expandedIndex.length > 0;
 
@@ -123,7 +184,7 @@ export const ExpandCollapseAll = {
       }
     };
 
-    const handleExpandedChange = index => {
+    const handleExpandedChange = (index: number) => {
       if (expandedIndex.includes(index)) {
         setExpandedIndex(expandedIndex.filter(item => item !== index));
       } else {
@@ -154,7 +215,9 @@ export const ExpandCollapseAll = {
           </AccordionItem>
           <AccordionItem>
             <AccordionButton>Section 3</AccordionButton>
-            <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+            <AccordionPanel>
+              Content for section three lorem ipsum
+            </AccordionPanel>
           </AccordionItem>
         </Accordion>
       </>
@@ -166,6 +229,7 @@ export const Inverse = {
   render: Template,
 
   args: {
+    defaultIndex: [0],
     isInverse: true,
   },
 
@@ -179,7 +243,7 @@ export const Inverse = {
 };
 
 export const WithDropdown = {
-  render: args => {
+  render: (args: any) => {
     const [showModal, setShowModal] = React.useState(false);
 
     return (
@@ -250,7 +314,12 @@ export const WithDropdown = {
                     ]}
                   />
                 </Flex>
-                <Flex behavior={FlexBehavior.item} xs={12} md={6}>
+                <Flex
+                  behavior={FlexBehavior.item}
+                  xs={12}
+                  md={6}
+                  style={{ marginTop: '28px' }}
+                >
                   <Dropdown>
                     <DropdownButton>Basic Dropdown</DropdownButton>
                     <DropdownContent>
@@ -283,7 +352,12 @@ export const WithDropdown = {
                   <Button>This is a button</Button>
                 </p>
               </Modal>
-              <Button onClick={() => setShowModal(true)}>Show Modal</Button>
+              <Button
+                onClick={() => setShowModal(true)}
+                style={{ marginTop: '12px' }}
+              >
+                Show Modal
+              </Button>
             </AccordionPanel>
           </AccordionItem>
         </Accordion>

@@ -1,5 +1,208 @@
 # Change Log
 
+## 5.2.1-next.0
+
+### Patch Changes
+
+- 24a508621: chore: Manually sync main -> dev (4.10.0)
+
+## 5.2.0
+
+### Minor Changes
+
+- ef8a2740a: chore: Add new charts to the docs - `Combo`, `Step` and `Sparkline`. Uncomment existing charts - `Bubble`, `Gauge`, `Meter`, `Radar`, `Boxplot`, `Bullet`, `Histogram` and `Scatter`.
+
+### Patch Changes
+
+- ef8a2740a: chore: Add Playwright initial configuration and some example tests.
+- ef8a2740a: chore: add documentation for css prop and emotion v11 media query overrides
+- ef8a2740a: chore: Add clarification to the `hoverable` prop for Popover.
+- ef8a2740a: chore: Add page for `useDeviceDetect` hook.
+- ef8a2740a: chore: Add warning for `Tooltip` that the child element must be able to accept a ref.
+- ef8a2740a: chore: fix react-magma-dom next version
+- ef8a2740a: fix(Tooltip & Accordion): Fix storybook issues with Tooltip and Accordion components.
+- ef8a2740a: fix(Date Picker): Update focus behaviour to shift focus to selected date
+- ef8a2740a: chore: Add error to `onDateChange` and `onTimeChange` examples.
+- ef8a2740a: fix(Definition List, Loading Indicator, Native Select, Nav Tabs, Popover): Fix docs issues.
+- ef8a2740a: chore: fix instructions and update message for `LineChart`
+- ef8a2740a: chore: Fix broken `Focus Trap` section.
+- ef8a2740a: chore: Fix small bugs in the documentation.
+- ef8a2740a: chore: Manually sync main -> dev (4.9.0)
+- ef8a2740a: Bring 4.9.1 changes to dev
+- ef8a2740a: chore: Update README and CODEOWNERS
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+- Updated dependencies [ef8a2740a]
+  - @react-magma/charts@12.0.0
+  - react-magma-dom@4.10.0
+  - @react-magma/dropzone@12.0.0
+  - @react-magma/schema-renderer@12.0.0
+  - @cengage-patterns/header@13.0.0
+
+## 5.2.0-next.18
+
+### Patch Changes
+
+- a212c0f1e: chore: Fix small bugs in the documentation.
+
+## 5.2.0-next.17
+
+### Patch Changes
+
+- 5d393b464: fix(Definition List, Loading Indicator, Native Select, Nav Tabs, Popover): Fix docs issues.
+
+## 5.2.0-next.16
+
+### Patch Changes
+
+- 4b9cfef65: chore: fix build by removing bad changeset
+- Updated dependencies [f51613699]
+  - @react-magma/charts@12.0.0-next.4
+
+## 5.2.0-next.15
+
+### Patch Changes
+
+- bc0ce2fb4: chore: Fix broken `Focus Trap` section.
+
+## 5.2.0-next.14
+
+### Patch Changes
+
+- ed22933f2: chore: Add clarification to the `hoverable` prop for Popover.
+- 4e907ab49: fix (Date Picker): Improve test cases to fix failing test during the build.
+- Updated dependencies [97483b1c2]
+  - react-magma-dom@4.10.0-next.23
+
+## 5.2.0-next.13
+
+### Patch Changes
+
+- 531bdb9b0: chore: add documentation for css prop and emotion v11 media query overrides
+
+## 5.2.0-next.12
+
+### Patch Changes
+
+- 685b29014: fix (Date Picker): Update focus behaviour - shifting focus to selected date.
+
+## 5.2.0-next.11
+
+### Patch Changes
+
+- 8887aeeba: chore: fix instructions and update message for `LineChart`
+- Updated dependencies [6893e3223]
+  - react-magma-dom@4.10.0-next.18
+
+## 5.2.0-next.10
+
+### Minor Changes
+
+- 141106421: chore: Add new charts to the docs - `Combo`, `Step` and `Sparkline`. Uncomment existing charts - `Bubble`, `Gauge`, `Meter`, `Radar`, `Boxplot`, `Bullet`, `Histogram` and `Scatter`.
+
+## 5.1.3-next.9
+
+### Patch Changes
+
+- Updated dependencies [22a0a5396]
+  - react-magma-dom@4.10.0-next.3
+  - @react-magma/charts@12.0.0-next.2
+  - @react-magma/dropzone@12.0.0-next.2
+  - @react-magma/schema-renderer@12.0.0-next.2
+  - @cengage-patterns/header@13.0.0-next.2
+
+## 5.1.3-next.8
+
+### Patch Changes
+
+- 5d7dfe9d1: chore: fix react-magma-dom next version
+
+## 5.1.3-next.7
+
+### Patch Changes
+
+- 9a71a7566: Bring 4.9.1 changes to dev
+
+## 5.1.3-next.6
+
+### Patch Changes
+
+- 20e835b3b: chore: Add page for `useDeviceDetect` hook.
+- 76a3f90d5: chore: Add warning for `Tooltip` that the child element must be able to accept a ref.
+
+## 5.1.3-next.5
+
+### Patch Changes
+
+- Updated dependencies [ed8a4eea7]
+  - react-magma-dom@4.10.0-next.1
+  - @react-magma/charts@12.0.0-next.1
+  - @react-magma/dropzone@12.0.0-next.1
+  - @react-magma/schema-renderer@12.0.0-next.1
+  - @cengage-patterns/header@13.0.0-next.1
+
+## 5.1.3-next.4
+
+### Patch Changes
+
+- 42f4dde60: chore: add deploy-v2-docs.yml to deploy v2 docs
+
+## 5.1.3-next.3
+
+### Patch Changes
+
+- Updated dependencies [31a4e0318]
+- Updated dependencies [77a8687f4]
+  - react-magma-dom@4.9.1-next.0
+  - @react-magma/charts@11.0.1-next.0
+  - @react-magma/dropzone@11.0.1-next.0
+  - @react-magma/schema-renderer@11.0.1-next.0
+  - @cengage-patterns/header@12.0.2-next.0
+
+## 5.1.3-next.2
+
+### Patch Changes
+
+- dd32dbc44: chore: Add Playwright initial configuration and some example tests.
+
 ## 5.1.3-next.1
 
 ### Patch Changes

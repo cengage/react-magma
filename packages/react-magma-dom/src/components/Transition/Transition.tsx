@@ -7,6 +7,7 @@ import {
   useReducedMotion,
 } from 'framer-motion';
 
+import { drawerTransitions } from '../../theme/components/drawerTransition';
 import { reducedMotionTransitions } from '../../theme/components/reducedMotionTransition';
 import { MotionVariants } from '../../theme/components/transition';
 import { ThemeInterface } from '../../theme/magma';
@@ -106,6 +107,11 @@ export interface TransitionProps extends HTMLMotionProps<'div'> {
    * @default false
    */
   rotate180?: boolean;
+  /**
+   * Shows the drawer transition animation
+   * @internal
+   */
+  hasDrawerAnimation?: boolean;
 }
 
 export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
@@ -115,6 +121,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
     const {
       style,
       unmountOnExit,
+      hasDrawerAnimation,
       isOpen,
       testId,
       initial = 'exit',
@@ -130,7 +137,9 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
     const shouldReduceMotion = useReducedMotion();
     const transitionsArr = shouldReduceMotion
       ? reducedMotionTransitions
-      : theme.transitions;
+      : hasDrawerAnimation
+        ? drawerTransitions
+        : theme.transitions;
 
     const variants = Object.keys(rest).reduce(
       (acc, key) => {

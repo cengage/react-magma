@@ -69,6 +69,16 @@ export const VerticalSimpleBarDiscrete = {
         },
       },
       height: '400px',
+      tooltip: {
+        valueFormatter: (value /*, label */) =>
+          typeof value === 'number'
+            ? value.toLocaleString(undefined, {
+                minimumFractionDigits: 20,
+                maximumFractionDigits: 20,
+              })
+            : String(value),
+        enabled: false,
+      },
     },
   },
 };

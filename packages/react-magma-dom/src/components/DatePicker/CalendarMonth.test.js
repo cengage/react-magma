@@ -1,18 +1,31 @@
 import React from 'react';
 
-import { render, act } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
 import { getCalendarMonthWeeks } from './utils';
 
-describe('Calendar Month', () => {
-  describe('focus trap', () => {
-    it('should handle tab and loop it through the calendar month', async () => {
-      const focusedDate = new Date('January 18, 2019');
+HTMLCanvasElement.prototype.getContext = () => ({
+  font: '',
+  measureText: text => ({ width: text.length * 8 }),
+});
 
-      const { getByLabelText, getByText, rerender } = render(
+describe('Calendar Month', () => {
+  beforeEach(() => {
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
+    jest.resetAllMocks();
+  });
+
+  describe('focus trap', () => {
+    it('should handle tab and loop it through the calendar month', () => {
+      const focusedDate = new Date(2019, 0, 18);
+      const { getByLabelText, getByText, getByTestId, rerender } = render(
         <CalendarContext.Provider
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
@@ -21,6 +34,7 @@ describe('Calendar Month', () => {
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
             onNextMonthClick: jest.fn(),
+            setFocusedTodayDate: jest.fn(),
           }}
         >
           <CalendarMonth calendarOpened={false} />
@@ -36,42 +50,34 @@ describe('Calendar Month', () => {
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
             onNextMonthClick: jest.fn(),
+            setFocusedTodayDate: jest.fn(),
           }}
         >
           <CalendarMonth calendarOpened />
         </CalendarContext.Provider>
       );
 
-      expect(getByText(/january 2019/i).parentElement).toHaveFocus();
-
-      await userEvent.tab();
-
-      expect(getByLabelText(/previous month/i)).toHaveFocus();
-
-      await userEvent.tab();
-
-      expect(getByLabelText(/next month/i)).toHaveFocus();
-
-      await userEvent.tab();
-
-      expect(getByText(/18/i)).toHaveFocus();
-
-      await userEvent.tab();
-
+      expect(getByTestId('month-picker')).toHaveFocus();
+      userEvent.tab();
+      expect(getByTestId('year-picker')).toHaveFocus();
+      userEvent.tab();
+      expect(getByLabelText(/Navigate back/i)).toHaveFocus();
+      userEvent.tab();
+      expect(getByLabelText(/Navigate forward/i)).toHaveFocus();
+      userEvent.tab();
+      expect(getByText('18')).toHaveFocus();
+      userEvent.tab();
       expect(getByLabelText(/help/i)).toHaveFocus();
-
-      await userEvent.tab();
-
+      userEvent.tab();
+      expect(getByLabelText(/Navigate to current/i)).toHaveFocus();
+      userEvent.tab();
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
-
-      await userEvent.tab();
-
-      expect(getByLabelText(/previous month/i)).toHaveFocus();
+      userEvent.tab();
+      expect(getByTestId('month-picker')).toHaveFocus();
     });
 
-    it('should not attempt to loop through the modal if there are no tabbable elements', async () => {
-      const focusedDate = new Date('January 18, 2019');
-
+    it('should not attempt to loop through the modal if there are no tabbable elements', () => {
+      const focusedDate = new Date(2019, 0, 18);
       const { getByLabelText } = render(
         <CalendarContext.Provider
           value={{
@@ -81,22 +87,23 @@ describe('Calendar Month', () => {
             setDateFocused: jest.fn(),
             onPrevMonthClick: jest.fn(),
             onNextMonthClick: jest.fn(),
+            setFocusedTodayDate: jest.fn(),
           }}
         >
           <CalendarMonth calendarOpened={false} />
         </CalendarContext.Provider>
       );
 
-      await userEvent.tab();
-      await userEvent.tab();
+      fireEvent.keyDown(getByLabelText(/Navigate back/i), {
+        keyCode: 9,
+      });
 
-      expect(getByLabelText(/previous month/i)).not.toHaveFocus();
+      expect(getByLabelText(/Navigate back/i)).not.toHaveFocus();
     });
 
-    it('should handle shift + tab and loop it through the modal', async () => {
-      const focusedDate = new Date('January 18, 2019');
-
-      const { getByLabelText, getByText, rerender } = render(
+    it('should handle shift + tab and loop it through the modal', () => {
+      const focusedDate = new Date(2019, 0, 18);
+      const { getByLabelText, getByText, getByTestId, rerender } = render(
         <CalendarContext.Provider
           value={{
             buildCalendarMonth: getCalendarMonthWeeks,
@@ -107,6 +114,7 @@ describe('Calendar Month', () => {
             onNextMonthClick: jest.fn(),
             showHelperInformation: jest.fn(),
             hideHelperInformation: jest.fn(),
+            setFocusedTodayDate: jest.fn(),
           }}
         >
           <CalendarMonth calendarOpened={false} />
@@ -124,44 +132,47 @@ describe('Calendar Month', () => {
             onNextMonthClick: jest.fn(),
             showHelperInformation: jest.fn(),
             hideHelperInformation: jest.fn(),
+            setFocusedTodayDate: jest.fn(),
           }}
         >
           <CalendarMonth calendarOpened />
         </CalendarContext.Provider>
       );
 
-      expect(getByText(/january 2019/i).parentElement).toHaveFocus();
+      expect(getByTestId('month-picker')).toHaveFocus();
 
-      await userEvent.tab({ shift: true });
-
+      userEvent.tab({ shift: true });
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
 
-      await userEvent.tab({ shift: true });
+      userEvent.tab({ shift: true });
+      expect(getByLabelText(/Navigate to current/i)).toHaveFocus();
 
+      userEvent.tab({ shift: true });
       expect(getByLabelText(/help/i)).toHaveFocus();
 
-      await userEvent.tab({ shift: true });
+      userEvent.tab({ shift: true });
+      expect(getByText('18')).toHaveFocus();
 
-      expect(getByText(/18/i)).toHaveFocus();
+      userEvent.tab({ shift: true });
+      expect(getByLabelText(/Navigate forward/i)).toHaveFocus();
 
-      await userEvent.tab({ shift: true });
+      userEvent.tab({ shift: true });
+      expect(getByLabelText(/Navigate back/i)).toHaveFocus();
 
-      expect(getByLabelText(/next month/i)).toHaveFocus();
+      userEvent.tab({ shift: true });
+      expect(getByTestId('year-picker')).toHaveFocus();
 
-      await userEvent.tab({ shift: true });
+      userEvent.tab({ shift: true });
+      expect(getByTestId('month-picker')).toHaveFocus();
 
-      expect(getByLabelText(/previous month/i)).toHaveFocus();
-
-      await userEvent.tab({ shift: true });
-
+      userEvent.tab({ shift: true });
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
     });
   });
 
-  it('should open helper information when clicking the helper information button', async () => {
+  it('should open helper information when clicking the helper information button', () => {
     const showHelperInformation = jest.fn();
-    const focusedDate = new Date('January 18, 2019');
-
+    const focusedDate = new Date(2019, 0, 18);
     const { getByLabelText } = render(
       <CalendarContext.Provider
         value={{
@@ -179,15 +190,14 @@ describe('Calendar Month', () => {
       </CalendarContext.Provider>
     );
 
-    await userEvent.click(getByLabelText('Calendar Widget Help'));
+    fireEvent.click(getByLabelText('Calendar Widget Help'));
 
     expect(showHelperInformation).toHaveBeenCalled();
   });
 
   it('should focus a date on open', () => {
     const setDateFocused = jest.fn();
-    const focusedDate = new Date('January 18, 2019');
-
+    const focusedDate = new Date(2019, 0, 18);
     render(
       <CalendarContext.Provider
         value={{
@@ -210,8 +220,7 @@ describe('Calendar Month', () => {
 
   it('should close helper information when clicking the helper information button', () => {
     const setDateFocused = jest.fn();
-    const focusedDate = new Date('January 18, 2019');
-
+    const focusedDate = new Date(2019, 0, 18);
     const { getByLabelText } = render(
       <CalendarContext.Provider
         value={{
@@ -229,17 +238,14 @@ describe('Calendar Month', () => {
       </CalendarContext.Provider>
     );
 
-    act(() => {
-      getByLabelText('Calendar Widget Help').focus();
-    });
+    getByLabelText('Calendar Widget Help').focus();
 
     expect(setDateFocused).toHaveBeenCalledWith(false);
   });
 
   it('should call the close helper information', async () => {
     const hideHelperInformation = jest.fn();
-    const focusedDate = new Date('January 18, 2019');
-
+    const focusedDate = new Date(2019, 0, 18);
     const { getByText } = render(
       <CalendarContext.Provider
         value={{
@@ -257,15 +263,18 @@ describe('Calendar Month', () => {
       </CalendarContext.Provider>
     );
 
-    await userEvent.click(getByText(/Back to Calendar/i));
+    fireEvent.click(getByText(/Back to Calendar/i));
+
+    await act(async () => {
+      jest.runAllTimers();
+    });
 
     expect(hideHelperInformation).toHaveBeenCalled();
   });
 
-  it('should call to close the calendar when the close button is clicked', async () => {
+  it('should call to close the calendar when the close button is clicked', () => {
     const handleCloseButtonClick = jest.fn();
-    const focusedDate = new Date('January 18, 2019');
-
+    const focusedDate = new Date(2019, 0, 18);
     const { getByLabelText } = render(
       <CalendarContext.Provider
         value={{
@@ -284,7 +293,7 @@ describe('Calendar Month', () => {
       </CalendarContext.Provider>
     );
 
-    await userEvent.click(getByLabelText(/close calendar/i));
+    fireEvent.click(getByLabelText(/close calendar/i));
 
     expect(handleCloseButtonClick).toHaveBeenCalled();
   });

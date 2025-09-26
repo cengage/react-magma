@@ -15,7 +15,7 @@ import { baseTableCellStyle, buildCellPaddingStyle } from './TableCell';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface TableHeaderCellProps
-  extends React.HTMLAttributes<HTMLTableHeaderCellElement> {
+  extends React.HTMLAttributes<HTMLTableCellElement> {
   /**
    * Text alignment of the cell content. Right alignment should be used for numeric values
    * @default TableCellAlign.left
@@ -53,6 +53,14 @@ export interface TableHeaderCellProps
    * @default auto
    */
   width?: string | number;
+  /**
+   * Indicates how many columns the header cell spans or extends
+   */
+  colSpan?: number;
+  /**
+   * Indicates how many rows the header cell spans or extends
+   */
+  rowSpan?: number;
 }
 
 export enum TableHeaderCellScope {

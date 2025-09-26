@@ -187,9 +187,7 @@ import React from 'react';
 import { DatePicker } from 'react-magma-dom';
 
 export function Example() {
-  return (
-    <DatePicker labelText="Error *" errorMessage="You made an error" required />
-  );
+  return <DatePicker labelText="Error *" errorMessage="You made an error" />;
 }
 ```
 
@@ -438,6 +436,15 @@ export function Example() {
             friday: 'V',
             saturday: 'S',
           },
+          short: {
+            sunday: 'Dom',
+            monday: 'Lun',
+            tuesday: 'Mar',
+            wednesday: 'Mié',
+            thursday: 'Jue',
+            friday: 'Vie',
+            saturday: 'Sáb',
+          },
           long: {
             sunday: 'Domingo',
             monday: 'Lunes',
@@ -446,6 +453,36 @@ export function Example() {
             thursday: 'Jueves',
             friday: 'Viernes',
             saturday: 'Sábado',
+          },
+        },
+        months: {
+          short: {
+            january: 'Ene',
+            february: 'Feb',
+            march: 'Mar',
+            april: 'Abr',
+            may: 'May',
+            june: 'Jun',
+            july: 'Jul',
+            august: 'Ago',
+            september: 'Sep',
+            october: 'Oct',
+            november: 'Nov',
+            december: 'Dic',
+          },
+          long: {
+            january: 'Enero',
+            february: 'Febrero',
+            march: 'Marzo',
+            april: 'Abril',
+            may: 'Mayo',
+            june: 'Junio',
+            july: 'Julio',
+            august: 'Agosto',
+            september: 'Septiembre',
+            october: 'Octubre',
+            november: 'Noviembre',
+            december: 'Diciembre',
           },
         },
         datePicker: {
@@ -458,6 +495,8 @@ export function Example() {
           nextMonthAriaLabel: 'Próximo Mes',
           disabledDayAriaLabel: 'No disponible. ',
           selectedDayAriaLabel: '(Seleccionado)',
+          todayAriaLabel: '(Hoy)',
+          today: 'Hoy',
         },
         locale: es,
       }}

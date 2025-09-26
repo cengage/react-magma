@@ -93,15 +93,21 @@ export const Disabled = {
 export const Multi = {
   render: (props: MultiSelectProps<SelectOptions>) => (
     <Select
-      isMulti
       {...props}
+      isMulti
       items={[
         { label: 'Red', value: 'red' },
         { label: 'Blue', value: 'blue' },
         { label: 'Green', value: 'green' },
       ]}
+      initialSelectedItems={[{ label: 'Red', value: 'red' }]}
     />
   ),
+
+  args: {
+    ...Default.args,
+    disabled: false,
+  },
 };
 
 const helpLinkLabel = 'Learn more';

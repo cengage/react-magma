@@ -150,7 +150,12 @@ export function useTimePicker(props: UseTimePickerProps) {
     const newHour = calculateHour(sanitizedHour);
 
     setHour(newHour);
-    updateTime(`${newHour}:${minute} ${amPm}`);
+
+    if (!minute && newHour !== hour) {
+      setMinute('00');
+    }
+
+    updateTime(`${newHour}:${minute || '00'} ${amPm}`);
   }
 
   function handleMinuteChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -158,7 +163,12 @@ export function useTimePicker(props: UseTimePickerProps) {
     const newMinute = calculateMinute(sanitizedMinute);
 
     setMinute(newMinute);
-    updateTime(`${hour}:${newMinute} ${amPm}`);
+
+    if (!hour && newMinute !== minute) {
+      setHour('12');
+    }
+
+    updateTime(`${hour || '12'}:${newMinute} ${amPm}`);
   }
 
   function toggleAmPm() {

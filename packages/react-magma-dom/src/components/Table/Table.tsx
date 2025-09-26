@@ -1,9 +1,11 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
+import { transparentize } from 'polished';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { headingMediumStyles } from '../Typography';
 
 export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   /**
@@ -21,10 +23,20 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
    */
   hasHoverStyles?: boolean;
   /**
+   *  If true, the table will have additional styles for table.
+   *  @default false
+   */
+  hasTablePagination?: boolean;
+  /**
    * If true, the table will have square edges
    * @default false
    */
   hasSquareCorners?: boolean;
+  /**
+   * If true, the table will have outer border
+   * @default false
+   */
+  hasOutsideBorder?: boolean;
   /**
    * If true, columns will have vertical borders
    */
@@ -49,6 +61,12 @@ export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
   minWidth?: number;
   rowCount?: number;
   selectedItems?: Array<number>;
+  /**
+   * The title or caption of a table inside a <caption> HTML element that provides the table an accessible
+   * description.
+   * It can be a simple string or a React node, such as a heading element (e.g., <h1>, <h2>).
+   */
+  tableTitle?: React.ReactNode | string;
   /**
    * @internal
    */
@@ -86,6 +104,7 @@ interface TableContextInterface {
   density?: TableDensity;
   hasHoverStyles?: boolean;
   hasSquareCorners?: boolean;
+  hasTablePagination?: boolean;
   hasVerticalBorders?: boolean;
   hasZebraStripes?: boolean;
   isInverse?: boolean;
@@ -99,6 +118,7 @@ export const TableContext = React.createContext<TableContextInterface>({
   density: TableDensity.normal,
   hasHoverStyles: false,
   hasSquareCorners: false,
+  hasTablePagination: false,
   hasZebraStripes: false,
   hasVerticalBorders: false,
   isInverse: false,
@@ -134,15 +154,46 @@ export const TableWrapper = styled.div<{ minWidth: number }>`
   }
 `;
 
+export const StyledTableTitle = styled.caption<{
+  isInverse: boolean;
+  isTitleNode: boolean;
+}>`
+  ${headingMediumStyles};
+  margin-bottom: ${props =>
+    props.isTitleNode || props.theme.spaceScale.spacing04};
+  margin-top: ${props => props.isTitleNode || props.theme.spaceScale.spacing04};
+  text-align: left;
+`;
+
 export const StyledTable = styled.table<{
+  hasOutsideBorder?: boolean;
   hasSquareCorners?: boolean;
+  hasTablePagination?: boolean;
   isInverse?: boolean;
   minWidth: number;
 }>`
-  border-collapse: collapse;
+  border-collapse: ${props =>
+    props.hasOutsideBorder && !props.hasSquareCorners
+      ? 'separate'
+      : 'collapse'};
   border-spacing: 0;
-  border-radius: ${props =>
-    props.hasSquareCorners ? '0' : props.theme.borderRadius};
+  border: ${props =>
+    props.hasOutsideBorder
+      ? `1px solid ${
+          props.isInverse
+            ? transparentize(0.6, props.theme.colors.neutral100)
+            : props.theme.colors.neutral300
+        }`
+      : 'none'};
+  border-radius: ${props => {
+    if (!props.hasSquareCorners) {
+      if (props.hasTablePagination) {
+        return `${props.theme.borderRadius} ${props.theme.borderRadius} 0 0`;
+      }
+      return props.theme.borderRadius;
+    }
+    return '0';
+  }};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
@@ -161,13 +212,16 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       children,
       density = TableDensity.normal,
       hasHoverStyles,
+      hasOutsideBorder,
       hasSquareCorners,
+      hasTablePagination,
       hasVerticalBorders,
       hasZebraStripes,
       isSelectable,
       minWidth = 600,
       rowCount,
       selectedItems,
+      tableTitle,
       testId,
       isSortableBySelected,
       ...other
@@ -185,6 +239,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           density,
           hasHoverStyles,
           hasSquareCorners,
+          hasTablePagination: hasTablePagination,
           hasZebraStripes,
           hasVerticalBorders,
           isInverse: isInverse,
@@ -204,12 +259,24 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
             <StyledTable
               {...other}
               data-testid={testId}
+              hasOutsideBorder={hasOutsideBorder}
               hasSquareCorners={hasSquareCorners}
+              hasTablePagination={hasTablePagination}
               isInverse={isInverse}
               minWidth={minWidth || theme.breakpoints.small}
               ref={ref}
               theme={theme}
             >
+              {tableTitle && (
+                <StyledTableTitle
+                  data-testid={`${testId}-table-title`}
+                  isInverse={isInverse}
+                  isTitleNode={typeof tableTitle !== 'string'}
+                  theme={theme}
+                >
+                  {tableTitle}
+                </StyledTableTitle>
+              )}
               {children}
             </StyledTable>
           </TableWrapper>

@@ -327,3 +327,34 @@ BREAKING CHANGE: description of what part of the API brakes with this commit"
 ```
 
 </details>
+
+#### Playwright
+To install the required browsers (Chromium, Firefox, WebKit) used by Playwright: (should be run from the root of the project)
+
+```
+npx playwright install
+```
+
+To execute all Playwright tests, use the following command:
+
+```sh
+npm run playwright:test
+```
+
+To generate and view the test report after running the tests:
+
+```sh
+npm run playwright:report
+```
+
+To run codegen inspector:
+
+```sh
+npm run playwright:codegen
+```
+
+To see executing playwright tests in real time:
+
+```sh
+npm run playwright:realtime
+```

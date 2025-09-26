@@ -325,3 +325,33 @@ export const reactNodeToString = (node: React.ReactNode): string => {
 
   return '';
 };
+
+export function collectTextFromReactNode(node: React.ReactNode) {
+  const result = [];
+
+  React.Children.forEach(node, child => {
+    if (child === null || typeof child === 'boolean') {
+      return;
+    }
+
+    if (typeof child === 'string' || typeof child === 'number') {
+      result.push(child);
+    } else if (React.isValidElement(child)) {
+      result.push(collectTextFromReactNode(child.props.children));
+    }
+  });
+
+  return result.join(' ');
+}
+
+export const mergeRefs = <T>(...refs: Array<React.Ref<T> | undefined>) => {
+  return (node: T | null) => {
+    refs.forEach(ref => {
+      if (typeof ref === 'function') {
+        ref(node);
+      } else if (ref !== null) {
+        (ref as React.MutableRefObject<T | null>).current = node;
+      }
+    });
+  };
+};

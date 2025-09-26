@@ -1,5 +1,15 @@
 import './theme/styled';
 
+export {
+  AIButton,
+  AIButtonShape,
+  AIButtonSize,
+  AIButtonTextTransform,
+  AIButtonType,
+  AIButtonVariant,
+  IconOnlyAIButtonProps,
+  TextAIButtonProps,
+} from './components/AIButton';
 export { Alert, AlertProps } from './components/Alert';
 export { AlertVariant } from './components/AlertBase';
 export { Announce, AnnounceProps } from './components/Announce';
@@ -50,6 +60,10 @@ export {
 export { Container, ContainerProps } from './components/Container';
 export { Datagrid, DatagridProps } from './components/Datagrid';
 export { DatePicker, DatePickerProps } from './components/DatePicker';
+export {
+  DateTimePicker,
+  DateTimePickerProps,
+} from './components/DateTimePicker';
 export { inDateRange, getDateFromString } from './components/DatePicker/utils';
 export {
   Dropdown,
@@ -143,6 +157,7 @@ export { Label, LabelPosition } from './components/Label';
 export {
   LoadingIndicator,
   LoadingIndicatorProps,
+  LoadingIndicatorType,
 } from './components/LoadingIndicator';
 export { NativeSelect, NativeSelectProps } from './components/NativeSelect';
 export { NavTabs } from './components/NavTabs';
@@ -223,11 +238,11 @@ export {
 } from './components/Tabs';
 export { TabsOrientation, TabsTextTransform } from './components/Tabs/shared';
 export { Tab } from './components/Tabs/Tab';
+export { CustomTab } from './components/Tabs/CustomTab';
 export {
   TabPanelsContainer,
   TabPanelContainerProps,
-} from './components/Tabs/TabPanelsContainer';
-export { TabPanel } from './components/Tabs/TabPanel';
+} from './components/Tabs/TabPanelsContainer';export { TabPanel } from './components/Tabs/TabPanel';
 export { TabsScrollSpyContainer } from './components/Tabs/TabsScrollSpyContainer';
 export { TabScrollSpyPanel } from './components/Tabs/TabScrollSpyPanel';
 
@@ -259,6 +274,7 @@ export {
   Popover,
   PopoverProps,
   PopoverPosition,
+  PopoverAlignment,
   PopoverApi,
 } from './components/Popover';
 export {
@@ -298,6 +314,7 @@ export { I18nContext } from './i18n';
 export { defaultI18n } from './i18n/default';
 export { I18nInterface } from './i18n/interface';
 export { useMediaQuery } from './hooks/useMediaQuery';
+export { useDeviceDetect } from './hooks/useDeviceDetect';
 export { useDataPagination } from './hooks/useDataPagination';
 export { useDescendants } from './hooks/useDescendants';
 export { useGenerateId } from './utils';

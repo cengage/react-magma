@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
 import { Meta, StoryFn } from '@storybook/react/types-6-0';
 import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
@@ -18,11 +18,13 @@ import { IconButton } from '../IconButton';
 import { InputIconPosition, InputSize, InputType } from '../InputBase';
 import { LabelPosition } from '../Label';
 import { NativeSelect } from '../NativeSelect';
+import { Paragraph } from '../Paragraph';
 import { PasswordInput } from '../PasswordInput';
 import { Search } from '../Search';
 import { Spacer, SpacerAxis } from '../Spacer';
 import { TimePicker } from '../TimePicker';
 import { Tooltip } from '../Tooltip';
+import { CustomTopicsRow } from './testUtils';
 
 import { Input, InputProps } from '.';
 
@@ -224,7 +226,6 @@ export const HelpLink = {
     const onHelpLinkClick = () => {
       alert('Help link clicked!');
     };
-
     return (
       <>
         <Input labelText="Help link - top" {...args}>
@@ -299,7 +300,6 @@ export const WithTwoIcons = {
     const onHelpLinkClick = () => {
       alert('Help link clicked!');
     };
-
     return (
       <>
         <Input
@@ -437,7 +437,7 @@ export const URLInput = () => {
       pattern={urlPattern}
       labelText="URL"
       type={InputType.url}
-      errorMessage={hasError ? 'Please enter a url' : null}
+      errorMessage={hasError ? 'Enter a valid URL.' : null}
       value={inputVal}
       onChange={handleChange}
     />
@@ -746,5 +746,132 @@ export const AllInputs = () => {
         </div>
       </div>
     </>
+  );
+};
+
+export function TimeInput() {
+  const [hours, setHours] = React.useState(0);
+  const [minutes, setMinutes] = React.useState(0);
+  const [totalDurationMilliseconds, setTotalDurationMilliseconds] =
+    React.useState(0);
+
+  const makeHoursAndMinutesFromMilliseconds = (
+    milliseconds = 0
+  ): { hours: number; minutes: number } => {
+    const hours = Math.floor(milliseconds / (60 * 60 * 1000));
+    const remainingMilliseconds = milliseconds % (60 * 60 * 1000);
+    const minutes = Math.floor(remainingMilliseconds / (60 * 1000));
+
+    return {
+      hours,
+      minutes,
+    };
+  };
+
+  const onChangeTimedDuration = (
+    event: ChangeEvent<HTMLInputElement>,
+    unit: 'hours' | 'minutes',
+    oppositeUnitValue: number
+  ) => {
+    const inputValue = event.target.value.replace(/\D/g, '');
+    const numericValue = inputValue ? Number(inputValue) : NaN;
+    const currentUnitValue =
+      numericValue && numericValue >= 0 ? numericValue : 0;
+    const isHours = unit === 'hours';
+
+    // Immediate sync for Magma Input
+    isHours ? setHours(currentUnitValue) : setMinutes(currentUnitValue);
+
+    const totalDurationMilliseconds = isHours
+      ? (currentUnitValue * 60 + oppositeUnitValue) * 60 * 1000
+      : (oppositeUnitValue * 60 + currentUnitValue) * 60 * 1000;
+
+    setTotalDurationMilliseconds(totalDurationMilliseconds);
+  };
+
+  React.useEffect(() => {
+    const { hours, minutes } = makeHoursAndMinutesFromMilliseconds(
+      totalDurationMilliseconds
+    );
+    setHours(hours);
+    setMinutes(minutes);
+  }, [totalDurationMilliseconds]);
+
+  return (
+    <>
+      <Paragraph>React Magma inputs:</Paragraph>
+      <Input
+        type={InputType.number}
+        labelText="Hours"
+        inputWrapperStyle={{ width: '264px' }}
+        min={1}
+        max={60}
+        value={hours}
+        onChange={event => onChangeTimedDuration(event, 'hours', minutes)}
+      />
+      <Input
+        type={InputType.number}
+        labelText="Minutes"
+        inputWrapperStyle={{ width: '264px' }}
+        min={1}
+        max={60}
+        value={minutes}
+        onChange={event => onChangeTimedDuration(event, 'minutes', hours)}
+      />
+      <Spacer size={32} />
+      <Paragraph>Native inputs:</Paragraph>
+      <Paragraph style={{ marginBottom: '8px' }}>Hours</Paragraph>
+      <div style={{ display: 'flex', flexDirection: 'column', width: '264px' }}>
+        <input
+          type={InputType.number}
+          min={1}
+          max={60}
+          value={hours}
+          onChange={event => onChangeTimedDuration(event, 'hours', minutes)}
+        />
+        <Paragraph style={{ marginBottom: '8px' }}>Minutes</Paragraph>
+        <input
+          type={InputType.number}
+          min={1}
+          max={60}
+          value={minutes}
+          onChange={event => onChangeTimedDuration(event, 'minutes', hours)}
+        />
+      </div>
+    </>
+  );
+}
+
+export const CustomTopicsRowStory = () => {
+  const topicList = [
+    { reference: 'topic1', title: 'Topic 1' },
+    { reference: 'topic2', title: 'Topic 2' },
+    { reference: 'topic3', title: 'Topic 3' },
+  ];
+
+  const [topicTitle, setTopicTitle] = React.useState('');
+  const [testTopic, setTestTopic] = React.useState<string | undefined>();
+  const [studyMaterialsTopic, setStudyMaterialsTopic] = React.useState<
+    string | undefined
+  >();
+
+  const removeTopicRow = () => {
+    alert('Row removed');
+  };
+
+  return (
+    <CustomTopicsRow
+      topicList={topicList}
+      isRemoveButtonDisabled={false}
+      shouldValidate
+      topicTitle={topicTitle}
+      testTopic={testTopic}
+      studyMaterialsTopic={studyMaterialsTopic}
+      order={1}
+      setTopicTitle={setTopicTitle}
+      setTestTopic={setTestTopic}
+      setStudyMaterialsTopic={setStudyMaterialsTopic}
+      removeTopicRow={removeTopicRow}
+    />
   );
 };

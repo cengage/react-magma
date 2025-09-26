@@ -3,11 +3,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { FloatingArrow } from '@floating-ui/react';
 
-import {
-  hasActiveElementsChecker,
-  PopoverContext,
-  PopoverPosition,
-} from './Popover';
+import { hasActiveElementsChecker, PopoverContext } from './Popover';
 import { PopoverHeader, PopoverFooter } from './PopoverSection';
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { ThemeInterface } from '../../theme/magma';
@@ -29,7 +25,6 @@ export interface PopoverContentProps
 }
 
 const StyledCard = styled(Card)<{
-  position: PopoverPosition;
   isInverse?: boolean;
   isOpen?: boolean;
   maxHeight?: string;
@@ -54,7 +49,7 @@ const StyledCard = styled(Card)<{
         ? props.theme.colors.primary400
         : props.theme.colors.neutral300};
   width: ${props => (props.width ? props.width : '100%')};
-  max-width: 300px;
+  max-width: ${props => (props.width ? props.width : '300px')};
 `;
 
 const StyledAnnounce = styled(Announce)`
@@ -111,7 +106,9 @@ export const PopoverContent = React.forwardRef<
 
   return (
     <div
-      ref={context.setFloating}
+      ref={el =>
+        context.isOpen && context.setFloating && context.setFloating(el)
+      }
       // z-index 996 is used to make the content appear above docs elements (code blocks)
       // and below the Modal component (z-index 997)
       style={{ ...context.floatingStyles, zIndex: 996 }}
@@ -141,7 +138,6 @@ export const PopoverContent = React.forwardRef<
 
       <StyledCard
         {...other}
-        position={context.position}
         hasDropShadow
         isInverse={context.isInverse}
         isOpen={context.isOpen}

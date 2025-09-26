@@ -95,7 +95,6 @@ export const WithChildren = {
     const onHelpLinkClick = () => {
       alert('Help link clicked!');
     };
-
     return (
       <Input labelText={labelText} {...args}>
         <Tooltip content={helpLinkLabel}>

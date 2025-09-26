@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import { CheckIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -11,8 +12,9 @@ import {
   DropdownContent,
   DropdownMenuItem,
 } from '../Dropdown';
+import { IconButton } from '../IconButton';
 
-import { ButtonGroup, ButtonGroupOrientation, ButtonGroupAlignment } from '.';
+import { ButtonGroup, ButtonGroupAlignment, ButtonGroupOrientation } from '.';
 
 const testId = 'test-id';
 
@@ -58,7 +60,6 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
-
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'start');
       });
@@ -76,7 +77,6 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
-
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'center');
       });
@@ -94,7 +94,6 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
-
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'end');
       });
@@ -112,7 +111,6 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
-
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'stretch');
       });
@@ -130,7 +128,6 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
-
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'space-between');
       });
@@ -170,7 +167,6 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
-
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'start');
       });
@@ -188,7 +184,6 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
-
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'center');
       });
@@ -206,7 +201,6 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
-
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'end');
       });
@@ -224,7 +218,6 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
-
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'stretch');
       });
@@ -242,7 +235,6 @@ describe('ButtonGroup', () => {
         );
 
         const buttonGroup = getByTestId(testId);
-
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'start');
       });
@@ -496,5 +488,52 @@ describe('ButtonGroup', () => {
         expect(container).toMatchSnapshot();
       });
     });
+  });
+});
+
+describe('Size', () => {
+  const icon = <CheckIcon />;
+
+  it('Large', () => {
+    const { container } = render(
+      <ButtonGroup>
+        <IconButton icon={icon} size={ButtonSize.large}>
+          Large
+        </IconButton>
+      </ButtonGroup>
+    );
+
+    const svg = container.querySelector('svg');
+
+    expect(svg).toHaveAttribute('height', magma.iconSizes.medium.toString());
+    expect(svg).toHaveAttribute('width', magma.iconSizes.medium.toString());
+  });
+
+  it('Medium', () => {
+    const { container } = render(
+      <ButtonGroup>
+        <IconButton icon={icon} size={ButtonSize.medium}>
+          Medium
+        </IconButton>
+      </ButtonGroup>
+    );
+
+    const svg = container.querySelector('svg');
+    expect(svg).toHaveAttribute('height', magma.iconSizes.small.toString());
+    expect(svg).toHaveAttribute('width', magma.iconSizes.small.toString());
+  });
+
+  it('Small', () => {
+    const { container } = render(
+      <ButtonGroup>
+        <IconButton icon={icon} size={ButtonSize.small}>
+          Small
+        </IconButton>
+      </ButtonGroup>
+    );
+
+    const svg = container.querySelector('svg');
+    expect(svg).toHaveAttribute('height', magma.iconSizes.xSmall.toString());
+    expect(svg).toHaveAttribute('width', magma.iconSizes.xSmall.toString());
   });
 });

@@ -19,11 +19,14 @@ import {
   MeterChart,
   ScatterChart,
   ComboChart,
+  ChartOptions,
 } from '@carbon/charts-react';
+import { Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 import { ThemeInterface, ThemeContext, useIsInverse } from 'react-magma-dom';
-import './styles.min.css';
+
+import { carbonChartStyles } from './embeddedStyles';
 
 export enum CarbonChartType {
   area = 'area',
@@ -47,12 +50,12 @@ export enum CarbonChartType {
 }
 
 export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
-  dataSet: Array<object>;
+  dataSet: Array<Object>;
   isInverse?: boolean;
   /**
    * For a complete list of options, see Carbon Charts documentation
    */
-  options: object;
+  options: ChartOptions;
   testId?: string;
   /**
    * @internal
@@ -66,6 +69,7 @@ export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const CarbonChartWrapper = styled.div<{
   isInverse?: boolean;
+  groupsLength: number;
   theme: ThemeInterface;
 }>`
   .cds--data-table thead tr th {
@@ -205,6 +209,7 @@ const CarbonChartWrapper = styled.div<{
     .cds--cc--grid rect.chart-grid-backdrop {
       fill: transparent;
     }
+    .cds--cc--scatter circle.dot,
     .cds--cc--scatter circle.dot.hovered {
       padding: 10px;
     }
@@ -213,6 +218,36 @@ const CarbonChartWrapper = styled.div<{
     .cds--cc--scatter circle.dot.unfilled {
       stroke-width: 6px;
       transition: 0.1s all linear;
+    }
+    .cds--cc--scatter circle.dot {
+      filter: drop-shadow(
+            1px 0px 0px
+              ${props =>
+                props.isInverse
+                  ? props.theme.colors.primary600
+                  : props.theme.colors.neutral100}
+          )
+          drop-shadow(
+            -1px 0px 0px
+              ${props =>
+                props.isInverse
+                  ? props.theme.colors.primary600
+                  : props.theme.colors.neutral100}
+          )
+          drop-shadow(
+            0px 1px 0px
+              ${props =>
+                props.isInverse
+                  ? props.theme.colors.primary600
+                  : props.theme.colors.neutral100}
+          )
+          drop-shadow(
+            0px -1px 0px
+              ${props =>
+                props.isInverse
+                  ? props.theme.colors.primary600
+                  : props.theme.colors.neutral100}
+          );
     }
     .cds--cc--scatter circle.dot.hovered {
       stroke-width: 0.5em;
@@ -246,14 +281,17 @@ const CarbonChartWrapper = styled.div<{
                 : props.theme.colors.neutral100}
         );
     }
+    .cds--cc--lollipop circle.dot,
     .cds--cc--lollipop circle.dot.filled,
     .cds--cc--lollipop circle.dot.hovered {
       stroke-width: 15px;
     }
+    .cds--cc--scatter-stacked circle.dot,
     .cds--cc--scatter-stacked circle.dot.hovered,
     .cds--cc--scatter-stacked circle.dot.unfilled,
     .cds--cc--scatter circle.dot.unfilled,
     .cds--cc--lollipop circle.dot.filled,
+    .cds--cc--lollipop circle.dot,
     .cds--cc--lollipop circle.dot.hovered {
       transition: 0.1s all linear;
       filter: drop-shadow(
@@ -289,6 +327,22 @@ const CarbonChartWrapper = styled.div<{
       transition: 0.1s all linear;
       stroke-width: 1.1em;
     }
+    
+    .cds--cc--tooltip {
+    ${props => {
+      const chartColors =
+        (props.isInverse
+          ? props.theme.chartColorsInverse
+          : props.theme.chartColors) || [];
+
+      return chartColors.reduce((result, color, index) => {
+        const indexNum = index + 1;
+
+        result += `.tooltip-${props.groupsLength}-1-${indexNum} { background-color: ${color}; }`;
+
+        return result;
+      }, '');
+    }}
 
     .cds--overflow-menu-options__btn:focus {
       outline-color: ${props =>
@@ -480,7 +534,6 @@ interface ColorsObject {
 export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
   (props, ref) => {
     const {
-      children,
       testId,
       isInverse: isInverseProp,
       type,
@@ -520,14 +573,16 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       const uniqueGroups = allGroups.filter(
         (g, index) => allGroups.indexOf(g) === index
       );
+      const customColors = ((options as any).colors as string[]) || [];
+      const allColors = [...customColors, ...theme.chartColors];
+      const allInverseColors = [...customColors, ...theme.chartColorsInverse];
 
       uniqueGroups.forEach((group, i) => {
-        if (uniqueGroups.length <= theme.chartColors.length) {
+        if (uniqueGroups.length <= allColors.length) {
           return (scaleColorsObj[group || ('null' as any)] = isInverse
-            ? theme.chartColorsInverse[i]
-            : theme.chartColors[i]);
+            ? allInverseColors[i]
+            : allColors[i]);
         }
-
         return {};
       });
 
@@ -541,6 +596,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         scale: buildColors(),
       },
       tooltip: {
+        ...(options?.tooltip || {}),
         truncation: {
           type: 'none',
         },
@@ -556,17 +612,23 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       });
     });
 
+    const groupsLength = Object.keys(buildColors()).length;
+
     return (
-      <CarbonChartWrapper
-        data-testid={testId}
-        ref={ref}
-        isInverse={isInverse}
-        theme={theme}
-        className="carbon-chart-wrapper"
-        {...rest}
-      >
-        <ChartType data={dataSet} options={newOptions} />
-      </CarbonChartWrapper>
+      <>
+        <Global styles={carbonChartStyles} />
+        <CarbonChartWrapper
+          data-testid={testId}
+          ref={ref}
+          isInverse={isInverse}
+          theme={theme}
+          className="carbon-chart-wrapper"
+          groupsLength={groupsLength < 6 ? groupsLength : 14}
+          {...rest}
+        >
+          <ChartType data={dataSet} options={newOptions} />
+        </CarbonChartWrapper>
+      </>
     );
   }
 );

@@ -14,7 +14,6 @@ import { HiddenStyles } from '../../utils/UtilityStyles';
 import { RadioContext } from '../RadioGroup';
 import {
   DisplayInputStyles,
-  DisplayInputActiveStyles,
   buildDisplayInputActiveBackground,
   buildDisplayInputFocusStyles,
 } from '../SelectionControls/InputStyles';
@@ -148,12 +147,6 @@ const StyledFakeInput = styled.span<{
     // active state
     background: ${props => buildDisplayInputActiveBackground(props)};
   }
-
-  ${HiddenInput}:not(:disabled):active + label & {
-    &:after {
-      ${DisplayInputActiveStyles}
-    }
-  }
 `;
 
 export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
@@ -215,9 +208,9 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
             theme={theme}
           >
             {context.selectedValue === value ? (
-              <RadioButtonCheckedIcon />
+              <RadioButtonCheckedIcon aria-hidden />
             ) : (
-              <RadioButtonUncheckedIcon />
+              <RadioButtonUncheckedIcon aria-hidden />
             )}
           </StyledFakeInput>
           {isTextVisuallyHidden ? (

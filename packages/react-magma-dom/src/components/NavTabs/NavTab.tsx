@@ -222,6 +222,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
             orientation={orientation}
             ref={ref}
             theme={theme}
+            tabIndex={0}
           />
         ) : (
           <StyledTab
@@ -237,6 +238,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
             orientation={orientation}
             textTransform={textTransform}
             theme={theme}
+            tabIndex={0}
           >
             {icon && (
               <StyledIcon

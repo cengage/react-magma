@@ -86,7 +86,6 @@ export default info;
 export const Default = {
   render: args => {
     const [isOpen, setIsOpen] = React.useState(false);
-
     return (
       <div>
         <Transition

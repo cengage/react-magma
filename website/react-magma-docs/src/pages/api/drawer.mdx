@@ -100,6 +100,56 @@ export function Example() {
 }
 ```
 
+## Show background overlay
+
+The `showBackgroundOverlay` can be set to `false` to hide a background overlay when the drawer is open.
+
+```tsx
+import React from 'react';
+
+import {
+  Button,
+  Drawer,
+  DrawerPosition,
+  NavTab,
+  NavTabs,
+  TabsOrientation,
+  VisuallyHidden,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [showDrawer, setShowDrawer] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
+
+  return (
+    <>
+      <Drawer
+        onClose={() => {
+          setShowDrawer(false);
+          buttonRef.current.focus();
+        }}
+        isOpen={showDrawer}
+        position={DrawerPosition.right}
+        ariaLabel="Site Navigation Drawer"
+        closeAriaLabel="Close Navigation Drawer"
+        showBackgroundOverlay={false}
+      >
+        <NavTabs orientation={TabsOrientation.vertical}>
+          <NavTab to="#">One</NavTab>
+          <NavTab to="#">Two</NavTab>
+          <NavTab to="#">Three</NavTab>
+          <NavTab to="#">Four</NavTab>
+        </NavTabs>
+      </Drawer>
+      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
+        Show Drawer
+        <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
+      </Button>
+    </>
+  );
+}
+```
+
 ## Inverse
 
 ```tsx
@@ -143,6 +193,51 @@ export function Example() {
         </Button>
       </CardBody>
     </Card>
+  );
+}
+```
+
+## Animations
+
+The `isAnimated` prop controls whether the drawer has sliding animations when opening and closing. By default, animations are disabled (`isAnimated={false}`).
+
+```tsx
+import React from 'react';
+
+import {
+  Button,
+  Drawer,
+  DrawerPosition,
+  VisuallyHidden,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [showDrawer, setShowDrawer] = React.useState(false);
+  const buttonRef = React.useRef<HTMLButtonElement>();
+
+  return (
+    <>
+      <Drawer
+        closeAriaLabel="Close drawer"
+        header="Animated Drawer"
+        isAnimated
+        isOpen={showDrawer}
+        onClose={() => {
+          setShowDrawer(false);
+          buttonRef.current.focus();
+        }}
+        position={DrawerPosition.left}
+      >
+        <p>This drawer slides in from the left with animation.</p>
+        <p>
+          <Button>This is a button</Button>
+        </p>
+      </Drawer>
+      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
+        Show Animated Drawer
+        <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
+      </Button>
+    </>
   );
 }
 ```

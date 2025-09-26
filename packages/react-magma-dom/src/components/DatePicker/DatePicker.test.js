@@ -18,17 +18,53 @@ import {
 } from 'date-fns';
 import * as es from 'date-fns/locale/es';
 
-import { Modal } from '../Modal';
-import { ClearingTheDate } from './DatePicker.stories';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
+import { Button } from '../Button';
+import { Modal } from '../Modal';
 
 import { DatePicker } from '.';
+
+HTMLCanvasElement.prototype.getContext = () => ({
+  font: '',
+  measureText: text => ({ width: text.length * 8 }),
+});
+
+const ClearingTheDate = args => {
+  const [chosenDate, setChosenDate] = React.useState(undefined);
+
+  function handleDateChange(newChosenDate) {
+    setChosenDate(newChosenDate);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Chosen Date: </strong>
+        {chosenDate && (
+          <span>
+            {`${
+              chosenDate.getMonth() + 1
+            }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+          </span>
+        )}
+      </p>
+      <DatePicker
+        {...args}
+        onDateChange={handleDateChange}
+        onChange={() => {}}
+        value={chosenDate}
+        isClearable
+      />
+      <br />
+      <Button onClick={() => handleDateChange(null)}>Clear Date</Button>
+    </div>
+  );
+};
 
 describe('Date Picker', () => {
   it('should find element by testId', async () => {
     const testId = 'test-id';
-
     const { getByTestId } = render(
       <DatePicker labelText="Date Picker Label" testId={testId} />
     );
@@ -53,8 +89,7 @@ describe('Date Picker', () => {
   });
 
   it('should render with a default date', async () => {
-    const defaultDate = new Date('January 17, 2019');
-
+    const defaultDate = new Date(2019, 0, 17);
     const { getByLabelText } = render(
       <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
     );
@@ -68,8 +103,7 @@ describe('Date Picker', () => {
   });
 
   it('should render a Clear icon if isClearable prop is true', async () => {
-    const valueDate = new Date('January 23, 2019');
-
+    const valueDate = new Date(2019, 0, 23);
     const { getByTestId } = render(
       <DatePicker value={valueDate} isClearable labelText="Date Picker Label" />
     );
@@ -81,22 +115,23 @@ describe('Date Picker', () => {
 
   it('should clear input and Chosen Date value after clicking on isClearable X button', async () => {
     const labelText = 'Date Picker Label';
-    const now = new Date();
+    const valueDate = new Date(2025, 8, 1);
     const day =
-      format(now, 'dd')[0] === '0' ? format(now, 'dd')[1] : format(now, 'dd');
+      format(valueDate, 'dd')[0] === '0'
+        ? format(valueDate, 'dd')[1]
+        : format(valueDate, 'dd');
     const chosenDate = `${
-      now.getMonth() + 1
-    }/${now.getDate()}/${now.getFullYear()}`;
+      valueDate.getMonth() + 2
+    }/${valueDate.getDate()}/${valueDate.getFullYear()}`;
 
-    const { getByText, getByTestId, getByLabelText } = render(
-      <ClearingTheDate.render labelText={labelText} />
+    const { getByText, getAllByText, getByTestId, getByLabelText } = render(
+      <ClearingTheDate.render labelText={labelText} defaultDate={valueDate} />
     );
 
     await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByText(day)).toBeInTheDocument();
-
-    await userEvent.click(getByText(day));
+    expect(getAllByText(day)[1]).toBeInTheDocument();
+    await userEvent.click(getAllByText(day)[1]);
 
     expect(getByText('Chosen Date:').nextSibling.innerHTML).toEqual(chosenDate);
 
@@ -108,22 +143,23 @@ describe('Date Picker', () => {
 
   it('should clear input and Chosen Date value after clicking on Clear Date button', async () => {
     const labelText = 'Date Picker Label';
-    const now = new Date();
+    const valueDate = new Date(2025, 6, 1);
     const day =
-      format(now, 'dd')[0] === '0' ? format(now, 'dd')[1] : format(now, 'dd');
+      format(valueDate, 'dd')[0] === '0'
+        ? format(valueDate, 'dd')[1]
+        : format(valueDate, 'dd');
     const chosenDate = `${
-      now.getMonth() + 1
-    }/${now.getDate()}/${now.getFullYear()}`;
+      valueDate.getMonth() + 2
+    }/${valueDate.getDate()}/${valueDate.getFullYear()}`;
 
-    const { getByText, getByLabelText } = render(
-      <ClearingTheDate.render labelText={labelText} />
+    const { getByText, getAllByText, getByLabelText } = render(
+      <ClearingTheDate.render labelText={labelText} defaultDate={valueDate} />
     );
 
     await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByText(day)).toBeInTheDocument();
-
-    await userEvent.click(getByText(day));
+    expect(getAllByText(day)[1]).toBeInTheDocument();
+    await userEvent.click(getAllByText(day)[1]);
 
     expect(getByText('Chosen Date:').nextSibling.innerHTML).toEqual(chosenDate);
 
@@ -134,8 +170,8 @@ describe('Date Picker', () => {
   });
 
   it('should set the value to the date in the value prop', async () => {
-    const defaultDate = new Date('January 17, 2019');
-    const valueDate = new Date('January 23, 2019');
+    const defaultDate = new Date(2019, 0, 17);
+    const valueDate = new Date(2019, 0, 23);
 
     const { getByLabelText } = render(
       <DatePicker
@@ -154,8 +190,8 @@ describe('Date Picker', () => {
   });
 
   it('should not set the value to the date if it is before the minDate', async () => {
-    const valueDate = new Date('January 23, 2019');
-    const minDate = new Date('January 10, 2020');
+    const valueDate = new Date(2019, 0, 23);
+    const minDate = new Date(2020, 0, 10);
 
     const { getByLabelText } = render(
       <DatePicker
@@ -170,15 +206,18 @@ describe('Date Picker', () => {
     });
   });
 
-  xit('should not allow to navigate through inactive days', async () => {
-    const minDate = new Date('January 10, 2020');
-    const valueDate = new Date('January 11, 2020');
+  it('should not allow to navigate through inactive days', async () => {
+    const minDate = new Date(2020, 0, 10);
+    const valueDate = new Date(2020, 0, 11);
+    const monthYear = format(valueDate, 'MMMM yyyy');
+    const [month, year] = monthYear.split(' ');
 
     const { getByText, getByRole } = render(
       <DatePicker minDate={minDate} value={valueDate} />
     );
 
-    expect(getByText('January 2020')).toBeInTheDocument();
+    expect(getByText(month)).toBeInTheDocument();
+    expect(getByText(year)).toBeInTheDocument();
 
     const selectedDateButton = getByText(11);
     const button = getByRole('button');
@@ -212,13 +251,14 @@ describe('Date Picker', () => {
     expect(getByText(18)).toHaveFocus();
   });
 
-  // TODO : unskip this test
-  xit('should lock focus inside', async () => {
-    const valueDate = new Date('January 1, 2020');
+  it('should lock focus inside', async () => {
+    const valueDate = new Date(2020, 0, 1);
 
-    const { getByText, getByRole } = render(<DatePicker value={valueDate} />);
+    const { getByRole, getAllByText } = render(
+      <DatePicker value={valueDate} />
+    );
 
-    const selectedDateButton = getByText(1);
+    const selectedDateButton = getAllByText(1)[0];
     const button = getByRole('button');
 
     await userEvent.click(button);
@@ -231,13 +271,16 @@ describe('Date Picker', () => {
     await userEvent.tab();
     await userEvent.tab();
     await userEvent.tab();
+    await userEvent.tab();
+    await userEvent.tab();
+    awaituserEvent.tab();
 
     expect(selectedDateButton).toHaveFocus();
   });
 
   it('should not set the value to the date if it is after the maxDate', async () => {
-    const valueDate = new Date('January 23, 2020');
-    const maxDate = new Date('January 10, 2020');
+    const valueDate = new Date(2020, 0, 23);
+    const maxDate = new Date(2020, 0, 10);
 
     const { getByLabelText } = render(
       <DatePicker
@@ -285,8 +328,7 @@ describe('Date Picker', () => {
     expect(datePickerInput).toHaveAttribute('value', valueDate);
   });
 
-  // TODO Unskip
-  xit('should keep the user inputted date in the input even if it is before the maxDate', async () => {
+  it('should keep the user inputted date in the input even if it is before the maxDate', async () => {
     const labelText = 'Date Picker Label';
     const valueDate = '03/20/2020';
     const maxDate = '02/02/2020';
@@ -301,7 +343,6 @@ describe('Date Picker', () => {
     );
 
     const datePickerInput = getByLabelText('Date Picker Label');
-
     expect(datePickerInput).toHaveAttribute('value', defaultDate);
 
     await userEvent.type(
@@ -320,10 +361,10 @@ describe('Date Picker', () => {
   });
 
   it('should disable a date the does not fall in the min and max date range', async () => {
-    const minDate = new Date('January 5, 2020');
-    const maxDate = new Date('January 10, 2020');
+    const minDate = new Date(2020, 0, 5);
+    const maxDate = new Date(2020, 0, 10);
 
-    const { container, getByText } = render(
+    const { container, getAllByText } = render(
       <DatePicker
         labelText="Date Picker Label"
         minDate={minDate}
@@ -335,13 +376,12 @@ describe('Date Picker', () => {
       container.querySelector('table').focus();
     });
 
-    expect(getByText('1')).toHaveAttribute('aria-disabled');
-    expect(getByText('12')).toHaveAttribute('aria-disabled');
+    expect(getAllByText('1')[0]).toHaveAttribute('aria-disabled');
+    expect(getAllByText('12')[0]).toHaveAttribute('aria-disabled');
   });
 
   it('should render custom placeholder text', async () => {
     const customPlaceholder = 'Custom text';
-
     const { getByLabelText } = render(
       <DatePicker
         placeholder={customPlaceholder}
@@ -359,7 +399,6 @@ describe('Date Picker', () => {
 
   it('should render a helper message on the date picker input', async () => {
     const helperMessage = 'Help information';
-
     const { getByText } = render(
       <DatePicker labelText="Date Picker Label" helperMessage={helperMessage} />
     );
@@ -371,7 +410,6 @@ describe('Date Picker', () => {
 
   it('should render an error message on the date picker input', async () => {
     const errorMessage = 'Help information';
-
     const { getByText } = render(
       <DatePicker labelText="Date Picker Label" errorMessage={errorMessage} />
     );
@@ -383,7 +421,6 @@ describe('Date Picker', () => {
 
   it('should require the date picker input', async () => {
     const labelText = 'Date Picker Label';
-
     const { getByLabelText } = render(
       <DatePicker labelText={labelText} required />
     );
@@ -397,7 +434,6 @@ describe('Date Picker', () => {
     const onChange = jest.fn();
     const onInputChange = jest.fn();
     const labelText = 'Date Picker Label';
-
     const { getByLabelText } = render(
       <DatePicker
         labelText={labelText}
@@ -447,12 +483,10 @@ describe('Date Picker', () => {
     expect(onInputBlur).toHaveBeenCalled();
   });
 
-  // TODO: Fix test (The logic for DatePicker was changed)
-  xit('should change the focused date and call on change on blur if the typed in date is a valid date', async () => {
+  it('should change the focused date and call on change on blur if the typed in date is a valid date', async () => {
     const onChange = jest.fn();
     const labelText = 'Date Picker Label';
-
-    const { findByLabelText } = render(
+    const { getByLabelText, getAllByText } = render(
       <DatePicker labelText={labelText} onChange={onChange} />
     );
 
@@ -474,16 +508,14 @@ describe('Date Picker', () => {
     await userEvent.click(toggleButton);
 
     expect(
-      getByText(new Date('1/1/1991').getDate().toString())
+      getAllByText(new Date(1991, 0, 1).getDate().toString())[0]
     ).not.toHaveStyleRule('border-color', 'transparent');
   });
 
-  // TODO: Fix test (The logic for DatePicker was changed)
-  xit('should handle a date lower than the year 1000', async () => {
+  it('should handle a date lower than the year 1000', async () => {
     const onChange = jest.fn();
     const labelText = 'Date Picker Label';
-
-    const { findByLabelText } = render(
+    const { getByLabelText, getAllByText } = render(
       <DatePicker labelText={labelText} onChange={onChange} />
     );
 
@@ -505,13 +537,12 @@ describe('Date Picker', () => {
     await userEvent.click(toggleButton);
 
     expect(
-      getByText(new Date('1/1/0123').getDate().toString())
+      getAllByText(new Date(123, 0, 1).getDate().toString())[0]
     ).not.toHaveStyleRule('border-color', 'transparent');
   });
 
   it('should open the calendar month when the icon button is clicked', async () => {
-    const defaultDate = new Date('January 17, 2019');
-
+    const defaultDate = new Date(2019, 0, 17);
     const { getByLabelText, getByTestId } = render(
       <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
     );
@@ -527,21 +558,25 @@ describe('Date Picker', () => {
   });
 
   it('should focus the calendar header when the calendar is opened with no chosen date', async () => {
-    const now = new Date();
-    const monthYear = format(now, 'MMMM yyyy');
-
-    const { getByLabelText, getByText } = render(
+    const defaultDate = new Date(2019, 0, 17);
+    const monthYear = format(defaultDate, 'MMMM yyyy');
+    const [month, year] = monthYear.split(' ');
+    const { getByLabelText, getByTestId } = render(
       <DatePicker labelText="Date Picker Label" />
     );
 
     await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByText(monthYear)).toBe(document.activeElement.firstChild);
+    const monthElement = getByTestId('month-picker');
+    const yearElement = getByTestId('year-picker');
+
+    expect(monthElement).toBeInTheDocument(document.activeElement);
+    expect(monthElement).toBeInTheDocument(month);
+    expect(yearElement).toBeInTheDocument(year);
   });
 
   it('should focus the chosen date when the calendar is opened', async () => {
-    const defaultDate = new Date('January 17, 2019');
-
+    const defaultDate = new Date(2019, 0, 17);
     const { getByLabelText, getByText } = render(
       <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
     );
@@ -552,11 +587,11 @@ describe('Date Picker', () => {
   });
 
   it('should take focus off of chosen date when none valid date in input', async () => {
-    const defaultDate = new Date('January 17, 2019');
+    const defaultDate = new Date(2019, 0, 17);
     const now = new Date();
+    const [month, year] = format(now, 'MMMM yyyy').split(' ');
     const labelText = 'Date Picker Label';
-
-    const { getByLabelText, getByText } = render(
+    const { getByLabelText, getByText, getAllByText } = render(
       <DatePicker defaultDate={defaultDate} labelText={labelText} />
     );
 
@@ -572,42 +607,41 @@ describe('Date Picker', () => {
 
     await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByText(format(now, 'MMMM yyyy'))).not.toBeNull();
-    expect(getByText(format(now, 'd'))).not.toBe(document.activeElement);
+    expect(getByText(month)).not.toBeNull();
+    expect(getByText(year)).not.toBeNull();
+    expect(getAllByText(format(now, 'd'))[0]).not.toBe(document.activeElement);
   });
 
   it('should go to the previous month when the previous month button is clicked', async () => {
-    const defaultDate = new Date('January 17, 2019');
+    const defaultDate = new Date(2019, 0, 17);
     const labelText = 'Date Picker Label';
-
-    const { getByLabelText, getByText } = render(
+    const { getByLabelText, getAllByText } = render(
       <DatePicker defaultDate={defaultDate} labelText={labelText} />
     );
 
     await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByText(/january/i)).toBeInTheDocument();
+    expect(getAllByText(/january/i)[0]).toBeInTheDocument();
 
-    await userEvent.click(getByLabelText(/previous month/i));
+    await userEvent.click(getByLabelText(/Navigate back/i));
 
-    expect(getByText(/december/i)).toBeInTheDocument();
+    expect(getAllByText(/december/i)[0]).toBeInTheDocument();
   });
 
   it('should go to the next month when the next month button is clicked', async () => {
-    const defaultDate = new Date('January 17, 2019');
+    const defaultDate = new Date(2019, 0, 17);
     const labelText = 'Date Picker Label';
-
-    const { getByLabelText, getByText } = render(
+    const { getByLabelText, getAllByText } = render(
       <DatePicker defaultDate={defaultDate} labelText={labelText} />
     );
 
     await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByText(/january/i)).toBeInTheDocument();
+    expect(getAllByText(/january/i)[0]).toBeInTheDocument();
 
-    await userEvent.click(getByLabelText(/next month/i));
+    await userEvent.click(getByLabelText(/Navigate forward/i));
 
-    expect(getByText(/february/i)).toBeInTheDocument();
+    expect(getAllByText(/february/i)[0]).toBeInTheDocument();
   });
 
   it('should close the calendar when the close button is clicked', async () => {
@@ -641,8 +675,7 @@ describe('Date Picker', () => {
   });
 
   it('should close the calendar month when the escape key is pressed', async () => {
-    const defaultDate = new Date('January 17, 2019');
-
+    const defaultDate = new Date(2019, 0, 17);
     const { getByLabelText, getByTestId } = render(
       <DatePicker defaultDate={defaultDate} labelText="Date Picker Label" />
     );
@@ -709,14 +742,20 @@ describe('Date Picker', () => {
     const now = new Date();
     const minDate = format(addMonths(now, 2), 'MM/dd/yyyy');
     const monthYear = format(addMonths(now, 2), 'MMMM yyyy');
+    const [month, year] = monthYear.split(' ');
 
-    const { getByLabelText, getByText } = render(
+    const { getByLabelText, getByTestId } = render(
       <DatePicker minDate={minDate} labelText="Date Picker Label" />
     );
 
     await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByText(monthYear)).toBe(document.activeElement.firstChild);
+    const monthElement = getByTestId('month-picker');
+    const yearElement = getByTestId('year-picker');
+
+    expect(monthElement).toBeInTheDocument(document.activeElement);
+    expect(monthElement).toBeInTheDocument(month);
+    expect(yearElement).toBeInTheDocument(year);
   });
 
   it('should handle a day click', async () => {
@@ -724,8 +763,7 @@ describe('Date Picker', () => {
     const onDateChange = jest.fn();
     const defaultDate = new Date();
     const labelText = 'Date picker label';
-
-    const { getByText, container } = render(
+    const { getAllByText, container } = render(
       <DatePicker
         defaultDate={defaultDate}
         labelText={labelText}
@@ -738,7 +776,7 @@ describe('Date Picker', () => {
       container.querySelector('table').focus();
     });
 
-    await userEvent.click(getByText(defaultDate.getDate().toString()));
+    await userEvent.click(getAllByText(defaultDate.getDate().toString())[0]);
 
     expect(onDateChange).toHaveBeenCalled();
     expect(onChange).toHaveBeenCalled();
@@ -748,12 +786,12 @@ describe('Date Picker', () => {
     it('types in the input if you type anything other than the question mark key', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
       const { getByLabelText, queryByRole } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
       const datePickerInput = getByLabelText(labelText);
+      fireEvent.focus(datePickerInput);
 
       act(() => {
         datePickerInput.focus();
@@ -764,16 +802,15 @@ describe('Date Picker', () => {
       expect(queryByRole('dialog')).not.toBeInTheDocument();
     });
 
-    // TODO: Fix test (Incorrect except, use not.toHaveFocus() and not.toHaveSelection())
     it('does not update focused date if date is not focused', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
-      const { getByLabelText, getByText, container } = render(
+      const { getByLabelText, getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      const nextMonthButton = getByLabelText(/next month/i);
+      const nextMonthButton = getByLabelText(/Navigate forward/i);
+      fireEvent.focus(nextMonthButton);
 
       act(() => {
         nextMonthButton.focus();
@@ -785,152 +822,182 @@ describe('Date Picker', () => {
         container.querySelector('table').focus();
       });
 
-      expect(getByText(defaultDate.getDate().toString())).not.toHaveStyleRule(
-        'border-color',
-        'transparent'
-      );
+      expect(
+        getAllByText(defaultDate.getDate().toString())[0]
+      ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    // TODO: Fix test (Incorrect except, use toHaveFocus())
     it('ArrowUp', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
-      const { getByText, getByLabelText } = render(
+      const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
-      await userEvent.keyboard('{ArrowUp}');
+      fireEvent.focus(container.querySelector('table'));
+
+      getAllByText(subWeeks(defaultDate, 1).getDate().toString())[0].focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'ArrowUp',
+        code: 38,
+      });
 
       expect(
-        getByText(subWeeks(defaultDate, 1).getDate().toString())
+        getAllByText(subWeeks(defaultDate, 1).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    // TODO: Fix test (Incorrect except, use toHaveFocus())
-    it('ArrowLeft', async () => {
+    it('ArrowLeft', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
-      const { getByText, getByLabelText } = render(
+      const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
-      await userEvent.keyboard('{ArrowLeft}');
+      fireEvent.focus(container.querySelector('table'));
+
+      getAllByText(defaultDate.getDate().toString())[0].focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'ArrowLeft',
+        code: 37,
+      });
 
       expect(
-        getByText(subDays(defaultDate, 1).getDate().toString())
+        getAllByText(subDays(defaultDate, 1).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    // TODO: Fix test (Incorrect except, use toHaveFocus())
-    it('Home', async () => {
+    it('Home', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
-      const { getByText, getByLabelText } = render(
+      const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
-      await userEvent.keyboard('{Home}');
+      fireEvent.focus(container.querySelector('table'));
+
+      getAllByText(defaultDate.getDate().toString())[0].focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'Home',
+        code: 36,
+      });
 
       expect(
-        getByText(startOfWeek(defaultDate, 1).getDate().toString())
+        getAllByText(startOfWeek(defaultDate, 1).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    // TODO: Fix test (Incorrect except, use toHaveFocus())
-    it('PageUp', async () => {
+    it('PageUp', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
-      const { getByText, getByLabelText } = render(
+      const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
-      await userEvent.keyboard('{PageUp}');
+      fireEvent.focus(container.querySelector('table'));
+
+      getAllByText(defaultDate.getDate().toString())[0].focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'PageUp',
+        code: 33,
+      });
 
       expect(
-        getByText(subMonths(defaultDate, 1).getDate().toString())
+        getAllByText(subMonths(defaultDate, 1).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    // TODO: Fix test (Incorrect except, use toHaveFocus())
-    it('PageDown', async () => {
+    it('PageDown', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
-      const { getByText, getByLabelText } = render(
+      const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
-      await userEvent.keyboard('{PageDown}');
+      fireEvent.focus(container.querySelector('table'));
+
+      getAllByText(defaultDate.getDate().toString())[0].focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'PageDown',
+        code: 34,
+      });
 
       expect(
-        getByText(addMonths(defaultDate, 1).getDate().toString())
+        getAllByText(addMonths(defaultDate, 1).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    // TODO: Fix test (Incorrect except, use toHaveFocus())
-    it('ArrowDown', async () => {
+    it('ArrowDown', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
-      const { getByText, getByLabelText } = render(
+      const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
-      await userEvent.keyboard('{ArrowDown}');
+      fireEvent.focus(container.querySelector('table'));
+
+      getAllByText(defaultDate.getDate().toString())[0].focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'ArrowDown',
+        code: 40,
+      });
 
       expect(
-        getByText(addWeeks(defaultDate, 1).getDate().toString())
+        getAllByText(addWeeks(defaultDate, 1).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    // TODO: Fix test (Incorrect except, use toHaveFocus())
-    it('ArrowRight', async () => {
+    it('ArrowRight', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
-      const { getByText, getByLabelText } = render(
+      const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
-      await userEvent.keyboard('{ArrowRight}');
+      fireEvent.focus(container.querySelector('table'));
+
+      getAllByText(defaultDate.getDate().toString())[0].focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'ArrowRight',
+        code: 39,
+      });
 
       expect(
-        getByText(addDays(defaultDate, 1).getDate().toString())
+        getAllByText(addDays(defaultDate, 1).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    // TODO: Fix test (Incorrect except, use toHaveFocus())
-    it('End', async () => {
+    it('End', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
-      const { getByText, getByLabelText } = render(
+      const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
-      await userEvent.keyboard('{End}');
+      fireEvent.focus(container.querySelector('table'));
+
+      getAllByText(defaultDate.getDate().toString())[0].focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'End',
+        code: 35,
+      });
 
       expect(
-        getByText(endOfWeek(defaultDate).getDate().toString())
+        getAllByText(endOfWeek(defaultDate).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    it('Escape', async () => {
+    it('Escape', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
       const { getByLabelText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -945,10 +1012,9 @@ describe('Date Picker', () => {
       expect(document.activeElement).toBe(container.querySelector('button'));
     });
 
-    it('Escape without focus', async () => {
+    it('Escape without focus', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
       const { container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -962,94 +1028,115 @@ describe('Date Picker', () => {
       expect(container.querySelector('table')).not.toBeVisible();
     });
 
-    it('Enter', async () => {
+    it('Enter', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
-      const { getByLabelText, container } = render(
+      const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
-      await userEvent.keyboard('{Enter}');
+      fireEvent.focus(container.querySelector('table'));
+
+      getAllByText(defaultDate.getDate().toString())[0].focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'Enter',
+        code: 13,
+      });
 
       expect(
         isSameDay(new Date(container.querySelector('input').value), defaultDate)
       ).toBeTruthy();
     });
 
-    it('Spacebar', async () => {
+    it('Spacebar', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
-      const { getByLabelText, container } = render(
+      const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
-      await userEvent.keyboard('{Enter}');
+      fireEvent.focus(container.querySelector('table'));
+
+      getAllByText(defaultDate.getDate().toString())[0].focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'Space',
+        code: 32,
+      });
 
       expect(
         isSameDay(new Date(container.querySelector('input').value), defaultDate)
       ).toBeTruthy();
     });
 
-    it('does not update the focused date if a bad key press occurs', async () => {
+    it('does not update the focused date if a bad key press occurs', () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-
-      const { getByText, getByLabelText } = render(
+      const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
-      await userEvent.keyboard('{f}');
+      fireEvent.focus(container.querySelector('table'));
 
-      expect(getByText(defaultDate.getDate().toString())).toHaveFocus();
+      getAllByText(defaultDate.getDate().toString())[0].focus();
+
+      fireEvent.keyDown(container.querySelector('table'), {
+        key: 'f',
+        code: 70,
+      });
+
+      expect(
+        getAllByText(defaultDate.getDate().toString())[0]
+      ).not.toHaveStyleRule('border-color', 'transparent');
     });
-  });
+  });;
 
   describe('i18n', () => {
     it('formats dates with the locale', async () => {
-      const { getByText, getByLabelText } = render(
+      const { getByLabelText, getByTestId } = render(
         <I18nContext.Provider
           value={{
             ...defaultI18n,
             locale: es,
           }}
         >
-          <DatePicker
-            labelText="Spanish"
-            defaultDate={new Date('April 10, 2020')}
-          />
+          <DatePicker labelText="Spanish" defaultDate={new Date(2020, 3, 10)} />
         </I18nContext.Provider>
       );
 
+      const monthElement = getByTestId('month-picker');
+      const yearElement = getByTestId('year-picker');
+
       await waitFor(() => {
-        expect(getByText('Abril 2020')).toBeInTheDocument();
-        expect(getByLabelText(`Previous Month marzo 2020`)).toBeInTheDocument();
-        expect(getByLabelText(`Next Month mayo 2020`)).toBeInTheDocument();
+        expect(monthElement).toBeInTheDocument('Abril');
+        expect(yearElement).toBeInTheDocument('2020');
+        expect(
+          getByLabelText(`Navigate back one month marzo 2020`)
+        ).toBeInTheDocument();
+        expect(
+          getByLabelText(`Navigate forward one month mayo 2020`)
+        ).toBeInTheDocument();
       });
     });
 
     it('min days string in the i18n context', async () => {
-      const min = {
-        sunday: 'i18nSu',
-        monday: 'i18nMo',
-        tuesday: 'i18nTu',
-        wednesday: 'i18nWe',
-        thursday: 'i18nTh',
-        friday: 'i18nFr',
-        saturday: 'i18nSa',
+      const short = {
+        sunday: 'i18nSun',
+        monday: 'i18nMon',
+        tuesday: 'i18nTue',
+        wednesday: 'i18nWed',
+        thursday: 'i18nThu',
+        friday: 'i18nFri',
+        saturday: 'i18nSat',
       };
-
       const { getByText } = render(
         <I18nContext.Provider
           value={{
             ...defaultI18n,
             days: {
               ...defaultI18n.days,
-              min,
+              short,
             },
           }}
         >
@@ -1058,13 +1145,13 @@ describe('Date Picker', () => {
       );
 
       await waitFor(() => {
-        expect(getByText(min.sunday)).toBeInTheDocument();
-        expect(getByText(min.monday)).toBeInTheDocument();
-        expect(getByText(min.tuesday)).toBeInTheDocument();
-        expect(getByText(min.wednesday)).toBeInTheDocument();
-        expect(getByText(min.thursday)).toBeInTheDocument();
-        expect(getByText(min.friday)).toBeInTheDocument();
-        expect(getByText(min.saturday)).toBeInTheDocument();
+        expect(getByText(short.sunday)).toBeInTheDocument();
+        expect(getByText(short.monday)).toBeInTheDocument();
+        expect(getByText(short.tuesday)).toBeInTheDocument();
+        expect(getByText(short.wednesday)).toBeInTheDocument();
+        expect(getByText(short.thursday)).toBeInTheDocument();
+        expect(getByText(short.friday)).toBeInTheDocument();
+        expect(getByText(short.saturday)).toBeInTheDocument();
       });
     });
 
@@ -1145,13 +1232,13 @@ describe('Date Picker', () => {
           }}
         >
           <DatePicker
-            defaultDate={new Date('January 10, 2020')}
+            defaultDate={new Date(2020, 0, 10)}
             labelText="Start of Week"
           />
         </I18nContext.Provider>
       );
 
-      const startOfMonthDate = startOfMonth(new Date('January 10, 2020'));
+      const startOfMonthDate = startOfMonth(new Date(2020, 0, 10));
       const firstDayOfMonthDayOfWeek = getDay(startOfMonthDate);
 
       const allRows = container.querySelectorAll('tr');
@@ -1160,7 +1247,7 @@ describe('Date Picker', () => {
         allRows[1].children[firstDayOfMonthDayOfWeek - 3];
 
       await waitFor(() => {
-        expect(dayRow.children[0].textContent).toEqual('W');
+        expect(dayRow.children[0].textContent).toEqual('Wed');
         expect(firstDayOfMonthElement.textContent).toEqual('1');
       });
     });
@@ -1168,11 +1255,10 @@ describe('Date Picker', () => {
 
   describe('Date formats', () => {
     it('supports dd/MM/yyyy format', async () => {
-      const defaultDate = new Date('July 24, 2022');
-      const selectDate = new Date('July 27, 2022');
+      const defaultDate = new Date(2022, 6, 24);
+      const selectDate = new Date(2022, 6, 27);
       const label = 'dd/MM/yyyy Date Picker';
-
-      const { getByText, getByLabelText } = render(
+      const { getByLabelText, getAllByText } = render(
         <I18nContext.Provider
           value={{
             ...defaultI18n,
@@ -1189,20 +1275,15 @@ describe('Date Picker', () => {
       expect(datePickerInput).toHaveAttribute('placeholder', 'dd/mm/yyyy');
 
       await userEvent.click(calendar);
-      await userEvent.click(getByText(selectDate.getDate().toString()));
-
-      act(() => {
-        datePickerInput.blur();
-      });
-
+      await userEvent.click(getAllByText(selectDate.getDate().toString())[1]);
+      await userEvent.blur(datePickerInput);
       expect(datePickerInput).toHaveAttribute('value', '27/07/2022');
     });
 
     it('supports yyyy/MM/dd format', async () => {
-      const defaultDate = new Date('August 25, 2022');
-      const selectDate = new Date('August 30, 2022');
+      const defaultDate = new Date(2022, 7, 25);
+      const selectDate = new Date(2022, 7, 30);
       const label = 'yyyy/MM/dd Date Picker';
-
       const { getByText, getByLabelText } = render(
         <I18nContext.Provider
           value={{
@@ -1230,11 +1311,10 @@ describe('Date Picker', () => {
     });
 
     it('supports yyyy/dd/MM format', async () => {
-      const defaultDate = new Date('September 1, 2022');
-      const selectDate = new Date('September 29, 2022');
+      const defaultDate = new Date(2022, 8, 1);
+      const selectDate = new Date(2022, 8, 29);
       const label = 'yyyy/dd/MM Date Picker';
-
-      const { getByText, getByLabelText } = render(
+      const { getByLabelText, getAllByText } = render(
         <I18nContext.Provider
           value={{
             ...defaultI18n,
@@ -1251,7 +1331,7 @@ describe('Date Picker', () => {
       expect(datePickerInput).toHaveAttribute('placeholder', 'yyyy/dd/mm');
 
       await userEvent.click(calendar);
-      await userEvent.click(getByText(selectDate.getDate().toString()));
+      await userEvent.click(getAllByText(selectDate.getDate().toString())[1]);
 
       act(() => {
         datePickerInput.blur();
@@ -1261,11 +1341,10 @@ describe('Date Picker', () => {
     });
 
     it('supports MMMM d, yyyy format', async () => {
-      const defaultDate = new Date('November 3, 2022');
-      const selectDate = new Date('November 21, 2022');
+      const defaultDate = new Date(2022, 10, 3);
+      const selectDate = new Date(2022, 10, 21);
       const label = 'MMMM d, yyyy Date Picker';
-
-      const { getByText, getByLabelText } = render(
+      const { getAllByText, getByLabelText } = render(
         <I18nContext.Provider
           value={{
             ...defaultI18n,
@@ -1280,15 +1359,65 @@ describe('Date Picker', () => {
       const calendar = getByLabelText('Toggle Calendar Widget');
 
       expect(datePickerInput).toHaveAttribute('placeholder', 'mmmm d, yyyy');
-
       await userEvent.click(calendar);
-      await userEvent.click(getByText(selectDate.getDate().toString()));
-
+      await userEvent.click(getAllByText(selectDate.getDate().toString())[0]);
       act(() => {
         datePickerInput.blur();
-      });
+      });      expect(datePickerInput).toHaveAttribute('value', 'November 21, 2022');
+    });
 
-      expect(datePickerInput).toHaveAttribute('value', 'November 21, 2022');
+    it('should move focus on the previous month button when maxDate is reached', () => {
+      const defaultDate = new Date(2019, 0, 17);
+      const maxDate = new Date(2019, 2, 17);
+      const labelText = 'Date Picker Label';
+      const { getByLabelText, getAllByText } = render(
+        <DatePicker
+          defaultDate={defaultDate}
+          labelText={labelText}
+          maxDate={maxDate}
+        />
+      );
+
+      const prevMonthButton = getByLabelText(/Navigate back/i);
+      const nextMonthButton = getByLabelText(/Navigate forward/i);
+
+      fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+      expect(getAllByText(/january/i)[0]).toBeInTheDocument();
+
+      fireEvent.click(nextMonthButton);
+      expect(getAllByText(/february/i)[0]).toBeInTheDocument();
+
+      fireEvent.click(nextMonthButton);
+      expect(getAllByText(/march/i)[0]).toBeInTheDocument();
+      expect(nextMonthButton).toBeDisabled();
+      expect(prevMonthButton).toHaveFocus();
+    });
+
+    it('should move focus on the next month button when minDate is reached', () => {
+      const defaultDate = new Date(2019, 2, 17);
+      const minDate = new Date(2019, 0, 1);
+      const labelText = 'Date Picker Label';
+      const { getByLabelText, getAllByText } = render(
+        <DatePicker
+          defaultDate={defaultDate}
+          labelText={labelText}
+          minDate={minDate}
+        />
+      );
+
+      const prevMonthButton = getByLabelText(/Navigate back/i);
+      const nextMonthButton = getByLabelText(/Navigate forward/i);
+
+      fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+      expect(getAllByText(/march/i)[0]).toBeInTheDocument();
+
+      fireEvent.click(prevMonthButton);
+      expect(getAllByText(/february/i)[0]).toBeInTheDocument();
+
+      fireEvent.click(prevMonthButton);
+      expect(getAllByText(/january/i)[0]).toBeInTheDocument();
+      expect(prevMonthButton).toBeDisabled();
+      expect(nextMonthButton).toHaveFocus();
     });
   });
 });

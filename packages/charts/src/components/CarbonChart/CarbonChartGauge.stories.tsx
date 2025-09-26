@@ -56,3 +56,31 @@ export const GaugeSemicircularDangerStatus = {
     },
   },
 };
+
+export const GaugeCircularWarningStatus = {
+  render: Template,
+
+  args: {
+    isInverse: false,
+    type: CarbonChartType.gauge,
+    dataSet: [
+      {
+        group: 'value',
+        value: 42,
+      },
+      {
+        group: 'delta',
+        value: -13.37,
+      },
+    ],
+    options: {
+      title: 'Gauge circular -- warning status',
+      resizable: true,
+      height: '250px',
+      gauge: {
+        status: 'warning',
+        type: 'full',
+      },
+    },
+  },
+};

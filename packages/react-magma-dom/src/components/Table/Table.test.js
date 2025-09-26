@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, render, fireEvent, getByTestId } from '@testing-library/react';
+import { act, fireEvent, getByTestId, render } from '@testing-library/react';
 import { transparentize } from 'polished';
 
 import { magma } from '../../theme/magma';
@@ -388,6 +388,33 @@ describe('Table', () => {
     });
   });
 
+  it('should display the title table', () => {
+    const { getByText } = render(
+      <Table tableTitle="Title table">
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell>heading 1</TableHeaderCell>
+            <TableHeaderCell>heading 2</TableHeaderCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <TableCell>cell 1</TableCell>
+            <TableCell>cell 2</TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    );
+
+    const titleTable = getByText('Title table');
+
+    expect(titleTable).toBeInTheDocument();
+    expect(titleTable).toHaveStyle(`margin-top: ${magma.spaceScale.spacing04}`);
+    expect(titleTable).toHaveStyle(
+      `margin-bottom: ${magma.spaceScale.spacing04}`
+    );
+  });
+
   it('should render sortable table header cells with inverse styles', () => {
     const { getByTestId } = render(
       <Table isInverse>
@@ -424,5 +451,125 @@ describe('Table', () => {
         target: ':hover',
       }
     );
+  });
+
+  describe('Outer border', () => {
+    it('should display the outer border when hasOutsideBorder is true and hasSquareCorners is false', () => {
+      const testId = 'table-test';
+
+      const { getByTestId } = render(
+        <Table hasOutsideBorder testId={testId}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>heading 1</TableHeaderCell>
+              <TableHeaderCell>heading 2</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>cell 1</TableCell>
+              <TableCell>cell 2</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
+
+      expect(getByTestId(testId)).toHaveStyle('border-collapse: separate');
+      expect(getByTestId(testId)).toHaveStyle(
+        `border: 1px solid ${magma.colors.neutral300}`
+      );
+      expect(getByTestId(testId)).toHaveStyle(
+        `border-radius: ${magma.borderRadius}`
+      );
+    });
+
+    it('should display the outer border when hasOutsideBorder is true and isInverse is true', () => {
+      const testId = 'table-test';
+
+      const { getByTestId } = render(
+        <Table hasOutsideBorder isInverse testId={testId}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>heading 1</TableHeaderCell>
+              <TableHeaderCell>heading 2</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>cell 1</TableCell>
+              <TableCell>cell 2</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
+
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'border-collapse',
+        'separate'
+      );
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'border',
+        `1px solid ${transparentize(0.6, magma.colors.neutral100)}`
+      );
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'border-radius',
+        `${magma.borderRadius}`
+      );
+    });
+
+    it('should not display the outer border when hasOutsideBorder is false and hasSquareCorners is true', () => {
+      const testId = 'table-test';
+
+      const { getByTestId } = render(
+        <Table hasOutsideBorder={false} hasSquareCorners testId={testId}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>heading 1</TableHeaderCell>
+              <TableHeaderCell>heading 2</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>cell 1</TableCell>
+              <TableCell>cell 2</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
+
+      expect(getByTestId(testId)).toHaveStyle('border-collapse: collapse');
+      expect(getByTestId(testId)).toHaveStyle(`border: none`);
+      expect(getByTestId(testId)).toHaveStyle(`border-radius: 0`);
+    });
+  });
+
+  describe('TableHeaderCell rowSpan and colSpan', () => {
+    it('should render with the correct rowSpan', () => {
+      const { getByText } = render(
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell rowSpan={2}>Row Header</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      );
+      const th = getByText('Row Header').closest('th');
+      expect(th).toHaveAttribute('rowspan', '2');
+    });
+
+    it('should render with the correct colSpan', () => {
+      const { getByText } = render(
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell colSpan={3}>Col Header</TableHeaderCell>
+            </TableRow>
+          </TableHead>
+        </Table>
+      );
+      const th = getByText('Col Header').closest('th');
+      expect(th).toHaveAttribute('colspan', '3');
+    });
   });
 });

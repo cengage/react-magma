@@ -223,7 +223,6 @@ const rowsForPagination = [
 describe('Datagrid', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
-
     const { getByTestId } = render(
       <Datagrid columns={columns} rows={rows} testId={testId} />
     );
@@ -240,7 +239,6 @@ describe('Datagrid', () => {
       rows[1],
       rows[2],
     ];
-
     const { getByText } = render(
       <Datagrid columns={columns} rows={coloredRows} />
     );
@@ -291,7 +289,6 @@ describe('Datagrid', () => {
 
     it('should call passed in onHeaderSelect function when header checkbox is clicked', async () => {
       const onHeaderSelect = jest.fn();
-
       const { container } = render(
         <Datagrid
           columns={columns}
@@ -314,7 +311,6 @@ describe('Datagrid', () => {
 
     it('should call passed in onRowSelect function with the row id when a row checkbox is clicked', () => {
       const onRowSelect = jest.fn();
-
       const { container } = render(
         <Datagrid
           columns={columns}
@@ -353,7 +349,6 @@ describe('Datagrid', () => {
 
     it('should allow for the controlled selection of a selectable row', () => {
       const onSelectedRowsChange = jest.fn();
-
       const { container } = render(
         <Datagrid
           columns={columns}
@@ -486,7 +481,6 @@ describe('Datagrid', () => {
 
     it('should call the update selected rows function with all rows selected when clicking on the header checkbox when no rows are selected in the controlled state', () => {
       const onSelectedRowsChange = jest.fn();
-
       const { container } = render(
         <Datagrid
           columns={columns}
@@ -543,7 +537,6 @@ describe('Datagrid', () => {
 
     it('should call the update selected rows function with an empty array when clicking on the header checkbox when one or more rows are selected in the controlled state', () => {
       const onSelectedRowsChange = jest.fn();
-
       const { container } = render(
         <Datagrid
           columns={columns}
@@ -594,7 +587,6 @@ describe('Datagrid', () => {
 
     it('should call the update selected rows function with an empty array when clicking on the header checkbox when all rows are selected in the controlled state', () => {
       const onSelectedRowsChange = jest.fn();
-
       const { container } = render(
         <Datagrid
           columns={columns}
@@ -639,7 +631,6 @@ describe('Datagrid', () => {
 
     it('should call passed in onHeaderSelect function when header checkbox is clicked', () => {
       const onHeaderSelect = jest.fn();
-
       const { container } = render(
         <Datagrid
           columns={columns}
@@ -663,7 +654,6 @@ describe('Datagrid', () => {
 
     it('should call passed in onRowSelect function with the row id when a row checkbox is clicked', () => {
       const onRowSelect = jest.fn();
-
       const { container } = render(
         <Datagrid
           columns={columns}
@@ -688,7 +678,6 @@ describe('Datagrid', () => {
     it('should call handleRowSort when the sort button is clicked', () => {
       const onSortBySelected = jest.fn();
       const onSelectedRowsChange = jest.fn();
-
       const { getByTestId } = render(
         <Datagrid
           columns={columns}
@@ -702,7 +691,6 @@ describe('Datagrid', () => {
       );
 
       const sortButton = getByTestId('-sort-button');
-
       sortButton.click();
 
       expect(onSortBySelected).toHaveBeenCalled();
@@ -717,7 +705,6 @@ describe('Datagrid', () => {
         rowsPerPage: 10,
         rowsPerPageValues: [10, 20, 50, 100],
       };
-
       const { getByText, getByTestId } = render(
         <Datagrid
           columns={columns}
@@ -746,7 +733,6 @@ describe('Datagrid', () => {
           hasPagination={false}
         />
       );
-
       expect(queryByTestId('previousBtn')).not.toBeInTheDocument();
       expect(queryByTestId('nextBtn')).not.toBeInTheDocument();
     });
@@ -816,7 +802,6 @@ describe('Datagrid', () => {
         rowsPerPageValues: [10, 20, 50, 100],
         onPageChange,
       };
-
       const { getByTestId } = render(
         <Datagrid
           columns={columns}
@@ -888,5 +873,43 @@ describe('Datagrid', () => {
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
+  });
+
+  it('should display the title table', () => {
+    const { getByText } = render(
+      <Datagrid
+        columns={columns}
+        rows={rowsForPagination}
+        tableTitle="Datagrid title"
+      />
+    );
+
+    const titleTable = getByText('Datagrid title');
+
+    expect(titleTable).toBeInTheDocument();
+    expect(titleTable).toHaveStyle(`margin-top: ${magma.spaceScale.spacing04}`);
+    expect(titleTable).toHaveStyle(
+      `margin-bottom: ${magma.spaceScale.spacing04}`
+    );
+  });
+
+  it('should display the outer border when hasOutsideBorder is true and hasSquareCorners is false', () => {
+    const testId = 'table-test';
+
+    const { getByTestId } = render(
+      <Datagrid
+        hasOutsideBorder
+        testId={testId}
+        columns={columns}
+        rows={rowsForPagination}
+      />
+    );
+
+    expect(getByTestId(testId)).toHaveStyle(
+      `border: 1px solid ${magma.colors.neutral300}`
+    );
+    expect(getByTestId(testId)).toHaveStyle(
+      `border-radius: ${magma.borderRadius} ${magma.borderRadius} 0 0`
+    );
   });
 });

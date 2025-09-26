@@ -99,6 +99,12 @@ export const Default = {
           sendFiles
           labelText="Upload files"
           helperMessage="Only PNG, JPG, and SVG files with a max size of 1MB"
+          dropzoneOptions={{
+            onDropAccepted: files => {
+              // eslint-disable-next-line no-console
+              console.log('Accepted files:', files);
+            },
+          }}
         />
       </div>
     );
@@ -132,7 +138,6 @@ export const Image = {
     const onSendFile = (props: OnSendFileProps) => {
       const { file, onFinish } = props;
       const reader = new FileReader();
-
       reader.onload = function (evt) {
         setFile(
           (evt &&
@@ -178,7 +183,6 @@ export const Text = {
     const onSendFile = (props: OnSendFileProps) => {
       const { file, onFinish } = props;
       const reader = new FileReader();
-
       reader.onload = function (evt) {
         setFile(
           (evt &&
@@ -225,7 +229,6 @@ export const Csv = {
     const onSendFile = (props: OnSendFileProps) => {
       const { file, onFinish } = props;
       const reader = new FileReader();
-
       reader.onload = function (evt) {
         const [columns, rows] =
           (evt &&
@@ -233,7 +236,6 @@ export const Csv = {
             evt.target.result &&
             csvJSON(evt.target.result.toString())) ||
           [];
-
         setColumns(columns);
         setFile(rows);
         onFinish && onFinish({ file });
