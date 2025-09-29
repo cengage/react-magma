@@ -4,7 +4,9 @@ on:
     branches:
       - dev
       - main
-      - 'dev-patch*'
+      - v4/dev
+      - v4/main
+      - 'dev-patch'
       - 'patch-*'
       - 'chore/react-18-upgrade'
     types: [opened, synchronize]
