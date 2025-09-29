@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.1-next.1
+
+### Patch Changes
+
+- d0255ffb9: chore:migrate storybook to use Component Story Format 3 (CSF3) for all stories
+
 ## 5.2.1-next.0
 
 ### Patch Changes
