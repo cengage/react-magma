@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 import {
   KeyboardArrowLeftIcon,
   KeyboardArrowRightIcon,
@@ -32,7 +32,7 @@ import {
   EnumTooltipPosition,
 } from './index';
 
-const Template: Story<TooltipProps> = args => (
+const Template: StoryFn<TooltipProps> = args => (
   <div
     style={{
       padding: '80px',
@@ -57,39 +57,57 @@ export default {
   argTypes: {},
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  content: 'Lorem ipsum dolar sit amet. Vel molestie no, ut vim.',
+export const Default = {
+  render: Template,
+
+  args: {
+    content: 'Lorem ipsum dolar sit amet. Vel molestie no, ut vim.',
+  },
 };
 
-export const Bottom = Template.bind({});
-Bottom.args = {
-  position: TooltipPosition.bottom,
-  content: 'Lorem ipsum dolar',
+export const Bottom = {
+  render: Template,
+
+  args: {
+    position: TooltipPosition.bottom,
+    content: 'Lorem ipsum dolar',
+  },
 };
 
-export const Left = Template.bind({});
-Left.args = {
-  position: EnumTooltipPosition.left,
-  content: 'Lorem ipsum dolar sit amet. Vel molestie no, ut vim.',
+export const Left = {
+  render: Template,
+
+  args: {
+    position: EnumTooltipPosition.left,
+    content: 'Lorem ipsum dolar sit amet. Vel molestie no, ut vim.',
+  },
 };
 
-export const Right = Template.bind({});
-Right.args = {
-  position: TooltipPosition.right,
-  content: 'Lorem ipsum dolar',
+export const Right = {
+  render: Template,
+
+  args: {
+    position: TooltipPosition.right,
+    content: 'Lorem ipsum dolar',
+  },
 };
 
-export const Inverse = Template.bind({});
-Inverse.args = {
-  content: 'Lorem ipsum dolar',
-  isInverse: true,
+export const Inverse = {
+  render: Template,
+
+  args: {
+    content: 'Lorem ipsum dolar',
+    isInverse: true,
+  },
 };
 
-export const Open = Template.bind({});
-Open.args = {
-  content: 'Lorem ipsum dolar',
-  open: true,
+export const Open = {
+  render: Template,
+
+  args: {
+    content: 'Lorem ipsum dolar',
+    open: true,
+  },
 };
 
 export const Complex = () => {
@@ -235,7 +253,7 @@ export const Complex = () => {
   );
 };
 
-const CustomStylesTemplate: Story<TooltipProps> = args => {
+const CustomStylesTemplate: StoryFn<TooltipProps> = args => {
   const customArrowStyles = {
     background: 'yellow',
     height: '15px',
@@ -279,9 +297,12 @@ const CustomStylesTemplate: Story<TooltipProps> = args => {
   );
 };
 
-export const CustomStyles = CustomStylesTemplate.bind({});
-CustomStyles.args = {
-  content: 'Lorem ipsum dolar sit amet. Vel molestie no, ut vim.',
+export const CustomStyles = {
+  render: CustomStylesTemplate,
+
+  args: {
+    content: 'Lorem ipsum dolar sit amet. Vel molestie no, ut vim.',
+  },
 };
 
 export function Example() {

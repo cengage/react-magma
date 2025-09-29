@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react/types-6-0';
 import { HelpIcon } from 'react-magma-icons';
 
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
@@ -11,10 +11,6 @@ import { LabelPosition } from '../Label';
 import { Tooltip } from '../Tooltip';
 
 import { MultiSelectProps, Select, SelectOptions, SelectProps } from './';
-
-const Template: Story<SelectProps<SelectOptions>> = args => (
-  <Select {...args} />
-);
 
 export default {
   title: 'Select',
@@ -69,44 +65,49 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  labelText: 'Example',
-  items: [
-    { label: 'Red', value: 'red', disabled: false },
-    { label: 'Blue', value: 'blue', disabled: true },
-    { label: 'Green', value: 'green' },
-    { label: 'Purple mountain majesty', value: 'purple' },
-  ],
-  errorMessage: '',
-  helperMessage: '',
-  isClearable: false,
-  isLabelVisuallyHidden: false,
-  isMulti: false,
-  labelPosition: LabelPosition.top,
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
-  ...Default.args,
-  disabled: true,
-};
-
-export const Multi = (props: MultiSelectProps<SelectOptions>) => (
-  <Select
-    {...props}
-    isMulti
-    items={[
-      { label: 'Red', value: 'red' },
-      { label: 'Blue', value: 'blue' },
+export const Default = {
+  args: {
+    labelText: 'Example',
+    items: [
+      { label: 'Red', value: 'red', disabled: false },
+      { label: 'Blue', value: 'blue', disabled: true },
       { label: 'Green', value: 'green' },
-    ]}
-    initialSelectedItems={[{ label: 'Red', value: 'red' }]}
-  />
-);
-Multi.args = {
-  ...Default.args,
-  disabled: false,
+      { label: 'Purple mountain majesty', value: 'purple' },
+    ],
+    errorMessage: '',
+    helperMessage: '',
+    isClearable: false,
+    isLabelVisuallyHidden: false,
+    isMulti: false,
+    labelPosition: LabelPosition.top,
+  },
+};
+
+export const Disabled = {
+  args: {
+    ...Default.args,
+    disabled: true,
+  },
+};
+
+export const Multi = {
+  render: (props: MultiSelectProps<SelectOptions>) => (
+    <Select
+      {...props}
+      isMulti
+      items={[
+        { label: 'Red', value: 'red' },
+        { label: 'Blue', value: 'blue' },
+        { label: 'Green', value: 'green' },
+      ]}
+      initialSelectedItems={[{ label: 'Red', value: 'red' }]}
+    />
+  ),
+
+  args: {
+    ...Default.args,
+    disabled: false,
+  },
 };
 
 const helpLinkLabel = 'Learn more';
@@ -114,7 +115,7 @@ const onHelpLinkClick = () => {
   alert('Help link clicked!');
 };
 
-const WithContentTemplate: Story<SelectOptions> = args => (
+const WithContentTemplate: StoryFn<SelectOptions> = args => (
   <Select
     additionalContent={
       <Tooltip content={helpLinkLabel}>
@@ -138,111 +139,123 @@ const WithContentTemplate: Story<SelectOptions> = args => (
   />
 );
 
-export const WithContent = WithContentTemplate.bind({});
-WithContent.args = {
-  isMulti: false,
+export const WithContent = {
+  render: WithContentTemplate,
+
+  args: {
+    isMulti: false,
+  },
 };
 
-export const ErrorMessage = Template.bind({});
-ErrorMessage.args = {
-  ...Default.args,
-  errorMessage: 'Please fix this error',
+export const ErrorMessage = {
+  args: {
+    ...Default.args,
+    errorMessage: 'Please fix this error',
+  },
 };
 
-export const HelperMessage = Template.bind({});
-HelperMessage.args = {
-  ...Default.args,
-  helperMessage: 'This text is helpful',
+export const HelperMessage = {
+  args: {
+    ...Default.args,
+    helperMessage: 'This text is helpful',
+  },
 };
 
-export const Inverse = Template.bind({});
-Inverse.args = {
-  ...Default.args,
-  isMulti: false,
-  isInverse: true,
-  disabled: false,
-};
-Inverse.decorators = [
-  Story => (
-    <Card isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
+export const Inverse = {
+  args: {
+    ...Default.args,
+    isMulti: false,
+    isInverse: true,
+    disabled: false,
+  },
 
-export const LeftAlignedLabel = Template.bind({});
-LeftAlignedLabel.args = {
-  ...Default.args,
-  labelPosition: LabelPosition.left,
+  decorators: [
+    Story => (
+      <Card isInverse>
+        <CardBody>
+          <Story />
+        </CardBody>
+      </Card>
+    ),
+  ],
 };
 
-export const LeftAlignedLabelWithContainer = Template.bind({});
-LeftAlignedLabelWithContainer.args = {
-  ...LeftAlignedLabel.args,
+export const LeftAlignedLabel = {
+  args: {
+    ...Default.args,
+    labelPosition: LabelPosition.left,
+  },
 };
-LeftAlignedLabelWithContainer.decorators = [
-  Story => (
-    <Card>
-      <CardBody style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
 
-export const WithDisabledItems = Template.bind({});
-WithDisabledItems.args = {
-  ...Default.args,
-  items: [
-    {
-      label: 'First-Item-Disabled',
-      value: 'First-Item-Disabled',
+export const LeftAlignedLabelWithContainer = {
+  args: {
+    ...LeftAlignedLabel.args,
+  },
+
+  decorators: [
+    Story => (
+      <Card>
+        <CardBody style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Story />
+        </CardBody>
+      </Card>
+    ),
+  ],
+};
+
+export const WithDisabledItems = {
+  args: {
+    ...Default.args,
+    items: [
+      {
+        label: 'First-Item-Disabled',
+        value: 'First-Item-Disabled',
+        disabled: true,
+      },
+      { label: 'Red', value: 'red' },
+      { label: 'Blue-Disabled', value: 'blue', disabled: true },
+      { label: 'Green', value: 'green' },
+      { label: 'Purple mountain majesty', value: 'purple' },
+      { label: 'Orange-Disabled', value: 'Orange-Disabled', disabled: true },
+      { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
+    ],
+    isClearable: true,
+    defaultSelectedItem: {
+      label: 'Blue-Disabled',
+      value: 'blue',
       disabled: true,
     },
-    { label: 'Red', value: 'red' },
-    { label: 'Blue-Disabled', value: 'blue', disabled: true },
-    { label: 'Green', value: 'green' },
-    { label: 'Purple mountain majesty', value: 'purple' },
-    { label: 'Orange-Disabled', value: 'Orange-Disabled', disabled: true },
-    { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
-  ],
-  isClearable: true,
-  defaultSelectedItem: {
-    label: 'Blue-Disabled',
-    value: 'blue',
-    disabled: true,
-  },
-  initialSelectedItem: {
-    label: 'Orange-Disabled',
-    value: 'disabled',
-    disabled: true,
+    initialSelectedItem: {
+      label: 'Orange-Disabled',
+      value: 'disabled',
+      disabled: true,
+    },
   },
 };
 
-export const MultiWithDisabledItems = Template.bind({});
-MultiWithDisabledItems.args = {
-  ...Default.args,
-  isMulti: true,
-  items: [
-    { label: 'Red', value: 'red' },
-    { label: 'Green', value: 'green' },
-    { label: 'Blue-Disabled', value: 'blue', disabled: true },
-    { label: 'Purple mountain majesty', value: 'purple' },
-    { label: 'Orange', value: 'orange', disabled: false },
-    { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
-  ],
-  isClearable: true,
-  initialHighlightedIndex: 2,
-  defaultSelectedItems: [
-    { label: 'Red', value: 'red' },
-    { label: 'Orange', value: 'orange', disabled: false },
-    { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
-  ],
-  initialSelectedItems: [
-    { label: 'Red', value: 'red' },
-    { label: 'Orange', value: 'orange', disabled: false },
-    { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
-  ],
+export const MultiWithDisabledItems = {
+  args: {
+    ...Default.args,
+    isMulti: true,
+    items: [
+      { label: 'Red', value: 'red' },
+      { label: 'Green', value: 'green' },
+      { label: 'Blue-Disabled', value: 'blue', disabled: true },
+      { label: 'Purple mountain majesty', value: 'purple' },
+      { label: 'Orange', value: 'orange', disabled: false },
+      { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
+    ],
+    isClearable: true,
+    initialHighlightedIndex: 2,
+    defaultSelectedItems: [
+      { label: 'Red', value: 'red' },
+      { label: 'Orange', value: 'orange', disabled: false },
+      { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
+    ],
+    initialSelectedItems: [
+      { label: 'Red', value: 'red' },
+      { label: 'Orange', value: 'orange', disabled: false },
+      { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
+    ],
+  },
 };

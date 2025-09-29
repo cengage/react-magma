@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 import { ImageIcon, FavoriteIcon, WorkIcon } from 'react-magma-icons';
 
 import { magma } from '../../theme/magma';
@@ -14,7 +14,7 @@ import { TabsIconPosition } from '../Tabs';
 
 import { AppBar, AppBarProps, AppBarPosition } from './index';
 
-const Template: Story<AppBarProps> = args => (
+const Template: StoryFn<AppBarProps> = args => (
   <AppBar {...args}>{args.children}</AppBar>
 );
 
@@ -31,14 +31,17 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  children: 'Simple AppBar',
-  isCompact: false,
-  isInverse: false,
+export const Default = {
+  render: Template,
+
+  args: {
+    children: 'Simple AppBar',
+    isCompact: false,
+    isInverse: false,
+  },
 };
 
-const TabsTemplate: Story<AppBarProps> = args => (
+const TabsTemplate: StoryFn<AppBarProps> = args => (
   <AppBar
     style={{ display: 'flex', justifyContent: 'space-between', gap: '48px' }}
     {...args}
@@ -74,10 +77,13 @@ const TabsTemplate: Story<AppBarProps> = args => (
   </AppBar>
 );
 
-export const Tabs = TabsTemplate.bind({});
-Tabs.args = {
-  ...Default.args,
-  children: null,
+export const Tabs = {
+  render: TabsTemplate,
+
+  args: {
+    ...Default.args,
+    children: null,
+  },
 };
 
 export const WithSkipLink = () => {
