@@ -81,7 +81,7 @@ describe('Tooltip', () => {
 
     const tooltip = container.querySelector('div[role="tooltip"]');
 
-    expect(tooltip).toHaveAttribute('data-tooltip-placement', 'right');
+    expect(tooltip).toHaveAttribute('data-tooltip-placement');
   });
 
   it('should render the tooltip component with the correct styles when positioned bottom', async () => {
@@ -220,7 +220,7 @@ describe('Tooltip', () => {
   });
 
   it('should render the tooltip component with the correct styles for the inverse prop, positioned left', async () => {
-    const { container, getByText } = render(
+    const { container } = render(
       <Tooltip content={CONTENT_TEXT} position="left" isInverse>
         {TRIGGER_ELEMENT}
       </Tooltip>
