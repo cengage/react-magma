@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 
 import { Checkbox } from '.';
+import userEvent from '@testing-library/user-event';
 
 describe('Checkbox', () => {
   it('should find element by testId', () => {
@@ -43,7 +44,7 @@ describe('Checkbox', () => {
     expect(span).toHaveAttribute('aria-hidden', 'true');
   });
 
-  it('should render a checkbox that is checked on render with defaultChecked', () => {
+  it('should render a checkbox that is checked on render with defaultChecked', async () => {
     const label = 'test label';
     const { getByLabelText } = render(
       <Checkbox labelText={label} defaultChecked />
@@ -52,7 +53,7 @@ describe('Checkbox', () => {
     expect(getByLabelText(label)).toHaveAttribute('checked');
   });
 
-  it('should handle checked changes with defaultChecked', () => {
+  it('should handle checked changes with defaultChecked', async () => {
     const label = 'test label';
     const { getByLabelText } = render(
       <Checkbox labelText={label} defaultChecked />
@@ -62,7 +63,7 @@ describe('Checkbox', () => {
 
     expect(checkbox).toHaveProperty('checked', true);
 
-    fireEvent.click(checkbox);
+    await userEvent.click(checkbox);
 
     expect(checkbox).toHaveProperty('checked', false);
   });
@@ -91,7 +92,7 @@ describe('Checkbox', () => {
     expect(getByTestId(testId)).toHaveAttribute('value', value);
   });
 
-  it('should not change the checked value if checkbox is in controlled state', () => {
+  it('should not change the checked value if checkbox is in controlled state', async () => {
     const checked = true;
     const testId = 'abc123';
     const { getByTestId } = render(
@@ -102,7 +103,7 @@ describe('Checkbox', () => {
 
     expect(checkbox).toHaveProperty('checked', checked);
 
-    fireEvent.click(checkbox);
+    await userEvent.click(checkbox);
 
     expect(checkbox).toHaveProperty('checked', checked);
   });
@@ -123,7 +124,7 @@ describe('Checkbox', () => {
     expect(checkbox).toHaveProperty('checked', !checked);
   });
 
-  it('should use the defaultChecked prop for initial render and then handle internally if not controlled', () => {
+  it('should use the defaultChecked prop for initial render and then handle internally if not controlled', async () => {
     const defaultChecked = true;
     const testId = 'abc123';
     const { getByTestId } = render(
@@ -134,7 +135,7 @@ describe('Checkbox', () => {
 
     expect(checkbox).toHaveProperty('checked', defaultChecked);
 
-    fireEvent.click(checkbox);
+    await userEvent.click(checkbox);
 
     expect(checkbox).toHaveProperty('checked', !defaultChecked);
   });
@@ -266,14 +267,14 @@ describe('Checkbox', () => {
       expect(onBlurSpy).toHaveBeenCalledTimes(1);
     });
 
-    it('should trigger the passed in onChange when value of the checkbox is changed', () => {
+    it('should trigger the passed in onChange when value of the checkbox is changed', async () => {
       const onChangeSpy = jest.fn();
       const testId = 'abc123';
       const { getByTestId } = render(
         <Checkbox testId={testId} onChange={onChangeSpy} checked />
       );
 
-      fireEvent.click(getByTestId(testId));
+      await userEvent.click(getByTestId(testId));
 
       expect(onChangeSpy).toHaveBeenCalledTimes(1);
     });

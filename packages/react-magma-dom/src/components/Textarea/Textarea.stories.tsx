@@ -69,6 +69,7 @@ export const Default = {
 export const OnClear = {
   render: args => {
     const [fieldValue, setValue] = useState('');
+
     return (
       <>
         <Textarea

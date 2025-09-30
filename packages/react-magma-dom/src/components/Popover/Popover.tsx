@@ -154,6 +154,7 @@ export function hasActiveElementsChecker(ref) {
       ) || []
     ).filter((element: HTMLElement) => {
       const style = window.getComputedStyle(element);
+
       return (
         element instanceof HTMLElement &&
         style.display !== 'none' &&

@@ -70,6 +70,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     } as React.CSSProperties;
 
     let containerTransition: Omit<TransitionProps, 'isOpen'> | undefined;
+
     if (isAnimated) {
       containerTransition = position
         ? transitionPreset[DrawerPosition[position]]

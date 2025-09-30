@@ -292,6 +292,7 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
     const isIconOnly = !children;
 
     let tabIconPosition = iconPosition;
+
     if (!tabIconPosition) {
       tabIconPosition =
         orientation === 'vertical'

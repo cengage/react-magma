@@ -431,9 +431,7 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
-  it('should open one dropdown at a time, close the previous one, and close when clicking outside', () => {
-    jest.useFakeTimers();
-
+  it('should open one dropdown at a time, close the previous one, and close when clicking outside', async () => {
     const onClose1 = jest.fn();
     const onClose2 = jest.fn();
     const { getByText, getByTestId } = render(

@@ -125,9 +125,11 @@ export const SimplePagination = {
 export const SimplePaginationOnPageChange = {
   render: (args: Partial<PaginationProps>) => {
     const [page, setPage] = React.useState<number>(Number(args.page));
+
     function handleChange(_, pageNumber: number) {
       setPage(pageNumber);
     }
+
     return (
       <>
         <p>onPageChange result: {page}</p>

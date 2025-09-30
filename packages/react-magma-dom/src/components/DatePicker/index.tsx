@@ -338,21 +338,25 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     function onPrevMonthClick() {
       const newDate = getPrevMonthFromDate(focusedDate);
+
       setFocusedDate(newDate);
     }
 
     function onNextMonthClick() {
       const newDate = getNextMonthFromDate(focusedDate);
+
       setFocusedDate(newDate);
     }
 
     function setMonthFocusedDate(monthNumber: number) {
       const newDate = setMonthForDate(focusedDate, monthNumber);
+
       setFocusedDate(newDate);
     }
 
     function setYearFocusedDate(yearNumber: number) {
       const newDate = setYearForDate(focusedDate, yearNumber);
+
       setFocusedDate(newDate);
     }
 

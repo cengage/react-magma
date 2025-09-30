@@ -30,6 +30,7 @@ module.exports = {
     '/dist/',
     '/archived-packages/',
     '/react-magma-legacy-selects/',
+    '/tests/playwright/',
     '<rootDir>/.nx/',
     '\\.d\\.ts$',
   ],

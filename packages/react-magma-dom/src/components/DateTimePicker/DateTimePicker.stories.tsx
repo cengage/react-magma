@@ -134,6 +134,7 @@ export const ClearingTheDateAndTime = {
           hours,
           minutes
         );
+
         setChosenDate(newDate);
       }
     }

@@ -2,8 +2,7 @@ import * as React from 'react';
 
 import { Theme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { isAfter, isBefore, isSameDay, isSameMonth } from 'date-fns';
-import { enUS } from 'date-fns/locale';
+import { isAfter, isBefore, isSameDay, isSameMonth, enUS } from 'date-fns';
 import { transparentize } from 'polished';
 
 import { CalendarContext } from './CalendarContext';
@@ -33,6 +32,7 @@ function getCalendarDayBackground(
   if (isInverse) {
     return isChosen ? theme.colors.tertiary : theme.colors.primary;
   }
+
   return isChosen ? theme.colors.primary : theme.colors.neutral100;
 }
 
@@ -40,6 +40,7 @@ const getTodayColor = (isChosen: boolean, isInverse: boolean, theme: Theme) => {
   if (isInverse) {
     return isChosen ? theme.colors.primary600 : theme.colors.secondary500;
   }
+
   return isChosen ? theme.colors.neutral100 : theme.colors.primary500;
 };
 
@@ -81,6 +82,7 @@ const getCalendarDayColor = (
   if (state.isChosen) return getChosenDayColor(isInverse, theme);
   if (!state.isDayInCurrentMonth && !state.disabled)
     return getNotCurrentMonthColor(isInverse, theme);
+
   return getCurrentMonthColor(isInverse, theme);
 };
 
@@ -110,6 +112,7 @@ function getChosenDayHover(
 
 const getCalendarDayFontSize = (state: CalendarDayState) => {
   if (state.isToday) return 700;
+
   return !state.isDayInCurrentMonth || state.disabled ? 400 : 500;
 };
 
@@ -248,6 +251,7 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
   function onDayClick(event: React.SyntheticEvent) {
     if (disabled) {
       event.preventDefault();
+
       return;
     }
 
@@ -257,6 +261,7 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
   function onFocusDay(event: React.SyntheticEvent) {
     if (disabled || !isSameMonth(day, focusedDate)) {
       event.preventDefault();
+
       return;
     }
     setFocusedDate(day);

@@ -60,6 +60,7 @@ const NavigationWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
+
 export const CalendarHeader: React.FunctionComponent<
   CalendarHeaderProps
 > = props => {
@@ -104,10 +105,12 @@ export const CalendarHeader: React.FunctionComponent<
 
     if (startOfMonth(maxDateOrDefault) >= startOfMonth(focusedDate)) {
       onPrevMonthClick();
+
       return;
     }
     if (!isDisabledPrevMonth && isDisabledNextMonth) {
       setFocusedDate(maxDateOrDefault);
+
       return;
     }
     onPrevMonthClick();
@@ -120,10 +123,12 @@ export const CalendarHeader: React.FunctionComponent<
 
     if (startOfMonth(minDateOrDefault) <= startOfMonth(focusedDate)) {
       onNextMonthClick();
+
       return;
     }
     if (isDisabledPrevMonth && !isDisabledNextMonth) {
       setFocusedDate(minDateOrDefault);
+
       return;
     }
     onNextMonthClick();

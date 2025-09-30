@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { Badge } from '../Badge';
 
 import { Banner } from '.';
+import userEvent from '@testing-library/user-event';
 
 describe('Banner', () => {
   it('should find element by testId', () => {
@@ -226,7 +227,7 @@ describe('Banner', () => {
   });
 
   describe('action button', () => {
-    it('should render an action button with an action that fires when clicked', () => {
+    it('should render an action button with an action that fires when clicked', async () => {
       const actionBtnClick = jest.fn();
 
       const { getByText } = render(
@@ -243,7 +244,7 @@ describe('Banner', () => {
       expect(btn).toHaveStyleRule('color', magma.colors.neutral100);
       expect(btn).toHaveStyleRule('background', magma.colors.primary500);
 
-      fireEvent.click(btn);
+      await userEvent.click(btn);
       expect(actionBtnClick).toHaveBeenCalled();
     });
 

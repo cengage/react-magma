@@ -1,11 +1,12 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { format } from 'date-fns';
 
 import { CalendarContext } from './CalendarContext';
 import { CalendarDay } from './CalendarDay';
 import { magma } from '../../theme/magma';
+import userEvent from '@testing-library/user-event';
 
 describe('Calendar Day', () => {
   it('renders a day', () => {
@@ -219,7 +220,7 @@ describe('Calendar Day', () => {
     expect(calendarDay).toHaveStyleRule('color', magma.colors.primary600);
   });
 
-  it('does not click on the day if it is disabled', () => {
+  it('does not click on the day if it is disabled', async () => {
     const defaultDate = new Date(2019, 0, 17);
     const maxDate = new Date(2019, 0, 16);
     const onDateChange = jest.fn();
@@ -245,21 +246,25 @@ describe('Calendar Day', () => {
       </CalendarContext.Provider>
     );
 
-    fireEvent.click(getByText('17'));
+    await userEvent.click(getByText('17'));
 
     expect(onDateChange).not.toHaveBeenCalled();
   });
 
   describe('focus date', () => {
-    it('should call setFocusedDate on mouseDown when the day is in current month', () => {
+    it('should call setFocusedDate on mouseDown when the day is in current month', async () => {
       const defaultDate = new Date(2019, 0, 17);
       const setFocusedDate = jest.fn();
+      const setDateFocused = jest.fn();
+      const onDateChange = jest.fn();
 
       const { getByText } = render(
         <CalendarContext.Provider
           value={{
             setFocusedDate,
             focusedDate: new Date(2019, 0, 17),
+            setDateFocused,
+            onDateChange,
           }}
         >
           <table>
@@ -275,21 +280,23 @@ describe('Calendar Day', () => {
         </CalendarContext.Provider>
       );
 
-      fireEvent.mouseDown(getByText('20'));
+      await userEvent.click(getByText('20'));
 
       expect(setFocusedDate).toHaveBeenCalled();
     });
 
-    it('should not call setFocusedDate on mouseDown when the day is not in current month or is disabled', () => {
+    it('should not call setFocusedDate on mouseDown when the day is not in current month or is disabled', async () => {
       const defaultDate = new Date(2019, 0, 17);
       const nextMonthDay = new Date(2019, 1, 1);
       const setFocusedDate = jest.fn();
+      const onDateChange = jest.fn();
 
       const { getByText } = render(
         <CalendarContext.Provider
           value={{
             setFocusedDate,
             focusedDate: new Date(2019, 0, 17),
+            onDateChange,
           }}
         >
           <table>
@@ -303,7 +310,7 @@ describe('Calendar Day', () => {
         </CalendarContext.Provider>
       );
 
-      fireEvent.mouseDown(getByText('1'));
+      await userEvent.click(getByText('1'));
 
       expect(setFocusedDate).not.toHaveBeenCalled();
     });

@@ -4,8 +4,6 @@ import { render } from '@testing-library/react';
 
 import { CarbonChart, CarbonChartType } from '.';
 
-jest.mock('./styles.min.css', () => ({}));
-
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
   observe: jest.fn(),
   unobserve: jest.fn(),

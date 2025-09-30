@@ -127,6 +127,7 @@ function getHoverBackground({ isDisabled, hoverColor, isInverse, theme }) {
   if (hoverColor) return hoverColor;
 
   const transparency = isInverse ? 0.8 : 0.95;
+
   return transparentize(transparency, theme.colors.neutral900);
 }
 
@@ -336,9 +337,11 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         const total = currentTreeItemInteractiveElements.length;
         const nextIndex = (currentIndex + direction + total) % total;
         const elementToFocus = currentTreeItemInteractiveElements[nextIndex];
+
         if (elementToFocus) {
           setTimeout(() => elementToFocus.focus(), 0);
         }
+
         return;
       }
 
@@ -355,9 +358,11 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
         setIsInsideTreeItem(false);
 
         const treeItemNode = treeItemRef.current;
+
         if (treeItemNode) {
           treeItemNode.focus();
         }
+
         return;
       }
     };
@@ -365,6 +370,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const handleOnClick = (event: React.MouseEvent) => {
       if (isDisabled) {
         event.stopPropagation();
+
         return;
       }
 
@@ -376,6 +382,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       // Preventing selecting the item when clicking on interactive elements when `selectable` is `single`
       if (interactiveElement) {
         event.stopPropagation();
+
         return;
       }
 
@@ -490,6 +497,7 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
             elementToFocus.focus();
           }, 0);
         }
+
         return;
       }
 
@@ -502,12 +510,14 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
       // If the target is within the label or additional content, handle key events for those areas
       if (isWithinLabelOrAdditionalContent) {
         handleLabelAndAdditionalContentKeyDown(event);
+
         return;
       }
 
       // If the target is the tree item itself, handle key down for the tree item
       if (target === currentTarget) {
         handleKeyDown(event);
+
         return;
       }
     };

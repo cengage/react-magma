@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { CheckIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
@@ -63,6 +63,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'start');
       });
+
       it('Center: aligns the buttons to the center', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -80,6 +81,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'center');
       });
+
       it('Right: aligns the buttons to the right', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -97,6 +99,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'end');
       });
+
       it('Fill: fills the space with the buttons', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -114,6 +117,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'stretch');
       });
+
       it('Apart: spreads out the buttons', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -132,6 +136,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('justify-content', 'space-between');
       });
     });
+
     describe('No Space', () => {
       it('Removes the border radius around the buttons', () => {
         const { container } = render(
@@ -170,6 +175,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'start');
       });
+
       it('Center: aligns the buttons to the center', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -187,6 +193,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'center');
       });
+
       it('Right: aligns the buttons to the right', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -204,6 +211,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'end');
       });
+
       it('Fill: fills the space with the buttons', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -221,6 +229,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'stretch');
       });
+
       it('Apart: behaves like the left align', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -239,6 +248,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('justify-content', 'start');
       });
     });
+
     describe('No Space', () => {
       it('Does NOT remove the border radius around the buttons', () => {
         const { container } = render(
@@ -286,6 +296,7 @@ describe('ButtonGroup', () => {
           magma.colors.danger
         );
       });
+
       it('sets the color of the children buttons, except if the button has a color set', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -332,6 +343,7 @@ describe('ButtonGroup', () => {
         expect(getByTestId(`${testId}-1`)).toHaveStyleRule('height', '56px');
         expect(getByTestId(`${testId}-2`)).toHaveStyleRule('height', '56px');
       });
+
       it('sets the size of the children buttons, except if the button has a size set', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -375,6 +387,7 @@ describe('ButtonGroup', () => {
           'none'
         );
       });
+
       it('sets the variant of the children buttons, except if the button has a variant set', () => {
         const { getByTestId } = render(
           <ButtonGroup

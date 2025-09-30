@@ -194,7 +194,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       accept,
       containerStyle,
       disabled,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
       dropzoneOptions = {
         multiple: true,
       },

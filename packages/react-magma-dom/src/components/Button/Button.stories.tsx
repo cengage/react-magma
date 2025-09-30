@@ -311,6 +311,7 @@ export const All = () => {
 export const LoadingButton = {
   render: args => {
     const [isLoading, setIsLoading] = React.useState(args.isLoading);
+
     React.useEffect(() => {
       if (isLoading) {
         setTimeout(() => {

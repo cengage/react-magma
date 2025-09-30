@@ -1088,7 +1088,9 @@ describe('Combobox', () => {
         await userEvent.keyboard('{Escape}');
 
         expect(onEscKeyMock).toHaveBeenCalled();
-        expect(queryByText('Modal Content')).not.toBeInTheDocument();
+        await waitFor(() => {
+          expect(queryByText('Modal Content')).not.toBeInTheDocument();
+        });
       });
     });
   });

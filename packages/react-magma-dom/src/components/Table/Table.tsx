@@ -190,8 +190,10 @@ export const StyledTable = styled.table<{
       if (props.hasTablePagination) {
         return `${props.theme.borderRadius} ${props.theme.borderRadius} 0 0`;
       }
+
       return props.theme.borderRadius;
     }
+
     return '0';
   }};
   color: ${props =>

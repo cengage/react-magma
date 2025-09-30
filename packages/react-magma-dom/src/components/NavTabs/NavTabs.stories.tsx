@@ -138,6 +138,7 @@ export const CustomTab: StoryObj<NavTabsProps> = {
         {children}
       </a>
     );
+
     return (
       <Card isInverse={args.isInverse}>
         <NavTabs aria-label="Sample Custom Component Navigation Tabs" {...args}>

@@ -196,6 +196,7 @@ export const Simple = {
     function onSelection(items: TreeItemSelectedInterface[]) {
       const selected = createTags(items).selected;
       const indet = createTags(items).indeterminate;
+
       setSelectedItems(selected);
       setIndeterminateItems(indet);
       setTotal(items.length);
@@ -600,6 +601,7 @@ export const NoIcons = {
     function onSelection(items: TreeItemSelectedInterface[]) {
       const selected = createTags(items).selected;
       const indet = createTags(items).indeterminate;
+
       setSelectedItems(selected);
       setIndeterminateItems(indet);
     }
@@ -681,6 +683,7 @@ export const Textbook = {
     function onSelection(items: TreeItemSelectedInterface[]) {
       const selected = createTags(items).selected;
       const indet = createTags(items).indeterminate;
+
       setSelectedItems(selected);
       setIndeterminateItems(indet);
       setTotal(items.length);
@@ -788,6 +791,7 @@ export const DefaultIcon = {
     function onSelection(items: TreeItemSelectedInterface[]) {
       const selected = createTags(items).selected;
       const indet = createTags(items).indeterminate;
+
       setSelectedItems(selected);
       setIndeterminateItems(indet);
     }
@@ -1206,6 +1210,7 @@ const renderTreeItemsRecursively = (terms: any[], depth: number) => {
     width: 230 - depth * 24 + 'px',
     display: 'inline-block',
   };
+
   return terms.map(term => {
     return (
       <TreeItem
@@ -1248,10 +1253,12 @@ export const AccordionSectionWithTreeView = (props: any) => {
 
   const getTermsForRender = (terms: any) => {
     if (isShowAll || terms.length <= 5) return terms;
+
     return terms.slice(0, 5);
   };
   const getTreesForRender = () => {
     if (isShowAll || trees.length <= 5) return trees;
+
     return trees.slice(0, 5);
   };
 
@@ -2604,6 +2611,7 @@ export const DynamicTreeItems = {
             ],
           };
         }
+
         return item;
       });
 
@@ -2640,6 +2648,7 @@ export const DynamicTreeItems = {
             ],
           };
         }
+
         return item;
       });
 
@@ -2712,6 +2721,7 @@ export const DynamicTreeItems = {
             ],
           };
         }
+
         return item;
       });
 
@@ -2748,6 +2758,7 @@ export const DynamicTreeItems = {
             ],
           };
         }
+
         return item;
       });
 
@@ -2759,6 +2770,7 @@ export const DynamicTreeItems = {
         alert(
           'Requires at least two top-level items to add a child to the second one.'
         );
+
         return;
       }
       const parentIndex = 1;
@@ -2793,8 +2805,10 @@ export const DynamicTreeItems = {
             ],
           };
         }
+
         return item;
       });
+
       updateTree(newTree);
     };
 
@@ -2805,6 +2819,7 @@ export const DynamicTreeItems = {
         tree[1].children.length === 0
       ) {
         alert('Requires the second top-level item to have at least one child.');
+
         return;
       }
       const grandparentIndex = 1;
@@ -2847,12 +2862,15 @@ export const DynamicTreeItems = {
                   ],
                 };
               }
+
               return parent;
             }),
           };
         }
+
         return grandparent;
       });
+
       updateTree(newTree);
     };
 

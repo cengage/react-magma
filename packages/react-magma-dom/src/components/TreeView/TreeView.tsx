@@ -80,6 +80,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
         });
 
         treeItemIndex++;
+
         return processedItem;
       }
 

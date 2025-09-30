@@ -763,7 +763,7 @@ describe('Datagrid', () => {
 
       expect(appliedSelection).toHaveDisplayValue('20');
       expect(onRowsPerPageChange).toHaveBeenCalledWith(
-        pagination.rowsPerPageValues[1].toString()
+        pagination.rowsPerPageValues[1]
       );
     });
 

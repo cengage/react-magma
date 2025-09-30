@@ -447,6 +447,7 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
       }
 
       const message = `Table is sorted by ${key}, ${direction}`;
+
       setSortConfig({ key, message });
     };
 
@@ -497,6 +498,7 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
           product => !selectedItems.includes(product.id)
         );
         let sortOrder = 0;
+
         if (sortConfig !== null) {
           if (selectedItemsToSort.length < 2) {
             sortOrder =
@@ -511,6 +513,7 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
               sortOrder =
                 selectedDirection === TableSortDirection.ascending ? 1 : -1;
             }
+
             return sortOrder;
           });
         }
@@ -525,6 +528,7 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
         const sortableItems = [...products];
         const direction =
           sortConfig.key === 'price' ? priceDirection : stockDirection;
+
         sortableItems.sort((a, b) => {
           if (a[sortConfig.key] < b[sortConfig.key]) {
             return direction === TableSortDirection.ascending ? -1 : 1;
@@ -532,8 +536,10 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
           if (a[sortConfig.key] > b[sortConfig.key]) {
             return direction === TableSortDirection.ascending ? 1 : -1;
           }
+
           return 0;
         });
+
         return sortableItems;
       }
     }, [sortConfig]);
@@ -554,6 +560,7 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
     function handleHeaderSelect(ev: React.ChangeEvent<HTMLInputElement>) {
       if (ev.target.checked && selectedItems.length === 0) {
         const checkedIds = [];
+
         products.filter(prod => checkedIds.push(prod.id));
         setSelectedItems(checkedIds);
       } else {

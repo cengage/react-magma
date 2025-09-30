@@ -50,6 +50,7 @@ function buildFontWeight(props: Omit<CharacterCounterProps, 'id'>) {
   ) {
     return magma.typographyVisualStyles.headingXSmall.fontWeight;
   }
+
   return 'inherit';
 }
 
@@ -94,6 +95,7 @@ export const CharacterCounter = React.forwardRef<
     if (getPercentage > 100) {
       return 'assertive';
     }
+
     return 'polite';
   }
 
@@ -122,6 +124,7 @@ export const CharacterCounter = React.forwardRef<
         if (inputLength === maxCharacters + 1) {
           return `${characterLimit} ${i18n.characterCounter.characterOver}`;
         }
+
         return `${characterLimit} ${i18n.characterCounter.charactersOver}`;
       }
       if (inputLength === maxCharacters) {
@@ -131,6 +134,7 @@ export const CharacterCounter = React.forwardRef<
       if (maxCharacters === 1) {
         return `${maxCharacters} ${i18n.characterCounter.characterAllowed}`;
       }
+
       return `${maxCharacters} ${i18n.characterCounter.charactersAllowed}`;
     }
   }, [characterLimit, inputLength, i18n.characterCounter, maxCharacters]);

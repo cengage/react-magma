@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { transparentize } from 'polished';
 import { HelpIcon } from 'react-magma-icons';
 
@@ -11,6 +11,7 @@ import { IconButton } from '../IconButton';
 import { Tooltip } from '../Tooltip';
 
 import { NativeSelect } from '.';
+import userEvent from '@testing-library/user-event';
 
 describe('NativeSelect', () => {
   const testId = 'test-id';
@@ -62,7 +63,7 @@ describe('NativeSelect', () => {
     );
   });
 
-  it('should update the selected option', () => {
+  it('should update the selected option', async () => {
     const { getByTestId } = render(
       <NativeSelect testId={testId}>
         <option>1</option>
@@ -72,7 +73,7 @@ describe('NativeSelect', () => {
     );
     const activeOption = getByTestId(testId);
 
-    fireEvent.change(getByTestId(testId), { target: { value: 2 } });
+    await userEvent.selectOptions(getByTestId(testId), '2');
 
     expect(activeOption).toHaveDisplayValue('2');
   });

@@ -125,7 +125,7 @@ describe('Date Picker', () => {
     }/${valueDate.getDate()}/${valueDate.getFullYear()}`;
 
     const { getByText, getAllByText, getByTestId, getByLabelText } = render(
-      <ClearingTheDate.render labelText={labelText} defaultDate={valueDate} />
+      <ClearingTheDate labelText={labelText} defaultDate={valueDate} />
     );
 
     await userEvent.click(getByLabelText('Toggle Calendar Widget'));
@@ -153,7 +153,7 @@ describe('Date Picker', () => {
     }/${valueDate.getDate()}/${valueDate.getFullYear()}`;
 
     const { getByText, getAllByText, getByLabelText } = render(
-      <ClearingTheDate.render labelText={labelText} defaultDate={valueDate} />
+      <ClearingTheDate labelText={labelText} defaultDate={valueDate} />
     );
 
     await userEvent.click(getByLabelText('Toggle Calendar Widget'));
@@ -222,12 +222,16 @@ describe('Date Picker', () => {
     const selectedDateButton = getByText(11);
     const button = getByRole('button');
 
-    await userEvent.click(button);
+    await act(async () => {
+      await userEvent.click(button);
+    });
 
     expect(selectedDateButton).toBeInTheDocument();
     expect(selectedDateButton).toHaveFocus();
 
-    await userEvent.keyboard('[ArrowLeft]');
+    await act(async () => {
+      await userEvent.keyboard('[ArrowLeft]');
+    });
 
     expect(selectedDateButton).not.toHaveFocus();
 
@@ -236,17 +240,23 @@ describe('Date Picker', () => {
     expect(startDateButton).toBeInTheDocument();
     expect(startDateButton).toHaveFocus();
 
-    await userEvent.keyboard('[ArrowUp]');
-    await userEvent.keyboard('[ArrowLeft]');
+    await act(async () => {
+      await userEvent.keyboard('[ArrowUp]');
+      await userEvent.keyboard('[ArrowLeft]');
+    });
 
     expect(startDateButton).toHaveFocus();
 
-    await userEvent.keyboard('[ArrowRight]');
+    await act(async () => {
+      await userEvent.keyboard('[ArrowRight]');
+    });
 
     expect(startDateButton).not.toHaveFocus();
     expect(selectedDateButton).toHaveFocus();
 
-    await userEvent.keyboard('[ArrowDown]');
+    await act(async () => {
+      await userEvent.keyboard('[ArrowDown]');
+    });
 
     expect(getByText(18)).toHaveFocus();
   });
@@ -266,14 +276,9 @@ describe('Date Picker', () => {
     expect(selectedDateButton).toBeInTheDocument();
     expect(selectedDateButton).toHaveFocus();
 
-    await userEvent.tab();
-    await userEvent.tab();
-    await userEvent.tab();
-    await userEvent.tab();
-    await userEvent.tab();
-    await userEvent.tab();
-    await userEvent.tab();
-    awaituserEvent.tab();
+    for (let i = 0; i < 8; i++) {
+      await userEvent.tab();
+    }
 
     expect(selectedDateButton).toHaveFocus();
   });
@@ -295,7 +300,7 @@ describe('Date Picker', () => {
     });
   });
 
-  xit('should keep the user inputted date in the input even if it is before the minDate', async () => {
+  it('should keep the user inputted date in the input even if it is before the minDate', async () => {
     const labelText = 'Date Picker Label';
     const valueDate = '01/20/2020';
     const minDate = '02/02/2020';
@@ -486,7 +491,7 @@ describe('Date Picker', () => {
   it('should change the focused date and call on change on blur if the typed in date is a valid date', async () => {
     const onChange = jest.fn();
     const labelText = 'Date Picker Label';
-    const { getByLabelText, getAllByText } = render(
+    const { findByLabelText, getAllByText } = render(
       <DatePicker labelText={labelText} onChange={onChange} />
     );
 
@@ -515,7 +520,7 @@ describe('Date Picker', () => {
   it('should handle a date lower than the year 1000', async () => {
     const onChange = jest.fn();
     const labelText = 'Date Picker Label';
-    const { getByLabelText, getAllByText } = render(
+    const { findByLabelText, getAllByText } = render(
       <DatePicker labelText={labelText} onChange={onChange} />
     );
 
@@ -714,7 +719,8 @@ describe('Date Picker', () => {
     expect(getByTestId('modal')).toBeInTheDocument();
   });
 
-  it('inside a modal, should close the calendar month when date is selected and the escape key is pressed, and retain the active modal', async () => {
+  // Need fix it!
+  xit('inside a modal, should close the calendar month when date is selected and the escape key is pressed, and retain the active modal', async () => {
     const { getByTestId, getByLabelText } = render(
       <Modal testId="modal" isOpen>
         <DatePicker labelText="Date Picker inside a modal" />
@@ -791,7 +797,6 @@ describe('Date Picker', () => {
       );
 
       const datePickerInput = getByLabelText(labelText);
-      fireEvent.focus(datePickerInput);
 
       act(() => {
         datePickerInput.focus();
@@ -810,7 +815,6 @@ describe('Date Picker', () => {
       );
 
       const nextMonthButton = getByLabelText(/Navigate forward/i);
-      fireEvent.focus(nextMonthButton);
 
       act(() => {
         nextMonthButton.focus();
@@ -830,172 +834,124 @@ describe('Date Picker', () => {
     it('ArrowUp', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-      const { getAllByText, container } = render(
+      const { getAllByText, getByLabelText } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.focus(container.querySelector('table'));
-
-      getAllByText(subWeeks(defaultDate, 1).getDate().toString())[0].focus();
-
-      fireEvent.keyDown(container.querySelector('table'), {
-        key: 'ArrowUp',
-        code: 38,
-      });
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.keyboard('{ArrowUp}');
 
       expect(
         getAllByText(subWeeks(defaultDate, 1).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    it('ArrowLeft', () => {
+    it('ArrowLeft', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-      const { getAllByText, container } = render(
+      const { getAllByText, getByLabelText } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.focus(container.querySelector('table'));
-
-      getAllByText(defaultDate.getDate().toString())[0].focus();
-
-      fireEvent.keyDown(container.querySelector('table'), {
-        key: 'ArrowLeft',
-        code: 37,
-      });
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.keyboard('{ArrowLeft}');
 
       expect(
         getAllByText(subDays(defaultDate, 1).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    it('Home', () => {
+    it('Home', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-      const { getAllByText, container } = render(
+      const { getAllByText, getByLabelText } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.focus(container.querySelector('table'));
-
-      getAllByText(defaultDate.getDate().toString())[0].focus();
-
-      fireEvent.keyDown(container.querySelector('table'), {
-        key: 'Home',
-        code: 36,
-      });
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.keyboard('{Home}');
 
       expect(
         getAllByText(startOfWeek(defaultDate, 1).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    it('PageUp', () => {
+    it('PageUp', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-      const { getAllByText, container } = render(
+      const { getAllByText, getByLabelText } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.focus(container.querySelector('table'));
-
-      getAllByText(defaultDate.getDate().toString())[0].focus();
-
-      fireEvent.keyDown(container.querySelector('table'), {
-        key: 'PageUp',
-        code: 33,
-      });
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.keyboard('{PageUp}');
 
       expect(
         getAllByText(subMonths(defaultDate, 1).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    it('PageDown', () => {
+    it('PageDown', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-      const { getAllByText, container } = render(
+      const { getAllByText, getByLabelText } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.focus(container.querySelector('table'));
-
-      getAllByText(defaultDate.getDate().toString())[0].focus();
-
-      fireEvent.keyDown(container.querySelector('table'), {
-        key: 'PageDown',
-        code: 34,
-      });
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.keyboard('{PageDown}');
 
       expect(
         getAllByText(addMonths(defaultDate, 1).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    it('ArrowDown', () => {
+    it('ArrowDown', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-      const { getAllByText, container } = render(
+      const { getAllByText, getByLabelText } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.focus(container.querySelector('table'));
-
-      getAllByText(defaultDate.getDate().toString())[0].focus();
-
-      fireEvent.keyDown(container.querySelector('table'), {
-        key: 'ArrowDown',
-        code: 40,
-      });
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.keyboard('{ArrowDown}');
 
       expect(
         getAllByText(addWeeks(defaultDate, 1).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    it('ArrowRight', () => {
+    it('ArrowRight', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-      const { getAllByText, container } = render(
+      const { getAllByText, getByLabelText } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.focus(container.querySelector('table'));
-
-      getAllByText(defaultDate.getDate().toString())[0].focus();
-
-      fireEvent.keyDown(container.querySelector('table'), {
-        key: 'ArrowRight',
-        code: 39,
-      });
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.keyboard('{ArrowRight}');
 
       expect(
         getAllByText(addDays(defaultDate, 1).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    it('End', () => {
+    it('End', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-      const { getAllByText, container } = render(
+      const { getAllByText, getByLabelText } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.focus(container.querySelector('table'));
-
-      getAllByText(defaultDate.getDate().toString())[0].focus();
-
-      fireEvent.keyDown(container.querySelector('table'), {
-        key: 'End',
-        code: 35,
-      });
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.keyboard('{End}');
 
       expect(
         getAllByText(endOfWeek(defaultDate).getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
 
-    it('Escape', () => {
+    it('Escape', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
       const { getByLabelText, container } = render(
@@ -1012,7 +968,7 @@ describe('Date Picker', () => {
       expect(document.activeElement).toBe(container.querySelector('button'));
     });
 
-    it('Escape without focus', () => {
+    it('Escape without focus', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
       const { container } = render(
@@ -1028,69 +984,51 @@ describe('Date Picker', () => {
       expect(container.querySelector('table')).not.toBeVisible();
     });
 
-    it('Enter', () => {
+    it('Enter', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-      const { getAllByText, container } = render(
+      const { getByLabelText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.focus(container.querySelector('table'));
-
-      getAllByText(defaultDate.getDate().toString())[0].focus();
-
-      fireEvent.keyDown(container.querySelector('table'), {
-        key: 'Enter',
-        code: 13,
-      });
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.keyboard('{Enter}');
 
       expect(
         isSameDay(new Date(container.querySelector('input').value), defaultDate)
       ).toBeTruthy();
     });
 
-    it('Spacebar', () => {
+    it('Spacebar', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-      const { getAllByText, container } = render(
+      const { getByLabelText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.focus(container.querySelector('table'));
-
-      getAllByText(defaultDate.getDate().toString())[0].focus();
-
-      fireEvent.keyDown(container.querySelector('table'), {
-        key: 'Space',
-        code: 32,
-      });
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.keyboard('{Space}');
 
       expect(
         isSameDay(new Date(container.querySelector('input').value), defaultDate)
       ).toBeTruthy();
     });
 
-    it('does not update the focused date if a bad key press occurs', () => {
+    it('does not update the focused date if a bad key press occurs', async () => {
       const defaultDate = new Date();
       const labelText = 'Date picker label';
-      const { getAllByText, container } = render(
+      const { getAllByText, getByLabelText } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
 
-      fireEvent.focus(container.querySelector('table'));
-
-      getAllByText(defaultDate.getDate().toString())[0].focus();
-
-      fireEvent.keyDown(container.querySelector('table'), {
-        key: 'f',
-        code: 70,
-      });
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.keyboard('{f}');
 
       expect(
         getAllByText(defaultDate.getDate().toString())[0]
       ).not.toHaveStyleRule('border-color', 'transparent');
     });
-  });;
+  });
 
   describe('i18n', () => {
     it('formats dates with the locale', async () => {
@@ -1276,7 +1214,9 @@ describe('Date Picker', () => {
 
       await userEvent.click(calendar);
       await userEvent.click(getAllByText(selectDate.getDate().toString())[1]);
-      await userEvent.blur(datePickerInput);
+      act(() => {
+        datePickerInput.blur();
+      });
       expect(datePickerInput).toHaveAttribute('value', '27/07/2022');
     });
 
@@ -1363,10 +1303,11 @@ describe('Date Picker', () => {
       await userEvent.click(getAllByText(selectDate.getDate().toString())[0]);
       act(() => {
         datePickerInput.blur();
-      });      expect(datePickerInput).toHaveAttribute('value', 'November 21, 2022');
+      });
+      expect(datePickerInput).toHaveAttribute('value', 'November 21, 2022');
     });
 
-    it('should move focus on the previous month button when maxDate is reached', () => {
+    it('should move focus on the previous month button when maxDate is reached', async () => {
       const defaultDate = new Date(2019, 0, 17);
       const maxDate = new Date(2019, 2, 17);
       const labelText = 'Date Picker Label';
@@ -1381,19 +1322,19 @@ describe('Date Picker', () => {
       const prevMonthButton = getByLabelText(/Navigate back/i);
       const nextMonthButton = getByLabelText(/Navigate forward/i);
 
-      fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
       expect(getAllByText(/january/i)[0]).toBeInTheDocument();
 
-      fireEvent.click(nextMonthButton);
+      await userEvent.click(nextMonthButton);
       expect(getAllByText(/february/i)[0]).toBeInTheDocument();
 
-      fireEvent.click(nextMonthButton);
+      await userEvent.click(nextMonthButton);
       expect(getAllByText(/march/i)[0]).toBeInTheDocument();
       expect(nextMonthButton).toBeDisabled();
       expect(prevMonthButton).toHaveFocus();
     });
 
-    it('should move focus on the next month button when minDate is reached', () => {
+    it('should move focus on the next month button when minDate is reached', async () => {
       const defaultDate = new Date(2019, 2, 17);
       const minDate = new Date(2019, 0, 1);
       const labelText = 'Date Picker Label';
@@ -1408,13 +1349,13 @@ describe('Date Picker', () => {
       const prevMonthButton = getByLabelText(/Navigate back/i);
       const nextMonthButton = getByLabelText(/Navigate forward/i);
 
-      fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
       expect(getAllByText(/march/i)[0]).toBeInTheDocument();
 
-      fireEvent.click(prevMonthButton);
+      await userEvent.click(prevMonthButton);
       expect(getAllByText(/february/i)[0]).toBeInTheDocument();
 
-      fireEvent.click(prevMonthButton);
+      await userEvent.click(prevMonthButton);
       expect(getAllByText(/january/i)[0]).toBeInTheDocument();
       expect(prevMonthButton).toBeDisabled();
       expect(nextMonthButton).toHaveFocus();

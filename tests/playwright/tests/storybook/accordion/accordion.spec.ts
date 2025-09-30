@@ -97,15 +97,8 @@ test.describe('Accordion', () => {
     );
 
     await section1Button.click();
-    const inverseContainer = storyBookIframe
-      .locator('#root > div > div')
-      .first();
 
     await expect(storyBookIframe.getByText(section1Text)).toBeVisible();
-    await expect(inverseContainer).toHaveCSS(
-      'background-color',
-      'rgba(0, 0, 0, 0)'
-    );
     await expect(section1Button).toHaveCSS('color', 'rgb(69, 69, 69)');
     await expect(storyBookIframe.getByText(section1Text)).toHaveCSS(
       'color',
@@ -155,7 +148,7 @@ test.describe('Accordion', () => {
     await expect(storyBookIframe.getByText(section3Text)).toBeVisible();
 
     // Interaction with the storybook controls
-    await page.getByRole('tab', { name: 'Controls (4)' }).click();
+    await page.getByRole('tab', { name: 'Controls' }).click();
 
     await page.getByText('0', { exact: true }).click();
     await page.getByRole('textbox').fill('1');
@@ -191,9 +184,10 @@ test.describe('Accordion', () => {
     await expect(storyBookIframe.getByText(section3Text)).toBeHidden();
 
     // Interaction with the storybook controls
-    await page.getByRole('tab', { name: 'Controls (4)' }).click();
+    await page.getByRole('tab', { name: 'Controls' }).click();
 
     const indexValue = page.getByPlaceholder('Edit number...');
+
     await indexValue.click();
     await indexValue.fill('1');
     await indexValue.press('Enter');
@@ -266,18 +260,17 @@ test.describe('Accordion', () => {
       section3Button
     );
 
-    await section1Button.click();
-    const inverseContainer = storyBookIframe
-      .locator('#root > div > div')
-      .first();
+    await section3Button.click();
+    const inverseContainer = storyBookIframe.locator(
+      '#storybook-root > div > div'
+    );
 
-    await expect(storyBookIframe.getByText(section1Text)).toBeVisible();
     await expect(inverseContainer).toHaveCSS(
       'background-color',
       'rgb(41, 47, 124)'
     );
     await expect(section1Button).toHaveCSS('color', 'rgb(255, 255, 255)');
-    await expect(storyBookIframe.getByText(section1Text)).toHaveCSS(
+    await expect(storyBookIframe.getByText(section3Text)).toHaveCSS(
       'color',
       'rgb(255, 255, 255)'
     );

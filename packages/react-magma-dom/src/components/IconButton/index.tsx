@@ -63,6 +63,7 @@ export interface SpanProps {
 const SpanTextLeft = styled.span<SpanProps>`
   ${props => {
     const padding = getIconPadding(props);
+
     return `
       padding-left: ${props.hasIconLeading ? padding : 0};
       padding-right: ${padding};

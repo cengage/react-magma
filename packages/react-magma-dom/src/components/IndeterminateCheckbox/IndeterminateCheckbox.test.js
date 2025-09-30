@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';

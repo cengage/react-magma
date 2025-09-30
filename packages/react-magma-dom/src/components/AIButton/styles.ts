@@ -100,6 +100,7 @@ export function buildAIBorderColor(initialProps) {
     if (props.isInverse) {
       return 'none';
     }
+
     return props.theme.colors.neutral300;
   }
 
@@ -117,6 +118,7 @@ export function buildAIColor(initialProps) {
     if (props.isInverse) {
       return transparentize(0.6, props.theme.colors.neutral100);
     }
+
     return transparentize(0.4, props.theme.colors.neutral500);
   }
 

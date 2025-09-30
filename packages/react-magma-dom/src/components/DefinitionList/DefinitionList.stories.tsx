@@ -34,6 +34,7 @@ export const Simple = {
       { term: 'Tea', description: 'Another hot beverage' },
       { term: 'Milk', description: 'A cold beverage' },
     ];
+
     return (
       <Card isInverse={args.isInverse}>
         <CardBody>

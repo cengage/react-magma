@@ -99,8 +99,7 @@ describe('Popover', () => {
     expect(popoverTrigger).toHaveTextContent(customText);
   });
 
-  // TODO: Unskip this test
-  xit('should lock focus inside the popover', async () => {
+  it('should lock focus inside the popover', async () => {
     const { container, getByTestId } = render(
       <Popover focusTrap>
         <PopoverTrigger />
@@ -555,10 +554,8 @@ describe('Popover', () => {
     expect(openButton).toBeInTheDocument();
     expect(popoverContent).not.toBeVisible();
 
-    await act(async () => {
-      triggerButton.focus();
-      userEvent.keyboard('{Enter}');
-    });
+    triggerButton.focus();
+    await userEvent.keyboard('{Enter}');
 
     expect(popoverContent).toBeVisible();
     expect(getByText('Popover Header')).toBeVisible();

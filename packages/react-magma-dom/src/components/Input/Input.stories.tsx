@@ -226,6 +226,7 @@ export const HelpLink = {
     const onHelpLinkClick = () => {
       alert('Help link clicked!');
     };
+
     return (
       <>
         <Input labelText="Help link - top" {...args}>
@@ -300,6 +301,7 @@ export const WithTwoIcons = {
     const onHelpLinkClick = () => {
       alert('Help link clicked!');
     };
+
     return (
       <>
         <Input
@@ -793,6 +795,7 @@ export function TimeInput() {
     const { hours, minutes } = makeHoursAndMinutesFromMilliseconds(
       totalDurationMilliseconds
     );
+
     setHours(hours);
     setMinutes(minutes);
   }, [totalDurationMilliseconds]);

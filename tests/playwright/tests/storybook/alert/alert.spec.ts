@@ -13,14 +13,14 @@ test.describe('Alert', () => {
 
   function getAlertByName(name: string): Locator {
     return storyBookIframe
-      .locator('#root > div > div > div')
+      .locator('#storybook-root > div > div > div')
       .filter({ hasText: name })
       .first();
   }
 
   function getAlertByNameInversePage(name: string): Locator {
     return storyBookIframe
-      .locator('#root > div > div > div > div > div')
+      .locator('#storybook-root > div > div > div > div > div')
       .filter({ hasText: name })
       .first();
   }
@@ -42,6 +42,7 @@ test.describe('Alert', () => {
 
     // Default alert
     const defaultAlert = getAlertByName('Default');
+
     await expect(defaultAlert).toBeVisible();
     await expect(defaultAlert).toHaveCSS(
       'background-color',
@@ -56,6 +57,7 @@ test.describe('Alert', () => {
 
     // Success alert
     const successAlert = getAlertByName('Success hyperlink');
+
     await expect(successAlert).toBeVisible();
     await expect(successAlert).toHaveCSS(
       'background-color',
@@ -74,6 +76,7 @@ test.describe('Alert', () => {
 
     // Warning alert
     const warningAlert = getAlertByName('Warning hyperlink');
+
     await expect(warningAlert).toBeVisible();
     await expect(
       storyBookIframe.getByRole('button', { name: 'Button it up' }).first()
@@ -91,6 +94,7 @@ test.describe('Alert', () => {
 
     // Danger alert
     const dangerAlert = getAlertByName('Danger hyperlink');
+
     await expect(dangerAlert).toBeVisible();
     await expect(dangerAlert).toHaveCSS(
       'background-color',
@@ -102,10 +106,12 @@ test.describe('Alert', () => {
 
     // Default dismissible alert
     const defaultDismissibleAlert = getAlertByName('Default dismissible with');
+
     await expect(defaultDismissibleAlert).toBeVisible();
 
     // Success dismissible alert
     const successDismissibleAlert = getAlertByName('Success dismissible with');
+
     await expect(successDismissibleAlert).toBeVisible();
     await expect(storyBookIframe.getByText('Badgery').nth(2)).toBeVisible();
     await expect(
@@ -114,6 +120,7 @@ test.describe('Alert', () => {
 
     // Warning dismissible alert
     const warningDismissibleAlert = getAlertByName('Warning dismissible with');
+
     await expect(warningDismissibleAlert).toBeVisible();
     await expect(
       storyBookIframe.getByRole('button', { name: 'Button it up' }).nth(1)
@@ -121,6 +128,7 @@ test.describe('Alert', () => {
 
     // Danger dismissible alert
     const dangerDismissibleAlert = getAlertByName('Danger dismissible with');
+
     await expect(dangerDismissibleAlert).toBeVisible();
 
     // Verify close buttons
@@ -128,7 +136,10 @@ test.describe('Alert', () => {
   });
 
   test('Inverse', async ({ page }) => {
-    const inverseWrapper = storyBookIframe.locator('#root > div > div');
+    const inverseWrapper = storyBookIframe.locator(
+      '#storybook-root > div > div'
+    );
+
     await page.getByRole('button', { name: 'Alert' }).click();
     await page.locator('#alert--inverse').click();
 
@@ -141,6 +152,7 @@ test.describe('Alert', () => {
 
     // Default alert
     const defaultAlert = getAlertByNameInversePage('Default');
+
     await expect(defaultAlert).toBeVisible();
     await expect(defaultAlert).toHaveCSS('background-color', 'rgb(0, 74, 117)');
     await expect(defaultAlert).toHaveCSS(
@@ -152,6 +164,7 @@ test.describe('Alert', () => {
 
     // Success alert
     const successAlert = getAlertByNameInversePage('Success');
+
     await expect(successAlert).toBeVisible();
     await expect(successAlert).toHaveCSS('background-color', 'rgb(15, 83, 35)');
     await expect(successAlert).toHaveCSS(
@@ -163,6 +176,7 @@ test.describe('Alert', () => {
 
     // Warning alert
     const warningAlert = getAlertByNameInversePage('Warning');
+
     await expect(warningAlert).toBeVisible();
     await expect(warningAlert).toHaveCSS(
       'background-color',
@@ -177,6 +191,7 @@ test.describe('Alert', () => {
 
     // Danger alert
     const dangerAlert = getAlertByNameInversePage('Danger');
+
     await expect(dangerAlert).toBeVisible();
     await expect(dangerAlert).toHaveCSS('background-color', 'rgb(127, 23, 20)');
     await expect(dangerAlert).toHaveCSS(
@@ -190,24 +205,28 @@ test.describe('Alert', () => {
     const defaultDismissibleAlert = getAlertByNameInversePage(
       'Default dismissible with'
     );
+
     await expect(defaultDismissibleAlert).toBeVisible();
 
     // Success dismissible alert
     const successDismissibleAlert = getAlertByNameInversePage(
       'Success dismissible with'
     );
+
     await expect(successDismissibleAlert).toBeVisible();
 
     // Warning dismissible alert
     const warningDismissibleAlert = getAlertByNameInversePage(
       'Warning dismissible with'
     );
+
     await expect(warningDismissibleAlert).toBeVisible();
 
     // Danger dismissible alert
     const dangerDismissibleAlert = getAlertByNameInversePage(
       'Danger dismissible with'
     );
+
     await expect(dangerDismissibleAlert).toBeVisible();
 
     // Verify close buttons

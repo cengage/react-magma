@@ -149,6 +149,7 @@ export const DateTimePicker = React.forwardRef<
     if (!date) return '';
 
     const dateObj = new Date(date);
+
     return dateObj.toLocaleTimeString('en-US', {
       hour12: true,
       hour: 'numeric',
@@ -182,6 +183,7 @@ export const DateTimePicker = React.forwardRef<
     if (!value) {
       setAdditionalInputContent('');
       previousTime.current = '';
+
       return;
     }
 
@@ -189,10 +191,12 @@ export const DateTimePicker = React.forwardRef<
 
     if (timeMatch) {
       const timeValue = timeMatch[1];
+
       setAdditionalInputContent(timeValue);
       previousTime.current = timeValue;
     } else {
       const cuttedValue = value.split(' ');
+
       if (cuttedValue[0] && cuttedValue[0] !== '') {
         setAdditionalInputContent(previousTime.current);
       } else {

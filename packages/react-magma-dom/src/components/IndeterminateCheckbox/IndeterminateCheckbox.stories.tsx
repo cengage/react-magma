@@ -102,6 +102,7 @@ export const Behavior = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ) {
     const updatedCheckedItems = Array(4).fill(event.target.checked);
+
     setCheckedItems(updatedCheckedItems);
     setStatus(getStatus(updatedCheckedItems));
   }
@@ -111,6 +112,7 @@ export const Behavior = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ) {
     const updatedCheckedItems = [...checkedItems];
+
     updatedCheckedItems[index] = event.target.checked;
     setCheckedItems(updatedCheckedItems);
     setStatus(getStatus(updatedCheckedItems));

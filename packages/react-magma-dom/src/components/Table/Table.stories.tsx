@@ -705,6 +705,7 @@ export const Sortable = {
 
     const sortedItems = React.useMemo(() => {
       const sortableItems = [...products];
+
       if (sortConfig !== null) {
         sortableItems.sort((a, b) => {
           if (a[sortConfig.key] < b[sortConfig.key]) {
@@ -717,14 +718,17 @@ export const Sortable = {
               ? 1
               : -1;
           }
+
           return 0;
         });
       }
+
       return sortableItems;
     }, [products, sortConfig]);
 
     const requestSort = key => {
       let direction = TableSortDirection.ascending;
+
       if (
         sortConfig &&
         sortConfig.key === key &&
@@ -733,6 +737,7 @@ export const Sortable = {
         direction = TableSortDirection.descending;
       }
       const message = `Table is sorted by ${key}, ${direction}`;
+
       setSortConfig({ key, direction, message });
     };
 
@@ -899,6 +904,7 @@ export const AdjustableRowNumber = {
   render: args => {
     function getTableRows() {
       const tableRows = [];
+
       for (let i = 0; i < args.numberRows; i++) {
         tableRows.push(
           <TableRow key={`row${i}`}>
@@ -912,6 +918,7 @@ export const AdjustableRowNumber = {
           </TableRow>
         );
       }
+
       return tableRows;
     }
 

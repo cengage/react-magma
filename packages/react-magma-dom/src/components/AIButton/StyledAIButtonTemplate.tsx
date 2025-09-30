@@ -34,6 +34,7 @@ const gradientAnimation = keyframes`
     background-position: 100% 50%;
   }
 `;
+
 export const buttonStyles = props => css`
   align-items: center;
   background: ${buildAIButtonBackground(props)};

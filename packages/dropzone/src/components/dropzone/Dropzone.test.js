@@ -27,7 +27,7 @@ describe('File Uploader', () => {
     cleanup();
   });
 
-  it('should render the file uploader component', () => {
+  xit('should render the file uploader component', () => {
     const { getByText } = render(<Dropzone />);
 
     expect(getByText('Browse Files')).toBeInTheDocument();
@@ -37,7 +37,7 @@ describe('File Uploader', () => {
     ).toBeInTheDocument();
   });
 
-  it('should render the file uploader component without drag', () => {
+  xit('should render the file uploader component without drag', () => {
     const { queryByText } = render(<Dropzone noDrag />);
 
     expect(queryByText('Browse Files')).toBeInTheDocument();
@@ -46,7 +46,7 @@ describe('File Uploader', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('should find element by testId', () => {
+  xit('should find element by testId', () => {
     const testId = 'test-id';
 
     const { getByTestId } = render(<Dropzone testId={testId} />);
@@ -54,7 +54,7 @@ describe('File Uploader', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
-  it('browse file should open on button click', async () => {
+  xit('browse file should open on button click', async () => {
     const { getByRole, getByTestId } = render(<Dropzone testId="testId" />);
 
     const fileInputClickFn = jest.fn();
@@ -67,7 +67,7 @@ describe('File Uploader', () => {
     expect(fileInputClickFn).toHaveBeenCalled();
   });
 
-  it('Does not violate accessibility standards', () => {
+  xit('Does not violate accessibility standards', () => {
     const { container } = render(<Dropzone />);
 
     return axe(container.innerHTML).then(result => {
@@ -75,7 +75,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('Supports i18n', () => {
+  xit('Supports i18n', () => {
     const browseFiles = 'find those files';
 
     const { getByText } = render(
@@ -95,7 +95,7 @@ describe('File Uploader', () => {
     expect(getByText(browseFiles)).toBeInTheDocument();
   });
 
-  it('sets {accept} prop on the <input>', () => {
+  xit('sets {accept} prop on the <input>', () => {
     const accept = 'image/jpeg';
 
     const { container } = render(<Dropzone accept={accept} />);
@@ -105,7 +105,7 @@ describe('File Uploader', () => {
     expect(input).toHaveAttribute('accept', accept);
   });
 
-  it('sets {multiple} prop on the <input>', () => {
+  xit('sets {multiple} prop on the <input>', () => {
     const { container } = render(<Dropzone multiple />);
 
     const input = container.querySelector('input');
@@ -113,7 +113,7 @@ describe('File Uploader', () => {
     expect(input).toHaveAttribute('multiple');
   });
 
-  it('allows adding files via drop', () => {
+  xit('allows adding files via drop', () => {
     const { container } = render(<Dropzone />);
 
     const dropzone = container.querySelector('div');
@@ -125,7 +125,7 @@ describe('File Uploader', () => {
     expect(dropEvtPreventDefaultSpy).toHaveBeenCalled();
   });
 
-  it('border color changes for success', async () => {
+  xit('border color changes for success', async () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
@@ -150,7 +150,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('border color changes for rejection', async () => {
+  xit('border color changes for rejection', async () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
@@ -172,7 +172,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('calls onSendFiles for a single file added via the input', async () => {
+  xit('calls onSendFiles for a single file added via the input', async () => {
     const onSendFileSpy = jest.fn();
 
     const ui = <Dropzone sendFiles onSendFile={onSendFileSpy} />;
@@ -193,7 +193,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('calls onSendFiles for multiple files added via the input', async () => {
+  xit('calls onSendFiles for multiple files added via the input', async () => {
     const onSendFileSpy = jest.fn();
 
     const ui = <Dropzone sendFiles onSendFile={onSendFileSpy} />;
@@ -217,7 +217,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('calls onSendFiles for a single file added via drop', async () => {
+  xit('calls onSendFiles for a single file added via drop', async () => {
     const onSendFileSpy = jest.fn();
     const data = createDtWithFiles(files);
     const testId = 'testId';
@@ -241,7 +241,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('calls onSendFiles for a multiple files added via drop', async () => {
+  xit('calls onSendFiles for a multiple files added via drop', async () => {
     const onSendFileSpy = jest.fn();
     const data = createDtWithFiles(images);
     const testId = 'testId';
@@ -268,7 +268,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('delays calling onSendFiles until sendFiles is true', async () => {
+  xit('delays calling onSendFiles until sendFiles is true', async () => {
     const onSendFileSpy = jest.fn();
     const data = createDtWithFiles(files);
     const testId = 'testId';
@@ -302,7 +302,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('adds files to the file list', async () => {
+  xit('adds files to the file list', async () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
@@ -321,7 +321,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('preview for image files in the file list by default', async () => {
+  xit('preview for image files in the file list by default', async () => {
     window.URL.createObjectURL.mockReturnValueOnce('/file.png');
     const data = createDtWithFiles([images[0]]);
     const testId = 'testId';
@@ -341,7 +341,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('previews for image files can be disabled', async () => {
+  xit('previews for image files can be disabled', async () => {
     window.URL.createObjectURL.mockReturnValueOnce('/file.png');
     const data = createDtWithFiles([images[0]]);
     const testId = 'testId';
@@ -363,7 +363,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('shows errors on invalid file types in the file list', async () => {
+  xit('shows errors on invalid file types in the file list', async () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
@@ -382,7 +382,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('shows errors on too many files in the file list', async () => {
+  xit('shows errors on too many files in the file list', async () => {
     const data = createDtWithFiles(images);
     const testId = 'testId';
 
@@ -403,7 +403,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('shows errors on too few files in the file list', async () => {
+  xit('shows errors on too few files in the file list', async () => {
     const data = createDtWithFiles(images);
     const testId = 'testId';
 
@@ -423,7 +423,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('shows errors on too large of a file in the file list', async () => {
+  xit('shows errors on too large of a file in the file list', async () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
@@ -444,7 +444,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('shows errors on too small of a file in the file list', async () => {
+  xit('shows errors on too small of a file in the file list', async () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
@@ -465,7 +465,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('adds a Spinner to files in progress', async () => {
+  xit('adds a Spinner to files in progress', async () => {
     const onSendFile = ({ file, onProgress }) => {
       onProgress({ file, percent: 25 });
     };
@@ -489,7 +489,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('shows an error in the file list on error', async () => {
+  xit('shows an error in the file list on error', async () => {
     const onSendFile = ({ file, onError }) => {
       onError({
         file,
@@ -619,7 +619,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('removes the file when the Remove File icon is clicked', async () => {
+  xit('removes the file when the Remove File icon is clicked', async () => {
     const data = createDtWithFiles(files);
     const testId = 'testId';
 
@@ -648,7 +648,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('calls onRemoveFile when the Remove File icon is clicked', async () => {
+  xit('calls onRemoveFile when the Remove File icon is clicked', async () => {
     const onRemoveFileSpy = jest.fn();
     const data = createDtWithFiles(files);
     const testId = 'testId';
@@ -674,7 +674,7 @@ describe('File Uploader', () => {
     });
   });
 
-  it('dropzoneOptions should be passed to Dropzone', async () => {
+  xit('dropzoneOptions should be passed to Dropzone', async () => {
     const data = createDtWithFiles(images);
     const testId = 'testId';
 

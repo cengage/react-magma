@@ -242,7 +242,8 @@ export { CustomTab } from './components/Tabs/CustomTab';
 export {
   TabPanelsContainer,
   TabPanelContainerProps,
-} from './components/Tabs/TabPanelsContainer';export { TabPanel } from './components/Tabs/TabPanel';
+} from './components/Tabs/TabPanelsContainer';
+export { TabPanel } from './components/Tabs/TabPanel';
 export { TabsScrollSpyContainer } from './components/Tabs/TabsScrollSpyContainer';
 export { TabScrollSpyPanel } from './components/Tabs/TabScrollSpyPanel';
 

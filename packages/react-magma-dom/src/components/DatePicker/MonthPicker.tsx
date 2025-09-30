@@ -32,6 +32,7 @@ export const MonthPicker: React.FunctionComponent<MonthPickerProps> = props => {
     if (minDate) {
       const minYear = minDate.getFullYear();
       const minMonth = minDate.getMonth();
+
       if (currentYear === minYear && monthValue < minMonth) {
         return true;
       }
@@ -40,6 +41,7 @@ export const MonthPicker: React.FunctionComponent<MonthPickerProps> = props => {
     if (maxDate) {
       const maxYear = maxDate.getFullYear();
       const maxMonth = maxDate.getMonth();
+
       if (currentYear === maxYear && monthValue > maxMonth) {
         return true;
       }
@@ -55,13 +57,16 @@ export const MonthPicker: React.FunctionComponent<MonthPickerProps> = props => {
   const getTextWidth = (text: string, font: string) => {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
+
     context.font = font;
+
     return context.measureText(text).width;
   };
 
   const getMonthWidth = (month: string) => {
     const font = `${theme.typeScale.size03.fontSize} ${theme.bodyFont}`;
     const padding = parseInt(theme.spaceScale.spacing03, 10) * 2;
+
     return Math.ceil(getTextWidth(month, font) + padding);
   };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { I18nContext } from '../../i18n';
@@ -123,7 +123,7 @@ describe('DateTimePicker', () => {
       expect(getByTestId('clear-button')).toBeInTheDocument();
     });
 
-    it('should clear both date and time when clear button is clicked', () => {
+    it('should clear both date and time when clear button is clicked', async () => {
       const valueDate = new Date('2024-03-15 14:30:00');
       const { getByTestId, getByPlaceholderText } = render(
         <DateTimePicker
@@ -133,7 +133,7 @@ describe('DateTimePicker', () => {
         />
       );
 
-      userEvent.click(getByTestId('clear-button'));
+      await userEvent.click(getByTestId('clear-button'));
 
       expect(getByPlaceholderText('mm/dd/yyyy hh:mm AM')).toHaveAttribute(
         'value',
@@ -173,7 +173,7 @@ describe('DateTimePicker', () => {
       expect(getByText('Done')).toBeInTheDocument();
     });
 
-    it('should close calendar when Done button is clicked', () => {
+    it('should close calendar when Done button is clicked', async () => {
       const { getByLabelText, getByText, queryByTestId } = render(
         <DateTimePicker labelText="Date Time Picker Label" />
       );
@@ -181,9 +181,11 @@ describe('DateTimePicker', () => {
       userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       expect(queryByTestId('calendarMonthContainer')).toBeInTheDocument();
-      expect(queryByTestId('calendarMonthContainer')).toBeVisible();
+      await waitFor(() => {
+        expect(queryByTestId('calendarMonthContainer')).toBeVisible();
+      });
 
-      userEvent.click(getByText('Done'));
+      await userEvent.click(getByText('Done'));
 
       expect(queryByTestId('calendarMonthContainer')).not.toBeVisible();
     });
@@ -199,60 +201,60 @@ describe('DateTimePicker', () => {
         />
       );
 
-      userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       const hoursInput = getByTestId('hoursTimeInput');
 
-      userEvent.type(hoursInput, '9');
+      await userEvent.type(hoursInput, '9');
 
       expect(onTimeChange).toHaveBeenCalledWith('09:00 AM');
     });
 
-    it('should show time in input when time is selected', () => {
+    it('should show time in input when time is selected', async () => {
       const { getByLabelText, getByTestId, getByDisplayValue } = render(
         <DateTimePicker labelText="Date Time Picker Label" />
       );
 
-      userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       const hoursInput = getByTestId('hoursTimeInput');
       const minutesInput = getByTestId('minutesTimeInput');
 
-      userEvent.type(hoursInput, '10');
-      userEvent.type(minutesInput, '30');
+      await userEvent.type(hoursInput, '10');
+      await userEvent.type(minutesInput, '30');
 
-      userEvent.click(getByTestId('calendarMonthContainer'));
+      await userEvent.click(getByTestId('calendarMonthContainer'));
 
       expect(getByDisplayValue('10:30 AM')).toBeInTheDocument();
     });
   });
 
   describe('Input Change Handling', () => {
-    it('should parse time from manual input', () => {
+    it('should parse time from manual input', async () => {
       const { getByPlaceholderText } = render(
         <DateTimePicker labelText="Date Time Picker Label" />
       );
 
       const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
 
-      userEvent.type(input, '03/15/2030 2:30 PM');
+      await userEvent.type(input, '03/15/2030 2:30 PM');
 
       expect(input).toHaveAttribute('value', '03/15/2030 2:30 PM');
     });
 
-    it('should handle time extraction from input value', () => {
+    it('should handle time extraction from input value', async () => {
       const { getByPlaceholderText } = render(
         <DateTimePicker labelText="Date Time Picker Label" />
       );
 
       const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
 
-      userEvent.type(input, '12/25/2024 11:45 PM');
+      await userEvent.type(input, '12/25/2024 11:45 PM');
 
       expect(input).toHaveAttribute('value', '12/25/2024 11:45 PM');
     });
 
-    it('should preserve previous time when only date is entered', () => {
+    it('should preserve previous time when only date is entered', async () => {
       const today = new Date().toLocaleDateString('en-US', {
         month: '2-digit',
         day: '2-digit',
@@ -263,12 +265,12 @@ describe('DateTimePicker', () => {
         <DateTimePicker labelText="Date Time Picker Label" />
       );
 
-      userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       const hoursInput = getByTestId('hoursTimeInput');
 
-      userEvent.type(hoursInput, '9');
-      userEvent.click(getByTestId('calendarMonthContainer'));
+      await userEvent.type(hoursInput, '9');
+      await userEvent.click(getByTestId('calendarMonthContainer'));
 
       const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
 
@@ -293,7 +295,7 @@ describe('DateTimePicker', () => {
   });
 
   describe('Date Change Events', () => {
-    it('should call onDateChange when date is changed', () => {
+    it('should call onDateChange when date is changed', async () => {
       const onDateChange = jest.fn();
       const { getByLabelText } = render(
         <DateTimePicker
@@ -303,16 +305,16 @@ describe('DateTimePicker', () => {
         />
       );
 
-      userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       const dayButton = screen.getByText('15');
 
-      userEvent.click(dayButton);
+      await userEvent.click(dayButton);
 
       expect(onDateChange).toHaveBeenCalled();
     });
 
-    it('should call onChange when date changes', () => {
+    it('should call onChange when date changes', async () => {
       const onChange = jest.fn();
       const { getByLabelText } = render(
         <DateTimePicker
@@ -321,18 +323,18 @@ describe('DateTimePicker', () => {
         />
       );
 
-      userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       const dayButton = screen.getByText('15');
 
-      userEvent.click(dayButton);
+      await userEvent.click(dayButton);
 
       expect(onChange).toHaveBeenCalled();
     });
   });
 
   describe('Min/Max Date Validation', () => {
-    it('should respect minDate when provided', () => {
+    it('should respect minDate when provided', async () => {
       const minDate = new Date('2024-01-01');
 
       const { getByTestId, getByText, getByPlaceholderText, getByLabelText } =
@@ -345,9 +347,9 @@ describe('DateTimePicker', () => {
 
       const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
 
-      userEvent.type(input, '12/31/2023');
+      await userEvent.type(input, '12/31/2023');
 
-      userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       const calendar = getByTestId('calendarMonthContainer');
 
@@ -356,7 +358,7 @@ describe('DateTimePicker', () => {
       expect(getByText('31')).toHaveAttribute('aria-disabled', 'true');
     });
 
-    it('should respect maxDate when provided', () => {
+    it('should respect maxDate when provided', async () => {
       const maxDate = new Date('2024-12-31');
 
       const { getByTestId, getByText, getByPlaceholderText, getByLabelText } =
@@ -369,9 +371,9 @@ describe('DateTimePicker', () => {
 
       const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
 
-      userEvent.type(input, '12/31/2025');
+      await userEvent.type(input, '12/31/2025');
 
-      userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       const calendar = getByTestId('calendarMonthContainer');
 
@@ -479,7 +481,7 @@ describe('DateTimePicker', () => {
       expect(onInputBlur).toHaveBeenCalled();
     });
 
-    it('should call onInputChange when input value changes', () => {
+    it('should call onInputChange when input value changes', async () => {
       const onInputChange = jest.fn();
       const { getByPlaceholderText } = render(
         <DateTimePicker
@@ -488,7 +490,7 @@ describe('DateTimePicker', () => {
         />
       );
 
-      userEvent.type(
+      await userEvent.type(
         getByPlaceholderText('mm/dd/yyyy hh:mm AM'),
         '03/15/2024 10:30 AM'
       );
@@ -498,24 +500,24 @@ describe('DateTimePicker', () => {
   });
 
   describe('Keyboard Navigation', () => {
-    it('should allow keyboard navigation in time picker', () => {
+    it('should allow keyboard navigation in time picker', async () => {
       const { getByLabelText, getByTestId } = render(
         <DateTimePicker labelText="Date Time Picker Label" />
       );
 
-      userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       const hoursInput = getByTestId('hoursTimeInput');
       const minutesInput = getByTestId('minutesTimeInput');
 
       hoursInput.focus();
 
-      userEvent.type(hoursInput, '{arrowright}');
+      await userEvent.type(hoursInput, '{arrowright}');
 
       expect(minutesInput).toHaveFocus();
     });
 
-    it('should handle backspace in time inputs', () => {
+    it('should handle backspace in time inputs', async () => {
       const { getByLabelText, getByTestId } = render(
         <DateTimePicker
           labelText="Date Time Picker Label"
@@ -523,11 +525,11 @@ describe('DateTimePicker', () => {
         />
       );
 
-      userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       const hoursInput = getByTestId('hoursTimeInput');
 
-      userEvent.type(hoursInput, '{backspace}');
+      await userEvent.type(hoursInput, '{backspace}');
 
       hoursInput.blur();
 
@@ -631,7 +633,7 @@ describe('DateTimePicker', () => {
   });
 
   describe('Integration Tests', () => {
-    it('should work with both date selection and time input', () => {
+    it('should work with both date selection and time input', async () => {
       const onChange = jest.fn();
       const onDateChange = jest.fn();
       const onTimeChange = jest.fn();
@@ -645,24 +647,24 @@ describe('DateTimePicker', () => {
         />
       );
 
-      userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       const hoursInput = getByTestId('hoursTimeInput');
       const minutesInput = getByTestId('minutesTimeInput');
 
-      userEvent.type(hoursInput, '10');
-      userEvent.type(minutesInput, '30');
+      await userEvent.type(hoursInput, '10');
+      await userEvent.type(minutesInput, '30');
 
       const dayButton = screen.queryByText('15');
-      userEvent.click(dayButton);
+      await userEvent.click(dayButton);
 
-      userEvent.click(screen.getByText('Done'));
+      await userEvent.click(screen.getByText('Done'));
 
       expect(onTimeChange).toHaveBeenCalled();
       expect(onChange).toHaveBeenCalled();
     });
 
-    it('should maintain time when date is changed', () => {
+    it('should maintain time when date is changed', async () => {
       const { getByLabelText, getByTestId, getByDisplayValue } = render(
         <DateTimePicker
           labelText="Date Time Picker Label"
@@ -674,12 +676,12 @@ describe('DateTimePicker', () => {
 
       expect(input).toBeInTheDocument();
 
-      userEvent.click(getByLabelText('Toggle Calendar Widget'));
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       const hoursInput = getByTestId('hoursTimeInput');
 
-      userEvent.type(hoursInput, '2');
-      userEvent.click(screen.getByText('Done'));
+      await userEvent.type(hoursInput, '2');
+      await userEvent.click(screen.getByText('Done'));
 
       expect(input).toHaveValue('03/15/2024 02:30 AM');
     });
