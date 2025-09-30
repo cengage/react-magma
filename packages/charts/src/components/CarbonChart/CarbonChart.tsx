@@ -616,7 +616,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     const groupsLength = Object.keys(buildColors()).length;
 
     return (
-      <>
+      <React.Fragment>
         <Global styles={carbonChartStyles} />
         <CarbonChartWrapper
           data-testid={testId}
@@ -629,7 +629,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         >
           <ChartType data={dataSet} options={newOptions} />
         </CarbonChartWrapper>
-      </>
+      </React.Fragment>
     );
   }
 );

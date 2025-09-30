@@ -150,5 +150,9 @@
   },
   "overrides": {
     "storybook": "$storybook"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.1",
+    "babel-loader": "^10.0.0"
   }
 }

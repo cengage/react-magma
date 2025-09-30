@@ -2,7 +2,10 @@ import * as React from 'react';
 
 import { Theme } from '@emotion/react';
 import styled from '@emotion/styled';
-import { isAfter, isBefore, isSameDay, isSameMonth, enUS } from 'date-fns';
+// eslint-disable-next-line import/no-duplicates
+import { isAfter, isBefore, isSameDay, isSameMonth } from 'date-fns';
+// eslint-disable-next-line import/no-duplicates
+import { enUS } from 'date-fns/locale';
 import { transparentize } from 'polished';
 
 import { CalendarContext } from './CalendarContext';
@@ -242,11 +245,15 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
         setFocused(false);
       }
     }
-  }, [focusedDate, dateFocused]);
+  }, [focusedDate, dateFocused, day, focused]);
 
   function onCalendarDayFocus() {
     setDateFocused(true);
   }
+
+  const disabled: boolean =
+    (maxDate ? isAfter(props.day, maxDate) : false) ||
+    (minDate ? isBefore(props.day, minDate) : false);
 
   function onDayClick(event: React.SyntheticEvent) {
     if (disabled) {
@@ -266,10 +273,6 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     }
     setFocusedDate(day);
   }
-
-  const disabled: boolean =
-    (maxDate ? isAfter(props.day, maxDate) : false) ||
-    (minDate ? isBefore(props.day, minDate) : false);
 
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
