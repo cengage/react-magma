@@ -66,6 +66,7 @@ import { TreeItem, TreeView, TreeViewApi, TreeViewSelectable } from '.';
 export default {
   component: TreeView,
   title: 'TreeView',
+  excludeStories: ['AccordionSectionWithTreeView'],
   argTypes: {
     isInverse: {
       control: {
@@ -1346,7 +1347,7 @@ export const AccordionSectionWithTreeView = (props: any) => {
   );
 };
 
-export const flatTree = {
+const flatTree = {
   title: 'Chapter/Subchapter',
   trees: [
     {

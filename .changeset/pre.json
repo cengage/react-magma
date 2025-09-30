@@ -10,6 +10,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
-    "manually-sync-4.10.0"
+    "manually-sync-4.10.0",
+    "storybook-csf3"
   ]
 }

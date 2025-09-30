@@ -1,7 +1,7 @@
 import React from 'react';
 
+import { action } from '@storybook/addon-actions';
 import { StoryFn, Meta } from '@storybook/react/types-6-0';
-import { action } from 'storybook/actions';
 
 import { Button, ButtonType } from '../Button';
 import { Card } from '../Card';
