@@ -3843,7 +3843,7 @@ describe('TreeView', () => {
     });
 
     // Need fix it
-    xit('expand all should work correctly with disabled items', async () => {
+    it('expand all should work correctly with disabled items', async () => {
       const { asFragment, getByLabelText, getByText } = render(
         <AccordionTreeWithShowAllAndExpandAll
           {...propsFlatTree}
@@ -3861,7 +3861,7 @@ describe('TreeView', () => {
 
       expect(getByLabelText('item-title-3')).toBeDisabled();
 
-      userEvent.click(getByText('Expand All'));
+      await userEvent.click(getByText('Expand All'));
 
       await waitFor(() => {
         expect(getByLabelText('item-title-6')).toBeInTheDocument();

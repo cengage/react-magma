@@ -720,8 +720,7 @@ describe('Date Picker', () => {
     expect(getByTestId('modal')).toBeInTheDocument();
   });
 
-  // Need fix it!
-  xit('inside a modal, should close the calendar month when date is selected and the escape key is pressed, and retain the active modal', async () => {
+  it('inside a modal, should close the calendar month when date is selected and the escape key is pressed, and retain the active modal', async () => {
     const { getByTestId, getByLabelText } = render(
       <Modal testId="modal" isOpen>
         <DatePicker labelText="Date Picker inside a modal" />

@@ -1183,8 +1183,7 @@ describe('Dropdown', () => {
       expect(getByTestId(expandablePanelTwoId)).toBeInTheDocument();
     });
 
-    // TODO: Unskip this test
-    xit('should only allow one open menu item when isMulti is false', async () => {
+    it('should only allow one open menu item when isMulti is false', async () => {
       const { getByTestId, getByText, queryByTestId } = render(
         <Dropdown>
           <DropdownButton>Expandable Items Dropdown</DropdownButton>
