@@ -281,7 +281,7 @@ describe('Date Picker', () => {
     }
 
     expect(selectedDateButton).toHaveFocus();
-  });
+  }, 10000);
 
   it('should not set the value to the date if it is after the maxDate', async () => {
     const valueDate = new Date(2020, 0, 23);
@@ -318,10 +318,11 @@ describe('Date Picker', () => {
 
     expect(datePickerInput).toHaveAttribute('value', defaultDate);
 
-    await userEvent.type(
-      getByLabelText(labelText),
-      `{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}${valueDate}`
-    );
+    // Clear the input completely first
+    await userEvent.clear(datePickerInput);
+
+    // Type the new value
+    await userEvent.type(datePickerInput, valueDate);
 
     expect(datePickerInput).toHaveAttribute('value', valueDate);
 

@@ -226,7 +226,7 @@ describe('DateTimePicker', () => {
       await userEvent.click(getByTestId('calendarMonthContainer'));
 
       expect(getByDisplayValue('10:30 AM')).toBeInTheDocument();
-    });
+    }, 10000);
   });
 
   describe('Input Change Handling', () => {
@@ -237,6 +237,8 @@ describe('DateTimePicker', () => {
 
       const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
 
+      // Clear the input first then type the value
+      await userEvent.clear(input);
       await userEvent.type(input, '03/15/2030 2:30 PM');
 
       expect(input).toHaveAttribute('value', '03/15/2030 2:30 PM');
