@@ -122,15 +122,8 @@ The child element must be able to accept a React `ref`
 or a component created with `React.forwardRef`). If the
 child cannot accept a ref, the tooltip may not position correctly.
 
-<Alert variant="info">
-  You can get around this by adding a wrapping element.
-  <br />
-  <br />
-  <b>For accessibility:</b> When using Tooltip on a non-interactive element, you
-  should add <inlineCode>aria-label</inlineCode> with the tooltip content to the
-  trigger element. This ensures screen readers will announce the tooltip
-  content.
-</Alert>
+<Alert variant="info">You can get around this by adding a wrapping element.<br />
+<b>For accessibility:</b> When using Tooltip on a non-interactive element, you should add <inlineCode>aria-label</inlineCode> with the tooltip content to the trigger element. This ensures screen readers will announce the tooltip content.</Alert>
 
 ```tsx
 import React from 'react';
@@ -233,7 +226,12 @@ The `tooltipStyle` prop applies to the tooltip popover content itself, and inclu
 
 The `arrowStyle` prop applies to the arrow indicator.
 
-<Alert variant="warning">Be careful changing the positioning styles for the{' '}<code>tooltipStyle</code> or the <code>arrowStyle</code> as they are brought in by an outside library named <Link to={`https://floating-ui.com/`}>floating-ui</Link> to deal with overflow and scrolling.</Alert>
+<Alert variant="warning">
+  Be careful changing the positioning styles for the <code>tooltipStyle</code>{' '}
+  or the <code>arrowStyle</code> as they are brought in by an outside library
+  named <Link to={`https://floating-ui.com/`}>floating-ui</Link> to deal with
+  overflow and scrolling.
+</Alert>
 
 ```tsx
 import React from 'react';
