@@ -149,7 +149,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
 
       return !isHidden;
     }
-  }, [arrowElement]);
+  }, [arrowStyle, arrowElement, arrowElement.current]);
 
   const { refs, floatingStyles, placement, context, elements, update } =
     useFloating({
@@ -179,29 +179,35 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
 
   const combinedRef = useForkedRef(ref, refs.setReference);
 
-  const hideTooltip = React.useCallback(() => {
-    setIsVisible(props.open);
-  }, [props.open]);
-
-  const handleKeyDown = React.useCallback(
-    (event: React.KeyboardEvent | KeyboardEvent) => {
+  React.useEffect(() => {
+    const handleEsc = event => {
       if (event.key === 'Escape') {
         hideTooltip();
       }
-    },
-    [hideTooltip]
-  );
+    };
 
-  React.useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleEsc);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keydown', handleEsc);
     };
-  }, [handleKeyDown]);
+  }, []);
+
+  function handleKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'Escape') {
+      if (isVisible) {
+        event.stopPropagation();
+      }
+      hideTooltip();
+    }
+  }
 
   function showTooltip() {
     setIsVisible(true);
+  }
+
+  function hideTooltip() {
+    setIsVisible(props.open);
   }
 
   const id = useGenerateId(defaultId);
@@ -261,7 +267,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
             }
             theme={theme}
             role="tooltip"
-            data-tooltip-placement={placement ?? TooltipPosition.top}
+            data-tooltip-placement={placement ? placement : TooltipPosition.top}
           >
             {content}
           </StyledTooltip>
