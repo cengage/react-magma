@@ -68,7 +68,6 @@ describe('Select', () => {
       { label: 'Blue', value: 'blue' },
       { label: 'Green', value: 'green' },
     ];
-
     const { getByLabelText, getByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
@@ -140,7 +139,6 @@ describe('Select', () => {
 
   it('should render an items list with the passed in max height as a string', async () => {
     const maxHeight = '100px';
-
     const { container, getByLabelText } = render(
       <MultiSelect
         isMulti
@@ -178,7 +176,6 @@ describe('Select', () => {
 
   it('should render an items list with the passed in max height as a number', async () => {
     const maxHeight = 50;
-
     const { container, getByLabelText } = render(
       <MultiSelect
         isMulti
@@ -204,7 +201,6 @@ describe('Select', () => {
       { id: '1', label: 'Blue', value: 'blue' },
       { id: '2', label: 'Green', value: 'green' },
     ];
-
     const CustomItem = props => {
       const { itemRef, item, itemString } = props;
 
@@ -214,7 +210,6 @@ describe('Select', () => {
         </li>
       );
     };
-
     const { getByLabelText, getByText, getByTestId } = render(
       <MultiSelect
         isMulti
@@ -284,7 +279,6 @@ describe('Select', () => {
 
   it('should allow for the removal of selected items with the keyboard', async () => {
     const selectedItems = ['Red', 'Blue', 'Green'];
-
     const { getByLabelText, getByText, queryByText } = render(
       <MultiSelect
         isMulti
@@ -333,7 +327,6 @@ describe('Select', () => {
 
   it('should change the focused selected item using arrow keys', async () => {
     const selectedItems = ['Red', 'Blue', 'Green'];
-
     const { getByLabelText, getByText } = render(
       <MultiSelect
         isMulti
@@ -368,7 +361,6 @@ describe('Select', () => {
 
   it('should allow for a controlled multi-select', async () => {
     let selectedItems = ['Red', 'Blue'];
-
     const { getByLabelText, getByText, queryByText, rerender } = render(
       <MultiSelect
         isMulti
@@ -462,6 +454,43 @@ describe('Select', () => {
     await waitFor(() => {
       expect(renderedSelect).toHaveAttribute('disabled');
     });
+  });
+
+  it('should disable selected items in the disabled multi-select and disabled items should not be removable', async () => {
+    const { getByLabelText, getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={items}
+        disabled
+      />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    expect(renderedSelect).toHaveAttribute('disabled');
+
+    expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
+    expect(getByText(items[0], { selector: 'button' })).toBeDisabled();
+    expect(getByText(items[0], { selector: 'button' })).toHaveAttribute(
+      'disabled'
+    );
+    expect(getByText(items[1], { selector: 'button' })).toBeInTheDocument();
+    expect(getByText(items[1], { selector: 'button' })).toBeDisabled();
+    expect(getByText(items[1], { selector: 'button' })).toHaveAttribute(
+      'disabled'
+    );
+    expect(getByText(items[2], { selector: 'button' })).toBeInTheDocument();
+    expect(getByText(items[2], { selector: 'button' })).toBeDisabled();
+    expect(getByText(items[2], { selector: 'button' })).toHaveAttribute(
+      'disabled'
+    );
+
+    const selectedItem = getByText(items[0], { selector: 'button' });
+    await userEvent.click(selectedItem);
+
+    expect(selectedItem).toBeInTheDocument();
   });
 
   it('should open select when clicking the enter key', async () => {

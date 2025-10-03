@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 
-import { TreeItem } from './TreeItem';
+import { TreeItem, TreeItemProps } from './TreeItem';
 import { TreeViewContext } from './TreeViewContext';
 import { TreeViewSelectable } from './types';
 import { useTreeItem } from './useTreeItem';
@@ -44,6 +44,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       apiRef,
       ...rest
     } = props;
+
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
@@ -53,8 +54,41 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
 
     let treeItemIndex = 0;
 
+    const inverseContextValue = React.useMemo(
+      () => ({ isInverse }),
+      [isInverse]
+    );
+
+    const processedChildren = React.Children.map(children, child => {
+      if (!React.isValidElement(child)) {
+        return null;
+      }
+
+      if (child.type === TreeItem) {
+        const treeItemChild = child as React.ReactElement<TreeItemProps>;
+
+        const treeItemProps: Partial<TreeItemProps> = {
+          index: treeItemIndex,
+          parentDepth: 0,
+          itemDepth: 0,
+          topLevel: true,
+        };
+
+        const processedItem = React.cloneElement(treeItemChild, {
+          ...treeItemProps,
+          key: `tree-item-${treeItemIndex}`,
+        });
+
+        treeItemIndex++;
+
+        return processedItem;
+      }
+
+      return null;
+    });
+
     return (
-      <InverseContext.Provider value={{ isInverse }}>
+      <InverseContext.Provider value={inverseContextValue}>
         <TreeViewContext.Provider value={contextValue}>
           <StyledTreeView
             {...rest}
@@ -67,21 +101,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
             role="tree"
             theme={theme}
           >
-            {React.Children.map(children, (child: React.ReactElement<any>) => {
-              if (child.type === TreeItem) {
-                const item = React.cloneElement(child, {
-                  index: treeItemIndex,
-                  key: treeItemIndex,
-                  parentDepth: 0,
-                  itemDepth: 0,
-                  topLevel: true,
-                });
-
-                treeItemIndex++;
-
-                return item;
-              }
-            })}
+            {processedChildren}
           </StyledTreeView>
         </TreeViewContext.Provider>
       </InverseContext.Provider>

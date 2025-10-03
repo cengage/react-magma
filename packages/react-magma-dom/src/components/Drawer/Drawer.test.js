@@ -1,8 +1,10 @@
 import React from 'react';
 
 import { render, fireEvent } from '@testing-library/react';
+import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
 
 import { Drawer } from '.';
 
@@ -98,5 +100,82 @@ describe('Drawer', () => {
     const results = await axe(baseElement);
 
     return expect(results).toHaveNoViolations();
+  });
+
+  describe('showBackgroundOverlay prop', () => {
+    const drawerContent = 'Drawer content';
+    const modalBackDropTestId = 'modal-backdrop';
+    const modalContentTestId = 'modal-content';
+
+    it('should show background overlay when showBackgroundOverlay is true', async () => {
+      const { getByTestId } = render(
+        <Drawer position="bottom" header="Hello" isOpen testId={TEST_ID}>
+          {drawerContent}
+        </Drawer>
+      );
+
+      const modalContent = getByTestId(modalContentTestId);
+
+      expect(modalContent).toBeInTheDocument();
+      expect(getByTestId(modalBackDropTestId)).toBeInTheDocument();
+      expect(modalContent).toHaveStyle(`border: none`);
+    });
+
+    it('should hide background overlay when showBackgroundOverlay is false and isInverse', async () => {
+      const { queryByTestId } = render(
+        <Drawer
+          position="bottom"
+          header="Hello"
+          isOpen
+          testId={TEST_ID}
+          showBackgroundOverlay={false}
+          isInverse
+        >
+          {drawerContent}
+        </Drawer>
+      );
+
+      const modalContent = queryByTestId(modalContentTestId);
+
+      expect(modalContent).toBeInTheDocument();
+      expect(queryByTestId(modalBackDropTestId)).not.toBeInTheDocument();
+      expect(modalContent).toHaveStyle(
+        `border: 1px solid ${transparentize(0.5, magma.colors.tertiary)}`
+      );
+    });
+  });
+
+  describe('isAnimated prop', () => {
+    const drawerContent = 'Animated drawer content';
+
+    it('should not have transform property when isAnimated is false (default)', () => {
+      const { getByTestId } = render(
+        <Drawer position="left" header="Hello" isOpen testId={TEST_ID}>
+          {drawerContent}
+        </Drawer>
+      );
+
+      const transition = getByTestId(TEST_ID);
+
+      expect(transition.style.transform).toBe('');
+    });
+
+    xit('should have transform property when isAnimated is true', () => {
+      const { getByTestId } = render(
+        <Drawer
+          position="left"
+          header="Hello"
+          isAnimated
+          isOpen
+          testId={TEST_ID}
+        >
+          {drawerContent}
+        </Drawer>
+      );
+
+      const transition = getByTestId(TEST_ID);
+
+      expect(transition.style.transform).toContain('translate');
+    });
   });
 });

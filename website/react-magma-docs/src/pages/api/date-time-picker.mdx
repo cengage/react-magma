@@ -1,0 +1,641 @@
+---
+pageTitle: Date Time Picker API
+title: Date Time Picker
+props:
+  - DateTimePickerProps
+---
+
+<PageContent componentName="date_time_picker" type="api">
+
+<LeadParagraph>
+  Use the Date and Time Picker input when you want the user to input both a date
+  and time in the format you choose.
+</LeadParagraph>
+
+## Basic Usage
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return <DateTimePicker labelText="Pick a date and time" />;
+}
+```
+
+## Default Date and Time
+
+By default, no date and time values are selected. You can add default values, by using the `defaultValue` prop.
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <DateTimePicker
+      defaultValue={new Date(2025, 1, 0, 9, 30)}
+      labelText="Default Value"
+    />
+  );
+}
+```
+
+## Value
+
+The `value` prop can also be used so set the date value externally. It will override the `defaultValue` if both are passed.
+If time is not selected, it will automatically default to 12:00 AM.
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <DateTimePicker
+      defaultValue={new Date(2025, 1, 0, 8, 20)}
+      labelText="Selected Date"
+      value={new Date(2000, 1, 0, 10, 30)}
+    />
+  );
+}
+```
+
+## Minimum and Maximum Dates
+
+Minimum and Maximum dates can be passed in as `props` to disallow the selection of a date outside of a specific range. If a date value is passed in that does not fit in to the range given, the date time picker will try to give focus when entering the calendar on today's date, then the minimum date, and finally the maximum date.
+
+```tsx
+import React from 'react';
+
+import {
+  DateTimePicker,
+  getDateFromString,
+  inDateRange,
+} from 'react-magma-dom';
+
+export function Example() {
+  const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
+    undefined
+  );
+  const minDate = new Date(2025, 1, 2);
+  const maxDate = new Date(2025, 1, 20);
+
+  function handleDateChange(newChosenDate: Date) {
+    setChosenDate(newChosenDate);
+  }
+
+  function hasErrorMessage() {
+    const convertedMinDate = getDateFromString(minDate);
+    const convertedMaxDate = getDateFromString(maxDate);
+
+    if (
+      chosenDate &&
+      !inDateRange(chosenDate, convertedMinDate, convertedMaxDate)
+    ) {
+      return `Please enter a date within the range ${minDate} - ${maxDate}`;
+    }
+
+    return;
+  }
+
+  return (
+    <DateTimePicker
+      labelText="Date&Time"
+      minDate={minDate}
+      maxDate={maxDate}
+      onDateChange={handleDateChange}
+      errorMessage={hasErrorMessage()}
+    />
+  );
+}
+```
+
+## Clearing the Date and Time
+
+Date and time can be cleared with the `isClearable` prop, or programmatically through the `onDateChange` function by passing null.
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker, Button } from 'react-magma-dom';
+
+export function Example() {
+  const [chosenDate, setChosenDate] = React.useState<Date | null>(null);
+  const [chosenTime, setChosenTime] = React.useState<string | null>(null);
+
+  function handleDateChange(newChosenDate: Date | null) {
+    let newDate = newChosenDate;
+
+    if (chosenTime && newChosenDate) {
+      const [timePart, ampm] = chosenTime.split(' ');
+      let [hours, minutes] = timePart.split(':').map(Number);
+
+      if (ampm) {
+        if (ampm.toLowerCase() === 'pm' && hours < 12) {
+          hours += 12;
+        }
+        if (ampm.toLowerCase() === 'am' && hours === 12) {
+          hours = 0;
+        }
+      }
+
+      newDate = new Date(
+        newChosenDate.getFullYear(),
+        newChosenDate.getMonth(),
+        newChosenDate.getDate(),
+        hours,
+        minutes
+      );
+    }
+
+    setChosenDate(newDate);
+  }
+
+  function handleTimeChange(newChosenTime: string | null) {
+    setChosenTime(newChosenTime);
+
+    if (chosenDate && newChosenTime) {
+      const [timePart, ampm] = newChosenTime.split(' ');
+      let [hours, minutes] = timePart.split(':').map(Number);
+
+      if (ampm) {
+        if (ampm.toLowerCase() === 'pm' && hours < 12) {
+          hours += 12;
+        }
+        if (ampm.toLowerCase() === 'am' && hours === 12) {
+          hours = 0;
+        }
+      }
+
+      const newDate = new Date(
+        chosenDate.getFullYear(),
+        chosenDate.getMonth(),
+        chosenDate.getDate(),
+        hours,
+        minutes
+      );
+      setChosenDate(newDate);
+    }
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Chosen Date: </strong>
+        {chosenDate && (
+          <span>
+            {`${
+              chosenDate.getMonth() + 1
+            }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+          </span>
+        )}
+      </p>
+      <p>
+        <strong>Chosen Time: </strong>
+        {chosenTime && <span>{chosenTime}</span>}
+      </p>
+      <DateTimePicker
+        onDateChange={handleDateChange}
+        onTimeChange={handleTimeChange}
+        value={chosenDate}
+        isClearable
+      />
+      <br />
+      <Button onClick={() => handleDateChange(null)}>
+        Clear Date and Time
+      </Button>
+    </div>
+  );
+}
+```
+
+## Placeholder Text
+
+By default, the placeholder text of the input is 'mm/dd/yyyy'. You can override this by using the `placeholder` prop.
+Note: the expected date&time format should appear somewhere in either the labelText or the placeholder.
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <DateTimePicker
+      placeholder="Select appointment date and time (format mm/dd/yyyy hh:mm AM)"
+      labelText="Appointment Date & Time"
+    />
+  );
+}
+```
+
+## Helper Message
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <DateTimePicker labelText="Help me" helperMessage="This is your help" />
+  );
+}
+```
+
+## Error Message
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <DateTimePicker labelText="Error *" errorMessage="You made an error" />
+  );
+}
+```
+
+## Inverse
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <DateTimePicker labelText="Inverse Date&Time" isInverse />
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Date Formats
+
+By default, the component uses the `MM/dd/yyyy` date format. This can be changed in the I18nContext. In addition to the default, the component supports the following formats: `dd/MM/yyyy`, `yyyy/MM/dd`, `yyyy/dd/MM` and `MMMM d, yyyy`.
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker, I18nContext, defaultI18n } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        dateFormat: 'dd/MM/yyyy',
+      }}
+    >
+      <DateTimePicker labelText="Date format: dd/MM/yyyy" />
+    </I18nContext.Provider>
+  );
+}
+```
+
+## Events
+
+### On Input Change
+
+The `onInputChange` is passed to the input's `onChange` method that is in the <Link to="/api/date-pickers">DatePicker</Link> component.
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker } from 'react-magma-dom';
+
+export function Example() {
+  const [inputValue, setInputValue] = React.useState<string>('');
+
+  function handleInputChange(event: React.EventChangeHandler) {
+    setInputValue(event.target.value);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Input Value: </strong>
+        {inputValue}
+      </p>
+      <DateTimePicker labelText="Date&Time" onInputChange={handleInputChange} />
+    </div>
+  );
+}
+```
+
+### On Date Change
+
+The `onDateChange` function is called when the user changes a date using the calendar widget in the <Link to="/api/date-pickers">DatePicker</Link> component.
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker } from 'react-magma-dom';
+
+export function Example() {
+  const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
+    undefined
+  );
+  const [error, setError] = React.useState<string | undefined>(
+    'Date cannot be empty'
+  );
+
+  function handleDateChange(newChosenDate: Date) {
+    if (!newChosenDate) {
+      setError('Date cannot be empty');
+    } else {
+      setError(undefined);
+    }
+
+    setChosenDate(newChosenDate);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Chosen Date: </strong>
+        {chosenDate && (
+          <span>
+            {`${
+              chosenDate.getMonth() + 1
+            }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+          </span>
+        )}
+      </p>
+      <DateTimePicker
+        labelText="Date&Time"
+        onDateChange={handleDateChange}
+        errorMessage={error}
+      />
+    </div>
+  );
+}
+```
+
+### On Time Change
+
+The `onTimeChange` function is called when the user changes the time using the time picker in the <Link to="/api/date-pickers">TimePicker</Link> component.
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker } from 'react-magma-dom';
+
+export function Example() {
+  const [chosenTime, setChosenTime] = React.useState<string | undefined>(
+    undefined
+  );
+  const [error, setError] = React.useState<string | undefined>(
+    'Time cannot be empty'
+  );
+
+  function handleTimeChange(newChosenTime: string) {
+    if (!newChosenTime) {
+      setError('Time cannot be empty');
+    } else {
+      setError(undefined);
+    }
+
+    setChosenTime(newChosenTime);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Chosen Time: </strong>
+        {chosenTime}
+      </p>
+      <DateTimePicker
+        labelText="Date&Time"
+        onTimeChange={handleTimeChange}
+        errorMessage={error}
+      />
+    </div>
+  );
+}
+```
+
+### Focus Events
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker } from 'react-magma-dom';
+
+export function Example() {
+  const [isFocused, updateIsFocused] = React.useState<boolean>(false);
+
+  function handleInputBlur(event: React.FocusChangeHandler) {
+    updateIsFocused(false);
+  }
+
+  function handleInputFocus(event: React.FocusChangeHandler) {
+    updateIsFocused(true);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Is Focused?: </strong>
+        {isFocused ? 'Yes' : 'No'}
+      </p>
+      <DateTimePicker
+        onInputBlur={handleInputBlur}
+        onInputFocus={handleInputFocus}
+        labelText="Date&Time"
+      />
+    </div>
+  );
+}
+```
+
+### On Done
+
+The `onDone` function is called when the user clicks the "Done" button.
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker } from 'react-magma-dom';
+
+export function Example() {
+  const [isDone, setIsDone] = React.useState<boolean>(false);
+
+  function handleDone(event: React.SyntheticEvent) {
+    setIsDone(true);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Is Done?: </strong>
+        {isDone ? 'Yes' : 'No'}
+      </p>
+      <DateTimePicker onDone={handleDone} labelText="Date&Time" />
+    </div>
+  );
+}
+```
+
+## Custom Styles
+
+Custom styles can be passed into the datePicker component. The `containerStyle` prop will apply to the container; the `inputStyle` prop will apply to the input field.
+The `labelStyle` prop will apply to the field's label; the `messageStyle` prop will apply to the helper/error message.
+Please use discretion when adding custom styles.
+
+```tsx
+import React from 'react';
+
+import { DateTimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <DateTimePicker
+      containerStyle={{
+        border: '2px solid green',
+        maxWidth: '300px',
+        padding: '2px',
+      }}
+      errorMessage="Please fix the error"
+      inputStyle={{ border: '1px dashed purple', borderRadius: '0' }}
+      labelStyle={{ border: '1px dotted blue' }}
+      labelText="Date&Time"
+      messageStyle={{ border: '1px solid black', padding: '' }}
+    />
+  );
+}
+```
+
+## Internationalization
+
+To use a separate `locale` import a `date-fns` locale object (`import { es } from 'date-fns/locale'`) and pass it in
+to the `I18nContext` provider.
+
+Full example of <Link to="/api/internationalization">internationalization override options</Link>
+
+```tsx
+import React from 'react';
+
+import { es } from 'date-fns/locale';
+import { DateTimePicker, I18nContext, defaultI18n } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <I18nContext.Provider
+      value={{
+        ...defaultI18n,
+        days: {
+          ...defaultI18n.days,
+          min: {
+            sunday: 'D',
+            monday: 'L',
+            tuesday: 'M',
+            wednesday: 'M',
+            thursday: 'J',
+            friday: 'V',
+            saturday: 'S',
+          },
+          long: {
+            sunday: 'Domingo',
+            monday: 'Lunes',
+            tuesday: 'Martes',
+            wednesday: 'Miércoles',
+            thursday: 'Jueves',
+            friday: 'Viernes',
+            saturday: 'Sábado',
+          },
+          short: {
+            sunday: 'Dom',
+            monday: 'Lun',
+            tuesday: 'Mar',
+            wednesday: 'Mie',
+            thursday: 'Jue',
+            friday: 'Vie',
+            saturday: 'Sab',
+          },
+        },
+        months: {
+          ...defaultI18n.months,
+          short: {
+            january: 'Ene',
+            february: 'Feb',
+            march: 'Mar',
+            april: 'Abr',
+            may: 'May',
+            june: 'Jun',
+            july: 'Jul',
+            august: 'Ago',
+            september: 'Sep',
+            october: 'Oct',
+            november: 'Nov',
+            december: 'Dic',
+          },
+          long: {
+            january: 'Enero',
+            february: 'Febrero',
+            march: 'Marzo',
+            april: 'Abril',
+            may: 'Mayo',
+            june: 'Junio',
+            july: 'Julio',
+            august: 'Agosto',
+            september: 'Septiembre',
+            october: 'Octubre',
+            november: 'Noviembre',
+            december: 'Diciembre',
+          },
+        },
+        datePicker: {
+          ...defaultI18n.datePicker,
+          calendarIconAriaLabel: 'Calendario',
+          calendarOpenAnnounce:
+            'El widget de calendario ahora está abierto. Presione la tecla de signo de interrogación para obtener los atajos de teclado para cambiar las fechas.',
+          calendarCloseAriaLabel: 'Cerrar calendario',
+          previousMonthAriaLabel: 'Mes Anterior',
+          nextMonthAriaLabel: 'Próximo Mes',
+          disabledDayAriaLabel: 'No disponible. ',
+          selectedDayAriaLabel: '(Seleccionado)',
+          todayAriaLabel: '(Hoy)',
+          today: 'Hoy',
+        },
+        timePicker: {
+          hoursAriaLabel: 'Horas',
+          minutesAriaLabel: 'Minutos',
+          amButtonAriaLabel:
+            'AM seleccionado. Para cambiar a PM, presione p o Enter.',
+          pmButtonAriaLabel:
+            'PM seleccionado. Para cambiar a AM, presione a o Enter.',
+          amSelectedAnnounce: 'Ahora se selecciona AM',
+          pmSelectedAnnounce: 'Ahora se selecciona PM',
+        },
+        locale: es,
+      }}
+    >
+      <DateTimePicker
+        labelText="Español"
+        timePickerLabelText="Hora"
+        buttonLabelText="Hecho"
+      />
+    </I18nContext.Provider>
+  );
+}
+```
+
+## Date Time Picker Props
+
+**This component uses `forwardRef`. The ref is applied to the Date Time Picker `input` element.**
+
+All of the [standard input attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) can be provided as props and will be applied to the `input` element that gets rendered.
+
+<DateTimePickerProps />
+
+</PageContent>

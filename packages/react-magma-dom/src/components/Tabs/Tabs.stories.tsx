@@ -1,8 +1,10 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import styled from '@emotion/styled';
+import { StoryObj, StoryFn, Meta } from '@storybook/react/types-6-0';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 
+import { Button } from '../Button';
 import { Tab } from './Tab';
 import { TabPanel } from './TabPanel';
 import { TabPanelsContainer } from './TabPanelsContainer';
@@ -18,6 +20,7 @@ import {
 } from '../Dropdown';
 import { Heading } from '../Heading';
 import { Select } from '../Select';
+import { CustomTab } from './CustomTab';
 import { TabsOrientation, TabsTextTransform } from './shared';
 
 import {
@@ -454,4 +457,54 @@ export const WithDropdown = {
   },
 
   parameters: { ...Default.parameters },
+};
+
+const StyledTabsContainer = styled(TabsContainer)`
+  [data-testid='tabsWrapper'] {
+    overflow-x: visible;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  margin-inline: 10px;
+`;
+
+const CustomButton = styled.button`
+  height: 48px;
+  padding: 0px 25px;
+  background-color: #8beafd;
+  border-radius: 100px;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 32px;
+  color: #163555;
+`;
+
+export const CustomTabExample: StoryObj<TabsProps> = {
+  render: args => (
+    <StyledTabsContainer>
+      <Tabs aria-label="Sample Tabs" {...args}>
+        <Tab>Default Tab</Tab>
+        <CustomTab>
+          <StyledButton>
+            <span>Magma Button</span>
+          </StyledButton>
+        </CustomTab>
+        <CustomTab>
+          <CustomButton>FAQ</CustomButton>
+        </CustomTab>
+      </Tabs>
+      <TabPanelsContainer>
+        <TabPanel>
+          <div>Page 1</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Page 2</div>
+        </TabPanel>
+        <TabPanel>
+          <div>Page 3</div>
+        </TabPanel>
+      </TabPanelsContainer>
+    </StyledTabsContainer>
+  ),
 };

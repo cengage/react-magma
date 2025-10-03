@@ -8,9 +8,9 @@ import { IconProps } from 'react-magma-icons';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { XOR } from '../../utils';
-import { Button, ButtonProps, ButtonSize, ButtonColor } from '../Button';
+import { Button, ButtonColor, ButtonProps, ButtonSize } from '../Button';
 import { IconButton } from '../IconButton';
-import { ToggleButtonGroupContext } from '../ToggleButtonGroup/ToggleButtonGroup';
+import { ToggleButtonGroupContext } from '../ToggleButtonGroup';
 
 export interface ToggleButtonTextProps extends ButtonProps {
   /**

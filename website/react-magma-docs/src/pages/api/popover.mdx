@@ -5,6 +5,7 @@ props:
   - Popover
   - PopoverProps
   - PopoverPosition
+  - PopoverAlignment
   - PopoverApi
   - PopoverTrigger
   - PopoverTriggerProps
@@ -57,7 +58,7 @@ export function Example() {
 
 ## Hoverable Popover
 
-By setting the `hoverable` prop to true, the popover will remain open while the pointer is over either the trigger or the content.
+By setting the `hoverable` prop to true, the popover will remain open while the pointer is over either the trigger or the content. Note that this feature only works when the popover content contains no interactive elements (buttons, inputs, links, etc.). If interactive elements are detected, the popover will automatically use click behavior instead.
 
 ```tsx
 import React from 'react';
@@ -101,7 +102,7 @@ export function Example() {
 
 ## Controlled Popover with API Ref
 
-You can programmatically control the popover by providing an `apiRef`. The Popover API exposes methods such as `closePopoverManually` to close the popover when needed.
+You can programmatically control the popover by providing an `apiRef`. The Popover API exposes methods such as `openPopoverManually` and `closePopoverManually` to open and close the popover when needed.
 
 ```tsx
 import React from 'react';
@@ -112,6 +113,10 @@ import {
   PopoverContent,
   PopoverApi,
   Button,
+  ButtonSize,
+  ButtonVariant,
+  Spacer,
+  SpacerAxis,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -123,18 +128,37 @@ export function Example() {
     }
   }
 
+  function handleOpen(event: React.KeyboardEvent) {
+    popoverApiRef.current.openPopoverManually(event);
+  }
+
   return (
-    <Popover apiRef={popoverApiRef}>
-      <PopoverTrigger aria-label="Toggle popover">
-        Toggle Popover
-      </PopoverTrigger>
-      <PopoverContent>
-        <div>
-          Popover Content
-          <Button onClick={handleClose}>Close Popover</Button>
-        </div>
-      </PopoverContent>
-    </Popover>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+      <Button
+        variant={ButtonVariant.link}
+        size={ButtonSize.small}
+        onClick={handleOpen}
+        style={{ width: '120px' }}
+      >
+        Open Popover
+      </Button>
+      <Popover apiRef={popoverApiRef}>
+        <PopoverTrigger aria-label="Toggle popover">Popover</PopoverTrigger>
+        <PopoverContent>
+          <div>
+            Popover Content
+            <Spacer axis={SpacerAxis.horizontal} size={8} />
+            <Button
+              variant={ButtonVariant.link}
+              size={ButtonSize.small}
+              onClick={handleClose}
+            >
+              Close Popover
+            </Button>
+          </div>
+        </PopoverContent>
+      </Popover>
+    </div>
   );
 }
 ```
@@ -158,6 +182,7 @@ import {
   ButtonSize,
   PopoverApi,
   CheckboxTextPosition,
+  Card,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -170,38 +195,44 @@ export function Example() {
   }
 
   return (
-    <Popover focusTrap width="target">
-      <PopoverTrigger aria-label="Open popover">
-        Open Focus Trap Popover
-      </PopoverTrigger>
-      <PopoverContent>
-        <FormGroup>
-          <Toggle
-            labelText="Setting 1"
-            defaultChecked
-            containerStyle={{
-              width: '100%',
-              justifyContent: 'space-between',
-            }}
-          />
-          <Checkbox
-            labelText="Setting 2"
-            textPosition={CheckboxTextPosition.left}
-            labelStyle={{ width: '100%', justifyContent: 'space-between' }}
-          />
-          <Checkbox
-            labelText="Setting 3"
-            textPosition={CheckboxTextPosition.left}
-            labelStyle={{ width: '100%', justifyContent: 'space-between' }}
-          />
-        </FormGroup>
-        <PopoverFooter style={{ justifyContent: 'end', fontWeight: 600 }}>
-          <Button size={ButtonSize.small} onClick={handleClose}>
-            Apply
-          </Button>
-        </PopoverFooter>
-      </PopoverContent>
-    </Popover>
+    <Card
+      style={{
+        width: 'fit-content',
+      }}
+    >
+      <Popover focusTrap width="target" apiRef={popoverApiRef}>
+        <PopoverTrigger aria-label="Open popover">
+          Open Focus Trap Popover
+        </PopoverTrigger>
+        <PopoverContent>
+          <FormGroup>
+            <Toggle
+              labelText="Setting 1"
+              defaultChecked
+              containerStyle={{
+                width: '100%',
+                justifyContent: 'space-between',
+              }}
+            />
+            <Checkbox
+              labelText="Setting 2"
+              textPosition={CheckboxTextPosition.left}
+              labelStyle={{ width: '100%', justifyContent: 'space-between' }}
+            />
+            <Checkbox
+              labelText="Setting 3"
+              textPosition={CheckboxTextPosition.left}
+              labelStyle={{ width: '100%', justifyContent: 'space-between' }}
+            />
+          </FormGroup>
+          <PopoverFooter style={{ justifyContent: 'end', fontWeight: 600 }}>
+            <Button size={ButtonSize.small} onClick={handleClose}>
+              Apply
+            </Button>
+          </PopoverFooter>
+        </PopoverContent>
+      </Popover>
+    </Card>
   );
 }
 ```
@@ -260,6 +291,60 @@ export function Example() {
         </PopoverTrigger>
         <PopoverContent>
           <div>This popover appears above the trigger</div>
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+}
+```
+
+## Popover Alignment
+
+The `alignment` prop sets the default alignment of the `Popover` in relation to its trigger. It uses <Link to='https://floating-ui.com/docs/useFloating#placement'>floating-ui's/placement</Link> to align the `Popover` content to the `center`, `left` or `right` side of Popover trigger button.
+The available options are `PopoverAlignment.center` (default), `PopoverAlignment.start`, and `PopoverAlignment.end`.
+
+```tsx
+import React from 'react';
+
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverAlignment,
+} from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 8,
+        marginLeft: 40,
+      }}
+    >
+      <Popover alignment={PopoverAlignment.center}>
+        <PopoverTrigger aria-label="Open center popover alignment">
+          Center alignment Popover
+        </PopoverTrigger>
+        <PopoverContent>
+          <div>This popover is aligned in the center of the trigger</div>
+        </PopoverContent>
+      </Popover>
+      <Popover alignment={PopoverAlignment.start}>
+        <PopoverTrigger aria-label="Open start popover alignment">
+          Start alignment Popover
+        </PopoverTrigger>
+        <PopoverContent>
+          <div>This popover is aligned on the left side of the trigger</div>
+        </PopoverContent>
+      </Popover>
+      <Popover alignment={PopoverAlignment.end}>
+        <PopoverTrigger aria-label="Open end popover alignment">
+          End alignment Popover
+        </PopoverTrigger>
+        <PopoverContent>
+          <div>This popover is aligned on the right side of the trigger</div>
         </PopoverContent>
       </Popover>
     </div>

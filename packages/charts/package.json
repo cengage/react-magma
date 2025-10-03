@@ -1,10 +1,13 @@
 {
   "name": "@react-magma/charts",
-  "version": "11.0.0",
+  "version": "12.0.0",
   "license": "MIT",
   "exports": {
-    ".": "./src",
-    "./src/components/CarbonChart/": "./styles.min.css"
+    ".": {
+      "import": "./dist/charts.modern.module.js",
+      "require": "./dist/charts.js",
+      "types": "./dist/index.d.ts"
+    }
   },
   "main": "dist/charts.js",
   "umd:main": "dist/charts.umd.js",
@@ -13,12 +16,11 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "src",
-    "src/components/CarbonChart/styles.min.css"
+    "src"
   ],
   "scripts": {
-    "build": "microbundle build --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx",
-    "build-watch": "microbundle watch --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx",
+    "build": "microbundle build --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx,@emotion/react=EmotionReact,@emotion/styled=EmotionStyled,@carbon/charts-react=CarbonChartsReact",
+    "build-watch": "microbundle watch --jsx jsx --jsxImportSource react --globals react/jsx-runtime=jsx,@emotion/react=EmotionReact,@emotion/styled=EmotionStyled,@carbon/charts-react=CarbonChartsReact",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "lint:check": "eslint ./src --max-warnings=0",
@@ -36,6 +38,7 @@
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.0",
     "dom-to-image-more": "3.6.0",
+    "framer-motion": "^12.23.22",
     "identity-obj-proxy": "3.0.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
@@ -48,7 +51,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-magma-dom": "^4.9.0-next.27",
-    "react-magma-icons": "^3.1.0"
+    "react-magma-icons": "^3.2.0"
   },
   "engines": {
     "node": ">=14.15.0",

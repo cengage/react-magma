@@ -20,11 +20,10 @@ const transitionPreset: {
   right: { slideRight: true },
 };
 
+/**
+ * @children required
+ */
 export interface DrawerProps extends Omit<ModalProps, 'size'> {
-  /**
-   * @children required
-   */
-  children: React.ReactNode;
   /**
    * @internal
    */
@@ -42,17 +41,41 @@ export interface DrawerProps extends Omit<ModalProps, 'size'> {
    * @default DrawerPosition.top
    */
   position?: DrawerPosition;
+  /**
+   * Shows a background overlay when the drawer is open.
+   * @default true
+   */
+  showBackgroundOverlay?: boolean;
+  /**
+   * If true, enables sliding animations for the drawer
+   * @default false
+   */
+  isAnimated?: boolean;
   isInverse?: boolean;
 }
 
 export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
-  (props, ref) => {
-    const { style, containerStyle, position, ...rest } = props;
+  (props, _ref) => {
+    const {
+      style,
+      containerStyle,
+      position,
+      isAnimated = false,
+      ...rest
+    } = props;
     const theme = React.useContext(ThemeContext);
     const drawerStyle = {
       ...theme.drawer.default,
       ...theme.drawer[DrawerPosition[position]],
     } as React.CSSProperties;
+
+    let containerTransition: Omit<TransitionProps, 'isOpen'> | undefined;
+
+    if (isAnimated) {
+      containerTransition = position
+        ? transitionPreset[DrawerPosition[position]]
+        : transitionPreset[DrawerPosition[DrawerPosition.top]];
+    }
 
     return (
       <Modal
@@ -60,7 +83,8 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
           padding: '0',
           ...containerStyle,
         }}
-        containerTransition={transitionPreset[DrawerPosition[position]]}
+        containerTransition={containerTransition}
+        hasDrawerAnimation={isAnimated}
         style={{ ...drawerStyle, ...style }}
         {...rest}
       />

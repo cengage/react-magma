@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import { act, render, waitFor } from '@testing-library/react';
 
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
@@ -1288,7 +1288,9 @@ describe('MultiCombobox', () => {
       await userEvent.keyboard('{Escape}');
 
       expect(onEscKeyMock).toHaveBeenCalled();
-      expect(queryByText('Modal Content')).not.toBeInTheDocument();
+      await waitFor(() => {
+        expect(queryByText('Modal Content')).not.toBeInTheDocument();
+      });
     });
   });
 });

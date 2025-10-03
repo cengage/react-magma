@@ -1,19 +1,13 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import {
-  AlignedPlacement,
-  autoUpdate,
-  flip,
-  useFloating,
-} from '@floating-ui/react-dom';
+import { autoUpdate } from '@floating-ui/react-dom';
 import {
   addDays,
   endOfDay,
   isAfter,
   isBefore,
   isMatch,
-  isSameMonth,
   isValid,
   parse,
   setHours,
@@ -24,6 +18,7 @@ import { EventIcon } from 'react-magma-icons';
 
 import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
+import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 import { I18nContext } from '../../i18n';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -37,10 +32,17 @@ import {
   getNextMonthFromDate,
   getPrevMonthFromDate,
   handleKeyPress,
+  setMonthForDate,
+  setYearForDate,
   i18nFormat as format,
   inDateRange,
 } from './utils';
 import { omit, Omit, useForkedRef, useGenerateId } from '../../utils';
+
+export interface DatePickerApi {
+  openDatePickerManually(event): void;
+  closeDatePickerManually(event): void;
+}
 
 export interface DatePickerProps
   extends Omit<
@@ -137,6 +139,26 @@ export interface DatePickerProps
    * Event that will fire when the text input gains focus
    */
   onInputFocus?: (event: React.FocusEvent) => void;
+  /**
+   * @internal
+   */
+  dateTimePickerContent?: any;
+  /**
+   * @internal
+   */
+  additionalInputContent?: any;
+  /**
+   * @internal
+   */
+  apiRef?: React.MutableRefObject<DatePickerApi | undefined>;
+  /**
+   * @internal
+   */
+  setAdditionalInputContent?: (value: string) => void;
+  /**
+   * @internal
+   */
+  onClear?: (event: React.MouseEvent) => void;
 }
 
 const DatePickerContainer = styled.div`
@@ -171,6 +193,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
     const iconRef = React.useRef<HTMLButtonElement>();
+    const previousIconRef = React.useRef<HTMLButtonElement>();
     const inputRef = React.useRef<HTMLInputElement>();
     const lastFocus = React.useRef<any>();
     const id: string = useGenerateId(props.id);
@@ -190,6 +213,34 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     const ref = useForkedRef(forwardedRef, inputRef);
 
     React.useEffect(() => {
+      if (props.apiRef) {
+        props.apiRef.current = {
+          closeDatePickerManually(event) {
+            handleCloseButtonClick(event);
+          },
+          openDatePickerManually(event) {
+            toggleCalendarOpened();
+            inputRef.current.focus();
+          },
+        };
+      }
+    }, []);
+
+    React.useEffect(() => {
+      if (
+        dateTimePickerContent &&
+        chosenDate &&
+        inputRef.current !== document.activeElement
+      ) {
+        if (!props.additionalInputContent && props.setAdditionalInputContent) {
+          props.setAdditionalInputContent('12:00 AM');
+        }
+
+        setFocusedDate(chosenDate);
+      }
+    }, [chosenDate]);
+
+    React.useEffect(() => {
       if (!calendarOpened) {
         setDateFocused(false);
       }
@@ -204,6 +255,10 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       }
       if (props.value === null) setChosenDate(undefined);
     }, [props.value]);
+
+    React.useEffect(() => {
+      previousIconRef.current = iconRef.current;
+    }, []);
 
     function showHelperInformation() {
       lastFocus.current = document.activeElement;
@@ -220,6 +275,20 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       iconRef.current.focus();
       setCalendarOpened(false);
     }
+
+    const setFocusedTodayDate = (event: React.SyntheticEvent) => {
+      const isKeyboardEvent = event.type === 'keydown';
+
+      if (
+        (isKeyboardEvent &&
+          ((event as React.KeyboardEvent).key === ' ' ||
+            (event as React.KeyboardEvent).key === 'Enter')) ||
+        event.type === 'click'
+      ) {
+        event.preventDefault();
+        setFocusedDate(setDefaultFocusedDate());
+      }
+    };
 
     function setDateFromConsumer(date: Date): Date {
       const convertedDate = getDateFromString(date);
@@ -270,21 +339,32 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     function onPrevMonthClick() {
       const newDate = getPrevMonthFromDate(focusedDate);
 
-      setFocusedDate(
-        isSameMonth(newDate, minDate) ? setDefaultFocusedDate : newDate
-      );
+      setFocusedDate(newDate);
     }
 
     function onNextMonthClick() {
       const newDate = getNextMonthFromDate(focusedDate);
 
-      setFocusedDate(
-        isSameMonth(newDate, minDate) ? setDefaultFocusedDate : newDate
-      );
+      setFocusedDate(newDate);
+    }
+
+    function setMonthFocusedDate(monthNumber: number) {
+      const newDate = setMonthForDate(focusedDate, monthNumber);
+
+      setFocusedDate(newDate);
+    }
+
+    function setYearFocusedDate(yearNumber: number) {
+      const newDate = setYearForDate(focusedDate, yearNumber);
+
+      setFocusedDate(newDate);
     }
 
     function onDateChange(day: Date) {
       setChosenDate(day);
+
+      if (dateTimePickerContent) return;
+
       setCalendarOpened(false);
     }
 
@@ -312,11 +392,34 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         typeof props.onInputChange === 'function' &&
         props.onInputChange(event);
 
-      const isValidDay = isValidDateFromString(value, day);
+      let isValidDay;
 
-      props.onChange &&
-        typeof props.onChange === 'function' &&
-        props.onChange(isValidDay ? day.toISOString() : value, event);
+      if (dateTimePickerContent) {
+        const splitValue = value.split(' ')[0];
+
+        isValidDay = isValidDateFromString(splitValue, day);
+
+        const validDay = new Date(splitValue);
+
+        const pattern = /^\d{2}\/\d{2}\/\d{4}$/;
+
+        if (pattern.test(splitValue)) {
+          setChosenDate(validDay);
+        }
+
+        props.onChange &&
+          typeof props.onChange === 'function' &&
+          props.onChange(
+            isValidDay ? validDay.toISOString() : splitValue,
+            event
+          );
+      } else {
+        isValidDay = isValidDateFromString(value, day);
+
+        props.onChange &&
+          typeof props.onChange === 'function' &&
+          props.onChange(isValidDay ? day.toISOString() : value, event);
+      }
     }
 
     function handleInputFocus(event: React.FocusEvent) {
@@ -327,12 +430,32 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     function handleInputBlur(event: React.FocusEvent) {
       const { value } = inputRef.current;
-      const day = parse(value, i18n.dateFormat, new Date());
+      const day = parse(
+        dateTimePickerContent ? value.split(' ')[0] : value,
+        i18n.dateFormat,
+        new Date()
+      );
 
-      if (isValidDateFromString(value, day)) {
-        handleDateChange(day, event);
+      let isValidDay;
+
+      if (dateTimePickerContent) {
+        const splitValue = value.split(' ')[0];
+
+        isValidDay = isValidDateFromString(splitValue, day);
+
+        const validDay = new Date(splitValue);
+
+        if (isValidDay) {
+          handleDateChange(validDay, event);
+        }
       } else {
-        reset && typeof reset === 'function' && reset();
+        isValidDay = isValidDateFromString(value, day);
+
+        if (isValidDay) {
+          handleDateChange(day, event);
+        } else {
+          reset && typeof reset === 'function' && reset();
+        }
       }
 
       props.onInputBlur &&
@@ -400,13 +523,17 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         props.onChange(day?.toISOString(), event);
 
       onDateChange(day);
-      setFocusedDate(
-        isAfter(setHours(day, 12), minDate) ? day : setDefaultFocusedDate
-      );
+
+      if (dateTimePickerContent) return;
+
+      setFocusedDate(day);
     }
 
     function handleDaySelection(day: Date, event: React.SyntheticEvent) {
       handleDateChange(day, event);
+
+      if (dateTimePickerContent) return;
+
       inputRef.current.focus();
     }
 
@@ -425,6 +552,10 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     }
 
     function handleCloseButtonClick(event: React.SyntheticEvent) {
+      if (!iconRef.current && previousIconRef.current) {
+        iconRef.current = previousIconRef.current;
+      }
+
       iconRef.current.focus();
       setCalendarOpened(false);
     }
@@ -433,7 +564,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       setCalendarOpened(opened => !opened);
     }
 
-    const { placeholder, testId, ...rest } = props;
+    const { placeholder, testId, dateTimePickerContent, ...rest } = props;
     const other = omit(
       ['onDateChange', 'onInputChange', 'onInputBlur', 'onInputFocus'],
       rest
@@ -446,13 +577,24 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     const dateFormat = i18n.dateFormat;
 
-    const inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
+    let inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
 
-    const { floatingStyles, refs } = useFloating({
-      middleware: [flip()],
-      placement: 'bottom-start' as AlignedPlacement,
-      whileElementsMounted: autoUpdate,
-    });
+    if (inputValue && props.additionalInputContent) {
+      inputValue = `${inputValue} ${props.additionalInputContent}`;
+    } else if (props.additionalInputContent) {
+      setChosenDate(new Date());
+    }
+
+    const { floatingStyles, refs, elements, update } = useMagmaFloating();
+
+    React.useEffect(() => {
+      const referenceDateInput = elements.reference;
+      const floatingCalendar = elements.floating;
+
+      if (calendarOpened && referenceDateInput && floatingCalendar) {
+        return autoUpdate(referenceDateInput, floatingCalendar, update);
+      }
+    }, [calendarOpened, elements, update]);
 
     return (
       <CalendarContext.Provider
@@ -472,6 +614,10 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           onNextMonthClick,
           onDateChange: handleDaySelection,
           setDateFocused,
+          setFocusedTodayDate,
+          setFocusedDate,
+          setMonthFocusedDate,
+          setYearFocusedDate,
           onClose: closeHelperInformation,
         }}
       >
@@ -505,7 +651,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           />
           <InverseContext.Provider value={{ isInverse }}>
             <div
-              ref={refs.setFloating}
+              ref={el => calendarOpened && refs.setFloating(el)}
               style={{ ...floatingStyles, zIndex: '998' }}
             >
               <DatePickerCalendar
@@ -524,6 +670,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
                   handleCloseButtonClick={handleCloseButtonClick}
                   calendarOpened={calendarOpened}
                   setDateFocused={setDateFocused}
+                  dateTimePickerContent={dateTimePickerContent}
                 />
               </DatePickerCalendar>
             </div>

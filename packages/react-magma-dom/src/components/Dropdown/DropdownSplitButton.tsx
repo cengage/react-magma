@@ -9,7 +9,7 @@ import {
   ButtonStyles,
   ButtonVariant,
 } from '../Button';
-import { IconButton } from '../IconButton';
+import { getIconSize, IconButton } from '../IconButton';
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -67,13 +67,13 @@ export const DropdownSplitButton = React.forwardRef<
   const buttonIcon =
     resolvedContext.dropDirection === DropdownDropDirection.up ? (
       <ArrowDropUpIcon
-        size={theme.iconSizes.medium}
+        size={getIconSize(other.size, theme)}
         testId="caretUp"
         aria-hidden="true"
       />
     ) : (
       <ArrowDropDownIcon
-        size={theme.iconSizes.medium}
+        size={getIconSize(other.size, theme)}
         testId="caretDown"
         aria-hidden="true"
       />

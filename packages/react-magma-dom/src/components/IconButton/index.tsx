@@ -7,12 +7,12 @@ import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { omit, Omit, resolveProps, XOR } from '../../utils';
 import {
-  ButtonProps,
   ButtonColor,
+  ButtonProps,
   ButtonShape,
   ButtonSize,
-  ButtonVariant,
   ButtonTextTransform,
+  ButtonVariant,
 } from '../Button';
 import { ButtonGroupContext } from '../ButtonGroup';
 import { StyledButton } from '../StyledButton';
@@ -38,22 +38,37 @@ export interface IconTextButtonProps extends ButtonProps {
    * Icon to display within the component
    */
   icon: React.ReactElement<IconProps>;
-  children: React.ReactChild | React.ReactChild[];
   /**
    * Position within the button for the icon to appear
    * @default ButtonIconPosition.right
    */
   iconPosition?: ButtonIconPosition;
+  /**
+   * Leading icon to display on the left side of the button
+   */
+  leadingIcon?: React.ReactElement<IconProps>;
+  /**
+   * The content of the component
+   */
+  children: React.ReactChild | React.ReactChild[];
 }
 
 export type IconButtonProps = XOR<IconOnlyButtonProps, IconTextButtonProps>;
 
 export interface SpanProps {
+  hasIconLeading?: boolean;
   size?: ButtonSize;
 }
 
 const SpanTextLeft = styled.span<SpanProps>`
-  padding-right: ${props => getIconPadding(props)};
+  ${props => {
+    const padding = getIconPadding(props);
+
+    return `
+      padding-left: ${props.hasIconLeading ? padding : 0};
+      padding-right: ${padding};
+    `;
+  }}
 `;
 
 const SpanTextRight = styled.span<SpanProps>`
@@ -71,14 +86,14 @@ function getIconPadding(props) {
   }
 }
 
-function getIconSize(size, theme) {
+export function getIconSize(size, theme) {
   switch (size) {
     case 'large':
-      return theme.iconSizes.large;
-    case 'small':
-      return theme.iconSizes.small;
-    default:
       return theme.iconSizes.medium;
+    case 'small':
+      return theme.iconSizes.xSmall;
+    default:
+      return theme.iconSizes.small;
   }
 }
 
@@ -91,6 +106,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     let icon;
     let iconPosition;
     let children;
+    let leadingIcon;
 
     const contextProps = React.useContext(ButtonGroupContext);
     const theme = React.useContext(ThemeContext);
@@ -104,6 +120,7 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       icon = resolvedProps.icon;
       iconPosition = resolvedProps.iconPosition;
       children = resolvedProps.children;
+      leadingIcon = resolvedProps.leadingIcon;
     }
 
     const other = omit(['iconPosition', 'textPosition'], rest);
@@ -148,9 +165,23 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
         variant={variant || ButtonVariant.solid}
       >
         {iconPosition === ButtonIconPosition.right && (
-          <SpanTextLeft size={size} theme={theme}>
-            {children}
-          </SpanTextLeft>
+          <>
+            {leadingIcon &&
+              React.Children.only(
+                React.cloneElement(leadingIcon, {
+                  size: leadingIcon.props.size || getIconSize(size, theme),
+                  'data-testid': `${testId}-leading-icon`,
+                  'aria-hidden': 'true',
+                })
+              )}
+            <SpanTextLeft
+              hasIconLeading={!!leadingIcon}
+              size={size}
+              theme={theme}
+            >
+              {children}
+            </SpanTextLeft>
+          </>
         )}
         {React.Children.only(
           React.cloneElement(icon, {

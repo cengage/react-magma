@@ -34,7 +34,7 @@ to render the <Link to="/api/progress-bar">Progress Bar</Link> component.
 ```tsx
 import React from 'react';
 
-import { LoadingIndicator } from 'react-magma-dom';
+import { LoadingIndicator, LoadingIndicatorType } from 'react-magma-dom';
 
 export function Example() {
   const [percentage, setPercentage] = React.useState(0);
@@ -94,7 +94,12 @@ export function Example() {
     };
   }, []);
 
-  return <LoadingIndicator percentage={percentage} type="progressbar" />;
+  return (
+    <LoadingIndicator
+      percentage={percentage}
+      type={LoadingIndicatorType.progressbar}
+    />
+  );
 }
 ```
 

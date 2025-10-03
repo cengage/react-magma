@@ -120,6 +120,11 @@ export interface I18nInterface {
     disabledDayAriaLabel: string;
     selectedDayAriaLabel: string;
     todayAriaLabel: string;
+    today: string;
+    navigateToCurrentDateAriaLabel: string;
+    backToCalendarAriaLabel: string;
+    selectMonth: string;
+    selectYear: string;
 
     helpModal: {
       header: string;
@@ -153,6 +158,7 @@ export interface I18nInterface {
       };
     };
   };
+  dateTimePickerLabel: string;
   dropdown: {
     menuItemSelectedAriaLabel: string;
     toggleMenuAriaLabel: string;
@@ -305,5 +311,11 @@ export interface I18nInterface {
       submit: string;
       cancel: string;
     };
+  };
+  alertVariants: {
+    info: string;
+    success: string;
+    warning: string;
+    danger: string;
   };
 }

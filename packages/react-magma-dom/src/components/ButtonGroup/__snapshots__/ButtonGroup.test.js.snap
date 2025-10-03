@@ -971,6 +971,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-13 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -1265,6 +1266,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-13 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -1381,9 +1383,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
               class="icon"
               data-testid="caretDown"
               fill="currentColor"
-              height="24"
+              height="20"
               viewBox="0 0 24 24"
-              width="24"
+              width="20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -1396,7 +1398,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
       </div>
       <div
         data-testid="dropdownContentWrapper"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996; transform: translate(0px, 0px);"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
           class="emotion-15 emotion-16 emotion-17"
@@ -1445,9 +1447,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
               class="icon"
               data-testid="caretDown"
               fill="currentColor"
-              height="24"
+              height="20"
               viewBox="0 0 24 24"
-              width="24"
+              width="20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -1460,7 +1462,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
       </div>
       <div
         data-testid="dropdownContentWrapper"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996; transform: translate(0px, 0px);"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
           class="emotion-15 emotion-16 emotion-17"
@@ -1717,6 +1719,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-13 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -2018,6 +2021,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-13 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -2134,9 +2138,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
               class="icon"
               data-testid="caretDown"
               fill="currentColor"
-              height="24"
+              height="20"
               viewBox="0 0 24 24"
-              width="24"
+              width="20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -2149,7 +2153,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
       </div>
       <div
         data-testid="dropdownContentWrapper"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996; transform: translate(0px, 0px);"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
           class="emotion-15 emotion-16 emotion-17"
@@ -2198,9 +2202,9 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
               class="icon"
               data-testid="caretDown"
               fill="currentColor"
-              height="24"
+              height="20"
               viewBox="0 0 24 24"
-              width="24"
+              width="20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -2213,7 +2217,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
       </div>
       <div
         data-testid="dropdownContentWrapper"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996; transform: translate(0px, 0px);"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
           class="emotion-15 emotion-16 emotion-17"
@@ -2509,6 +2513,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-13 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -2849,6 +2854,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-13 {
+  padding-left: 0;
   padding-right: 8px;
 }
 
@@ -2965,9 +2971,9 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
               class="icon"
               data-testid="caretDown"
               fill="currentColor"
-              height="24"
+              height="20"
               viewBox="0 0 24 24"
-              width="24"
+              width="20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -2980,7 +2986,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
       </div>
       <div
         data-testid="dropdownContentWrapper"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996; transform: translate(0px, 0px);"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
           class="emotion-15 emotion-16 emotion-17"
@@ -3029,9 +3035,9 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
               class="icon"
               data-testid="caretDown"
               fill="currentColor"
-              height="24"
+              height="20"
               viewBox="0 0 24 24"
-              width="24"
+              width="20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
@@ -3044,7 +3050,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
       </div>
       <div
         data-testid="dropdownContentWrapper"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996; transform: translate(0px, 0px);"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
           class="emotion-15 emotion-16 emotion-17"

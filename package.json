@@ -34,6 +34,10 @@
     "prebuild": "lerna run compiler-checks && lerna run lint --concurrency=6 --no-progress",
     "pretest": "lerna run compiler-checks --concurrency=6 --no-progress",
     "postinstall": "npm run build:lite",
+    "playwright:test": "lerna exec --scope playwright -- npx playwright test",
+    "playwright:report": "lerna exec --scope playwright -- npx playwright show-report",
+    "playwright:codegen": "lerna exec --scope playwright -- npx playwright codegen",
+    "playwright:realtime": "lerna exec --scope playwright -- npx playwright test --ui",
     "lint": "lerna run lint --concurrency=6 --no-progress",
     "lint:ci": "lerna run lint:check --concurrency=6 --no-progress",
     "lint:fix": "lerna run lint:fix --concurrency=6 --no-progress",
@@ -146,5 +150,10 @@
   },
   "overrides": {
     "storybook": "$storybook"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.1",
+    "@storybook/addon-actions": "^9.0.8",
+    "babel-loader": "^10.0.0"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "packages": ["website/*", "packages/*"],
+  "packages": ["website/*", "packages/*", "tests/*"],
   "command": {
     "publish": {
       "allowBranch": ["dev", "hotfix/*", "main"],

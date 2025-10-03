@@ -82,48 +82,76 @@ export const Behavior = () => {
   const [checkedItems, setCheckedItems] = React.useState<Array<boolean>>([
     true,
     false,
+    false,
+    false,
   ]);
 
-  const status: IndeterminateCheckboxStatus = checkedItems.every(Boolean)
-    ? IndeterminateCheckboxStatus.checked
-    : checkedItems.some(Boolean)
-      ? IndeterminateCheckboxStatus.indeterminate
-      : IndeterminateCheckboxStatus.unchecked;
+  const [status, setStatus] = React.useState<IndeterminateCheckboxStatus>(
+    IndeterminateCheckboxStatus.indeterminate
+  );
+
+  function getStatus(items: Array<boolean>) {
+    return items.every(Boolean)
+      ? IndeterminateCheckboxStatus.checked
+      : items.some(Boolean)
+        ? IndeterminateCheckboxStatus.indeterminate
+        : IndeterminateCheckboxStatus.unchecked;
+  }
 
   function handleUpdateIndeterminateChecked(
     event: React.ChangeEvent<HTMLInputElement>
   ) {
-    setCheckedItems([event.target.checked, event.target.checked]);
+    const updatedCheckedItems = Array(4).fill(event.target.checked);
+
+    setCheckedItems(updatedCheckedItems);
+    setStatus(getStatus(updatedCheckedItems));
   }
 
-  function handleUpdateRedChecked(event: React.ChangeEvent<HTMLInputElement>) {
-    setCheckedItems([event.target.checked, checkedItems[1]]);
-  }
+  function handleColorChecked(
+    index: number,
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    const updatedCheckedItems = [...checkedItems];
 
-  function handleUpdateBlueChecked(event: React.ChangeEvent<HTMLInputElement>) {
-    setCheckedItems([checkedItems[0], event.target.checked]);
+    updatedCheckedItems[index] = event.target.checked;
+    setCheckedItems(updatedCheckedItems);
+    setStatus(getStatus(updatedCheckedItems));
   }
 
   return (
-    <>
+    <FormGroup labelText="Colors group" isTextVisuallyHidden>
       <IndeterminateCheckbox
         onChange={handleUpdateIndeterminateChecked}
         status={status}
         labelText="Colors"
-        id="5"
+        id="indeterminateCheckbox"
       />
       <div style={{ marginLeft: magma.spaceScale.spacing08 }}>
         <Checkbox
           checked={checkedItems[0]}
-          onChange={handleUpdateRedChecked}
+          onChange={e => handleColorChecked(0, e)}
           labelText="Red"
+          id="Red"
         />
         <Checkbox
           checked={checkedItems[1]}
-          onChange={handleUpdateBlueChecked}
+          onChange={e => handleColorChecked(1, e)}
           labelText="Blue"
+          id="Blue"
+        />
+        <Checkbox
+          checked={checkedItems[2]}
+          onChange={e => handleColorChecked(2, e)}
+          labelText="Green"
+          id="Green"
+        />
+        <Checkbox
+          checked={checkedItems[3]}
+          onChange={e => handleColorChecked(3, e)}
+          labelText="Yellow"
+          id="Yellow"
         />
       </div>
-    </>
+    </FormGroup>
   );
 };

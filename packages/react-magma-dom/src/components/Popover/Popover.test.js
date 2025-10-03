@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { FilterAltIcon } from 'react-magma-icons';
 
-import { PopoverPosition } from './Popover';
+import { PopoverAlignment, PopoverPosition } from './Popover';
 import { PopoverHeader, PopoverFooter } from './PopoverSection';
 import { Button } from '../Button';
 
@@ -44,7 +44,6 @@ describe('Popover', () => {
 
     expect(container).toBeInTheDocument();
     expect(popoverTrigger).toBeInTheDocument();
-
     const popoverContent = getByTestId('popoverContent');
     const popoverContentDialog = container.querySelector('div[role="dialog"]');
     const spanContent = getByText('Content');
@@ -65,7 +64,6 @@ describe('Popover', () => {
 
   it('should render the popover with custom icon on trigger', () => {
     const triggerTestId = 'trigger-test-id';
-
     const { container, getByTestId } = render(
       <Popover>
         <PopoverTrigger icon={<FilterAltIcon testId={triggerTestId} />} />
@@ -74,7 +72,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverTrigger = container.querySelector('button');
     const customIcon = getByTestId(triggerTestId);
 
@@ -87,7 +84,6 @@ describe('Popover', () => {
   it('should render the popover with custom text on trigger', () => {
     const triggerTestId = 'trigger-test-id';
     const customText = 'Custom Text';
-
     const { getByTestId } = render(
       <Popover>
         <PopoverTrigger testId={triggerTestId}>{customText}</PopoverTrigger>
@@ -96,7 +92,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverTrigger = getByTestId(triggerTestId);
 
     expect(popoverTrigger).toBeInTheDocument();
@@ -104,8 +99,7 @@ describe('Popover', () => {
     expect(popoverTrigger).toHaveTextContent(customText);
   });
 
-  // TODO: Unskip this test
-  xit('should lock focus inside the popover', async () => {
+  it('should lock focus inside the popover', async () => {
     const { container, getByTestId } = render(
       <Popover focusTrap>
         <PopoverTrigger />
@@ -116,7 +110,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverTrigger = container.querySelector('button');
     const popoverContent = getByTestId('popoverContent');
 
@@ -127,7 +120,6 @@ describe('Popover', () => {
     await userEvent.click(popoverTrigger);
 
     expect(popoverContent).toBeVisible();
-
     const buttons = popoverContent.querySelectorAll('button');
 
     expect(buttons[0]).toHaveFocus();
@@ -162,7 +154,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverTrigger = container.querySelector('button');
     const popoverContent = getByTestId('popoverContent');
 
@@ -192,7 +183,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverTrigger = container.querySelector('button');
     const popoverContent = getByTestId('popoverContent');
     const spanContent = getByText('Content');
@@ -222,7 +212,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverTrigger = container.querySelector('button');
 
     await userEvent.click(popoverTrigger);
@@ -246,7 +235,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverTrigger = container.querySelector('button');
 
     await userEvent.click(popoverTrigger);
@@ -270,7 +258,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverTrigger = container.querySelector('button');
 
     expect(container).toBeInTheDocument();
@@ -310,7 +297,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverTrigger = container.querySelector('button');
 
     expect(container).toBeInTheDocument();
@@ -344,7 +330,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverTrigger = container.querySelector('button');
 
     expect(container).toBeInTheDocument();
@@ -370,7 +355,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
@@ -386,7 +370,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
@@ -402,7 +385,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
@@ -424,7 +406,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverContent = getByTestId('popoverContent');
     const popoverHeader = getByText('Header');
     const popoverFooter = getByText('Footer');
@@ -455,7 +436,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
@@ -472,7 +452,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
@@ -488,7 +467,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
@@ -514,7 +492,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverContent = getByTestId('popoverContent');
     const triggerButton = getByTestId(triggerTestId);
     const closeButton = getByTestId(closeButtonTestId);
@@ -522,6 +499,7 @@ describe('Popover', () => {
     expect(popoverContent).toBeInTheDocument();
     expect(triggerButton).toBeInTheDocument();
     expect(closeButton).toBeInTheDocument();
+
     expect(popoverContent).not.toBeVisible();
     expect(closeButton).not.toBeVisible();
 
@@ -536,6 +514,54 @@ describe('Popover', () => {
     expect(closeButton).not.toBeVisible();
   });
 
+  it('should open popover manually on span with api ref', async () => {
+    const triggerTestId = 'trigger-test-id';
+    const popoverContentTestId = 'popover-content-test-id';
+    const popoverApiRef = React.createRef();
+
+    function handleOpenPopover(event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        popoverApiRef.current?.openPopoverManually(event);
+      }
+    }
+
+    const { getByTestId, getByText } = render(
+      <Popover apiRef={popoverApiRef}>
+        <PopoverTrigger>
+          <span
+            tabIndex={0}
+            role="button"
+            onKeyDown={handleOpenPopover}
+            data-testid={triggerTestId}
+          >
+            Press Enter or Space to open popover
+          </span>
+        </PopoverTrigger>
+        <PopoverContent testId={popoverContentTestId}>
+          <PopoverHeader>
+            <div>Popover Header</div>
+          </PopoverHeader>
+          <div>Popover Content</div>
+        </PopoverContent>
+      </Popover>
+    );
+    const popoverContent = getByTestId(popoverContentTestId);
+    const triggerButton = getByTestId(triggerTestId);
+    const openButton = getByText('Press Enter or Space to open popover');
+
+    expect(triggerButton).toBeInTheDocument();
+    expect(openButton).toBeInTheDocument();
+    expect(popoverContent).not.toBeVisible();
+
+    triggerButton.focus();
+    await userEvent.keyboard('{Enter}');
+
+    expect(popoverContent).toBeVisible();
+    expect(getByText('Popover Header')).toBeVisible();
+    expect(getByText('Popover Content')).toBeVisible();
+  });
+
   it('should open popover by default if openByDefault property was passed', () => {
     const { getByTestId } = render(
       <Popover openByDefault>
@@ -545,7 +571,6 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
@@ -561,10 +586,77 @@ describe('Popover', () => {
         </PopoverContent>
       </Popover>
     );
-
     const popoverContent = getByTestId('popoverContent');
 
     expect(popoverContent).toBeInTheDocument();
     expect(popoverContent).toMatchSnapshot();
+  });
+
+  describe('PopoverAlignment', () => {
+    it('should render Popover with default alignment', async () => {
+      const { getByTestId, container } = render(
+        <Popover>
+          <PopoverTrigger />
+          <PopoverContent>
+            <span>Content</span>
+          </PopoverContent>
+        </Popover>
+      );
+      const popoverTrigger = container.querySelector('button');
+      await userEvent.click(popoverTrigger);
+
+      const popoverContent = getByTestId('popoverContent');
+      expect(popoverContent).toBeInTheDocument();
+
+      const popoverArrow = getByTestId('popoverArrow');
+      expect(popoverArrow).toHaveAttribute('data-popover-placement', 'bottom');
+    });
+
+    it('should render Popover with start alignment and bottom position', async () => {
+      const { getByTestId, container } = render(
+        <Popover
+          alignment={PopoverAlignment.start}
+          position={PopoverPosition.bottom}
+        >
+          <PopoverTrigger />
+          <PopoverContent>
+            <span>Content</span>
+          </PopoverContent>
+        </Popover>
+      );
+      const popoverTrigger = container.querySelector('button');
+      await userEvent.click(popoverTrigger);
+
+      const popoverContent = getByTestId('popoverContent');
+      expect(popoverContent).toBeInTheDocument();
+
+      const popoverArrow = getByTestId('popoverArrow');
+      expect(popoverArrow).toHaveAttribute(
+        'data-popover-placement',
+        'bottom-start'
+      );
+    });
+
+    it('should render Popover with end alignment and top position', async () => {
+      const { getByTestId, container } = render(
+        <Popover
+          alignment={PopoverAlignment.end}
+          position={PopoverPosition.top}
+        >
+          <PopoverTrigger />
+          <PopoverContent>
+            <span>Content</span>
+          </PopoverContent>
+        </Popover>
+      );
+      const popoverTrigger = container.querySelector('button');
+      await userEvent.click(popoverTrigger);
+
+      const popoverContent = getByTestId('popoverContent');
+      expect(popoverContent).toBeInTheDocument();
+
+      const popoverArrow = getByTestId('popoverArrow');
+      expect(popoverArrow).toHaveAttribute('data-popover-placement', 'top-end');
+    });
   });
 });

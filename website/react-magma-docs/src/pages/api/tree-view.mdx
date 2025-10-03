@@ -913,7 +913,6 @@ import {
   TreeView,
   TreeViewApi,
   TreeViewSelectable,
-  TreeViewSelectable,
 } from 'react-magma-dom';
 import { KeyboardArrowUpIcon, KeyboardArrowDownIcon } from 'react-magma-icons';
 
@@ -1119,7 +1118,7 @@ export function Example() {
 }
 ```
 
-## isTopLevelSelectable
+## Top Level Selectable
 
 When set to `false` (defaults to `true`), and used with `TreeViewSelectable.multi`, the top-level parents or leaves will not be selectable.
 
@@ -1393,6 +1392,340 @@ export function Example() {
 
       <Spacer size={16} axis={SpacerAxis.vertical} />
     </>
+  );
+}
+```
+
+## Dynamically Add TreeItem
+
+Use the `apiRef.addItem(item)` prop to add a new item. This function accepts an item of type `TreeViewItemInterface`. If the item includes a `parentId`, it is added as a **child**; otherwise, it is added as a **parent**.
+
+```tsx
+import React from 'react';
+
+import {
+  ButtonSize,
+  ButtonVariant,
+  IndeterminateCheckboxStatus,
+  Spacer,
+  SpacerAxis,
+  TreeItem,
+  TreeItemSelectedInterface,
+  TreeView,
+  TreeViewApi,
+  TreeViewSelectable,
+  ButtonGroup,
+  Button,
+  ButtonColor,
+} from 'react-magma-dom';
+
+export function Example() {
+  const treeContent = {
+    id: 'dynamic-tree-id',
+    groupName: 'disciplines',
+    items: [
+      {
+        id: 'dynamic-discipline-arts-design',
+        title: 'Arts and Design',
+        children: [
+          {
+            id: 'dynamic-ad-1',
+            title: 'Animation',
+            children: [],
+          },
+          {
+            id: 'dynamic-ad-2',
+            title: 'Photography',
+            children: [],
+          },
+          {
+            id: 'dynamic-ad-3',
+            title: 'Web Design',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'dynamic-discipline-business',
+        title: 'Business',
+        children: [
+          {
+            id: 'dynamic-bsn-1',
+            title: 'Accounting',
+            children: [],
+          },
+          {
+            id: 'dynamic-bsn-2',
+            title: 'Finance',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'dynamic-discipline-cs',
+        title: 'Computer Science',
+        children: [
+          {
+            id: 'dynamic-cs-1',
+            title: 'Software Engineering',
+            children: [],
+          },
+          {
+            id: 'dynamic-cs-2',
+            title: 'Information Technology',
+            children: [],
+          },
+        ],
+      },
+      {
+        id: 'dynamic-discipline-geography',
+        title: 'Geography',
+        children: [],
+      },
+    ],
+    preselectedItems: [
+      {
+        itemId: 'dynamic-bsn-1',
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+      },
+      {
+        itemId: 'dynamic-nutr-1',
+        checkedStatus: IndeterminateCheckboxStatus.checked,
+      },
+    ],
+  };
+
+  const apiRef = React.useRef<TreeViewApi>();
+  const [, setSelectedItems] = React.useState<TreeItemSelectedInterface[]>();
+  const [items, setItems] = React.useState(treeContent.items);
+
+  function onSelection(items: TreeItemSelectedInterface[]) {
+    setSelectedItems(items);
+  }
+
+  const renderTreeItemsRecursively = (discipline: any[], depth: number) => {
+    return discipline.map(term => {
+      const isDisabled =
+        term.title === 'Accounting' || term.title === 'Computer Science';
+
+      return (
+        <TreeItem
+          key={term.id}
+          itemId={term.id}
+          testId={term.id}
+          label={term.title}
+          isDisabled={isDisabled}
+        >
+          {term.children.length ? (
+            renderTreeItemsRecursively(term.children, depth + 1)
+          ) : (
+            <></>
+          )}
+        </TreeItem>
+      );
+    });
+  };
+
+  const toggleAddNewParent = () => {
+    const treeLength = items.length + 1;
+    const newItemId = 'new-parent-' + treeLength;
+
+    apiRef.current.addItem({
+      itemId: newItemId,
+      parentId: null,
+      icon: undefined,
+      hasOwnTreeItems: false,
+      isDisabled: undefined,
+      checkedStatus: IndeterminateCheckboxStatus.unchecked,
+    });
+
+    setItems([
+      ...items,
+      {
+        id: newItemId,
+        title: 'Parent ' + treeLength,
+        children: [],
+      },
+    ]);
+  };
+
+  const toggleAddNewChild = () => {
+    const parentItem = items[items.length - 1];
+
+    const newItemId =
+      parentItem &&
+      String(parentItem.id) + '-' + String(parentItem.children.length + 1);
+
+    apiRef.current.addItem({
+      itemId: newItemId,
+      parentId: String(parentItem.id),
+      icon: undefined,
+      hasOwnTreeItems: false,
+      isDisabled: undefined,
+      checkedStatus: IndeterminateCheckboxStatus.unchecked,
+    });
+
+    const newItems = items.map((item, index) => {
+      if (index === items.length - 1) {
+        return {
+          ...item,
+          children: [
+            ...item.children,
+            {
+              id: newItemId,
+              title: `New ${item.title} Child ${item.children.length + 1}`,
+              children: [],
+            },
+          ],
+        };
+      }
+      return item;
+    });
+
+    setItems(newItems);
+  };
+
+  return (
+    <>
+      <ButtonGroup
+        size={ButtonSize.small}
+        variant={ButtonVariant.solid}
+        color={ButtonColor.subtle}
+      >
+        <Button onClick={toggleAddNewParent}>Add parent</Button>
+        <Button onClick={toggleAddNewChild}>
+          Add child to the last parent
+        </Button>
+      </ButtonGroup>
+
+      <Spacer size={24} axis={SpacerAxis.vertical} />
+
+      <TreeView
+        key={treeContent.id}
+        preselectedItems={treeContent.preselectedItems}
+        selectable={TreeViewSelectable.multi}
+        onSelectedItemChange={onSelection}
+        apiRef={apiRef}
+      >
+        {renderTreeItemsRecursively(items, 0)}
+      </TreeView>
+
+      <Spacer size={16} axis={SpacerAxis.vertical} />
+    </>
+  );
+}
+```
+
+## Additional Content
+
+The `additionalContent` prop allows the adopter to render additional custom content below the label.
+This can include any valid React node, such as text, icons, buttons, tooltips, or other components.
+
+```tsx
+import React from 'react';
+
+import {
+  Button,
+  ButtonGroup,
+  ButtonSize,
+  ButtonColor,
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+  TreeItem,
+  TreeView,
+  TreeViewSelectable,
+} from 'react-magma-dom';
+import { FolderIcon, SpaceDashboardIcon } from 'react-magma-icons';
+
+export function Example() {
+  const parrotsAdditionalContent = () => {
+    return (
+      <div style={{ width: '100%', marginTop: '12px' }}>
+        <ButtonGroup style={{ marginBottom: '16px' }}>
+          <Dropdown>
+            <DropdownButton size={ButtonSize.small} color={ButtonColor.subtle}>
+              <div style={{ display: 'flex' }}>
+                <SpaceDashboardIcon
+                  size={16}
+                  style={{
+                    flex: '0 0 auto',
+                    marginRight: '4px',
+                  }}
+                />{' '}
+                <span style={{ flex: '1 1 auto' }}>Parrots</span>
+              </div>
+            </DropdownButton>
+            <DropdownContent>
+              <DropdownMenuItem>African Grey</DropdownMenuItem>
+              <DropdownMenuItem>Cockatiel</DropdownMenuItem>
+              <DropdownMenuItem>Budgerigar</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </ButtonGroup>
+      </div>
+    );
+  };
+
+  const birdsOfPrey = () => {
+    return (
+      <div style={{ marginTop: '12px' }}>
+        <Button
+          style={{ marginRight: '12px' }}
+          onClick={() => console.log('Eagles')}
+        >
+          Eagles
+        </Button>
+        <Button
+          style={{ marginRight: '12px' }}
+          onClick={() => console.log('Hawks')}
+        >
+          Hawks
+        </Button>
+        <Button onClick={() => console.log('Falcons')}>Falcons</Button>
+      </div>
+    );
+  };
+
+  return (
+    <TreeView
+      selectable={TreeViewSelectable.off}
+      initialExpandedItems={['parrots-AdditionalContent', 'birdsOfPrey']}
+    >
+      <TreeItem
+        icon={<FolderIcon aria-hidden />}
+        label={<>Birds</>}
+        itemId="birds"
+      >
+        <TreeItem label={<>Parrots</>} itemId="parrots-folder">
+          <TreeItem
+            additionalContent={parrotsAdditionalContent()}
+            label={<>Additional content</>}
+            itemId="parrots-AdditionalContent"
+          />
+        </TreeItem>
+        <TreeItem label={<>Birds of Prey</>} itemId="birdsOfPrey-folder">
+          <TreeItem
+            additionalContent={birdsOfPrey()}
+            label={<>Additional content</>}
+            itemId="birdsOfPrey"
+          />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Aquatic Animals" itemId="selectable-Aquatic Animals">
+        <TreeItem label="Fish" itemId="selectable-Fish">
+          <TreeItem label="Goldfish" itemId="selectable-Goldfish" />
+          <TreeItem label="Betta Fish" itemId="selectable-Betta Fish" />
+          <TreeItem label="Guppies" itemId="selectable-Guppies" />
+        </TreeItem>
+        <TreeItem label="Marine Mammals" itemId="selectable-Marine Mammals">
+          <TreeItem label="Dolphins" itemId="selectable-Dolphins" />
+          <TreeItem label="Whales" itemId="selectable-Whales" />
+          <TreeItem label="Seals" itemId="selectable-Seals" />
+        </TreeItem>
+      </TreeItem>
+    </TreeView>
   );
 }
 ```

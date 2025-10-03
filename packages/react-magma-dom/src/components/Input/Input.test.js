@@ -1,15 +1,28 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
+import PropTypes from 'prop-types';
 import { CheckIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { InputType } from '../InputBase';
+import { CustomTopicsRow } from './testUtils';
 
 import { Input } from '.';
+
+const renderWithProviders = (ui, renderOptions = {}) => {
+  const Wrapper = ({ children }) => <>{children}</>;
+
+  Wrapper.propTypes = {
+    children: PropTypes.node,
+  };
+
+  return render(ui, { wrapper: Wrapper, ...renderOptions });
+};
 
 const label = 'test label';
 
@@ -284,22 +297,21 @@ describe('Input', () => {
     expect(getByLabelText(labelText)).toHaveAttribute('value', value);
   });
 
-  it('should watch for input change and add the clear input button', () => {
+  it('should watch for input change and add the clear input button', async () => {
     const onChange = jest.fn();
     const labelText = 'Input Label';
+    const targetValue = 'new value';
     const { getByLabelText, getByTestId } = render(
       <Input labelText={labelText} onChange={onChange} isClearable />
     );
 
-    fireEvent.change(getByLabelText(labelText), {
-      target: { value: 'new value' },
-    });
+    await userEvent.type(getByLabelText(labelText), targetValue);
 
     expect(onChange).toHaveBeenCalled();
     expect(getByTestId('clear-button')).toHaveStyleRule('position', 'relative');
   });
 
-  it('should clear the input when the clear input button is clicked', () => {
+  it('should clear the input when the clear input button is clicked', async () => {
     const onClear = jest.fn();
     const labelText = 'Input Label';
     const value = 'Test Value';
@@ -312,9 +324,9 @@ describe('Input', () => {
       />
     );
 
-    fireEvent.click(getByTestId('clear-button'));
+    await userEvent.click(getByTestId('clear-button'));
 
-    expect(onClear).toBeCalled();
+    expect(onClear).toHaveBeenCalled();
     expect(getByLabelText(labelText)).toHaveAttribute('value', '');
   });
 
@@ -462,7 +474,7 @@ describe('Input', () => {
         expect(onBlurSpy).toHaveBeenCalledTimes(1);
       });
 
-      it('should trigger the passed in onChange when value of the input is changed', () => {
+      it('should trigger the passed in onChange when value of the input is changed', async () => {
         const targetValue = 'Change';
         const onChangeSpy = jest.fn();
         const labelText = 'test label';
@@ -470,11 +482,9 @@ describe('Input', () => {
           <Input labelText={labelText} onChange={onChangeSpy} value="" />
         );
 
-        fireEvent.change(getByLabelText(labelText), {
-          target: { value: targetValue },
-        });
+        await userEvent.type(getByLabelText(labelText), targetValue);
 
-        expect(onChangeSpy).toHaveBeenCalledTimes(1);
+        expect(onChangeSpy).toHaveBeenCalledTimes(6);
       });
 
       it('should trigger the passed in onFocus when focused', () => {
@@ -505,14 +515,12 @@ describe('Input', () => {
     const labelText = 'Character Counter';
     const initialValue = 'dddd';
 
-    it('should render an input with a correctly styled error message', () => {
+    it('should render an input with a correctly styled error message', async () => {
       const { getByTestId, getByLabelText } = render(
         <Input labelText={labelText} maxCount={2} />
       );
 
-      fireEvent.change(getByLabelText(labelText), {
-        target: { value: initialValue },
-      });
+      await userEvent.type(getByLabelText(labelText), initialValue);
 
       const errorMessage = getByTestId('inputMessage');
 
@@ -562,28 +570,24 @@ describe('Input', () => {
       expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
     });
 
-    it('Shows the label "characters allowed" equal to the maxCount if the user clears the input by backspacing', () => {
+    it('Shows the label "characters allowed" equal to the maxCount if the user clears the input by backspacing', async () => {
       const onChange = jest.fn();
       const { getByText, getByLabelText } = render(
         <Input labelText={labelText} maxCount={4} onChange={onChange} />
       );
 
-      fireEvent.change(getByLabelText(labelText), {
-        target: { value: initialValue },
-      });
+      await userEvent.type(getByLabelText(labelText), initialValue);
 
       expect(getByLabelText(labelText)).toHaveAttribute('value', initialValue);
       expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
 
-      fireEvent.change(getByLabelText(labelText), {
-        target: { value: '' },
-      });
+      await userEvent.clear(getByLabelText(labelText));
 
       expect(getByLabelText(labelText)).toHaveAttribute('value', '');
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
     });
 
-    it('Shows the label "characters allowed" equal to the maxCount if the user clears the input by clicking the onClear button', () => {
+    it('Shows the label "characters allowed" equal to the maxCount if the user clears the input by clicking the onClear button', async () => {
       const onClear = jest.fn();
       const { getByText, getByLabelText, getByTestId } = render(
         <Input
@@ -594,14 +598,12 @@ describe('Input', () => {
         />
       );
 
-      fireEvent.change(getByLabelText(labelText), {
-        target: { value: initialValue },
-      });
+      await userEvent.type(getByLabelText(labelText), initialValue);
 
       expect(getByLabelText(labelText)).toHaveAttribute('value', initialValue);
       expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
 
-      fireEvent.click(getByTestId('clear-button'));
+      await userEvent.click(getByTestId('clear-button'));
 
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
       expect(onClear).toBeCalled();
@@ -704,6 +706,73 @@ describe('Input', () => {
 
       const inputElement = getByLabelText('Url');
       expect(inputElement).toHaveAttribute('type', 'url');
+    });
+  });
+
+  describe('Custom Topics Row', () => {
+    const properties = {
+      topicList: [
+        {
+          reference: 'custom sub activity reference',
+          title: 'custom sub activity title',
+        },
+      ],
+      isRemoveButtonDisabled: false,
+      shouldValidate: true,
+      topicTitle: '',
+      testTopic: undefined,
+      studyMaterialsTopic: undefined,
+      order: 1,
+      setTopicTitle: jest.fn(),
+      setTestTopic: jest.fn(),
+      setStudyMaterialsTopic: jest.fn(),
+      removeTopicRow: jest.fn(),
+    };
+
+    it('should insert title topic', async () => {
+      renderWithProviders(<CustomTopicsRow {...properties} />);
+
+      await userEvent.type(screen.getByTestId('topicTitle-1'), 'topicTitle');
+
+      expect(properties.setTopicTitle).toHaveBeenCalledWith('topicTitle');
+    });
+
+    it('should select test topic', async () => {
+      renderWithProviders(<CustomTopicsRow {...properties} />);
+
+      await userEvent.click(
+        screen.getByRole('combobox', { name: 'Topic 1 Test *' })
+      );
+      await userEvent.click(
+        screen.getByRole('option', { name: 'custom sub activity title' })
+      );
+
+      expect(properties.setTestTopic).toHaveBeenCalledWith(
+        'custom sub activity reference'
+      );
+    });
+
+    it('should select study materials topic', async () => {
+      renderWithProviders(<CustomTopicsRow {...properties} />);
+
+      await userEvent.click(
+        screen.getByRole('combobox', { name: 'Topic 1 Study Materials *' })
+      );
+      await userEvent.click(
+        screen.getByRole('option', { name: 'custom sub activity title' })
+      );
+
+      expect(properties.setStudyMaterialsTopic).toHaveBeenCalledWith(
+        'custom sub activity reference'
+      );
+    });
+
+    it('should remove custom topics row', async () => {
+      renderWithProviders(<CustomTopicsRow {...properties} />);
+
+      await userEvent.click(screen.getByTestId('removeRowButton-1'));
+
+      expect(properties.removeTopicRow).toHaveBeenCalled();
     });
   });
 });

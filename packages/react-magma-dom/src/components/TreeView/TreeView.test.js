@@ -5,17 +5,45 @@ import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 import { FavoriteIcon } from 'react-magma-icons';
 
+import { AccordionSectionWithTreeView, flatTree } from './TreeView.stories';
+import {
+  Accordion,
+  Button,
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+} from '../..';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import { Paragraph } from '../Paragraph';
 import { Tag } from '../Tag';
-import { AccordionTreeWithShowAllAndExpandAll } from './TreeView.stories';
+import { getTreeItemLabelColor } from './utils';
 
-import { TreeView, TreeItem, TreeViewSelectable } from '.';
+import { TreeItem, TreeView, TreeViewSelectable } from '.';
 
 const TEXT = 'Test Text Tree Item';
 const testId = 'tree-view';
+
+const AccordionTreeWithShowAllAndExpandAll = props => {
+  const apiRef = React.useRef();
+
+  function onSelection(items) {
+    props.onSelectedItemChange(items);
+  }
+
+  return (
+    <Accordion index={[0]} isMulti testId="accordion">
+      <AccordionSectionWithTreeView
+        apiRef={apiRef}
+        {...flatTree}
+        {...props}
+        onSelectedItemChange={onSelection}
+      />
+    </Accordion>
+  );
+};
 
 const getTreeItemsOneLevel = props => (
   <TreeView testId={testId} {...props}>
@@ -296,7 +324,6 @@ describe('TreeView', () => {
   describe('onExpandedChange', () => {
     it('function gets called when a branch item is expanded', async () => {
       const onExpandedChange = jest.fn();
-
       const { getByTestId } = render(
         getTreeItemsOneLevel({
           onExpandedChange,
@@ -305,13 +332,11 @@ describe('TreeView', () => {
       );
 
       await userEvent.click(getByTestId('item1-expand'));
-
       expect(onExpandedChange).toHaveBeenCalled();
     });
 
-    it('function does not get called when a leaf item is clicked', async () => {
+    it('function does not get called when a leaf item is clicked', () => {
       const onExpandedChange = jest.fn();
-
       const { getByTestId } = render(
         getTreeItemsOneLevel({
           onExpandedChange,
@@ -319,14 +344,12 @@ describe('TreeView', () => {
         })
       );
 
-      await userEvent.click(getByTestId('item0'));
-
+      userEvent.click(getByTestId('item0'));
       expect(onExpandedChange).not.toHaveBeenCalled();
     });
 
-    it('function does not get called when the item is disabled and clicked', async () => {
+    it('function does not get called when the item is disabled and clicked', () => {
       const onExpandedChange = jest.fn();
-
       const { getByTestId } = render(
         getTreeItemsWithDisabled({
           selectable: TreeViewSelectable.single,
@@ -335,15 +358,13 @@ describe('TreeView', () => {
         })
       );
 
-      await userEvent.click(getByTestId('item2-itemwrapper'));
-
+      userEvent.click(getByTestId('item2-itemwrapper'));
       expect(onExpandedChange).not.toHaveBeenCalled();
     });
 
     it('should work correctly with expandedAll() and collapseAll() functions', async () => {
       const onExpandedChange = jest.fn();
       const apiRef = React.createRef();
-
       const { getByText } = render(
         <>
           <button onClick={() => apiRef.current.expandAll()}>Expand All</button>
@@ -382,8 +403,10 @@ describe('TreeView', () => {
       expect(onExpandedChange).toHaveBeenCalledTimes(2);
       expect(onExpandedChange).toHaveBeenCalledWith({}, []);
 
-      expect(childItem).not.toBeInTheDocument();
-      expect(childItem).not.toBeVisible();
+      await waitFor(async () => {
+        expect(childItem).not.toBeInTheDocument();
+        expect(childItem).not.toBeVisible();
+      });
     });
   });
 
@@ -396,7 +419,6 @@ describe('TreeView', () => {
             selectable: TreeViewSelectable.off,
           })
         );
-
         expect(getByTestId('item0')).not.toHaveAttribute('aria-selected');
         expect(getByTestId('item1')).not.toHaveAttribute('aria-selected');
         expect(getByTestId('item2')).not.toHaveAttribute('aria-selected');
@@ -420,7 +442,6 @@ describe('TreeView', () => {
             selectable: TreeViewSelectable.off,
           })
         );
-
         expect(getByTestId('item0')).not.toHaveAttribute('aria-selected');
         expect(getByTestId('item1')).not.toHaveAttribute('aria-selected');
         expect(getByTestId('item2')).not.toHaveAttribute('aria-selected');
@@ -441,7 +462,6 @@ describe('TreeView', () => {
             selectable: TreeViewSelectable.single,
           })
         );
-
         expect(getByTestId('item0')).toHaveAttribute('aria-selected', 'false');
         expect(getByTestId('item1')).toHaveAttribute('aria-selected', 'false');
         expect(getByTestId('item2')).toHaveAttribute('aria-selected', 'false');
@@ -465,7 +485,6 @@ describe('TreeView', () => {
             selectable: TreeViewSelectable.single,
           })
         );
-
         expect(getByTestId('item0')).toHaveAttribute('aria-selected', 'false');
         expect(getByTestId('item1')).toHaveAttribute('aria-selected', 'false');
         expect(getByTestId('item2')).toHaveAttribute('aria-selected', 'true');
@@ -493,7 +512,6 @@ describe('TreeView', () => {
             selectable: TreeViewSelectable.single,
           })
         );
-
         expect(getByTestId('item0')).toHaveAttribute('aria-selected', 'false');
         expect(getByTestId('item1')).toHaveAttribute('aria-selected', 'false');
         expect(getByTestId('item2')).toHaveAttribute('aria-selected', 'true');
@@ -667,18 +685,14 @@ describe('TreeView', () => {
           'false'
         );
         expect(getByTestId('item3')).toHaveAttribute('aria-checked', 'true');
-
         await userEvent.click(getByTestId('item3-expand'));
-
-        expect(getByTestId('item-child3')).toHaveAttribute(
-          'aria-checked',
-          'true'
-        );
+        const itemChild3 = getByTestId('item-child3');
+        expect(itemChild3).toBeInTheDocument();
+        expect(itemChild3).toHaveAttribute('aria-checked', 'true');
       });
 
       it('and preselectedItems is set to multiple items, onSelectedItemChange is called when the component loads', async () => {
         const onSelectedItemChange = jest.fn();
-
         const { getByTestId } = render(
           <TreeView
             testId={testId}
@@ -754,9 +768,7 @@ describe('TreeView', () => {
             checkedStatus: IndeterminateCheckboxStatus.checked,
           },
         ]);
-
         await userEvent.click(getByTestId('item1-expand'));
-
         expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
       });
     });
@@ -765,7 +777,6 @@ describe('TreeView', () => {
   describe('selectable', () => {
     it('by default, selectable is set to TreeViewSelectable.single, and TreeItems do not have checkboxes', () => {
       const { queryByTestId } = render(getTreeItemsOneLevel({}));
-
       expect(queryByTestId('item1-checkbox')).not.toBeInTheDocument();
     });
 
@@ -775,7 +786,6 @@ describe('TreeView', () => {
           selectable: TreeViewSelectable.off,
         })
       );
-
       expect(queryByTestId('item1-checkbox')).not.toBeInTheDocument();
     });
 
@@ -785,15 +795,13 @@ describe('TreeView', () => {
           selectable: TreeViewSelectable.multi,
         })
       );
-
       expect(getByTestId('item1-checkbox')).toBeInTheDocument();
     });
   });
 
   describe('onSelectedItemChange', () => {
-    it('when set to TreeViewSelectable.off, function does not get called', async () => {
+    it('when set to TreeViewSelectable.off, function does not get called', () => {
       const onSelectedItemChange = jest.fn();
-
       const { getByTestId } = render(
         getTreeItemsOneLevel({
           onSelectedItemChange,
@@ -801,15 +809,13 @@ describe('TreeView', () => {
         })
       );
 
-      await userEvent.click(getByTestId('item1'));
-
+      userEvent.click(getByTestId('item1'));
       expect(onSelectedItemChange).not.toHaveBeenCalled();
     });
 
     describe('when set to TreeViewSelectable.single,', () => {
       it('function gets called when an item is clicked', async () => {
         const onSelectedItemChange = jest.fn();
-
         const { getByTestId } = render(
           getTreeItemsOneLevel({
             onSelectedItemChange,
@@ -821,20 +827,17 @@ describe('TreeView', () => {
         const item1Label = getByTestId('item1-label');
 
         await userEvent.click(item1Label);
-
         expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
         expect(onSelectedItemChange).toHaveBeenCalled();
         expect(item1).toHaveAttribute('aria-selected', 'true');
 
         await userEvent.click(item1Label);
-
         expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
         expect(item1).toHaveAttribute('aria-selected', 'true');
       });
 
       it('function gets called when it has a preselected item', () => {
         const onSelectedItemChange = jest.fn();
-
         render(
           getTreeItemsOneLevel({
             onSelectedItemChange,
@@ -858,7 +861,6 @@ describe('TreeView', () => {
 
       it('function returns the selected item when it is a leaf', async () => {
         const onSelectedItemChange = jest.fn();
-
         const { getByTestId } = render(
           getTreeItemsOneLevel({
             onSelectedItemChange,
@@ -867,7 +869,6 @@ describe('TreeView', () => {
         );
 
         await userEvent.click(getByTestId('item0-label'));
-
         expect(onSelectedItemChange).toHaveBeenCalledWith([
           {
             itemId: 'item0',
@@ -878,7 +879,6 @@ describe('TreeView', () => {
 
       it('function returns the selected item when it is a branch', async () => {
         const onSelectedItemChange = jest.fn();
-
         const { getByTestId } = render(
           getTreeItemsOneLevel({
             onSelectedItemChange,
@@ -887,7 +887,6 @@ describe('TreeView', () => {
         );
 
         await userEvent.click(getByTestId('item2-label'));
-
         expect(onSelectedItemChange).toHaveBeenCalledWith([
           {
             itemId: 'item2',
@@ -899,7 +898,6 @@ describe('TreeView', () => {
 
       it('item is visually selected', async () => {
         const onSelectedItemChange = jest.fn();
-
         const { getByTestId } = render(
           getTreeItemsOneLevel({
             onSelectedItemChange,
@@ -910,7 +908,6 @@ describe('TreeView', () => {
         expect(getByTestId('item1-itemwrapper')).not.toHaveStyleRule(
           'background'
         );
-
         await userEvent.click(getByTestId('item1-label'));
 
         expect(getByTestId('item1-itemwrapper')).toHaveStyle(
@@ -922,7 +919,6 @@ describe('TreeView', () => {
     describe('when set to TreeViewSelectable.multi,', () => {
       it("function gets called when an item's checkbox is clicked", async () => {
         const onSelectedItemChange = jest.fn();
-
         const { getByTestId } = render(
           getTreeItemsOneLevel({
             onSelectedItemChange,
@@ -931,13 +927,11 @@ describe('TreeView', () => {
         );
 
         await userEvent.click(getByTestId('item1-checkbox'));
-
         expect(onSelectedItemChange).toHaveBeenCalled();
       });
 
       it('function gets called when it has a preselected item', () => {
         const onSelectedItemChange = jest.fn();
-
         render(
           getTreeItemsOneLevel({
             onSelectedItemChange,
@@ -965,7 +959,6 @@ describe('TreeView', () => {
 
       it('function returns the selected item when it is a leaf', async () => {
         const onSelectedItemChange = jest.fn();
-
         const { getByTestId } = render(
           getTreeItemsMultiLevel({
             onSelectedItemChange,
@@ -985,7 +978,6 @@ describe('TreeView', () => {
 
       it('function returns the selected item and all children when it is a branch', async () => {
         const onSelectedItemChange = jest.fn();
-
         const { getByTestId } = render(
           getTreeItemsMultiLevel({
             onSelectedItemChange,
@@ -1056,7 +1048,6 @@ describe('TreeView', () => {
 
       it('function returns the selected items when different items are checked and unchecked', async () => {
         const onSelectedItemChange = jest.fn();
-
         const { getByTestId } = render(
           getTreeItemsMultiLevel({
             onSelectedItemChange,
@@ -1181,7 +1172,6 @@ describe('TreeView', () => {
 
       it('items look visually selected', async () => {
         const onSelectedItemChange = jest.fn();
-
         const { getByTestId } = render(
           getTreeItemsOneLevel({
             onSelectedItemChange,
@@ -1199,7 +1189,6 @@ describe('TreeView', () => {
 
     it('sets only child state as checked if checkParents is false and checkChildren is false', async () => {
       const onSelectedItemChange = jest.fn();
-
       const { getByTestId } = render(
         getTreeItemsMultiLevel({
           onSelectedItemChange,
@@ -1225,7 +1214,6 @@ describe('TreeView', () => {
 
     it('sets child state as checked and parent indeterminate if checkParents is true and checkChildren is false', async () => {
       const onSelectedItemChange = jest.fn();
-
       const { getByTestId } = render(
         getTreeItemsMultiLevel({
           onSelectedItemChange,
@@ -1369,7 +1357,6 @@ describe('TreeView', () => {
   describe('a11y', () => {
     it('sets the ariaLabel', () => {
       const testId = 'ariaLabelId';
-
       const { getByTestId } = render(
         getTreeItemsOneLevel({ ariaLabel: 'aria-label-example', testId })
       );
@@ -1382,7 +1369,6 @@ describe('TreeView', () => {
 
     it('sets the ariaLabelledBy', () => {
       const testId = 'ariaLabelledById';
-
       const { getByTestId } = render(
         getTreeItemsOneLevel({
           ariaLabelledBy: 'aria-labelled-by-example',
@@ -1398,7 +1384,6 @@ describe('TreeView', () => {
 
     it('sets the tree role', () => {
       const testId = 'treeRoleId';
-
       const { getByTestId } = render(getTreeItemsOneLevel({ testId }));
 
       expect(getByTestId(testId)).toHaveAttribute('role', 'tree');
@@ -1406,7 +1391,6 @@ describe('TreeView', () => {
 
     it('when multiselect, sets the aria-multiselectable to true', () => {
       const testId = 'multiSelectId';
-
       const { getByTestId } = render(
         getTreeItemsOneLevel({ selectable: TreeViewSelectable.multi, testId })
       );
@@ -1419,7 +1403,6 @@ describe('TreeView', () => {
 
     it('when select is off, sets the aria-multiselectable to false', () => {
       const testId = 'multiSelectId2';
-
       const { getByTestId } = render(
         getTreeItemsOneLevel({ selectable: TreeViewSelectable.off, testId })
       );
@@ -1432,7 +1415,6 @@ describe('TreeView', () => {
 
     it('when single select, sets the aria-multiselectable to false', () => {
       const testId = 'multiSelectId3';
-
       const { getByTestId } = render(
         getTreeItemsOneLevel({ selectable: TreeViewSelectable.single, testId })
       );
@@ -1478,7 +1460,6 @@ describe('TreeView', () => {
     const labelText = 'Tree Item Node 0';
     const itemId = 'node0';
     const testId = `${itemId}-tree-item`;
-
     it("icon is visible when the item doesn't have treeItemChildren", () => {
       const { getByTestId } = render(
         <TreeView testId={testId} initialExpandedItems={[itemId]}>
@@ -1572,9 +1553,7 @@ describe('TreeView', () => {
         await userEvent.keyboard('{ArrowRight}');
 
         const item1child = getByTestId('item-child1');
-
         expect(getByTestId('item1')).toHaveAttribute('aria-expanded', 'true');
-
         expect(item1).toHaveFocus();
 
         await userEvent.keyboard('{ArrowDown}');
@@ -1779,7 +1758,6 @@ describe('TreeView', () => {
 
       it('should trigger onExpandedChange when expanding/collapsing items with keyboard', async () => {
         const onExpandedChange = jest.fn();
-
         const { getByTestId } = render(
           getTreeItemsOneLevelSmall({
             onExpandedChange,
@@ -1814,7 +1792,6 @@ describe('TreeView', () => {
 
       it('should trigger onExpandedChange when using Space and Enter key to toggle expand/collapse', async () => {
         const onExpandedChange = jest.fn();
-
         const { getByTestId } = render(
           getTreeItemsOneLevelSmall({
             onExpandedChange,
@@ -1893,7 +1870,6 @@ describe('TreeView', () => {
           const { getByTestId } = render(
             getTreeItemsOneLevelSmall({ selectable: TreeViewSelectable.off })
           );
-
           const item1 = getByTestId('item1');
 
           await userEvent.tab();
@@ -1909,11 +1885,9 @@ describe('TreeView', () => {
           const { getByTestId } = render(
             getTreeItemsOneLevelSmall({ selectable: TreeViewSelectable.single })
           );
-
           const item0 = getByTestId('item0');
 
           await userEvent.tab();
-
           expect(item0).toHaveFocus();
         });
 
@@ -1930,11 +1904,9 @@ describe('TreeView', () => {
               initialExpandedItems: ['item1'],
             })
           );
-
           const item1Child = getByTestId('item-child1');
 
           await userEvent.tab();
-
           expect(item1Child).toHaveFocus();
         });
       });
@@ -1942,7 +1914,6 @@ describe('TreeView', () => {
       describe('keyboard navigation', () => {
         it('should select the item when pressing the Enter key', async () => {
           const onSelectedItemChange = jest.fn();
-
           const { getByTestId } = render(
             getTreeItemsOneLevelSmall({
               selectable: TreeViewSelectable.single,
@@ -2014,7 +1985,6 @@ describe('TreeView', () => {
 
         it('should toggle expand the branch item when pressing the Space key', async () => {
           const onSelectedItemChange = jest.fn();
-
           const { getByTestId } = render(
             getTreeItemsOneLevelSmall({
               selectable: TreeViewSelectable.single,
@@ -2031,6 +2001,8 @@ describe('TreeView', () => {
           expect(item1).toHaveAttribute('aria-selected', 'false');
 
           await userEvent.keyboard(' ');
+          item1.focus();
+          await userEvent.keyboard('{space}');
 
           expect(item1).toHaveAttribute('aria-expanded', 'true');
           expect(item1).toHaveAttribute('aria-selected', 'false');
@@ -2075,7 +2047,6 @@ describe('TreeView', () => {
               ],
             })
           );
-
           const item1 = getByTestId('item1');
 
           await userEvent.tab();
@@ -2087,7 +2058,6 @@ describe('TreeView', () => {
       describe('keyboard navigation', () => {
         it('should toggle select a leaf item when pressing the Enter key', async () => {
           const onSelectedItemChange = jest.fn();
-
           const { getByTestId } = render(
             getTreeItemsOneLevel({
               selectable: TreeViewSelectable.multi,
@@ -2216,7 +2186,6 @@ describe('TreeView', () => {
 
         it('should toggle select a branch item + its children when pressing the Space key', async () => {
           const onSelectedItemChange = jest.fn();
-
           const { getByTestId } = render(
             getTreeItemsOneLevel({
               selectable: TreeViewSelectable.multi,
@@ -2259,7 +2228,6 @@ describe('TreeView', () => {
 
         it('should toggle select a branch item + its children when pressing the Space key and item is collapsed', async () => {
           const onSelectedItemChange = jest.fn();
-
           const { getByTestId } = render(
             getTreeItemsOneLevel({
               selectable: TreeViewSelectable.multi,
@@ -2418,7 +2386,6 @@ describe('TreeView', () => {
 
       it('parent should have checked checkbox state when all disabled children are selected and all enabled children are selected. parent should have indeterminate checkbox state when all disabled children are selected and enabled children are partially selected. parent should have indeterminate checkbox state when all disabled children are selected and all enabled children are not selected. and toggle children selection', async () => {
         const onSelectedItemChange = jest.fn();
-
         const { getByTestId } = render(
           getTreeItemsWithDisabledChildren({
             selectable: TreeViewSelectable.multi,
@@ -2619,6 +2586,113 @@ describe('TreeView', () => {
           'color',
           transparentize(0.6, magma.colors.neutral500)
         );
+      });
+    });
+
+    describe('inside and outside TreeView', () => {
+      it('should trap focus inside TreeView, then restore and move focus outside TreeView component', async () => {
+        const { getByTestId, getByText } = render(
+          <>
+            <TreeView testId="treeview" initialExpandedItems={['item']}>
+              <TreeItem label="Node" itemId="item" testId="item">
+                <TreeItem
+                  itemId="item1"
+                  testId="item1"
+                  label={<button>Button 1</button>}
+                />
+                <TreeItem
+                  itemId="item2"
+                  testId="item2"
+                  label={<button>Button 2</button>}
+                />
+                <TreeItem
+                  itemId="item3"
+                  testId="item3"
+                  label={<button>Button 3</button>}
+                />
+              </TreeItem>
+            </TreeView>
+            <button>Outside Button</button>
+          </>
+        );
+
+        const treeItem1 = getByTestId('item1');
+        const button1 = getByText('Button 1');
+        const button2 = getByText('Button 2');
+        const button3 = getByText('Button 3');
+        const outsideButton = getByText('Outside Button');
+
+        treeItem1.focus();
+        await userEvent.keyboard('{Control>}{Enter}{/Control}');
+
+        expect(button1).toHaveFocus();
+
+        await userEvent.tab();
+        expect(button1).toHaveFocus();
+
+        // Focus is trapped
+        await userEvent.tab();
+        expect(button1).toHaveFocus();
+
+        await userEvent.keyboard('{Escape}');
+        expect(treeItem1).toHaveFocus();
+
+        await userEvent.keyboard('{ArrowDown}');
+        await userEvent.tab();
+        expect(button2).toHaveFocus();
+
+        await userEvent.tab();
+        expect(button3).toHaveFocus();
+
+        // Focus is not trapped
+        await userEvent.tab();
+        expect(outsideButton).toHaveFocus();
+      });
+
+      it('should trap focus inside parent TreeItem', async () => {
+        const { getByTestId, getByText } = render(
+          <TreeView testId="treeview" initialExpandedItems={['item']}>
+            <TreeItem
+              label={<button>Parent Button</button>}
+              itemId="item"
+              testId="item"
+            >
+              <TreeItem
+                itemId="item1"
+                testId="item1"
+                label={<button>Button 1</button>}
+              />
+              <TreeItem
+                itemId="item2"
+                testId="item2"
+                label={<button>Button 2</button>}
+              />
+            </TreeItem>
+          </TreeView>
+        );
+
+        const parentItem = getByTestId('item');
+        const parentButton = getByText('Parent Button');
+        const button1 = getByText('Button 1');
+        const button2 = getByText('Button 2');
+
+        parentItem.focus();
+        await userEvent.keyboard('{Control>}{Enter}{/Control}');
+
+        expect(parentButton).toHaveFocus();
+
+        await userEvent.tab();
+        expect(parentButton).toHaveFocus();
+
+        await userEvent.keyboard('{Escape}');
+        expect(parentItem).toHaveFocus();
+
+        await userEvent.keyboard('{ArrowDown}');
+        await userEvent.tab();
+        expect(button1).toHaveFocus();
+
+        await userEvent.tab();
+        expect(button2).toHaveFocus();
       });
     });
   });
@@ -2844,7 +2918,6 @@ describe('TreeView', () => {
     it('should be able to unselect enabled item outside of TreeView', async () => {
       const disabledItemId = 'item-ggchild1';
       const onSelectedItemChange = jest.fn();
-
       const { getByTestId } = render(
         <TreeItemsMultiLevelControlledOutside
           onSelectedItemChange={onSelectedItemChange}
@@ -2930,7 +3003,6 @@ describe('TreeView', () => {
       expect(item2).toHaveAttribute('aria-expanded', 'true');
 
       const item2Child1 = getByTestId('item-child2.1');
-
       expect(item2Child1).toHaveAttribute('aria-expanded', 'false');
 
       await userEvent.click(getByTestId('item-child2.1-expand'));
@@ -3023,9 +3095,7 @@ describe('TreeView', () => {
       await userEvent.click(getByTestId('item1-expand'));
 
       expect(getByTestId('item-child2-expand')).toBeInTheDocument();
-
       await userEvent.click(getByTestId('item-child2-expand'));
-
       expect(getByTestId('item-child2.1-expand')).toBeInTheDocument();
       expect(getByTestId('item-child3-expand')).toBeInTheDocument();
     });
@@ -3553,9 +3623,8 @@ describe('TreeView', () => {
 
     it('renders tree with some items, and clicking show all displays the rest of the tree', async () => {
       const onSelectedItemChange = jest.fn();
-
       const { asFragment, getByLabelText, getByTestId } = render(
-        <AccordionTreeWithShowAllAndExpandAll.render
+        <AccordionTreeWithShowAllAndExpandAll
           {...propsFlatTree}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[]}
@@ -3571,20 +3640,16 @@ describe('TreeView', () => {
       expect(getByLabelText('item-title-5')).toBeInTheDocument();
 
       await userEvent.click(getByTestId('showAllBtn'));
-
       expect(getByLabelText('item-title-6')).toBeInTheDocument();
-
       await userEvent.click(getByLabelText('item-title-6'));
-
       expect(getByTestId('item-id-6')).toHaveAttribute('aria-checked', 'true');
       expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
     });
 
     it('renders tree with some items preselected, clicking show all displays the rest of the tree and preselected items remain selected', async () => {
       const onSelectedItemChange = jest.fn();
-
       const { asFragment, getByLabelText, getByTestId } = render(
-        <AccordionTreeWithShowAllAndExpandAll.render
+        <AccordionTreeWithShowAllAndExpandAll
           {...propsFlatTree}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[
@@ -3605,13 +3670,9 @@ describe('TreeView', () => {
       expect(getByLabelText('item-title-5')).toBeInTheDocument();
 
       expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
-
       await userEvent.click(getByTestId('showAllBtn'));
-
       expect(getByLabelText('item-title-6')).toBeInTheDocument();
-
       await userEvent.click(getByLabelText('item-title-6'));
-
       expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
       expect(onSelectedItemChange).toHaveBeenCalledWith([
         {
@@ -3627,9 +3688,8 @@ describe('TreeView', () => {
 
     it('renders tree with some items preselected, deselecting preselected items, clicking show all displays the rest of the tree and preselected items remain deselected', async () => {
       const onSelectedItemChange = jest.fn();
-
       const { asFragment, getByLabelText, getByTestId } = render(
-        <AccordionTreeWithShowAllAndExpandAll.render
+        <AccordionTreeWithShowAllAndExpandAll
           {...propsFlatTree}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[
@@ -3650,14 +3710,10 @@ describe('TreeView', () => {
       expect(getByLabelText('item-title-5')).toBeInTheDocument();
 
       expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
-
       await userEvent.click(getByLabelText('item-title-2'));
       await userEvent.click(getByTestId('showAllBtn'));
-
       expect(getByLabelText('item-title-6')).toBeInTheDocument();
-
       await userEvent.click(getByLabelText('item-title-6'));
-
       expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'false');
       expect(onSelectedItemChange).toHaveBeenCalledWith([
         {
@@ -3669,9 +3725,8 @@ describe('TreeView', () => {
 
     it('clicking show all displays the rest of the tree, preselected items remain selected, and clicking show less maintains selected items', async () => {
       const onSelectedItemChange = jest.fn();
-
       const { asFragment, getByLabelText, getByTestId } = render(
-        <AccordionTreeWithShowAllAndExpandAll.render
+        <AccordionTreeWithShowAllAndExpandAll
           {...propsFlatTree}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[
@@ -3692,17 +3747,11 @@ describe('TreeView', () => {
       expect(getByLabelText('item-title-5')).toBeInTheDocument();
 
       expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
-
       await userEvent.click(getByTestId('showAllBtn'));
-
       expect(getByLabelText('item-title-6')).toBeInTheDocument();
-
       await userEvent.click(getByLabelText('item-title-6'));
-
       expect(getByTestId('item-id-2')).toHaveAttribute('aria-checked', 'true');
-
       await userEvent.click(getByTestId('showAllBtn'));
-
       expect(onSelectedItemChange).toHaveBeenCalledTimes(2);
       expect(onSelectedItemChange).toHaveBeenCalledWith([
         {
@@ -3718,9 +3767,8 @@ describe('TreeView', () => {
 
     it('can uncheck all items by clicking on the parent (including hidden one)', async () => {
       const onSelectedItemChange = jest.fn();
-
       const { asFragment, getByLabelText, getByTestId } = render(
-        <AccordionTreeWithShowAllAndExpandAll.render
+        <AccordionTreeWithShowAllAndExpandAll
           {...propsTreeWithParent}
           onSelectedItemChange={onSelectedItemChange}
           preselectedItems={[]}
@@ -3736,35 +3784,30 @@ describe('TreeView', () => {
       expect(getByLabelText('item-title-5')).toBeInTheDocument();
 
       await userEvent.click(getByTestId('showAllBtn'));
-
       expect(getByLabelText('item-title-7')).toBeInTheDocument();
 
       await userEvent.click(getByLabelText('item-title-7'));
       await userEvent.click(getByTestId('item-id-7-expand'));
-
       expect(getByTestId('item-id-8')).toHaveAttribute('aria-checked', 'true');
       expect(getByTestId('item-id-9')).toHaveAttribute('aria-checked', 'true');
 
       await userEvent.click(getByLabelText('item-title-7'));
-
       expect(getByTestId('item-id-8')).toHaveAttribute('aria-checked', 'false');
       expect(getByTestId('item-id-9')).toHaveAttribute('aria-checked', 'false');
 
       await userEvent.click(getByTestId('item-id-9-expand'));
       await userEvent.click(getByLabelText('item-title-10'));
-
       expect(getByTestId('item-id-10')).toHaveAttribute('aria-checked', 'true');
       expect(getByTestId('item-id-9')).toHaveAttribute('aria-checked', 'true');
       expect(getByTestId('item-id-7')).toHaveAttribute('aria-checked', 'mixed');
 
       await userEvent.click(getByTestId('showAllBtn')); // show less
-
       expect(onSelectedItemChange).toHaveBeenCalledTimes(3);
     });
 
     it('expand all and collapse all should work as expected', async () => {
       const { asFragment, getByLabelText, getByText } = render(
-        <AccordionTreeWithShowAllAndExpandAll.render
+        <AccordionTreeWithShowAllAndExpandAll
           {...propsFlatTree}
           preselectedItems={[]}
         />
@@ -3778,7 +3821,7 @@ describe('TreeView', () => {
       expect(getByLabelText('item-title-4')).toBeInTheDocument();
       expect(getByLabelText('item-title-5')).toBeInTheDocument();
 
-      await userEvent.click(getByText('Expand All'));
+      userEvent.click(getByText('Expand All'));
 
       let expandedItem = null;
 
@@ -3791,15 +3834,18 @@ describe('TreeView', () => {
         expect(expandedItem).toBeInTheDocument();
       });
 
-      await userEvent.click(getByText('Collapse All'));
+      userEvent.click(getByText('Collapse All'));
 
-      expect(expandedItem).not.toBeNull();
-      expect(expandedItem).not.toBeInTheDocument();
+      await waitFor(() => {
+        expect(expandedItem).not.toBeNull();
+        expect(expandedItem).not.toBeInTheDocument();
+      });
     });
 
+    // Need fix it
     it('expand all should work correctly with disabled items', async () => {
       const { asFragment, getByLabelText, getByText } = render(
-        <AccordionTreeWithShowAllAndExpandAll.render
+        <AccordionTreeWithShowAllAndExpandAll
           {...propsFlatTree}
           preselectedItems={[]}
         />
@@ -3832,7 +3878,6 @@ describe('TreeView', () => {
   describe('TreeView isTopLevelSelectable', () => {
     it('should not select top-level items when isTopLevelSelectable is false and selectable is TreeViewSelectable.multi', () => {
       const apiRef = React.createRef();
-
       const { getByTestId } = render(
         <TreeView
           selectable={TreeViewSelectable.multi}
@@ -3925,7 +3970,6 @@ describe('TreeView', () => {
 
     it('should not update top-level parent state when children are selected (parent remains non-selectable)', async () => {
       const onSelectedItemChange = jest.fn();
-
       const { getByTestId, queryByTestId } = render(
         <TreeView
           selectable={TreeViewSelectable.multi}
@@ -3940,16 +3984,13 @@ describe('TreeView', () => {
       );
 
       expect(queryByTestId('parent1-checkbox')).toBeNull();
-
       await userEvent.click(getByTestId('child1-checkbox'));
-
       expect(getByTestId('child1')).toHaveAttribute('aria-checked', 'true');
       expect(getByTestId('parent1')).not.toHaveAttribute('aria-checked');
     });
 
     it('should not set parent to indeterminate even if some children are selected', async () => {
       const onSelectedItemChange = jest.fn();
-
       const { getByTestId, queryByTestId } = render(
         <TreeView
           selectable={TreeViewSelectable.multi}
@@ -3969,7 +4010,6 @@ describe('TreeView', () => {
       expect(queryByTestId('parent1-checkbox')).toBeNull();
 
       await userEvent.click(getByTestId('child1-checkbox'));
-
       expect(getByTestId('child1')).toHaveAttribute('aria-checked', 'true');
       expect(getByTestId('child2')).toHaveAttribute('aria-checked', 'false');
 
@@ -3978,7 +4018,6 @@ describe('TreeView', () => {
 
     it('should expand/collapse on top-level parent using Space or Enter but never select it when isTopLevelSelectable is false', async () => {
       const onSelectedItemChange = jest.fn();
-
       const { getByTestId, queryByTestId } = render(
         <TreeView
           selectable={TreeViewSelectable.multi}
@@ -4071,7 +4110,6 @@ describe('TreeView', () => {
 
       // In single-select mode, clicking the label should select the item.
       await userEvent.click(getByTestId('parent1-label'));
-
       expect(getByTestId('parent1')).toHaveAttribute('aria-selected', 'true');
     });
 
@@ -4086,13 +4124,11 @@ describe('TreeView', () => {
 
       // With isTopLevelSelectable true the top-level item should be selectable.
       await userEvent.click(getByTestId('parent1-label'));
-
       expect(getByTestId('parent1')).toHaveAttribute('aria-selected', 'true');
     });
 
     it('should allow selectAll to select top-level items when isTopLevelSelectable is true', () => {
       const apiRef = React.createRef();
-
       const { getByTestId } = render(
         <TreeView
           selectable={TreeViewSelectable.multi}
@@ -4109,7 +4145,6 @@ describe('TreeView', () => {
       act(() => {
         apiRef.current.selectAll();
       });
-
       expect(getByTestId('parent1-checkbox')).toBeChecked();
       expect(getByTestId('child1-checkbox')).toBeChecked();
     });
@@ -4126,7 +4161,6 @@ describe('TreeView', () => {
           </TreeItem>
         </TreeView>
       );
-
       // When selection is off no checkboxes should be rendered.
       expect(queryByTestId('parent1-checkbox')).toBeNull();
       expect(queryByTestId('child1-checkbox')).toBeNull();
@@ -4134,7 +4168,6 @@ describe('TreeView', () => {
 
     it('should not update a top-level parent state when its child is selected, if isTopLevelSelectable is false (even with checkChildren=true)', async () => {
       const onSelectedItemChange = jest.fn();
-
       const { getByTestId, queryByTestId } = render(
         <TreeView
           selectable={TreeViewSelectable.multi}
@@ -4154,7 +4187,6 @@ describe('TreeView', () => {
 
       // When clicking the child checkbox the child becomes selected...
       await userEvent.click(getByTestId('child1-checkbox'));
-
       expect(getByTestId('child1')).toHaveAttribute('aria-checked', 'true');
       // ...while the parent remains unaffected.
       expect(getByTestId('parent1')).not.toHaveAttribute('aria-checked');
@@ -4171,7 +4203,6 @@ describe('TreeView', () => {
           </TreeItem>
         </TreeView>
       );
-
       // Initially, no top-level checkbox is rendered.
       expect(queryByTestId('parent1-checkbox')).toBeNull();
 
@@ -4183,7 +4214,6 @@ describe('TreeView', () => {
           </TreeItem>
         </TreeView>
       );
-
       expect(queryByTestId('parent1-checkbox')).toBeInTheDocument();
     });
 
@@ -4200,7 +4230,6 @@ describe('TreeView', () => {
           </TreeItem>
         </TreeView>
       );
-
       // Even though "parent1" is in preselectedItems, its checkbox isn’t rendered.
       expect(queryByTestId('parent1-checkbox')).toBeNull();
       // The child is rendered and remains unselected unless explicitly chosen.
@@ -4209,7 +4238,6 @@ describe('TreeView', () => {
 
     it('when false, selecting a child should still update intermediate parent states', async () => {
       const onSelectedItemChange = jest.fn();
-
       const { getByTestId, queryByTestId } = render(
         getTreeItemsMultiLevel({
           selectable: TreeViewSelectable.multi,
@@ -4351,7 +4379,6 @@ describe('TreeView', () => {
 
       // The crucial part: verify the internal selection state via callback
       expect(onSelectedItemChange).toHaveBeenCalledTimes(1);
-
       const selection = onSelectedItemChange.mock.calls[0][0];
 
       // Selection should ONLY contain the child, not the parent
@@ -4364,7 +4391,6 @@ describe('TreeView', () => {
 
       // Verify that parent1 was completely removed from selection
       const hasParent = selection.some(item => item.itemId === 'parent1');
-
       expect(hasParent).toBe(false);
 
       // Further verify by selecting all items
@@ -4373,15 +4399,783 @@ describe('TreeView', () => {
       });
 
       expect(onSelectedItemChange).toHaveBeenCalledTimes(2);
-
       const selectAllSelection = onSelectedItemChange.mock.calls[1][0];
 
       // After selectAll, should still not contain parent1
       const hasParentAfterSelectAll = selectAllSelection.some(
         item => item.itemId === 'parent1'
       );
-
       expect(hasParentAfterSelectAll).toBe(false);
+    });
+  });
+
+  describe('Dynamically updating tree', () => {
+    it('should update when children are dynamically rendered inside an empty parent', async () => {
+      const DynamicChildrenTest = () => {
+        const [hasChildren, setHasChildren] = React.useState(false);
+
+        return (
+          <>
+            <button
+              data-testid="add-child-btn"
+              onClick={() => setHasChildren(true)}
+            >
+              Add Child
+            </button>
+            <TreeView testId="dynamic-tree">
+              <TreeItem
+                label="Empty Parent"
+                itemId="empty-parent"
+                testId="empty-parent"
+              >
+                {hasChildren && (
+                  <TreeItem
+                    label="Dynamically Added Child"
+                    itemId="dynamic-child"
+                    testId="dynamic-child"
+                  />
+                )}
+              </TreeItem>
+            </TreeView>
+          </>
+        );
+      };
+
+      const { getByTestId, queryByTestId } = render(<DynamicChildrenTest />);
+
+      // Initially, the parent should not have an expand button
+      expect(queryByTestId('empty-parent-expand')).not.toBeInTheDocument();
+
+      // Add a child dynamically
+      await userEvent.click(getByTestId('add-child-btn'));
+
+      // After adding a child, the parent should now have an expand button
+      expect(queryByTestId('empty-parent-expand')).toBeInTheDocument();
+
+      // Test expand functionality
+      await userEvent.click(getByTestId('empty-parent-expand'));
+      expect(getByTestId('empty-parent')).toHaveAttribute(
+        'aria-expanded',
+        'true'
+      );
+      expect(getByTestId('dynamic-child')).toBeInTheDocument();
+
+      // Test collapse functionality
+      await userEvent.click(getByTestId('empty-parent-expand'));
+      expect(getByTestId('empty-parent')).toHaveAttribute(
+        'aria-expanded',
+        'false'
+      );
+    });
+
+    it('Supports dynamically adding children, DynamicArrayTreeTest', async () => {
+      const DynamicArrayTreeTest = () => {
+        const initialTree = [
+          {
+            id: 1,
+            name: 'Parent item empty',
+            children: [],
+          },
+          {
+            id: 2,
+            name: 'Parent item with children',
+            children: [
+              {
+                id: 21,
+                name: 'Child item',
+                children: [],
+              },
+            ],
+          },
+        ];
+
+        const [tree, setTree] = React.useState(initialTree);
+
+        const renderItems = items => {
+          return items.map(item => {
+            return (
+              <TreeItem
+                key={item.id}
+                label={item.name}
+                itemId={item.id.toString()}
+                testId={`item-${item.id}`}
+              >
+                {renderItems(item.children)}
+              </TreeItem>
+            );
+          });
+        };
+
+        const handleAddChild = () => {
+          const newTree = tree.map((item, index) => {
+            if (index === 0) {
+              return {
+                ...item,
+                children: [
+                  ...item.children,
+                  { id: 11, name: 'New child', children: [] },
+                ],
+              };
+            }
+            return item;
+          });
+
+          setTree(newTree);
+        };
+
+        return (
+          <>
+            <button data-testid="add-child-btn" onClick={handleAddChild}>
+              Add Child
+            </button>
+            <TreeView testId="dynamic-array-tree">{renderItems(tree)}</TreeView>
+          </>
+        );
+      };
+
+      const { getByTestId, queryByTestId } = render(<DynamicArrayTreeTest />);
+
+      // Initially, the first parent should not have an expand button
+      expect(queryByTestId('item-1-expand')).not.toBeInTheDocument();
+
+      // Second parent should have an expand button since it has children
+      expect(queryByTestId('item-2-expand')).toBeInTheDocument();
+
+      // Add a child dynamically to the first parent
+      await userEvent.click(getByTestId('add-child-btn'));
+
+      // After adding a child, the first parent should now have an expand button
+      expect(queryByTestId('item-1-expand')).toBeInTheDocument();
+
+      // Test expand functionality
+      await userEvent.click(getByTestId('item-1-expand'));
+      expect(getByTestId('item-1')).toHaveAttribute('aria-expanded', 'true');
+      expect(getByTestId('item-11')).toBeInTheDocument();
+
+      // Test collapse functionality
+      await userEvent.click(getByTestId('item-1-expand'));
+      expect(getByTestId('item-1')).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    const DynamicArrayTreeTest = ({
+      selectable = TreeViewSelectable.multi,
+      checkParents = false,
+      checkChildren = false,
+      isDisabled = false,
+    }) => {
+      const initialTree = [
+        {
+          id: 1,
+          name: 'Parent item empty',
+          children: [],
+        },
+        {
+          id: 2,
+          name: 'Parent item with children',
+          children: [
+            {
+              id: 21,
+              name: 'Child item',
+              children: [],
+            },
+          ],
+        },
+      ];
+
+      const [tree, setTree] = React.useState(initialTree);
+      const apiRef = React.useRef();
+
+      const renderItems = items => {
+        return items.map(item => {
+          return (
+            <TreeItem
+              key={item.id}
+              label={item.name}
+              itemId={item.id.toString()}
+              testId={`item-${item.id}`}
+            >
+              {renderItems(item.children)}
+            </TreeItem>
+          );
+        });
+      };
+
+      const handleAddParent = (
+        checkedStatus = IndeterminateCheckboxStatus.unchecked
+      ) => {
+        const newItemId = String(tree.length + 1);
+
+        apiRef.current?.addItem({
+          itemId: newItemId,
+          parentId: null,
+          icon: undefined,
+          hasOwnTreeItems: false,
+          isDisabled,
+          checkedStatus,
+        });
+
+        setTree([
+          ...tree,
+          {
+            id: Number(newItemId),
+            name: `New parent ${newItemId}`,
+            children: [],
+          },
+        ]);
+      };
+
+      const handleAddChild = (
+        checkedStatus = IndeterminateCheckboxStatus.unchecked
+      ) => {
+        const parentItem = tree[tree.length - 1];
+
+        const newItemId =
+          parentItem &&
+          String(parentItem.id) + String(parentItem.children.length + 1);
+
+        apiRef.current?.addItem({
+          itemId: newItemId,
+          parentId: String(parentItem?.id),
+          icon: undefined,
+          hasOwnTreeItems: false,
+          isDisabled,
+          checkedStatus,
+        });
+
+        const newTree = tree.map((item, index) => {
+          if (index === tree.length - 1) {
+            return {
+              ...item,
+              children: [
+                ...item.children,
+                {
+                  id: Number(newItemId),
+                  name: `New child ${newItemId}`,
+                  children: [],
+                },
+              ],
+            };
+          }
+          return item;
+        });
+
+        setTree(newTree);
+      };
+
+      return (
+        <>
+          <button
+            data-testid="add-parent-btn"
+            onClick={() => handleAddParent()}
+          >
+            Add Unchecked Parent
+          </button>
+          <button data-testid="add-child-btn" onClick={() => handleAddChild()}>
+            Add Unchecked Child
+          </button>
+          <button
+            data-testid="add-checked-parent-btn"
+            onClick={() => handleAddParent(IndeterminateCheckboxStatus.checked)}
+          >
+            Add Checked Parent
+          </button>
+          <button
+            data-testid="add-checked-child-btn"
+            onClick={() => handleAddChild(IndeterminateCheckboxStatus.checked)}
+          >
+            Add Checked Child
+          </button>
+          <TreeView
+            testId="dynamic-array-tree"
+            selectable={selectable}
+            apiRef={apiRef}
+            checkParents={checkParents}
+            checkChildren={checkChildren}
+          >
+            {renderItems(tree)}
+          </TreeView>
+        </>
+      );
+    };
+    describe('with "selectable=multi" prop', () => {
+      it('add items with "checkParents=false" and "checkChildren=false"', async () => {
+        const { getByTestId } = render(<DynamicArrayTreeTest />);
+
+        await userEvent.click(getByTestId('add-parent-btn'));
+        expect(getByTestId('item-3')).toBeInTheDocument();
+        expect(getByTestId('item-3')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('3-checkbox')).toBeInTheDocument();
+        expect(getByTestId('3-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New parent 3'
+        );
+
+        await userEvent.click(getByTestId('add-child-btn'));
+        await userEvent.click(getByTestId('item-3-expand'));
+        expect(getByTestId('item-31')).toBeInTheDocument();
+        expect(getByTestId('item-31')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('31-checkbox')).toBeInTheDocument();
+        expect(getByTestId('31-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 31'
+        );
+
+        await userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-32')).toBeInTheDocument();
+        expect(getByTestId('item-32')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('32-checkbox')).toBeInTheDocument();
+        expect(getByTestId('32-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 32'
+        );
+
+        expect(getByTestId('item-3')).toHaveAttribute('aria-checked', 'false');
+
+        await userEvent.click(getByTestId('add-checked-parent-btn'));
+        expect(getByTestId('item-4')).toBeInTheDocument();
+        expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('4-checkbox')).toBeInTheDocument();
+        expect(getByTestId('4-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New parent 4'
+        );
+
+        await userEvent.click(getByTestId('add-child-btn'));
+        await userEvent.click(getByTestId('item-4-expand'));
+        expect(getByTestId('item-41')).toBeInTheDocument();
+        expect(getByTestId('item-41')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('41-checkbox')).toBeInTheDocument();
+        expect(getByTestId('41-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 41'
+        );
+
+        await userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-42')).toBeInTheDocument();
+        expect(getByTestId('item-42')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('42-checkbox')).toBeInTheDocument();
+        expect(getByTestId('42-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 42'
+        );
+
+        expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'true');
+      });
+
+      it('add items with "checkParents=true"', async () => {
+        const { getByTestId } = render(<DynamicArrayTreeTest checkParents />);
+
+        await userEvent.click(getByTestId('add-parent-btn'));
+        expect(getByTestId('item-3')).toBeInTheDocument();
+        expect(getByTestId('item-3')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('3-checkbox')).toBeInTheDocument();
+        expect(getByTestId('3-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New parent 3'
+        );
+
+        await userEvent.click(getByTestId('add-child-btn'));
+        await userEvent.click(getByTestId('item-3-expand'));
+        expect(getByTestId('item-31')).toBeInTheDocument();
+        expect(getByTestId('item-31')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('31-checkbox')).toBeInTheDocument();
+        expect(getByTestId('31-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 31'
+        );
+
+        await userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-32')).toBeInTheDocument();
+        expect(getByTestId('item-32')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('32-checkbox')).toBeInTheDocument();
+        expect(getByTestId('32-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 32'
+        );
+
+        expect(getByTestId('item-3')).toHaveAttribute('aria-checked', 'mixed');
+
+        await userEvent.click(getByTestId('add-checked-parent-btn'));
+        expect(getByTestId('item-4')).toBeInTheDocument();
+        expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('4-checkbox')).toBeInTheDocument();
+        expect(getByTestId('4-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New parent 4'
+        );
+
+        await userEvent.click(getByTestId('add-checked-child-btn'));
+        await userEvent.click(getByTestId('item-4-expand'));
+        expect(getByTestId('item-41')).toBeInTheDocument();
+        expect(getByTestId('item-41')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('41-checkbox')).toBeInTheDocument();
+        expect(getByTestId('41-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 41'
+        );
+
+        await userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-42')).toBeInTheDocument();
+        expect(getByTestId('item-42')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('42-checkbox')).toBeInTheDocument();
+        expect(getByTestId('42-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 42'
+        );
+
+        expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'true');
+
+        await userEvent.click(getByTestId('add-child-btn'));
+        expect(getByTestId('item-43')).toBeInTheDocument();
+        expect(getByTestId('item-43')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('43-checkbox')).toBeInTheDocument();
+        expect(getByTestId('43-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 43'
+        );
+
+        expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'mixed');
+
+        await userEvent.click(getByTestId('add-checked-parent-btn'));
+        expect(getByTestId('item-5')).toBeInTheDocument();
+        expect(getByTestId('item-5')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('5-checkbox')).toBeInTheDocument();
+        expect(getByTestId('5-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New parent 5'
+        );
+
+        await userEvent.click(getByTestId('add-child-btn'));
+        expect(getByTestId('item-43')).toBeInTheDocument();
+        expect(getByTestId('item-43')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('43-checkbox')).toBeInTheDocument();
+        expect(getByTestId('43-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 43'
+        );
+
+        expect(getByTestId('item-5')).toHaveAttribute('aria-checked', 'false');
+      });
+
+      it('add items with "checkChildren=true"', async () => {
+        const { getByTestId } = render(<DynamicArrayTreeTest checkChildren />);
+
+        await userEvent.click(getByTestId('add-parent-btn'));
+        expect(getByTestId('item-3')).toBeInTheDocument();
+        expect(getByTestId('item-3')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('3-checkbox')).toBeInTheDocument();
+        expect(getByTestId('3-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New parent 3'
+        );
+
+        await userEvent.click(getByTestId('add-child-btn'));
+        await userEvent.click(getByTestId('item-3-expand'));
+        expect(getByTestId('item-31')).toBeInTheDocument();
+        expect(getByTestId('item-31')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('31-checkbox')).toBeInTheDocument();
+        expect(getByTestId('31-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 31'
+        );
+
+        await userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-32')).toBeInTheDocument();
+        expect(getByTestId('item-32')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('32-checkbox')).toBeInTheDocument();
+        expect(getByTestId('32-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 32'
+        );
+
+        expect(getByTestId('item-3')).toHaveAttribute('aria-checked', 'false');
+
+        await userEvent.click(getByTestId('add-checked-parent-btn'));
+        expect(getByTestId('item-4')).toBeInTheDocument();
+        expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('4-checkbox')).toBeInTheDocument();
+        expect(getByTestId('4-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New parent 4'
+        );
+
+        await userEvent.click(getByTestId('add-child-btn'));
+        await userEvent.click(getByTestId('item-4-expand'));
+        expect(getByTestId('item-41')).toBeInTheDocument();
+        // newly added children should preserve their state regardless of checkChildren
+        expect(getByTestId('item-41')).toHaveAttribute('aria-checked', 'false');
+        expect(getByTestId('41-checkbox')).toBeInTheDocument();
+        expect(getByTestId('41-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 41'
+        );
+
+        await userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-42')).toBeInTheDocument();
+        expect(getByTestId('item-42')).toHaveAttribute('aria-checked', 'true');
+        expect(getByTestId('42-checkbox')).toBeInTheDocument();
+        expect(getByTestId('42-checkbox')).toHaveAttribute(
+          'aria-label',
+          'New child 42'
+        );
+
+        expect(getByTestId('item-4')).toHaveAttribute('aria-checked', 'true');
+      });
+    });
+
+    describe('with "selectable=single" prop', () => {
+      it('add items', async () => {
+        const { getByTestId } = render(
+          <DynamicArrayTreeTest selectable={TreeViewSelectable.single} />
+        );
+
+        await userEvent.click(getByTestId('add-parent-btn'));
+        expect(getByTestId('item-3')).toBeInTheDocument();
+        expect(getByTestId('item-3-label')).toBeInTheDocument();
+        expect(getByTestId('item-3-label')).toHaveTextContent('New parent 3');
+
+        await userEvent.click(getByTestId('add-child-btn'));
+        await userEvent.click(getByTestId('item-3-expand'));
+        expect(getByTestId('item-31')).toBeInTheDocument();
+        expect(getByTestId('item-31-label')).toBeInTheDocument();
+        expect(getByTestId('item-31-label')).toHaveTextContent('New child 31');
+
+        await userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-32')).toBeInTheDocument();
+        expect(getByTestId('item-32-label')).toBeInTheDocument();
+        expect(getByTestId('item-32-label')).toHaveTextContent('New child 32');
+
+        expect(getByTestId('item-32')).toHaveAttribute('aria-selected', 'true');
+
+        await userEvent.click(getByTestId('add-checked-parent-btn'));
+        expect(getByTestId('item-4')).toBeInTheDocument();
+        expect(getByTestId('item-4-label')).toBeInTheDocument();
+        expect(getByTestId('item-4-label')).toHaveTextContent('New parent 4');
+
+        expect(getByTestId('item-32')).toHaveAttribute(
+          'aria-selected',
+          'false'
+        );
+        expect(getByTestId('item-4')).toHaveAttribute('aria-selected', 'true');
+
+        await userEvent.click(getByTestId('add-child-btn'));
+        await userEvent.click(getByTestId('item-4-expand'));
+        expect(getByTestId('item-41')).toBeInTheDocument();
+        expect(getByTestId('item-41-label')).toBeInTheDocument();
+        expect(getByTestId('item-41-label')).toHaveTextContent('New child 41');
+
+        await userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-42')).toBeInTheDocument();
+        expect(getByTestId('item-42-label')).toBeInTheDocument();
+        expect(getByTestId('item-42-label')).toHaveTextContent('New child 42');
+
+        expect(getByTestId('item-4')).toHaveAttribute('aria-selected', 'false');
+        expect(getByTestId('item-42')).toHaveAttribute('aria-selected', 'true');
+      });
+
+      it('add disabled items', async () => {
+        const { getByTestId } = render(
+          <DynamicArrayTreeTest
+            selectable={TreeViewSelectable.single}
+            isDisabled
+          />
+        );
+
+        await userEvent.click(getByTestId('add-child-btn'));
+        await userEvent.click(getByTestId('item-2-expand'));
+        expect(getByTestId('item-22')).toBeInTheDocument();
+        expect(getByTestId('item-22-label')).toBeInTheDocument();
+        expect(getByTestId('item-22-label')).toHaveTextContent('New child 22');
+
+        await userEvent.click(getByTestId('item-22'));
+        expect(getByTestId('item-22')).toHaveAttribute(
+          'aria-selected',
+          'false'
+        );
+
+        await userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-23')).toBeInTheDocument();
+        expect(getByTestId('item-23-label')).toBeInTheDocument();
+        expect(getByTestId('item-23-label')).toHaveTextContent('New child 23');
+
+        expect(getByTestId('item-23')).toHaveAttribute('aria-selected', 'true');
+
+        await userEvent.click(getByTestId('add-parent-btn'));
+        expect(getByTestId('item-3')).toBeInTheDocument();
+        expect(getByTestId('item-3-label')).toBeInTheDocument();
+        expect(getByTestId('item-3-label')).toHaveTextContent('New parent 3');
+
+        await userEvent.click(getByTestId('item-3'));
+        expect(getByTestId('item-3')).toHaveAttribute('aria-selected', 'false');
+
+        await userEvent.click(getByTestId('add-checked-parent-btn'));
+        expect(getByTestId('item-4')).toBeInTheDocument();
+        expect(getByTestId('item-4-label')).toBeInTheDocument();
+        expect(getByTestId('item-4-label')).toHaveTextContent('New parent 4');
+
+        expect(getByTestId('item-23')).toHaveAttribute(
+          'aria-selected',
+          'false'
+        );
+        expect(getByTestId('item-4')).toHaveAttribute('aria-selected', 'true');
+      });
+    });
+
+    describe('with "selectable=off" prop', () => {
+      it('add items', async () => {
+        const { getByTestId } = render(
+          <DynamicArrayTreeTest selectable={TreeViewSelectable.off} />
+        );
+
+        await userEvent.click(getByTestId('add-parent-btn'));
+        expect(getByTestId('item-3')).toBeInTheDocument();
+        expect(getByTestId('item-3-label')).toBeInTheDocument();
+        expect(getByTestId('item-3-label')).toHaveTextContent('New parent 3');
+
+        await userEvent.click(getByTestId('add-child-btn'));
+        await userEvent.click(getByTestId('item-3-expand'));
+        expect(getByTestId('item-31')).toBeInTheDocument();
+        expect(getByTestId('item-31-label')).toBeInTheDocument();
+        expect(getByTestId('item-31-label')).toHaveTextContent('New child 31');
+
+        await userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-32')).toBeInTheDocument();
+        expect(getByTestId('item-32-label')).toBeInTheDocument();
+        expect(getByTestId('item-32-label')).toHaveTextContent('New child 32');
+
+        expect(getByTestId('item-32')).not.toHaveAttribute('aria-selected');
+
+        await userEvent.click(getByTestId('add-checked-parent-btn'));
+        expect(getByTestId('item-4')).toBeInTheDocument();
+        expect(getByTestId('item-4-label')).toBeInTheDocument();
+        expect(getByTestId('item-4-label')).toHaveTextContent('New parent 4');
+
+        expect(getByTestId('item-4')).not.toHaveAttribute('aria-selected');
+
+        await userEvent.click(getByTestId('add-child-btn'));
+        await userEvent.click(getByTestId('item-4-expand'));
+        expect(getByTestId('item-41')).toBeInTheDocument();
+        expect(getByTestId('item-41-label')).toBeInTheDocument();
+        expect(getByTestId('item-41-label')).toHaveTextContent('New child 41');
+
+        await userEvent.click(getByTestId('add-checked-child-btn'));
+        expect(getByTestId('item-42')).toBeInTheDocument();
+        expect(getByTestId('item-42-label')).toBeInTheDocument();
+        expect(getByTestId('item-42-label')).toHaveTextContent('New child 42');
+
+        expect(getByTestId('item-42')).not.toHaveAttribute('aria-selected');
+      });
+    });
+
+    it('add item 3 levels deep', async () => {
+      const DynamicArrayTreeTestDeep = () => {
+        const initialTree = [
+          {
+            id: 1,
+            name: 'Parent item empty',
+            children: [],
+          },
+          {
+            id: 2,
+            name: 'Parent item with children',
+            children: [
+              {
+                id: 21,
+                name: 'Child item',
+                children: [],
+              },
+            ],
+          },
+        ];
+
+        const [tree, setTree] = React.useState(initialTree);
+        const apiRef = React.useRef();
+
+        const renderItems = items => {
+          return items.map(item => {
+            return (
+              <TreeItem
+                key={item.id}
+                label={item.name}
+                itemId={item.id.toString()}
+                testId={`item-${item.id}`}
+              >
+                {renderItems(item.children)}
+              </TreeItem>
+            );
+          });
+        };
+
+        const handleAddChild = () => {
+          const newItemId = 211;
+
+          apiRef.current?.addItem({
+            itemId: newItemId,
+            parentId: '21',
+            icon: undefined,
+            hasOwnTreeItems: false,
+            isDisabled: false,
+            checkedStatus: IndeterminateCheckboxStatus.unchecked,
+          });
+
+          const newTree = tree.map(item => {
+            const newChildren = [];
+
+            for (const child of item.children) {
+              if (child.id === 21) {
+                newChildren.push({
+                  ...child,
+                  children: [
+                    ...child.children,
+                    {
+                      id: Number(newItemId),
+                      name: `New child ${newItemId}`,
+                      children: [],
+                    },
+                  ],
+                });
+              } else {
+                newChildren.push(child);
+              }
+            }
+
+            return {
+              ...item,
+              children: newChildren,
+            };
+          });
+
+          setTree(newTree);
+        };
+
+        return (
+          <>
+            <button
+              data-testid="add-child-btn"
+              onClick={() => handleAddChild()}
+            >
+              Add Child
+            </button>
+            <TreeView
+              testId="dynamic-array-tree"
+              selectable={TreeViewSelectable.single}
+              apiRef={apiRef}
+            >
+              {renderItems(tree)}
+            </TreeView>
+          </>
+        );
+      };
+
+      const { getByTestId } = render(<DynamicArrayTreeTestDeep />);
+
+      await userEvent.click(getByTestId('add-child-btn'));
+      await userEvent.click(getByTestId('item-2-expand'));
+      await userEvent.click(getByTestId('item-21-expand'));
+      expect(getByTestId('item-211')).toBeInTheDocument();
+      expect(getByTestId('item-211-label')).toBeInTheDocument();
+      expect(getByTestId('item-211-label')).toHaveTextContent('New child 211');
+      expect(getByTestId('item-21')).toHaveFocus();
     });
   });
 
@@ -4471,6 +5265,99 @@ describe('TreeView', () => {
         'true'
       );
       expect(getByTestId('item-ggchild1-retain')).toBeVisible();
+    });
+  });
+
+  it('should call event once when label or additional content has interactive elements', async () => {
+    const onSelectedItemChange = jest.fn();
+    const handleClick = jest.fn();
+
+    const label = (
+      <Dropdown>
+        <DropdownButton />
+        <DropdownContent>
+          <DropdownMenuItem
+            onClick={handleClick}
+            data-testid="dropdown-menu-item"
+          >
+            Rename
+          </DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    const additionalContent = (
+      <Button onClick={handleClick} testId="click-button">
+        Click
+      </Button>
+    );
+
+    const { getByTestId } = render(
+      <TreeView
+        selectable={TreeViewSelectable.multi}
+        onSelectedItemChange={onSelectedItemChange}
+      >
+        <TreeItem
+          additionalContent={additionalContent}
+          label={label}
+          itemId="item"
+          testId="item"
+        />
+      </TreeView>
+    );
+
+    await userEvent.click(getByTestId('item-label'));
+    await userEvent.click(getByTestId('dropdown-menu-item'));
+
+    expect(handleClick).toHaveBeenCalledTimes(1);
+
+    await userEvent.click(getByTestId('click-button'));
+    expect(handleClick).toHaveBeenCalledTimes(2);
+  });
+
+  describe('expand arrow size and color', () => {
+    it('should have default styles', () => {
+      const { getByTestId } = render(
+        <TreeView testId={testId}>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1')).toBeInTheDocument();
+      expect(getByTestId('item1-expand')).toBeInTheDocument();
+      expect(getByTestId('item1-expand')).toHaveStyle({
+        width: '24px',
+        height: '24px',
+        color: getTreeItemLabelColor(false, false, magma),
+      });
+    });
+
+    it('should have custom styles', () => {
+      const { getByTestId } = render(
+        <TreeView expandIconStyles={{ size: 32, color: 'red' }} testId={testId}>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(getByTestId('item1')).toBeInTheDocument();
+      expect(getByTestId('item1-expand')).toBeInTheDocument();
+      expect(getByTestId('item1-expand')).toHaveStyle({
+        width: '32px',
+        height: '32px',
+        color: 'red',
+      });
     });
   });
 });

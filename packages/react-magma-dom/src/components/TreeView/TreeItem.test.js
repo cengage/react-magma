@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 
 import { magma } from '../../theme/magma';
+import { Button } from '../Button';
 
 import { TreeItem, TreeView } from '.';
 
@@ -34,7 +35,6 @@ describe('TreeItem', () => {
       const { getByText } = render(
         <TreeItem label={labelText} testId={testId} itemId={itemId} />
       );
-
       expect(getByText(labelText)).toBeInTheDocument();
     });
   });
@@ -71,6 +71,37 @@ describe('TreeItem', () => {
 
       expect(getByTestId(`${testId}-itemwrapper`)).toHaveStyle(
         `backgroundColor: ${backgroundColor}`
+      );
+    });
+  });
+
+  describe('additional content', () => {
+    it('should apply default styles', () => {
+      const { getByTestId } = render(
+        <TreeItem label={labelText} testId={testId} itemId={itemId} />
+      );
+
+      expect(getByTestId(`${testId}-itemwrapper`)).toHaveStyle(
+        `flexDirection: row`
+      );
+    });
+
+    it('should apply custom styles when additional content is provided', () => {
+      const { getByTestId, getByText } = render(
+        <TreeItem
+          additionalContent={<>Content</>}
+          label={labelText}
+          testId={testId}
+          itemId={itemId}
+        />
+      );
+
+      expect(getByText('Content')).toBeInTheDocument();
+      expect(getByTestId(`${testId}-itemwrapper`)).toHaveStyle(
+        `flexDirection: column`
+      );
+      expect(getByTestId(`${testId}-additionalcontentwrapper`)).toHaveStyle(
+        `marginBottom: 16px`
       );
     });
   });
@@ -138,6 +169,83 @@ describe('TreeItem', () => {
       await userEvent.click(getByText(labelText));
 
       expect(onClick).toHaveBeenCalled();
+    });
+  });
+
+  describe('keyboard navigation and focus', () => {
+    it('should activate the interactive element on Enter and Space', () => {
+      const handleClick = jest.fn();
+      const { getByText } = render(
+        <TreeItem
+          label={<Button onClick={handleClick}>Button</Button>}
+          testId={testId}
+          itemId={itemId}
+        />
+      );
+      const button = getByText('Button');
+
+      expect(button).toBeInTheDocument();
+
+      button.focus();
+
+      fireEvent.keyDown(button, { key: 'Enter', code: 'Enter' });
+      expect(handleClick).toHaveBeenCalledTimes(1);
+
+      fireEvent.keyDown(button, { key: ' ', code: 'Space' });
+      expect(handleClick).toHaveBeenCalledTimes(2);
+    });
+
+    it('should return focus to the tree item on Escape', () => {
+      const { getByTestId, getByText } = render(
+        <TreeItem
+          label={<Button>Button</Button>}
+          testId={testId}
+          itemId={itemId}
+        />
+      );
+      const treeItem = getByTestId(testId);
+      const button = getByText('Button');
+      button.focus();
+      fireEvent.keyDown(button, { key: 'Escape' });
+
+      expect(treeItem).toHaveFocus();
+    });
+  });
+
+  describe('hover styles', () => {
+    it('should have default hover color', () => {
+      const { getByTestId } = render(
+        <TreeItem label={labelText} testId={testId} itemId={itemId} />
+      );
+
+      expect(getByTestId(testId)).toBeInTheDocument();
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'background',
+        transparentize(0.95, magma.colors.neutral900),
+        {
+          target: ':hover',
+        }
+      );
+    });
+
+    it('should have custom hover color', () => {
+      const { getByTestId } = render(
+        <TreeItem
+          label={labelText}
+          testId={testId}
+          itemId={itemId}
+          hoverColor={magma.colors.primary500}
+        />
+      );
+
+      expect(getByTestId(testId)).toBeInTheDocument();
+      expect(getByTestId(testId)).toHaveStyleRule(
+        'background',
+        magma.colors.primary500,
+        {
+          target: ':hover',
+        }
+      );
     });
   });
 });

@@ -1,0 +1,1481 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AIButton Base AIButton Snapshot should render with large size 1`] = `
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border: 0;
+  border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  height: 56px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 24px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #3942B0 0%, #3942B0 100%);
+}
+
+.emotion-0::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #292F7C 0%, #292F7C 100%);
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-0:not(:disabled):hover::before,
+.emotion-0:not(:disabled):focus::before {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover::after,
+.emotion-0:not(:disabled):focus::after {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::before {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::after {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active {
+  color: #FFFFFF;
+}
+
+.emotion-0>* {
+  z-index: 2;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
+  padding-left: 16px;
+}
+
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border: 0;
+  border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  height: 56px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 24px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #3942B0 0%, #3942B0 100%);
+}
+
+.emotion-0::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #292F7C 0%, #292F7C 100%);
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-0:not(:disabled):hover::before,
+.emotion-0:not(:disabled):focus::before {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover::after,
+.emotion-0:not(:disabled):focus::after {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::before {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::after {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active {
+  color: #FFFFFF;
+}
+
+.emotion-0>* {
+  z-index: 2;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
+  padding-left: 16px;
+}
+
+<div>
+  <button
+    class="emotion-0 emotion-1"
+    id="testId"
+    shape="fill"
+    type="button"
+  >
+    <span
+      class="emotion-2 emotion-3"
+    >
+      <svg
+        aria-hidden="true"
+        class="icon"
+        fill="currentColor"
+        height="24"
+        viewBox="0 0 24 24"
+        width="24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.46 8l.79-1.75L22 5.46c.39-.18.39-.73 0-.91l-1.75-.79L19.46 2c-.18-.39-.73-.39-.91 0l-.79 1.75-1.76.79c-.39.18-.39.73 0 .91l1.75.79.79 1.76c.18.39.74.39.92 0zM11.5 9.5L9.91 6c-.35-.78-1.47-.78-1.82 0L6.5 9.5 3 11.09c-.78.36-.78 1.47 0 1.82l3.5 1.59L8.09 18c.36.78 1.47.78 1.82 0l1.59-3.5 3.5-1.59c.78-.36.78-1.47 0-1.82zm7.04 6.5l-.79 1.75-1.75.79c-.39.18-.39.73 0 .91l1.75.79.79 1.76c.18.39.73.39.91 0l.79-1.75 1.76-.79c.39-.18.39-.73 0-.91l-1.75-.79-.79-1.76c-.18-.39-.74-.39-.92 0z"
+        />
+      </svg>
+      <span
+        class="emotion-4 emotion-5"
+      >
+        Test Text
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`AIButton Base AIButton Snapshot should render with small size 1`] = `
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border: 0;
+  border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  height: 28px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: .32px;
+  line-height: 16px;
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  padding: 4px 8px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #3942B0 0%, #3942B0 100%);
+}
+
+.emotion-0::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #292F7C 0%, #292F7C 100%);
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-0:not(:disabled):hover::before,
+.emotion-0:not(:disabled):focus::before {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover::after,
+.emotion-0:not(:disabled):focus::after {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::before {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::after {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active {
+  color: #FFFFFF;
+}
+
+.emotion-0>* {
+  z-index: 2;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
+  padding-left: 4px;
+}
+
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border: 0;
+  border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  height: 28px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: .32px;
+  line-height: 16px;
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  padding: 4px 8px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #3942B0 0%, #3942B0 100%);
+}
+
+.emotion-0::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #292F7C 0%, #292F7C 100%);
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-0:not(:disabled):hover::before,
+.emotion-0:not(:disabled):focus::before {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover::after,
+.emotion-0:not(:disabled):focus::after {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::before {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::after {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active {
+  color: #FFFFFF;
+}
+
+.emotion-0>* {
+  z-index: 2;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
+  padding-left: 4px;
+}
+
+<div>
+  <button
+    class="emotion-0 emotion-1"
+    id="testId"
+    shape="fill"
+    type="button"
+  >
+    <span
+      class="emotion-2 emotion-3"
+    >
+      <svg
+        aria-hidden="true"
+        class="icon"
+        fill="currentColor"
+        height="16"
+        viewBox="0 0 24 24"
+        width="16"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.46 8l.79-1.75L22 5.46c.39-.18.39-.73 0-.91l-1.75-.79L19.46 2c-.18-.39-.73-.39-.91 0l-.79 1.75-1.76.79c-.39.18-.39.73 0 .91l1.75.79.79 1.76c.18.39.74.39.92 0zM11.5 9.5L9.91 6c-.35-.78-1.47-.78-1.82 0L6.5 9.5 3 11.09c-.78.36-.78 1.47 0 1.82l3.5 1.59L8.09 18c.36.78 1.47.78 1.82 0l1.59-3.5 3.5-1.59c.78-.36.78-1.47 0-1.82zm7.04 6.5l-.79 1.75-1.75.79c-.39.18-.39.73 0 .91l1.75.79.79 1.76c.18.39.73.39.91 0l.79-1.75 1.76-.79c.39-.18.39-.73 0-.91l-1.75-.79-.79-1.76c-.18-.39-.74-.39-.92 0z"
+        />
+      </svg>
+      <span
+        class="emotion-4 emotion-5"
+      >
+        Test Text
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`AIButton Base AIButton Snapshot should render with updated shape 1`] = `
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border: 0;
+  border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border-radius: 2rem;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #3942B0 0%, #3942B0 100%);
+}
+
+.emotion-0::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #292F7C 0%, #292F7C 100%);
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-0:not(:disabled):hover::before,
+.emotion-0:not(:disabled):focus::before {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover::after,
+.emotion-0:not(:disabled):focus::after {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::before {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::after {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active {
+  color: #FFFFFF;
+}
+
+.emotion-0>* {
+  z-index: 2;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
+  padding-left: 8px;
+}
+
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border: 0;
+  border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border-radius: 2rem;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #3942B0 0%, #3942B0 100%);
+}
+
+.emotion-0::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #292F7C 0%, #292F7C 100%);
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-0:not(:disabled):hover::before,
+.emotion-0:not(:disabled):focus::before {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover::after,
+.emotion-0:not(:disabled):focus::after {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::before {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::after {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active {
+  color: #FFFFFF;
+}
+
+.emotion-0>* {
+  z-index: 2;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
+  padding-left: 8px;
+}
+
+<div>
+  <button
+    class="emotion-0 emotion-1"
+    id="testId"
+    shape="round"
+    type="button"
+  >
+    <span
+      class="emotion-2 emotion-3"
+    >
+      <svg
+        aria-hidden="true"
+        class="icon"
+        fill="currentColor"
+        height="20"
+        viewBox="0 0 24 24"
+        width="20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.46 8l.79-1.75L22 5.46c.39-.18.39-.73 0-.91l-1.75-.79L19.46 2c-.18-.39-.73-.39-.91 0l-.79 1.75-1.76.79c-.39.18-.39.73 0 .91l1.75.79.79 1.76c.18.39.74.39.92 0zM11.5 9.5L9.91 6c-.35-.78-1.47-.78-1.82 0L6.5 9.5 3 11.09c-.78.36-.78 1.47 0 1.82l3.5 1.59L8.09 18c.36.78 1.47.78 1.82 0l1.59-3.5 3.5-1.59c.78-.36.78-1.47 0-1.82zm7.04 6.5l-.79 1.75-1.75.79c-.39.18-.39.73 0 .91l1.75.79.79 1.76c.18.39.73.39.91 0l.79-1.75 1.76-.79c.39-.18.39-.73 0-.91l-1.75-.79-.79-1.76c-.18-.39-.74-.39-.92 0z"
+        />
+      </svg>
+      <span
+        class="emotion-4 emotion-5"
+      >
+        Test Text
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`AIButton Base AIButton Snapshot should render with updated textTransform 1`] = `
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border: 0;
+  border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: none;
+  touch-action: manipulation;
+  -webkit-transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #3942B0 0%, #3942B0 100%);
+}
+
+.emotion-0::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #292F7C 0%, #292F7C 100%);
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-0:not(:disabled):hover::before,
+.emotion-0:not(:disabled):focus::before {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover::after,
+.emotion-0:not(:disabled):focus::after {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::before {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::after {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active {
+  color: #FFFFFF;
+}
+
+.emotion-0>* {
+  z-index: 2;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
+  padding-left: 8px;
+}
+
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border: 0;
+  border-color: linear-gradient(268deg, #C3419A 0%, #3942B0 100%);
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: none;
+  touch-action: manipulation;
+  -webkit-transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #3942B0 0%, #3942B0 100%);
+}
+
+.emotion-0::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #292F7C 0%, #292F7C 100%);
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-0:not(:disabled):hover::before,
+.emotion-0:not(:disabled):focus::before {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover::after,
+.emotion-0:not(:disabled):focus::after {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::before {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::after {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active {
+  color: #FFFFFF;
+}
+
+.emotion-0>* {
+  z-index: 2;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
+  padding-left: 8px;
+}
+
+<div>
+  <button
+    class="emotion-0 emotion-1"
+    id="testId"
+    shape="fill"
+    type="button"
+  >
+    <span
+      class="emotion-2 emotion-3"
+    >
+      <svg
+        aria-hidden="true"
+        class="icon"
+        fill="currentColor"
+        height="20"
+        viewBox="0 0 24 24"
+        width="20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.46 8l.79-1.75L22 5.46c.39-.18.39-.73 0-.91l-1.75-.79L19.46 2c-.18-.39-.73-.39-.91 0l-.79 1.75-1.76.79c-.39.18-.39.73 0 .91l1.75.79.79 1.76c.18.39.74.39.92 0zM11.5 9.5L9.91 6c-.35-.78-1.47-.78-1.82 0L6.5 9.5 3 11.09c-.78.36-.78 1.47 0 1.82l3.5 1.59L8.09 18c.36.78 1.47.78 1.82 0l1.59-3.5 3.5-1.59c.78-.36.78-1.47 0-1.82zm7.04 6.5l-.79 1.75-1.75.79c-.39.18-.39.73 0 .91l1.75.79.79 1.76c.18.39.73.39.91 0l.79-1.75 1.76-.79c.39-.18.39-.73 0-.91l-1.75-.79-.79-1.76c-.18-.39-.74-.39-.92 0z"
+        />
+      </svg>
+      <span
+        class="emotion-4 emotion-5"
+      >
+        Test Text
+      </span>
+    </span>
+  </button>
+</div>
+`;
+
+exports[`AIButton Base AIButton Snapshot should render with updated variant 1`] = `
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: linear-gradient(268deg, #178037 0%, #3942B0 100%);
+  border: 0;
+  border-color: linear-gradient(268deg, #178037 0%, #3942B0 100%);
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #3942B0 0%, #3942B0 100%);
+}
+
+.emotion-0::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #292F7C 0%, #292F7C 100%);
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-0:not(:disabled):hover::before,
+.emotion-0:not(:disabled):focus::before {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover::after,
+.emotion-0:not(:disabled):focus::after {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::before {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::after {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active {
+  color: #FFFFFF;
+}
+
+.emotion-0>* {
+  z-index: 2;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
+  padding-left: 8px;
+}
+
+.emotion-0 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: linear-gradient(268deg, #178037 0%, #3942B0 100%);
+  border: 0;
+  border-color: linear-gradient(268deg, #178037 0%, #3942B0 100%);
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(93,101,203,0.5);
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  transition: color 0.35s,border-color 0.35s,box-shadow 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-0::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #3942B0 0%, #3942B0 100%);
+}
+
+.emotion-0::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s;
+  transition: opacity 0.35s;
+  background: linear-gradient(268deg, #292F7C 0%, #292F7C 100%);
+}
+
+.emotion-0:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-0:not(:disabled):hover::before,
+.emotion-0:not(:disabled):focus::before {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover::after,
+.emotion-0:not(:disabled):focus::after {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::before {
+  opacity: 0;
+}
+
+.emotion-0:not(:disabled):active::after {
+  opacity: 1;
+}
+
+.emotion-0:not(:disabled):hover,
+.emotion-0:not(:disabled):focus {
+  color: #FFFFFF;
+}
+
+.emotion-0:not(:disabled):active {
+  color: #FFFFFF;
+}
+
+.emotion-0>* {
+  z-index: 2;
+}
+
+.emotion-0 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-2 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-4 {
+  padding-left: 8px;
+}
+
+<div>
+  <button
+    class="emotion-0 emotion-1"
+    id="testId"
+    shape="fill"
+    type="button"
+  >
+    <span
+      class="emotion-2 emotion-3"
+    >
+      <svg
+        aria-hidden="true"
+        class="icon"
+        fill="currentColor"
+        height="20"
+        viewBox="0 0 24 24"
+        width="20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M19.46 8l.79-1.75L22 5.46c.39-.18.39-.73 0-.91l-1.75-.79L19.46 2c-.18-.39-.73-.39-.91 0l-.79 1.75-1.76.79c-.39.18-.39.73 0 .91l1.75.79.79 1.76c.18.39.74.39.92 0zM11.5 9.5L9.91 6c-.35-.78-1.47-.78-1.82 0L6.5 9.5 3 11.09c-.78.36-.78 1.47 0 1.82l3.5 1.59L8.09 18c.36.78 1.47.78 1.82 0l1.59-3.5 3.5-1.59c.78-.36.78-1.47 0-1.82zm7.04 6.5l-.79 1.75-1.75.79c-.39.18-.39.73 0 .91l1.75.79.79 1.76c.18.39.73.39.91 0l.79-1.75 1.76-.79c.39-.18.39-.73 0-.91l-1.75-.79-.79-1.76c-.18-.39-.74-.39-.92 0z"
+        />
+      </svg>
+      <span
+        class="emotion-4 emotion-5"
+      >
+        Test Text
+      </span>
+    </span>
+  </button>
+</div>
+`;

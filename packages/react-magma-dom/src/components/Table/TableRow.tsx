@@ -6,6 +6,7 @@ import { transparentize } from 'polished';
 import { NorthIcon, SortDoubleArrowIcon, SouthIcon } from 'react-magma-icons';
 
 import { I18nContext } from '../../i18n';
+import { magma } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Checkbox } from '../Checkbox';
 import {
@@ -49,7 +50,7 @@ export interface TableRowProps
   onTableRowSelect?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   rowIndex?: number;
   /**
-   * Unique name to be used to identify row for screenreaders
+   * Unique name to be used to identify row for screen readers
    */
   rowName?: string;
   /**
@@ -99,32 +100,54 @@ function buildTableRowColor(props) {
   return 'inherit';
 }
 
+function getBorderBottom(isInverse: boolean) {
+  return `1px solid ${
+    isInverse
+      ? transparentize(0.6, magma.colors.neutral100)
+      : magma.colors.neutral300
+  }`;
+}
+
 const StyledTableRow = styled.tr<{
   color?: string;
-  hasSquareCorners?: boolean;
   hasHoverStyles?: boolean;
+  hasSquareCorners?: boolean;
+  hasTablePagination?: boolean;
   hasZebraStripes?: boolean;
   isInverse?: boolean;
 }>`
-  border-bottom: 1px solid
-    ${props =>
-      props.isInverse
-        ? transparentize(0.6, props.theme.colors.neutral100)
-        : props.theme.colors.neutral300};
+  border-bottom: ${props => getBorderBottom(props.isInverse)};
   color: inherit;
   display: table-row;
   outline: 0;
   vertical-align: top;
 
+  // Compensates border bottom for all rows (except last one) when table has outside border
+  td {
+    border-bottom: ${props => getBorderBottom(props.isInverse)};
+  }
+
   &:last-child {
-    border-bottom: 0;
+    // Removes border bottom for last row if it's colored
+    border-bottom: ${props =>
+      props.color || (props.hasZebraStripes && !props.hasTablePagination)
+        ? 0
+        : `${getBorderBottom(props.isInverse)}`};
+
+    td {
+      border-bottom: 0;
+    }
     td:first-child {
       border-radius: ${props =>
-        props.hasSquareCorners ? '0' : `0 0 0 ${props.theme.borderRadius}`};
+        props.hasSquareCorners || props.hasTablePagination
+          ? '0'
+          : `0 0 0 ${props.theme.borderRadius}`};
     }
     td:last-child {
       border-radius: ${props =>
-        props.hasSquareCorners ? '0' : `0 0 ${props.theme.borderRadius} 0`};
+        props.hasSquareCorners || props.hasTablePagination
+          ? '0'
+          : `0 0 ${props.theme.borderRadius} 0`};
     }
   }
 
@@ -295,8 +318,9 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
       <StyledTableRow
         {...other}
         data-testid={testId}
-        hasSquareCorners={tableContext.hasSquareCorners}
         hasHoverStyles={tableContext.hasHoverStyles && !isHeaderRow}
+        hasSquareCorners={tableContext.hasSquareCorners}
+        hasTablePagination={tableContext.hasTablePagination}
         hasZebraStripes={tableContext.hasZebraStripes}
         isInverse={tableContext.isInverse}
         ref={ref}

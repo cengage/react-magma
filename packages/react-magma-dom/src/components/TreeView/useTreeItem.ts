@@ -12,30 +12,48 @@ import { useGenerateId, useForkedRef } from '../../utils';
 
 export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   /**
+   * Enables additional content within the TreeItem.
+   */
+  additionalContent?: React.ReactNode;
+  /**
+   * Tree item hover color
+   * @default transparent
+   */
+  hoverColor?: string;
+  /**
+   * Icon for the tree item
+   */
+  icon?: React.ReactElement<IconProps>;
+  /**
+   * If true, element is disabled
+   * @default false
+   */
+  isDisabled?: boolean;
+  /**
    * Index number
    * private
    */
   index?: number;
   /**
-   * Item name
+   * @internal
    */
-  label: React.ReactNode;
+  itemDepth?: number;
   /**
    * Item id
    */
   itemId: string;
   /**
-   * @internal
+   * Item name
    */
-  testId?: string;
+  label: React.ReactNode;
+  /**
+   * Style properties for the tree item label
+   */
+  labelStyle?: React.CSSProperties;
   /**
    * Action that fires when the item is clicked
    */
   onClick?: () => void;
-  /**
-   * Icon for the tree item
-   */
-  icon?: React.ReactElement<IconProps>;
   /**
    * @internal
    */
@@ -43,21 +61,16 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
   /**
    * @internal
    */
-  itemDepth?: number;
-  /**
-   * If true, element is disabled
-   * @default false
-   */
-  isDisabled?: boolean;
-  /**
-   * Style properties for the tree item label
-   */
-  labelStyle?: React.CSSProperties;
+  testId?: string;
   /**
    * @internal
    * Whether this item is a top-level item (no parent)
    */
   topLevel?: boolean;
+  /**
+   * Style properties for the tree item
+   */
+  treeItemStyles?: React.CSSProperties;
 }
 
 export const checkedStatusToBoolean = (
@@ -104,17 +117,17 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     treeViewItemData?.checkedStatus,
   ]);
 
+  const treeItemChildren = React.Children.toArray(children).filter(
+    (child: React.ReactElement<any>) => child.type === TreeItem
+  );
+
   const hasOwnTreeItems = React.useMemo(() => {
-    return treeViewItemData?.hasOwnTreeItems;
-  }, [treeViewItemData]);
+    return treeViewItemData?.hasOwnTreeItems || treeItemChildren.length > 0;
+  }, [treeViewItemData, treeItemChildren.length]);
 
   const [expanded, setExpanded] = React.useState(() => {
     return expandedSet.has(itemId);
   });
-
-  const treeItemChildren = React.Children.toArray(children).filter(
-    (child: React.ReactElement<any>) => child.type === TreeItem
-  );
 
   const ownRef = React.useRef<HTMLDivElement>(null);
   const ref = useForkedRef(forwardedRef, ownRef);

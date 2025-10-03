@@ -1,80 +1,281 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
-import { format } from 'date-fns';
+import { render } from '@testing-library/react';
 
 import { CalendarContext } from './CalendarContext';
 import { CalendarHeader } from './CalendarHeader';
+import userEvent from '@testing-library/user-event';
+
+HTMLCanvasElement.prototype.getContext = () => ({
+  font: '',
+  measureText: text => ({ width: text.length * 8 }),
+});
 
 describe('Calendar Header', () => {
-  it('should focus the calendar header text', () => {
-    const now = new Date();
-    const monthYear = format(now, 'MMMM yyyy');
+  describe('next month button', () => {
+    it('should call to move forward a month when clicking the next month button', async () => {
+      const focusedDate = new Date(2019, 0, 17);
+      const onNextMonthClick = jest.fn();
+      const { getByLabelText } = render(
+        <CalendarContext.Provider
+          value={{
+            onPrevMonthClick: jest.fn(),
+            onNextMonthClick,
+            focusedDate,
+          }}
+        >
+          <CalendarHeader focusHeader />
+        </CalendarContext.Provider>
+      );
 
-    const { getByText, rerender } = render(
-      <CalendarContext.Provider
-        value={{
-          onPrevMonthClick: jest.fn(),
-          onNextMonthClick: jest.fn(),
-          focusedDate: now,
-        }}
-      >
-        <CalendarHeader focusHeader={false} />
-      </CalendarContext.Provider>
-    );
+      const nextBtn = getByLabelText(label =>
+        label.toLowerCase().includes('navigate forward one month')
+      );
+      await userEvent.click(nextBtn);
+      expect(onNextMonthClick).toHaveBeenCalled();
+    });
 
-    rerender(
-      <CalendarContext.Provider
-        value={{
-          onPrevMonthClick: jest.fn(),
-          onNextMonthClick: jest.fn(),
-          focusedDate: now,
-        }}
-      >
-        <CalendarHeader focusHeader />
-      </CalendarContext.Provider>
-    );
+    it('should not call to move forward a month when the next month button is disabled', () => {
+      const focusedDate = new Date(2019, 0, 17);
+      const maxDate = new Date(2019, 0, 22);
+      const onNextMonthClick = jest.fn();
+      const { getByLabelText } = render(
+        <CalendarContext.Provider
+          value={{
+            onPrevMonthClick: jest.fn(),
+            onNextMonthClick,
+            focusedDate,
+            maxDate,
+          }}
+        >
+          <CalendarHeader focusHeader />
+        </CalendarContext.Provider>
+      );
 
-    expect(getByText(monthYear)).toBe(document.activeElement.firstChild);
+      const nextBtn = getByLabelText(label =>
+        label.toLowerCase().includes('navigate forward one month')
+      );
+      expect(nextBtn).toBeDisabled();
+    });
   });
 
-  it('should call to move forward a month when clicking the next month button', () => {
-    const focusedDate = new Date('January 17, 2019');
-    const onNextMonthClick = jest.fn();
-    const { getByLabelText } = render(
-      <CalendarContext.Provider
-        value={{
-          onPrevMonthClick: jest.fn(),
-          onNextMonthClick,
-          focusedDate,
-        }}
-      >
-        <CalendarHeader focusHeader />
-      </CalendarContext.Provider>
-    );
+  describe('previous month button', () => {
+    it('should call to move backward a month when clicking the previous month button', async () => {
+      const focusedDate = new Date(2019, 0, 17);
+      const onPrevMonthClick = jest.fn();
+      const { getByLabelText } = render(
+        <CalendarContext.Provider
+          value={{
+            onPrevMonthClick,
+            onNextMonthClick: jest.fn(),
+            focusedDate,
+          }}
+        >
+          <CalendarHeader focusHeader />
+        </CalendarContext.Provider>
+      );
+      const prevBtn = getByLabelText(label =>
+        label.toLowerCase().includes('navigate back one month')
+      );
+      await userEvent.click(prevBtn);
+      expect(onPrevMonthClick).toHaveBeenCalled();
+    });
 
-    fireEvent.click(getByLabelText(/Next Month/i));
+    it('should not call to backward a month when the previous month button is disabled', () => {
+      const focusedDate = new Date(2019, 0, 17);
+      const minDate = new Date(2019, 0, 10);
+      const { getByLabelText } = render(
+        <CalendarContext.Provider
+          value={{
+            onPrevMonthClick: jest.fn(),
+            focusedDate,
+            minDate,
+          }}
+        >
+          <CalendarHeader focusHeader />
+        </CalendarContext.Provider>
+      );
 
-    expect(onNextMonthClick).toHaveBeenCalled();
+      const prevBtn = getByLabelText(label =>
+        label.toLowerCase().includes('navigate back one month')
+      );
+      expect(prevBtn).toBeDisabled();
+    });
   });
 
-  it('should call to move backward a month when clicking the previous month button', () => {
-    const focusedDate = new Date('January 17, 2019');
-    const onPrevMonthClick = jest.fn();
-    const { getByLabelText } = render(
-      <CalendarContext.Provider
-        value={{
-          onPrevMonthClick,
-          onNextMonthClick: jest.fn(),
-          focusedDate,
-        }}
-      >
-        <CalendarHeader focusHeader />
-      </CalendarContext.Provider>
-    );
+  describe('month picker', () => {
+    it('should select the new month of the calendar.', async () => {
+      const focusedDate = new Date(2019, 0, 17);
+      const setMonthFocusedDate = jest.fn();
 
-    fireEvent.click(getByLabelText(/Previous Month/i));
+      const { getByTestId } = render(
+        <CalendarContext.Provider
+          value={{
+            setMonthFocusedDate,
+            focusedDate,
+          }}
+        >
+          <CalendarHeader />
+        </CalendarContext.Provider>
+      );
 
-    expect(onPrevMonthClick).toHaveBeenCalled();
+      const month = getByTestId('month-picker');
+      expect(month).toBeInTheDocument();
+
+      await userEvent.selectOptions(month, '5');
+      expect(setMonthFocusedDate).toHaveBeenCalledWith(5);
+    });
+
+    it('should show current month but be disabled if the minDate is later than focused date', async () => {
+      const focusedDate = new Date(2019, 0, 17);
+      const minDate = new Date(2019, 3, 17);
+      const setMonthFocusedDate = jest.fn();
+
+      const { getByTestId } = render(
+        <CalendarContext.Provider
+          value={{
+            setMonthFocusedDate,
+            focusedDate,
+            minDate,
+          }}
+        >
+          <CalendarHeader />
+        </CalendarContext.Provider>
+      );
+
+      const month = getByTestId('month-picker');
+      expect(month).toBeInTheDocument();
+
+      const january = month.querySelectorAll('option')[0];
+      const february = month.querySelectorAll('option')[1];
+      const march = month.querySelectorAll('option')[2];
+      const april = month.querySelectorAll('option')[3];
+      const december = month.querySelectorAll('option')[11];
+
+      expect(january).toBeDisabled();
+      expect(february).toBeDisabled();
+      expect(march).toBeDisabled();
+      expect(april).not.toBeDisabled();
+      expect(december).not.toBeDisabled();
+
+      await userEvent.selectOptions(month, '4');
+      expect(setMonthFocusedDate).toHaveBeenCalledWith(4);
+    });
+
+    it('should disable all months after maxDate', async () => {
+      const focusedDate = new Date(2019, 0, 17);
+      const maxDate = new Date(2019, 2, 17);
+      const setMonthFocusedDate = jest.fn();
+
+      const { getByTestId } = render(
+        <CalendarContext.Provider
+          value={{
+            setMonthFocusedDate,
+            focusedDate,
+            maxDate,
+          }}
+        >
+          <CalendarHeader />
+        </CalendarContext.Provider>
+      );
+
+      const month = getByTestId('month-picker');
+      expect(month).toBeInTheDocument();
+
+      const january = month.querySelectorAll('option')[0];
+      const february = month.querySelectorAll('option')[1];
+      const march = month.querySelectorAll('option')[2];
+      const april = month.querySelectorAll('option')[3];
+      const december = month.querySelectorAll('option')[11];
+
+      expect(january).not.toBeDisabled();
+      expect(february).not.toBeDisabled();
+      expect(march).not.toBeDisabled();
+      expect(april).toBeDisabled();
+      expect(december).toBeDisabled();
+
+      await userEvent.selectOptions(month, '2');
+      expect(setMonthFocusedDate).toHaveBeenCalledWith(2);
+    });
+  });
+
+  describe('year picker', () => {
+    it('should select the new year of the calendar.', async () => {
+      const focusedDate = new Date(2019, 0, 17);
+      const setYearFocusedDate = jest.fn();
+
+      const { getByTestId } = render(
+        <CalendarContext.Provider
+          value={{
+            setYearFocusedDate,
+            focusedDate,
+          }}
+        >
+          <CalendarHeader />
+        </CalendarContext.Provider>
+      );
+
+      const year = getByTestId('year-picker');
+      expect(year).toBeInTheDocument();
+
+      await userEvent.selectOptions(year, '2030');
+      expect(setYearFocusedDate).toHaveBeenCalledWith(2030);
+    });
+
+    it('should show current year but be disabled if the minDate is later than focused date', async () => {
+      const focusedDate = new Date(2019, 0, 17);
+      const minDate = new Date(2020, 0, 10);
+      const setYearFocusedDate = jest.fn();
+
+      const { getByTestId } = render(
+        <CalendarContext.Provider
+          value={{
+            setYearFocusedDate,
+            focusedDate,
+            minDate,
+          }}
+        >
+          <CalendarHeader />
+        </CalendarContext.Provider>
+      );
+
+      const year = getByTestId('year-picker');
+      expect(year).toBeInTheDocument();
+
+      const focusedYear = year.querySelectorAll('option')[0];
+      expect(focusedYear).toBeDisabled();
+
+      await userEvent.selectOptions(year, '2030');
+      expect(setYearFocusedDate).toHaveBeenCalledWith(2030);
+    });
+
+    it('should show current year but be disabled if the maxDate is earlier than focused date', async () => {
+      const focusedDate = new Date(2019, 0, 17);
+      const minDate = new Date(2017, 0, 10);
+      const maxDate = new Date(2018, 0, 10);
+      const setYearFocusedDate = jest.fn();
+
+      const { getByTestId } = render(
+        <CalendarContext.Provider
+          value={{
+            setYearFocusedDate,
+            focusedDate,
+            minDate,
+            maxDate,
+          }}
+        >
+          <CalendarHeader />
+        </CalendarContext.Provider>
+      );
+
+      const year = getByTestId('year-picker');
+      expect(year).toBeInTheDocument();
+
+      const focusedYear = year.querySelectorAll('option')[2];
+      expect(focusedYear).toBeDisabled();
+
+      await userEvent.selectOptions(year, '2017');
+      expect(setYearFocusedDate).toHaveBeenCalledWith(2017);
+    });
   });
 });

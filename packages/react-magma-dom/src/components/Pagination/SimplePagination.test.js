@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
@@ -8,6 +8,7 @@ import { magma } from '../../theme/magma';
 import { ButtonSize } from '../Button';
 
 import { Pagination, PaginationType } from '.';
+import userEvent from '@testing-library/user-event';
 
 const testId = 'test-id';
 
@@ -197,22 +198,21 @@ describe('Simple Pagination', () => {
   });
 
   describe('Active', () => {
-    it('Should change the active page when an option is selected', () => {
+    it('Should change the active page when an option is selected', async () => {
       const { getByTestId } = render(
         <Pagination type={PaginationType.simple} count={3} testId={testId} />
       );
-      fireEvent.change(getByTestId(`${testId}-select`), {
-        target: { value: '2' },
-      });
+      await userEvent.selectOptions(getByTestId(`${testId}-select`), '2');
       const option1 = getByTestId(`${testId}-option-0`);
       const option2 = getByTestId(`${testId}-option-1`);
       const option3 = getByTestId(`${testId}-option-2`);
+
       expect(option1.selected).toBe(false);
       expect(option2.selected).toBe(true);
       expect(option3.selected).toBe(false);
     });
 
-    it('Should change the active page when clicking the previous button', () => {
+    it('Should change the active page when clicking the previous button', async () => {
       const { getByLabelText, getByTestId } = render(
         <Pagination
           type={PaginationType.simple}
@@ -223,16 +223,17 @@ describe('Simple Pagination', () => {
       );
       const previousButton = getByLabelText('Previous Page');
 
-      fireEvent.click(previousButton);
+      await userEvent.click(previousButton);
       const option1 = getByTestId(`${testId}-option-0`);
       const option2 = getByTestId(`${testId}-option-1`);
       const option3 = getByTestId(`${testId}-option-2`);
+
       expect(option1.selected).toBe(false);
       expect(option2.selected).toBe(true);
       expect(option3.selected).toBe(false);
     });
 
-    it('Should change the active page when clicking the next button', () => {
+    it('Should change the active page when clicking the next button', async () => {
       const { getByLabelText, getByTestId } = render(
         <Pagination
           type={PaginationType.simple}
@@ -244,10 +245,11 @@ describe('Simple Pagination', () => {
       );
       const nextButton = getByLabelText('Next Page');
 
-      fireEvent.click(nextButton);
+      await userEvent.click(nextButton);
       const option1 = getByTestId(`${testId}-option-0`);
       const option2 = getByTestId(`${testId}-option-1`);
       const option3 = getByTestId(`${testId}-option-2`);
+
       expect(option1.selected).toBe(false);
       expect(option2.selected).toBe(false);
       expect(option3.selected).toBe(true);
@@ -377,7 +379,7 @@ describe('Simple Pagination', () => {
     });
   });
 
-  it('Should call the onPageChange function when the previous button is clicked', () => {
+  it('Should call the onPageChange function when the previous button is clicked', async () => {
     const onClickMock = jest.fn();
     const { getByLabelText } = render(
       <Pagination
@@ -391,11 +393,11 @@ describe('Simple Pagination', () => {
 
     const previousButton = getByLabelText('Previous Page');
 
-    fireEvent.click(previousButton);
+    await userEvent.click(previousButton);
     expect(onClickMock).toHaveBeenCalledWith(expect.any(Object), 1);
   });
 
-  it('Should call the onPageChange function when the next button is clicked', () => {
+  it('Should call the onPageChange function when the next button is clicked', async () => {
     const onClickMock = jest.fn();
     const { getByLabelText } = render(
       <Pagination
@@ -409,11 +411,11 @@ describe('Simple Pagination', () => {
 
     const nextButton = getByLabelText('Next Page');
 
-    fireEvent.click(nextButton);
+    await userEvent.click(nextButton);
     expect(onClickMock).toHaveBeenCalledWith(expect.any(Object), 3);
   });
 
-  it('Should call the onPageChange function when a select option is clicked', () => {
+  it('Should call the onPageChange function when a select option is clicked', async () => {
     const onClickMock = jest.fn();
     const { getByTestId } = render(
       <Pagination
@@ -424,9 +426,7 @@ describe('Simple Pagination', () => {
         onPageChange={onClickMock}
       />
     );
-    fireEvent.change(getByTestId(`${testId}-select`), {
-      target: { value: '2' },
-    });
+    await userEvent.selectOptions(getByTestId(`${testId}-select`), '2');
     expect(onClickMock).toHaveBeenCalledWith(expect.any(Object), '2');
   });
 

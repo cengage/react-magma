@@ -6,10 +6,10 @@ import {
   flip,
   autoUpdate,
   ReferenceType,
-  AlignedPlacement,
   arrow,
   shift,
   useFloating,
+  AlignedPlacement,
 } from '@floating-ui/react';
 
 import { useIsInverse } from '../../inverse';
@@ -21,8 +21,23 @@ export enum PopoverPosition {
   top = 'top',
 }
 
+export enum PopoverAlignment {
+  center = 'center', //default
+  start = 'start',
+  end = 'end',
+}
+
+export type PopoverPlacement =
+  | 'bottom'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'top'
+  | 'top-start'
+  | 'top-end';
+
 export interface PopoverApi {
   closePopoverManually(event): void;
+  openPopoverManually(event): void;
 }
 export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -81,6 +96,7 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
    * The ref object that allows Popover manipulation.
    * Actions available:
    * closePopoverManually(event): void - Closes the popover manually.
+   * openPopoverManually(event): void - Opens the popover manually.
    */
   apiRef?: React.MutableRefObject<PopoverApi | undefined>;
   /**
@@ -89,11 +105,16 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default false
    */
   focusTrap?: boolean;
+  /**
+   * Alignment of the popover content
+   * @default PopoverAlignment.center
+   */
+  alignment?: PopoverAlignment;
 }
 
 export interface PopoverContextInterface {
   floatingStyles?: React.CSSProperties;
-  position?: PopoverPosition;
+  position?: PopoverPlacement;
   closePopover?: (event: React.SyntheticEvent | React.KeyboardEvent) => void;
   popoverTriggerId?: React.MutableRefObject<string>;
   popoverContentId?: React.MutableRefObject<string>;
@@ -126,13 +147,11 @@ export const PopoverContext = React.createContext<PopoverContextInterface>({
 });
 
 export function hasActiveElementsChecker(ref) {
-  if (!ref?.current) return false;
-
   return (
     Array.from(
       ref.current?.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
-      ) ?? []
+      ) || []
     ).filter((element: HTMLElement) => {
       const style = window.getComputedStyle(element);
 
@@ -144,6 +163,23 @@ export function hasActiveElementsChecker(ref) {
       );
     }).length > 0
   );
+}
+
+export function isElementInteractive(element: EventTarget | null): boolean {
+  if (!element || !(element instanceof HTMLElement)) return false;
+
+  const tag = element.tagName.toLowerCase();
+
+  if (
+    ['button', 'input', 'select', 'textarea', 'a'].includes(tag) ||
+    element.hasAttribute('tabindex')
+  ) {
+    if (tag === 'a' && !(element as HTMLAnchorElement).href) return false;
+
+    return !element.hasAttribute('disabled');
+  }
+
+  return false;
 }
 
 export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
@@ -161,7 +197,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
 
     const hasActiveElements = React.useMemo(
       () => hasActiveElementsChecker(contentRef),
-      [contentRef.current] // Remove contentRef from dependencies to prevent infinite loops
+      [contentRef, contentRef.current]
     );
 
     const {
@@ -179,31 +215,9 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       id: defaultId,
       apiRef,
       focusTrap,
+      alignment = PopoverAlignment.center,
       ...other
     } = props;
-
-    const openPopover = React.useCallback(() => {
-      setIsOpen(true);
-
-      if (!hoverable) {
-        toggleRef.current.focus();
-      }
-
-      onOpen && typeof onOpen === 'function' && onOpen();
-    }, [hoverable, onOpen]);
-
-    const closePopover = React.useCallback(
-      event => {
-        setIsOpen(false);
-
-        if (toggleRef.current !== event.target && !hoverable) {
-          toggleRef.current.focus();
-        }
-
-        onClose && typeof onClose === 'function' && onClose(event);
-      },
-      [hoverable, onClose]
-    );
 
     React.useEffect(() => {
       if (apiRef) {
@@ -211,13 +225,16 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           closePopoverManually(event) {
             closePopover(event);
           },
+          openPopoverManually(event) {
+            openPopover();
+          },
         };
       }
 
       if (openByDefault) {
         openPopover();
       }
-    }, [apiRef, closePopover, openByDefault, openPopover]);
+    }, []);
 
     React.useEffect(() => {
       const handleEsc = event => {
@@ -231,7 +248,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       return () => {
         window.removeEventListener('keydown', handleEsc);
       };
-    }, [closePopover, isOpen]);
+    }, [isOpen]);
 
     const popoverId = useGenerateId(defaultId);
 
@@ -242,27 +259,49 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
 
     const isInverse = useIsInverse(resolvedProps.isInverse);
 
-    const handleMouseOver = React.useCallback(() => {
-      if (hoverable && !isDisabled) {
-        // Check for active elements right when hovering
-        const hasActive = hasActiveElementsChecker(contentRef);
-
-        if (!hasActive) {
-          setIsOpen(true);
-        }
+    const handleMouseOver = () => {
+      if (hoverable && !isDisabled && !hasActiveElements) {
+        setIsOpen(true);
       }
-    }, [hoverable, isDisabled, contentRef]);
+    };
 
-    const handleMouseLeave = React.useCallback(() => {
-      if (hoverable && !isDisabled && !hasActiveElementsChecker(contentRef)) {
+    const handleMouseLeave = () => {
+      if (hoverable && !isDisabled && !hasActiveElements) {
         setIsOpen(false);
       }
-    }, [hoverable, isDisabled, contentRef]);
+    };
+
+    function openPopover() {
+      setIsOpen(true);
+
+      if (!hoverable) {
+        toggleRef.current.focus();
+      }
+
+      onOpen && typeof onOpen === 'function' && onOpen();
+    }
+
+    function closePopover(event) {
+      setIsOpen(false);
+
+      if (event && event.type === 'blur') {
+        const relatedTarget = event.relatedTarget;
+
+        if (!isElementInteractive(relatedTarget) && !hoverable) {
+          toggleRef.current?.focus();
+        }
+      }
+
+      onClose && typeof onClose === 'function' && onClose(event);
+    }
 
     function handleKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Escape') {
-        event.nativeEvent.stopImmediatePropagation();
+        if (isOpen) {
+          event.stopPropagation();
+        }
         closePopover(event);
+        toggleRef.current?.focus();
       }
     }
 
@@ -277,7 +316,13 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       }
     }
 
-    const { refs, floatingStyles, placement, context } = useFloating({
+    const placement = React.useMemo(() => {
+      return alignment === PopoverAlignment.center
+        ? position
+        : `${position}-${alignment}`;
+    }, [position, alignment]);
+
+    const { refs, floatingStyles, context, elements, update } = useFloating({
       //flip() - Changes the placement of the floating element to keep it in view.
       //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
       //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
@@ -288,81 +333,62 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
         offset(hasPointer ? 12 : 4),
         arrow({ element: arrowRef }),
       ],
-      placement: position as unknown as AlignedPlacement,
+      placement: placement as AlignedPlacement,
       whileElementsMounted: autoUpdate,
     });
+
+    React.useEffect(() => {
+      const referenceElement = elements.reference;
+      const floatingElement = elements.floating;
+
+      if (isOpen && referenceElement && floatingElement) {
+        return autoUpdate(referenceElement, floatingElement, update);
+      }
+    }, [isOpen, elements, update]);
 
     const maxHeightString =
       typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight;
 
-    const getWidthString = () => {
-      if (width === 'target') {
-        return `${refs.reference.current?.getBoundingClientRect().width}px`;
-      }
+    const widthString =
+      width === 'target'
+        ? `${refs.reference.current?.getBoundingClientRect().width}px`
+        : typeof width === 'number'
+          ? `${width}px`
+          : width;
 
-      if (typeof width === 'number') {
-        return `${width}px`;
-      }
-
-      return width;
-    };
-
-    const widthString = getWidthString();
-
-    const onFocus = React.useCallback(() => {
-      if (hoverable && !isDisabled && !hasActiveElementsChecker(contentRef)) {
+    const onFocus = () => {
+      if (hoverable && !isDisabled && !hasActiveElements) {
         openPopover();
       }
-    }, [hoverable, isDisabled, openPopover, contentRef]);
-
-    const contextValue = React.useMemo(
-      () => ({
-        floatingStyles,
-        position: placement as unknown as PopoverPosition,
-        closePopover,
-        popoverTriggerId,
-        popoverContentId,
-        openPopover,
-        isInverse,
-        isOpen,
-        maxHeight: maxHeightString,
-        width: widthString,
-        contentRef,
-        setIsOpen,
-        setFloating: refs.setFloating,
-        setReference: refs.setReference,
-        arrowRef,
-        arrowContext: context,
-        toggleRef,
-        isDisabled,
-        hoverable,
-        hasPointer,
-        focusTrap,
-        hasActiveElements,
-      }),
-      [
-        floatingStyles,
-        placement,
-        closePopover,
-        openPopover,
-        isInverse,
-        isOpen,
-        maxHeightString,
-        widthString,
-        contentRef,
-        refs.setFloating,
-        refs.setReference,
-        context,
-        isDisabled,
-        hoverable,
-        hasPointer,
-        focusTrap,
-        hasActiveElements,
-      ]
-    );
+    };
 
     return (
-      <PopoverContext.Provider value={contextValue}>
+      <PopoverContext.Provider
+        value={{
+          floatingStyles,
+          position: placement as PopoverPlacement,
+          closePopover,
+          popoverTriggerId,
+          popoverContentId,
+          openPopover,
+          isInverse,
+          isOpen,
+          maxHeight: maxHeightString,
+          width: widthString,
+          contentRef,
+          setIsOpen,
+          setFloating: refs.setFloating,
+          setReference: refs.setReference,
+          arrowRef,
+          arrowContext: context,
+          toggleRef,
+          isDisabled,
+          hoverable,
+          hasPointer,
+          focusTrap,
+          hasActiveElements,
+        }}
+      >
         <StyledContainer
           {...other}
           onKeyDown={handleKeyDown}

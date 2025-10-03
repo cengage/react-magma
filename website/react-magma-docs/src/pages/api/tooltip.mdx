@@ -115,6 +115,63 @@ export function Example() {
 }
 ```
 
+## On non-interactive element
+
+The child element must be able to accept a React `ref`
+(for example, a native DOM element like `<button>`
+or a component created with `React.forwardRef`). If the
+child cannot accept a ref, the tooltip may not position correctly.
+
+<Alert variant="info">You can get around this by adding a wrapping element.<br />
+<b>For accessibility:</b> When using Tooltip on a non-interactive element, you should add <inlineCode>aria-label</inlineCode> with the tooltip content to the trigger element. This ensures screen readers will announce the tooltip content.</Alert>
+
+```tsx
+import React from 'react';
+
+import { Tooltip, Flex, FlexBehavior, FlexAlignItems } from 'react-magma-dom';
+import { HelpOutlineIcon } from 'react-magma-icons';
+
+export function Example() {
+  const tooltipContentShort = (
+    <>
+      Tooltip wrapped in <b>div</b>
+    </>
+  );
+  const tooltipContentLong = (
+    <>
+      Tooltip wrapped in <b>span</b>
+    </>
+  );
+
+  return (
+    <Flex
+      behavior={FlexBehavior.container}
+      alignItems={FlexAlignItems.center}
+      spacing={2}
+    >
+      <Tooltip content={tooltipContentShort}>
+        <div style={{ width: 'fit-content', height: 'fit-content' }}>
+          <HelpOutlineIcon
+            tabIndex="0"
+            size={40}
+            aria-label={'Tooltip wrapped in div'}
+          />
+        </div>
+      </Tooltip>
+
+      <Tooltip content={tooltipContentLong}>
+        <span>
+          <HelpOutlineIcon
+            tabIndex="0"
+            aria-label={'Tooltip wrapped in span'}
+          />
+        </span>
+      </Tooltip>
+    </Flex>
+  );
+}
+```
+
 ## Inverse
 
 The `isInverse` property is an optional boolean, that reverses the colors so that the component can better appear on a dark background.

@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { useDescendants } from '../../hooks/useDescendants';
+import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import {
   TreeItemSelectedInterface,
   TreeViewItemInterface,
@@ -14,8 +16,6 @@ import {
   isSelectedItemsChanged,
   isEqualArrays,
 } from './utils';
-import { useDescendants } from '../../hooks/useDescendants';
-import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 
 export { TreeItemSelectedInterface };
 
@@ -30,9 +30,22 @@ export interface TreeViewApi {
   showLess(): void;
   expandAll(): void;
   collapseAll(): void;
+  addItem(item: TreeViewItemInterface): void;
 }
 
 export interface UseTreeViewProps {
+  /**
+   * The ref object that allows TreeView manipulation.
+   * Actions available:
+   * selectItem({ itemId, checkedStatus }: Pick<TreeViewItemInterface, 'itemId' | 'checkedStatus'>): void - action that allows to change item selection,
+   * selectAll(): void - action that allows to select all items,
+   * clearAll(): void - action that allows to unselect all items.
+   * showMore(): void - action that gets called when a tree has hidden items and they get expanded.
+   * showLess(): void - action that gets called when a tree has hidden items and they get collapsed.
+   * expandAll(): void - action that allows to expand all items.
+   * collapseAll(): void - action that allows to collapse all items.
+   */
+  apiRef?: React.MutableRefObject<TreeViewApi | undefined>;
   /**
    * Text for aria-label attribute for the tree.
    * If there is no visible name for the element you can reference, use aria-label to provide the user with a recognizable accessible name.
@@ -46,6 +59,29 @@ export interface UseTreeViewProps {
    */
   ariaLabelledBy?: string;
   /**
+   * Only affects if selectable mode is TreeViewSelectable.multi.
+   * Determines if the parent checkbox will get selected when the user selects all its children checkboxes.
+   * When checkParents is enabled, the TreeView displays the indeterminate state of the parent checkboxes too.
+   * @default true
+   */
+  checkParents?: boolean;
+  /**
+   * Only affects if selectable mode is TreeViewSelectable.multi.
+   * Determines if the child checkboxes get selected when the user selects parent checkbox.
+   * @default true
+   */
+  checkChildren?: boolean;
+  children?: React.ReactNode[] | React.ReactNode;
+  /**
+   * Expand icon styles.
+   */
+  expandIconStyles?: ExpandIconStylesProps;
+  /**
+   * If true, every item is disabled
+   * @default false
+   */
+  isDisabled?: boolean;
+  /**
    * Array list of itemIds of items that should be expanded by default.
    * For all items expanded, provide an array with all the indexes
    * @default [] (no items expanded)
@@ -53,19 +89,11 @@ export interface UseTreeViewProps {
   initialExpandedItems?: Array<string>;
   isInverse?: boolean;
   /**
-   * Array list of itemIds of items that should be selected when the component renders
-   * * @default [] (no items selected)
+   * If false, top-level items will not be selectable in multi-select mode.
+   * Their checkboxes will be hidden, and they will only function as expandable groups.
+   * @default true
    */
-  preselectedItems?: Array<TreeItemSelectedInterface>;
-  /**
-   * How many items can be selected in the tree view: single, multi, off
-   * @default TreeViewSelectable.single
-   */
-  selectable?: TreeViewSelectable;
-  /**
-   * @internal
-   */
-  testId?: string;
+  isTopLevelSelectable?: boolean;
   /**
    * Action that fires when an item is expanded or collapsed
    * Return an array of itemIds of items that are expanded
@@ -84,42 +112,31 @@ export interface UseTreeViewProps {
     selectedItems: Array<TreeItemSelectedInterface>
   ) => void;
   /**
-   * Only affects if selectable mode is TreeViewSelectable.multi.
-   * Determines if the parent checkbox will get selected when the user selects all its children checkboxes.
-   * When checkParents is enabled, the TreeView displays the indeterminate state of the parent checkboxes too.
-   * @default true
+   * Array list of itemIds of items that should be selected when the component renders
+   * * @default [] (no items selected)
    */
-  checkParents?: boolean;
+  preselectedItems?: Array<TreeItemSelectedInterface>;
   /**
-   * Only affects if selectable mode is TreeViewSelectable.multi.
-   * Determines if the child checkboxes get selected when the user selects parent checkbox.
-   * @default true
+   * How many items can be selected in the tree view: single, multi, off
+   * @default TreeViewSelectable.single
    */
-  checkChildren?: boolean;
-  children?: React.ReactNode[] | React.ReactNode;
+  selectable?: TreeViewSelectable;
   /**
-   * The ref object that allows TreeView manipulation.
-   * Actions available:
-   * selectItem({ itemId, checkedStatus }: Pick<TreeViewItemInterface, 'itemId' | 'checkedStatus'>): void - action that allows to change item selection,
-   * selectAll(): void - action that allows to select all items,
-   * clearAll(): void - action that allows to unselect all items.
-   * showMore(): void - action that gets called when a tree has hidden items and they get expanded.
-   * showLess(): void - action that gets called when a tree has hidden items and they get collapsed.
-   * expandAll(): void - action that allows to expand all items.
-   * collapseAll(): void - action that allows to collapse all items.
+   * @internal
    */
-  apiRef?: React.MutableRefObject<TreeViewApi | undefined>;
+  testId?: string;
+}
+
+interface ExpandIconStylesProps {
   /**
-   * If true, every item is disabled
-   * @default false
+   * Size for the expand/collapse icon.
+   * @default 24
    */
-  isDisabled?: boolean;
+  size?: number;
   /**
-   * If false, top-level items will not be selectable in multi-select mode.
-   * Their checkboxes will be hidden, and they will only function as expandable groups.
-   * @default true
+   * Color for the expand/collapse icon.
    */
-  isTopLevelSelectable?: boolean;
+  color?: string;
 }
 
 export function useTreeView(props: UseTreeViewProps) {
@@ -135,6 +152,7 @@ export function useTreeView(props: UseTreeViewProps) {
     apiRef,
     isDisabled,
     isTopLevelSelectable = true,
+    expandIconStyles,
   } = props;
 
   const hasPreselectedItems = Boolean(preselectedItems);
@@ -252,6 +270,7 @@ export function useTreeView(props: UseTreeViewProps) {
       selectable,
       isDisabled,
       isTopLevelSelectable,
+      items,
     });
 
     setItems(prevItems => {
@@ -492,6 +511,79 @@ export function useTreeView(props: UseTreeViewProps) {
     handleExpandedChange(syntheticEvent, '');
   }, [handleExpandedChange]);
 
+  const addItem = React.useCallback(
+    (newItem: TreeViewItemInterface) => {
+      const newItems = items.map(item => {
+        if (item.itemId === newItem.parentId) {
+          item.hasOwnTreeItems = true;
+
+          if (checkParents) {
+            if (
+              item.checkedStatus === IndeterminateCheckboxStatus.checked &&
+              newItem.checkedStatus !== IndeterminateCheckboxStatus.checked
+            ) {
+              item.checkedStatus = IndeterminateCheckboxStatus.indeterminate;
+            } else if (
+              item.checkedStatus ===
+                IndeterminateCheckboxStatus.indeterminate &&
+              newItem.checkedStatus === IndeterminateCheckboxStatus.checked
+            ) {
+              const allChildrenChecked = [...items, newItem]
+                .filter(child => child.parentId === item.itemId)
+                .every(
+                  child =>
+                    child.checkedStatus === IndeterminateCheckboxStatus.checked
+                );
+
+              if (allChildrenChecked) {
+                item.checkedStatus = IndeterminateCheckboxStatus.checked;
+              }
+            }
+          }
+        }
+
+        return item;
+      });
+
+      if (
+        newItem.checkedStatus === IndeterminateCheckboxStatus.checked &&
+        selectable === TreeViewSelectable.single
+      ) {
+        newItems.forEach(item => {
+          item.checkedStatus = IndeterminateCheckboxStatus.unchecked;
+        });
+      }
+
+      const updatedItems = [...newItems, newItem];
+
+      if (newItem.parentId) {
+        setItems(
+          getInitialItems({
+            children,
+            preselectedItems: selectedItems,
+            checkParents,
+            checkChildren: false, // newly added children should preserve their state regardless of checkChildren
+            selectable,
+            isDisabled,
+            isTopLevelSelectable,
+            items: updatedItems,
+          })
+        );
+      } else {
+        setItems(updatedItems);
+      }
+    },
+    [
+      checkParents,
+      children,
+      isDisabled,
+      isTopLevelSelectable,
+      items,
+      selectable,
+      selectedItems,
+    ]
+  );
+
   React.useEffect(() => {
     if (apiRef) {
       apiRef.current = {
@@ -502,6 +594,7 @@ export function useTreeView(props: UseTreeViewProps) {
         showLess,
         expandAll,
         collapseAll,
+        addItem,
       };
     }
   }, [
@@ -512,6 +605,7 @@ export function useTreeView(props: UseTreeViewProps) {
     showLess,
     expandAll,
     collapseAll,
+    addItem,
     apiRef,
   ]);
 
@@ -565,6 +659,7 @@ export function useTreeView(props: UseTreeViewProps) {
     selectItem,
     handleExpandedChange,
     expandedSet,
+    expandIconStyles,
     isTopLevelSelectable,
   };
 

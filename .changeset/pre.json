@@ -2,14 +2,15 @@
   "mode": "pre",
   "tag": "next",
   "initialVersions": {
-    "@react-magma/charts": "11.0.0",
-    "@react-magma/dropzone": "11.0.0",
-    "react-magma-dom": "4.9.0",
-    "react-magma-docs": "5.1.2",
-    "react-magma-landing": "1.1.6"
+    "@react-magma/charts": "12.0.0",
+    "@react-magma/dropzone": "12.0.0",
+    "react-magma-dom": "4.10.0",
+    "playwright": "1.0.0",
+    "react-magma-docs": "5.2.0",
+    "react-magma-landing": "1.1.8"
   },
   "changesets": [
-    "manually-sync-4.9.0",
-    "updateReadMe"
+    "manually-sync-4.10.0",
+    "storybook-csf3"
   ]
 }

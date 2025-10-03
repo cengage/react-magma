@@ -99,6 +99,12 @@ export const Default = {
           sendFiles
           labelText="Upload files"
           helperMessage="Only PNG, JPG, and SVG files with a max size of 1MB"
+          dropzoneOptions={{
+            onDropAccepted: files => {
+              // eslint-disable-next-line no-console
+              console.log('Accepted files:', files);
+            },
+          }}
         />
       </div>
     );

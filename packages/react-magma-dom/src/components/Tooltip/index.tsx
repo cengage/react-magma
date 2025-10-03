@@ -149,49 +149,65 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
 
       return !isHidden;
     }
-  }, [arrowElement]);
+  }, [arrowStyle, arrowElement, arrowElement.current]);
 
-  const { refs, floatingStyles, placement, context } = useFloating({
-    //flip() - Changes the placement of the floating element to keep it in view.
-    //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
-    //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
-    //arrow() - Positions an arrow element pointing at the reference element, ensuring proper alignment.
-    middleware: [
-      flip(),
-      shift(),
-      offset(isArrowVisible ? 14 : 0),
-      ...(isArrowVisible ? [arrow({ element: arrowElement })] : []),
-    ],
-    placement: (props.position ??
-      TooltipPosition.top) as unknown as AlignedPlacement,
-    whileElementsMounted: autoUpdate,
-  });
+  const { refs, floatingStyles, placement, context, elements, update } =
+    useFloating({
+      //flip() - Changes the placement of the floating element to keep it in view.
+      //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
+      //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
+      //arrow() - Positions an arrow element pointing at the reference element, ensuring proper alignment.
+      middleware: [
+        flip(),
+        shift(),
+        offset(isArrowVisible ? 14 : 0),
+        ...(isArrowVisible ? [arrow({ element: arrowElement })] : []),
+      ],
+      placement: (position ??
+        TooltipPosition.top) as unknown as AlignedPlacement,
+      whileElementsMounted: autoUpdate,
+    });
+
+  React.useEffect(() => {
+    const referenceElement = elements.reference;
+    const floatingTooltipContent = elements.floating;
+
+    if (isVisible && referenceElement && floatingTooltipContent) {
+      return autoUpdate(referenceElement, floatingTooltipContent, update);
+    }
+  }, [isVisible, elements, update]);
 
   const combinedRef = useForkedRef(ref, refs.setReference);
 
-  const hideTooltip = React.useCallback(() => {
-    setIsVisible(props.open);
-  }, [props.open]);
-
-  const handleKeyDown = React.useCallback(
-    (event: React.KeyboardEvent | KeyboardEvent) => {
+  React.useEffect(() => {
+    const handleEsc = event => {
       if (event.key === 'Escape') {
         hideTooltip();
       }
-    },
-    [hideTooltip]
-  );
+    };
 
-  React.useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', handleEsc);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keydown', handleEsc);
     };
-  }, [handleKeyDown]);
+  }, []);
+
+  function handleKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'Escape') {
+      if (isVisible) {
+        event.stopPropagation();
+      }
+      hideTooltip();
+    }
+  }
 
   function showTooltip() {
     setIsVisible(true);
+  }
+
+  function hideTooltip() {
+    setIsVisible(props.open);
   }
 
   const id = useGenerateId(defaultId);
@@ -251,7 +267,7 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
             }
             theme={theme}
             role="tooltip"
-            data-tooltip-placement={placement ?? TooltipPosition.top}
+            data-tooltip-placement={placement ? placement : TooltipPosition.top}
           >
             {content}
           </StyledTooltip>

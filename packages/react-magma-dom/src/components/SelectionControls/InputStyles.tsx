@@ -33,12 +33,6 @@ export const DisplayInputStyles = props => css`
   }
 `;
 
-export const DisplayInputActiveStyles = css`
-  opacity: 0.4;
-  transform: scale(0);
-  transition: transform 0s;
-`;
-
 export function buildDisplayInputActiveBackground(props) {
   return props.isInverse
     ? props.theme.colors.neutral100
