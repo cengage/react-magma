@@ -12,6 +12,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "a11y-docs-img-empty-alts",
     "manually-sync-4.10.0",
     "storybook-csf3"
   ]
