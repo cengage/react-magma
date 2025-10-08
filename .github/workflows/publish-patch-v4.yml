@@ -1,8 +1,8 @@
-name: Publish Patch V5 (patch-v5/*)
-on:
+name: "Publish Patch V4 (patch-v4/*)"
+"on":
   push:
     branches:
-      - 'patch-v5/*'
+      - 'patch-v4/*'
 jobs:
   build:
     runs-on: macos-latest
