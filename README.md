@@ -22,7 +22,15 @@ This site has general usage information, as well as information on all of the av
 
 ### System Dependencies
 
-Node v18.20.4 or greater with npm v10.7.0 or greater
+**React Magma v4:**
+
+- React v17
+- Node v18.20.4 or greater with npm v10.7.0 or greater
+
+**React Magma v5:**
+
+- React v18
+- Node v20.10.0 or greater with npm v10.7.0 or greater
 
 ### Steps to Run Documentation locally
 
@@ -329,6 +337,7 @@ BREAKING CHANGE: description of what part of the API brakes with this commit"
 </details>
 
 #### Playwright
+
 To install the required browsers (Chromium, Firefox, WebKit) used by Playwright: (should be run from the root of the project)
 
 ```
