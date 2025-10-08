@@ -102,14 +102,17 @@ export const WithSkipLink = () => {
         tribal knowledge increase the pipelines, but run it up the flag pole.
       </Paragraph>
       <SkipLinkContent>
-        <Paragraph id="last-one">
-          Turn the crank regroup can we align on lunch orders, so regroup, yet
-          the last person we talked to said this would be ready, for this vendor
-          is incompetent , or pipeline. We&apos;ve bootstrapped the model
-          zeitgeist, so let&apos;s schedule a standup during the sprint to
-          review our kpis, so not the long pole in my tent we&apos;re ahead of
-          the curve on that one, and we&apos;re ahead of the curve on that one.
-        </Paragraph>
+        <div style={{ backgroundColor: magma.colors.neutral100 }}>
+          <Paragraph id="last-one" style={{ color: magma.colors.neutral700 }}>
+            Turn the crank regroup can we align on lunch orders, so regroup, yet
+            the last person we talked to said this would be ready, for this
+            vendor is incompetent , or pipeline. We&apos;ve bootstrapped the
+            model zeitgeist, so let&apos;s schedule a standup during the sprint
+            to review our kpis, so not the long pole in my tent we&apos;re ahead
+            of the curve on that one, and we&apos;re ahead of the curve on that
+            one.
+          </Paragraph>
+        </div>
       </SkipLinkContent>
     </div>
   );
