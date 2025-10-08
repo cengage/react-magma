@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react';
 import { ImageIcon, FavoriteIcon, WorkIcon } from 'react-magma-icons';
 
 import { magma } from '../../theme/magma';
