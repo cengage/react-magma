@@ -1,0 +1,82 @@
+name: Publish Next (v4/dev)
+on:
+  push:
+    branches:
+      - v4/dev
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup
+        uses: actions/setup-node@v2
+        with:
+          node-version-file: '.nvmrc'
+          check-latest: true
+      - name: Check Node version
+        run: node -v
+      - name: Update NPM version
+        run: npm install -g "npm@^10.8.2"
+      - name: Install
+        run: npm ci --legacy-peer-deps
+      - name: Test
+        run: npm test
+      - name: Coverage
+        uses: codecov/codecov-action@v1
+      - name: Configure NPM
+        run: |
+          git config --global user.name 'github-bot'
+          git config --global user.email 'github-bot@users.noreply.github.com'
+          echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} > .npmrc
+      - name: Check if Prerelease
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: ".changeset/pre.json"
+      - name: Enter Prerelease Mode
+        if: steps.check_files.outputs.files_exists == 'false'
+        run: |
+          npm run version:prerelease
+          git add .changeset/pre.json
+      - name: Publish
+        run: |
+          npm run version:pkgs
+          git commit -am "chore: enter prerelease mode"
+          npm run release
+          git push --follow-tags
+      - name: Get Alias
+        id: info
+        run: |
+          echo "::set-output name=alias::$(npm run --silent getAlias)"
+          echo "::set-output name=version::$(npm run --silent getVersion)"
+      - name: Build Docs
+        run: npm run build:docs
+      - name: Build Storybook
+        run: npm run build:storybook
+      - name: Deploy Docs to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './website/react-magma-docs/public'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy from GitHub Actions'
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+          alias: next
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Deploy v4 Dev Storybook to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './storybook-static'
+          production-branch: v4/main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: false
+          alias: storybook-preview-v4-dev
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
