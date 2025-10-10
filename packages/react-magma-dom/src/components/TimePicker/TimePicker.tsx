@@ -93,13 +93,9 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
     const i18n = React.useContext(I18nContext);
 
     const handleNumericBeforeInput = (e: React.FormEvent<HTMLInputElement>) => {
-      const native = e.nativeEvent;
+      const native = e.nativeEvent as InputEvent;
 
-      if (
-        'data' in native &&
-        typeof native.data === 'string' &&
-        /\D/.test(native.data)
-      ) {
+      if (typeof native.data === 'string' && /\D/.test(native.data)) {
         e.preventDefault();
       }
     };
