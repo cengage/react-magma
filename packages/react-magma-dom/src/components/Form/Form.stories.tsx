@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react';
 import { SettingsIcon } from 'react-magma-icons';
 
 import { Button, ButtonColor, ButtonType } from '../Button';

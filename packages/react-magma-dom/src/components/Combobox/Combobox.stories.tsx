@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { action } from '@storybook/addon-actions';
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { Meta } from '@storybook/react';
+import { action } from 'storybook/actions';
 
 import { Button, ButtonType } from '../Button';
 import { Card } from '../Card';
@@ -12,7 +12,7 @@ import { LabelPosition } from '../Label';
 import { SelectOptions } from '../Select';
 import { Spacer } from '../Spacer';
 
-import { Combobox, ComboboxProps, MultiComboboxProps } from '.';
+import { Combobox, MultiComboboxProps } from '.';
 
 export default {
   title: 'Combobox',

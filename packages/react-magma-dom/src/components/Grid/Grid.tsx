@@ -111,8 +111,8 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   gridAutoFlow?: GridAutoFlow;
   /**
    * Semantic HTML tag to be used for the Grid
-   * Examples: `nav`, `footer`, `main`, `figure`, `aside`, etc.
-   * @default `div`
+   * Examples: \`nav\`, \`footer\`, \`main\`, \`figure\`, \`aside\`, etc.
+   * @default \`div\`
    */
   as?: string;
 }
@@ -144,8 +144,8 @@ export interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
   gridItemAlignSelf?: GridItemAlignSelf;
   /**
    * Semantic HTML tag to be used for the GridItem
-   * Examples: `nav`, `footer`, `main`, `figure`, `aside`, etc.
-   * @default `div`
+   * Examples: \`nav\`, \`footer\`, \`main\`, \`figure\`, \`aside\`, etc.
+   * @default \`div\`
    */
   as?: string;
 }

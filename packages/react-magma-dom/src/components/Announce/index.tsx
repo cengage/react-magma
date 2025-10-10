@@ -6,7 +6,7 @@ export interface AnnounceProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   children: React.ReactNode;
   /**
-   * Value of the `aria-live` attribute
+   * Value of the \`aria-live\` attribute.
    * @default AnnouncePoliteness.polite
    */
   politeness?: AnnouncePoliteness;

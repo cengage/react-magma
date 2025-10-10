@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react';
 import { Card } from 'react-magma-dom';
 
 import { CarbonChart, CarbonChartProps, CarbonChartType } from '.';

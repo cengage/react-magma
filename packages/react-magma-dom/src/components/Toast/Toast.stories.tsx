@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta } from '@storybook/react/types-6-0';
+import { Meta } from '@storybook/react';
 
 import { magma } from '../../theme/magma';
 import { AlertVariant } from '../AlertBase';

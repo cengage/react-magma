@@ -17,7 +17,7 @@ import {
   isEqualArrays,
 } from './utils';
 
-export { TreeItemSelectedInterface };
+export type { TreeItemSelectedInterface };
 
 export interface TreeViewApi {
   selectItem({

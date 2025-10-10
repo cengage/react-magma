@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryObj, Meta, StoryFn } from '@storybook/react/types-6-0';
+import { StoryObj, Meta, StoryFn } from '@storybook/react';
 import { AndroidIcon, EmailIcon, NotificationsIcon } from 'react-magma-icons';
 
 import { NavTab } from './NavTab';

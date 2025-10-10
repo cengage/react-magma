@@ -55,16 +55,32 @@ export function Example() {
     <I18nContext.Provider
       value={{
         ...defaultI18n,
+        months: {
+          long: {
+            january: 'Enero',
+            february: 'Febrero',
+            march: 'Marzo',
+            april: 'Abril',
+            may: 'Mayo',
+            june: 'Junio',
+            july: 'Julio',
+            august: 'Agosto',
+            september: 'Septiembre',
+            october: 'Octubre',
+            november: 'Noviembre',
+            december: 'Diciembre',
+          },
+        },
         days: {
           ...defaultI18n.days,
-          min: {
-            sunday: 'D',
-            monday: 'L',
-            tuesday: 'M',
-            wednesday: 'M',
-            thursday: 'J',
-            friday: 'V',
-            saturday: 'S',
+          short: {
+            sunday: 'Dom',
+            monday: 'Lun',
+            tuesday: 'Mar',
+            wednesday: 'Mié',
+            thursday: 'Jue',
+            friday: 'Vie',
+            saturday: 'Sáb',
           },
         },
         datePicker: {
@@ -77,6 +93,13 @@ export function Example() {
           nextMonthAriaLabel: 'Próximo Mes',
           disabledDayAriaLabel: 'No disponible. ',
           selectedDayAriaLabel: '(Seleccionado)',
+          todayAriaLabel: '(Hoy)',
+          today: 'Hoy',
+          navigateToCurrentDateAriaLabel: 'Navegar al mes y año actual',
+          backToCalendarAriaLabel: 'Volver al calendario',
+          backToCalendar: 'Volver al calendario',
+          selectMonth: 'Seleccione un mes',
+          selectYear: 'Seleccione un año',
           helpModal: {
             header: 'Atajos de teclado',
             helpButtonAriaLabel: 'Ayuda de calendario',

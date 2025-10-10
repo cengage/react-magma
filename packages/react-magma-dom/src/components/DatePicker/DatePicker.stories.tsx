@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta } from '@storybook/react/types-6-0';
+import { Meta } from '@storybook/react';
 import { isValid } from 'date-fns';
 
 import { I18nContext } from '../../i18n';

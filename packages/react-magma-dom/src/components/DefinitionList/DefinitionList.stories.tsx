@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { Meta } from '@storybook/react/types-6-0';
+import { Meta } from '@storybook/react';
 
 import { TypographyVisualStyle } from '../Typography';
 import { DefinitionList } from './DefinitionList';
