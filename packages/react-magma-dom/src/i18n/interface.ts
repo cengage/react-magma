@@ -123,6 +123,7 @@ export interface I18nInterface {
     today: string;
     navigateToCurrentDateAriaLabel: string;
     backToCalendarAriaLabel: string;
+    backToCalendar: string;
     selectMonth: string;
     selectYear: string;
 
