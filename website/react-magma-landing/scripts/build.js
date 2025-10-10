@@ -15,9 +15,10 @@ const cleanVersions = ({ versions, time, tags }) => {
     .sort(Object.keys(versions))
     .filter(a => a.match(/^\d+\.\d+\.\d+$/))
     .filter(a => {
-      if (semver.major(a) === 4) {
+      if (semver.major(a) === 4 || semver.major(a) === 5) {
         return true;
       }
+
       return SUPPORTED_LEGACY_VERSIONS.includes(a);
     })
     .map(version => {
@@ -40,6 +41,7 @@ const versionsByReactDependency = ({ versions, time, tags }) => {
   const allVersions = cleanVersions({ versions, time, tags });
 
   var versionsByReactDep = new Map();
+
   allVersions.forEach(versionObj => {
     if (!versionObj?.reactDependency.includes('^15.0.0')) {
       if (!versionsByReactDep.has(versionObj?.reactDependency)) {
@@ -50,8 +52,10 @@ const versionsByReactDependency = ({ versions, time, tags }) => {
   });
 
   const latestVersions = [];
+
   for (const [, value] of versionsByReactDep) {
     const latest = value.reverse()[0];
+
     latestVersions.push(latest);
   }
 
@@ -90,6 +94,7 @@ const getAllVersions = () => {
 
 const prepareVersionsWithRedirects = versions => {
   versions.v2Redirect = 'https://soft-elf-84cb2b.netlify.app/';
+
   return versions;
 };
 
