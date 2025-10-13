@@ -174,8 +174,6 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             data-testid="hoursTimeInput"
             id={hourId}
             isInverse={isInverse}
-            max="12"
-            min="1"
             onChange={handleHourChange}
             onBeforeInput={handleNumericBeforeInput}
             onKeyDown={e => handleHourKeyDown(e, handleHourChange)}
@@ -194,8 +192,6 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             data-testid="minutesTimeInput"
             id={minuteId}
             isInverse={isInverse}
-            max="59"
-            min="0"
             onChange={handleMinuteChange}
             onBeforeInput={handleNumericBeforeInput}
             onKeyDown={e => handleMinuteKeyDown(e, handleMinuteChange)}
