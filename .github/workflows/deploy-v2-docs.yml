@@ -17,18 +17,18 @@ jobs:
       - name: Setup
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: '22'
           check-latest: true
 
       - name: Install
-        run: npm install --legacy-peer-deps
+        run: NODE_OPTIONS="--openssl-legacy-provider" npm install --legacy-peer-deps
 
       - name: Add import statement in index.js
         run: |
           echo "import _styled from '@emotion/styled';" | cat - packages/react-magma-dom/dist/esm/index.js > temp && mv temp packages/react-magma-dom/dist/esm/index.js
 
       - name: Build Docs
-        run:  NODE_OPTIONS=--openssl-legacy-provider npm run build:docs
+        run:  NODE_OPTIONS="--openssl-legacy-provider" npm run build:docs
         env:
           PATH_PREFIX: /version/2.6.0
 
