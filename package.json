@@ -13,11 +13,11 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run build --concurrency=6 --no-progress",
-    "build:docs": "lerna run build --scope react-magma-docs --no-progress",
+    "build": "NODE_OPTIONS='--max-old-space-size=4096' lerna run build --concurrency=6 --no-progress",
+    "build:docs": "NODE_OPTIONS='--max-old-space-size=4096' lerna run build --scope react-magma-docs --no-progress",
     "build:landing": "node website/react-magma-landing/scripts/build.js",
-    "build:lite": "lerna run build --ignore react-magma-docs --concurrency=6 --no-progress",
-    "build:storybook": "storybook build",
+    "build:lite": "NODE_OPTIONS='--max-old-space-size=4096' lerna run build --ignore react-magma-docs --concurrency=6 --no-progress",
+    "build:storybook": "NODE_OPTIONS='--max-old-space-size=4096' storybook build",
     "changeset": "changeset add",
     "check:pkgs": "manypkg check",
     "clean": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes && rimraf node_modules",
