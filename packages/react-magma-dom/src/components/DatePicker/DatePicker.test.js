@@ -25,11 +25,6 @@ import { Modal } from '../Modal';
 
 import { DatePicker } from '.';
 
-HTMLCanvasElement.prototype.getContext = () => ({
-  font: '',
-  measureText: text => ({ width: text.length * 8 }),
-});
-
 const ClearingTheDate = args => {
   const [chosenDate, setChosenDate] = React.useState(undefined);
 
