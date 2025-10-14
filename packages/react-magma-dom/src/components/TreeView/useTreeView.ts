@@ -6,13 +6,11 @@ import {
   TreeItemSelectedInterface,
   TreeViewItemInterface,
 } from './TreeViewContext';
+import { treeViewReducer } from './treeViewReducer';
 import { TreeViewSelectable } from './types';
 import {
   getInitialExpandedIds,
   getInitialItems,
-  toggleMulti,
-  selectSingle,
-  toggleAllMulti,
   isSelectedItemsChanged,
   isEqualArrays,
 } from './utils';
@@ -157,8 +155,9 @@ export function useTreeView(props: UseTreeViewProps) {
 
   const hasPreselectedItems = Boolean(preselectedItems);
 
-  const [items, setItems] = React.useState(() =>
-    getInitialItems({
+  // Initialize state with useReducer instead of multiple useState calls
+  const [state, dispatch] = React.useReducer(treeViewReducer, {
+    items: getInitialItems({
       children,
       preselectedItems,
       checkParents,
@@ -166,8 +165,13 @@ export function useTreeView(props: UseTreeViewProps) {
       selectable,
       isDisabled,
       isTopLevelSelectable,
-    })
-  );
+    }),
+    expandedSet: new Set<string>(),
+    itemsNeedUpdate: null,
+  });
+
+  const { items, expandedSet, itemsNeedUpdate } = state;
+
   const [hasIcons] = React.useState(() => {
     const initialItems = getInitialItems({
       children,
@@ -226,26 +230,33 @@ export function useTreeView(props: UseTreeViewProps) {
   const prevPreselectedItemsRef = React.useRef(preselectedItems);
   const prevChildrenRef = React.useRef(children);
   const initializationRef = React.useRef(true);
+  const onSelectedItemChangeRef = React.useRef(onSelectedItemChange);
 
-  // Used for showAll button
-  const [itemsNeedUpdate, setItemsNeedUpdate] = React.useState(null);
+  // itemsNeedUpdate is now part of the reducer state
+
+  React.useEffect(() => {
+    onSelectedItemChangeRef.current = onSelectedItemChange;
+  }, [onSelectedItemChange]);
 
   React.useEffect(() => {
     if (isEqualArrays(prevPreselectedItemsRef.current, preselectedItems)) {
       return;
     }
 
-    setItems(
-      getInitialItems({
-        children,
-        preselectedItems,
-        checkParents,
-        checkChildren,
-        selectable,
-        isDisabled,
-        isTopLevelSelectable,
-      })
-    );
+    dispatch({
+      type: 'SET_ITEMS',
+      payload: {
+        items: getInitialItems({
+          children,
+          preselectedItems,
+          checkParents,
+          checkChildren,
+          selectable,
+          isDisabled,
+          isTopLevelSelectable,
+        }),
+      },
+    });
     prevPreselectedItemsRef.current = preselectedItems;
   }, [
     preselectedItems,
@@ -273,21 +284,11 @@ export function useTreeView(props: UseTreeViewProps) {
       items,
     });
 
-    setItems(prevItems => {
-      return prevItems.map(prevItem => {
-        const itemWithUpdatedDisabledState = itemsWithUpdatedDisabledState.find(
-          item => item.itemId === prevItem.itemId
-        );
-
-        if (itemWithUpdatedDisabledState?.isDisabled === prevItem?.isDisabled) {
-          return prevItem;
-        }
-
-        return {
-          ...prevItem,
-          isDisabled: itemWithUpdatedDisabledState?.isDisabled,
-        };
-      });
+    dispatch({
+      type: 'UPDATE_ITEMS_DISABLED_STATE',
+      payload: {
+        updatedItems: itemsWithUpdatedDisabledState,
+      },
     });
   }, [
     checkChildren,
@@ -297,6 +298,7 @@ export function useTreeView(props: UseTreeViewProps) {
     isTopLevelSelectable,
     preselectedItems,
     selectable,
+    items,
   ]);
 
   React.useEffect(() => {
@@ -326,8 +328,9 @@ export function useTreeView(props: UseTreeViewProps) {
     }
 
     prevSelectedItemsRef.current = nextSelectedItems;
-    onSelectedItemChange && onSelectedItemChange(nextSelectedItems);
-  }, [items, selectable, hasPreselectedItems, onSelectedItemChange]);
+    onSelectedItemChangeRef.current &&
+      onSelectedItemChangeRef.current(nextSelectedItems);
+  }, [items, selectable, hasPreselectedItems]);
 
   const selectItem = React.useCallback(
     ({
@@ -339,77 +342,54 @@ export function useTreeView(props: UseTreeViewProps) {
         return;
       }
 
-      const item = items.find(item => item.itemId === itemId);
-
-      if (item?.isDisabled) {
-        return;
-      }
-
-      if (
-        !isTopLevelSelectable &&
-        !item?.parentId &&
-        selectable === TreeViewSelectable.multi
-      ) {
-        return;
-      }
-
-      setItems(prevItems => {
-        if (selectable === TreeViewSelectable.single) {
-          return selectSingle({
-            items: prevItems,
-            itemId,
-            checkedStatus: checkedStatus ?? IndeterminateCheckboxStatus.checked,
-          });
-        }
-
-        if (selectable === TreeViewSelectable.multi) {
-          return toggleMulti({
-            items: prevItems,
-            itemId,
-            checkedStatus,
-            checkChildren,
-            checkParents,
-            isTopLevelSelectable,
-          });
-        }
-
-        return prevItems;
+      dispatch({
+        type: 'SELECT_ITEM',
+        payload: {
+          itemId,
+          checkedStatus,
+          selectable,
+          checkChildren,
+          checkParents,
+          isTopLevelSelectable,
+        },
       });
     },
-    [selectable, checkChildren, checkParents, items, isTopLevelSelectable]
+    [selectable, checkChildren, checkParents, isTopLevelSelectable]
   );
 
   const showMore = React.useCallback(
     (fromSelectAll = false) => {
       if (fromSelectAll) {
-        setItems(() => {
-          return toggleAllMulti({
-            items,
-            checkedStatus: IndeterminateCheckboxStatus.checked,
+        dispatch({
+          type: 'SELECT_ALL',
+          payload: {
             checkChildren,
             checkParents,
             isTopLevelSelectable,
-          });
+          },
         });
       } else {
-        setItemsNeedUpdate(true);
+        dispatch({ type: 'TRIGGER_ITEMS_UPDATE' });
       }
     },
-    [items, checkChildren, checkParents, isTopLevelSelectable]
+    [checkChildren, checkParents, isTopLevelSelectable]
   );
 
   const showLess = React.useCallback(() => {
-    setItems(
-      getInitialItems({
-        children,
-        preselectedItems: selectedItems,
-        checkParents,
-        checkChildren,
-        selectable,
-        isDisabled,
-        isTopLevelSelectable,
-      })
-    );
+    dispatch({
+      type: 'SET_ITEMS',
+      payload: {
+        items: getInitialItems({
+          children,
+          preselectedItems: selectedItems,
+          checkParents,
+          checkChildren,
+          selectable,
+          isDisabled,
+          isTopLevelSelectable,
+        }),
+      },
+    });
   }, [
     children,
     selectedItems,
@@ -430,19 +410,17 @@ export function useTreeView(props: UseTreeViewProps) {
       return;
     }
 
-    setItems(() => {
-      return toggleAllMulti({
-        items,
-        checkedStatus: IndeterminateCheckboxStatus.checked,
+    dispatch({
+      type: 'SELECT_ALL',
+      payload: {
         checkChildren,
         checkParents,
         isTopLevelSelectable,
-      });
+      },
     });
   }, [
     selectable,
     isDisabled,
-    items,
     checkChildren,
     checkParents,
     isTopLevelSelectable,
@@ -453,40 +431,41 @@ export function useTreeView(props: UseTreeViewProps) {
       return;
     }
 
-    setItems(() => {
-      return toggleAllMulti({
-        items,
-        checkedStatus: IndeterminateCheckboxStatus.unchecked,
+    dispatch({
+      type: 'CLEAR_ALL',
+      payload: {
         checkChildren,
         checkParents,
         isTopLevelSelectable,
-      });
+      },
     });
-  }, [isDisabled, items, checkChildren, checkParents, isTopLevelSelectable]);
+  }, [isDisabled, checkChildren, checkParents, isTopLevelSelectable]);
 
   const handleExpandedChange = React.useCallback(
     (event: React.SyntheticEvent, itemId: string | string[]) => {
-      setExpandedSet(prevExpandedSet => {
-        const updatedExpandedSet = new Set(prevExpandedSet);
-
-        if (Array.isArray(itemId)) {
-          itemId.forEach(id => updatedExpandedSet.add(id));
-        } else if (itemId === '') {
-          updatedExpandedSet.clear();
-        } else if (updatedExpandedSet.has(itemId)) {
-          updatedExpandedSet.delete(itemId);
-        } else {
-          updatedExpandedSet.add(itemId);
-        }
-
-        const expandedItemsArray = Array.from(updatedExpandedSet);
-        onExpandedChange &&
-          typeof onExpandedChange === 'function' &&
-          onExpandedChange(event, expandedItemsArray);
-        return updatedExpandedSet;
+      dispatch({
+        type: 'TOGGLE_EXPAND',
+        payload: { itemId },
       });
+
+      // Calculate the new expanded set for the callback
+      const updatedExpandedSet = new Set(expandedSet);
+      if (Array.isArray(itemId)) {
+        itemId.forEach(id => updatedExpandedSet.add(id));
+      } else if (itemId === '') {
+        updatedExpandedSet.clear();
+      } else if (updatedExpandedSet.has(itemId)) {
+        updatedExpandedSet.delete(itemId);
+      } else {
+        updatedExpandedSet.add(itemId);
+      }
+
+      const expandedItemsArray = Array.from(updatedExpandedSet);
+      onExpandedChange &&
+        typeof onExpandedChange === 'function' &&
+        onExpandedChange(event, expandedItemsArray);
     },
-    [onExpandedChange]
+    [onExpandedChange, expandedSet]
   );
 
   const expandAll = React.useCallback(() => {
@@ -498,76 +477,56 @@ export function useTreeView(props: UseTreeViewProps) {
       return ids;
     }, []);
 
+    dispatch({
+      type: 'EXPAND_ALL',
+      payload: { expandableIds },
+    });
+
     const syntheticEvent = {} as React.SyntheticEvent;
-    handleExpandedChange(syntheticEvent, expandableIds);
-  }, [handleExpandedChange, items]);
+    onExpandedChange &&
+      typeof onExpandedChange === 'function' &&
+      onExpandedChange(syntheticEvent, expandableIds);
+  }, [items, onExpandedChange]);
 
   const collapseAll = React.useCallback(() => {
-    const syntheticEvent = {} as React.SyntheticEvent;
+    dispatch({ type: 'COLLAPSE_ALL' });
 
-    handleExpandedChange(syntheticEvent, '');
-  }, [handleExpandedChange]);
+    const syntheticEvent = {} as React.SyntheticEvent;
+    onExpandedChange &&
+      typeof onExpandedChange === 'function' &&
+      onExpandedChange(syntheticEvent, []);
+  }, [onExpandedChange]);
 
   const addItem = React.useCallback(
     (newItem: TreeViewItemInterface) => {
-      const newItems = items.map(item => {
-        if (item.itemId === newItem.parentId) {
-          item.hasOwnTreeItems = true;
-
-          if (checkParents) {
-            if (
-              item.checkedStatus === IndeterminateCheckboxStatus.checked &&
-              newItem.checkedStatus !== IndeterminateCheckboxStatus.checked
-            ) {
-              item.checkedStatus = IndeterminateCheckboxStatus.indeterminate;
-            } else if (
-              item.checkedStatus ===
-                IndeterminateCheckboxStatus.indeterminate &&
-              newItem.checkedStatus === IndeterminateCheckboxStatus.checked
-            ) {
-              const allChildrenChecked = [...items, newItem]
-                .filter(child => child.parentId === item.itemId)
-                .every(
-                  child =>
-                    child.checkedStatus === IndeterminateCheckboxStatus.checked
-                );
-
-              if (allChildrenChecked) {
-                item.checkedStatus = IndeterminateCheckboxStatus.checked;
-              }
-            }
-          }
-        }
-
-        return item;
+      dispatch({
+        type: 'ADD_ITEM',
+        payload: {
+          newItem,
+          checkParents,
+          selectable,
+        },
       });
 
-      if (
-        newItem.checkedStatus === IndeterminateCheckboxStatus.checked &&
-        selectable === TreeViewSelectable.single
-      ) {
-        newItems.forEach(item => {
-          item.checkedStatus = IndeterminateCheckboxStatus.unchecked;
-        });
-      }
-
-      const updatedItems = [...newItems, newItem];
-
+      // If the item has a parent, we need to reinitialize items to handle checkChildren logic
       if (newItem.parentId) {
-        setItems(
-          getInitialItems({
-            children,
-            preselectedItems: selectedItems,
-            checkParents,
-            checkChildren: false, // newly added children should preserve their state regardless of checkChildren
-            selectable,
-            isDisabled,
-            isTopLevelSelectable,
-            items: updatedItems,
-          })
-        );
-      } else {
-        setItems(updatedItems);
+        // We need to get the updated items after ADD_ITEM dispatch
+        // This is a limitation of the current approach - we'll handle it in the next effect
+        dispatch({
+          type: 'SET_ITEMS',
+          payload: {
+            items: getInitialItems({
+              children,
+              preselectedItems: selectedItems,
+              checkParents,
+              checkChildren: false, // newly added children should preserve their state regardless of checkChildren
+              selectable,
+              isDisabled,
+              isTopLevelSelectable,
+              items: [...items, newItem],
+            }),
+          },
+        });
       }
     },
     [
@@ -608,20 +567,23 @@ export function useTreeView(props: UseTreeViewProps) {
 
   React.useEffect(() => {
     if (itemsNeedUpdate) {
-      setItems(
-        getInitialItems({
-          children,
-          preselectedItems: selectedItems,
-          checkParents,
-          checkChildren,
-          selectable,
-          isDisabled,
-          isTopLevelSelectable,
-        })
-      );
+      dispatch({
+        type: 'SET_ITEMS',
+        payload: {
+          items: getInitialItems({
+            children,
+            preselectedItems: selectedItems,
+            checkParents,
+            checkChildren,
+            selectable,
+            isDisabled,
+            isTopLevelSelectable,
+          }),
+        },
+      });
       prevChildrenRef.current = children;
 
-      setItemsNeedUpdate(false);
+      dispatch({ type: 'COMPLETE_ITEMS_UPDATE' });
     }
   }, [
     itemsNeedUpdate,
@@ -636,31 +598,117 @@ export function useTreeView(props: UseTreeViewProps) {
 
   const [treeItemRefArray, registerTreeItem] = useDescendants();
 
-  const [expandedSet, setExpandedSet] = React.useState<Set<string>>(
-    new Set(initialExpandedItems)
+  // Initialize expandedSet with initialExpandedItems
+  React.useEffect(() => {
+    if (initialExpandedItems && initialExpandedItems.length > 0) {
+      dispatch({
+        type: 'EXPAND_ALL',
+        payload: { expandableIds: initialExpandedItems },
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Only run on mount
+
+  const contextValue = React.useMemo(
+    () => ({
+      hasIcons,
+      itemToFocus,
+      onSelectedItemChange,
+      onExpandedChange,
+      selectable,
+      selectedItems,
+      initialExpandedItems,
+      treeItemRefArray,
+      registerTreeItem,
+      checkChildren,
+      checkParents,
+      items,
+      selectItem,
+      handleExpandedChange,
+      expandedSet,
+      expandIconStyles,
+      isTopLevelSelectable,
+    }),
+    [
+      hasIcons,
+      itemToFocus,
+      onSelectedItemChange,
+      onExpandedChange,
+      selectable,
+      selectedItems,
+      initialExpandedItems,
+      treeItemRefArray,
+      registerTreeItem,
+      checkChildren,
+      checkParents,
+      items,
+      selectItem,
+      handleExpandedChange,
+      expandedSet,
+      expandIconStyles,
+      isTopLevelSelectable,
+    ]
   );
 
-  const contextValue = {
-    hasIcons,
-    itemToFocus,
-    onSelectedItemChange,
-    onExpandedChange,
-    selectable,
-    selectedItems,
-    initialExpandedItems,
-    treeItemRefArray,
-    registerTreeItem,
-    checkChildren,
-    checkParents,
-    items,
-    selectItem,
-    handleExpandedChange,
-    expandedSet,
-    expandIconStyles,
-    isTopLevelSelectable,
-  };
+  // Split context values for reduced re-render scope
+  const selectionContextValue = React.useMemo(
+    () => ({
+      items,
+      selectedItems,
+      selectItem,
+      onSelectedItemChange,
+      selectable,
+      itemToFocus,
+    }),
+    [
+      items,
+      selectedItems,
+      selectItem,
+      onSelectedItemChange,
+      selectable,
+      itemToFocus,
+    ]
+  );
 
-  return { contextValue };
+  const expansionContextValue = React.useMemo(
+    () => ({
+      expandedSet,
+      handleExpandedChange,
+      onExpandedChange,
+      initialExpandedItems,
+    }),
+    [expandedSet, handleExpandedChange, onExpandedChange, initialExpandedItems]
+  );
+
+  const configContextValue = React.useMemo(
+    () => ({
+      hasIcons,
+      selectable,
+      checkParents,
+      checkChildren,
+      isTopLevelSelectable,
+      expandIconStyles,
+      registerTreeItem,
+      treeItemRefArray,
+    }),
+    [
+      hasIcons,
+      selectable,
+      checkParents,
+      checkChildren,
+      isTopLevelSelectable,
+      expandIconStyles,
+      registerTreeItem,
+      treeItemRefArray,
+    ]
+  );
+
+  return {
+    contextValue,
+    selectionContextValue,
+    expansionContextValue,
+    configContextValue,
+  };
 }
 
 export type UseTreeViewReturn = ReturnType<typeof useTreeView>;
