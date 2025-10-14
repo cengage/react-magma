@@ -4,7 +4,9 @@ import { IconProps } from 'react-magma-icons';
 
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import { TreeItem } from './TreeItem';
-import { TreeViewContext } from './TreeViewContext';
+import { TreeViewConfigContext } from './TreeViewConfigContext';
+import { TreeViewExpansionContext } from './TreeViewExpansionContext';
+import { TreeViewSelectionContext } from './TreeViewSelectionContext';
 import { TreeViewSelectable } from './types';
 import { filterNullEntries } from './utils';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
@@ -80,17 +82,21 @@ export const checkedStatusToBoolean = (
 export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const { children, itemDepth, itemId, onClick, parentDepth, topLevel } = props;
 
+  // Consume split contexts for reduced re-render scope
+  const { items, selectedItems, selectItem } = React.useContext(
+    TreeViewSelectionContext
+  );
+
+  const { expandedSet, handleExpandedChange } = React.useContext(
+    TreeViewExpansionContext
+  );
+
   const {
     registerTreeItem,
     selectable,
-    selectedItems,
     treeItemRefArray,
-    items,
-    selectItem,
     isTopLevelSelectable,
-    expandedSet,
-    handleExpandedChange,
-  } = React.useContext(TreeViewContext);
+  } = React.useContext(TreeViewConfigContext);
 
   const treeViewItemData = React.useMemo(() => {
     return items.find(item => item.itemId === itemId);
