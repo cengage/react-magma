@@ -55,6 +55,8 @@ export const MonthPicker: React.FunctionComponent<MonthPickerProps> = props => {
   const getTextWidth = (text: string, font: string) => {
     try {
       const canvas = document.createElement('canvas');
+      // Note: jsdom logs a console error here since Canvas 2D API is not implemented.
+      // Safe to ignore in test environment.
       const context = canvas?.getContext?.('2d');
 
       if (!context) return 0;
