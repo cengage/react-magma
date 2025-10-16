@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.1-next.3
+
+### Patch Changes
+
+- de7919a1b: fix: Update internalization for Date Picker.
+
 ## 5.2.1-next.2
 
 ### Patch Changes

@@ -13,6 +13,7 @@
   },
   "changesets": [
     "a11y-docs-img-empty-alts",
+    "fix-date-picker-internalization",
     "manually-sync-4.10.0",
     "storybook-csf3"
   ]
