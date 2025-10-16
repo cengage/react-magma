@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 4.10.1-next.0
+
+### Patch Changes
+
+- 10d3a7285: fix(DatePicker): fix issue with canvas (jsdom error)
+
 ### Minor Changes
 
 - ef8a2740a: feat(Button): Update icon size for `Button`, `IconButton`, `DropdownButton`, `ButtonGroup` and `ToggleButton`.
