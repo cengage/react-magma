@@ -9,11 +9,6 @@ import { magma } from '../../theme/magma';
 
 import { DateTimePicker } from '.';
 
-HTMLCanvasElement.prototype.getContext = () => ({
-  font: '',
-  measureText: text => ({ width: text.length * 8 }),
-});
-
 describe('DateTimePicker', () => {
   it('should find element by testId', () => {
     const testId = 'test-id';
