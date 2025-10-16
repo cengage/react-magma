@@ -188,6 +188,34 @@ export function useTimePicker(props: UseTimePickerProps) {
     if (event.key === 'ArrowRight') {
       minuteRef.current.focus();
     }
+
+    if (event.key === 'ArrowUp') {
+      const next = Number(hour || '0') + 1;
+
+      if (next > 12) return;
+
+      const newHour = calculateHour(next);
+
+      setHour(newHour);
+      setMinute(minute || '00');
+      updateTime(`${newHour}:${minute || '00'} ${amPm}`);
+
+      event.preventDefault();
+    }
+
+    if (event.key === 'ArrowDown') {
+      const prev = hour ? Number(hour) - 1 : 1;
+
+      if (prev < 1) return;
+
+      const newHour = calculateHour(prev);
+
+      setHour(newHour);
+      setMinute(minute || '00');
+      updateTime(`${newHour}:${minute || '00'} ${amPm}`);
+
+      event.preventDefault();
+    }
   }
 
   function handleMinuteKeyDown(event: React.KeyboardEvent, minChangeFunc) {
@@ -203,6 +231,32 @@ export function useTimePicker(props: UseTimePickerProps) {
 
     if (event.key === 'ArrowRight') {
       amPmRef.current.focus();
+    }
+
+    if (event.key === 'ArrowUp') {
+      const next = Number(minute || '0') + 1;
+
+      if (next > 59) return;
+
+      const newMinute = calculateMinute(next);
+
+      setMinute(newMinute);
+      setHour(hour || '12');
+      updateTime(`${hour || '12'}:${newMinute} ${amPm}`);
+      event.preventDefault();
+    }
+
+    if (event.key === 'ArrowDown') {
+      const prev = minute ? Number(minute) - 1 : 0;
+
+      if (prev < 0) return;
+
+      const newMinute = calculateMinute(prev);
+
+      setMinute(newMinute);
+      setHour(hour || '12');
+      updateTime(`${hour || '12'}:${newMinute} ${amPm}`);
+      event.preventDefault();
     }
   }
 

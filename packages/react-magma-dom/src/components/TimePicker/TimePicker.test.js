@@ -108,6 +108,52 @@ describe('TimePicker', () => {
       expect(getByTestId('minutesTimeInput')).toHaveFocus();
     });
 
+    it('should change the hour input if the up arrow key is clicked', () => {
+      const { getByTestId } = render(<TimePicker label="label" />);
+
+      const hoursInput = getByTestId('hoursTimeInput');
+      hoursInput.focus();
+
+      fireEvent.keyDown(hoursInput, { key: 'ArrowUp' });
+
+      expect(hoursInput.value).toEqual('01');
+
+      fireEvent.keyDown(hoursInput, { key: 'ArrowUp' });
+
+      expect(hoursInput.value).toEqual('02');
+
+      fireEvent.change(hoursInput, { target: { value: '12' } });
+
+      expect(hoursInput.value).toEqual('12');
+
+      fireEvent.keyDown(hoursInput, { key: 'ArrowUp' });
+
+      expect(hoursInput.value).toEqual('12');
+    });
+
+    it('should change the hour input if the down arrow key is clicked', () => {
+      const { getByTestId } = render(<TimePicker label="label" />);
+
+      const hoursInput = getByTestId('hoursTimeInput');
+      hoursInput.focus();
+
+      fireEvent.keyDown(hoursInput, { key: 'ArrowDown' });
+
+      expect(hoursInput.value).toEqual('01');
+
+      fireEvent.keyDown(hoursInput, { key: 'ArrowDown' });
+
+      expect(hoursInput.value).toEqual('01');
+
+      fireEvent.change(hoursInput, { target: { value: '12' } });
+
+      expect(hoursInput.value).toEqual('12');
+
+      fireEvent.keyDown(hoursInput, { key: 'ArrowDown' });
+
+      expect(hoursInput.value).toEqual('11');
+    });
+
     it('should call the onChange for a valid hour entered', () => {
       const onChange = jest.fn();
       const { getByTestId } = render(
@@ -232,6 +278,48 @@ describe('TimePicker', () => {
       fireEvent.keyDown(minsInput, { key: 'Backspace' });
 
       expect(onChange).toHaveBeenCalledWith('');
+    });
+
+    it('should change the minute input if the up arrow key is clicked', () => {
+      const { getByTestId } = render(<TimePicker label="label" />);
+
+      const minutesInput = getByTestId('minutesTimeInput');
+      minutesInput.focus();
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+
+      expect(minutesInput.value).toEqual('01');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+
+      expect(minutesInput.value).toEqual('02');
+
+      fireEvent.change(minutesInput, { target: { value: '59' } });
+
+      expect(minutesInput.value).toEqual('59');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+
+      expect(minutesInput.value).toEqual('59');
+    });
+
+    it('should change the minute input if the down arrow key is clicked', () => {
+      const { getByTestId } = render(<TimePicker label="label" />);
+
+      const minutesInput = getByTestId('minutesTimeInput');
+      minutesInput.focus();
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowDown' });
+
+      expect(minutesInput.value).toEqual('00');
+
+      fireEvent.change(minutesInput, { target: { value: '59' } });
+
+      expect(minutesInput.value).toEqual('59');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowDown' });
+
+      expect(minutesInput.value).toEqual('58');
     });
 
     it('should call the onChange for a valid minute entered', () => {
