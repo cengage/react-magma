@@ -55,12 +55,21 @@ export const MonthPicker: React.FunctionComponent<MonthPickerProps> = props => {
   }
 
   const getTextWidth = (text: string, font: string) => {
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
+    try {
+      const canvas = document.createElement('canvas');
+      // Note: jsdom logs a console error here since Canvas 2D API is not implemented.
+      // Safe to ignore in test environment.
+      const context = canvas?.getContext?.('2d');
 
-    context.font = font;
+      if (!context) return 0;
 
-    return context.measureText(text).width;
+      context.font = font;
+
+      return context.measureText(text).width;
+    } catch {
+      // jsdom throws "Not implemented: HTMLCanvasElement.prototype.getContext"
+      return 0;
+    }
   };
 
   const getMonthWidth = (month: string) => {
