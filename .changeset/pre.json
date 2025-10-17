@@ -12,10 +12,10 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
-    "a11y-docs-img-empty-alts",
     "fix-date-picker-internalization",
     "fix-datepicker-canvas-issue",
     "manually-sync-4.10.0",
+    "revert-a11y-docs-img-empty-alts",
     "storybook-csf3"
   ]
 }

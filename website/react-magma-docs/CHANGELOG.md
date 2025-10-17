@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.1-next.5
+
+### Patch Changes
+
+- ce9950359: fix(Docs): revert-replace "GATSBY_EMPTY_ALT" as alt text for empty alts.
+
 ## 5.2.1-next.4
 
 ### Patch Changes
