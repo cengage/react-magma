@@ -19,8 +19,8 @@
     "src"
   ],
   "scripts": {
-    "build": "rollup -c rollup.config.js",
-    "build-watch": "rollup -c rollup.config.js --watch",
+    "build": "rollup -c rollup.config.js --bundleConfigAsCjs",
+    "build-watch": "rollup -c rollup.config.js --watch --bundleConfigAsCjs",
     "lint": "eslint ./src",
     "test": "jest",
     "test-watch": "jest --watch"
