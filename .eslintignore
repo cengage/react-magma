@@ -5,3 +5,4 @@ coverage
 public
 .cache
 **/CHANGELOG.md
+packages/charts/src/components/CarbonChart/carbon-charts.css

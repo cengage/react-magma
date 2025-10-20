@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 
 import { Button } from '../Button';
 import { Card, CardBody } from '../Card';
@@ -9,7 +9,7 @@ import { Paragraph } from '../Paragraph';
 
 import { TimePicker, TimePickerProps } from '.';
 
-const Template: Story<TimePickerProps> = args => (
+const Template: StoryFn<TimePickerProps> = args => (
   <TimePicker {...args} labelText="Time Due" />
 );
 
@@ -41,27 +41,36 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {};
-
-export const Error = Template.bind({});
-Error.args = {
-  errorMessage: 'Please correct this error',
+export const Default = {
+  render: Template,
+  args: {},
 };
 
-export const Inverse = Template.bind({});
-Inverse.args = {
-  isInverse: true,
+export const Error = {
+  render: Template,
+
+  args: {
+    errorMessage: 'Please correct this error',
+  },
 };
-Inverse.decorators = [
-  Story => (
-    <Card isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
+
+export const Inverse = {
+  render: Template,
+
+  args: {
+    isInverse: true,
+  },
+
+  decorators: [
+    Story => (
+      <Card isInverse>
+        <CardBody>
+          <Story />
+        </CardBody>
+      </Card>
+    ),
+  ],
+};
 
 export const Events = () => {
   const [timeValue, setTimeValue] = React.useState<string | undefined>('');

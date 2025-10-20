@@ -21,12 +21,11 @@ import {
   ComboChart,
   ChartOptions,
 } from '@carbon/charts-react';
-import { Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 import { ThemeInterface, ThemeContext, useIsInverse } from 'react-magma-dom';
 
-import { carbonChartStyles } from './embeddedStyles';
+import './carbon-charts.css';
 
 export enum CarbonChartType {
   area = 'area',
@@ -615,20 +614,17 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     const groupsLength = Object.keys(buildColors()).length;
 
     return (
-      <>
-        <Global styles={carbonChartStyles} />
-        <CarbonChartWrapper
-          data-testid={testId}
-          ref={ref}
-          isInverse={isInverse}
-          theme={theme}
-          className="carbon-chart-wrapper"
-          groupsLength={groupsLength < 6 ? groupsLength : 14}
-          {...rest}
-        >
-          <ChartType data={dataSet} options={newOptions} />
-        </CarbonChartWrapper>
-      </>
+      <CarbonChartWrapper
+        data-testid={testId}
+        ref={ref}
+        isInverse={isInverse}
+        theme={theme}
+        className="carbon-chart-wrapper"
+        groupsLength={groupsLength < 6 ? groupsLength : 14}
+        {...rest}
+      >
+        <ChartType data={dataSet} options={newOptions} />
+      </CarbonChartWrapper>
     );
   }
 );

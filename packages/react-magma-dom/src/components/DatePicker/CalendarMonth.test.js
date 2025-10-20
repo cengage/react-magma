@@ -7,11 +7,6 @@ import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
 import { getCalendarMonthWeeks } from './utils';
 
-HTMLCanvasElement.prototype.getContext = () => ({
-  font: '',
-  measureText: text => ({ width: text.length * 8 }),
-});
-
 describe('Calendar Month', () => {
   beforeEach(() => {
     jest.useFakeTimers();

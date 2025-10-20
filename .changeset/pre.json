@@ -1,0 +1,22 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@react-magma/charts": "12.0.0",
+    "@react-magma/dropzone": "12.0.0",
+    "react-magma-dom": "4.10.0",
+    "@react-magma/schema-renderer": "12.0.0",
+    "@cengage-patterns/header": "13.0.0",
+    "playwright": "1.0.0",
+    "react-magma-docs": "5.2.0",
+    "react-magma-landing": "1.1.8"
+  },
+  "changesets": [
+    " carbon-charts-css",
+    "fix-date-picker-internalization",
+    "fix-datepicker-canvas-issue",
+    "manually-sync-4.10.0",
+    "revert-a11y-docs-img-empty-alts",
+    "storybook-csf3"
+  ]
+}

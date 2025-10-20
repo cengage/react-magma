@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react/types-6-0';
 import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
 
 import {
@@ -28,7 +28,7 @@ import { CustomTopicsRow } from './testUtils';
 
 import { Input, InputProps } from '.';
 
-const Template: Story<InputProps> = args => (
+const Template: StoryFn<InputProps> = args => (
   <>
     <Input {...args} labelText="Input label" />
     <br />
@@ -97,248 +97,288 @@ export default {
   errorMessage: '',
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  disabled: false,
-  helperMessage: 'Helper message',
-  isClearable: true,
-  isInverse: false,
-  labelWidth: 20,
-  placeholder: 'Placeholder text...',
-  type: InputType.text,
-};
-Default.parameters = { controls: { exclude: ['iconPosition'] } };
+export const Default = {
+  render: Template,
 
-export const Error = Template.bind({});
-Error.args = {
-  errorMessage: 'Please correct this error',
-};
-Error.parameters = { controls: { exclude: ['iconPosition'] } };
+  args: {
+    disabled: false,
+    helperMessage: 'Helper message',
+    isClearable: true,
+    isInverse: false,
+    labelWidth: 20,
+    placeholder: 'Placeholder text...',
+    type: InputType.text,
+  },
 
-export const Large = Template.bind({});
-Large.args = {
-  inputSize: InputSize.large,
-  isClearable: true,
-  isInverse: false,
+  parameters: { controls: { exclude: ['iconPosition'] } },
 };
-Large.parameters = { controls: { exclude: ['iconPosition'] } };
 
-export const IconPositions = (args: any) => {
-  return (
-    <>
-      <Input
-        {...args}
-        labelText="Icon Left"
-        icon={<NotificationsIcon />}
-        iconPosition={InputIconPosition.left}
-      />
-      <br />
-      <br />
-      <Input
-        {...args}
-        labelText="Icon Right"
-        icon={<WorkIcon />}
-        iconPosition={InputIconPosition.right}
-      />
-      <br />
-      <br />
-      <Input
-        {...args}
-        labelText="Icon Top"
-        icon={<HelpIcon />}
-        iconPosition={InputIconPosition.top}
-      />
-    </>
-  );
-};
-IconPositions.args = {
-  ...Default.args,
-  placeholder:
-    'Placeholder text... This is a very long placeholder text because it is fun!',
-  helperMessage: null,
-};
-IconPositions.parameters = { controls: { exclude: ['iconPosition'] } };
+export const Error = {
+  render: Template,
 
-export const File = Template.bind({});
-File.args = {
-  type: InputType.file,
-};
-File.parameters = { controls: { exclude: ['iconPosition', 'isClearable'] } };
+  args: {
+    errorMessage: 'Please correct this error',
+  },
 
-export const ClickableIcon = Template.bind({});
-ClickableIcon.args = {
-  ...Default.args,
-  icon: <NotificationsIcon />,
-  iconAriaLabel: 'Notifications',
-  onIconClick: () => {},
+  parameters: { controls: { exclude: ['iconPosition'] } },
 };
-ClickableIcon.parameters = { controls: { exclude: ['iconPosition'] } };
 
-export const Inverse = Template.bind({});
-Inverse.args = {
-  ...Default.args,
-  isInverse: true,
-  errorMessage: '',
-};
-Inverse.parameters = { controls: { exclude: ['iconPosition'] } };
+export const Large = {
+  render: Template,
 
-Inverse.decorators = [
-  Story => (
-    <Card isInverse>
-      <CardBody>
-        <Story />
-      </CardBody>
-    </Card>
-  ),
-];
+  args: {
+    inputSize: InputSize.large,
+    isClearable: true,
+    isInverse: false,
+  },
 
-export const HelpLink = (args: any) => {
-  const helpLinkLabel = 'Learn more';
-  const onHelpLinkClick = () => {
-    alert('Help link clicked!');
-  };
-  return (
-    <>
-      <Input labelText="Help link - top" {...args}>
-        <Tooltip content={helpLinkLabel}>
-          <IconButton
-            aria-label={helpLinkLabel}
-            icon={<HelpIcon />}
-            onClick={onHelpLinkClick}
-            type={ButtonType.button}
-            size={ButtonSize.small}
-            variant={ButtonVariant.link}
-          />
-        </Tooltip>
-      </Input>
-      <Spacer size={16} />
-      <Input
-        labelText="Help link - left"
-        labelPosition={LabelPosition.left}
-        {...args}
-      >
-        <Tooltip content={helpLinkLabel}>
-          <IconButton
-            aria-label={helpLinkLabel}
-            icon={<HelpIcon />}
-            onClick={onHelpLinkClick}
-            type={ButtonType.button}
-            size={ButtonSize.small}
-            variant={ButtonVariant.link}
-          />
-        </Tooltip>
-      </Input>
-      <Spacer size={16} />
-      <Input labelText="Help link - hidden" isLabelVisuallyHidden {...args}>
-        <Tooltip content={helpLinkLabel}>
-          <IconButton
-            aria-label={helpLinkLabel}
-            icon={<HelpIcon />}
-            onClick={onHelpLinkClick}
-            type={ButtonType.button}
-            size={ButtonSize.small}
-            variant={ButtonVariant.link}
-          />
-        </Tooltip>
-      </Input>
-    </>
-  );
+  parameters: { controls: { exclude: ['iconPosition'] } },
 };
-HelpLink.args = {
-  ...Default.args,
-  errorMessage: '',
-  helperMessage: 'Helper Message',
-  labelText: 'Label Text',
+
+export const IconPositions = {
+  render: (args: any) => {
+    return (
+      <>
+        <Input
+          {...args}
+          labelText="Icon Left"
+          icon={<NotificationsIcon />}
+          iconPosition={InputIconPosition.left}
+        />
+        <br />
+        <br />
+        <Input
+          {...args}
+          labelText="Icon Right"
+          icon={<WorkIcon />}
+          iconPosition={InputIconPosition.right}
+        />
+        <br />
+        <br />
+        <Input
+          {...args}
+          labelText="Icon Top"
+          icon={<HelpIcon />}
+          iconPosition={InputIconPosition.top}
+        />
+      </>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    placeholder:
+      'Placeholder text... This is a very long placeholder text because it is fun!',
+    helperMessage: null,
+  },
+
+  parameters: { controls: { exclude: ['iconPosition'] } },
 };
-HelpLink.parameters = {
-  controls: {
-    exclude: [
-      'isInverse',
-      'type',
-      'iconPosition',
-      'isLabelVisuallyHidden',
-      'labelPosition',
-    ],
+
+export const File = {
+  render: Template,
+
+  args: {
+    type: InputType.file,
+  },
+
+  parameters: { controls: { exclude: ['iconPosition', 'isClearable'] } },
+};
+
+export const ClickableIcon = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    icon: <NotificationsIcon />,
+    iconAriaLabel: 'Notifications',
+    onIconClick: () => {},
+  },
+
+  parameters: { controls: { exclude: ['iconPosition'] } },
+};
+
+export const Inverse = {
+  render: Template,
+
+  args: {
+    ...Default.args,
+    isInverse: true,
+    errorMessage: '',
+  },
+
+  parameters: { controls: { exclude: ['iconPosition'] } },
+
+  decorators: [
+    Story => (
+      <Card isInverse>
+        <CardBody>
+          <Story />
+        </CardBody>
+      </Card>
+    ),
+  ],
+};
+
+export const HelpLink = {
+  render: (args: any) => {
+    const helpLinkLabel = 'Learn more';
+    const onHelpLinkClick = () => {
+      alert('Help link clicked!');
+    };
+    return (
+      <>
+        <Input labelText="Help link - top" {...args}>
+          <Tooltip content={helpLinkLabel}>
+            <IconButton
+              aria-label={helpLinkLabel}
+              icon={<HelpIcon />}
+              onClick={onHelpLinkClick}
+              type={ButtonType.button}
+              size={ButtonSize.small}
+              variant={ButtonVariant.link}
+            />
+          </Tooltip>
+        </Input>
+        <Spacer size={16} />
+        <Input
+          labelText="Help link - left"
+          labelPosition={LabelPosition.left}
+          {...args}
+        >
+          <Tooltip content={helpLinkLabel}>
+            <IconButton
+              aria-label={helpLinkLabel}
+              icon={<HelpIcon />}
+              onClick={onHelpLinkClick}
+              type={ButtonType.button}
+              size={ButtonSize.small}
+              variant={ButtonVariant.link}
+            />
+          </Tooltip>
+        </Input>
+        <Spacer size={16} />
+        <Input labelText="Help link - hidden" isLabelVisuallyHidden {...args}>
+          <Tooltip content={helpLinkLabel}>
+            <IconButton
+              aria-label={helpLinkLabel}
+              icon={<HelpIcon />}
+              onClick={onHelpLinkClick}
+              type={ButtonType.button}
+              size={ButtonSize.small}
+              variant={ButtonVariant.link}
+            />
+          </Tooltip>
+        </Input>
+      </>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    errorMessage: '',
+    helperMessage: 'Helper Message',
+    labelText: 'Label Text',
+  },
+
+  parameters: {
+    controls: {
+      exclude: [
+        'isInverse',
+        'type',
+        'iconPosition',
+        'isLabelVisuallyHidden',
+        'labelPosition',
+      ],
+    },
   },
 };
 
-export const WithTwoIcons = () => {
-  const helpLinkLabel = 'Learn more';
-  const onHelpLinkClick = () => {
-    alert('Help link clicked!');
-  };
-  return (
-    <>
-      <Input
-        labelText="With two icons"
-        icon={<NotificationsIcon />}
-        iconPosition={InputIconPosition.left}
-      >
-        <Tooltip content={helpLinkLabel}>
-          <IconButton
-            aria-label={helpLinkLabel}
-            icon={<HelpIcon />}
-            onClick={onHelpLinkClick}
-            type={ButtonType.button}
-            size={ButtonSize.small}
-            variant={ButtonVariant.link}
-          />
-        </Tooltip>
-      </Input>
-    </>
-  );
-};
-WithTwoIcons.args = {
-  ...Default.args,
-};
-WithTwoIcons.parameters = {
-  controls: { exclude: ['isInverse', 'type', 'iconPosition'] },
+export const WithTwoIcons = {
+  render: () => {
+    const helpLinkLabel = 'Learn more';
+    const onHelpLinkClick = () => {
+      alert('Help link clicked!');
+    };
+    return (
+      <>
+        <Input
+          labelText="With two icons"
+          icon={<NotificationsIcon />}
+          iconPosition={InputIconPosition.left}
+        >
+          <Tooltip content={helpLinkLabel}>
+            <IconButton
+              aria-label={helpLinkLabel}
+              icon={<HelpIcon />}
+              onClick={onHelpLinkClick}
+              type={ButtonType.button}
+              size={ButtonSize.small}
+              variant={ButtonVariant.link}
+            />
+          </Tooltip>
+        </Input>
+      </>
+    );
+  },
+
+  args: {
+    ...Default.args,
+  },
+
+  parameters: {
+    controls: { exclude: ['isInverse', 'type', 'iconPosition'] },
+  },
 };
 
-export const NumberInput = (args: any) => {
-  const [inputVal, setInputVal] = React.useState(1);
-  const [hasError, setHasError] = React.useState(false);
+export const NumberInput = {
+  render: (args: any) => {
+    const [inputVal, setInputVal] = React.useState(1);
+    const [hasError, setHasError] = React.useState(false);
 
-  function handleChange(event: any) {
-    setInputVal(event.target.value);
-  }
-
-  React.useEffect(() => {
-    if (inputVal > 40 || inputVal < 1) {
-      setHasError(true);
-    } else {
-      setHasError(false);
+    function handleChange(event: any) {
+      setInputVal(event.target.value);
     }
-  }, [inputVal]);
 
-  return (
-    <Card
-      style={{ width: '250px', padding: '12px' }}
-      isInverse={args.isInverse}
-    >
-      <Input
-        labelText="Number 1-40 with long long long long label"
-        inputWrapperStyle={{ width: '64px' }}
-        type={InputType.number}
-        errorMessage={hasError ? 'Please enter a number between 1 - 40' : null}
-        min={1}
-        max={40}
-        value={inputVal}
-        onChange={handleChange}
-        {...args}
-      />
-    </Card>
-  );
-};
+    React.useEffect(() => {
+      if (inputVal > 40 || inputVal < 1) {
+        setHasError(true);
+      } else {
+        setHasError(false);
+      }
+    }, [inputVal]);
 
-NumberInput.args = {
-  disabled: false,
-  helperMessage: 'Enter a number 1 - 40',
-  isClearable: false,
-};
+    return (
+      <Card
+        style={{ width: '250px', padding: '12px' }}
+        isInverse={args.isInverse}
+      >
+        <Input
+          labelText="Number 1-40 with long long long long label"
+          inputWrapperStyle={{ width: '64px' }}
+          type={InputType.number}
+          errorMessage={
+            hasError ? 'Please enter a number between 1 - 40' : null
+          }
+          min={1}
+          max={40}
+          value={inputVal}
+          onChange={handleChange}
+          {...args}
+        />
+      </Card>
+    );
+  },
 
-NumberInput.parameters = {
-  controls: { exclude: ['type', 'iconPosition', 'labelWidth'] },
+  args: {
+    disabled: false,
+    helperMessage: 'Enter a number 1 - 40',
+    isClearable: false,
+  },
+
+  parameters: {
+    controls: { exclude: ['type', 'iconPosition', 'labelWidth'] },
+  },
 };
 
 export const PhoneInput = () => {

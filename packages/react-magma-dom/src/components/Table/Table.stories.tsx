@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react/types-6-0';
 
 import { magma } from '../../theme/magma';
 import { Announce } from '../Announce';
@@ -51,7 +51,7 @@ const rows = [
   ],
 ];
 
-const Template: Story<TableProps> = args => (
+const Template: StoryFn<TableProps> = args => (
   <Card isInverse={args.isInverse}>
     <CardBody>
       <Table tableTitle="Basic Usage Table" {...args}>
@@ -105,57 +105,63 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  hasHoverStyles: false,
-  hasOutsideBorder: false,
-  hasSquareCorners: false,
-  hasVerticalBorders: false,
-  hasZebraStripes: false,
-  isInverse: false,
-  tableTitle: 'Basic usage table',
+export const Default = {
+  render: Template,
+
+  args: {
+    hasHoverStyles: false,
+    hasOutsideBorder: false,
+    hasSquareCorners: false,
+    hasVerticalBorders: false,
+    hasZebraStripes: false,
+    isInverse: false,
+    tableTitle: 'Basic usage table',
+  },
 };
 
-export const SquareCorners = args => {
-  const pageIndex = 1;
-  const rowsPerPage = 10;
+export const SquareCorners = {
+  render: args => {
+    const pageIndex = 1;
+    const rowsPerPage = 10;
 
-  const rowsToShow = rowsLong.slice(
-    (pageIndex - 1) * rowsPerPage,
-    (pageIndex - 1) * rowsPerPage + rowsPerPage
-  );
+    const rowsToShow = rowsLong.slice(
+      (pageIndex - 1) * rowsPerPage,
+      (pageIndex - 1) * rowsPerPage + rowsPerPage
+    );
 
-  return (
-    <div style={{ background: magma.colors.neutral300, padding: '16px' }}>
-      <Table style={{ background: magma.colors.neutral100 }} {...args}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rowsToShow.map((row, i) => (
-            <TableRow key={`row${i}`}>
-              {row.map((cell, j) => (
-                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-              ))}
+    return (
+      <div style={{ background: magma.colors.neutral300, padding: '16px' }}>
+        <Table style={{ background: magma.colors.neutral100 }} {...args}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
+              <TableHeaderCell>Column</TableHeaderCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </div>
-  );
-};
-SquareCorners.args = {
-  hasSquareCorners: true,
-  hasOutsideBorder: false,
-  hasHoverStyles: false,
-  hasVerticalBorders: false,
-  hasZebraStripes: false,
-  tableTitle: 'Square corners',
+          </TableHead>
+          <TableBody>
+            {rowsToShow.map((row, i) => (
+              <TableRow key={`row${i}`}>
+                {row.map((cell, j) => (
+                  <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    );
+  },
+
+  args: {
+    hasSquareCorners: true,
+    hasOutsideBorder: false,
+    hasHoverStyles: false,
+    hasVerticalBorders: false,
+    hasZebraStripes: false,
+    tableTitle: 'Square corners',
+  },
 };
 
 const rowsLong = [
@@ -299,217 +305,163 @@ const rowsLong = [
   ],
 ];
 
-export const ControlledPagination = args => {
-  const [pageIndex, setPageIndex] = React.useState<number>(1);
-  const [rowsPerPage, setRowsPerPage] = React.useState<number>(
-    args.rowsPerPage ? args.rowsPerPage : 10
-  );
+export const ControlledPagination = {
+  render: args => {
+    const [pageIndex, setPageIndex] = React.useState<number>(1);
+    const [rowsPerPage, setRowsPerPage] = React.useState<number>(
+      args.rowsPerPage ? args.rowsPerPage : 10
+    );
 
-  function handleRowsPerPageChange(numberOfRows) {
-    setRowsPerPage(numberOfRows);
-    setPageIndex(1);
-  }
+    function handleRowsPerPageChange(numberOfRows) {
+      setRowsPerPage(numberOfRows);
+      setPageIndex(1);
+    }
 
-  function handlePageChange(_, page) {
-    setPageIndex(page);
-  }
+    function handlePageChange(_, page) {
+      setPageIndex(page);
+    }
 
-  const rowsToShow = rowsLong.slice(
-    (pageIndex - 1) * rowsPerPage,
-    (pageIndex - 1) * rowsPerPage + rowsPerPage
-  );
+    const rowsToShow = rowsLong.slice(
+      (pageIndex - 1) * rowsPerPage,
+      (pageIndex - 1) * rowsPerPage + rowsPerPage
+    );
 
-  return (
-    <Card isInverse={args.isInverse}>
-      <CardBody>
-        <Table {...args} hasTablePagination>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rowsToShow.map((row, i) => (
-              <TableRow key={`row${i}`}>
-                {row.map((cell, j) => (
-                  <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-                ))}
+    return (
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <Table {...args} hasTablePagination>
+            <TableHead>
+              <TableRow>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        <TablePagination
-          itemCount={rowsLong.length}
-          onRowsPerPageChange={handleRowsPerPageChange}
-          onPageChange={handlePageChange}
-          page={pageIndex}
-          rowsPerPage={rowsPerPage}
-          isInverse={args.isInverse}
-          hasOutsideBorder={args.hasOutsideBorder}
-          hasSquareCorners={args.hasSquareCorners}
-          rowsPerPageValues={args.rowsPerPageValues}
-        />
-      </CardBody>
-    </Card>
-  );
-};
-ControlledPagination.args = {
-  ...Default.args,
-  tableTitle: 'Controlled Pagination',
-  rowsPerPage: 10,
-  rowsPerPageValues: [10, 20, 50, 100],
-};
-
-export const UncontrolledPagination = args => {
-  const [pageIndex, setPageIndex] = React.useState<number>(1);
-  const [rowsPerPage, setRowsPerPage] = React.useState<number>(
-    args.defaultRowsPerPage ? args.defaultRowsPerPage : 10
-  );
-
-  function handlePageChange(_, page) {
-    setPageIndex(page);
-  }
-
-  function handleRowsPerPageChange(newNumberOfRows) {
-    setRowsPerPage(newNumberOfRows);
-  }
-
-  const rowsToShow = rowsLong.slice(
-    (pageIndex - 1) * rowsPerPage,
-    (pageIndex - 1) * rowsPerPage + rowsPerPage
-  );
-
-  return (
-    <Card isInverse={args.isInverse}>
-      <CardBody>
-        <Table {...args} hasTablePagination>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rowsToShow.map((row, i) => (
-              <TableRow key={`row${i}`}>
-                {row.map((cell, j) => (
-                  <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        <TablePagination
-          isInverse={args.isInverse}
-          itemCount={rowsLong.length}
-          onPageChange={handlePageChange}
-          onRowsPerPageChange={handleRowsPerPageChange}
-          defaultRowsPerPage={rowsPerPage}
-          hasOutsideBorder={args.hasOutsideBorder}
-          hasSquareCorners={args.hasSquareCorners}
-          rowsPerPageValues={args.rowsPerPageValues}
-        />
-      </CardBody>
-    </Card>
-  );
-};
-UncontrolledPagination.args = {
-  ...Default.args,
-  tableTitle: 'Uncontrolled Pagination',
-  defaultRowsPerPage: 10,
-  rowsPerPageValues: [10, 20, 50, 100],
-};
-
-export const PaginationWithSquareCorners = args => {
-  const [pageIndex, setPageIndex] = React.useState<number>(1);
-  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
-
-  function handlePageChange(_, page) {
-    setPageIndex(page);
-  }
-
-  function handleRowsPerPageChange(newNumberOfRows) {
-    setRowsPerPage(newNumberOfRows);
-  }
-
-  const rowsToShow = rowsLong.slice(
-    (pageIndex - 1) * rowsPerPage,
-    (pageIndex - 1) * rowsPerPage + rowsPerPage
-  );
-
-  return (
-    <div style={{ background: magma.colors.neutral300, padding: '16px' }}>
-      <Table
-        style={{ background: magma.colors.neutral100 }}
-        {...args}
-        hasTablePagination
-      >
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-            <TableHeaderCell>Column</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rowsToShow.map((row, i) => (
-            <TableRow key={`row${i}`}>
-              {row.map((cell, j) => (
-                <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+            </TableHead>
+            <TableBody>
+              {rowsToShow.map((row, i) => (
+                <TableRow key={`row${i}`}>
+                  {row.map((cell, j) => (
+                    <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+                  ))}
+                </TableRow>
               ))}
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <TablePagination
-        itemCount={rowsLong.length}
-        onRowsPerPageChange={handleRowsPerPageChange}
-        onPageChange={handlePageChange}
-        page={pageIndex}
-        rowsPerPage={rowsPerPage}
-        isInverse={args.isInverse}
-        hasOutsideBorder={args.hasOutsideBorder}
-        hasSquareCorners={args.hasSquareCorners}
-      />
-    </div>
-  );
+            </TableBody>
+          </Table>
+          <TablePagination
+            itemCount={rowsLong.length}
+            onRowsPerPageChange={handleRowsPerPageChange}
+            onPageChange={handlePageChange}
+            page={pageIndex}
+            rowsPerPage={rowsPerPage}
+            isInverse={args.isInverse}
+            hasOutsideBorder={args.hasOutsideBorder}
+            hasSquareCorners={args.hasSquareCorners}
+            rowsPerPageValues={args.rowsPerPageValues}
+          />
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    tableTitle: 'Controlled Pagination',
+    rowsPerPage: 10,
+    rowsPerPageValues: [10, 20, 50, 100],
+  },
 };
-PaginationWithSquareCorners.args = {
-  hasSquareCorners: true,
-  hasOutsideBorder: false,
-  hasHoverStyles: false,
-  hasVerticalBorders: false,
-  hasZebraStripes: false,
-  tableTitle: 'Pagination with square corners',
+
+export const UncontrolledPagination = {
+  render: args => {
+    const [pageIndex, setPageIndex] = React.useState<number>(1);
+    const [rowsPerPage, setRowsPerPage] = React.useState<number>(
+      args.defaultRowsPerPage ? args.defaultRowsPerPage : 10
+    );
+
+    function handlePageChange(_, page) {
+      setPageIndex(page);
+    }
+
+    function handleRowsPerPageChange(newNumberOfRows) {
+      setRowsPerPage(newNumberOfRows);
+    }
+
+    const rowsToShow = rowsLong.slice(
+      (pageIndex - 1) * rowsPerPage,
+      (pageIndex - 1) * rowsPerPage + rowsPerPage
+    );
+
+    return (
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <Table {...args} hasTablePagination>
+            <TableHead>
+              <TableRow>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rowsToShow.map((row, i) => (
+                <TableRow key={`row${i}`}>
+                  {row.map((cell, j) => (
+                    <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <TablePagination
+            isInverse={args.isInverse}
+            itemCount={rowsLong.length}
+            onPageChange={handlePageChange}
+            onRowsPerPageChange={handleRowsPerPageChange}
+            defaultRowsPerPage={rowsPerPage}
+            hasOutsideBorder={args.hasOutsideBorder}
+            hasSquareCorners={args.hasSquareCorners}
+            rowsPerPageValues={args.rowsPerPageValues}
+          />
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    tableTitle: 'Uncontrolled Pagination',
+    defaultRowsPerPage: 10,
+    rowsPerPageValues: [10, 20, 50, 100],
+  },
 };
 
-export const PaginationInverse = args => {
-  const [pageIndex, setPageIndex] = React.useState<number>(1);
-  const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
+export const PaginationWithSquareCorners = {
+  render: args => {
+    const [pageIndex, setPageIndex] = React.useState<number>(1);
+    const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
-  function handlePageChange(_, page) {
-    setPageIndex(page);
-  }
+    function handlePageChange(_, page) {
+      setPageIndex(page);
+    }
 
-  function handleRowsPerPageChange(newNumberOfRows) {
-    setRowsPerPage(newNumberOfRows);
-  }
+    function handleRowsPerPageChange(newNumberOfRows) {
+      setRowsPerPage(newNumberOfRows);
+    }
 
-  const rowsToShow = rowsLong.slice(
-    (pageIndex - 1) * rowsPerPage,
-    (pageIndex - 1) * rowsPerPage + rowsPerPage
-  );
+    const rowsToShow = rowsLong.slice(
+      (pageIndex - 1) * rowsPerPage,
+      (pageIndex - 1) * rowsPerPage + rowsPerPage
+    );
 
-  return (
-    <Card isInverse>
-      <CardBody>
-        <Table {...args} isInverse hasTablePagination>
+    return (
+      <div style={{ background: magma.colors.neutral300, padding: '16px' }}>
+        <Table
+          style={{ background: magma.colors.neutral100 }}
+          {...args}
+          hasTablePagination
+        >
           <TableHead>
             <TableRow>
               <TableHeaderCell>Column</TableHeaderCell>
@@ -530,415 +482,7 @@ export const PaginationInverse = args => {
         </Table>
         <TablePagination
           itemCount={rowsLong.length}
-          isInverse
-          onPageChange={handlePageChange}
           onRowsPerPageChange={handleRowsPerPageChange}
-          hasOutsideBorder={args.hasOutsideBorder}
-          hasSquareCorners={args.hasSquareCorners}
-        />
-      </CardBody>
-    </Card>
-  );
-};
-PaginationInverse.args = {
-  ...Default.args,
-  isInverse: true,
-  tableTitle: 'Pagination inverse',
-};
-
-export const RowColors = args => {
-  return (
-    <Card isInverse={args.isInverse}>
-      <CardBody>
-        <Table {...args}>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>Lorem ipsum</TableCell>
-              <TableCell>dolar sit</TableCell>
-              <TableCell>amet</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Lorem ipsum</TableCell>
-              <TableCell>dolar sit</TableCell>
-              <TableCell>amet</TableCell>
-            </TableRow>
-            <TableRow color={TableRowColor.success}>
-              <TableCell>Lorem ipsum</TableCell>
-              <TableCell>dolar sit</TableCell>
-              <TableCell>amet</TableCell>
-            </TableRow>
-            <TableRow color={TableRowColor.danger}>
-              <TableCell>Lorem ipsum</TableCell>
-              <TableCell>dolar sit</TableCell>
-              <TableCell>amet</TableCell>
-            </TableRow>
-            <TableRow color={TableRowColor.info}>
-              <TableCell>Lorem ipsum</TableCell>
-              <TableCell>dolar sit</TableCell>
-              <TableCell>amet</TableCell>
-            </TableRow>
-            <TableRow color={TableRowColor.warning}>
-              <TableCell>Lorem ipsum</TableCell>
-              <TableCell>dolar sit</TableCell>
-              <TableCell>amet</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </CardBody>
-    </Card>
-  );
-};
-RowColors.args = {
-  ...Default.args,
-  hasHoverStyles: true,
-  hasZebraStripe: true,
-  tableTitle: 'Row colors',
-};
-
-export const RowColorsInverse = args => {
-  return (
-    <Card isInverse>
-      <CardBody>
-        <Table {...args}>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow color={TableRowColor.success}>
-              <TableCell>Lorem ipsum</TableCell>
-              <TableCell>dolar sit</TableCell>
-              <TableCell>amet</TableCell>
-            </TableRow>
-            <TableRow color={TableRowColor.danger}>
-              <TableCell>Lorem ipsum</TableCell>
-              <TableCell>dolar sit</TableCell>
-              <TableCell>amet</TableCell>
-            </TableRow>
-            <TableRow color={TableRowColor.info}>
-              <TableCell>Lorem ipsum</TableCell>
-              <TableCell>dolar sit</TableCell>
-              <TableCell>amet</TableCell>
-            </TableRow>
-            <TableRow color={TableRowColor.warning}>
-              <TableCell>Lorem ipsum</TableCell>
-              <TableCell>dolar sit</TableCell>
-              <TableCell>amet</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Lorem ipsum</TableCell>
-              <TableCell>dolar sit</TableCell>
-              <TableCell>amet</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Lorem ipsum</TableCell>
-              <TableCell>dolar sit</TableCell>
-              <TableCell>amet</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Lorem ipsum</TableCell>
-              <TableCell>dolar sit</TableCell>
-              <TableCell>amet</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </CardBody>
-    </Card>
-  );
-};
-RowColorsInverse.args = {
-  ...Default.args,
-  isInverse: true,
-  tableTitle: 'Row colors Inverse',
-};
-
-export const Sortable = args => {
-  const products = [
-    { id: 1, name: 'Cheese', price: 5, stock: 20 },
-    { id: 2, name: 'Milk', price: 5, stock: 32 },
-    { id: 3, name: 'Yogurt', price: 3, stock: 12 },
-    { id: 4, name: 'Heavy Cream', price: 10, stock: 9 },
-    { id: 5, name: 'Butter', price: 2, stock: 99 },
-    { id: 6, name: 'Sour Cream ', price: 5, stock: 86 },
-  ];
-
-  const [sortConfig, setSortConfig] = React.useState({
-    key: 'name',
-    direction: TableSortDirection.ascending,
-    message: '',
-  });
-
-  const sortedItems = React.useMemo(() => {
-    const sortableItems = [...products];
-    if (sortConfig !== null) {
-      sortableItems.sort((a, b) => {
-        if (a[sortConfig.key] < b[sortConfig.key]) {
-          return sortConfig.direction === TableSortDirection.ascending ? -1 : 1;
-        }
-        if (a[sortConfig.key] > b[sortConfig.key]) {
-          return sortConfig.direction === TableSortDirection.ascending ? 1 : -1;
-        }
-        return 0;
-      });
-    }
-    return sortableItems;
-  }, [products, sortConfig]);
-
-  const requestSort = key => {
-    let direction = TableSortDirection.ascending;
-    if (
-      sortConfig &&
-      sortConfig.key === key &&
-      sortConfig.direction === TableSortDirection.ascending
-    ) {
-      direction = TableSortDirection.descending;
-    }
-    const message = `Table is sorted by ${key}, ${direction}`;
-    setSortConfig({ key, direction, message });
-  };
-
-  return (
-    <Card isInverse={args.isInverse}>
-      <CardBody>
-        <Table {...args}>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell
-                onSort={() => {
-                  requestSort('name');
-                }}
-                isSortable
-                sortDirection={
-                  sortConfig.key === 'name'
-                    ? sortConfig.direction
-                    : TableSortDirection.none
-                }
-              >
-                Name
-              </TableHeaderCell>
-              <TableHeaderCell
-                onSort={() => {
-                  requestSort('price');
-                }}
-                isSortable
-                align={TableCellAlign.right}
-                sortDirection={
-                  sortConfig.key === 'price'
-                    ? sortConfig.direction
-                    : TableSortDirection.none
-                }
-              >
-                Price
-              </TableHeaderCell>
-              <TableHeaderCell
-                onSort={() => {
-                  requestSort('stock');
-                }}
-                isSortable
-                align={TableCellAlign.right}
-                sortDirection={
-                  sortConfig.key === 'stock'
-                    ? sortConfig.direction
-                    : TableSortDirection.none
-                }
-              >
-                In Stock
-              </TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {sortedItems.map(item => (
-              <TableRow key={item.id}>
-                <TableCell>{item.name}</TableCell>
-                <TableCell align={TableCellAlign.right}>
-                  ${item.price}
-                </TableCell>
-                <TableCell align={TableCellAlign.right}>{item.stock}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-
-        <Announce>
-          <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
-        </Announce>
-      </CardBody>
-    </Card>
-  );
-};
-
-Sortable.args = {
-  ...Default.args,
-  tableTitle: 'Sortable Table',
-};
-
-export const WithDropdown = args => {
-  return (
-    <Card isInverse={args.isInverse}>
-      <CardBody>
-        <Table maxWidth={500} {...args}>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-              <TableCell>
-                <Dropdown isInverse={args.isInverse}>
-                  <DropdownButton>Basic Dropdown</DropdownButton>
-                  <DropdownContent>
-                    <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-                    <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-                    <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-                    <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-                    <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-                    <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-                    <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-                  </DropdownContent>
-                </Dropdown>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-              <TableCell>
-                <Select
-                  labelText="Select Example"
-                  items={[
-                    { label: 'Red', value: 'red' },
-                    { label: 'Blue', value: 'blue' },
-                    { label: 'Green', value: 'green' },
-                    { label: 'Yellow', value: 'yellow' },
-                  ]}
-                  isInverse={args.isInverse}
-                />
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-              <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
-              <TableCell>
-                <Combobox
-                  isMulti
-                  labelText="ComboBox Example"
-                  defaultItems={[
-                    { label: 'Pink', value: 'pink' },
-                    { label: 'Orange', value: 'orange' },
-                    { label: 'Purple', value: 'purple' },
-                  ]}
-                  isInverse={args.isInverse}
-                />
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </CardBody>
-    </Card>
-  );
-};
-WithDropdown.args = {
-  ...Default.args,
-  tableTitle: 'With dropdown',
-};
-
-export const AdjustableRowNumber = args => {
-  function getTableRows() {
-    const tableRows = [];
-    for (let i = 0; i < args.numberRows; i++) {
-      tableRows.push(
-        <TableRow key={`row${i}`}>
-          <TableCell key={`cell${i}-left`}>{i}</TableCell>
-          <TableCell key={`cell${i}-middle`}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </TableCell>
-          <TableCell key={`cell${i}-right`}>
-            Nullam bibendum diam vel felis consequat lacinia.
-          </TableCell>
-        </TableRow>
-      );
-    }
-    return tableRows;
-  }
-
-  return (
-    <Card isInverse={args.isInverse}>
-      <CardBody>
-        <Table {...args}>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell>Number</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>{getTableRows()}</TableBody>
-        </Table>
-      </CardBody>
-    </Card>
-  );
-};
-AdjustableRowNumber.args = {
-  ...Default.args,
-  numberRows: 300,
-  tableTitle: 'Adjustable Row Number Table',
-};
-
-export const NoRowsPerPageControl = args => {
-  const [pageIndex, setPageIndex] = React.useState<number>(1);
-  const rowsPerPage = 5;
-
-  function handlePageChange(_, page) {
-    setPageIndex(page);
-  }
-
-  const rowsToShow = rowsLong.slice(
-    (pageIndex - 1) * rowsPerPage,
-    (pageIndex - 1) * rowsPerPage + rowsPerPage
-  );
-
-  return (
-    <Card isInverse={args.isInverse}>
-      <CardBody>
-        <Table {...args} hasTablePagination>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-              <TableHeaderCell>Column</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rowsToShow.map((row, i) => (
-              <TableRow key={`row${i}`}>
-                {row.map((cell, j) => (
-                  <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-                ))}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        <TablePagination
-          itemCount={rowsLong.length}
           onPageChange={handlePageChange}
           page={pageIndex}
           rowsPerPage={rowsPerPage}
@@ -946,69 +490,572 @@ export const NoRowsPerPageControl = args => {
           hasOutsideBorder={args.hasOutsideBorder}
           hasSquareCorners={args.hasSquareCorners}
         />
-      </CardBody>
-    </Card>
-  );
-};
-NoRowsPerPageControl.args = {
-  ...Default.args,
-  numberRows: 300,
-  tableTitle: 'No Rows Per Page Control Table',
+      </div>
+    );
+  },
+
+  args: {
+    hasSquareCorners: true,
+    hasOutsideBorder: false,
+    hasHoverStyles: false,
+    hasVerticalBorders: false,
+    hasZebraStripes: false,
+    tableTitle: 'Pagination with square corners',
+  },
 };
 
-export const TitleTableAndOutsideBorder = Template.bind({});
-TitleTableAndOutsideBorder.args = {
-  hasHoverStyles: false,
-  hasOutsideBorder: true,
-  hasSquareCorners: false,
-  hasVerticalBorders: false,
-  hasZebraStripes: false,
-  isInverse: false,
-  tableTitle: <h2>Title table</h2>,
-};
+export const PaginationInverse = {
+  render: args => {
+    const [pageIndex, setPageIndex] = React.useState<number>(1);
+    const [rowsPerPage, setRowsPerPage] = React.useState<number>(10);
 
-export const CustomRowSpanAndColSpan = args => {
-  return (
-    <Card isInverse={args.isInverse}>
-      <CardBody>
-        <Table {...args}>
-          <TableHead>
-            <TableRow>
-              <TableHeaderCell
-                rowSpan={2}
-                style={{ textAlign: 'center', verticalAlign: 'middle' }}
-              >
-                Column with custom Row Span
-              </TableHeaderCell>
-              <TableHeaderCell colSpan={3} style={{ textAlign: 'center' }}>
-                Column with custom Col Span
-              </TableHeaderCell>
-            </TableRow>
-            <TableRow>
-              <TableHeaderCell>Sub Column 1</TableHeaderCell>
-              <TableHeaderCell>Sub Column 2</TableHeaderCell>
-              <TableHeaderCell>Sub Column 3</TableHeaderCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row, i) => (
-              <TableRow key={`row${i}`}>
-                {row.map((cell, j) => (
-                  <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
-                ))}
+    function handlePageChange(_, page) {
+      setPageIndex(page);
+    }
+
+    function handleRowsPerPageChange(newNumberOfRows) {
+      setRowsPerPage(newNumberOfRows);
+    }
+
+    const rowsToShow = rowsLong.slice(
+      (pageIndex - 1) * rowsPerPage,
+      (pageIndex - 1) * rowsPerPage + rowsPerPage
+    );
+
+    return (
+      <Card isInverse>
+        <CardBody>
+          <Table {...args} isInverse hasTablePagination>
+            <TableHead>
+              <TableRow>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </CardBody>
-    </Card>
-  );
+            </TableHead>
+            <TableBody>
+              {rowsToShow.map((row, i) => (
+                <TableRow key={`row${i}`}>
+                  {row.map((cell, j) => (
+                    <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <TablePagination
+            itemCount={rowsLong.length}
+            isInverse
+            onPageChange={handlePageChange}
+            onRowsPerPageChange={handleRowsPerPageChange}
+            hasOutsideBorder={args.hasOutsideBorder}
+            hasSquareCorners={args.hasSquareCorners}
+          />
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    isInverse: true,
+    tableTitle: 'Pagination inverse',
+  },
 };
-CustomRowSpanAndColSpan.args = {
-  hasSquareCorners: false,
-  hasOutsideBorder: true,
-  hasHoverStyles: false,
-  hasVerticalBorders: true,
-  hasZebraStripes: false,
-  tableTitle: 'Custom Row Span and Col Span',
+
+export const RowColors = {
+  render: args => {
+    return (
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <Table {...args}>
+            <TableHead>
+              <TableRow>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>Lorem ipsum</TableCell>
+                <TableCell>dolar sit</TableCell>
+                <TableCell>amet</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Lorem ipsum</TableCell>
+                <TableCell>dolar sit</TableCell>
+                <TableCell>amet</TableCell>
+              </TableRow>
+              <TableRow color={TableRowColor.success}>
+                <TableCell>Lorem ipsum</TableCell>
+                <TableCell>dolar sit</TableCell>
+                <TableCell>amet</TableCell>
+              </TableRow>
+              <TableRow color={TableRowColor.danger}>
+                <TableCell>Lorem ipsum</TableCell>
+                <TableCell>dolar sit</TableCell>
+                <TableCell>amet</TableCell>
+              </TableRow>
+              <TableRow color={TableRowColor.info}>
+                <TableCell>Lorem ipsum</TableCell>
+                <TableCell>dolar sit</TableCell>
+                <TableCell>amet</TableCell>
+              </TableRow>
+              <TableRow color={TableRowColor.warning}>
+                <TableCell>Lorem ipsum</TableCell>
+                <TableCell>dolar sit</TableCell>
+                <TableCell>amet</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    hasHoverStyles: true,
+    hasZebraStripe: true,
+    tableTitle: 'Row colors',
+  },
+};
+
+export const RowColorsInverse = {
+  render: args => {
+    return (
+      <Card isInverse>
+        <CardBody>
+          <Table {...args}>
+            <TableHead>
+              <TableRow>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow color={TableRowColor.success}>
+                <TableCell>Lorem ipsum</TableCell>
+                <TableCell>dolar sit</TableCell>
+                <TableCell>amet</TableCell>
+              </TableRow>
+              <TableRow color={TableRowColor.danger}>
+                <TableCell>Lorem ipsum</TableCell>
+                <TableCell>dolar sit</TableCell>
+                <TableCell>amet</TableCell>
+              </TableRow>
+              <TableRow color={TableRowColor.info}>
+                <TableCell>Lorem ipsum</TableCell>
+                <TableCell>dolar sit</TableCell>
+                <TableCell>amet</TableCell>
+              </TableRow>
+              <TableRow color={TableRowColor.warning}>
+                <TableCell>Lorem ipsum</TableCell>
+                <TableCell>dolar sit</TableCell>
+                <TableCell>amet</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Lorem ipsum</TableCell>
+                <TableCell>dolar sit</TableCell>
+                <TableCell>amet</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Lorem ipsum</TableCell>
+                <TableCell>dolar sit</TableCell>
+                <TableCell>amet</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Lorem ipsum</TableCell>
+                <TableCell>dolar sit</TableCell>
+                <TableCell>amet</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    isInverse: true,
+    tableTitle: 'Row colors Inverse',
+  },
+};
+
+export const Sortable = {
+  render: args => {
+    const products = [
+      { id: 1, name: 'Cheese', price: 5, stock: 20 },
+      { id: 2, name: 'Milk', price: 5, stock: 32 },
+      { id: 3, name: 'Yogurt', price: 3, stock: 12 },
+      { id: 4, name: 'Heavy Cream', price: 10, stock: 9 },
+      { id: 5, name: 'Butter', price: 2, stock: 99 },
+      { id: 6, name: 'Sour Cream ', price: 5, stock: 86 },
+    ];
+
+    const [sortConfig, setSortConfig] = React.useState({
+      key: 'name',
+      direction: TableSortDirection.ascending,
+      message: '',
+    });
+
+    const sortedItems = React.useMemo(() => {
+      const sortableItems = [...products];
+      if (sortConfig !== null) {
+        sortableItems.sort((a, b) => {
+          if (a[sortConfig.key] < b[sortConfig.key]) {
+            return sortConfig.direction === TableSortDirection.ascending
+              ? -1
+              : 1;
+          }
+          if (a[sortConfig.key] > b[sortConfig.key]) {
+            return sortConfig.direction === TableSortDirection.ascending
+              ? 1
+              : -1;
+          }
+          return 0;
+        });
+      }
+      return sortableItems;
+    }, [products, sortConfig]);
+
+    const requestSort = key => {
+      let direction = TableSortDirection.ascending;
+      if (
+        sortConfig &&
+        sortConfig.key === key &&
+        sortConfig.direction === TableSortDirection.ascending
+      ) {
+        direction = TableSortDirection.descending;
+      }
+      const message = `Table is sorted by ${key}, ${direction}`;
+      setSortConfig({ key, direction, message });
+    };
+
+    return (
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <Table {...args}>
+            <TableHead>
+              <TableRow>
+                <TableHeaderCell
+                  onSort={() => {
+                    requestSort('name');
+                  }}
+                  isSortable
+                  sortDirection={
+                    sortConfig.key === 'name'
+                      ? sortConfig.direction
+                      : TableSortDirection.none
+                  }
+                >
+                  Name
+                </TableHeaderCell>
+                <TableHeaderCell
+                  onSort={() => {
+                    requestSort('price');
+                  }}
+                  isSortable
+                  align={TableCellAlign.right}
+                  sortDirection={
+                    sortConfig.key === 'price'
+                      ? sortConfig.direction
+                      : TableSortDirection.none
+                  }
+                >
+                  Price
+                </TableHeaderCell>
+                <TableHeaderCell
+                  onSort={() => {
+                    requestSort('stock');
+                  }}
+                  isSortable
+                  align={TableCellAlign.right}
+                  sortDirection={
+                    sortConfig.key === 'stock'
+                      ? sortConfig.direction
+                      : TableSortDirection.none
+                  }
+                >
+                  In Stock
+                </TableHeaderCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {sortedItems.map(item => (
+                <TableRow key={item.id}>
+                  <TableCell>{item.name}</TableCell>
+                  <TableCell align={TableCellAlign.right}>
+                    ${item.price}
+                  </TableCell>
+                  <TableCell align={TableCellAlign.right}>
+                    {item.stock}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+
+          <Announce>
+            <VisuallyHidden>{sortConfig.message}</VisuallyHidden>
+          </Announce>
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    tableTitle: 'Sortable Table',
+  },
+};
+
+export const WithDropdown = {
+  render: args => {
+    return (
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <Table maxWidth={500} {...args}>
+            <TableHead>
+              <TableRow>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                <TableCell>
+                  <Dropdown isInverse={args.isInverse}>
+                    <DropdownButton>Basic Dropdown</DropdownButton>
+                    <DropdownContent>
+                      <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+                      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                      <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+                    </DropdownContent>
+                  </Dropdown>
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                <TableCell>
+                  <Select
+                    labelText="Select Example"
+                    items={[
+                      { label: 'Red', value: 'red' },
+                      { label: 'Blue', value: 'blue' },
+                      { label: 'Green', value: 'green' },
+                      { label: 'Yellow', value: 'yellow' },
+                    ]}
+                    isInverse={args.isInverse}
+                  />
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
+                <TableCell>
+                  <Combobox
+                    isMulti
+                    labelText="ComboBox Example"
+                    defaultItems={[
+                      { label: 'Pink', value: 'pink' },
+                      { label: 'Orange', value: 'orange' },
+                      { label: 'Purple', value: 'purple' },
+                    ]}
+                    isInverse={args.isInverse}
+                  />
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    tableTitle: 'With dropdown',
+  },
+};
+
+export const AdjustableRowNumber = {
+  render: args => {
+    function getTableRows() {
+      const tableRows = [];
+      for (let i = 0; i < args.numberRows; i++) {
+        tableRows.push(
+          <TableRow key={`row${i}`}>
+            <TableCell key={`cell${i}-left`}>{i}</TableCell>
+            <TableCell key={`cell${i}-middle`}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </TableCell>
+            <TableCell key={`cell${i}-right`}>
+              Nullam bibendum diam vel felis consequat lacinia.
+            </TableCell>
+          </TableRow>
+        );
+      }
+      return tableRows;
+    }
+
+    return (
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <Table {...args}>
+            <TableHead>
+              <TableRow>
+                <TableHeaderCell>Number</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>{getTableRows()}</TableBody>
+          </Table>
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    numberRows: 300,
+    tableTitle: 'Adjustable Row Number Table',
+  },
+};
+
+export const NoRowsPerPageControl = {
+  render: args => {
+    const [pageIndex, setPageIndex] = React.useState<number>(1);
+    const rowsPerPage = 5;
+
+    function handlePageChange(_, page) {
+      setPageIndex(page);
+    }
+
+    const rowsToShow = rowsLong.slice(
+      (pageIndex - 1) * rowsPerPage,
+      (pageIndex - 1) * rowsPerPage + rowsPerPage
+    );
+
+    return (
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <Table {...args} hasTablePagination>
+            <TableHead>
+              <TableRow>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+                <TableHeaderCell>Column</TableHeaderCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rowsToShow.map((row, i) => (
+                <TableRow key={`row${i}`}>
+                  {row.map((cell, j) => (
+                    <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          <TablePagination
+            itemCount={rowsLong.length}
+            onPageChange={handlePageChange}
+            page={pageIndex}
+            rowsPerPage={rowsPerPage}
+            isInverse={args.isInverse}
+            hasOutsideBorder={args.hasOutsideBorder}
+            hasSquareCorners={args.hasSquareCorners}
+          />
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    ...Default.args,
+    numberRows: 300,
+    tableTitle: 'No Rows Per Page Control Table',
+  },
+};
+
+export const TitleTableAndOutsideBorder = {
+  render: Template,
+
+  args: {
+    hasHoverStyles: false,
+    hasOutsideBorder: true,
+    hasSquareCorners: false,
+    hasVerticalBorders: false,
+    hasZebraStripes: false,
+    isInverse: false,
+    tableTitle: <h2>Title table</h2>,
+  },
+};
+
+export const CustomRowSpanAndColSpan = {
+  render: args => {
+    return (
+      <Card isInverse={args.isInverse}>
+        <CardBody>
+          <Table {...args}>
+            <TableHead>
+              <TableRow>
+                <TableHeaderCell
+                  rowSpan={2}
+                  style={{ textAlign: 'center', verticalAlign: 'middle' }}
+                >
+                  Column with custom Row Span
+                </TableHeaderCell>
+                <TableHeaderCell colSpan={3} style={{ textAlign: 'center' }}>
+                  Column with custom Col Span
+                </TableHeaderCell>
+              </TableRow>
+              <TableRow>
+                <TableHeaderCell>Sub Column 1</TableHeaderCell>
+                <TableHeaderCell>Sub Column 2</TableHeaderCell>
+                <TableHeaderCell>Sub Column 3</TableHeaderCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {rows.map((row, i) => (
+                <TableRow key={`row${i}`}>
+                  {row.map((cell, j) => (
+                    <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+                  ))}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    hasSquareCorners: false,
+    hasOutsideBorder: true,
+    hasHoverStyles: false,
+    hasVerticalBorders: true,
+    hasZebraStripes: false,
+    tableTitle: 'Custom Row Span and Col Span',
+  },
 };

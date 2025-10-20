@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react/types-6-0';
 
 import {
   historyOfTexas as historyOfTexasData,
@@ -53,8 +53,6 @@ const data = [
   },
 ];
 
-const Template: Story<ChartProps<any>> = args => <Chart {...args} />;
-
 export default {
   title: 'Chart',
   component: Chart,
@@ -65,22 +63,23 @@ const title = 'Annual sales figures for 2019';
 const description =
   'description - Lorem ipsum dolor sitamet, consectetur adipiscing elit.';
 
-export const Default = Template.bind({});
-Default.args = {
-  data: data,
-  description,
-  title,
-  type: 'line',
-  componentProps: {
-    xAxis: {
-      label: '2019 Annual Sales Figures',
-      tickFormat: ['Jan', 'Feb', 'March', 'April', 'May'],
-    },
-    yAxis: {
-      domain: [10, 80],
-      label: 'Conversion Rate',
-      tickFormat: t => `$${t}k`,
-      tickValues: [10, 20, 30, 40, 50, 60, 70, 80],
+export const Default = {
+  args: {
+    data: data,
+    description,
+    title,
+    type: 'line',
+    componentProps: {
+      xAxis: {
+        label: '2019 Annual Sales Figures',
+        tickFormat: ['Jan', 'Feb', 'March', 'April', 'May'],
+      },
+      yAxis: {
+        domain: [10, 80],
+        label: 'Conversion Rate',
+        tickFormat: t => `$${t}k`,
+        tickValues: [10, 20, 30, 40, 50, 60, 70, 80],
+      },
     },
   },
 };
@@ -298,36 +297,33 @@ const explicitData = [
   },
 ];
 
-const ExplicitDataTemplate: Story<ChartProps<ExplicitDataInterface>> = args => (
-  <Chart {...args} />
-);
-
-export const ExplicitData = ExplicitDataTemplate.bind({});
-ExplicitData.args = {
-  ...Default.args,
-  componentProps: {
-    ...Default.args.componentProps,
-    xAxis: {
-      ...Default.args.componentProps.xAxis,
-      tickFormat: [
-        'Jan',
-        'Feb',
-        'March',
-        'April',
-        'May',
-        'June',
-        'July',
-        'Aug',
-        'Sept',
-        'Oct',
-        'Nov',
-        'Dec',
-      ],
+export const ExplicitData = {
+  args: {
+    ...Default.args,
+    componentProps: {
+      ...Default.args.componentProps,
+      xAxis: {
+        ...Default.args.componentProps.xAxis,
+        tickFormat: [
+          'Jan',
+          'Feb',
+          'March',
+          'April',
+          'May',
+          'June',
+          'July',
+          'Aug',
+          'Sept',
+          'Oct',
+          'Nov',
+          'Dec',
+        ],
+      },
     },
+    data: explicitData,
+    x: 'month',
+    y: 'sales',
   },
-  data: explicitData,
-  x: 'month',
-  y: 'sales',
 };
 
 interface HistoryOfTexasInterface {
@@ -336,49 +332,43 @@ interface HistoryOfTexasInterface {
   label: string;
 }
 
-const HistoryOfTexasTemplate: Story<
-  ChartProps<HistoryOfTexasInterface>
-> = args => <Chart {...args} />;
-
-export const HistoryOfTexas = HistoryOfTexasTemplate.bind({});
-HistoryOfTexas.args = {
-  ...Default.args,
-  description: 'Number of enslaved people in Texas',
-  title: 'History of Texas',
-  componentProps: {
-    xAxis: {
-      label: 'Number of enslaved people',
-      tickValues: [1830, 1835, 1840, 1845, 1850, 1855, 1860, 1865],
+export const HistoryOfTexas = {
+  args: {
+    ...Default.args,
+    description: 'Number of enslaved people in Texas',
+    title: 'History of Texas',
+    componentProps: {
+      xAxis: {
+        label: 'Number of enslaved people',
+        tickValues: [1830, 1835, 1840, 1845, 1850, 1855, 1860, 1865],
+      },
+      yAxis: {
+        label: 'Year',
+        tickFormat: t => t.toLocaleString(),
+        tickValues: [
+          0, 20000, 40000, 60000, 80000, 100000, 120000, 140000, 160000, 180000,
+        ],
+      },
     },
-    yAxis: {
-      label: 'Year',
-      tickFormat: t => t.toLocaleString(),
-      tickValues: [
-        0, 20000, 40000, 60000, 80000, 100000, 120000, 140000, 160000, 180000,
-      ],
-    },
+    data: historyOfTexasData,
+    x: 'year',
+    y: 'number',
   },
-  data: historyOfTexasData,
-  x: 'year',
-  y: 'number',
 };
 
-const SpendingRevenueTemplate: Story<ChartProps<any>> = args => (
-  <Chart {...args} />
-);
-
-export const SpendingRevenue = SpendingRevenueTemplate.bind({});
-SpendingRevenue.args = {
-  data: spendingRevenueData,
-  title: 'Spending Revenue',
-  type: 'line',
-  componentProps: {
-    xAxis: {
-      label: '',
-    },
-    yAxis: {
-      label: 'Average %',
-      tickValues: [0, 2, 4, 6, 8, 10, 12, 14],
+export const SpendingRevenue = {
+  args: {
+    data: spendingRevenueData,
+    title: 'Spending Revenue',
+    type: 'line',
+    componentProps: {
+      xAxis: {
+        label: '',
+      },
+      yAxis: {
+        label: 'Average %',
+        tickValues: [0, 2, 4, 6, 8, 10, 12, 14],
+      },
     },
   },
 };
@@ -389,24 +379,21 @@ interface VotingParticipationInterface {
   label: string;
 }
 
-const VotingParticipationTemplate: Story<
-  ChartProps<VotingParticipationInterface>
-> = args => <Chart {...args} />;
-
-export const VotingParticipation = VotingParticipationTemplate.bind({});
-VotingParticipation.args = {
-  data: votingParticipationData,
-  title: 'Turnout in elections since 2000: US and Texas',
-  type: 'line',
-  componentProps: {
-    xAxis: {
-      label: 'Year',
+export const VotingParticipation = {
+  args: {
+    data: votingParticipationData,
+    title: 'Turnout in elections since 2000: US and Texas',
+    type: 'line',
+    componentProps: {
+      xAxis: {
+        label: 'Year',
+      },
+      yAxis: {
+        domain: [10, 80],
+        label: 'Percent',
+      },
     },
-    yAxis: {
-      domain: [10, 80],
-      label: 'Percent',
-    },
+    x: 'year',
+    y: 'percent',
   },
-  x: 'year',
-  y: 'percent',
 };

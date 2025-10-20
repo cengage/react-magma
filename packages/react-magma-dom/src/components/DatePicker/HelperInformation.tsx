@@ -173,7 +173,7 @@ export const HelperInformation: React.FunctionComponent<
               props.onReturnBack();
             }}
           >
-            Back to Calendar
+            {i18n.datePicker.backToCalendar}
           </Hyperlink>
         </BackToCalendarWrapper>
         <CloseButton theme={theme}>

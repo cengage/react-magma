@@ -6,25 +6,45 @@ import { transparentize } from 'polished';
 import { act } from 'react-dom/test-utils';
 import { FavoriteIcon } from 'react-magma-icons';
 
-import { axe } from '../../../axe-helper';
-import { magma } from '../../theme/magma';
-import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
-import { Paragraph } from '../Paragraph';
-import { Tag } from '../Tag';
-import { AccordionTreeWithShowAllAndExpandAll } from './TreeView.stories';
+import { AccordionSectionWithTreeView, flatTree } from './TreeView.stories';
 import {
+  Accordion,
   Button,
   Dropdown,
   DropdownButton,
   DropdownContent,
   DropdownMenuItem,
 } from '../..';
+import { axe } from '../../../axe-helper';
+import { magma } from '../../theme/magma';
+import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
+import { Paragraph } from '../Paragraph';
+import { Tag } from '../Tag';
 import { getTreeItemLabelColor } from './utils';
 
 import { TreeItem, TreeView, TreeViewSelectable } from '.';
 
 const TEXT = 'Test Text Tree Item';
 const testId = 'tree-view';
+
+const AccordionTreeWithShowAllAndExpandAll = props => {
+  const apiRef = React.useRef();
+
+  function onSelection(items) {
+    props.onSelectedItemChange(items);
+  }
+
+  return (
+    <Accordion index={[0]} isMulti testId="accordion">
+      <AccordionSectionWithTreeView
+        apiRef={apiRef}
+        {...flatTree}
+        {...props}
+        onSelectedItemChange={onSelection}
+      />
+    </Accordion>
+  );
+};
 
 const getTreeItemsOneLevel = props => (
   <TreeView testId={testId} {...props}>

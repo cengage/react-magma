@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react/types-6-0';
 
 import { Button } from '../Button';
 import { Container } from '../Container';
@@ -9,7 +9,7 @@ import { Spacer } from '../Spacer';
 
 import { Textarea, TextareaProps } from '.';
 
-const Template: Story<TextareaProps> = args => (
+const Template: StoryFn<TextareaProps> = args => (
   <Textarea {...args} labelText="Textarea label" />
 );
 
@@ -58,34 +58,40 @@ export default {
   },
 } as Meta;
 
-export const Default = Template.bind({});
-Default.args = {
-  isInverse: false,
+export const Default = {
+  render: Template,
+
+  args: {
+    isInverse: false,
+  },
 };
 
-export const OnClear = args => {
-  const [fieldValue, setValue] = useState('');
-  return (
-    <>
-      <Textarea
-        {...args}
-        labelText="Textarea"
-        value={fieldValue}
-        onChange={e => {
-          setValue(e.target.value);
-        }}
-      />
-      <Spacer size="12" />
-      <Button
-        onClick={e => {
-          setValue('');
-        }}
-      >
-        Clear
-      </Button>
-    </>
-  );
-};
-OnClear.args = {
-  ...Default.args,
+export const OnClear = {
+  render: args => {
+    const [fieldValue, setValue] = useState('');
+    return (
+      <>
+        <Textarea
+          {...args}
+          labelText="Textarea"
+          value={fieldValue}
+          onChange={e => {
+            setValue(e.target.value);
+          }}
+        />
+        <Spacer size="12" />
+        <Button
+          onClick={e => {
+            setValue('');
+          }}
+        >
+          Clear
+        </Button>
+      </>
+    );
+  },
+
+  args: {
+    ...Default.args,
+  },
 };
