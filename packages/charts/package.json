@@ -1,6 +1,6 @@
 {
   "name": "@react-magma/charts",
-  "version": "12.0.1-next.0",
+  "version": "12.0.1-next.1",
   "license": "MIT",
   "exports": {
     ".": {
