@@ -1,5 +1,21 @@
 # Change Log
 
+## 5.2.1
+
+### Patch Changes
+
+- 49d826503: fix: Update internalization for Date Picker.
+- 49d826503: chore: Manually sync main -> dev (4.10.0)
+- 49d826503: fix(Docs): revert-replace "GATSBY_EMPTY_ALT" as alt text for empty alts.
+- 49d826503: chore:migrate storybook to use Component Story Format 3 (CSF3) for all stories
+- Updated dependencies [49d826503]
+- Updated dependencies [49d826503]
+  - @react-magma/charts@12.0.1
+  - react-magma-dom@4.10.1
+  - @react-magma/dropzone@12.0.1
+  - @react-magma/schema-renderer@12.0.1
+  - @cengage-patterns/header@13.0.1
+
 ## 5.2.1-next.5
 
 ### Patch Changes

@@ -1,5 +1,7 @@
 # Change Log
 
+## 13.0.1
+
 ## 13.0.1-next.0
 
 ### Patch Changes
