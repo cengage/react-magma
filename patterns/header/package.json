@@ -1,6 +1,6 @@
 {
   "name": "@cengage-patterns/header",
-  "version": "13.0.1-next.0",
+  "version": "13.0.1",
   "homepage": "https://react-magma.cengage.com/version/next/patterns/header/",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
     "downshift": "^5.4.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.10.1-next.0",
+    "react-magma-dom": "^4.10.1",
     "react-magma-icons": "^3.2.0",
     "uuid": "^11.1.0"
   },

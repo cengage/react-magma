@@ -1,3 +1,9 @@
+## 4.10.1
+
+### Patch Changes
+
+- 49d826503: fix(DatePicker): fix issue with canvas (jsdom error)
+
 ## 4.10.0
 
 ## 4.10.1-next.0

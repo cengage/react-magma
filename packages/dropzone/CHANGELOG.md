@@ -1,5 +1,7 @@
 # Change Log
 
+## 12.0.1
+
 ## 12.0.1-next.0
 
 ### Patch Changes
