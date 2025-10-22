@@ -157,5 +157,9 @@ export function buildAIActiveColor(initialProps) {
 }
 
 export function buildBoxShadow(props) {
-  return `0 1px 6px ${transparentize(0.5, props.theme.colors.primary400)}`;
+  if (!props.disabled) {
+    return props.isInverse
+      ? '0 2px 6px 0 rgba(0, 0, 0, 0.18)'
+      : `0 1px 6px ${transparentize(0.5, props.theme.colors.primary400)}`;
+  }
 }
