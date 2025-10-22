@@ -119,6 +119,10 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    * @internal
    */
   hasDrawerAnimation?: boolean;
+  /**
+   * Number to indicate which level heading will render (e.g. h1, h2 etc.)
+   */
+  headerLevel?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 const ModalContainer = styled(Transition)<{
@@ -248,6 +252,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       onClose,
       hasDrawerAnimation,
       showBackgroundOverlay = true,
+      headerLevel = 1,
       ...rest
     } = props;
 
@@ -421,7 +426,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                   <H1
                     id={headingId}
                     isInverse={isInverse}
-                    level={1}
+                    level={headerLevel}
                     ref={headingRef}
                     visualStyle={TypographyVisualStyle.headingSmall}
                     tabIndex={-1}
