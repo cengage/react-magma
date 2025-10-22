@@ -1,4 +1,4 @@
-name: Publish Next (dev)
+name: Publish Beta (dev)
 on:
   push:
     branches:
@@ -68,7 +68,7 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
-          alias: next
+          alias: beta
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
