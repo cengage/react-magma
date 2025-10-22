@@ -1,6 +1,6 @@
 {
   "mode": "pre",
-  "tag": "beta",
+  "tag": "rc",
   "initialVersions": {
     "@react-magma/charts": "13.0.0",
     "@react-magma/dropzone": "13.0.0",

@@ -1,4 +1,4 @@
-name: Publish Beta (dev)
+name: Publish RC (dev)
 on:
   push:
     branches:
@@ -68,7 +68,7 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
-          alias: beta
+          alias: rc
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
