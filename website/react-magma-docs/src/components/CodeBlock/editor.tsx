@@ -49,11 +49,12 @@ export const Editor = ({ ...props }: EditorProps) => {
   const isInverse = useIsInverse();
 
   if (context.noCode) return null;
+  const safeLanguage = context.language || 'typescript';
 
   return (
     <Highlight
       code={props.children}
-      language={context.language}
+      language={safeLanguage}
       theme={isInverse ? magmaCodeDark : magmaCode}
     >
       {highlight => {
