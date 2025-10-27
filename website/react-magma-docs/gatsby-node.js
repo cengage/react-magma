@@ -14,6 +14,9 @@ exports.onCreateWebpackConfig = ({
       mainFields: ['browser', 'main', 'module'],
       alias: {
         path: require.resolve('path-browserify'),
+        'react-magma-dom': require.resolve(
+          'react-magma-dom/dist/react-magma-dom.cjs.development.js'
+        ),
       },
       fallback: {
         'object.assign/polyfill': require.resolve('object.assign/polyfill.js'),
