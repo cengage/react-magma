@@ -1,5 +1,12 @@
 ## 4.10.0
 
+## 5.0.1-rc.0
+
+### Patch Changes
+
+- 844a2a3: fix(DatePicker): fix issue with canvas (jsdom error) for react-18
+- e0e6ac5: fix(TimePicker): Fix issue with auto fill.
+
 ### Minor Changes
 
 - ef8a2740a: feat(Button): Update icon size for `Button`, `IconButton`, `DropdownButton`, `ButtonGroup` and `ToggleButton`.

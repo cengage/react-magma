@@ -1,5 +1,29 @@
 # Change Log
 
+## 7.0.0-rc.0
+
+### Major Changes
+
+- aa68ddb: chore: upgrade react react-dom @types/react gatsby versions
+
+### Patch Changes
+
+- 46beb03: fix(Docs): replace "GATSBY_EMPTY_ALT" as alt text for empty alts.
+- fa50907: chore: remove all files from these deprecated packages: schema-renderer, patterns/header, linechart
+- 9a1f917: chore: disable docs formatting
+- d092d71: chore: fix images
+- ee65147: chore: fix storybook issue (Combobox) and terminal export errors and docs examples (Button).
+- b4481b9: chore: fix dropzone build errors
+- 0684582: chore: add publishing workflow for v4/v5 react-magma versions
+- ebd857f: chore: upgrade storybook and all addons to v9, update stories to match new CSF3 format
+- e74c613: chore: upgrade jest, babel-jest, @testing-library/\*, jest-axe, jest-extended to their latest stable versions and fix tests
+- 7388034: chore: Update docs and landing page with v5.
+- 1910535: chore: upgrade gatsby and react-helmet versions
+- 499ab0a: chore: upgrade minor/patch dependencies
+  chore: update publish-next-patch.yml to deploy react-18 preview builds
+- 9730ece: chore: upgrade typedoc
+- 134363d: chore: upgrade typescript, eslint
+
 ## 5.2.1-next.1
 
 ### Patch Changes

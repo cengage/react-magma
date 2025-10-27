@@ -10,10 +10,27 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
-    "manually-sync-4.10.0",
-    "storybook-csf3",
-    "major-v5-release",
+    "a11y-docs-img-empty-alts",
+    "chore-delete-deprecated-packages",
+    "chore-disable-docs-formatting",
+    "chore-docs-fix-chart-images",
+    "chore-fix-components",
+    "chore-fix-dropzone-build",
+    "chore-react-18-upgrade-publishing-workflow",
+    "chore-react-react-dom-gatsby",
+    "chore-storybook",
+    "chore-test-packages-upgrade",
+    "chore-update-docs-and-landing-page",
+    "chore-upgrade-gatsby-react-helmet",
+    "chore-upgrade-minor-deps",
+    "chore-upgrade-typedoc",
+    "chore-upgrade-typescript-eslint",
+    "fix-datepicker-canvas-issue-react-18",
+    "fix-timepicker-broken-auto-fill",
     "major-charts-v13-release",
-    "major-dropzone-v13-release"
+    "major-dropzone-v13-release",
+    "major-v5-release",
+    "manually-sync-4.10.0",
+    "storybook-csf3"
   ]
 }
