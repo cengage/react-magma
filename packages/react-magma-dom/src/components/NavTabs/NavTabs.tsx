@@ -88,7 +88,7 @@ export const NavTabs = React.forwardRef<
   });
 
   const navTabsChildren = React.Children.map(children, (child, i) => {
-    if (React.isValidElement(child) && child.type === NavTab) {
+    if (child && React.isValidElement(child) && child.type === NavTab) {
       const item = child as React.ReactElement<
         React.PropsWithChildren<NavTabProps>
       >;
