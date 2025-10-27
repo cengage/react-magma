@@ -15,6 +15,7 @@
     "chore-disable-docs-formatting",
     "chore-docs-fix-chart-images",
     "chore-fix-components",
+    "chore-fix-docs-build",
     "chore-fix-dropzone-build",
     "chore-react-18-upgrade-publishing-workflow",
     "chore-react-react-dom-gatsby",
