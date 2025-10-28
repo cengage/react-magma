@@ -345,3 +345,7 @@ export const mergeRefs = <T>(...refs: Array<React.Ref<T> | undefined>) => {
     });
   };
 };
+
+export function isNotEmpty(string: string | null | undefined): boolean {
+  return string !== null && string !== undefined && string.trim() !== '';
+}
