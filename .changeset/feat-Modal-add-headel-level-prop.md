@@ -2,4 +2,4 @@
 'react-magma-docs': minor
 ---
 
-feat(Modal): Add new levelHeader prop.
+feat(Modal): New `headerLevel` prop. If not passed, header will default to level 2.
