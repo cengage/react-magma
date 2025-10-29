@@ -223,7 +223,6 @@ export const Events = {
         <DatePicker
           {...args}
           defaultDate={new Date(2025, 8, 22)}
-          isDateFieldInput
           onDateChange={handleDateChange}
           onChange={handleChange}
           errorMessage={hasErrorMessage()}
