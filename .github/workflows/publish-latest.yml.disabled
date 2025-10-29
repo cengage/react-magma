@@ -1,8 +1,8 @@
-name: Publish Next Patch (dev-patch)
+name: Publish Latest (main)
 on:
   push:
     branches:
-      - dev-patch
+      - main
 jobs:
   build:
     runs-on: macos-latest
@@ -17,9 +17,9 @@ jobs:
       - name: Check Node version
         run: node -v
       - name: Update NPM version
-        run: npm install -g "npm@^7.6.3"
+        run: npm install -g "npm@^10.8.2"
       - name: Install
-        run: npm ci
+        run: npm ci --legacy-peer-deps
       - name: Test
         run: npm test
       - name: Coverage
@@ -29,20 +29,11 @@ jobs:
           git config --global user.name 'github-bot'
           git config --global user.email 'github-bot@users.noreply.github.com'
           echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} > .npmrc
-      - name: Check if Prerelease
-        id: check_files
-        uses: andstor/file-existence-action@v1
-        with:
-          files: ".changeset/pre.json"
-      - name: Enter Prerelease Mode
-        if: steps.check_files.outputs.files_exists == 'false'
-        run: |
-          npm run version:prerelease
-          git add .changeset/pre.json
       - name: Publish
         run: |
+          npm run version:exit
           npm run version:pkgs
-          git commit -am "chore: enter prerelease mode"
+          git commit -am "chore: exit prerelease mode"
           npm run release
           git push --follow-tags
       - name: Get Alias
@@ -52,8 +43,8 @@ jobs:
           echo "::set-output name=version::$(npm run --silent getVersion)"
       - name: Build Docs
         run: npm run build:docs
-      - name: Build Storybook
-        run: npm run build:storybook
+        env:
+          PATH_PREFIX: /version/${{ steps.info.outputs.version }}
       - name: Deploy Docs to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
@@ -63,20 +54,28 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
-          alias: next-patch
+          alias: ${{ steps.info.outputs.alias }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      - name: Deploy Dev Storybook to Netlify
+      - name: Build Landing Page
+        run: npm run build:landing
+      - name: Update landing page on Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
-          publish-dir: './storybook-static'
-          production-branch: patch-3.x.x
+          publish-dir: './website/react-magma-landing/dist'
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy Landing page from GitHub Actions'
           enable-pull-request-comment: true
           enable-commit-comment: true
-          overwrites-pull-request-comment: false
-          alias: storybook-preview-dev-patch
+          overwrites-pull-request-comment: true
+          production-deploy: true
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Sync main -> dev
+        uses: tukasz/direct-merge-action@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          source-branch: main
+          target-branch: dev
