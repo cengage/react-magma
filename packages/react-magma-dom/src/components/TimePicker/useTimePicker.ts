@@ -26,6 +26,10 @@ export interface UseTimePickerProps
    */
   value?: string | undefined;
   /**
+   * @internal
+   */
+  timeZone?: string;
+  /**
    * Function called when the component is changed to a new time
    */
   onChange?: (value: string) => void;

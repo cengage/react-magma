@@ -90,13 +90,22 @@ export interface DateTimePickerProps
    */
   value?: Date;
   /**
+   * Optional time zone to display with the selected date and time (e.g. "America/New_York").
+   * If provided, the component will display its short abbreviation (e.g. "EST") and include the time zone when returning values.
+   */
+  timeZone?: string;
+  /**
    * Event that will fire when day is changed
    */
-  onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
+  onDateChange?: (
+    day: Date,
+    event: React.SyntheticEvent,
+    timeZone?: string
+  ) => void;
   /**
    * Event that will fire when time is changed
    */
-  onTimeChange?: (time: string) => void;
+  onTimeChange?: (time: string, timeZone?: string) => void;
   /**
    * Event that will fire when the text input loses focus
    */
@@ -127,6 +136,31 @@ const DoneButtonWrapper = styled.div<{ isInverse?: boolean }>`
   justify-content: flex-end;
 `;
 
+function isValidTimeZone(timeZone: string): boolean {
+  try {
+    Intl.DateTimeFormat(undefined, { timeZone });
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function getTimeZoneAbbr(date: Date, timeZone: string): string {
+  try {
+    const formatter = new Intl.DateTimeFormat('en-US', {
+      timeZone,
+      timeZoneName: 'short',
+    });
+    const parts = formatter.formatToParts(date);
+    const timeZonePart = parts.find(p => p.type === 'timeZoneName');
+
+    return timeZonePart?.value || '';
+  } catch {
+    return '';
+  }
+}
+
 export const DateTimePicker = React.forwardRef<
   HTMLInputElement,
   DateTimePickerProps
@@ -134,6 +168,7 @@ export const DateTimePicker = React.forwardRef<
   const {
     onTimeChange,
     onInputChange,
+    onDateChange,
     onDone,
     placeholder,
     value,
@@ -141,6 +176,7 @@ export const DateTimePicker = React.forwardRef<
     labelText,
     timePickerLabelText,
     buttonLabelText,
+    timeZone,
     ...other
   } = props;
   const i18n = React.useContext(I18nContext);
@@ -165,6 +201,20 @@ export const DateTimePicker = React.forwardRef<
   const [additionalInputContent, setAdditionalInputContent] = React.useState(
     initialTime || ''
   );
+  const [timeZoneAbbr, setTimeZoneAbbr] = React.useState('');
+
+  React.useEffect(() => {
+    if (timeZone && isValidTimeZone(timeZone)) {
+      const abbr = getTimeZoneAbbr(
+        value ?? defaultValue ?? new Date(),
+        timeZone
+      );
+
+      setTimeZoneAbbr(abbr);
+    } else {
+      setTimeZoneAbbr('');
+    }
+  }, [timeZone, value, defaultValue]);
 
   const handleDoneClick = (event: React.SyntheticEvent) => {
     datePickerApiRef.current?.closeDatePickerManually();
@@ -212,7 +262,17 @@ export const DateTimePicker = React.forwardRef<
     setAdditionalInputContent(value);
     previousTime.current = value;
 
-    onTimeChange && onTimeChange(value);
+    if (onTimeChange) {
+      timeZone ? onTimeChange(value, timeZone) : onTimeChange(value);
+    }
+  };
+
+  const onDateHandleChange = (day: Date, event: React.SyntheticEvent) => {
+    if (onDateChange) {
+      timeZone
+        ? onDateChange && onDateChange(day, event, timeZone)
+        : onDateChange && onDateChange(day, event);
+    }
   };
 
   React.useEffect(() => {
@@ -231,16 +291,22 @@ export const DateTimePicker = React.forwardRef<
     ? placeholder
     : `${dateFormat.toLowerCase()} hh:mm AM`;
 
+  const additionalInputContentWithTimeZone =
+    additionalInputContent && timeZoneAbbr
+      ? `${additionalInputContent} ${timeZoneAbbr}`
+      : additionalInputContent;
+
   return (
     <DatePicker
       {...other}
       labelText={labelText ?? i18n.dateTimePickerLabel}
       apiRef={datePickerApiRef}
-      additionalInputContent={additionalInputContent}
+      additionalInputContent={additionalInputContentWithTimeZone}
       placeholder={updatedPlaceholder}
       onInputChange={handleInputChange}
       setAdditionalInputContent={setAdditionalInputContent}
       isClearable
+      onDateChange={onDateHandleChange}
       onClear={handleClear}
       ref={forwardedRef}
       value={value}
@@ -258,6 +324,7 @@ export const DateTimePicker = React.forwardRef<
               margin: `0 -${theme.spaceScale.spacing03}`,
               borderBlock: `1px solid ${props.isInverse ? theme.colors.primary400 : theme.colors.neutral300}`,
             }}
+            timeZone={timeZoneAbbr}
           />
           <DoneButtonWrapper theme={theme} isInverse={props.isInverse}>
             <Button

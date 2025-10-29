@@ -64,6 +64,26 @@ export function Example() {
 }
 ```
 
+## TimeZone
+
+Optional time zone to display with the selected date and time (e.g. "America/New_York").
+If provided, the component will display its short abbreviation (e.g. "EST") and include the time zone when returning values.
+
+```tsx
+import React from 'React';
+import { DateTimePicker } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <DateTimePicker
+      labelText="Date and Time with Time Zone"
+      value={new Date(2025, 1, 0, 8, 20)}
+      timeZone={'America/New_York'}
+    />
+  );
+}
+```
+
 ## Minimum and Maximum Dates
 
 Minimum and Maximum dates can be passed in as `props` to disallow the selection of a date outside of a specific range. If a date value is passed in that does not fit in to the range given, the date time picker will try to give focus when entering the calendar on today's date, then the minimum date, and finally the maximum date.
@@ -178,6 +198,7 @@ export function Example() {
         hours,
         minutes
       );
+
       setChosenDate(newDate);
     }
   }
