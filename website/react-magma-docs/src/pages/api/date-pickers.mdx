@@ -209,6 +209,51 @@ export function Example() {
 }
 ```
 
+## Date Field Input
+
+By default, the `DatePicker` uses a single input field.
+You can change this to use separate fields for month, day, and year by using the `useDateField` prop.
+
+```tsx
+import React from 'react';
+
+import { DatePicker, Button } from 'react-magma-dom';
+
+export function Example() {
+  const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
+    undefined
+  );
+
+  function handleDateChange(newChosenDate: Date | null) {
+    setChosenDate(newChosenDate);
+  }
+
+  return (
+    <div>
+      <p>
+        <strong>Chosen Date: </strong>
+        {chosenDate && (
+          <span>
+            {`${
+              chosenDate.getMonth() + 1
+            }/${chosenDate.getDate()}/${chosenDate.getFullYear()}`}
+          </span>
+        )}
+      </p>
+      <DatePicker
+        isDateFieldInput
+        labelText="Date Field Input"
+        value={chosenDate}
+        onDateChange={handleDateChange}
+        isClearable
+      />
+      <br />
+      <Button onClick={() => handleDateChange(null)}>Clear Date</Button>
+    </div>
+  );
+}
+```
+
 ## Date Formats
 
 By default, the component uses the `MM/dd/yyyy` date format. This can be changed in the I18nContext. In addition to the default, the component supports the following formats: `dd/MM/yyyy`, `yyyy/MM/dd`, `yyyy/dd/MM` and `MMMM d, yyyy`.
