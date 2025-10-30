@@ -11,9 +11,13 @@
   },
   "changesets": [
     "a11y-docs-img-empty-alts",
+    "chore-charts-peer-deps",
     "chore-delete-deprecated-packages",
     "chore-disable-docs-formatting",
+    "chore-docs-deps",
     "chore-docs-fix-chart-images",
+    "chore-dom-peer-deps",
+    "chore-dropzone-peer-deps",
     "chore-fix-components",
     "chore-fix-docs-build",
     "chore-fix-dropzone-build",

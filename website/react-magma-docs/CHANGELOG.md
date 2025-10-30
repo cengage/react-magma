@@ -1,5 +1,17 @@
 # Change Log
 
+## 7.0.0-rc.2
+
+### Patch Changes
+
+- ff53255: chore: update docs dependencies
+- Updated dependencies [ff53255]
+- Updated dependencies [ff53255]
+- Updated dependencies [ff53255]
+  - @react-magma/charts@13.0.1-rc.0
+  - react-magma-dom@5.0.1-rc.1
+  - @react-magma/dropzone@13.0.1-rc.0
+
 ## 7.0.0-rc.1
 
 ### Patch Changes

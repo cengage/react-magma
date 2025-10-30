@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.0.1-rc.1
+
+### Patch Changes
+
+- ff53255: chore: update react-magma-dom peer dependencies
+
 ## 5.0.1-rc.0
 
 ### Patch Changes

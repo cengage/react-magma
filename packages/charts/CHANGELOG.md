@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 13.0.1-rc.0
+
+### Patch Changes
+
+- ff53255: chore: update charts peer dependencies
+
 ## 12.0.0
 
 ### Major Changes
