@@ -43,7 +43,7 @@ const StyledNumInput = styled.input<{
   isInverse?: boolean;
 }>`
   border: 0;
-  border-radius: ${props => props.theme.borderRadiusSmall};
+  border-radius: ${props => props.theme.borderRadiusXSmall};
   margin-right: ${props => props.theme.spaceScale.spacing01};
   padding: 0 ${props => props.theme.spaceScale.spacing01};
   text-align: right;
@@ -69,20 +69,23 @@ const StyledNumInput = styled.input<{
 
   &:focus {
     outline: 0;
+    border-bottom: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.info200
+          : props.theme.colors.info500};
     background: ${props =>
-      props.isInverse
-        ? props.theme.colors.tertiary
-        : props.theme.colors.primary};
+      props.isInverse ? props.theme.colors.info : props.theme.colors.info200};
     color: ${props =>
       props.isInverse
-        ? props.theme.colors.neutral900
-        : props.theme.colors.neutral100};
+        ? props.theme.colors.neutral100
+        : props.theme.colors.neutral700};
 
     &::placeholder {
       color: ${props =>
         props.isInverse
-          ? props.theme.colors.neutral900
-          : props.theme.colors.neutral100};
+          ? props.theme.colors.neutral100
+          : props.theme.colors.neutral700};
     }
   }
 `;
