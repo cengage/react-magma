@@ -75,7 +75,9 @@ const StyledNumInput = styled.input<{
           ? props.theme.colors.info200
           : props.theme.colors.info500};
     background: ${props =>
-      props.isInverse ? props.theme.colors.info : props.theme.colors.info200};
+      props.isInverse
+        ? props.theme.colors.info700
+        : props.theme.colors.info200};
     color: ${props =>
       props.isInverse
         ? props.theme.colors.neutral100
