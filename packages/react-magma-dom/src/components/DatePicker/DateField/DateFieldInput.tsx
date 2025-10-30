@@ -299,17 +299,11 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       yearValue = inputValue.getFullYear().toString();
     }
 
-    // Update state only if value actually changed
-    setDayValue(prev => (prev !== dayValue ? dayValue : prev));
-    setMonthValue(prev => (prev !== monthValue ? monthValue : prev));
-    setYearValue(prev => (prev !== yearValue ? yearValue : prev));
-
+    setDayValue(dayValue);
+    setMonthValue(monthValue);
+    setYearValue(yearValue);
     if (hasMonthDayStringFormat) {
-      const newMonthDayValue = `${monthValue} ${dayValue}`;
-
-      setMonthDayValue(prev =>
-        prev !== newMonthDayValue ? newMonthDayValue : prev
-      );
+      setMonthDayValue(`${monthValue} ${dayValue}`);
     }
   }, [inputValue, hasMonthDayStringFormat]);
 
