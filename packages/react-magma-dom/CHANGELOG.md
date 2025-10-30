@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.0.1-rc.2
+
+### Patch Changes
+
+- a997d8e: fix(AIButton): Fix box-shadows.
+
 ## 5.0.1-rc.1
 
 ### Patch Changes
