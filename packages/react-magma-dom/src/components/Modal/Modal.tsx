@@ -119,6 +119,10 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    * @internal
    */
   hasDrawerAnimation?: boolean;
+  /**
+   * Number to indicate which level heading will render (e.g. h1, h2 etc.)
+   */
+  headerLevel?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 const ModalContainer = styled(Transition)<{
@@ -206,7 +210,7 @@ const ModalWrapper = styled.div<{ theme?: ThemeInterface }>`
   }
 `;
 
-const H1 = styled(Heading)<{ theme?: ThemeInterface; isInverse?: boolean }>`
+const H2 = styled(Heading)<{ theme?: ThemeInterface; isInverse?: boolean }>`
   font-size: ${props =>
     props.theme.typographyVisualStyles.headingSmall.desktop.fontSize};
   line-height: ${props =>
@@ -248,6 +252,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       onClose,
       hasDrawerAnimation,
       showBackgroundOverlay = true,
+      headerLevel = 2,
       ...rest
     } = props;
 
@@ -418,17 +423,17 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             {header && (
               <ModalHeader theme={theme}>
                 {header && (
-                  <H1
+                  <H2
                     id={headingId}
                     isInverse={isInverse}
-                    level={1}
+                    level={headerLevel}
                     ref={headingRef}
                     visualStyle={TypographyVisualStyle.headingSmall}
                     tabIndex={-1}
                     theme={theme}
                   >
                     {header}
-                  </H1>
+                  </H2>
                 )}
               </ModalHeader>
             )}
