@@ -30,6 +30,7 @@
     "chore-upgrade-minor-deps",
     "chore-upgrade-typedoc",
     "chore-upgrade-typescript-eslint",
+    "feat-Modal-add-headel-level-prop",
     "fix-AIButton-box-shadow",
     "fix-datepicker-canvas-issue-react-18",
     "fix-timepicker-broken-auto-fill",

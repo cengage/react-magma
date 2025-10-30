@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.3
+
+### Minor Changes
+
+- d387875: feat(Modal): New `headerLevel` prop. If not passed, header will default to level 2.
+
 ## 7.0.0-rc.2
 
 ### Patch Changes
