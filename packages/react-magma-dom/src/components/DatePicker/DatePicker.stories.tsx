@@ -293,6 +293,7 @@ export const DateFieldDefault = {
         </p>
         <DatePicker
           {...args}
+          labelText="Date Field Input"
           isDateFieldInput
           onDateChange={handleDateChange}
           onChange={handleChange}

@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { ReferenceType } from '@floating-ui/react-dom';
+import { isEmpty } from 'lodash';
 import { ClearIcon, EventIcon } from 'react-magma-icons';
 
 import {
@@ -45,16 +46,14 @@ export interface DateFieldInputProps
   handleDateChange?: (day: Date, event) => void;
   onClearDate?: () => void;
   onIconKeyDown?: (event: React.KeyboardEvent) => void;
-  onChange?: (value: Date | null) => void;
   onInputBlur?: (event: React.FocusEvent) => void;
   onInputFocus?: (event: React.FocusEvent) => void;
   required?: boolean;
 }
 
-export const DateFieldInput = React.forwardRef<
-  HTMLInputElement,
-  DateFieldInputProps
->((props, ref) => {
+export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
+  props: DateFieldInputProps
+) => {
   const {
     id,
     containerStyle,
@@ -64,7 +63,6 @@ export const DateFieldInput = React.forwardRef<
     labelPosition,
     labelText,
     labelWidth,
-    onChange,
     handleDateChange,
     inputRef,
     inputValue,
@@ -76,7 +74,6 @@ export const DateFieldInput = React.forwardRef<
     onInputBlur,
     onInputFocus,
     required,
-    ...other
   } = props;
 
   const {
@@ -96,18 +93,17 @@ export const DateFieldInput = React.forwardRef<
     fieldOrder,
     fieldRefs,
   } = useDateField({
-    onChange,
     dateFormat,
   });
 
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(props.isInverse);
+  const hasMonthDayStringFormat = props.dateFormat === 'MMMM d, yyyy';
 
   const dayId = `${id}__day`;
   const monthId = `${id}__month`;
   const monthDayId = `${id}__month-day`;
   const yearId = `${id}__year`;
-  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
   const i18n = React.useContext(I18nContext);
   const { datePicker } = i18n;
@@ -128,6 +124,8 @@ export const DateFieldInput = React.forwardRef<
         return (
           <StyledInput
             aria-label={`${datePicker.month} ${month} ${datePicker.day} ${day}`}
+            aria-describedby={monthDayId}
+            aria-valuetext={`${day} - ${month}`}
             data-testid="month-day-input"
             id={monthDayId}
             isInverse={isInverse}
@@ -154,13 +152,18 @@ export const DateFieldInput = React.forwardRef<
         return (
           <StyledInput
             aria-label={`${datePicker.day} ${day}`}
+            aria-describedby={dayId}
+            aria-valuemin={1}
+            aria-valuemax={31}
+            aria-valuenow={parseInt(day, 10)}
+            aria-valuetext={`${day}`}
             data-testid="day-input"
             id={dayId}
             isInverse={isInverse}
             isFocused={isFocused}
             maxLength={2}
-            max="31"
             min="1"
+            max="31"
             onChange={handleDayChange}
             onKeyDown={event => handleFieldKeyDown(event, InputDateFields.Day)}
             placeholder="dd"
@@ -175,23 +178,28 @@ export const DateFieldInput = React.forwardRef<
         return (
           <StyledInput
             aria-label={`${datePicker.month} ${month}`}
-            aria-describedby={descriptionId}
+            aria-describedby={monthId}
+            aria-valuemax={12}
+            aria-valuemin={1}
+            aria-valuenow={parseInt(month, 10)}
+            aria-valuetext={`${month}`}
             data-testid="month-input"
             id={monthId}
             isInverse={isInverse}
             isFocused={isFocused}
             maxLength={2}
-            max="12"
             min="1"
+            max="12"
             onChange={handleMonthChange}
             onKeyDown={event =>
               handleFieldKeyDown(event, InputDateFields.Month)
             }
-            placeholder={props.dateFormat === 'MMMM d, yyyy' ? 'mmmm' : 'mm'}
+            placeholder={hasMonthDayStringFormat ? 'mmmm' : 'mm'}
             ref={fieldRefs.month}
             required={required}
             theme={theme}
-            type={props.dateFormat === 'MMMM d, yyyy' ? 'text' : 'number'}
+            type={hasMonthDayStringFormat ? 'text' : 'number'}
+            size={4}
             value={month ?? ''}
           />
         );
@@ -199,13 +207,17 @@ export const DateFieldInput = React.forwardRef<
         return (
           <StyledInput
             aria-label={`${datePicker.year} ${year}`}
+            aria-describedby={yearId}
+            aria-valuemin={1900}
+            aria-valuemax={2099}
+            aria-valuenow={parseInt(year, 10)}
+            aria-valuetext={`${year}`}
             data-testid="year-input"
             id={yearId}
             isInverse={isInverse}
             isFocused={isFocused}
-            maxLength={4}
-            max="2099"
-            min="1900"
+            min={1900}
+            max={2099}
             onChange={handleYearChange}
             onKeyDown={event => handleFieldKeyDown(event, InputDateFields.Year)}
             placeholder="yyyy"
@@ -216,32 +228,36 @@ export const DateFieldInput = React.forwardRef<
             value={year ?? ''}
           />
         );
+      default:
+        return null;
     }
-  };
-
-  const inputHandleDateChange = () => {
-    let constructedDate: Date;
-
-    if (props.dateFormat === 'MMMM d, yyyy') {
-      constructedDate = new Date(`${month} ${day}, ${year}`);
-    } else {
-      const monthNum = parseInt(month, 10);
-      const dayNum = parseInt(day, 10);
-      const yearNum = parseInt(year, 10);
-
-      constructedDate = new Date(yearNum, monthNum - 1, dayNum);
-    }
-    if (isNaN(constructedDate.getTime())) {
-      return;
-    }
-    handleDateChange && handleDateChange(constructedDate, null);
   };
 
   React.useEffect(() => {
-    if (month && day && year) {
-      inputHandleDateChange();
+    // Clear date if all fields are empty
+    if (
+      (isEmpty(day) && isEmpty(month) && isEmpty(year)) ||
+      (hasMonthDayStringFormat && isEmpty(monthDayValue) && isEmpty(year))
+    ) {
+      handleDateChange?.(null, null);
+
+      return;
     }
-  }, [month, day, year]);
+
+    const isCompletedDate = month && day && year && year.length === 4;
+
+    if (!isCompletedDate) return;
+
+    const newDate = hasMonthDayStringFormat
+      ? new Date(`${month} ${day}, ${year}`)
+      : new Date(Number(year), Number(month) - 1, Number(day));
+
+    if (isNaN(newDate.getTime())) {
+      return;
+    }
+
+    handleDateChange?.(newDate, null);
+  }, [month, day, year, props.dateFormat]);
 
   React.useEffect(() => {
     if (setReference && inputRef && inputRef.current) {
@@ -286,7 +302,9 @@ export const DateFieldInput = React.forwardRef<
     setDayValue(dayValue);
     setMonthValue(monthValue);
     setYearValue(yearValue);
-    setMonthDayValue(`${monthValue} ${dayValue}`);
+    if (hasMonthDayStringFormat) {
+      setMonthDayValue(`${monthValue} ${dayValue}`);
+    }
   }, [inputValue, i18n.dateFormat]);
 
   const renderDateFields = () => {
@@ -311,7 +329,6 @@ export const DateFieldInput = React.forwardRef<
 
   return (
     <FormFieldContainer
-      {...other}
       containerStyle={containerStyle}
       errorMessage={errorMessage}
       fieldId={id}
@@ -376,4 +393,4 @@ export const DateFieldInput = React.forwardRef<
       </DateFieldInputContainer>
     </FormFieldContainer>
   );
-});
+};

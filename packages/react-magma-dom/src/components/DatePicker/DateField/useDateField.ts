@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 export interface UseDateFieldProps {
-  onChange: (value: Date | null) => void;
   dateFormat: string;
 }
 
@@ -18,7 +17,7 @@ export enum InputDateFields {
 }
 
 export function useDateField(props: UseDateFieldProps) {
-  const { onChange, dateFormat } = props;
+  const { dateFormat } = props;
   const [day, setDayValue] = React.useState<string>('');
   const [month, setMonthValue] = React.useState<string>('');
   const [year, setYearValue] = React.useState<string>('');
@@ -37,10 +36,6 @@ export function useDateField(props: UseDateFieldProps) {
     setYearValue('');
     setMonthDayValue('');
   };
-
-  function updateDate(newDate: Date | null) {
-    onChange && typeof onChange === 'function' && onChange(newDate);
-  }
 
   function sanitizeMonth(newMonth: string): number {
     const monthNum = Number(newMonth);
@@ -69,12 +64,6 @@ export function useDateField(props: UseDateFieldProps) {
     if (dayNum > daysInMonth) {
       return Number(newDay.slice(-1)) || 1;
     }
-    if (dayNum < 1) {
-      return 1;
-    }
-    if (newDay.length > 2) {
-      return Number(newDay.slice(-2)) || 1;
-    }
 
     return dayNum;
   }
@@ -89,31 +78,10 @@ export function useDateField(props: UseDateFieldProps) {
     return yearNum;
   }
 
-  function buildCompleteDate(): Date | null {
-    if (!month || !day || !year) {
-      return null;
-    }
-    const monthNum = Number(month);
-    const dayNum = Number(day);
-    const yearNum = Number(year);
-    const newDate = new Date(yearNum, monthNum - 1, dayNum);
-
-    // Validate the date is actually valid (e.g., not Feb 30)
-    if (newDate.getMonth() !== monthNum - 1) {
-      return null;
-    }
-
-    return newDate;
-  }
-
   function handleMonthChange(event: React.ChangeEvent<HTMLInputElement>) {
     const sanitizedMonth = sanitizeMonth(event.target.value);
-    const paddedMonth = sanitizedMonth.toString();
 
-    setMonthValue(paddedMonth);
-    const completeDate = buildCompleteDate();
-
-    updateDate(completeDate);
+    setMonthValue(String(sanitizedMonth));
   }
 
   function handleDayChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -125,21 +93,14 @@ export function useDateField(props: UseDateFieldProps) {
       currentMonth,
       currentYear
     );
-    const paddedDay = sanitizedDay.toString();
 
-    setDayValue(paddedDay);
-    const completeDate = buildCompleteDate();
-
-    updateDate(completeDate);
+    setDayValue(String(sanitizedDay));
   }
 
   function handleYearChange(event: React.ChangeEvent<HTMLInputElement>) {
     const sanitizedYear = sanitizeYear(event.target.value);
 
-    setYearValue(sanitizedYear.toString());
-    const completeDate = buildCompleteDate();
-
-    updateDate(completeDate);
+    setYearValue(String(sanitizedYear));
   }
 
   function changeDay(direction: ChangeDirection) {
@@ -161,9 +122,8 @@ export function useDateField(props: UseDateFieldProps) {
         newDay = currentDay <= 1 ? daysInMonth : currentDay - 1;
       }
     }
-    const paddedDay = newDay.toString();
 
-    setDayValue(paddedDay);
+    setDayValue(String(newDay));
   }
 
   function changeMonth(direction: ChangeDirection) {
@@ -181,9 +141,8 @@ export function useDateField(props: UseDateFieldProps) {
         newMonth = currentMonth <= 1 ? 12 : currentMonth - 1;
       }
     }
-    const paddedMonth = newMonth.toString();
 
-    setMonthValue(paddedMonth);
+    setMonthValue(String(newMonth));
   }
 
   function changeYear(direction: ChangeDirection) {
@@ -201,7 +160,11 @@ export function useDateField(props: UseDateFieldProps) {
         newYear = Math.max(1900, currentYear - 1);
       }
     }
-    setYearValue(newYear.toString());
+
+    // Timeout to avoid React maximum update depth error
+    setTimeout(() => {
+      setYearValue(String(newYear));
+    }, 0);
   }
 
   const getFieldOrder = (format: string) => {
@@ -235,25 +198,22 @@ export function useDateField(props: UseDateFieldProps) {
 
   function handleFieldKeyDown(event: React.KeyboardEvent, fieldKey: string) {
     const currentIndex = fieldOrder.indexOf(fieldKey);
+    const isDayField = fieldKey === InputDateFields.Day;
+    const isMonthField = fieldKey === InputDateFields.Month;
+    const isYearField = fieldKey === InputDateFields.Year;
 
     switch (event.key) {
       case 'ArrowUp':
         event.preventDefault();
-        if (fieldKey === InputDateFields.Day)
-          changeDay(ChangeDirection.Increment);
-        if (fieldKey === InputDateFields.Month)
-          changeMonth(ChangeDirection.Increment);
-        if (fieldKey === InputDateFields.Year)
-          changeYear(ChangeDirection.Increment);
+        if (isDayField) changeDay(ChangeDirection.Increment);
+        if (isMonthField) changeMonth(ChangeDirection.Increment);
+        if (isYearField) changeYear(ChangeDirection.Increment);
         break;
       case 'ArrowDown':
         event.preventDefault();
-        if (fieldKey === InputDateFields.Day)
-          changeDay(ChangeDirection.Decrement);
-        if (fieldKey === InputDateFields.Month)
-          changeMonth(ChangeDirection.Decrement);
-        if (fieldKey === InputDateFields.Year)
-          changeYear(ChangeDirection.Decrement);
+        if (isDayField) changeDay(ChangeDirection.Decrement);
+        if (isMonthField) changeMonth(ChangeDirection.Decrement);
+        if (isYearField) changeYear(ChangeDirection.Decrement);
         break;
       case 'ArrowLeft': {
         event.preventDefault();
@@ -271,6 +231,12 @@ export function useDateField(props: UseDateFieldProps) {
         if (nextIndex < fieldOrder.length) {
           fieldRefs[fieldOrder[nextIndex]]?.current?.focus();
         }
+        break;
+      }
+      case 'Backspace': {
+        if (isDayField && day.length === 1) setDayValue('');
+        if (isMonthField && month.length === 1) setMonthValue('');
+        if (isYearField && year.length === 1) setYearValue('');
         break;
       }
       default:

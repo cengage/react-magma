@@ -8,6 +8,7 @@ export const StyledInput = styled.input<{
   isFocused?: boolean;
   isInverse?: boolean;
   theme: ThemeInterface;
+  size?: number;
 }>`
   padding: 0;
   border: 0;
@@ -17,6 +18,7 @@ export const StyledInput = styled.input<{
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
+  min-width: ${props => (props.size ? `${props.size}ch` : 'auto')};
 
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
