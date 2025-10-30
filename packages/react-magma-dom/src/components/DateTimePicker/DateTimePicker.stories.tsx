@@ -44,7 +44,7 @@ export default {
         type: 'boolean',
       },
     },
-    timeZone: {
+    timezone: {
       control: {
         type: 'text',
       },
@@ -86,17 +86,17 @@ export const ClearingTheDateAndTime = {
   render: args => {
     const [chosenDate, setChosenDate] = React.useState<Date | null>(null);
     const [chosenTime, setChosenTime] = React.useState<string | null>(null);
-    const [chosenTimeZone, setChosenTimeZone] = React.useState<string | null>(
+    const [chosenTimezone, setChosenTimezone] = React.useState<string | null>(
       null
     );
 
     function handleDateChange(
       newChosenDate: Date | null,
       event: React.SyntheticEvent,
-      timeZone?: string
+      timezone?: string
     ) {
-      if (timeZone) {
-        setChosenTimeZone(timeZone);
+      if (timezone) {
+        setChosenTimezone(timezone);
       }
 
       let newDate = newChosenDate;
@@ -126,10 +126,10 @@ export const ClearingTheDateAndTime = {
       setChosenDate(newDate);
     }
 
-    function handleTimeChange(newChosenTime: string | null, timeZone?: string) {
+    function handleTimeChange(newChosenTime: string | null, timezone?: string) {
       setChosenTime(newChosenTime);
 
-      setChosenTimeZone(timeZone ?? null);
+      setChosenTimezone(timezone ?? null);
 
       if (chosenDate && newChosenTime) {
         const [timePart, ampm] = newChosenTime.split(' ');
@@ -173,8 +173,8 @@ export const ClearingTheDateAndTime = {
           {chosenTime && <span>{chosenTime}</span>}
         </p>
         <p>
-          <strong>Chosen TimeZone: </strong>
-          {chosenTimeZone && <span>{chosenTimeZone}</span>}
+          <strong>Chosen Timezone: </strong>
+          {chosenTimezone && <span>{chosenTimezone}</span>}
         </p>
         <DateTimePicker
           {...args}

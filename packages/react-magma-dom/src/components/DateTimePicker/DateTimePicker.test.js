@@ -107,58 +107,58 @@ describe('DateTimePicker', () => {
   describe('Time Zone', () => {
     it('should render it correctly', async () => {
       const date = new Date();
-      const timeZone = 'EST';
+      const timezone = 'EST';
 
       const { getByText, getByPlaceholderText, getByLabelText } = render(
-        <DateTimePicker value={date} timeZone={timeZone} />
+        <DateTimePicker value={date} timezone={timezone} />
       );
 
-      expect(getByText(timeZone)).toBeInTheDocument();
-      expect(getByText(timeZone)).not.toBeVisible();
+      expect(getByText(timezone)).toBeInTheDocument();
+      expect(getByText(timezone)).not.toBeVisible();
 
       const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
 
-      expect(input.value).toContain(timeZone);
+      expect(input.value).toContain(timezone);
 
       await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-      expect(getByText(timeZone)).toBeVisible();
+      expect(getByText(timezone)).toBeVisible();
     });
 
     it('should render with correct abbreviature', async () => {
       const date = new Date();
-      const timeZone = 'America/New_York';
-      const timeZoneAbbr = 'EDT';
+      const timezone = 'America/New_York';
+      const timezoneAbbr = 'EDT';
 
       const { getByText, getByPlaceholderText, getByLabelText } = render(
-        <DateTimePicker value={date} timeZone={timeZone} />
+        <DateTimePicker value={date} timezone={timezone} />
       );
 
-      expect(getByText(timeZoneAbbr)).toBeInTheDocument();
-      expect(getByText(timeZoneAbbr)).not.toBeVisible();
+      expect(getByText(timezoneAbbr)).toBeInTheDocument();
+      expect(getByText(timezoneAbbr)).not.toBeVisible();
 
       const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
 
-      expect(input.value).toContain(timeZoneAbbr);
+      expect(input.value).toContain(timezoneAbbr);
 
       await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-      expect(getByText(timeZoneAbbr)).toBeVisible();
+      expect(getByText(timezoneAbbr)).toBeVisible();
     });
 
-    it('should not render anything if timeZone is incorrect', async () => {
+    it('should not render anything if timezone is incorrect', async () => {
       const date = new Date();
-      const timeZone = 'XYZ';
+      const timezone = 'XYZ';
 
       const { getByText, getByPlaceholderText } = render(
-        <DateTimePicker value={date} timeZone={timeZone} />
+        <DateTimePicker value={date} timezone={timezone} />
       );
 
-      expect(() => getByText(timeZone)).toThrow();
+      expect(() => getByText(timezone)).toThrow();
 
       const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
 
-      expect(input.value).not.toContain(timeZone);
+      expect(input.value).not.toContain(timezone);
     });
   });
 

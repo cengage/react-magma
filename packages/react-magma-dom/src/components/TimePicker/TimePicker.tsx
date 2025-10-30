@@ -87,7 +87,7 @@ const StyledNumInput = styled.input<{
   }
 `;
 
-const InputsWithTimeZone = styled.div`
+const InputsWithTimezone = styled.div`
   display: flex;
   align-items: center;
   gap: ${props => props.theme.spaceScale.spacing03};
@@ -115,7 +115,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       labelText,
       labelWidth,
       minutesStep,
-      timeZone,
+      timezone,
       onChange,
       ...other
     } = props;
@@ -163,7 +163,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         labelPosition={labelPosition}
         labelWidth={labelWidth}
       >
-        <InputsWithTimeZone theme={theme}>
+        <InputsWithTimezone theme={theme}>
           <InputsContainer
             isInverse={isInverse}
             hasError={!!errorMessage}
@@ -230,8 +230,8 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
               </Announce>
             </VisuallyHidden>
           </InputsContainer>
-          {timeZone}
-        </InputsWithTimeZone>
+          {timezone}
+        </InputsWithTimezone>
         <input id={id} ref={ref} type="hidden" value={time} />
       </FormFieldContainer>
     );

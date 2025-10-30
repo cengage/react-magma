@@ -2,4 +2,4 @@
 'react-magma-docs': minor
 ---
 
-feat(DateTimePicker): Add timeZone
+feat(DateTimePicker): Add timezone

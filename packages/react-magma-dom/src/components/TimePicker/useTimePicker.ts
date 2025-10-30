@@ -28,7 +28,7 @@ export interface UseTimePickerProps
   /**
    * @internal
    */
-  timeZone?: string;
+  timezone?: string;
   /**
    * Function called when the component is changed to a new time
    */
