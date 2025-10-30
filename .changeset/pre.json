@@ -12,6 +12,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "chore-fix-workflows",
     "manually-sync-4.10.1"
   ]
 }

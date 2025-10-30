@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.2-next.1
+
+### Patch Changes
+
+- b8a27612a: chore: match workflows with dev and main
+
 ## 5.2.2-next.0
 
 ### Patch Changes
