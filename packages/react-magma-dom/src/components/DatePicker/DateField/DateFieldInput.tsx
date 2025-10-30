@@ -233,13 +233,19 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     }
   };
 
+  const clearDate = (event: React.MouseEvent) => {
+    onClear();
+    props.handleDateChange?.(null, event);
+    onClearDate?.();
+  };
+
   React.useEffect(() => {
     // Clear date if all fields are empty
     if (
       (isEmpty(day) && isEmpty(month) && isEmpty(year)) ||
       (hasMonthDayStringFormat && isEmpty(monthDayValue) && isEmpty(year))
     ) {
-      handleDateChange?.(null, null);
+      clearDate(null);
 
       return;
     }
@@ -274,12 +280,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     firstFieldRef?.focus();
   };
 
-  const clearDate = (event: React.MouseEvent) => {
-    onClear();
-    props.handleDateChange?.(null, event);
-    onClearDate?.();
-  };
-
   React.useEffect(() => {
     if (!inputValue) return onClear();
 
@@ -299,13 +299,19 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       yearValue = inputValue.getFullYear().toString();
     }
 
-    setDayValue(dayValue);
-    setMonthValue(monthValue);
-    setYearValue(yearValue);
+    // Update state only if value actually changed
+    setDayValue(prev => (prev !== dayValue ? dayValue : prev));
+    setMonthValue(prev => (prev !== monthValue ? monthValue : prev));
+    setYearValue(prev => (prev !== yearValue ? yearValue : prev));
+
     if (hasMonthDayStringFormat) {
-      setMonthDayValue(`${monthValue} ${dayValue}`);
+      const newMonthDayValue = `${monthValue} ${dayValue}`;
+
+      setMonthDayValue(prev =>
+        prev !== newMonthDayValue ? newMonthDayValue : prev
+      );
     }
-  }, [inputValue, i18n.dateFormat]);
+  }, [inputValue, hasMonthDayStringFormat]);
 
   const renderDateFields = () => {
     const fieldOrderLength = fieldOrder.length;
