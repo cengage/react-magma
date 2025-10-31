@@ -250,6 +250,8 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   };
 
   React.useEffect(() => {
+    let isMounted = true;
+
     // Preventing calling handleDateChange and onClearDate on initial mount when fields are empty
     if (!didMountRef.current) {
       didMountRef.current = true;
@@ -261,7 +263,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       (isEmpty(day) && isEmpty(month) && isEmpty(year)) ||
       (hasMonthDayStringFormat && isEmpty(monthDayValue) && isEmpty(year));
 
-    if (allFieldsEmpty) {
+    if (allFieldsEmpty && isMounted) {
       handleDateChange?.(null, null);
       onClearDate?.();
 
@@ -276,9 +278,13 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       ? new Date(`${month} ${day}, ${year}`)
       : new Date(Number(year), Number(month) - 1, Number(day));
 
-    if (!isNaN(newDate.getTime())) {
+    if (!isNaN(newDate.getTime()) && isMounted) {
       handleDateChange?.(newDate, null);
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, [month, day, year, monthDayValue, hasMonthDayStringFormat]);
 
   React.useEffect(() => {
@@ -288,7 +294,15 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   }, [setReference, inputRef]);
 
   React.useEffect(() => {
-    if (!inputValue) return onClear();
+    let isMounted = true;
+
+    if (!inputValue && isMounted) {
+      onClear();
+
+      return () => {
+        isMounted = false;
+      };
+    }
 
     let dayValue: string;
     let monthValue: string;
@@ -306,12 +320,18 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       yearValue = inputValue.getFullYear().toString();
     }
 
-    setDayValue(dayValue);
-    setMonthValue(monthValue);
-    setYearValue(yearValue);
-    if (hasMonthDayStringFormat) {
-      setMonthDayValue(`${monthValue} ${dayValue}`);
+    if (isMounted) {
+      setDayValue(dayValue);
+      setMonthValue(monthValue);
+      setYearValue(yearValue);
+      if (hasMonthDayStringFormat) {
+        setMonthDayValue(`${monthValue} ${dayValue}`);
+      }
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, [inputValue, hasMonthDayStringFormat]);
 
   const renderDateFields = () => {
