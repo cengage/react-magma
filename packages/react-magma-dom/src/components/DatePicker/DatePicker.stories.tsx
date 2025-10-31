@@ -36,7 +36,11 @@ export default {
     labelPosition: {
       control: {
         type: 'select',
-        options: LabelPosition,
+      },
+      options: ['left', 'top'],
+      mapping: {
+        left: LabelPosition.left,
+        top: LabelPosition.top,
       },
     },
     labelWidth: {

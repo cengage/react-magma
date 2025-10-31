@@ -99,6 +99,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(props.isInverse);
   const hasMonthDayStringFormat = props.dateFormat === 'MMMM d, yyyy';
+  const didMountRef = React.useRef(false);
 
   const dayId = `${id}__day`;
   const monthId = `${id}__month`;
@@ -233,19 +234,36 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     }
   };
 
-  const clearDate = (event: React.MouseEvent) => {
+  const clearDate = () => {
     onClear();
-    props.handleDateChange?.(null, event);
+    handleDateChange?.(null, null);
     onClearDate?.();
   };
 
+  const focusInputContainer = (e: React.MouseEvent | React.FocusEvent) => {
+    if (e.target !== e.currentTarget) return;
+
+    // Focus the first available field in fieldOrder
+    const firstFieldRef = fieldRefs[fieldOrder[0]]?.current;
+
+    firstFieldRef?.focus();
+  };
+
   React.useEffect(() => {
-    // Clear date if all fields are empty
-    if (
+    // Preventing calling handleDateChange and onClearDate on initial mount when fields are empty
+    if (!didMountRef.current) {
+      didMountRef.current = true;
+
+      return;
+    }
+
+    const allFieldsEmpty =
       (isEmpty(day) && isEmpty(month) && isEmpty(year)) ||
-      (hasMonthDayStringFormat && isEmpty(monthDayValue) && isEmpty(year))
-    ) {
-      clearDate(null);
+      (hasMonthDayStringFormat && isEmpty(monthDayValue) && isEmpty(year));
+
+    if (allFieldsEmpty) {
+      handleDateChange?.(null, null);
+      onClearDate?.();
 
       return;
     }
@@ -258,27 +276,16 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       ? new Date(`${month} ${day}, ${year}`)
       : new Date(Number(year), Number(month) - 1, Number(day));
 
-    if (isNaN(newDate.getTime())) {
-      return;
+    if (!isNaN(newDate.getTime())) {
+      handleDateChange?.(newDate, null);
     }
-
-    handleDateChange?.(newDate, null);
-  }, [month, day, year, props.dateFormat]);
+  }, [month, day, year, monthDayValue, hasMonthDayStringFormat]);
 
   React.useEffect(() => {
     if (setReference && inputRef && inputRef.current) {
       setReference(inputRef.current);
     }
   }, [setReference, inputRef]);
-
-  const focusInputContainer = (e: React.MouseEvent | React.FocusEvent) => {
-    if (e.target !== e.currentTarget) return;
-
-    // Focus the first available field in fieldOrder
-    const firstFieldRef = fieldRefs[fieldOrder[0]]?.current;
-
-    firstFieldRef?.focus();
-  };
 
   React.useEffect(() => {
     if (!inputValue) return onClear();
