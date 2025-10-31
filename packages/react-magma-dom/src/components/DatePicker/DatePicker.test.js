@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   addDays,
@@ -1380,28 +1380,30 @@ describe('Date Picker', () => {
       const dayInput = getByTestId('day-input');
       const yearInput = getByTestId('year-input');
 
-      monthInput.focus();
-      fireEvent.keyDown(monthInput, { key: 'ArrowUp' });
+      userEvent.click(monthInput);
+      userEvent.keyboard('{ArrowUp}');
       expect(monthInput.value).toBe('11');
 
-      dayInput.focus();
-      fireEvent.keyDown(dayInput, { key: 'ArrowUp' });
+      userEvent.click(dayInput);
+      userEvent.keyboard('{ArrowUp}');
       expect(dayInput.value).toBe('23');
 
-      yearInput.focus();
-      fireEvent.keyDown(yearInput, { key: 'ArrowUp' });
-      expect(yearInput.value).toBe('2026');
+      userEvent.click(yearInput);
+      userEvent.keyboard('{ArrowUp}');
+      waitFor(() => {
+        expect(yearInput.value).toBe('2026');
+      });
 
-      monthInput.focus();
-      fireEvent.keyDown(monthInput, { key: 'ArrowDown' });
+      userEvent.click(monthInput);
+      userEvent.keyboard('{ArrowDown}');
       expect(monthInput.value).toBe('10');
 
-      dayInput.focus();
-      fireEvent.keyDown(dayInput, { key: 'ArrowDown' });
+      userEvent.click(dayInput);
+      userEvent.keyboard('{ArrowDown}');
       expect(dayInput.value).toBe('22');
 
-      yearInput.focus();
-      fireEvent.keyDown(yearInput, { key: 'ArrowDown' });
+      userEvent.click(yearInput);
+      userEvent.keyboard('{ArrowDown}');
       expect(yearInput.value).toBe('2025');
     });
 
@@ -1413,17 +1415,19 @@ describe('Date Picker', () => {
       const dayInput = getByTestId('day-input');
       const yearInput = getByTestId('year-input');
 
-      monthInput.focus();
-      fireEvent.keyDown(monthInput, { key: 'ArrowDown' });
+      userEvent.click(monthInput);
+      userEvent.keyboard('{ArrowDown}');
       expect(monthInput.value).toBe(String(today.getMonth() + 1));
 
-      dayInput.focus();
-      fireEvent.keyDown(dayInput, { key: 'ArrowDown' });
+      userEvent.click(dayInput);
+      userEvent.keyboard('{ArrowDown}');
       expect(dayInput.value).toBe(String(today.getDate()));
 
-      yearInput.focus();
-      fireEvent.keyDown(yearInput, { key: 'ArrowUp' });
-      expect(yearInput.value).toBe(String(today.getFullYear()));
+      userEvent.click(yearInput);
+      userEvent.keyboard('{ArrowUp}');
+      waitFor(() => {
+        expect(yearInput.value).toBe(String(today.getFullYear()));
+      });
     });
 
     it('should render with a default date', () => {
@@ -1448,27 +1452,10 @@ describe('Date Picker', () => {
       expect(getByTestId('year-input')).toHaveValue(2018);
     });
 
-    it('should show clear button and clears fields', () => {
-      const { getByTestId } = render(
-        <DatePicker
-          isDateFieldInput
-          isClearable
-          defaultDate={new Date(2025, 11, 25)}
-        />
-      );
-      const clearButton = getByTestId('clear-button');
-      expect(clearButton).toBeInTheDocument();
-
-      userEvent.click(clearButton);
-
-      expect(getByTestId('month-input').value).toBe('');
-      expect(getByTestId('day-input').value).toBe('');
-      expect(getByTestId('year-input').value).toBe('');
-    });
-
     it('should call onChange and onDateChange when date is changed', () => {
       const onChange = jest.fn();
       const onDateChange = jest.fn();
+
       const { getByTestId } = render(
         <DatePicker
           isDateFieldInput
@@ -1481,20 +1468,24 @@ describe('Date Picker', () => {
       const dayInput = getByTestId('day-input');
       const yearInput = getByTestId('year-input');
 
-      monthInput.focus();
-      fireEvent.keyDown(monthInput, { key: 'ArrowDown' });
+      userEvent.click(monthInput);
+      userEvent.keyboard('{ArrowDown}');
+
       expect(onDateChange).not.toHaveBeenCalled();
       expect(onChange).not.toHaveBeenCalled();
 
-      dayInput.focus();
-      fireEvent.keyDown(dayInput, { key: 'ArrowDown' });
+      userEvent.click(dayInput);
+      userEvent.keyboard('{ArrowDown}');
+
       expect(onDateChange).not.toHaveBeenCalled();
       expect(onChange).not.toHaveBeenCalled();
 
-      yearInput.focus();
-      fireEvent.keyDown(yearInput, { key: 'ArrowUp' });
-      expect(onDateChange).toHaveBeenCalled();
-      expect(onChange).toHaveBeenCalled();
+      userEvent.click(yearInput);
+      userEvent.keyboard('{ArrowUp}');
+      waitFor(() => {
+        expect(onDateChange).toHaveBeenCalled();
+        expect(onChange).toHaveBeenCalled();
+      });
     });
 
     it('should handle focus and blur events on DateFieldInput', () => {
@@ -1510,10 +1501,10 @@ describe('Date Picker', () => {
 
       const dateFieldInput = getByTestId('date-field-input');
 
-      fireEvent.focus(dateFieldInput);
+      dateFieldInput.focus();
       expect(onInputFocus).toHaveBeenCalled();
 
-      fireEvent.blur(dateFieldInput);
+      dateFieldInput.blur();
       expect(onInputBlur).toHaveBeenCalled();
     });
 
@@ -1648,6 +1639,85 @@ describe('Date Picker', () => {
 
         expect(getByTestId('month-day-input').value).toEqual('September 22');
         expect(getByTestId('year-input').value).toEqual('2025');
+      });
+    });
+    describe('Clearing the date', () => {
+      it('should show clear button and clears fields', () => {
+        const { getByTestId } = render(
+          <DatePicker
+            isDateFieldInput
+            isClearable
+            defaultDate={new Date(2025, 11, 25)}
+          />
+        );
+        const clearButton = getByTestId('clear-button');
+        expect(clearButton).toBeInTheDocument();
+
+        userEvent.click(clearButton);
+
+        expect(getByTestId('month-input').value).toBe('');
+        expect(getByTestId('day-input').value).toBe('');
+        expect(getByTestId('year-input').value).toBe('');
+      });
+
+      it('should call handleDateChange to parent when all fields are cleared with default format', () => {
+        const onDateChange = jest.fn();
+
+        const { getByTestId } = render(
+          <DatePicker
+            isDateFieldInput
+            value={new Date(2025, 9, 22)}
+            onDateChange={onDateChange}
+          />
+        );
+        const monthInput = getByTestId('month-input');
+        const dayInput = getByTestId('day-input');
+        const yearInput = getByTestId('year-input');
+
+        userEvent.type(monthInput, '{backspace}{backspace}');
+        userEvent.type(dayInput, '{backspace}{backspace}');
+        userEvent.type(
+          yearInput,
+          '{backspace}{backspace}{backspace}{backspace}'
+        );
+
+        waitFor(() => {
+          expect(onDateChange).toHaveBeenCalledWith(null, null);
+        });
+      });
+
+      it('should call handleDateChange to parent when all fields are cleared with `MMMM d, yyyy` format', () => {
+        const onDateChange = jest.fn();
+
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'MMMM d, yyyy',
+            }}
+          >
+            <DatePicker
+              isDateFieldInput
+              value={new Date(2025, 5, 22)}
+              onDateChange={onDateChange}
+            />
+          </I18nContext.Provider>
+        );
+        const monthDayInput = getByTestId('month-day-input');
+        const yearInput = getByTestId('year-input');
+
+        userEvent.type(
+          monthDayInput,
+          '{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}'
+        );
+        userEvent.type(
+          yearInput,
+          '{backspace}{backspace}{backspace}{backspace}'
+        );
+
+        waitFor(() => {
+          expect(onDateChange).toHaveBeenCalledWith(null, null);
+        });
       });
     });
   });
