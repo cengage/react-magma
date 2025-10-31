@@ -1,5 +1,5 @@
 ---
-'react-magma-docs': minor
+'react-magma-dom': minor
 ---
 
 feat(Checkbox): Add new `ariaLabel` prop.
