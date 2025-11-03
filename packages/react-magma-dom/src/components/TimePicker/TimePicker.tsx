@@ -23,7 +23,6 @@ export interface TimePickerProps extends UseTimePickerProps {
 }
 
 interface StyledNumInputProps {
-  isDateFieldInput?: boolean;
   isFocused?: boolean;
   isInverse?: boolean;
   size?: number;
@@ -50,7 +49,6 @@ const Divider = styled.span`
 
 export const StyledNumInput = styled.input<StyledNumInputProps>`
   padding: 0;
-  margin: ${props => (props.isDateFieldInput ? '0 -3px' : '0')};
   border: 0;
   text-align: center;
   min-width: ${props => (props.size ? `${props.size}ch` : 'auto')};
