@@ -127,8 +127,8 @@ describe('DateTimePicker', () => {
 
     it('should render with correct abbreviature', async () => {
       const date = new Date();
-      const timezone = 'America/New_York';
-      const timezoneAbbr = 'EDT';
+      const timezone = 'Asia/Tokyo';
+      const timezoneAbbr = 'GMT+9';
 
       const { getByText, getByPlaceholderText, getByLabelText } = render(
         <DateTimePicker value={date} timezone={timezone} />
