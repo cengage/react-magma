@@ -9,8 +9,10 @@ export const InputsContainer = styled.div<{
   isInverse?: boolean;
 }>`
   ${inputWrapperStyles};
+  padding: 10px ${props => props.theme.spaceScale.spacing03}
+    ${props => props.theme.spaceScale.spacing03}
+    ${props => props.theme.spaceScale.spacing03};
   height: ${props => props.theme.spaceScale.spacing09};
-  padding: ${props => props.theme.spaceScale.spacing03};
   width: 100%;
   font-family: ${props => props.theme.bodyFont};
   position: relative;
@@ -36,9 +38,8 @@ export const Divider = styled.span<{
   isFocused?: boolean;
 }>`
   display: inline-block;
-  margin: 0 2px;
   position: relative;
-  top: -1px;
+  top: ${props => `-${props.theme.spaceScale.spacing01}`};
   color: ${props =>
     getDividerColor(props.isInverse, props.isFocused, props.theme)};
 `;
