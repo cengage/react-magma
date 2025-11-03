@@ -127,7 +127,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             data-testid="month-day-input"
             id={monthDayId}
             isInverse={isInverse}
-            isDateFieldInput
             isFocused={isFocused || isNotEmptyDate}
             onChange={e => setMonthDayValue(e.target.value)}
             onBlur={() => {
@@ -157,7 +156,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             data-testid="day-input"
             id={dayId}
             isInverse={isInverse}
-            isDateFieldInput
             isFocused={isFocused || isNotEmptyDate}
             onBeforeInput={handleNumericBeforeInput}
             onChange={handleDayChange}
@@ -185,7 +183,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             data-testid="month-input"
             id={monthId}
             isInverse={isInverse}
-            isDateFieldInput
             isFocused={isFocused || isNotEmptyDate}
             onBeforeInput={handleNumericBeforeInput}
             onChange={handleMonthChange}
@@ -215,7 +212,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             data-testid="year-input"
             id={yearId}
             isInverse={isInverse}
-            isDateFieldInput
             isFocused={isFocused || isNotEmptyDate}
             onBeforeInput={handleNumericBeforeInput}
             onChange={handleYearChange}
