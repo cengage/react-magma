@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
+import { transparentize } from 'polished';
 import { ScheduleIcon } from 'react-magma-icons';
 
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -9,6 +10,7 @@ import { AmPmToggle } from './AmPmToggle';
 import { useTimePicker, UseTimePickerProps } from './useTimePicker';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
+import { handleNumericBeforeInput } from '../../utils';
 import { FormFieldContainer } from '../FormFieldContainer';
 import { inputWrapperStyles } from '../InputBase';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -39,20 +41,26 @@ const Divider = styled.span`
   top: -1px;
 `;
 
-const StyledNumInput = styled.input<{
+export const StyledNumInput = styled.input<{
+  isDateFieldInput?: boolean;
+  isFocused?: boolean;
   isInverse?: boolean;
+  size?: number;
 }>`
+  padding: 0;
+  margin: ${props => (props.isDateFieldInput ? '0 -3px' : '0')};
   border: 0;
-  border-radius: ${props => props.theme.borderRadiusSmall};
-  margin-right: ${props => props.theme.spaceScale.spacing01};
-  padding: 0 ${props => props.theme.spaceScale.spacing01};
-  text-align: right;
+  text-align: center;
+  min-width: ${props => (props.size ? `${props.size}ch` : 'auto')};
+  max-width: ${props => (props.size ? `${props.size}ch` : 'auto')};
   width: ${props => props.theme.spaceScale.spacing06};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
   background: transparent;
+  border-bottom: 2px solid transparent; // Reserve space for border when focused
+  caret-color: transparent;
 
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -63,42 +71,53 @@ const StyledNumInput = styled.input<{
   &::placeholder {
     color: ${props =>
       props.isInverse
-        ? props.theme.colors.neutral100
-        : props.theme.colors.neutral700};
+        ? transparentize(0.3, props.theme.colors.neutral100)
+        : props.theme.colors.neutral500};
   }
 
   &:focus {
     outline: 0;
+    border-bottom: 2px solid
+      ${props =>
+        props.isInverse
+          ? props.theme.colors.info200
+          : props.theme.colors.info500};
     background: ${props =>
       props.isInverse
-        ? props.theme.colors.tertiary
-        : props.theme.colors.primary};
-    color: ${props =>
-      props.isInverse
-        ? props.theme.colors.neutral900
-        : props.theme.colors.neutral100};
+        ? props.theme.colors.info700
+        : transparentize(0.4, props.theme.colors.info200)};
 
     &::placeholder {
       color: ${props =>
         props.isInverse
-          ? props.theme.colors.neutral900
-          : props.theme.colors.neutral100};
+          ? props.theme.colors.neutral100
+          : props.theme.colors.neutral700};
+    }
+
+    &::selection {
+      background: ${props =>
+        props.isInverse
+          ? props.theme.colors.info700
+          : transparentize(1, props.theme.colors.info200)};
     }
   }
+
+  ${props =>
+    props.isFocused &&
+    `&::placeholder {
+      color: ${
+        props.isInverse
+          ? props.theme.colors.neutral100
+          : props.theme.colors.neutral700
+      };
+    }
+  `}
 `;
 
 export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
   (props, ref) => {
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
-
-    const handleNumericBeforeInput = (e: React.FormEvent<HTMLInputElement>) => {
-      const native = e.nativeEvent as InputEvent;
-
-      if (typeof native.data === 'string' && /\D/.test(native.data)) {
-        e.preventDefault();
-      }
-    };
 
     const {
       containerStyle,

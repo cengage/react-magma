@@ -1431,16 +1431,23 @@ describe('Date Picker', () => {
       const dayInput = getByTestId('day-input');
       const yearInput = getByTestId('year-input');
 
+      const monthValue =
+        today.getMonth() + 1 < 10
+          ? `0${today.getMonth() + 1}`
+          : String(today.getMonth() + 1);
+      const dayValue =
+        today.getDate() < 10 ? `0${today.getDate()}` : String(today.getDate());
+
       await user.click(monthInput);
       await user.keyboard('{ArrowDown}');
       await waitFor(() => {
-        expect(monthInput.value).toBe(String(today.getMonth() + 1));
+        expect(monthInput.value).toBe(monthValue);
       });
 
       await user.click(dayInput);
       await user.keyboard('{ArrowDown}');
       await waitFor(() => {
-        expect(dayInput.value).toBe(String(today.getDate()));
+        expect(dayInput.value).toBe(dayValue);
       });
 
       await user.click(yearInput);
@@ -1456,9 +1463,9 @@ describe('Date Picker', () => {
         <DatePicker defaultDate={defaultDate} isDateFieldInput />
       );
 
-      expect(getByTestId('month-input')).toHaveValue(1);
-      expect(getByTestId('day-input')).toHaveValue(17);
-      expect(getByTestId('year-input')).toHaveValue(2019);
+      expect(getByTestId('month-input')).toHaveValue('01');
+      expect(getByTestId('day-input')).toHaveValue('17');
+      expect(getByTestId('year-input')).toHaveValue('2019');
     });
 
     it('should render with a value', () => {
@@ -1467,9 +1474,9 @@ describe('Date Picker', () => {
         <DatePicker value={value} isDateFieldInput />
       );
 
-      expect(getByTestId('month-input')).toHaveValue(2);
-      expect(getByTestId('day-input')).toHaveValue(21);
-      expect(getByTestId('year-input')).toHaveValue(2018);
+      expect(getByTestId('month-input')).toHaveValue('02');
+      expect(getByTestId('day-input')).toHaveValue('21');
+      expect(getByTestId('year-input')).toHaveValue('2018');
     });
 
     it('should call onChange and onDateChange when date is changed', async () => {
@@ -1591,7 +1598,7 @@ describe('Date Picker', () => {
         );
 
         expect(getByTestId('day-input').value).toEqual('24');
-        expect(getByTestId('month-input').value).toEqual('7');
+        expect(getByTestId('month-input').value).toEqual('07');
         expect(getByTestId('year-input').value).toEqual('2022');
       });
 
@@ -1608,7 +1615,7 @@ describe('Date Picker', () => {
         );
 
         expect(getByTestId('day-input').value).toEqual('17');
-        expect(getByTestId('month-input').value).toEqual('6');
+        expect(getByTestId('month-input').value).toEqual('06');
         expect(getByTestId('year-input').value).toEqual('2021');
       });
 
@@ -1625,7 +1632,7 @@ describe('Date Picker', () => {
         );
 
         expect(getByTestId('day-input').value).toEqual('15');
-        expect(getByTestId('month-input').value).toEqual('2');
+        expect(getByTestId('month-input').value).toEqual('02');
         expect(getByTestId('year-input').value).toEqual('2020');
       });
 

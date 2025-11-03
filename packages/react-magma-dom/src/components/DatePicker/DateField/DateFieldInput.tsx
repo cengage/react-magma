@@ -10,13 +10,12 @@ import {
   IconWrapper,
   InputsContainer,
   IsClearableContainer,
-  StyledInput,
-} from './StyledInput';
+} from './StyledDateFieldInput';
 import { InputDateFields, useDateField } from './useDateField';
 import { I18nContext } from '../../../i18n';
 import { useIsInverse } from '../../../inverse';
 import { ThemeContext } from '../../../theme/ThemeContext';
-import { isNotEmpty } from '../../../utils';
+import { handleNumericBeforeInput, isNotEmpty } from '../../../utils';
 import {
   ButtonShape,
   ButtonSize,
@@ -29,6 +28,7 @@ import {
 } from '../../FormFieldContainer';
 import { IconButton } from '../../IconButton';
 import { IconButtonContainer } from '../../InputBase';
+import { StyledNumInput } from '../../TimePicker';
 
 export interface DateFieldInputProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'> {
@@ -90,6 +90,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     setYearValue,
     setMonthDayValue,
     handleFieldKeyDown,
+    formatWithLeadingZero,
     fieldOrder,
     fieldRefs,
   } = useDateField({
@@ -100,6 +101,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   const isInverse = useIsInverse(props.isInverse);
   const hasMonthDayStringFormat = props.dateFormat === 'MMMM d, yyyy';
   const didMountRef = React.useRef(false);
+  const [isFocused, setIsFocused] = React.useState(false);
 
   const dayId = `${id}__day`;
   const monthId = `${id}__month`;
@@ -108,11 +110,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
 
   const i18n = React.useContext(I18nContext);
   const { datePicker } = i18n;
-
-  const isFocused =
-    fieldRefs.day?.current === document.activeElement ||
-    fieldRefs.month?.current === document.activeElement ||
-    fieldRefs.year?.current === document.activeElement;
 
   const isNotEmptyDate =
     isNotEmpty(day) || isNotEmpty(month) || isNotEmpty(year);
@@ -123,14 +120,15 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     switch (key) {
       case InputDateFields.MonthDay:
         return (
-          <StyledInput
+          <StyledNumInput
             aria-label={`${datePicker.month} ${month} ${datePicker.day} ${day}`}
             aria-describedby={monthDayId}
             aria-valuetext={`${day} - ${month}`}
             data-testid="month-day-input"
             id={monthDayId}
             isInverse={isInverse}
-            isFocused={isFocused}
+            isDateFieldInput
+            isFocused={isFocused || isNotEmptyDate}
             onChange={e => setMonthDayValue(e.target.value)}
             onBlur={() => {
               const [monthInput, dayInput] = monthDayValue.split(' ');
@@ -144,14 +142,12 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             theme={theme}
             type="text"
             value={monthDayValue}
-            minLength={4}
-            maxLength={20}
-            size={day && month ? month.length + day.length + 1 : 8}
+            size={monthDayValue ? monthDayValue.length : 8}
           />
         );
       case InputDateFields.Day:
         return (
-          <StyledInput
+          <StyledNumInput
             aria-label={`${datePicker.day} ${day}`}
             aria-describedby={dayId}
             aria-valuemin={1}
@@ -161,23 +157,25 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             data-testid="day-input"
             id={dayId}
             isInverse={isInverse}
-            isFocused={isFocused}
-            maxLength={2}
-            min="1"
-            max="31"
+            isDateFieldInput
+            isFocused={isFocused || isNotEmptyDate}
+            onBeforeInput={handleNumericBeforeInput}
             onChange={handleDayChange}
             onKeyDown={event => handleFieldKeyDown(event, InputDateFields.Day)}
             placeholder="dd"
             ref={fieldRefs.day}
             required={required}
             theme={theme}
-            type="number"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            size={2}
             value={day ?? ''}
           />
         );
       case InputDateFields.Month:
         return (
-          <StyledInput
+          <StyledNumInput
             aria-label={`${datePicker.month} ${month}`}
             aria-describedby={monthId}
             aria-valuemax={12}
@@ -187,10 +185,9 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             data-testid="month-input"
             id={monthId}
             isInverse={isInverse}
-            isFocused={isFocused}
-            maxLength={2}
-            min="1"
-            max="12"
+            isDateFieldInput
+            isFocused={isFocused || isNotEmptyDate}
+            onBeforeInput={handleNumericBeforeInput}
             onChange={handleMonthChange}
             onKeyDown={event =>
               handleFieldKeyDown(event, InputDateFields.Month)
@@ -199,14 +196,16 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             ref={fieldRefs.month}
             required={required}
             theme={theme}
-            type={hasMonthDayStringFormat ? 'text' : 'number'}
-            size={4}
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            size={isNotEmpty(month) ? 2 : 3.25}
             value={month ?? ''}
           />
         );
       case InputDateFields.Year:
         return (
-          <StyledInput
+          <StyledNumInput
             aria-label={`${datePicker.year} ${year}`}
             aria-describedby={yearId}
             aria-valuemin={1900}
@@ -216,16 +215,19 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             data-testid="year-input"
             id={yearId}
             isInverse={isInverse}
-            isFocused={isFocused}
-            min={1900}
-            max={2099}
+            isDateFieldInput
+            isFocused={isFocused || isNotEmptyDate}
+            onBeforeInput={handleNumericBeforeInput}
             onChange={handleYearChange}
             onKeyDown={event => handleFieldKeyDown(event, InputDateFields.Year)}
             placeholder="yyyy"
             ref={fieldRefs.year}
             required={required}
             theme={theme}
-            type="number"
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            size={3.85}
             value={year ?? ''}
           />
         );
@@ -312,7 +314,9 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       const stringDate = inputValue.trim().split(/[\s,]+/);
 
       if (stringDate.length >= 3) {
-        [monthValue, dayValue, yearValue] = stringDate;
+        monthValue = stringDate[0];
+        dayValue = formatWithLeadingZero(Number(stringDate[1]));
+        yearValue = stringDate[2];
       }
     } else if (inputValue instanceof Date) {
       dayValue = inputValue.getDate().toString();
@@ -321,9 +325,9 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     }
 
     if (isMounted) {
-      setDayValue(dayValue);
-      setMonthValue(monthValue);
-      setYearValue(yearValue);
+      setDayValue(formatWithLeadingZero(Number(dayValue)));
+      setMonthValue(formatWithLeadingZero(Number(monthValue)));
+      setYearValue(formatWithLeadingZero(Number(yearValue)));
       if (hasMonthDayStringFormat) {
         setMonthDayValue(`${monthValue} ${dayValue}`);
       }
@@ -342,9 +346,8 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
         {renderInput(key)}
         {idx < fieldOrderLength - 1 && (
           <Divider
-            isFocused={isFocused}
+            isFocused={isFocused || isNotEmptyDate}
             isInverse={isInverse}
-            isNotEmptyDate={isNotEmptyDate}
             theme={theme}
           >
             {fieldOrderLength === 2 ? ',' : '/'}
@@ -374,13 +377,17 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
           theme={theme}
           style={inputStyle}
           onClick={focusInputContainer}
-          onFocusCapture={e => {
+          onFocus={e => {
             if (e.target === e.currentTarget) {
               focusInputContainer(e);
               onInputFocus?.(e);
             }
+            setIsFocused(true);
           }}
-          onBlurCapture={onInputBlur}
+          onBlur={e => {
+            onInputBlur?.(e);
+            setIsFocused(false);
+          }}
           tabIndex={0}
         >
           {renderDateFields()}
