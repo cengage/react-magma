@@ -22,6 +22,13 @@ export interface TimePickerProps extends UseTimePickerProps {
   inputStyle?: React.CSSProperties;
 }
 
+interface StyledNumInputProps {
+  isDateFieldInput?: boolean;
+  isFocused?: boolean;
+  isInverse?: boolean;
+  size?: number;
+}
+
 const InputsContainer = styled.div<{
   hasError?: boolean;
   isInverse?: boolean;
@@ -41,12 +48,7 @@ const Divider = styled.span`
   top: -1px;
 `;
 
-export const StyledNumInput = styled.input<{
-  isDateFieldInput?: boolean;
-  isFocused?: boolean;
-  isInverse?: boolean;
-  size?: number;
-}>`
+export const StyledNumInput = styled.input<StyledNumInputProps>`
   padding: 0;
   margin: ${props => (props.isDateFieldInput ? '0 -3px' : '0')};
   border: 0;
