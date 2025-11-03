@@ -104,7 +104,7 @@ describe('DateTimePicker', () => {
     });
   });
 
-  describe('Time Zone', () => {
+  describe('Timezone', () => {
     it('should render it correctly', async () => {
       const date = new Date();
       const timezone = 'EST';

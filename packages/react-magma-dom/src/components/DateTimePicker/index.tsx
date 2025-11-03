@@ -90,8 +90,8 @@ export interface DateTimePickerProps
    */
   value?: Date;
   /**
-   * Optional time zone to display with the selected date and time (e.g. "America/New_York").
-   * If provided, the component will display its short abbreviation (e.g. "EST") and include the time zone when returning values.
+   * Optional timezone to display with the selected date and time (e.g. "America/New_York").
+   * If provided, the component will display its short abbreviation (e.g. "EST") and include the timezone when returning values.
    */
   timezone?: string;
   /**

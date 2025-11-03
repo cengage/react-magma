@@ -66,22 +66,54 @@ export function Example() {
 
 ## Timezone
 
-Optional time zone to display with the selected date and time (e.g. "America/New_York").
-If provided, the component will display its short abbreviation (e.g. "EST") and include the time zone when returning values.
-The `timezone` prop expects a valid time zone identifier supported by [date-fns](https://date-fns.org/v2.0.0-alpha.27/docs/Time-Zones), such as `"America/New_York"`, `"Europe/London"`, or `"Asia/Tokyo"`.
+Optional timezone to display with the selected date and time (e.g. "America/New_York").
+If provided, the component will display its short abbreviation (e.g. "EST") and include the timezone when returning values.
+The `timezone` prop expects a valid timezone identifier supported by [date-fns](https://date-fns.org/v2.0.0-alpha.27/docs/Time-Zones), such as `"America/New_York"`, `"Europe/London"`, or `"Asia/Tokyo"`.
 The component validates the value against the list provided by date-fns and will not accept invalid or unsupported identifiers.
 
 ```tsx
-import React from 'React';
+import React from 'react';
+
 import { DateTimePicker } from 'react-magma-dom';
 
 export function Example() {
+  const [data, setData] = React.useState<{
+    day: Date | null;
+    event: React.SyntheticEvent | null;
+    timezone?: string;
+  }>({ day: null, event: null, timezone: undefined });
+
+  function handleDateChange(
+    day: Date,
+    event: React.SyntheticEvent,
+    timezone?: string
+  ) {
+    setData({ day, event, timezone });
+  }
+
   return (
-    <DateTimePicker
-      labelText="Date and Time with Time Zone"
-      value={new Date(2025, 1, 0, 8, 20)}
-      timezone={'America/New_York'}
-    />
+    <div>
+      <DateTimePicker
+        labelText="Date and Time with Timezone"
+        timezone="America/New_York"
+        onDateChange={handleDateChange}
+      />
+      <br />
+      <p>
+        <strong>Returned Data:</strong>
+      </p>
+      <pre>
+        {JSON.stringify(
+          {
+            day: data.day ? data.day.toString() : null,
+            timezone: data.timezone,
+            event: data.event ? '[SyntheticEvent]' : null,
+          },
+          null,
+          2
+        )}
+      </pre>
+    </div>
   );
 }
 ```
