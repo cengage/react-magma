@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
+import { isEmpty } from 'lodash';
 import { transparentize } from 'polished';
 import { ScheduleIcon } from 'react-magma-icons';
 
@@ -11,7 +12,6 @@ import { useTimePicker, UseTimePickerProps } from './useTimePicker';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
-import { isNotEmpty } from '../../utils';
 import { FormFieldContainer } from '../FormFieldContainer';
 import { inputWrapperStyles } from '../InputBase';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -178,7 +178,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         : i18n.timePicker.pmButtonAriaLabel
     }`;
 
-    const isNotEmptyDate = isNotEmpty(hour) || isNotEmpty(minute);
+    const isNotEmptyDate = !isEmpty(hour) || !isEmpty(minute);
 
     return (
       <FormFieldContainer
