@@ -10,6 +10,7 @@ import { AmPmToggle } from './AmPmToggle';
 import { useTimePicker, UseTimePickerProps } from './useTimePicker';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
 import { handleNumericBeforeInput } from '../../utils';
 import { FormFieldContainer } from '../FormFieldContainer';
 import { inputWrapperStyles } from '../InputBase';
@@ -40,11 +41,30 @@ const InputsContainer = styled.div<{
   font-family: ${props => props.theme.bodyFont};
 `;
 
-const Divider = styled.span`
+const getDividerColor = (
+  isInverse: boolean,
+  isFocused: boolean,
+  theme: ThemeInterface
+): string => {
+  if (isInverse) {
+    return isFocused
+      ? theme.colors.neutral100
+      : transparentize(0.3, theme.colors.neutral100);
+  }
+
+  return isFocused ? theme.colors.neutral700 : theme.colors.neutral500;
+};
+
+export const Divider = styled.span<{
+  theme: ThemeInterface;
+  isInverse?: boolean;
+  isFocused?: boolean;
+}>`
   display: inline-block;
-  margin: 0 2px;
   position: relative;
   top: -1px;
+  color: ${props =>
+    getDividerColor(props.isInverse, props.isFocused, props.theme)};
 `;
 
 export const StyledNumInput = styled.input<StyledNumInputProps>`
@@ -205,7 +225,9 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             pattern="[0-9]*"
             onFocus={e => e.target.select()}
           />
-          <Divider> : </Divider>
+          <Divider isInverse={isInverse} theme={theme}>
+            :
+          </Divider>
           <StyledNumInput
             aria-label={minutesLabel}
             data-testid="minutesTimeInput"

@@ -6,7 +6,6 @@ import { ClearIcon, EventIcon } from 'react-magma-icons';
 
 import {
   DateFieldInputContainer,
-  Divider,
   IconWrapper,
   InputsContainer,
   IsClearableContainer,
@@ -15,7 +14,7 @@ import { InputDateFields, useDateField } from './useDateField';
 import { I18nContext } from '../../../i18n';
 import { useIsInverse } from '../../../inverse';
 import { ThemeContext } from '../../../theme/ThemeContext';
-import { handleNumericBeforeInput, isNotEmpty } from '../../../utils';
+import { handleNumericBeforeInput } from '../../../utils';
 import {
   ButtonShape,
   ButtonSize,
@@ -28,7 +27,7 @@ import {
 } from '../../FormFieldContainer';
 import { IconButton } from '../../IconButton';
 import { IconButtonContainer } from '../../InputBase';
-import { StyledNumInput } from '../../TimePicker';
+import { Divider, StyledNumInput } from '../../TimePicker';
 
 export interface DateFieldInputProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'> {
@@ -111,8 +110,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   const i18n = React.useContext(I18nContext);
   const { datePicker } = i18n;
 
-  const isNotEmptyDate =
-    isNotEmpty(day) || isNotEmpty(month) || isNotEmpty(year);
+  const isNotEmptyDate = !isEmpty(day) || !isEmpty(month) || !isEmpty(year);
 
   const isClearableInput = props.isClearable && isNotEmptyDate;
 
@@ -196,7 +194,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             type="text"
             inputMode="numeric"
             pattern="[0-9]*"
-            size={isNotEmpty(month) ? 2 : 3.25}
+            size={!isEmpty(month) ? 2 : 3.25}
             value={month ?? ''}
           />
         );
