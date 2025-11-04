@@ -65,13 +65,10 @@ const StyledNumInput = styled.input<{
 }>`
   border: 0;
   border-bottom: 2px solid transparent; // Reserve space for border when focused
-  margin-right: ${props => props.theme.spaceScale.spacing01};
-  /* padding: 0 ${props => props.theme.spaceScale.spacing01}; */
   padding: 0;
   text-align: right;
   text-align-last: center;
-  /* width: ${props => props.theme.spaceScale.spacing06}; */
-  width: 20px;
+  width: ${props => props.theme.typeScale.size05.fontSize};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
