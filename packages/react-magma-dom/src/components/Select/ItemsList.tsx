@@ -97,9 +97,23 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     );
   };
 
-  function handleEscape(event: React.KeyboardEvent) {
-    if (event.key === 'Escape') {
-      event.nativeEvent.stopImmediatePropagation();
+  function handleKeyDown(event: React.KeyboardEvent) {
+    switch (event.key) {
+      case 'Escape':
+        event.nativeEvent.stopImmediatePropagation();
+        break;
+      case 'ArrowDown':
+        if (highlightedIndex === items.length - 1) {
+          setHighlightedIndex?.(0);
+        }
+        break;
+      case 'ArrowUp':
+        if (highlightedIndex === 0) {
+          setHighlightedIndex?.(items.length - 1);
+        }
+        break;
+      default:
+        break;
     }
   }
 
@@ -112,7 +126,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
         hasDropShadow
         isInverse={isInverse}
         isOpen={isOpen}
-        onKeyDown={handleEscape}
+        onKeyDown={handleKeyDown}
         style={menuStyle}
         theme={theme}
       >
@@ -150,7 +164,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
 
               if (isDisabled) {
                 itemProps.onMouseEnter = () => {
-                  setHighlightedIndex && setHighlightedIndex(-1);
+                  setHighlightedIndex?.(-1);
                 };
               }
 

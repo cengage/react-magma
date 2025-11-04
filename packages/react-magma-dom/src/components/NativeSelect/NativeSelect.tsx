@@ -143,6 +143,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       labelWidth,
       messageStyle,
       testId,
+      onKeyDown,
       ...other
     } = props;
 
@@ -153,6 +154,26 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
     const id = useGenerateId(defaultId);
 
     const hasLabel = !!labelText;
+
+    const selectRef = React.useRef<HTMLSelectElement>(null);
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLSelectElement>) => {
+      const select = selectRef.current;
+      const total = select.options.length;
+      const index = select.selectedIndex;
+
+      if (e.key === 'ArrowDown' && index === total - 1) {
+        e.preventDefault();
+        select.selectedIndex = 0;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+      } else if (e.key === 'ArrowUp' && index === 0) {
+        e.preventDefault();
+        select.selectedIndex = total - 1;
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+
+      onKeyDown?.(e);
+    };
 
     const nativeSelect = (
       <StyledFormFieldContainer
@@ -193,7 +214,9 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
             disabled={disabled}
             id={id}
             isInverse={isInverse}
+            ref={selectRef}
             theme={theme}
+            onKeyDown={handleKeyDown}
             {...other}
           >
             {children}
