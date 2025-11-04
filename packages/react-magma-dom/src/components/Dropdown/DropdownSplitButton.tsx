@@ -1,6 +1,11 @@
 import * as React from 'react';
 
-import { ArrowDropDownIcon, ArrowDropUpIcon } from 'react-magma-icons';
+import {
+  ArrowDropDownIcon,
+  ArrowDropUpIcon,
+  HdIcon,
+  WcIcon,
+} from 'react-magma-icons';
 
 import {
   Button,
@@ -9,7 +14,7 @@ import {
   ButtonStyles,
   ButtonVariant,
 } from '../Button';
-import { getIconSize, IconButton } from '../IconButton';
+import { ButtonIconPosition, getIconSize, IconButton } from '../IconButton';
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -34,6 +39,10 @@ export interface DropdownSplitButtonProps extends ButtonStyles {
    */
   disabled?: boolean;
   /**
+   * Leading icon to display on the left side within the component
+   */
+  leadingIcon?: React.ReactElement;
+  /**
    * Function that fires when the button is clicked
    */
   onClick?: () => void;
@@ -56,6 +65,7 @@ export const DropdownSplitButton = React.forwardRef<
     id,
     variant = ButtonVariant.solid,
     onClick,
+    leadingIcon,
     ...other
   } = resolvedProps;
 
@@ -111,19 +121,36 @@ export const DropdownSplitButton = React.forwardRef<
 
   return (
     <div ref={context.setReference}>
-      <Button
-        {...other}
-        id={resolvedContext.dropdownButtonId.current}
-        isInverse={resolvedContext.isInverse}
-        onClick={handleButtonClick}
-        shape={ButtonShape.leftCap}
-        style={{ borderRight: 0, marginRight: 0 }}
-        variant={variant}
-        tabIndex={0}
-        ref={splitButtonRef}
-      >
-        {children}
-      </Button>
+      {leadingIcon ? (
+        <IconButton
+          {...other}
+          id={resolvedContext.dropdownButtonId.current}
+          isInverse={resolvedContext.isInverse}
+          onClick={handleButtonClick}
+          shape={ButtonShape.leftCap}
+          style={{ borderRight: 0, marginRight: 0 }}
+          variant={variant}
+          tabIndex={0}
+          ref={splitButtonRef}
+          icon={leadingIcon}
+        >
+          {children}
+        </IconButton>
+      ) : (
+        <Button
+          {...other}
+          id={resolvedContext.dropdownButtonId.current}
+          isInverse={resolvedContext.isInverse}
+          onClick={handleButtonClick}
+          shape={ButtonShape.leftCap}
+          style={{ borderRight: 0, marginRight: 0 }}
+          variant={variant}
+          tabIndex={0}
+          ref={splitButtonRef}
+        >
+          {children}
+        </Button>
+      )}
       <IconButton
         {...other}
         aria-expanded={resolvedContext.isOpen}

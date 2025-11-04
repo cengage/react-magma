@@ -9,6 +9,7 @@ import {
   RestaurantMenuIcon,
   SettingsIcon,
   GooglePlusIcon,
+  LibraryAddIcon,
 } from 'react-magma-icons';
 
 import { DropdownButton } from './DropdownButton';
@@ -235,79 +236,170 @@ export const SmallButton = {
 };
 
 const SplitTemplate: StoryFn<DropdownProps> = args => (
-  <div style={{ margin: '150px auto', textAlign: 'center' }}>
-    <Dropdown {...args}>
-      <DropdownSplitButton aria-label="Split" size={ButtonSize.medium}>
-        Split Dropdown
-      </DropdownSplitButton>
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
-    <br />
-    <br />
-    <Dropdown {...args}>
-      <DropdownSplitButton
-        aria-label="Split"
-        size={ButtonSize.medium}
-        variant={ButtonVariant.solid}
-        color={ButtonColor.secondary}
-      >
-        Split Dropdown
-      </DropdownSplitButton>
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
-    <br />
-    <br />
-    <Dropdown {...args}>
-      <DropdownSplitButton
-        aria-label="Split"
-        size={ButtonSize.medium}
-        variant={ButtonVariant.solid}
-        color={ButtonColor.danger}
-      >
-        Split Dropdown
-      </DropdownSplitButton>
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
-    <br />
-    <br />
-    <Dropdown {...args}>
-      <DropdownSplitButton
-        aria-label="Split"
-        size={ButtonSize.medium}
-        variant={ButtonVariant.solid}
-        color={ButtonColor.subtle}
-      >
-        Split Dropdown
-      </DropdownSplitButton>
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
-    <br />
-    <br />
-    <Dropdown isInverse>
-      <DropdownSplitButton
-        aria-label="Split"
-        size={ButtonSize.medium}
-        variant={ButtonVariant.solid}
-      >
-        Split Dropdown Inverse
-      </DropdownSplitButton>
-      <DropdownContent>
-        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
-        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
-      </DropdownContent>
-    </Dropdown>
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: '150px',
+    }}
+  >
+    <div style={{ margin: '150px 0', textAlign: 'center' }}>
+      <Dropdown {...args}>
+        <DropdownSplitButton aria-label="Split" size={ButtonSize.medium}>
+          Split Dropdown
+        </DropdownSplitButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <br />
+      <br />
+      <Dropdown {...args}>
+        <DropdownSplitButton
+          aria-label="Split"
+          size={ButtonSize.medium}
+          variant={ButtonVariant.solid}
+          color={ButtonColor.secondary}
+        >
+          Split Dropdown
+        </DropdownSplitButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <br />
+      <br />
+      <Dropdown {...args}>
+        <DropdownSplitButton
+          aria-label="Split"
+          size={ButtonSize.medium}
+          variant={ButtonVariant.solid}
+          color={ButtonColor.danger}
+        >
+          Split Dropdown
+        </DropdownSplitButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <br />
+      <br />
+      <Dropdown {...args}>
+        <DropdownSplitButton
+          aria-label="Split"
+          size={ButtonSize.medium}
+          variant={ButtonVariant.solid}
+          color={ButtonColor.subtle}
+        >
+          Split Dropdown
+        </DropdownSplitButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <br />
+      <br />
+      <Dropdown isInverse>
+        <DropdownSplitButton
+          aria-label="Split"
+          size={ButtonSize.medium}
+          variant={ButtonVariant.solid}
+        >
+          Split Dropdown Inverse
+        </DropdownSplitButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </div>
+    <div style={{ margin: '150px 0', textAlign: 'center' }}>
+      <Dropdown {...args}>
+        <DropdownSplitButton
+          aria-label="Split"
+          size={ButtonSize.medium}
+          leadingIcon={<LibraryAddIcon />}
+        >
+          Split Dropdown
+        </DropdownSplitButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <br />
+      <br />
+      <Dropdown {...args}>
+        <DropdownSplitButton
+          aria-label="Split"
+          size={ButtonSize.medium}
+          variant={ButtonVariant.solid}
+          color={ButtonColor.secondary}
+          leadingIcon={<LibraryAddIcon />}
+        >
+          Split Dropdown
+        </DropdownSplitButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <br />
+      <br />
+      <Dropdown {...args}>
+        <DropdownSplitButton
+          aria-label="Split"
+          size={ButtonSize.medium}
+          variant={ButtonVariant.solid}
+          color={ButtonColor.danger}
+          leadingIcon={<LibraryAddIcon />}
+        >
+          Split Dropdown
+        </DropdownSplitButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <br />
+      <br />
+      <Dropdown {...args}>
+        <DropdownSplitButton
+          aria-label="Split"
+          size={ButtonSize.medium}
+          variant={ButtonVariant.solid}
+          color={ButtonColor.subtle}
+          leadingIcon={<LibraryAddIcon />}
+        >
+          Split Dropdown
+        </DropdownSplitButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+      <br />
+      <br />
+      <Dropdown isInverse>
+        <DropdownSplitButton
+          aria-label="Split"
+          size={ButtonSize.medium}
+          variant={ButtonVariant.solid}
+          leadingIcon={<LibraryAddIcon />}
+        >
+          Split Dropdown Inverse
+        </DropdownSplitButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </div>
   </div>
 );
 
