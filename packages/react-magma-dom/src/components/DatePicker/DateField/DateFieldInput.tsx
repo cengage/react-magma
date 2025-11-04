@@ -6,7 +6,6 @@ import { ClearIcon, EventIcon } from 'react-magma-icons';
 
 import {
   DateFieldInputContainer,
-  Divider,
   IconWrapper,
   InputsContainer,
   IsClearableContainer,
@@ -15,7 +14,6 @@ import { InputDateFields, useDateField } from './useDateField';
 import { I18nContext } from '../../../i18n';
 import { useIsInverse } from '../../../inverse';
 import { ThemeContext } from '../../../theme/ThemeContext';
-import { handleNumericBeforeInput, isNotEmpty } from '../../../utils';
 import {
   ButtonShape,
   ButtonSize,
@@ -28,7 +26,7 @@ import {
 } from '../../FormFieldContainer';
 import { IconButton } from '../../IconButton';
 import { IconButtonContainer } from '../../InputBase';
-import { StyledNumInput } from '../../TimePicker';
+import { Divider, StyledNumInput } from '../../TimePicker';
 
 export interface DateFieldInputProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'> {
@@ -111,8 +109,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   const i18n = React.useContext(I18nContext);
   const { datePicker } = i18n;
 
-  const isNotEmptyDate =
-    isNotEmpty(day) || isNotEmpty(month) || isNotEmpty(year);
+  const isNotEmptyDate = !isEmpty(day) || !isEmpty(month) || !isEmpty(year);
 
   const isClearableInput = props.isClearable && isNotEmptyDate;
 
@@ -157,16 +154,15 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             id={dayId}
             isInverse={isInverse}
             isFocused={isFocused || isNotEmptyDate}
-            onBeforeInput={handleNumericBeforeInput}
             onChange={handleDayChange}
             onKeyDown={event => handleFieldKeyDown(event, InputDateFields.Day)}
             placeholder="dd"
             ref={fieldRefs.day}
             required={required}
             theme={theme}
-            type="text"
-            inputMode="numeric"
-            pattern="[0-9]*"
+            type="number"
+            min="1"
+            max="31"
             size={2}
             value={day ?? ''}
           />
@@ -184,7 +180,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             id={monthId}
             isInverse={isInverse}
             isFocused={isFocused || isNotEmptyDate}
-            onBeforeInput={handleNumericBeforeInput}
             onChange={handleMonthChange}
             onKeyDown={event =>
               handleFieldKeyDown(event, InputDateFields.Month)
@@ -193,10 +188,10 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             ref={fieldRefs.month}
             required={required}
             theme={theme}
-            type="text"
-            inputMode="numeric"
-            pattern="[0-9]*"
-            size={isNotEmpty(month) ? 2 : 3.25}
+            type="number"
+            min="1"
+            max="12"
+            size={!isEmpty(month) ? 2 : 3.25}
             value={month ?? ''}
           />
         );
@@ -213,16 +208,15 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             id={yearId}
             isInverse={isInverse}
             isFocused={isFocused || isNotEmptyDate}
-            onBeforeInput={handleNumericBeforeInput}
             onChange={handleYearChange}
             onKeyDown={event => handleFieldKeyDown(event, InputDateFields.Year)}
             placeholder="yyyy"
             ref={fieldRefs.year}
             required={required}
             theme={theme}
-            type="text"
-            inputMode="numeric"
-            pattern="[0-9]*"
+            type="number"
+            min="1900"
+            max="2099"
             size={4}
             value={year ?? ''}
           />

@@ -1445,9 +1445,9 @@ describe('Date Picker', () => {
         <DatePicker defaultDate={defaultDate} isDateFieldInput />
       );
 
-      expect(getByTestId('month-input')).toHaveValue('01');
-      expect(getByTestId('day-input')).toHaveValue('17');
-      expect(getByTestId('year-input')).toHaveValue('2019');
+      expect(getByTestId('month-input')).toHaveDisplayValue('01');
+      expect(getByTestId('day-input')).toHaveDisplayValue('17');
+      expect(getByTestId('year-input')).toHaveDisplayValue('2019');
     });
 
     it('should render with a value', () => {
@@ -1456,9 +1456,9 @@ describe('Date Picker', () => {
         <DatePicker value={value} isDateFieldInput />
       );
 
-      expect(getByTestId('month-input')).toHaveValue('02');
-      expect(getByTestId('day-input')).toHaveValue('21');
-      expect(getByTestId('year-input')).toHaveValue('2018');
+      expect(getByTestId('month-input')).toHaveDisplayValue('02');
+      expect(getByTestId('day-input')).toHaveDisplayValue('21');
+      expect(getByTestId('year-input')).toHaveDisplayValue('2018');
     });
 
     it('should call onChange and onDateChange when date is changed', () => {
