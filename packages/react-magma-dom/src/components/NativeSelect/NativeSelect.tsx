@@ -143,7 +143,6 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
       labelWidth,
       messageStyle,
       testId,
-      onKeyDown,
       ...other
     } = props;
 
@@ -159,20 +158,26 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLSelectElement>) => {
       const select = selectRef.current;
-      const total = select.options.length;
-      const index = select.selectedIndex;
 
-      if (e.key === 'ArrowDown' && index === total - 1) {
-        e.preventDefault();
-        select.selectedIndex = 0;
-        select.dispatchEvent(new Event('change', { bubbles: true }));
-      } else if (e.key === 'ArrowUp' && index === 0) {
-        e.preventDefault();
-        select.selectedIndex = total - 1;
-        select.dispatchEvent(new Event('change', { bubbles: true }));
+      if (!select) return;
+
+      const total = select.options.length;
+      let index = select.selectedIndex;
+
+      switch (e.key) {
+        case 'ArrowDown':
+          index = (index + 1) % total;
+          break;
+        case 'ArrowUp':
+          index = (index - 1 + total) % total;
+          break;
+        default:
+          return;
       }
 
-      onKeyDown?.(e);
+      e.preventDefault();
+      select.selectedIndex = index;
+      select.dispatchEvent(new Event('change', { bubbles: true }));
     };
 
     const nativeSelect = (
@@ -215,8 +220,8 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
             id={id}
             isInverse={isInverse}
             ref={selectRef}
-            theme={theme}
             onKeyDown={handleKeyDown}
+            theme={theme}
             {...other}
           >
             {children}
