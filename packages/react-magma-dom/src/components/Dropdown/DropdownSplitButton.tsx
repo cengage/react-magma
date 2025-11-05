@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-import { ArrowDropDownIcon, ArrowDropUpIcon } from 'react-magma-icons';
+import {
+  ArrowDropDownIcon,
+  ArrowDropUpIcon,
+  IconProps,
+} from 'react-magma-icons';
 
 import {
   Button,
@@ -36,7 +40,7 @@ export interface DropdownSplitButtonProps extends ButtonStyles {
   /**
    * Leading icon to display on the left side within the component
    */
-  leadingIcon?: React.ReactElement;
+  leadingIcon?: React.ReactElement<IconProps>;
   /**
    * Function that fires when the button is clicked
    */
