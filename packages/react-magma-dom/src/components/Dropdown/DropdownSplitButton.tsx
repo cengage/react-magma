@@ -1,11 +1,6 @@
 import * as React from 'react';
 
-import {
-  ArrowDropDownIcon,
-  ArrowDropUpIcon,
-  HdIcon,
-  WcIcon,
-} from 'react-magma-icons';
+import { ArrowDropDownIcon, ArrowDropUpIcon } from 'react-magma-icons';
 
 import {
   Button,
@@ -14,7 +9,7 @@ import {
   ButtonStyles,
   ButtonVariant,
 } from '../Button';
-import { ButtonIconPosition, getIconSize, IconButton } from '../IconButton';
+import { getIconSize, IconButton } from '../IconButton';
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
