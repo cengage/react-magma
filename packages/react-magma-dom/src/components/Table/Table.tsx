@@ -262,10 +262,10 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       checkScrollability();
       updateActiveElements();
 
-      let resizeObserver: ResizeObserver | null = null;
+      let resizeObserver: any = null;
 
       if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
-        resizeObserver = new ResizeObserver(() => {
+        resizeObserver = new (window as any).ResizeObserver(() => {
           checkScrollability();
         });
 
