@@ -3,4 +3,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Select & NativeSelect): Add cyclical navigation across options.
+fix(Select, NativeSelect, Combobox): Add cyclical navigation across options.

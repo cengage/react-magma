@@ -618,6 +618,32 @@ describe('Select', () => {
     expect(getByText('Green')).toHaveAttribute('aria-disabled', 'false');
   });
 
+  it('should loop to the first item and last item when down arrow and up arrow is pressed', async () => {
+    const { getByLabelText, getByText } = render(
+      <MultiSelect isMulti labelText={labelText} items={items} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    await userEvent.click(renderedSelect);
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+
+    // Looping back to the first item
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+
+    // Looping back to the last item
+    await userEvent.keyboard('{ArrowUp}');
+    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+  });
+
   describe('events', () => {
     it('onBlur', async () => {
       const onBlur = jest.fn();
@@ -711,52 +737,6 @@ describe('Select', () => {
       await userEvent.keyboard('{Enter}');
 
       expect(onKeyUp).toHaveBeenCalled();
-    });
-  });
-
-  describe('navigation throught item list', () => {
-    it('should loop to the first item when the last item is highlighted and down arrow is pressed', async () => {
-      const { getByLabelText, getByText } = render(
-        <MultiSelect isMulti labelText={labelText} items={items} />
-      );
-
-      const renderedSelect = getByLabelText(labelText, { selector: 'div' });
-
-      await userEvent.click(renderedSelect);
-      await userEvent.keyboard('{ArrowDown}');
-      expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
-
-      await userEvent.keyboard('{ArrowDown}');
-      expect(getByText('Blue')).toHaveAttribute('aria-selected', 'true');
-
-      await userEvent.keyboard('{ArrowDown}');
-      expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
-
-      // Looping back to the first item
-      await userEvent.keyboard('{ArrowDown}');
-      expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
-    });
-
-    it('should loop to the last item when the first item is highlighted and up arrow is pressed', async () => {
-      const { getByLabelText, getByText } = render(
-        <MultiSelect isMulti labelText={labelText} items={items} />
-      );
-
-      const renderedSelect = getByLabelText(labelText, { selector: 'div' });
-
-      await userEvent.click(renderedSelect);
-      await userEvent.keyboard('{ArrowUp}');
-      expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
-
-      await userEvent.keyboard('{ArrowUp}');
-      expect(getByText('Blue')).toHaveAttribute('aria-selected', 'true');
-
-      await userEvent.keyboard('{ArrowUp}');
-      expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
-
-      // Looping back to the last item
-      await userEvent.keyboard('{ArrowUp}');
-      expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
     });
   });
 });
