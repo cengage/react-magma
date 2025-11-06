@@ -262,16 +262,22 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       checkScrollability();
       updateActiveElements();
 
-      const resizeObserver = new ResizeObserver(() => {
-        checkScrollability();
-      });
+      let resizeObserver: ResizeObserver | null = null;
 
-      if (tableWrapperRef.current) {
-        resizeObserver.observe(tableWrapperRef.current);
+      if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
+        resizeObserver = new ResizeObserver(() => {
+          checkScrollability();
+        });
+
+        if (tableWrapperRef.current) {
+          resizeObserver.observe(tableWrapperRef.current);
+        }
       }
 
       return () => {
-        resizeObserver.disconnect();
+        if (resizeObserver) {
+          resizeObserver.disconnect();
+        }
       };
     }, [children]);
 
