@@ -49,6 +49,20 @@ const getDividerColor = (
   return isFocused ? theme.colors.neutral700 : theme.colors.neutral500;
 };
 
+export const getInputColor = (
+  isInverse: boolean,
+  isFocused: boolean,
+  theme: ThemeInterface
+): string => {
+  if (isInverse) {
+    return isFocused
+      ? theme.colors.neutral100
+      : transparentize(0.3, theme.colors.neutral100);
+  }
+
+  return isFocused ? theme.colors.neutral700 : theme.colors.neutral500;
+};
+
 export const Divider = styled.span<{
   isInverse?: boolean;
   isFocused?: boolean;
@@ -62,6 +76,7 @@ export const Divider = styled.span<{
 
 const StyledNumInput = styled.input<{
   isInverse?: boolean;
+  isFocused?: boolean;
 }>`
   border: 0;
   border-bottom: 2px solid transparent; // Reserve space for border when focused
@@ -74,6 +89,7 @@ const StyledNumInput = styled.input<{
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
   background: transparent;
+  caret-color: transparent;
 
   &::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -83,9 +99,7 @@ const StyledNumInput = styled.input<{
 
   &::placeholder {
     color: ${props =>
-      props.isInverse
-        ? props.theme.colors.neutral100
-        : props.theme.colors.neutral700};
+      getInputColor(props.isInverse, props.isFocused, props.theme)};
   }
 
   &:focus {
@@ -210,6 +224,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             data-testid="hoursTimeInput"
             id={hourId}
             isInverse={isInverse}
+            isFocused={isNotEmptyDate || isFocused}
             onChange={handleHourChange}
             onBeforeInput={handleNumericBeforeInput}
             onKeyDown={e => handleHourKeyDown(e, handleHourChange)}
@@ -238,6 +253,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             data-testid="minutesTimeInput"
             id={minuteId}
             isInverse={isInverse}
+            isFocused={isNotEmptyDate || isFocused}
             onChange={handleMinuteChange}
             onBeforeInput={handleNumericBeforeInput}
             onKeyDown={e => handleMinuteKeyDown(e, handleMinuteChange)}
@@ -263,6 +279,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             onKeyDown={handleAmPmKeyDown}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
+            isFocused={isNotEmptyDate || isFocused}
           >
             {amPm}
           </AmPmToggle>

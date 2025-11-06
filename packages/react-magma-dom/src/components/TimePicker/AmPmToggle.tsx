@@ -3,6 +3,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 
+import { getInputColor } from './TimePicker';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 
@@ -10,11 +11,13 @@ interface AmPmToggleProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: string;
   isInverse?: boolean;
+  isFocused?: boolean;
 }
 
 const StyledAmPmToggle = styled.button<{
   theme: ThemeInterface;
   isInverse?: boolean;
+  isFocused?: boolean;
 }>`
   background: none;
   border: 0;
@@ -22,9 +25,7 @@ const StyledAmPmToggle = styled.button<{
   margin-left: 3px;
   padding: 0;
   color: ${props =>
-    props.isInverse
-      ? props.theme.colors.neutral100
-      : props.theme.colors.neutral700};
+    getInputColor(props.isInverse, props.isFocused, props.theme)};
 
   &:focus {
     outline: 0;

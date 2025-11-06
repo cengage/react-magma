@@ -299,7 +299,6 @@ export interface ThemeInterface {
   bodyNarrativeFont: string;
   borderRadius: string;
   borderRadiusSmall: string;
-  borderRadiusXSmall: string;
   colors: Colors;
   combobox: Combobox;
   direction: string;
@@ -532,7 +531,6 @@ export const magma = {
   bodyNarrativeFont: "'Noto Serif',Times New Roman,serif",
   borderRadius: '8px',
   borderRadiusSmall: '4px',
-  borderRadiusXSmall: '2px',
   colors: colors,
   headingFont: '"Work Sans",Helvetica,sans-serif',
   headingExpressiveFont: '"Work Sans",Helvetica,sans-serif',
