@@ -161,16 +161,17 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
 
   function handleBlur(e: React.FocusEvent) {
     setIsFocused(false);
-    onInputBlur?.(e);
+
+    onInputBlur && typeof onInputBlur === 'function' && onInputBlur(e);
   }
 
   function handleFocus(e: React.FocusEvent) {
     setIsFocused(true);
-    onInputFocus?.(e);
+
+    onInputFocus && typeof onInputFocus === 'function' && onInputFocus(e);
   }
 
   const inputProps = getInputProps({
-    ...getComboboxProps(),
     disabled: disabled,
     onBlur: handleBlur,
     onFocus: handleFocus,
@@ -198,10 +199,9 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
   return (
     <div ref={setReference}>
       <ComboBoxContainer
-        {...(getComboboxProps && getComboboxProps().ref
-          ? { ref: getComboboxProps().ref }
-          : {})}
+        {...getComboboxProps()}
         hasError={hasError}
+        disabled={disabled}
         isInverse={isInverse}
         theme={theme}
       >
