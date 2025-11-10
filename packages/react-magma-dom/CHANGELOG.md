@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.3
+
+### Minor Changes
+
+- b3b6422: feat(Checkbox): Add new `ariaLabel` prop.
+
 ## 5.0.1-rc.2
 
 ### Patch Changes

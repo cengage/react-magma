@@ -1,6 +1,6 @@
 {
   "name": "react-magma-docs",
-  "version": "7.0.0-rc.3",
+  "version": "7.0.0-rc.4",
   "private": true,
   "description": "React Magma docs",
   "keywords": [
@@ -31,8 +31,8 @@
     "@emotion/styled": "11.14.0",
     "@mdx-js/mdx": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
-    "@react-magma/charts": "^13.0.1-rc.0",
-    "@react-magma/dropzone": "^13.0.1-rc.0",
+    "@react-magma/charts": "^14.0.0-rc.1",
+    "@react-magma/dropzone": "^14.0.0-rc.1",
     "buble": "0.19.4",
     "buffer": "6.0.3",
     "core-js": "3.42.0",
@@ -61,7 +61,7 @@
     "react-focus-lock": "2.13.6",
     "react-helmet": "5.2.1",
     "react-live": "4.1.8",
-    "react-magma-dom": "^5.0.1-rc.1",
+    "react-magma-dom": "^5.1.0-rc.3",
     "react-magma-icons": "^3.1.2",
     "react-spring": "6.1.10",
     "remark-mdx": "^3.1.0",
