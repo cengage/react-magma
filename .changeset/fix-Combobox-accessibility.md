@@ -3,4 +3,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Combobox, MultiCombobox): Improve NVDA Browse Mode navigation across the page.
+fix(Combobox, MultiCombobox): Fix accessibilty for Combobox and MultiCombobox inputs.
