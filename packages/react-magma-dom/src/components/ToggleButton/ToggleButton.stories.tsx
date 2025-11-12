@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Meta, StoryFn } from '@storybook/react';
-import { CheckIcon, PresentToAllIcon } from 'react-magma-icons';
+import { CheckIcon } from 'react-magma-icons';
 
-import { ButtonColor, ButtonSize, ButtonTextTransform } from '../Button';
+import { ButtonSize, ButtonTextTransform } from '../Button';
 import { Container } from '../Container';
 
 import { ToggleButton, ToggleButtonProps } from '.';
@@ -38,6 +38,10 @@ export default {
         type: 'select',
         options: ButtonSize,
       },
+    },
+    textTransform: {
+      control: { type: 'select' },
+      options: Object.values(ButtonTextTransform),
     },
   },
 } as Meta;
@@ -82,20 +86,5 @@ export const TextAndIcon = {
 
   args: {
     ...Icon.args,
-  },
-};
-
-export const Example = {
-  render: () => {
-    return (
-      <ToggleButton
-        color={ButtonColor.success}
-        icon={<PresentToAllIcon />}
-        value="teacher"
-        // textTransform={ButtonTextTransform.none}
-      >
-        Teacher View
-      </ToggleButton>
-    );
   },
 };
