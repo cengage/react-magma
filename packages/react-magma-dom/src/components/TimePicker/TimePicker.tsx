@@ -192,7 +192,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         : i18n.timePicker.pmButtonAriaLabel
     }`;
 
-    const isNotEmptyDate = !isEmpty(hour) || !isEmpty(minute);
+    const hasTime = !isEmpty(hour) || !isEmpty(minute);
 
     return (
       <FormFieldContainer
@@ -224,7 +224,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             data-testid="hoursTimeInput"
             id={hourId}
             isInverse={isInverse}
-            isFocused={isNotEmptyDate || isFocused}
+            isFocused={hasTime || isFocused}
             onChange={handleHourChange}
             onBeforeInput={handleNumericBeforeInput}
             onKeyDown={e => handleHourKeyDown(e, handleHourChange)}
@@ -243,7 +243,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
           />
           <Divider
             isInverse={isInverse}
-            isFocused={isNotEmptyDate || isFocused}
+            isFocused={hasTime || isFocused}
             theme={theme}
           >
             :
@@ -253,7 +253,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             data-testid="minutesTimeInput"
             id={minuteId}
             isInverse={isInverse}
-            isFocused={isNotEmptyDate || isFocused}
+            isFocused={hasTime || isFocused}
             onChange={handleMinuteChange}
             onBeforeInput={handleNumericBeforeInput}
             onKeyDown={e => handleMinuteKeyDown(e, handleMinuteChange)}
@@ -279,7 +279,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             onKeyDown={handleAmPmKeyDown}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            isFocused={isNotEmptyDate || isFocused}
+            isFocused={hasTime || isFocused}
           >
             {amPm}
           </AmPmToggle>
