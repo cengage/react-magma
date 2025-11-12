@@ -241,6 +241,10 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
 
     const tableWrapper = `table-wrapper-${testId}`;
 
+    // - scrollable table, no interactive elements: needs tabIndex=0 and should get focused when navigating the page
+    // - scrollable, with interactive elements: no tabIndex needs to be set
+    // - non-scrollable, no interactive elements: no tabIndex needs to be set and should not get focus when navigating a page
+    // - non-scrollable, with interactive elements: no tabIndex needs to be set and should not get focus when navigating a page
     React.useEffect(() => {
       const checkScrollability = () => {
         if (tableWrapperRef.current) {
