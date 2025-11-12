@@ -134,6 +134,7 @@ export const ToggleButton = React.forwardRef<
     onClick,
     testId,
     value,
+    ...other
   } = props;
 
   const context = React.useContext(ToggleButtonGroupContext);
@@ -189,6 +190,7 @@ export const ToggleButton = React.forwardRef<
     <>
       {icon ? (
         <StyledToggleButtonIcon
+          {...other}
           aria-checked={isSelected}
           aria-label={ariaLabel}
           color={ButtonColor.subtle}
@@ -212,6 +214,7 @@ export const ToggleButton = React.forwardRef<
         </StyledToggleButtonIcon>
       ) : (
         <StyledToggleButtonText
+          {...other}
           aria-checked={isSelected}
           color={ButtonColor.subtle}
           disabled={disabled}
