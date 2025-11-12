@@ -118,37 +118,29 @@ export const DropdownSplitButton = React.forwardRef<
     return theme.spaceScale.spacing01;
   }
 
+  const sharedButtonProps = React.useMemo(
+    () => ({
+      ...other,
+      id: resolvedContext.dropdownButtonId.current,
+      isInverse: resolvedContext.isInverse,
+      onClick: handleButtonClick,
+      shape: ButtonShape.leftCap,
+      style: { borderRight: 0, marginRight: 0 },
+      variant,
+      tabIndex: 0,
+      ref: splitButtonRef,
+    }),
+    [props]
+  );
+
   return (
     <div ref={context.setReference}>
       {leadingIcon ? (
-        <IconButton
-          {...other}
-          id={resolvedContext.dropdownButtonId.current}
-          isInverse={resolvedContext.isInverse}
-          onClick={handleButtonClick}
-          shape={ButtonShape.leftCap}
-          style={{ borderRight: 0, marginRight: 0 }}
-          variant={variant}
-          tabIndex={0}
-          ref={splitButtonRef}
-          icon={leadingIcon}
-        >
+        <IconButton {...sharedButtonProps} icon={leadingIcon}>
           {children}
         </IconButton>
       ) : (
-        <Button
-          {...other}
-          id={resolvedContext.dropdownButtonId.current}
-          isInverse={resolvedContext.isInverse}
-          onClick={handleButtonClick}
-          shape={ButtonShape.leftCap}
-          style={{ borderRight: 0, marginRight: 0 }}
-          variant={variant}
-          tabIndex={0}
-          ref={splitButtonRef}
-        >
-          {children}
-        </Button>
+        <Button {...sharedButtonProps}>{children}</Button>
       )}
       <IconButton
         {...other}
