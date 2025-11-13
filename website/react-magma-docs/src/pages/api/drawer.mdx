@@ -9,6 +9,11 @@ props:
 
 <LeadParagraph>A container with a transition</LeadParagraph>
 
+<Alert variant="warning">
+  The drawer trigger button must have the <code>aria-haspopup="dialog"</code>{' '}
+  attribute for accessibility purposes.
+</Alert>
+
 ## Basic Usage
 
 Drawer accepts a position (top, right, bottom, or left)
@@ -44,8 +49,12 @@ export function Example() {
           <Button>This is a button</Button>
         </p>
       </Drawer>
-      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
-        Show Drawer
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowDrawer(true)}
+        ref={buttonRef}
+      >
+        Drawer
         <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
       </Button>
     </>
@@ -91,8 +100,12 @@ export function Example() {
           <NavTab to="#">Four</NavTab>
         </NavTabs>
       </Drawer>
-      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
-        Show Drawer
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowDrawer(true)}
+        ref={buttonRef}
+      >
+        Navigation Drawer
         <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
       </Button>
     </>
@@ -141,8 +154,12 @@ export function Example() {
           <NavTab to="#">Four</NavTab>
         </NavTabs>
       </Drawer>
-      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
-        Show Drawer
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowDrawer(true)}
+        ref={buttonRef}
+      >
+        Drawer
         <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
       </Button>
     </>
@@ -187,8 +204,13 @@ export function Example() {
             <Button isInverse>This is a button</Button>
           </p>
         </Drawer>
-        <Button onClick={() => setShowDrawer(true)} ref={buttonRef} isInverse>
-          Show Drawer
+        <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowDrawer(true)}
+          ref={buttonRef}
+          isInverse
+        >
+          Inverse Drawer
           <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
         </Button>
       </CardBody>
@@ -233,8 +255,12 @@ export function Example() {
           <Button>This is a button</Button>
         </p>
       </Drawer>
-      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
-        Show Animated Drawer
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowDrawer(true)}
+        ref={buttonRef}
+      >
+        Animated Drawer
         <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
       </Button>
     </>
@@ -284,8 +310,12 @@ export function Example() {
       >
         <p>override default i18n value:</p>
       </Drawer>
-      <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
-        Show Drawer
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowDrawer(true)}
+        ref={buttonRef}
+      >
+        Drawer
         <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
       </Button>
     </I18nContext.Provider>
