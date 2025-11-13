@@ -1,4 +1,3 @@
-
 ---
 
 'react-magma-dom': patch
