@@ -23,6 +23,8 @@ simply use `<Modal isOpen={flag} />`
 Although not required, it is helpful to inform users (especially screen reader users) when a button or link will trigger a modal dialog.
 This can be done by supplementing the button label or link text with "(opens modal dialog)" using the <Link to="/api/visually-hidden/">VisuallyHidden</Link> component.
 
+<Alert variant="warning">The modal trigger button must have the <code>aria-haspopup="dialog"</code> attribute for accessibility purposes.</Alert>
+
 ```tsx
 import React from 'react';
 
@@ -58,8 +60,12 @@ export function Example() {
           modal
         </Paragraph>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
-        Show Modal
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
+        Modal
         <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
       </Button>
     </>
@@ -122,19 +128,21 @@ export function Example() {
 
       <ButtonGroup>
         <Button
+          aria-haspopup="dialog"
           size={ButtonSize.small}
           onClick={() => setShowSmallModal(true)}
           ref={smallButtonRef}
         >
-          Show Small Modal
+          Small Modal
           <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>
         <Button
+          aria-haspopup="dialog"
           size={ButtonSize.large}
           onClick={() => setShowLargeModal(true)}
           ref={largeButtonRef}
         >
-          Show Large Modal
+          Large Modal
           <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>
       </ButtonGroup>
@@ -206,7 +214,9 @@ export function Example() {
       >
         <Paragraph noTopMargin>This modal has no header.</Paragraph>
         <ButtonGroup alignment={ButtonGroupAlignment.center}>
-          <Button onClick={() => setShowModal(false)}>OK</Button>
+          <Button aria-haspopup="dialog" onClick={() => setShowModal(false)}>
+            OK
+          </Button>
         </ButtonGroup>
       </Modal>
       <Modal
@@ -221,7 +231,12 @@ export function Example() {
       >
         <Paragraph noTopMargin>This modal has a header.</Paragraph>
         <ButtonGroup alignment={ButtonGroupAlignment.center}>
-          <Button onClick={() => setShowModalHeader(false)}>OK</Button>
+          <Button
+            aria-haspopup="dialog"
+            onClick={() => setShowModalHeader(false)}
+          >
+            OK
+          </Button>
         </ButtonGroup>
       </Modal>
 
@@ -278,20 +293,29 @@ export function Example() {
       </Modal>
 
       <ButtonGroup>
-        <Button onClick={() => setShowModal(true)} ref={buttonRef}>
-          Show Modal with no header
-          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
-        </Button>
-        <Button onClick={() => setShowModalHeader(true)} ref={headerButtonRef}>
-          Show Modal with header
+        <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowModal(true)}
+          ref={buttonRef}
+        >
+          Modal with no header
           <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>
         <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowModalHeader(true)}
+          ref={headerButtonRef}
+        >
+          Modal with header
+          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        </Button>
+        <Button
+          aria-haspopup="dialog"
           style={{ marginLeft: '0' }}
           onClick={() => setShowModalHeaderRef(true)}
           ref={headerRefButtonRef}
         >
-          Show Modal with headerRef
+          Modal with headerRef
         </Button>
       </ButtonGroup>
     </>
@@ -328,8 +352,12 @@ export function Example() {
         </Paragraph>
         <Button onClick={() => setShowModal(false)}>Close this Dialog</Button>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
-        Show Modal
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
+        Modal
       </Button>
     </>
   );
@@ -376,8 +404,12 @@ export function Example() {
       <Paragraph>
         <strong>Internal Close Called Times:</strong> {internalCloseCalledTimes}
       </Paragraph>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
-        Show Modal <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
+        Modal <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
       </Button>
     </>
   );
@@ -424,21 +456,29 @@ export function Example() {
       >
         <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
 
-        <Button onClick={() => setShowModal2(true)} ref={nestedButtonRef}>
-          Show Modal 2
+        <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowModal2(true)}
+          ref={nestedButtonRef}
+        >
+          Nested Modal
         </Button>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
-        Show Modal
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
+        Modal
         <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
       </Button>
       <Modal
         size={ModalSize.small}
-        header="Modal 2 Title"
+        header="Nested Modal Title"
         onClose={() => closeModal2()}
         isOpen={showModal2}
       >
-        <Paragraph noMargins>This is modal 2</Paragraph>
+        <Paragraph noMargins>This is nested modal</Paragraph>
       </Modal>
     </>
   );
@@ -492,8 +532,12 @@ export function Example() {
 
   return (
     <>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
-        Show Modal
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
+        Confirmation Modal
       </Button>
       <Modal
         header="Modal Title"
@@ -591,8 +635,13 @@ export function Example() {
       </Modal>
       <Card isInverse>
         <CardBody>
-          <Button onClick={() => setShowModal(true)} ref={buttonRef} isInverse>
-            Show Modal
+          <Button
+            aria-haspopup="dialog"
+            onClick={() => setShowModal(true)}
+            ref={buttonRef}
+            isInverse
+          >
+            Inverse Modal
             <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
           </Button>
         </CardBody>
