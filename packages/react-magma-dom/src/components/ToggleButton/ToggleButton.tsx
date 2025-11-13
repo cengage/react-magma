@@ -186,51 +186,38 @@ export const ToggleButton = React.forwardRef<
       context.onChange(event);
   };
 
+  const sharedToggleButtonProps = {
+    ...other,
+    'aria-checked': isSelected,
+    color: ButtonColor.subtle,
+    disabled: disabled,
+    theme: theme,
+    id: context.descriptionId,
+    isInverse: inverseCheck,
+    onClick: context.exclusive ? handleClickExclusive : handleClick,
+    ref: ref,
+    enforced: context.enforced,
+    role: roleCheck,
+    isSelected: isSelected,
+    exclusive: context.exclusive,
+    size: props.size || context.size,
+    testId: testId,
+    value: value,
+  };
+
   return (
     <>
       {icon ? (
         <StyledToggleButtonIcon
-          {...other}
-          aria-checked={isSelected}
+          {...sharedToggleButtonProps}
           aria-label={ariaLabel}
-          color={ButtonColor.subtle}
-          disabled={disabled}
-          theme={theme}
           hasLabel={children ? true : false}
           icon={icon}
-          id={context.descriptionId}
-          isInverse={inverseCheck}
-          onClick={context.exclusive ? handleClickExclusive : handleClick}
-          ref={ref}
-          enforced={context.enforced}
-          role={roleCheck}
-          isSelected={isSelected}
-          exclusive={context.exclusive}
-          size={props.size || context.size}
-          testId={testId}
-          value={value}
         >
           <>{children}</>
         </StyledToggleButtonIcon>
       ) : (
-        <StyledToggleButtonText
-          {...other}
-          aria-checked={isSelected}
-          color={ButtonColor.subtle}
-          disabled={disabled}
-          theme={theme}
-          id={context.descriptionId}
-          isInverse={inverseCheck}
-          onClick={context.exclusive ? handleClickExclusive : handleClick}
-          ref={ref}
-          enforced={context.enforced}
-          role={roleCheck}
-          isSelected={isSelected}
-          exclusive={context.exclusive}
-          size={props.size || context.size}
-          testId={testId}
-          value={value}
-        >
+        <StyledToggleButtonText {...sharedToggleButtonProps}>
           {children}
         </StyledToggleButtonText>
       )}
