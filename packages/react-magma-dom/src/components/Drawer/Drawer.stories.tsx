@@ -15,7 +15,13 @@ const info = {
     position: {
       control: {
         type: 'select',
-        options: DrawerPosition,
+      },
+      options: ['top', 'left', 'right', 'bottom'],
+      mapping: {
+        top: DrawerPosition.top,
+        left: DrawerPosition.left,
+        right: DrawerPosition.right,
+        bottom: DrawerPosition.bottom,
       },
     },
     isInverse: {
