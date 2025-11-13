@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.5
+
+### Patch Changes
+
+- 57a71d7: fix(Modal & Drawer): Added aria-haspopup="dialog" for trigger buttons and updated documentation.
+
 ## 7.0.0-rc.4
 
 ### Patch Changes
