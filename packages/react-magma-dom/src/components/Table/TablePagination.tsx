@@ -185,7 +185,6 @@ const RowsPerPageController = (props: RowsPerPageControllerProps) => {
       </RowsPerPageLabel>
       <NativeSelect
         onChange={event => handleRowsPerPageChange(+event.target.value)}
-        aria-label={i18n.table.pagination.rowsPerPageLabel}
         style={{ minWidth: 80 }}
         testId="rowPerPageSelect"
         fieldId={''}
