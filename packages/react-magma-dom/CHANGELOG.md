@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.4
+
+### Patch Changes
+
+- c528ab6: fix(Drawer & Modal): Fix content scrolling underneath the Drawer and Modal when it’s open
+
 ## 5.1.0-rc.3
 
 ### Minor Changes

@@ -34,6 +34,7 @@
     "feat-Modal-add-headel-level-prop",
     "fix-AIButton-box-shadow",
     "fix-datepicker-canvas-issue-react-18",
+    "fix-drawer-scrollable-content",
     "fix-timepicker-broken-auto-fill",
     "major-charts-v13-release",
     "major-dropzone-v13-release",
