@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.6
+
+### Patch Changes
+
+- 6f1229f: fix(Combobox, MultiCombobox): Improve NVDA Browse Mode navigation across the page.
+
 ## 5.1.0-rc.5
 
 ### Patch Changes

@@ -33,6 +33,7 @@
     "feat-Checkbox-add-aria-label",
     "feat-Modal-add-headel-level-prop",
     "fix-AIButton-box-shadow",
+    "fix-Combobox-accessibility",
     "fix-ToggleButton-transform",
     "fix-datepicker-canvas-issue-react-18",
     "fix-drawer-scrollable-content",
