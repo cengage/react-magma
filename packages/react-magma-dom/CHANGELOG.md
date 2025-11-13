@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.5
+
+### Patch Changes
+
+- c8facd1: fix(ToggleButton): Fix issue with `textTransform` prop.
+
 ## 5.1.0-rc.4
 
 ### Patch Changes
