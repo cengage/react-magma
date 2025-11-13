@@ -46,7 +46,7 @@ jobs:
       - name: Setup
         uses: actions/setup-node@v2
         with:
-          node-version: '22'
+          node-version: '20'
           check-latest: true
 
       - name: Install
