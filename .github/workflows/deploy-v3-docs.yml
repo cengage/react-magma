@@ -1,6 +1,5 @@
 name: Build and Deploy Docs for V3.11.0
 # This workflow is triggered on push to the chore/deploy-v3-docs branch .
-# Trigger
 
 on:
   push:
