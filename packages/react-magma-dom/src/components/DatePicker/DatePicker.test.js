@@ -1564,8 +1564,10 @@ describe('Date Picker', () => {
 
       await user.click(yearInput);
       await user.keyboard('{ArrowUp}');
-      expect(onDateChange).toHaveBeenCalled();
-      expect(onChange).toHaveBeenCalled();
+      await waitFor(() => {
+        expect(onDateChange).toHaveBeenCalled();
+        expect(onChange).toHaveBeenCalled();
+      });
     });
 
     it('should handle focus and blur events on DateFieldInput', () => {
