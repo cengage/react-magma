@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.10.2-next.1
+
+### Patch Changes
+
+- e89703e05: fix(Drawer & Modal): Fix content scrolling underneath the Drawer and Modal when it’s open
+
 ## 4.10.2-next.0
 
 ### Patch Changes

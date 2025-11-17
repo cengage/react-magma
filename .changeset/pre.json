@@ -15,6 +15,7 @@
     "chore-fix-workflows",
     "feat-Modal-add-headel-level-prop",
     "fix-Combobox-accessibility",
+    "fix-drawer-scrollable-content",
     "manually-sync-4.10.1"
   ]
 }
