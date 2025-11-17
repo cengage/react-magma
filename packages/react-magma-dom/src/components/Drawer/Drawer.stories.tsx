@@ -16,7 +16,7 @@ const info = {
       control: {
         type: 'select',
       },
-      options: ['top', 'left', 'right', 'bottom'],
+      options: Object.values(DrawerPosition),
       mapping: {
         top: DrawerPosition.top,
         left: DrawerPosition.left,
