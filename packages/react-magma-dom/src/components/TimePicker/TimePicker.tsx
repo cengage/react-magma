@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
+import { isEmpty } from 'lodash';
 import { transparentize } from 'polished';
 import { ScheduleIcon } from 'react-magma-icons';
 
@@ -54,14 +55,27 @@ const getDividerColor = (
   return isFocused ? theme.colors.neutral700 : theme.colors.neutral500;
 };
 
+export const getInputColor = (
+  isInverse: boolean,
+  isFocused: boolean,
+  theme: ThemeInterface
+): string => {
+  if (isInverse) {
+    return isFocused
+      ? theme.colors.neutral100
+      : transparentize(0.3, theme.colors.neutral100);
+  }
+
+  return isFocused ? theme.colors.neutral700 : theme.colors.neutral500;
+};
+
 export const Divider = styled.span<{
-  theme: ThemeInterface;
   isInverse?: boolean;
   isFocused?: boolean;
 }>`
   display: inline-block;
   position: relative;
-  top: -1px;
+  top: ${props => `-${props.theme.spaceScale.spacing01}`};
   color: ${props =>
     getDividerColor(props.isInverse, props.isFocused, props.theme)};
 `;
@@ -70,6 +84,7 @@ export const StyledNumInput = styled.input<StyledNumInputProps>`
   padding: 0;
   border: 0;
   text-align: center;
+  text-align-last: center;
   min-width: ${props => (props.size ? `${props.size}ch` : 'auto')};
   max-width: ${props => (props.size ? `${props.size}ch` : 'auto')};
   width: ${props => props.theme.spaceScale.spacing06};
@@ -89,9 +104,7 @@ export const StyledNumInput = styled.input<StyledNumInputProps>`
 
   &::placeholder {
     color: ${props =>
-      props.isInverse
-        ? transparentize(0.3, props.theme.colors.neutral100)
-        : props.theme.colors.neutral500};
+      getInputColor(props.isInverse, props.isFocused, props.theme)};
   }
 
   &:focus {
@@ -104,14 +117,11 @@ export const StyledNumInput = styled.input<StyledNumInputProps>`
     background: ${props =>
       props.isInverse
         ? props.theme.colors.info700
-        : transparentize(0.4, props.theme.colors.info200)};
-
-    &::placeholder {
-      color: ${props =>
-        props.isInverse
-          ? props.theme.colors.neutral100
-          : props.theme.colors.neutral700};
-    }
+        : transparentize(0.2, props.theme.colors.info200)};
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.neutral700};
 
     &::selection {
       background: ${props =>
@@ -120,17 +130,12 @@ export const StyledNumInput = styled.input<StyledNumInputProps>`
           : transparentize(1, props.theme.colors.info200)};
     }
   }
+`;
 
-  ${props =>
-    props.isFocused &&
-    `&::placeholder {
-      color: ${
-        props.isInverse
-          ? props.theme.colors.neutral100
-          : props.theme.colors.neutral700
-      };
-    }
-  `}
+const InputsWithTimezone = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${props => props.theme.spaceScale.spacing03};
 `;
 
 export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
