@@ -104,6 +104,64 @@ describe('DateTimePicker', () => {
     });
   });
 
+  describe('Timezone', () => {
+    it('should render it correctly', async () => {
+      const date = new Date();
+      const timezone = 'EST';
+
+      const { getByText, getByPlaceholderText, getByLabelText } = render(
+        <DateTimePicker value={date} timezone={timezone} />
+      );
+
+      expect(getByText(timezone)).toBeInTheDocument();
+      expect(getByText(timezone)).not.toBeVisible();
+
+      const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
+
+      expect(input.value).toContain(timezone);
+
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
+
+      expect(getByText(timezone)).toBeVisible();
+    });
+
+    it('should render with correct abbreviature', async () => {
+      const date = new Date();
+      const timezone = 'Asia/Tokyo';
+      const timezoneAbbr = 'GMT+9';
+
+      const { getByText, getByPlaceholderText, getByLabelText } = render(
+        <DateTimePicker value={date} timezone={timezone} />
+      );
+
+      expect(getByText(timezoneAbbr)).toBeInTheDocument();
+      expect(getByText(timezoneAbbr)).not.toBeVisible();
+
+      const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
+
+      expect(input.value).toContain(timezoneAbbr);
+
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
+
+      expect(getByText(timezoneAbbr)).toBeVisible();
+    });
+
+    it('should not render anything if timezone is incorrect', async () => {
+      const date = new Date();
+      const timezone = 'XYZ';
+
+      const { getByText, getByPlaceholderText } = render(
+        <DateTimePicker value={date} timezone={timezone} />
+      );
+
+      expect(() => getByText(timezone)).toThrow();
+
+      const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
+
+      expect(input.value).not.toContain(timezone);
+    });
+  });
+
   describe('Clearable functionality', () => {
     it('should render a clear button when isClearable is true and there is a value', () => {
       const valueDate = new Date('January 23, 2019 10:30 AM');

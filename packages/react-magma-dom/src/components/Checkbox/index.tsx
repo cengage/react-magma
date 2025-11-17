@@ -93,6 +93,10 @@ export interface CheckboxProps
    * @internal
    */
   hideFocus?: boolean;
+  /**
+   * Text for aria-label attribute for the checkbox.
+   */
+  ariaLabel?: string;
 }
 
 export const HiddenLabelText = styled.span`
@@ -202,6 +206,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       isTextVisuallyHidden,
       testId,
       textPosition,
+      ariaLabel,
       ...rest
     } = props;
     const other = omit(['defaultChecked'], rest);
@@ -227,7 +232,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         <StyledContainer style={containerStyle}>
           <HiddenInput
             {...other}
-            aria-label={reactNodeToString(labelText)}
+            aria-label={ariaLabel ?? reactNodeToString(labelText)}
             aria-describedby={describedBy}
             id={id}
             data-testid={testId}

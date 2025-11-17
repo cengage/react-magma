@@ -1,5 +1,26 @@
 # Change Log
 
+## 7.0.0-rc.5
+
+### Patch Changes
+
+- 57a71d7: fix(Modal & Drawer): Added aria-haspopup="dialog" for trigger buttons and updated documentation.
+
+## 7.0.0-rc.4
+
+### Patch Changes
+
+- Updated dependencies [b3b6422]
+  - react-magma-dom@5.1.0-rc.3
+  - @react-magma/charts@14.0.0-rc.1
+  - @react-magma/dropzone@14.0.0-rc.1
+
+## 7.0.0-rc.3
+
+### Minor Changes
+
+- d387875: feat(Modal): New `headerLevel` prop. If not passed, header will default to level 2.
+
 ## 7.0.0-rc.2
 
 ### Patch Changes
