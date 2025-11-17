@@ -87,6 +87,12 @@ const StyledNumInput = styled.input<{
   }
 `;
 
+const InputsWithTimezone = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${props => props.theme.spaceScale.spacing03};
+`;
+
 export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
   (props, ref) => {
     const theme = React.useContext(ThemeContext);
@@ -109,6 +115,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       labelText,
       labelWidth,
       minutesStep,
+      timezone,
       onChange,
       ...other
     } = props;
@@ -156,72 +163,75 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         labelPosition={labelPosition}
         labelWidth={labelWidth}
       >
-        <InputsContainer
-          isInverse={isInverse}
-          hasError={!!errorMessage}
-          theme={theme}
-          style={inputStyle}
-        >
-          <ScheduleIcon
-            color={
-              isInverse ? theme.colors.neutral100 : theme.colors.neutral700
-            }
-            style={{ marginRight: theme.spaceScale.spacing02 }}
-          />
-          <StyledNumInput
-            aria-label={hoursLabel}
-            aria-describedby={descriptionId}
-            data-testid="hoursTimeInput"
-            id={hourId}
+        <InputsWithTimezone theme={theme}>
+          <InputsContainer
             isInverse={isInverse}
-            onChange={handleHourChange}
-            onBeforeInput={handleNumericBeforeInput}
-            onKeyDown={e => handleHourKeyDown(e, handleHourChange)}
-            placeholder="--"
-            ref={hourRef}
+            hasError={!!errorMessage}
             theme={theme}
-            type="text"
-            value={hour}
-            inputMode="numeric"
-            pattern="[0-9]*"
-            onFocus={e => e.target.select()}
-          />
-          <Divider> : </Divider>
-          <StyledNumInput
-            aria-label={minutesLabel}
-            data-testid="minutesTimeInput"
-            id={minuteId}
-            isInverse={isInverse}
-            onChange={handleMinuteChange}
-            onBeforeInput={handleNumericBeforeInput}
-            onKeyDown={e => handleMinuteKeyDown(e, handleMinuteChange)}
-            placeholder="--"
-            ref={minuteRef}
-            step={minutesStep || 1}
-            theme={theme}
-            type="text"
-            value={minute}
-            inputMode="numeric"
-            pattern="[0-9]*"
-            onFocus={e => e.target.select()}
-          />
-          <AmPmToggle
-            aria-label={amPmLabel}
-            isInverse={isInverse}
-            ref={amPmRef}
-            onClick={toggleAmPm}
-            onKeyDown={handleAmPmKeyDown}
+            style={inputStyle}
           >
-            {amPm}
-          </AmPmToggle>
-          <VisuallyHidden>
-            <Announce>
-              {amPm === am
-                ? i18n.timePicker.amSelectedAnnounce
-                : i18n.timePicker.pmSelectedAnnounce}
-            </Announce>
-          </VisuallyHidden>
-        </InputsContainer>
+            <ScheduleIcon
+              color={
+                isInverse ? theme.colors.neutral100 : theme.colors.neutral700
+              }
+              style={{ marginRight: theme.spaceScale.spacing02 }}
+            />
+            <StyledNumInput
+              aria-label={hoursLabel}
+              aria-describedby={descriptionId}
+              data-testid="hoursTimeInput"
+              id={hourId}
+              isInverse={isInverse}
+              onChange={handleHourChange}
+              onBeforeInput={handleNumericBeforeInput}
+              onKeyDown={e => handleHourKeyDown(e, handleHourChange)}
+              placeholder="--"
+              ref={hourRef}
+              theme={theme}
+              type="text"
+              value={hour}
+              inputMode="numeric"
+              pattern="[0-9]*"
+              onFocus={e => e.target.select()}
+            />
+            <Divider> : </Divider>
+            <StyledNumInput
+              aria-label={minutesLabel}
+              data-testid="minutesTimeInput"
+              id={minuteId}
+              isInverse={isInverse}
+              onChange={handleMinuteChange}
+              onBeforeInput={handleNumericBeforeInput}
+              onKeyDown={e => handleMinuteKeyDown(e, handleMinuteChange)}
+              placeholder="--"
+              ref={minuteRef}
+              step={minutesStep || 1}
+              theme={theme}
+              type="text"
+              value={minute}
+              inputMode="numeric"
+              pattern="[0-9]*"
+              onFocus={e => e.target.select()}
+            />
+            <AmPmToggle
+              aria-label={amPmLabel}
+              isInverse={isInverse}
+              ref={amPmRef}
+              onClick={toggleAmPm}
+              onKeyDown={handleAmPmKeyDown}
+            >
+              {amPm}
+            </AmPmToggle>
+            <VisuallyHidden>
+              <Announce>
+                {amPm === am
+                  ? i18n.timePicker.amSelectedAnnounce
+                  : i18n.timePicker.pmSelectedAnnounce}
+              </Announce>
+            </VisuallyHidden>
+          </InputsContainer>
+          {timezone}
+        </InputsWithTimezone>
         <input id={id} ref={ref} type="hidden" value={time} />
       </FormFieldContainer>
     );
