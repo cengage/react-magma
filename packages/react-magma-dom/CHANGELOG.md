@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.10.2-next.2
+
+### Patch Changes
+
+- 57c42170a: fix(TimePicker): Update styles
+
 ## 4.10.2-next.1
 
 ### Patch Changes
