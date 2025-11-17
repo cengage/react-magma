@@ -12,6 +12,7 @@ import { useTimePicker, UseTimePickerProps } from './useTimePicker';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
+import { handleNumericBeforeInput } from '../../utils';
 import { FormFieldContainer } from '../FormFieldContainer';
 import { inputWrapperStyles } from '../InputBase';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -143,14 +144,6 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
     const [isFocused, setIsFocused] = React.useState(false);
-
-    const handleNumericBeforeInput = (e: React.FormEvent<HTMLInputElement>) => {
-      const native = e.nativeEvent as InputEvent;
-
-      if (typeof native.data === 'string' && /\D/.test(native.data)) {
-        e.preventDefault();
-      }
-    };
 
     const {
       containerStyle,
