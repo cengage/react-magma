@@ -31,6 +31,7 @@
     "chore-upgrade-typedoc",
     "chore-upgrade-typescript-eslint",
     "feat-Checkbox-add-aria-label",
+    "feat-DateTimePicker-timezone",
     "feat-Modal-add-headel-level-prop",
     "fix-AIButton-box-shadow",
     "fix-Combobox-accessibility",
