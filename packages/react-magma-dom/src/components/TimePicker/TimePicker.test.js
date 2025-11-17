@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { fireEvent } from '@testing-library/dom';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { zhCN } from 'date-fns/locale';
 
 import { I18nContext } from '../../i18n';
@@ -101,7 +101,10 @@ describe('TimePicker', () => {
       const { getByTestId } = render(<TimePicker label="label" />);
 
       const hoursInput = getByTestId('hoursTimeInput');
-      hoursInput.focus();
+
+      act(() => {
+        hoursInput.focus();
+      });
 
       fireEvent.keyDown(hoursInput, { key: 'ArrowRight' });
 
@@ -190,7 +193,10 @@ describe('TimePicker', () => {
       const { getByTestId } = render(<TimePicker label="label" />);
 
       const minutesInput = getByTestId('minutesTimeInput');
-      minutesInput.focus();
+
+      act(() => {
+        minutesInput.focus();
+      });
 
       fireEvent.keyDown(minutesInput, { key: 'ArrowLeft' });
 
@@ -201,7 +207,10 @@ describe('TimePicker', () => {
       const { getByTestId } = render(<TimePicker label="label" />);
 
       const minutesInput = getByTestId('minutesTimeInput');
-      minutesInput.focus();
+
+      act(() => {
+        minutesInput.focus();
+      });
 
       fireEvent.keyDown(minutesInput, { key: 'ArrowRight' });
 
@@ -319,7 +328,10 @@ describe('TimePicker', () => {
       const { getByTestId } = render(<TimePicker label="label" />);
 
       const amPmButton = getByTestId('amPmTimeButton');
-      amPmButton.focus();
+
+      act(() => {
+        amPmButton.focus();
+      });
 
       fireEvent.keyDown(amPmButton, { key: 'ArrowLeft' });
 
@@ -333,7 +345,10 @@ describe('TimePicker', () => {
       );
 
       const amPmButton = getByTestId('amPmTimeButton');
-      amPmButton.focus();
+
+      act(() => {
+        amPmButton.focus();
+      });
 
       fireEvent.keyDown(amPmButton, { key: 'ArrowUp' });
 
