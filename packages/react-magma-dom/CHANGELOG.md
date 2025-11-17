@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.10.2-next.0
+
+### Patch Changes
+
+- 560f6cffe: fix(Combobox, MultiCombobox): Improve NVDA Browse Mode navigation across the page.
+
 ### Patch Changes
 
 - 49d826503: fix(DatePicker): fix issue with canvas (jsdom error)
