@@ -34,10 +34,8 @@ export default {
       },
     },
     size: {
-      control: {
-        type: 'select',
-        options: ButtonSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonSize),
     },
     textTransform: {
       control: { type: 'select' },

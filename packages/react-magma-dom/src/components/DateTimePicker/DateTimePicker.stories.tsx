@@ -1,9 +1,8 @@
 import React from 'react';
 
 import { Meta } from '@storybook/react';
-import { es } from 'date-fns/locale';
 
-import { Button, defaultI18n, I18nContext, magma } from '../..';
+import { Button, magma } from '../..';
 import { LabelPosition } from '../Label';
 
 import { DateTimePicker } from '.';
@@ -25,10 +24,8 @@ export default {
       },
     },
     labelPosition: {
-      control: {
-        type: 'select',
-        options: LabelPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(LabelPosition),
     },
     labelWidth: {
       control: {

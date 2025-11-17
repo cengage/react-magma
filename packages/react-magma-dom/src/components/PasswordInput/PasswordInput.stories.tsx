@@ -29,10 +29,8 @@ export default {
       },
     },
     labelPosition: {
-      control: {
-        type: 'select',
-        options: LabelPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(LabelPosition),
     },
     labelWidth: {
       control: {
@@ -40,10 +38,8 @@ export default {
       },
     },
     inputSize: {
-      control: {
-        type: 'select',
-        options: InputSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(InputSize),
     },
     isPasswordMaskButtonHidden: {
       defaultValue: false,

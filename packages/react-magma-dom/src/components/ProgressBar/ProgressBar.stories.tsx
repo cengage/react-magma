@@ -14,10 +14,8 @@ export default {
   component: ProgressBar,
   argTypes: {
     color: {
-      control: {
-        type: 'select',
-        options: ProgressBarColor,
-      },
+      control: { type: 'select' },
+      options: Object.values(ProgressBarColor),
     },
     height: {
       control: {
