@@ -11,6 +11,7 @@ import { AmPmToggle } from './AmPmToggle';
 import { useTimePicker, UseTimePickerProps } from './useTimePicker';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
+import { ThemeInterface } from '../../theme/magma';
 import { FormFieldContainer } from '../FormFieldContainer';
 import { inputWrapperStyles } from '../InputBase';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -73,7 +74,6 @@ export const Divider = styled.span<{
   isFocused?: boolean;
 }>`
   display: inline-block;
-  margin: 0 2px;
   position: relative;
   top: ${props => `-${props.theme.spaceScale.spacing01}`};
   color: ${props =>
@@ -130,17 +130,6 @@ export const StyledNumInput = styled.input<StyledNumInputProps>`
           : transparentize(1, props.theme.colors.info200)};
     }
   }
-
-  ${props =>
-    props.isFocused &&
-    `&::placeholder {
-      color: ${
-        props.isInverse
-          ? props.theme.colors.neutral100
-          : props.theme.colors.neutral700
-      };
-    }
-  `}
 `;
 
 const InputsWithTimezone = styled.div`
