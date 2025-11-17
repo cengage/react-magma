@@ -1,5 +1,53 @@
 ## 4.10.0
 
+## 5.1.0-rc.8
+
+### Patch Changes
+
+- e2c8b57: fix(TimePicker): Update styles
+
+## 5.1.0-rc.7
+
+### Minor Changes
+
+- 16045e8: feat(DateTimePicker): Add `timezone` prop. When used, returns Date object with the timezone
+
+## 5.1.0-rc.6
+
+### Patch Changes
+
+- 6f1229f: fix(Combobox, MultiCombobox): Improve NVDA Browse Mode navigation across the page.
+
+## 5.1.0-rc.5
+
+### Patch Changes
+
+- c8facd1: fix(ToggleButton): Fix issue with `textTransform` prop.
+
+## 5.1.0-rc.4
+
+### Patch Changes
+
+- c528ab6: fix(Drawer & Modal): Fix content scrolling underneath the Drawer and Modal when it’s open
+
+## 5.1.0-rc.3
+
+### Minor Changes
+
+- b3b6422: feat(Checkbox): Add new `ariaLabel` prop.
+
+## 5.0.1-rc.2
+
+### Patch Changes
+
+- a997d8e: fix(AIButton): Fix box-shadows.
+
+## 5.0.1-rc.1
+
+### Patch Changes
+
+- ff53255: chore: update react-magma-dom peer dependencies
+
 ## 5.0.1-rc.0
 
 ### Patch Changes

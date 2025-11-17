@@ -15,7 +15,13 @@ const info = {
     position: {
       control: {
         type: 'select',
-        options: DrawerPosition,
+      },
+      options: ['top', 'left', 'right', 'bottom'],
+      mapping: {
+        top: DrawerPosition.top,
+        left: DrawerPosition.left,
+        right: DrawerPosition.right,
+        bottom: DrawerPosition.bottom,
       },
     },
     isInverse: {
@@ -64,7 +70,11 @@ export const Default = {
             <Button>This is a button</Button>
           </p>
         </Drawer>
-        <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
+        <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowDrawer(true)}
+          ref={buttonRef}
+        >
           Show Drawer
           <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
         </Button>
@@ -105,7 +115,11 @@ export const SiteNavigation = {
             <NavTab to="#">Four</NavTab>
           </NavTabs>
         </Drawer>
-        <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
+        <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowDrawer(true)}
+          ref={buttonRef}
+        >
           Show Drawer
           <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
         </Button>

@@ -293,7 +293,7 @@ describe('Modal', () => {
       );
 
       expect(onCloseSpy).not.toHaveBeenCalled();
-      await waitForElementToBeRemoved(() => queryByText('Modal Content'));
+      expect(queryByText('Modal Content')).not.toBeInTheDocument();
     });
 
     it('should not force close when clicking the close button if isModalClosingControlledManually is true', async () => {
@@ -800,13 +800,13 @@ describe('Modal', () => {
       await userEvent.keyboard('{Escape}');
 
       expect(onEscKeyDown).toHaveBeenCalled();
-      await waitForElementToBeRemoved(() => queryByText('Modal Two Content'));
+      expect(queryByText('Modal Two Content')).not.toBeInTheDocument();
       expect(getByText('Modal Content')).toBeInTheDocument();
 
       await userEvent.keyboard('{Escape}');
 
       expect(onEscKeyDown).toHaveBeenCalled();
-      await waitForElementToBeRemoved(() => queryByText('Modal Content'));
+      expect(queryByText('Modal Content')).not.toBeInTheDocument();
     });
   });
 
