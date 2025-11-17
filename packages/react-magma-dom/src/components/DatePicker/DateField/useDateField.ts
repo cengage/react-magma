@@ -13,7 +13,6 @@ export enum InputDateFields {
   Day = 'day',
   Month = 'month',
   Year = 'year',
-  MonthDay = 'month-day',
 }
 
 export function useDateField(props: UseDateFieldProps) {
@@ -21,20 +20,15 @@ export function useDateField(props: UseDateFieldProps) {
   const [day, setDayValue] = React.useState<string>('');
   const [month, setMonthValue] = React.useState<string>('');
   const [year, setYearValue] = React.useState<string>('');
-  const [monthDayValue, setMonthDayValue] = React.useState(
-    month && day ? `${month} ${day}` : ''
-  );
 
   const dayRef = React.useRef<HTMLInputElement>();
   const monthRef = React.useRef<HTMLInputElement>();
   const yearRef = React.useRef<HTMLInputElement>();
-  const monthDayRef = React.useRef<HTMLInputElement>();
 
   const onClear = () => {
     setDayValue('');
     setMonthValue('');
     setYearValue('');
-    setMonthDayValue('');
   };
 
   const formatWithLeadingZero = (value: number, maxValue?: number): string => {
@@ -137,23 +131,41 @@ export function useDateField(props: UseDateFieldProps) {
     setDayValue(formatWithLeadingZero(newDay, daysInMonth));
   };
 
-  const changeMonth = (direction: ChangeDirection) => {
-    let newMonth;
+  const changeMonth = (
+    direction: ChangeDirection,
+    hasMonthLongFormat: boolean
+  ) => {
+    let newMonthNumber: number;
 
     // First press: just show current month, don't increment/decrement
     if (!month) {
-      newMonth = new Date().getMonth() + 1;
+      newMonthNumber = new Date().getMonth() + 1;
     } else {
-      const currentMonth = Number(month);
+      // Convert month string to number if it's in long format
+      if (hasMonthLongFormat) {
+        const monthDate = new Date(`${month} 1, 2000`);
+
+        newMonthNumber = monthDate.getMonth() + 1;
+      } else {
+        newMonthNumber = Number(month);
+      }
 
       if (direction === ChangeDirection.Increment) {
-        newMonth = currentMonth >= 12 ? 1 : currentMonth + 1;
+        newMonthNumber = newMonthNumber >= 12 ? 1 : newMonthNumber + 1;
       } else {
-        newMonth = currentMonth <= 1 ? 12 : currentMonth - 1;
+        newMonthNumber = newMonthNumber <= 1 ? 12 : newMonthNumber - 1;
       }
     }
 
-    setMonthValue(formatWithLeadingZero(newMonth));
+    // Format the month based on the format type
+    if (hasMonthLongFormat) {
+      const date = new Date(2000, newMonthNumber - 1, 1);
+      const monthName = date.toLocaleDateString('en-US', { month: 'long' });
+
+      setMonthValue(monthName);
+    } else {
+      setMonthValue(formatWithLeadingZero(newMonthNumber));
+    }
   };
 
   const changeYear = (direction: ChangeDirection) => {
@@ -180,20 +192,14 @@ export function useDateField(props: UseDateFieldProps) {
 
   const getFieldOrder = (format: string) => {
     const parts = format.split(/[^A-Za-z]+/);
-    const hasLongMonth = parts.includes('MMMM');
 
-    return parts
-      .map(part => {
-        if (part.includes('y')) return InputDateFields.Year;
-        if (part.includes('M'))
-          return hasLongMonth
-            ? InputDateFields.MonthDay
-            : InputDateFields.Month;
-        if (part.includes('d') && !hasLongMonth) return InputDateFields.Day;
+    return parts.map(part => {
+      if (part.includes('y')) return InputDateFields.Year;
+      if (part.includes('M')) return InputDateFields.Month;
+      if (part.includes('d')) return InputDateFields.Day;
 
-        return part;
-      })
-      .filter(part => part !== 'd');
+      return part;
+    });
   };
 
   const fieldOrder = getFieldOrder(dateFormat);
@@ -203,11 +209,13 @@ export function useDateField(props: UseDateFieldProps) {
     if (key === InputDateFields.Day) fieldRefs.day = dayRef;
     if (key === InputDateFields.Month) fieldRefs.month = monthRef;
     if (key === InputDateFields.Year) fieldRefs.year = yearRef;
-    if (key === InputDateFields.MonthDay)
-      fieldRefs[InputDateFields.MonthDay] = monthDayRef;
   });
 
-  const handleFieldKeyDown = (event: React.KeyboardEvent, fieldKey: string) => {
+  const handleFieldKeyDown = (
+    event: React.KeyboardEvent,
+    fieldKey: string,
+    hasMonthLongFormat?: boolean
+  ) => {
     const currentIndex = fieldOrder.indexOf(fieldKey);
     const isDayField = fieldKey === InputDateFields.Day;
     const isMonthField = fieldKey === InputDateFields.Month;
@@ -217,13 +225,15 @@ export function useDateField(props: UseDateFieldProps) {
       case 'ArrowUp':
         event.preventDefault();
         if (isDayField) changeDay(ChangeDirection.Increment);
-        if (isMonthField) changeMonth(ChangeDirection.Increment);
+        if (isMonthField)
+          changeMonth(ChangeDirection.Increment, hasMonthLongFormat);
         if (isYearField) changeYear(ChangeDirection.Increment);
         break;
       case 'ArrowDown':
         event.preventDefault();
         if (isDayField) changeDay(ChangeDirection.Decrement);
-        if (isMonthField) changeMonth(ChangeDirection.Decrement);
+        if (isMonthField)
+          changeMonth(ChangeDirection.Decrement, hasMonthLongFormat);
         if (isYearField) changeYear(ChangeDirection.Decrement);
         break;
       case 'ArrowLeft': {
@@ -259,7 +269,6 @@ export function useDateField(props: UseDateFieldProps) {
     month,
     day,
     year,
-    monthDayValue,
     fieldRefs,
     fieldOrder,
     handleMonthChange,
@@ -269,7 +278,6 @@ export function useDateField(props: UseDateFieldProps) {
     setMonthValue,
     setDayValue,
     setYearValue,
-    setMonthDayValue,
     onClear,
     formatWithLeadingZero,
   };

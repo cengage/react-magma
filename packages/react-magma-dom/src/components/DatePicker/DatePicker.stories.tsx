@@ -34,14 +34,8 @@ export default {
       },
     },
     labelPosition: {
-      control: {
-        type: 'select',
-      },
-      options: ['left', 'top'],
-      mapping: {
-        left: LabelPosition.left,
-        top: LabelPosition.top,
-      },
+      control: { type: 'select' },
+      options: Object.values(LabelPosition),
     },
     labelWidth: {
       control: {

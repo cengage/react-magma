@@ -1375,7 +1375,7 @@ describe('Date Picker', () => {
       expect(getByText(errorMessage)).not.toBeNull();
     });
 
-    it('should increment and decrement the date', async () => {
+    it('should increment and decrement the date when date format is default', async () => {
       const user = userEvent.setup();
       const { getByTestId } = render(
         <DatePicker isDateFieldInput value={new Date(2025, 9, 22)} />
@@ -1387,6 +1387,7 @@ describe('Date Picker', () => {
 
       await user.click(monthInput);
       await user.keyboard('{ArrowUp}');
+      f;
       await waitFor(() => {
         expect(monthInput.value).toBe('11');
       });
@@ -1407,6 +1408,60 @@ describe('Date Picker', () => {
       await user.keyboard('{ArrowDown}');
       await waitFor(() => {
         expect(monthInput.value).toBe('10');
+      });
+
+      await user.click(dayInput);
+      await user.keyboard('{ArrowDown}');
+      await waitFor(() => {
+        expect(dayInput.value).toBe('22');
+      });
+
+      await user.click(yearInput);
+      await user.keyboard('{ArrowDown}');
+      await waitFor(() => {
+        expect(yearInput.value).toBe('2025');
+      });
+    });
+
+    it('should increment and decrement the date when date format is `MMMM d, yyyy`', async () => {
+      const user = userEvent.setup();
+      const { getByTestId } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            dateFormat: 'MMMM d, yyyy',
+          }}
+        >
+          <DatePicker isDateFieldInput value={new Date(2025, 9, 22)} />
+        </I18nContext.Provider>
+      );
+
+      const monthInput = getByTestId('month-input');
+      const dayInput = getByTestId('day-input');
+      const yearInput = getByTestId('year-input');
+
+      await user.click(monthInput);
+      await user.keyboard('{ArrowUp}');
+      await waitFor(() => {
+        expect(monthInput.value).toBe('November');
+      });
+
+      await user.click(dayInput);
+      await user.keyboard('{ArrowUp}');
+      await waitFor(() => {
+        expect(dayInput.value).toBe('23');
+      });
+
+      await user.click(yearInput);
+      await user.keyboard('{ArrowUp}');
+      await waitFor(() => {
+        expect(yearInput.value).toBe('2026');
+      });
+
+      await user.click(monthInput);
+      await user.keyboard('{ArrowDown}');
+      await waitFor(() => {
+        expect(monthInput.value).toBe('October');
       });
 
       await user.click(dayInput);
@@ -1665,7 +1720,8 @@ describe('Date Picker', () => {
           </I18nContext.Provider>
         );
 
-        expect(getByTestId('month-day-input').value).toEqual('September 22');
+        expect(getByTestId('month-input').value).toEqual('September');
+        expect(getByTestId('day-input').value).toEqual('22');
         expect(getByTestId('year-input').value).toEqual('2025');
       });
     });
@@ -1705,44 +1761,9 @@ describe('Date Picker', () => {
         const dayInput = getByTestId('day-input');
         const yearInput = getByTestId('year-input');
 
-        await userEvent.type(monthInput, '{backspace}{backspace}');
-        await userEvent.type(dayInput, '{backspace}{backspace}');
-        await userEvent.type(
-          yearInput,
-          '{backspace}{backspace}{backspace}{backspace}'
-        );
-
-        expect(onDateChange).toHaveBeenCalledWith(null, null);
-      });
-
-      it('should call handleDateChange to parent when all fields are cleared with `MMMM d, yyyy` format', async () => {
-        const onDateChange = jest.fn();
-
-        const { getByTestId } = render(
-          <I18nContext.Provider
-            value={{
-              ...defaultI18n,
-              dateFormat: 'MMMM d, yyyy',
-            }}
-          >
-            <DatePicker
-              isDateFieldInput
-              value={new Date(2025, 5, 22)}
-              onDateChange={onDateChange}
-            />
-          </I18nContext.Provider>
-        );
-        const monthDayInput = getByTestId('month-day-input');
-        const yearInput = getByTestId('year-input');
-
-        await userEvent.type(
-          monthDayInput,
-          '{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}{backspace}'
-        );
-        await userEvent.type(
-          yearInput,
-          '{backspace}{backspace}{backspace}{backspace}'
-        );
+        await userEvent.type(monthInput, '{backspace}');
+        await userEvent.type(dayInput, '{backspace}');
+        await userEvent.type(yearInput, '{backspace}');
 
         expect(onDateChange).toHaveBeenCalledWith(null, null);
       });

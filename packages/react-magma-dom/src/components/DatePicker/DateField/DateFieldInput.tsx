@@ -79,7 +79,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     month,
     day,
     year,
-    monthDayValue,
     handleMonthChange,
     handleDayChange,
     handleYearChange,
@@ -87,7 +86,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     setMonthValue,
     setDayValue,
     setYearValue,
-    setMonthDayValue,
     handleFieldKeyDown,
     formatWithLeadingZero,
     fieldOrder,
@@ -98,50 +96,29 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
 
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(props.isInverse);
-  const hasMonthDayStringFormat = props.dateFormat === 'MMMM d, yyyy';
+  const hasMonthLongFormat = props.dateFormat === 'MMMM d, yyyy';
   const didMountRef = React.useRef(false);
   const [isFocused, setIsFocused] = React.useState(false);
 
   const dayId = `${id}__day`;
   const monthId = `${id}__month`;
-  const monthDayId = `${id}__month-day`;
   const yearId = `${id}__year`;
 
   const i18n = React.useContext(I18nContext);
   const { datePicker } = i18n;
 
   const isNotEmptyDate = !isEmpty(day) || !isEmpty(month) || !isEmpty(year);
-
   const isClearableInput = props.isClearable && isNotEmptyDate;
+  const monthSize = () => {
+    if (hasMonthLongFormat) {
+      return isEmpty(month) ? 7 : month.length + 0.5;
+    }
+
+    return isEmpty(month) ? 3.25 : 2;
+  };
 
   const renderInput = (key: string) => {
     switch (key) {
-      case InputDateFields.MonthDay:
-        return (
-          <StyledNumInput
-            aria-label={`${datePicker.month} ${month} ${datePicker.day} ${day}`}
-            aria-describedby={monthDayId}
-            aria-valuetext={`${day} - ${month}`}
-            data-testid="month-day-input"
-            id={monthDayId}
-            isInverse={isInverse}
-            isFocused={isFocused || isNotEmptyDate}
-            onChange={e => setMonthDayValue(e.target.value)}
-            onBlur={() => {
-              const [monthInput, dayInput] = monthDayValue.split(' ');
-
-              setMonthValue(monthInput);
-              setDayValue(dayInput);
-            }}
-            placeholder="mmmm d"
-            ref={fieldRefs[InputDateFields.MonthDay]}
-            required={required}
-            theme={theme}
-            type="text"
-            value={monthDayValue}
-            size={monthDayValue ? monthDayValue.length : 8}
-          />
-        );
       case InputDateFields.Day:
         return (
           <StyledNumInput
@@ -185,16 +162,18 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             onBeforeInput={handleNumericBeforeInput}
             onChange={handleMonthChange}
             onKeyDown={event =>
-              handleFieldKeyDown(event, InputDateFields.Month)
+              handleFieldKeyDown(
+                event,
+                InputDateFields.Month,
+                hasMonthLongFormat
+              )
             }
-            placeholder={hasMonthDayStringFormat ? 'mmmm' : 'mm'}
+            placeholder={hasMonthLongFormat ? 'mmmm' : 'mm'}
             ref={fieldRefs.month}
             required={required}
             theme={theme}
             type="text"
-            inputMode="numeric"
-            pattern="[0-9]*"
-            size={!isEmpty(month) ? 2 : 3.25}
+            size={monthSize()}
             value={month ?? ''}
           />
         );
@@ -221,7 +200,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             type="text"
             inputMode="numeric"
             pattern="[0-9]*"
-            size={3.85}
+            size={isEmpty(year) ? 3.5 : 4.5}
             value={year ?? ''}
           />
         );
@@ -255,9 +234,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       return;
     }
 
-    const allFieldsEmpty =
-      (isEmpty(day) && isEmpty(month) && isEmpty(year)) ||
-      (hasMonthDayStringFormat && isEmpty(monthDayValue) && isEmpty(year));
+    const allFieldsEmpty = isEmpty(day) && isEmpty(month) && isEmpty(year);
 
     if (allFieldsEmpty && isMounted) {
       handleDateChange?.(null, null);
@@ -266,11 +243,10 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       return;
     }
 
-    const isCompletedDate = month && day && year && year.length === 4;
+    const isCompletedDate = month && day && year;
 
     if (!isCompletedDate) return;
-
-    const newDate = hasMonthDayStringFormat
+    const newDate = hasMonthLongFormat
       ? new Date(`${month} ${day}, ${year}`)
       : new Date(Number(year), Number(month) - 1, Number(day));
 
@@ -281,13 +257,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     return () => {
       isMounted = false;
     };
-  }, [month, day, year, monthDayValue, hasMonthDayStringFormat]);
-
-  React.useEffect(() => {
-    if (setReference && inputRef && inputRef.current) {
-      setReference(inputRef.current);
-    }
-  }, [setReference, inputRef]);
+  }, [month, day, year, hasMonthLongFormat]);
 
   React.useEffect(() => {
     let isMounted = true;
@@ -300,37 +270,31 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       };
     }
 
-    let dayValue: string;
-    let monthValue: string;
-    let yearValue: string;
-
-    if (typeof inputValue === 'string') {
-      const stringDate = inputValue.trim().split(/[\s,]+/);
-
-      if (stringDate.length >= 3) {
-        monthValue = stringDate[0];
-        dayValue = formatWithLeadingZero(Number(stringDate[1]));
-        yearValue = stringDate[2];
-      }
-    } else if (inputValue instanceof Date) {
-      dayValue = inputValue.getDate().toString();
-      monthValue = (inputValue.getMonth() + 1).toString();
-      yearValue = inputValue.getFullYear().toString();
-    }
+    const date = new Date(inputValue);
+    const dayValue = date.getDate().toString();
+    const monthValue = (date.getMonth() + 1).toString();
+    const yearValue = date.getFullYear().toString();
 
     if (isMounted) {
       setDayValue(formatWithLeadingZero(Number(dayValue)));
-      setMonthValue(formatWithLeadingZero(Number(monthValue)));
+      setMonthValue(
+        hasMonthLongFormat
+          ? date.toLocaleDateString('en-US', { month: 'long' })
+          : formatWithLeadingZero(Number(monthValue))
+      );
       setYearValue(formatWithLeadingZero(Number(yearValue)));
-      if (hasMonthDayStringFormat) {
-        setMonthDayValue(`${monthValue} ${dayValue}`);
-      }
     }
 
     return () => {
       isMounted = false;
     };
-  }, [inputValue, hasMonthDayStringFormat]);
+  }, [inputValue, hasMonthLongFormat]);
+
+  React.useEffect(() => {
+    if (setReference && inputRef && inputRef.current) {
+      setReference(inputRef.current);
+    }
+  }, [setReference, inputRef]);
 
   const renderDateFields = () => {
     const fieldOrderLength = fieldOrder.length;
@@ -343,8 +307,9 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             isFocused={isFocused || isNotEmptyDate}
             isInverse={isInverse}
             theme={theme}
+            style={{ marginRight: hasMonthLongFormat ? '2px' : 0 }}
           >
-            {fieldOrderLength === 2 ? ',' : '/'}
+            {hasMonthLongFormat ? (idx === 1 ? ',' : '') : '/'}
           </Divider>
         )}
       </React.Fragment>
