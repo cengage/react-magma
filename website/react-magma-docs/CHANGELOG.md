@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0-next.4
+
+### Patch Changes
+
+- d5a38466a: fix(Modal & Drawer): Added aria-haspopup="dialog" for trigger buttons and updated documentation.
+
 ## 5.3.0-next.3
 
 ### Patch Changes
