@@ -15,8 +15,8 @@ const info = {
     position: {
       control: {
         type: 'select',
+        options: DrawerPosition,
       },
-      options: DrawerPosition,
     },
     isInverse: {
       control: {
