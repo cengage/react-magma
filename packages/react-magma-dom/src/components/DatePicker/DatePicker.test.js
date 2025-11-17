@@ -1387,7 +1387,6 @@ describe('Date Picker', () => {
 
       await user.click(monthInput);
       await user.keyboard('{ArrowUp}');
-      f;
       await waitFor(() => {
         expect(monthInput.value).toBe('11');
       });
