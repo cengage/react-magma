@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.8
+
+### Patch Changes
+
+- e2c8b57: fix(TimePicker): Update styles
+
 ## 5.1.0-rc.7
 
 ### Minor Changes

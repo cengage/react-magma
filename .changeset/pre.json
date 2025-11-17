@@ -40,6 +40,7 @@
     "fix-drawer-scrollable-content",
     "fix-modal-trigger-button",
     "fix-timepicker-broken-auto-fill",
+    "fix-timepicker-update-styles",
     "major-charts-v13-release",
     "major-dropzone-v13-release",
     "major-v5-release",
