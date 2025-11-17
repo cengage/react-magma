@@ -64,7 +64,11 @@ export const Default = {
             <Button>This is a button</Button>
           </p>
         </Drawer>
-        <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
+        <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowDrawer(true)}
+          ref={buttonRef}
+        >
           Show Drawer
           <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
         </Button>
@@ -105,7 +109,11 @@ export const SiteNavigation = {
             <NavTab to="#">Four</NavTab>
           </NavTabs>
         </Drawer>
-        <Button onClick={() => setShowDrawer(true)} ref={buttonRef}>
+        <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowDrawer(true)}
+          ref={buttonRef}
+        >
           Show Drawer
           <VisuallyHidden>(opens drawer dialog)</VisuallyHidden>
         </Button>
