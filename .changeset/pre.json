@@ -13,6 +13,7 @@
   },
   "changesets": [
     "chore-fix-workflows",
+    "feat-DateTimePicker-timezone",
     "feat-Modal-add-headel-level-prop",
     "fix-Combobox-accessibility",
     "fix-drawer-scrollable-content",

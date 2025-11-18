@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.3
+
+### Minor Changes
+
+- 2e6c1e441: v4/feat(DateTimePicker): Add `timezone` prop. When used, returns Date object with the timezone
+
 ## 4.10.2-next.2
 
 ### Patch Changes
