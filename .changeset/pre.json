@@ -12,6 +12,12 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "chore-fix-workflows",
+    "feat-Modal-add-headel-level-prop",
+    "fix-Combobox-accessibility",
+    "fix-drawer-scrollable-content",
+    "fix-modal-trigger-button",
+    "fix-timepicker-update-styles",
     "manually-sync-4.10.1"
   ]
 }

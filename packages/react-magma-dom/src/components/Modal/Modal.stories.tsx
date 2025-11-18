@@ -45,7 +45,11 @@ export const Default = () => {
           <Button>Save</Button>
         </ButtonGroup>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
         Show Modal
         <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
       </Button>
@@ -74,7 +78,11 @@ export const BackgroundCickDisabled = () => {
           <Button>Save</Button>
         </ButtonGroup>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
         Show Modal
         <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
       </Button>
@@ -138,7 +146,7 @@ export const LongContentWithScrolling = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </Paragraph>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>
+      <Button aria-haspopup="dialog" onClick={onModalShow} ref={buttonRef}>
         Show Modal
       </Button>
     </>
@@ -167,7 +175,7 @@ export const RadioInModal = () => {
           <Radio labelText="Option two label" value="2" />
         </RadioGroup>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>
+      <Button aria-haspopup="dialog" onClick={onModalShow} ref={buttonRef}>
         Show Modal
       </Button>
     </>
@@ -261,7 +269,7 @@ export const ModalContentUpdate = () => {
           )}
         </div>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>
+      <Button aria-haspopup="dialog" onClick={onModalShow} ref={buttonRef}>
         Show Modal
       </Button>
     </>
@@ -299,7 +307,11 @@ export const NoHeaderOrFocusableContent = () => {
         </Paragraph>
       </Modal>
 
-      <Button onClick={onModalNoFocusShow} ref={buttonRef}>
+      <Button
+        aria-haspopup="dialog"
+        onClick={onModalNoFocusShow}
+        ref={buttonRef}
+      >
         Show Modal with nothing focusable
       </Button>
     </>
@@ -369,10 +381,16 @@ export const ModalInAModal = () => {
           isClearable
         />
         <Paragraph>
-          <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
+          <Button aria-haspopup="dialog" onClick={() => setShowModal2(true)}>
+            Show Modal 2
+          </Button>
         </Paragraph>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
         Show Modal
       </Button>
       <Modal
@@ -491,7 +509,11 @@ export const CloseModalWithConfirmation = () => {
 
   return (
     <>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
         Show Modal
       </Button>
       <Modal
@@ -625,10 +647,18 @@ export const HeaderReference = () => {
       </Modal>
 
       <ButtonGroup>
-        <Button onClick={onModalShow} ref={customButtonRef}>
+        <Button
+          aria-haspopup="dialog"
+          onClick={onModalShow}
+          ref={customButtonRef}
+        >
           Show Custom Heading Modal
         </Button>
-        <Button onClick={onModalShowDefault} ref={defaultButtonRef}>
+        <Button
+          aria-haspopup="dialog"
+          onClick={onModalShowDefault}
+          ref={defaultButtonRef}
+        >
           Show Modal with Default Heading
         </Button>
       </ButtonGroup>
@@ -659,7 +689,12 @@ export const Inverse = () => {
         </Paragraph>
       </Modal>
       <Container isInverse style={{ padding: '12px' }}>
-        <Button onClick={() => setShowModal(true)} ref={buttonRef} isInverse>
+        <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowModal(true)}
+          ref={buttonRef}
+          isInverse
+        >
           Show Modal
           <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>

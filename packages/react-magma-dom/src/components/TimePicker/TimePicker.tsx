@@ -132,16 +132,11 @@ export const StyledNumInput = styled.input<StyledNumInputProps>`
   }
 `;
 
-const InputsWithTimezone = styled.div`
-  display: flex;
-  align-items: center;
-  gap: ${props => props.theme.spaceScale.spacing03};
-`;
-
 export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
   (props, ref) => {
     const theme = React.useContext(ThemeContext);
     const i18n = React.useContext(I18nContext);
+    const [isFocused, setIsFocused] = React.useState(false);
 
     const {
       containerStyle,
@@ -187,6 +182,8 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
         : i18n.timePicker.pmButtonAriaLabel
     }`;
 
+    const hasTime = !isEmpty(hour) || !isEmpty(minute);
+
     return (
       <FormFieldContainer
         {...other}
@@ -220,6 +217,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             maxLength={2}
             max="12"
             min="1"
+            isFocused={hasTime || isFocused}
             onChange={handleHourChange}
             onKeyDown={e => handleHourKeyDown(e, handleHourChange)}
             placeholder="--"
@@ -227,9 +225,17 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             theme={theme}
             type="number"
             value={hour}
-            onFocus={e => e.target.select()}
+            onFocus={e => {
+              e.target.select();
+              setIsFocused(true);
+            }}
+            onBlur={() => setIsFocused(false)}
           />
-          <Divider isInverse={isInverse} theme={theme}>
+          <Divider
+            isInverse={isInverse}
+            isFocused={hasTime || isFocused}
+            theme={theme}
+          >
             :
           </Divider>
           <StyledNumInput
@@ -240,6 +246,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             maxLength={2}
             max="59"
             min="0"
+            isFocused={hasTime || isFocused}
             onChange={handleMinuteChange}
             onKeyDown={e => handleMinuteKeyDown(e, handleMinuteChange)}
             placeholder="--"
@@ -248,7 +255,11 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             theme={theme}
             type="number"
             value={minute}
-            onFocus={e => e.target.select()}
+            onFocus={e => {
+              e.target.select();
+              setIsFocused(true);
+            }}
+            onBlur={() => setIsFocused(false)}
           />
           <AmPmToggle
             aria-label={amPmLabel}
@@ -256,6 +267,9 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             ref={amPmRef}
             onClick={toggleAmPm}
             onKeyDown={handleAmPmKeyDown}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            isFocused={hasTime || isFocused}
           >
             {amPm}
           </AmPmToggle>
