@@ -200,7 +200,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             type="text"
             inputMode="numeric"
             pattern="[0-9]*"
-            size={isEmpty(year) ? 3.5 : 4.5}
+            size={isEmpty(year) ? 3.5 : 4}
             value={year ?? ''}
           />
         );
