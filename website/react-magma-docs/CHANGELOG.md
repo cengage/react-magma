@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.6
+
+### Patch Changes
+
+- ca15e5a: fix(Storybook): Fix issue with `type: 'select'`.
+
 ## 7.0.0-rc.5
 
 ### Patch Changes
