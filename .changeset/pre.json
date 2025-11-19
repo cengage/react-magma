@@ -16,6 +16,7 @@
     "feat-DateTimePicker-timezone",
     "feat-Modal-add-headel-level-prop",
     "fix-Combobox-accessibility",
+    "fix-ToggleButton-transform",
     "fix-drawer-scrollable-content",
     "fix-modal-trigger-button",
     "fix-timepicker-update-styles",

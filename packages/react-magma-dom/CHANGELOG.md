@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.4
+
+### Patch Changes
+
+- 3ac17914c: fix(ToggleButton): Fix issue with `textTransform` prop.
+
 ## 4.11.0-next.3
 
 ### Minor Changes
