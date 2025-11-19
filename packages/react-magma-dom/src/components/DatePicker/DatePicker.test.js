@@ -1847,6 +1847,40 @@ describe('Date Picker', () => {
           expect(monthInput.value).toBe('');
         });
       });
+
+      it('should show `July` any month when date format is MMMM d, yyyy and user type `J` + `u` + `l`', async () => {
+        const user = userEvent.setup();
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'MMMM d, yyyy',
+            }}
+          >
+            <DatePicker isDateFieldInput />
+          </I18nContext.Provider>
+        );
+
+        const monthInput = getByTestId('month-input');
+
+        await user.type(monthInput, 'J');
+
+        await waitFor(() => {
+          expect(monthInput.value).toBe('January');
+        });
+
+        await user.type(monthInput, 'u');
+
+        await waitFor(() => {
+          expect(monthInput.value).toBe('June');
+        });
+
+        await user.type(monthInput, 'l');
+
+        await waitFor(() => {
+          expect(monthInput.value).toBe('July');
+        });
+      });
     });
 
     describe('Clearing the date', () => {
