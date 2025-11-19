@@ -1799,6 +1799,7 @@ describe('Date Picker', () => {
         expect(monthInput.value).toBe('');
       });
     });
+
     describe('Clearing the date', () => {
       it('should show clear button and clears fields', () => {
         const { getByTestId } = render(
@@ -1808,6 +1809,10 @@ describe('Date Picker', () => {
             defaultDate={new Date(2025, 11, 25)}
           />
         );
+        expect(getByTestId('month-input').value).toBe('12');
+        expect(getByTestId('day-input').value).toBe('25');
+        expect(getByTestId('year-input').value).toBe('2025');
+
         const clearButton = getByTestId('clear-button');
         expect(clearButton).toBeInTheDocument();
 
@@ -1828,6 +1833,10 @@ describe('Date Picker', () => {
             onDateChange={onDateChange}
           />
         );
+        expect(getByTestId('month-input').value).toBe('10');
+        expect(getByTestId('day-input').value).toBe('22');
+        expect(getByTestId('year-input').value).toBe('2025');
+
         const monthInput = getByTestId('month-input');
         const dayInput = getByTestId('day-input');
         const yearInput = getByTestId('year-input');
