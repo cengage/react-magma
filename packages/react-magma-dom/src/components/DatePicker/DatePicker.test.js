@@ -1725,6 +1725,128 @@ describe('Date Picker', () => {
         expect(getByTestId('day-input').value).toEqual('22');
         expect(getByTestId('year-input').value).toEqual('2025');
       });
+
+      it('should show January month when date format is MMMM d, yyyy and user type J', () => {
+        const user = userEvent.setup();
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'MMMM d, yyyy',
+            }}
+          >
+            <DatePicker isDateFieldInput />
+          </I18nContext.Provider>
+        );
+
+        const monthInput = getByTestId('month-input');
+
+        user.type(monthInput, 'J');
+
+        waitFor(() => {
+          expect(monthInput.value).toBe('January');
+        });
+      });
+
+      it('should show April month when date format is MMMM d, yyyy and user type 4', () => {
+        const user = userEvent.setup();
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'MMMM d, yyyy',
+            }}
+          >
+            <DatePicker isDateFieldInput />
+          </I18nContext.Provider>
+        );
+
+        const monthInput = getByTestId('month-input');
+
+        user.type(monthInput, '4');
+
+        waitFor(() => {
+          expect(monthInput.value).toBe('April');
+        });
+      });
+
+      it('should show October month when date format is MMMM d, yyyy and user type 10', () => {
+        const user = userEvent.setup();
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'MMMM d, yyyy',
+            }}
+          >
+            <DatePicker isDateFieldInput />
+          </I18nContext.Provider>
+        );
+
+        const monthInput = getByTestId('month-input');
+
+        user.type(monthInput, '1');
+
+        waitFor(() => {
+          expect(monthInput.value).toBe('January');
+        });
+
+        user.type(monthInput, '0');
+
+        waitFor(() => {
+          expect(monthInput.value).toBe('October');
+        });
+      });
+
+      it('should show February month when date format is MMMM d, yyyy and user type `J` and after 2', () => {
+        const user = userEvent.setup();
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'MMMM d, yyyy',
+            }}
+          >
+            <DatePicker isDateFieldInput />
+          </I18nContext.Provider>
+        );
+
+        const monthInput = getByTestId('month-input');
+
+        user.type(monthInput, 'J');
+
+        waitFor(() => {
+          expect(monthInput.value).toBe('January');
+        });
+
+        user.type(monthInput, '2');
+
+        waitFor(() => {
+          expect(monthInput.value).toBe('February');
+        });
+      });
+
+      it('should not show any month when date format is MMMM d, yyyy and user type `P`', () => {
+        const user = userEvent.setup();
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'MMMM d, yyyy',
+            }}
+          >
+            <DatePicker isDateFieldInput />
+          </I18nContext.Provider>
+        );
+
+        const monthInput = getByTestId('month-input');
+
+        user.type(monthInput, 'P');
+
+        waitFor(() => {
+          expect(monthInput.value).toBe('');
+        });
+      });
     });
     describe('Clearing the date', () => {
       it('should show clear button and clears fields', async () => {
