@@ -82,10 +82,8 @@ export default {
   component: Table,
   argTypes: {
     density: {
-      control: {
-        type: 'select',
-        options: TableDensity,
-      },
+      control: { type: 'select' },
+      options: Object.values(TableDensity),
     },
     minWidth: {
       control: {

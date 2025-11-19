@@ -123,16 +123,12 @@ export default {
   component: Tag,
   argTypes: {
     size: {
-      control: {
-        type: 'select',
-        options: TagSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(TagSize),
     },
     color: {
-      control: {
-        type: 'select',
-        options: TagColor,
-      },
+      control: { type: 'select' },
+      options: Object.values(TagColor),
     },
     disabled: {
       control: {

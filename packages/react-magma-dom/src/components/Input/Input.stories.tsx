@@ -43,16 +43,12 @@ export default {
   component: Input,
   argTypes: {
     iconPosition: {
-      control: {
-        type: 'select',
-        options: InputIconPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(InputIconPosition),
     },
     inputSize: {
-      control: {
-        type: 'select',
-        options: InputSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(InputSize),
     },
     isClearable: {
       control: {
@@ -70,16 +66,12 @@ export default {
       },
     },
     labelPosition: {
-      control: {
-        type: 'select',
-        options: LabelPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(LabelPosition),
     },
     type: {
-      control: {
-        type: 'select',
-        options: InputType,
-      },
+      control: { type: 'select' },
+      options: Object.values(InputType),
     },
     labelText: {
       control: 'text',

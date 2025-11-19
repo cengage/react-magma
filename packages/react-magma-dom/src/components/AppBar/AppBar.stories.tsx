@@ -23,10 +23,8 @@ export default {
   component: AppBar,
   argTypes: {
     position: {
-      control: {
-        type: 'select',
-        options: AppBarPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(AppBarPosition),
     },
   },
 } as Meta;

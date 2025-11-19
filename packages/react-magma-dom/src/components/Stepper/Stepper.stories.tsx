@@ -35,24 +35,19 @@ export default {
       control: 'number',
     },
     breakpointLayout: {
-      control: {
-        type: 'select',
-        options: StepperLayout,
-        defaultValue: StepperLayout.hideLabels,
-      },
+      control: { type: 'select' },
+      options: Object.values(StepperLayout),
     },
     breakpointOrientation: {
       control: {
-        type: 'select',
-        options: StepperOrientation,
-        defaultValue: StepperOrientation.horizontal,
+        control: { type: 'select' },
+        options: Object.values(StepperOrientation),
       },
     },
     layout: {
       control: {
-        type: 'select',
-        options: StepperLayout,
-        defaultValue: StepperLayout.showLabels,
+        control: { type: 'select' },
+        options: Object.values(StepperLayout),
       },
     },
     completionLabel: {
@@ -63,13 +58,11 @@ export default {
     },
     isInverse: {
       control: 'boolean',
-      defaultValue: false,
     },
     orientation: {
       control: {
-        type: 'select',
-        options: StepperOrientation,
-        defaultValue: StepperOrientation.horizontal,
+        control: { type: 'select' },
+        options: Object.values(StepperOrientation),
       },
     },
     testId: {
@@ -77,8 +70,15 @@ export default {
     },
     ariaLabel: {
       control: 'text',
-      defaultValue: 'progress',
     },
+  },
+  args: {
+    breakpointLayout: StepperLayout.hideLabels,
+    breakpointOrientation: StepperOrientation.horizontal,
+    layout: StepperLayout.showLabels,
+    orientation: StepperOrientation.horizontal,
+    isInverse: false,
+    ariaLabel: 'progress',
   },
 } as Meta;
 

@@ -83,16 +83,12 @@ export default {
   component: Dropdown,
   argTypes: {
     dropDirection: {
-      control: {
-        type: 'select',
-        options: DropdownDropDirection,
-      },
+      control: { type: 'select' },
+      options: Object.values(DropdownDropDirection),
     },
     alignment: {
-      control: {
-        type: 'select',
-        options: DropdownAlignment,
-      },
+      control: { type: 'select' },
+      options: Object.values(DropdownAlignment),
     },
     onClose: {
       action: 'onClose',

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { Container } from '../Container';
 import { PaginationProps, PaginationType } from './Pagination';
@@ -24,10 +24,8 @@ export default {
       },
     },
     type: {
-      control: {
-        type: 'select',
-        options: PaginationType,
-      },
+      control: { type: 'select' },
+      options: Object.values(PaginationType),
     },
     page: {
       control: {
@@ -40,10 +38,8 @@ export default {
       },
     },
     size: {
-      control: {
-        type: 'select',
-        options: PageButtonSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(PageButtonSize),
     },
     hidePreviousButton: {
       control: {

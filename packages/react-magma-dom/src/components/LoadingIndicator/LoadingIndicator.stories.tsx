@@ -16,10 +16,8 @@ export default {
       },
     },
     type: {
-      control: {
-        type: 'select',
-        options: LoadingIndicatorType,
-      },
+      control: { type: 'select' },
+      options: Object.values(LoadingIndicatorType),
     },
     isInverse: {
       defaultValue: false,
