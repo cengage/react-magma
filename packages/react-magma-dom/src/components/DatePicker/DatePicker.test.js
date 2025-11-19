@@ -1570,7 +1570,8 @@ describe('Date Picker', () => {
       });
     });
 
-    it('should handle focus and blur events on DateFieldInput', () => {
+    it('should handle focus and blur events on DateFieldInput', async () => {
+      const user = userEvent.setup();
       const onInputFocus = jest.fn();
       const onInputBlur = jest.fn();
       const { getByTestId } = render(
@@ -1583,10 +1584,10 @@ describe('Date Picker', () => {
 
       const dateFieldInput = getByTestId('date-field-input');
 
-      dateFieldInput.focus();
+      await user.click(dateFieldInput);
       expect(onInputFocus).toHaveBeenCalled();
 
-      dateFieldInput.blur();
+      await user.tab();
       expect(onInputBlur).toHaveBeenCalled();
     });
 
@@ -1726,7 +1727,7 @@ describe('Date Picker', () => {
         expect(getByTestId('year-input').value).toEqual('2025');
       });
 
-      it('should show January month when date format is MMMM d, yyyy and user type J', () => {
+      it('should show January month when date format is MMMM d, yyyy and user type J', async () => {
         const user = userEvent.setup();
         const { getByTestId } = render(
           <I18nContext.Provider
@@ -1741,14 +1742,14 @@ describe('Date Picker', () => {
 
         const monthInput = getByTestId('month-input');
 
-        user.type(monthInput, 'J');
+        await user.type(monthInput, 'J');
 
-        waitFor(() => {
+        await waitFor(() => {
           expect(monthInput.value).toBe('January');
         });
       });
 
-      it('should show April month when date format is MMMM d, yyyy and user type 4', () => {
+      it('should show April month when date format is MMMM d, yyyy and user type 4', async () => {
         const user = userEvent.setup();
         const { getByTestId } = render(
           <I18nContext.Provider
@@ -1763,14 +1764,14 @@ describe('Date Picker', () => {
 
         const monthInput = getByTestId('month-input');
 
-        user.type(monthInput, '4');
+        await user.type(monthInput, '4');
 
-        waitFor(() => {
+        await waitFor(() => {
           expect(monthInput.value).toBe('April');
         });
       });
 
-      it('should show October month when date format is MMMM d, yyyy and user type 10', () => {
+      it('should show October month when date format is MMMM d, yyyy and user type 10', async () => {
         const user = userEvent.setup();
         const { getByTestId } = render(
           <I18nContext.Provider
@@ -1785,20 +1786,20 @@ describe('Date Picker', () => {
 
         const monthInput = getByTestId('month-input');
 
-        user.type(monthInput, '1');
+        await user.type(monthInput, '1');
 
-        waitFor(() => {
+        await waitFor(() => {
           expect(monthInput.value).toBe('January');
         });
 
-        user.type(monthInput, '0');
+        await user.type(monthInput, '0');
 
         waitFor(() => {
           expect(monthInput.value).toBe('October');
         });
       });
 
-      it('should show February month when date format is MMMM d, yyyy and user type `J` and after 2', () => {
+      it('should show February month when date format is MMMM d, yyyy and user type `J` and after 2', async () => {
         const user = userEvent.setup();
         const { getByTestId } = render(
           <I18nContext.Provider
@@ -1813,20 +1814,19 @@ describe('Date Picker', () => {
 
         const monthInput = getByTestId('month-input');
 
-        user.type(monthInput, 'J');
+        await user.type(monthInput, 'J');
 
-        waitFor(() => {
+        await waitFor(() => {
           expect(monthInput.value).toBe('January');
         });
 
-        user.type(monthInput, '2');
-
-        waitFor(() => {
+        await user.type(monthInput, '2');
+        await waitFor(() => {
           expect(monthInput.value).toBe('February');
         });
       });
 
-      it('should not show any month when date format is MMMM d, yyyy and user type `P`', () => {
+      it('should not show any month when date format is MMMM d, yyyy and user type `P`', async () => {
         const user = userEvent.setup();
         const { getByTestId } = render(
           <I18nContext.Provider
@@ -1841,13 +1841,14 @@ describe('Date Picker', () => {
 
         const monthInput = getByTestId('month-input');
 
-        user.type(monthInput, 'P');
+        await user.type(monthInput, 'P');
 
-        waitFor(() => {
+        await waitFor(() => {
           expect(monthInput.value).toBe('');
         });
       });
     });
+
     describe('Clearing the date', () => {
       it('should show clear button and clears fields', async () => {
         const user = userEvent.setup();
@@ -1858,7 +1859,15 @@ describe('Date Picker', () => {
             defaultDate={new Date(2025, 11, 25)}
           />
         );
+
+        await waitFor(() => {
+          expect(getByTestId('month-input').value).toBe('12');
+          expect(getByTestId('day-input').value).toBe('25');
+          expect(getByTestId('year-input').value).toBe('2025');
+        });
+
         const clearButton = getByTestId('clear-button');
+
         expect(clearButton).toBeInTheDocument();
 
         await user.click(clearButton);
@@ -1872,6 +1881,7 @@ describe('Date Picker', () => {
 
       it('should call handleDateChange to parent when all fields are cleared with default format', async () => {
         const onDateChange = jest.fn();
+        const user = userEvent.setup();
 
         const { getByTestId } = render(
           <DatePicker
@@ -1880,15 +1890,38 @@ describe('Date Picker', () => {
             onDateChange={onDateChange}
           />
         );
+
+        await waitFor(() => {
+          expect(getByTestId('month-input').value).toBe('10');
+          expect(getByTestId('day-input').value).toBe('22');
+          expect(getByTestId('year-input').value).toBe('2025');
+        });
+
         const monthInput = getByTestId('month-input');
         const dayInput = getByTestId('day-input');
         const yearInput = getByTestId('year-input');
 
-        await userEvent.type(monthInput, '{backspace}');
-        await userEvent.type(dayInput, '{backspace}');
-        await userEvent.type(yearInput, '{backspace}');
+        await user.type(monthInput, '{backspace}');
 
-        expect(onDateChange).toHaveBeenCalledWith(null, null);
+        await waitFor(() => {
+          expect(monthInput.value).toBe('');
+        });
+
+        await user.type(dayInput, '{backspace}');
+
+        await waitFor(() => {
+          expect(dayInput.value).toBe('');
+        });
+
+        await user.type(yearInput, '{backspace}');
+
+        await waitFor(() => {
+          expect(yearInput.value).toBe('');
+        });
+
+        await waitFor(() => {
+          expect(onDateChange).toHaveBeenCalledWith(null, null);
+        });
       });
     });
   });
