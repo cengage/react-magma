@@ -17,12 +17,6 @@ const info = {
         type: 'select',
       },
       options: Object.values(DrawerPosition),
-      mapping: {
-        top: DrawerPosition.top,
-        left: DrawerPosition.left,
-        right: DrawerPosition.right,
-        bottom: DrawerPosition.bottom,
-      },
     },
     isInverse: {
       control: {
