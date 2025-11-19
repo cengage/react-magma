@@ -3,7 +3,7 @@ import React from 'react';
 import { Meta, StoryFn } from '@storybook/react/types-6-0';
 import { CheckIcon } from 'react-magma-icons';
 
-import { ButtonSize } from '../Button';
+import { ButtonSize, ButtonTextTransform } from '../Button';
 import { Container } from '../Container';
 
 import { ToggleButton, ToggleButtonProps } from '.';
@@ -38,6 +38,10 @@ export default {
         type: 'select',
         options: ButtonSize,
       },
+    },
+    textTransform: {
+      control: { type: 'select' },
+      options: Object.values(ButtonTextTransform),
     },
   },
 } as Meta;
