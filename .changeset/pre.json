@@ -16,6 +16,7 @@
     "feat-Checkbox-add-aria-label",
     "feat-DateTimePicker-timezone",
     "feat-Modal-add-headel-level-prop",
+    "fix-AIButton-box-shadow",
     "fix-Combobox-accessibility",
     "fix-ToggleButton-transform",
     "fix-drawer-scrollable-content",

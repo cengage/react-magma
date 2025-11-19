@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.6
+
+### Patch Changes
+
+- a295241bb: fix(AIButton): Fix box-shadows.
+
 ## 4.11.0-next.5
 
 ### Minor Changes
