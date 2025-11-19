@@ -75,9 +75,12 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   } = props;
 
   const {
+    allMonthNames,
     month,
     day,
     year,
+    fieldOrder,
+    fieldRefs,
     handleMonthChange,
     handleDayChange,
     handleYearChange,
@@ -87,8 +90,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     setYearValue,
     handleFieldKeyDown,
     formatWithLeadingZero,
-    fieldOrder,
-    fieldRefs,
+    getIndexMonth,
   } = useDateField({
     dateFormat,
   });
@@ -121,12 +123,12 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       case InputDateFields.Day:
         return (
           <StyledNumInput
-            aria-label={`${datePicker.day} ${day}`}
+            aria-label={datePicker.day}
             aria-describedby={dayId}
             aria-valuemin={1}
             aria-valuemax={31}
-            aria-valuenow={parseInt(day, 10)}
-            aria-valuetext={`${day}`}
+            aria-valuenow={Number(day)}
+            aria-valuetext={day}
             data-testid="day-input"
             id={dayId}
             isInverse={isInverse}
@@ -147,17 +149,21 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       case InputDateFields.Month:
         return (
           <StyledNumInput
-            aria-label={`${datePicker.month} ${month}`}
+            aria-label={datePicker.month}
             aria-describedby={monthId}
             aria-valuemax={12}
             aria-valuemin={1}
-            aria-valuenow={parseInt(month, 10)}
-            aria-valuetext={`${month}`}
+            aria-valuenow={
+              hasMonthLongFormat ? getIndexMonth(month) + 1 : Number(month) - 1
+            }
+            aria-valuetext={
+              hasMonthLongFormat ? month : allMonthNames[Number(month) - 1]
+            }
             data-testid="month-input"
             id={monthId}
             isInverse={isInverse}
             isFocused={isFocused || isNotEmptyDate}
-            onChange={handleMonthChange}
+            onChange={event => handleMonthChange(event, hasMonthLongFormat)}
             onKeyDown={event =>
               handleFieldKeyDown(
                 event,
@@ -177,12 +183,12 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       case InputDateFields.Year:
         return (
           <StyledNumInput
-            aria-label={`${datePicker.year} ${year}`}
+            aria-label={datePicker.year}
             aria-describedby={yearId}
             aria-valuemin={1900}
             aria-valuemax={2099}
-            aria-valuenow={parseInt(year, 10)}
-            aria-valuetext={`${year}`}
+            aria-valuenow={Number(year)}
+            aria-valuetext={year}
             data-testid="year-input"
             id={yearId}
             isInverse={isInverse}

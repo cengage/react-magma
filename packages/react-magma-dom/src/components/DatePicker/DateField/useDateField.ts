@@ -1,5 +1,8 @@
 import * as React from 'react';
 
+import { enUS } from 'date-fns/locale';
+import { isEmpty } from 'lodash';
+
 export interface UseDateFieldProps {
   dateFormat: string;
 }
@@ -24,6 +27,12 @@ export function useDateField(props: UseDateFieldProps) {
   const dayRef = React.useRef<HTMLInputElement>();
   const monthRef = React.useRef<HTMLInputElement>();
   const yearRef = React.useRef<HTMLInputElement>();
+
+  const allMonthNames = Array.from({ length: 12 }, (_, i) =>
+    enUS.localize.month(i, { width: 'wide' })
+  );
+  const [isMonthNumberMode, setIsMonthNumberMode] =
+    React.useState<boolean>(false);
 
   const onClear = () => {
     setDayValue('');
@@ -50,11 +59,14 @@ export function useDateField(props: UseDateFieldProps) {
     return daysInMonth;
   };
 
-  const sanitizeMonth = (newMonth: string): number => {
+  const sanitizeMonth = (
+    newMonth: string,
+    hasMonthLongFormat?: boolean
+  ): number => {
     const monthNum = Number(newMonth);
 
     if (monthNum > 12) {
-      return Number(newMonth.slice(2));
+      return Number(newMonth.slice(hasMonthLongFormat ? 1 : 2));
     }
     if (monthNum < 1) {
       return 1;
@@ -90,10 +102,66 @@ export function useDateField(props: UseDateFieldProps) {
     return yearNum;
   };
 
-  const handleMonthChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const sanitizedMonth = sanitizeMonth(event.target.value);
+  const getIndexMonth = (monthName: string): number => {
+    return allMonthNames.findIndex(name =>
+      name.toLowerCase().startsWith(monthName.toLowerCase())
+    );
+  };
 
-    setMonthValue(formatWithLeadingZero(sanitizedMonth));
+  const handleMonthChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    hasMonthLongFormat: boolean
+  ) => {
+    const inputValue = event.target.value;
+
+    if (!hasMonthLongFormat) {
+      const sanitizedMonth = sanitizeMonth(inputValue);
+
+      setMonthValue(formatWithLeadingZero(sanitizedMonth));
+
+      return;
+    }
+
+    const textMatch = inputValue.match(/^([a-zA-Z]+)/);
+    const numberMatch = inputValue.match(/(\d+)$/);
+    const monthText = textMatch ? textMatch[0] : '';
+    const numberPart = numberMatch ? numberMatch[0] : '';
+
+    if (isEmpty(numberPart)) {
+      const lastChar = inputValue.slice(-1);
+      const monthIndex = getIndexMonth(lastChar);
+
+      // If no month matches, do not update state
+      if (monthIndex === -1) {
+        return;
+      }
+      setIsMonthNumberMode(false);
+      setMonthValue(allMonthNames[monthIndex]);
+
+      return;
+    }
+
+    // Handle January case where user types "January0, January1, and January2" for January
+    const monthIndex = getIndexMonth(monthText);
+
+    if (monthIndex === 0 && isMonthNumberMode) {
+      const combinedValue = `1${numberPart}`;
+      const sanitizedMonth = sanitizeMonth(combinedValue, hasMonthLongFormat);
+
+      setIsMonthNumberMode(false);
+      setMonthValue(allMonthNames[sanitizedMonth - 1]);
+
+      return;
+    }
+
+    const numberPartValue = Number(numberPart);
+
+    if (numberPartValue === 0) {
+      return;
+    }
+
+    setIsMonthNumberMode(true);
+    setMonthValue(allMonthNames[numberPartValue - 1]);
   };
 
   const handleDayChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -266,6 +334,7 @@ export function useDateField(props: UseDateFieldProps) {
   };
 
   return {
+    allMonthNames,
     month,
     day,
     year,
@@ -280,6 +349,7 @@ export function useDateField(props: UseDateFieldProps) {
     setYearValue,
     onClear,
     formatWithLeadingZero,
+    getIndexMonth,
   };
 }
 
