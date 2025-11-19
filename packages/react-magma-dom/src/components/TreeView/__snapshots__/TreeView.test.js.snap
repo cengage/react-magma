@@ -1416,6 +1416,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
             class="emotion-12 emotion-13"
             color="subtle"
             orientation="horizontal"
+            role="list"
           >
             <li
               class="emotion-14 emotion-15"
@@ -3500,6 +3501,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
             class="emotion-12 emotion-13"
             color="subtle"
             orientation="horizontal"
+            role="list"
           >
             <li
               class="emotion-14 emotion-15"
@@ -5515,6 +5517,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
             class="emotion-12 emotion-13"
             color="subtle"
             orientation="horizontal"
+            role="list"
           >
             <li
               class="emotion-14 emotion-15"
@@ -7529,6 +7532,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
             class="emotion-12 emotion-13"
             color="subtle"
             orientation="horizontal"
+            role="list"
           >
             <li
               class="emotion-14 emotion-15"
@@ -9673,6 +9677,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
             class="emotion-12 emotion-13"
             color="subtle"
             orientation="horizontal"
+            role="list"
           >
             <li
               class="emotion-14 emotion-15"
@@ -11818,6 +11823,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
             class="emotion-12 emotion-13"
             color="subtle"
             orientation="horizontal"
+            role="list"
           >
             <li
               class="emotion-14 emotion-15"
@@ -13833,6 +13839,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
             class="emotion-12 emotion-13"
             color="subtle"
             orientation="horizontal"
+            role="list"
           >
             <li
               class="emotion-14 emotion-15"

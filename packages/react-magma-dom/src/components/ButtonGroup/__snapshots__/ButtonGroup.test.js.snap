@@ -383,6 +383,7 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
     color="primary"
     data-testid="test-id"
     orientation="horizontal"
+    role="list"
   >
     <li
       class="emotion-2 emotion-3"
@@ -726,6 +727,7 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
     color="primary"
     data-testid="test-id"
     orientation="vertical"
+    role="list"
   >
     <li
       class="emotion-2 emotion-3"
@@ -1378,6 +1380,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
     class="emotion-0 emotion-1"
     color="primary"
     orientation="horizontal"
+    role="list"
   >
     <li
       class="emotion-2 emotion-3"
@@ -2183,6 +2186,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
     class="emotion-0 emotion-1"
     color="primary"
     orientation="vertical"
+    role="list"
   >
     <li
       class="emotion-2 emotion-3"
@@ -3038,6 +3042,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
     class="emotion-0 emotion-1"
     color="primary"
     orientation="horizontal"
+    role="list"
   >
     <li
       class="emotion-2 emotion-3"
