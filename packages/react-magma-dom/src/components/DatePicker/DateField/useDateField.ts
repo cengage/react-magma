@@ -33,11 +33,13 @@ export function useDateField(props: UseDateFieldProps) {
   );
   const [isMonthNumberMode, setIsMonthNumberMode] =
     React.useState<boolean>(false);
+  const [monthTypingBuffer, setMonthTypingBuffer] = React.useState<string>('');
 
   const onClear = () => {
     setDayValue('');
     setMonthValue('');
     setYearValue('');
+    setMonthTypingBuffer('');
   };
 
   const formatWithLeadingZero = (value: number, maxValue?: number): string => {
@@ -102,10 +104,16 @@ export function useDateField(props: UseDateFieldProps) {
     return yearNum;
   };
 
-  const getIndexMonth = (monthName: string): number => {
-    return allMonthNames.findIndex(name =>
-      name.toLowerCase().startsWith(monthName.toLowerCase())
-    );
+  const getIndexMonth = (prefix: string): number[] => {
+    if (!prefix) return [];
+
+    const matches = allMonthNames
+      .map((name, index) => ({ name: name.toLowerCase(), index }))
+      .filter(m => m.name.startsWith(prefix.toLowerCase()));
+
+    const indexes = matches.map(m => m.index);
+
+    return indexes;
   };
 
   const handleMonthChange = (
@@ -129,12 +137,19 @@ export function useDateField(props: UseDateFieldProps) {
 
     if (isEmpty(numberPart)) {
       const lastChar = inputValue.slice(-1);
-      const monthIndex = getIndexMonth(lastChar);
+      const newBuffer = monthTypingBuffer + lastChar;
 
-      // If no month matches, do not update state
-      if (monthIndex === -1) {
-        return;
+      setMonthTypingBuffer(newBuffer);
+
+      const monthIndexes = getIndexMonth(newBuffer);
+      const monthIndex = monthIndexes[0];
+
+      if (monthIndexes.length === 1 || monthIndex === undefined) {
+        setMonthTypingBuffer('');
       }
+
+      if (monthIndex === undefined) return;
+
       setIsMonthNumberMode(false);
       setMonthValue(allMonthNames[monthIndex]);
 
@@ -142,7 +157,8 @@ export function useDateField(props: UseDateFieldProps) {
     }
 
     // Handle January case where user types "January0, January1, and January2" for January
-    const monthIndex = getIndexMonth(monthText);
+    const monthIndexes = getIndexMonth(monthText);
+    const monthIndex = monthIndexes[0];
 
     if (monthIndex === 0 && isMonthNumberMode) {
       const combinedValue = `1${numberPart}`;
@@ -231,6 +247,7 @@ export function useDateField(props: UseDateFieldProps) {
       const monthName = date.toLocaleDateString('en-US', { month: 'long' });
 
       setMonthValue(monthName);
+      setMonthTypingBuffer('');
     } else {
       setMonthValue(formatWithLeadingZero(newMonthNumber));
     }
@@ -324,7 +341,10 @@ export function useDateField(props: UseDateFieldProps) {
       }
       case 'Backspace': {
         if (isDayField) setDayValue('');
-        if (isMonthField) setMonthValue('');
+        if (isMonthField) {
+          setMonthValue('');
+          setMonthTypingBuffer('');
+        }
         if (isYearField) setYearValue('');
         break;
       }

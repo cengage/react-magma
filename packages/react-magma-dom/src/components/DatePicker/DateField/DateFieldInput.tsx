@@ -154,7 +154,9 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             aria-valuemax={12}
             aria-valuemin={1}
             aria-valuenow={
-              hasMonthLongFormat ? getIndexMonth(month) + 1 : Number(month) - 1
+              hasMonthLongFormat
+                ? getIndexMonth(month)[0] + 1
+                : Number(month) - 1
             }
             aria-valuetext={
               hasMonthLongFormat ? month : allMonthNames[Number(month) - 1]
