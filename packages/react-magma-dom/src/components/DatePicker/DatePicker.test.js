@@ -1894,10 +1894,14 @@ describe('Date Picker', () => {
           />
         );
 
+        const monthInput = getByTestId('month-input');
+        const dayInput = getByTestId('day-input');
+        const yearInput = getByTestId('year-input');
+
         await waitFor(() => {
-          expect(getByTestId('month-input').value).toBe('12');
-          expect(getByTestId('day-input').value).toBe('25');
-          expect(getByTestId('year-input').value).toBe('2025');
+          expect(monthInput.value).toBe('12');
+          expect(dayInput.value).toBe('25');
+          expect(yearInput.value).toBe('2025');
         });
 
         const clearButton = getByTestId('clear-button');
@@ -1907,9 +1911,9 @@ describe('Date Picker', () => {
         await user.click(clearButton);
 
         await waitFor(() => {
-          expect(getByTestId('month-input').value).toBe('');
-          expect(getByTestId('day-input').value).toBe('');
-          expect(getByTestId('year-input').value).toBe('');
+          expect(monthInput.value).toBe('');
+          expect(dayInput.value).toBe('');
+          expect(yearInput.value).toBe('');
         });
       });
 
@@ -1925,15 +1929,15 @@ describe('Date Picker', () => {
           />
         );
 
-        await waitFor(() => {
-          expect(getByTestId('month-input').value).toBe('10');
-          expect(getByTestId('day-input').value).toBe('22');
-          expect(getByTestId('year-input').value).toBe('2025');
-        });
-
         const monthInput = getByTestId('month-input');
         const dayInput = getByTestId('day-input');
         const yearInput = getByTestId('year-input');
+
+        await waitFor(() => {
+          expect(monthInput.value).toBe('10');
+          expect(dayInput.value).toBe('22');
+          expect(yearInput.value).toBe('2025');
+        });
 
         await user.type(monthInput, '{backspace}');
 
