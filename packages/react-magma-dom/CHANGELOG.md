@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.10
+
+### Patch Changes
+
+- 3bf7047: fix(Table): Change logic for `tabIndex`.
+
 ## 5.1.0-rc.9
 
 ### Minor Changes
