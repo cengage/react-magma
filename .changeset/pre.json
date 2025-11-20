@@ -19,6 +19,7 @@
     "feat-SplitDropdown-add-leading-icon",
     "fix-AIButton-box-shadow",
     "fix-Combobox-accessibility",
+    "fix-Table-tabIndex-logic",
     "fix-ToggleButton-transform",
     "fix-drawer-scrollable-content",
     "fix-modal-trigger-button",
