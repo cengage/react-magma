@@ -1833,18 +1833,23 @@ describe('Date Picker', () => {
             defaultDate={new Date(2025, 11, 25)}
           />
         );
-        expect(getByTestId('month-input').value).toBe('12');
-        expect(getByTestId('day-input').value).toBe('25');
-        expect(getByTestId('year-input').value).toBe('2025');
+
+        const monthInput = getByTestId('month-input');
+        const dayInput = getByTestId('day-input');
+        const yearInput = getByTestId('year-input');
+
+        expect(monthInput.value).toBe('12');
+        expect(dayInput.value).toBe('25');
+        expect(yearInput.value).toBe('2025');
 
         const clearButton = getByTestId('clear-button');
         expect(clearButton).toBeInTheDocument();
 
         userEvent.click(clearButton);
 
-        expect(getByTestId('month-input').value).toBe('');
-        expect(getByTestId('day-input').value).toBe('');
-        expect(getByTestId('year-input').value).toBe('');
+        expect(monthInput.value).toBe('');
+        expect(dayInput.value).toBe('');
+        expect(yearInput.value).toBe('');
       });
 
       it('should call handleDateChange to parent when all fields are cleared with default format', () => {
@@ -1857,13 +1862,13 @@ describe('Date Picker', () => {
             onDateChange={onDateChange}
           />
         );
-        expect(getByTestId('month-input').value).toBe('10');
-        expect(getByTestId('day-input').value).toBe('22');
-        expect(getByTestId('year-input').value).toBe('2025');
-
         const monthInput = getByTestId('month-input');
         const dayInput = getByTestId('day-input');
         const yearInput = getByTestId('year-input');
+
+        expect(monthInput.value).toBe('10');
+        expect(dayInput.value).toBe('22');
+        expect(yearInput.value).toBe('2025');
 
         userEvent.type(monthInput, '{backspace}');
         userEvent.type(dayInput, '{backspace}');
