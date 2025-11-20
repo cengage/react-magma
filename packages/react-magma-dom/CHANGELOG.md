@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.9
+
+### Minor Changes
+
+- b192a72: feat(SplitDropdown): Add new `leadingIcon` prop.
+
 ## 5.1.0-rc.8
 
 ### Patch Changes

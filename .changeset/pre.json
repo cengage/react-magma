@@ -33,6 +33,7 @@
     "feat-Checkbox-add-aria-label",
     "feat-DateTimePicker-timezone",
     "feat-Modal-add-headel-level-prop",
+    "feat-SplitDropdown-add-leading-icon",
     "fix-AIButton-box-shadow",
     "fix-Combobox-accessibility",
     "fix-Storybook-select-issues",
