@@ -12,6 +12,7 @@ import { transparentize } from 'polished';
 import {
   AsteriskIcon,
   CheckIcon,
+  LibraryAddIcon,
   ReorderIcon,
   RestaurantMenuIcon,
   SettingsIcon,
@@ -218,6 +219,33 @@ describe('Dropdown', () => {
     );
 
     expect(getByLabelText('Custom label')).toBeInTheDocument();
+  });
+
+  it('should render a split dropdown with leading icon', () => {
+    const { getByTestId, container } = render(
+      <Dropdown>
+        <DropdownSplitButton leadingIcon={<LibraryAddIcon />}>
+          Toggle me
+        </DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(getByTestId('caretDown')).toBeInTheDocument();
+    expect(container.querySelectorAll('button').length).toBe(2);
+    expect(container.querySelectorAll('svg').length).toBe(2);
+
+    const svgs = container.querySelectorAll('svg');
+
+    svgs.forEach(svg => {
+      expect(svg).toHaveAttribute('aria-hidden', 'true');
+    });
+
+    const leadingIconSvg = svgs[0];
+    expect(leadingIconSvg).toBeInTheDocument();
+
+    const caretSvg = svgs[1];
+    expect(caretSvg).toBeInTheDocument();
   });
 
   it('should render a split dropdown with margin left on solid variants', () => {
