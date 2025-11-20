@@ -5,6 +5,7 @@ import { transparentize } from 'polished';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { hasActiveElementsChecker } from '../Popover';
 import { headingMediumStyles } from '../Typography';
 
 /**
@@ -226,11 +227,62 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       ...other
     } = props;
 
+    const [hasActiveElements, setHasActiveElements] = React.useState(false);
+    const [isScrollable, setIsScrollable] = React.useState(false);
+
     const theme = React.useContext(ThemeContext);
 
     const isInverse = useIsInverse(props.isInverse);
 
+    const tableWrapperRef = React.useRef<HTMLTableElement>(null);
+
     const tableWrapper = `table-wrapper-${testId}`;
+
+    // - scrollable table, no interactive elements: needs tabIndex=0 and should get focused when navigating the page
+    // - scrollable, with interactive elements: no tabIndex needs to be set
+    // - non-scrollable, no interactive elements: no tabIndex needs to be set and should not get focus when navigating a page
+    // - non-scrollable, with interactive elements: no tabIndex needs to be set and should not get focus when navigating a page
+    React.useEffect(() => {
+      const checkScrollability = () => {
+        if (tableWrapperRef.current) {
+          const element = tableWrapperRef.current;
+          const isHorizontallyScrollable =
+            element.scrollWidth > element.clientWidth;
+
+          setIsScrollable(isHorizontallyScrollable);
+        }
+      };
+
+      const updateActiveElements = () => {
+        const updatedHasActiveElements =
+          hasActiveElementsChecker(tableWrapperRef);
+
+        setHasActiveElements(updatedHasActiveElements);
+      };
+
+      checkScrollability();
+      updateActiveElements();
+
+      let resizeObserver: any = null;
+
+      if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
+        resizeObserver = new (window as any).ResizeObserver(() => {
+          checkScrollability();
+        });
+
+        if (tableWrapperRef.current) {
+          resizeObserver.observe(tableWrapperRef.current);
+        }
+      }
+
+      return () => {
+        if (resizeObserver) {
+          resizeObserver.disconnect();
+        }
+      };
+    }, [children]);
+
+    const shouldHaveTabIndex = isScrollable && !hasActiveElements;
 
     return (
       <TableContext.Provider
@@ -252,9 +304,12 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isInverse={isInverse}
           minWidth={minWidth}
           theme={theme}
-          tabIndex={0}
         >
-          <TableWrapper minWidth={minWidth}>
+          <TableWrapper
+            minWidth={minWidth}
+            tabIndex={shouldHaveTabIndex ? 0 : null}
+            ref={tableWrapperRef}
+          >
             <StyledTable
               {...other}
               data-testid={testId}
