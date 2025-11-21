@@ -9,7 +9,10 @@ import { IconButton } from '../IconButton';
 import { PageButton, pageButtonTypeSize } from './PageButton';
 import { usePagination } from './usePagination';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { Announce } from '../Announce';
 import { SimplePagination } from '../Pagination/SimplePagination';
+import { VisuallyHidden } from '../VisuallyHidden';
+import { pageAriaLabel } from './utils';
 
 export interface BasePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -247,6 +250,9 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                         >
                           {page}
                         </PageButton>
+                        <VisuallyHidden>
+                          <Announce>{`${other.isSelected ? pageAriaLabel(page, count, i18n.simplePagination) : ''}`}</Announce>
+                        </VisuallyHidden>
                       </StyledListItem>
                     );
                   } else if (type === 'previous' || type === 'next') {
