@@ -94,11 +94,10 @@ export const SimplePagination = React.forwardRef<
   }, [count]);
 
   function handleChange(event) {
-    const value = Number(event.target.value);
-
-    setSelectedPage(value);
-
-    onPageChange?.(event, value);
+    setSelectedPage(event.target.value);
+    onPageChange &&
+      typeof onPageChange === 'function' &&
+      onPageChange(event, event.target.value);
   }
 
   //Decreases number by one on previous button click
@@ -106,8 +105,9 @@ export const SimplePagination = React.forwardRef<
     if (selectedPage > 1) {
       setSelectedPage(selectedPage - 1);
     }
-
-    onPageChange?.(event, selectedPage);
+    onPageChange &&
+      typeof onPageChange === 'function' &&
+      onPageChange(event, selectedPage - 1);
   }
 
   //Increases number by one on next button click
@@ -115,7 +115,9 @@ export const SimplePagination = React.forwardRef<
     if (selectedPage < count) {
       setSelectedPage(++selectedPage);
     }
-    onPageChange?.(event, selectedPage);
+    onPageChange &&
+      typeof onPageChange === 'function' &&
+      onPageChange(event, selectedPage);
   }
 
   const disabledPrevTooltip =
