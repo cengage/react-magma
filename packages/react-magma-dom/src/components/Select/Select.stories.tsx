@@ -78,6 +78,7 @@ export const Default = {
     isLabelVisuallyHidden: false,
     isMulti: false,
     labelPosition: LabelPosition.top,
+    ariaLabel: 'Another select text',
   },
 };
 
@@ -105,6 +106,7 @@ export const Multi = {
   args: {
     ...Default.args,
     disabled: false,
+    ariaLabel: 'Multi select example',
   },
 };
 

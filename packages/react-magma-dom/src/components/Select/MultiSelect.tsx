@@ -22,6 +22,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
     additionalContent,
     ariaDescribedBy,
+    ariaLabel,
     components: customComponents,
     errorMessage,
     hasError,
@@ -291,6 +292,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   return (
     <SelectContainer
       additionalContent={additionalContent}
+      ariaLabel={ariaLabel}
       descriptionId={ariaDescribedBy}
       errorMessage={errorMessage}
       getLabelProps={getLabelProps}
