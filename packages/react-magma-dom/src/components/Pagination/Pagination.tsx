@@ -251,6 +251,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                       >
                         <PageButton
                           isInverse={isInverse}
+                          isSelected={isSelected}
                           size={buttonSize}
                           {...other}
                         >
