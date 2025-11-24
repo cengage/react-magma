@@ -18,6 +18,7 @@
     "feat-Modal-add-headel-level-prop",
     "feat-SplitDropdown-add-leading-icon",
     "fix-AIButton-box-shadow",
+    "fix-Accordion-accessibility-render-issue",
     "fix-Combobox-accessibility",
     "fix-Table-tabIndex-logic",
     "fix-ToggleButton-transform",
