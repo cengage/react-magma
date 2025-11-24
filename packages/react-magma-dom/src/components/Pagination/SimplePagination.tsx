@@ -81,7 +81,9 @@ export const SimplePagination = React.forwardRef<
 
   const id = useGenerateId(defaultId);
 
-  let [selectedPage, setSelectedPage] = React.useState(page || defaultPage);
+  let [selectedPage, setSelectedPage] = React.useState(
+    page || defaultPage || 1
+  );
 
   React.useEffect(() => {
     setSelectedPage(page);
@@ -92,10 +94,11 @@ export const SimplePagination = React.forwardRef<
   }, [count]);
 
   function handleChange(event) {
-    setSelectedPage(event.target.value);
-    onPageChange &&
-      typeof onPageChange === 'function' &&
-      onPageChange(event, event.target.value);
+    const value = Number(event.target.value);
+
+    setSelectedPage(value);
+
+    onPageChange?.(event, value);
   }
 
   //Decreases number by one on previous button click
@@ -103,9 +106,8 @@ export const SimplePagination = React.forwardRef<
     if (selectedPage > 1) {
       setSelectedPage(selectedPage - 1);
     }
-    onPageChange &&
-      typeof onPageChange === 'function' &&
-      onPageChange(event, selectedPage - 1);
+
+    onPageChange?.(event, selectedPage);
   }
 
   //Increases number by one on next button click
@@ -113,16 +115,14 @@ export const SimplePagination = React.forwardRef<
     if (selectedPage < count) {
       setSelectedPage(++selectedPage);
     }
-    onPageChange &&
-      typeof onPageChange === 'function' &&
-      onPageChange(event, selectedPage);
+    onPageChange?.(event, selectedPage);
   }
 
   const disabledPrevTooltip =
-    disabled || selectedPage <= 1 || count <= 0 || count == null;
+    disabled || selectedPage <= 1 || count <= 0 || count === null;
 
   const disabledNextTooltip =
-    disabled || selectedPage >= count || count == null;
+    disabled || selectedPage >= count || count === null;
 
   const prevTooltipContent = i18n.pagination.previousButtonLabel;
   const nextTooltipContent = i18n.pagination.nextButtonLabel;

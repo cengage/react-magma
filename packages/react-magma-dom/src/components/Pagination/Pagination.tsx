@@ -220,7 +220,13 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             <StyledList>
               {pageButtons.map(
                 (
-                  { 'aria-current': ariaCurrent, page, type, ...other },
+                  {
+                    'aria-current': ariaCurrent,
+                    page,
+                    type,
+                    isSelected,
+                    ...other
+                  },
                   index
                 ) => {
                   if (type === 'start-ellipsis' || type === 'end-ellipsis') {
@@ -251,7 +257,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                           {page}
                         </PageButton>
                         <VisuallyHidden>
-                          <Announce>{`${other.isSelected ? pageAriaLabel(page, count, i18n.simplePagination) : ''}`}</Announce>
+                          <Announce>{`${isSelected ? pageAriaLabel(page, count, i18n.simplePagination) : ''}`}</Announce>
                         </VisuallyHidden>
                       </StyledListItem>
                     );
