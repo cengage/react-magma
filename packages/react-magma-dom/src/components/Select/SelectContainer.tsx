@@ -31,8 +31,6 @@ export const SelectContainerElement = styled.div<{
 
 const InputMessageContainer = styled.div`
   flex-grow: 1;
-  padding: 0.25em;
-  margin: -0.25em;
   min-width: 0%;
   position: relative;
 `;
