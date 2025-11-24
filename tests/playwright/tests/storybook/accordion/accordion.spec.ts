@@ -98,7 +98,7 @@ test.describe('Accordion', () => {
 
     await section1Button.click();
     const inverseContainer = storyBookIframe
-      .locator('#root > div > div')
+      .locator('#root > div > ul')
       .first();
 
     await expect(storyBookIframe.getByText(section1Text)).toBeVisible();
