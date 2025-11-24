@@ -20,6 +20,7 @@
     "fix-AIButton-box-shadow",
     "fix-Accordion-accessibility-render-issue",
     "fix-Combobox-accessibility",
+    "fix-Select-scrollbar-issue",
     "fix-Table-tabIndex-logic",
     "fix-ToggleButton-transform",
     "fix-drawer-scrollable-content",

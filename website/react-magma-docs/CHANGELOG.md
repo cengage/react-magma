@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0-next.6
+
+### Patch Changes
+
+- d764a8cfd: fix(Select): fix issue when scrollbar appears because of padding and negative margin.
+
 ## 5.3.0-next.5
 
 ### Patch Changes
