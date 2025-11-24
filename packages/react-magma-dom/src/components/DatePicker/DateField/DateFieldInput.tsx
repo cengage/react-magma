@@ -100,6 +100,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   const isInverse = useIsInverse(props.isInverse);
   const hasMonthLongFormat = props.dateFormat === 'MMMM d, yyyy';
   const didMountRef = React.useRef(false);
+  const firstFieldRef = fieldRefs[fieldOrder[0]]?.current;
   const [isFocused, setIsFocused] = React.useState(false);
 
   const dayId = `${id}__day`;
@@ -229,8 +230,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     if (e.target !== e.currentTarget) return;
 
     // Focus the first available field in fieldOrder
-    const firstFieldRef = fieldRefs[fieldOrder[0]]?.current;
-
     firstFieldRef?.focus();
   };
 
@@ -301,6 +300,14 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   }, [inputValue, hasMonthLongFormat]);
 
   React.useEffect(() => {
+    if (inputRef && firstFieldRef) {
+      //Restoring the inputRef to point to the first field in the date field input when calendar closes
+      (inputRef as React.MutableRefObject<HTMLElement | null>).current =
+        firstFieldRef;
+    }
+  }, [inputRef, firstFieldRef]);
+
+  React.useEffect(() => {
     if (setReference && inputRef && inputRef.current) {
       setReference(inputRef.current);
     }
@@ -326,6 +333,17 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     ));
   };
 
+  const handleOnFocus = (e: React.FocusEvent) => {
+    focusInputContainer(e);
+    onInputFocus?.(e);
+    setIsFocused(true);
+  };
+
+  const handleOnBlur = (e: React.FocusEvent) => {
+    onInputBlur?.(e);
+    setIsFocused(false);
+  };
+
   return (
     <FormFieldContainer
       containerStyle={containerStyle}
@@ -346,18 +364,8 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
           theme={theme}
           style={inputStyle}
           onClick={focusInputContainer}
-          onFocus={e => {
-            if (e.target === e.currentTarget) {
-              focusInputContainer(e);
-              onInputFocus?.(e);
-            }
-            setIsFocused(true);
-          }}
-          onBlur={e => {
-            onInputBlur?.(e);
-            setIsFocused(false);
-          }}
-          tabIndex={0}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
         >
           {renderDateFields()}
         </InputsContainer>
