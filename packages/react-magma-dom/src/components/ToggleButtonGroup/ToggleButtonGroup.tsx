@@ -159,9 +159,7 @@ export const ToggleButtonGroup = React.forwardRef<
   });
 
   const id = useGenerateId(defaultId);
-  const descriptionId = props.descriptionId
-    ? props.descriptionId
-    : `${id}__desc`;
+  const descriptionId = props.descriptionId || null;
 
   return (
     <ButtonGroup

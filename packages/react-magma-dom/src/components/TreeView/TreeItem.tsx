@@ -393,9 +393,9 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
     const defaultIcon =
       nodeType === TreeNodeType.branch ? (
-        <FolderIcon aria-hidden />
+        <FolderIcon aria-hidden={true} />
       ) : (
-        <ArticleIcon aria-hidden />
+        <ArticleIcon aria-hidden={true} />
       );
 
     const labelText = (
@@ -577,10 +577,10 @@ export const TreeItem = React.forwardRef<HTMLLIElement, TreeItemProps>(
                   theme={theme}
                 >
                   {expanded ? (
-                    <ExpandMoreIcon aria-hidden size={expandIconStyles?.size} />
+                    <ExpandMoreIcon aria-hidden={true} size={expandIconStyles?.size} />
                   ) : (
                     <ChevronRightIcon
-                      aria-hidden
+                      aria-hidden={true}
                       size={expandIconStyles?.size}
                     />
                   )}

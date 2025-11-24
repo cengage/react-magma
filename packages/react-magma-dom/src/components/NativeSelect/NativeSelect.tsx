@@ -153,6 +153,8 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
     const id = useGenerateId(defaultId);
 
     const hasLabel = !!labelText;
+    
+    const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
 
     const nativeSelect = (
       <StyledFormFieldContainer
@@ -188,7 +190,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
         >
           <StyledNativeSelect
             data-testid={testId}
-            aria-describedby={`${id}__desc`}
+            aria-describedby={descriptionId}
             hasError={!!errorMessage}
             disabled={disabled}
             id={id}

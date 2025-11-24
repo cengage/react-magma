@@ -206,7 +206,6 @@ export const SimplePagination = React.forwardRef<
           >
             {Array.from({ length: count }, (_, i) => (
               <option
-                aria-label={pageAriaLabel}
                 data-testid={testId ? `${testId}-option-${i}` : `option-${i}`}
                 key={i}
                 onChange={handleChange}
