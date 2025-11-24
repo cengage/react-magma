@@ -14,6 +14,7 @@ import { InputDateFields, useDateField } from './useDateField';
 import { I18nContext } from '../../../i18n';
 import { useIsInverse } from '../../../inverse';
 import { ThemeContext } from '../../../theme/ThemeContext';
+import { handleNumericBeforeInput } from '../../../utils';
 import {
   ButtonShape,
   ButtonSize,
@@ -99,6 +100,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   const isInverse = useIsInverse(props.isInverse);
   const hasMonthLongFormat = props.dateFormat === 'MMMM d, yyyy';
   const didMountRef = React.useRef(false);
+  const firstFieldRef = fieldRefs[fieldOrder[0]]?.current;
   const [isFocused, setIsFocused] = React.useState(false);
 
   const dayId = `${id}__day`;
@@ -133,6 +135,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             id={dayId}
             isInverse={isInverse}
             isFocused={isFocused || isNotEmptyDate}
+            onBeforeInput={handleNumericBeforeInput}
             onChange={handleDayChange}
             onKeyDown={event => handleFieldKeyDown(event, InputDateFields.Day)}
             placeholder="dd"
@@ -165,6 +168,9 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             id={monthId}
             isInverse={isInverse}
             isFocused={isFocused || isNotEmptyDate}
+            onBeforeInput={
+              hasMonthLongFormat ? undefined : handleNumericBeforeInput
+            }
             onChange={event => handleMonthChange(event, hasMonthLongFormat)}
             onKeyDown={event =>
               handleFieldKeyDown(
@@ -195,6 +201,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             id={yearId}
             isInverse={isInverse}
             isFocused={isFocused || isNotEmptyDate}
+            onBeforeInput={handleNumericBeforeInput}
             onChange={handleYearChange}
             onKeyDown={event => handleFieldKeyDown(event, InputDateFields.Year)}
             placeholder="yyyy"
@@ -223,8 +230,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     if (e.target !== e.currentTarget) return;
 
     // Focus the first available field in fieldOrder
-    const firstFieldRef = fieldRefs[fieldOrder[0]]?.current;
-
     firstFieldRef?.focus();
   };
 
@@ -295,6 +300,14 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   }, [inputValue, hasMonthLongFormat]);
 
   React.useEffect(() => {
+    if (inputRef && firstFieldRef) {
+      //Restoring the inputRef to point to the first field in the date field input when calendar closes
+      (inputRef as React.MutableRefObject<HTMLElement | null>).current =
+        firstFieldRef;
+    }
+  }, [inputRef, firstFieldRef]);
+
+  React.useEffect(() => {
     if (setReference && inputRef && inputRef.current) {
       setReference(inputRef.current);
     }
@@ -320,6 +333,17 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     ));
   };
 
+  const handleOnFocus = (e: React.FocusEvent) => {
+    focusInputContainer(e);
+    onInputFocus?.(e);
+    setIsFocused(true);
+  };
+
+  const handleOnBlur = (e: React.FocusEvent) => {
+    onInputBlur?.(e);
+    setIsFocused(false);
+  };
+
   return (
     <FormFieldContainer
       containerStyle={containerStyle}
@@ -340,18 +364,8 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
           theme={theme}
           style={inputStyle}
           onClick={focusInputContainer}
-          onFocus={e => {
-            if (e.target === e.currentTarget) {
-              focusInputContainer(e);
-              onInputFocus?.(e);
-            }
-            setIsFocused(true);
-          }}
-          onBlur={e => {
-            onInputBlur?.(e);
-            setIsFocused(false);
-          }}
-          tabIndex={0}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
         >
           {renderDateFields()}
         </InputsContainer>

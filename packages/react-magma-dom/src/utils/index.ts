@@ -345,3 +345,13 @@ export const mergeRefs = <T>(...refs: Array<React.Ref<T> | undefined>) => {
     });
   };
 };
+
+export const handleNumericBeforeInput = (
+  e: React.FormEvent<HTMLInputElement>
+) => {
+  const native = e.nativeEvent as InputEvent;
+
+  if (typeof native.data === 'string' && /\D/.test(native.data)) {
+    e.preventDefault();
+  }
+};

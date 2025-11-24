@@ -1553,12 +1553,11 @@ describe('Date Picker', () => {
         />
       );
 
-      const dateFieldInput = getByTestId('date-field-input');
-
-      dateFieldInput.focus();
+      const monthInput = getByTestId('month-input');
+      monthInput.focus();
       expect(onInputFocus).toHaveBeenCalled();
 
-      dateFieldInput.blur();
+      monthInput.blur();
       expect(onInputBlur).toHaveBeenCalled();
     });
 
