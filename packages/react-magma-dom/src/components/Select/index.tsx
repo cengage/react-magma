@@ -122,6 +122,10 @@ export interface SelectProps<T extends SelectOptions>
    */
   ariaDescribedBy?: string;
   /**
+   * Aria label for the select trigger button
+   */
+  ariaLabel?: string;
+  /**
    * @internal
    */
   hasError?: boolean;
