@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.12
+
+### Patch Changes
+
+- 50340c1: fix(Select & Multiselect): Add `ariaLabel` prop to provide alternative text for screen readers.
+
 ## 5.1.0-rc.11
 
 ### Patch Changes
