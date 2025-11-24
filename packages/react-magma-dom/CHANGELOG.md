@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.13
+
+### Patch Changes
+
+- ed37531: fix(Accordion): Fix accessibility render issue
+
 ## 5.1.0-rc.12
 
 ### Patch Changes
