@@ -43,6 +43,7 @@
     "fix-datepicker-canvas-issue-react-18",
     "fix-drawer-scrollable-content",
     "fix-modal-trigger-button",
+    "fix-select-focus-behaviour",
     "fix-timepicker-broken-auto-fill",
     "fix-timepicker-update-styles",
     "major-charts-v13-release",

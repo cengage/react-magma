@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.11
+
+### Patch Changes
+
+- 703a54d: fix(Select, NativeSelect, Combobox): Add cyclical navigation across options.
+
 ## 5.1.0-rc.10
 
 ### Patch Changes
