@@ -18,7 +18,6 @@ import {
   TableContext,
   TableRowColor,
   TableCell,
-  TableHeaderCell,
   TableCellAlign,
   TableDensity,
   TableSortDirection,
@@ -183,6 +182,32 @@ const StyledTableRow = styled.tr<{
     `};
 `;
 
+const HeaderStyledCell = styled(TableCell)<{
+  density?: TableDensity;
+  hasSquareCorners?: boolean;
+  isInverse?: boolean;
+}>`
+  &&& {
+    background: ${props =>
+      props.isInverse
+        ? transparentize(0.93, props.theme.colors.neutral100)
+        : props.theme.colors.neutral200};
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: ${props =>
+      props.isInverse
+        ? transparentize(0.6, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
+    font-weight: bold;
+    vertical-align: bottom;
+  }
+
+  &&&:first-child {
+    border-radius: ${props =>
+      props.hasSquareCorners ? '0' : `${props.theme.borderRadius} 0 0 0`};
+  }
+`;
+
 const SortButton = styled.button<{
   density?: TableDensity;
   isInverse?: boolean;
@@ -327,8 +352,12 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         theme={theme}
       >
         {tableContext.isSelectable && isHeaderRow && (
-          <TableHeaderCell
+          <HeaderStyledCell
+            theme={theme}
             width={theme.spaceScale.spacing05}
+            density={tableContext.density}
+            hasSquareCorners={tableContext.hasSquareCorners}
+            isInverse={tableContext.isInverse}
             style={{
               background: isHovering
                 ? transparentize(0.93, theme.colors.neutral900)
@@ -364,7 +393,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
                 </SortButton>
               )}
             </span>
-          </TableHeaderCell>
+          </HeaderStyledCell>
         )}
         {tableContext.isSelectable && !isHeaderRow && (
           <TableCell
