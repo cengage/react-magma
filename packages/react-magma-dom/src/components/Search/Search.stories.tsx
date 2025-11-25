@@ -31,10 +31,8 @@ export default {
       },
     },
     inputSize: {
-      control: {
-        type: 'select',
-        options: InputSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(InputSize),
     },
     isPredictive: {
       defaultValue: false,

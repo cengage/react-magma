@@ -30,10 +30,8 @@ export default {
       },
     },
     variant: {
-      control: {
-        type: 'select',
-        options: AlertVariant,
-      },
+      control: { type: 'select' },
+      options: Object.values(AlertVariant),
     },
   },
 } as Meta<typeof Toast>;

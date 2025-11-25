@@ -76,40 +76,28 @@ export default {
   component: Button,
   argTypes: {
     color: {
-      control: {
-        type: 'select',
-        options: ButtonColor,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonColor),
     },
     size: {
-      control: {
-        type: 'select',
-        options: ButtonSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonSize),
     },
     variant: {
-      control: {
-        type: 'select',
-        options: ButtonVariant,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonVariant),
     },
     shape: {
-      control: {
-        type: 'select',
-        options: ButtonShape,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonShape),
     },
     textTransform: {
-      control: {
-        type: 'select',
-        options: ButtonTextTransform,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonTextTransform),
     },
     type: {
-      control: {
-        type: 'select',
-        options: ButtonType,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonType),
     },
     isLoading: {
       control: {

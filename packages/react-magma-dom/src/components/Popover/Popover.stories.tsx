@@ -65,16 +65,12 @@ export default {
       },
     },
     position: {
-      control: {
-        type: 'select',
-        options: PopoverPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(PopoverPosition),
     },
     alignment: {
-      control: {
-        type: 'select',
-        options: PopoverAlignment,
-      },
+      control: { type: 'select' },
+      options: Object.values(PopoverAlignment),
     },
     hoverable: {
       defaultValue: false,

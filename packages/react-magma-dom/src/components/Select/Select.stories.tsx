@@ -10,17 +10,15 @@ import { IconButton } from '../IconButton';
 import { LabelPosition } from '../Label';
 import { Tooltip } from '../Tooltip';
 
-import { MultiSelectProps, Select, SelectOptions, SelectProps } from './';
+import { MultiSelectProps, Select, SelectOptions } from './';
 
 export default {
   title: 'Select',
   component: Select,
   argTypes: {
     labelPosition: {
-      control: {
-        type: 'select',
-        options: LabelPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(LabelPosition),
     },
     labelWidth: {
       control: {
@@ -80,6 +78,7 @@ export const Default = {
     isLabelVisuallyHidden: false,
     isMulti: false,
     labelPosition: LabelPosition.top,
+    ariaLabel: 'Another select text',
   },
 };
 
@@ -107,6 +106,7 @@ export const Multi = {
   args: {
     ...Default.args,
     disabled: false,
+    ariaLabel: 'Multi select example',
   },
 };
 

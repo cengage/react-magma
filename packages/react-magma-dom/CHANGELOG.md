@@ -1,5 +1,35 @@
 ## 4.10.0
 
+## 5.1.0-rc.13
+
+### Patch Changes
+
+- ed37531: fix(Accordion): Fix accessibility render issue
+
+## 5.1.0-rc.12
+
+### Patch Changes
+
+- 50340c1: fix(Select & Multiselect): Add `ariaLabel` prop to provide alternative text for screen readers.
+
+## 5.1.0-rc.11
+
+### Patch Changes
+
+- 703a54d: fix(Select, NativeSelect, Combobox): Add cyclical navigation across options.
+
+## 5.1.0-rc.10
+
+### Patch Changes
+
+- 3bf7047: fix(Table): Change logic for `tabIndex`.
+
+## 5.1.0-rc.9
+
+### Minor Changes
+
+- b192a72: feat(SplitDropdown): Add new `leadingIcon` prop.
+
 ## 5.1.0-rc.8
 
 ### Patch Changes

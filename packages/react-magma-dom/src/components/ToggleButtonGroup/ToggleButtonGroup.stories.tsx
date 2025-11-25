@@ -94,10 +94,8 @@ export default {
       },
     },
     size: {
-      control: {
-        type: 'select',
-        options: ButtonSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonSize),
     },
   },
 } as Meta;

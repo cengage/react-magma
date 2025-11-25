@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-import { ArrowDropDownIcon, ArrowDropUpIcon } from 'react-magma-icons';
+import {
+  ArrowDropDownIcon,
+  ArrowDropUpIcon,
+  IconProps,
+} from 'react-magma-icons';
 
 import {
   Button,
@@ -34,6 +38,10 @@ export interface DropdownSplitButtonProps extends ButtonStyles {
    */
   disabled?: boolean;
   /**
+   * Leading icon to display on the left side within the component
+   */
+  leadingIcon?: React.ReactElement<IconProps>;
+  /**
    * Function that fires when the button is clicked
    */
   onClick?: () => void;
@@ -56,6 +64,7 @@ export const DropdownSplitButton = React.forwardRef<
     id,
     variant = ButtonVariant.solid,
     onClick,
+    leadingIcon,
     ...other
   } = resolvedProps;
 
@@ -109,21 +118,30 @@ export const DropdownSplitButton = React.forwardRef<
     return theme.spaceScale.spacing01;
   }
 
+  const sharedButtonProps = React.useMemo(
+    () => ({
+      ...other,
+      id: resolvedContext.dropdownButtonId.current,
+      isInverse: resolvedContext.isInverse,
+      onClick: handleButtonClick,
+      shape: ButtonShape.leftCap,
+      style: { borderRight: 0, marginRight: 0 },
+      variant,
+      tabIndex: 0,
+      ref: splitButtonRef,
+    }),
+    [props]
+  );
+
   return (
     <div ref={context.setReference}>
-      <Button
-        {...other}
-        id={resolvedContext.dropdownButtonId.current}
-        isInverse={resolvedContext.isInverse}
-        onClick={handleButtonClick}
-        shape={ButtonShape.leftCap}
-        style={{ borderRight: 0, marginRight: 0 }}
-        variant={variant}
-        tabIndex={0}
-        ref={splitButtonRef}
-      >
-        {children}
-      </Button>
+      {leadingIcon ? (
+        <IconButton {...sharedButtonProps} icon={leadingIcon}>
+          {children}
+        </IconButton>
+      ) : (
+        <Button {...sharedButtonProps}>{children}</Button>
+      )}
       <IconButton
         {...other}
         aria-expanded={resolvedContext.isOpen}

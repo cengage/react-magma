@@ -34,28 +34,20 @@ export default {
       },
     },
     spacingStyle: {
-      control: {
-        type: 'select',
-        options: magma.spaceScale,
-      },
+      control: { type: 'select' },
+      options: Object.values(magma.spaceScale),
     },
     visualStyle: {
-      control: {
-        type: 'select',
-        options: TypographyVisualStyle,
-      },
+      control: { type: 'select' },
+      options: Object.values(TypographyVisualStyle),
     },
     listType: {
-      control: {
-        type: 'select',
-        options: ulListType || olListType,
-      },
+      control: { type: 'select' },
+      options: Object.values(ulListType || olListType),
     },
     iconAlign: {
-      control: {
-        type: 'select',
-        options: IconAlignment,
-      },
+      control: { type: 'select' },
+      options: Object.values(IconAlignment),
     },
   },
 } as Meta;

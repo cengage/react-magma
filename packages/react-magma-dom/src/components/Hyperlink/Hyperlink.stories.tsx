@@ -23,16 +23,12 @@ export default {
   title: 'Hyperlink',
   argTypes: {
     iconPosition: {
-      control: {
-        type: 'select',
-        options: HyperlinkIconPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(HyperlinkIconPosition),
     },
     styledAs: {
-      control: {
-        type: 'select',
-        options: ['Button', 'Link'],
-      },
+      control: { type: 'select' },
+      options: ['Button', 'Link'],
     },
   },
 } as Meta;

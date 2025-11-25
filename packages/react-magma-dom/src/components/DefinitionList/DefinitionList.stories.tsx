@@ -19,10 +19,8 @@ export default {
       },
     },
     visualStyle: {
-      control: {
-        type: 'select',
-        options: TypographyVisualStyle,
-      },
+      control: { type: 'select' },
+      options: Object.values(TypographyVisualStyle),
     },
   },
 } as Meta;

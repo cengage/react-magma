@@ -72,22 +72,13 @@ export default {
       control: {
         type: 'boolean',
       },
-      defaultValue: false,
     },
     selectable: {
-      control: {
-        type: 'select',
-      },
-      options: [
-        TreeViewSelectable.single,
-        TreeViewSelectable.multi,
-        TreeViewSelectable.off,
-      ],
-      defaultValue: TreeViewSelectable.single,
+      control: { type: 'select' },
+      options: Object.values(TreeViewSelectable),
     },
     initialExpandedItems: {
       control: 'object',
-      defaultValue: [],
     },
     testId: {
       control: 'text',
@@ -102,16 +93,21 @@ export default {
     onSelectedItemChange: { action: 'selected item changed' },
     checkParents: {
       control: 'boolean',
-      defaultValue: true,
     },
     checkChildren: {
       control: 'boolean',
-      defaultValue: true,
     },
     isTopLevelSelectable: {
       control: 'boolean',
-      defaultValue: true,
     },
+  },
+  args: {
+    isInverse: false,
+    selectable: TreeViewSelectable.single,
+    initialExpandedItems: [],
+    checkParents: true,
+    checkChildren: true,
+    isTopLevelSelectable: true,
   },
 } as Meta;
 
