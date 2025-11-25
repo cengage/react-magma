@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0-next.7
+
+### Patch Changes
+
+- 67d8b6c4a: chore: Update React-magma-icons version to 3.2.2
+
 ## 5.3.0-next.6
 
 ### Patch Changes
