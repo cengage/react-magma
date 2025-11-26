@@ -1362,6 +1362,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
     >
       <div>
         <button
+          aria-controls="dropdownMenuId"
           aria-expanded="false"
           aria-haspopup="true"
           class="emotion-8 emotion-9 emotion-3"
@@ -1398,6 +1399,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
       </div>
       <div
         data-testid="dropdownContentWrapper"
+        id="dropdownMenuId"
         style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
@@ -1426,6 +1428,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
     >
       <div>
         <button
+          aria-controls="dropdownMenuId"
           aria-expanded="false"
           aria-haspopup="true"
           class="emotion-8 emotion-9 emotion-3"
@@ -1462,6 +1465,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
       </div>
       <div
         data-testid="dropdownContentWrapper"
+        id="dropdownMenuId"
         style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
@@ -2117,6 +2121,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
     >
       <div>
         <button
+          aria-controls="dropdownMenuId"
           aria-expanded="false"
           aria-haspopup="true"
           class="emotion-8 emotion-9 emotion-3"
@@ -2153,6 +2158,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
       </div>
       <div
         data-testid="dropdownContentWrapper"
+        id="dropdownMenuId"
         style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
@@ -2181,6 +2187,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
     >
       <div>
         <button
+          aria-controls="dropdownMenuId"
           aria-expanded="false"
           aria-haspopup="true"
           class="emotion-8 emotion-9 emotion-3"
@@ -2217,6 +2224,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
       </div>
       <div
         data-testid="dropdownContentWrapper"
+        id="dropdownMenuId"
         style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
@@ -2950,6 +2958,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
     >
       <div>
         <button
+          aria-controls="dropdownMenuId"
           aria-expanded="false"
           aria-haspopup="true"
           class="emotion-8 emotion-9 emotion-3"
@@ -2986,6 +2995,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
       </div>
       <div
         data-testid="dropdownContentWrapper"
+        id="dropdownMenuId"
         style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
@@ -3014,6 +3024,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
     >
       <div>
         <button
+          aria-controls="dropdownMenuId"
           aria-expanded="false"
           aria-haspopup="true"
           class="emotion-8 emotion-9 emotion-3"
@@ -3050,6 +3061,7 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
       </div>
       <div
         data-testid="dropdownContentWrapper"
+        id="dropdownMenuId"
         style="position: absolute; left: 0px; top: 0px; z-index: 996;"
       >
         <div
