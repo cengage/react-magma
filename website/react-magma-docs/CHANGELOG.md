@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0-next.8
+
+### Patch Changes
+
+- 04e3fd25d: fix(NavTabs, Tabs, Toast): Fix different issues.
+
 ## 5.3.0-next.7
 
 ### Patch Changes

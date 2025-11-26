@@ -21,6 +21,7 @@
     "fix-AIButton-box-shadow",
     "fix-Accordion-accessibility-render-issue",
     "fix-Combobox-accessibility",
+    "fix-Docs-Miscellaneous-issues",
     "fix-Select-scrollbar-issue",
     "fix-Table-tabIndex-logic",
     "fix-ToggleButton-transform",
