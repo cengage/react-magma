@@ -143,6 +143,7 @@ export const DropdownButton = React.forwardRef<
     <div ref={context.setReference}>
       <StyledIconButton
         {...other}
+        aria-controls={'dropdownMenuId'}
         aria-expanded={context.isOpen}
         aria-haspopup="true"
         icon={icon}

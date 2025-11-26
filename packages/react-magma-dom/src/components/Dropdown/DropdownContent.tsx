@@ -94,6 +94,7 @@ export const DropdownContent = React.forwardRef<
   return (
     <div
       data-testid={'dropdownContentWrapper'}
+      id={'dropdownMenuId'}
       ref={el => {
         context.isOpen && context.setFloating(el);
       }}
