@@ -59,7 +59,7 @@ const SmartDocsHeading = props => {
   );
 };
 
-export const Layout = ({ children, pageContext }) => {
+export const Layout = ({ children, pageContext, location }) => {
   const title =
     pageContext && pageContext.frontmatter
       ? pageContext.frontmatter.pageTitle || pageContext.frontmatter.title || ''
@@ -67,6 +67,21 @@ export const Layout = ({ children, pageContext }) => {
   const heading =
     pageContext && pageContext.frontmatter ? pageContext.frontmatter.title : '';
   const properties = (pageContext && pageContext.properties) || [];
+
+  // Needed because of auto-scrolling to focused item issue #https://github.com/cengage/react-magma/issues/1925
+  React.useEffect(() => {
+    let timer;
+
+    if (location && location.pathname.includes('nav-tabs')) {
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 1);
+    }
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [location]);
 
   return (
     <LayoutComponent title={title} heading={heading}>

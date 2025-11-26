@@ -19,7 +19,9 @@ import { TabsOrientation, TabsTextTransform } from '../Tabs/shared';
 import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
 import { useTabsMeta } from '../Tabs/utils';
 
-export type NavTabsProps = Omit<TabsProps, 'onChange'>;
+export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {
+  'aria-label': string;
+}
 
 interface NavTabsContextInterface {
   borderPosition?: TabsBorderPosition;
