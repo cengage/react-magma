@@ -14,7 +14,7 @@ import { ButtonIconPosition, IconButton } from '../IconButton';
 import { DropdownContext, DropdownDropDirection } from './Dropdown';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { Omit, useForkedRef, useGenerateId, XOR } from '../../utils';
+import { Omit, useForkedRef, XOR } from '../../utils';
 import { ButtonProps, ButtonSize } from '../Button';
 
 export interface IconOnlyDropdownButtonProps
@@ -93,8 +93,6 @@ export const DropdownButton = React.forwardRef<
   const context = React.useContext(DropdownContext);
   const theme = React.useContext(ThemeContext);
 
-  context.dropdownButtonId.current = useGenerateId(props.id);
-
   const ref = useForkedRef(context.toggleRef, forwardedRef);
 
   function getButtonIcon(dropDirection: DropdownDropDirection) {
@@ -114,7 +112,7 @@ export const DropdownButton = React.forwardRef<
   const buttonIcon = getButtonIcon(context.dropDirection);
 
   let children;
-  const { icon = buttonIcon, iconPosition, leadingIcon, ...other } = props;
+  const { icon = buttonIcon, iconPosition, leadingIcon, id, ...other } = props;
 
   if (!instanceOfIconOnlyDropdownButton(props)) {
     children = props.children;
@@ -143,12 +141,14 @@ export const DropdownButton = React.forwardRef<
     <div ref={context.setReference}>
       <StyledIconButton
         {...other}
-        aria-controls={'dropdownMenuId'}
+        aria-controls={
+          (id ?? context.dropdownButtonId.current) + '_dropdownMenuId'
+        }
         aria-expanded={context.isOpen}
         aria-haspopup="true"
         icon={icon}
         iconPosition={iconPositionToUse}
-        id={context.dropdownButtonId.current}
+        id={id ?? context.dropdownButtonId.current}
         isInverse={context.isInverse}
         leadingIcon={leadingIcon}
         onClick={handleClick}

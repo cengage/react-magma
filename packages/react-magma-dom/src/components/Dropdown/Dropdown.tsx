@@ -13,7 +13,7 @@ import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom
 
 import { useDescendants } from '../../hooks/useDescendants';
 import { useIsInverse } from '../../inverse';
-import { resolveProps, useForkedRef } from '../../utils';
+import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
 import { ButtonGroupContext } from '../ButtonGroup';
 
 export enum DropdownDropDirection {
@@ -252,6 +252,8 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const isInverse = useIsInverse(resolvedProps.isInverse);
 
     const [placement, setPlacement] = useState('bottom-start');
+
+    dropdownButtonId.current = useGenerateId();
 
     const changePlacement = (
       dropDirection: string = DropdownDropDirection.down,
