@@ -57,31 +57,45 @@ import {
 
 export function Example() {
   const [showBanner, updateShowBanner] = React.useState<boolean>(true);
+  const closeButtonRef = React.useRef<HTMLButtonElement>(null);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   function handleBannerDismiss() {
     updateShowBanner(false);
+
+    setTimeout(() => {
+      buttonRef.current?.focus();
+    }, 0);
   }
 
   function handleShowBannerButtonClick() {
     updateShowBanner(true);
+
+    setTimeout(() => {
+      closeButtonRef.current?.focus();
+    }, 0);
   }
 
   return (
     <>
       {showBanner && (
-        <Banner
-          isDismissible
-          onDismiss={handleBannerDismiss}
-          variant={AlertVariant.success}
-        >
-          Success! You may now dismiss this banner
-        </Banner>
+        <div role="alert">
+          <Banner
+            isDismissible
+            onDismiss={handleBannerDismiss}
+            variant={AlertVariant.success}
+            dismissibleButtonRef={closeButtonRef}
+          >
+            Success! You may now dismiss this banner
+          </Banner>
+        </div>
       )}
       {!showBanner && (
         <Button
           onClick={handleShowBannerButtonClick}
           size={ButtonSize.small}
           color={ButtonColor.secondary}
+          ref={buttonRef}
         >
           Show Banner Again
         </Button>
