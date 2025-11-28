@@ -164,7 +164,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
                 };
               }
 
-              return <Item<T> {...itemProps} key={key} test="test" />;
+              return <Item<T> {...itemProps} key={key} />;
             })
           ) : (
             <StyledItem isInverse={isInverse} theme={theme} tabIndex={-1}>
