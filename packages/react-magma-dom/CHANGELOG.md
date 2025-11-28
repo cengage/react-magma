@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.14
+
+### Patch Changes
+
+- 72073a2: fix(Nav Tabs): Fix obscured content when the elements is focused.
+
 ## 5.1.0-rc.13
 
 ### Patch Changes
