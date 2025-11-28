@@ -89,17 +89,26 @@ export const NavTabs = React.forwardRef<
     }
   });
 
+  const handleNavTabFocus = (event: React.FocusEvent<HTMLElement>) => {
+    const navTabElement = event.currentTarget;
+
+    navTabElement.scrollIntoView({
+      block: 'center',
+      inline: 'center',
+      behavior: 'smooth',
+    });
+  };
+
   const navTabsChildren = React.Children.map(children, (child, i) => {
     if (child && React.isValidElement(child) && child.type === NavTab) {
       const item = child as React.ReactElement<
         React.PropsWithChildren<NavTabProps>
       >;
 
-      if (!hasChildFocus && i === 0) {
-        return React.cloneElement(item, { isFocused: true });
-      }
-
-      return item;
+      return React.cloneElement(item, {
+        onFocus: handleNavTabFocus,
+        isFocused: item.props.isFocused || (!hasChildFocus && i === 0),
+      });
     }
 
     return child;
