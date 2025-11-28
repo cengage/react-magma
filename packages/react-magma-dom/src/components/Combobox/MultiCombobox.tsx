@@ -183,13 +183,14 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       onIsOpenChange(changes);
   }
 
+  const filteredItems = getFilteredItems(displayItems);
+
   function stateReducer(state, actionAndChanges) {
     const { type, changes } = actionAndChanges;
 
     switch (type) {
       case useCombobox.stateChangeTypes.InputKeyDownEnter: {
-        const newSelectedItem =
-          getFilteredItems(displayItems)[state.highlightedIndex];
+        const newSelectedItem = filteredItems[state.highlightedIndex];
 
         return {
           ...changes,
@@ -255,7 +256,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   } = useCombobox({
     ...comboboxProps,
     itemToString,
-    items: getFilteredItems(displayItems),
+    items: filteredItems,
     onInputValueChange:
       onInputValueChange && typeof onInputValueChange === 'function'
         ? changes => onInputValueChange(changes, setDisplayItems)
@@ -378,10 +379,15 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         event.nativeEvent.stopImmediatePropagation();
         break;
       case 'ArrowDown':
-        setFocusedItem(1, highlightedIndex, displayItems, setHighlightedIndex);
+        setFocusedItem(1, highlightedIndex, filteredItems, setHighlightedIndex);
         break;
       case 'ArrowUp':
-        setFocusedItem(-1, highlightedIndex, displayItems, setHighlightedIndex);
+        setFocusedItem(
+          -1,
+          highlightedIndex,
+          filteredItems,
+          setHighlightedIndex
+        );
         break;
       default:
         break;
