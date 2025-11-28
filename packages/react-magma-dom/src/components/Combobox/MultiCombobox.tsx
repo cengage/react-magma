@@ -16,6 +16,7 @@ import { defaultComponents } from '../Select/components';
 import { ItemsList } from '../Select/ItemsList';
 import { SelectContainer } from '../Select/SelectContainer';
 import { IconWrapper, SelectedItemButton } from '../Select/shared';
+import { setFocusedItem } from '../Select/utils';
 
 import { MultiComboboxProps } from '.';
 
@@ -216,6 +217,14 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
           ...changes,
           isOpen: changes.isOpen,
         };
+      case useCombobox.stateChangeTypes.InputKeyDownArrowDown:
+      case useCombobox.stateChangeTypes.InputKeyDownArrowUp:
+        // Keep controlled navigation manually via handleOnKeyDown handler
+        return {
+          ...state,
+          highlightedIndex: state.highlightedIndex,
+          isOpen: true,
+        };
       default:
         return {
           ...changes,
@@ -358,14 +367,24 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       </>
     ) : null;
 
-  function handleOnKeyDown(event: any) {
+  function handleOnKeyDown(event: React.KeyboardEvent) {
     const count = document.querySelectorAll('[aria-modal="true"]').length;
 
-    if (event.key === 'Escape') {
-      if (count >= 1 && inputRef.current) {
-        inputRef.current.focus();
-      }
-      event.nativeEvent.stopImmediatePropagation();
+    switch (event.key) {
+      case 'Escape':
+        if (count >= 1 && inputRef.current) {
+          inputRef.current.focus();
+        }
+        event.nativeEvent.stopImmediatePropagation();
+        break;
+      case 'ArrowDown':
+        setFocusedItem(1, highlightedIndex, displayItems, setHighlightedIndex);
+        break;
+      case 'ArrowUp':
+        setFocusedItem(-1, highlightedIndex, displayItems, setHighlightedIndex);
+        break;
+      default:
+        break;
     }
 
     onInputKeyDown &&

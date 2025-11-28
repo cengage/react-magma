@@ -90,6 +90,10 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
           )
         );
       }
+    } else {
+      const index = filteredItems.findIndex(item => !isItemDisabled(item));
+
+      setHighlightedIndex(index);
     }
 
     onIsOpenChange &&

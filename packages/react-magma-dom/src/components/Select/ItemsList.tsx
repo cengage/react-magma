@@ -17,7 +17,7 @@ import {
   SelectComponents,
 } from './components';
 import { StyledCard, StyledItem, StyledList } from './shared';
-import { isItemDisabled } from './utils';
+import { isItemDisabled, setFocusedItem } from './utils';
 
 import { instanceOfToBeCreatedItemObject } from '.';
 
@@ -103,14 +103,10 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
         event.nativeEvent.stopImmediatePropagation();
         break;
       case 'ArrowDown':
-        if (highlightedIndex === items.length - 1) {
-          setHighlightedIndex?.(0);
-        }
+        setFocusedItem(1, highlightedIndex, items, setHighlightedIndex);
         break;
       case 'ArrowUp':
-        if (highlightedIndex === 0) {
-          setHighlightedIndex?.(items.length - 1);
-        }
+        setFocusedItem(-1, highlightedIndex, items, setHighlightedIndex);
         break;
       default:
         break;
@@ -168,7 +164,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
                 };
               }
 
-              return <Item<T> {...itemProps} key={key} />;
+              return <Item<T> {...itemProps} key={key} test="test" />;
             })
           ) : (
             <StyledItem isInverse={isInverse} theme={theme} tabIndex={-1}>
