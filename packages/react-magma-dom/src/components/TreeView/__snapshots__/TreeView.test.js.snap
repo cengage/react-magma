@@ -120,6 +120,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   flex: none;
 }
 
+.emotion-14>li>div div>button:nth-child(2),
 .emotion-14>li>div button:nth-child(2) {
   width: 40px;
 }
@@ -129,6 +130,18 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
+.emotion-14>li:first-child:not(:only-child)>button {
+  margin-left: 0;
+}
+
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
+.emotion-14>li:last-child:not(:only-child)>button {
+  margin-right: 0;
 }
 
 .emotion-16 {
@@ -810,6 +823,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   flex: none;
 }
 
+.emotion-14>li>div div>button:nth-child(2),
 .emotion-14>li>div button:nth-child(2) {
   width: 40px;
 }
@@ -819,6 +833,18 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
+.emotion-14>li:first-child:not(:only-child)>button {
+  margin-left: 0;
+}
+
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
+.emotion-14>li:last-child:not(:only-child)>button {
+  margin-right: 0;
 }
 
 .emotion-16 {
@@ -2017,6 +2043,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   flex: none;
 }
 
+.emotion-14>li>div div>button:nth-child(2),
 .emotion-14>li>div button:nth-child(2) {
   width: 40px;
 }
@@ -2026,6 +2053,18 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
+.emotion-14>li:first-child:not(:only-child)>button {
+  margin-left: 0;
+}
+
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
+.emotion-14>li:last-child:not(:only-child)>button {
+  margin-right: 0;
 }
 
 .emotion-16 {
@@ -2812,6 +2851,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   flex: none;
 }
 
+.emotion-14>li>div div>button:nth-child(2),
 .emotion-14>li>div button:nth-child(2) {
   width: 40px;
 }
@@ -2821,6 +2861,18 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
+.emotion-14>li:first-child:not(:only-child)>button {
+  margin-left: 0;
+}
+
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
+.emotion-14>li:last-child:not(:only-child)>button {
+  margin-right: 0;
 }
 
 .emotion-16 {
@@ -4185,6 +4237,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   flex: none;
 }
 
+.emotion-14>li>div div>button:nth-child(2),
 .emotion-14>li>div button:nth-child(2) {
   width: 40px;
 }
@@ -4194,6 +4247,18 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
+.emotion-14>li:first-child:not(:only-child)>button {
+  margin-left: 0;
+}
+
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
+.emotion-14>li:last-child:not(:only-child)>button {
+  margin-right: 0;
 }
 
 .emotion-16 {
@@ -4915,6 +4980,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   flex: none;
 }
 
+.emotion-14>li>div div>button:nth-child(2),
 .emotion-14>li>div button:nth-child(2) {
   width: 40px;
 }
@@ -4924,6 +4990,18 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
+.emotion-14>li:first-child:not(:only-child)>button {
+  margin-left: 0;
+}
+
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
+.emotion-14>li:last-child:not(:only-child)>button {
+  margin-right: 0;
 }
 
 .emotion-16 {
@@ -6222,6 +6300,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   flex: none;
 }
 
+.emotion-14>li>div div>button:nth-child(2),
 .emotion-14>li>div button:nth-child(2) {
   width: 40px;
 }
@@ -6231,6 +6310,18 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
+.emotion-14>li:first-child:not(:only-child)>button {
+  margin-left: 0;
+}
+
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
+.emotion-14>li:last-child:not(:only-child)>button {
+  margin-right: 0;
 }
 
 .emotion-16 {
@@ -6952,6 +7043,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   flex: none;
 }
 
+.emotion-14>li>div div>button:nth-child(2),
 .emotion-14>li>div button:nth-child(2) {
   width: 40px;
 }
@@ -6961,6 +7053,18 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
+.emotion-14>li:first-child:not(:only-child)>button {
+  margin-left: 0;
+}
+
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
+.emotion-14>li:last-child:not(:only-child)>button {
+  margin-right: 0;
 }
 
 .emotion-16 {
@@ -8259,6 +8363,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   flex: none;
 }
 
+.emotion-14>li>div div>button:nth-child(2),
 .emotion-14>li>div button:nth-child(2) {
   width: 40px;
 }
@@ -8268,6 +8373,18 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
+.emotion-14>li:first-child:not(:only-child)>button {
+  margin-left: 0;
+}
+
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
+.emotion-14>li:last-child:not(:only-child)>button {
+  margin-right: 0;
 }
 
 .emotion-16 {
@@ -9054,6 +9171,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   flex: none;
 }
 
+.emotion-14>li>div div>button:nth-child(2),
 .emotion-14>li>div button:nth-child(2) {
   width: 40px;
 }
@@ -9063,6 +9181,18 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
+.emotion-14>li:first-child:not(:only-child)>button {
+  margin-left: 0;
+}
+
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
+.emotion-14>li:last-child:not(:only-child)>button {
+  margin-right: 0;
 }
 
 .emotion-16 {
@@ -10427,6 +10557,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   flex: none;
 }
 
+.emotion-14>li>div div>button:nth-child(2),
 .emotion-14>li>div button:nth-child(2) {
   width: 40px;
 }
@@ -10436,6 +10567,18 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
+.emotion-14>li:first-child:not(:only-child)>button {
+  margin-left: 0;
+}
+
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
+.emotion-14>li:last-child:not(:only-child)>button {
+  margin-right: 0;
 }
 
 .emotion-16 {
@@ -11222,6 +11365,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   flex: none;
 }
 
+.emotion-14>li>div div>button:nth-child(2),
 .emotion-14>li>div button:nth-child(2) {
   width: 40px;
 }
@@ -11231,6 +11375,18 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
+.emotion-14>li:first-child:not(:only-child)>button {
+  margin-left: 0;
+}
+
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
+.emotion-14>li:last-child:not(:only-child)>button {
+  margin-right: 0;
 }
 
 .emotion-16 {
@@ -12595,6 +12751,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   flex: none;
 }
 
+.emotion-14>li>div div>button:nth-child(2),
 .emotion-14>li>div button:nth-child(2) {
   width: 40px;
 }
@@ -12604,6 +12761,18 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
+.emotion-14>li:first-child:not(:only-child)>button {
+  margin-left: 0;
+}
+
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
+.emotion-14>li:last-child:not(:only-child)>button {
+  margin-right: 0;
 }
 
 .emotion-16 {
@@ -13325,6 +13494,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   flex: none;
 }
 
+.emotion-14>li>div div>button:nth-child(2),
 .emotion-14>li>div button:nth-child(2) {
   width: 40px;
 }
@@ -13334,6 +13504,18 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
+.emotion-14>li:first-child:not(:only-child)>button {
+  margin-left: 0;
+}
+
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
+.emotion-14>li:last-child:not(:only-child)>button {
+  margin-right: 0;
 }
 
 .emotion-16 {
