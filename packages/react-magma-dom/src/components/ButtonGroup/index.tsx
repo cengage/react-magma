@@ -179,6 +179,7 @@ const StyledButtonGroup = styled.div<{
       props.orientation === ButtonGroupOrientation.horizontal
         ? '1'
         : 'none'};
+    div > button,
     button {
       // Split buttons
       &:nth-child(2) {
@@ -219,12 +220,53 @@ const StyledButtonGroup = styled.div<{
 
   > li {
     ${props =>
+      props.orientation === ButtonGroupOrientation.horizontal &&
+      css`
+        &:first-child:not(:only-child) {
+          > div > div > button,
+          > div > button,
+          > button {
+            margin-left: 0;
+          }
+        }
+
+        &:last-child:not(:only-child) {
+          > div > div > button,
+          > div > button,
+          > button {
+            margin-right: 0;
+          }
+        }
+      `}
+
+    ${props =>
+      props.orientation === ButtonGroupOrientation.vertical &&
+      css`
+        &:first-child:not(:only-child) {
+          > div > div > button,
+          > div > button,
+          > button {
+            margin-top: 0;
+          }
+        }
+
+        &:last-child:not(:only-child) {
+          > div > div > button,
+          > div > button,
+          > button {
+            margin-bottom: 0;
+          }
+        }
+      `}
+
+    ${props =>
       props.noSpace &&
       props.orientation === ButtonGroupOrientation.horizontal &&
       props.variant === ButtonVariant.solid &&
       props.alignment !== ButtonGroupAlignment.apart &&
       css`
         &:first-child:not(:only-child) {
+          > div > div > button,
           > div > button,
           > button {
             border-radius: ${props.theme.borderRadius} 0 0
@@ -233,12 +275,14 @@ const StyledButtonGroup = styled.div<{
           }
         }
         &:nth-child(2) {
+          > div > div > button,
           > div > button,
           > button {
             border-left: 1px solid ${buildNoSpaceBorderColor(props)};
           }
         }
         &:not(:first-child) {
+          > div > div > button,
           > div > button,
           > button {
             border-radius: 0;
@@ -249,12 +293,14 @@ const StyledButtonGroup = styled.div<{
           }
         }
         &:not(:first-child)&:not(:last-child) {
+          > div > div > button,
           > div > button,
           > button {
             border-right: 0;
           }
         }
         &:last-child:not(:only-child) {
+          > div > div > button,
           > div > button,
           > button {
             border-radius: 0 ${props.theme.borderRadius}
@@ -272,6 +318,7 @@ const StyledButtonGroup = styled.div<{
       css`
         > div {
           &:first-child:not(:only-child) {
+            div > button,
             button {
               border-radius: ${props.theme.borderRadius} 0 0
                 ${props.theme.borderRadius};
@@ -279,11 +326,13 @@ const StyledButtonGroup = styled.div<{
             }
           }
           &:nth-child(2) {
+            div > button,
             button {
               border-left: 1px solid ${buildNoSpaceBorderColor(props)};
             }
           }
           &:not(:first-child) {
+            div > button,
             button {
               border-radius: 0;
               border-right: ${props.color === ButtonColor.secondary ||
@@ -293,11 +342,13 @@ const StyledButtonGroup = styled.div<{
             }
           }
           &:not(:first-child)&:not(:last-child) {
+            div > button,
             button {
               border-right: 0;
             }
           }
           &:last-child:not(:only-child) {
+            div > button,
             button {
               border-radius: 0 ${props.theme.borderRadius}
                 ${props.theme.borderRadius} 0;
