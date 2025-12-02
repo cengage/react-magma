@@ -1482,1707 +1482,1015 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   >
     <li
       class="emotion-2 emotion-3"
-      color="primary"
-      shape="fill"
-      type="button"
     >
-      <span
+      <button
+        class="emotion-4 emotion-5"
+        color="primary"
+        shape="fill"
+        type="button"
+      >
+        <span
+          class="emotion-6 emotion-7"
+        >
+          1
+        </span>
+      </button>
+    </li>
+    <li
+      class="emotion-2 emotion-3"
+    >
+      <div
+        class="emotion-10 emotion-11"
+      >
+        <div>
+          <button
+            aria-controls="2_dropdownMenuId"
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="emotion-12 emotion-13 emotion-5"
+            color="primary"
+            id="2"
+            shape="fill"
+            type="button"
+          >
+            <span
+              class="emotion-6 emotion-7"
+            >
+              <span
+                class="emotion-17 emotion-18"
+              >
+                Dropdown 2
+              </span>
+              <svg
+                aria-hidden="true"
+                class="icon"
+                data-testid="caretDown"
+                fill="currentColor"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+        <div
+          data-testid="dropdownContentWrapper"
+          id="2_dropdownMenuId"
+          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+        >
+          <div
+            class="emotion-19 emotion-20 emotion-21"
+            data-testid="dropdownContent"
+            tabindex="-1"
+            width="auto"
+          >
+            <div
+              aria-labelledby="2"
+              role="menu"
+            >
+              <div
+                class="emotion-22 emotion-23"
+                role="menuitem"
+                tabindex="-1"
+              >
+                Menu item 2.1
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li
+      class="emotion-2 emotion-3"
+    >
+      <div
+        class="emotion-10 emotion-11"
+      >
+        <div>
+          <button
+            aria-controls="3_dropdownMenuId"
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="emotion-12 emotion-13 emotion-5"
+            color="primary"
+            id="3"
+            shape="fill"
+            type="button"
+          >
+            <span
+              class="emotion-6 emotion-7"
+            >
+              <span
+                class="emotion-17 emotion-18"
+              >
+                Dropdown 3
+              </span>
+              <svg
+                aria-hidden="true"
+                class="icon"
+                data-testid="caretDown"
+                fill="currentColor"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+        <div
+          data-testid="dropdownContentWrapper"
+          id="3_dropdownMenuId"
+          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+        >
+          <div
+            class="emotion-19 emotion-20 emotion-21"
+            data-testid="dropdownContent"
+            tabindex="-1"
+            width="auto"
+          >
+            <div
+              aria-labelledby="3"
+              role="menu"
+            >
+              <div
+                class="emotion-22 emotion-23"
+                role="menuitem"
+                tabindex="-1"
+              >
+                Menu item 3.1
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
+.emotion-0 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: stretch;
+  -ms-flex-pack: stretch;
+  -webkit-justify-content: stretch;
+  justify-content: stretch;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.emotion-0>li>div {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>li>div div>button,
+.emotion-0>li>div button {
+  width: 100%;
+}
+
+.emotion-0>li>div div>button:nth-child(2),
+.emotion-0>li>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>li>button {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>li>button:not([aria-label]):not([title]) {
+  width: 100%;
+}
+
+.emotion-0>li>button[aria-label]:empty,
+.emotion-0>li>button[title]:empty {
+  width: auto;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>li>button:has(svg):not(:has(:not(svg))) {
+  width: auto;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>li:first-child:not(:only-child)>div>div>button,
+.emotion-0>li:first-child:not(:only-child)>div>button,
+.emotion-0>li:first-child:not(:only-child)>button {
+  margin-top: 0;
+}
+
+.emotion-0>li:last-child:not(:only-child)>div>div>button,
+.emotion-0>li:last-child:not(:only-child)>div>button,
+.emotion-0>li:last-child:not(:only-child)>button {
+  margin-bottom: 0;
+}
+
+.emotion-2 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: contents;
+}
+
+.emotion-4 {
+  display: inline-block;
+  position: relative;
+}
+
+.emotion-6 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px 0 0 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-6:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-6:not(:disabled):hover,
+.emotion-6:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-6:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-6:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-6 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-8 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-10 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 0 8px 8px 0;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 40px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  line-height: 1;
+  min-width: 0;
+  padding: 0;
+}
+
+.emotion-10:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-10:not(:disabled):hover,
+.emotion-10:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-10:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-10:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-10 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-15 {
+  background: #FFFFFF;
+  border: 1px solid #D4D4D4;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  color: #454545;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow: visible;
+  padding-left: 0;
+  position: relative;
+  text-align: left;
+  width: auto;
+  background: #FFFFFF;
+  display: none;
+  max-height: 250px;
+  opacity: 0;
+  outline: 0;
+  overflow-y: auto;
+  padding: 8px 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.emotion-15:focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 0;
+}
+
+.emotion-17 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #454545;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  line-height: 24px;
+  margin: 0;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+.emotion-17:hover,
+.emotion-17:focus {
+  background: #F5F5F5;
+}
+
+.emotion-17:focus {
+  outline-color: #0074B7;
+  outline-offset: -2px;
+}
+
+.emotion-17:active {
+  outline-color: #0074B7;
+}
+
+.emotion-0 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: stretch;
+  -ms-flex-pack: stretch;
+  -webkit-justify-content: stretch;
+  justify-content: stretch;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.emotion-0>li>div {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>li>div div>button,
+.emotion-0>li>div button {
+  width: 100%;
+}
+
+.emotion-0>li>div div>button:nth-child(2),
+.emotion-0>li>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>li>button {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>li>button:not([aria-label]):not([title]) {
+  width: 100%;
+}
+
+.emotion-0>li>button[aria-label]:empty,
+.emotion-0>li>button[title]:empty {
+  width: auto;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>li>button:has(svg):not(:has(:not(svg))) {
+  width: auto;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>li:first-child:not(:only-child)>div>div>button,
+.emotion-0>li:first-child:not(:only-child)>div>button,
+.emotion-0>li:first-child:not(:only-child)>button {
+  margin-top: 0;
+}
+
+.emotion-0>li:last-child:not(:only-child)>div>div>button,
+.emotion-0>li:last-child:not(:only-child)>div>button,
+.emotion-0>li:last-child:not(:only-child)>button {
+  margin-bottom: 0;
+}
+
+.emotion-2 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: contents;
+}
+
+.emotion-4 {
+  display: inline-block;
+  position: relative;
+}
+
+.emotion-6 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px 0 0 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-6:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-6:not(:disabled):hover,
+.emotion-6:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-6:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-6:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-6 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-8 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-10 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 0 8px 8px 0;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 40px;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  line-height: 1;
+  min-width: 0;
+  padding: 0;
+}
+
+.emotion-10:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-10:not(:disabled):hover,
+.emotion-10:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-10:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-10:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-10 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-15 {
+  background: #FFFFFF;
+  border: 1px solid #D4D4D4;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
+  color: #454545;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  overflow: visible;
+  padding-left: 0;
+  position: relative;
+  text-align: left;
+  width: auto;
+  background: #FFFFFF;
+  display: none;
+  max-height: 250px;
+  opacity: 0;
+  outline: 0;
+  overflow-y: auto;
+  padding: 8px 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+}
+
+.emotion-15:focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 0;
+}
+
+.emotion-17 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #454545;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 16px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  line-height: 24px;
+  margin: 0;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+.emotion-17:hover,
+.emotion-17:focus {
+  background: #F5F5F5;
+}
+
+.emotion-17:focus {
+  outline-color: #0074B7;
+  outline-offset: -2px;
+}
+
+.emotion-17:active {
+  outline-color: #0074B7;
+}
+
+<div>
+  <ul
+    class="emotion-0 emotion-1"
+    color="primary"
+    orientation="vertical"
+    role="list"
+  >
+    <li
+      class="emotion-2 emotion-3"
+    >
+      <div
         class="emotion-4 emotion-5"
       >
-        1
-      </span>
-    </button>
-    <div
-      class="emotion-6 emotion-7"
-    >
-      <div>
-        <button
-          aria-controls="2_dropdownMenuId"
-          aria-expanded="false"
-          aria-haspopup="true"
-          class="emotion-8 emotion-9 emotion-3"
-          color="primary"
-          id="2"
-          shape="fill"
-          type="button"
-        >
-          <span
-            class="emotion-4 emotion-5"
+        <div>
+          <button
+            class="emotion-6 emotion-7"
+            color="primary"
+            id="1"
+            shape="leftCap"
+            style="border-right: 0; margin-right: 0px;"
+            tabindex="0"
+            type="button"
           >
             <span
-              class="emotion-13 emotion-14"
+              class="emotion-8 emotion-9"
             >
-              Dropdown 2
+              Dropdown SplitButton 1
             </span>
-            <svg
-              aria-hidden="true"
-              class="icon"
-              data-testid="caretDown"
-              fill="currentColor"
-              height="20"
-              viewBox="0 0 24 24"
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </span>
-        </button>
-      </div>
-      <div
-        data-testid="dropdownContentWrapper"
-        id="2_dropdownMenuId"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
-      >
-        <div
-          class="emotion-15 emotion-16 emotion-17"
-          data-testid="dropdownContent"
-          tabindex="-1"
-          width="auto"
-        >
-          <div
-            aria-labelledby="2"
-            role="menu"
-          >
-            <div
-              class="emotion-18 emotion-19"
-              role="menuitem"
-              tabindex="-1"
-            >
-              Menu item 2.1
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="emotion-6 emotion-7"
-    >
-      <div>
-        <button
-          aria-controls="3_dropdownMenuId"
-          aria-expanded="false"
-          aria-haspopup="true"
-          class="emotion-8 emotion-9 emotion-3"
-          color="primary"
-          id="3"
-          shape="fill"
-          type="button"
-        >
-          <span
-            class="emotion-4 emotion-5"
+          </button>
+          <button
+            aria-controls="1_dropdownMenuId"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-label="Toggle menu"
+            class="emotion-10 emotion-7"
+            color="primary"
+            shape="rightCap"
+            style="margin-left: 2px;"
+            type="button"
           >
             <span
-              class="emotion-13 emotion-14"
+              class="emotion-8 emotion-9"
             >
-              Dropdown 3
+              <svg
+                aria-hidden="true"
+                class="icon"
+                data-testid="caretDown"
+                fill="currentColor"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                  fill-rule="evenodd"
+                />
+              </svg>
             </span>
-            <svg
-              aria-hidden="true"
-              class="icon"
-              data-testid="caretDown"
-              fill="currentColor"
-              height="20"
-              viewBox="0 0 24 24"
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </span>
-        </button>
-      </div>
-      <div
-        data-testid="dropdownContentWrapper"
-        id="3_dropdownMenuId"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
-      >
+          </button>
+        </div>
         <div
-          class="emotion-15 emotion-16 emotion-17"
-          data-testid="dropdownContent"
-          tabindex="-1"
-          width="auto"
+          data-testid="dropdownContentWrapper"
+          id="1_dropdownMenuId"
+          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
         >
           <div
-            aria-labelledby="3"
-            role="menu"
+            class="emotion-14 emotion-15 emotion-16"
+            data-testid="dropdownContent"
+            tabindex="-1"
+            width="auto"
           >
             <div
-              class="emotion-18 emotion-19"
-              role="menuitem"
-              tabindex="-1"
+              aria-labelledby="1"
+              role="menu"
             >
-              Menu item 3.1
+              <div
+                class="emotion-17 emotion-18"
+                role="menuitem"
+                tabindex="-1"
+              >
+                Menu item 2.1
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
-.emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: stretch;
-  -ms-flex-pack: stretch;
-  -webkit-justify-content: stretch;
-  justify-content: stretch;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-}
-
-.emotion-0>button:first-child,
-.emotion-0>div:first-child {
-  margin-top: 0;
-}
-
-.emotion-0>button:last-child,
-.emotion-0>div:last-child {
-  margin-bottom: 0;
-}
-
-.emotion-0>div {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>div button {
-  width: 100%;
-}
-
-.emotion-0>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>button {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-2 {
-  display: inline-block;
-  position: relative;
-}
-
-.emotion-4 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #3942B0;
-  border: 0;
-  border-color: #3942B0;
-  border-radius: 8px 0 0 8px;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  height: 40px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  letter-spacing: inherit;
-  line-height: 24px;
-  margin: 0;
-  min-width: 96px;
-  overflow: hidden;
-  padding: 12px 16px;
-  position: relative;
-  text-align: center;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  text-transform: uppercase;
-  touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: auto;
-}
-
-.emotion-4:not(:disabled):focus {
-  outline: 2px solid #0074B7;
-  outline-offset: 2px;
-  z-index: 1;
-}
-
-.emotion-4:not(:disabled):hover,
-.emotion-4:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
-}
-
-.emotion-4:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
-}
-
-.emotion-4:not(:disabled):active:after {
-  opacity: 0.4;
-  -webkit-transform: translate(-50%, -50%) scale(0);
-  -moz-transform: translate(-50%, -50%) scale(0);
-  -ms-transform: translate(-50%, -50%) scale(0);
-  transform: translate(-50%, -50%) scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
-.emotion-4 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.emotion-6 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-8 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #3942B0;
-  border: 0;
-  border-color: #3942B0;
-  border-radius: 0 8px 8px 0;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  height: 40px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  letter-spacing: inherit;
-  line-height: 24px;
-  margin: 0;
-  min-width: 96px;
-  overflow: hidden;
-  padding: 12px 16px;
-  position: relative;
-  text-align: center;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  text-transform: uppercase;
-  touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: 40px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  line-height: 1;
-  min-width: 0;
-  padding: 0;
-}
-
-.emotion-8:not(:disabled):focus {
-  outline: 2px solid #0074B7;
-  outline-offset: 2px;
-  z-index: 1;
-}
-
-.emotion-8:not(:disabled):hover,
-.emotion-8:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
-}
-
-.emotion-8:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
-}
-
-.emotion-8:not(:disabled):active:after {
-  opacity: 0.4;
-  -webkit-transform: translate(-50%, -50%) scale(0);
-  -moz-transform: translate(-50%, -50%) scale(0);
-  -ms-transform: translate(-50%, -50%) scale(0);
-  transform: translate(-50%, -50%) scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
-.emotion-8 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.emotion-13 {
-  background: #FFFFFF;
-  border: 1px solid #D4D4D4;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  overflow: visible;
-  padding-left: 0;
-  position: relative;
-  text-align: left;
-  width: auto;
-  background: #FFFFFF;
-  display: none;
-  max-height: 250px;
-  opacity: 0;
-  outline: 0;
-  overflow-y: auto;
-  padding: 8px 0;
-  -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s;
-  white-space: nowrap;
-}
-
-.emotion-13:focus {
-  outline: 2px solid #0074B7;
-  outline-offset: 0;
-}
-
-.emotion-15 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #454545;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 16px;
-  white-space: nowrap;
-}
-
-.emotion-15:hover,
-.emotion-15:focus {
-  background: #F5F5F5;
-}
-
-.emotion-15:focus {
-  outline-color: #0074B7;
-  outline-offset: -2px;
-}
-
-.emotion-15:active {
-  outline-color: #0074B7;
-}
-
-.emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: stretch;
-  -ms-flex-pack: stretch;
-  -webkit-justify-content: stretch;
-  justify-content: stretch;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-}
-
-.emotion-0>button:first-child,
-.emotion-0>div:first-child {
-  margin-top: 0;
-}
-
-.emotion-0>button:last-child,
-.emotion-0>div:last-child {
-  margin-bottom: 0;
-}
-
-.emotion-0>div {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>div button {
-  width: 100%;
-}
-
-.emotion-0>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>button {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-2 {
-  display: inline-block;
-  position: relative;
-}
-
-.emotion-4 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #3942B0;
-  border: 0;
-  border-color: #3942B0;
-  border-radius: 8px 0 0 8px;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  height: 40px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  letter-spacing: inherit;
-  line-height: 24px;
-  margin: 0;
-  min-width: 96px;
-  overflow: hidden;
-  padding: 12px 16px;
-  position: relative;
-  text-align: center;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  text-transform: uppercase;
-  touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: auto;
-}
-
-.emotion-4:not(:disabled):focus {
-  outline: 2px solid #0074B7;
-  outline-offset: 2px;
-  z-index: 1;
-}
-
-.emotion-4:not(:disabled):hover,
-.emotion-4:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
-}
-
-.emotion-4:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
-}
-
-.emotion-4:not(:disabled):active:after {
-  opacity: 0.4;
-  -webkit-transform: translate(-50%, -50%) scale(0);
-  -moz-transform: translate(-50%, -50%) scale(0);
-  -ms-transform: translate(-50%, -50%) scale(0);
-  transform: translate(-50%, -50%) scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
-.emotion-4 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.emotion-6 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-8 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #3942B0;
-  border: 0;
-  border-color: #3942B0;
-  border-radius: 0 8px 8px 0;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  height: 40px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  letter-spacing: inherit;
-  line-height: 24px;
-  margin: 0;
-  min-width: 96px;
-  overflow: hidden;
-  padding: 12px 16px;
-  position: relative;
-  text-align: center;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  text-transform: uppercase;
-  touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: 40px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  line-height: 1;
-  min-width: 0;
-  padding: 0;
-}
-
-.emotion-8:not(:disabled):focus {
-  outline: 2px solid #0074B7;
-  outline-offset: 2px;
-  z-index: 1;
-}
-
-.emotion-8:not(:disabled):hover,
-.emotion-8:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
-}
-
-.emotion-8:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
-}
-
-.emotion-8:not(:disabled):active:after {
-  opacity: 0.4;
-  -webkit-transform: translate(-50%, -50%) scale(0);
-  -moz-transform: translate(-50%, -50%) scale(0);
-  -ms-transform: translate(-50%, -50%) scale(0);
-  transform: translate(-50%, -50%) scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
-.emotion-8 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.emotion-13 {
-  background: #FFFFFF;
-  border: 1px solid #D4D4D4;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  overflow: visible;
-  padding-left: 0;
-  position: relative;
-  text-align: left;
-  width: auto;
-  background: #FFFFFF;
-  display: none;
-  max-height: 250px;
-  opacity: 0;
-  outline: 0;
-  overflow-y: auto;
-  padding: 8px 0;
-  -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s;
-  white-space: nowrap;
-}
-
-.emotion-13:focus {
-  outline: 2px solid #0074B7;
-  outline-offset: 0;
-}
-
-.emotion-15 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #454545;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 16px;
-  white-space: nowrap;
-}
-
-.emotion-15:hover,
-.emotion-15:focus {
-  background: #F5F5F5;
-}
-
-.emotion-15:focus {
-  outline-color: #0074B7;
-  outline-offset: -2px;
-}
-
-.emotion-15:active {
-  outline-color: #0074B7;
-}
-
-<div>
-  <div
-    class="emotion-0 emotion-1"
-    color="primary"
-    orientation="vertical"
-  >
-    <div
+    </li>
+    <li
       class="emotion-2 emotion-3"
     >
-      <div>
-        <button
-          class="emotion-4 emotion-5"
-          color="primary"
-          id="1"
-          shape="leftCap"
-          style="border-right: 0; margin-right: 0px;"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="emotion-6 emotion-7"
-          >
-            Dropdown SplitButton 1
-          </span>
-        </button>
-        <button
-          aria-controls="1_dropdownMenuId"
-          aria-expanded="false"
-          aria-haspopup="true"
-          aria-label="Toggle menu"
-          class="emotion-8 emotion-5"
-          color="primary"
-          shape="rightCap"
-          style="margin-left: 2px;"
-          type="button"
-        >
-          <span
-            class="emotion-6 emotion-7"
-          >
-            <svg
-              aria-hidden="true"
-              class="icon"
-              data-testid="caretDown"
-              fill="currentColor"
-              height="20"
-              viewBox="0 0 24 24"
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </span>
-        </button>
-      </div>
       <div
-        data-testid="dropdownContentWrapper"
-        id="1_dropdownMenuId"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+        class="emotion-4 emotion-5"
       >
+        <div>
+          <button
+            class="emotion-6 emotion-7"
+            color="primary"
+            id="2"
+            shape="leftCap"
+            style="border-right: 0; margin-right: 0px;"
+            tabindex="0"
+            type="button"
+          >
+            <span
+              class="emotion-8 emotion-9"
+            >
+              Dropdown SplitButton 2
+            </span>
+          </button>
+          <button
+            aria-controls="2_dropdownMenuId"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-label="Toggle menu"
+            class="emotion-10 emotion-7"
+            color="primary"
+            shape="rightCap"
+            style="margin-left: 2px;"
+            type="button"
+          >
+            <span
+              class="emotion-8 emotion-9"
+            >
+              <svg
+                aria-hidden="true"
+                class="icon"
+                data-testid="caretDown"
+                fill="currentColor"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
         <div
-          class="emotion-12 emotion-13 emotion-14"
-          data-testid="dropdownContent"
-          tabindex="-1"
-          width="auto"
+          data-testid="dropdownContentWrapper"
+          id="2_dropdownMenuId"
+          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
         >
           <div
-            aria-labelledby="1"
-            role="menu"
+            class="emotion-14 emotion-15 emotion-16"
+            data-testid="dropdownContent"
+            tabindex="-1"
+            width="auto"
           >
             <div
-              class="emotion-15 emotion-16"
-              role="menuitem"
-              tabindex="-1"
+              aria-labelledby="2"
+              role="menu"
             >
-              Menu item 2.1
+              <div
+                class="emotion-17 emotion-18"
+                role="menuitem"
+                tabindex="-1"
+              >
+                Menu item 2.1
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      class="emotion-2 emotion-3"
-    >
-      <div>
-        <button
-          class="emotion-4 emotion-5"
-          color="primary"
-          id="2"
-          shape="leftCap"
-          style="border-right: 0; margin-right: 0px;"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="emotion-6 emotion-7"
-          >
-            Dropdown SplitButton 2
-          </span>
-        </button>
-        <button
-          aria-controls="2_dropdownMenuId"
-          aria-expanded="false"
-          aria-haspopup="true"
-          aria-label="Toggle menu"
-          class="emotion-8 emotion-5"
-          color="primary"
-          shape="rightCap"
-          style="margin-left: 2px;"
-          type="button"
-        >
-          <span
-            class="emotion-6 emotion-7"
-          >
-            <svg
-              aria-hidden="true"
-              class="icon"
-              data-testid="caretDown"
-              fill="currentColor"
-              height="20"
-              viewBox="0 0 24 24"
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </span>
-        </button>
-      </div>
-      <div
-        data-testid="dropdownContentWrapper"
-        id="2_dropdownMenuId"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
-      >
-        <div
-          class="emotion-12 emotion-13 emotion-14"
-          data-testid="dropdownContent"
-          tabindex="-1"
-          width="auto"
-        >
-          <div
-            aria-labelledby="2"
-            role="menu"
-          >
-            <div
-              class="emotion-15 emotion-16"
-              role="menuitem"
-              tabindex="-1"
-            >
-              Menu item 2.1
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
-.emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: stretch;
-  -ms-flex-pack: stretch;
-  -webkit-justify-content: stretch;
-  justify-content: stretch;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-}
-
-.emotion-0>button:first-child,
-.emotion-0>div:first-child {
-  margin-top: 0;
-}
-
-.emotion-0>button:last-child,
-.emotion-0>div:last-child {
-  margin-bottom: 0;
-}
-
-.emotion-0>div {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>div button {
-  width: 100%;
-}
-
-.emotion-0>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>button {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-2 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #3942B0;
-  border: 0;
-  border-color: #3942B0;
-  border-radius: 8px 0 0 8px;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  height: 40px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  letter-spacing: inherit;
-  line-height: 24px;
-  margin: 0;
-  min-width: 96px;
-  overflow: hidden;
-  padding: 12px 16px;
-  position: relative;
-  text-align: center;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  text-transform: uppercase;
-  touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: auto;
-}
-
-.emotion-4:not(:disabled):focus {
-  outline: 2px solid #0074B7;
-  outline-offset: 2px;
-  z-index: 1;
-}
-
-.emotion-4:not(:disabled):hover,
-.emotion-4:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
-}
-
-.emotion-4:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
-}
-
-.emotion-4:not(:disabled):active:after {
-  opacity: 0.4;
-  -webkit-transform: translate(-50%, -50%) scale(0);
-  -moz-transform: translate(-50%, -50%) scale(0);
-  -ms-transform: translate(-50%, -50%) scale(0);
-  transform: translate(-50%, -50%) scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
-.emotion-4 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.emotion-6 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-6 {
-  display: inline-block;
-  position: relative;
-}
-
-.emotion-9 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #3942B0;
-  border: 0;
-  border-color: #3942B0;
-  border-radius: 0 8px 8px 0;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  height: 40px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  letter-spacing: inherit;
-  line-height: 24px;
-  margin: 0;
-  min-width: 96px;
-  overflow: hidden;
-  padding: 12px 16px;
-  position: relative;
-  text-align: center;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  text-transform: uppercase;
-  touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: 40px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  line-height: 1;
-  min-width: 0;
-  padding: 0;
-}
-
-.emotion-9:not(:disabled):focus {
-  outline: 2px solid #0074B7;
-  outline-offset: 2px;
-  z-index: 1;
-}
-
-.emotion-9:not(:disabled):hover,
-.emotion-9:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
-}
-
-.emotion-9:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
-}
-
-.emotion-9:not(:disabled):active:after {
-  opacity: 0.4;
-  -webkit-transform: translate(-50%, -50%) scale(0);
-  -moz-transform: translate(-50%, -50%) scale(0);
-  -ms-transform: translate(-50%, -50%) scale(0);
-  transform: translate(-50%, -50%) scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
-.emotion-9 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.emotion-13 {
-  padding-left: 0;
-  padding-right: 8px;
-}
-
-.emotion-16 {
-  background: #FFFFFF;
-  border: 1px solid #D4D4D4;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  overflow: visible;
-  padding-left: 0;
-  position: relative;
-  text-align: left;
-  width: auto;
-  background: #FFFFFF;
-  display: none;
-  max-height: 250px;
-  opacity: 0;
-  outline: 0;
-  overflow-y: auto;
-  padding: 8px 0;
-  -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s;
-  white-space: nowrap;
-}
-
-.emotion-16:focus {
-  outline: 2px solid #0074B7;
-  outline-offset: 0;
-}
-
-.emotion-18 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #454545;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 16px;
-  white-space: nowrap;
-}
-
-.emotion-18:hover,
-.emotion-18:focus {
-  background: #F5F5F5;
-}
-
-.emotion-18:focus {
-  outline-color: #0074B7;
-  outline-offset: -2px;
-}
-
-.emotion-18:active {
-  outline-color: #0074B7;
-}
-
-.emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: stretch;
-  -ms-flex-pack: stretch;
-  -webkit-justify-content: stretch;
-  justify-content: stretch;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-align-items: stretch;
-  -webkit-box-align: stretch;
-  -ms-flex-align: stretch;
-  align-items: stretch;
-}
-
-.emotion-0>button:first-child,
-.emotion-0>div:first-child {
-  margin-top: 0;
-}
-
-.emotion-0>button:last-child,
-.emotion-0>div:last-child {
-  margin-bottom: 0;
-}
-
-.emotion-0>div {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>div button {
-  width: 100%;
-}
-
-.emotion-0>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>button {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-2 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #3942B0;
-  border: 0;
-  border-color: #3942B0;
-  border-radius: 8px 0 0 8px;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  height: 40px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  letter-spacing: inherit;
-  line-height: 24px;
-  margin: 0;
-  min-width: 96px;
-  overflow: hidden;
-  padding: 12px 16px;
-  position: relative;
-  text-align: center;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  text-transform: uppercase;
-  touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: auto;
-}
-
-.emotion-4:not(:disabled):focus {
-  outline: 2px solid #0074B7;
-  outline-offset: 2px;
-  z-index: 1;
-}
-
-.emotion-4:not(:disabled):hover,
-.emotion-4:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
-}
-
-.emotion-4:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
-}
-
-.emotion-4:not(:disabled):active:after {
-  opacity: 0.4;
-  -webkit-transform: translate(-50%, -50%) scale(0);
-  -moz-transform: translate(-50%, -50%) scale(0);
-  -ms-transform: translate(-50%, -50%) scale(0);
-  transform: translate(-50%, -50%) scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
-.emotion-4 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.emotion-6 {
-  visibility: visible;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-.emotion-8 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #3942B0;
-  border: 0;
-  border-color: #3942B0;
-  border-radius: 0 8px 8px 0;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  height: 40px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  letter-spacing: inherit;
-  line-height: 24px;
-  margin: 0;
-  min-width: 96px;
-  overflow: hidden;
-  padding: 12px 16px;
-  position: relative;
-  text-align: center;
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  text-transform: uppercase;
-  touch-action: manipulation;
-  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
-  vertical-align: middle;
-  white-space: nowrap;
-  width: 40px;
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  line-height: 1;
-  min-width: 0;
-  padding: 0;
-}
-
-.emotion-8:not(:disabled):focus {
-  outline: 2px solid #0074B7;
-  outline-offset: 2px;
-  z-index: 1;
-}
-
-.emotion-8:not(:disabled):hover,
-.emotion-8:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
-}
-
-.emotion-8:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
-}
-
-.emotion-8:not(:disabled):active:after {
-  opacity: 0.4;
-  -webkit-transform: translate(-50%, -50%) scale(0);
-  -moz-transform: translate(-50%, -50%) scale(0);
-  -ms-transform: translate(-50%, -50%) scale(0);
-  transform: translate(-50%, -50%) scale(0);
-  -webkit-transition: -webkit-transform 0s;
-  transition: transform 0s;
-}
-
-.emotion-8 svg {
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-}
-
-.emotion-13 {
-  background: #FFFFFF;
-  border: 1px solid #D4D4D4;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18);
-  color: #454545;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  overflow: visible;
-  padding-left: 0;
-  position: relative;
-  text-align: left;
-  width: auto;
-  background: #FFFFFF;
-  display: none;
-  max-height: 250px;
-  opacity: 0;
-  outline: 0;
-  overflow-y: auto;
-  padding: 8px 0;
-  -webkit-transition: opacity 0.3s;
-  transition: opacity 0.3s;
-  white-space: nowrap;
-}
-
-.emotion-13:focus {
-  outline: 2px solid #0074B7;
-  outline-offset: 0;
-}
-
-.emotion-15 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  color: #454545;
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  line-height: 24px;
-  margin: 0;
-  padding: 8px 16px;
-  white-space: nowrap;
-}
-
-.emotion-15:hover,
-.emotion-15:focus {
-  background: #F5F5F5;
-}
-
-.emotion-15:focus {
-  outline-color: #0074B7;
-  outline-offset: -2px;
-}
-
-.emotion-15:active {
-  outline-color: #0074B7;
-}
-
-<div>
-  <div
-    class="emotion-0 emotion-1"
-    color="primary"
-    orientation="vertical"
-  >
-    <div
-      class="emotion-2 emotion-3"
-    >
-      <div>
-        <button
-          class="emotion-4 emotion-5"
-          color="primary"
-          id="1"
-          shape="leftCap"
-          style="border-right: 0; margin-right: 0px;"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="emotion-6 emotion-7"
-          >
-            Dropdown SplitButton 1
-          </span>
-        </button>
-        <button
-          aria-controls="1_dropdownMenuId"
-          aria-expanded="false"
-          aria-haspopup="true"
-          aria-label="Toggle menu"
-          class="emotion-8 emotion-5"
-          color="primary"
-          shape="rightCap"
-          style="margin-left: 2px;"
-          type="button"
-        >
-          <span
-            class="emotion-6 emotion-7"
-          >
-            <svg
-              aria-hidden="true"
-              class="icon"
-              data-testid="caretDown"
-              fill="currentColor"
-              height="20"
-              viewBox="0 0 24 24"
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </span>
-        </button>
-      </div>
-      <div
-        data-testid="dropdownContentWrapper"
-        id="1_dropdownMenuId"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
-      >
-        <div
-          class="emotion-12 emotion-13 emotion-14"
-          data-testid="dropdownContent"
-          tabindex="-1"
-          width="auto"
-        >
-          <div
-            aria-labelledby="1"
-            role="menu"
-          >
-            <div
-              class="emotion-15 emotion-16"
-              role="menuitem"
-              tabindex="-1"
-            >
-              Menu item 2.1
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="emotion-2 emotion-3"
-    >
-      <div>
-        <button
-          class="emotion-4 emotion-5"
-          color="primary"
-          id="2"
-          shape="leftCap"
-          style="border-right: 0; margin-right: 0px;"
-          tabindex="0"
-          type="button"
-        >
-          <span
-            class="emotion-6 emotion-7"
-          >
-            Dropdown SplitButton 2
-          </span>
-        </button>
-        <button
-          aria-controls="2_dropdownMenuId"
-          aria-expanded="false"
-          aria-haspopup="true"
-          aria-label="Toggle menu"
-          class="emotion-8 emotion-5"
-          color="primary"
-          shape="rightCap"
-          style="margin-left: 2px;"
-          type="button"
-        >
-          <span
-            class="emotion-6 emotion-7"
-          >
-            <svg
-              aria-hidden="true"
-              class="icon"
-              data-testid="caretDown"
-              fill="currentColor"
-              height="20"
-              viewBox="0 0 24 24"
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </span>
-        </button>
-      </div>
-      <div
-        data-testid="dropdownContentWrapper"
-        id="2_dropdownMenuId"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
-      >
-        <div
-          class="emotion-12 emotion-13 emotion-14"
-          data-testid="dropdownContent"
-          tabindex="-1"
-          width="auto"
-        >
-          <div
-            aria-labelledby="2"
-            role="menu"
-          >
-            <div
-              class="emotion-15 emotion-16"
-              role="menuitem"
-              tabindex="-1"
-            >
-              Menu item 2.1
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 </div>
 `;
 
@@ -3353,6 +2661,18 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-6 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-10 {
   display: inline-block;
   position: relative;
 }
@@ -3693,6 +3013,85 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-13 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+  padding-right: 8px;
+}
+
+.emotion-13:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-13:not(:disabled):hover,
+.emotion-13:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-13:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-13:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-13 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-17 {
   padding-left: 0;
   padding-right: 8px;
 }
@@ -3775,149 +3174,161 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   >
     <li
       class="emotion-2 emotion-3"
-      color="primary"
-      shape="fill"
-      type="button"
     >
-      <span
+      <button
         class="emotion-4 emotion-5"
+        color="primary"
+        shape="fill"
+        type="button"
       >
-        1
-      </span>
-    </button>
-    <div
-      class="emotion-6 emotion-7"
-    >
-      <div>
-        <button
-          aria-controls="2_dropdownMenuId"
-          aria-expanded="false"
-          aria-haspopup="true"
-          class="emotion-8 emotion-9 emotion-3"
-          color="primary"
-          id="2"
-          shape="fill"
-          type="button"
+        <span
+          class="emotion-6 emotion-7"
         >
-          <span
-            class="emotion-4 emotion-5"
+          1
+        </span>
+      </button>
+    </li>
+    <li
+      class="emotion-2 emotion-3"
+    >
+      <div
+        class="emotion-10 emotion-11"
+      >
+        <div>
+          <button
+            aria-controls="2_dropdownMenuId"
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="emotion-12 emotion-13 emotion-5"
+            color="primary"
+            id="2"
+            shape="fill"
+            type="button"
           >
             <span
-              class="emotion-13 emotion-14"
+              class="emotion-6 emotion-7"
             >
-              Dropdown 2
+              <span
+                class="emotion-17 emotion-18"
+              >
+                Dropdown 2
+              </span>
+              <svg
+                aria-hidden="true"
+                class="icon"
+                data-testid="caretDown"
+                fill="currentColor"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                  fill-rule="evenodd"
+                />
+              </svg>
             </span>
-            <svg
-              aria-hidden="true"
-              class="icon"
-              data-testid="caretDown"
-              fill="currentColor"
-              height="20"
-              viewBox="0 0 24 24"
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </span>
-        </button>
-      </div>
-      <div
-        data-testid="dropdownContentWrapper"
-        id="2_dropdownMenuId"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
-      >
+          </button>
+        </div>
         <div
-          class="emotion-15 emotion-16 emotion-17"
-          data-testid="dropdownContent"
-          tabindex="-1"
-          width="auto"
+          data-testid="dropdownContentWrapper"
+          id="2_dropdownMenuId"
+          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
         >
           <div
-            aria-labelledby="2"
-            role="menu"
+            class="emotion-19 emotion-20 emotion-21"
+            data-testid="dropdownContent"
+            tabindex="-1"
+            width="auto"
           >
             <div
-              class="emotion-18 emotion-19"
-              role="menuitem"
-              tabindex="-1"
+              aria-labelledby="2"
+              role="menu"
             >
-              Menu item 2.1
+              <div
+                class="emotion-22 emotion-23"
+                role="menuitem"
+                tabindex="-1"
+              >
+                Menu item 2.1
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      class="emotion-6 emotion-7"
+    </li>
+    <li
+      class="emotion-2 emotion-3"
     >
-      <div>
-        <button
-          aria-controls="3_dropdownMenuId"
-          aria-expanded="false"
-          aria-haspopup="true"
-          class="emotion-8 emotion-9 emotion-3"
-          color="primary"
-          id="3"
-          shape="fill"
-          type="button"
-        >
-          <span
-            class="emotion-4 emotion-5"
+      <div
+        class="emotion-10 emotion-11"
+      >
+        <div>
+          <button
+            aria-controls="3_dropdownMenuId"
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="emotion-12 emotion-13 emotion-5"
+            color="primary"
+            id="3"
+            shape="fill"
+            type="button"
           >
             <span
-              class="emotion-13 emotion-14"
+              class="emotion-6 emotion-7"
             >
-              Dropdown 3
+              <span
+                class="emotion-17 emotion-18"
+              >
+                Dropdown 3
+              </span>
+              <svg
+                aria-hidden="true"
+                class="icon"
+                data-testid="caretDown"
+                fill="currentColor"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                  fill-rule="evenodd"
+                />
+              </svg>
             </span>
-            <svg
-              aria-hidden="true"
-              class="icon"
-              data-testid="caretDown"
-              fill="currentColor"
-              height="20"
-              viewBox="0 0 24 24"
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </span>
-        </button>
-      </div>
-      <div
-        data-testid="dropdownContentWrapper"
-        id="3_dropdownMenuId"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
-      >
+          </button>
+        </div>
         <div
-          class="emotion-15 emotion-16 emotion-17"
-          data-testid="dropdownContent"
-          tabindex="-1"
-          width="auto"
+          data-testid="dropdownContentWrapper"
+          id="3_dropdownMenuId"
+          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
         >
           <div
-            aria-labelledby="3"
-            role="menu"
+            class="emotion-19 emotion-20 emotion-21"
+            data-testid="dropdownContent"
+            tabindex="-1"
+            width="auto"
           >
             <div
-              class="emotion-18 emotion-19"
-              role="menuitem"
-              tabindex="-1"
+              aria-labelledby="3"
+              role="menu"
             >
-              Menu item 3.1
+              <div
+                class="emotion-22 emotion-23"
+                role="menuitem"
+                tabindex="-1"
+              >
+                Menu item 3.1
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 </div>
 `;
 
@@ -4669,148 +4080,160 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   >
     <li
       class="emotion-2 emotion-3"
-      color="primary"
-      shape="fill"
-      type="button"
     >
-      <span
+      <button
         class="emotion-4 emotion-5"
+        color="primary"
+        shape="fill"
+        type="button"
       >
-        1
-      </span>
-    </button>
-    <div
-      class="emotion-6 emotion-7"
-    >
-      <div>
-        <button
-          aria-controls="2_dropdownMenuId"
-          aria-expanded="false"
-          aria-haspopup="true"
-          class="emotion-8 emotion-9 emotion-3"
-          color="primary"
-          id="2"
-          shape="fill"
-          type="button"
+        <span
+          class="emotion-6 emotion-7"
         >
-          <span
-            class="emotion-4 emotion-5"
+          1
+        </span>
+      </button>
+    </li>
+    <li
+      class="emotion-2 emotion-3"
+    >
+      <div
+        class="emotion-10 emotion-11"
+      >
+        <div>
+          <button
+            aria-controls="2_dropdownMenuId"
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="emotion-12 emotion-13 emotion-5"
+            color="primary"
+            id="2"
+            shape="fill"
+            type="button"
           >
             <span
-              class="emotion-13 emotion-14"
+              class="emotion-6 emotion-7"
             >
-              Dropdown 2
+              <span
+                class="emotion-17 emotion-18"
+              >
+                Dropdown 2
+              </span>
+              <svg
+                aria-hidden="true"
+                class="icon"
+                data-testid="caretDown"
+                fill="currentColor"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                  fill-rule="evenodd"
+                />
+              </svg>
             </span>
-            <svg
-              aria-hidden="true"
-              class="icon"
-              data-testid="caretDown"
-              fill="currentColor"
-              height="20"
-              viewBox="0 0 24 24"
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </span>
-        </button>
-      </div>
-      <div
-        data-testid="dropdownContentWrapper"
-        id="2_dropdownMenuId"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
-      >
+          </button>
+        </div>
         <div
-          class="emotion-15 emotion-16 emotion-17"
-          data-testid="dropdownContent"
-          tabindex="-1"
-          width="auto"
+          data-testid="dropdownContentWrapper"
+          id="2_dropdownMenuId"
+          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
         >
           <div
-            aria-labelledby="2"
-            role="menu"
+            class="emotion-19 emotion-20 emotion-21"
+            data-testid="dropdownContent"
+            tabindex="-1"
+            width="auto"
           >
             <div
-              class="emotion-18 emotion-19"
-              role="menuitem"
-              tabindex="-1"
+              aria-labelledby="2"
+              role="menu"
             >
-              Menu item 2.1
+              <div
+                class="emotion-22 emotion-23"
+                role="menuitem"
+                tabindex="-1"
+              >
+                Menu item 2.1
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      class="emotion-6 emotion-7"
+    </li>
+    <li
+      class="emotion-2 emotion-3"
     >
-      <div>
-        <button
-          aria-controls="3_dropdownMenuId"
-          aria-expanded="false"
-          aria-haspopup="true"
-          class="emotion-8 emotion-9 emotion-3"
-          color="primary"
-          id="3"
-          shape="fill"
-          type="button"
-        >
-          <span
-            class="emotion-4 emotion-5"
+      <div
+        class="emotion-10 emotion-11"
+      >
+        <div>
+          <button
+            aria-controls="3_dropdownMenuId"
+            aria-expanded="false"
+            aria-haspopup="true"
+            class="emotion-12 emotion-13 emotion-5"
+            color="primary"
+            id="3"
+            shape="fill"
+            type="button"
           >
             <span
-              class="emotion-13 emotion-14"
+              class="emotion-6 emotion-7"
             >
-              Dropdown 3
+              <span
+                class="emotion-17 emotion-18"
+              >
+                Dropdown 3
+              </span>
+              <svg
+                aria-hidden="true"
+                class="icon"
+                data-testid="caretDown"
+                fill="currentColor"
+                height="20"
+                viewBox="0 0 24 24"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                  fill-rule="evenodd"
+                />
+              </svg>
             </span>
-            <svg
-              aria-hidden="true"
-              class="icon"
-              data-testid="caretDown"
-              fill="currentColor"
-              height="20"
-              viewBox="0 0 24 24"
-              width="20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                fill-rule="evenodd"
-              />
-            </svg>
-          </span>
-        </button>
-      </div>
-      <div
-        data-testid="dropdownContentWrapper"
-        id="3_dropdownMenuId"
-        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
-      >
+          </button>
+        </div>
         <div
-          class="emotion-15 emotion-16 emotion-17"
-          data-testid="dropdownContent"
-          tabindex="-1"
-          width="auto"
+          data-testid="dropdownContentWrapper"
+          id="3_dropdownMenuId"
+          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
         >
           <div
-            aria-labelledby="3"
-            role="menu"
+            class="emotion-19 emotion-20 emotion-21"
+            data-testid="dropdownContent"
+            tabindex="-1"
+            width="auto"
           >
             <div
-              class="emotion-18 emotion-19"
-              role="menuitem"
-              tabindex="-1"
+              aria-labelledby="3"
+              role="menu"
             >
-              Menu item 3.1
+              <div
+                class="emotion-22 emotion-23"
+                role="menuitem"
+                tabindex="-1"
+              >
+                Menu item 3.1
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </li>
+  </ul>
 </div>
 `;
