@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.15
+
+### Patch Changes
+
+- c9a0d84: fix(Dropdown): Add aria-controls attribute for Dropdown trigger button.
+
 ## 5.1.0-rc.14
 
 ### Patch Changes
