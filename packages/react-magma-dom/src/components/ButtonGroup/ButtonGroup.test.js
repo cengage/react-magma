@@ -11,6 +11,7 @@ import {
   DropdownButton,
   DropdownContent,
   DropdownMenuItem,
+  DropdownSplitButton,
 } from '../Dropdown';
 import { IconButton } from '../IconButton';
 
@@ -416,13 +417,13 @@ describe('ButtonGroup', () => {
           <Button>1</Button>
           <Dropdown>
             <DropdownButton id="2">Dropdown 2</DropdownButton>
-            <DropdownContent>
+            <DropdownContent id="2">
               <DropdownMenuItem>Menu item 2.1</DropdownMenuItem>
             </DropdownContent>
           </Dropdown>
           <Dropdown>
             <DropdownButton id="3">Dropdown 3</DropdownButton>
-            <DropdownContent>
+            <DropdownContent id="3">
               <DropdownMenuItem>Menu item 3.1</DropdownMenuItem>
             </DropdownContent>
           </Dropdown>
@@ -442,13 +443,13 @@ describe('ButtonGroup', () => {
           <Button>1</Button>
           <Dropdown>
             <DropdownButton id="2">Dropdown 2</DropdownButton>
-            <DropdownContent>
+            <DropdownContent id="2">
               <DropdownMenuItem>Menu item 2.1</DropdownMenuItem>
             </DropdownContent>
           </Dropdown>
           <Dropdown>
             <DropdownButton id="3">Dropdown 3</DropdownButton>
-            <DropdownContent>
+            <DropdownContent id="3">
               <DropdownMenuItem>Menu item 3.1</DropdownMenuItem>
             </DropdownContent>
           </Dropdown>
@@ -467,13 +468,13 @@ describe('ButtonGroup', () => {
           <Button>1</Button>
           <Dropdown>
             <DropdownButton id="2">Dropdown 2</DropdownButton>
-            <DropdownContent>
+            <DropdownContent id="2">
               <DropdownMenuItem>Menu item 2.1</DropdownMenuItem>
             </DropdownContent>
           </Dropdown>
           <Dropdown>
             <DropdownButton id="3">Dropdown 3</DropdownButton>
-            <DropdownContent>
+            <DropdownContent id="3">
               <DropdownMenuItem>Menu item 3.1</DropdownMenuItem>
             </DropdownContent>
           </Dropdown>
@@ -482,52 +483,82 @@ describe('ButtonGroup', () => {
 
       expect(container).toMatchSnapshot();
     });
-  });
-});
 
-describe('Size', () => {
-  const icon = <CheckIcon />;
+    it('Snapshot: SplitButton', async () => {
+      const { container } = render(
+        <ButtonGroup
+          orientation={ButtonGroupOrientation.vertical}
+          alignment={ButtonGroupAlignment.fill}
+        >
+          <Dropdown>
+            <DropdownSplitButton id="1">
+              Dropdown SplitButton 1
+            </DropdownSplitButton>
+            <DropdownContent id="1">
+              <DropdownMenuItem>Menu item 2.1</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownSplitButton id="2">
+              Dropdown SplitButton 2
+            </DropdownSplitButton>
+            <DropdownContent id="2">
+              <DropdownMenuItem>Menu item 2.1</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </ButtonGroup>
+      );
 
-  it('Large', () => {
-    const { container } = render(
-      <ButtonGroup>
-        <IconButton icon={icon} size={ButtonSize.large}>
-          Large
-        </IconButton>
-      </ButtonGroup>
-    );
-
-    const svg = container.querySelector('svg');
-
-    expect(svg).toHaveAttribute('height', magma.iconSizes.medium.toString());
-    expect(svg).toHaveAttribute('width', magma.iconSizes.medium.toString());
-  });
-
-  it('Medium', () => {
-    const { container } = render(
-      <ButtonGroup>
-        <IconButton icon={icon} size={ButtonSize.medium}>
-          Medium
-        </IconButton>
-      </ButtonGroup>
-    );
-
-    const svg = container.querySelector('svg');
-    expect(svg).toHaveAttribute('height', magma.iconSizes.small.toString());
-    expect(svg).toHaveAttribute('width', magma.iconSizes.small.toString());
+      await waitFor(() => {
+        expect(container).toMatchSnapshot();
+      });
+    });
   });
 
-  it('Small', () => {
-    const { container } = render(
-      <ButtonGroup>
-        <IconButton icon={icon} size={ButtonSize.small}>
-          Small
-        </IconButton>
-      </ButtonGroup>
-    );
+  describe('Size', () => {
+    const icon = <CheckIcon />;
 
-    const svg = container.querySelector('svg');
-    expect(svg).toHaveAttribute('height', magma.iconSizes.xSmall.toString());
-    expect(svg).toHaveAttribute('width', magma.iconSizes.xSmall.toString());
+    it('Large', () => {
+      const { container } = render(
+        <ButtonGroup>
+          <IconButton icon={icon} size={ButtonSize.large}>
+            Large
+          </IconButton>
+        </ButtonGroup>
+      );
+
+      const svg = container.querySelector('svg');
+
+      expect(svg).toHaveAttribute('height', magma.iconSizes.medium.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.medium.toString());
+    });
+
+    it('Medium', () => {
+      const { container } = render(
+        <ButtonGroup>
+          <IconButton icon={icon} size={ButtonSize.medium}>
+            Medium
+          </IconButton>
+        </ButtonGroup>
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.small.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.small.toString());
+    });
+
+    it('Small', () => {
+      const { container } = render(
+        <ButtonGroup>
+          <IconButton icon={icon} size={ButtonSize.small}>
+            Small
+          </IconButton>
+        </ButtonGroup>
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.xSmall.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.xSmall.toString());
+    });
   });
 });
