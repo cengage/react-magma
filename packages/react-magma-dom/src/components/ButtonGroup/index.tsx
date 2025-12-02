@@ -147,6 +147,9 @@ const StyledButtonGroup = styled.div<{
   orientation?: ButtonGroupOrientation;
   variant?: ButtonVariant;
 }>`
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: ${props => buildButtonAlignment(props)};
   flex-direction: ${props =>
@@ -165,37 +168,14 @@ const StyledButtonGroup = styled.div<{
       row-gap: ${props.theme.spaceScale.spacing03};
     `}
 
-  > button, > div {
-    ${props =>
-      props.orientation === ButtonGroupOrientation.horizontal &&
-      css`
-        &:first-child {
-          margin-left: 0;
-        }
-        &:last-child {
-          margin-right: 0;
-        }
-      `}
-
-    ${props =>
-      props.orientation === ButtonGroupOrientation.vertical &&
-      css`
-        &:first-child {
-          margin-top: 0;
-        }
-        &:last-child {
-          margin-bottom: 0;
-        }
-      `}
-  }
-
-  > div {
+  > li > div {
     margin: ${props => buildButtonMargin(props)};
     flex: ${props =>
       props.alignment === ButtonGroupAlignment.fill &&
       props.orientation === ButtonGroupOrientation.horizontal
         ? '1'
         : 'none'};
+    div > button,
     button {
       // Split buttons
       &:nth-child(2) {
@@ -204,53 +184,9 @@ const StyledButtonGroup = styled.div<{
       width: ${props =>
         props.alignment === ButtonGroupAlignment.fill ? '100%' : ''};
     }
-
-    ${props =>
-      props.noSpace &&
-      props.orientation === ButtonGroupOrientation.horizontal &&
-      props.variant === ButtonVariant.solid &&
-      props.alignment !== ButtonGroupAlignment.apart &&
-      css`
-        &:first-child:not(:only-child) {
-          button {
-            border-radius: ${props.theme.borderRadius} 0 0
-              ${props.theme.borderRadius};
-            border-right: 0;
-          }
-        }
-        &:nth-child(2) {
-          button {
-            border-left: 1px solid ${buildNoSpaceBorderColor(props)};
-          }
-        }
-        &:not(:first-child) {
-          button {
-            border-radius: 0;
-            border-right: ${
-              props.color === ButtonColor.secondary ||
-              props.color === ButtonColor.subtle
-                ? '0'
-                : `1px solid ${props.theme.colors.neutral100}`
-            };
-          }
-        }
-        &:not(:first-child)&:not(:last-child) {
-          button {
-            border-right: 0;
-          }
-        }
-        &:last-child:not(:only-child) {
-          button {
-            border-radius: 0 ${props.theme.borderRadius}
-              ${props.theme.borderRadius} 0;
-            border-right: 1px solid ${buildNoSpaceBorderColor(props)};
-          }
-        }
-      }
-    `};
   }
 
-  > button {
+  > li > button {
     margin: ${props => buildButtonMargin(props)};
     flex: ${props =>
       props.alignment === ButtonGroupAlignment.fill &&
@@ -258,6 +194,67 @@ const StyledButtonGroup = styled.div<{
         ? '1'
         : 'none'};
 
+    // Only apply width 100% to buttons that are NOT icon-only buttons
+    ${props =>
+      props.alignment === ButtonGroupAlignment.fill &&
+      css`
+        &:not([aria-label]):not([title]) {
+          width: 100%;
+        }
+        &[aria-label]:empty,
+        &[title]:empty {
+          width: auto;
+          flex: none;
+        }
+        // Check if button has only icon content (no text)
+        &:has(svg):not(:has(:not(svg))) {
+          width: auto;
+          flex: none;
+        }
+      `}
+  }
+
+  > li {
+    ${props =>
+      props.orientation === ButtonGroupOrientation.horizontal &&
+      css`
+        &:first-child:not(:only-child) {
+          > div > div > button,
+          > div > button,
+          > button {
+            margin-left: 0;
+          }
+        }
+
+        &:last-child:not(:only-child) {
+          > div > div > button,
+          > div > button,
+          > button {
+            margin-right: 0;
+          }
+        }
+      `}
+
+    ${props =>
+      props.orientation === ButtonGroupOrientation.vertical &&
+      css`
+        &:first-child:not(:only-child) {
+          > div > div > button,
+          > div > button,
+          > button {
+            margin-top: 0;
+          }
+        }
+
+        &:last-child:not(:only-child) {
+          > div > div > button,
+          > div > button,
+          > button {
+            margin-bottom: 0;
+          }
+        }
+      `}
+
     ${props =>
       props.noSpace &&
       props.orientation === ButtonGroupOrientation.horizontal &&
@@ -265,30 +262,105 @@ const StyledButtonGroup = styled.div<{
       props.alignment !== ButtonGroupAlignment.apart &&
       css`
         &:first-child:not(:only-child) {
-          border-radius: ${props.theme.borderRadius} 0 0
-            ${props.theme.borderRadius};
-          border-right: 0;
+          > div > div > button,
+          > div > button,
+          > button {
+            border-radius: ${props.theme.borderRadius} 0 0
+              ${props.theme.borderRadius};
+            border-right: 0;
+          }
         }
         &:nth-child(2) {
-          border-left: 1px solid ${buildNoSpaceBorderColor(props)};
+          > div > div > button,
+          > div > button,
+          > button {
+            border-left: 1px solid ${buildNoSpaceBorderColor(props)};
+          }
         }
         &:not(:first-child) {
-          border-radius: 0;
-          border-right: ${props.color === ButtonColor.secondary ||
-          props.color === ButtonColor.subtle
-            ? '0'
-            : `1px solid ${props.theme.colors.neutral100}`};
+          > div > div > button,
+          > div > button,
+          > button {
+            border-radius: 0;
+            border-right: ${props.color === ButtonColor.secondary ||
+            props.color === ButtonColor.subtle
+              ? '0'
+              : `1px solid ${props.theme.colors.neutral100}`};
+          }
         }
         &:not(:first-child)&:not(:last-child) {
-          border-right: 0;
+          > div > div > button,
+          > div > button,
+          > button {
+            border-right: 0;
+          }
         }
         &:last-child:not(:only-child) {
-          border-radius: 0 ${props.theme.borderRadius}
-            ${props.theme.borderRadius} 0;
-          border-right: 1px solid ${buildNoSpaceBorderColor(props)};
+          > div > div > button,
+          > div > button,
+          > button {
+            border-radius: 0 ${props.theme.borderRadius}
+              ${props.theme.borderRadius} 0;
+            border-right: 1px solid ${buildNoSpaceBorderColor(props)};
+          }
         }
-      `}
+      `};
+
+    ${props =>
+      props.noSpace &&
+      props.orientation === ButtonGroupOrientation.horizontal &&
+      props.variant === ButtonVariant.solid &&
+      props.alignment !== ButtonGroupAlignment.apart &&
+      css`
+        > div {
+          &:first-child:not(:only-child) {
+            div > button,
+            button {
+              border-radius: ${props.theme.borderRadius} 0 0
+                ${props.theme.borderRadius};
+              border-right: 0;
+            }
+          }
+          &:nth-child(2) {
+            div > button,
+            button {
+              border-left: 1px solid ${buildNoSpaceBorderColor(props)};
+            }
+          }
+          &:not(:first-child) {
+            div > button,
+            button {
+              border-radius: 0;
+              border-right: ${props.color === ButtonColor.secondary ||
+              props.color === ButtonColor.subtle
+                ? '0'
+                : `1px solid ${props.theme.colors.neutral100}`};
+            }
+          }
+          &:not(:first-child)&:not(:last-child) {
+            div > button,
+            button {
+              border-right: 0;
+            }
+          }
+          &:last-child:not(:only-child) {
+            div > button,
+            button {
+              border-radius: 0 ${props.theme.borderRadius}
+                ${props.theme.borderRadius} 0;
+              border-right: 1px solid ${buildNoSpaceBorderColor(props)};
+            }
+          }
+        }
+      `};
   }
+`;
+
+const StyledButtonItem = styled.li`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: contents;
 `;
 
 export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
@@ -309,6 +381,10 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
     const context = { variant, color, size, textTransform, isInverse };
     const theme = React.useContext(ThemeContext);
 
+    const wrappedChildren = React.Children.map(children, child => (
+      <StyledButtonItem>{child}</StyledButtonItem>
+    ));
+
     return (
       <StyledButtonGroup
         alignment={alignment || ButtonGroupAlignment.left}
@@ -321,9 +397,11 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
         ref={ref}
         data-testid={testId}
         {...rest}
+        as={'ul'}
+        role="list"
       >
         <ButtonGroupContext.Provider value={context}>
-          {children}
+          {wrappedChildren}
         </ButtonGroupContext.Provider>
       </StyledButtonGroup>
     );
