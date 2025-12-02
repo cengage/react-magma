@@ -509,9 +509,7 @@ describe('ButtonGroup', () => {
         </ButtonGroup>
       );
 
-      await waitFor(() => {
-        expect(container).toMatchSnapshot();
-      });
+      expect(container).toMatchSnapshot();
     });
   });
 
