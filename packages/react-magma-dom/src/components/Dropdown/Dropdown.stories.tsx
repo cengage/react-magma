@@ -126,30 +126,38 @@ const AlignmentTemplate: StoryFn<DropdownProps> = args => (
       dropDirection={DropdownDropDirection.right}
       activeIndex={1}
     >
-      <DropdownButton>Right Aligned Dropdown</DropdownButton>
-      <DropdownContent>
+      <DropdownButton id="rightAlignedDropdown">
+        Right Aligned Dropdown
+      </DropdownButton>
+      <DropdownContent id="rightAlignedDropdown">
         <DropdownMenuItem>Menu item 1</DropdownMenuItem>
         <DropdownMenuItem>Menu item number two</DropdownMenuItem>
       </DropdownContent>
     </Dropdown>
     <Dropdown {...args} dropDirection={DropdownDropDirection.left}>
-      <DropdownButton>Left Aligned Dropdown</DropdownButton>
-      <DropdownContent>
+      <DropdownButton id="leftAlignedDropdown">
+        Left Aligned Dropdown
+      </DropdownButton>
+      <DropdownContent id="leftAlignedDropdown">
         <DropdownMenuItem>Menu item 1</DropdownMenuItem>
         <DropdownMenuItem>Menu item number two</DropdownMenuItem>
       </DropdownContent>
     </Dropdown>
     <br />
     <Dropdown {...args} dropDirection={DropdownDropDirection.up}>
-      <DropdownButton>Top Aligned Dropdown</DropdownButton>
-      <DropdownContent>
+      <DropdownButton id="topAlignedDropdown">
+        Top Aligned Dropdown
+      </DropdownButton>
+      <DropdownContent id="topAlignedDropdown">
         <DropdownMenuItem>Menu item 1</DropdownMenuItem>
         <DropdownMenuItem>Menu item number two</DropdownMenuItem>
       </DropdownContent>
     </Dropdown>
     <Dropdown {...args} dropDirection={DropdownDropDirection.down}>
-      <DropdownButton>Bottom Aligned Dropdown</DropdownButton>
-      <DropdownContent>
+      <DropdownButton id="bottomAlignedDropdown">
+        Bottom Aligned Dropdown
+      </DropdownButton>
+      <DropdownContent id="bottomAlignedDropdown">
         <DropdownMenuItem>Menu item 1</DropdownMenuItem>
         <DropdownMenuItem>Menu item number two</DropdownMenuItem>
       </DropdownContent>
@@ -242,10 +250,14 @@ const SplitTemplate: StoryFn<DropdownProps> = args => (
   >
     <div style={{ margin: '150px 0', textAlign: 'center' }}>
       <Dropdown {...args}>
-        <DropdownSplitButton aria-label="Split" size={ButtonSize.medium}>
+        <DropdownSplitButton
+          aria-label="Split"
+          id="splitDropdown1"
+          size={ButtonSize.medium}
+        >
           Split Dropdown
         </DropdownSplitButton>
-        <DropdownContent>
+        <DropdownContent id="splitDropdown1">
           <DropdownMenuItem>Menu item 1</DropdownMenuItem>
           <DropdownMenuItem>Menu item number two</DropdownMenuItem>
         </DropdownContent>

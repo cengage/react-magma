@@ -1,5 +1,17 @@
 ## 4.10.0
 
+## 5.1.0-rc.15
+
+### Patch Changes
+
+- c9a0d84: fix(Dropdown): Add aria-controls attribute for Dropdown trigger button.
+
+## 5.1.0-rc.14
+
+### Patch Changes
+
+- 72073a2: fix(Nav Tabs): Fix obscured content when the elements is focused.
+
 ## 5.1.0-rc.13
 
 ### Patch Changes

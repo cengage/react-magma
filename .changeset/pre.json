@@ -39,6 +39,8 @@
     "fix-Accordion-accessibility-render-issue",
     "fix-Combobox-accessibility",
     "fix-Docs-Miscellaneous-issues",
+    "fix-Dropdown-add-aria-contols",
+    "fix-NavTabs-fix-obscured-focus",
     "fix-Select-scrollbar-issue",
     "fix-Storybook-select-issues",
     "fix-Table-tabIndex-logic",

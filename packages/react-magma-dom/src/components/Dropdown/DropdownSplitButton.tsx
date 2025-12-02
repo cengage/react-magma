@@ -144,6 +144,9 @@ export const DropdownSplitButton = React.forwardRef<
       )}
       <IconButton
         {...other}
+        aria-controls={
+          (id ?? context.dropdownButtonId.current) + '_dropdownMenuId'
+        }
         aria-expanded={resolvedContext.isOpen}
         aria-label={ariaLabel || i18n.dropdown.toggleMenuAriaLabel}
         aria-haspopup="true"
