@@ -81,17 +81,18 @@ export function Example() {
 
   return (
     <>
-      {showBanner && (
-        <Banner
-          isDismissible
-          onDismiss={handleBannerDismiss}
-          variant={AlertVariant.success}
-          dismissibleButtonRef={dismissibleButtonRef}
-          aria-label={bannerText}
-        >
-          {bannerText}
-        </Banner>
-      )}
+      <Announce aria-label={bannerText}>
+        {showBanner && (
+          <Banner
+            isDismissible
+            onDismiss={handleBannerDismiss}
+            variant={AlertVariant.success}
+            dismissibleButtonRef={dismissibleButtonRef}
+          >
+            {bannerText}
+          </Banner>
+        )}
+      </Announce>
       {!showBanner && (
         <Button
           onClick={handleShowBannerButtonClick}
