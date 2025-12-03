@@ -61,6 +61,8 @@ export function Example() {
   const dismissibleButtonRef = React.useRef<HTMLButtonElement>(null);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
 
+  const bannerText = 'Success! You may now dismiss this banner';
+
   function handleBannerDismiss() {
     updateShowBanner(false);
 
@@ -79,18 +81,17 @@ export function Example() {
 
   return (
     <>
-      <Announce>
-        {showBanner && (
-          <Banner
-            isDismissible
-            onDismiss={handleBannerDismiss}
-            variant={AlertVariant.success}
-            dismissibleButtonRef={dismissibleButtonRef}
-          >
-            Success! You may now dismiss this banner
-          </Banner>
-        )}
-      </Announce>
+      {showBanner && (
+        <Banner
+          isDismissible
+          onDismiss={handleBannerDismiss}
+          variant={AlertVariant.success}
+          dismissibleButtonRef={dismissibleButtonRef}
+          aria-label={bannerText}
+        >
+          {bannerText}
+        </Banner>
+      )}
       {!showBanner && (
         <Button
           onClick={handleShowBannerButtonClick}
