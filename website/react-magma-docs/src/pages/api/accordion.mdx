@@ -126,6 +126,7 @@ import {
 
 export function Example() {
   const [expandedIndex, setExpandedIndex] = React.useState([]);
+  const [ariaLive, setAriaLive] = React.useState('polite');
 
   const isAllExpanded = expandedIndex.length > 0;
 
@@ -152,6 +153,7 @@ export function Example() {
           onClick={handleToggleAll}
           size={ButtonSize.small}
           variant={ButtonVariant.solid}
+          role="status"
         >
           {isAllExpanded ? 'Collapse All' : 'Expand All'}
         </Button>
