@@ -37,6 +37,7 @@
     "feat-SplitDropdown-add-leading-icon",
     "fix-AIButton-box-shadow",
     "fix-Accordion-accessibility-render-issue",
+    "fix-Alert-docs-acessibility-issues",
     "fix-ButtonGroup-acessibility-list",
     "fix-Combobox-accessibility",
     "fix-Docs-Miscellaneous-issues",
