@@ -571,6 +571,8 @@ export const ExpandableItems = {
               </DropdownExpandableMenuPanel>
             </DropdownExpandableMenuItem>
           </DropdownExpandableMenuGroup>
+          <DropdownDivider />
+          <DropdownExpandableMenuListItem>Pizza</DropdownExpandableMenuListItem>
         </DropdownContent>
       </Dropdown>
     );

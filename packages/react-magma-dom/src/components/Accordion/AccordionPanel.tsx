@@ -40,13 +40,15 @@ export const AccordionPanel = React.forwardRef<
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
 
-  const { isExpanded, panelId } = React.useContext(AccordionItemContext);
+  const { buttonId, isExpanded, panelId } =
+    React.useContext(AccordionItemContext);
 
   return (
     <Transition isOpen={isExpanded} collapse unmountOnExit>
       <StyledPanel
         {...rest}
         aria-hidden={!isExpanded}
+        aria-labelledby={buttonId}
         data-testid={testId}
         id={panelId}
         isInverse={isInverse}
