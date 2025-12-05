@@ -43,6 +43,7 @@
     "fix-Docs-Miscellaneous-issues",
     "fix-Dropdown-add-aria-contols",
     "fix-NavTabs-fix-obscured-focus",
+    "fix-NavsTab-add-region",
     "fix-Select-scrollbar-issue",
     "fix-Storybook-select-issues",
     "fix-Table-tabIndex-logic",

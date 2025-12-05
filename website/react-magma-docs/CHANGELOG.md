@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.9
+
+### Patch Changes
+
+- 871d0f2: fix(Nav Tabs): Update documentation to include `aria-labelledby` attribute for multi-instance examples.
+
 ## 7.0.0-rc.8
 
 ### Patch Changes
