@@ -206,7 +206,11 @@ export function Example() {
 Options for the `textTransform` prop for navtabs include `uppercase` and `none`, with `uppercase` (all caps) being the default value.
 This sets the CSS `text-transform` property.
 
-<Alert variant="warning" style={{padding: '4px'}}>When multiple `NavTabs` components are used on the same page, each one should have its own accessible name. You can provide this by using `aria-labelledby`, ensuring that every `NavTabs` instance has a unique label.</Alert>
+<Alert variant="warning">
+  When multiple `NavTabs` components are used on the same page, each one should
+  have its own accessible name. You can provide this by using `aria-labelledby`,
+  ensuring that every `NavTabs` instance has a unique label.
+</Alert>
 
 ```tsx
 import React from 'react';
