@@ -121,7 +121,7 @@ export const DropdownContent = React.forwardRef<
       >
         <div
           aria-labelledby={id ?? context.dropdownButtonId.current}
-          role={hasItemChildren ? 'menu' : null}
+          role={hasItemChildren || hasExpandableItems ? 'menu' : null}
         >
           {children}
         </div>

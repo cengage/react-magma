@@ -1456,6 +1456,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
         >
           <div
             aria-hidden="false"
+            aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
             id="0_panel"
           >
@@ -3589,6 +3590,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
         >
           <div
             aria-hidden="false"
+            aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
             id="0_panel"
           >
@@ -5653,6 +5655,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
         >
           <div
             aria-hidden="false"
+            aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
             id="0_panel"
           >
@@ -7716,6 +7719,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
         >
           <div
             aria-hidden="false"
+            aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
             id="0_panel"
           >
@@ -9909,6 +9913,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
         >
           <div
             aria-hidden="false"
+            aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
             id="0_panel"
           >
@@ -12103,6 +12108,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
         >
           <div
             aria-hidden="false"
+            aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
             id="0_panel"
           >
@@ -14167,6 +14173,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
         >
           <div
             aria-hidden="false"
+            aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
             id="0_panel"
           >
