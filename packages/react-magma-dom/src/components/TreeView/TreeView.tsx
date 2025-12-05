@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
+import { useVirtual } from 'react-virtual';
 
 import { TreeItem } from './TreeItem';
 import { TreeItemHierarchyContext } from './TreeItemHierarchyContext';
@@ -15,15 +16,32 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface TreeViewProps
   extends Omit<React.HTMLAttributes<HTMLUListElement>, 'children'>,
-    UseTreeViewProps {}
+    UseTreeViewProps {
+  /**
+   * Enable virtualization for better performance with large trees.
+   * @default false
+   */
+  enableVirtualization?: boolean;
+  /**
+   * Estimated size of each tree item in pixels (used for virtualization).
+   * @default 40
+   */
+  estimateSize?: number;
+  /**
+   * Number of items to render above and below the visible area (overscan).
+   * @default 5
+   */
+  overscan?: number;
+}
 
-const StyledTreeView = styled.ul<TreeViewProps>`
+const StyledTreeView = styled.ul<TreeViewProps & { isVirtualized?: boolean }>`
   padding: 0;
   margin: 0;
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
+  position: ${props => (props.isVirtualized ? 'relative' : 'static')};
   ul {
     padding: 0;
     margin: 0;
@@ -31,6 +49,20 @@ const StyledTreeView = styled.ul<TreeViewProps>`
       margin: 0;
     }
   }
+`;
+
+const VirtualContainer = styled.div`
+  width: 100%;
+  position: relative;
+`;
+
+const VirtualItem = styled.div<{ height: number; transform: string }>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: ${props => props.height}px;
+  transform: ${props => props.transform};
 `;
 
 export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
@@ -45,6 +77,9 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       selectable,
       testId,
       apiRef,
+      enableVirtualization = false,
+      estimateSize = 40,
+      overscan = 5,
       ...rest
     } = props;
 
@@ -61,8 +96,72 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       [isInverse]
     );
 
+    const parentRef = React.useRef<HTMLUListElement>(null);
+
+    // Flatten tree structure for virtualization
+    const flattenedItems = React.useMemo(() => {
+      if (!enableVirtualization) return [];
+
+      const items: Array<{
+        child: React.ReactElement;
+        depth: number;
+        index: number;
+        key: string;
+      }> = [];
+
+      const flatten = (
+        childrenToFlatten: React.ReactNode,
+        depth = 0,
+        parentIndex = 0
+      ) => {
+        React.Children.forEach(childrenToFlatten, (child, index) => {
+          if (!React.isValidElement(child) || child.type !== TreeItem) {
+            return;
+          }
+
+          const itemKey = `tree-item-${depth}-${index}-${items.length}`;
+
+          // Clone the child without its children to prevent double rendering
+          const childWithoutNested = React.cloneElement(child, {
+            ...child.props,
+            children: null,
+          });
+
+          items.push({
+            child: childWithoutNested,
+            depth,
+            index,
+            key: itemKey,
+          });
+
+          // Check if item has children and is expanded
+          const itemId = child.props.itemId;
+          const isExpanded = expansionContextValue.expandedSet?.has(itemId);
+
+          if (isExpanded && child.props.children) {
+            flatten(child.props.children, depth + 1, index);
+          }
+        });
+      };
+
+      flatten(children);
+      return items;
+    }, [children, enableVirtualization, expansionContextValue.expandedSet]);
+
+    // Setup virtualizer
+    const rowVirtualizer = useVirtual({
+      size: flattenedItems.length,
+      parentRef,
+      estimateSize: React.useCallback(() => estimateSize, [estimateSize]),
+      overscan,
+    });
+
     // Process children without cloneElement - use context instead
     const processedChildren = React.useMemo(() => {
+      if (enableVirtualization) {
+        return null; // Handled by virtualizer below
+      }
+
       let treeItemIndex = 0;
 
       return React.Children.map(children, child => {
@@ -92,7 +191,11 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
 
         return null;
       });
-    }, [children]);
+    }, [children, enableVirtualization]);
+
+    const virtualItems = enableVirtualization
+      ? rowVirtualizer.virtualItems
+      : [];
 
     return (
       <InverseContext.Provider value={inverseContextValue}>
@@ -106,11 +209,58 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                 aria-multiselectable={selectable === TreeViewSelectable.multi}
                 data-testid={testId}
                 isInverse={isInverse}
-                ref={ref}
+                isVirtualized={enableVirtualization}
+                ref={mergedRefs => {
+                  if (typeof ref === 'function') {
+                    ref(mergedRefs);
+                  } else if (ref) {
+                    (ref as React.MutableRefObject<HTMLUListElement>).current =
+                      mergedRefs;
+                  }
+                  parentRef.current = mergedRefs;
+                }}
                 role="tree"
                 theme={theme}
+                style={{
+                  ...rest.style,
+                  ...(enableVirtualization
+                    ? { height: '400px', overflow: 'auto' }
+                    : {}),
+                }}
               >
-                {processedChildren}
+                {enableVirtualization ? (
+                  <VirtualContainer
+                    style={{
+                      height: `${rowVirtualizer.totalSize}px`,
+                    }}
+                  >
+                    {virtualItems.map(virtualItem => {
+                      const item = flattenedItems[virtualItem.index];
+                      const hierarchyValue = {
+                        depth: item.depth,
+                        parentDepth: Math.max(0, item.depth - 1),
+                        isTopLevel: item.depth === 0,
+                        index: item.index,
+                      };
+
+                      return (
+                        <VirtualItem
+                          key={item.key}
+                          height={virtualItem.size}
+                          transform={`translateY(${virtualItem.start}px)`}
+                        >
+                          <TreeItemHierarchyContext.Provider
+                            value={hierarchyValue}
+                          >
+                            {item.child}
+                          </TreeItemHierarchyContext.Provider>
+                        </VirtualItem>
+                      );
+                    })}
+                  </VirtualContainer>
+                ) : (
+                  processedChildren
+                )}
               </StyledTreeView>
             </TreeViewConfigContext.Provider>
           </TreeViewExpansionContext.Provider>
