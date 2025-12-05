@@ -112,6 +112,10 @@ export default {
       control: 'boolean',
       defaultValue: true,
     },
+    enableVirtualization: {
+      control: 'boolean',
+      defaultValue: false,
+    },
   },
 } as Meta;
 
@@ -3596,4 +3600,147 @@ const ConfigurableLargeTreeComponent = (
       <p>Indeterminate: {indeterminate}</p>
     </>
   );
+};
+
+// There is 1000 TreeItems
+export const VirtualizedLargeTree = {
+  render: (args: Partial<TreeViewProps>) => {
+    const apiRef = React.useRef<TreeViewApi>();
+    const folderLabel = (label: any) => {
+      return (
+        <Flex
+          behavior={FlexBehavior.container}
+          justify={FlexJustify.spaceBetween}
+          wrap={FlexWrap.nowrap}
+        >
+          <Flex behavior={FlexBehavior.item}>{label}</Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Paragraph
+              visualStyle={TypographyVisualStyle.bodySmall}
+              noMargins
+              color={TypographyColor.subdued}
+              style={{ marginRight: magma.spaceScale.spacing03 }}
+            />
+            <Dropdown>
+              <DropdownButton
+                aria-label="Extra icon example"
+                color={ButtonColor.secondary}
+                size={ButtonSize.small}
+                icon={<MoreHorizIcon />}
+                shape={ButtonShape.fill}
+              />
+              <DropdownContent>
+                <DropdownMenuItem
+                  icon={<EditIcon aria-hidden />}
+                  onClick={() => console.log('Rename clicked!')}
+                >
+                  Rename
+                </DropdownMenuItem>
+              </DropdownContent>
+            </Dropdown>
+          </Flex>
+        </Flex>
+      );
+    };
+
+    const treeLabel = (name: string) => {
+      return (
+        <Flex
+          behavior={FlexBehavior.container}
+          justify={FlexJustify.spaceBetween}
+          wrap={FlexWrap.nowrap}
+        >
+          <Flex behavior={FlexBehavior.item}>
+            <Hyperlink to="google.com" target="_blank" hasUnderline={false}>
+              Sub folder name {name}
+            </Hyperlink>
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Dropdown>
+              <DropdownButton
+                aria-label="Extra icon example"
+                color={ButtonColor.secondary}
+                size={ButtonSize.small}
+                icon={<MoreHorizIcon />}
+                shape={ButtonShape.fill}
+              />
+              <DropdownContent>
+                <DropdownMenuItem
+                  icon={<EditIcon aria-hidden />}
+                  onClick={() => console.log('Rename clicked!')}
+                >
+                  Rename
+                </DropdownMenuItem>
+              </DropdownContent>
+            </Dropdown>
+          </Flex>
+        </Flex>
+      );
+    };
+
+    return (
+      <Card isInverse={args.isInverse}>
+        <ButtonGroup style={{ margin: '16px' }}>
+          <Button onClick={() => apiRef.current?.expandAll()}>
+            Expand All
+          </Button>
+          <Button onClick={() => apiRef.current?.collapseAll()}>
+            Collapse All
+          </Button>
+        </ButtonGroup>
+        <TreeView
+          {...args}
+          apiRef={apiRef}
+          enableVirtualization={args.enableVirtualization}
+          estimateSize={40}
+          overscan={5}
+          style={{ height: '600px', overflow: 'auto' }}
+        >
+          <TreeItem
+            itemId="parent"
+            label={folderLabel(`Parent folder`)}
+            icon={<FolderIcon />}
+          >
+            {Array.from({ length: 5 }, (_, i) => i + 1).map(i => (
+              <TreeItem
+                key={i}
+                label={folderLabel(`Folder ${i}`)}
+                itemId={`folder${i}`}
+                icon={<FolderIcon />}
+              >
+                {Array.from({ length: 20 }, (_, j) => j + 1).map(j => (
+                  <TreeItem
+                    key={`${i}-${j}`}
+                    label={treeLabel(`Sub folder ${i}-${j}`)}
+                    itemId={`subfolder${i}-${j}`}
+                    icon={<FolderIcon />}
+                  >
+                    {Array.from({ length: 10 }, (_, k) => k + 1).map(k => (
+                      <TreeItem
+                        key={`${i}-${j}-${k}`}
+                        label={`Document ${i}-${j}-${k}`}
+                        itemId={`doc${i}-${j}-${k}`}
+                        icon={<ArticleIcon />}
+                      />
+                    ))}
+                  </TreeItem>
+                ))}
+              </TreeItem>
+            ))}
+          </TreeItem>
+        </TreeView>
+      </Card>
+    );
+  },
+
+  args: {
+    ariaLabel: 'Virtualized Large Tree',
+    selectable: TreeViewSelectable.multi,
+    initialExpandedItems: [],
+    checkParents: false,
+    checkChildren: false,
+    isDisabled: false,
+    testId: 'virtualized-tree-example',
+    enableVirtualization: true,
+  },
 };
