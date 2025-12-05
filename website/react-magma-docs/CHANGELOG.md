@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.3.0-next.9
+
+### Patch Changes
+
+- 46593ab6c: fix(Nav Tabs): Update documentation to include `aria-labelledby` attribute for multi-instance examples.
+- Updated dependencies [93d509836]
+  - react-magma-dom@4.11.0-next.16
+
 ## 5.3.0-next.8
 
 ### Patch Changes
