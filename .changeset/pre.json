@@ -41,6 +41,7 @@
     "fix-ButtonGroup-acessibility-list",
     "fix-Combobox-accessibility",
     "fix-Docs-Miscellaneous-issues",
+    "fix-Dropdown-add-aria-attributes",
     "fix-Dropdown-add-aria-contols",
     "fix-NavTabs-fix-obscured-focus",
     "fix-NavsTab-add-region",

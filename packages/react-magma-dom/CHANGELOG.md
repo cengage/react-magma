@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.18
+
+### Patch Changes
+
+- 365304c: fix(Dropdown & Accordion): Add aria attributes for Dropdown menu and nested items to improve accessibility.
+
 ## 5.1.0-rc.17
 
 ### Patch Changes
