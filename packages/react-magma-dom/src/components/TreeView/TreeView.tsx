@@ -5,7 +5,6 @@ import styled from '@emotion/styled';
 import { TreeItem } from './TreeItem';
 import { TreeItemHierarchyContext } from './TreeItemHierarchyContext';
 import { TreeViewConfigContext } from './TreeViewConfigContext';
-import { TreeViewContext } from './TreeViewContext';
 import { TreeViewExpansionContext } from './TreeViewExpansionContext';
 import { TreeViewSelectionContext } from './TreeViewSelectionContext';
 import { TreeViewSelectable } from './types';
@@ -52,12 +51,8 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
 
-    const {
-      contextValue,
-      selectionContextValue,
-      expansionContextValue,
-      configContextValue,
-    } = useTreeView(props);
+    const { selectionContextValue, expansionContextValue, configContextValue } =
+      useTreeView(props);
 
     useTreeItem({ label: ariaLabel, itemId: '' }, ref);
 
@@ -101,27 +96,25 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
 
     return (
       <InverseContext.Provider value={inverseContextValue}>
-        <TreeViewContext.Provider value={contextValue}>
-          <TreeViewSelectionContext.Provider value={selectionContextValue}>
-            <TreeViewExpansionContext.Provider value={expansionContextValue}>
-              <TreeViewConfigContext.Provider value={configContextValue}>
-                <StyledTreeView
-                  {...rest}
-                  aria-label={ariaLabel}
-                  aria-labelledby={ariaLabelledBy}
-                  aria-multiselectable={selectable === TreeViewSelectable.multi}
-                  data-testid={testId}
-                  isInverse={isInverse}
-                  ref={ref}
-                  role="tree"
-                  theme={theme}
-                >
-                  {processedChildren}
-                </StyledTreeView>
-              </TreeViewConfigContext.Provider>
-            </TreeViewExpansionContext.Provider>
-          </TreeViewSelectionContext.Provider>
-        </TreeViewContext.Provider>
+        <TreeViewSelectionContext.Provider value={selectionContextValue}>
+          <TreeViewExpansionContext.Provider value={expansionContextValue}>
+            <TreeViewConfigContext.Provider value={configContextValue}>
+              <StyledTreeView
+                {...rest}
+                aria-label={ariaLabel}
+                aria-labelledby={ariaLabelledBy}
+                aria-multiselectable={selectable === TreeViewSelectable.multi}
+                data-testid={testId}
+                isInverse={isInverse}
+                ref={ref}
+                role="tree"
+                theme={theme}
+              >
+                {processedChildren}
+              </StyledTreeView>
+            </TreeViewConfigContext.Provider>
+          </TreeViewExpansionContext.Provider>
+        </TreeViewSelectionContext.Provider>
       </InverseContext.Provider>
     );
   }

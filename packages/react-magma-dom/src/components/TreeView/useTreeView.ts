@@ -609,47 +609,6 @@ export function useTreeView(props: UseTreeViewProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Only run on mount
 
-  const contextValue = React.useMemo(
-    () => ({
-      hasIcons,
-      itemToFocus,
-      onSelectedItemChange,
-      onExpandedChange,
-      selectable,
-      selectedItems,
-      initialExpandedItems,
-      treeItemRefArray,
-      registerTreeItem,
-      checkChildren,
-      checkParents,
-      items,
-      selectItem,
-      handleExpandedChange,
-      expandedSet,
-      expandIconStyles,
-      isTopLevelSelectable,
-    }),
-    [
-      hasIcons,
-      itemToFocus,
-      onSelectedItemChange,
-      onExpandedChange,
-      selectable,
-      selectedItems,
-      initialExpandedItems,
-      treeItemRefArray,
-      registerTreeItem,
-      checkChildren,
-      checkParents,
-      items,
-      selectItem,
-      handleExpandedChange,
-      expandedSet,
-      expandIconStyles,
-      isTopLevelSelectable,
-    ]
-  );
-
   // Split context values for reduced re-render scope
   const selectionContextValue = React.useMemo(
     () => ({
@@ -704,7 +663,6 @@ export function useTreeView(props: UseTreeViewProps) {
   );
 
   return {
-    contextValue,
     selectionContextValue,
     expansionContextValue,
     configContextValue,
