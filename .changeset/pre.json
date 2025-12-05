@@ -36,6 +36,7 @@
     "fix-select-aria-label",
     "fix-select-focus-behaviour",
     "fix-timepicker-update-styles",
-    "manually-sync-4.10.1"
+    "manually-sync-4.10.1",
+    "treeview-performance"
   ]
 }

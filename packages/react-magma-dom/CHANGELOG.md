@@ -1,5 +1,16 @@
 ## 4.10.1
 
+## 4.11.0-next.17
+
+### Minor Changes
+
+- 10df00803: chore(TreeView): preformance refactor
+
+  - Introduced a new `treeViewReducer` to manage the state of the TreeView component, handling actions such as item selection, expansion, and item updates.
+  - Refactored `useTreeView` and `useTreeItem` hooks to utilize the new reducer, improving state management and reducing re-renders.
+  - Enhanced utility functions for better performance, including optimized selection and status processing using Maps for O(1) lookups.
+  - Updated context providers to split responsibilities for selection, expansion, and configuration, allowing for more granular updates and improved performance.
+
 ## 4.11.0-next.16
 
 ### Patch Changes
