@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.15
+
+### Patch Changes
+
+- 4d7042456: fix(Alert): add the `dismissibleButtonRef` prop to the `Alert` and fix docs page
+
 ## 4.11.0-next.14
 
 ### Patch Changes
