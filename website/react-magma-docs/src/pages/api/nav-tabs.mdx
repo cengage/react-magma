@@ -206,6 +206,12 @@ export function Example() {
 Options for the `textTransform` prop for navtabs include `uppercase` and `none`, with `uppercase` (all caps) being the default value.
 This sets the CSS `text-transform` property.
 
+<Alert variant="warning">
+  When multiple `NavTabs` components are used on the same page, each one should
+  have its own accessible name. You can provide this by using `aria-labelledby`,
+  ensuring that every `NavTabs` instance has a unique label.
+</Alert>
+
 ```tsx
 import React from 'react';
 
@@ -214,7 +220,10 @@ import { NavTabs, NavTab, TabsTextTransform } from 'react-magma-dom';
 export function Example() {
   return (
     <>
-      <NavTabs textTransform={TabsTextTransform.uppercase}>
+      <NavTabs
+        textTransform={TabsTextTransform.uppercase}
+        aria-labelledby="Uppercase Nav Tabs region"
+      >
         <NavTab isActive to="javascript:void(0)">
           First uppercase
         </NavTab>
@@ -223,7 +232,10 @@ export function Example() {
       <br />
       <br />
       <br />
-      <NavTabs textTransform={TabsTextTransform.none}>
+      <NavTabs
+        textTransform={TabsTextTransform.none}
+        aria-labelledby="Lowercase Nav Tabs region"
+      >
         <NavTab isActive to="javascript:void(0)">
           First lowercase
         </NavTab>
@@ -452,6 +464,7 @@ export function Example() {
     <>
       <NavTabs
         aria-label="Icon Position Left Nav Tabs"
+        aria-labelledby="Icon Position Left Nav Tabs"
         iconPosition={TabsIconPosition.left}
       >
         <NavTab icon={<EmailIcon />} isActive to="javascript:void(0)">
@@ -471,6 +484,7 @@ export function Example() {
 
       <NavTabs
         aria-label="Icon Position Right Nav Tabs"
+        aria-labelledby="Icon Position Right Nav Tabs"
         iconPosition={TabsIconPosition.right}
       >
         <NavTab icon={<EmailIcon />} isActive to="javascript:void(0)">
