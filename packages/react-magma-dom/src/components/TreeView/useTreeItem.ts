@@ -27,6 +27,12 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
    */
   icon?: React.ReactElement<IconProps>;
   /**
+   * Custom height for this item when virtualization is enabled.
+   * If not specified, the TreeView's estimateSize will be used.
+   * @default undefined (uses TreeView's estimateSize)
+   */
+  itemSize?: number;
+  /**
    * If true, element is disabled
    * @default false
    */
