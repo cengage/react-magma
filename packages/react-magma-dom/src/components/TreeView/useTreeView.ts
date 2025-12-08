@@ -507,37 +507,8 @@ export function useTreeView(props: UseTreeViewProps) {
           selectable,
         },
       });
-
-      // If the item has a parent, we need to reinitialize items to handle checkChildren logic
-      if (newItem.parentId) {
-        // We need to get the updated items after ADD_ITEM dispatch
-        // This is a limitation of the current approach - we'll handle it in the next effect
-        dispatch({
-          type: 'SET_ITEMS',
-          payload: {
-            items: getInitialItems({
-              children,
-              preselectedItems: selectedItems,
-              checkParents,
-              checkChildren: false, // newly added children should preserve their state regardless of checkChildren
-              selectable,
-              isDisabled,
-              isTopLevelSelectable,
-              items: [...items, newItem],
-            }),
-          },
-        });
-      }
     },
-    [
-      checkParents,
-      children,
-      isDisabled,
-      isTopLevelSelectable,
-      items,
-      selectable,
-      selectedItems,
-    ]
+    [checkParents, selectable]
   );
 
   React.useEffect(() => {

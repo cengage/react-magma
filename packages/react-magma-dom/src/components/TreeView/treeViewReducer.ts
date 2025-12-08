@@ -252,26 +252,25 @@ export function treeViewReducer(
           item.hasOwnTreeItems = true;
 
           if (checkParents) {
-            if (
-              item.checkedStatus === IndeterminateCheckboxStatus.checked &&
-              newItem.checkedStatus !== IndeterminateCheckboxStatus.checked
-            ) {
-              item.checkedStatus = IndeterminateCheckboxStatus.indeterminate;
-            } else if (
-              item.checkedStatus ===
-                IndeterminateCheckboxStatus.indeterminate &&
-              newItem.checkedStatus === IndeterminateCheckboxStatus.checked
-            ) {
-              const allChildrenChecked = [...state.items, newItem]
-                .filter(child => child.parentId === item.itemId)
-                .every(
-                  child =>
-                    child.checkedStatus === IndeterminateCheckboxStatus.checked
-                );
+            const allChildren = [...state.items, newItem].filter(
+              child => child.parentId === item.itemId
+            );
 
-              if (allChildrenChecked) {
-                item.checkedStatus = IndeterminateCheckboxStatus.checked;
-              }
+            const checkedChildren = allChildren.filter(
+              child =>
+                child.checkedStatus === IndeterminateCheckboxStatus.checked
+            );
+            const uncheckedChildren = allChildren.filter(
+              child =>
+                child.checkedStatus === IndeterminateCheckboxStatus.unchecked
+            );
+
+            if (checkedChildren.length === allChildren.length) {
+              item.checkedStatus = IndeterminateCheckboxStatus.checked;
+            } else if (uncheckedChildren.length === allChildren.length) {
+              item.checkedStatus = IndeterminateCheckboxStatus.unchecked;
+            } else {
+              item.checkedStatus = IndeterminateCheckboxStatus.indeterminate;
             }
           }
         }
