@@ -37,6 +37,7 @@
     "fix-select-focus-behaviour",
     "fix-timepicker-update-styles",
     "manually-sync-4.10.1",
+    "treeview-performance-styles",
     "treeview-performance"
   ]
 }

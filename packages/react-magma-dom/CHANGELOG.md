@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.18
+
+### Minor Changes
+
+- 9c7121194: fix(TreeView): added itemSize for virtualized tree items
+
 ## 4.11.0-next.17
 
 ### Minor Changes
