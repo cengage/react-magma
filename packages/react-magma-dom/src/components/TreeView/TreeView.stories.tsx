@@ -3405,207 +3405,45 @@ export function CustomExpandIconArrowAndTreeItemStyles() {
   );
 }
 
-export const ConfigurableLargeTree = {
-  render: (args: Partial<TreeViewProps> & { numberOfItems: number }) => (
-    <ConfigurableLargeTreeComponent {...args} />
-  ),
-  args: {
-    numberOfItems: 1000,
-    checkParents: true,
-    checkChildren: true,
-    selectable: TreeViewSelectable.multi,
-    ariaLabel: 'Configurable Large Tree',
-  },
-
-  argTypes: {
-    numberOfItems: {
-      control: { type: 'range', min: 100, max: 3000, step: 100 },
-    },
-  },
-
-  parameters: {
-    controls: {
-      exclude: [
-        'isInverse',
-        'initialExpandedItems',
-        'ariaLabelledBy',
-        'testId',
-      ],
-    },
-  },
-};
-
-const ConfigurableLargeTreeComponent = (
-  args: Partial<TreeViewProps> & { numberOfItems: number }
-) => {
-  const { numberOfItems, ...treeProps } = args;
-
-  const treeContent = React.useMemo(() => {
-    const items: any[] = [];
-    let currentCount = 0;
-    const maxChildren = 5;
-    const maxDepth = 5;
-
-    const generateNode = (depth: number): any => {
-      if (currentCount >= numberOfItems) return null;
-      currentCount++;
-      const id = `node-${currentCount}`;
-
-      const children: any[] = [];
-      if (depth < maxDepth) {
-        for (let i = 0; i < maxChildren; i++) {
-          if (currentCount >= numberOfItems) break;
-          const child = generateNode(depth + 1);
-          if (child) children.push(child);
-        }
-      }
-
-      return {
-        id,
-        title: `Node ${currentCount}`,
-        children,
-      };
-    };
-
-    while (currentCount < numberOfItems) {
-      const node = generateNode(0);
-      if (node) items.push(node);
-    }
-
-    return {
-      id: 'generated-tree',
-      items,
-      preselectedItems: [],
-    };
-  }, [numberOfItems]);
-
-  const apiRef = React.useRef<TreeViewApi>();
-  const [isShowAll, setIsShowAll] = React.useState(false);
-  const [selectedItems, setSelectedItems] =
-    React.useState<TreeItemSelectedInterface[]>();
-  const total = selectedItems?.length ?? 0;
-  const { selected, indeterminate } = createControlledTags(
-    selectedItems,
-    apiRef?.current
-  );
-
-  function onSelection(items: TreeItemSelectedInterface[]) {
-    setSelectedItems(items);
-  }
-
-  const getTermsForRender = (terms: any) => {
-    if (isShowAll || terms.length <= 5) {
-      return terms;
-    } else {
-      return terms.slice(0, 5);
-    }
-  };
-
-  const toggleShowAll = () => {
-    setIsShowAll(prev => !prev);
-    if (isShowAll) {
-      apiRef.current?.showLess();
-    } else {
-      apiRef.current?.showMore();
-    }
-  };
-
-  const onSelectAll = () => {
-    if (isShowAll) {
-      apiRef.current?.showLess();
-    } else {
-      apiRef.current?.showMore();
-      setIsShowAll(prev => !prev);
-    }
-    setTimeout(() => {
-      apiRef.current?.selectAll();
-    }, 50);
-  };
-
-  const renderTreeItemsRecursively = (discipline: any[], depth: number) => {
-    return discipline.map((term, index) => {
-      return (
-        <TreeItem
-          key={term.id}
-          itemId={term.id}
-          testId={term.id}
-          label={term.title}
-        >
-          {term.children?.length ? (
-            renderTreeItemsRecursively(term.children, depth + 1)
-          ) : (
-            <></>
-          )}
-        </TreeItem>
-      );
-    });
-  };
-
-  const toggleExpandAll = () => {
-    if (!isShowAll) {
-      apiRef.current?.showMore();
-      setIsShowAll(true);
-    }
-
-    setTimeout(() => {
-      apiRef.current?.expandAll();
-    }, 50);
-  };
-
-  const toggleCollapseAll = () => {
-    apiRef.current?.collapseAll();
-  };
-
-  return (
-    <>
-      <ButtonGroup
-        size={ButtonSize.small}
-        variant={ButtonVariant.solid}
-        color={ButtonColor.subtle}
-      >
-        <Button onClick={onSelectAll}>Select all</Button>
-        <Button onClick={() => apiRef.current?.clearAll()}>Clear all</Button>
-        <Button onClick={toggleExpandAll}>Expand All</Button>
-        <Button onClick={toggleCollapseAll}>Collapse All</Button>
-      </ButtonGroup>
-
-      <Spacer size={24} axis={SpacerAxis.vertical} />
-
-      <TreeView
-        key={treeContent.id}
-        {...treeProps}
-        preselectedItems={treeContent.preselectedItems}
-        onSelectedItemChange={onSelection}
-        apiRef={apiRef}
-      >
-        {renderTreeItemsRecursively(getTermsForRender(treeContent.items), 0)}
-      </TreeView>
-
-      <Spacer size={16} axis={SpacerAxis.vertical} />
-
-      <IconButton
-        onClick={toggleShowAll}
-        size={ButtonSize.small}
-        variant={ButtonVariant.link}
-        testId="showAllBtn"
-        icon={isShowAll ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-      >
-        {isShowAll ? 'Show Less' : 'Show All'}
-      </IconButton>
-
-      <Spacer size={24} axis={SpacerAxis.vertical} />
-
-      <p>{total} total</p>
-      <p>Selected: {selected}</p>
-      <p>Indeterminate: {indeterminate}</p>
-    </>
-  );
-};
-
-// There is 1000 TreeItems
 export const VirtualizedLargeTree = {
   render: (args: Partial<TreeViewProps>) => {
     const apiRef = React.useRef<TreeViewApi>();
+    
+    const treeLabel = () => {
+      return (
+        <Flex
+          behavior={FlexBehavior.container}
+          justify={FlexJustify.spaceBetween}
+          wrap={FlexWrap.nowrap}
+        >
+          <Flex behavior={FlexBehavior.item}>
+            <Hyperlink to="google.com" target="_blank" hasUnderline={false}>
+              Most common activity length is 39 chars but what if longer
+            </Hyperlink>
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Dropdown>
+              <DropdownButton
+                aria-label="Extra icon example"
+                color={ButtonColor.secondary}
+                size={ButtonSize.small}
+                icon={<MoreHorizIcon />}
+                shape={ButtonShape.fill}
+              />
+              <DropdownContent>
+                <DropdownMenuItem
+                  icon={<EditIcon aria-hidden />}
+                  onClick={() => console.log('Rename clicked!')}
+                >
+                  Rename
+                </DropdownMenuItem>
+              </DropdownContent>
+            </Dropdown>
+          </Flex>
+        </Flex>
+      );
+    };
+
     const folderLabel = (label: any) => {
       return (
         <Flex
@@ -3643,38 +3481,39 @@ export const VirtualizedLargeTree = {
       );
     };
 
-    const treeLabel = (name: string) => {
+    const additionalContent = () => {
       return (
-        <Flex
-          behavior={FlexBehavior.container}
-          justify={FlexJustify.spaceBetween}
-          wrap={FlexWrap.nowrap}
-        >
-          <Flex behavior={FlexBehavior.item}>
-            <Hyperlink to="google.com" target="_blank" hasUnderline={false}>
-              Sub folder name {name}
-            </Hyperlink>
-          </Flex>
-          <Flex behavior={FlexBehavior.item}>
+        <>
+          <Paragraph noTopMargin visualStyle={TypographyVisualStyle.bodyXSmall}>
+            Due: xx/xx/xxx · Submitted: 12 · Missing: 3
+          </Paragraph>
+          <ButtonGroup>
             <Dropdown>
               <DropdownButton
-                aria-label="Extra icon example"
-                color={ButtonColor.secondary}
                 size={ButtonSize.small}
-                icon={<MoreHorizIcon />}
-                shape={ButtonShape.fill}
-              />
+                color={ButtonColor.subtle}
+              >
+                10 Resources
+              </DropdownButton>
               <DropdownContent>
-                <DropdownMenuItem
-                  icon={<EditIcon aria-hidden />}
-                  onClick={() => console.log('Rename clicked!')}
-                >
-                  Rename
-                </DropdownMenuItem>
+                <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+                <DropdownMenuItem>Menu item number two</DropdownMenuItem>
               </DropdownContent>
             </Dropdown>
-          </Flex>
-        </Flex>
+            <Dropdown>
+              <DropdownButton
+                size={ButtonSize.small}
+                color={ButtonColor.subtle}
+              >
+                24 Standards
+              </DropdownButton>
+              <DropdownContent>
+                <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+                <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+              </DropdownContent>
+            </Dropdown>
+          </ButtonGroup>
+        </>
       );
     };
 
@@ -3698,29 +3537,49 @@ export const VirtualizedLargeTree = {
         >
           <TreeItem
             itemId="parent"
-            label={folderLabel(`Parent folder`)}
+            label={folderLabel(
+              <Paragraph
+                visualStyle={TypographyVisualStyle.headingXSmall}
+                noMargins
+              >
+                English Edition
+              </Paragraph>
+            )}
             icon={<FolderIcon />}
           >
             {Array.from({ length: 5 }, (_, i) => i + 1).map(i => (
               <TreeItem
                 key={i}
-                label={folderLabel(`Folder ${i}`)}
-                itemId={`folder${i}`}
+                label={folderLabel(
+                  <Paragraph
+                    visualStyle={TypographyVisualStyle.headingXSmall}
+                    noMargins
+                  >
+                    Unit {i} (Chapters {i * 2}-{i * 2 + 2})
+                  </Paragraph>
+                )}
+                itemId={`unit${i}`}
                 icon={<FolderIcon />}
               >
                 {Array.from({ length: 20 }, (_, j) => j + 1).map(j => (
                   <TreeItem
                     key={`${i}-${j}`}
-                    label={treeLabel(`Sub folder ${i}-${j}`)}
-                    itemId={`subfolder${i}-${j}`}
+                    label={folderLabel(
+                      <span style={{ fontWeight: '600' }}>
+                        Chapter {i}.{j} (pp. {j * 10}-{j * 10 + 20})
+                      </span>
+                    )}
+                    itemId={`chapter${i}-${j}`}
                     icon={<FolderIcon />}
                   >
                     {Array.from({ length: 10 }, (_, k) => k + 1).map(k => (
                       <TreeItem
                         key={`${i}-${j}-${k}`}
-                        label={`Document ${i}-${j}-${k}`}
-                        itemId={`doc${i}-${j}-${k}`}
-                        icon={<ArticleIcon />}
+                        additionalContent={additionalContent()}
+                        label={treeLabel()}
+                        itemId={`activity${i}-${j}-${k}`}
+                        icon={<BookIcon />}
+                        itemSize={120}
                       />
                     ))}
                   </TreeItem>

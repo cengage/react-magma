@@ -1846,6 +1846,26 @@ export function Example() {
 }
 ```
 
+## Virtualization
+
+For large trees with many items, you can enable virtualization to improve performance by only rendering visible items. This is especially useful for trees with hundreds or thousands of items.
+
+### Basic Virtualization
+
+Set `enableVirtualization={true}` and provide a `height` style to enable virtualization:
+
+### Dynamic Item Sizes
+
+TreeItems can have variable heights when they include additional content like due dates or resources. Use the `itemSize` prop on individual TreeItems to specify their height:
+
+
+### Virtualization Props
+
+- `enableVirtualization`: Enable virtualization for better performance (default: `false`)
+- `estimateSize`: Default estimated height in pixels for items without a specific `itemSize` (default: `40`)
+- `overscan`: Number of items to render above and below the visible area (default: `5`)
+- `style.height`: **Required** - Set an explicit height on the TreeView when virtualization is enabled (default: `400`)
+
 ## TreeView Props
 
 **Any other props supplied will be provided to the wrapping `ul` element.**

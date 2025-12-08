@@ -107,6 +107,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
         depth: number;
         index: number;
         key: string;
+        itemSize?: number;
       }> = [];
 
       const flatten = (
@@ -132,6 +133,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
             depth,
             index,
             key: itemKey,
+            itemSize: child.props.itemSize,
           });
 
           // Check if item has children and is expanded
@@ -148,11 +150,15 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       return items;
     }, [children, enableVirtualization, expansionContextValue.expandedSet]);
 
-    // Setup virtualizer
     const rowVirtualizer = useVirtual({
       size: flattenedItems.length,
       parentRef,
-      estimateSize: React.useCallback(() => estimateSize, [estimateSize]),
+      estimateSize: React.useCallback(
+        (index: number) => {
+          return flattenedItems[index]?.itemSize ?? estimateSize;
+        },
+        [flattenedItems, estimateSize]
+      ),
       overscan,
     });
 
