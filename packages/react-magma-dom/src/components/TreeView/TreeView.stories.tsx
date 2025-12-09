@@ -3562,7 +3562,7 @@ export const VirtualizedLargeTree = {
                 visualStyle={TypographyVisualStyle.headingXSmall}
                 noMargins
               >
-                English Edition
+                Spanish Edition
               </Paragraph>
             )}
             icon={<FolderIcon />}
