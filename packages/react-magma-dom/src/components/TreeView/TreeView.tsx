@@ -200,19 +200,25 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
         measureHeights();
       }, 0);
 
-      const resizeObserver = new ResizeObserver(() => {
-        measureHeights();
-      });
+      if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
+        const resizeObserver = new (window as any).ResizeObserver(() => {
+          measureHeights();
+        });
 
-      measurementRefs.current.forEach(element => {
-        if (element) {
-          resizeObserver.observe(element);
-        }
-      });
+        measurementRefs.current.forEach(element => {
+          if (element) {
+            resizeObserver.observe(element);
+          }
+        });
+
+        return () => {
+          clearTimeout(timeoutId);
+          resizeObserver.disconnect();
+        };
+      }
 
       return () => {
         clearTimeout(timeoutId);
-        resizeObserver.disconnect();
       };
     }, [flattenedItems, rowVirtualizer]);
 
@@ -246,7 +252,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
 
         return null;
       });
-    }, [children, enableVirtualization]);
+    }, [children]);
 
     return (
       <InverseContext.Provider value={inverseContextValue}>
