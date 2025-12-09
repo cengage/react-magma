@@ -71,8 +71,13 @@ const VirtualItem = styled.div<VirtualItemProps>`
   top: 0;
   left: 0;
   width: 100%;
-  height: ${props => props.height}px;
+  min-height: ${props => props.height}px;
   transform: ${props => `translateY(${props.transform}px)`};
+
+  /* Ensure dropdowns and other floating elements appear above items */
+  &:focus-within {
+    z-index: 1;
+  }
 `;
 
 export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
@@ -107,6 +112,10 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     );
 
     const parentRef = React.useRef<HTMLUListElement>(null);
+    const itemHeightsRef = React.useRef<Map<number, number>>(new Map());
+    const measurementRefs = React.useRef<Map<number, HTMLDivElement>>(
+      new Map()
+    );
 
     // Flatten tree structure for virtualization
     const flattenedItems = React.useMemo(() => {
@@ -117,7 +126,6 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
         depth: number;
         index: number;
         key: string;
-        itemSize?: number;
       }> = [];
 
       const flatten = (childrenToFlatten: React.ReactNode, depth = 0) => {
@@ -139,8 +147,6 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
             depth,
             index,
             key: itemKey,
-            // HERE need to pass the height of the item!!!
-            itemSize: child.props.itemSize,
           });
 
           // Check if item has children and is expanded
@@ -162,20 +168,55 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       parentRef,
       estimateSize: React.useCallback(
         (index: number) => {
-          // Here we set the height of each item
-          return flattenedItems[index]?.itemSize ?? estimateSize;
+          return itemHeightsRef.current.get(index) ?? estimateSize;
         },
-        [flattenedItems, estimateSize]
+        [itemHeightsRef, estimateSize]
       ),
       overscan,
     });
 
-    // Process children without cloneElement - use context instead
-    const processedChildren = React.useMemo(() => {
-      if (enableVirtualization) {
-        return null; // Handled by virtualizer below
-      }
+    // Measure item heights after render
+    React.useEffect(() => {
+      const measureHeights = () => {
+        let hasChanges = false;
+        measurementRefs.current.forEach((element, index) => {
+          if (element) {
+            const height = element.offsetHeight;
+            const currentHeight = itemHeightsRef.current.get(index);
 
+            if (currentHeight !== height && height > 0) {
+              itemHeightsRef.current.set(index, height);
+              hasChanges = true;
+            }
+          }
+        });
+
+        if (hasChanges) {
+          rowVirtualizer.measure();
+        }
+      };
+
+      const timeoutId = setTimeout(() => {
+        measureHeights();
+      }, 0);
+
+      const resizeObserver = new ResizeObserver(() => {
+        measureHeights();
+      });
+
+      measurementRefs.current.forEach(element => {
+        if (element) {
+          resizeObserver.observe(element);
+        }
+      });
+
+      return () => {
+        clearTimeout(timeoutId);
+        resizeObserver.disconnect();
+      };
+    }, [flattenedItems, rowVirtualizer]);
+
+    const processedChildren = React.useMemo(() => {
       let treeItemIndex = 0;
 
       return React.Children.map(children, child => {
@@ -248,6 +289,16 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                           key={item.key}
                           height={virtualItem.size}
                           transform={virtualItem.start}
+                          ref={(el: HTMLDivElement) => {
+                            if (el) {
+                              measurementRefs.current.set(
+                                virtualItem.index,
+                                el
+                              );
+                            } else {
+                              measurementRefs.current.delete(virtualItem.index);
+                            }
+                          }}
                         >
                           <TreeItemHierarchyContext.Provider
                             value={hierarchyValue}

@@ -3408,7 +3408,7 @@ export function CustomExpandIconArrowAndTreeItemStyles() {
 export const VirtualizedLargeTree = {
   render: (args: Partial<TreeViewProps>) => {
     const apiRef = React.useRef<TreeViewApi>();
-    
+
     const treeLabel = () => {
       return (
         <Flex
@@ -3579,7 +3579,6 @@ export const VirtualizedLargeTree = {
                         label={treeLabel()}
                         itemId={`activity${i}-${j}-${k}`}
                         icon={<BookIcon />}
-                        itemSize={120}
                       />
                     ))}
                   </TreeItem>
