@@ -22,6 +22,13 @@ export interface TreeViewProps
    * @default false
    */
   enableVirtualization?: boolean;
+  /**
+   * Height of the TreeView container in pixels.
+   * REQUIRED when enableVirtualization is true.
+   * Without a fixed height, virtualization cannot calculate the viewport properly.
+   * @example height={400}
+   */
+  height?: number;
 }
 
 interface VirtualContainerProps {
@@ -86,6 +93,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       testId,
       apiRef,
       enableVirtualization = false,
+      height,
       ...rest
     } = props;
 
@@ -170,7 +178,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
         },
         [flattenedItems]
       ),
-      overscan: 6,
+      overscan: 3,
     });
 
     // Measure item heights after render
@@ -308,6 +316,12 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                 }}
                 role="tree"
                 theme={theme}
+                style={{
+                  ...rest.style,
+                  ...(enableVirtualization && height
+                    ? { height: `${height}px`, overflow: 'auto' }
+                    : {}),
+                }}
               >
                 {enableVirtualization ? (
                   <VirtualContainer height={rowVirtualizer.totalSize}>

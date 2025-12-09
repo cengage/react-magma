@@ -116,6 +116,10 @@ export default {
       control: 'boolean',
       defaultValue: false,
     },
+    height: {
+      control: 'number',
+      defaultValue: 400,
+    },
   },
 } as Meta;
 
@@ -3553,7 +3557,7 @@ export const VirtualizedLargeTree = {
           {...args}
           apiRef={apiRef}
           enableVirtualization={args.enableVirtualization}
-          style={{ height: '600px', overflow: 'auto' }}
+          height={444}
         >
           <TreeItem
             itemId="parent"
