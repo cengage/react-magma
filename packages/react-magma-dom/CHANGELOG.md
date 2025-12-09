@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.19
+
+### Patch Changes
+
+- 71c53fb17: fix(Treeview): Fix virtualization styling when enableVirtualization is true.
+
 ## 4.11.0-next.18
 
 ### Minor Changes
