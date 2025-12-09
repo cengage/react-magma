@@ -22,16 +22,6 @@ export interface TreeViewProps
    * @default false
    */
   enableVirtualization?: boolean;
-  /**
-   * Estimated size of each tree item in pixels (used for virtualization).
-   * @default 40
-   */
-  estimateSize?: number;
-  /**
-   * Number of items to render above and below the visible area (overscan).
-   * @default 5
-   */
-  overscan?: number;
 }
 
 interface VirtualContainerProps {
@@ -93,8 +83,6 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       testId,
       apiRef,
       enableVirtualization = false,
-      estimateSize = 40,
-      overscan = 5,
       ...rest
     } = props;
 
@@ -172,12 +160,12 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
         (index: number) => {
           const item = flattenedItems[index];
           return item
-            ? (itemHeightsByIdRef.current.get(item.itemId) ?? estimateSize)
-            : estimateSize;
+            ? (itemHeightsByIdRef.current.get(item.itemId) ?? 40)
+            : 40;
         },
-        [flattenedItems, estimateSize]
+        [flattenedItems]
       ),
-      overscan,
+      overscan: 5, // Number of items to render above and below the visible area
     });
 
     // Measure item heights after render
