@@ -34,6 +34,15 @@ export interface TreeViewProps
   overscan?: number;
 }
 
+interface VirtualContainerProps {
+  height: number;
+}
+
+interface VirtualItemProps {
+  height: number;
+  transform: number;
+}
+
 const StyledTreeView = styled.ul<TreeViewProps & { isVirtualized?: boolean }>`
   padding: 0;
   margin: 0;
@@ -51,18 +60,19 @@ const StyledTreeView = styled.ul<TreeViewProps & { isVirtualized?: boolean }>`
   }
 `;
 
-const VirtualContainer = styled.div`
+const VirtualContainer = styled.div<VirtualContainerProps>`
   width: 100%;
   position: relative;
+  height: ${props => props.height}px;
 `;
 
-const VirtualItem = styled.div<{ height: number; transform: string }>`
+const VirtualItem = styled.div<VirtualItemProps>`
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: ${props => props.height}px;
-  transform: ${props => props.transform};
+  transform: ${props => `translateY(${props.transform}px)`};
 `;
 
 export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
@@ -110,11 +120,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
         itemSize?: number;
       }> = [];
 
-      const flatten = (
-        childrenToFlatten: React.ReactNode,
-        depth = 0,
-        parentIndex = 0
-      ) => {
+      const flatten = (childrenToFlatten: React.ReactNode, depth = 0) => {
         React.Children.forEach(childrenToFlatten, (child, index) => {
           if (!React.isValidElement(child) || child.type !== TreeItem) {
             return;
@@ -133,6 +139,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
             depth,
             index,
             key: itemKey,
+            // HERE need to pass the height of the item!!!
             itemSize: child.props.itemSize,
           });
 
@@ -141,7 +148,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
           const isExpanded = expansionContextValue.expandedSet?.has(itemId);
 
           if (isExpanded && child.props.children) {
-            flatten(child.props.children, depth + 1, index);
+            flatten(child.props.children, depth + 1);
           }
         });
       };
@@ -155,6 +162,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       parentRef,
       estimateSize: React.useCallback(
         (index: number) => {
+          // Here we set the height of each item
           return flattenedItems[index]?.itemSize ?? estimateSize;
         },
         [flattenedItems, estimateSize]
@@ -199,10 +207,6 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       });
     }, [children, enableVirtualization]);
 
-    const virtualItems = enableVirtualization
-      ? rowVirtualizer.virtualItems
-      : [];
-
     return (
       <InverseContext.Provider value={inverseContextValue}>
         <TreeViewSelectionContext.Provider value={selectionContextValue}>
@@ -227,20 +231,10 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                 }}
                 role="tree"
                 theme={theme}
-                style={{
-                  ...rest.style,
-                  ...(enableVirtualization
-                    ? { height: '400px', overflow: 'auto' }
-                    : {}),
-                }}
               >
                 {enableVirtualization ? (
-                  <VirtualContainer
-                    style={{
-                      height: `${rowVirtualizer.totalSize}px`,
-                    }}
-                  >
-                    {virtualItems.map(virtualItem => {
+                  <VirtualContainer height={rowVirtualizer.totalSize}>
+                    {rowVirtualizer.virtualItems.map(virtualItem => {
                       const item = flattenedItems[virtualItem.index];
                       const hierarchyValue = {
                         depth: item.depth,
@@ -253,7 +247,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                         <VirtualItem
                           key={item.key}
                           height={virtualItem.size}
-                          transform={`translateY(${virtualItem.start}px)`}
+                          transform={virtualItem.start}
                         >
                           <TreeItemHierarchyContext.Provider
                             value={hierarchyValue}
