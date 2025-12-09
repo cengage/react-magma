@@ -3049,6 +3049,16 @@ export const ComplexWithAdditionalContent = {
                 <DropdownMenuItem>Menu item number two</DropdownMenuItem>
               </DropdownContent>
             </Dropdown>
+            <Popover hasPointer={false} focusTrap={false}>
+              <PopoverTrigger aria-label="Open popover">
+                <Button size={ButtonSize.small} color={ButtonColor.subtle}>
+                  This opens a popover
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div>Im a popover.</div>
+              </PopoverContent>
+            </Popover>
           </ButtonGroup>
         </>
       );
@@ -3270,7 +3280,9 @@ export function TreeViewWithDifferentElements() {
             <div>
               Nocturnal birds with distinctive facial discs and silent flight.{' '}
               <Button
-                onClick={event => apiRef.current?.closePopoverManually(event)}
+                onClick={event =>
+                  popoverApiRef.current?.closePopoverManually(event)
+                }
               >
                 Ok
               </Button>
@@ -3512,6 +3524,16 @@ export const VirtualizedLargeTree = {
                 <DropdownMenuItem>Menu item number two</DropdownMenuItem>
               </DropdownContent>
             </Dropdown>
+            <Popover hasPointer={false} focusTrap>
+              <PopoverTrigger aria-label="Open popover">
+                <Button size={ButtonSize.small} color={ButtonColor.subtle}>
+                  This opens a popover
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div>Im a popover.</div>
+              </PopoverContent>
+            </Popover>
           </ButtonGroup>
         </>
       );
@@ -3531,8 +3553,6 @@ export const VirtualizedLargeTree = {
           {...args}
           apiRef={apiRef}
           enableVirtualization={args.enableVirtualization}
-          estimateSize={40}
-          overscan={5}
           style={{ height: '600px', overflow: 'auto' }}
         >
           <TreeItem

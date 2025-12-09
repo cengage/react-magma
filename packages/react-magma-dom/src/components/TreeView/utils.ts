@@ -33,7 +33,8 @@ export function calculateOffset(
   type: TreeNodeType,
   depth = 0,
   labelElem = false,
-  negative = false
+  negative = false,
+  isVirtualized = false
 ) {
   let padding = 0;
 
@@ -45,6 +46,10 @@ export function calculateOffset(
       }
     } else if (depth === 0) {
       padding = 40;
+    } else if (isVirtualized) {
+      // For virtualized items, calculate cumulative padding
+      // Base padding (40px) + (depth * 24px per level after first)
+      padding = 40 + (depth - 1) * 24;
     } else {
       padding = 56;
     }
@@ -56,6 +61,10 @@ export function calculateOffset(
       }
     } else if (depth === 0) {
       padding = 8;
+    } else if (isVirtualized) {
+      // For virtualized items, calculate cumulative padding
+      // Base padding (8px) + (depth * 24px per level after first)
+      padding = 8 + (depth - 1) * 24;
     } else {
       padding = 24;
     }

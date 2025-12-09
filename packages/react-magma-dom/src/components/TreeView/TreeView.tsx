@@ -68,6 +68,9 @@ const VirtualItem = styled.div<VirtualItemProps>`
   &:focus-within {
     z-index: 1;
   }
+  &[data-testid='popoverContent'] {
+    z-index: 1;
+  }
 `;
 
 export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
@@ -158,18 +161,26 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       parentRef,
       estimateSize: React.useCallback(
         (index: number) => {
-          const item = flattenedItems[index];
-          return item
-            ? (itemHeightsByIdRef.current.get(item.itemId) ?? 40)
-            : 40;
+          const itemId = flattenedItems[index]?.itemId;
+          if (!itemId) {
+            return 32;
+          }
+
+          return itemHeightsByIdRef.current.get(itemId) ?? 32;
         },
         [flattenedItems]
       ),
-      overscan: 5, // Number of items to render above and below the visible area
+      overscan: 6,
     });
 
     // Measure item heights after render
     React.useEffect(() => {
+      if (!enableVirtualization) {
+        measurementRefs.current.clear();
+        itemHeightsByIdRef.current.clear();
+        return;
+      }
+
       const measureHeights = () => {
         let hasChanges = false;
 
@@ -214,7 +225,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       return () => {
         clearTimeout(timeoutId);
       };
-    }, [flattenedItems, rowVirtualizer]);
+    }, [enableVirtualization, flattenedItems, rowVirtualizer]);
 
     const processedChildren = React.useMemo(() => {
       let treeItemIndex = 0;
@@ -271,7 +282,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       }, 100); // Small delay to ensure DOM is updated
 
       return () => clearTimeout(timeoutId);
-    }, [children]);
+    }, [children, rowVirtualizer]);
 
     return (
       <InverseContext.Provider value={inverseContextValue}>
@@ -307,6 +318,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                         parentDepth: Math.max(0, item.depth - 1),
                         isTopLevel: item.depth === 0,
                         index: item.index,
+                        isVirtualized: true,
                       };
 
                       return (

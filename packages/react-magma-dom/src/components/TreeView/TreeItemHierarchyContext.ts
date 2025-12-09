@@ -10,6 +10,7 @@ interface TreeItemHierarchyContextInterface {
   parentDepth: number;
   isTopLevel: boolean;
   index: number;
+  isVirtualized?: boolean;
 }
 
 export const TreeItemHierarchyContext =
@@ -18,4 +19,5 @@ export const TreeItemHierarchyContext =
     parentDepth: 0,
     isTopLevel: true,
     index: 0,
+    isVirtualized: false,
   });

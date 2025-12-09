@@ -51,6 +51,7 @@ const StyledTreeItem = styled.li<{
   selectableType?: TreeViewSelectable;
   isDisabled?: boolean;
   hoverColor?: string;
+  isVirtualized?: boolean;
 }>`
   color: ${props =>
     props.isInverse
@@ -67,7 +68,13 @@ const StyledTreeItem = styled.li<{
   margin-bottom: 0;
 
   padding-inline-start: ${props =>
-    calculateOffset(props.nodeType, props.depth)};
+    calculateOffset(
+      props.nodeType,
+      props.depth,
+      false,
+      false,
+      props.isVirtualized
+    )};
 
   &:focus {
     outline: none;
@@ -91,9 +98,21 @@ const StyledTreeItem = styled.li<{
     position: relative;
 
     padding-inline-start: ${props =>
-      calculateOffset(props.nodeType, props.depth, true)};
+      calculateOffset(
+        props.nodeType,
+        props.depth,
+        true,
+        false,
+        props.isVirtualized
+      )};
     margin-inline-start: ${props =>
-      calculateOffset(props.nodeType, props.depth, true, true)};
+      calculateOffset(
+        props.nodeType,
+        props.depth,
+        true,
+        true,
+        props.isVirtualized
+      )};
     padding-block-end: ${props => props.theme.spaceScale.spacing02};
     padding-block-start: ${props => props.theme.spaceScale.spacing02};
     padding-right: ${props => props.theme.spaceScale.spacing02};
@@ -590,6 +609,7 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
             id={itemId}
             isDisabled={isDisabled}
             isInverse={isInverse}
+            isVirtualized={hierarchyContext.isVirtualized}
             nodeType={nodeType}
             role="treeitem"
             selectableType={selectable}
