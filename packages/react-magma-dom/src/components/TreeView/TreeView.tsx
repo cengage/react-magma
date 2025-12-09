@@ -112,8 +112,8 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     );
 
     const parentRef = React.useRef<HTMLUListElement>(null);
-    const itemHeightsRef = React.useRef<Map<number, number>>(new Map());
-    const measurementRefs = React.useRef<Map<number, HTMLDivElement>>(
+    const itemHeightsByIdRef = React.useRef<Map<string, number>>(new Map());
+    const measurementRefs = React.useRef<Map<string, HTMLDivElement>>(
       new Map()
     );
 
@@ -126,6 +126,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
         depth: number;
         index: number;
         key: string;
+        itemId: string;
       }> = [];
 
       const flatten = (childrenToFlatten: React.ReactNode, depth = 0) => {
@@ -134,7 +135,8 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
             return;
           }
 
-          const itemKey = `tree-item-${depth}-${index}-${items.length}`;
+          const itemId = child.props.itemId;
+          const itemKey = `${itemId}-${depth}`;
 
           // Clone the child without its children to prevent double rendering
           const childWithoutNested = React.cloneElement(child, {
@@ -147,10 +149,10 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
             depth,
             index,
             key: itemKey,
+            itemId,
           });
 
           // Check if item has children and is expanded
-          const itemId = child.props.itemId;
           const isExpanded = expansionContextValue.expandedSet?.has(itemId);
 
           if (isExpanded && child.props.children) {
@@ -168,9 +170,12 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       parentRef,
       estimateSize: React.useCallback(
         (index: number) => {
-          return itemHeightsRef.current.get(index) ?? estimateSize;
+          const item = flattenedItems[index];
+          return item
+            ? (itemHeightsByIdRef.current.get(item.itemId) ?? estimateSize)
+            : estimateSize;
         },
-        [itemHeightsRef, estimateSize]
+        [flattenedItems, estimateSize]
       ),
       overscan,
     });
@@ -179,13 +184,14 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     React.useEffect(() => {
       const measureHeights = () => {
         let hasChanges = false;
-        measurementRefs.current.forEach((element, index) => {
+
+        measurementRefs.current.forEach((element, itemId) => {
           if (element) {
             const height = element.offsetHeight;
-            const currentHeight = itemHeightsRef.current.get(index);
+            const currentHeight = itemHeightsByIdRef.current.get(itemId);
 
             if (currentHeight !== height && height > 0) {
-              itemHeightsRef.current.set(index, height);
+              itemHeightsByIdRef.current.set(itemId, height);
               hasChanges = true;
             }
           }
@@ -254,6 +260,31 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       });
     }, [children]);
 
+    React.useEffect(() => {
+      // Force measurement on children change
+      const timeoutId = setTimeout(() => {
+        let hasChanges = false;
+
+        measurementRefs.current.forEach((element, itemId) => {
+          if (element) {
+            const height = element.offsetHeight;
+            const currentHeight = itemHeightsByIdRef.current.get(itemId);
+
+            if (currentHeight !== height && height > 0) {
+              itemHeightsByIdRef.current.set(itemId, height);
+              hasChanges = true;
+            }
+          }
+        });
+
+        if (hasChanges) {
+          rowVirtualizer.measure();
+        }
+      }, 100); // Small delay to ensure DOM is updated
+
+      return () => clearTimeout(timeoutId);
+    }, [children]);
+
     return (
       <InverseContext.Provider value={inverseContextValue}>
         <TreeViewSelectionContext.Provider value={selectionContextValue}>
@@ -297,12 +328,9 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                           transform={virtualItem.start}
                           ref={(el: HTMLDivElement) => {
                             if (el) {
-                              measurementRefs.current.set(
-                                virtualItem.index,
-                                el
-                              );
+                              measurementRefs.current.set(item.itemId, el);
                             } else {
-                              measurementRefs.current.delete(virtualItem.index);
+                              measurementRefs.current.delete(item.itemId);
                             }
                           }}
                         >
