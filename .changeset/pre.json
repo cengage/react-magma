@@ -13,6 +13,7 @@
   },
   "changesets": [
     "chore-fix-workflows",
+    "chore-fixpackage",
     "chore-update-react-magma-icons-version",
     "feat-Checkbox-add-aria-label",
     "feat-DateTimePicker-timezone",
