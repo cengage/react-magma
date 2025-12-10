@@ -1,5 +1,25 @@
 # @react-magma/charts
 
+## 13.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [2e6c1e441]
+  - react-magma-dom@4.11.0-next.3
+
+## 12.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [560f6cffe]
+  - react-magma-dom@4.10.2-next.0
+
+## 12.0.1
+
+### Patch Changes
+
+- 49d826503: fix(charts): migrate from microbundle to Rollup with automatic CSS injection
+
 ## 12.0.1-next.1
 
 ### Patch Changes

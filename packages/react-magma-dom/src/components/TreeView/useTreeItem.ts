@@ -4,7 +4,9 @@ import { IconProps } from 'react-magma-icons';
 
 import { IndeterminateCheckboxStatus } from '../IndeterminateCheckbox';
 import { TreeItem } from './TreeItem';
-import { TreeViewContext } from './TreeViewContext';
+import { TreeViewConfigContext } from './TreeViewConfigContext';
+import { TreeViewExpansionContext } from './TreeViewExpansionContext';
+import { TreeViewSelectionContext } from './TreeViewSelectionContext';
 import { TreeViewSelectable } from './types';
 import { filterNullEntries } from './utils';
 import { useForceUpdate } from '../../hooks/useForceUpdate';
@@ -80,17 +82,21 @@ export const checkedStatusToBoolean = (
 export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const { children, itemDepth, itemId, onClick, parentDepth, topLevel } = props;
 
+  // Consume split contexts for reduced re-render scope
+  const { items, selectedItems, selectItem } = React.useContext(
+    TreeViewSelectionContext
+  );
+
+  const { expandedSet, handleExpandedChange } = React.useContext(
+    TreeViewExpansionContext
+  );
+
   const {
     registerTreeItem,
     selectable,
-    selectedItems,
     treeItemRefArray,
-    items,
-    selectItem,
     isTopLevelSelectable,
-    expandedSet,
-    handleExpandedChange,
-  } = React.useContext(TreeViewContext);
+  } = React.useContext(TreeViewConfigContext);
 
   const treeViewItemData = React.useMemo(() => {
     return items.find(item => item.itemId === itemId);
@@ -125,22 +131,15 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     return treeViewItemData?.hasOwnTreeItems || treeItemChildren.length > 0;
   }, [treeViewItemData, treeItemChildren.length]);
 
-  const [expanded, setExpanded] = React.useState(() => {
+  const expanded = React.useMemo(() => {
     return expandedSet.has(itemId);
-  });
+  }, [expandedSet, itemId]);
 
   const ownRef = React.useRef<HTMLDivElement>(null);
   const ref = useForkedRef(forwardedRef, ownRef);
   const forceUpdate = useForceUpdate();
 
   const generatedId = useGenerateId();
-
-  React.useEffect(() => {
-    const isExpanded = expandedSet.has(itemId);
-    if (isExpanded !== expanded) {
-      setExpanded(isExpanded);
-    }
-  }, [expandedSet, itemId, expanded]);
 
   React.useEffect(() => {
     if (!isDisabled && ownRef.current !== null) {
@@ -283,8 +282,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       if (expanded) {
         focusNext();
       } else {
-        setExpanded(true);
-
         handleExpandedChange(event, itemId);
 
         focusSelf();
@@ -295,8 +292,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   const collapseFocusedNode = (event: React.KeyboardEvent) => {
     if (hasOwnTreeItems) {
       if (expanded) {
-        setExpanded(false);
-
         handleExpandedChange(event, itemId);
 
         focusSelf();
@@ -478,7 +473,6 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     parentDepth,
     ref,
     selectedItems,
-    setExpanded,
     treeItemChildren,
     isDisabled,
   };

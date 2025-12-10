@@ -1,5 +1,93 @@
 # Change Log
 
+## 5.3.0-next.9
+
+### Patch Changes
+
+- 46593ab6c: fix(Nav Tabs): Update documentation to include `aria-labelledby` attribute for multi-instance examples.
+- Updated dependencies [93d509836]
+  - react-magma-dom@4.11.0-next.16
+
+## 5.3.0-next.8
+
+### Patch Changes
+
+- 04e3fd25d: fix(NavTabs, Tabs, Toast): Fix different issues.
+
+## 5.3.0-next.7
+
+### Patch Changes
+
+- 67d8b6c4a: chore: Update React-magma-icons version to 3.2.2
+
+## 5.3.0-next.6
+
+### Patch Changes
+
+- d764a8cfd: fix(Select): fix issue when scrollbar appears because of padding and negative margin.
+
+## 5.3.0-next.5
+
+### Patch Changes
+
+- Updated dependencies [2e6c1e441]
+  - react-magma-dom@4.11.0-next.3
+  - @react-magma/charts@13.0.0-next.1
+  - @react-magma/dropzone@13.0.0-next.1
+  - @react-magma/schema-renderer@13.0.0-next.1
+  - @cengage-patterns/header@14.0.0-next.1
+
+## 5.3.0-next.4
+
+### Patch Changes
+
+- d5a38466a: fix(Modal & Drawer): Added aria-haspopup="dialog" for trigger buttons and updated documentation.
+
+## 5.3.0-next.3
+
+### Patch Changes
+
+- Updated dependencies [560f6cffe]
+  - react-magma-dom@4.10.2-next.0
+  - @react-magma/charts@12.0.2-next.0
+  - @react-magma/dropzone@12.0.2-next.0
+  - @react-magma/schema-renderer@12.0.2-next.0
+  - @cengage-patterns/header@13.0.2-next.0
+
+## 5.3.0-next.2
+
+### Minor Changes
+
+- 2d79e879a: feat(Modal): New `headerLevel` prop. If not passed, header will default to level 2.
+
+## 5.2.2-next.1
+
+### Patch Changes
+
+- b8a27612a: chore: match workflows with dev and main
+
+## 5.2.2-next.0
+
+### Patch Changes
+
+- 3e5c35196: chore: Manually sync main -> dev (4.10.1)
+
+## 5.2.1
+
+### Patch Changes
+
+- 49d826503: fix: Update internalization for Date Picker.
+- 49d826503: chore: Manually sync main -> dev (4.10.0)
+- 49d826503: fix(Docs): revert-replace "GATSBY_EMPTY_ALT" as alt text for empty alts.
+- 49d826503: chore:migrate storybook to use Component Story Format 3 (CSF3) for all stories
+- Updated dependencies [49d826503]
+- Updated dependencies [49d826503]
+  - @react-magma/charts@12.0.1
+  - react-magma-dom@4.10.1
+  - @react-magma/dropzone@12.0.1
+  - @react-magma/schema-renderer@12.0.1
+  - @cengage-patterns/header@13.0.1
+
 ## 5.2.1-next.5
 
 ### Patch Changes

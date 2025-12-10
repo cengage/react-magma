@@ -5,6 +5,49 @@ order: 4
 
 <PageContent componentName="changelog" type="api_intro">
 
+## 4.10.0
+
+### Minor Changes
+
+- 22a0a5396: feat(Button): Update icon size for `Button`, `IconButton`, `DropdownButton`, `ButtonGroup` and `ToggleButton`.
+- 3788a341e: feat(DatePicker): Add new `Today` button for navigation and update styles.
+- e142c0f77: feat(DatePicker): Provide ability to more quickly change the month and/or year. Update aria-labels and styles.
+- 17f3eccd7: feat(Drawer): Add `showBackgroundOverlay` prop.
+- 1653b4173: feat(Dropdown & IconButton): Add `leadingIcon` prop.
+- bb8306ebd: feat(Popover): Add the `alignment` prop and allow customization of the width.
+- 6cb134f09: feat(Popover): Support programmatically opening component with `openPopoverManually`.
+- fed299bae: feat(Tabs): New `CustomTab` component.
+- 54520e840: feat(Table & Datagrid): New prop `tableTitle` which supports a captioned title above each Table and Datagrid. New props `hasOutsideBorder`, `hasTablePagination` to `Table`.
+- bbd88cc26: feat(TimePicker): Add auto fill functionality.
+- 8c6b4baa7: feat(Toggle): Remove animation.
+- 71c0f9961: feat(TreeView): New `additionalContent` prop. Removed animation from Checkbox and Radio components.
+- 660e33738: feat(TreeView): New `expandIconStyles` and `hoverColor` props and more styles customization support.
+- 6893e3223: feat(AIButton): New `AIButton` component.
+- 005d21caa: feat(DateTimePicker): New `DateTimePicker` component.
+- 02cc380d6: feat(Drawer): Add `isAnimated` prop to control slide animation.
+- ed8a4eea7: feat(MultiSelect): Make selected items disabled when component is disabled.
+- 670664d0f: feat(TreeView): Component now handles dynamic addition of parents and children to parent nodes.
+- 233c19c1e: feat(react-magma-icons): Update react-magma-icons version to 3.2.0. New icons: Phishing, QuestionMark, Target, Media, Notebook.
+
+### Patch Changes
+
+- 7e66c38ec: chore(Chart): updated @react-magma/charts package to include all necessary styles directly in the package and corrected named exports for better usability, eliminating the need to import styles from /dist.
+- 5cc90df6d: fix(Alert): Add `aria-label` and `role="img"` for icon.
+- 4ae2fd1d9: fix(DatePicker): Add an announcement during the change to the next or previous month.
+- 0aa9f0ab1: fix(Drawer): Fix missing animation for sliding in.
+- d87f3d640: fix(Dropdown): Add `aria-label` to NavItem for Windows + Firefox for NVDA announce.
+- 60cb97f7f: fix(Dropzone): Pass `dropzoneOptions` prop to `Dropzone`.
+- 526372655: fix(Input): Improve the logic for updating the value in the `handleChange` function.
+- e33060d8f: fix(IndeterminateCheckbox): Fix screenreader reading 'unticked' on indeterminate state.
+- 9627817d6: fix(Popover & Tooltip): Fix an issue when pressing `Escape` doesn't stop bubbling.
+- b49950955: fix(Popover): Fix a bug with several popovers on the same page.
+- d6480e22a: fix(RadioButton): Add `aria-hidden` to decorative icons to hide them from assistive technology.
+- 74286d980: fix(Table): New props `colSpan` and `rowSpan` for TableHeaderCell
+- 0d47a8541: fix(TablePagination): Update `newRowsPerPage` to return a number instead of a string
+- 41fde26f5: fix(Tooltip): Fix issue with screenreaders on non interactive elements.
+- ca3025673: fix(Button): Fix styles for `round` button.
+- 70b8ba0a5: fix(CharacterCounter): Fix screenreader properly conveying the remainder on user input.
+
 ## 4.9.1
 
 ### Patch Changes

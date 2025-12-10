@@ -19,7 +19,9 @@ import { TabsOrientation, TabsTextTransform } from '../Tabs/shared';
 import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
 import { useTabsMeta } from '../Tabs/utils';
 
-export type NavTabsProps = Omit<TabsProps, 'onChange'>;
+export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {
+  'aria-label': string;
+}
 
 interface NavTabsContextInterface {
   borderPosition?: TabsBorderPosition;
@@ -87,16 +89,28 @@ export const NavTabs = React.forwardRef<
     }
   });
 
+  const handleNavTabFocus = (event: React.FocusEvent<HTMLElement>) => {
+    const navTabElement = event.currentTarget;
+
+    navTabElement.scrollIntoView({
+      block: 'center',
+      inline: 'center',
+      behavior: 'smooth',
+    });
+  };
+
   const navTabsChildren = React.Children.map(children, (child, i) => {
     const item = child as React.ReactElement<
       React.PropsWithChildren<NavTabProps>
     >;
 
     if (item.type === NavTab) {
-      if (!hasChildFocus && i === 0) {
-        return React.cloneElement(item, { isFocused: true });
-      }
+      return React.cloneElement(item, {
+        onFocus: handleNavTabFocus,
+        isFocused: item.props.isFocused || (!hasChildFocus && i === 0),
+      });
     }
+
     return child;
   });
 

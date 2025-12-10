@@ -1858,6 +1858,11 @@ export const ComplexTreeWithLargeDataSet = {
                 },
               ],
             },
+            {
+              id: 'ad-3',
+              title: 'Web Design',
+              children: [],
+            },
           ],
         },
         {
@@ -3048,6 +3053,16 @@ export const ComplexWithAdditionalContent = {
                 <DropdownMenuItem>Menu item number two</DropdownMenuItem>
               </DropdownContent>
             </Dropdown>
+            <Popover hasPointer={false} focusTrap={false}>
+              <PopoverTrigger aria-label="Open popover">
+                <Button size={ButtonSize.small} color={ButtonColor.subtle}>
+                  This opens a popover
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div>Im a popover.</div>
+              </PopoverContent>
+            </Popover>
           </ButtonGroup>
         </>
       );
@@ -3269,7 +3284,9 @@ export function TreeViewWithDifferentElements() {
             <div>
               Nocturnal birds with distinctive facial discs and silent flight.{' '}
               <Button
-                onClick={event => apiRef.current?.closePopoverManually(event)}
+                onClick={event =>
+                  popoverApiRef.current?.closePopoverManually(event)
+                }
               >
                 Ok
               </Button>
