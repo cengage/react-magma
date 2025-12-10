@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.22
+
+### Patch Changes
+
+- dd5fca45c: fix(TreeView): Update example in the storybook.
+
 ## 4.11.0-next.21
 
 ### Patch Changes
