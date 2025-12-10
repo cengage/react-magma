@@ -32,6 +32,7 @@
     "fix-Select-scrollbar-issue",
     "fix-Table-tabIndex-logic",
     "fix-ToggleButton-transform",
+    "fix-Treeview-fix-virtulization-height",
     "fix-Treeview-fix-virtulization-styling",
     "fix-drawer-scrollable-content",
     "fix-modal-trigger-button",

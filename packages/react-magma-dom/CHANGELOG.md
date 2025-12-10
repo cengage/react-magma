@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.21
+
+### Patch Changes
+
+- 251931f39: fix(Treeview): add height prop for virtualization support
+
 ## 4.11.0-next.20
 
 ### Patch Changes
