@@ -118,7 +118,7 @@ export default {
     },
     height: {
       control: 'number',
-      defaultValue: 400,
+      defaultValue: 800,
     },
   },
 } as Meta;
@@ -3425,7 +3425,7 @@ export const VirtualizedLargeTree = {
   render: (args: Partial<TreeViewProps>) => {
     const apiRef = React.useRef<TreeViewApi>();
 
-    const treeLabel = () => {
+    const treeLabel = (treeItemNumber: number) => {
       return (
         <Flex
           behavior={FlexBehavior.container}
@@ -3438,6 +3438,11 @@ export const VirtualizedLargeTree = {
             </Hyperlink>
           </Flex>
           <Flex behavior={FlexBehavior.item}>
+            <Tag>{treeItemNumber}</Tag>
+            <Spacer
+              axis={SpacerAxis.horizontal}
+              size={magma.spaceScale.spacing03}
+            />
             <Dropdown>
               <DropdownButton
                 aria-label="Extra icon example"
@@ -3544,7 +3549,7 @@ export const VirtualizedLargeTree = {
     };
 
     return (
-      <Card isInverse={args.isInverse}>
+      <Card isInverse={args.isInverse} style={{ height: 800 }}>
         <ButtonGroup style={{ margin: '16px' }}>
           <Button onClick={() => apiRef.current?.expandAll()}>
             Expand All
@@ -3557,7 +3562,7 @@ export const VirtualizedLargeTree = {
           {...args}
           apiRef={apiRef}
           enableVirtualization={args.enableVirtualization}
-          height={444}
+          style={{ height: '800px', overflow: 'auto' }}
         >
           <TreeItem
             itemId="parent"
@@ -3571,7 +3576,7 @@ export const VirtualizedLargeTree = {
             )}
             icon={<FolderIcon />}
           >
-            {Array.from({ length: 5 }, (_, i) => i + 1).map(i => (
+            {Array.from({ length: 25 }, (_, i) => i + 1).map(i => (
               <TreeItem
                 key={i}
                 label={folderLabel(
@@ -3579,34 +3584,43 @@ export const VirtualizedLargeTree = {
                     visualStyle={TypographyVisualStyle.headingXSmall}
                     noMargins
                   >
-                    Unit {i} (Chapters {i * 2}-{i * 2 + 2})
+                    Unit {i}
                   </Paragraph>
                 )}
                 itemId={`unit${i}`}
                 icon={<FolderIcon />}
               >
-                {Array.from({ length: 20 }, (_, j) => j + 1).map(j => (
-                  <TreeItem
-                    key={`${i}-${j}`}
-                    label={folderLabel(
-                      <span style={{ fontWeight: '600' }}>
-                        Chapter {i}.{j} (pp. {j * 10}-{j * 10 + 20})
-                      </span>
-                    )}
-                    itemId={`chapter${i}-${j}`}
-                    icon={<FolderIcon />}
-                  >
-                    {Array.from({ length: 10 }, (_, k) => k + 1).map(k => (
-                      <TreeItem
-                        key={`${i}-${j}-${k}`}
-                        additionalContent={additionalContent()}
-                        label={treeLabel()}
-                        itemId={`activity${i}-${j}-${k}`}
-                        icon={<BookIcon />}
-                      />
-                    ))}
-                  </TreeItem>
-                ))}
+                {Array.from({ length: 20 }, (_, j) => j + 1).map(j => {
+                  const chapterNumber = (i - 1) * 20 + j;
+                  const startPage = (chapterNumber - 1) * 100;
+                  const endPage = startPage + 100;
+
+                  return (
+                    <TreeItem
+                      key={`${i}-${j}`}
+                      label={folderLabel(
+                        <span style={{ fontWeight: '600' }}>
+                          Chapter {i}.{j} (pp. {startPage + 1}-{endPage})
+                        </span>
+                      )}
+                      itemId={`chapter${i}-${j}`}
+                      icon={<FolderIcon />}
+                    >
+                      {Array.from({ length: 100 }, (_, k) => k + 1).map(k => {
+                        const activityNumber = ((i - 1) * 20 + j - 1) * 100 + k;
+                        return (
+                          <TreeItem
+                            key={`${i}-${j}-${k}`}
+                            additionalContent={additionalContent()}
+                            label={treeLabel(activityNumber)}
+                            itemId={`activity${i}-${j}-${k}`}
+                            icon={<BookIcon />}
+                          />
+                        );
+                      })}
+                    </TreeItem>
+                  );
+                })}
               </TreeItem>
             ))}
           </TreeItem>
