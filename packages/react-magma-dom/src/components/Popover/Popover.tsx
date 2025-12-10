@@ -13,7 +13,12 @@ import {
 } from '@floating-ui/react';
 
 import { useIsInverse } from '../../inverse';
-import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
+import {
+  isElementInteractive,
+  resolveProps,
+  useForkedRef,
+  useGenerateId,
+} from '../../utils';
 import { ButtonGroupContext } from '../ButtonGroup';
 
 export enum PopoverPosition {
@@ -162,23 +167,6 @@ export function hasActiveElementsChecker(ref) {
       );
     }).length > 0
   );
-}
-
-export function isElementInteractive(element: EventTarget | null): boolean {
-  if (!element || !(element instanceof HTMLElement)) return false;
-
-  const tag = element.tagName.toLowerCase();
-
-  if (
-    ['button', 'input', 'select', 'textarea', 'a'].includes(tag) ||
-    element.hasAttribute('tabindex')
-  ) {
-    if (tag === 'a' && !(element as HTMLAnchorElement).href) return false;
-
-    return !element.hasAttribute('disabled');
-  }
-
-  return false;
 }
 
 export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
