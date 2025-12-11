@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0-next.10
+
+### Patch Changes
+
+- 6c3720603: fix(Accordion): Fix bug with not-announced `Expand All/Collapse All` button
+
 ## 5.3.0-next.9
 
 ### Patch Changes
