@@ -87,14 +87,14 @@ export function Example() {
   const onDismiss = () => {
     updateShowAlert(false);
 
-    buttonRef.current?.focus();
+    buttonRef.current.focus();
   };
 
   const onShowAlert = () => {
     updateShowAlert(true);
 
     setTimeout(() => {
-      dismissAlertRef.current?.focus();
+      dismissAlertRef.current.focus();
     }, 0);
   };
 
