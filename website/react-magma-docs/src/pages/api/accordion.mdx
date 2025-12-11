@@ -122,6 +122,7 @@ import {
   ButtonVariant,
   ButtonGroup,
   Spacer,
+  useDeviceDetect,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -145,6 +146,8 @@ export function Example() {
     }
   };
 
+  const { isWindows, isSafari } = useDeviceDetect();
+
   return (
     <>
       <ButtonGroup>
@@ -152,7 +155,7 @@ export function Example() {
           onClick={handleToggleAll}
           size={ButtonSize.small}
           variant={ButtonVariant.solid}
-          role="status"
+          role={(isWindows || isSafari) && 'status'}
         >
           {isAllExpanded ? 'Collapse All' : 'Expand All'}
         </Button>
