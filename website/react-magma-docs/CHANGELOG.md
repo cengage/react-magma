@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.10
+
+### Patch Changes
+
+- b14bb63: fix(Accordion): Fix bug with not-announced `Expand All/Collapse All` button
+
 ## 7.0.0-rc.9
 
 ### Patch Changes
