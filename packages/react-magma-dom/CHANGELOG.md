@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.19
+
+### Patch Changes
+
+- 3494bf4: fix(Drawer): Fix content scrolling inside the Drawer when overflowing.
+
 ## 5.1.0-rc.18
 
 ### Patch Changes
