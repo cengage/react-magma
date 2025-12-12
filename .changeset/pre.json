@@ -23,6 +23,7 @@
     "fix-Accordion-accessibility-render-issue",
     "fix-Accordion-docs-accessibility-issue",
     "fix-Alert-docs-acessibility-issues",
+    "fix-Alert-docs-dismissible-type-error",
     "fix-ButtonGroup-acessibility-list",
     "fix-Combobox-accessibility",
     "fix-Docs-Miscellaneous-issues",

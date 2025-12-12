@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0-next.11
+
+### Patch Changes
+
+- 3e73eab61: fix(Alert): Fix a SyntaxError in the Dismissible section.
+
 ## 5.3.0-next.10
 
 ### Patch Changes
