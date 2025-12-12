@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.23
+
+### Patch Changes
+
+- ead3c7d68: fix(Drawer): Fix content scrolling inside the Drawer when overflowing.
+
 ## 4.11.0-next.22
 
 ### Patch Changes
