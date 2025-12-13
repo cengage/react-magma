@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.20
+
+### Patch Changes
+
+- c48a806: fix(Banner): add the `dismissibleButtonRef` prop to the `Banner` and fix docs page
+
 ## 5.1.0-rc.19
 
 ### Patch Changes
