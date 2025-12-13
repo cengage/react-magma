@@ -53,35 +53,52 @@ import {
   Button,
   ButtonColor,
   ButtonSize,
+  Announce,
 } from 'react-magma-dom';
 
 export function Example() {
   const [showBanner, updateShowBanner] = React.useState<boolean>(true);
+  const dismissibleButtonRef = React.useRef<HTMLButtonElement>(null);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+  const bannerText = 'Success! You may now dismiss this banner';
 
   function handleBannerDismiss() {
     updateShowBanner(false);
+
+    setTimeout(() => {
+      buttonRef.current.focus();
+    }, 0);
   }
 
   function handleShowBannerButtonClick() {
     updateShowBanner(true);
+
+    setTimeout(() => {
+      dismissibleButtonRef.current.focus();
+    }, 0);
   }
 
   return (
     <>
-      {showBanner && (
-        <Banner
-          isDismissible
-          onDismiss={handleBannerDismiss}
-          variant={AlertVariant.success}
-        >
-          Success! You may now dismiss this banner
-        </Banner>
-      )}
+      <Announce aria-label={bannerText}>
+        {showBanner && (
+          <Banner
+            isDismissible
+            onDismiss={handleBannerDismiss}
+            variant={AlertVariant.success}
+            dismissibleButtonRef={dismissibleButtonRef}
+          >
+            {bannerText}
+          </Banner>
+        )}
+      </Announce>
       {!showBanner && (
         <Button
           onClick={handleShowBannerButtonClick}
           size={ButtonSize.small}
           color={ButtonColor.secondary}
+          ref={buttonRef}
         >
           Show Banner Again
         </Button>

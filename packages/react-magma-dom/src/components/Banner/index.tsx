@@ -43,6 +43,10 @@ export interface BannerProps extends AlertProps {
    * @default false
    */
   isDismissible?: boolean;
+  /**
+   * Reference to the dismiss button element
+   */
+  dismissibleButtonRef?: React.Ref<HTMLButtonElement>;
   isInverse?: boolean;
 }
 
@@ -210,6 +214,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
       onDismiss,
       testId,
       variant = AlertVariant.info,
+      dismissibleButtonRef,
       ...other
     } = props;
 
@@ -264,6 +269,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
               onClick={onDismiss}
               theme={theme}
               variant={ButtonVariant.link}
+              ref={dismissibleButtonRef}
             />
           </ButtonWrapper>
         )}
