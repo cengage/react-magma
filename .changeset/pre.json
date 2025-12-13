@@ -46,6 +46,7 @@
     "fix-Drawer-content-not-scrollable",
     "fix-Dropdown-add-aria-attributes",
     "fix-Dropdown-add-aria-contols",
+    "fix-Dropdown-focus-behaviour",
     "fix-NavTabs-fix-obscured-focus",
     "fix-NavsTab-add-region",
     "fix-Select-scrollbar-issue",

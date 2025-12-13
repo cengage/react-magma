@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.21
+
+### Patch Changes
+
+- c1023e8: fix(Dropdown): Fix bug with focus behaviour
+
 ## 5.1.0-rc.20
 
 ### Patch Changes
