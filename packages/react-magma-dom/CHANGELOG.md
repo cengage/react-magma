@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.25
+
+### Patch Changes
+
+- ff0c545ef: fix(Tag): Add a new `aria-label` attribute to the component to improve accessibility.
+
 ## 4.11.0-next.24
 
 ### Patch Changes

@@ -36,6 +36,7 @@
     "fix-NavsTab-add-region",
     "fix-Select-scrollbar-issue",
     "fix-Table-tabIndex-logic",
+    "fix-Tag-fix-aria-label",
     "fix-ToggleButton-transform",
     "fix-TreeView-stoybook-example-update",
     "fix-Treeview-fix-virtulization-height",
