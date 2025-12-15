@@ -132,7 +132,7 @@ export function Example() {
   return (
     <>
       {isTag1Visible ? (
-        <Tag onDelete={deleteTag1}>Deletable Tag</Tag>
+        <Tag onDelete={deleteTag1}>Deletable</Tag>
       ) : (
         <Button
           color={ButtonColor.secondary}
@@ -147,7 +147,7 @@ export function Example() {
 
       {isTag2Visible ? (
         <Tag onDelete={deleteTag2} size="small">
-          Deletable Tag Small
+          Deletable Small
         </Tag>
       ) : (
         <Button
@@ -203,7 +203,7 @@ export function Example() {
     <>
       {isTag1Visible ? (
         <Tag icon={<AccountCircleIcon />} onDelete={deleteTag1}>
-          Deletable Tag
+          Deletable
         </Tag>
       ) : (
         <Button
@@ -219,7 +219,7 @@ export function Example() {
 
       {isTag2Visible ? (
         <Tag icon={<AccountCircleIcon />} onDelete={deleteTag2} size="small">
-          Deletable Tag Small
+          Deletable Small
         </Tag>
       ) : (
         <Button
