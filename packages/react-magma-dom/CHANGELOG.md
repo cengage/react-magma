@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.22
+
+### Patch Changes
+
+- abec578: fix(Tag): Add a new `aria-label` attribute to the component to improve accessibility.
+
 ## 5.1.0-rc.21
 
 ### Patch Changes
