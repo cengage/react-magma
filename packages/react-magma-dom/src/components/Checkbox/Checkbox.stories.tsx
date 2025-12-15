@@ -158,3 +158,27 @@ export const Inverse = () => {
     </Card>
   );
 };
+
+export const Lots = (args: { numberRows: number }) => {
+  function getCheckboxes() {
+    const boxes = [];
+    for (let i = 0; i < args.numberRows; i++) {
+      boxes.push(<Checkbox key={i} labelText="Checkbox" />);
+    }
+    return boxes;
+  }
+  return <>{getCheckboxes()}</>;
+};
+
+Lots.args = {
+  numberRows: 1000,
+};
+
+Lots.argTypes = {
+  numberRows: {
+    control: {
+      type: 'number',
+    },
+    description: 'Number of checkboxes to render',
+  },
+};
