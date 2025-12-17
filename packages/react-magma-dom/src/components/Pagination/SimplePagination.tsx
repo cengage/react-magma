@@ -136,7 +136,7 @@ export const SimplePagination = React.forwardRef<
 
   const PrevButton = (
     <NavButton
-      aria-label={i18n.pagination.previousButtonLabel}
+      aria-label={disabledPrevTooltip ? prevTooltipContent : undefined}
       variant={ButtonVariant.link}
       color={ButtonColor.secondary}
       disabled={disabledPrevTooltip}
@@ -151,7 +151,7 @@ export const SimplePagination = React.forwardRef<
 
   const NextButton = (
     <NavButton
-      aria-label={nextTooltipContent}
+      aria-label={disabledNextTooltip ? nextTooltipContent : undefined}
       variant={ButtonVariant.link}
       color={ButtonColor.secondary}
       disabled={disabledNextTooltip}
