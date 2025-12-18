@@ -136,7 +136,7 @@
     "react-test-renderer": "^18.3.1",
     "rollup-plugin-postcss": "4.0.2",
     "shelljs": "0.10.0",
-    "storybook": "9.0.12",
+    "storybook": "9.1.17",
     "ts-node": "10.9.2",
     "tsdx": "0.14.1",
     "typedoc": "^0.28.5",
