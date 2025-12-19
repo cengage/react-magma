@@ -1,5 +1,149 @@
 ## 4.10.1
 
+## 4.11.0-next.25
+
+### Patch Changes
+
+- ff0c545ef: fix(Tag): Add a new `aria-label` attribute to the component to improve accessibility.
+
+## 4.11.0-next.24
+
+### Patch Changes
+
+- b0b5cb40b: fix(Banner): add the `dismissibleButtonRef` prop to the `Banner` and fix docs page
+- 4c5c4669e: fix(Dropdown): Fix bug with focus behaviour
+
+## 4.11.0-next.23
+
+### Patch Changes
+
+- ead3c7d68: fix(Drawer): Fix content scrolling inside the Drawer when overflowing.
+
+## 4.11.0-next.22
+
+### Patch Changes
+
+- dd5fca45c: fix(TreeView): Update example in the storybook.
+
+## 4.11.0-next.21
+
+### Patch Changes
+
+- 251931f39: fix(Treeview): add height prop for virtualization support
+
+## 4.11.0-next.20
+
+### Patch Changes
+
+- bba12ca3e: fix: This is nothing, I am just trying to force a new package version build
+
+## 4.11.0-next.19
+
+### Patch Changes
+
+- 71c53fb17: fix(Treeview): Fix virtualization styling when enableVirtualization is true.
+
+## 4.11.0-next.18
+
+### Minor Changes
+
+- 9c7121194: fix(TreeView): added itemSize for virtualized tree items
+
+## 4.11.0-next.17
+
+### Minor Changes
+
+- 10df00803: chore(TreeView): preformance refactor
+
+  - Introduced a new `treeViewReducer` to manage the state of the TreeView component, handling actions such as item selection, expansion, and item updates.
+  - Refactored `useTreeView` and `useTreeItem` hooks to utilize the new reducer, improving state management and reducing re-renders.
+  - Enhanced utility functions for better performance, including optimized selection and status processing using Maps for O(1) lookups.
+  - Updated context providers to split responsibilities for selection, expansion, and configuration, allowing for more granular updates and improved performance.
+
+## 4.11.0-next.16
+
+### Patch Changes
+
+- 93d509836: fix(Dropdown & Accordion): Add aria attributes for Dropdown menu and nested items to improve accessibility.
+
+## 4.11.0-next.15
+
+### Patch Changes
+
+- 4d7042456: fix(Alert): add the `dismissibleButtonRef` prop to the `Alert` and fix docs page
+
+## 4.11.0-next.14
+
+### Patch Changes
+
+- 6ea50b27c: fix(ButtonGroup): Accessibility issue: now `ButtonGroup` is list in the HTML with role="list"
+
+## 4.11.0-next.13
+
+### Patch Changes
+
+- e1ea6d70b: fix(Dropdown): Add aria-controls attribute for Dropdown trigger button.
+
+## 4.11.0-next.12
+
+### Patch Changes
+
+- 6f337e6ac: fix(Nav Tabs): Fix obscured content when the elements is focused.
+
+## 4.11.0-next.11
+
+### Patch Changes
+
+- 5c9d298f0: fix(Accordion): Fix accessibility render issue
+
+## 4.11.0-next.10
+
+### Patch Changes
+
+- 6dd9bcf4b: fix(Select & Multiselect): Add `ariaLabel` prop to provide alternative text for screen readers.
+
+## 4.11.0-next.9
+
+### Patch Changes
+
+- 3d8e94020: fix(Select, NativeSelect, Combobox): Add cyclical navigation across options.
+
+## 4.11.0-next.8
+
+### Patch Changes
+
+- f917a82f5: fix(Table): Change logic for `tabIndex`.
+
+## 4.11.0-next.7
+
+### Minor Changes
+
+- c1dfab409: feat(SplitDropdown): Add new `leadingIcon` prop.
+
+## 4.11.0-next.6
+
+### Patch Changes
+
+- a295241bb: fix(AIButton): Fix box-shadows.
+
+## 4.11.0-next.5
+
+### Minor Changes
+
+- 10c6cb94d: feat(Checkbox): Add new `ariaLabel` prop.
+
+## 4.11.0-next.4
+
+### Patch Changes
+
+- 3ac17914c: fix(ToggleButton): Fix issue with `textTransform` prop.
+
+## 4.11.0-next.3
+
+### Minor Changes
+
+- 2e6c1e441: v4/feat(DateTimePicker): Add `timezone` prop. When used, returns Date object with the timezone
+
 ## 4.10.2-next.2
 
 ### Patch Changes

@@ -110,7 +110,7 @@ const Template: StoryFn<TagProps> = args => {
               console.log('clicked');
             }}
           >
-            Deletetable Tag
+            Deletetable
           </Tag>
         </p>
       </CardBody>
@@ -192,7 +192,7 @@ export const WithDelete = {
           <p>
             {isVisibleDefault && (
               <Tag {...args} onDelete={() => setIsVisibleDefault(false)}>
-                Delete
+                Math
               </Tag>
             )}
           </p>
@@ -203,7 +203,7 @@ export const WithDelete = {
                 onDelete={() => setIsVisibleIcon(false)}
                 icon={<AccountCircleIcon />}
               >
-                Delete Icon
+                Deleteable
               </Tag>
             )}
           </p>
@@ -214,7 +214,7 @@ export const WithDelete = {
                 {...args}
                 onDelete={() => setIsVisibleSmall(false)}
               >
-                Delete Small
+                Deleteable Small
               </Tag>
             )}
           </p>
@@ -226,7 +226,7 @@ export const WithDelete = {
                 onDelete={() => setIsVisibleSmallIcon(false)}
                 icon={<AccountCircleIcon />}
               >
-                Delete Icon Small
+                Icon Small
               </Tag>
             )}
           </p>

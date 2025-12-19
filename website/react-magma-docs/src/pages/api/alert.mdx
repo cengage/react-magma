@@ -77,24 +77,48 @@ The aria-label, by default is `Close this message` but can be overridden using t
 ```tsx
 import React from 'react';
 
-import { Alert, Button } from 'react-magma-dom';
+import { Alert, Button, Announce } from 'react-magma-dom';
 
 export function Example() {
   const [showAlert, updateShowAlert] = React.useState<boolean>(false);
+  const dismissAlertRef = React.useRef<HTMLButtonElement>(null);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+  const onDismiss = () => {
+    updateShowAlert(false);
+
+    buttonRef.current.focus();
+  };
+
+  const onShowAlert = () => {
+    updateShowAlert(true);
+
+    setTimeout(() => {
+      dismissAlertRef.current.focus();
+    }, 0);
+  };
 
   return (
     <>
-      {showAlert && (
-        <Alert isDismissible onDismiss={() => updateShowAlert(false)}>
-          Dismiss Me
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </Alert>
-      )}
-      <Button onClick={() => updateShowAlert(true)}>Show Alert</Button>
+      <Announce>
+        {showAlert && (
+          <Alert
+            isDismissible
+            onDismiss={onDismiss}
+            dismissibleButtonRef={dismissAlertRef}
+          >
+            Dismiss Me
+            <br />
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat.
+          </Alert>
+        )}
+      </Announce>
+      <Button onClick={onShowAlert} ref={buttonRef}>
+        Show Alert
+      </Button>
     </>
   );
 }

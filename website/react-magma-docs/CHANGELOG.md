@@ -1,5 +1,54 @@
 # Change Log
 
+## 5.3.0-next.11
+
+### Patch Changes
+
+- 3e73eab61: fix(Alert): Fix a SyntaxError in the Dismissible section.
+
+## 5.3.0-next.10
+
+### Patch Changes
+
+- 6c3720603: fix(Accordion): Fix bug with not-announced `Expand All/Collapse All` button
+
+## 5.3.0-next.9
+
+### Patch Changes
+
+- 46593ab6c: fix(Nav Tabs): Update documentation to include `aria-labelledby` attribute for multi-instance examples.
+- Updated dependencies [93d509836]
+  - react-magma-dom@4.11.0-next.16
+
+## 5.3.0-next.8
+
+### Patch Changes
+
+- 04e3fd25d: fix(NavTabs, Tabs, Toast): Fix different issues.
+
+## 5.3.0-next.7
+
+### Patch Changes
+
+- 67d8b6c4a: chore: Update React-magma-icons version to 3.2.2
+
+## 5.3.0-next.6
+
+### Patch Changes
+
+- d764a8cfd: fix(Select): fix issue when scrollbar appears because of padding and negative margin.
+
+## 5.3.0-next.5
+
+### Patch Changes
+
+- Updated dependencies [2e6c1e441]
+  - react-magma-dom@4.11.0-next.3
+  - @react-magma/charts@13.0.0-next.1
+  - @react-magma/dropzone@13.0.0-next.1
+  - @react-magma/schema-renderer@13.0.0-next.1
+  - @cengage-patterns/header@14.0.0-next.1
+
 ## 5.3.0-next.4
 
 ### Patch Changes

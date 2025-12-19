@@ -346,6 +346,23 @@ export const mergeRefs = <T>(...refs: Array<React.Ref<T> | undefined>) => {
   };
 };
 
+export function isElementInteractive(element: EventTarget | null): boolean {
+  if (!element || !(element instanceof HTMLElement)) return false;
+
+  const tag = element.tagName.toLowerCase();
+
+  if (
+    ['button', 'input', 'select', 'textarea', 'a'].includes(tag) ||
+    (element.hasAttribute('tabindex') && element.tabIndex >= 0)
+  ) {
+    if (tag === 'a' && !(element as HTMLAnchorElement).href) return false;
+
+    return !element.hasAttribute('disabled');
+  }
+
+  return false;
+}
+
 export const handleNumericBeforeInput = (
   e: React.FormEvent<HTMLInputElement>
 ) => {
