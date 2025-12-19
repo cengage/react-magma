@@ -1,5 +1,89 @@
 ## 4.10.0
 
+## 5.1.0-rc.22
+
+### Patch Changes
+
+- abec578: fix(Tag): Add a new `aria-label` attribute to the component to improve accessibility.
+
+## 5.1.0-rc.21
+
+### Patch Changes
+
+- c1023e8: fix(Dropdown): Fix bug with focus behaviour
+
+## 5.1.0-rc.20
+
+### Patch Changes
+
+- c48a806: fix(Banner): add the `dismissibleButtonRef` prop to the `Banner` and fix docs page
+
+## 5.1.0-rc.19
+
+### Patch Changes
+
+- 3494bf4: fix(Drawer): Fix content scrolling inside the Drawer when overflowing.
+
+## 5.1.0-rc.18
+
+### Patch Changes
+
+- 365304c: fix(Dropdown & Accordion): Add aria attributes for Dropdown menu and nested items to improve accessibility.
+
+## 5.1.0-rc.17
+
+### Patch Changes
+
+- 02e0d3e: fix(Alert): add the `dismissibleButtonRef` prop to the `Alert` and fix docs page
+
+## 5.1.0-rc.16
+
+### Patch Changes
+
+- 38da9ad: fix(ButtonGroup): Accessibility issue: now `ButtonGroup` is list in the HTML with role="list"
+
+## 5.1.0-rc.15
+
+### Patch Changes
+
+- c9a0d84: fix(Dropdown): Add aria-controls attribute for Dropdown trigger button.
+
+## 5.1.0-rc.14
+
+### Patch Changes
+
+- 72073a2: fix(Nav Tabs): Fix obscured content when the elements is focused.
+
+## 5.1.0-rc.13
+
+### Patch Changes
+
+- ed37531: fix(Accordion): Fix accessibility render issue
+
+## 5.1.0-rc.12
+
+### Patch Changes
+
+- 50340c1: fix(Select & Multiselect): Add `ariaLabel` prop to provide alternative text for screen readers.
+
+## 5.1.0-rc.11
+
+### Patch Changes
+
+- 703a54d: fix(Select, NativeSelect, Combobox): Add cyclical navigation across options.
+
+## 5.1.0-rc.10
+
+### Patch Changes
+
+- 3bf7047: fix(Table): Change logic for `tabIndex`.
+
+## 5.1.0-rc.9
+
+### Minor Changes
+
+- b192a72: feat(SplitDropdown): Add new `leadingIcon` prop.
+
 ## 5.1.0-rc.8
 
 ### Patch Changes

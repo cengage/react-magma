@@ -6,17 +6,15 @@ import { magma } from '../../theme/magma';
 import { Button } from '../Button';
 import { Card, CardBody } from '../Card';
 
-import { Spacer, SpacerProps, SpacerAxis } from './';
+import { Spacer, SpacerAxis } from './';
 
 export default {
   title: 'Spacer',
   component: Spacer,
   argTypes: {
     axis: {
-      control: {
-        type: 'select',
-        options: SpacerAxis,
-      },
+      control: { type: 'select' },
+      options: Object.values(SpacerAxis),
     },
   },
 } as Meta;

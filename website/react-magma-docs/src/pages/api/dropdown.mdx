@@ -92,6 +92,44 @@ export function Example() {
 }
 ```
 
+### Leading Icon
+
+The `DropdownSplitButton` supports a `leadingIcon` prop that allows you to display an icon to the left of the button text. This icon appears on the main action button (left side of the split), while the dropdown caret remains on the toggle button (right side).
+
+```tsx
+import React from 'react';
+
+import {
+  Dropdown,
+  DropdownContent,
+  DropdownMenuItem,
+  DropdownSplitButton,
+} from 'react-magma-dom';
+import { LibraryAddIcon } from 'react-magma-icons';
+
+export function Example() {
+  function handleSplitButtonClick() {
+    alert('Button Clicked!');
+  }
+
+  return (
+    <Dropdown>
+      <DropdownSplitButton
+        aria-label="Split Button"
+        onClick={handleSplitButtonClick}
+        leadingIcon={<LibraryAddIcon />}
+      >
+        Split Button
+      </DropdownSplitButton>
+      <DropdownContent>
+        <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+        <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+}
+```
+
 ## Drop Direction (deprecated)
 
 Using the `dropDirection` prop will change where the menu appears and the arrow direction. Options are `down`, `up`, `left` and `right` with `down` being default.

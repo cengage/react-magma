@@ -13,7 +13,12 @@ import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom
 
 import { useDescendants } from '../../hooks/useDescendants';
 import { useIsInverse } from '../../inverse';
-import { resolveProps, useForkedRef } from '../../utils';
+import {
+  isElementInteractive,
+  resolveProps,
+  useForkedRef,
+  useGenerateId,
+} from '../../utils';
 import { ButtonGroupContext } from '../ButtonGroup';
 
 export enum DropdownDropDirection {
@@ -172,10 +177,16 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       onOpen && typeof onOpen === 'function' && onOpen();
     }
 
-    function closeDropdown(event: React.SyntheticEvent<Element, Event>) {
+    function closeDropdown(event) {
       setIsOpen(false);
 
-      toggleRef.current?.focus();
+      if (event && event.type === 'blur') {
+        const relatedTarget = event.relatedTarget;
+
+        if (!isElementInteractive(relatedTarget)) {
+          toggleRef.current?.focus();
+        }
+      }
 
       onClose && typeof onClose === 'function' && onClose(event);
     }
@@ -252,6 +263,8 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const isInverse = useIsInverse(resolvedProps.isInverse);
 
     const [placement, setPlacement] = useState('bottom-start');
+
+    dropdownButtonId.current = useGenerateId();
 
     const changePlacement = (
       dropDirection: string = DropdownDropDirection.down,

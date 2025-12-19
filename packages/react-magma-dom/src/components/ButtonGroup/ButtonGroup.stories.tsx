@@ -79,40 +79,28 @@ export default {
       },
     },
     alignment: {
-      control: {
-        type: 'select',
-        options: ButtonGroupAlignment,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonGroupAlignment),
     },
     orientation: {
-      control: {
-        type: 'select',
-        options: ButtonGroupOrientation,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonGroupOrientation),
     },
     color: {
-      control: {
-        type: 'select',
-        options: ButtonColor,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonColor),
     },
     size: {
-      control: {
-        type: 'select',
-        options: ButtonSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonSize),
     },
     variant: {
-      control: {
-        type: 'select',
-        options: ButtonVariant,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonVariant),
     },
     textTransform: {
-      control: {
-        type: 'select',
-        options: ButtonTextTransform,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonTextTransform),
     },
     isInverse: {
       control: {

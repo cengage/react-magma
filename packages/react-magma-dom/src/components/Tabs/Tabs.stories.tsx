@@ -45,34 +45,24 @@ export default {
   ],
   argTypes: {
     alignment: {
-      control: {
-        type: 'select',
-        options: TabsAlignment,
-      },
+      control: { type: 'select' },
+      options: Object.values(TabsAlignment),
     },
     borderPosition: {
-      control: {
-        type: 'select',
-        options: TabsBorderPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(TabsBorderPosition),
     },
     iconPosition: {
-      control: {
-        type: 'select',
-        options: TabsIconPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(TabsIconPosition),
     },
     orientation: {
-      control: {
-        type: 'select',
-        options: TabsOrientation,
-      },
+      control: { type: 'select' },
+      options: Object.values(TabsOrientation),
     },
     textTransform: {
-      control: {
-        type: 'select',
-        options: TabsTextTransform,
-      },
+      control: { type: 'select' },
+      options: Object.values(TabsTextTransform),
     },
     isInverse: {
       control: {

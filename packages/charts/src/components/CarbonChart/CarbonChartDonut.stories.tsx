@@ -15,10 +15,8 @@ export default {
       },
     },
     type: {
-      control: {
-        type: 'select',
-        options: CarbonChartType,
-      },
+      control: { type: 'select' },
+      options: Object.values(CarbonChartType),
     },
   },
 } as Meta;

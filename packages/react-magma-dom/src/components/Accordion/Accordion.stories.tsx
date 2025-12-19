@@ -32,10 +32,8 @@ export default {
   title: 'Accordion',
   argTypes: {
     iconPosition: {
-      control: {
-        type: 'select',
-        options: AccordionIconPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(AccordionIconPosition),
     },
     isInverse: {
       control: {

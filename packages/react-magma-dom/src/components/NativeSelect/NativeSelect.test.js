@@ -115,6 +115,36 @@ describe('NativeSelect', () => {
     expect(getByText(errorMessage)).toBeInTheDocument();
   });
 
+  it('should have cycling navigation through options with arrow keys', async () => {
+    const testId = 'select';
+    const { getByTestId } = render(
+      <NativeSelect testId={testId} defaultValue="1">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </NativeSelect>
+    );
+
+    const selectElement = getByTestId(testId);
+    selectElement.focus();
+
+    expect(selectElement).toHaveDisplayValue('1');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(selectElement).toHaveDisplayValue('2');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(selectElement).toHaveDisplayValue('3');
+
+    // Cycle back to first option
+    await userEvent.keyboard('{ArrowDown}');
+    expect(selectElement).toHaveDisplayValue('1');
+
+    // Cycle to last option
+    await userEvent.keyboard('{ArrowUp}');
+    expect(selectElement).toHaveDisplayValue('3');
+  });
+
   describe('additional content', () => {
     const helpLinkLabel = 'Learn more';
 
