@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.26
+
+### Patch Changes
+
+- be0435797: fix(TablePagination): Fixed screen reader announcing "Rows per page" twice by hiding the visible label from screen readers
+
 ## 4.11.0-next.25
 
 ### Patch Changes

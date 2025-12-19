@@ -45,6 +45,7 @@
     "fix-modal-trigger-button",
     "fix-select-aria-label",
     "fix-select-focus-behaviour",
+    "fix-tablepagination-duplicate-screenreader",
     "fix-timepicker-update-styles",
     "manually-sync-4.10.1",
     "treeview-performance-styles",
