@@ -75,22 +75,21 @@ describe('Textarea', () => {
     const labelText = 'test label';
     const testHelperMessage = 'Test helper message';
     const testErrorMessage = 'Test error message';
-    const { getByTestId, getByLabelText, queryByText } = render(
+    const { getByTestId, queryByText } = render(
       <Textarea
+        testId={testId}
         errorMessage={testErrorMessage}
         helperMessage={testHelperMessage}
         labelText={labelText}
       />
     );
 
+    const textarea = getByTestId(testId);
     const errorMessage = getByTestId('inputMessage');
 
     expect(errorMessage).toBeInTheDocument();
 
-    expect(getByLabelText(labelText)).toHaveStyleRule(
-      'border-color',
-      magma.colors.danger
-    );
+    expect(textarea).toHaveStyleRule('border-color', magma.colors.danger);
 
     expect(errorMessage).toHaveStyleRule('color', magma.colors.danger);
 
