@@ -539,6 +539,42 @@ describe('Select', () => {
     expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
   });
 
+  it('should skip disabled items and navigate to the next active item', async () => {
+    const customItems = [
+      {
+        label: 'Red',
+        value: 'red',
+        disabled: false,
+      },
+      {
+        label: 'Blue',
+        value: 'blue',
+        disabled: true,
+      },
+      {
+        label: 'Green',
+        value: 'green',
+        disabled: false,
+      },
+    ];
+
+    const { getByLabelText, getByText } = render(
+      <Select labelText={labelText} items={customItems} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    act(() => {
+      renderedSelect.focus();
+    });
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'false');
+    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+  });
+
   describe('additional content', () => {
     const helpLinkLabel = 'Learn more';
 
