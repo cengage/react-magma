@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.24
+
+### Patch Changes
+
+- edc04f5: fix(Select, Multiselect, Combobox & Multicombobox): Fix navigation throughth the disabled items.
+
 ## 5.1.0-rc.23
 
 ### Patch Changes
