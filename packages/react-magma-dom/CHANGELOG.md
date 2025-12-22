@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.27
+
+### Patch Changes
+
+- 99747853e: fix(TextArea): Add an ARIA announcement helper to inform users how many characters are left.
+
 ## 4.11.0-next.26
 
 ### Patch Changes
