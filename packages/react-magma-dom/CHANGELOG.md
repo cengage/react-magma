@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.28
+
+### Patch Changes
+
+- f1c8956b6: fix(RadioButton): Fix announcing label text with error or helper message.
+
 ## 4.11.0-next.27
 
 ### Patch Changes
