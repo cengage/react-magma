@@ -16,6 +16,7 @@ import { defaultComponents } from '../Select/components';
 import { ItemsList } from '../Select/ItemsList';
 import { SelectContainer } from '../Select/SelectContainer';
 import { IconWrapper, SelectedItemButton } from '../Select/shared';
+import { setFocusedItem } from '../Select/utils';
 
 import { MultiComboboxProps } from '.';
 
@@ -180,12 +181,14 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       onIsOpenChange(changes);
   }
 
+  const filteredItems = getFilteredItems(displayItems);
+
   function stateReducer(state, actionAndChanges) {
     const { type, changes } = actionAndChanges;
     switch (type) {
       case useCombobox.stateChangeTypes.InputKeyDownEnter: {
-        const newSelectedItem =
-          getFilteredItems(displayItems)[state.highlightedIndex];
+        const newSelectedItem = filteredItems[state.highlightedIndex];
+
         return {
           ...changes,
           ...(newSelectedItem && {
@@ -211,6 +214,14 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         return {
           ...changes,
           isOpen: changes.isOpen,
+        };
+      case useCombobox.stateChangeTypes.InputKeyDownArrowDown:
+      case useCombobox.stateChangeTypes.InputKeyDownArrowUp:
+        // Keep controlled navigation manually via handleOnKeyDown handler
+        return {
+          ...state,
+          highlightedIndex: state.highlightedIndex,
+          isOpen: true,
         };
       default:
         return {
@@ -242,7 +253,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   } = useCombobox({
     ...comboboxProps,
     itemToString,
-    items: getFilteredItems(displayItems),
+    items: filteredItems,
     onInputValueChange:
       onInputValueChange && typeof onInputValueChange === 'function'
         ? changes => onInputValueChange(changes, setDisplayItems)
@@ -352,14 +363,29 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       </>
     ) : null;
 
-  function handleOnKeyDown(event: any) {
+  function handleOnKeyDown(event: React.KeyboardEvent) {
     const count = document.querySelectorAll('[aria-modal="true"]').length;
 
-    if (event.key === 'Escape') {
-      if (count >= 1 && inputRef.current) {
-        inputRef.current.focus();
-      }
-      event.nativeEvent.stopImmediatePropagation();
+    switch (event.key) {
+      case 'Escape':
+        if (count >= 1 && inputRef.current) {
+          inputRef.current.focus();
+        }
+        event.nativeEvent.stopImmediatePropagation();
+        break;
+      case 'ArrowDown':
+        setFocusedItem(1, highlightedIndex, filteredItems, setHighlightedIndex);
+        break;
+      case 'ArrowUp':
+        setFocusedItem(
+          -1,
+          highlightedIndex,
+          filteredItems,
+          setHighlightedIndex
+        );
+        break;
+      default:
+        break;
     }
 
     onInputKeyDown &&
