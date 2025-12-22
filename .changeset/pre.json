@@ -49,6 +49,7 @@
     "fix-Dropdown-focus-behaviour",
     "fix-NavTabs-fix-obscured-focus",
     "fix-NavsTab-add-region",
+    "fix-RadioButton-label-is-not-annouced-with-helper-message",
     "fix-Select-disabled-item",
     "fix-Select-scrollbar-issue",
     "fix-Storybook-select-issues",
