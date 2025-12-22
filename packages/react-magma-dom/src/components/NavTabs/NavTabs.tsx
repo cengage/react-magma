@@ -20,7 +20,7 @@ import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
 import { useTabsMeta } from '../Tabs/utils';
 
 export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {
-  'aria-label': string;
+  'aria-label'?: string;
 }
 
 interface NavTabsContextInterface {

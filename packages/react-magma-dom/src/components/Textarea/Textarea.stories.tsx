@@ -73,6 +73,7 @@ export const OnClear = {
       <>
         <Textarea
           {...args}
+          maxCount={4}
           labelText="Textarea"
           value={fieldValue}
           onChange={e => {
