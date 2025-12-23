@@ -15,9 +15,6 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 interface CalendarDayProps {
   day: Date;
-  dayFocusable?: boolean;
-  isInverse?: boolean;
-  onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
 }
 
 type CalendarDayState = {
@@ -233,27 +230,21 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     setFocusedDate,
     isInverse,
   } = React.useContext(CalendarContext);
-  const [focused, setFocused] = React.useState<boolean>(false);
   const { day } = props;
 
   React.useEffect(() => {
     if (dateFocused && isSameDay(day, focusedDate)) {
       dayRef.current.focus();
-      setFocused(true);
-    } else {
-      if (focused) {
-        setFocused(false);
-      }
     }
-  }, [focusedDate, dateFocused, day, focused]);
+  }, [focusedDate, dateFocused, day]);
 
   function onCalendarDayFocus() {
     setDateFocused(true);
   }
 
   const disabled: boolean =
-    (maxDate ? isAfter(props.day, maxDate) : false) ||
-    (minDate ? isBefore(props.day, minDate) : false);
+    (maxDate ? isAfter(day, maxDate) : false) ||
+    (minDate ? isBefore(day, minDate) : false);
 
   function onDayClick(event: React.SyntheticEvent) {
     if (disabled) {

@@ -392,13 +392,14 @@ describe('DateTimePicker', () => {
     it('should respect minDate when provided', async () => {
       const minDate = new Date('2024-01-01');
 
-      const { getByTestId, getByText, getByPlaceholderText, getByLabelText } =
-        render(
-          <DateTimePicker
-            labelText="Date Time Picker Label"
-            minDate={minDate}
-          />
-        );
+      const {
+        getByTestId,
+        getAllByText,
+        getByPlaceholderText,
+        getByLabelText,
+      } = render(
+        <DateTimePicker labelText="Date Time Picker Label" minDate={minDate} />
+      );
 
       const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
 
@@ -407,10 +408,11 @@ describe('DateTimePicker', () => {
       await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       const calendar = getByTestId('calendarMonthContainer');
+      const disabledDay = getAllByText('31')[0];
 
       expect(calendar).toBeVisible();
-      expect(getByText('31')).toBeVisible();
-      expect(getByText('31')).toHaveAttribute('aria-disabled', 'true');
+      expect(getAllByText('31')[0]).toBeVisible();
+      expect(getAllByText('31')[0]).toHaveAttribute('aria-disabled', 'true');
     });
 
     it('should respect maxDate when provided', async () => {

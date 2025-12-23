@@ -156,7 +156,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   const lastFocus = React.useRef<any>();
   const helperButtonRef = React.useRef<any>();
   const context = React.useContext(CalendarContext);
-  const [dayFocusable, setDayFocusable] = React.useState<boolean>(false);
   const prevCalendarOpened = usePrevious(props.calendarOpened);
   const focusTrapElement = useFocusLock(props.calendarOpened);
   const monthContainerRef = React.useRef<HTMLDivElement>(null);
@@ -166,8 +165,16 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
       lastFocus.current = document.activeElement;
 
       if (props.focusOnOpen) {
-        setDayFocusable(true);
-        context.setDateFocused(true);
+        // Find and focus the calendar day button directly
+        const calendarDay = monthContainerRef.current?.querySelector(
+          '[data-testid="calendar-day"]'
+        ) as HTMLButtonElement;
+
+        if (calendarDay) {
+          calendarDay.focus();
+        } else {
+          context.setDateFocused(true);
+        }
       }
     }
   }, [props.calendarOpened, props.focusOnOpen]);
@@ -178,12 +185,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
     }
   }, [context.helperInformationShown]);
 
-  function onCalendarTableFocus() {
-    setDayFocusable(true);
-  }
-
   function onCalendarTableBlur() {
-    setDayFocusable(false);
     context.setDateFocused(false);
   }
 
@@ -245,7 +247,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
 
             <Table
               onBlur={onCalendarTableBlur}
-              onFocus={onCalendarTableFocus}
               theme={theme}
               role="application"
               dateTimePickerContent={!!props.dateTimePickerContent}
@@ -257,13 +258,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                   .map((week, i) => (
                     <tr key={i}>
                       {week.map((day, dayOfWeek) => (
-                        <CalendarDay
-                          key={dayOfWeek}
-                          isInverse={context.isInverse}
-                          day={day}
-                          dayFocusable={dayFocusable}
-                          onDateChange={context.onDateChange}
-                        />
+                        <CalendarDay key={dayOfWeek} day={day} />
                       ))}
                     </tr>
                   ))}
