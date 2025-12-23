@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.26
+
+### Minor Changes
+
+- 7709c40: feat(DatePicker): Add new keyboard controls.
+
 ## 5.1.0-rc.25
 
 ### Patch Changes
