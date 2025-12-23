@@ -362,3 +362,13 @@ export function isElementInteractive(element: EventTarget | null): boolean {
 
   return false;
 }
+
+export const handleNumericBeforeInput = (
+  e: React.FormEvent<HTMLInputElement>
+) => {
+  const native = e.nativeEvent as InputEvent;
+
+  if (typeof native.data === 'string' && /\D/.test(native.data)) {
+    e.preventDefault();
+  }
+};

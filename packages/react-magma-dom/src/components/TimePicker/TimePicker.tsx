@@ -23,6 +23,12 @@ export interface TimePickerProps extends UseTimePickerProps {
   inputStyle?: React.CSSProperties;
 }
 
+interface StyledNumInputProps {
+  isFocused?: boolean;
+  isInverse?: boolean;
+  size?: number;
+}
+
 const InputsContainer = styled.div<{
   hasError?: boolean;
   isInverse?: boolean;
@@ -74,21 +80,20 @@ export const Divider = styled.span<{
     getDividerColor(props.isInverse, props.isFocused, props.theme)};
 `;
 
-const StyledNumInput = styled.input<{
-  isInverse?: boolean;
-  isFocused?: boolean;
-}>`
-  border: 0;
-  border-bottom: 2px solid transparent; // Reserve space for border when focused
+export const StyledNumInput = styled.input<StyledNumInputProps>`
   padding: 0;
-  text-align: right;
+  border: 0;
+  text-align: center;
   text-align-last: center;
-  width: ${props => props.theme.typeScale.size05.fontSize};
+  min-width: ${props => (props.size ? `${props.size}ch` : 'auto')};
+  max-width: ${props => (props.size ? `${props.size}ch` : 'auto')};
+  width: ${props => props.theme.spaceScale.spacing06};
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
   background: transparent;
+  border-bottom: 2px solid transparent; // Reserve space for border when focused
   caret-color: transparent;
 
   &::-webkit-inner-spin-button {
@@ -117,13 +122,6 @@ const StyledNumInput = styled.input<{
       props.isInverse
         ? props.theme.colors.neutral100
         : props.theme.colors.neutral700};
-
-    &::placeholder {
-      color: ${props =>
-        props.isInverse
-          ? props.theme.colors.neutral100
-          : props.theme.colors.neutral700};
-    }
 
     &::selection {
       background: ${props =>

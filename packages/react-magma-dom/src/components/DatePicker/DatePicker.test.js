@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {
   addDays,
@@ -56,6 +56,9 @@ const ClearingTheDate = args => {
     </div>
   );
 };
+
+const errorMessage = 'Error message';
+const helperMessage = 'Helper message';
 
 describe('Date Picker', () => {
   it('should find element by testId', () => {
@@ -367,7 +370,6 @@ describe('Date Picker', () => {
   });
 
   it('should render a helper message on the date picker input', () => {
-    const helperMessage = 'Help information';
     const { getByText } = render(
       <DatePicker labelText="Date Picker Label" helperMessage={helperMessage} />
     );
@@ -376,7 +378,6 @@ describe('Date Picker', () => {
   });
 
   it('should render an error message on the date picker input', () => {
-    const errorMessage = 'Help information';
     const { getByText } = render(
       <DatePicker labelText="Date Picker Label" errorMessage={errorMessage} />
     );
@@ -1350,6 +1351,532 @@ describe('Date Picker', () => {
       expect(getAllByText(/january/i)[0]).toBeInTheDocument();
       expect(prevMonthButton).toBeDisabled();
       expect(nextMonthButton).toHaveFocus();
+    });
+  });
+
+  describe('Date Field Input', () => {
+    it('should render a helper message on the date picker input', () => {
+      const { getByText } = render(
+        <DatePicker isDateFieldInput helperMessage={helperMessage} />
+      );
+
+      expect(getByText(helperMessage)).not.toBeNull();
+    });
+
+    it('should render an error message on the date picker input', () => {
+      const { getByText } = render(
+        <DatePicker isDateFieldInput errorMessage={errorMessage} />
+      );
+
+      expect(getByText(errorMessage)).not.toBeNull();
+    });
+
+    it('should increment and decrement the date', () => {
+      const { getByTestId } = render(
+        <DatePicker isDateFieldInput value={new Date(2025, 9, 22)} />
+      );
+
+      const monthInput = getByTestId('month-input');
+      const dayInput = getByTestId('day-input');
+      const yearInput = getByTestId('year-input');
+
+      userEvent.click(monthInput);
+      userEvent.keyboard('{ArrowUp}');
+      expect(monthInput.value).toBe('11');
+
+      userEvent.click(dayInput);
+      userEvent.keyboard('{ArrowUp}');
+      expect(dayInput.value).toBe('23');
+
+      userEvent.click(yearInput);
+      userEvent.keyboard('{ArrowUp}');
+      waitFor(() => {
+        expect(yearInput.value).toBe('2026');
+      });
+
+      userEvent.click(monthInput);
+      userEvent.keyboard('{ArrowDown}');
+      expect(monthInput.value).toBe('10');
+
+      userEvent.click(dayInput);
+      userEvent.keyboard('{ArrowDown}');
+      waitFor(() => {
+        expect(dayInput.value).toBe('22');
+      });
+
+      userEvent.click(yearInput);
+      userEvent.keyboard('{ArrowDown}');
+      expect(yearInput.value).toBe('2025');
+    });
+
+    it('should increment and decrement the date when date format is `MMMM d, yyyy`', () => {
+      const { getByTestId } = render(
+        <I18nContext.Provider
+          value={{
+            ...defaultI18n,
+            dateFormat: 'MMMM d, yyyy',
+          }}
+        >
+          <DatePicker isDateFieldInput value={new Date(2025, 9, 22)} />
+        </I18nContext.Provider>
+      );
+
+      const monthInput = getByTestId('month-input');
+      const dayInput = getByTestId('day-input');
+      const yearInput = getByTestId('year-input');
+
+      userEvent.click(monthInput);
+      userEvent.keyboard('{ArrowUp}');
+      expect(monthInput.value).toBe('November');
+
+      userEvent.click(dayInput);
+      userEvent.keyboard('{ArrowUp}');
+      waitFor(() => {
+        expect(dayInput.value).toBe('23');
+      });
+
+      userEvent.click(yearInput);
+      userEvent.keyboard('{ArrowUp}');
+      waitFor(() => {
+        expect(yearInput.value).toBe('2026');
+      });
+
+      userEvent.click(monthInput);
+      userEvent.keyboard('{ArrowDown}');
+      expect(monthInput.value).toBe('October');
+
+      userEvent.click(dayInput);
+      userEvent.keyboard('{ArrowDown}');
+      expect(dayInput.value).toBe('22');
+
+      userEvent.click(yearInput);
+      userEvent.keyboard('{ArrowDown}');
+      expect(yearInput.value).toBe('2025');
+    });
+
+    it('should show current values for today', () => {
+      const { getByTestId } = render(<DatePicker isDateFieldInput />);
+
+      const today = new Date();
+      const monthInput = getByTestId('month-input');
+      const dayInput = getByTestId('day-input');
+      const yearInput = getByTestId('year-input');
+
+      const monthValue =
+        today.getMonth() + 1 < 10
+          ? `0${today.getMonth() + 1}`
+          : String(today.getMonth() + 1);
+      const dayValue =
+        today.getDate() < 10 ? `0${today.getDate()}` : String(today.getDate());
+
+      userEvent.click(monthInput);
+      userEvent.keyboard('{ArrowDown}');
+      expect(monthInput.value).toBe(monthValue);
+
+      userEvent.click(dayInput);
+      userEvent.keyboard('{ArrowDown}');
+      expect(dayInput.value).toBe(dayValue);
+
+      userEvent.click(yearInput);
+      userEvent.keyboard('{ArrowUp}');
+      waitFor(() => {
+        expect(yearInput.value).toBe(String(today.getFullYear()));
+      });
+    });
+
+    it('should render with a default date', () => {
+      const defaultDate = new Date(2019, 0, 17);
+      const { getByTestId } = render(
+        <DatePicker defaultDate={defaultDate} isDateFieldInput />
+      );
+
+      expect(getByTestId('month-input')).toHaveDisplayValue('01');
+      expect(getByTestId('day-input')).toHaveDisplayValue('17');
+      expect(getByTestId('year-input')).toHaveDisplayValue('2019');
+    });
+
+    it('should render with a value', () => {
+      const value = new Date(2018, 1, 21);
+      const { getByTestId } = render(
+        <DatePicker value={value} isDateFieldInput />
+      );
+
+      expect(getByTestId('month-input')).toHaveDisplayValue('02');
+      expect(getByTestId('day-input')).toHaveDisplayValue('21');
+      expect(getByTestId('year-input')).toHaveDisplayValue('2018');
+    });
+
+    it('should call onChange and onDateChange when date is changed', () => {
+      const onChange = jest.fn();
+      const onDateChange = jest.fn();
+
+      const { getByTestId } = render(
+        <DatePicker
+          isDateFieldInput
+          onChange={onChange}
+          onDateChange={onDateChange}
+        />
+      );
+
+      const monthInput = getByTestId('month-input');
+      const dayInput = getByTestId('day-input');
+      const yearInput = getByTestId('year-input');
+
+      userEvent.click(monthInput);
+      userEvent.keyboard('{ArrowDown}');
+
+      expect(onDateChange).not.toHaveBeenCalled();
+      expect(onChange).not.toHaveBeenCalled();
+
+      userEvent.click(dayInput);
+      userEvent.keyboard('{ArrowDown}');
+
+      expect(onDateChange).not.toHaveBeenCalled();
+      expect(onChange).not.toHaveBeenCalled();
+
+      userEvent.click(yearInput);
+      userEvent.keyboard('{ArrowUp}');
+      waitFor(() => {
+        expect(onDateChange).toHaveBeenCalled();
+        expect(onChange).toHaveBeenCalled();
+      });
+    });
+
+    it('should handle focus and blur events on DateFieldInput', () => {
+      const onInputFocus = jest.fn();
+      const onInputBlur = jest.fn();
+      const { getByTestId } = render(
+        <DatePicker
+          isDateFieldInput
+          onInputFocus={onInputFocus}
+          onInputBlur={onInputBlur}
+        />
+      );
+
+      const monthInput = getByTestId('month-input');
+      monthInput.focus();
+      expect(onInputFocus).toHaveBeenCalled();
+
+      monthInput.blur();
+      expect(onInputBlur).toHaveBeenCalled();
+    });
+
+    describe('Focus behavior', () => {
+      it('should handle input focus behavior via tabbing', () => {
+        const { getByTestId } = render(<DatePicker isDateFieldInput />);
+
+        const monthInput = getByTestId('month-input');
+        const dayInput = getByTestId('day-input');
+        const yearInput = getByTestId('year-input');
+
+        userEvent.tab();
+        // Initial focus on first input
+        expect(monthInput).toHaveFocus();
+
+        userEvent.tab();
+        expect(dayInput).toHaveFocus();
+
+        userEvent.tab();
+        expect(yearInput).toHaveFocus();
+
+        userEvent.tab({ shift: true });
+        expect(dayInput).toHaveFocus();
+
+        userEvent.tab({ shift: true });
+        expect(monthInput).toHaveFocus();
+      });
+
+      it('should handle focus behavior via arrows', () => {
+        const { getByTestId } = render(<DatePicker isDateFieldInput />);
+
+        const monthInput = getByTestId('month-input');
+        const dayInput = getByTestId('day-input');
+        const yearInput = getByTestId('year-input');
+
+        userEvent.tab(); // Initial focus on first input
+        expect(monthInput).toHaveFocus();
+
+        userEvent.type(monthInput, '{arrowright}');
+        expect(dayInput).toHaveFocus();
+
+        userEvent.type(dayInput, '{arrowright}');
+        expect(yearInput).toHaveFocus();
+
+        userEvent.type(yearInput, '{arrowleft}');
+        expect(dayInput).toHaveFocus();
+
+        userEvent.type(dayInput, '{arrowleft}');
+        expect(monthInput).toHaveFocus();
+
+        userEvent.tab();
+        expect(dayInput).toHaveFocus();
+
+        userEvent.tab();
+        expect(yearInput).toHaveFocus();
+      });
+    });
+
+    describe('Date Field Input formats', () => {
+      it('should support default `MM/dd/yyyy` format', () => {
+        const { getByTestId } = render(
+          <DatePicker isDateFieldInput value={new Date(2022, 6, 24)} />
+        );
+
+        expect(getByTestId('day-input').value).toEqual('24');
+        expect(getByTestId('month-input').value).toEqual('07');
+        expect(getByTestId('year-input').value).toEqual('2022');
+      });
+
+      it('should support dd/MM/yyyy format', () => {
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'dd/MM/yyyy',
+            }}
+          >
+            <DatePicker isDateFieldInput value={new Date(2021, 5, 17)} />
+          </I18nContext.Provider>
+        );
+
+        expect(getByTestId('day-input').value).toEqual('17');
+        expect(getByTestId('month-input').value).toEqual('06');
+        expect(getByTestId('year-input').value).toEqual('2021');
+      });
+
+      it('should support yyyy/MM/dd format', () => {
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'yyyy/MM/dd',
+            }}
+          >
+            <DatePicker isDateFieldInput value={new Date(2020, 1, 15)} />
+          </I18nContext.Provider>
+        );
+
+        expect(getByTestId('day-input').value).toEqual('15');
+        expect(getByTestId('month-input').value).toEqual('02');
+        expect(getByTestId('year-input').value).toEqual('2020');
+      });
+
+      it('should support yyyy/dd/MM format', () => {
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'yyyy/dd/MM',
+            }}
+          >
+            <DatePicker isDateFieldInput value={new Date(2025, 9, 28)} />
+          </I18nContext.Provider>
+        );
+
+        expect(getByTestId('day-input').value).toEqual('28');
+        expect(getByTestId('month-input').value).toEqual('10');
+        expect(getByTestId('year-input').value).toEqual('2025');
+      });
+
+      it('should support MMMM d, yyyy format', () => {
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'MMMM d, yyyy',
+            }}
+          >
+            <DatePicker isDateFieldInput value={new Date(2025, 8, 22)} />
+          </I18nContext.Provider>
+        );
+
+        expect(getByTestId('month-input').value).toEqual('September');
+        expect(getByTestId('day-input').value).toEqual('22');
+        expect(getByTestId('year-input').value).toEqual('2025');
+      });
+
+      it('should show January month when date format is MMMM d, yyyy and user type J', () => {
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'MMMM d, yyyy',
+            }}
+          >
+            <DatePicker isDateFieldInput />
+          </I18nContext.Provider>
+        );
+
+        const monthInput = getByTestId('month-input');
+
+        userEvent.type(monthInput, 'J');
+
+        expect(monthInput.value).toBe('January');
+      });
+
+      it('should show April month when date format is MMMM d, yyyy and user type 4', () => {
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'MMMM d, yyyy',
+            }}
+          >
+            <DatePicker isDateFieldInput />
+          </I18nContext.Provider>
+        );
+
+        const monthInput = getByTestId('month-input');
+
+        userEvent.type(monthInput, '4');
+
+        expect(monthInput.value).toBe('April');
+      });
+
+      it('should show October month when date format is MMMM d, yyyy and user type 10', () => {
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'MMMM d, yyyy',
+            }}
+          >
+            <DatePicker isDateFieldInput />
+          </I18nContext.Provider>
+        );
+
+        const monthInput = getByTestId('month-input');
+
+        userEvent.type(monthInput, '1');
+
+        expect(monthInput.value).toBe('January');
+
+        userEvent.type(monthInput, '0');
+
+        expect(monthInput.value).toBe('October');
+      });
+
+      it('should show February month when date format is MMMM d, yyyy and user type `J` and after 2', () => {
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'MMMM d, yyyy',
+            }}
+          >
+            <DatePicker isDateFieldInput />
+          </I18nContext.Provider>
+        );
+
+        const monthInput = getByTestId('month-input');
+
+        userEvent.type(monthInput, 'J');
+
+        expect(monthInput.value).toBe('January');
+
+        userEvent.type(monthInput, '2');
+
+        expect(monthInput.value).toBe('February');
+      });
+
+      it('should not show any month when date format is MMMM d, yyyy and user type `P`', () => {
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'MMMM d, yyyy',
+            }}
+          >
+            <DatePicker isDateFieldInput />
+          </I18nContext.Provider>
+        );
+
+        const monthInput = getByTestId('month-input');
+
+        userEvent.type(monthInput, 'p');
+
+        expect(monthInput.value).toBe('');
+      });
+
+      it('should show `July` any month when date format is MMMM d, yyyy and user type `J` + `u` + `l`', () => {
+        const { getByTestId } = render(
+          <I18nContext.Provider
+            value={{
+              ...defaultI18n,
+              dateFormat: 'MMMM d, yyyy',
+            }}
+          >
+            <DatePicker isDateFieldInput />
+          </I18nContext.Provider>
+        );
+
+        const monthInput = getByTestId('month-input');
+
+        userEvent.type(monthInput, 'J');
+        expect(monthInput.value).toBe('January');
+
+        userEvent.type(monthInput, 'u');
+        expect(monthInput.value).toBe('June');
+
+        userEvent.type(monthInput, 'l');
+        expect(monthInput.value).toBe('July');
+      });
+    });
+
+    describe('Clearing the date', () => {
+      it('should show clear button and clears fields', () => {
+        const { getByTestId } = render(
+          <DatePicker
+            isDateFieldInput
+            isClearable
+            defaultDate={new Date(2025, 11, 25)}
+          />
+        );
+
+        const monthInput = getByTestId('month-input');
+        const dayInput = getByTestId('day-input');
+        const yearInput = getByTestId('year-input');
+
+        expect(monthInput.value).toBe('12');
+        expect(dayInput.value).toBe('25');
+        expect(yearInput.value).toBe('2025');
+
+        const clearButton = getByTestId('clear-button');
+        expect(clearButton).toBeInTheDocument();
+
+        userEvent.click(clearButton);
+
+        expect(monthInput.value).toBe('');
+        expect(dayInput.value).toBe('');
+        expect(yearInput.value).toBe('');
+      });
+
+      it('should call handleDateChange to parent when all fields are cleared with default format', () => {
+        const onDateChange = jest.fn();
+
+        const { getByTestId } = render(
+          <DatePicker
+            isDateFieldInput
+            value={new Date(2025, 9, 22)}
+            onDateChange={onDateChange}
+          />
+        );
+        const monthInput = getByTestId('month-input');
+        const dayInput = getByTestId('day-input');
+        const yearInput = getByTestId('year-input');
+
+        expect(monthInput.value).toBe('10');
+        expect(dayInput.value).toBe('22');
+        expect(yearInput.value).toBe('2025');
+
+        userEvent.type(monthInput, '{backspace}');
+        userEvent.type(dayInput, '{backspace}');
+        userEvent.type(yearInput, '{backspace}');
+
+        waitFor(() => {
+          expect(onDateChange).toHaveBeenCalledWith(null, null);
+        });
+      });
     });
   });
 });
