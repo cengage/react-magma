@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.29
+
+### Minor Changes
+
+- fcdeafe3c: feat(DatePicker): Add new keyboard controls.
+
 ## 4.11.0-next.28
 
 ### Patch Changes

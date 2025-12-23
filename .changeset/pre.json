@@ -16,6 +16,7 @@
     "chore-fixpackage",
     "chore-update-react-magma-icons-version",
     "feat-Checkbox-add-aria-label",
+    "feat-Date-Picker-new-keyboard-controls",
     "feat-DateTimePicker-timezone",
     "feat-Modal-add-headel-level-prop",
     "feat-SplitDropdown-add-leading-icon",
