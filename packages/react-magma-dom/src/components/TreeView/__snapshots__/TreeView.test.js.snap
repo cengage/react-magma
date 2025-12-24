@@ -132,10 +132,14 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   flex: none;
 }
 
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
 .emotion-14>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
 .emotion-14>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -831,10 +835,14 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   flex: none;
 }
 
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
 .emotion-14>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
 .emotion-14>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -2048,10 +2056,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   flex: none;
 }
 
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
 .emotion-14>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
 .emotion-14>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -2852,10 +2864,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   flex: none;
 }
 
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
 .emotion-14>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
 .emotion-14>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -4235,10 +4251,14 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   flex: none;
 }
 
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
 .emotion-14>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
 .emotion-14>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -4974,10 +4994,14 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   flex: none;
 }
 
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
 .emotion-14>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
 .emotion-14>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -6291,10 +6315,14 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   flex: none;
 }
 
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
 .emotion-14>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
 .emotion-14>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -7030,10 +7058,14 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   flex: none;
 }
 
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
 .emotion-14>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
 .emotion-14>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -8347,10 +8379,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   flex: none;
 }
 
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
 .emotion-14>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
 .emotion-14>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -9151,10 +9187,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   flex: none;
 }
 
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
 .emotion-14>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
 .emotion-14>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -10534,10 +10574,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   flex: none;
 }
 
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
 .emotion-14>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
 .emotion-14>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -11338,10 +11382,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   flex: none;
 }
 
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
 .emotion-14>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
 .emotion-14>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -12721,10 +12769,14 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   flex: none;
 }
 
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
 .emotion-14>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
 .emotion-14>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -13460,10 +13512,14 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   flex: none;
 }
 
+.emotion-14>li:first-child:not(:only-child)>div>div>button,
+.emotion-14>li:first-child:not(:only-child)>div>button,
 .emotion-14>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
+.emotion-14>li:last-child:not(:only-child)>div>div>button,
+.emotion-14>li:last-child:not(:only-child)>div>button,
 .emotion-14>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
