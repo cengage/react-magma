@@ -216,7 +216,133 @@ const StyledButtonGroup = styled.div<{
           flex: none;
         }
       `}
+  }
 
+  > li {
+    ${props =>
+      props.orientation === ButtonGroupOrientation.horizontal &&
+      css`
+        &:first-child:not(:only-child) {
+          > button {
+            margin-left: 0;
+          }
+        }
+
+        &:last-child:not(:only-child) {
+          > button {
+            margin-right: 0;
+          }
+        }
+      `}
+
+    ${props =>
+      props.orientation === ButtonGroupOrientation.vertical &&
+      css`
+        &:first-child:not(:only-child) {
+          > button {
+            margin-top: 0;
+          }
+        }
+
+        &:last-child:not(:only-child) {
+          > button {
+            margin-bottom: 0;
+          }
+        }
+      `}
+
+    ${props =>
+      props.noSpace &&
+      props.orientation === ButtonGroupOrientation.horizontal &&
+      props.variant === ButtonVariant.solid &&
+      props.alignment !== ButtonGroupAlignment.apart &&
+      css`
+        &:first-child:not(:only-child) {
+          > button {
+            border-radius: ${props.theme.borderRadius} 0 0
+              ${props.theme.borderRadius};
+            border-right: 0;
+          }
+        }
+        &:nth-child(2) {
+          > button {
+            border-left: 1px solid ${buildNoSpaceBorderColor(props)};
+          }
+        }
+        &:not(:first-child) {
+          > button {
+            border-radius: 0;
+            border-right: ${props.color === ButtonColor.secondary ||
+            props.color === ButtonColor.subtle
+              ? '0'
+              : `1px solid ${props.theme.colors.neutral100}`};
+          }
+        }
+        &:not(:first-child)&:not(:last-child) {
+          > button {
+            border-right: 0;
+          }
+        }
+        &:last-child:not(:only-child) {
+          > button {
+            border-radius: 0 ${props.theme.borderRadius}
+              ${props.theme.borderRadius} 0;
+            border-right: 1px solid ${buildNoSpaceBorderColor(props)};
+          }
+        }
+      `};
+
+    ${props =>
+      props.noSpace &&
+      props.orientation === ButtonGroupOrientation.horizontal &&
+      props.variant === ButtonVariant.solid &&
+      props.alignment !== ButtonGroupAlignment.apart &&
+      css`
+        > div {
+          &:first-child:not(:only-child) {
+            div > button,
+            button {
+              border-radius: ${props.theme.borderRadius} 0 0
+                ${props.theme.borderRadius};
+              border-right: 0;
+            }
+          }
+          &:nth-child(2) {
+            div > button,
+            button {
+              border-left: 1px solid ${buildNoSpaceBorderColor(props)};
+            }
+          }
+          &:not(:first-child) {
+            div > button,
+            button {
+              border-radius: 0;
+              border-right: ${props.color === ButtonColor.secondary ||
+              props.color === ButtonColor.subtle
+                ? '0'
+                : `1px solid ${props.theme.colors.neutral100}`};
+            }
+          }
+          &:not(:first-child)&:not(:last-child) {
+            div > button,
+            button {
+              border-right: 0;
+            }
+          }
+          &:last-child:not(:only-child) {
+            div > button,
+            button {
+              border-radius: 0 ${props.theme.borderRadius}
+                ${props.theme.borderRadius} 0;
+              border-right: 1px solid ${buildNoSpaceBorderColor(props)};
+            }
+          }
+        }
+      `};
+  }
+
+  // Styles for ToggleButtonGroup
+  > li > button {
     ${props =>
       props.noSpace &&
       props.orientation === ButtonGroupOrientation.horizontal &&
@@ -245,66 +371,6 @@ const StyledButtonGroup = styled.div<{
           border-radius: 0 ${props.theme.borderRadius}
             ${props.theme.borderRadius} 0;
           border-right: 1px solid ${buildNoSpaceBorderColor(props)};
-        }
-      `}
-  }
-
-  > li > button {
-    ${props =>
-      props.orientation === ButtonGroupOrientation.horizontal &&
-      css`
-        &:first-child:not(:only-child) {
-          margin-left: 0;
-        }
-        &:last-child:not(:only-child) {
-          margin-right: 0;
-        }
-      `}
-
-    ${props =>
-      props.orientation === ButtonGroupOrientation.vertical &&
-      css`
-        &:first-child:not(:only-child) {
-          margin-top: 0;
-        }
-
-        &:last-child:not(:only-child) {
-          margin-bottom: 0;
-        }
-      `};
-
-    ${props =>
-      props.noSpace &&
-      props.orientation === ButtonGroupOrientation.horizontal &&
-      props.variant === ButtonVariant.solid &&
-      props.alignment !== ButtonGroupAlignment.apart &&
-      css`
-          &:first-child:not(:only-child) {
-              border-radius: ${props.theme.borderRadius} 0 0
-                ${props.theme.borderRadius};
-              border-right: 0; 
-          }
-          &:nth-child(2) {
-              border-left: 1px solid ${buildNoSpaceBorderColor(props)};
-            
-          }
-          &:not(:first-child) {
-              border-radius: 0;
-              border-right: ${
-                props.color === ButtonColor.secondary ||
-                props.color === ButtonColor.subtle
-                  ? '0'
-                  : `1px solid ${props.theme.colors.neutral100}`
-              };
-          }
-          &:not(:first-child)&:not(:last-child) {
-              border-right: 0;
-          }
-          &:last-child:not(:only-child) {
-              border-radius: 0 ${props.theme.borderRadius}
-                ${props.theme.borderRadius} 0;
-              border-right: 1px solid ${buildNoSpaceBorderColor(props)};
-          }
         }
       `};
   }
