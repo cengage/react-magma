@@ -3,12 +3,12 @@ import React from 'react';
 import { Meta } from '@storybook/react';
 import { isValid } from 'date-fns';
 
+import { getDateFromString, inDateRange } from './utils';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
-import { LabelPosition } from '../Label';
-import { getDateFromString, inDateRange } from './utils';
 import { Button } from '../Button';
+import { LabelPosition } from '../Label';
 
 import { DatePicker } from '.';
 
@@ -52,12 +52,18 @@ export default {
 
 export const Default = {
   render: args => {
-    return <DatePicker {...args} />;
+    return (
+      <DatePicker
+        minDate={
+          new Date(today.getFullYear(), today.getMonth(), today.getDate())
+        }
+        {...args}
+      />
+    );
   },
 
   args: {
     labelText: 'Date',
-    minDate: today,
     errorMessage: '',
     helperMessage: '',
   },

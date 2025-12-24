@@ -165,16 +165,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
       lastFocus.current = document.activeElement;
 
       if (props.focusOnOpen) {
-        // Find and focus the calendar day button directly
-        const calendarDay = monthContainerRef.current?.querySelector(
-          '[data-testid="calendar-day"]'
-        ) as HTMLButtonElement;
-
-        if (calendarDay) {
-          calendarDay.focus();
-        } else {
-          context.setDateFocused(true);
-        }
+        context.setDateFocused(true);
       }
     }
   }, [props.calendarOpened, props.focusOnOpen]);
