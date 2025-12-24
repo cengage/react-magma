@@ -241,7 +241,7 @@ export const MultiWithDisabledItems = {
       { label: 'Red', value: 'red' },
       { label: 'Green', value: 'green' },
       { label: 'Blue-Disabled', value: 'blue', disabled: true },
-      { label: 'Purple mountain majesty', value: 'purple' },
+      { label: 'Purple mountain majesty', value: 'purple', disabled: false },
       { label: 'Orange', value: 'orange', disabled: false },
       { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
     ],

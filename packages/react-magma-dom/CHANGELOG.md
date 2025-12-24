@@ -1,5 +1,29 @@
 ## 4.10.0
 
+## 5.1.0-rc.26
+
+### Minor Changes
+
+- 7709c40: feat(DatePicker): Add new keyboard controls.
+
+## 5.1.0-rc.25
+
+### Patch Changes
+
+- 0d50986: fix(RadioButton): Fix announcing label text with error or helper message.
+
+## 5.1.0-rc.24
+
+### Patch Changes
+
+- edc04f5: fix(Select, Multiselect, Combobox & Multicombobox): Fix navigation throughth the disabled items.
+
+## 5.1.0-rc.23
+
+### Patch Changes
+
+- 6bd1b65: fix(TextArea): Add an ARIA announcement helper to inform users how many characters are left.
+
 ## 5.1.0-rc.22
 
 ### Patch Changes

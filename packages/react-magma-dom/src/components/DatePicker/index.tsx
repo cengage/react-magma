@@ -26,6 +26,7 @@ import { Announce } from '../Announce';
 import { Input } from '../Input';
 import { InputType } from '../InputBase';
 import { VisuallyHidden } from '../VisuallyHidden';
+import { DateFieldInput } from './DateField/DateFieldInput';
 import {
   getCalendarMonthWeeks,
   getDateFromString,
@@ -100,7 +101,7 @@ export interface DatePickerProps
    */
   minDate?: Date;
   /**
-   * Text for input placeholder
+   * Text for input placeholder. If isDateFieldInput is true, this will be ignored.
    */
   placeholder?: string;
   /**
@@ -116,6 +117,11 @@ export interface DatePickerProps
    * Value of the date input, used when setting the date value externally
    */
   value?: Date;
+  /**
+   * If true, the DatePicker will use the DateFieldInput component for input
+   * @default false
+   */
+  isDateFieldInput?: boolean;
   /**
    * Event fired in multiple instances when internal values are changed and can be used as a generic state change event
    */
@@ -390,7 +396,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       setDateFocused(false);
     }
 
-    function isValidDateFromString(value: string, day: Date) {
+    function isValidDateFromString(value: string) {
       const isValidDateFormat = isMatch(value, i18n.dateFormat);
       const parsedDate = parse(value, i18n.dateFormat, new Date());
       const isValidDate = isValid(parsedDate);
@@ -413,7 +419,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       if (dateTimePickerContent) {
         const splitValue = value.split(' ')[0];
 
-        isValidDay = isValidDateFromString(splitValue, day);
+        isValidDay = isValidDateFromString(splitValue);
 
         const validDay = new Date(splitValue);
 
@@ -430,7 +436,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             event
           );
       } else {
-        isValidDay = isValidDateFromString(value, day);
+        isValidDay = isValidDateFromString(value);
 
         props.onChange &&
           typeof props.onChange === 'function' &&
@@ -457,7 +463,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       if (dateTimePickerContent) {
         const splitValue = value.split(' ')[0];
 
-        isValidDay = isValidDateFromString(splitValue, day);
+        isValidDay = isValidDateFromString(splitValue);
 
         const validDay = new Date(splitValue);
 
@@ -465,7 +471,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
           handleDateChange(validDay, event);
         }
       } else {
-        isValidDay = isValidDateFromString(value, day);
+        isValidDay = isValidDateFromString(value);
 
         if (isValidDay) {
           handleDateChange(day, event);
@@ -594,7 +600,14 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       rest
     );
 
-    let inputValue = chosenDate ? format(chosenDate, dateFormat) : '';
+    const dateFieldValue =
+      dateFormat === 'MMMM d, yyyy' && chosenDate
+        ? format(chosenDate, dateFormat)
+        : chosenDate;
+
+    const inputDateValue = chosenDate ? format(chosenDate, dateFormat) : '';
+
+    let inputValue = props.isDateFieldInput ? dateFieldValue : inputDateValue;
 
     if (inputValue && props.additionalInputContent) {
       inputValue = `${inputValue} ${props.additionalInputContent}`;
@@ -646,26 +659,44 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
               </VisuallyHidden>
             )}
           </Announce>
-          <Input
-            {...other}
-            icon={<EventIcon />}
-            iconAriaLabel={i18n.datePicker.calendarIconAriaLabel}
-            iconRef={iconRef}
-            onIconClick={toggleCalendarOpened}
-            onIconKeyDown={handleInputKeyDown}
-            id={id}
-            isInverse={isInverse}
-            ref={ref}
-            onChange={handleInputChange}
-            onBlur={handleInputBlur}
-            onFocus={handleInputFocus}
-            onKeyDown={handleInputKeyDown}
-            onDateChange={handleDateChange}
-            placeholder={placeholder ? placeholder : dateFormat.toLowerCase()}
-            type={InputType.text}
-            value={inputValue}
-            setReference={refs.setReference}
-          />
+          {props.isDateFieldInput ? (
+            <DateFieldInput
+              {...other}
+              id={id}
+              dateFormat={dateFormat}
+              inputValue={inputValue}
+              onIconClick={toggleCalendarOpened}
+              setReference={refs.setReference}
+              iconRef={iconRef}
+              inputRef={inputRef}
+              handleDateChange={handleDateChange}
+              onClearDate={reset}
+              onInputBlur={props.onInputBlur}
+              onInputFocus={handleInputFocus}
+              onIconKeyDown={handleInputKeyDown}
+            />
+          ) : (
+            <Input
+              {...other}
+              icon={<EventIcon />}
+              iconAriaLabel={i18n.datePicker.calendarIconAriaLabel}
+              iconRef={iconRef}
+              onIconClick={toggleCalendarOpened}
+              onIconKeyDown={handleInputKeyDown}
+              id={id}
+              isInverse={isInverse}
+              ref={ref}
+              onChange={handleInputChange}
+              onBlur={handleInputBlur}
+              onFocus={handleInputFocus}
+              onKeyDown={handleInputKeyDown}
+              onDateChange={handleDateChange}
+              placeholder={placeholder ? placeholder : dateFormat.toLowerCase()}
+              type={InputType.text}
+              value={inputValue}
+              setReference={refs.setReference}
+            />
+          )}
           <InverseContext.Provider value={{ isInverse }}>
             <div
               ref={el => calendarOpened && refs.setFloating(el)}
