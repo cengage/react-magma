@@ -293,9 +293,7 @@ const AlertContents = styled.div<{
   padding: ${props => props.theme.spaceScale.spacing04} 0;
   display: ${props => (props.additionalContent ? 'flex' : '')};
   margin-right: ${props =>
-    props.additionalContent && !props.isDismissible
-      ? props.theme.spaceScale.spacing03
-      : ''};
+    !props.isDismissible ? props.theme.spaceScale.spacing03 : ''};
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     padding-left: 0;
   }
