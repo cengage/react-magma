@@ -1,6 +1,15 @@
 import React from 'react';
 
-import { Modal, ModalSize, NativeSelect, Toggle, VisuallyHidden } from '../..';
+import { Meta } from '@storybook/react';
+
+import {
+  Modal,
+  ModalProps,
+  ModalSize,
+  NativeSelect,
+  Toggle,
+  VisuallyHidden,
+} from '../..';
 import { Button, ButtonColor } from '../Button';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { Combobox } from '../Combobox';
@@ -21,40 +30,56 @@ import { Spacer } from '../Spacer';
 const info = {
   component: Modal,
   title: 'Modal',
+  argTypes: {
+    isCloseButtonHidden: {
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
 };
 
 export default info;
 
-export const Default = () => {
-  const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+export const Default = {
+  render: (
+    args: React.JSX.IntrinsicAttributes &
+      ModalProps &
+      React.RefAttributes<HTMLDivElement>
+  ) => {
+    const [showModal, setShowModal] = React.useState(false);
+    const buttonRef = React.useRef<HTMLButtonElement>();
 
-  return (
-    <>
-      <Modal
-        header="Modal Title"
-        onClose={() => {
-          setShowModal(false);
-          buttonRef.current.focus();
-        }}
-        isOpen={showModal}
-      >
-        <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
-        <ButtonGroup alignment={ButtonGroupAlignment.right}>
-          <Button color={ButtonColor.secondary}>Cancel</Button>
-          <Button>Save</Button>
-        </ButtonGroup>
-      </Modal>
-      <Button
-        aria-haspopup="dialog"
-        onClick={() => setShowModal(true)}
-        ref={buttonRef}
-      >
-        Show Modal
-        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
-      </Button>
-    </>
-  );
+    return (
+      <>
+        <Modal
+          {...args}
+          header="Modal Title"
+          onClose={() => {
+            setShowModal(false);
+            buttonRef.current.focus();
+          }}
+          isOpen={showModal}
+        >
+          <Paragraph noTopMargin>
+            This is a modal, doing modal things.
+          </Paragraph>
+          <ButtonGroup alignment={ButtonGroupAlignment.right}>
+            <Button color={ButtonColor.secondary}>Cancel</Button>
+            <Button>Save</Button>
+          </ButtonGroup>
+        </Modal>
+        <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowModal(true)}
+          ref={buttonRef}
+        >
+          Show Modal
+          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        </Button>
+      </>
+    );
+  },
 };
 
 export const BackgroundCickDisabled = () => {
