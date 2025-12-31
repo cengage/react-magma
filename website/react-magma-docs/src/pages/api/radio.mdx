@@ -481,19 +481,25 @@ import {
   Button,
   ButtonColor,
   ButtonGroup,
+  Announce,
+  VisuallyHidden,
 } from 'react-magma-dom';
 
 export function Example() {
   const radioRef = React.useRef();
   const [radioGroupVal, setRadioGroupVal] = React.useState(null);
+  const [announcement, setAnnouncement] = React.useState('');
 
   function handleSelectOne() {
     if (!radioRef.current) {
       setRadioGroupVal(null);
+      setAnnouncement('');
     } else if (radioRef.current.checked) {
       setRadioGroupVal('');
+      setAnnouncement('Option one deselected');
     } else if (!radioRef.current.checked) {
       setRadioGroupVal('1');
+      setAnnouncement('Option one selected');
     }
   }
 
@@ -525,6 +531,9 @@ export function Example() {
           Focus option 1
         </Button>
       </ButtonGroup>
+      <Announce>
+        <VisuallyHidden>{announcement}</VisuallyHidden>
+      </Announce>
     </>
   );
 }
