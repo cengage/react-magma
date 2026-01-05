@@ -210,7 +210,7 @@ export const DropdownMenuItem = React.forwardRef<
       )}
       {isActive && (
         <IconWrapper isInverse={context.isInverse} theme={theme}>
-          <CheckIcon aria-label={i18n.dropdown.menuItemSelectedAriaLabel} />
+          <CheckIcon />
         </IconWrapper>
       )}
       {children}

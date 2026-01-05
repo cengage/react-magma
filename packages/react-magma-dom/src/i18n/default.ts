@@ -156,7 +156,6 @@ export const defaultI18n: I18nInterface = {
   },
   dateTimePickerLabel: 'Pick a date and time',
   dropdown: {
-    menuItemSelectedAriaLabel: '(selected)',
     toggleMenuAriaLabel: 'Toggle menu',
   },
   dropzone: {
