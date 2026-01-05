@@ -1,6 +1,6 @@
 {
   "name": "react-magma-docs",
-  "version": "7.0.0-rc.7",
+  "version": "7.0.0-rc.10",
   "private": true,
   "description": "React Magma docs",
   "keywords": [
@@ -61,7 +61,7 @@
     "react-focus-lock": "2.13.6",
     "react-helmet": "5.2.1",
     "react-live": "4.1.8",
-    "react-magma-dom": "^5.1.0-rc.3",
+    "react-magma-dom": "^5.1.0-rc.13",
     "react-magma-icons": "^3.2.2",
     "react-spring": "6.1.10",
     "remark-mdx": "^3.1.0",

@@ -1,5 +1,26 @@
 # Change Log
 
+## 7.0.0-rc.10
+
+### Patch Changes
+
+- b14bb63: fix(Accordion): Fix bug with not-announced `Expand All/Collapse All` button
+
+## 7.0.0-rc.9
+
+### Patch Changes
+
+- 871d0f2: fix(Nav Tabs): Update documentation to include `aria-labelledby` attribute for multi-instance examples.
+
+## 7.0.0-rc.8
+
+### Patch Changes
+
+- ccb95ae: fix(NavTabs, Tabs, Toast): Fix different issues.
+- d473442: fix(Select): fix issue when scrollbar appears because of padding and negative margin.
+- Updated dependencies [ed37531]
+  - react-magma-dom@5.1.0-rc.13
+
 ## 7.0.0-rc.7
 
 ### Patch Changes

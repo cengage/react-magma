@@ -896,6 +896,51 @@ describe('Combobox', () => {
     expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
   });
 
+  it('should skip disabled items and navigate to the next active item', async () => {
+    const customItems = [
+      {
+        label: 'Red',
+        value: 'red',
+        disabled: false,
+      },
+      {
+        label: 'Blue',
+        value: 'blue',
+        disabled: true,
+      },
+      {
+        label: 'Green',
+        value: 'green',
+        disabled: false,
+      },
+    ];
+    const { getByLabelText, getByText } = render(
+      <Combobox labelText={labelText} items={customItems} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    act(() => {
+      renderedCombobox.focus();
+    });
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'false');
+    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{Enter}');
+    expect(renderedCombobox.value).toEqual(customItems[2].label);
+
+    act(() => {
+      renderedCombobox.blur();
+    });
+
+    expect(renderedCombobox.value).toEqual(customItems[2].label);
+  });
+
   describe('events', () => {
     it('onBlur', async () => {
       const onBlur = jest.fn();

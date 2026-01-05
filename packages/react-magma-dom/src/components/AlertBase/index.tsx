@@ -47,6 +47,7 @@ export interface AlertBaseProps extends React.HTMLAttributes<HTMLDivElement> {
   isExiting?: boolean;
   isDismissed?: boolean;
   isDismissible?: boolean;
+  dismissibleButtonRef?: React.Ref<HTMLButtonElement>;
   isInverse?: boolean;
   isPaused?: boolean;
   isToast?: boolean;
@@ -430,6 +431,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
       id: defaultId,
       isDismissed,
       isDismissible,
+      dismissibleButtonRef,
       isExiting: externalIsExiting,
       isPaused,
       isToast,
@@ -533,6 +535,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
                 )}
                 {/* @ts-ignore */}
                 <DismissButton
+                  ref={dismissibleButtonRef}
                   alertVariant={variant}
                   {...(isToast
                     ? { title: closeAriaLabel || i18n.alert.dismissAriaLabel }

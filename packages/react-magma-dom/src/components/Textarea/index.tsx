@@ -76,7 +76,10 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const theme = React.useContext(ThemeContext);
 
     const id = useGenerateId(defaultId);
-    const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+    const descriptionId =
+      errorMessage || helperMessage || maxCount || maxLength
+        ? `${id}__desc`
+        : null;
     const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
 
     const maxLengthNum =
@@ -125,7 +128,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       >
         <StyledTextArea
           {...other}
-          aria-describedby={
+          aria-labelledby={
             descriptionId ? descriptionId : props['aria-describedby']
           }
           aria-invalid={!!errorMessage}
