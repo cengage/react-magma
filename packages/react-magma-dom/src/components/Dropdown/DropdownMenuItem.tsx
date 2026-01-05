@@ -6,7 +6,6 @@ import { transparentize } from 'polished';
 import { IconProps, CheckIcon } from 'react-magma-icons';
 
 import { DropdownContext } from './Dropdown';
-import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Omit, useForkedRef } from '../../utils';
 
@@ -183,8 +182,6 @@ export const DropdownMenuItem = React.forwardRef<
     if (!disabled)
       context.registerDropdownMenuItem(context.itemRefArray, ownRef);
   }, []);
-
-  const i18n = React.useContext(I18nContext);
 
   return (
     <StyledItem
