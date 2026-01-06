@@ -137,12 +137,19 @@ The `value` and `onChange` props can be used for clear value.
 ```tsx
 import React from 'react';
 
-import { Button, TimePicker } from 'react-magma-dom';
+import { Button, TimePicker, Announce, VisuallyHidden } from 'react-magma-dom';
 
 export function Example() {
   const [timeValue, setTimeValue] = React.useState<string | undefined>('');
+  const [announcement, setAnnouncement] = React.useState('');
 
   function handleOnChange(value) {
+    if (value === undefined) {
+      setAnnouncement('Time has been cleared');
+    } else {
+      setAnnouncement('');
+    }
+
     setTimeValue(value);
   }
 
@@ -155,6 +162,9 @@ export function Example() {
       />
       <br />
       <Button onClick={() => handleOnChange(undefined)}>Clear Time</Button>
+      <Announce>
+        <VisuallyHidden>{announcement}</VisuallyHidden>
+      </Announce>
     </>
   );
 }
@@ -175,7 +185,7 @@ export function Example() {
       containerStyle={{ border: '1px solid gray' }}
       labelStyle={{ fontStyle: 'italic' }}
       helperMessage="Helper text"
-      messageStyle={{ background: 'pink' }}
+      messageStyle={{ background: '#0000C7', color: '#FFFFFF' }}
       inputStyle={{ border: '2px dotted black', width: '100%' }}
       labelText="Time Due"
     />
