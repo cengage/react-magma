@@ -385,7 +385,7 @@ const AlertSpan = styled.span`
   white-space: pre-line;
 `;
 
-function getAriaLabelIcon(variant: string, i18n: I18nInterface): string {
+export function getAriaLabelIcon(variant: string, i18n: I18nInterface): string {
   switch (variant) {
     case 'success':
       return i18n.alertVariants.success;
