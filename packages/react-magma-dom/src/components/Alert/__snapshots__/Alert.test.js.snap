@@ -381,6 +381,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   flex-grow: 1;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
+  margin-right: 8px;
 }
 
 @media (max-width: 600px) {
@@ -488,6 +489,7 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   flex-grow: 1;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
+  margin-right: 8px;
 }
 
 @media (max-width: 600px) {
@@ -638,6 +640,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   flex-grow: 1;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
+  margin-right: 8px;
 }
 
 @media (max-width: 600px) {
@@ -745,6 +748,7 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   flex-grow: 1;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
+  margin-right: 8px;
 }
 
 @media (max-width: 600px) {
@@ -895,6 +899,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   flex-grow: 1;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
+  margin-right: 8px;
 }
 
 @media (max-width: 600px) {
@@ -1002,6 +1007,7 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   flex-grow: 1;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
+  margin-right: 8px;
 }
 
 @media (max-width: 600px) {
@@ -1152,6 +1158,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   flex-grow: 1;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
+  margin-right: 8px;
 }
 
 @media (max-width: 600px) {
@@ -1259,6 +1266,7 @@ exports[`Alert should render an alert with default variant 1`] = `
   flex-grow: 1;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 12px 0;
+  margin-right: 8px;
 }
 
 @media (max-width: 600px) {
