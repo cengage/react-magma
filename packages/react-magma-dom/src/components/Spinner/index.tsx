@@ -32,6 +32,10 @@ export interface SpinnerProps extends React.HTMLAttributes<HTMLSpanElement> {
    * @internal
    */
   testId?: string;
+  /**
+   * @internal
+   */
+  hasMessage?: boolean;
 }
 
 const StyledSpinner = styled.span<SpinnerProps>`
@@ -58,6 +62,7 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
       noRole,
       size,
       testId,
+      hasMessage,
       ...other
     } = props;
 
@@ -74,6 +79,7 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
     return (
       <StyledSpinner
         {...other}
+        aria-hidden={hasMessage ? true : noRole}
         aria-label={ariaLabel ? ariaLabel : i18n.spinner.ariaLabel}
         color={
           color
@@ -85,7 +91,6 @@ export const Spinner = React.forwardRef<HTMLSpanElement, SpinnerProps>(
         data-testid={testId}
         ref={ref}
         role={noRole ? undefined : 'img'}
-        aria-hidden={noRole}
         size={sizeString}
       />
     );

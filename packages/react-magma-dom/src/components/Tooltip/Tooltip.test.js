@@ -135,7 +135,7 @@ describe('Tooltip', () => {
     expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
   });
 
-  it('should show the tooltip on mouseenter and hide it on mouseleave', () => {
+  it('should show the tooltip on mouseenter and hide it on mouseleave trigger button', () => {
     const { container } = render(
       <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
     );
@@ -150,6 +150,30 @@ describe('Tooltip', () => {
     expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
 
     fireEvent.mouseLeave(tooltipTrigger);
+
+    expect(
+      container.querySelector('div[role="tooltip"]')
+    ).not.toBeInTheDocument();
+  });
+
+  it('should show the tooltip content on mouseenter and hide it on mouseleave tooltip content', () => {
+    const { container } = render(
+      <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
+    );
+    const tooltipTrigger = container.querySelector('button');
+
+    expect(
+      container.querySelector('div[role="tooltip"]')
+    ).not.toBeInTheDocument();
+
+    fireEvent.mouseEnter(tooltipTrigger);
+
+    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
+
+    fireEvent.mouseEnter(container.querySelector('div[role="tooltip"]'));
+
+    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
+    fireEvent.mouseLeave(container.querySelector('div[role="tooltip"]'));
 
     expect(
       container.querySelector('div[role="tooltip"]')

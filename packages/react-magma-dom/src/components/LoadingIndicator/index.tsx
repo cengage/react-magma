@@ -139,7 +139,7 @@ export const LoadingIndicator = React.forwardRef<
           isLoadingIndicator
         />
       ) : (
-        <Spinner {...other} size={theme.spaceScale.spacing10} />
+        <Spinner {...other} size={theme.spaceScale.spacing10} hasMessage />
       )}
 
       <MessageContainer theme={theme}>
