@@ -25,6 +25,7 @@
     "fix-Accordion-docs-accessibility-issue",
     "fix-Alert-docs-acessibility-issues",
     "fix-Alert-docs-dismissible-type-error",
+    "fix-Alert-right-padding-missing",
     "fix-Banner-docs-accessibility-issues",
     "fix-ButtonGroup-acessibility-list",
     "fix-Combobox-accessibility",
