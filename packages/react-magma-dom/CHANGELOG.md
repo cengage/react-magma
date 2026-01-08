@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.31
+
+### Patch Changes
+
+- c402c817f: fix(Banner): Add `role` and `aria-label` attributes for icon.
+
 ## 4.11.0-next.30
 
 ### Patch Changes
