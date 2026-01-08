@@ -4,6 +4,7 @@ import isPropValid from '@emotion/is-prop-valid';
 import styled from '@emotion/styled';
 import { CloseIcon } from 'react-magma-icons';
 
+import { I18nInterface } from '../..';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
@@ -17,6 +18,7 @@ import {
   buildAlertColor,
   buildLinkColor,
   buildLinkHoverColor,
+  getAriaLabelIcon,
   VARIANT_ICON,
 } from '../AlertBase';
 import { Button, ButtonSize, ButtonVariant, ButtonColor } from '../Button';
@@ -184,11 +186,19 @@ const IconWrapper = styled.span`
   }
 `;
 
-function renderIcon(variant = 'info', theme: ThemeInterface) {
+function renderIcon(
+  variant = 'info',
+  theme: ThemeInterface,
+  i18n: I18nInterface
+) {
   const Icon = VARIANT_ICON[variant];
 
   return (
-    <IconWrapper theme={theme}>
+    <IconWrapper
+      aria-label={getAriaLabelIcon(variant, i18n)}
+      role="img"
+      theme={theme}
+    >
       <Icon size={theme.iconSizes.medium} />
     </IconWrapper>
   );
@@ -238,7 +248,7 @@ export const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
           variant={variant}
           isInverse={isInverse}
         >
-          {renderIcon(variant, theme)}
+          {renderIcon(variant, theme, i18n)}
           <span>{children}</span>
           {actionButtonText && actionButtonOnClick && (
             <Button
