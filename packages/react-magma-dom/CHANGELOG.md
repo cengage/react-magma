@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.27
+
+### Patch Changes
+
+- 9772fa8: fix(Alert): Add margin right for alert content.
+
 ## 5.1.0-rc.26
 
 ### Minor Changes
