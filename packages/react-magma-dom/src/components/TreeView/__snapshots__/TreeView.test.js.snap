@@ -1439,9 +1439,11 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
             style="height: 24px; transform: none;"
           >
             <svg
+              aria-hidden="true"
               class="icon"
               fill="currentColor"
               height="24"
+              role="none"
               viewBox="0 0 24 24"
               width="24"
               xmlns="http://www.w3.org/2000/svg"
@@ -1552,9 +1554,11 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1620,9 +1624,11 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1689,9 +1695,11 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1757,9 +1765,11 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1810,6 +1820,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -1846,9 +1857,11 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -1902,6 +1915,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                   class="icon"
                   fill="currentColor"
                   height="16"
+                  role="none"
                   viewBox="0 0 24 24"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
@@ -3575,9 +3589,11 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
             style="height: 24px; transform: none;"
           >
             <svg
+              aria-hidden="true"
               class="icon"
               fill="currentColor"
               height="24"
+              role="none"
               viewBox="0 0 24 24"
               width="24"
               xmlns="http://www.w3.org/2000/svg"
@@ -3688,9 +3704,11 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -3757,9 +3775,11 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -3809,6 +3829,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -3847,9 +3868,11 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -3909,6 +3932,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -3945,9 +3969,11 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -4007,6 +4033,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -4043,9 +4070,11 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -4099,6 +4128,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                   class="icon"
                   fill="currentColor"
                   height="16"
+                  role="none"
                   viewBox="0 0 24 24"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
@@ -5642,9 +5672,11 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
             style="height: 24px; transform: none;"
           >
             <svg
+              aria-hidden="true"
               class="icon"
               fill="currentColor"
               height="24"
+              role="none"
               viewBox="0 0 24 24"
               width="24"
               xmlns="http://www.w3.org/2000/svg"
@@ -5755,9 +5787,11 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -5823,9 +5857,11 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -5875,6 +5911,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -5913,9 +5950,11 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -5975,6 +6014,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -6011,9 +6051,11 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -6073,6 +6115,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -6109,9 +6152,11 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -6165,6 +6210,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                   class="icon"
                   fill="currentColor"
                   height="16"
+                  role="none"
                   viewBox="0 0 24 24"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
@@ -7708,9 +7754,11 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
             style="height: 24px; transform: none;"
           >
             <svg
+              aria-hidden="true"
               class="icon"
               fill="currentColor"
               height="24"
+              role="none"
               viewBox="0 0 24 24"
               width="24"
               xmlns="http://www.w3.org/2000/svg"
@@ -7821,9 +7869,11 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -7889,9 +7939,11 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -7941,6 +7993,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -7979,9 +8032,11 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -8041,6 +8096,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -8077,9 +8133,11 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -8139,6 +8197,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -8175,9 +8234,11 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -8231,6 +8292,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                   class="icon"
                   fill="currentColor"
                   height="16"
+                  role="none"
                   viewBox="0 0 24 24"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
@@ -9904,9 +9966,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
             style="height: 24px; transform: none;"
           >
             <svg
+              aria-hidden="true"
               class="icon"
               fill="currentColor"
               height="24"
+              role="none"
               viewBox="0 0 24 24"
               width="24"
               xmlns="http://www.w3.org/2000/svg"
@@ -10017,9 +10081,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -10086,9 +10152,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -10138,6 +10206,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -10176,9 +10245,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -10238,6 +10309,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -10274,9 +10346,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -10336,6 +10410,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -10372,9 +10447,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -10428,6 +10505,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   class="icon"
                   fill="currentColor"
                   height="16"
+                  role="none"
                   viewBox="0 0 24 24"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
@@ -12101,9 +12179,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
             style="height: 24px; transform: none;"
           >
             <svg
+              aria-hidden="true"
               class="icon"
               fill="currentColor"
               height="24"
+              role="none"
               viewBox="0 0 24 24"
               width="24"
               xmlns="http://www.w3.org/2000/svg"
@@ -12214,9 +12294,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -12283,9 +12365,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -12335,6 +12419,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -12373,9 +12458,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -12435,6 +12522,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -12471,9 +12559,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -12533,6 +12623,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -12569,9 +12660,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -12625,6 +12718,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   class="icon"
                   fill="currentColor"
                   height="16"
+                  role="none"
                   viewBox="0 0 24 24"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
@@ -14168,9 +14262,11 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
             style="height: 24px; transform: none;"
           >
             <svg
+              aria-hidden="true"
               class="icon"
               fill="currentColor"
               height="24"
+              role="none"
               viewBox="0 0 24 24"
               width="24"
               xmlns="http://www.w3.org/2000/svg"
@@ -14281,9 +14377,11 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -14349,9 +14447,11 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -14401,6 +14501,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -14439,9 +14540,11 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -14501,6 +14604,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -14537,9 +14641,11 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -14599,6 +14705,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                         class="icon"
                         fill="currentColor"
                         height="24"
+                        role="none"
                         viewBox="0 0 24 24"
                         width="24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -14635,9 +14742,11 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                             style="margin-right: 8px;"
                           >
                             <svg
+                              aria-hidden="true"
                               class="icon"
                               fill="currentColor"
                               height="24"
+                              role="none"
                               viewBox="0 0 24 24"
                               width="24"
                               xmlns="http://www.w3.org/2000/svg"
@@ -14691,6 +14800,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                   class="icon"
                   fill="currentColor"
                   height="16"
+                  role="none"
                   viewBox="0 0 24 24"
                   width="16"
                   xmlns="http://www.w3.org/2000/svg"
