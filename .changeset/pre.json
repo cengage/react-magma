@@ -14,6 +14,7 @@
   "changesets": [
     "chore-fix-workflows",
     "chore-fixpackage",
+    "chore-react-magma-icons",
     "chore-update-react-magma-icons-version",
     "feat-Checkbox-add-aria-label",
     "feat-Date-Picker-new-keyboard-controls",
