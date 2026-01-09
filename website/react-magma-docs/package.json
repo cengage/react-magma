@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build --prefix-paths",
+    "build": "GATSBY_PAGE_DATA_TIMEOUT=30000 gatsby build --prefix-paths",
     "develop": "gatsby develop",
     "docs": "npm run develop",
     "format": "prettier --write --log-level warn --ignore-path .eslintignore \"**/src/**/*.{js,jsx,ts,tsx,json,html,css,yml,yaml,graphql}\"",
@@ -62,7 +62,7 @@
     "react-helmet": "5.2.1",
     "react-live": "4.1.8",
     "react-magma-dom": "^5.1.0-rc.13",
-    "react-magma-icons": "^3.2.3",
+    "react-magma-icons": "^3.2.4",
     "react-spring": "6.1.10",
     "remark-mdx": "^3.1.0",
     "remark-parse": "^11.0.0",
