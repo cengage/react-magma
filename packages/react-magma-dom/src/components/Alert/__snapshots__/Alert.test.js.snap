@@ -272,6 +272,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
       fill="currentColor"
       height="20"
       id="ignoreTitle"
+      role="none"
       viewBox="0 0 24 24"
       width="20"
       xmlns="http://www.w3.org/2000/svg"
@@ -515,9 +516,11 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
         role="img"
       >
         <svg
+          aria-hidden="true"
           class="icon"
           fill="currentColor"
           height="24"
+          role="none"
           viewBox="0 0 24 24"
           width="24"
           xmlns="http://www.w3.org/2000/svg"
@@ -772,9 +775,11 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
         role="img"
       >
         <svg
+          aria-hidden="true"
           class="icon"
           fill="currentColor"
           height="24"
+          role="none"
           viewBox="0 0 24 24"
           width="24"
           xmlns="http://www.w3.org/2000/svg"
@@ -1029,9 +1034,11 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
         role="img"
       >
         <svg
+          aria-hidden="true"
           class="icon"
           fill="currentColor"
           height="24"
+          role="none"
           viewBox="0 0 24 24"
           width="24"
           xmlns="http://www.w3.org/2000/svg"
@@ -1286,9 +1293,11 @@ exports[`Alert should render an alert with default variant 1`] = `
         role="img"
       >
         <svg
+          aria-hidden="true"
           class="icon"
           fill="currentColor"
           height="24"
+          role="none"
           viewBox="0 0 24 24"
           width="24"
           xmlns="http://www.w3.org/2000/svg"
