@@ -42,74 +42,55 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   flex: none;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
 .emotion-0>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
 .emotion-0>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>li:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li:nth-child(2)>div>div>button,
-.emotion-0>li:nth-child(2)>div>button,
-.emotion-0>li:nth-child(2)>button {
+.emotion-0>li:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child)>div>div>button,
-.emotion-0>li:not(:first-child)>div>button,
-.emotion-0>li:not(:first-child)>button {
+.emotion-0>li:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child)>div>div>button,
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child)>div>button,
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child)>button {
+.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>li:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:first-child:not(:only-child) div>button,
 .emotion-0>li>div:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li>div:nth-child(2) div>button,
 .emotion-0>li>div:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child) div>button,
 .emotion-0>li>div:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child).emotion-0>li>div:not(:last-child) div>button,
 .emotion-0>li>div:not(:first-child).emotion-0>li>div:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-0>li>div:last-child:not(:only-child) div>button,
 .emotion-0>li>div:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
@@ -276,74 +257,55 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   flex: none;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
 .emotion-0>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
 .emotion-0>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>li:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li:nth-child(2)>div>div>button,
-.emotion-0>li:nth-child(2)>div>button,
-.emotion-0>li:nth-child(2)>button {
+.emotion-0>li:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child)>div>div>button,
-.emotion-0>li:not(:first-child)>div>button,
-.emotion-0>li:not(:first-child)>button {
+.emotion-0>li:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child)>div>div>button,
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child)>div>button,
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child)>button {
+.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>li:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:first-child:not(:only-child) div>button,
 .emotion-0>li>div:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li>div:nth-child(2) div>button,
 .emotion-0>li>div:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child) div>button,
 .emotion-0>li>div:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child).emotion-0>li>div:not(:last-child) div>button,
 .emotion-0>li>div:not(:first-child).emotion-0>li>div:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-0>li>div:last-child:not(:only-child) div>button,
 .emotion-0>li>div:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
@@ -577,14 +539,10 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   flex: none;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
 .emotion-0>li:first-child:not(:only-child)>button {
   margin-top: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
 .emotion-0>li:last-child:not(:only-child)>button {
   margin-bottom: 0;
 }
@@ -730,14 +688,10 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   flex: none;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
 .emotion-0>li:first-child:not(:only-child)>button {
   margin-top: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
 .emotion-0>li:last-child:not(:only-child)>button {
   margin-bottom: 0;
 }
@@ -944,14 +898,10 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   flex: none;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
 .emotion-0>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
 .emotion-0>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -1252,14 +1202,10 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   flex: none;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
 .emotion-0>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
 .emotion-0>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
@@ -1755,14 +1701,10 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   flex: none;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
 .emotion-0>li:first-child:not(:only-child)>button {
   margin-top: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
 .emotion-0>li:last-child:not(:only-child)>button {
   margin-bottom: 0;
 }
@@ -2095,14 +2037,10 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   flex: none;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
 .emotion-0>li:first-child:not(:only-child)>button {
   margin-top: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
 .emotion-0>li:last-child:not(:only-child)>button {
   margin-bottom: 0;
 }
@@ -2609,14 +2547,10 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   flex: none;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
 .emotion-0>li:first-child:not(:only-child)>button {
   margin-top: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
 .emotion-0>li:last-child:not(:only-child)>button {
   margin-bottom: 0;
 }
@@ -2944,14 +2878,10 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   flex: none;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
 .emotion-0>li:first-child:not(:only-child)>button {
   margin-top: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
 .emotion-0>li:last-child:not(:only-child)>button {
   margin-bottom: 0;
 }
@@ -3420,74 +3350,55 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   flex: none;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
 .emotion-0>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
 .emotion-0>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>li:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li:nth-child(2)>div>div>button,
-.emotion-0>li:nth-child(2)>div>button,
-.emotion-0>li:nth-child(2)>button {
+.emotion-0>li:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child)>div>div>button,
-.emotion-0>li:not(:first-child)>div>button,
-.emotion-0>li:not(:first-child)>button {
+.emotion-0>li:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child)>div>div>button,
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child)>div>button,
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child)>button {
+.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>li:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:first-child:not(:only-child) div>button,
 .emotion-0>li>div:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li>div:nth-child(2) div>button,
 .emotion-0>li>div:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child) div>button,
 .emotion-0>li>div:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child).emotion-0>li>div:not(:last-child) div>button,
 .emotion-0>li>div:not(:first-child).emotion-0>li>div:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-0>li>div:last-child:not(:only-child) div>button,
 .emotion-0>li>div:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
@@ -3812,74 +3723,55 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   flex: none;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
 .emotion-0>li:first-child:not(:only-child)>button {
   margin-left: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
 .emotion-0>li:last-child:not(:only-child)>button {
   margin-right: 0;
 }
 
-.emotion-0>li:first-child:not(:only-child)>div>div>button,
-.emotion-0>li:first-child:not(:only-child)>div>button,
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>li:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li:nth-child(2)>div>div>button,
-.emotion-0>li:nth-child(2)>div>button,
-.emotion-0>li:nth-child(2)>button {
+.emotion-0>li:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child)>div>div>button,
-.emotion-0>li:not(:first-child)>div>button,
-.emotion-0>li:not(:first-child)>button {
+.emotion-0>li:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child)>div>div>button,
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child)>div>button,
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child)>button {
+.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>div>div>button,
-.emotion-0>li:last-child:not(:only-child)>div>button,
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>li:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:first-child:not(:only-child) div>button,
 .emotion-0>li>div:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li>div:nth-child(2) div>button,
 .emotion-0>li>div:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child) div>button,
 .emotion-0>li>div:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child).emotion-0>li>div:not(:last-child) div>button,
 .emotion-0>li>div:not(:first-child).emotion-0>li>div:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-0>li>div:last-child:not(:only-child) div>button,
 .emotion-0>li>div:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
