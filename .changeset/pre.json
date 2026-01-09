@@ -22,6 +22,7 @@
     "chore-fix-docs-build",
     "chore-fix-dropzone-build",
     "chore-react-18-upgrade-publishing-workflow",
+    "chore-react-magma-icons",
     "chore-react-react-dom-gatsby",
     "chore-storybook",
     "chore-test-packages-upgrade",
