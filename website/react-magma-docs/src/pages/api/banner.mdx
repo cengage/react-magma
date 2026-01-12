@@ -54,12 +54,14 @@ import {
   ButtonColor,
   ButtonSize,
   Announce,
+  useDeviceDetect,
 } from 'react-magma-dom';
 
 export function Example() {
   const [showBanner, updateShowBanner] = React.useState<boolean>(true);
   const dismissibleButtonRef = React.useRef<HTMLButtonElement>(null);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const { isMacOS } = useDeviceDetect();
 
   const bannerText = 'Success! You may now dismiss this banner';
 
@@ -81,7 +83,10 @@ export function Example() {
 
   return (
     <>
-      <Announce aria-label={bannerText}>
+      <Announce
+        politeness="assertive"
+        aria-label={isMacOS ? bannerText : undefined}
+      >
         {showBanner && (
           <Banner
             isDismissible
