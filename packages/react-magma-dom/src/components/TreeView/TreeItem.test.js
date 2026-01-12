@@ -13,6 +13,11 @@ const labelText = 'Tree Item Node 0';
 const itemId = 'node0';
 const testId = `${itemId}-tree-item`;
 
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  disconnect: jest.fn(),
+}));
+
 describe('TreeItem', () => {
   it('should render the component', () => {
     const { getByText } = render(

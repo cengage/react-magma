@@ -100,6 +100,14 @@ export default {
     isTopLevelSelectable: {
       control: 'boolean',
     },
+    enableVirtualization: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    height: {
+      control: 'number',
+      defaultValue: 800,
+    },
   },
   args: {
     isInverse: false,
@@ -1853,6 +1861,11 @@ export const ComplexTreeWithLargeDataSet = {
                 },
               ],
             },
+            {
+              id: 'ad-3',
+              title: 'Web Design',
+              children: [],
+            },
           ],
         },
         {
@@ -3054,6 +3067,16 @@ export const ComplexWithAdditionalContent = {
                 <DropdownMenuItem>Menu item number two</DropdownMenuItem>
               </DropdownContent>
             </Dropdown>
+            <Popover hasPointer={false} focusTrap={false}>
+              <PopoverTrigger aria-label="Open popover">
+                <Button size={ButtonSize.small} color={ButtonColor.subtle}>
+                  This opens a popover
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div>Im a popover.</div>
+              </PopoverContent>
+            </Popover>
           </ButtonGroup>
         </>
       );
@@ -3275,7 +3298,9 @@ export function TreeViewWithDifferentElements() {
             <div>
               Nocturnal birds with distinctive facial discs and silent flight.{' '}
               <Button
-                onClick={event => apiRef.current?.closePopoverManually(event)}
+                onClick={event =>
+                  popoverApiRef.current?.closePopoverManually(event)
+                }
               >
                 Ok
               </Button>
@@ -3409,3 +3434,223 @@ export function CustomExpandIconArrowAndTreeItemStyles() {
     </TreeView>
   );
 }
+export const VirtualizedLargeTree = {
+  render: (args: Partial<TreeViewProps>) => {
+    const apiRef = React.useRef<TreeViewApi>();
+
+    const treeLabel = (treeItemNumber: number) => {
+      return (
+        <Flex
+          behavior={FlexBehavior.container}
+          justify={FlexJustify.spaceBetween}
+          wrap={FlexWrap.nowrap}
+        >
+          <Flex behavior={FlexBehavior.item}>
+            <Hyperlink to="google.com" target="_blank" hasUnderline={false}>
+              Most common activity length is 39 chars but what if longer
+            </Hyperlink>
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Tag>{treeItemNumber}</Tag>
+            <Spacer
+              axis={SpacerAxis.horizontal}
+              size={magma.spaceScale.spacing03}
+            />
+            <Dropdown>
+              <DropdownButton
+                aria-label="Extra icon example"
+                color={ButtonColor.secondary}
+                size={ButtonSize.small}
+                icon={<MoreHorizIcon />}
+                shape={ButtonShape.fill}
+              />
+              <DropdownContent>
+                <DropdownMenuItem
+                  icon={<EditIcon aria-hidden />}
+                  onClick={() => console.log('Rename clicked!')}
+                >
+                  Rename
+                </DropdownMenuItem>
+              </DropdownContent>
+            </Dropdown>
+          </Flex>
+        </Flex>
+      );
+    };
+
+    const folderLabel = (label: any) => {
+      return (
+        <Flex
+          behavior={FlexBehavior.container}
+          justify={FlexJustify.spaceBetween}
+          wrap={FlexWrap.nowrap}
+        >
+          <Flex behavior={FlexBehavior.item}>{label}</Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Paragraph
+              visualStyle={TypographyVisualStyle.bodySmall}
+              noMargins
+              color={TypographyColor.subdued}
+              style={{ marginRight: magma.spaceScale.spacing03 }}
+            />
+            <Dropdown>
+              <DropdownButton
+                aria-label="Extra icon example"
+                color={ButtonColor.secondary}
+                size={ButtonSize.small}
+                icon={<MoreHorizIcon />}
+                shape={ButtonShape.fill}
+              />
+              <DropdownContent>
+                <DropdownMenuItem
+                  icon={<EditIcon aria-hidden />}
+                  onClick={() => console.log('Rename clicked!')}
+                >
+                  Rename
+                </DropdownMenuItem>
+              </DropdownContent>
+            </Dropdown>
+          </Flex>
+        </Flex>
+      );
+    };
+
+    const additionalContent = () => {
+      return (
+        <>
+          <Paragraph noTopMargin visualStyle={TypographyVisualStyle.bodyXSmall}>
+            Due: xx/xx/xxx · Submitted: 12 · Missing: 3
+          </Paragraph>
+          <ButtonGroup>
+            <Dropdown>
+              <DropdownButton
+                size={ButtonSize.small}
+                color={ButtonColor.subtle}
+              >
+                10 Resources
+              </DropdownButton>
+              <DropdownContent>
+                <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+                <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+              </DropdownContent>
+            </Dropdown>
+            <Dropdown>
+              <DropdownButton
+                size={ButtonSize.small}
+                color={ButtonColor.subtle}
+              >
+                24 Standards
+              </DropdownButton>
+              <DropdownContent>
+                <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+                <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+              </DropdownContent>
+            </Dropdown>
+            <Popover hasPointer={false} focusTrap>
+              <PopoverTrigger aria-label="Open popover">
+                <Button size={ButtonSize.small} color={ButtonColor.subtle}>
+                  This opens a popover
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div>Im a popover.</div>
+              </PopoverContent>
+            </Popover>
+          </ButtonGroup>
+        </>
+      );
+    };
+
+    return (
+      <Card isInverse={args.isInverse} style={{ height: 800 }}>
+        <ButtonGroup style={{ margin: '16px' }}>
+          <Button onClick={() => apiRef.current?.expandAll()}>
+            Expand All
+          </Button>
+          <Button onClick={() => apiRef.current?.collapseAll()}>
+            Collapse All
+          </Button>
+        </ButtonGroup>
+        <TreeView
+          {...args}
+          apiRef={apiRef}
+          enableVirtualization={args.enableVirtualization}
+          style={{ height: '800px', overflow: 'auto' }}
+        >
+          <TreeItem
+            itemId="parent"
+            label={folderLabel(
+              <Paragraph
+                visualStyle={TypographyVisualStyle.headingXSmall}
+                noMargins
+              >
+                Spanish Edition
+              </Paragraph>
+            )}
+            icon={<FolderIcon />}
+          >
+            {Array.from({ length: 25 }, (_, i) => i + 1).map(i => (
+              <TreeItem
+                key={i}
+                label={folderLabel(
+                  <Paragraph
+                    visualStyle={TypographyVisualStyle.headingXSmall}
+                    noMargins
+                  >
+                    Unit {i}
+                  </Paragraph>
+                )}
+                itemId={`unit${i}`}
+                icon={<FolderIcon />}
+              >
+                {Array.from({ length: 20 }, (_, j) => j + 1).map(j => {
+                  const chapterNumber = (i - 1) * 20 + j;
+                  const startPage = (chapterNumber - 1) * 100;
+                  const endPage = startPage + 100;
+
+                  return (
+                    <TreeItem
+                      key={`${i}-${j}`}
+                      label={folderLabel(
+                        <span style={{ fontWeight: '600' }}>
+                          Chapter {i}.{j} (pp. {startPage + 1}-{endPage})
+                        </span>
+                      )}
+                      itemId={`chapter${i}-${j}`}
+                      icon={<FolderIcon />}
+                    >
+                      {Array.from({ length: 100 }, (_, k) => k + 1).map(k => {
+                        const activityNumber = ((i - 1) * 20 + j - 1) * 100 + k;
+
+                        return (
+                          <TreeItem
+                            key={`${i}-${j}-${k}`}
+                            additionalContent={additionalContent()}
+                            label={treeLabel(activityNumber)}
+                            itemId={`activity${i}-${j}-${k}`}
+                            icon={<BookIcon />}
+                          />
+                        );
+                      })}
+                    </TreeItem>
+                  );
+                })}
+              </TreeItem>
+            ))}
+          </TreeItem>
+        </TreeView>
+      </Card>
+    );
+  },
+
+  args: {
+    ariaLabel: 'Virtualized Large Tree',
+    selectable: TreeViewSelectable.multi,
+    initialExpandedItems: [],
+    checkParents: false,
+    checkChildren: false,
+    isDisabled: false,
+    testId: 'virtualized-tree-example',
+    enableVirtualization: true,
+  },
+};

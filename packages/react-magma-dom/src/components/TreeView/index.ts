@@ -4,4 +4,7 @@ export * from './useTreeItem';
 export * from './useTreeView';
 export * from './utils';
 export * from './types';
-export type { TreeItemSelectedInterface, TreeViewApi } from './useTreeView';
+export { TreeItemSelectedInterface, TreeViewApi } from './useTreeView';
+export * from './TreeViewSelectionContext';
+export * from './TreeViewExpansionContext';
+export * from './TreeViewConfigContext';
