@@ -7,9 +7,7 @@ interface PaginationI18n {
 }
 
 export const paginationLabel = (count: number, pagination: PaginationI18n) => {
-  return `${pagination.ofLabel}
-        ${count}
-        ${count <= 1 ? pagination.pageLabel : pagination.pagesLabel}`;
+  return `${pagination.ofLabel} ${count} ${count <= 1 ? pagination.pageLabel : pagination.pagesLabel}`;
 };
 
 export const pageAriaLabel = (
@@ -17,8 +15,5 @@ export const pageAriaLabel = (
   count: number,
   pagination: PaginationI18n
 ) => {
-  return `${pagination.pageNumberLabel}
-    ${selectedPage}
-    ${paginationLabel(count, pagination)}
-    ${pagination.selectedLabel}`;
+  return `${pagination.pageNumberLabel} ${selectedPage} ${paginationLabel(count, pagination)} ${pagination.selectedLabel}`;
 };
