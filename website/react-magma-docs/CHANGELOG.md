@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.12
+
+### Patch Changes
+
+- e30ddf7: fix(Banner): small fix for docs
+
 ## 7.0.0-rc.11
 
 ### Patch Changes

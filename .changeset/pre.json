@@ -61,6 +61,7 @@
     "fix-Tag-fix-aria-label",
     "fix-TextArea-helpermessage-is-not-announced",
     "fix-ToggleButton-transform",
+    "fix-banner-additional-docs-fix",
     "fix-datepicker-canvas-issue-react-18",
     "fix-drawer-scrollable-content",
     "fix-modal-trigger-button",
