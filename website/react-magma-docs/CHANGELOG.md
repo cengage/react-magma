@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0-next.13
+
+### Patch Changes
+
+- 6a323e594: fix(Banner): small fix for docs
+
 ## 5.3.0-next.12
 
 ### Patch Changes
