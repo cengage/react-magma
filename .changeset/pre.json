@@ -67,6 +67,7 @@
     "fix-modal-trigger-button",
     "fix-select-aria-label",
     "fix-select-focus-behaviour",
+    "fix-tablepagination-duplicate-screenreader",
     "fix-timepicker-broken-auto-fill",
     "fix-timepicker-update-styles",
     "major-charts-v13-release",
