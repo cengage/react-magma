@@ -45,6 +45,7 @@
     "fix-Tag-fix-aria-label",
     "fix-TextArea-helpermessage-is-not-announced",
     "fix-ToggleButton-transform",
+    "fix-TreeView-fix-styles",
     "fix-TreeView-stoybook-example-update",
     "fix-Treeview-fix-virtulization-height",
     "fix-Treeview-fix-virtulization-styling",

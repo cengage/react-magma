@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.32
+
+### Patch Changes
+
+- c72302e6c: fix(Treeview): fix hover/focus styles
+
 ## 4.11.0-next.31
 
 ### Patch Changes
