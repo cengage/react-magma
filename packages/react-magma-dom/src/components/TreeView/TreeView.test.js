@@ -248,11 +248,6 @@ const renderTreeItemsRecursively = (treeItems, depth) => {
   });
 };
 
-global.ResizeObserver = jest.fn().mockImplementation(() => ({
-  observe: jest.fn(),
-  disconnect: jest.fn(),
-}));
-
 describe('TreeView', () => {
   it('should find element by testId', () => {
     const { getByTestId } = render(

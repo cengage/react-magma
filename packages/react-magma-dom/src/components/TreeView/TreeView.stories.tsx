@@ -3434,6 +3434,7 @@ export function CustomExpandIconArrowAndTreeItemStyles() {
     </TreeView>
   );
 }
+
 export const VirtualizedLargeTree = {
   render: (args: Partial<TreeViewProps>) => {
     const apiRef = React.useRef<TreeViewApi>();

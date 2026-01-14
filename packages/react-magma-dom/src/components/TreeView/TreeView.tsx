@@ -36,7 +36,6 @@ interface VirtualContainerProps {
 }
 
 interface VirtualItemProps {
-  height: number;
   transform: number;
 }
 
@@ -68,7 +67,6 @@ const VirtualItem = styled.div<VirtualItemProps>`
   top: 0;
   left: 0;
   width: 100%;
-  min-height: ${props => props.height}px;
   transform: ${props => `translateY(${props.transform}px)`};
 
   /* Ensure dropdowns and other floating elements appear above items */
@@ -87,8 +85,8 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       ariaLabelledBy,
       children,
       isInverse: isInverseProp,
-      onExpandedChange: _onExpandedChange,
-      onSelectedItemChange: _onSelectedItemChange,
+      onExpandedChange,
+      onSelectedItemChange,
       selectable,
       testId,
       apiRef: _apiRef,
@@ -111,10 +109,6 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     );
 
     const parentRef = React.useRef<HTMLUListElement>(null);
-    const itemHeightsByIdRef = React.useRef<Map<string, number>>(new Map());
-    const measurementRefs = React.useRef<Map<string, HTMLDivElement>>(
-      new Map()
-    );
 
     // Flatten tree structure for virtualization
     const flattenedItems = React.useMemo(() => {
@@ -137,10 +131,24 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
           const itemId = child.props.itemId;
           const itemKey = `${itemId}-${depth}`;
 
-          // Clone the child without its children to prevent double rendering
+          // Filter children to separate TreeItem elements from other content
+          // Keep non-TreeItem children (like Tag, text, etc.) but remove nested TreeItems
+          const nonTreeItemChildren: React.ReactNode[] = [];
+
+          React.Children.forEach(child.props.children, childNode => {
+            if (
+              !React.isValidElement(childNode) ||
+              childNode.type !== TreeItem
+            ) {
+              nonTreeItemChildren.push(childNode);
+            }
+          });
+
+          // Clone the child with only non-TreeItem children to prevent double rendering
           const childWithoutNested = React.cloneElement(child, {
             ...child.props,
-            children: null,
+            children:
+              nonTreeItemChildren.length > 0 ? nonTreeItemChildren : null,
           });
 
           items.push({
@@ -168,77 +176,9 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     const rowVirtualizer = useVirtualizer({
       count: flattenedItems.length,
       getScrollElement: () => parentRef.current,
-      estimateSize: React.useCallback(
-        (index: number) => {
-          const itemId = flattenedItems[index]?.itemId;
-
-          if (!itemId) {
-            return 32;
-          }
-
-          return itemHeightsByIdRef.current.get(itemId) ?? 32;
-        },
-        [flattenedItems]
-      ),
+      estimateSize: () => 32,
       overscan: 3,
     });
-
-    // Measure item heights after render
-    React.useEffect(() => {
-      if (!enableVirtualization) {
-        measurementRefs.current.clear();
-        itemHeightsByIdRef.current.clear();
-
-        return;
-      }
-
-      const measureHeights = () => {
-        let hasChanges = false;
-
-        measurementRefs.current.forEach((element, itemId) => {
-          if (element) {
-            const treeViewHeight = element.offsetHeight;
-            const currentHeight = itemHeightsByIdRef.current.get(itemId);
-
-            if (currentHeight !== treeViewHeight && treeViewHeight > 0) {
-              itemHeightsByIdRef.current.set(itemId, treeViewHeight);
-              hasChanges = true;
-            }
-          }
-        });
-
-        if (hasChanges) {
-          rowVirtualizer.measure();
-        }
-      };
-
-      const timeoutId = setTimeout(() => {
-        measureHeights();
-      }, 0);
-
-      if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
-        const resizeObserver = new (
-          window as unknown as { ResizeObserver: typeof ResizeObserver }
-        ).ResizeObserver(() => {
-          measureHeights();
-        });
-
-        measurementRefs.current.forEach(element => {
-          if (element) {
-            resizeObserver.observe(element);
-          }
-        });
-
-        return () => {
-          clearTimeout(timeoutId);
-          resizeObserver.disconnect();
-        };
-      }
-
-      return () => {
-        clearTimeout(timeoutId);
-      };
-    }, [enableVirtualization, flattenedItems, rowVirtualizer]);
 
     // Process children without cloneElement - use context instead
     const processedChildren = React.useMemo(() => {
@@ -322,15 +262,11 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
 
                       return (
                         <VirtualItem
+                          data-index={virtualItem.index}
                           key={item.key}
-                          height={virtualItem.size}
                           transform={virtualItem.start}
                           ref={(el: HTMLDivElement) => {
-                            if (el) {
-                              measurementRefs.current.set(item.itemId, el);
-                            } else {
-                              measurementRefs.current.delete(item.itemId);
-                            }
+                            rowVirtualizer.measureElement(el);
                           }}
                         >
                           <TreeItemHierarchyContext.Provider
