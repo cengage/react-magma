@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.33
+
+### Patch Changes
+
+- 5fb980c1a: fix(ToggleButtonGroup): Fix some broken css styles.
+
 ## 4.11.0-next.32
 
 ### Patch Changes
