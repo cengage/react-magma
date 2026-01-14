@@ -407,7 +407,11 @@ export const PhoneInput = () => {
         </>
       }
       type={InputType.tel}
-      errorMessage={hasError ? 'Please enter a phone number' : null}
+      errorMessage={
+        hasError
+          ? 'Please enter a valid phone number in the format 123-456-7890'
+          : null
+      }
       value={inputVal}
       onChange={handleChange}
     />
