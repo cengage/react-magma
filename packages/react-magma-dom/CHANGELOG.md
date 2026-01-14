@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.29
+
+### Patch Changes
+
+- 6638f3a: fix(ToggleButtonGroup): Fix some broken css styles.
+
 ## 5.1.0-rc.28
 
 ### Patch Changes
