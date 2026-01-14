@@ -39,34 +39,38 @@ export function calculateOffset(
   let padding = 0;
 
   if (type === TreeNodeType.leaf) {
-    if (labelElem) {
-      padding = depth * 8 + 40;
-      if (depth !== 0) {
-        padding += depth * 16;
-      }
-    } else if (depth === 0) {
-      padding = 40;
-    } else if (isVirtualized) {
+    if (isVirtualized) {
       // For virtualized items, calculate cumulative padding
       // Base padding (40px) + (depth * 24px per level after first)
-      padding = 40 + (depth - 1) * 24;
+      padding = 40 + depth * 24;
     } else {
-      padding = 56;
+      if (labelElem) {
+        padding = depth * 8 + 40;
+        if (depth !== 0) {
+          padding += depth * 16;
+        }
+      } else if (depth === 0) {
+        padding = 40;
+      } else {
+        padding = 56;
+      }
     }
   } else if (type === TreeNodeType.branch) {
-    if (labelElem) {
-      padding = depth * 8 + 8;
-      if (depth !== 0) {
-        padding += depth * 16;
-      }
-    } else if (depth === 0) {
-      padding = 8;
-    } else if (isVirtualized) {
+    if (isVirtualized) {
       // For virtualized items, calculate cumulative padding
       // Base padding (8px) + (depth * 24px per level after first)
-      padding = 8 + (depth - 1) * 24;
+      padding = 8 + depth * 24;
     } else {
-      padding = 24;
+      if (labelElem) {
+        padding = depth * 8 + 8;
+        if (depth !== 0) {
+          padding += depth * 16;
+        }
+      } else if (depth === 0) {
+        padding = 8;
+      } else {
+        padding = 24;
+      }
     }
   }
 

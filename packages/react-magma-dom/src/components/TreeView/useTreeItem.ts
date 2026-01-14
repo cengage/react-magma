@@ -468,7 +468,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     checkedStatus,
     expanded,
     hasOwnTreeItems,
-    itemDepth: parentDepth === 0 && topLevel ? 0 : itemDepth + 1,
+    itemDepth: parentDepth === 0 && topLevel ? 0 : itemDepth,
     itemId: itemId || generatedId,
     parentDepth,
     ref,
