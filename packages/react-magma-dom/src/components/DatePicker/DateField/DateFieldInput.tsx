@@ -224,6 +224,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     onClear();
     handleDateChange?.(null, null);
     onClearDate?.();
+    firstFieldRef?.focus();
   };
 
   const focusInputContainer = (e: React.MouseEvent | React.FocusEvent) => {

@@ -1914,6 +1914,7 @@ describe('Date Picker', () => {
           expect(monthInput.value).toBe('');
           expect(dayInput.value).toBe('');
           expect(yearInput.value).toBe('');
+          expect(monthInput).toHaveFocus();
         });
       });
 
