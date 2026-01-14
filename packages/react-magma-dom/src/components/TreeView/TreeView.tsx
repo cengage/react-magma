@@ -109,10 +109,15 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     );
 
     const parentRef = React.useRef<HTMLUListElement>(null);
+    const [isMounted, setIsMounted] = React.useState(false);
+
+    React.useEffect(() => {
+      setIsMounted(true);
+    }, []);
 
     // Flatten tree structure for virtualization
     const flattenedItems = React.useMemo(() => {
-      if (!enableVirtualization) return [];
+      if (!enableVirtualization || !isMounted) return [];
 
       const items: Array<{
         child: React.ReactElement;
@@ -171,18 +176,26 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
       flatten(children);
 
       return items;
-    }, [children, enableVirtualization, expansionContextValue.expandedSet]);
+    }, [
+      children,
+      enableVirtualization,
+      expansionContextValue.expandedSet,
+      isMounted,
+    ]);
+
+    const shouldUseVirtualization = enableVirtualization && isMounted;
 
     const rowVirtualizer = useVirtualizer({
-      count: flattenedItems.length,
+      count: shouldUseVirtualization ? flattenedItems.length : 0,
       getScrollElement: () => parentRef.current,
       estimateSize: () => 32,
       overscan: 3,
+      enabled: shouldUseVirtualization,
     });
 
     // Process children without cloneElement - use context instead
     const processedChildren = React.useMemo(() => {
-      if (enableVirtualization) {
+      if (shouldUseVirtualization) {
         return null; // Handled by virtualizer below
       }
 
@@ -215,7 +228,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
 
         return null;
       });
-    }, [children, enableVirtualization]);
+    }, [children, shouldUseVirtualization]);
 
     return (
       <InverseContext.Provider value={inverseContextValue}>
@@ -229,7 +242,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                 aria-multiselectable={selectable === TreeViewSelectable.multi}
                 data-testid={testId}
                 isInverse={isInverse}
-                isVirtualized={enableVirtualization}
+                isVirtualized={shouldUseVirtualization}
                 ref={mergedRefs => {
                   if (typeof ref === 'function') {
                     ref(mergedRefs);
@@ -243,12 +256,12 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                 theme={theme}
                 style={{
                   ...rest.style,
-                  ...(enableVirtualization && height
+                  ...(shouldUseVirtualization && height
                     ? { height: `${height}px`, overflow: 'auto' }
                     : {}),
                 }}
               >
-                {enableVirtualization ? (
+                {shouldUseVirtualization ? (
                   <VirtualContainer height={rowVirtualizer.getTotalSize()}>
                     {rowVirtualizer.getVirtualItems().map(virtualItem => {
                       const item = flattenedItems[virtualItem.index];
