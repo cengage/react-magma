@@ -137,10 +137,24 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
           const itemId = child.props.itemId;
           const itemKey = `${itemId}-${depth}`;
 
-          // Clone the child without its children to prevent double rendering
+          // Filter children to separate TreeItem elements from other content
+          // Keep non-TreeItem children (like Tag, text, etc.) but remove nested TreeItems
+          const nonTreeItemChildren: React.ReactNode[] = [];
+
+          React.Children.forEach(child.props.children, childNode => {
+            if (
+              !React.isValidElement(childNode) ||
+              childNode.type !== TreeItem
+            ) {
+              nonTreeItemChildren.push(childNode);
+            }
+          });
+
+          // Clone the child with only non-TreeItem children to prevent double rendering
           const childWithoutNested = React.cloneElement(child, {
             ...child.props,
-            children: null,
+            children:
+              nonTreeItemChildren.length > 0 ? nonTreeItemChildren : null,
           });
 
           items.push({
