@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.34
+
+### Patch Changes
+
+- 33509ff0c: fix(Pagination): Add `aria-hidden=true` for ellipsis.
+
 ## 4.11.0-next.33
 
 ### Patch Changes
