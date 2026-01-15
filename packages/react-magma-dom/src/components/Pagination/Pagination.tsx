@@ -4,11 +4,11 @@ import styled from '@emotion/styled';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
 
 import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonColor, ButtonShape, ButtonSize, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { PageButton, pageButtonTypeSize } from './PageButton';
 import { usePagination } from './usePagination';
-import { ThemeContext } from '../../theme/ThemeContext';
 import { SimplePagination } from '../Pagination/SimplePagination';
 
 export interface BasePaginationProps
@@ -224,6 +224,7 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                     return (
                       <StyledEllipsis
                         aria-current={Boolean(ariaCurrent)}
+                        aria-hidden="true"
                         key={index}
                         isInverse={isInverse}
                         size={size}
