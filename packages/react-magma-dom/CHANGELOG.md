@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.31
+
+### Patch Changes
+
+- fa98316: fix(Pagination): Add announcement when selected page updates.
+
 ## 5.1.0-rc.30
 
 ### Patch Changes
