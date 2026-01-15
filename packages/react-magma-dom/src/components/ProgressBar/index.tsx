@@ -7,7 +7,6 @@ import { transparentize } from 'polished';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { convertStyleValueToString, useGenerateId } from '../../utils';
-import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface ProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -204,7 +203,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
           theme={theme}
         >
           <Bar
-            aria-labelledby={labelId}
+            aria-label={`${percentageValue}%`}
             aria-valuenow={percentageValue}
             aria-valuemin={0}
             aria-valuemax={100}
@@ -216,12 +215,10 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
             theme={theme}
           />
         </Track>
-        {isLabelVisible ? (
+        {isLabelVisible && (
           <Percentage id={labelId} theme={theme}>
             {percentageValue}%
           </Percentage>
-        ) : (
-          <VisuallyHidden id={labelId}>{percentageValue}%</VisuallyHidden>
         )}
       </Container>
     );
