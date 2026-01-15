@@ -137,19 +137,12 @@ The `value` and `onChange` props can be used for clear value.
 ```tsx
 import React from 'react';
 
-import {
-  Button,
-  TimePicker,
-  Announce,
-  VisuallyHidden,
-  useDeviceDetect,
-} from 'react-magma-dom';
+import { Button, TimePicker, Announce, VisuallyHidden } from 'react-magma-dom';
 
 export function Example() {
   const [timeValue, setTimeValue] = React.useState<string | undefined>('');
   const [announcement, setAnnouncement] = React.useState('');
   const [isCleared, setIsCleared] = React.useState(false);
-  const { isMacOS } = useDeviceDetect();
   const clearedText = 'Time has been cleared';
 
   function handleOnChange(value) {
