@@ -22,6 +22,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
     additionalContent,
     ariaDescribedBy,
+    ariaLabel,
     components: customComponents,
     errorMessage,
     hasError,
@@ -89,6 +90,10 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
           )
         );
       }
+    } else {
+      const index = filteredItems.findIndex(item => !isItemDisabled(item));
+
+      setHighlightedIndex(index);
     }
 
     onIsOpenChange &&
@@ -291,6 +296,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   return (
     <SelectContainer
       additionalContent={additionalContent}
+      ariaLabel={ariaLabel}
       descriptionId={ariaDescribedBy}
       errorMessage={errorMessage}
       getLabelProps={getLabelProps}
@@ -382,7 +388,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         highlightedIndex={highlightedIndex}
         isOpen={isOpen}
         isInverse={isInverse}
-        items={getFilteredItems(items)}
+        items={filteredItems}
         itemToString={itemToString}
         maxHeight={itemListMaxHeight ?? theme.select.menu.maxHeight}
         menuStyle={menuStyle}

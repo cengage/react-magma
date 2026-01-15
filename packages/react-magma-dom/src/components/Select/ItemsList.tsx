@@ -17,7 +17,7 @@ import {
   SelectComponents,
 } from './components';
 import { StyledCard, StyledItem, StyledList } from './shared';
-import { isItemDisabled } from './utils';
+import { isItemDisabled, setFocusedItem } from './utils';
 
 import { instanceOfToBeCreatedItemObject } from '.';
 
@@ -97,9 +97,19 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     );
   };
 
-  function handleEscape(event: React.KeyboardEvent) {
-    if (event.key === 'Escape') {
-      event.nativeEvent.stopImmediatePropagation();
+  function handleKeyDown(event: React.KeyboardEvent) {
+    switch (event.key) {
+      case 'Escape':
+        event.nativeEvent.stopImmediatePropagation();
+        break;
+      case 'ArrowDown':
+        setFocusedItem(1, highlightedIndex, items, setHighlightedIndex);
+        break;
+      case 'ArrowUp':
+        setFocusedItem(-1, highlightedIndex, items, setHighlightedIndex);
+        break;
+      default:
+        break;
     }
   }
 
@@ -112,7 +122,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
         hasDropShadow
         isInverse={isInverse}
         isOpen={isOpen}
-        onKeyDown={handleEscape}
+        onKeyDown={handleKeyDown}
         style={menuStyle}
         theme={theme}
       >
@@ -150,7 +160,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
 
               if (isDisabled) {
                 itemProps.onMouseEnter = () => {
-                  setHighlightedIndex && setHighlightedIndex(-1);
+                  setHighlightedIndex?.(-1);
                 };
               }
 

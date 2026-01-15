@@ -180,7 +180,7 @@ const RowsPerPageController = (props: RowsPerPageControllerProps) => {
 
   return (
     <>
-      <RowsPerPageLabel isInverse={isInverse} theme={theme}>
+      <RowsPerPageLabel isInverse={isInverse} theme={theme} aria-hidden="true">
         {i18n.table.pagination.rowsPerPageLabel}:
       </RowsPerPageLabel>
       <NativeSelect

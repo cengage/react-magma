@@ -31,14 +31,13 @@ export const SelectContainerElement = styled.div<{
 
 const InputMessageContainer = styled.div`
   flex-grow: 1;
-  padding: 0.25em;
-  margin: -0.25em;
   min-width: 0%;
   position: relative;
 `;
 
 interface SelectContainerInterface<T> {
   additionalContent?: React.ReactNode;
+  ariaLabel?: string;
   children: React.ReactNode[];
   containerStyle?: React.CSSProperties;
   descriptionId?: string;
@@ -97,6 +96,7 @@ const FieldContainer = styled.div`
 export function SelectContainer<T>(props: SelectContainerInterface<T>) {
   const {
     additionalContent,
+    ariaLabel,
     children,
     descriptionId,
     errorMessage,
@@ -160,12 +160,13 @@ export function SelectContainer<T>(props: SelectContainerInterface<T>) {
       <AdditionalContentWrapper labelPosition={labelPosition}>
         <Label
           {...getLabelProps()}
+          aria-label={ariaLabel}
           isInverse={isInverse}
           labelPosition={labelPosition}
           style={labelStyle}
         >
           {isLabelVisuallyHidden ? (
-            <VisuallyHidden>{labelText}</VisuallyHidden>
+            <VisuallyHidden>{ariaLabel || labelText}</VisuallyHidden>
           ) : (
             labelText
           )}

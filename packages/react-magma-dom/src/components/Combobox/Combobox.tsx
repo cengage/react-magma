@@ -15,6 +15,7 @@ import { ButtonShape, ButtonSize, ButtonVariant } from '../Button';
 import { defaultComponents } from '../Select/components';
 import { ItemsList } from '../Select/ItemsList';
 import { SelectContainer } from '../Select/SelectContainer';
+import { setFocusedItem } from '../Select/utils';
 
 import { ComboboxProps } from '.';
 
@@ -149,6 +150,14 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
             ? itemToString(changes.selectedItem)
             : '',
         };
+      case useCombobox.stateChangeTypes.InputKeyDownArrowDown:
+      case useCombobox.stateChangeTypes.InputKeyDownArrowUp:
+        // Keep controlled navigation manually via handleOnKeyDown handler
+        return {
+          ...state,
+          highlightedIndex: state.highlightedIndex,
+          isOpen: true,
+        };
       default:
         return changes;
     }
@@ -259,14 +268,26 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     .replace(/\{labelText\}/g, labelText)
     .replace(/\{selectedItem\}/g, itemToString(selectedItem));
 
-  function handleOnKeyDown(event: any) {
+  function handleOnKeyDown(event: React.KeyboardEvent) {
     const count = document.querySelectorAll('[aria-modal="true"]').length;
 
-    if (event.key === 'Escape') {
-      if (count >= 1 && inputRef.current) {
-        inputRef.current.focus();
-      }
-      event.nativeEvent.stopImmediatePropagation();
+    switch (event.key) {
+      case 'Escape':
+        if (count >= 1 && inputRef.current) {
+          inputRef.current.focus();
+        }
+        event.nativeEvent.stopImmediatePropagation();
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        setFocusedItem(1, highlightedIndex, displayItems, setHighlightedIndex);
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        setFocusedItem(-1, highlightedIndex, displayItems, setHighlightedIndex);
+        break;
+      default:
+        break;
     }
 
     onInputKeyDown &&

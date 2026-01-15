@@ -51,7 +51,7 @@ export default {
 const Template: StoryFn<NavTabsProps> = args => {
   return (
     <Card isInverse={args.isInverse}>
-      <NavTabs aria-label="Nav Tabs" {...args}>
+      <NavTabs {...args} aria-label="Nav Tabs">
         <NavTab isActive to="#">
           Current Page
         </NavTab>
@@ -70,7 +70,7 @@ export const IconOnly: StoryObj<NavTabsProps> = {
   render: args => {
     return (
       <Card isInverse={args.isInverse}>
-        <NavTabs aria-label="Icon Only Nav Tabs" {...args}>
+        <NavTabs {...args} aria-label="Icon Only Nav Tabs">
           <NavTab aria-label="Email" icon={<EmailIcon />} to="#" isActive />
           <NavTab aria-label="Android" icon={<AndroidIcon />} to="#" />
           <NavTab
@@ -89,9 +89,9 @@ export const BackgroundColor: StoryObj<NavTabsProps> = {
     return (
       <Card isInverse={args.isInverse}>
         <NavTabs
+          {...args}
           aria-label="Nav Tabs"
           backgroundColor={args.isInverse ? '' : magma.colors.neutral200}
-          {...args}
         >
           <NavTab isActive to="#">
             Current Page
@@ -106,7 +106,7 @@ export const BackgroundColor: StoryObj<NavTabsProps> = {
 const InverseTemplate: StoryFn<NavTabsProps> = args => {
   return (
     <Card isInverse={args.isInverse}>
-      <NavTabs aria-label="Nav Tabs" {...args}>
+      <NavTabs {...args} aria-label="Nav Tabs">
         <NavTab isActive to="#">
           Current Page
         </NavTab>
@@ -131,7 +131,7 @@ export const CustomTab: StoryObj<NavTabsProps> = {
 
     return (
       <Card isInverse={args.isInverse}>
-        <NavTabs aria-label="Sample Custom Component Navigation Tabs" {...args}>
+        <NavTabs {...args} aria-label="Sample Custom Component Navigation Tabs">
           <NavTab component={<Link to="./">Main page</Link>} />
           <NavTab isActive component={<Link to="./">FAQ</Link>} />
           <NavTab component={<Link to="./">About us</Link>} />
@@ -156,7 +156,7 @@ const ScrollingTemplate: StoryFn<
         }}
         activeIndex={args.activeIndex}
       >
-        <NavTabs aria-label="Sample Tabs" {...args}>
+        <NavTabs {...args} aria-label="Sample Tabs">
           {arr.map((item, index) => (
             <NavTab
               to={`#${item}`}

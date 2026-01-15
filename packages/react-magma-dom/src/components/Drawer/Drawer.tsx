@@ -67,6 +67,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     const drawerStyle = {
       ...theme.drawer.default,
       ...theme.drawer[DrawerPosition[position]],
+      overflowY: 'auto',
     } as React.CSSProperties;
 
     let containerTransition: Omit<TransitionProps, 'isOpen'> | undefined;

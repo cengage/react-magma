@@ -55,7 +55,6 @@ export const DropdownExpandableMenuGroup = React.forwardRef<
         iconPosition={AccordionIconPosition.right}
         isInverse={context.isInverse}
         ref={ref}
-        role="group"
         testId={testId}
       >
         {children}

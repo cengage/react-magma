@@ -174,7 +174,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       <StyledContainer style={containerStyle}>
         <HiddenInput
           {...other}
-          aria-labelledby={context.descriptionId}
+          aria-describedby={context.descriptionId}
           id={id}
           ref={ref}
           checked={context.selectedValue === value}

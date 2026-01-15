@@ -154,6 +154,32 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
 
     const hasLabel = !!labelText;
 
+    const selectRef = React.useRef<HTMLSelectElement>(null);
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLSelectElement>) => {
+      const select = selectRef.current;
+
+      if (!select) return;
+
+      const total = select.options.length;
+      let index = select.selectedIndex;
+
+      switch (e.key) {
+        case 'ArrowDown':
+          index = (index + 1) % total;
+          break;
+        case 'ArrowUp':
+          index = (index - 1 + total) % total;
+          break;
+        default:
+          return;
+      }
+
+      e.preventDefault();
+      select.selectedIndex = index;
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+    };
+
     const nativeSelect = (
       <StyledFormFieldContainer
         additionalContent={additionalContent}
@@ -193,6 +219,8 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
             disabled={disabled}
             id={id}
             isInverse={isInverse}
+            ref={selectRef}
+            onKeyDown={handleKeyDown}
             theme={theme}
             {...other}
           >

@@ -22,6 +22,7 @@ export function Select<T>(props: SelectProps<T>) {
   const {
     additionalContent,
     ariaDescribedBy,
+    ariaLabel,
     components: customComponents,
     defaultSelectedItem,
     errorMessage,
@@ -217,6 +218,7 @@ export function Select<T>(props: SelectProps<T>) {
   return (
     <SelectContainer
       additionalContent={additionalContent}
+      ariaLabel={ariaLabel}
       descriptionId={ariaDescribedBy}
       errorMessage={errorMessage}
       getLabelProps={getLabelProps}

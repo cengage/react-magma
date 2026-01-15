@@ -1072,6 +1072,73 @@ describe('MultiCombobox', () => {
     });
   });
 
+  it('should loop to the first item and last item when down arrow and up arrow is pressed', async () => {
+    const { getByLabelText, getByText } = render(
+      <MultiCombobox isMulti labelText={labelText} items={items} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, {
+      selector: 'input',
+    });
+
+    await userEvent.click(renderedCombobox);
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+
+    // Looping back to the first item
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+
+    // Looping back to the last item
+    await userEvent.keyboard('{ArrowUp}');
+    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+  });
+
+  it('should skip disabled items and navigate to the next active item', async () => {
+    const customItems = [
+      {
+        label: 'Red',
+        value: 'red',
+        disabled: false,
+      },
+      {
+        label: 'Blue',
+        value: 'blue',
+        disabled: true,
+      },
+      {
+        label: 'Green',
+        value: 'green',
+        disabled: false,
+      },
+    ];
+
+    const { getByLabelText, getByText } = render(
+      <MultiCombobox isMulti labelText={labelText} items={customItems} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, {
+      selector: 'input',
+    });
+
+    act(() => {
+      renderedCombobox.focus();
+    });
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'false');
+    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+  });
+
   describe('events', () => {
     it('onBlur', async () => {
       const onBlur = jest.fn();

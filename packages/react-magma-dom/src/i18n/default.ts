@@ -119,6 +119,9 @@ export const defaultI18n: I18nInterface = {
     backToCalendar: 'Back to Calendar',
     selectMonth: 'Select a month',
     selectYear: 'Select a year',
+    day: 'Day',
+    month: 'Month',
+    year: 'Year',
     helpModal: {
       header: 'Keyboard Shortcuts',
       helpButtonAriaLabel: 'Calendar Widget Help',

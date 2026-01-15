@@ -40,7 +40,7 @@ export const Default = {
     labelText: 'Example',
     defaultItems: [
       { label: 'Red', value: 'red' },
-      { label: 'Blue', value: 'blue' },
+      { label: 'Blue', value: 'blue', disabled: `true` },
       { label: 'Green', value: 'green' },
     ],
     disableCreateItem: false,
@@ -61,10 +61,10 @@ export const Multi = {
         defaultItems={[
           { label: 'Red', value: 'red' },
           { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' },
+          { label: 'Green', value: 'green', disabled: `true` },
           { label: 'Orange', value: 'orange' },
           { label: 'Aqua', value: 'aqua' },
-          { label: 'Gold', value: 'gold' },
+          { label: 'Gold', value: 'gold', disabled: `true` },
           { label: 'Periwinkle', value: 'periwinkle' },
           { label: 'Lavender', value: 'lavender' },
           { label: 'Marigold', value: 'marigold' },

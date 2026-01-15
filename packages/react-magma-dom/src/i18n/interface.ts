@@ -126,6 +126,9 @@ export interface I18nInterface {
     backToCalendar: string;
     selectMonth: string;
     selectYear: string;
+    day: string;
+    month: string;
+    year: string;
 
     helpModal: {
       header: string;
