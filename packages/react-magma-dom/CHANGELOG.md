@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.35
+
+### Patch Changes
+
+- 18932ad5e: fix(Pagination): Add announcement when selected page updates.
+
 ## 4.11.0-next.34
 
 ### Patch Changes

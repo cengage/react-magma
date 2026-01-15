@@ -38,6 +38,7 @@
     "fix-Dropdown-focus-behaviour",
     "fix-NavTabs-fix-obscured-focus",
     "fix-NavsTab-add-region",
+    "fix-Pagination-add-announcement-selected-page",
     "fix-Pagination-aria-hidden-dots",
     "fix-RadioButton-label-is-not-annouced-with-helper-message",
     "fix-Select-disabled-item",
