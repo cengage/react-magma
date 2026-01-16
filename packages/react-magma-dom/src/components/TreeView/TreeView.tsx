@@ -140,6 +140,7 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
           // Filter children to separate TreeItem elements from other content
           // Keep non-TreeItem children (like Tag, text, etc.) but remove nested TreeItems
           const nonTreeItemChildren: React.ReactNode[] = [];
+          let hasTreeItemChildren = false;
 
           React.Children.forEach(child.props.children, childNode => {
             if (
@@ -147,12 +148,15 @@ export const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
               childNode.type !== TreeItem
             ) {
               nonTreeItemChildren.push(childNode);
+            } else {
+              hasTreeItemChildren = true;
             }
           });
 
           // Clone the child with only non-TreeItem children to prevent double rendering
           const childWithoutNested = React.cloneElement(child, {
             ...child.props,
+            hasTreeItemChildren,
             children:
               nonTreeItemChildren.length > 0 ? nonTreeItemChildren : null,
           });

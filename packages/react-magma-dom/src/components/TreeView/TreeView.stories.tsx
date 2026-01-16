@@ -118,7 +118,7 @@ export default {
     },
     height: {
       control: 'number',
-      defaultValue: 800,
+      defaultValue: 0,
     },
   },
 } as Meta;

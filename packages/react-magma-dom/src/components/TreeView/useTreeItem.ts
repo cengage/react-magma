@@ -73,6 +73,11 @@ export interface UseTreeItemProps extends React.HTMLAttributes<HTMLLIElement> {
    * Style properties for the tree item
    */
   treeItemStyles?: React.CSSProperties;
+  /**
+   * @internal
+   * Used in virtualization to indicate this item has TreeItem children.
+   */
+  hasTreeItemChildren?: boolean;
 }
 
 export const checkedStatusToBoolean = (
@@ -80,7 +85,15 @@ export const checkedStatusToBoolean = (
 ): boolean => status === IndeterminateCheckboxStatus.checked;
 
 export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
-  const { children, itemDepth, itemId, onClick, parentDepth, topLevel } = props;
+  const {
+    children,
+    itemDepth,
+    itemId,
+    onClick,
+    parentDepth,
+    topLevel,
+    hasTreeItemChildren,
+  } = props;
 
   // Consume split contexts for reduced re-render scope
   const { items, selectedItems, selectItem } = React.useContext(
@@ -128,8 +141,12 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   );
 
   const hasOwnTreeItems = React.useMemo(() => {
-    return treeViewItemData?.hasOwnTreeItems || treeItemChildren.length > 0;
-  }, [treeViewItemData, treeItemChildren.length]);
+    return (
+      treeViewItemData?.hasOwnTreeItems ||
+      treeItemChildren.length > 0 ||
+      hasTreeItemChildren
+    );
+  }, [treeViewItemData, treeItemChildren.length, hasTreeItemChildren]);
 
   const expanded = React.useMemo(() => {
     return expandedSet.has(itemId);
