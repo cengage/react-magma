@@ -46,6 +46,7 @@
     "fix-Banner-docs-accessibility-issues",
     "fix-ButtonGroup-acessibility-list",
     "fix-Combobox-accessibility",
+    "fix-DatePicker-focus-today-calendar",
     "fix-Docs-Miscellaneous-issues",
     "fix-Drawer-content-not-scrollable",
     "fix-Dropdown-add-aria-attributes",

@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.32
+
+### Patch Changes
+
+- 4bdabdc: fix(DatePicker): Automatically focus today or min date on open state.
+
 ## 5.1.0-rc.31
 
 ### Patch Changes
