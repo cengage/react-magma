@@ -433,9 +433,6 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                     )}
                   </ModalHeader>
                 )}
-                <ModalWrapper ref={bodyRef} theme={theme}>
-                  {children}
-                </ModalWrapper>
                 {!isCloseButtonHidden && (
                   <CloseBtn theme={theme}>
                     <IconButton
@@ -453,6 +450,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                     />
                   </CloseBtn>
                 )}
+                <ModalWrapper ref={bodyRef} theme={theme}>
+                  {children}
+                </ModalWrapper>
               </ModalContent>
             </ModalContainer>
             {showBackgroundOverlay && (
