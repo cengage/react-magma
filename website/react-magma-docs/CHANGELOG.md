@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0-next.14
+
+### Patch Changes
+
+- 78bd1155d: fix(Docs): update error message for phone input and password input in stories and docs
+
 ## 5.3.0-next.13
 
 ### Patch Changes

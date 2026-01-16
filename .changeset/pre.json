@@ -12,6 +12,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "a11y-docs-password-input-labels",
     "chore-fix-workflows",
     "chore-fixpackage",
     "chore-react-magma-icons",
