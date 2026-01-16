@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { Button } from '../Button';
-import { Container } from '../Container/Container';
-import { VisuallyHidden } from '../VisuallyHidden';
 import { DrawerPosition, DrawerProps } from './Drawer';
+import { Container } from '../Container/Container';
 import { NavTab, NavTabs } from '../NavTabs';
 import { Paragraph } from '../Paragraph/index';
 import { TabsOrientation } from '../Tabs/shared';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 import { Drawer } from '.';
 

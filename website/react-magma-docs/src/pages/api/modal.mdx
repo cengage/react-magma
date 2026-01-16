@@ -241,6 +241,30 @@ export function Example() {
       </Modal>
 
       <Modal
+        header={
+          <Flex
+            behavior={FlexBehavior.container}
+            direction={FlexDirection.column}
+            alignItems={FlexAlignItems.center}
+            justify={FlexJustify.center}
+            style={{ marginLeft: '30px' }}
+          >
+            <CheckIcon
+              style={{
+                background: magma.colors.success,
+                color: magma.colors.neutral100,
+                width: '36px',
+                height: '36px',
+                padding: '8px',
+                borderRadius: '50%',
+                marginBottom: '20px',
+              }}
+            />
+            <h3 ref={customHeadingRef} tabIndex={-1} style={{ margin: 0 }}>
+              Confirmation header
+            </h3>
+          </Flex>
+        }
         onClose={() => {
           setShowModalHeaderRef(false);
           headerRefButtonRef.current.focus();
@@ -257,19 +281,6 @@ export function Example() {
           spacing={2}
           wrap={FlexWrap.nowrap}
         >
-          <CheckIcon
-            style={{
-              background: magma.colors.success,
-              color: magma.colors.neutral100,
-              width: '36px',
-              height: '36px',
-              padding: '8px',
-              borderRadius: '50%',
-            }}
-          />
-          <h2 ref={customHeadingRef} tabIndex={-1}>
-            Confirmation header
-          </h2>
           <Paragraph>
             With watermelon ostriches. Gourds utters at welding equipment a oink
             oink haybine. Goose hammers cattle rats in crows. Blue berries

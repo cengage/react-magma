@@ -835,12 +835,12 @@ describe('Modal', () => {
       expect(getByText('Hello')).toHaveFocus();
     });
 
-    it('should focus the first actionable element element upon opening the modal if there is no header', () => {
-      const { rerender, getByText, getByTestId } = render(
+    it('should focus the close button upon opening the modal when the modal if there is no header', () => {
+      const { rerender, getByTestId, getByText } = render(
         <>
           <button>Open</button>
           <Modal isOpen={false} onClose={jest.fn()}>
-            <button data-testid="closeButton">Close</button>
+            Modal Content
           </Modal>
         </>
       );
@@ -851,6 +851,30 @@ describe('Modal', () => {
         <>
           <button>Open</button>
           <Modal isOpen onClose={jest.fn()}>
+            Modal Content
+          </Modal>
+        </>
+      );
+
+      expect(getByTestId('modal-closebtn')).toHaveFocus();
+    });
+
+    it('should focus the first actionable element element upon opening the modal if there is no header and close button', () => {
+      const { rerender, getByText, getByTestId } = render(
+        <>
+          <button>Open</button>
+          <Modal isOpen={false} onClose={jest.fn()} isCloseButtonHidden>
+            <button data-testid="closeButton">Close</button>
+          </Modal>
+        </>
+      );
+
+      getByText('Open').focus();
+
+      rerender(
+        <>
+          <button>Open</button>
+          <Modal isOpen onClose={jest.fn()} isCloseButtonHidden>
             <button data-testid="closeButton">Close</button>
           </Modal>
         </>
