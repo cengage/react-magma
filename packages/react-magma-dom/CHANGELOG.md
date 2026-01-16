@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.39
+
+### Patch Changes
+
+- a841b5629: fix(DatePicker): Fix focusing input field after clearing date and when `isDateFieldInput=true`.
+
 ## 4.11.0-next.38
 
 ### Patch Changes
