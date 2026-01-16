@@ -203,6 +203,12 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     const inputRef = React.useRef<HTMLInputElement>();
     const lastFocus = React.useRef<any>();
     const id: string = useGenerateId(props.id);
+    const isInverse = useIsInverse(props.isInverse);
+
+    const minDate = getDateFromString(props.minDate);
+    const maxDate = getDateFromString(props.maxDate);
+    const dateFormat = i18n.dateFormat;
+
     const [helperInformationShown, setHelperInformationShown] =
       React.useState<boolean>(false);
     const [calendarOpened, setCalendarOpened] = React.useState<boolean>(false);
@@ -266,6 +272,15 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       previousIconRef.current = iconRef.current;
     }, []);
 
+    React.useEffect(() => {
+      if (!focusedDate || !minDate) return;
+
+      if (isBefore(focusedDate, minDate) && !chosenDate) {
+        setFocusedDate(minDate);
+        setDateFocused(true);
+      }
+    }, [focusedDate, minDate, chosenDate]);
+
     function showHelperInformation() {
       lastFocus.current = document.activeElement;
       setHelperInformationShown(true);
@@ -293,13 +308,14 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       ) {
         event.preventDefault();
         setFocusedDate(setDefaultFocusedDate());
+        setDateFocused(true);
       }
     };
 
     function setDateFromConsumer(date: Date): Date {
       const convertedDate = getDateFromString(date);
-      const convertedMinDate = getDateFromString(props.minDate);
-      const convertedMaxDate = getDateFromString(props.maxDate);
+      const convertedMinDate = getDateFromString(minDate);
+      const convertedMaxDate = getDateFromString(maxDate);
 
       return date &&
         inDateRange(convertedDate, convertedMinDate, convertedMaxDate)
@@ -309,8 +325,8 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
     function setDefaultFocusedDate(): Date {
       const newDate = new Date();
-      const convertedMinDate = getDateFromString(props.minDate);
-      const convertedMaxDate = getDateFromString(props.maxDate);
+      const convertedMinDate = getDateFromString(minDate);
+      const convertedMaxDate = getDateFromString(maxDate);
 
       if (inDateRange(newDate, convertedMinDate, convertedMaxDate)) {
         if (isBefore(startOfDay(newDate), convertedMinDate)) {
@@ -567,7 +583,15 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     }
 
     function toggleCalendarOpened() {
-      setCalendarOpened(opened => !opened);
+      setCalendarOpened(opened => {
+        // Focus on today when opening calendar without a chosen date
+        if (!opened && !chosenDate) {
+          setFocusedDate(setDefaultFocusedDate());
+          setDateFocused(true);
+        }
+
+        return !opened;
+      });
     }
 
     const { placeholder, testId, dateTimePickerContent, ...rest } = props;
@@ -575,13 +599,6 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
       ['onDateChange', 'onInputChange', 'onInputBlur', 'onInputFocus'],
       rest
     );
-
-    const isInverse = useIsInverse(props.isInverse);
-
-    const minDate = getDateFromString(props.minDate);
-    const maxDate = getDateFromString(props.maxDate);
-
-    const dateFormat = i18n.dateFormat;
 
     const dateFieldValue =
       dateFormat === 'MMMM d, yyyy' && chosenDate
@@ -692,11 +709,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
                 theme={theme}
               >
                 <CalendarMonth
-                  focusOnOpen={
-                    calendarOpened &&
-                    Boolean(focusedDate) &&
-                    Boolean(chosenDate)
-                  }
+                  focusOnOpen={calendarOpened && Boolean(focusedDate)}
                   isInverse={isInverse}
                   handleCloseButtonClick={handleCloseButtonClick}
                   calendarOpened={calendarOpened}
