@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0-next.15
+
+### Patch Changes
+
+- ebd48ce4d: fix(TimePicker): Fix issue accessibility issues for examples.
+
 ## 5.3.0-next.14
 
 ### Patch Changes
