@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.36
+
+### Patch Changes
+
+- f4b65b3ac: fix(DatePicker): Automatically focus today or min date on open state.
+
 ## 4.11.0-next.35
 
 ### Patch Changes
