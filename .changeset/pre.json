@@ -48,6 +48,7 @@
     "fix-Banner-docs-accessibility-issues",
     "fix-ButtonGroup-acessibility-list",
     "fix-Combobox-accessibility",
+    "fix-DatePicker-clear-focus-input",
     "fix-DatePicker-focus-today-calendar",
     "fix-Docs-Miscellaneous-issues",
     "fix-Drawer-content-not-scrollable",
