@@ -1836,6 +1836,7 @@ describe('Date Picker', () => {
         expect(monthInput.value).toBe('');
         expect(dayInput.value).toBe('');
         expect(yearInput.value).toBe('');
+        expect(monthInput).toHaveFocus();
       });
 
       it('should call handleDateChange to parent when all fields are cleared with default format', () => {
