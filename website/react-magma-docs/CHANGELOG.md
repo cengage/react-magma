@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.14
+
+### Patch Changes
+
+- 0b50e70: fix(TimePicker): Fix issue accessibility issues for examples.
+
 ## 7.0.0-rc.13
 
 ### Patch Changes
