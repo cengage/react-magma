@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.38
+
+### Patch Changes
+
+- 13d5c2f4d: fix(Treeview): Fix showing content inside `Treeitem`.
+
 ## 4.11.0-next.37
 
 ### Patch Changes
