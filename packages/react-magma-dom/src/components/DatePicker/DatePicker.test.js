@@ -57,6 +57,8 @@ const ClearingTheDate = args => {
   );
 };
 
+const labelText = 'Date Picker Label';
+
 const errorMessage = 'Error message';
 const helperMessage = 'Helper message';
 
@@ -104,7 +106,6 @@ describe('Date Picker', () => {
   });
 
   it('should clear input and Chosen Date value after clicking on isClearable X button', () => {
-    const labelText = 'Date Picker Label';
     const valueDate = new Date(2025, 8, 1);
     const day =
       format(valueDate, 'dd')[0] === '0'
@@ -132,7 +133,6 @@ describe('Date Picker', () => {
   });
 
   it('should clear input and Chosen Date value after clicking on Clear Date button', () => {
-    const labelText = 'Date Picker Label';
     const valueDate = new Date(2025, 6, 1);
     const day =
       format(valueDate, 'dd')[0] === '0'
@@ -279,7 +279,6 @@ describe('Date Picker', () => {
   });
 
   it('should keep the user inputted date in the input even if it is before the minDate', () => {
-    const labelText = 'Date Picker Label';
     const valueDate = '01/20/2020';
     const minDate = '02/02/2020';
     const defaultDate = '02/20/2020';
@@ -308,7 +307,6 @@ describe('Date Picker', () => {
   });
 
   it('should keep the user inputted date in the input even if it is before the maxDate', () => {
-    const labelText = 'Date Picker Label';
     const valueDate = '03/20/2020';
     const maxDate = '02/02/2020';
     const defaultDate = '01/20/2020';
@@ -386,7 +384,6 @@ describe('Date Picker', () => {
   });
 
   it('should require the date picker input', () => {
-    const labelText = 'Date Picker Label';
     const { getByLabelText } = render(
       <DatePicker labelText={labelText} required />
     );
@@ -397,7 +394,6 @@ describe('Date Picker', () => {
   it('should watch for input change', () => {
     const onChange = jest.fn();
     const onInputChange = jest.fn();
-    const labelText = 'Date Picker Label';
     const { getByLabelText } = render(
       <DatePicker
         labelText={labelText}
@@ -416,7 +412,6 @@ describe('Date Picker', () => {
 
   it('should call passed in handle focus function', () => {
     const onInputFocus = jest.fn();
-    const labelText = 'Date Picker Label';
     const { getByLabelText } = render(
       <DatePicker labelText={labelText} onInputFocus={onInputFocus} />
     );
@@ -428,7 +423,6 @@ describe('Date Picker', () => {
 
   it('should call passed in handle blur function', () => {
     const onInputBlur = jest.fn();
-    const labelText = 'Date Picker Label';
     const { getByLabelText } = render(
       <DatePicker labelText={labelText} onInputBlur={onInputBlur} />
     );
@@ -442,7 +436,6 @@ describe('Date Picker', () => {
 
   it('should change the focused date and call on change on blur if the typed in date is a valid date', () => {
     const onChange = jest.fn();
-    const labelText = 'Date Picker Label';
     const { getByLabelText, getAllByText } = render(
       <DatePicker labelText={labelText} onChange={onChange} />
     );
@@ -466,7 +459,6 @@ describe('Date Picker', () => {
 
   it('should handle a date lower than the year 1000', () => {
     const onChange = jest.fn();
-    const labelText = 'Date Picker Label';
     const { getByLabelText, getAllByText } = render(
       <DatePicker labelText={labelText} onChange={onChange} />
     );
@@ -531,7 +523,7 @@ describe('Date Picker', () => {
     expect(getByText('17')).toBe(document.activeElement);
   });
 
-  it('should take focus off of chosen date when none valid date in input', () => {
+  it('should focus on today when none valid date in input', () => {
     const defaultDate = new Date(2019, 0, 17);
     const now = new Date();
     const [month, year] = format(now, 'MMMM yyyy').split(' ');
@@ -552,12 +544,25 @@ describe('Date Picker', () => {
 
     expect(getByText(month)).not.toBeNull();
     expect(getByText(year)).not.toBeNull();
-    expect(getAllByText(format(now, 'd'))[0]).not.toBe(document.activeElement);
+    expect(getAllByText(format(now, 'd'))[0]).toHaveFocus();
+  });
+
+  it('should focus on min date when it min date after today', () => {
+    const minDate = new Date(2030, 0, 17);
+    const focusedDay = minDate.getDate();
+    const { getByLabelText, getByText } = render(
+      <DatePicker minDate={minDate} labelText={labelText} />
+    );
+
+    getByLabelText('Toggle Calendar Widget').focus();
+
+    fireEvent.click(getByLabelText('Toggle Calendar Widget'));
+
+    expect(getByText(focusedDay)).toHaveFocus();
   });
 
   it('should go to the previous month when the previous month button is clicked', () => {
     const defaultDate = new Date(2019, 0, 17);
-    const labelText = 'Date Picker Label';
     const { getByLabelText, getAllByText } = render(
       <DatePicker defaultDate={defaultDate} labelText={labelText} />
     );
@@ -573,7 +578,6 @@ describe('Date Picker', () => {
 
   it('should go to the next month when the next month button is clicked', () => {
     const defaultDate = new Date(2019, 0, 17);
-    const labelText = 'Date Picker Label';
     const { getByLabelText, getAllByText } = render(
       <DatePicker defaultDate={defaultDate} labelText={labelText} />
     );
@@ -713,7 +717,6 @@ describe('Date Picker', () => {
     const onChange = jest.fn();
     const onDateChange = jest.fn();
     const defaultDate = new Date();
-    const labelText = 'Date picker label';
     const { getAllByText, container } = render(
       <DatePicker
         defaultDate={defaultDate}
@@ -734,7 +737,6 @@ describe('Date Picker', () => {
   describe('on key down press', () => {
     it('types in the input if you type anything other than the question mark key', () => {
       const defaultDate = new Date();
-      const labelText = 'Date picker label';
       const { getByLabelText, queryByRole } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -751,7 +753,6 @@ describe('Date Picker', () => {
 
     it('does not update focused date if date is not focused', () => {
       const defaultDate = new Date();
-      const labelText = 'Date picker label';
       const { getByLabelText, getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -773,7 +774,6 @@ describe('Date Picker', () => {
 
     it('ArrowUp', () => {
       const defaultDate = new Date();
-      const labelText = 'Date picker label';
       const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -794,7 +794,6 @@ describe('Date Picker', () => {
 
     it('ArrowLeft', () => {
       const defaultDate = new Date();
-      const labelText = 'Date picker label';
       const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -815,7 +814,6 @@ describe('Date Picker', () => {
 
     it('Home', () => {
       const defaultDate = new Date();
-      const labelText = 'Date picker label';
       const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -836,7 +834,6 @@ describe('Date Picker', () => {
 
     it('PageUp', () => {
       const defaultDate = new Date();
-      const labelText = 'Date picker label';
       const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -857,7 +854,6 @@ describe('Date Picker', () => {
 
     it('PageDown', () => {
       const defaultDate = new Date();
-      const labelText = 'Date picker label';
       const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -878,7 +874,6 @@ describe('Date Picker', () => {
 
     it('ArrowDown', () => {
       const defaultDate = new Date();
-      const labelText = 'Date picker label';
       const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -899,7 +894,6 @@ describe('Date Picker', () => {
 
     it('ArrowRight', () => {
       const defaultDate = new Date();
-      const labelText = 'Date picker label';
       const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -920,7 +914,6 @@ describe('Date Picker', () => {
 
     it('End', () => {
       const defaultDate = new Date();
-      const labelText = 'Date picker label';
       const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -971,7 +964,6 @@ describe('Date Picker', () => {
 
     it('Escape without focus', () => {
       const defaultDate = new Date();
-      const labelText = 'Date picker label';
       const { container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -987,7 +979,6 @@ describe('Date Picker', () => {
 
     it('Enter', () => {
       const defaultDate = new Date();
-      const labelText = 'Date picker label';
       const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -1008,7 +999,6 @@ describe('Date Picker', () => {
 
     it('Spacebar', () => {
       const defaultDate = new Date();
-      const labelText = 'Date picker label';
       const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -1029,7 +1019,6 @@ describe('Date Picker', () => {
 
     it('does not update the focused date if a bad key press occurs', () => {
       const defaultDate = new Date();
-      const labelText = 'Date picker label';
       const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
@@ -1302,7 +1291,6 @@ describe('Date Picker', () => {
     it('should move focus on the previous month button when maxDate is reached', () => {
       const defaultDate = new Date(2019, 0, 17);
       const maxDate = new Date(2019, 2, 17);
-      const labelText = 'Date Picker Label';
       const { getByLabelText, getAllByText } = render(
         <DatePicker
           defaultDate={defaultDate}
@@ -1329,7 +1317,6 @@ describe('Date Picker', () => {
     it('should move focus on the next month button when minDate is reached', () => {
       const defaultDate = new Date(2019, 2, 17);
       const minDate = new Date(2019, 0, 1);
-      const labelText = 'Date Picker Label';
       const { getByLabelText, getAllByText } = render(
         <DatePicker
           defaultDate={defaultDate}
