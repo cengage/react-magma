@@ -11,11 +11,13 @@
   },
   "changesets": [
     "a11y-docs-img-empty-alts",
+    "a11y-docs-password-input-labels",
     "chore-charts-peer-deps",
     "chore-delete-deprecated-packages",
     "chore-disable-docs-formatting",
     "chore-docs-deps",
     "chore-docs-fix-chart-images",
+    "chore-docs-peer-deps",
     "chore-dom-peer-deps",
     "chore-dropzone-peer-deps",
     "chore-fix-components",

@@ -1,5 +1,12 @@
 # Change Log
 
+## 7.0.0-rc.13
+
+### Patch Changes
+
+- 8020db9: fix(Docs): update error message for phone input and password input in stories and docs
+- 5a21976: chore: correct installation guide dependencies
+
 ## 7.0.0-rc.12
 
 ### Patch Changes
