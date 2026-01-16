@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.33
+
+### Patch Changes
+
+- 031c1a2: fix(Modal & Drawer): Fix focus order for header, close button, and content.
+
 ## 5.1.0-rc.32
 
 ### Patch Changes

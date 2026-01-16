@@ -52,6 +52,7 @@
     "fix-Dropdown-add-aria-attributes",
     "fix-Dropdown-add-aria-contols",
     "fix-Dropdown-focus-behaviour",
+    "fix-Modal-fix-focus-order",
     "fix-NavTabs-fix-obscured-focus",
     "fix-NavsTab-add-region",
     "fix-Pagination-add-announcement-selected-page",
