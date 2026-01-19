@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.41
+
+### Patch Changes
+
+- f7ec34cfc: fix(Dropdown): Remove `aria-label` from DropdownMenuItem icon. Add `role=menu` to DropdownContent for DropdownMenuNavItem children. Fix docs examples.
+
 ## 4.11.0-next.40
 
 ### Patch Changes
