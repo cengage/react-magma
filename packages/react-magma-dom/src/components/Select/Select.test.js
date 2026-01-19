@@ -303,6 +303,7 @@ describe('Select', () => {
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
     expect(renderedSelect).toHaveAttribute('disabled');
+    expect(renderedSelect).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('should allow a selection to be cleared', () => {

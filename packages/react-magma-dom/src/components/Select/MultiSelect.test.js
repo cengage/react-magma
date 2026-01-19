@@ -444,6 +444,7 @@ describe('Select', () => {
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
     expect(renderedSelect).toHaveAttribute('disabled');
+    expect(renderedSelect).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('should disable selected items in the disabled multi-select and disabled items should not be removable', () => {
