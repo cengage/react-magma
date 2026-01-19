@@ -313,6 +313,7 @@ describe('Select', () => {
 
     await waitFor(() => {
       expect(renderedSelect).toHaveAttribute('disabled');
+      expect(renderedSelect).toHaveAttribute('aria-disabled', 'true');
     });
   });
 
