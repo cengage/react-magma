@@ -1846,6 +1846,18 @@ export function Example() {
 }
 ```
 
+## Virtualization
+
+For large trees with many items, you can enable virtualization to improve performance by only rendering visible items. This is especially useful for trees with hundreds or thousands of items.
+
+### Basic Virtualization
+
+Set `enableVirtualization={true}`. The `Treeview` height will be calculated based on the number of items and their heights.
+
+### Virtualization Props
+
+- `enableVirtualization`: Enable virtualization for better performance (default: `false`)
+
 ## TreeView Props
 
 **Any other props supplied will be provided to the wrapping `ul` element.**

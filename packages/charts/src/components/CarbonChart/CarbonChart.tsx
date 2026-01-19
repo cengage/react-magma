@@ -541,7 +541,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       options,
       ...rest
     } = props;
-    const theme = React.useContext(ThemeContext);
+    const theme = React.useContext(ThemeContext) as ThemeInterface;
     const isInverse = useIsInverse(isInverseProp);
     const allCharts = {
       area: AreaChart,
