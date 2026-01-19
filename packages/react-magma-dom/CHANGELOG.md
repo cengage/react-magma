@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.36
+
+### Patch Changes
+
+- 889febe: fix(Select): add aria-disabled attribute to disabled select elements.
+
 ## 5.1.0-rc.35
 
 ### Patch Changes
