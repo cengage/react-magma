@@ -157,28 +157,26 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     }
   }, [arrowStyle, arrowElement, arrowElement.current]);
 
-  const { refs, floatingStyles, placement, context, elements, update } =
-    useFloating({
-      open: isVisible,
-      onOpenChange: open => {
-        if (mountedRef.current) {
-          setIsVisible(open);
-        }
-      },
-      //flip() - Changes the placement of the floating element to keep it in view.
-      //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
-      //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
-      //arrow() - Positions an arrow element pointing at the reference element, ensuring proper alignment.
-      middleware: [
-        flip(),
-        shift(),
-        offset(isArrowVisible ? 14 : 0),
-        ...(isArrowVisible ? [arrow({ element: arrowElement })] : []),
-      ],
-      placement: (position ??
-        TooltipPosition.top) as unknown as AlignedPlacement,
-      whileElementsMounted: autoUpdate,
-    });
+  const { refs, floatingStyles, placement, context } = useFloating({
+    open: isVisible,
+    onOpenChange: open => {
+      if (mountedRef.current) {
+        setIsVisible(open);
+      }
+    },
+    //flip() - Changes the placement of the floating element to keep it in view.
+    //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
+    //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
+    //arrow() - Positions an arrow element pointing at the reference element, ensuring proper alignment.
+    middleware: [
+      flip(),
+      shift(),
+      offset(isArrowVisible ? 14 : 0),
+      ...(isArrowVisible ? [arrow({ element: arrowElement })] : []),
+    ],
+    placement: (position ?? TooltipPosition.top) as unknown as AlignedPlacement,
+    whileElementsMounted: autoUpdate,
+  });
 
   const hover = useHover(context, {
     enabled: !isOpen,
