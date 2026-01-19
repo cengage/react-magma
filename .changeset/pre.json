@@ -52,6 +52,7 @@
     "fix-DatePicker-focus-today-calendar",
     "fix-Docs-Miscellaneous-issues",
     "fix-Drawer-content-not-scrollable",
+    "fix-Dropdown-accessibility-issues",
     "fix-Dropdown-add-aria-attributes",
     "fix-Dropdown-add-aria-contols",
     "fix-Dropdown-focus-behaviour",
