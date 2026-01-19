@@ -39,6 +39,7 @@
     "feat-DateTimePicker-timezone",
     "feat-Modal-add-headel-level-prop",
     "feat-SplitDropdown-add-leading-icon",
+    "feat-treeview-performance",
     "fix-AIButton-box-shadow",
     "fix-Accordion-accessibility-render-issue",
     "fix-Accordion-docs-accessibility-issue",

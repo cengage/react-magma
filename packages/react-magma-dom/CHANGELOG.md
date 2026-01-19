@@ -1,5 +1,17 @@
 ## 4.10.0
 
+## 5.1.0-rc.38
+
+### Minor Changes
+
+- 1fbd27e: feat(TreeView): performance refactor
+
+  - Introduced a new `treeViewReducer` to manage the state of the TreeView component, handling actions such as item selection, expansion, and item updates.
+  - Refactored `useTreeView` and `useTreeItem` hooks to utilize the new reducer, improving state management and reducing re-renders.
+  - Enhanced utility functions for better performance, including optimized selection and status processing using Maps for O(1) lookups.
+  - Updated context providers to split responsibilities for selection, expansion, and configuration, allowing for more granular updates and improved performance.
+  - Added `enableVirtualization` and `height` props.
+
 ## 5.1.0-rc.37
 
 ### Patch Changes
