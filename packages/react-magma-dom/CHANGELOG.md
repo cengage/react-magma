@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.40
+
+### Patch Changes
+
+- cbf36bc61: fix(Select): add aria-disabled attribute to disabled select elements.
+
 ## 4.11.0-next.39
 
 ### Patch Changes

@@ -62,6 +62,7 @@
     "fix-drawer-scrollable-content",
     "fix-modal-trigger-button",
     "fix-select-aria-label",
+    "fix-select-disabled-aria-label",
     "fix-select-focus-behaviour",
     "fix-tablepagination-duplicate-screenreader",
     "fix-timepicker-update-styles",
