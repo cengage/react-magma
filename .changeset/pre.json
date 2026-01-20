@@ -60,6 +60,7 @@
     "fix-Treeview-fix-virtulization-styling",
     "fix-Treeview-showing-inner-content",
     "fix-banner-additional-docs-fix",
+    "fix-datagrid-sortable-html",
     "fix-drawer-scrollable-content",
     "fix-modal-trigger-button",
     "fix-select-aria-label",
