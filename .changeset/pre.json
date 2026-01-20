@@ -74,6 +74,7 @@
     "fix-ToggleButtonGroup-broken-styles",
     "fix-Tooltip-Loading-indicator-issues",
     "fix-banner-additional-docs-fix",
+    "fix-datagrid-sortable-html",
     "fix-datepicker-canvas-issue-react-18",
     "fix-drawer-scrollable-content",
     "fix-modal-trigger-button",

@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.39
+
+### Patch Changes
+
+- 006cc16: fix(Datagrid): Fixed semantic markup for Sort Rows button in selectable and sortable variant.
+
 ## 5.1.0-rc.38
 
 ### Minor Changes
