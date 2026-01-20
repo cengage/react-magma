@@ -34,6 +34,7 @@
     "fix-Combobox-accessibility",
     "fix-DatePicker-clear-focus-input",
     "fix-DatePicker-focus-today-calendar",
+    "fix-DateTimePicker-reduntant-example",
     "fix-Docs-Miscellaneous-issues",
     "fix-Drawer-content-not-scrollable",
     "fix-Dropdown-accessibility-issues",
