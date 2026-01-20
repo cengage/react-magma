@@ -414,7 +414,7 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
     const requestSort = (key: string) => {
       let direction = TableSortDirection.ascending;
 
-      if (key === 'name') {
+      if (key === 'selected') {
         if (
           sortConfig?.key === key &&
           selectedDirection === TableSortDirection.ascending
@@ -490,7 +490,7 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
     const [selectedItems, setSelectedItems] = React.useState([]);
 
     const sortedItems = React.useMemo(() => {
-      if (sortConfig.key === 'name') {
+      if (sortConfig.key === 'selected') {
         const selectedItemsToSort = products.filter(product =>
           selectedItems.includes(product.id)
         );
@@ -505,11 +505,11 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
               selectedDirection === TableSortDirection.ascending ? -1 : 1;
           }
           selectedItemsToSort.sort((a, b) => {
-            if (a[sortConfig.key] < b[sortConfig.key]) {
+            if (a.name < b.name) {
               sortOrder =
                 selectedDirection === TableSortDirection.ascending ? -1 : 1;
             }
-            if (a[sortConfig.key] > b[sortConfig.key]) {
+            if (a.name > b.name) {
               sortOrder =
                 selectedDirection === TableSortDirection.ascending ? 1 : -1;
             }
@@ -576,7 +576,7 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
             rows={sortedItems}
             columns={productColumns}
             onSortBySelected={() => {
-              requestSort('name');
+              requestSort('selected');
             }}
             onRowSelect={handleRowSelect}
             onHeaderSelect={handleHeaderSelect}
