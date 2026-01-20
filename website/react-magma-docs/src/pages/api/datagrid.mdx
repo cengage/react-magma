@@ -772,7 +772,7 @@ export function Example() {
   const requestSort = (key: string) => {
     let direction = TableSortDirection.ascending;
 
-    if (key === 'name') {
+    if (key === 'selected') {
       if (
         sortConfig.key === key &&
         selectedDirection === TableSortDirection.ascending
@@ -842,7 +842,7 @@ export function Example() {
   const [selectedItems, setSelectedItems] = React.useState([]);
 
   const sortedItems = React.useMemo(() => {
-    if (sortConfig.key === 'name') {
+    if (sortConfig.key === 'selected') {
       const selectedItemsToSort = products.filter(product =>
         selectedItems.includes(product.id)
       );
@@ -857,11 +857,11 @@ export function Example() {
             selectedDirection === TableSortDirection.ascending ? -1 : 1;
         }
         selectedItemsToSort.sort((a, b) => {
-          if (a[sortConfig.key] < b[sortConfig.key]) {
+          if (a.name < b.name) {
             sortOrder =
               selectedDirection === TableSortDirection.ascending ? -1 : 1;
           }
-          if (a[sortConfig.key] > b[sortConfig.key]) {
+          if (a.name > b.name) {
             sortOrder =
               selectedDirection === TableSortDirection.ascending ? 1 : -1;
           }
@@ -928,7 +928,7 @@ export function Example() {
         rows={sortedItems}
         columns={productColumns}
         onSortBySelected={() => {
-          requestSort('name');
+          requestSort('selected');
         }}
         onRowSelect={handleSelectedItems}
         onHeaderSelect={handleHeaderSelect}
