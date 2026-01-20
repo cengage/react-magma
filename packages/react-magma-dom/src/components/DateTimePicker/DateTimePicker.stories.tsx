@@ -190,13 +190,3 @@ export const ClearingTheDateAndTime = {
     );
   },
 };
-
-export const Test = {
-  render: args => (
-    <DateTimePicker
-      labelText="asdasd"
-      value={new Date()}
-      timezone={args.timezone}
-    />
-  ),
-};
