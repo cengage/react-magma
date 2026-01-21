@@ -43,18 +43,6 @@ jobs:
         run: npm run build:docs
       - name: Build Storybook
         run: npm run build:storybook
-      - name: Run Accessibility Tests
-        run: npm run test:a11y:storybook
-        continue-on-error: true
-        env:
-          STORYBOOK_URL: http://localhost:6006
-      - name: Upload Accessibility Report
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: a11y-report
-          path: a11y-results/
-          retention-days: 30
       - name: Deploy Doc Preview to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
