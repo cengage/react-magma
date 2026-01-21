@@ -204,6 +204,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
           theme={theme}
         >
           <Bar
+            aria-label="Progress bar"
             aria-valuemin={0}
             aria-valuemax={100}
             color={color}
