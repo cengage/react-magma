@@ -56,6 +56,8 @@ jobs:
         continue-on-error: true
         env:
           STORYBOOK_URL: http://localhost:6006
+          GITHUB_PR_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
           
       - name: Upload Accessibility Report
         if: always()
@@ -81,8 +83,8 @@ jobs:
             const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
             const summary = report.summary;
             
-            const totalViolations = summary.axeCore.totalViolations;
-            const storiesWithViolations = summary.axeCore.storiesWithViolations;
+            const totalViolations = (summary.pa11y?.totalIssues || 0) + (summary.axeCore?.totalViolations || 0);
+            const storiesWithIssues = Math.max(summary.pa11y?.storiesWithIssues || 0, summary.axeCore?.storiesWithViolations || 0);
             const totalStories = summary.totalStories;
             
             const status = totalViolations === 0 ? '✅' : '⚠️';
@@ -91,33 +93,58 @@ jobs:
             let comment = `## ${status} Accessibility Test Results\n\n`;
             comment += `${emoji} **Summary:**\n`;
             comment += `- Total Stories Tested: ${totalStories}\n`;
-            comment += `- Stories with Violations: ${storiesWithViolations}\n`;
-            comment += `- Stories without Violations: ${summary.axeCore.storiesWithoutViolations}\n`;
-            comment += `- Total Violations: ${totalViolations}\n\n`;
+            comment += `- Stories with Issues: ${storiesWithIssues}\n`;
+            comment += `- Total Issues: ${totalViolations}\n`;
+            if (summary.pa11y) {
+              comment += `  - Pa11y: ${summary.pa11y.totalIssues} issues\n`;
+            }
+            if (summary.axeCore) {
+              comment += `  - Axe-core: ${summary.axeCore.totalViolations} violations\n`;
+            }
+            comment += `\n`;
             
             if (totalViolations > 0) {
-              comment += `### 📋 Top Violations\n\n`;
-              const violations = {};
+              comment += `### 📋 Top Issues\n\n`;
+              const issues = {};
+              
+              // Aggregate Pa11y issues
               report.results.forEach(result => {
-                if (result.violations) {
-                  result.violations.forEach(v => {
-                    if (!violations[v.id]) {
-                      violations[v.id] = { count: 0, help: v.help, impact: v.impact };
+                if (result.tool === 'pa11y' && result.issues) {
+                  result.issues.forEach(issue => {
+                    const key = issue.code;
+                    if (!issues[key]) {
+                      issues[key] = { count: 0, message: issue.message, type: issue.type, tool: 'pa11y' };
                     }
-                    violations[v.id].count += v.nodes;
+                    issues[key].count++;
                   });
                 }
               });
               
-              const sortedViolations = Object.entries(violations)
+              // Aggregate Axe violations
+              report.results.forEach(result => {
+                if (result.tool === 'axe-core' && result.violations) {
+                  result.violations.forEach(v => {
+                    const key = v.id;
+                    if (!issues[key]) {
+                      issues[key] = { count: 0, message: v.help, type: v.impact, tool: 'axe-core' };
+                    }
+                    issues[key].count += v.nodes;
+                  });
+                }
+              });
+              
+              const sortedIssues = Object.entries(issues)
                 .sort((a, b) => b[1].count - a[1].count)
                 .slice(0, 5);
               
-              sortedViolations.forEach(([id, data]) => {
-                const impactEmoji = data.impact === 'critical' ? '🔴' : 
-                                   data.impact === 'serious' ? '🟠' : 
-                                   data.impact === 'moderate' ? '🟡' : '🔵';
-                comment += `- ${impactEmoji} **${data.help}** (${data.count} instances)\n`;
+              sortedIssues.forEach(([id, data]) => {
+                let emoji = '🔵';
+                if (data.type === 'critical' || data.type === 'error') emoji = '🔴';
+                else if (data.type === 'serious') emoji = '🟠';
+                else if (data.type === 'moderate' || data.type === 'warning') emoji = '🟡';
+                
+                const toolBadge = data.tool === 'pa11y' ? '[Pa11y]' : '[Axe]';
+                comment += `- ${emoji} ${toolBadge} **${data.message}** (${data.count} instances)\n`;
               });
               
               comment += `\n📊 [Download full report](${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID})\n`;
