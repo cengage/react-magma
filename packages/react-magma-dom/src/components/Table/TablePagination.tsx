@@ -139,7 +139,11 @@ const StyledContainer = styled.div<{
 
 const PageCount = styled(Label)<{ theme: ThemeInterface }>`
   margin: 0 ${props => props.theme.spaceScale.spacing08};
-`;
+` as React.ComponentType<
+  React.ComponentProps<typeof Label> & {
+    'aria-live'?: 'polite' | 'assertive' | 'off';
+  }
+>;
 
 const RowsPerPageLabel = styled.span<{
   isInverse?: boolean;
@@ -297,7 +301,7 @@ export const TablePagination = React.forwardRef<
         />
       )}
 
-      <PageCount isInverse={isInverse} theme={theme}>
+      <PageCount isInverse={isInverse} theme={theme} aria-live="polite">
         {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}
       </PageCount>
 

@@ -309,6 +309,17 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
             minWidth={minWidth}
             tabIndex={shouldHaveTabIndex ? 0 : null}
             ref={tableWrapperRef}
+            role={shouldHaveTabIndex ? 'region' : null}
+            aria-label={
+              shouldHaveTabIndex && typeof tableTitle === 'string'
+                ? tableTitle
+                : null
+            }
+            aria-labelledby={
+              shouldHaveTabIndex && typeof tableTitle !== 'string' && tableTitle
+                ? `${testId}-table-title`
+                : null
+            }
           >
             <StyledTable
               {...other}
