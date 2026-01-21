@@ -204,8 +204,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
           theme={theme}
         >
           <Bar
-            aria-labelledby={labelId}
-            aria-valuenow={percentageValue}
+            aria-label="Progress bar"
             aria-valuemin={0}
             aria-valuemax={100}
             color={color}
@@ -221,7 +220,7 @@ export const ProgressBar = React.forwardRef<HTMLDivElement, ProgressBarProps>(
             {percentageValue}%
           </Percentage>
         ) : (
-          <VisuallyHidden id={labelId}>{percentageValue}%</VisuallyHidden>
+          <VisuallyHidden id={labelId}>{`${percentageValue}%`}</VisuallyHidden>
         )}
       </Container>
     );
