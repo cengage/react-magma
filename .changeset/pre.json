@@ -63,6 +63,7 @@
     "fix-Treeview-showing-inner-content",
     "fix-banner-additional-docs-fix",
     "fix-datagrid-sortable-html",
+    "fix-doc-examples",
     "fix-drawer-scrollable-content",
     "fix-modal-trigger-button",
     "fix-select-aria-label",
