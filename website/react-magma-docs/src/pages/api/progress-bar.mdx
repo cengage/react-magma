@@ -47,7 +47,7 @@ export function Example() {
 
   return (
     <>
-      <ProgressBar percentage={percentage} />
+      <ProgressBar percentage={percentage} aria-live="polite" />
       <Spacer size={12} />
       <ButtonGroup>
         <Button disabled={percentage >= 100} onClick={handleIncrease}>
