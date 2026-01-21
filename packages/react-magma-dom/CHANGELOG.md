@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.44
+
+### Patch Changes
+
+- de4bd2938: fix(Tooltip & Loading Indicator): Force visibility tooltip content when user hover it. Fix announcing `Loading` twice for Loading indicator.
+
 ## 4.11.0-next.43
 
 ### Patch Changes

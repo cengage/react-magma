@@ -55,6 +55,7 @@
     "fix-TimePicker-doc-issues",
     "fix-ToggleButton-transform",
     "fix-ToggleButtonGroup-broken-styles",
+    "fix-Tooltip-Loading-indicator-issues",
     "fix-TreeView-fix-styles",
     "fix-TreeView-stoybook-example-update",
     "fix-Treeview-fix-virtulization-height",
