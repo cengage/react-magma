@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.15
+
+### Patch Changes
+
+- bf68b37: fix(Progress Bar & Radio Button & Native Select & Spinner): Fix various accessibility issues in example components.
+
 ## 7.0.0-rc.14
 
 ### Patch Changes
