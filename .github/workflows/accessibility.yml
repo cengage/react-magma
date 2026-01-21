@@ -1,0 +1,134 @@
+name: Accessibility Tests
+on:
+  pull_request:
+    branches:
+      - dev
+      - main
+      - v4/dev
+      - v4/main
+  push:
+    branches:
+      - dev
+      - main
+      - v4/dev
+      - v4/main
+  workflow_dispatch:
+
+jobs:
+  a11y-tests:
+    name: Accessibility Tests (Axe-core)
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+          check-latest: true
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+          
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+        
+      - name: Build packages
+        run: npm run build:lite
+        
+      - name: Start Storybook
+        run: npm run storybook &
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+          
+      - name: Wait for Storybook
+        run: |
+          echo "Waiting for Storybook to be ready..."
+          npx wait-on http://localhost:6006 --timeout 120000
+          
+      - name: Run Accessibility Tests
+        run: npm run test:a11y:storybook
+        continue-on-error: true
+        env:
+          STORYBOOK_URL: http://localhost:6006
+          
+      - name: Upload Accessibility Report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: accessibility-report
+          path: a11y-results/
+          retention-days: 30
+          
+      - name: Comment PR with Results
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const fs = require('fs');
+            const reportPath = 'a11y-results/a11y-report.json';
+            
+            if (!fs.existsSync(reportPath)) {
+              console.log('No accessibility report found');
+              return;
+            }
+            
+            const report = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+            const summary = report.summary;
+            
+            const totalViolations = summary.axeCore.totalViolations;
+            const storiesWithViolations = summary.axeCore.storiesWithViolations;
+            const totalStories = summary.totalStories;
+            
+            const status = totalViolations === 0 ? '✅' : '⚠️';
+            const emoji = totalViolations === 0 ? '🎉' : '⚠️';
+            
+            let comment = `## ${status} Accessibility Test Results\n\n`;
+            comment += `${emoji} **Summary:**\n`;
+            comment += `- Total Stories Tested: ${totalStories}\n`;
+            comment += `- Stories with Violations: ${storiesWithViolations}\n`;
+            comment += `- Stories without Violations: ${summary.axeCore.storiesWithoutViolations}\n`;
+            comment += `- Total Violations: ${totalViolations}\n\n`;
+            
+            if (totalViolations > 0) {
+              comment += `### 📋 Top Violations\n\n`;
+              const violations = {};
+              report.results.forEach(result => {
+                if (result.violations) {
+                  result.violations.forEach(v => {
+                    if (!violations[v.id]) {
+                      violations[v.id] = { count: 0, help: v.help, impact: v.impact };
+                    }
+                    violations[v.id].count += v.nodes;
+                  });
+                }
+              });
+              
+              const sortedViolations = Object.entries(violations)
+                .sort((a, b) => b[1].count - a[1].count)
+                .slice(0, 5);
+              
+              sortedViolations.forEach(([id, data]) => {
+                const impactEmoji = data.impact === 'critical' ? '🔴' : 
+                                   data.impact === 'serious' ? '🟠' : 
+                                   data.impact === 'moderate' ? '🟡' : '🔵';
+                comment += `- ${impactEmoji} **${data.help}** (${data.count} instances)\n`;
+              });
+              
+              comment += `\n📊 [Download full report](${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID})\n`;
+            } else {
+              comment += `### 🎉 All stories passed accessibility tests!\n\n`;
+              comment += `Great job maintaining accessibility standards across all ${totalStories} stories.\n`;
+            }
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });

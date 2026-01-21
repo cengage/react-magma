@@ -12,5 +12,9 @@ packages/react-magma-dom/README.md
 .npmrc
 packages/react-magma-landing/dist
 
+# Accessibility test results
+a11y-results/
+!a11y-results/README.md
+
 .nx/cache
 .nx/workspace-data

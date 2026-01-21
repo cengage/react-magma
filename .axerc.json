@@ -1,0 +1,24 @@
+{
+  "runOnly": {
+    "type": "tag",
+    "values": [
+      "wcag2a",
+      "wcag2aa",
+      "wcag21a",
+      "wcag21aa",
+      "best-practice"
+    ]
+  },
+  "rules": {
+    "region": {
+      "enabled": false
+    },
+    "landmark-one-main": {
+      "enabled": false
+    },
+    "page-has-heading-one": {
+      "enabled": false
+    }
+  },
+  "reporter": "v2"
+}
