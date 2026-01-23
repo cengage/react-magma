@@ -170,3 +170,7 @@ export function setMonthForDate(prevDate, numberMonth: number) {
 export function setYearForDate(prevDate, numberYear: number) {
   return setYear(prevDate, numberYear);
 }
+
+export const MAX_YEAR = 2099;
+
+export const MIN_YEAR = 1900;
