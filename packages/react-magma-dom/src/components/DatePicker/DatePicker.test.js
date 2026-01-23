@@ -1548,29 +1548,28 @@ describe('Date Picker', () => {
       expect(onInputBlur).toHaveBeenCalled();
     });
 
-    it('should render date with leading zero', async () => {
-      const user = userEvent.setup();
+    it('should render date with leading zero', () => {
       const { getByTestId } = render(<DatePicker isDateFieldInput />);
 
       const monthInput = getByTestId('month-input');
       const dayInput = getByTestId('day-input');
       const yearInput = getByTestId('year-input');
 
-      await user.type(monthInput, '1');
-      await user.type(dayInput, '5');
-      await user.type(yearInput, '2');
+      userEvent.type(monthInput, '1');
+      userEvent.type(dayInput, '5');
+      userEvent.type(yearInput, '2');
 
       expect(monthInput).toHaveValue('01');
       expect(dayInput).toHaveValue('05');
       expect(yearInput).toHaveValue('0002');
 
-      await user.type(yearInput, '0');
+      userEvent.type(yearInput, '0');
       expect(yearInput).toHaveValue('0020');
 
-      await user.type(yearInput, '2');
+      userEvent.type(yearInput, '2');
       expect(yearInput).toHaveValue('0202');
 
-      await user.type(yearInput, '6');
+      userEvent.type(yearInput, '6');
       expect(yearInput).toHaveValue('2026');
     });
 
