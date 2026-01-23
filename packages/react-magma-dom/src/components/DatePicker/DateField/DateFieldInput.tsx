@@ -127,7 +127,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
         return (
           <StyledNumInput
             aria-label={datePicker.day}
-            aria-describedby={dayId}
             aria-valuemin={1}
             aria-valuemax={31}
             aria-valuenow={Number(day)}
@@ -154,7 +153,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
         return (
           <StyledNumInput
             aria-label={datePicker.month}
-            aria-describedby={monthId}
             aria-valuemax={12}
             aria-valuemin={1}
             aria-valuenow={
@@ -193,7 +191,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
         return (
           <StyledNumInput
             aria-label={datePicker.year}
-            aria-describedby={yearId}
             aria-valuemin={MIN_YEAR}
             aria-valuemax={MAX_YEAR}
             aria-valuenow={Number(year)}
