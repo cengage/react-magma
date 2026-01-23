@@ -9,7 +9,12 @@ import {
 } from 'react-magma-icons';
 
 import { CalendarContext } from './CalendarContext';
-import { i18nFormat as format, getCurrentMonthAndYear } from './utils';
+import {
+  i18nFormat as format,
+  getCurrentMonthAndYear,
+  MAX_YEAR,
+  MIN_YEAR,
+} from './utils';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonColor, ButtonType, ButtonVariant } from '../Button';
@@ -74,8 +79,8 @@ export const CalendarHeader: React.FunctionComponent<
   const i18n = React.useContext(I18nContext);
   const locale = i18n.locale || enUS;
   const monthAndYear = getCurrentMonthAndYear(focusedDate, locale);
-  const minDateOrDefault = minDate ?? new Date(1900, 0, 1);
-  const maxDateOrDefault = maxDate ?? new Date(2099, 11, 31);
+  const minDateOrDefault = minDate ?? new Date(MIN_YEAR, 0, 1);
+  const maxDateOrDefault = maxDate ?? new Date(MAX_YEAR, 11, 31);
   const previousMonthRef = React.useRef<HTMLButtonElement>();
   const nextMonthRef = React.useRef<HTMLButtonElement>();
 

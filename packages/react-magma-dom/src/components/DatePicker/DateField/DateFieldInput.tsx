@@ -28,6 +28,7 @@ import {
 import { IconButton } from '../../IconButton';
 import { IconButtonContainer } from '../../InputBase';
 import { Divider, StyledNumInput } from '../../TimePicker';
+import { MAX_YEAR, MIN_YEAR } from '../utils';
 
 export interface DateFieldInputProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'> {
@@ -126,7 +127,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
         return (
           <StyledNumInput
             aria-label={datePicker.day}
-            aria-describedby={dayId}
             aria-valuemin={1}
             aria-valuemax={31}
             aria-valuenow={Number(day)}
@@ -153,7 +153,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
         return (
           <StyledNumInput
             aria-label={datePicker.month}
-            aria-describedby={monthId}
             aria-valuemax={12}
             aria-valuemin={1}
             aria-valuenow={
@@ -192,9 +191,8 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
         return (
           <StyledNumInput
             aria-label={datePicker.year}
-            aria-describedby={yearId}
-            aria-valuemin={1900}
-            aria-valuemax={2099}
+            aria-valuemin={MIN_YEAR}
+            aria-valuemax={MAX_YEAR}
             aria-valuenow={Number(year)}
             aria-valuetext={year}
             data-testid="year-input"
@@ -253,7 +251,12 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       return;
     }
 
-    const isCompletedDate = month && day && year;
+    const isCompletedDate =
+      month &&
+      day &&
+      year &&
+      Number(year) >= MIN_YEAR &&
+      Number(year) <= MAX_YEAR;
 
     if (!isCompletedDate) return;
     const newDate = hasMonthLongFormat

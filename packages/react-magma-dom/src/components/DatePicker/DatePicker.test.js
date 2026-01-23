@@ -1548,6 +1548,32 @@ describe('Date Picker', () => {
       expect(onInputBlur).toHaveBeenCalled();
     });
 
+    it('should render date with leading zero', async () => {
+      const user = userEvent.setup();
+      const { getByTestId } = render(<DatePicker isDateFieldInput />);
+
+      const monthInput = getByTestId('month-input');
+      const dayInput = getByTestId('day-input');
+      const yearInput = getByTestId('year-input');
+
+      await user.type(monthInput, '1');
+      await user.type(dayInput, '5');
+      await user.type(yearInput, '2');
+
+      expect(monthInput).toHaveValue('01');
+      expect(dayInput).toHaveValue('05');
+      expect(yearInput).toHaveValue('0002');
+
+      await user.type(yearInput, '0');
+      expect(yearInput).toHaveValue('0020');
+
+      await user.type(yearInput, '2');
+      expect(yearInput).toHaveValue('0202');
+
+      await user.type(yearInput, '6');
+      expect(yearInput).toHaveValue('2026');
+    });
+
     describe('Focus behavior', () => {
       it('should handle input focus behavior via tabbing', () => {
         const { getByTestId } = render(<DatePicker isDateFieldInput />);
