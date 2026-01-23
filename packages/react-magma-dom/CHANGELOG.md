@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.45
+
+### Patch Changes
+
+- 6872e276e: fix(DatePicker): Improve updating values in input when `isDateFieldInput=true`
+
 ## 4.11.0-next.44
 
 ### Patch Changes
