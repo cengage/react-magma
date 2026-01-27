@@ -283,6 +283,14 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
     }, [children]);
 
     const shouldHaveTabIndex = isScrollable && !hasActiveElements;
+    const ariaLabelValue =
+      shouldHaveTabIndex && typeof tableTitle === 'string'
+        ? tableTitle
+        : undefined;
+    const ariaLabelledbyValue =
+      shouldHaveTabIndex && typeof tableTitle !== 'string' && tableTitle
+        ? `${testId}-table-title`
+        : undefined;
 
     return (
       <TableContext.Provider
@@ -307,19 +315,12 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
         >
           <TableWrapper
             minWidth={minWidth}
-            tabIndex={shouldHaveTabIndex ? 0 : null}
+            tabIndex={shouldHaveTabIndex ? 0 : undefined}
             ref={tableWrapperRef}
-            role={shouldHaveTabIndex ? 'region' : null}
-            aria-label={
-              shouldHaveTabIndex && typeof tableTitle === 'string'
-                ? tableTitle
-                : null
-            }
-            aria-labelledby={
-              shouldHaveTabIndex && typeof tableTitle !== 'string' && tableTitle
-                ? `${testId}-table-title`
-                : null
-            }
+            role={shouldHaveTabIndex ? 'group' : undefined}
+            aria-label={ariaLabelValue}
+            aria-labelledby={ariaLabelledbyValue}
+            aria-live="off"
           >
             <StyledTable
               {...other}
