@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Select, Multiselect): update hover border color based on focus state
+fix(Select, Multiselect): Separate focus and hover states and auto-focus first item for NVDA support

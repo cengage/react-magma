@@ -156,13 +156,8 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
                 theme,
                 isDisabled: isDisabled,
                 ...otherDownshiftItemProps,
+                onMouseMove: () => {},
               };
-
-              if (isDisabled) {
-                itemProps.onMouseEnter = () => {
-                  setHighlightedIndex?.(-1);
-                };
-              }
 
               return <Item<T> {...itemProps} key={key} />;
             })
