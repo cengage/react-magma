@@ -10,6 +10,7 @@ import {
 } from 'downshift';
 import { transparentize } from 'polished';
 
+import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { inputBaseStyles } from '../InputBase';
@@ -124,6 +125,7 @@ interface ComboboxInputProps<T> {
   selectedItems?: React.ReactNode;
   setReference?: (node: ReferenceType) => void;
   toggleButtonRef?: React.Ref<HTMLButtonElement>;
+  selectedItem?: T | null;
 }
 
 export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
@@ -148,12 +150,14 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     onInputKeyUp,
     placeholder,
     selectedItems,
+    selectedItem,
     setReference,
     toggleButtonRef,
   } = props;
   const theme = React.useContext(ThemeContext);
 
   const [isFocused, setIsFocused] = React.useState<boolean>(false);
+  const { isWindows } = useDeviceDetect();
 
   const { DropdownIndicator, LoadingIndicator } = defaultComponents<T>({
     ...customComponents,
@@ -195,6 +199,9 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
     return theme.colors.neutral;
   };
 
+  const selectedItemAriaLabel =
+    isWindows && !selectedItem ? placeholder : undefined;
+
   return (
     <div ref={setReference}>
       <ComboBoxContainer
@@ -218,7 +225,7 @@ export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
           theme={theme}
           ref={innerRef}
         >
-          <SelectedItemsWrapper>
+          <SelectedItemsWrapper aria-label={selectedItemAriaLabel}>
             {selectedItems}
             <StyledInput
               {...inputProps}
