@@ -123,9 +123,9 @@ interface ComboboxInputProps<T> {
   onInputKeyUp?: (event: any) => void;
   placeholder?: string;
   selectedItems?: React.ReactNode;
+  selectedItem?: React.ReactNode;
   setReference?: (node: ReferenceType) => void;
   toggleButtonRef?: React.Ref<HTMLButtonElement>;
-  selectedItem?: T | null;
 }
 
 export function ComboboxInput<T>(props: ComboboxInputProps<T>) {
