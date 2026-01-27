@@ -121,7 +121,8 @@ export const StyledItem = styled('li')<{
   padding: 8px 16px;
   &:hover {
     background: ${props => buildListHoverColor(props)};
-    border-color: transparent;
+    border-color: ${props =>
+      props.isFocused ? buildListFocusColor(props) : 'transparent'};
     cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
   }
 `;
