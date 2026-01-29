@@ -6,6 +6,6 @@
   "keywords": [],
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.51.1"
+    "@playwright/test": "1.51.1"
   }
 }
