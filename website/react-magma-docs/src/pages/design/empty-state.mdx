@@ -5,6 +5,7 @@ order: 1
 ---
 
 import { Link } from 'gatsby';
+import './design-guidelines-styles.css';
 
 <PageContent componentName="empty_state" type="design">
 <LeadParagraph>
@@ -13,22 +14,42 @@ import { Link } from 'gatsby';
 
 ## Usage
 
-Use empty states when there is no data or content to display in a section or page. Empty states help users understand:
+Use empty states when there is no data or content to display in a section or page. Empty states help users understand why the area is empty, what they can do to populate it, and that the system is working correctly (it's not an error).
 
-- Why the area is empty
-- What they can do to populate it
-- That the system is working correctly (it's not an error)
+<figure>
+  <img src="../../images/empty-state/empty-state-intro.png" alt="Full-page empty state showing a session expired message with a calendar icon, explanatory text prompting the user to sign in again, and actions to sign in or learn more." />
+</figure>
 
 Common scenarios include:
-- First-time use (no data yet)
-- No search results
-- Empty folders or lists
-- Cleared notifications
-- Error states
+- **First-time use** - No data yet (e.g., empty inbox, no saved items)
+- **No search results** - Query returned nothing
+- **Empty containers** - Empty folders, lists, or tables
+- **Cleared content** - All notifications dismissed
+- **Error states** - Something went wrong
+
+---
+
+## Principles
+
+### Helpful
+
+Empty states should clearly explain the situation and, when possible, provide guidance on how to resolve it. Users should never feel lost or confused about why content is missing.
+
+### Friendly
+
+The tone should be supportive and encouraging, not blaming the user. Use positive language that guides users toward action.
+
+### Contextual
+
+The message and illustration should relate to the specific context. A "no search results" empty state should look different from a "get started" empty state.
 
 ---
 
 ## Anatomy
+
+<figure>
+  <img src="../../images/empty-state/empty-state-anatomy.png" alt="Annotated diagram of an empty state with numbered callouts labeling the illustration, title, body text, primary button, and secondary link." />
+</figure>
 
 1. **Illustration** - A circular container with an icon that visually represents the empty state
 2. **Title** - A brief heading that explains the situation
@@ -42,11 +63,76 @@ Common scenarios include:
 
 ### Vertical Layout (Default)
 
-The vertical layout centers content and stacks elements. Use this for most empty states, especially in larger content areas.
+The vertical layout centers content and stacks elements. Use this for most empty states, especially in larger content areas like main pages or modals.
+
+<figure>
+  <img src="../../images/empty-state/layout-vertical.png" alt="Card-based empty state displaying a session expired message with an icon, supporting text, and sign-in and learn-more actions stacked vertically." />
+</figure>
 
 ### Horizontal Layout
 
-The horizontal layout places the illustration beside the content. Use this for narrower containers or when you want a more compact presentation.
+The horizontal layout places the illustration beside the content. Use this for narrower containers, sidebars, or when you want a more compact presentation.
+
+<figure>
+  <img src="../../images/empty-state/layout-horizontal.png" alt="Card-based empty state with a session expired message, icon aligned to the left, and sign-in and learn-more actions arranged horizontally." />
+</figure>
+
+---
+
+## Responsive Behavior
+
+Empty states adapt to different screen sizes. On smaller screens, consider using a more compact layout or smaller illustration size.
+
+<figure>
+  <img src="../../images/empty-state/responsive-use-case.png" alt="Empty state shown at different viewport sizes, demonstrating how the layout adapts responsively." />
+</figure>
+
+---
+
+## Illustration Sizes
+
+The illustration container comes in five sizes to accommodate different contexts.
+
+<figure>
+  <img src="../../images/empty-state/illustration-sizes.png" alt="Row of search icons shown at increasing sizes, demonstrating available illustration scale options from small to extra large." />
+</figure>
+
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Dimensions</th>
+      <th>Use Case</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sm</td>
+      <td>48px</td>
+      <td>Compact spaces, inline empty states</td>
+    </tr>
+    <tr>
+      <td>md</td>
+      <td>64px</td>
+      <td>Small cards, sidebar panels</td>
+    </tr>
+    <tr>
+      <td>lg</td>
+      <td>80px</td>
+      <td>Default size, most use cases</td>
+    </tr>
+    <tr>
+      <td>xl</td>
+      <td>96px</td>
+      <td>Prominent empty states</td>
+    </tr>
+    <tr>
+      <td>2xl</td>
+      <td>120px</td>
+      <td>Full-page empty states, high emphasis</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 
@@ -56,27 +142,107 @@ The horizontal layout places the illustration beside the content. Use this for n
 
 Uses the primary brand color (purple/blue) for the illustration. Appropriate for most informational empty states.
 
+<figure>
+  <img src="../../images/empty-state/color-default.png" alt="Card displaying a positive session message indicating the user is ready to continue, with a checkmark icon and a single sign-in action." />
+</figure>
+
 ### Danger
 
-Uses the danger color (red) for error states. Use when the empty state represents a problem that needs attention.
+Uses the danger color (red) for error states. Use when the empty state represents a problem that needs attention, such as a failed load or error condition.
+
+<figure>
+  <img src="../../images/empty-state/color-danger.png" alt="Card showing a session expired error state using red styling, indicating a higher-severity interruption that requires the user to sign in again." />
+</figure>
+
+### Inverse
+
+For use on dark backgrounds. The colors are adjusted for optimal contrast and visibility.
+
+<figure>
+  <img src="../../images/empty-state/color-inverse.png" alt="Dark-background empty state showing a no results found message with a search icon, explanatory text, and actions to clear filters or learn more." />
+</figure>
 
 ---
 
-## Best Practices
+## Content Guidelines
 
-### Do
+### Title
 
-- Keep the message concise and helpful
-- Provide a clear action when possible
-- Use illustrations that relate to the context
-- Match the tone to the situation (friendly for first-use, supportive for errors)
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
+      <figure>
+        <img src="../../images/empty-state/content-title-correct.png" alt="Correct example: Clear, user-friendly empty state title that explains the situation." />
+        <figcaption>
+          <p className="title title-correct">Correct</p>
+          <p>Keep titles short and descriptive. Explain the situation clearly.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div className="col col-2">
+      <figure>
+        <img src="../../images/empty-state/content-title-incorrect.png" alt="Incorrect example: Technical or vague title that doesn't help the user." />
+        <figcaption>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>Don't use technical jargon, error codes, or vague messages.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
 
-### Don't
+### Body Text
 
-- Use technical jargon or error codes
-- Leave users without guidance on what to do next
-- Use overly complex illustrations
-- Blame the user for the empty state
+<div className="two-col">
+  <div className="row">
+    <div className="col col-1">
+      <figure>
+        <img src="../../images/empty-state/content-body-correct.png" alt="Correct example: Helpful body copy that guides the user on what to do next." />
+        <figcaption>
+          <p className="title title-correct">Correct</p>
+          <p>Provide helpful guidance on what to do next.</p>
+        </figcaption>
+      </figure>
+    </div>
+    <div className="col col-2">
+      <figure>
+        <img src="../../images/empty-state/content-body-incorrect.png" alt="Incorrect example: Unhelpful body copy that provides no clear next step." />
+        <figcaption>
+          <p className="title title-incorrect">Incorrect</p>
+          <p>Don't leave users without guidance or blame them for the empty state.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</div>
+
+---
+
+## Use Cases
+
+### First-Time Use
+
+When users haven't created any content yet, encourage them to get started.
+
+<figure>
+  <img src="../../images/empty-state/use-case-first-time.png" alt="Empty state indicating no content exists yet, with an illustration, guidance text encouraging creation of a first item, and actions to create an item or learn more." />
+</figure>
+
+### No Search Results
+
+When a search returns nothing, help users refine their query.
+
+<figure>
+  <img src="../../images/empty-state/use-case-no-results.png" alt="Search empty state with a search icon, text explaining that no items match the current filters, and a primary action to clear filters." />
+</figure>
+
+### Error State
+
+When something goes wrong, explain the issue and provide a way to recover.
+
+<figure>
+  <img src="../../images/empty-state/use-case-error.png" alt="Error empty state with a warning icon, message indicating content could not be loaded and changes may not be saved, and a retry button." />
+</figure>
 
 ---
 
@@ -84,9 +250,9 @@ Uses the danger color (red) for error states. Use when the empty state represent
 
 Empty states are designed with accessibility in mind:
 
-- Text has sufficient color contrast
-- Action buttons are keyboard accessible
-- Illustrations are decorative and don't convey essential information
-- Screen readers can access all text content
+- Text maintains a minimum 4.5:1 contrast ratio with the background
+- Illustrations are marked as decorative (`aria-hidden`) since they don't convey essential information
+- Action buttons are fully keyboard accessible
+- All text content is available to screen readers
 
 </PageContent>
