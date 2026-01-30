@@ -1,0 +1,276 @@
+---
+pageTitle: Empty State API
+title: Empty State
+props:
+  - EmptyStateProps
+---
+
+<PageContent componentName="empty_state" type="api">
+
+<LeadParagraph>
+  The EmptyState component is used to communicate a lack of content to users
+  and guide them towards taking an action. It supports vertical and horizontal
+  layouts, illustrations, and action buttons.
+</LeadParagraph>
+
+## Basic Usage
+
+```tsx
+import React from 'react';
+
+import { EmptyState } from 'react-magma-dom';
+import { SearchIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <EmptyState
+      illustration={<SearchIcon />}
+      title="No results found"
+      body="Try adjusting your search or filter criteria to find what you are looking for."
+      primaryAction={{
+        label: 'Clear Filters',
+        onClick: () => console.log('Clear clicked'),
+      }}
+      secondaryAction={{
+        label: 'Learn More',
+        onClick: () => console.log('Learn more clicked'),
+      }}
+    />
+  );
+}
+```
+
+## Horizontal Layout
+
+By default, the EmptyState uses a vertical layout with centered content. Set `vertical={false}` to use a horizontal layout where the illustration appears beside the content.
+
+```tsx
+import React from 'react';
+
+import { EmptyState } from 'react-magma-dom';
+import { FolderOpenIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <EmptyState
+      illustration={<FolderOpenIcon />}
+      title="This folder is empty"
+      body="Upload files or create subfolders to get started."
+      vertical={false}
+      primaryAction={{
+        label: 'Upload Files',
+        onClick: () => console.log('Upload clicked'),
+      }}
+    />
+  );
+}
+```
+
+## Danger Mode
+
+Use the `isDanger` prop to display an error state with danger colors.
+
+```tsx
+import React from 'react';
+
+import { EmptyState } from 'react-magma-dom';
+import { ErrorIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <EmptyState
+      illustration={<ErrorIcon />}
+      isDanger
+      title="Something went wrong"
+      body="We encountered an error while processing your request. Please try again."
+      primaryAction={{
+        label: 'Try Again',
+        onClick: () => console.log('Retry clicked'),
+      }}
+      secondaryAction={{
+        label: 'Contact Support',
+        onClick: () => console.log('Contact clicked'),
+      }}
+    />
+  );
+}
+```
+
+## Illustration Sizes
+
+The illustration container supports multiple sizes: `xs`, `sm`, `md`, `lg`, `xl`, and `2xl`.
+
+```tsx
+import React from 'react';
+
+import { EmptyState, EmptyStateIllustrationSize } from 'react-magma-dom';
+import { SearchIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <>
+      <EmptyState
+        illustration={<SearchIcon />}
+        illustrationSize={EmptyStateIllustrationSize.sm}
+        title="Small illustration"
+      />
+      <br />
+      <EmptyState
+        illustration={<SearchIcon />}
+        illustrationSize={EmptyStateIllustrationSize.lg}
+        title="Large illustration (default)"
+      />
+      <br />
+      <EmptyState
+        illustration={<SearchIcon />}
+        illustrationSize={EmptyStateIllustrationSize['2xl']}
+        title="Extra extra large illustration"
+      />
+    </>
+  );
+}
+```
+
+## Without Illustration
+
+The illustration is optional. You can render an EmptyState with just text and actions.
+
+```tsx
+import React from 'react';
+
+import { EmptyState } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <EmptyState
+      title="No items yet"
+      body="Start by creating your first item."
+      primaryAction={{
+        label: 'Create Item',
+        onClick: () => console.log('Create clicked'),
+      }}
+    />
+  );
+}
+```
+
+## Without Buttons
+
+Action buttons are also optional. You can display an informational empty state without any actions.
+
+```tsx
+import React from 'react';
+
+import { EmptyState } from 'react-magma-dom';
+import { NotificationsIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <EmptyState
+      illustration={<NotificationsIcon />}
+      title="No notifications"
+      body="You're all caught up! Check back later for new notifications."
+    />
+  );
+}
+```
+
+## Minimal
+
+At minimum, you can render an EmptyState with just a title.
+
+```tsx
+import React from 'react';
+
+import { EmptyState } from 'react-magma-dom';
+
+export function Example() {
+  return <EmptyState title="Nothing here" />;
+}
+```
+
+## Inverse
+
+The `isInverse` prop renders the component with colors suitable for dark backgrounds.
+
+```tsx
+import React from 'react';
+
+import { EmptyState, Card, CardBody, magma } from 'react-magma-dom';
+import { SearchIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <Card background={magma.colors.primary600} isInverse>
+      <CardBody>
+        <EmptyState
+          illustration={<SearchIcon />}
+          isInverse
+          title="No results found"
+          body="Try adjusting your search criteria."
+          primaryAction={{
+            label: 'Clear Filters',
+            onClick: () => console.log('Clear clicked'),
+          }}
+        />
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Loading State
+
+Use the `isLoading` prop to show a loading spinner instead of the content. This is useful when data is being fetched.
+
+```tsx
+import React from 'react';
+
+import { EmptyState } from 'react-magma-dom';
+
+export function Example() {
+  return <EmptyState isLoading />;
+}
+```
+
+The loading spinner color adapts to `isDanger` and `isInverse` props.
+
+## Custom Children
+
+You can pass custom content as children to the EmptyState component.
+
+```tsx
+import React from 'react';
+
+import { EmptyState } from 'react-magma-dom';
+import { SearchIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <EmptyState
+      illustration={<SearchIcon />}
+      title="Custom content below"
+      body="You can add any custom content as children."
+    >
+      <div
+        style={{
+          marginTop: '16px',
+          padding: '16px',
+          background: '#f5f5f5',
+          borderRadius: '8px',
+        }}
+      >
+        <p style={{ margin: 0 }}>This is custom content passed as children.</p>
+      </div>
+    </EmptyState>
+  );
+}
+```
+
+## EmptyState Props
+
+**EmptyStateProps** are listed below.
+
+<EmptyStateProps />
+
+</PageContent>

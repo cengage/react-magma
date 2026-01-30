@@ -1,0 +1,92 @@
+---
+pageTitle: Empty State Design Guidelines
+title: Empty State
+order: 1
+---
+
+import { Link } from 'gatsby';
+
+<PageContent componentName="empty_state" type="design">
+<LeadParagraph>
+  Empty states communicate that there is no content to display and guide users towards taking an action.
+</LeadParagraph>
+
+## Usage
+
+Use empty states when there is no data or content to display in a section or page. Empty states help users understand:
+
+- Why the area is empty
+- What they can do to populate it
+- That the system is working correctly (it's not an error)
+
+Common scenarios include:
+- First-time use (no data yet)
+- No search results
+- Empty folders or lists
+- Cleared notifications
+- Error states
+
+---
+
+## Anatomy
+
+1. **Illustration** - A circular container with an icon that visually represents the empty state
+2. **Title** - A brief heading that explains the situation
+3. **Body** - Additional context or instructions (optional)
+4. **Primary Action** - A button for the main action the user can take (optional)
+5. **Secondary Action** - A link button for an alternative action (optional)
+
+---
+
+## Layouts
+
+### Vertical Layout (Default)
+
+The vertical layout centers content and stacks elements. Use this for most empty states, especially in larger content areas.
+
+### Horizontal Layout
+
+The horizontal layout places the illustration beside the content. Use this for narrower containers or when you want a more compact presentation.
+
+---
+
+## Color Modes
+
+### Default
+
+Uses the primary brand color (purple/blue) for the illustration. Appropriate for most informational empty states.
+
+### Danger
+
+Uses the danger color (red) for error states. Use when the empty state represents a problem that needs attention.
+
+---
+
+## Best Practices
+
+### Do
+
+- Keep the message concise and helpful
+- Provide a clear action when possible
+- Use illustrations that relate to the context
+- Match the tone to the situation (friendly for first-use, supportive for errors)
+
+### Don't
+
+- Use technical jargon or error codes
+- Leave users without guidance on what to do next
+- Use overly complex illustrations
+- Blame the user for the empty state
+
+---
+
+## Accessibility
+
+Empty states are designed with accessibility in mind:
+
+- Text has sufficient color contrast
+- Action buttons are keyboard accessible
+- Illustrations are decorative and don't convey essential information
+- Screen readers can access all text content
+
+</PageContent>
