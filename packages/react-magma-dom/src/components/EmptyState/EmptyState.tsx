@@ -65,13 +65,19 @@ interface StyledEmptyStateProps {
 const StyledEmptyState = styled.div<StyledEmptyStateProps>`
   align-items: center;
   display: flex;
-  flex-direction: ${props => (props.vertical ? 'column' : 'row')};
+  flex-direction: column;
   gap: ${props => props.theme.spaceScale.spacing05};
   font-family: ${props => props.theme.bodyFont};
   margin: 0 auto;
-  max-width: ${props => (props.vertical ? '450px' : '500px')};
+  max-width: 450px;
   min-width: 240px;
-  text-align: ${props => (props.vertical ? 'center' : 'left')};
+  text-align: center;
+
+  @media (min-width: ${props => props.theme.breakpoints.small}px) {
+    flex-direction: ${props => (props.vertical ? 'column' : 'row')};
+    max-width: ${props => (props.vertical ? '450px' : '500px')};
+    text-align: ${props => (props.vertical ? 'center' : 'left')};
+  }
 `;
 
 interface StyledIllustrationContainerProps {
@@ -148,7 +154,11 @@ const StyledContent = styled.div<StyledContentProps>`
   display: flex;
   flex-direction: column;
   gap: ${props => props.theme.spaceScale.spacing05};
-  align-items: ${props => (props.vertical ? 'center' : 'flex-start')};
+  align-items: center;
+
+  @media (min-width: ${props => props.theme.breakpoints.small}px) {
+    align-items: ${props => (props.vertical ? 'center' : 'flex-start')};
+  }
 `;
 
 interface StyledTextContentProps {
@@ -160,8 +170,12 @@ const StyledTextContent = styled.div<StyledTextContentProps>`
   display: flex;
   flex-direction: column;
   gap: ${props => props.theme.spaceScale.spacing03};
-  text-align: ${props => (props.vertical ? 'center' : 'left')};
+  text-align: center;
   width: 100%;
+
+  @media (min-width: ${props => props.theme.breakpoints.small}px) {
+    text-align: ${props => (props.vertical ? 'center' : 'left')};
+  }
 `;
 
 interface StyledTitleProps {
@@ -220,9 +234,15 @@ interface StyledButtonContainerProps {
 
 const StyledButtonContainer = styled.div<StyledButtonContainerProps>`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   gap: ${props => props.theme.spaceScale.spacing03};
   align-items: center;
+  width: 100%;
+
+  @media (min-width: ${props => props.theme.breakpoints.small}px) {
+    flex-direction: row;
+    width: auto;
+  }
 `;
 
 export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
@@ -317,7 +337,7 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
               <StyledButtonContainer theme={theme}>
                 {primaryAction && (
                   <Button
-                    color={isDanger ? ButtonColor.danger : ButtonColor.primary}
+                    color={ButtonColor.primary}
                     isInverse={isInverse}
                     onClick={primaryAction.onClick}
                   >
@@ -326,9 +346,7 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
                 )}
                 {secondaryAction && (
                   <Button
-                    color={
-                      isDanger ? ButtonColor.danger : ButtonColor.secondary
-                    }
+                    color={ButtonColor.secondary}
                     isInverse={isInverse}
                     onClick={secondaryAction.onClick}
                     variant={ButtonVariant.link}

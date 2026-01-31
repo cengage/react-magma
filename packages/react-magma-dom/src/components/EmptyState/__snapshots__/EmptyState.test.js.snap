@@ -21,6 +21,16 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -64,6 +74,15 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -75,6 +94,12 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -111,14 +136,24 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   gap: 8px;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-12 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    width: auto;
+  }
 }
 
 .emotion-14 {
@@ -126,9 +161,9 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #D32821;
+  background: #3942B0;
   border: 0;
-  border-color: #D32821;
+  border-color: #3942B0;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -174,12 +209,12 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 
 .emotion-14:not(:disabled):hover,
 .emotion-14:not(:disabled):focus {
-  background: #A91F1A;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
 .emotion-14:not(:disabled):active {
-  background: #7F1714;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -231,6 +266,16 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -274,6 +319,15 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -285,6 +339,12 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -321,14 +381,24 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   gap: 8px;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-12 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    width: auto;
+  }
 }
 
 .emotion-14 {
@@ -336,9 +406,9 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #D32821;
+  background: #3942B0;
   border: 0;
-  border-color: #D32821;
+  border-color: #3942B0;
   border-radius: 8px;
   color: #FFFFFF;
   cursor: pointer;
@@ -384,12 +454,12 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 
 .emotion-14:not(:disabled):hover,
 .emotion-14:not(:disabled):focus {
-  background: #A91F1A;
+  background: #292F7C;
   color: #FFFFFF;
 }
 
 .emotion-14:not(:disabled):active {
-  background: #7F1714;
+  background: #1A1E51;
   color: #FFFFFF;
 }
 
@@ -460,7 +530,7 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
       >
         <button
           class="emotion-14 emotion-15"
-          color="danger"
+          color="primary"
           shape="fill"
           type="button"
         >
@@ -495,6 +565,16 @@ exports[`EmptyState Illustration sizes should render 2xl illustration size 1`] =
   max-width: 450px;
   min-width: 240px;
   text-align: center;
+}
+
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
 }
 
 .emotion-2 {
@@ -540,6 +620,15 @@ exports[`EmptyState Illustration sizes should render 2xl illustration size 1`] =
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -551,6 +640,12 @@ exports[`EmptyState Illustration sizes should render 2xl illustration size 1`] =
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -588,6 +683,16 @@ exports[`EmptyState Illustration sizes should render 2xl illustration size 1`] =
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -631,6 +736,15 @@ exports[`EmptyState Illustration sizes should render 2xl illustration size 1`] =
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -642,6 +756,12 @@ exports[`EmptyState Illustration sizes should render 2xl illustration size 1`] =
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -714,6 +834,16 @@ exports[`EmptyState Illustration sizes should render lg illustration size 1`] = 
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -757,6 +887,15 @@ exports[`EmptyState Illustration sizes should render lg illustration size 1`] = 
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -768,6 +907,12 @@ exports[`EmptyState Illustration sizes should render lg illustration size 1`] = 
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -805,6 +950,16 @@ exports[`EmptyState Illustration sizes should render lg illustration size 1`] = 
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -848,6 +1003,15 @@ exports[`EmptyState Illustration sizes should render lg illustration size 1`] = 
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -859,6 +1023,12 @@ exports[`EmptyState Illustration sizes should render lg illustration size 1`] = 
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -931,6 +1101,16 @@ exports[`EmptyState Illustration sizes should render md illustration size 1`] = 
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -974,6 +1154,15 @@ exports[`EmptyState Illustration sizes should render md illustration size 1`] = 
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -985,6 +1174,12 @@ exports[`EmptyState Illustration sizes should render md illustration size 1`] = 
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -1022,6 +1217,16 @@ exports[`EmptyState Illustration sizes should render md illustration size 1`] = 
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1065,6 +1270,15 @@ exports[`EmptyState Illustration sizes should render md illustration size 1`] = 
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1076,6 +1290,12 @@ exports[`EmptyState Illustration sizes should render md illustration size 1`] = 
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -1148,6 +1368,16 @@ exports[`EmptyState Illustration sizes should render sm illustration size 1`] = 
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1191,6 +1421,15 @@ exports[`EmptyState Illustration sizes should render sm illustration size 1`] = 
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1202,6 +1441,12 @@ exports[`EmptyState Illustration sizes should render sm illustration size 1`] = 
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -1239,6 +1484,16 @@ exports[`EmptyState Illustration sizes should render sm illustration size 1`] = 
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1282,6 +1537,15 @@ exports[`EmptyState Illustration sizes should render sm illustration size 1`] = 
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1293,6 +1557,12 @@ exports[`EmptyState Illustration sizes should render sm illustration size 1`] = 
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -1365,6 +1635,16 @@ exports[`EmptyState Illustration sizes should render xl illustration size 1`] = 
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1408,6 +1688,15 @@ exports[`EmptyState Illustration sizes should render xl illustration size 1`] = 
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1419,6 +1708,12 @@ exports[`EmptyState Illustration sizes should render xl illustration size 1`] = 
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -1456,6 +1751,16 @@ exports[`EmptyState Illustration sizes should render xl illustration size 1`] = 
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1499,6 +1804,15 @@ exports[`EmptyState Illustration sizes should render xl illustration size 1`] = 
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1510,6 +1824,12 @@ exports[`EmptyState Illustration sizes should render xl illustration size 1`] = 
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -1582,6 +1902,16 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1625,6 +1955,15 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1636,6 +1975,12 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -1687,6 +2032,16 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1730,6 +2085,15 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1741,6 +2105,12 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -1832,6 +2202,16 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1875,6 +2255,15 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1886,6 +2275,12 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -1937,6 +2332,16 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
@@ -1980,6 +2385,15 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-4 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-6 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1991,6 +2405,12 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    text-align: center;
+  }
 }
 
 .emotion-8 {
@@ -2071,15 +2491,25 @@ exports[`EmptyState Layout should render horizontal layout when vertical is fals
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   gap: 16px;
   font-family: "Work Sans",Helvetica,sans-serif;
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 450px;
   min-width: 240px;
-  text-align: left;
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    max-width: 500px;
+    text-align: left;
+  }
 }
 
 .emotion-2 {
@@ -2091,10 +2521,19 @@ exports[`EmptyState Layout should render horizontal layout when vertical is fals
   -ms-flex-direction: column;
   flex-direction: column;
   gap: 16px;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+@media (min-width: 600px) {
+  .emotion-2 {
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+  }
 }
 
 .emotion-4 {
@@ -2106,8 +2545,14 @@ exports[`EmptyState Layout should render horizontal layout when vertical is fals
   -ms-flex-direction: column;
   flex-direction: column;
   gap: 8px;
-  text-align: left;
+  text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    text-align: left;
+  }
 }
 
 .emotion-6 {
@@ -2134,15 +2579,25 @@ exports[`EmptyState Layout should render horizontal layout when vertical is fals
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   gap: 16px;
   font-family: "Work Sans",Helvetica,sans-serif;
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 450px;
   min-width: 240px;
-  text-align: left;
+  text-align: center;
+}
+
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    max-width: 500px;
+    text-align: left;
+  }
 }
 
 .emotion-2 {
@@ -2154,10 +2609,19 @@ exports[`EmptyState Layout should render horizontal layout when vertical is fals
   -ms-flex-direction: column;
   flex-direction: column;
   gap: 16px;
-  -webkit-align-items: flex-start;
-  -webkit-box-align: flex-start;
-  -ms-flex-align: flex-start;
-  align-items: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+@media (min-width: 600px) {
+  .emotion-2 {
+    -webkit-align-items: flex-start;
+    -webkit-box-align: flex-start;
+    -ms-flex-align: flex-start;
+    align-items: flex-start;
+  }
 }
 
 .emotion-4 {
@@ -2169,8 +2633,14 @@ exports[`EmptyState Layout should render horizontal layout when vertical is fals
   -ms-flex-direction: column;
   flex-direction: column;
   gap: 8px;
-  text-align: left;
+  text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    text-align: left;
+  }
 }
 
 .emotion-6 {
@@ -2231,6 +2701,16 @@ exports[`EmptyState Layout should render vertical layout by default 1`] = `
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -2246,6 +2726,15 @@ exports[`EmptyState Layout should render vertical layout by default 1`] = `
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-2 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-4 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -2257,6 +2746,12 @@ exports[`EmptyState Layout should render vertical layout by default 1`] = `
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    text-align: center;
+  }
 }
 
 .emotion-6 {
@@ -2294,6 +2789,16 @@ exports[`EmptyState Layout should render vertical layout by default 1`] = `
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -2309,6 +2814,15 @@ exports[`EmptyState Layout should render vertical layout by default 1`] = `
   align-items: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-2 {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+}
+
 .emotion-4 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -2320,6 +2834,12 @@ exports[`EmptyState Layout should render vertical layout by default 1`] = `
   gap: 8px;
   text-align: center;
   width: 100%;
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    text-align: center;
+  }
 }
 
 .emotion-6 {
@@ -2380,6 +2900,16 @@ exports[`EmptyState Loading state should render loading spinner when isLoading i
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
@@ -2409,6 +2939,16 @@ exports[`EmptyState Loading state should render loading spinner when isLoading i
   max-width: 450px;
   min-width: 240px;
   text-align: center;
+}
+
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
 }
 
 .emotion-2 {
@@ -2457,6 +2997,16 @@ exports[`EmptyState Loading state should render loading spinner with danger colo
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
@@ -2486,6 +3036,16 @@ exports[`EmptyState Loading state should render loading spinner with danger colo
   max-width: 450px;
   min-width: 240px;
   text-align: center;
+}
+
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
 }
 
 .emotion-2 {
@@ -2534,6 +3094,16 @@ exports[`EmptyState Loading state should render loading spinner with inverse col
   text-align: center;
 }
 
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
+}
+
 .emotion-2 {
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
@@ -2563,6 +3133,16 @@ exports[`EmptyState Loading state should render loading spinner with inverse col
   max-width: 450px;
   min-width: 240px;
   text-align: center;
+}
+
+@media (min-width: 600px) {
+  .emotion-0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    max-width: 450px;
+    text-align: center;
+  }
 }
 
 .emotion-2 {

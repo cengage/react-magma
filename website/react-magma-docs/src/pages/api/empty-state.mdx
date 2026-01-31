@@ -66,9 +66,44 @@ export function Example() {
 }
 ```
 
+## Responsive Behavior
+
+On mobile devices (below 600px), the EmptyState automatically:
+- Uses vertical layout regardless of the `vertical` prop
+- Stacks buttons vertically for easier tapping
+- Centers all content
+
+The horizontal layout only applies on larger screens. Resize your browser to see the responsive behavior.
+
+```tsx
+import React from 'react';
+
+import { EmptyState } from 'react-magma-dom';
+import { FolderOpenIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <EmptyState
+      illustration={<FolderOpenIcon />}
+      title="Resize your browser"
+      body="On mobile (below 600px), this will switch to vertical layout with stacked buttons."
+      vertical={false}
+      primaryAction={{
+        label: 'Primary Action',
+        onClick: () => console.log('Primary clicked'),
+      }}
+      secondaryAction={{
+        label: 'Secondary Action',
+        onClick: () => console.log('Secondary clicked'),
+      }}
+    />
+  );
+}
+```
+
 ## Danger Mode
 
-Use the `isDanger` prop to display an error state with danger colors.
+Use the `isDanger` prop to display an error state with danger colors on the illustration. The buttons remain the default primary color for consistency.
 
 ```tsx
 import React from 'react';

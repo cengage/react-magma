@@ -81,7 +81,13 @@ The horizontal layout places the illustration beside the content. Use this for n
 
 ## Responsive Behavior
 
-Empty states adapt to different screen sizes. On smaller screens, consider using a more compact layout or smaller illustration size.
+Empty states automatically adapt to mobile screens (below 600px):
+
+- **Layout** - Always uses vertical layout on mobile, even if horizontal is specified
+- **Buttons** - Stack vertically for easier tapping
+- **Content** - All text and elements are centered
+
+The horizontal layout only applies on larger screens (600px and above).
 
 <figure>
   <img src="../../images/empty-state/responsive-use-case.png" alt="Empty state shown at different viewport sizes, demonstrating how the layout adapts responsively." />
@@ -148,7 +154,7 @@ Uses the primary brand color (purple/blue) for the illustration. Appropriate for
 
 ### Danger
 
-Uses the danger color (red) for error states. Use when the empty state represents a problem that needs attention, such as a failed load or error condition.
+Uses the danger color (red) for the illustration only. Buttons remain the default primary color for consistency. Use when the empty state represents a problem that needs attention, such as a failed load or error condition.
 
 <figure>
   <img src="../../images/empty-state/color-danger.png" alt="Card showing a session expired error state using red styling, indicating a higher-severity interruption that requires the user to sign in again." />
