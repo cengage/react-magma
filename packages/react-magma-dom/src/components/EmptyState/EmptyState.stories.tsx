@@ -14,7 +14,20 @@ import { Card, CardBody } from '../Card';
 
 import { EmptyState, EmptyStateProps, EmptyStateIllustrationSize } from '.';
 
-const Template: StoryFn<EmptyStateProps> = args => <EmptyState {...args} />;
+const Template: StoryFn<EmptyStateProps> = args => {
+  // Automatically show dark background when isInverse is toggled
+  if (args.isInverse) {
+    return (
+      <Card background={magma.colors.primary600} isInverse>
+        <CardBody>
+          <EmptyState {...args} />
+        </CardBody>
+      </Card>
+    );
+  }
+
+  return <EmptyState {...args} />;
+};
 
 export default {
   title: 'EmptyState',
@@ -179,7 +192,7 @@ export const Inverse = {
   },
 
   decorators: [
-    Story => (
+    (Story: React.ComponentType) => (
       <Card background={magma.colors.primary600} isInverse>
         <CardBody>
           <Story />
@@ -198,7 +211,7 @@ export const InverseDanger = {
   },
 
   decorators: [
-    Story => (
+    (Story: React.ComponentType) => (
       <Card background={magma.colors.primary600} isInverse>
         <CardBody>
           <Story />
@@ -218,7 +231,7 @@ export const InverseHorizontal = {
   },
 
   decorators: [
-    Story => (
+    (Story: React.ComponentType) => (
       <Card background={magma.colors.primary600} isInverse>
         <CardBody>
           <Story />
@@ -283,7 +296,7 @@ export const LoadingInverse = {
   },
 
   decorators: [
-    Story => (
+    (Story: React.ComponentType) => (
       <Card background={magma.colors.primary600} isInverse>
         <CardBody>
           <Story />
