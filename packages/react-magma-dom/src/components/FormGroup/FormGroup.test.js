@@ -94,9 +94,26 @@ describe('Form Group', () => {
       </FormGroup>
     );
 
-    const group = container.querySelector('div');
+    const group = container.querySelector('fieldset');
 
     expect(group).toHaveAttribute('aria-labelledby', 'myID');
+  });
+
+  it('should render a form group as a fieldset with a legend', () => {
+    const labelText = 'Colors';
+    const { container } = render(
+      <FormGroup labelText={labelText}>
+        <Checkbox labelText="Red" />
+        <Checkbox labelText="Blue" />
+      </FormGroup>
+    );
+
+    const fieldset = container.querySelector('fieldset');
+    const legend = container.querySelector('legend');
+
+    expect(fieldset).toBeInTheDocument();
+    expect(legend).toBeInTheDocument();
+    expect(legend.textContent).toBe(labelText);
   });
 
   it('should render a form group with an error message', () => {

@@ -9,7 +9,7 @@ import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 
-export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface FormGroupProps extends React.HTMLAttributes<HTMLFieldSetElement> {
   /**
    * @children required
    */
@@ -63,7 +63,17 @@ const HiddenLabel = styled.label`
   ${HiddenStyles};
 `;
 
-export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
+const StyledFieldset = styled.fieldset`
+  border: 0;
+  margin: 0;
+  padding: 0;
+`;
+
+const HiddenLegend = styled.legend`
+  ${HiddenStyles};
+`;
+
+export const FormGroup = React.forwardRef<HTMLFieldSetElement, FormGroupProps>(
   (props, ref) => {
     const id = useGenerateId(props.id);
 
@@ -86,12 +96,11 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
     const isInverse = useIsInverse(props.isInverse);
 
     return (
-      <div
+      <StyledFieldset
         {...other}
-        aria-labelledby={labelledById ? labelledById : id}
+        aria-labelledby={labelledById}
         data-testid={testId}
         ref={ref}
-        role="group"
         style={containerStyle}
       >
         <FormGroupContext.Provider
@@ -101,13 +110,14 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
           }}
         >
           {labelText && isTextVisuallyHidden && (
-            <HiddenLabel id={id} style={labelStyle}>
+            <HiddenLegend id={id} style={labelStyle}>
               {labelText}
-            </HiddenLabel>
+            </HiddenLegend>
           )}
 
           {labelText && !isTextVisuallyHidden && (
             <Label
+              as="legend"
               id={id}
               isInverse={isInverse}
               style={labelStyle}
@@ -128,7 +138,7 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
             </InputMessage>
           )}
         </FormGroupContext.Provider>
-      </div>
+      </StyledFieldset>
     );
   }
 );
