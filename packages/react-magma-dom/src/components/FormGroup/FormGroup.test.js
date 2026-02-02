@@ -114,6 +114,8 @@ describe('Form Group', () => {
     expect(fieldset).toBeInTheDocument();
     expect(legend).toBeInTheDocument();
     expect(legend.textContent).toBe(labelText);
+    // When using legend, aria-labelledby should not be present
+    expect(fieldset).not.toHaveAttribute('aria-labelledby');
   });
 
   it('should render a form group with an error message', () => {

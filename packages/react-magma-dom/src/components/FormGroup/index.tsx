@@ -98,6 +98,9 @@ export const FormGroup = React.forwardRef<HTMLFieldSetElement, FormGroupProps>(
     return (
       <StyledFieldset
         {...other}
+        // Only use aria-labelledby when labelledById is explicitly provided
+        // (for external labeling). When labelText is provided, the legend
+        // element provides the accessible name, so aria-labelledby is not needed.
         aria-labelledby={labelledById}
         data-testid={testId}
         ref={ref}
