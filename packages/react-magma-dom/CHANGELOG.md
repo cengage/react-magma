@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.41
+
+### Patch Changes
+
+- 2ce6371: fix(Select): add announcement to `expanded`/`collapsed` state of `Select`.
+
 ## 5.1.0-rc.40
 
 ### Patch Changes
