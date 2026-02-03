@@ -2,4 +2,4 @@
 'react-magma-landing': patch
 ---
 
-chore: deploy v4 docs
+chore: deploy v4 docs feb 2026
