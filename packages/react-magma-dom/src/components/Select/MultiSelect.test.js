@@ -9,7 +9,7 @@ import { Modal } from '../Modal';
 
 import { Select as MultiSelect } from '.';
 
-describe('Select', () => {
+describe('MultiSelect', () => {
   const items = ['Red', 'Blue', 'Green'];
   const labelText = 'Label';
 
