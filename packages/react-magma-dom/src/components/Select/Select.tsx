@@ -7,16 +7,15 @@ import { CloseIcon } from 'react-magma-icons';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
-import { Announce } from '../Announce';
 import { ButtonSize, ButtonVariant } from '../Button';
 import { defaultComponents } from './components';
 import { ItemsList } from './ItemsList';
+import { SelectAnnouncer } from './SelectAnnouncer';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { SelectText } from './shared';
 import { isItemDisabled } from './utils';
 import { useMagmaFloating } from '../../hooks/useMagmaFloating';
-import { VisuallyHidden } from '../VisuallyHidden';
 
 import { SelectProps } from '.';
 
@@ -217,10 +216,6 @@ export function Select<T>(props: SelectProps<T>) {
 
   const floatingElementStyles = { ...floatingStyles, width: '100%' };
 
-  const announcedMessage = isOpen
-    ? i18n.select.expandedAnnounce.replace(/\{labelText\}/g, labelText)
-    : i18n.select.collapsedAnnounce.replace(/\{labelText\}/g, labelText);
-
   return (
     <>
       <SelectContainer
@@ -295,9 +290,7 @@ export function Select<T>(props: SelectProps<T>) {
         />
       </SelectContainer>
 
-      <VisuallyHidden>
-        <Announce>{announcedMessage}</Announce>
-      </VisuallyHidden>
+      <SelectAnnouncer isOpen={isOpen} labelText={labelText} />
     </>
   );
 }
