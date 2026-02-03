@@ -266,6 +266,8 @@ export const defaultI18n: I18nInterface = {
     placeholder: 'Select...',
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
+    expandedAnnounce: '{labelText} list expanded',
+    collapsedAnnounce: '{labelText} list collapsed',
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',

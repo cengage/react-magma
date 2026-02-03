@@ -303,7 +303,9 @@ test.describe('Accordion', () => {
 
     async function verifyShippingAddressContentHidden() {
       await expect(storyBookIframe.getByText('City')).toBeHidden();
-      await expect(storyBookIframe.getByText('State')).toBeHidden();
+      await expect(
+        storyBookIframe.getByText('State', { exact: true })
+      ).toBeHidden();
       await expect(
         storyBookIframe.getByText('Additional Information')
       ).toBeHidden();
@@ -342,7 +344,9 @@ test.describe('Accordion', () => {
     await verifyRandomContentHidden();
 
     await expect(storyBookIframe.getByText('City')).toBeVisible();
-    await expect(storyBookIframe.getByText('State')).toBeVisible();
+    await expect(
+      storyBookIframe.getByText('State', { exact: true })
+    ).toBeVisible();
     await expect(
       storyBookIframe.getByText('Additional Information')
     ).toBeVisible();
