@@ -251,6 +251,8 @@ export interface I18nInterface {
   select: {
     placeholder: string;
     clearIndicatorAriaLabel: string;
+    expandedAnnounce: string;
+    collapsedAnnounce: string;
     multi: {
       clearIndicatorAriaLabel: string;
     };
