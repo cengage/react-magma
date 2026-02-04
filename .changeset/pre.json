@@ -30,6 +30,7 @@
     "fix-Alert-right-padding-missing",
     "fix-Banner-add-role-and-aria-label",
     "fix-Banner-docs-accessibility-issues",
+    "fix-Breadcrumb-last-item-focus",
     "fix-ButtonGroup-acessibility-list",
     "fix-Combobox-accessibility",
     "fix-DatePicker-clear-focus-input",

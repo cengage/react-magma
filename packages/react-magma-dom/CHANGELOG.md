@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.47
+
+### Patch Changes
+
+- 7222641f6: fix(Breadcrumb): Fix bug when last item was link and had focus
+
 ## 4.11.0-next.46
 
 ### Patch Changes
