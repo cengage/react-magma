@@ -32,6 +32,7 @@
     "fix-Banner-docs-accessibility-issues",
     "fix-Breadcrumb-last-item-focus",
     "fix-ButtonGroup-acessibility-list",
+    "fix-Combobox-accessibility copy",
     "fix-Combobox-accessibility",
     "fix-Combobox-not-readable-placeholder-for-NVDA",
     "fix-DatePicker-clear-focus-input",
