@@ -115,6 +115,12 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default PopoverAlignment.center
    */
   alignment?: PopoverAlignment;
+  /**
+   * If true, the popover trigger will take the full width of its container.
+   * This allows buttons with isFullWidth prop to render at full width.
+   * @default false
+   */
+  isFullWidth?: boolean;
 }
 
 export interface PopoverContextInterface {
@@ -140,10 +146,12 @@ export interface PopoverContextInterface {
   hasPointer?: boolean;
   focusTrap?: boolean;
   hasActiveElements?: boolean;
+  isFullWidth?: boolean;
 }
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.div<{ isFullWidth?: boolean }>`
   display: inline-block;
+  width: ${props => (props.isFullWidth ? '100%' : 'auto')};
 `;
 
 export const PopoverContext = React.createContext<PopoverContextInterface>({
@@ -204,6 +212,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       apiRef,
       focusTrap,
       alignment = PopoverAlignment.center,
+      isFullWidth,
       ...other
     } = props;
 
@@ -375,6 +384,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           hasPointer,
           focusTrap,
           hasActiveElements,
+          isFullWidth,
         }}
       >
         <StyledContainer
@@ -387,6 +397,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           onMouseLeave={handleMouseLeave}
           id={popoverId}
           onFocus={onFocus}
+          isFullWidth={isFullWidth}
         >
           {children}
         </StyledContainer>
