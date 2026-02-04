@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.43
+
+### Patch Changes
+
+- bfe0a86: fix(Combobox): Fix issue when NVDA doesn't read placeholder.
+
 ## 5.1.0-rc.42
 
 ### Patch Changes
