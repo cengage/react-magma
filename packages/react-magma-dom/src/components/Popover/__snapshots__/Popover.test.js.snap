@@ -124,13 +124,13 @@ exports[`Popover should render the popover with isFullWidth=true 1`] = `
   width="0px"
 >
   <div
-    aria-labelledby="3631f1bf-3d2b-458d-a6c9-4b24f24f19b5_trigger"
+    aria-labelledby="popoverWithFullWidth_trigger"
     role="dialog"
   >
     <div
       aria-live="polite"
       class="emotion-3 emotion-4"
-      id="3631f1bf-3d2b-458d-a6c9-4b24f24f19b5_content"
+      id="popoverWithFullWidth_content"
       style="max-height: 100%;"
     >
       <div

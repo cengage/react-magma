@@ -445,7 +445,7 @@ describe('Popover', () => {
 
   it('should render the popover with isFullWidth=true', () => {
     const { getByTestId } = render(
-      <Popover isFullWidth width="target">
+      <Popover id="popoverWithFullWidth" isFullWidth width="target">
         <PopoverTrigger>
           <Button isFullWidth>Full Width Button Trigger</Button>
         </PopoverTrigger>
