@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-webpack5';
 import {
   ArrowDropDownIcon,
   CloseIcon,

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { css, Global } from '@emotion/react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-webpack5';
 import {
   ExpandMoreIcon,
   NotificationsIcon,

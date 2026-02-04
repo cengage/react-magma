@@ -28,6 +28,9 @@
     "**/*.stories.*",
     ".storybook/**/*"
   ],
+  "references": [
+    { "path": "./tsconfig.stories.json" }
+  ],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS",

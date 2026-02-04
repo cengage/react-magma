@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { StoryObj, StoryFn, Meta } from '@storybook/react';
+import { StoryObj, StoryFn, Meta } from '@storybook/react-webpack5';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 
 import { Button } from '../Button';

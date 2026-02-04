@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-webpack5';
 import { action } from 'storybook/actions';
 
 import { Button, ButtonType } from '../Button';

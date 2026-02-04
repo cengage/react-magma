@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-webpack5';
 
 import { Button } from '../Button';
 import { Container } from '../Container';

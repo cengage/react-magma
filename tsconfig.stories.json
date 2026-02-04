@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "composite": true,
+    "noEmit": false
+  },
+  "include": [
+    "**/*.stories.tsx",
+    "**/*.stories.ts",
+    ".storybook/**/*"
+  ]
+}

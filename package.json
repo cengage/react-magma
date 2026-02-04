@@ -83,11 +83,11 @@
     "@eslint/eslintrc": "3.3.1",
     "@eslint/js": "9.29.0",
     "@manypkg/cli": "0.24.0",
-    "@storybook/addon-a11y": "9.0.12",
-    "@storybook/addon-docs": "9.0.12",
-    "@storybook/addon-webpack5-compiler-babel": "^3.0.6",
-    "@storybook/react": "9.0.12",
-    "@storybook/react-webpack5": "9.0.12",
+    "@storybook/addon-a11y": "10.2.6",
+    "@storybook/addon-docs": "10.2.6",
+    "@storybook/addon-webpack5-compiler-babel": "^4.0.0",
+    "@storybook/react": "10.2.6",
+    "@storybook/react-webpack5": "10.2.6",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "16.3.0",
@@ -115,7 +115,7 @@
     "eslint-plugin-prettier": "5.5.0",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "5.2.0",
-    "eslint-plugin-storybook": "^9.0.12",
+    "eslint-plugin-storybook": "^10.2.6",
     "eslint-plugin-unicorn": "59.0.1",
     "globals": "16.2.0",
     "husky": "9.1.7",
@@ -136,7 +136,7 @@
     "react-test-renderer": "^18.3.1",
     "rollup-plugin-postcss": "4.0.2",
     "shelljs": "0.10.0",
-    "storybook": "9.0.12",
+    "storybook": "10.2.6",
     "ts-node": "10.9.2",
     "tsdx": "0.14.1",
     "typedoc": "^0.28.5",
@@ -152,7 +152,6 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.55.1",
-    "@storybook/addon-actions": "^9.0.8",
     "babel-loader": "^10.0.0"
   }
 }
