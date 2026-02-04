@@ -43,5 +43,6 @@ module.exports = {
     '^react-dom$': '<rootDir>/node_modules/react-dom',
     '^react-dom/client$': '<rootDir>/node_modules/react-dom/client',
     '^@testing-library/react$': '<rootDir>/node_modules/@testing-library/react',
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
 };
