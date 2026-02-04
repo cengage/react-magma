@@ -33,6 +33,7 @@
     "fix-Breadcrumb-last-item-focus",
     "fix-ButtonGroup-acessibility-list",
     "fix-Combobox-accessibility",
+    "fix-Combobox-not-readable-placeholder-for-NVDA",
     "fix-DatePicker-clear-focus-input",
     "fix-DatePicker-focus-today-calendar",
     "fix-DatePicker-prerelease-bugs",
