@@ -443,6 +443,23 @@ describe('Popover', () => {
     expect(popoverContent).toHaveStyle('max-height: 300px');
   });
 
+  it('should render the popover with isFullWidth=true', () => {
+    const { getByTestId } = render(
+      <Popover id="popoverWithFullWidth" isFullWidth width="target">
+        <PopoverTrigger>
+          <Button isFullWidth>Full Width Button Trigger</Button>
+        </PopoverTrigger>
+        <PopoverContent>
+          <div>This popover has a full-width button trigger.</div>
+        </PopoverContent>
+      </Popover>
+    );
+    const popoverContent = getByTestId('popoverContent');
+
+    expect(popoverContent).toBeInTheDocument();
+    expect(popoverContent).toMatchSnapshot();
+  });
+
   it('should render the popover with pointer by default', () => {
     const { getByTestId } = render(
       <Popover id="popoverWithPointer">
