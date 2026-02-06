@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.46
+
+### Minor Changes
+
+- 92b1b12: feat(TreeView): create `selectParents` prop (`true` by default)
+
 ## 5.1.0-rc.45
 
 ### Minor Changes
