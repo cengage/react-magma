@@ -21,6 +21,7 @@
     "feat-Date-Picker-new-keyboard-controls",
     "feat-DateTimePicker-timezone",
     "feat-Modal-add-headel-level-prop",
+    "feat-Popover-add-isFullWidth-prop",
     "feat-SplitDropdown-add-leading-icon",
     "fix-AIButton-box-shadow",
     "fix-Accordion-accessibility-render-issue",

@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.49
+
+### Minor Changes
+
+- c5373ff4c: feat(Popover): Add `isFullWidth` prop to allow the trigger button and content to expand to 100% width.
+
 ## 4.11.0-next.48
 
 ### Patch Changes
