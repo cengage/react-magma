@@ -23,6 +23,7 @@
     "feat-Modal-add-headel-level-prop",
     "feat-Popover-add-isFullWidth-prop",
     "feat-SplitDropdown-add-leading-icon",
+    "feat-TreeView-selectParents-prop",
     "fix-AIButton-box-shadow",
     "fix-Accordion-accessibility-render-issue",
     "fix-Accordion-docs-accessibility-issue",
