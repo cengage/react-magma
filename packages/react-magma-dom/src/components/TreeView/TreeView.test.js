@@ -4409,6 +4409,142 @@ describe('TreeView', () => {
     });
   });
 
+  describe('selectParents', () => {
+    it('should allow parent items to be selected when selectParents is true (default)', async () => {
+      const onSelectedItemChange = jest.fn();
+
+      const { getByTestId } = render(
+        <TreeView
+          ariaLabel="TreeView"
+          selectable={TreeViewSelectable.single}
+          selectParents={true}
+          onSelectedItemChange={onSelectedItemChange}
+        >
+          <TreeItem label="Parent Item" itemId="parent" testId="parent">
+            <TreeItem label="Child Item" itemId="child" testId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const parentItem = getByTestId('parent-label');
+      await userEvent.click(parentItem);
+
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        {
+          itemId: 'parent',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+      ]);
+    });
+
+    it('should prevent parent items from being selected when selectParents is false', async () => {
+      const onSelectedItemChange = jest.fn();
+
+      const { getByTestId } = render(
+        <TreeView
+          ariaLabel="TreeView"
+          selectable={TreeViewSelectable.single}
+          selectParents={false}
+          onSelectedItemChange={onSelectedItemChange}
+        >
+          <TreeItem label="Parent Item" itemId="parent" testId="parent">
+            <TreeItem label="Child Item" itemId="child" testId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const parentItem = getByTestId('parent-label');
+      await userEvent.click(parentItem);
+
+      expect(onSelectedItemChange).not.toHaveBeenCalled();
+
+      const parentElement = getByTestId('parent');
+      expect(parentElement).toHaveAttribute('aria-selected', 'false');
+
+      expect(parentElement).toHaveAttribute('aria-expanded', 'true');
+    });
+
+    it('should allow child items to be selected when selectParents is false', async () => {
+      const onSelectedItemChange = jest.fn();
+      const onChildClick = jest.fn();
+
+      const { getByTestId } = render(
+        <TreeView
+          ariaLabel="TreeView"
+          selectable={TreeViewSelectable.single}
+          selectParents={false}
+          onSelectedItemChange={onSelectedItemChange}
+          initialExpandedItems={['parent']}
+        >
+          <TreeItem label="Parent Item" itemId="parent" testId="parent">
+            <TreeItem
+              label="Child Item"
+              itemId="child"
+              testId="child"
+              onClick={onChildClick}
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const childItem = getByTestId('child-label');
+      await userEvent.click(childItem);
+
+      expect(onSelectedItemChange).toHaveBeenCalledWith([
+        { itemId: 'child', checkedStatus: IndeterminateCheckboxStatus.checked },
+      ]);
+      expect(onChildClick).toHaveBeenCalled();
+    });
+
+    it('should handle keyboard navigation correctly with selectParents false', async () => {
+      const onSelectedItemChange = jest.fn();
+
+      const { getByTestId } = render(
+        <TreeView
+          ariaLabel="TreeView"
+          selectable={TreeViewSelectable.single}
+          selectParents={false}
+          onSelectedItemChange={onSelectedItemChange}
+          initialExpandedItems={['parent']}
+        >
+          <TreeItem label="Parent Item" itemId="parent" testId="parent">
+            <TreeItem label="Child Item" itemId="child" testId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const parentItem = getByTestId('parent');
+
+      parentItem.focus();
+      await userEvent.keyboard('{Enter}');
+
+      expect(onSelectedItemChange).not.toHaveBeenCalled();
+      expect(parentItem).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    it('should work correctly with multi-select mode (selectParents should only affect single-select)', async () => {
+      const onSelectedItemChange = jest.fn();
+
+      const { getByTestId } = render(
+        <TreeView
+          ariaLabel="TreeView"
+          selectable={TreeViewSelectable.multi}
+          selectParents={false}
+          onSelectedItemChange={onSelectedItemChange}
+        >
+          <TreeItem label="Parent Item" itemId="parent" testId="parent">
+            <TreeItem label="Child Item" itemId="child" testId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const parentCheckbox = getByTestId('parent-checkbox');
+      await userEvent.click(parentCheckbox);
+
+      expect(onSelectedItemChange).toHaveBeenCalled();
+    });
+  });
+
   describe('Dynamically updating tree', () => {
     it('should update when children are dynamically rendered inside an empty parent', async () => {
       const DynamicChildrenTest = () => {

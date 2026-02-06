@@ -268,8 +268,13 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     // Consume split contexts for reduced re-render scope
     const { itemToFocus } = React.useContext(TreeViewSelectionContext);
     const { handleExpandedChange } = React.useContext(TreeViewExpansionContext);
-    const { expandIconStyles, hasIcons, isTopLevelSelectable, selectable } =
-      React.useContext(TreeViewConfigContext);
+    const {
+      expandIconStyles,
+      hasIcons,
+      isTopLevelSelectable,
+      selectable,
+      selectParents = true,
+    } = React.useContext(TreeViewConfigContext);
 
     // Pass the resolved values to useTreeItem
     const propsWithHierarchy = {
@@ -403,30 +408,6 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       [isInsideTreeItem]
     );
 
-    const handleOnClick = (event: React.MouseEvent) => {
-      if (isDisabled) {
-        event.stopPropagation();
-
-        return;
-      }
-
-      const currentElement = event.target as HTMLElement;
-      const interactiveElement = currentElement.closest<HTMLElement>(
-        'button, [role="button"], a[href], input, select, textarea, [role="menuitem"]'
-      );
-
-      // Preventing selecting the item when clicking on interactive elements when `selectable` is `single`
-      if (interactiveElement) {
-        event.stopPropagation();
-
-        return;
-      }
-
-      if (selectable === TreeViewSelectable.single) {
-        handleClick(event, itemId);
-      }
-    };
-
     const defaultIcon =
       nodeType === TreeNodeType.branch ? (
         <FolderIcon aria-hidden />
@@ -507,6 +488,7 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const onExpandedClicked = React.useCallback(
       (event: React.SyntheticEvent) => {
         event.preventDefault();
+        event.stopPropagation();
 
         handleExpandedChange(event, itemId);
       },
@@ -516,11 +498,52 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const handleExpandClick = React.useCallback(
       (event: React.SyntheticEvent) => {
         if (!isDisabled) {
+          event.preventDefault();
+          event.stopPropagation();
+
           onExpandedClicked(event);
         }
       },
       [isDisabled, onExpandedClicked]
     );
+
+    const handleOnClick = (event: React.MouseEvent) => {
+      if (isDisabled) {
+        event.stopPropagation();
+
+        return;
+      }
+
+      const currentElement = event.target as HTMLElement;
+      const interactiveElement = currentElement.closest<HTMLElement>(
+        'button, [role="button"], a[href], input, select, textarea, [role="menuitem"]'
+      );
+
+      // Preventing selecting the item when clicking on interactive elements when `selectable` is `single`
+      if (interactiveElement) {
+        event.stopPropagation();
+
+        return;
+      }
+
+      // If selectParents is false and this is a parent item, handle expand/collapse instead of selection
+      if (
+        selectable === TreeViewSelectable.single &&
+        !selectParents &&
+        hasOwnTreeItems
+      ) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        onExpandedClicked(event);
+
+        return;
+      }
+
+      if (selectable === TreeViewSelectable.single) {
+        handleClick(event, itemId);
+      }
+    };
 
     const tabIndex = React.useMemo(() => {
       if (isDisabled) {
