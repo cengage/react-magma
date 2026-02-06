@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.44
+
+### Patch Changes
+
+- 037f739: fix(DatePicker): Update aria-label for calendar widget. Add announcing tooltip content for calendar widget button.
+
 ## 5.1.0-rc.43
 
 ### Patch Changes
