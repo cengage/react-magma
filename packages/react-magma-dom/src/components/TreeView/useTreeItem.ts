@@ -109,6 +109,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     selectable,
     treeItemRefArray,
     isTopLevelSelectable,
+    selectParents = true,
   } = React.useContext(TreeViewConfigContext);
 
   const treeViewItemData = React.useMemo(() => {
@@ -184,6 +185,15 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
       selectable === TreeViewSelectable.multi &&
       topLevel &&
       !isTopLevelSelectable
+    ) {
+      return;
+    }
+
+    // If selectParents is false and this is a parent item (has children), skip selection logic and onClick
+    if (
+      selectable === TreeViewSelectable.single &&
+      !selectParents &&
+      hasOwnTreeItems
     ) {
       return;
     }
@@ -401,6 +411,21 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
           break;
         }
 
+        // If selectParents is false and this is a parent item, only toggle expand (no selection)
+        if (
+          selectable === TreeViewSelectable.single &&
+          !selectParents &&
+          hasOwnTreeItems
+        ) {
+          if (expanded) {
+            collapseFocusedNode(event);
+          } else {
+            expandFocusedNode(event);
+          }
+
+          break;
+        }
+
         if (selectable === TreeViewSelectable.single) {
           if (isChecked) {
             return;
@@ -445,6 +470,21 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
               expandFocusedNode(event);
             }
           }
+          break;
+        }
+
+        // If selectParents is false and this is a parent item, only toggle expand (no selection)
+        if (
+          selectable === TreeViewSelectable.single &&
+          !selectParents &&
+          hasOwnTreeItems
+        ) {
+          if (expanded) {
+            collapseFocusedNode(event);
+          } else {
+            expandFocusedNode(event);
+          }
+
           break;
         }
 

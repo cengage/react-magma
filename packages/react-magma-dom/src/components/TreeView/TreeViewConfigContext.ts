@@ -14,6 +14,7 @@ export interface TreeViewConfigContextInterface {
   checkParents: boolean;
   checkChildren: boolean;
   isTopLevelSelectable?: boolean;
+  selectParents?: boolean;
   expandIconStyles?: ExpandIconInterface;
   registerTreeItem: (
     itemRefArray: React.MutableRefObject<React.MutableRefObject<Element>[]>,
@@ -29,6 +30,7 @@ export const TreeViewConfigContext =
     checkParents: true,
     checkChildren: true,
     isTopLevelSelectable: true,
+    selectParents: true,
     registerTreeItem: (elements, element) => {},
     expandIconStyles: {
       size: magma.iconSizes.medium,

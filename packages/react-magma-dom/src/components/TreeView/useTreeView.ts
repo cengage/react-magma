@@ -120,6 +120,13 @@ export interface UseTreeViewProps {
    */
   selectable?: TreeViewSelectable;
   /**
+   * When enabled (default), parent items (folders) can be selected in TreeViewSelectable.single mode.
+   * When disabled, parent items will only expand/collapse on click and won't trigger selection or onClick.
+   * Child items (leaves) can always be selected regardless of this setting.
+   * @default true
+   */
+  selectParents?: boolean;
+  /**
    * @internal
    */
   testId?: string;
@@ -151,6 +158,7 @@ export function useTreeView(props: UseTreeViewProps) {
     isDisabled,
     isTopLevelSelectable = true,
     expandIconStyles,
+    selectParents = true,
   } = props;
 
   const hasPreselectedItems = Boolean(preselectedItems);
@@ -617,6 +625,7 @@ export function useTreeView(props: UseTreeViewProps) {
       checkParents,
       checkChildren,
       isTopLevelSelectable,
+      selectParents,
       expandIconStyles,
       registerTreeItem,
       treeItemRefArray,
@@ -627,6 +636,7 @@ export function useTreeView(props: UseTreeViewProps) {
       checkParents,
       checkChildren,
       isTopLevelSelectable,
+      selectParents,
       expandIconStyles,
       registerTreeItem,
       treeItemRefArray,
