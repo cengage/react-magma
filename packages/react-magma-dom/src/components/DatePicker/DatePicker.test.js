@@ -774,7 +774,7 @@ describe('Date Picker', () => {
     });
 
     it('ArrowUp', () => {
-      const defaultDate = new Date();
+      const defaultDate = new Date(2019, 0, 17);
       const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );
