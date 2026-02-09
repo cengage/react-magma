@@ -131,6 +131,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
           {...getMenuProps()}
           maxHeight={heightString}
           role="listbox"
+          onMouseLeave={() => {}}
         >
           {isOpen && hasItems ? (
             items.map((item, index) => {
