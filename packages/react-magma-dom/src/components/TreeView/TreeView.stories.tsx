@@ -112,6 +112,10 @@ export default {
       control: 'boolean',
       defaultValue: true,
     },
+    selectParents: {
+      control: 'boolean',
+      defaultValue: true,
+    },
     enableVirtualization: {
       control: 'boolean',
       defaultValue: false,
@@ -3638,5 +3642,119 @@ export const VirtualizedLargeTree = {
     isDisabled: false,
     testId: 'virtualized-tree-example',
     enableVirtualization: true,
+  },
+};
+
+export const SelectChildrenOnly = {
+  render: (args: TreeViewProps) => {
+    const [selectedItems, setSelectedItems] = React.useState<
+      TreeItemSelectedInterface[]
+    >([]);
+
+    function handleSelectedItemChange(items: TreeItemSelectedInterface[]) {
+      setSelectedItems(items);
+    }
+
+    const { selected } = createTags(selectedItems);
+
+    return (
+      <Card>
+        <Flex behavior={FlexBehavior.container}>
+          <Paragraph visualStyle={TypographyVisualStyle.headingSmall}>
+            Select Children Only (selectParents = false)
+          </Paragraph>
+          <Paragraph>
+            In this example, folders (parent items) can only be
+            expanded/collapsed. Only files (child items) can be selected. Click
+            anywhere on a folder to expand/collapse it.
+          </Paragraph>
+          <Spacer axis={SpacerAxis.horizontal} size={8} />
+          {selected && selected?.length > 0 && (
+            <>
+              <Paragraph
+                visualStyle={TypographyVisualStyle.bodyMedium}
+                color={TypographyColor.subdued}
+              >
+                Selected Files:
+              </Paragraph>
+              <Flex behavior={FlexBehavior.container} wrap={FlexWrap.wrap}>
+                {selected}
+              </Flex>
+              <Spacer axis={SpacerAxis.horizontal} size={8} />
+            </>
+          )}
+        </Flex>
+        <TreeView
+          {...args}
+          selectable={TreeViewSelectable.single}
+          selectParents={false}
+          onSelectedItemChange={handleSelectedItemChange}
+          ariaLabel="File browser example"
+          initialExpandedItems={['documents']}
+        >
+          <TreeItem label="Documents" itemId="documents" icon={<FolderIcon />}>
+            <TreeItem label="Projects" itemId="projects" icon={<FolderIcon />}>
+              <TreeItem
+                label="Project A"
+                itemId="project-a"
+                icon={<FolderIcon />}
+              >
+                <TreeItem
+                  label="README.md"
+                  itemId="readme"
+                  icon={<ArticleIcon />}
+                />
+                <TreeItem
+                  label="package.json"
+                  itemId="package"
+                  icon={<ArticleIcon />}
+                />
+              </TreeItem>
+              <TreeItem
+                label="Project B"
+                itemId="project-b"
+                icon={<FolderIcon />}
+              >
+                <TreeItem
+                  label="index.html"
+                  itemId="index"
+                  icon={<ArticleIcon />}
+                />
+                <TreeItem
+                  label="styles.css"
+                  itemId="styles"
+                  icon={<ArticleIcon />}
+                />
+              </TreeItem>
+            </TreeItem>
+            <TreeItem label="Images" itemId="images" icon={<FolderIcon />} o>
+              <TreeItem label="logo.png" itemId="logo" icon={<ArticleIcon />} />
+              <TreeItem
+                label="banner.jpg"
+                itemId="banner"
+                icon={<ArticleIcon />}
+              />
+            </TreeItem>
+          </TreeItem>
+          <TreeItem label="Downloads" itemId="downloads" icon={<FolderIcon />}>
+            <TreeItem
+              label="document.pdf"
+              itemId="document"
+              icon={<ArticleIcon />}
+            />
+            <TreeItem
+              label="archive.zip"
+              itemId="archive"
+              icon={<ArticleIcon />}
+            />
+          </TreeItem>
+        </TreeView>
+      </Card>
+    );
+  },
+
+  args: {
+    selectable: TreeViewSelectable.single,
+    selectParents: false,
   },
 };

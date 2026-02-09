@@ -1,5 +1,47 @@
 ## 4.10.1
 
+## 4.11.0-next.51
+
+### Minor Changes
+
+- ba77ecb36: feat(TreeView): create `selectParents` prop (`true` by default)
+
+## 4.11.0-next.50
+
+### Patch Changes
+
+- 88c326b84: fix(DatePicker): Update aria-label for calendar widget. Add announcing tooltip content for calendar widget button.
+
+## 4.11.0-next.49
+
+### Minor Changes
+
+- c5373ff4c: feat(Popover): Add `isFullWidth` prop to allow the trigger button and content to expand to 100% width.
+
+## 4.11.0-next.48
+
+### Patch Changes
+
+- 0f9739337: fix(Combobox): Fix issue when NVDA doesn't read placeholder.
+
+## 4.11.0-next.47
+
+### Patch Changes
+
+- 7222641f6: fix(Breadcrumb): Fix bug when last item was link and had focus
+
+## 4.11.0-next.46
+
+### Patch Changes
+
+- b07cd9815: fix(Select): add announcement to `expanded`/`collapsed` state of `Select`.
+
+## 4.11.0-next.45
+
+### Patch Changes
+
+- 6872e276e: fix(DatePicker): Improve updating values in input when `isDateFieldInput=true`
+
 ## 4.11.0-next.44
 
 ### Patch Changes

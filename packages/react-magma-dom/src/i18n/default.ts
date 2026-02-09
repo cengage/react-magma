@@ -124,7 +124,7 @@ export const defaultI18n: I18nInterface = {
     year: 'Year',
     helpModal: {
       header: 'Keyboard Shortcuts',
-      helpButtonAriaLabel: 'Calendar Widget Help',
+      helpButtonAriaLabel: 'Keyboard instructions for calendar widget',
       enter: {
         ariaLabel: 'Enter key',
         explanation: 'Select the date in focus.',
@@ -266,6 +266,8 @@ export const defaultI18n: I18nInterface = {
     placeholder: 'Select...',
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
+    expandedAnnounce: '{labelText} list expanded',
+    collapsedAnnounce: '{labelText} list collapsed',
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',

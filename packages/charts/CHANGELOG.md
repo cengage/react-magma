@@ -1,5 +1,17 @@
 # @react-magma/charts
 
+## 13.0.0-next.3
+
+### Patch Changes
+
+- 56f42285f: fix(Charts): Fix magma styles not applied to carbon charts.
+
+## 13.0.0-next.2
+
+### Patch Changes
+
+- 7ef18e684: fix(Charts): Fix magma styles not applied to carbon charts.
+
 ## 13.0.0-next.1
 
 ### Patch Changes

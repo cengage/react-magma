@@ -3,6 +3,8 @@ import * as React from 'react';
 import { enUS } from 'date-fns/locale';
 import { isEmpty } from 'lodash';
 
+import { MAX_YEAR, MIN_YEAR } from '../utils';
+
 export interface UseDateFieldProps {
   dateFormat: string;
 }
@@ -42,10 +44,20 @@ export function useDateField(props: UseDateFieldProps) {
     setMonthTypingBuffer('');
   };
 
-  const formatWithLeadingZero = (value: number, maxValue?: number): string => {
+  const formatWithLeadingZero = (
+    value: number,
+    maxValue?: number,
+    isYearField?: boolean
+  ): string => {
+    if (isYearField) {
+      return String(value).padStart(4, '0');
+    }
+
     if (value < 10) {
       return `0${value}`;
-    } else if (maxValue && value > maxValue) {
+    }
+
+    if (maxValue && value > maxValue) {
       return `0${String(value).substring(0, 1)}`;
     }
 
@@ -61,44 +73,46 @@ export function useDateField(props: UseDateFieldProps) {
     return daysInMonth;
   };
 
+  const sanitizeInputValue = (input: string): string => {
+    return input.replace(/\s/g, '');
+  };
+
   const sanitizeMonth = (
     newMonth: string,
     hasMonthLongFormat?: boolean
   ): number => {
-    const monthNum = Number(newMonth);
+    const cleanedMonth = sanitizeInputValue(newMonth);
+    const monthNum = Number(cleanedMonth);
 
     if (monthNum > 12) {
-      return Number(newMonth.slice(hasMonthLongFormat ? 1 : 2));
+      return Number(cleanedMonth.slice(hasMonthLongFormat ? 1 : 2));
     }
-    if (monthNum < 1) {
-      return 1;
-    }
-    if (newMonth.length > 2) {
-      return Number(newMonth.slice(-2));
+    if (cleanedMonth.length > 2) {
+      return Number(cleanedMonth.slice(-2));
     }
 
     return monthNum;
   };
 
   const sanitizeDay = (newDay: string, daysInMonth: number): string => {
-    const dayNum = Number(newDay);
+    const cleanedDay = sanitizeInputValue(newDay);
+    const dayNum = Number(cleanedDay);
 
     if (dayNum > daysInMonth) {
-      return newDay.slice(2);
+      return cleanedDay.slice(2);
+    }
+    if (cleanedDay.length > 2) {
+      return cleanedDay.slice(-2);
     }
 
-    if (newDay.length > 2) {
-      return newDay.slice(-2);
-    }
-
-    return newDay;
+    return cleanedDay;
   };
 
   const sanitizeYear = (newYear: string): number => {
     const yearNum = Number(newYear);
 
-    if (newYear.length > 4) {
-      return Number(newYear.slice(-4));
+    if (yearNum.toString().length > 4) {
+      return Number(newYear.slice(-1));
     }
 
     return yearNum;
@@ -191,7 +205,7 @@ export function useDateField(props: UseDateFieldProps) {
   const handleYearChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const sanitizedYear = sanitizeYear(event.target.value);
 
-    setYearValue(formatWithLeadingZero(sanitizedYear));
+    setYearValue(formatWithLeadingZero(sanitizedYear, undefined, true));
   };
 
   const changeDay = (direction: ChangeDirection) => {
@@ -263,9 +277,9 @@ export function useDateField(props: UseDateFieldProps) {
       const currentYear = Number(year);
 
       if (direction === ChangeDirection.Increment) {
-        newYear = Math.min(2099, currentYear + 1);
+        newYear = Math.min(MAX_YEAR, currentYear + 1);
       } else {
-        newYear = Math.max(1900, currentYear - 1);
+        newYear = Math.max(MIN_YEAR, currentYear - 1);
       }
     }
 

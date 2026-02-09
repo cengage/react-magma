@@ -220,33 +220,33 @@ const CarbonChartWrapper = styled.div<{
     }
     .cds--cc--scatter circle.dot {
       filter: drop-shadow(
-            1px 0px 0px
-              ${props =>
-                props.isInverse
-                  ? props.theme.colors.primary600
-                  : props.theme.colors.neutral100}
-          )
-          drop-shadow(
-            -1px 0px 0px
-              ${props =>
-                props.isInverse
-                  ? props.theme.colors.primary600
-                  : props.theme.colors.neutral100}
-          )
-          drop-shadow(
-            0px 1px 0px
-              ${props =>
-                props.isInverse
-                  ? props.theme.colors.primary600
-                  : props.theme.colors.neutral100}
-          )
-          drop-shadow(
-            0px -1px 0px
-              ${props =>
-                props.isInverse
-                  ? props.theme.colors.primary600
-                  : props.theme.colors.neutral100}
-          );
+          1px 0px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          -1px 0px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          0px 1px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          0px -1px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        );
     }
     .cds--cc--scatter circle.dot.hovered {
       stroke-width: 0.5em;
@@ -326,22 +326,23 @@ const CarbonChartWrapper = styled.div<{
       transition: 0.1s all linear;
       stroke-width: 1.1em;
     }
-    
+
     .cds--cc--tooltip {
-    ${props => {
-      const chartColors =
-        (props.isInverse
-          ? props.theme.chartColorsInverse
-          : props.theme.chartColors) || [];
+      ${props => {
+        const chartColors =
+          (props.isInverse
+            ? props.theme.chartColorsInverse
+            : props.theme.chartColors) || [];
 
-      return chartColors.reduce((result, color, index) => {
-        const indexNum = index + 1;
+        return chartColors.reduce((result, color, index) => {
+          const indexNum = index + 1;
 
-        result += `.tooltip-${props.groupsLength}-1-${indexNum} { background-color: ${color}; }`;
+          result += `.tooltip-${props.groupsLength}-1-${indexNum} { background-color: ${color}; }`;
 
-        return result;
-      }, '');
-    }}
+          return result;
+        }, '');
+      }}
+    }
 
     .cds--overflow-menu-options__btn:focus {
       outline-color: ${props =>

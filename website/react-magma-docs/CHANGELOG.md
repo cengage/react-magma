@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0-next.16
+
+### Patch Changes
+
+- e9f92e19d: fix(Progress Bar & Radio Button & Native Select & Spinner): Fix various accessibility issues in example components.
+
 ## 5.3.0-next.15
 
 ### Patch Changes
