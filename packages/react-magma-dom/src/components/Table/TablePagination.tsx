@@ -17,7 +17,6 @@ import { IconButton } from '../IconButton';
 import { Label } from '../Label';
 import { NativeSelect } from '../NativeSelect';
 import { usePagination } from '../Pagination/usePagination';
-import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface BaseTablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -239,9 +238,6 @@ export const TablePagination = React.forwardRef<
     default: defaultRowsPerPage,
   });
 
-  const [announcement, setAnnouncement] = React.useState('');
-  const previousPageRef = React.useRef<number | null>(null);
-
   React.useEffect(() => {
     const checkedRowsPerPage = rowsPerPageProp
       ? rowsPerPageProp
@@ -267,29 +263,16 @@ export const TablePagination = React.forwardRef<
   const displayPageStart = (page - 1) * rowsPerPage + 1;
   const displayPageEnd = isLastPage ? itemCount : page * rowsPerPage;
 
-  React.useEffect(() => {
-    if (previousPageRef.current !== null && previousPageRef.current !== page) {
-      setAnnouncement(
-        `Page changed: ${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`
-      );
-    }
-    previousPageRef.current = page;
-  }, [
-    page,
-    displayPageStart,
-    displayPageEnd,
-    itemCount,
-    i18n.table.pagination.ofLabel,
-  ]);
-
   function handleRowsPerPageChange(value) {
+    // Always reset page to 1 when rows per page changes
     if (!pageProp) {
       setPageState(1);
-
-      onPageChange &&
-        typeof onPageChange === 'function' &&
-        onPageChange({} as React.SyntheticEvent, 1);
     }
+
+    // Always notify parent to reset page, even if controlled
+    onPageChange &&
+      typeof onPageChange === 'function' &&
+      onPageChange({} as React.SyntheticEvent, 1);
 
     if (!rowsPerPageProp) {
       setRowsPerPageState(value);
@@ -320,15 +303,15 @@ export const TablePagination = React.forwardRef<
         />
       )}
 
-      <PageCount isInverse={isInverse} theme={theme} testId="page-count">
+      <PageCount
+        isInverse={isInverse}
+        theme={theme}
+        testId="page-count"
+        aria-live="polite"
+        aria-atomic="true"
+      >
         {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}
       </PageCount>
-
-      {announcement && (
-        <VisuallyHidden aria-live="polite" aria-atomic="true">
-          {announcement}
-        </VisuallyHidden>
-      )}
 
       <ButtonGroup alignment={ButtonGroupAlignment.center}>
         <IconButton

@@ -5,7 +5,6 @@ import { transparentize } from 'polished';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { hasActiveElementsChecker } from '../Popover';
 import { headingMediumStyles } from '../Typography';
 
 /**
@@ -152,6 +151,15 @@ export const TableWrapper = styled.div<{ minWidth: number }>`
   @container tableContainer (max-width: ${props => props.minWidth}px) {
     overflow: auto;
   }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${props => props.theme.colors.focus};
+    outline-offset: 2px;
+  }
 `;
 
 export const StyledTableTitle = styled.caption<{
@@ -227,46 +235,34 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       ...other
     } = props;
 
-    const [hasActiveElements, setHasActiveElements] = React.useState(false);
     const [isScrollable, setIsScrollable] = React.useState(false);
 
     const theme = React.useContext(ThemeContext);
 
     const isInverse = useIsInverse(props.isInverse);
 
-    const tableWrapperRef = React.useRef<HTMLTableElement>(null);
+    const tableWrapperRef = React.useRef<HTMLDivElement>(null);
 
     const tableWrapper = `table-wrapper-${testId}`;
 
-    // - scrollable table, no interactive elements: needs tabIndex=0 and should get focused when navigating the page
-    // - scrollable, with interactive elements: no tabIndex needs to be set
-    // - non-scrollable, no interactive elements: no tabIndex needs to be set and should not get focus when navigating a page
-    // - non-scrollable, with interactive elements: no tabIndex needs to be set and should not get focus when navigating a page
+    // Scrollable tables get tabindex="0" so keyboard users can scroll with arrow keys.
+    // Non-scrollable tables don't need tabindex - users navigate through interactive elements or browse mode.
     React.useEffect(() => {
       const checkScrollability = () => {
         if (tableWrapperRef.current) {
           const element = tableWrapperRef.current;
           const isHorizontallyScrollable =
             element.scrollWidth > element.clientWidth;
-
           setIsScrollable(isHorizontallyScrollable);
         }
       };
 
-      const updateActiveElements = () => {
-        const updatedHasActiveElements =
-          hasActiveElementsChecker(tableWrapperRef);
-
-        setHasActiveElements(updatedHasActiveElements);
-      };
-
       checkScrollability();
-      updateActiveElements();
 
-      let resizeObserver: any = null;
+      let resizeObserver: ResizeObserver | null = null;
 
       if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
-        resizeObserver = new (window as any).ResizeObserver(() => {
+        resizeObserver = new ResizeObserver(() => {
           checkScrollability();
         });
 
@@ -282,15 +278,13 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       };
     }, [children]);
 
-    const shouldHaveTabIndex = isScrollable && !hasActiveElements;
-    const ariaLabelValue =
-      shouldHaveTabIndex && typeof tableTitle === 'string'
-        ? tableTitle
-        : undefined;
-    const ariaLabelledbyValue =
-      shouldHaveTabIndex && typeof tableTitle !== 'string' && tableTitle
-        ? `${testId}-table-title`
-        : undefined;
+    const getScrollableAriaLabel = () => {
+      if (!isScrollable) return undefined;
+      if (typeof tableTitle === 'string') {
+        return `${tableTitle} (scrollable)`;
+      }
+      return 'Scrollable table';
+    };
 
     return (
       <TableContext.Provider
@@ -315,12 +309,11 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
         >
           <TableWrapper
             minWidth={minWidth}
-            tabIndex={shouldHaveTabIndex ? 0 : undefined}
             ref={tableWrapperRef}
-            role={shouldHaveTabIndex ? 'group' : undefined}
-            aria-label={ariaLabelValue}
-            aria-labelledby={ariaLabelledbyValue}
-            aria-live="off"
+            tabIndex={isScrollable ? 0 : undefined}
+            role={isScrollable ? 'region' : undefined}
+            aria-label={getScrollableAriaLabel()}
+            theme={theme}
           >
             <StyledTable
               {...other}
@@ -336,6 +329,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
               {tableTitle && (
                 <StyledTableTitle
                   data-testid={`${testId}-table-title`}
+                  id={`${testId}-table-title`}
                   isInverse={isInverse}
                   isTitleNode={typeof tableTitle !== 'string'}
                   theme={theme}
