@@ -209,6 +209,8 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
     </Th>
   ));
 
+  const tooltipContent = 'Keyboard instructions';
+
   return (
     <>
       <CalendarContainer
@@ -257,15 +259,15 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             </Table>
             {props.dateTimePickerContent && props.dateTimePickerContent}
             <HeaderWrapper theme={theme} isInverse={context.isInverse}>
-              <HelperButton theme={theme}>
-                <Tooltip
-                  content={'Keyboard instructions'}
-                  tooltipStyle={{ position: 'fixed' }}
-                >
+              <Tooltip
+                content={tooltipContent}
+                tooltipStyle={{ position: 'fixed' }}
+              >
+                <HelperButton theme={theme}>
                   <IconButton
                     color={ButtonColor.subtle}
                     ref={helperButtonRef}
-                    aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
+                    aria-label={`${i18n.datePicker.helpModal.helpButtonAriaLabel} ${tooltipContent}`}
                     icon={<KeyboardIcon />}
                     onClick={context.showHelperInformation}
                     onFocus={turnOffDateFocused}
@@ -277,8 +279,8 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                         : theme.colors.neutral900,
                     }}
                   />
-                </Tooltip>
-              </HelperButton>
+                </HelperButton>
+              </Tooltip>
               <TodayWrapper
                 data-testid="todayWrapper"
                 isInverse={context.isInverse}
