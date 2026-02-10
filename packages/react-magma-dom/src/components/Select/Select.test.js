@@ -532,7 +532,6 @@ describe('Select', () => {
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
     await userEvent.click(renderedSelect);
-    await userEvent.keyboard('{ArrowDown}');
     expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
 
     await userEvent.keyboard('{ArrowDown}');
