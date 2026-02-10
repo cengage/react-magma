@@ -1,5 +1,12 @@
 ## 4.10.0
 
+## 5.1.0-rc.47
+
+### Patch Changes
+
+- 70feb95: fix(DatePicker): Update announcing tooltip logic.
+- c0c2903: fix(Treeview): Update storybook example.
+
 ## 5.1.0-rc.46
 
 ### Minor Changes

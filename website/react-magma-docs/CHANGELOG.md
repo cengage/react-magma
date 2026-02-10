@@ -1,5 +1,16 @@
 # Change Log
 
+## 7.0.0-rc.16
+
+### Patch Changes
+
+- 7c8c1ea: chore: update storybook to v10
+- Updated dependencies [70feb95]
+- Updated dependencies [c0c2903]
+- Updated dependencies [7c8c1ea]
+  - react-magma-dom@5.1.0-rc.47
+  - @react-magma/charts@14.0.0-rc.2
+
 ## 7.0.0-rc.15
 
 ### Patch Changes
