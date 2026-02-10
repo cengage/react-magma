@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.52
+
+### Patch Changes
+
+- beb4ca17c: fix(Treeview): Update storybook example.
+
 ## 4.11.0-next.51
 
 ### Minor Changes

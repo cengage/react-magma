@@ -68,6 +68,7 @@
     "fix-Treeview-fix-virtulization-height",
     "fix-Treeview-fix-virtulization-styling",
     "fix-Treeview-showing-inner-content",
+    "fix-Treeview-update-storybook-example",
     "fix-banner-additional-docs-fix",
     "fix-charts-styles",
     "fix-datagrid-sortable-html",
