@@ -125,6 +125,7 @@ export const defaultI18n: I18nInterface = {
     helpModal: {
       header: 'Keyboard Shortcuts',
       helpButtonAriaLabel: 'Keyboard instructions for calendar widget',
+      tooltipContent: 'Keyboard instructions',
       enter: {
         ariaLabel: 'Enter key',
         explanation: 'Select the date in focus.',

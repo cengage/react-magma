@@ -7,6 +7,9 @@ import { CalendarContext } from './CalendarContext';
 import { CalendarMonth } from './CalendarMonth';
 import { getCalendarMonthWeeks } from './utils';
 
+const keyBoardInstructionsText =
+  'Keyboard instructions for calendar widget Keyboard instructions';
+
 describe('Calendar Month', () => {
   describe('focus trap', () => {
     it('should handle tab and loop it through the calendar month', async () => {
@@ -54,7 +57,7 @@ describe('Calendar Month', () => {
       expect(getByText('18')).toHaveFocus();
       await userEvent.tab();
       expect(
-        getByLabelText(/Keyboard instructions for calendar widget/i)
+        getByLabelText(new RegExp(keyBoardInstructionsText, 'i'))
       ).toHaveFocus();
       await userEvent.tab();
       expect(getByLabelText(/Navigate to current/i)).toHaveFocus();
@@ -136,7 +139,7 @@ describe('Calendar Month', () => {
 
       await userEvent.tab({ shift: true });
       expect(
-        getByLabelText(/Keyboard instructions for calendar widget/i)
+        getByLabelText(new RegExp(keyBoardInstructionsText, 'i'))
       ).toHaveFocus();
 
       await userEvent.tab({ shift: true });
@@ -180,7 +183,7 @@ describe('Calendar Month', () => {
     );
 
     await userEvent.click(
-      getByLabelText('Keyboard instructions for calendar widget')
+      getByLabelText(new RegExp(keyBoardInstructionsText, 'i'))
     );
 
     expect(showHelperInformation).toHaveBeenCalled();
@@ -230,7 +233,7 @@ describe('Calendar Month', () => {
     );
 
     act(() => {
-      getByLabelText('Keyboard instructions for calendar widget').focus();
+      getByLabelText(new RegExp(keyBoardInstructionsText, 'i')).focus();
     });
 
     expect(setDateFocused).toHaveBeenCalledWith(false);
