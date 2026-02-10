@@ -133,6 +133,7 @@ export interface I18nInterface {
     helpModal: {
       header: string;
       helpButtonAriaLabel: string;
+      tooltipContent: string;
       enter: {
         ariaLabel: string;
         explanation: string;

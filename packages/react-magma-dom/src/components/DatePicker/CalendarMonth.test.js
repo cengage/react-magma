@@ -17,6 +17,9 @@ describe('Calendar Month', () => {
     jest.resetAllMocks();
   });
 
+  const keyBoardInstructionsText =
+    'Keyboard instructions for calendar widget Keyboard instructions';
+
   describe('focus trap', () => {
     it('should handle tab and loop it through the calendar month', () => {
       const focusedDate = new Date(2019, 0, 18);
@@ -63,7 +66,7 @@ describe('Calendar Month', () => {
       expect(getByText('18')).toHaveFocus();
       userEvent.tab();
       expect(
-        getByLabelText(/Keyboard instructions for calendar widget/i)
+        getByLabelText(new RegExp(keyBoardInstructionsText, 'i'))
       ).toHaveFocus();
       userEvent.tab();
       expect(getByLabelText(/Navigate to current/i)).toHaveFocus();
@@ -146,7 +149,7 @@ describe('Calendar Month', () => {
 
       userEvent.tab({ shift: true });
       expect(
-        getByLabelText(/Keyboard instructions for calendar widget/i)
+        getByLabelText(new RegExp(keyBoardInstructionsText, 'i'))
       ).toHaveFocus();
 
       userEvent.tab({ shift: true });
@@ -189,9 +192,7 @@ describe('Calendar Month', () => {
       </CalendarContext.Provider>
     );
 
-    userEvent.click(
-      getByLabelText(/Keyboard instructions for calendar widget/i)
-    );
+    userEvent.click(getByLabelText(new RegExp(keyBoardInstructionsText, 'i')));
 
     expect(showHelperInformation).toHaveBeenCalled();
   });
@@ -239,7 +240,7 @@ describe('Calendar Month', () => {
       </CalendarContext.Provider>
     );
 
-    getByLabelText('Keyboard instructions for calendar widget').focus();
+    getByLabelText(new RegExp(keyBoardInstructionsText, 'i')).focus();
 
     expect(setDateFocused).toHaveBeenCalledWith(false);
   });
