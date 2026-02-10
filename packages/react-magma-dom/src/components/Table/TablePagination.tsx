@@ -139,7 +139,11 @@ const StyledContainer = styled.div<{
 
 const PageCount = styled(Label)<{ theme: ThemeInterface }>`
   margin: 0 ${props => props.theme.spaceScale.spacing08};
-`;
+` as React.ComponentType<
+  React.ComponentProps<typeof Label> & {
+    'aria-live'?: 'polite' | 'assertive' | 'off';
+  }
+>;
 
 const RowsPerPageLabel = styled.span<{
   isInverse?: boolean;
@@ -260,13 +264,15 @@ export const TablePagination = React.forwardRef<
   const displayPageEnd = isLastPage ? itemCount : page * rowsPerPage;
 
   function handleRowsPerPageChange(value) {
+    // Always reset page to 1 when rows per page changes
     if (!pageProp) {
       setPageState(1);
-
-      onPageChange &&
-        typeof onPageChange === 'function' &&
-        onPageChange({} as React.SyntheticEvent, 1);
     }
+
+    // Always notify parent to reset page, even if controlled
+    onPageChange &&
+      typeof onPageChange === 'function' &&
+      onPageChange({} as React.SyntheticEvent, 1);
 
     if (!rowsPerPageProp) {
       setRowsPerPageState(value);
@@ -297,7 +303,13 @@ export const TablePagination = React.forwardRef<
         />
       )}
 
-      <PageCount isInverse={isInverse} theme={theme}>
+      <PageCount
+        isInverse={isInverse}
+        theme={theme}
+        testId="page-count"
+        aria-live="polite"
+        aria-atomic="true"
+      >
         {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}
       </PageCount>
 
