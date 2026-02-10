@@ -55,6 +55,7 @@
     "fix-RadioButton-label-is-not-annouced-with-helper-message",
     "fix-Select-disabled-item",
     "fix-Select-expanded-collapsed-announced-state",
+    "fix-Select-focus-border",
     "fix-Select-scrollbar-issue",
     "fix-Table-tabIndex-logic",
     "fix-Tag-fix-aria-label",
