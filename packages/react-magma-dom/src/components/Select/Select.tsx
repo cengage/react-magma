@@ -104,6 +104,15 @@ export function Select<T>(props: SelectProps<T>) {
           )
         );
       }
+    } else if (changedIsOpen && !changedSelectedItem) {
+      setTimeout(() => {
+        const firstEnabledIndex = items.findIndex(
+          item => !isItemDisabled(item)
+        );
+        if (firstEnabledIndex >= 0) {
+          setHighlightedIndex(firstEnabledIndex);
+        }
+      }, 0);
     }
 
     onIsOpenChange &&

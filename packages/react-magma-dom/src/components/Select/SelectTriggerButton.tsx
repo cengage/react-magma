@@ -77,7 +77,7 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
         disabled={disabled}
         hasError={hasError}
         isInverse={isInverse}
-        role="button"
+        role="combobox"
         style={style}
         tabIndex={disabled ? undefined : 0}
         theme={theme}
