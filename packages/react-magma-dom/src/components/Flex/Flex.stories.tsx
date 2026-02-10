@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react-webpack5';
 
 import { Button, ButtonColor } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';

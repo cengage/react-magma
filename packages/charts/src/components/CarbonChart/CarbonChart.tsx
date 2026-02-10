@@ -21,12 +21,11 @@ import {
   ComboChart,
   ChartOptions,
 } from '@carbon/charts-react';
-import { Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 import { ThemeInterface, ThemeContext, useIsInverse } from 'react-magma-dom';
 
-import { carbonChartStyles } from './embeddedStyles';
+import './carbon-charts.css';
 
 export enum CarbonChartType {
   area = 'area',
@@ -221,33 +220,33 @@ const CarbonChartWrapper = styled.div<{
     }
     .cds--cc--scatter circle.dot {
       filter: drop-shadow(
-            1px 0px 0px
-              ${props =>
-                props.isInverse
-                  ? props.theme.colors.primary600
-                  : props.theme.colors.neutral100}
-          )
-          drop-shadow(
-            -1px 0px 0px
-              ${props =>
-                props.isInverse
-                  ? props.theme.colors.primary600
-                  : props.theme.colors.neutral100}
-          )
-          drop-shadow(
-            0px 1px 0px
-              ${props =>
-                props.isInverse
-                  ? props.theme.colors.primary600
-                  : props.theme.colors.neutral100}
-          )
-          drop-shadow(
-            0px -1px 0px
-              ${props =>
-                props.isInverse
-                  ? props.theme.colors.primary600
-                  : props.theme.colors.neutral100}
-          );
+          1px 0px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          -1px 0px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          0px 1px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          0px -1px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        );
     }
     .cds--cc--scatter circle.dot.hovered {
       stroke-width: 0.5em;
@@ -327,22 +326,24 @@ const CarbonChartWrapper = styled.div<{
       transition: 0.1s all linear;
       stroke-width: 1.1em;
     }
-    
+
     .cds--cc--tooltip {
-    ${props => {
-      const chartColors =
-        (props.isInverse
-          ? props.theme.chartColorsInverse
-          : props.theme.chartColors) || [];
+      ${props => {
+        const chartColors =
+          (props.isInverse
+            ? props.theme.chartColorsInverse
+            : props.theme.chartColors) || [];
 
-      return chartColors.reduce((result, color, index) => {
-        const indexNum = index + 1;
+        return chartColors.reduce((result, color, index) => {
+          const indexNum = index + 1;
+          const newResult =
+            result +
+            `.tooltip-${props.groupsLength}-1-${indexNum} { background-color: ${color}; }`;
 
-        result += `.tooltip-${props.groupsLength}-1-${indexNum} { background-color: ${color}; }`;
-
-        return result;
-      }, '');
-    }}
+          return newResult;
+        }, '');
+      }}
+    }
 
     .cds--overflow-menu-options__btn:focus {
       outline-color: ${props =>
@@ -616,20 +617,17 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     const groupsLength = Object.keys(buildColors()).length;
 
     return (
-      <React.Fragment>
-        <Global styles={carbonChartStyles} />
-        <CarbonChartWrapper
-          data-testid={testId}
-          ref={ref}
-          isInverse={isInverse}
-          theme={theme}
-          className="carbon-chart-wrapper"
-          groupsLength={groupsLength < 6 ? groupsLength : 14}
-          {...rest}
-        >
-          <ChartType data={dataSet} options={newOptions} />
-        </CarbonChartWrapper>
-      </React.Fragment>
+      <CarbonChartWrapper
+        data-testid={testId}
+        ref={ref}
+        isInverse={isInverse}
+        theme={theme}
+        className="carbon-chart-wrapper"
+        groupsLength={groupsLength < 6 ? groupsLength : 14}
+        {...rest}
+      >
+        <ChartType data={dataSet} options={newOptions} />
+      </CarbonChartWrapper>
     );
   }
 );

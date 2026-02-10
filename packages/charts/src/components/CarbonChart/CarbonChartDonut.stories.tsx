@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react-webpack5';
 import { Card } from 'react-magma-dom';
 
 import { CarbonChart, CarbonChartProps, CarbonChartType } from '.';

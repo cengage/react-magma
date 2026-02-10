@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-webpack5';
 import { CheckIcon } from 'react-magma-icons';
 
 import { ButtonSize, ButtonTextTransform } from '../Button';

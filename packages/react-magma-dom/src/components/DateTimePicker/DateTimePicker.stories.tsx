@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-webpack5';
 
 import { Button, magma } from '../..';
 import { LabelPosition } from '../Label';

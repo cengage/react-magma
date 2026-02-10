@@ -1,10 +1,15 @@
+// This file has been automatically migrated to valid ESM format by Storybook.
 import { dirname, join } from 'path';
+import { createRequire } from 'module';
 
-const path = require('path');
+const require = createRequire(import.meta.url);
+const toPath = _path => join(process.cwd(), _path);
 
-const toPath = _path => path.join(process.cwd(), _path);
+function getAbsolutePath(value) {
+  return dirname(require.resolve(join(value, 'package.json')));
+}
 
-module.exports = {
+const config = {
   stories: [
     '../packages/react-magma-dom/src/components/**/*.stories.tsx',
     '../packages/charts/src/components/**/*.stories.tsx',
@@ -54,6 +59,4 @@ module.exports = {
   docs: {},
 };
 
-function getAbsolutePath(value) {
-  return dirname(require.resolve(join(value, 'package.json')));
-}
+export default config;

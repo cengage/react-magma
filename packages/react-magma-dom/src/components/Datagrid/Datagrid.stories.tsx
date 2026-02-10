@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryObj, Meta, StoryFn } from '@storybook/react';
+import { StoryObj, Meta, StoryFn } from '@storybook/react-webpack5';
 
 import { DatagridProps } from './Datagrid';
 import { magma } from '../../theme/magma';

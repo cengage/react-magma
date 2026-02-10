@@ -150,7 +150,7 @@ test.describe('Accordion', () => {
     // Interaction with the storybook controls
     await page.getByRole('tab', { name: 'Controls' }).click();
 
-    await page.getByText('0', { exact: true }).click();
+    await page.getByLabel('index :').getByText('0', { exact: true }).click();
     await page.getByRole('textbox').fill('1');
     await page.getByRole('textbox').press('Enter');
 
@@ -279,6 +279,7 @@ test.describe('Accordion', () => {
   test('With Dropdown', async ({ page }) => {
     await page.getByRole('button', { name: 'Accordion' }).click();
     await page.getByRole('link', { name: 'With Dropdown' }).click();
+    await expect(page).toHaveTitle('Accordion - With Dropdown ⋅ Storybook');
 
     const personalInfoButton = storyBookIframe.getByRole('button', {
       name: 'Personal Information',
@@ -311,7 +312,6 @@ test.describe('Accordion', () => {
       ).toBeHidden();
     }
 
-    await expect(page).toHaveTitle('Accordion - With Dropdown ⋅ Storybook');
     await expect(personalInfoButton).toBeVisible();
     await expect(shippingAddressButton).toBeVisible();
     await expect(randomButton).toBeVisible();
@@ -340,9 +340,6 @@ test.describe('Accordion', () => {
 
     await shippingAddressButton.click();
 
-    await verifyPersonalInformationContentHidden();
-    await verifyRandomContentHidden();
-
     await expect(storyBookIframe.getByText('City')).toBeVisible();
     await expect(
       storyBookIframe.getByText('State', { exact: true })
@@ -351,10 +348,10 @@ test.describe('Accordion', () => {
       storyBookIframe.getByText('Additional Information')
     ).toBeVisible();
 
-    await randomButton.click();
-
     await verifyPersonalInformationContentHidden();
-    await verifyShippingAddressContentHidden();
+    await verifyRandomContentHidden();
+
+    await randomButton.click();
 
     await expect(storyBookIframe.getByText('ComboBox Example')).toBeVisible();
     await expect(
@@ -363,5 +360,8 @@ test.describe('Accordion', () => {
     await expect(
       storyBookIframe.getByRole('button', { name: 'Show Modal' })
     ).toBeVisible();
+
+    await verifyPersonalInformationContentHidden();
+    await verifyShippingAddressContentHidden();
   });
 });

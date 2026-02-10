@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-webpack5';
 import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
 
 import {
