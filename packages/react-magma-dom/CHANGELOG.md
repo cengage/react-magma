@@ -1,5 +1,16 @@
 ## 4.10.1
 
+## 4.11.0-next.53
+
+### Patch Changes
+
+- d8bf03e8b: fix(Select, Multiselect): Separate focus and hover states and auto-focus first item for NVDA support
+- d777f9b37: fix(Table/Datagrid): Improve screen reader announcements for table navigation and pagination.
+
+  - Removed aria-live from Datagrid table to prevent automatic reading of entire table content when rows per page changes
+  - Added aria-live="polite" to TablePagination page count to announce pagination status updates
+  - Added proper ARIA attributes (role="region", aria-label/aria-labelledby) to scrollable table wrapper to prevent verbose screen reader announcements
+
 ## 4.11.0-next.52
 
 ### Patch Changes
