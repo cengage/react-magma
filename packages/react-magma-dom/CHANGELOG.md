@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.54
+
+### Patch Changes
+
+- 94d1b8fc3: fix(DatePicker): Update announcing tooltip logic.
+
 ## 4.11.0-next.53
 
 ### Patch Changes

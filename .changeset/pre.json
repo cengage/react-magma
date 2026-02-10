@@ -38,6 +38,7 @@
     "fix-Combobox-not-readable-placeholder-for-NVDA",
     "fix-Date-Picker-issues",
     "fix-DatePicker-clear-focus-input",
+    "fix-DatePicker-fix-undefined-docus",
     "fix-DatePicker-focus-today-calendar",
     "fix-DatePicker-prerelease-bugs",
     "fix-DateTimePicker-reduntant-example",
