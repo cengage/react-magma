@@ -43,7 +43,7 @@ import {
 } from '../..';
 import { magma } from '../../theme/magma';
 import { ButtonColor, ButtonShape, ButtonSize } from '../Button';
-import { Card } from '../Card';
+import { Card, CardBody } from '../Card';
 import {
   Dropdown,
   DropdownButton,
@@ -3659,96 +3659,113 @@ export const SelectChildrenOnly = {
 
     return (
       <Card>
-        <Flex behavior={FlexBehavior.container}>
-          <Paragraph visualStyle={TypographyVisualStyle.headingSmall}>
-            Select Children Only (selectParents = false)
-          </Paragraph>
-          <Paragraph>
-            In this example, folders (parent items) can only be
-            expanded/collapsed. Only files (child items) can be selected. Click
-            anywhere on a folder to expand/collapse it.
-          </Paragraph>
-          <Spacer axis={SpacerAxis.horizontal} size={8} />
-          {selected && selected?.length > 0 && (
-            <>
-              <Paragraph
-                visualStyle={TypographyVisualStyle.bodyMedium}
-                color={TypographyColor.subdued}
-              >
-                Selected Files:
-              </Paragraph>
-              <Flex behavior={FlexBehavior.container} wrap={FlexWrap.wrap}>
-                {selected}
-              </Flex>
-              <Spacer axis={SpacerAxis.horizontal} size={8} />
-            </>
-          )}
-        </Flex>
-        <TreeView
-          {...args}
-          selectable={TreeViewSelectable.single}
-          selectParents={false}
-          onSelectedItemChange={handleSelectedItemChange}
-          ariaLabel="File browser example"
-          initialExpandedItems={['documents']}
-        >
-          <TreeItem label="Documents" itemId="documents" icon={<FolderIcon />}>
-            <TreeItem label="Projects" itemId="projects" icon={<FolderIcon />}>
+        <CardBody>
+          <Flex behavior={FlexBehavior.container}>
+            <Paragraph visualStyle={TypographyVisualStyle.headingSmall}>
+              Select Children Only (selectParents = false)
+            </Paragraph>
+            <Paragraph>
+              In this example, folders (parent items) can only be
+              expanded/collapsed. Only files (child items) can be selected.
+              Click anywhere on a folder to expand/collapse it.
+            </Paragraph>
+            <Spacer axis={SpacerAxis.horizontal} size={8} />
+            {selected && selected?.length > 0 && (
+              <>
+                <Paragraph
+                  visualStyle={TypographyVisualStyle.bodyMedium}
+                  color={TypographyColor.subdued}
+                >
+                  Selected Files:
+                </Paragraph>
+                <Flex behavior={FlexBehavior.container} wrap={FlexWrap.wrap}>
+                  {selected}
+                </Flex>
+                <Spacer axis={SpacerAxis.horizontal} size={8} />
+              </>
+            )}
+          </Flex>
+          <TreeView
+            {...args}
+            selectable={TreeViewSelectable.single}
+            onSelectedItemChange={handleSelectedItemChange}
+            ariaLabel="File browser example"
+            initialExpandedItems={['documents']}
+          >
+            <TreeItem
+              label="Documents"
+              itemId="documents"
+              icon={<FolderIcon />}
+            >
               <TreeItem
-                label="Project A"
-                itemId="project-a"
+                label="Projects"
+                itemId="projects"
                 icon={<FolderIcon />}
               >
                 <TreeItem
-                  label="README.md"
-                  itemId="readme"
-                  icon={<ArticleIcon />}
-                />
+                  label="Project A"
+                  itemId="project-a"
+                  icon={<FolderIcon />}
+                >
+                  <TreeItem
+                    label="README.md"
+                    itemId="readme"
+                    icon={<ArticleIcon />}
+                  />
+                  <TreeItem
+                    label="package.json"
+                    itemId="package"
+                    icon={<ArticleIcon />}
+                  />
+                </TreeItem>
                 <TreeItem
-                  label="package.json"
-                  itemId="package"
-                  icon={<ArticleIcon />}
-                />
+                  label="Project B"
+                  itemId="project-b"
+                  icon={<FolderIcon />}
+                >
+                  <TreeItem
+                    label="index.html"
+                    itemId="index"
+                    icon={<ArticleIcon />}
+                  />
+                  <TreeItem
+                    label="styles.css"
+                    itemId="styles"
+                    icon={<ArticleIcon />}
+                  />
+                </TreeItem>
               </TreeItem>
-              <TreeItem
-                label="Project B"
-                itemId="project-b"
-                icon={<FolderIcon />}
-              >
+              <TreeItem label="Images" itemId="images" icon={<FolderIcon />} o>
                 <TreeItem
-                  label="index.html"
-                  itemId="index"
+                  label="logo.png"
+                  itemId="logo"
                   icon={<ArticleIcon />}
                 />
                 <TreeItem
-                  label="styles.css"
-                  itemId="styles"
+                  label="banner.jpg"
+                  itemId="banner"
                   icon={<ArticleIcon />}
                 />
               </TreeItem>
             </TreeItem>
-            <TreeItem label="Images" itemId="images" icon={<FolderIcon />} o>
-              <TreeItem label="logo.png" itemId="logo" icon={<ArticleIcon />} />
+            <TreeItem
+              label="Downloads"
+              itemId="downloads"
+              icon={<FolderIcon />}
+            >
               <TreeItem
-                label="banner.jpg"
-                itemId="banner"
+                label="document.pdf"
+                itemId="document"
+                icon={<ArticleIcon />}
+              />
+              <TreeItem
+                label="archive.zip"
+                itemId="archive"
                 icon={<ArticleIcon />}
               />
             </TreeItem>
-          </TreeItem>
-          <TreeItem label="Downloads" itemId="downloads" icon={<FolderIcon />}>
-            <TreeItem
-              label="document.pdf"
-              itemId="document"
-              icon={<ArticleIcon />}
-            />
-            <TreeItem
-              label="archive.zip"
-              itemId="archive"
-              icon={<ArticleIcon />}
-            />
-          </TreeItem>
-        </TreeView>
+          </TreeView>
+        </CardBody>
       </Card>
     );
   },
