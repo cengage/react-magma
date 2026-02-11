@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.48
+
+### Patch Changes
+
+- 54018e0: fix(Select, Multiselect): Separate focus and hover states and auto-focus first item for NVDA support
+
 ## 5.1.0-rc.47
 
 ### Patch Changes
