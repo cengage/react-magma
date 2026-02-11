@@ -288,7 +288,6 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
           hasTablePagination={hasPagination}
           {...other}
           ref={ref}
-          aria-live="polite"
         >
           <TableHead>
             <TableRow

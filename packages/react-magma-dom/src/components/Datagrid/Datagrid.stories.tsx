@@ -725,3 +725,112 @@ export const TitleTable = {
     tableTitle: <h1>Title table</h1>,
   },
 };
+
+const scrollableColumns = [
+  { field: 'product', header: 'Product', style: { minWidth: '120px' } },
+  { field: 'category', header: 'Category', style: { minWidth: '120px' } },
+  { field: 'price', header: 'Price', style: { minWidth: '100px' } },
+  { field: 'quantity', header: 'Quantity', style: { minWidth: '100px' } },
+  { field: 'status', header: 'Status', style: { minWidth: '100px' } },
+  { field: 'brand', header: 'Brand', style: { minWidth: '180px' } },
+  { field: 'warehouse', header: 'Warehouse', style: { minWidth: '180px' } },
+];
+
+const scrollableRows = [
+  {
+    id: 1,
+    product: 'Product A',
+    category: 'Electronics',
+    price: '$1,299.99',
+    quantity: '150 units',
+    status: 'In Stock',
+    brand: 'Premium Quality Brand',
+    warehouse: 'New York Warehouse',
+    rowName: 'Product A',
+  },
+  {
+    id: 2,
+    product: 'Product B',
+    category: 'Clothing',
+    price: '$89.99',
+    quantity: '500 units',
+    status: 'In Stock',
+    brand: 'Fashion Collection',
+    warehouse: 'Los Angeles Warehouse',
+    rowName: 'Product B',
+  },
+  {
+    id: 3,
+    product: 'Product C',
+    category: 'Home & Garden',
+    price: '$249.99',
+    quantity: '75 units',
+    status: 'Low Stock',
+    brand: 'Outdoor Living',
+    warehouse: 'Chicago Warehouse',
+    rowName: 'Product C',
+  },
+  {
+    id: 4,
+    product: 'Product D',
+    category: 'Sports',
+    price: '$449.99',
+    quantity: '200 units',
+    status: 'In Stock',
+    brand: 'Professional Series',
+    warehouse: 'Miami Warehouse',
+    rowName: 'Product D',
+  },
+  {
+    id: 5,
+    product: 'Product E',
+    category: 'Books',
+    price: '$29.99',
+    quantity: '1000 units',
+    status: 'In Stock',
+    brand: 'Bestseller Edition',
+    warehouse: 'Seattle Warehouse',
+    rowName: 'Product E',
+  },
+];
+
+export const ScrollableDatagrid = {
+  render: (
+    args: React.JSX.IntrinsicAttributes &
+      (DatagridProps & React.RefAttributes<HTMLTableElement>)
+  ) => {
+    return (
+      <div style={{ maxWidth: '500px' }}>
+        <p style={{ marginBottom: '8px', fontSize: '14px', color: '#666' }}>
+          This datagrid is constrained to 500px width to demonstrate horizontal
+          scrolling. When focused, screen reader users can use arrow keys to
+          scroll.
+        </p>
+        <Card>
+          <CardBody>
+            <Datagrid {...args} />
+          </CardBody>
+        </Card>
+      </div>
+    );
+  },
+
+  args: {
+    columns: scrollableColumns,
+    rows: scrollableRows,
+    tableTitle: 'Product Inventory',
+    hasHoverStyles: true,
+    hasOutsideBorder: true,
+    hasZebraStripes: true,
+    hasPagination: false,
+    isSelectable: false,
+  },
+
+  parameters: {
+    docs: {
+      description: {
+        story: `When a datagrid has horizontal overflow, it automatically becomes keyboard-focusable with \`tabindex="0"\` and receives \`role="region"\` with an accessible label indicating it is scrollable. This follows the USWDS pattern for accessible scrollable tables. Screen reader users will hear "Product Inventory (scrollable), region" when focusing the datagrid, and can use arrow keys to scroll horizontally.`,
+      },
+    },
+  },
+};

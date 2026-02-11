@@ -1064,3 +1064,119 @@ export const CustomRowSpanAndColSpan = {
     tableTitle: 'Custom Row Span and Col Span',
   },
 };
+
+const scrollableRows = [
+  [
+    'Product A',
+    'Electronics',
+    '$1,299.99',
+    '150 units',
+    'In Stock',
+    'Premium Quality Brand',
+    'New York Warehouse',
+  ],
+  [
+    'Product B',
+    'Clothing',
+    '$89.99',
+    '500 units',
+    'In Stock',
+    'Fashion Collection',
+    'Los Angeles Warehouse',
+  ],
+  [
+    'Product C',
+    'Home & Garden',
+    '$249.99',
+    '75 units',
+    'Low Stock',
+    'Outdoor Living',
+    'Chicago Warehouse',
+  ],
+  [
+    'Product D',
+    'Sports',
+    '$449.99',
+    '200 units',
+    'In Stock',
+    'Professional Series',
+    'Miami Warehouse',
+  ],
+  [
+    'Product E',
+    'Books',
+    '$29.99',
+    '1000 units',
+    'In Stock',
+    'Bestseller Edition',
+    'Seattle Warehouse',
+  ],
+];
+
+export const ScrollableTable = {
+  render: args => {
+    return (
+      <div style={{ maxWidth: '500px' }}>
+        <p style={{ marginBottom: '8px', fontSize: '14px', color: '#666' }}>
+          This table is constrained to 500px width to demonstrate horizontal
+          scrolling. When focused, screen reader users can use arrow keys to
+          scroll.
+        </p>
+        <Table {...args}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell style={{ minWidth: '120px' }}>
+                Product
+              </TableHeaderCell>
+              <TableHeaderCell style={{ minWidth: '120px' }}>
+                Category
+              </TableHeaderCell>
+              <TableHeaderCell style={{ minWidth: '100px' }}>
+                Price
+              </TableHeaderCell>
+              <TableHeaderCell style={{ minWidth: '100px' }}>
+                Quantity
+              </TableHeaderCell>
+              <TableHeaderCell style={{ minWidth: '100px' }}>
+                Status
+              </TableHeaderCell>
+              <TableHeaderCell style={{ minWidth: '180px' }}>
+                Brand
+              </TableHeaderCell>
+              <TableHeaderCell style={{ minWidth: '180px' }}>
+                Warehouse
+              </TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {scrollableRows.map((row, i) => (
+              <TableRow key={`row${i}`}>
+                {row.map((cell, j) => (
+                  <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    );
+  },
+
+  args: {
+    hasHoverStyles: true,
+    hasOutsideBorder: true,
+    hasSquareCorners: false,
+    hasVerticalBorders: false,
+    hasZebraStripes: true,
+    isInverse: false,
+    tableTitle: 'Product Inventory',
+  },
+
+  parameters: {
+    docs: {
+      description: {
+        story: `When a table has horizontal overflow, it automatically becomes keyboard-focusable with \`tabindex="0"\` and receives \`role="region"\` with an accessible label indicating it is scrollable. This follows the USWDS pattern for accessible scrollable tables. Screen reader users will hear "Product Inventory (scrollable), region" when focusing the table, and can use arrow keys to scroll horizontally.`,
+      },
+    },
+  },
+};
