@@ -7,10 +7,6 @@ import {
   UseSelectGetMenuPropsOptions,
 } from 'downshift';
 
-import { I18nContext } from '../../i18n';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { convertStyleValueToString } from '../../utils';
-import { Spinner } from '../Spinner';
 import {
   defaultComponents,
   ItemRenderOptions,
@@ -18,6 +14,10 @@ import {
 } from './components';
 import { StyledCard, StyledItem, StyledList } from './shared';
 import { isItemDisabled, setFocusedItem } from './utils';
+import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { convertStyleValueToString } from '../../utils';
+import { Spinner } from '../Spinner';
 
 import { instanceOfToBeCreatedItemObject } from '.';
 
@@ -130,6 +130,8 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
           isOpen={isOpen}
           {...getMenuProps()}
           maxHeight={heightString}
+          role="listbox"
+          onMouseLeave={() => {}}
         >
           {isOpen && hasItems ? (
             items.map((item, index) => {
@@ -156,13 +158,9 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
                 theme,
                 isDisabled: isDisabled,
                 ...otherDownshiftItemProps,
+                onMouseMove: () => {},
+                role: 'option',
               };
-
-              if (isDisabled) {
-                itemProps.onMouseEnter = () => {
-                  setHighlightedIndex?.(-1);
-                };
-              }
 
               return <Item<T> {...itemProps} key={key} />;
             })

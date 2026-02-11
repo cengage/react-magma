@@ -7,15 +7,11 @@ import { Card } from '../Card';
 import { inputBaseStyles } from '../InputBase';
 
 function buildListHoverColor(props) {
-  if (props.isFocused) {
-    if (props.isInverse) {
-      return props.theme.colors.primary600;
-    }
-
-    return props.theme.colors.neutral200;
+  if (props.isInverse) {
+    return props.theme.colors.primary600;
   }
 
-  return 'transparent';
+  return props.theme.colors.neutral200;
 }
 
 function buildListFocusColor(props) {
@@ -117,7 +113,7 @@ export const StyledItem = styled('li')<{
   isDisabled?: boolean;
 }>`
   align-self: center;
-  background: ${props => buildListHoverColor(props)};
+  background: transparent;
   border: 2px solid;
   border-color: ${props => buildListFocusColor(props)};
   cursor: default;
@@ -127,7 +123,8 @@ export const StyledItem = styled('li')<{
   padding: 8px 16px;
   &:hover {
     background: ${props => buildListHoverColor(props)};
-    border-color: transparent;
+    border-color: ${props =>
+      props.isFocused ? buildListFocusColor(props) : 'transparent'};
     cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
   }
 `;
