@@ -33,18 +33,18 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Spacer, SpacerAxis, Tag, magma } from 'react-magma-dom';
+import { Spacer, SpacerAxis, Tag, TagColor, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
     <>
       <Tag>Default</Tag>
       <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      <Tag color="primary">Primary</Tag>
+      <Tag color={TagColor.primary}>Primary</Tag>
       <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      <Tag color="lowContrast">Low Contrast</Tag>
+      <Tag color={TagColor.lowContrast}>Low Contrast</Tag>
       <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      <Tag color="highContrast">High Contrast</Tag>
+      <Tag color={TagColor.highContrast}>High Contrast</Tag>
     </>
   );
 }
@@ -55,7 +55,7 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Spacer, SpacerAxis, Tag, magma } from 'react-magma-dom';
+import { Spacer, SpacerAxis, Tag, TagSize, magma } from 'react-magma-dom';
 import { AccountCircleIcon } from 'react-magma-icons';
 
 export function Example() {
@@ -63,7 +63,7 @@ export function Example() {
     <>
       <Tag icon={<AccountCircleIcon />}>Icon Tag</Tag>
       <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      <Tag icon={<AccountCircleIcon />} size="small">
+      <Tag icon={<AccountCircleIcon />} size={TagSize.small}>
         Icon Tag Small
       </Tag>
     </>
@@ -106,6 +106,7 @@ import {
   Spacer,
   SpacerAxis,
   Tag,
+  TagSize,
   magma,
 } from 'react-magma-dom';
 
@@ -146,7 +147,7 @@ export function Example() {
       <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
 
       {isTag2Visible ? (
-        <Tag onDelete={deleteTag2} size="small">
+        <Tag onDelete={deleteTag2} size={TagSize.small}>
           Deletable Small
         </Tag>
       ) : (
@@ -175,6 +176,7 @@ import {
   Spacer,
   SpacerAxis,
   Tag,
+  TagSize,
   magma,
 } from 'react-magma-dom';
 import { AccountCircleIcon } from 'react-magma-icons';
@@ -218,7 +220,11 @@ export function Example() {
       <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
 
       {isTag2Visible ? (
-        <Tag icon={<AccountCircleIcon />} onDelete={deleteTag2} size="small">
+        <Tag
+          icon={<AccountCircleIcon />}
+          onDelete={deleteTag2}
+          size={TagSize.small}
+        >
           Deletable Small
         </Tag>
       ) : (
@@ -240,14 +246,14 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Tag, Spacer, SpacerAxis, magma } from 'react-magma-dom';
+import { Tag, TagSize, Spacer, SpacerAxis, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
     <>
       <Tag>Size Default</Tag>
       <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      <Tag size="small">Size Small</Tag>
+      <Tag size={TagSize.small}>Size Small</Tag>
     </>
   );
 }
@@ -258,14 +264,14 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Spacer, Tag, SpacerAxis, magma } from 'react-magma-dom';
+import { Spacer, Tag, TagColor, SpacerAxis, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
     <>
       <Tag disabled>Disabled</Tag>
       <Spacer axis={SpacerAxis.horizontal} size={magma.spaceScale.spacing03} />
-      <Tag disabled color="lowContrast">
+      <Tag disabled color={TagColor.lowContrast}>
         Disabled Low Contrast
       </Tag>
     </>
@@ -286,6 +292,7 @@ import {
   Spacer,
   SpacerAxis,
   Tag,
+  TagColor,
   magma,
 } from 'react-magma-dom';
 
@@ -298,21 +305,21 @@ export function Example() {
           axis={SpacerAxis.horizontal}
           size={magma.spaceScale.spacing03}
         />
-        <Tag isInverse color="primary">
+        <Tag isInverse color={TagColor.primary}>
           Inverse Primary
         </Tag>
         <Spacer
           axis={SpacerAxis.horizontal}
           size={magma.spaceScale.spacing03}
         />
-        <Tag isInverse color="lowContrast">
+        <Tag isInverse color={TagColor.lowContrast}>
           Inverse Low Contrast
         </Tag>
         <Spacer
           axis={SpacerAxis.horizontal}
           size={magma.spaceScale.spacing03}
         />
-        <Tag isInverse color="highContrast">
+        <Tag isInverse color={TagColor.highContrast}>
           Inverse High Contrast
         </Tag>
       </CardBody>
@@ -331,6 +338,7 @@ import {
   CardBody,
   Spacer,
   Tag,
+  TagColor,
   SpacerAxis,
   magma,
 } from 'react-magma-dom';
@@ -346,7 +354,7 @@ export function Example() {
           axis={SpacerAxis.horizontal}
           size={magma.spaceScale.spacing03}
         />
-        <Tag isInverse disabled color="lowContrast">
+        <Tag isInverse disabled color={TagColor.lowContrast}>
           Inverse Disabled Low Contrast
         </Tag>
       </CardBody>

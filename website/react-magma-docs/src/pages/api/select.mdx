@@ -460,21 +460,23 @@ export function Example() {
     alert('Help link clicked!');
   };
 
+  const tooltipContent = (
+    <Tooltip content={helpLinkLabel}>
+      <IconButton
+        aria-label={helpLinkLabel}
+        icon={<HelpIcon />}
+        onClick={onHelpLinkClick}
+        type={ButtonType.button}
+        size={ButtonSize.small}
+        variant={ButtonVariant.link}
+      />
+    </Tooltip>
+  );
+
   return (
     <>
       <Select
-        additionalContent={
-          <Tooltip content={helpLinkLabel}>
-            <IconButton
-              aria-label={helpLinkLabel}
-              icon={<HelpIcon />}
-              onClick={onHelpLinkClick}
-              type={ButtonType.button}
-              size={ButtonSize.small}
-              variant={ButtonVariant.link}
-            />
-          </Tooltip>
-        }
+        additionalContent={tooltipContent}
         labelText="Default positioning"
         items={[
           { label: 'Red', value: 'red' },
@@ -484,18 +486,7 @@ export function Example() {
       />
       <br />
       <Select
-        additionalContent={
-          <Tooltip content={helpLinkLabel}>
-            <IconButton
-              aria-label={helpLinkLabel}
-              icon={<HelpIcon />}
-              onClick={onHelpLinkClick}
-              type={ButtonType.button}
-              size={ButtonSize.small}
-              variant={ButtonVariant.link}
-            />
-          </Tooltip>
-        }
+        additionalContent={tooltipContent}
         labelPosition={LabelPosition.left}
         labelText="Left positioning"
         items={[
@@ -634,7 +625,7 @@ to change the state. You can see the full list of the types in the [`stateChange
 ```tsx
 import React from 'react';
 
-import { Select } from 'react-magma-dom';
+import { Select, SelectStateChangeTypes } from 'react-magma-dom';
 
 export function Example() {
   const [changes, updateChanges] = React.useState({});
