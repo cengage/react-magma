@@ -2,11 +2,11 @@ import * as React from 'react';
 
 import { IconProps } from 'react-magma-icons';
 
+import { StyledAIButton } from './StyledAIButton';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
-import { resolveProps, XOR } from '../../utils';
+import { resolveProps } from '../../utils';
 import { ButtonGroupContext } from '../ButtonGroup';
-import { StyledAIButton } from './StyledAIButton';
 
 export enum AIButtonVariant {
   variantA = 'variantA', //default
@@ -130,10 +130,9 @@ export interface IconOnlyAIButtonProps extends BaseAIButtonProps {
    * The text the screen reader will announce. Required for icon-only buttons
    */
   'aria-label': string;
-  children?: never;
 }
 
-export type AIButtonProps = XOR<TextAIButtonProps, IconOnlyAIButtonProps>;
+export type AIButtonProps = TextAIButtonProps | IconOnlyAIButtonProps;
 
 export const AIButton = React.forwardRef<HTMLButtonElement, AIButtonProps>(
   (props, ref) => {
