@@ -552,7 +552,7 @@ describe('Dropdown', () => {
   });
 
   it('should close the menu when escape key is pressed', async () => {
-    const { getByText, getByTestId } = render(
+    const { getByTestId } = render(
       <Dropdown testId="dropdown">
         <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
         <DropdownContent>
@@ -909,7 +909,7 @@ describe('Dropdown', () => {
     });
 
     it('should close the menu when escape key is pressed', async () => {
-      const { getByText, getByTestId } = render(
+      const { getByTestId } = render(
         <Dropdown testId="dropdown">
           <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
           <DropdownContent>
@@ -937,7 +937,7 @@ describe('Dropdown', () => {
 
     //For Dropdowns in Modals
     it('should close the menu when escape key is pressed, and retain the active modal', async () => {
-      const { getByText, getByTestId } = render(
+      const { getByTestId } = render(
         <Modal testId="modal" isOpen>
           <Dropdown testId="dropdown">
             <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
