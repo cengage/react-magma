@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.50
+
+### Patch Changes
+
+- a365b9e: fix(Dropdown): Fix bug with `Escape` focus behavior
+
 ## 5.1.0-rc.49
 
 ### Patch Changes
