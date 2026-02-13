@@ -554,7 +554,7 @@ describe('Dropdown', () => {
   it('should close the menu when escape key is pressed', async () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
-        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
         <DropdownContent>
           <DropdownMenuItem>Menu item</DropdownMenuItem>
         </DropdownContent>
@@ -563,13 +563,15 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-    await userEvent.click(getByText('Toggle me'));
+    const button = getByTestId('dropdownButton');
+    await userEvent.click(button);
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
     await userEvent.keyboard('{ArrowDown}');
     await userEvent.keyboard('{Escape}');
 
+    expect(button).toHaveFocus();
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
@@ -909,7 +911,7 @@ describe('Dropdown', () => {
     it('should close the menu when escape key is pressed', async () => {
       const { getByText, getByTestId } = render(
         <Dropdown testId="dropdown">
-          <DropdownButton>Toggle me</DropdownButton>
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
           <DropdownContent>
             <p>test</p>
           </DropdownContent>
@@ -918,7 +920,8 @@ describe('Dropdown', () => {
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-      await userEvent.click(getByText('Toggle me'));
+      const button = getByTestId('dropdownButton');
+      await userEvent.click(button);
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule(
         'display',
@@ -928,6 +931,7 @@ describe('Dropdown', () => {
       await userEvent.keyboard('{ArrowDown}');
       await userEvent.keyboard('{Escape}');
 
+      expect(button).toHaveFocus();
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
     });
 
@@ -936,7 +940,7 @@ describe('Dropdown', () => {
       const { getByText, getByTestId } = render(
         <Modal testId="modal" isOpen>
           <Dropdown testId="dropdown">
-            <DropdownButton>Toggle me</DropdownButton>
+            <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
             <DropdownContent>
               <p>test</p>
             </DropdownContent>
@@ -946,7 +950,8 @@ describe('Dropdown', () => {
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-      await userEvent.click(getByText('Toggle me'));
+      const button = getByTestId('dropdownButton');
+      await userEvent.click(button);
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule(
         'display',
@@ -957,6 +962,7 @@ describe('Dropdown', () => {
       await userEvent.keyboard('{Escape}');
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(button).toHaveFocus();
       expect(getByTestId('modal')).toBeInTheDocument();
     });
 
