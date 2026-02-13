@@ -186,8 +186,6 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         if (!isElementInteractive(relatedTarget)) {
           toggleRef.current?.focus();
         }
-      } else if (event.key === 'Escape') {
-        toggleRef.current?.focus();
       }
 
       onClose && typeof onClose === 'function' && onClose(event);
@@ -208,6 +206,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
       if (event.key === 'Escape') {
         event.nativeEvent.stopImmediatePropagation();
         closeDropdown(event);
+        toggleRef.current?.focus();
       }
 
       if (event.key === 'ArrowDown') {
