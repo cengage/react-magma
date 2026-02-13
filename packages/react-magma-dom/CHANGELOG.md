@@ -1,5 +1,11 @@
 ## 4.10.1
 
+## 4.11.0-next.55
+
+### Patch Changes
+
+- d188c43d7: fix(Dropdown): Fix bug with `Escape` focus behavior
+
 ## 4.11.0-next.54
 
 ### Patch Changes
