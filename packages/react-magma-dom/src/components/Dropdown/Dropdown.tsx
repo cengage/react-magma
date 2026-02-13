@@ -186,6 +186,8 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         if (!isElementInteractive(relatedTarget)) {
           toggleRef.current?.focus();
         }
+      } else if (event.key === 'Escape') {
+        toggleRef.current?.focus();
       }
 
       onClose && typeof onClose === 'function' && onClose(event);
