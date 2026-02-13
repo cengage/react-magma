@@ -76,6 +76,7 @@
     "fix-charts-styles",
     "fix-datagrid-sortable-html",
     "fix-doc-examples",
+    "fix-docs-typescript-issues",
     "fix-drawer-scrollable-content",
     "fix-modal-trigger-button",
     "fix-select-aria-label",

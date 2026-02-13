@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0-next.17
+
+### Patch Changes
+
+- 59716083d: fix(Button Group & Date Picker & Tag & AIButton): Fix typescript issues.
+
 ## 5.3.0-next.16
 
 ### Patch Changes
