@@ -2,9 +2,6 @@
 
 exports[`ButtonGroup Horizontal No Space Removes the border radius around the buttons 1`] = `
 .emotion-0 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -23,110 +20,81 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   row-gap: 8px;
 }
 
-.emotion-0>li>div {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>div div>button:nth-child(2),
-.emotion-0>li>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>li>button {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
   margin-left: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
   margin-right: 0;
 }
 
-.emotion-0>li:first-child:not(:only-child) button {
+.emotion-0>div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>div:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li:nth-child(2) button {
+.emotion-0>div:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child) button {
+.emotion-0>div:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child) button {
+.emotion-0>div:not(:first-child).emotion-0>div:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child) button {
+.emotion-0>div:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:first-child:not(:only-child) button {
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>button:first-child:not(:only-child) {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li>div:nth-child(2) button {
+.emotion-0>button:nth-child(2) {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child) button {
+.emotion-0>button:not(:first-child) {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child).emotion-0>li>div:not(:last-child) button {
+.emotion-0>button:not(:first-child).emotion-0>button:not(:last-child) {
   border-right: 0;
 }
 
-.emotion-0>li>div:last-child:not(:only-child) button {
-  border-radius: 0 8px 8px 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-0>li>button:first-child:not(:only-child) {
-  border-radius: 8px 0 0 8px;
-  border-right: 0;
-}
-
-.emotion-0>li>button:nth-child(2) {
-  border-left: 1px solid #FFFFFF;
-}
-
-.emotion-0>li>button:not(:first-child) {
-  border-radius: 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-0>li>button:not(:first-child).emotion-0>li>button:not(:last-child) {
-  border-right: 0;
-}
-
-.emotion-0>li>button:last-child:not(:only-child) {
+.emotion-0>button:last-child:not(:only-child) {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
 .emotion-2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: contents;
-}
-
-.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -171,24 +139,24 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   width: auto;
 }
 
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-4:not(:disabled):hover,
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -198,13 +166,13 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   transition: transform 0s;
 }
 
-.emotion-4 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-6 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -217,9 +185,6 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 }
 
 .emotion-0 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -238,110 +203,81 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   row-gap: 8px;
 }
 
-.emotion-0>li>div {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>div div>button:nth-child(2),
-.emotion-0>li>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>li>button {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
   margin-left: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
   margin-right: 0;
 }
 
-.emotion-0>li:first-child:not(:only-child) button {
+.emotion-0>div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>div:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li:nth-child(2) button {
+.emotion-0>div:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child) button {
+.emotion-0>div:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child) button {
+.emotion-0>div:not(:first-child).emotion-0>div:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child) button {
+.emotion-0>div:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:first-child:not(:only-child) button {
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>button:first-child:not(:only-child) {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li>div:nth-child(2) button {
+.emotion-0>button:nth-child(2) {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child) button {
+.emotion-0>button:not(:first-child) {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child).emotion-0>li>div:not(:last-child) button {
+.emotion-0>button:not(:first-child).emotion-0>button:not(:last-child) {
   border-right: 0;
 }
 
-.emotion-0>li>div:last-child:not(:only-child) button {
-  border-radius: 0 8px 8px 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-0>li>button:first-child:not(:only-child) {
-  border-radius: 8px 0 0 8px;
-  border-right: 0;
-}
-
-.emotion-0>li>button:nth-child(2) {
-  border-left: 1px solid #FFFFFF;
-}
-
-.emotion-0>li>button:not(:first-child) {
-  border-radius: 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-0>li>button:not(:first-child).emotion-0>li>button:not(:last-child) {
-  border-right: 0;
-}
-
-.emotion-0>li>button:last-child:not(:only-child) {
+.emotion-0>button:last-child:not(:only-child) {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
 .emotion-2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: contents;
-}
-
-.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -386,24 +322,24 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   width: auto;
 }
 
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-4:not(:disabled):hover,
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -413,13 +349,13 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   transition: transform 0s;
 }
 
-.emotion-4 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-6 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -432,73 +368,57 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 }
 
 <div>
-  <ul
+  <div
     class="emotion-0 emotion-1"
     color="primary"
     data-testid="test-id"
     orientation="horizontal"
-    role="list"
   >
-    <li
+    <button
       class="emotion-2 emotion-3"
+      color="primary"
+      data-testid="test-id-1"
+      shape="fill"
+      type="button"
     >
-      <button
+      <span
         class="emotion-4 emotion-5"
-        color="primary"
-        data-testid="test-id-1"
-        shape="fill"
-        type="button"
       >
-        <span
-          class="emotion-6 emotion-7"
-        >
-          1
-        </span>
-      </button>
-    </li>
-    <li
+        1
+      </span>
+    </button>
+    <button
       class="emotion-2 emotion-3"
+      color="primary"
+      data-testid="test-id-2"
+      shape="fill"
+      type="button"
     >
-      <button
+      <span
         class="emotion-4 emotion-5"
-        color="primary"
-        data-testid="test-id-2"
-        shape="fill"
-        type="button"
       >
-        <span
-          class="emotion-6 emotion-7"
-        >
-          2
-        </span>
-      </button>
-    </li>
-    <li
+        2
+      </span>
+    </button>
+    <button
       class="emotion-2 emotion-3"
+      color="primary"
+      data-testid="test-id-3"
+      shape="fill"
+      type="button"
     >
-      <button
+      <span
         class="emotion-4 emotion-5"
-        color="primary"
-        data-testid="test-id-3"
-        shape="fill"
-        type="button"
       >
-        <span
-          class="emotion-6 emotion-7"
-        >
-          3
-        </span>
-      </button>
-    </li>
-  </ul>
+        3
+      </span>
+    </button>
+  </div>
 </div>
 `;
 
 exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around the buttons 1`] = `
 .emotion-0 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -520,41 +440,35 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   align-items: start;
 }
 
-.emotion-0>li>div {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>div div>button:nth-child(2),
-.emotion-0>li>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>li>button {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
   margin-top: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
   margin-bottom: 0;
 }
 
-.emotion-2 {
-  list-style: none;
+.emotion-0>div {
   margin: 0;
-  padding: 0;
-  display: contents;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
 }
 
-.emotion-4 {
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -599,24 +513,24 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   width: auto;
 }
 
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-4:not(:disabled):hover,
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -626,13 +540,13 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   transition: transform 0s;
 }
 
-.emotion-4 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-6 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -645,9 +559,6 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 }
 
 .emotion-0 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -669,41 +580,35 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   align-items: start;
 }
 
-.emotion-0>li>div {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>div div>button:nth-child(2),
-.emotion-0>li>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>li>button {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
   margin-top: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
   margin-bottom: 0;
 }
 
-.emotion-2 {
-  list-style: none;
+.emotion-0>div {
   margin: 0;
-  padding: 0;
-  display: contents;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
 }
 
-.emotion-4 {
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -748,24 +653,24 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   width: auto;
 }
 
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-4:not(:disabled):hover,
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -775,13 +680,13 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   transition: transform 0s;
 }
 
-.emotion-4 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-6 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -794,73 +699,57 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 }
 
 <div>
-  <ul
+  <div
     class="emotion-0 emotion-1"
     color="primary"
     data-testid="test-id"
     orientation="vertical"
-    role="list"
   >
-    <li
+    <button
       class="emotion-2 emotion-3"
+      color="primary"
+      data-testid="test-id-4"
+      shape="fill"
+      type="button"
     >
-      <button
+      <span
         class="emotion-4 emotion-5"
-        color="primary"
-        data-testid="test-id-4"
-        shape="fill"
-        type="button"
       >
-        <span
-          class="emotion-6 emotion-7"
-        >
-          1
-        </span>
-      </button>
-    </li>
-    <li
+        1
+      </span>
+    </button>
+    <button
       class="emotion-2 emotion-3"
+      color="primary"
+      data-testid="test-id-5"
+      shape="fill"
+      type="button"
     >
-      <button
+      <span
         class="emotion-4 emotion-5"
-        color="primary"
-        data-testid="test-id-5"
-        shape="fill"
-        type="button"
       >
-        <span
-          class="emotion-6 emotion-7"
-        >
-          2
-        </span>
-      </button>
-    </li>
-    <li
+        2
+      </span>
+    </button>
+    <button
       class="emotion-2 emotion-3"
+      color="primary"
+      data-testid="test-id-6"
+      shape="fill"
+      type="button"
     >
-      <button
+      <span
         class="emotion-4 emotion-5"
-        color="primary"
-        data-testid="test-id-6"
-        shape="fill"
-        type="button"
       >
-        <span
-          class="emotion-6 emotion-7"
-        >
-          3
-        </span>
-      </button>
-    </li>
-  </ul>
+        3
+      </span>
+    </button>
+  </div>
 </div>
 `;
 
 exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] = `
 .emotion-0 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -879,41 +768,35 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   row-gap: 8px;
 }
 
-.emotion-0>li>div {
-  margin: 0 4px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>div div>button:nth-child(2),
-.emotion-0>li>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>li>button {
-  margin: 0 4px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
   margin-left: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
   margin-right: 0;
 }
 
-.emotion-2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: contents;
+.emotion-0>div {
+  margin: 0 4px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
 }
 
-.emotion-4 {
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0 4px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -958,24 +841,24 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   width: auto;
 }
 
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-4:not(:disabled):hover,
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -985,13 +868,13 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   transition: transform 0s;
 }
 
-.emotion-4 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-6 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1003,12 +886,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   align-items: center;
 }
 
-.emotion-10 {
+.emotion-6 {
   display: inline-block;
   position: relative;
 }
 
-.emotion-13 {
+.emotion-9 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1054,24 +937,24 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   padding-right: 8px;
 }
 
-.emotion-13:not(:disabled):focus {
+.emotion-9:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-13:not(:disabled):hover,
-.emotion-13:not(:disabled):focus {
+.emotion-9:not(:disabled):hover,
+.emotion-9:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-13:not(:disabled):active {
+.emotion-9:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-13:not(:disabled):active:after {
+.emotion-9:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -1081,18 +964,18 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   transition: transform 0s;
 }
 
-.emotion-13 svg {
+.emotion-9 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-17 {
+.emotion-13 {
   padding-left: 0;
   padding-right: 8px;
 }
 
-.emotion-20 {
+.emotion-16 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -1123,12 +1006,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   white-space: nowrap;
 }
 
-.emotion-20:focus {
+.emotion-16:focus {
   outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
-.emotion-22 {
+.emotion-18 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1147,24 +1030,21 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   white-space: nowrap;
 }
 
-.emotion-22:hover,
-.emotion-22:focus {
+.emotion-18:hover,
+.emotion-18:focus {
   background: #F5F5F5;
 }
 
-.emotion-22:focus {
+.emotion-18:focus {
   outline-color: #0074B7;
   outline-offset: -2px;
 }
 
-.emotion-22:active {
+.emotion-18:active {
   outline-color: #0074B7;
 }
 
 .emotion-0 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1183,41 +1063,35 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   row-gap: 8px;
 }
 
-.emotion-0>li>div {
-  margin: 0 4px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>div div>button:nth-child(2),
-.emotion-0>li>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>li>button {
-  margin: 0 4px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
   margin-left: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
   margin-right: 0;
 }
 
-.emotion-2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: contents;
+.emotion-0>div {
+  margin: 0 4px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
 }
 
-.emotion-4 {
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0 4px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1262,24 +1136,24 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   width: auto;
 }
 
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-4:not(:disabled):hover,
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -1289,13 +1163,13 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   transition: transform 0s;
 }
 
-.emotion-4 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-6 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1307,12 +1181,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   align-items: center;
 }
 
-.emotion-10 {
+.emotion-6 {
   display: inline-block;
   position: relative;
 }
 
-.emotion-13 {
+.emotion-9 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1358,24 +1232,24 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   padding-right: 8px;
 }
 
-.emotion-13:not(:disabled):focus {
+.emotion-9:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-13:not(:disabled):hover,
-.emotion-13:not(:disabled):focus {
+.emotion-9:not(:disabled):hover,
+.emotion-9:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-13:not(:disabled):active {
+.emotion-9:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-13:not(:disabled):active:after {
+.emotion-9:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -1385,18 +1259,18 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   transition: transform 0s;
 }
 
-.emotion-13 svg {
+.emotion-9 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-17 {
+.emotion-13 {
   padding-left: 0;
   padding-right: 8px;
 }
 
-.emotion-20 {
+.emotion-16 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -1427,12 +1301,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   white-space: nowrap;
 }
 
-.emotion-20:focus {
+.emotion-16:focus {
   outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
-.emotion-22 {
+.emotion-18 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1451,194 +1325,178 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   white-space: nowrap;
 }
 
-.emotion-22:hover,
-.emotion-22:focus {
+.emotion-18:hover,
+.emotion-18:focus {
   background: #F5F5F5;
 }
 
-.emotion-22:focus {
+.emotion-18:focus {
   outline-color: #0074B7;
   outline-offset: -2px;
 }
 
-.emotion-22:active {
+.emotion-18:active {
   outline-color: #0074B7;
 }
 
 <div>
-  <ul
+  <div
     class="emotion-0 emotion-1"
     color="primary"
     orientation="horizontal"
-    role="list"
   >
-    <li
+    <button
       class="emotion-2 emotion-3"
+      color="primary"
+      shape="fill"
+      type="button"
     >
-      <button
+      <span
         class="emotion-4 emotion-5"
-        color="primary"
-        shape="fill"
-        type="button"
       >
-        <span
-          class="emotion-6 emotion-7"
-        >
-          1
-        </span>
-      </button>
-    </li>
-    <li
-      class="emotion-2 emotion-3"
+        1
+      </span>
+    </button>
+    <div
+      class="emotion-6 emotion-7"
     >
-      <div
-        class="emotion-10 emotion-11"
-      >
-        <div>
-          <button
-            aria-controls="2_dropdownMenuId"
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="emotion-12 emotion-13 emotion-5"
-            color="primary"
-            id="2"
-            shape="fill"
-            type="button"
+      <div>
+        <button
+          aria-controls="2_dropdownMenuId"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="emotion-8 emotion-9 emotion-3"
+          color="primary"
+          id="2"
+          shape="fill"
+          type="button"
+        >
+          <span
+            class="emotion-4 emotion-5"
           >
             <span
-              class="emotion-6 emotion-7"
+              class="emotion-13 emotion-14"
             >
-              <span
-                class="emotion-17 emotion-18"
-              >
-                Dropdown 2
-              </span>
-              <svg
-                aria-hidden="true"
-                class="icon"
-                data-testid="caretDown"
-                fill="currentColor"
-                height="20"
-                role="none"
-                viewBox="0 0 24 24"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                  fill-rule="evenodd"
-                />
-              </svg>
+              Dropdown 2
             </span>
-          </button>
-        </div>
+            <svg
+              aria-hidden="true"
+              class="icon"
+              data-testid="caretDown"
+              fill="currentColor"
+              height="20"
+              role="none"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div
+        data-testid="dropdownContentWrapper"
+        id="2_dropdownMenuId"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+      >
         <div
-          data-testid="dropdownContentWrapper"
-          id="2_dropdownMenuId"
-          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+          class="emotion-15 emotion-16 emotion-17"
+          data-testid="dropdownContent"
+          tabindex="-1"
+          width="auto"
         >
           <div
-            class="emotion-19 emotion-20 emotion-21"
-            data-testid="dropdownContent"
-            tabindex="-1"
-            width="auto"
+            aria-labelledby="2"
+            role="menu"
           >
             <div
-              aria-labelledby="2"
-              role="menu"
+              class="emotion-18 emotion-19"
+              role="menuitem"
+              tabindex="-1"
             >
-              <div
-                class="emotion-22 emotion-23"
-                role="menuitem"
-                tabindex="-1"
-              >
-                Menu item 2.1
-              </div>
+              Menu item 2.1
             </div>
           </div>
         </div>
       </div>
-    </li>
-    <li
-      class="emotion-2 emotion-3"
+    </div>
+    <div
+      class="emotion-6 emotion-7"
     >
-      <div
-        class="emotion-10 emotion-11"
-      >
-        <div>
-          <button
-            aria-controls="3_dropdownMenuId"
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="emotion-12 emotion-13 emotion-5"
-            color="primary"
-            id="3"
-            shape="fill"
-            type="button"
+      <div>
+        <button
+          aria-controls="3_dropdownMenuId"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="emotion-8 emotion-9 emotion-3"
+          color="primary"
+          id="3"
+          shape="fill"
+          type="button"
+        >
+          <span
+            class="emotion-4 emotion-5"
           >
             <span
-              class="emotion-6 emotion-7"
+              class="emotion-13 emotion-14"
             >
-              <span
-                class="emotion-17 emotion-18"
-              >
-                Dropdown 3
-              </span>
-              <svg
-                aria-hidden="true"
-                class="icon"
-                data-testid="caretDown"
-                fill="currentColor"
-                height="20"
-                role="none"
-                viewBox="0 0 24 24"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                  fill-rule="evenodd"
-                />
-              </svg>
+              Dropdown 3
             </span>
-          </button>
-        </div>
+            <svg
+              aria-hidden="true"
+              class="icon"
+              data-testid="caretDown"
+              fill="currentColor"
+              height="20"
+              role="none"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div
+        data-testid="dropdownContentWrapper"
+        id="3_dropdownMenuId"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+      >
         <div
-          data-testid="dropdownContentWrapper"
-          id="3_dropdownMenuId"
-          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+          class="emotion-15 emotion-16 emotion-17"
+          data-testid="dropdownContent"
+          tabindex="-1"
+          width="auto"
         >
           <div
-            class="emotion-19 emotion-20 emotion-21"
-            data-testid="dropdownContent"
-            tabindex="-1"
-            width="auto"
+            aria-labelledby="3"
+            role="menu"
           >
             <div
-              aria-labelledby="3"
-              role="menu"
+              class="emotion-18 emotion-19"
+              role="menuitem"
+              tabindex="-1"
             >
-              <div
-                class="emotion-22 emotion-23"
-                role="menuitem"
-                tabindex="-1"
-              >
-                Menu item 3.1
-              </div>
+              Menu item 3.1
             </div>
           </div>
         </div>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 .emotion-0 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1660,70 +1518,44 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   align-items: stretch;
 }
 
-.emotion-0>li>div {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>div div>button,
-.emotion-0>li>div button {
-  width: 100%;
-}
-
-.emotion-0>li>div div>button:nth-child(2),
-.emotion-0>li>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>li>button {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>button:not([aria-label]):not([title]) {
-  width: 100%;
-}
-
-.emotion-0>li>button[aria-label]:empty,
-.emotion-0>li>button[title]:empty {
-  width: auto;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>button:has(svg):not(:has(:not(svg))) {
-  width: auto;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
   margin-top: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
   margin-bottom: 0;
 }
 
-.emotion-2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: contents;
+.emotion-0>div {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
 }
 
-.emotion-4 {
+.emotion-0>div button {
+  width: 100%;
+}
+
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-2 {
   display: inline-block;
   position: relative;
 }
 
-.emotion-6 {
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1768,24 +1600,24 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   width: auto;
 }
 
-.emotion-6:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-6:not(:disabled):hover,
-.emotion-6:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-6:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-6:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -1795,13 +1627,13 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   transition: transform 0s;
 }
 
-.emotion-6 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-8 {
+.emotion-6 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1813,7 +1645,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   align-items: center;
 }
 
-.emotion-10 {
+.emotion-8 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1869,24 +1701,24 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   padding: 0;
 }
 
-.emotion-10:not(:disabled):focus {
+.emotion-8:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-10:not(:disabled):hover,
-.emotion-10:not(:disabled):focus {
+.emotion-8:not(:disabled):hover,
+.emotion-8:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-10:not(:disabled):active {
+.emotion-8:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-10:not(:disabled):active:after {
+.emotion-8:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -1896,13 +1728,13 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   transition: transform 0s;
 }
 
-.emotion-10 svg {
+.emotion-8 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-15 {
+.emotion-13 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -1933,12 +1765,12 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   white-space: nowrap;
 }
 
-.emotion-15:focus {
+.emotion-13:focus {
   outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
-.emotion-17 {
+.emotion-15 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1957,24 +1789,21 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   white-space: nowrap;
 }
 
-.emotion-17:hover,
-.emotion-17:focus {
+.emotion-15:hover,
+.emotion-15:focus {
   background: #F5F5F5;
 }
 
-.emotion-17:focus {
+.emotion-15:focus {
   outline-color: #0074B7;
   outline-offset: -2px;
 }
 
-.emotion-17:active {
+.emotion-15:active {
   outline-color: #0074B7;
 }
 
 .emotion-0 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1996,70 +1825,44 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   align-items: stretch;
 }
 
-.emotion-0>li>div {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>div div>button,
-.emotion-0>li>div button {
-  width: 100%;
-}
-
-.emotion-0>li>div div>button:nth-child(2),
-.emotion-0>li>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>li>button {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>button:not([aria-label]):not([title]) {
-  width: 100%;
-}
-
-.emotion-0>li>button[aria-label]:empty,
-.emotion-0>li>button[title]:empty {
-  width: auto;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>button:has(svg):not(:has(:not(svg))) {
-  width: auto;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
   margin-top: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
   margin-bottom: 0;
 }
 
-.emotion-2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: contents;
+.emotion-0>div {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
 }
 
-.emotion-4 {
+.emotion-0>div button {
+  width: 100%;
+}
+
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-2 {
   display: inline-block;
   position: relative;
 }
 
-.emotion-6 {
+.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2104,24 +1907,24 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   width: auto;
 }
 
-.emotion-6:not(:disabled):focus {
+.emotion-4:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-6:not(:disabled):hover,
-.emotion-6:not(:disabled):focus {
+.emotion-4:not(:disabled):hover,
+.emotion-4:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-6:not(:disabled):active {
+.emotion-4:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-6:not(:disabled):active:after {
+.emotion-4:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2131,13 +1934,13 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   transition: transform 0s;
 }
 
-.emotion-6 svg {
+.emotion-4 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-8 {
+.emotion-6 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2149,7 +1952,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   align-items: center;
 }
 
-.emotion-10 {
+.emotion-8 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2205,24 +2008,24 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   padding: 0;
 }
 
-.emotion-10:not(:disabled):focus {
+.emotion-8:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-10:not(:disabled):hover,
-.emotion-10:not(:disabled):focus {
+.emotion-8:not(:disabled):hover,
+.emotion-8:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-10:not(:disabled):active {
+.emotion-8:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-10:not(:disabled):active:after {
+.emotion-8:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2232,13 +2035,13 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   transition: transform 0s;
 }
 
-.emotion-10 svg {
+.emotion-8 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-15 {
+.emotion-13 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -2269,12 +2072,12 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   white-space: nowrap;
 }
 
-.emotion-15:focus {
+.emotion-13:focus {
   outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
-.emotion-17 {
+.emotion-15 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2293,200 +2096,188 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   white-space: nowrap;
 }
 
-.emotion-17:hover,
-.emotion-17:focus {
+.emotion-15:hover,
+.emotion-15:focus {
   background: #F5F5F5;
 }
 
-.emotion-17:focus {
+.emotion-15:focus {
   outline-color: #0074B7;
   outline-offset: -2px;
 }
 
-.emotion-17:active {
+.emotion-15:active {
   outline-color: #0074B7;
 }
 
 <div>
-  <ul
+  <div
     class="emotion-0 emotion-1"
     color="primary"
     orientation="vertical"
-    role="list"
   >
-    <li
+    <div
       class="emotion-2 emotion-3"
     >
-      <div
-        class="emotion-4 emotion-5"
-      >
-        <div>
-          <button
+      <div>
+        <button
+          class="emotion-4 emotion-5"
+          color="primary"
+          id="1"
+          shape="leftCap"
+          style="border-right: 0; margin-right: 0px;"
+          tabindex="0"
+          type="button"
+        >
+          <span
             class="emotion-6 emotion-7"
-            color="primary"
-            id="1"
-            shape="leftCap"
-            style="border-right: 0; margin-right: 0px;"
-            tabindex="0"
-            type="button"
           >
-            <span
-              class="emotion-8 emotion-9"
-            >
-              Dropdown SplitButton 1
-            </span>
-          </button>
-          <button
-            aria-controls="1_dropdownMenuId"
-            aria-expanded="false"
-            aria-haspopup="true"
-            aria-label="Toggle menu"
-            class="emotion-10 emotion-7"
-            color="primary"
-            shape="rightCap"
-            style="margin-left: 2px;"
-            type="button"
+            Dropdown SplitButton 1
+          </span>
+        </button>
+        <button
+          aria-controls="1_dropdownMenuId"
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-label="Toggle menu"
+          class="emotion-8 emotion-5"
+          color="primary"
+          shape="rightCap"
+          style="margin-left: 2px;"
+          type="button"
+        >
+          <span
+            class="emotion-6 emotion-7"
           >
-            <span
-              class="emotion-8 emotion-9"
+            <svg
+              aria-hidden="true"
+              class="icon"
+              data-testid="caretDown"
+              fill="currentColor"
+              height="20"
+              role="none"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                aria-hidden="true"
-                class="icon"
-                data-testid="caretDown"
-                fill="currentColor"
-                height="20"
-                role="none"
-                viewBox="0 0 24 24"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </span>
-          </button>
-        </div>
+              <path
+                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div
+        data-testid="dropdownContentWrapper"
+        id="1_dropdownMenuId"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+      >
         <div
-          data-testid="dropdownContentWrapper"
-          id="1_dropdownMenuId"
-          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+          class="emotion-12 emotion-13 emotion-14"
+          data-testid="dropdownContent"
+          tabindex="-1"
+          width="auto"
         >
           <div
-            class="emotion-14 emotion-15 emotion-16"
-            data-testid="dropdownContent"
-            tabindex="-1"
-            width="auto"
+            aria-labelledby="1"
+            role="menu"
           >
             <div
-              aria-labelledby="1"
-              role="menu"
+              class="emotion-15 emotion-16"
+              role="menuitem"
+              tabindex="-1"
             >
-              <div
-                class="emotion-17 emotion-18"
-                role="menuitem"
-                tabindex="-1"
-              >
-                Menu item 2.1
-              </div>
+              Menu item 2.1
             </div>
           </div>
         </div>
       </div>
-    </li>
-    <li
+    </div>
+    <div
       class="emotion-2 emotion-3"
     >
-      <div
-        class="emotion-4 emotion-5"
-      >
-        <div>
-          <button
+      <div>
+        <button
+          class="emotion-4 emotion-5"
+          color="primary"
+          id="2"
+          shape="leftCap"
+          style="border-right: 0; margin-right: 0px;"
+          tabindex="0"
+          type="button"
+        >
+          <span
             class="emotion-6 emotion-7"
-            color="primary"
-            id="2"
-            shape="leftCap"
-            style="border-right: 0; margin-right: 0px;"
-            tabindex="0"
-            type="button"
           >
-            <span
-              class="emotion-8 emotion-9"
-            >
-              Dropdown SplitButton 2
-            </span>
-          </button>
-          <button
-            aria-controls="2_dropdownMenuId"
-            aria-expanded="false"
-            aria-haspopup="true"
-            aria-label="Toggle menu"
-            class="emotion-10 emotion-7"
-            color="primary"
-            shape="rightCap"
-            style="margin-left: 2px;"
-            type="button"
+            Dropdown SplitButton 2
+          </span>
+        </button>
+        <button
+          aria-controls="2_dropdownMenuId"
+          aria-expanded="false"
+          aria-haspopup="true"
+          aria-label="Toggle menu"
+          class="emotion-8 emotion-5"
+          color="primary"
+          shape="rightCap"
+          style="margin-left: 2px;"
+          type="button"
+        >
+          <span
+            class="emotion-6 emotion-7"
           >
-            <span
-              class="emotion-8 emotion-9"
+            <svg
+              aria-hidden="true"
+              class="icon"
+              data-testid="caretDown"
+              fill="currentColor"
+              height="20"
+              role="none"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              <svg
-                aria-hidden="true"
-                class="icon"
-                data-testid="caretDown"
-                fill="currentColor"
-                height="20"
-                role="none"
-                viewBox="0 0 24 24"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </span>
-          </button>
-        </div>
+              <path
+                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div
+        data-testid="dropdownContentWrapper"
+        id="2_dropdownMenuId"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+      >
         <div
-          data-testid="dropdownContentWrapper"
-          id="2_dropdownMenuId"
-          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+          class="emotion-12 emotion-13 emotion-14"
+          data-testid="dropdownContent"
+          tabindex="-1"
+          width="auto"
         >
           <div
-            class="emotion-14 emotion-15 emotion-16"
-            data-testid="dropdownContent"
-            tabindex="-1"
-            width="auto"
+            aria-labelledby="2"
+            role="menu"
           >
             <div
-              aria-labelledby="2"
-              role="menu"
+              class="emotion-15 emotion-16"
+              role="menuitem"
+              tabindex="-1"
             >
-              <div
-                class="emotion-17 emotion-18"
-                role="menuitem"
-                tabindex="-1"
-              >
-                Menu item 2.1
-              </div>
+              Menu item 2.1
             </div>
           </div>
         </div>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 .emotion-0 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2508,65 +2299,39 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   align-items: stretch;
 }
 
-.emotion-0>li>div {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>div div>button,
-.emotion-0>li>div button {
-  width: 100%;
-}
-
-.emotion-0>li>div div>button:nth-child(2),
-.emotion-0>li>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>li>button {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>button:not([aria-label]):not([title]) {
-  width: 100%;
-}
-
-.emotion-0>li>button[aria-label]:empty,
-.emotion-0>li>button[title]:empty {
-  width: auto;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>button:has(svg):not(:has(:not(svg))) {
-  width: auto;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
   margin-top: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
   margin-bottom: 0;
 }
 
-.emotion-2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: contents;
+.emotion-0>div {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
 }
 
-.emotion-4 {
+.emotion-0>div button {
+  width: 100%;
+}
+
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2611,24 +2376,24 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   width: auto;
 }
 
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-4:not(:disabled):hover,
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2638,13 +2403,13 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   transition: transform 0s;
 }
 
-.emotion-4 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-6 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2656,12 +2421,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   align-items: center;
 }
 
-.emotion-10 {
+.emotion-6 {
   display: inline-block;
   position: relative;
 }
 
-.emotion-13 {
+.emotion-9 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2707,24 +2472,24 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   padding-right: 8px;
 }
 
-.emotion-13:not(:disabled):focus {
+.emotion-9:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-13:not(:disabled):hover,
-.emotion-13:not(:disabled):focus {
+.emotion-9:not(:disabled):hover,
+.emotion-9:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-13:not(:disabled):active {
+.emotion-9:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-13:not(:disabled):active:after {
+.emotion-9:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2734,18 +2499,18 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   transition: transform 0s;
 }
 
-.emotion-13 svg {
+.emotion-9 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-17 {
+.emotion-13 {
   padding-left: 0;
   padding-right: 8px;
 }
 
-.emotion-20 {
+.emotion-16 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -2776,12 +2541,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   white-space: nowrap;
 }
 
-.emotion-20:focus {
+.emotion-16:focus {
   outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
-.emotion-22 {
+.emotion-18 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2800,24 +2565,21 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   white-space: nowrap;
 }
 
-.emotion-22:hover,
-.emotion-22:focus {
+.emotion-18:hover,
+.emotion-18:focus {
   background: #F5F5F5;
 }
 
-.emotion-22:focus {
+.emotion-18:focus {
   outline-color: #0074B7;
   outline-offset: -2px;
 }
 
-.emotion-22:active {
+.emotion-18:active {
   outline-color: #0074B7;
 }
 
 .emotion-0 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2839,65 +2601,39 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   align-items: stretch;
 }
 
-.emotion-0>li>div {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>div div>button,
-.emotion-0>li>div button {
-  width: 100%;
-}
-
-.emotion-0>li>div div>button:nth-child(2),
-.emotion-0>li>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>li>button {
-  margin: 0 0 8px;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>button:not([aria-label]):not([title]) {
-  width: 100%;
-}
-
-.emotion-0>li>button[aria-label]:empty,
-.emotion-0>li>button[title]:empty {
-  width: auto;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>button:has(svg):not(:has(:not(svg))) {
-  width: auto;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
   margin-top: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
   margin-bottom: 0;
 }
 
-.emotion-2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: contents;
+.emotion-0>div {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
 }
 
-.emotion-4 {
+.emotion-0>div button {
+  width: 100%;
+}
+
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0 0 8px;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2942,24 +2678,24 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   width: auto;
 }
 
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-4:not(:disabled):hover,
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2969,13 +2705,13 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   transition: transform 0s;
 }
 
-.emotion-4 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-6 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2987,12 +2723,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   align-items: center;
 }
 
-.emotion-10 {
+.emotion-6 {
   display: inline-block;
   position: relative;
 }
 
-.emotion-13 {
+.emotion-9 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3038,24 +2774,24 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   padding-right: 8px;
 }
 
-.emotion-13:not(:disabled):focus {
+.emotion-9:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-13:not(:disabled):hover,
-.emotion-13:not(:disabled):focus {
+.emotion-9:not(:disabled):hover,
+.emotion-9:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-13:not(:disabled):active {
+.emotion-9:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-13:not(:disabled):active:after {
+.emotion-9:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -3065,18 +2801,18 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   transition: transform 0s;
 }
 
-.emotion-13 svg {
+.emotion-9 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-17 {
+.emotion-13 {
   padding-left: 0;
   padding-right: 8px;
 }
 
-.emotion-20 {
+.emotion-16 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -3107,12 +2843,12 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   white-space: nowrap;
 }
 
-.emotion-20:focus {
+.emotion-16:focus {
   outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
-.emotion-22 {
+.emotion-18 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3131,194 +2867,178 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   white-space: nowrap;
 }
 
-.emotion-22:hover,
-.emotion-22:focus {
+.emotion-18:hover,
+.emotion-18:focus {
   background: #F5F5F5;
 }
 
-.emotion-22:focus {
+.emotion-18:focus {
   outline-color: #0074B7;
   outline-offset: -2px;
 }
 
-.emotion-22:active {
+.emotion-18:active {
   outline-color: #0074B7;
 }
 
 <div>
-  <ul
+  <div
     class="emotion-0 emotion-1"
     color="primary"
     orientation="vertical"
-    role="list"
   >
-    <li
+    <button
       class="emotion-2 emotion-3"
+      color="primary"
+      shape="fill"
+      type="button"
     >
-      <button
+      <span
         class="emotion-4 emotion-5"
-        color="primary"
-        shape="fill"
-        type="button"
       >
-        <span
-          class="emotion-6 emotion-7"
-        >
-          1
-        </span>
-      </button>
-    </li>
-    <li
-      class="emotion-2 emotion-3"
+        1
+      </span>
+    </button>
+    <div
+      class="emotion-6 emotion-7"
     >
-      <div
-        class="emotion-10 emotion-11"
-      >
-        <div>
-          <button
-            aria-controls="2_dropdownMenuId"
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="emotion-12 emotion-13 emotion-5"
-            color="primary"
-            id="2"
-            shape="fill"
-            type="button"
+      <div>
+        <button
+          aria-controls="2_dropdownMenuId"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="emotion-8 emotion-9 emotion-3"
+          color="primary"
+          id="2"
+          shape="fill"
+          type="button"
+        >
+          <span
+            class="emotion-4 emotion-5"
           >
             <span
-              class="emotion-6 emotion-7"
+              class="emotion-13 emotion-14"
             >
-              <span
-                class="emotion-17 emotion-18"
-              >
-                Dropdown 2
-              </span>
-              <svg
-                aria-hidden="true"
-                class="icon"
-                data-testid="caretDown"
-                fill="currentColor"
-                height="20"
-                role="none"
-                viewBox="0 0 24 24"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                  fill-rule="evenodd"
-                />
-              </svg>
+              Dropdown 2
             </span>
-          </button>
-        </div>
+            <svg
+              aria-hidden="true"
+              class="icon"
+              data-testid="caretDown"
+              fill="currentColor"
+              height="20"
+              role="none"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div
+        data-testid="dropdownContentWrapper"
+        id="2_dropdownMenuId"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+      >
         <div
-          data-testid="dropdownContentWrapper"
-          id="2_dropdownMenuId"
-          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+          class="emotion-15 emotion-16 emotion-17"
+          data-testid="dropdownContent"
+          tabindex="-1"
+          width="auto"
         >
           <div
-            class="emotion-19 emotion-20 emotion-21"
-            data-testid="dropdownContent"
-            tabindex="-1"
-            width="auto"
+            aria-labelledby="2"
+            role="menu"
           >
             <div
-              aria-labelledby="2"
-              role="menu"
+              class="emotion-18 emotion-19"
+              role="menuitem"
+              tabindex="-1"
             >
-              <div
-                class="emotion-22 emotion-23"
-                role="menuitem"
-                tabindex="-1"
-              >
-                Menu item 2.1
-              </div>
+              Menu item 2.1
             </div>
           </div>
         </div>
       </div>
-    </li>
-    <li
-      class="emotion-2 emotion-3"
+    </div>
+    <div
+      class="emotion-6 emotion-7"
     >
-      <div
-        class="emotion-10 emotion-11"
-      >
-        <div>
-          <button
-            aria-controls="3_dropdownMenuId"
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="emotion-12 emotion-13 emotion-5"
-            color="primary"
-            id="3"
-            shape="fill"
-            type="button"
+      <div>
+        <button
+          aria-controls="3_dropdownMenuId"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="emotion-8 emotion-9 emotion-3"
+          color="primary"
+          id="3"
+          shape="fill"
+          type="button"
+        >
+          <span
+            class="emotion-4 emotion-5"
           >
             <span
-              class="emotion-6 emotion-7"
+              class="emotion-13 emotion-14"
             >
-              <span
-                class="emotion-17 emotion-18"
-              >
-                Dropdown 3
-              </span>
-              <svg
-                aria-hidden="true"
-                class="icon"
-                data-testid="caretDown"
-                fill="currentColor"
-                height="20"
-                role="none"
-                viewBox="0 0 24 24"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                  fill-rule="evenodd"
-                />
-              </svg>
+              Dropdown 3
             </span>
-          </button>
-        </div>
+            <svg
+              aria-hidden="true"
+              class="icon"
+              data-testid="caretDown"
+              fill="currentColor"
+              height="20"
+              role="none"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div
+        data-testid="dropdownContentWrapper"
+        id="3_dropdownMenuId"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+      >
         <div
-          data-testid="dropdownContentWrapper"
-          id="3_dropdownMenuId"
-          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+          class="emotion-15 emotion-16 emotion-17"
+          data-testid="dropdownContent"
+          tabindex="-1"
+          width="auto"
         >
           <div
-            class="emotion-19 emotion-20 emotion-21"
-            data-testid="dropdownContent"
-            tabindex="-1"
-            width="auto"
+            aria-labelledby="3"
+            role="menu"
           >
             <div
-              aria-labelledby="3"
-              role="menu"
+              class="emotion-18 emotion-19"
+              role="menuitem"
+              tabindex="-1"
             >
-              <div
-                class="emotion-22 emotion-23"
-                role="menuitem"
-                tabindex="-1"
-              >
-                Menu item 3.1
-              </div>
+              Menu item 3.1
             </div>
           </div>
         </div>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
 `;
 
 exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 .emotion-0 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3337,110 +3057,81 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   row-gap: 8px;
 }
 
-.emotion-0>li>div {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>div div>button:nth-child(2),
-.emotion-0>li>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>li>button {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
   margin-left: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
   margin-right: 0;
 }
 
-.emotion-0>li:first-child:not(:only-child) button {
+.emotion-0>div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>div:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li:nth-child(2) button {
+.emotion-0>div:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child) button {
+.emotion-0>div:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child) button {
+.emotion-0>div:not(:first-child).emotion-0>div:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child) button {
+.emotion-0>div:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:first-child:not(:only-child) button {
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>button:first-child:not(:only-child) {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li>div:nth-child(2) button {
+.emotion-0>button:nth-child(2) {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child) button {
+.emotion-0>button:not(:first-child) {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child).emotion-0>li>div:not(:last-child) button {
+.emotion-0>button:not(:first-child).emotion-0>button:not(:last-child) {
   border-right: 0;
 }
 
-.emotion-0>li>div:last-child:not(:only-child) button {
-  border-radius: 0 8px 8px 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-0>li>button:first-child:not(:only-child) {
-  border-radius: 8px 0 0 8px;
-  border-right: 0;
-}
-
-.emotion-0>li>button:nth-child(2) {
-  border-left: 1px solid #FFFFFF;
-}
-
-.emotion-0>li>button:not(:first-child) {
-  border-radius: 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-0>li>button:not(:first-child).emotion-0>li>button:not(:last-child) {
-  border-right: 0;
-}
-
-.emotion-0>li>button:last-child:not(:only-child) {
+.emotion-0>button:last-child:not(:only-child) {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
 .emotion-2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: contents;
-}
-
-.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3485,24 +3176,24 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   width: auto;
 }
 
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-4:not(:disabled):hover,
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -3512,13 +3203,13 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   transition: transform 0s;
 }
 
-.emotion-4 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-6 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -3530,12 +3221,12 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   align-items: center;
 }
 
-.emotion-10 {
+.emotion-6 {
   display: inline-block;
   position: relative;
 }
 
-.emotion-13 {
+.emotion-9 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3581,24 +3272,24 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   padding-right: 8px;
 }
 
-.emotion-13:not(:disabled):focus {
+.emotion-9:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-13:not(:disabled):hover,
-.emotion-13:not(:disabled):focus {
+.emotion-9:not(:disabled):hover,
+.emotion-9:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-13:not(:disabled):active {
+.emotion-9:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-13:not(:disabled):active:after {
+.emotion-9:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -3608,18 +3299,18 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   transition: transform 0s;
 }
 
-.emotion-13 svg {
+.emotion-9 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-17 {
+.emotion-13 {
   padding-left: 0;
   padding-right: 8px;
 }
 
-.emotion-20 {
+.emotion-16 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -3650,12 +3341,12 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   white-space: nowrap;
 }
 
-.emotion-20:focus {
+.emotion-16:focus {
   outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
-.emotion-22 {
+.emotion-18 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3674,24 +3365,21 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   white-space: nowrap;
 }
 
-.emotion-22:hover,
-.emotion-22:focus {
+.emotion-18:hover,
+.emotion-18:focus {
   background: #F5F5F5;
 }
 
-.emotion-22:focus {
+.emotion-18:focus {
   outline-color: #0074B7;
   outline-offset: -2px;
 }
 
-.emotion-22:active {
+.emotion-18:active {
   outline-color: #0074B7;
 }
 
 .emotion-0 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3710,110 +3398,81 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   row-gap: 8px;
 }
 
-.emotion-0>li>div {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li>div div>button:nth-child(2),
-.emotion-0>li>div button:nth-child(2) {
-  width: 40px;
-}
-
-.emotion-0>li>button {
-  margin: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
-}
-
-.emotion-0>li:first-child:not(:only-child)>button {
+.emotion-0>button:first-child,
+.emotion-0>div:first-child {
   margin-left: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child)>button {
+.emotion-0>button:last-child,
+.emotion-0>div:last-child {
   margin-right: 0;
 }
 
-.emotion-0>li:first-child:not(:only-child) button {
+.emotion-0>div {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>div:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li:nth-child(2) button {
+.emotion-0>div:nth-child(2) button {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child) button {
+.emotion-0>div:not(:first-child) button {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li:not(:first-child).emotion-0>li:not(:last-child) button {
+.emotion-0>div:not(:first-child).emotion-0>div:not(:last-child) button {
   border-right: 0;
 }
 
-.emotion-0>li:last-child:not(:only-child) button {
+.emotion-0>div:last-child:not(:only-child) button {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:first-child:not(:only-child) button {
+.emotion-0>div button:nth-child(2) {
+  width: 40px;
+}
+
+.emotion-0>button {
+  margin: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+
+.emotion-0>button:first-child:not(:only-child) {
   border-radius: 8px 0 0 8px;
   border-right: 0;
 }
 
-.emotion-0>li>div:nth-child(2) button {
+.emotion-0>button:nth-child(2) {
   border-left: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child) button {
+.emotion-0>button:not(:first-child) {
   border-radius: 0;
   border-right: 1px solid #FFFFFF;
 }
 
-.emotion-0>li>div:not(:first-child).emotion-0>li>div:not(:last-child) button {
+.emotion-0>button:not(:first-child).emotion-0>button:not(:last-child) {
   border-right: 0;
 }
 
-.emotion-0>li>div:last-child:not(:only-child) button {
-  border-radius: 0 8px 8px 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-0>li>button:first-child:not(:only-child) {
-  border-radius: 8px 0 0 8px;
-  border-right: 0;
-}
-
-.emotion-0>li>button:nth-child(2) {
-  border-left: 1px solid #FFFFFF;
-}
-
-.emotion-0>li>button:not(:first-child) {
-  border-radius: 0;
-  border-right: 1px solid #FFFFFF;
-}
-
-.emotion-0>li>button:not(:first-child).emotion-0>li>button:not(:last-child) {
-  border-right: 0;
-}
-
-.emotion-0>li>button:last-child:not(:only-child) {
+.emotion-0>button:last-child:not(:only-child) {
   border-radius: 0 8px 8px 0;
   border-right: 1px solid #FFFFFF;
 }
 
 .emotion-2 {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: contents;
-}
-
-.emotion-4 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3858,24 +3517,24 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   width: auto;
 }
 
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-4:not(:disabled):hover,
-.emotion-4:not(:disabled):focus {
+.emotion-2:not(:disabled):hover,
+.emotion-2:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active {
+.emotion-2:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-4:not(:disabled):active:after {
+.emotion-2:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -3885,13 +3544,13 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   transition: transform 0s;
 }
 
-.emotion-4 svg {
+.emotion-2 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-6 {
+.emotion-4 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -3903,12 +3562,12 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   align-items: center;
 }
 
-.emotion-10 {
+.emotion-6 {
   display: inline-block;
   position: relative;
 }
 
-.emotion-13 {
+.emotion-9 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3954,24 +3613,24 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   padding-right: 8px;
 }
 
-.emotion-13:not(:disabled):focus {
+.emotion-9:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-13:not(:disabled):hover,
-.emotion-13:not(:disabled):focus {
+.emotion-9:not(:disabled):hover,
+.emotion-9:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-13:not(:disabled):active {
+.emotion-9:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-13:not(:disabled):active:after {
+.emotion-9:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -3981,18 +3640,18 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   transition: transform 0s;
 }
 
-.emotion-13 svg {
+.emotion-9 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-17 {
+.emotion-13 {
   padding-left: 0;
   padding-right: 8px;
 }
 
-.emotion-20 {
+.emotion-16 {
   background: #FFFFFF;
   border: 1px solid #D4D4D4;
   border-radius: 8px;
@@ -4023,12 +3682,12 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   white-space: nowrap;
 }
 
-.emotion-20:focus {
+.emotion-16:focus {
   outline: 2px solid #0074B7;
   outline-offset: 0;
 }
 
-.emotion-22 {
+.emotion-18 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -4047,185 +3706,172 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   white-space: nowrap;
 }
 
-.emotion-22:hover,
-.emotion-22:focus {
+.emotion-18:hover,
+.emotion-18:focus {
   background: #F5F5F5;
 }
 
-.emotion-22:focus {
+.emotion-18:focus {
   outline-color: #0074B7;
   outline-offset: -2px;
 }
 
-.emotion-22:active {
+.emotion-18:active {
   outline-color: #0074B7;
 }
 
 <div>
-  <ul
+  <div
     class="emotion-0 emotion-1"
     color="primary"
     orientation="horizontal"
-    role="list"
   >
-    <li
+    <button
       class="emotion-2 emotion-3"
+      color="primary"
+      shape="fill"
+      type="button"
     >
-      <button
+      <span
         class="emotion-4 emotion-5"
-        color="primary"
-        shape="fill"
-        type="button"
       >
-        <span
-          class="emotion-6 emotion-7"
-        >
-          1
-        </span>
-      </button>
-    </li>
-    <li
-      class="emotion-2 emotion-3"
+        1
+      </span>
+    </button>
+    <div
+      class="emotion-6 emotion-7"
     >
-      <div
-        class="emotion-10 emotion-11"
-      >
-        <div>
-          <button
-            aria-controls="2_dropdownMenuId"
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="emotion-12 emotion-13 emotion-5"
-            color="primary"
-            id="2"
-            shape="fill"
-            type="button"
+      <div>
+        <button
+          aria-controls="2_dropdownMenuId"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="emotion-8 emotion-9 emotion-3"
+          color="primary"
+          id="2"
+          shape="fill"
+          type="button"
+        >
+          <span
+            class="emotion-4 emotion-5"
           >
             <span
-              class="emotion-6 emotion-7"
+              class="emotion-13 emotion-14"
             >
-              <span
-                class="emotion-17 emotion-18"
-              >
-                Dropdown 2
-              </span>
-              <svg
-                aria-hidden="true"
-                class="icon"
-                data-testid="caretDown"
-                fill="currentColor"
-                height="20"
-                role="none"
-                viewBox="0 0 24 24"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                  fill-rule="evenodd"
-                />
-              </svg>
+              Dropdown 2
             </span>
-          </button>
-        </div>
+            <svg
+              aria-hidden="true"
+              class="icon"
+              data-testid="caretDown"
+              fill="currentColor"
+              height="20"
+              role="none"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div
+        data-testid="dropdownContentWrapper"
+        id="2_dropdownMenuId"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+      >
         <div
-          data-testid="dropdownContentWrapper"
-          id="2_dropdownMenuId"
-          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+          class="emotion-15 emotion-16 emotion-17"
+          data-testid="dropdownContent"
+          tabindex="-1"
+          width="auto"
         >
           <div
-            class="emotion-19 emotion-20 emotion-21"
-            data-testid="dropdownContent"
-            tabindex="-1"
-            width="auto"
+            aria-labelledby="2"
+            role="menu"
           >
             <div
-              aria-labelledby="2"
-              role="menu"
+              class="emotion-18 emotion-19"
+              role="menuitem"
+              tabindex="-1"
             >
-              <div
-                class="emotion-22 emotion-23"
-                role="menuitem"
-                tabindex="-1"
-              >
-                Menu item 2.1
-              </div>
+              Menu item 2.1
             </div>
           </div>
         </div>
       </div>
-    </li>
-    <li
-      class="emotion-2 emotion-3"
+    </div>
+    <div
+      class="emotion-6 emotion-7"
     >
-      <div
-        class="emotion-10 emotion-11"
-      >
-        <div>
-          <button
-            aria-controls="3_dropdownMenuId"
-            aria-expanded="false"
-            aria-haspopup="true"
-            class="emotion-12 emotion-13 emotion-5"
-            color="primary"
-            id="3"
-            shape="fill"
-            type="button"
+      <div>
+        <button
+          aria-controls="3_dropdownMenuId"
+          aria-expanded="false"
+          aria-haspopup="true"
+          class="emotion-8 emotion-9 emotion-3"
+          color="primary"
+          id="3"
+          shape="fill"
+          type="button"
+        >
+          <span
+            class="emotion-4 emotion-5"
           >
             <span
-              class="emotion-6 emotion-7"
+              class="emotion-13 emotion-14"
             >
-              <span
-                class="emotion-17 emotion-18"
-              >
-                Dropdown 3
-              </span>
-              <svg
-                aria-hidden="true"
-                class="icon"
-                data-testid="caretDown"
-                fill="currentColor"
-                height="20"
-                role="none"
-                viewBox="0 0 24 24"
-                width="20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
-                  fill-rule="evenodd"
-                />
-              </svg>
+              Dropdown 3
             </span>
-          </button>
-        </div>
+            <svg
+              aria-hidden="true"
+              class="icon"
+              data-testid="caretDown"
+              fill="currentColor"
+              height="20"
+              role="none"
+              viewBox="0 0 24 24"
+              width="20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M16 10.5c0 .1354-.0494.2526-.1483.3518l-3.5 3.5c-.0988.0988-.216.1483-.3517.1483-.1356 0-.2529-.0495-.3517-.1484l-3.5-3.4999C8.0494 10.7529 8 10.6357 8 10.5001c0-.1357.0494-.253.1483-.3518.0989-.0989.2161-.1483.3518-.1483h6.9998c.1354 0 .2526.0494.3518.1483.0992.0989.1486.2161.1483.3518z"
+                fill-rule="evenodd"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div
+        data-testid="dropdownContentWrapper"
+        id="3_dropdownMenuId"
+        style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+      >
         <div
-          data-testid="dropdownContentWrapper"
-          id="3_dropdownMenuId"
-          style="position: absolute; left: 0px; top: 0px; z-index: 996;"
+          class="emotion-15 emotion-16 emotion-17"
+          data-testid="dropdownContent"
+          tabindex="-1"
+          width="auto"
         >
           <div
-            class="emotion-19 emotion-20 emotion-21"
-            data-testid="dropdownContent"
-            tabindex="-1"
-            width="auto"
+            aria-labelledby="3"
+            role="menu"
           >
             <div
-              aria-labelledby="3"
-              role="menu"
+              class="emotion-18 emotion-19"
+              role="menuitem"
+              tabindex="-1"
             >
-              <div
-                class="emotion-22 emotion-23"
-                role="menuitem"
-                tabindex="-1"
-              >
-                Menu item 3.1
-              </div>
+              Menu item 3.1
             </div>
           </div>
         </div>
       </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
 `;
