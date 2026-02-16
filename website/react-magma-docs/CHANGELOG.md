@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.0-next.18
+
+### Patch Changes
+
+- 9a93d9235: fix(AIButton): Fix typescript issue for Sandbox examples.
+
 ## 5.3.0-next.17
 
 ### Patch Changes

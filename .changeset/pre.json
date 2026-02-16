@@ -25,6 +25,7 @@
     "feat-SplitDropdown-add-leading-icon",
     "feat-TreeView-selectParents-prop",
     "fix-AIButton-box-shadow",
+    "fix-AIButton-typescript-issue",
     "fix-Accordion-accessibility-render-issue",
     "fix-Accordion-docs-accessibility-issue",
     "fix-Alert-docs-acessibility-issues",
