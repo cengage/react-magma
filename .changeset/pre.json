@@ -86,6 +86,7 @@
     "fix-tablepagination-duplicate-screenreader",
     "fix-timepicker-update-styles",
     "manually-sync-4.10.1",
+    "revert-ButtonGroup-acessibility-list",
     "treeview-performance-styles",
     "treeview-performance"
   ]
