@@ -128,8 +128,8 @@ export function Example() {
     }
   }
 
-  function handleOpen(event: React.KeyboardEvent) {
-    popoverApiRef.current.openPopoverManually(event);
+  function handleOpen(event: React.SyntheticEvent) {
+    popoverApiRef.current?.openPopoverManually(event);
   }
 
   return (

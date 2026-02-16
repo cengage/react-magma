@@ -275,17 +275,23 @@ For short forms with an error, clicking submit should bring the focus back to th
 ```tsx
 import React from 'react';
 
-import { Input, Button, ButtonGroup, Spacer } from 'react-magma-dom';
+import {
+  Input,
+  Button,
+  ButtonGroup,
+  ButtonColor,
+  Spacer,
+} from 'react-magma-dom';
 
 export function Example() {
   const [hasError, setHasError] = React.useState(false);
   const [nameValue, setNameValue] = React.useState('');
-  const inputRef = React.useRef();
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   function submit() {
     if (nameValue === '') {
       setHasError(true);
-      inputRef.current.focus();
+      inputRef.current?.focus();
     } else {
       setHasError(false);
     }
@@ -294,7 +300,7 @@ export function Example() {
   function reset() {
     setHasError(false);
     setNameValue('');
-    inputRef.current.focus();
+    inputRef.current?.focus();
   }
 
   return (
@@ -311,7 +317,7 @@ export function Example() {
       <Spacer size="12" />
       <ButtonGroup>
         <Button onClick={submit}>Submit</Button>
-        <Button onClick={reset} color="secondary">
+        <Button onClick={reset} color={ButtonColor.secondary}>
           Reset
         </Button>
       </ButtonGroup>
@@ -345,7 +351,7 @@ The `iconPosition` position prop is optional and takes the values `left` and `ri
 ```tsx
 import React from 'react';
 
-import { Input, InputType, Spinner } from 'react-magma-dom';
+import { Input, InputType, InputIconPosition, Spinner } from 'react-magma-dom';
 import { EventIcon, MailOutlineIcon } from 'react-magma-icons';
 
 export function Example() {
@@ -358,7 +364,7 @@ export function Example() {
       />
 
       <Input
-        iconPosition="right"
+        iconPosition={InputIconPosition.right}
         labelText="Input with icon on right"
         icon={<Spinner />}
         iconAriaLabel="Loading..."
@@ -384,7 +390,12 @@ The `inputSize` prop can be used to control the input size. Options are `medium`
 ```tsx
 import React from 'react';
 
-import { Input, InputType } from 'react-magma-dom';
+import {
+  Input,
+  InputIconPosition,
+  InputSize,
+  InputType,
+} from 'react-magma-dom';
 import { EventIcon, MailOutlineIcon } from 'react-magma-icons';
 
 export function Example() {
@@ -392,14 +403,15 @@ export function Example() {
     <>
       <Input
         labelText="Large input with icon on left"
-        inputSize="large"
+        inputSize={InputSize.large}
         icon={<MailOutlineIcon />}
+        iconPosition={InputIconPosition.left}
         type={InputType.email}
       />
       <Input
         labelText="Large input with clickable icon on right"
         iconAriaLabel="Calendar"
-        inputSize="large"
+        inputSize={InputSize.large}
         onIconClick={() => {
           alert('Icon clicked');
         }}
@@ -407,7 +419,7 @@ export function Example() {
       />
       <Input
         errorMessage="Error"
-        inputSize="large"
+        inputSize={InputSize.large}
         labelText="Large input with error"
       />
     </>
@@ -462,19 +474,26 @@ If multiple inputs are needed in a column display, `labelWidth` can be used whic
 ```tsx
 import React from 'react';
 
-import { Input } from 'react-magma-dom';
+import { Input, LabelPosition } from 'react-magma-dom';
 
 export function Example() {
   return (
     <>
-      <Input labelText="Left aligned label" labelPosition="left" />
+      <Input
+        labelText="Left aligned label"
+        labelPosition={LabelPosition.left}
+      />
       <br />
-      <Input labelText="Set width" labelPosition="left" labelWidth="25" />
+      <Input
+        labelText="Set width"
+        labelPosition={LabelPosition.left}
+        labelWidth={25}
+      />
       <br />
       <Input
         labelText="Additional set width label"
-        labelPosition="left"
-        labelWidth="25"
+        labelPosition={LabelPosition.left}
+        labelWidth={25}
       />
     </>
   );
@@ -658,7 +677,7 @@ import React from 'react';
 import { Button, Input, Spacer } from 'react-magma-dom';
 
 export function Example() {
-  const inputRef = React.useRef();
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   return (
     <div>
@@ -666,7 +685,7 @@ export function Example() {
       <Spacer size="12" />
       <Button
         onClick={() => {
-          inputRef.current.focus();
+          inputRef.current?.focus();
         }}
       >
         Click to focus input

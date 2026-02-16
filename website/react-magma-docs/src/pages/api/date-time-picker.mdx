@@ -178,11 +178,13 @@ import React from 'react';
 import { DateTimePicker, Button } from 'react-magma-dom';
 
 export function Example() {
-  const [chosenDate, setChosenDate] = React.useState<Date | null>(null);
+  const [chosenDate, setChosenDate] = React.useState<Date | undefined>(
+    undefined
+  );
   const [chosenTime, setChosenTime] = React.useState<string | null>(null);
 
   function handleDateChange(newChosenDate: Date | null) {
-    let newDate = newChosenDate;
+    let newDate: Date | undefined = newChosenDate ?? undefined;
 
     if (chosenTime && newChosenDate) {
       const [timePart, ampm] = chosenTime.split(' ');
@@ -254,6 +256,7 @@ export function Example() {
         {chosenTime && <span>{chosenTime}</span>}
       </p>
       <DateTimePicker
+        labelText="Select Date and Time"
         onDateChange={handleDateChange}
         onTimeChange={handleTimeChange}
         value={chosenDate}
@@ -371,8 +374,8 @@ import { DateTimePicker } from 'react-magma-dom';
 export function Example() {
   const [inputValue, setInputValue] = React.useState<string>('');
 
-  function handleInputChange(event: React.EventChangeHandler) {
-    setInputValue(event.target.value);
+  function handleInputChange(event: React.ChangeEvent<Element>) {
+    setInputValue((event.target as HTMLInputElement).value);
   }
 
   return (
@@ -489,11 +492,11 @@ import { DateTimePicker } from 'react-magma-dom';
 export function Example() {
   const [isFocused, updateIsFocused] = React.useState<boolean>(false);
 
-  function handleInputBlur(event: React.FocusChangeHandler) {
+  function handleInputBlur(event: React.FocusEvent<Element>) {
     updateIsFocused(false);
   }
 
-  function handleInputFocus(event: React.FocusChangeHandler) {
+  function handleInputFocus(event: React.FocusEvent<Element>) {
     updateIsFocused(true);
   }
 
@@ -554,18 +557,18 @@ import { DateTimePicker } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <DateTimePicker
-      containerStyle={{
+    <div
+      style={{
         border: '2px solid green',
         maxWidth: '300px',
         padding: '2px',
       }}
-      errorMessage="Please fix the error"
-      inputStyle={{ border: '1px dashed purple', borderRadius: '0' }}
-      labelStyle={{ border: '1px dotted blue' }}
-      labelText="Date&Time"
-      messageStyle={{ border: '1px solid black', padding: '' }}
-    />
+    >
+      <DateTimePicker
+        errorMessage="Please fix the error"
+        labelText="Date&Time"
+      />
+    </div>
   );
 }
 ```

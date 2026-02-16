@@ -22,7 +22,8 @@
     "lint:check": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --max-warnings=0",
     "lint:fix": "npx eslint 'src/**/*.{js,jsx,ts,tsx,md,mdx}' --fix",
     "serve": "gatsby serve",
-    "test": "echo \"Error: no test specified\""
+    "test": "echo \"Error: no test specified\"",
+    "typecheck:mdx": "npx ts-node scripts/check-mdx-types.ts"
   },
   "dependencies": {
     "@babel/plugin-transform-react-jsx": "7.10.4",
