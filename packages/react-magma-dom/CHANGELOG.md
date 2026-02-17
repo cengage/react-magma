@@ -1,3 +1,69 @@
+## 4.11.0
+
+### Minor Changes
+
+- 5810cc13d: feat(Checkbox): Add new `ariaLabel` prop.
+- 5810cc13d: feat(DatePicker): Add new keyboard controls.
+- 5810cc13d: feat(DateTimePicker): Add `timezone` prop. When used, returns Date object with the timezone.
+- 5810cc13d: feat(Popover): Add `isFullWidth` prop to allow the trigger button and content to expand to 100% width.
+- 5810cc13d: feat(SplitDropdown): Add new `leadingIcon` prop.
+- 5810cc13d: feat(TreeView): Support `selectParents` prop (`true` by default).
+- 5810cc13d: feat(Treeview): Add virtualization support.
+- 5810cc13d: feat(TreeView): Performance refactor.
+
+  - Introduced a new `treeViewReducer` to manage the state of the TreeView component, handling actions such as item selection, expansion, and item updates.
+  - Refactored `useTreeView` and `useTreeItem` hooks to utilize the new reducer, improving state management and reducing re-renders.
+  - Enhanced utility functions for better performance, including optimized selection and status processing using Maps for O(1) lookups.
+  - Updated context providers to split responsibilities for selection, expansion, and configuration, allowing for more granular updates and improved performance.
+
+### Patch Changes
+
+- 5810cc13d: fix(AIButton): Fix box-shadows.
+- 5810cc13d: fix(Accordion): Fix accessibility render issue
+- 5810cc13d: fix(Alert): add the `dismissibleButtonRef` prop to the `Alert`.
+- 5810cc13d: fix(Alert): Add margin right for alert content.
+- 5810cc13d: fix(Banner): Add `role` and `aria-label` attributes for icon.
+- 5810cc13d: fix(Banner): add the `dismissibleButtonRef` prop to the `Banner`
+- 5810cc13d: fix(Breadcrumb): Update last item to be a span instead of link.
+- 5810cc13d: fix(Combobox, MultiCombobox): Improve NVDA Browse Mode navigation across the page.
+- 5810cc13d: fix(Combobox): Fix issue when NVDA doesn't read placeholder.
+- 5810cc13d: fix(DatePicker): Update aria-label for calendar widget. Add announcing tooltip content for calendar widget button.
+- 5810cc13d: fix(DatePicker): Fix focusing input field after clearing date and when `isDateFieldInput=true`.
+- 5810cc13d: fix(DatePicker): Update announcing tooltip logic.
+- 5810cc13d: fix(DatePicker): Automatically focus today or min date on open state.
+- 5810cc13d: fix(DatePicker): Improve updating values in input when `isDateFieldInput=true`
+- 5810cc13d: fix(Drawer): Fix content scrolling inside the Drawer when overflowing.
+- 5810cc13d: fix(Dropdown): Remove `aria-label` from DropdownMenuItem icon. Add `role=menu` to DropdownContent for DropdownMenuNavItem children.
+- 5810cc13d: fix(Dropdown & Accordion): Add aria attributes for Dropdown menu and nested items to improve accessibility.
+- 5810cc13d: fix(Dropdown): Add aria-controls attribute for Dropdown trigger button.
+- 5810cc13d: fix(Dropdown): Fix bug with `Escape` focus behavior
+- 5810cc13d: fix(Modal, Drawer): Fix focus order for header, close button, and content.
+- 5810cc13d: fix(NavTabs): Fix obscured content when the elements is focused.
+- 5810cc13d: fix(Pagination): Add announcement when selected page updates.
+- 5810cc13d: fix(Pagination): Add `aria-hidden=true` for ellipsis.
+- 5810cc13d: fix(RadioButton): Fix announcing label text with error or helper message.
+- 5810cc13d: fix(Select, Multiselect, Combobox & Multicombobox): Fix navigation throughth the disabled items.
+- 5810cc13d: fix(Select): Add announcement to `expanded`/`collapsed` state of `Select`.
+- 5810cc13d: fix(Select, Multiselect): Separate focus and hover states and auto-focus first item for NVDA support.
+- 5810cc13d: fix(Table): Change logic for `tabIndex`.
+- 5810cc13d: fix(Tag): Add a new `aria-label` attribute to the component to improve accessibility.
+- 5810cc13d: fix(Textarea): Add an ARIA announcement helper to inform users how many characters are left.
+- 5810cc13d: fix(ToggleButton): Fix issue with `textTransform` prop.
+- 5810cc13d: fix(LoadingIndicator): Fix announcing `Loading` twice for Loading indicator.
+- 5810cc13d: fix(Tooltip): Force visibility tooltip content when user hover it.
+- 5810cc13d: fix(Datagrid): Fixed semantic markup for Sort Rows button in selectable and sortable variant.
+- 5810cc13d: fix(Modal, Drawer): Fix content scrolling underneath the Drawer and Modal when it’s open.
+- 5810cc13d: fix(Select, Multiselect): Add `ariaLabel` prop to provide alternative text for screen readers.
+- 5810cc13d: fix(Select): add aria-disabled attribute to disabled select elements.
+- 5810cc13d: fix(Select, NativeSelect, Combobox): Add cyclical navigation across options.
+- 5810cc13d: fix(Table, Datagrid): Improve screen reader announcements for table navigation and pagination.
+
+  - Removed aria-live from Datagrid table to prevent automatic reading of entire table content when rows per page changes
+  - Added aria-live="polite" to TablePagination page count to announce pagination status updates
+  - Added proper ARIA attributes (role="region", aria-label/aria-labelledby) to scrollable table wrapper to prevent verbose screen reader announcements
+
+- 5810cc13d: fix(TablePagination): Fixed screen reader announcing "Rows per page" twice by hiding the visible label from screenreaders.
+- 5810cc13d: fix(TimePicker): Update styles.
 
 ## 4.10.1
 
