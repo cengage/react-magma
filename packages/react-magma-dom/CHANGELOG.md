@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.51
+
+### Patch Changes
+
+- 295d8a6: fix(ButtonGroup): reverted Accessibility issue: now `ButtonGroup` is list in the HTML with role="list"
+
 ## 5.1.0-rc.50
 
 ### Patch Changes
