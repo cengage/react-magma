@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(TimePicker): Update styles
+fix(TimePicker): Update styles.

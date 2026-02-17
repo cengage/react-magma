@@ -1,5 +1,5 @@
 ---
-'react-magma-dom': patch
+'react-magma-dom': minor
 ---
 
-fix(Treeview): Add height prop for virtualization support
+feat(Treeview): Add virtualization support.
