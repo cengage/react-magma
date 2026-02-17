@@ -3,7 +3,11 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { IconProps } from 'react-magma-icons';
 
-import { AccordionButton, AccordionButtonProps } from '../Accordion';
+import {
+  AccordionButton,
+  AccordionButtonProps,
+  AccordionItemContext,
+} from '../Accordion';
 import { DropdownContext } from './Dropdown';
 import { DropdownExpandableMenuGroupContext } from './DropdownExpandableMenuGroup';
 import { DropdownExpandableMenuItemContext } from './DropdownExpandableMenuItem';
@@ -63,6 +67,8 @@ export const DropdownExpandableMenuButton = React.forwardRef<
     DropdownExpandableMenuItemContext
   );
 
+  const { isExpanded } = React.useContext(AccordionItemContext);
+
   const ownRef = React.useRef<HTMLDivElement>();
   const ref = useForkedRef(forwardedRef, ownRef);
 
@@ -82,7 +88,10 @@ export const DropdownExpandableMenuButton = React.forwardRef<
   return (
     <StyledAccordionButton
       {...other}
+      aria-expanded={isExpanded}
+      aria-haspopup="true"
       ref={ref}
+      role="menuitem"
       customOnKeyDown={handleCustomOnKeyDown}
       icon={icon}
       theme={theme}

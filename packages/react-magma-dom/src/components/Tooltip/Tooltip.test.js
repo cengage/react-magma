@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent, waitFor } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -135,7 +135,7 @@ describe('Tooltip', () => {
     expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
   });
 
-  it('should show the tooltip on mouseenter and hide it on mouseleave', () => {
+  it('should show the tooltip on mouseenter and hide it on mouseleave trigger button', async () => {
     const { container } = render(
       <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
     );
@@ -151,12 +151,40 @@ describe('Tooltip', () => {
 
     fireEvent.mouseLeave(tooltipTrigger);
 
+    await waitFor(() => {
+      expect(
+        container.querySelector('div[role="tooltip"]')
+      ).not.toBeInTheDocument();
+    });
+  });
+
+  it('should show the tooltip content on mouseenter and hide it on mouseleave tooltip content', async () => {
+    const { container } = render(
+      <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
+    );
+    const tooltipTrigger = container.querySelector('button');
+
     expect(
       container.querySelector('div[role="tooltip"]')
     ).not.toBeInTheDocument();
+
+    fireEvent.mouseEnter(tooltipTrigger);
+
+    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
+
+    fireEvent.mouseEnter(container.querySelector('div[role="tooltip"]'));
+
+    expect(container.querySelector('div[role="tooltip"]')).toBeInTheDocument();
+    fireEvent.mouseLeave(container.querySelector('div[role="tooltip"]'));
+
+    await waitFor(() => {
+      expect(
+        container.querySelector('div[role="tooltip"]')
+      ).not.toBeInTheDocument();
+    });
   });
 
-  it('should hide the tooltip when the escape key is pressed', () => {
+  it('should hide the tooltip when the escape key is pressed', async () => {
     const { container } = render(
       <Tooltip content={CONTENT_TEXT}>{TRIGGER_ELEMENT}</Tooltip>
     );
@@ -180,7 +208,9 @@ describe('Tooltip', () => {
       keyCode: 27,
     });
 
-    expect(tooltip).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(tooltip).not.toBeInTheDocument();
+    });
   });
 
   it('should render the tooltip component with the correct styles for the inverse prop, position top', async () => {

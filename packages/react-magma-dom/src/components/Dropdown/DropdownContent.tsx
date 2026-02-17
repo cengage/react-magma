@@ -66,7 +66,7 @@ export const DropdownContent = React.forwardRef<
   HTMLDivElement,
   DropdownContentProps
 >((props, forwardedRef) => {
-  const { children, testId, ...other } = props;
+  const { children, testId, id, ...other } = props;
   const context = React.useContext(DropdownContext);
   const theme = React.useContext(ThemeContext);
   const ref = useForkedRef(forwardedRef, context.menuRef);
@@ -79,7 +79,8 @@ export const DropdownContent = React.forwardRef<
   React.Children.forEach(children, (child: any) => {
     if (
       child?.type?.displayName === 'DropdownMenuItem' ||
-      child?.type?.displayName === 'DropdownMenuGroup'
+      child?.type?.displayName === 'DropdownMenuGroup' ||
+      child?.type?.displayName === 'DropdownMenuNavItem'
     ) {
       hasItemChildren = true;
     }
@@ -92,6 +93,7 @@ export const DropdownContent = React.forwardRef<
   return (
     <div
       data-testid={'dropdownContentWrapper'}
+      id={(id ?? context.dropdownButtonId.current) + '_dropdownMenuId'}
       ref={el => {
         context.isOpen && context.setFloating(el);
       }}
@@ -119,8 +121,8 @@ export const DropdownContent = React.forwardRef<
         width={context.width}
       >
         <div
-          aria-labelledby={context.dropdownButtonId.current}
-          role={hasItemChildren ? 'menu' : null}
+          aria-labelledby={id ?? context.dropdownButtonId.current}
+          role={hasItemChildren || hasExpandableItems ? 'menu' : null}
         >
           {children}
         </div>

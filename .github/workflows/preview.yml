@@ -4,9 +4,13 @@ on:
     branches:
       - dev
       - main
-      - 'dev-patch*'
+      - v4/dev
+      - v4/main
+      - 'dev-patch'
       - 'patch-*'
+      - 'chore/react-18-upgrade'
     types: [opened, synchronize]
+
 jobs:
   build:
     runs-on: macos-latest
@@ -20,10 +24,12 @@ jobs:
           check-latest: true
       - name: Check Node version
         run: node -v
-      - name: Update NPM version
-        run: npm install -g "npm@^7.6.3"
+      - name: Check NPM version
+        run: npm -v
       - name: Install
-        run: npm ci
+        run: npm ci --legacy-peer-deps
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
       - name: Test
         run: npm test
       - name: Install Playwright Browsers
@@ -41,7 +47,6 @@ jobs:
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './website/react-magma-docs/public'
-          production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-pull-request-comment: true
           enable-commit-comment: true
@@ -54,7 +59,6 @@ jobs:
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './storybook-static'
-          production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-pull-request-comment: true
           enable-commit-comment: true

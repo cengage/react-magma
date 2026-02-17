@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { act, fireEvent, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { HelpIcon } from 'react-magma-icons';
 
 import { defaultI18n } from '../../i18n/default';
@@ -302,6 +303,7 @@ describe('Select', () => {
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
     expect(renderedSelect).toHaveAttribute('disabled');
+    expect(renderedSelect).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('should allow a selection to be cleared', () => {
@@ -510,6 +512,68 @@ describe('Select', () => {
     );
 
     expect(getByTestId('customClearIndicator')).toBeInTheDocument();
+  });
+
+  it('should loop to the first item and last item when down arrow and up arrow is pressed', async () => {
+    const { getByLabelText, getByText } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    await userEvent.click(renderedSelect);
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+
+    // Looping back to the first item
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+
+    // Looping back to the last item
+    await userEvent.keyboard('{ArrowUp}');
+    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+  });
+
+  it('should skip disabled items and navigate to the next active item', async () => {
+    const customItems = [
+      {
+        label: 'Red',
+        value: 'red',
+        disabled: false,
+      },
+      {
+        label: 'Blue',
+        value: 'blue',
+        disabled: true,
+      },
+      {
+        label: 'Green',
+        value: 'green',
+        disabled: false,
+      },
+    ];
+
+    const { getByLabelText, getByText } = render(
+      <Select labelText={labelText} items={customItems} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    act(() => {
+      renderedSelect.focus();
+    });
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'false');
+    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
   });
 
   describe('additional content', () => {

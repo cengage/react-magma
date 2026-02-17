@@ -2,11 +2,11 @@ import * as React from 'react';
 
 import { IconProps } from 'react-magma-icons';
 
+import { StyledAIButton } from './StyledAIButton';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { resolveProps, XOR } from '../../utils';
 import { ButtonGroupContext } from '../ButtonGroup';
-import { StyledAIButton } from './StyledAIButton';
 
 export enum AIButtonVariant {
   variantA = 'variantA', //default

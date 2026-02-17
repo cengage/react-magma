@@ -1,17 +1,12 @@
 import React from 'react';
 
-import {
-  act,
-  fireEvent,
-  getByLabelText,
-  getByTestId,
-  render,
-} from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 import {
   AsteriskIcon,
   CheckIcon,
+  LibraryAddIcon,
   ReorderIcon,
   RestaurantMenuIcon,
   SettingsIcon,
@@ -218,6 +213,33 @@ describe('Dropdown', () => {
     );
 
     expect(getByLabelText('Custom label')).toBeInTheDocument();
+  });
+
+  it('should render a split dropdown with leading icon', () => {
+    const { getByTestId, container } = render(
+      <Dropdown>
+        <DropdownSplitButton leadingIcon={<LibraryAddIcon />}>
+          Toggle me
+        </DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(getByTestId('caretDown')).toBeInTheDocument();
+    expect(container.querySelectorAll('button').length).toBe(2);
+    expect(container.querySelectorAll('svg').length).toBe(2);
+
+    const svgs = container.querySelectorAll('svg');
+
+    svgs.forEach(svg => {
+      expect(svg).toHaveAttribute('aria-hidden', 'true');
+    });
+
+    const leadingIconSvg = svgs[0];
+    expect(leadingIconSvg).toBeInTheDocument();
+
+    const caretSvg = svgs[1];
+    expect(caretSvg).toBeInTheDocument();
   });
 
   it('should render a split dropdown with margin left on solid variants', () => {
@@ -512,9 +534,9 @@ describe('Dropdown', () => {
   });
 
   it('should close the menu when escape key is pressed', () => {
-    const { getByText, getByTestId } = render(
+    const { getByTestId } = render(
       <Dropdown testId="dropdown">
-        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
         <DropdownContent>
           <DropdownMenuItem>Menu item</DropdownMenuItem>
         </DropdownContent>
@@ -523,7 +545,8 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-    fireEvent.click(getByText('Toggle me'));
+    const button = getByTestId('dropdownButton');
+    fireEvent.click(button);
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
@@ -536,6 +559,7 @@ describe('Dropdown', () => {
       code: 27,
     });
 
+    expect(button).toHaveFocus();
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
@@ -886,7 +910,7 @@ describe('Dropdown', () => {
     it('should close the menu when escape key is pressed', () => {
       const { getByText, getByTestId } = render(
         <Dropdown testId="dropdown">
-          <DropdownButton>Toggle me</DropdownButton>
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
           <DropdownContent>
             <p>test</p>
           </DropdownContent>
@@ -895,7 +919,8 @@ describe('Dropdown', () => {
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-      fireEvent.click(getByText('Toggle me'));
+      const button = getByTestId('dropdownButton');
+      fireEvent.click(button);
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule(
         'display',
@@ -911,6 +936,7 @@ describe('Dropdown', () => {
         code: 27,
       });
 
+      expect(button).toHaveFocus();
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
     });
 
@@ -919,7 +945,7 @@ describe('Dropdown', () => {
       const { getByText, getByTestId } = render(
         <Modal testId="modal" isOpen>
           <Dropdown testId="dropdown">
-            <DropdownButton>Toggle me</DropdownButton>
+            <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
             <DropdownContent>
               <p>test</p>
             </DropdownContent>
@@ -929,7 +955,8 @@ describe('Dropdown', () => {
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-      fireEvent.click(getByText('Toggle me'));
+      const button = getByTestId('dropdownButton');
+      fireEvent.click(button);
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule(
         'display',
@@ -946,6 +973,7 @@ describe('Dropdown', () => {
       });
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(button).toHaveFocus();
       expect(getByTestId('modal')).toBeInTheDocument();
     });
 

@@ -1,8 +1,8 @@
-name: Publish Latest (main)
-on:
+name: "Publish Patch V4 (patch-v4/*)"
+"on":
   push:
     branches:
-      - main
+      - 'patch-v4/*'
 jobs:
   build:
     runs-on: macos-latest
@@ -17,13 +17,11 @@ jobs:
       - name: Check Node version
         run: node -v
       - name: Update NPM version
-        run: npm install -g "npm@^7.6.3"
+        run: npm install -g "npm@^10.8.2"
       - name: Install
-        run: npm ci
+        run: npm ci --legacy-peer-deps
       - name: Test
         run: npm test
-      - name: Coverage
-        uses: codecov/codecov-action@v1
       - name: Configure NPM
         run: |
           git config --global user.name 'github-bot'
@@ -73,9 +71,3 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      - name: Sync main -> dev
-        uses: tukasz/direct-merge-action@master
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          source-branch: main
-          target-branch: dev

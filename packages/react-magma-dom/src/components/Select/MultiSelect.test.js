@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { act, fireEvent, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
@@ -8,7 +9,7 @@ import { Modal } from '../Modal';
 
 import { Select as MultiSelect } from '.';
 
-describe('Select', () => {
+describe('MultiSelect', () => {
   const items = ['Red', 'Blue', 'Green'];
   const labelText = 'Label';
 
@@ -443,6 +444,7 @@ describe('Select', () => {
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
     expect(renderedSelect).toHaveAttribute('disabled');
+    expect(renderedSelect).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('should disable selected items in the disabled multi-select and disabled items should not be removable', () => {
@@ -611,6 +613,67 @@ describe('Select', () => {
     expect(getByText('Red')).toHaveAttribute('aria-disabled', 'true');
     expect(getByText('Blue')).toHaveAttribute('aria-disabled', 'false');
     expect(getByText('Green')).toHaveAttribute('aria-disabled', 'false');
+  });
+
+  it('should loop to the first item and last item when down arrow and up arrow is pressed', async () => {
+    const { getByLabelText, getByText } = render(
+      <MultiSelect isMulti labelText={labelText} items={items} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    await userEvent.click(renderedSelect);
+    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+
+    // Looping back to the first item
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+
+    // Looping back to the last item
+    await userEvent.keyboard('{ArrowUp}');
+    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+  });
+
+  it('should skip disabled items and navigate to the next active item', async () => {
+    const customItems = [
+      {
+        label: 'Red',
+        value: 'red',
+        disabled: false,
+      },
+      {
+        label: 'Blue',
+        value: 'blue',
+        disabled: true,
+      },
+      {
+        label: 'Green',
+        value: 'green',
+        disabled: false,
+      },
+    ];
+
+    const { getByLabelText, getByText } = render(
+      <MultiSelect isMulti labelText={labelText} items={customItems} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    act(() => {
+      renderedSelect.focus();
+    });
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'false');
+    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
   });
 
   describe('events', () => {

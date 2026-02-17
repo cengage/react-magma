@@ -151,6 +151,15 @@ export const TableWrapper = styled.div<{ minWidth: number }>`
   @container tableContainer (max-width: ${props => props.minWidth}px) {
     overflow: auto;
   }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid ${props => props.theme.colors.focus};
+    outline-offset: 2px;
+  }
 `;
 
 export const StyledTableTitle = styled.caption<{
@@ -226,11 +235,56 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       ...other
     } = props;
 
+    const [isScrollable, setIsScrollable] = React.useState(false);
+
     const theme = React.useContext(ThemeContext);
 
     const isInverse = useIsInverse(props.isInverse);
 
+    const tableWrapperRef = React.useRef<HTMLDivElement>(null);
+
     const tableWrapper = `table-wrapper-${testId}`;
+
+    // Scrollable tables get tabindex="0" so keyboard users can scroll with arrow keys.
+    // Non-scrollable tables don't need tabindex - users navigate through interactive elements or browse mode.
+    React.useEffect(() => {
+      const checkScrollability = () => {
+        if (tableWrapperRef.current) {
+          const element = tableWrapperRef.current;
+          const isHorizontallyScrollable =
+            element.scrollWidth > element.clientWidth;
+          setIsScrollable(isHorizontallyScrollable);
+        }
+      };
+
+      checkScrollability();
+
+      let resizeObserver: any = null;
+
+      if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
+        resizeObserver = new (window as any).ResizeObserver(() => {
+          checkScrollability();
+        });
+
+        if (tableWrapperRef.current) {
+          resizeObserver.observe(tableWrapperRef.current);
+        }
+      }
+
+      return () => {
+        if (resizeObserver) {
+          resizeObserver.disconnect();
+        }
+      };
+    }, [children]);
+
+    const getScrollableAriaLabel = () => {
+      if (!isScrollable) return undefined;
+      if (typeof tableTitle === 'string') {
+        return `${tableTitle} (scrollable)`;
+      }
+      return 'Scrollable table';
+    };
 
     return (
       <TableContext.Provider
@@ -252,9 +306,15 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
           isInverse={isInverse}
           minWidth={minWidth}
           theme={theme}
-          tabIndex={0}
         >
-          <TableWrapper minWidth={minWidth}>
+          <TableWrapper
+            minWidth={minWidth}
+            ref={tableWrapperRef}
+            tabIndex={isScrollable ? 0 : undefined}
+            role={isScrollable ? 'region' : undefined}
+            aria-label={getScrollableAriaLabel()}
+            theme={theme}
+          >
             <StyledTable
               {...other}
               data-testid={testId}
@@ -269,6 +329,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
               {tableTitle && (
                 <StyledTableTitle
                   data-testid={`${testId}-table-title`}
+                  id={`${testId}-table-title`}
                   isInverse={isInverse}
                   isTitleNode={typeof tableTitle !== 'string'}
                   theme={theme}

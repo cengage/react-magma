@@ -20,6 +20,10 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default false
    */
   isDismissible?: boolean;
+  /**
+   * Reference to the dismiss button element
+   */
+  dismissibleButtonRef?: React.Ref<HTMLButtonElement>;
   isInverse?: boolean;
   /**
    * Action that fires when the close button is clicked (required when isDismissible is true)

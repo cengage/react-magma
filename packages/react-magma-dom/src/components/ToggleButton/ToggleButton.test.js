@@ -6,7 +6,7 @@ import { CheckIcon, SettingsIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
-import { ButtonSize } from '../Button';
+import { ButtonSize, ButtonTextTransform } from '../Button';
 
 import { ToggleButton } from '.';
 
@@ -163,6 +163,37 @@ describe('ToggleButton', () => {
       const button = getByTestId(testId);
 
       expect(button).toHaveStyleRule('cursor', 'not-allowed');
+    });
+
+    it('Supports text transform', () => {
+      const text = 'Text Transform';
+
+      const { getByTestId, rerender } = render(
+        <ToggleButton
+          value={value}
+          icon={icon}
+          testId={testId}
+          textTransform={ButtonTextTransform.uppercase}
+        >
+          {text}
+        </ToggleButton>
+      );
+      const button = getByTestId(testId);
+
+      expect(button).toHaveStyleRule('text-transform', 'uppercase');
+
+      rerender(
+        <ToggleButton
+          value={value}
+          icon={icon}
+          testId={testId}
+          textTransform={ButtonTextTransform.none}
+        >
+          {text}
+        </ToggleButton>
+      );
+
+      expect(button).toHaveStyleRule('text-transform', 'none');
     });
   });
 

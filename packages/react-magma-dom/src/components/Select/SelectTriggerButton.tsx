@@ -72,11 +72,12 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
       <StyledButton
         {...toggleButtonProps}
         aria-describedby={ariaDescribedBy}
+        aria-disabled={disabled}
         data-testid="selectTriggerButton"
         disabled={disabled}
         hasError={hasError}
         isInverse={isInverse}
-        role="button"
+        role="combobox"
         style={style}
         tabIndex={disabled ? undefined : 0}
         theme={theme}

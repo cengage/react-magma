@@ -119,9 +119,13 @@ export const defaultI18n: I18nInterface = {
     backToCalendar: 'Back to Calendar',
     selectMonth: 'Select a month',
     selectYear: 'Select a year',
+    day: 'Day',
+    month: 'Month',
+    year: 'Year',
     helpModal: {
       header: 'Keyboard Shortcuts',
-      helpButtonAriaLabel: 'Calendar Widget Help',
+      helpButtonAriaLabel: 'Keyboard instructions for calendar widget',
+      tooltipContent: 'Keyboard instructions',
       enter: {
         ariaLabel: 'Enter key',
         explanation: 'Select the date in focus.',
@@ -153,7 +157,6 @@ export const defaultI18n: I18nInterface = {
   },
   dateTimePickerLabel: 'Pick a date and time',
   dropdown: {
-    menuItemSelectedAriaLabel: '(selected)',
     toggleMenuAriaLabel: 'Toggle menu',
   },
   dropzone: {
@@ -264,6 +267,8 @@ export const defaultI18n: I18nInterface = {
     placeholder: 'Select...',
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
+    expandedAnnounce: '{labelText} list expanded',
+    collapsedAnnounce: '{labelText} list collapsed',
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',

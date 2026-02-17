@@ -47,6 +47,7 @@ export interface AlertBaseProps extends React.HTMLAttributes<HTMLDivElement> {
   isExiting?: boolean;
   isDismissed?: boolean;
   isDismissible?: boolean;
+  dismissibleButtonRef?: React.Ref<HTMLButtonElement>;
   isInverse?: boolean;
   isPaused?: boolean;
   isToast?: boolean;
@@ -292,9 +293,7 @@ const AlertContents = styled.div<{
   padding: ${props => props.theme.spaceScale.spacing04} 0;
   display: ${props => (props.additionalContent ? 'flex' : '')};
   margin-right: ${props =>
-    props.additionalContent && !props.isDismissible
-      ? props.theme.spaceScale.spacing03
-      : ''};
+    !props.isDismissible ? props.theme.spaceScale.spacing03 : ''};
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     padding-left: 0;
   }
@@ -386,7 +385,7 @@ const AlertSpan = styled.span`
   white-space: pre-line;
 `;
 
-function getAriaLabelIcon(variant: string, i18n: I18nInterface): string {
+export function getAriaLabelIcon(variant: string, i18n: I18nInterface): string {
   switch (variant) {
     case 'success':
       return i18n.alertVariants.success;
@@ -430,6 +429,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
       id: defaultId,
       isDismissed,
       isDismissible,
+      dismissibleButtonRef,
       isExiting: externalIsExiting,
       isPaused,
       isToast,
@@ -533,6 +533,7 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
                 )}
                 {/* @ts-ignore */}
                 <DismissButton
+                  ref={dismissibleButtonRef}
                   alertVariant={variant}
                   {...(isToast
                     ? { title: closeAriaLabel || i18n.alert.dismissAriaLabel }

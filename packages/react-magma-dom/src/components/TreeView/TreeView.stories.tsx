@@ -43,7 +43,7 @@ import {
 } from '../..';
 import { magma } from '../../theme/magma';
 import { ButtonColor, ButtonShape, ButtonSize } from '../Button';
-import { Card } from '../Card';
+import { Card, CardBody } from '../Card';
 import {
   Dropdown,
   DropdownButton,
@@ -111,6 +111,18 @@ export default {
     isTopLevelSelectable: {
       control: 'boolean',
       defaultValue: true,
+    },
+    selectParents: {
+      control: 'boolean',
+      defaultValue: true,
+    },
+    enableVirtualization: {
+      control: 'boolean',
+      defaultValue: false,
+    },
+    height: {
+      control: 'number',
+      defaultValue: 0,
     },
   },
 } as Meta;
@@ -1850,6 +1862,11 @@ export const ComplexTreeWithLargeDataSet = {
                 },
               ],
             },
+            {
+              id: 'ad-3',
+              title: 'Web Design',
+              children: [],
+            },
           ],
         },
         {
@@ -3040,6 +3057,16 @@ export const ComplexWithAdditionalContent = {
                 <DropdownMenuItem>Menu item number two</DropdownMenuItem>
               </DropdownContent>
             </Dropdown>
+            <Popover hasPointer={false} focusTrap={false}>
+              <PopoverTrigger aria-label="Open popover">
+                <Button size={ButtonSize.small} color={ButtonColor.subtle}>
+                  This opens a popover
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div>Im a popover.</div>
+              </PopoverContent>
+            </Popover>
           </ButtonGroup>
         </>
       );
@@ -3261,7 +3288,9 @@ export function TreeViewWithDifferentElements() {
             <div>
               Nocturnal birds with distinctive facial discs and silent flight.{' '}
               <Button
-                onClick={event => apiRef.current?.closePopoverManually(event)}
+                onClick={event =>
+                  popoverApiRef.current?.closePopoverManually(event)
+                }
               >
                 Ok
               </Button>
@@ -3395,3 +3424,354 @@ export function CustomExpandIconArrowAndTreeItemStyles() {
     </TreeView>
   );
 }
+
+export const VirtualizedLargeTree = {
+  render: (args: Partial<TreeViewProps>) => {
+    const apiRef = React.useRef<TreeViewApi>();
+
+    const treeLabel = (treeItemNumber: number) => {
+      return (
+        <Flex
+          behavior={FlexBehavior.container}
+          justify={FlexJustify.spaceBetween}
+          wrap={FlexWrap.nowrap}
+        >
+          <Flex behavior={FlexBehavior.item}>
+            <Hyperlink to="google.com" target="_blank" hasUnderline={false}>
+              Most common activity length is 39 chars but what if longer
+            </Hyperlink>
+          </Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Tag>{treeItemNumber}</Tag>
+            <Spacer
+              axis={SpacerAxis.horizontal}
+              size={magma.spaceScale.spacing03}
+            />
+            <Dropdown>
+              <DropdownButton
+                aria-label="Extra icon example"
+                color={ButtonColor.secondary}
+                size={ButtonSize.small}
+                icon={<MoreHorizIcon />}
+                shape={ButtonShape.fill}
+              />
+              <DropdownContent>
+                <DropdownMenuItem
+                  icon={<EditIcon aria-hidden />}
+                  onClick={() => console.log('Rename clicked!')}
+                >
+                  Rename
+                </DropdownMenuItem>
+              </DropdownContent>
+            </Dropdown>
+          </Flex>
+        </Flex>
+      );
+    };
+
+    const folderLabel = (label: any) => {
+      return (
+        <Flex
+          behavior={FlexBehavior.container}
+          justify={FlexJustify.spaceBetween}
+          wrap={FlexWrap.nowrap}
+        >
+          <Flex behavior={FlexBehavior.item}>{label}</Flex>
+          <Flex behavior={FlexBehavior.item}>
+            <Paragraph
+              visualStyle={TypographyVisualStyle.bodySmall}
+              noMargins
+              color={TypographyColor.subdued}
+              style={{ marginRight: magma.spaceScale.spacing03 }}
+            />
+            <Dropdown>
+              <DropdownButton
+                aria-label="Extra icon example"
+                color={ButtonColor.secondary}
+                size={ButtonSize.small}
+                icon={<MoreHorizIcon />}
+                shape={ButtonShape.fill}
+              />
+              <DropdownContent>
+                <DropdownMenuItem
+                  icon={<EditIcon aria-hidden />}
+                  onClick={() => console.log('Rename clicked!')}
+                >
+                  Rename
+                </DropdownMenuItem>
+              </DropdownContent>
+            </Dropdown>
+          </Flex>
+        </Flex>
+      );
+    };
+
+    const additionalContent = () => {
+      return (
+        <>
+          <Paragraph noTopMargin visualStyle={TypographyVisualStyle.bodyXSmall}>
+            Due: xx/xx/xxx · Submitted: 12 · Missing: 3
+          </Paragraph>
+          <ButtonGroup>
+            <Dropdown>
+              <DropdownButton
+                size={ButtonSize.small}
+                color={ButtonColor.subtle}
+              >
+                10 Resources
+              </DropdownButton>
+              <DropdownContent>
+                <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+                <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+              </DropdownContent>
+            </Dropdown>
+            <Dropdown>
+              <DropdownButton
+                size={ButtonSize.small}
+                color={ButtonColor.subtle}
+              >
+                24 Standards
+              </DropdownButton>
+              <DropdownContent>
+                <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+                <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+              </DropdownContent>
+            </Dropdown>
+            <Popover hasPointer={false} focusTrap>
+              <PopoverTrigger aria-label="Open popover">
+                <Button size={ButtonSize.small} color={ButtonColor.subtle}>
+                  This opens a popover
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <div>Im a popover.</div>
+              </PopoverContent>
+            </Popover>
+          </ButtonGroup>
+        </>
+      );
+    };
+
+    return (
+      <Card isInverse={args.isInverse} style={{ height: 800 }}>
+        <ButtonGroup style={{ margin: '16px' }}>
+          <Button onClick={() => apiRef.current?.expandAll()}>
+            Expand All
+          </Button>
+          <Button onClick={() => apiRef.current?.collapseAll()}>
+            Collapse All
+          </Button>
+        </ButtonGroup>
+        <TreeView
+          {...args}
+          apiRef={apiRef}
+          enableVirtualization={args.enableVirtualization}
+          style={{ height: '800px', overflow: 'auto' }}
+        >
+          <TreeItem
+            itemId="parent"
+            label={folderLabel(
+              <Paragraph
+                visualStyle={TypographyVisualStyle.headingXSmall}
+                noMargins
+              >
+                Spanish Edition
+              </Paragraph>
+            )}
+            icon={<FolderIcon />}
+          >
+            {Array.from({ length: 25 }, (_, i) => i + 1).map(i => (
+              <TreeItem
+                key={i}
+                label={folderLabel(
+                  <Paragraph
+                    visualStyle={TypographyVisualStyle.headingXSmall}
+                    noMargins
+                  >
+                    Unit {i}
+                  </Paragraph>
+                )}
+                itemId={`unit${i}`}
+                icon={<FolderIcon />}
+              >
+                {Array.from({ length: 20 }, (_, j) => j + 1).map(j => {
+                  const chapterNumber = (i - 1) * 20 + j;
+                  const startPage = (chapterNumber - 1) * 100;
+                  const endPage = startPage + 100;
+
+                  return (
+                    <TreeItem
+                      key={`${i}-${j}`}
+                      label={folderLabel(
+                        <span style={{ fontWeight: '600' }}>
+                          Chapter {i}.{j} (pp. {startPage + 1}-{endPage})
+                        </span>
+                      )}
+                      itemId={`chapter${i}-${j}`}
+                      icon={<FolderIcon />}
+                    >
+                      {Array.from({ length: 100 }, (_, k) => k + 1).map(k => {
+                        const activityNumber = ((i - 1) * 20 + j - 1) * 100 + k;
+                        return (
+                          <TreeItem
+                            key={`${i}-${j}-${k}`}
+                            additionalContent={additionalContent()}
+                            label={treeLabel(activityNumber)}
+                            itemId={`activity${i}-${j}-${k}`}
+                            icon={<BookIcon />}
+                          />
+                        );
+                      })}
+                    </TreeItem>
+                  );
+                })}
+              </TreeItem>
+            ))}
+          </TreeItem>
+        </TreeView>
+      </Card>
+    );
+  },
+
+  args: {
+    ariaLabel: 'Virtualized Large Tree',
+    selectable: TreeViewSelectable.multi,
+    initialExpandedItems: [],
+    checkParents: false,
+    checkChildren: false,
+    isDisabled: false,
+    testId: 'virtualized-tree-example',
+    enableVirtualization: true,
+  },
+};
+
+export const SelectChildrenOnly = {
+  render: (args: TreeViewProps) => {
+    const [selectedItems, setSelectedItems] = React.useState<
+      TreeItemSelectedInterface[]
+    >([]);
+
+    function handleSelectedItemChange(items: TreeItemSelectedInterface[]) {
+      setSelectedItems(items);
+    }
+
+    const { selected } = createTags(selectedItems);
+
+    return (
+      <Card>
+        <CardBody>
+          <Flex behavior={FlexBehavior.container}>
+            <Paragraph visualStyle={TypographyVisualStyle.headingSmall}>
+              Select Children Only (selectParents = false)
+            </Paragraph>
+            <Paragraph>
+              In this example, folders (parent items) can only be
+              expanded/collapsed. Only files (child items) can be selected.
+              Click anywhere on a folder to expand/collapse it.
+            </Paragraph>
+            <Spacer axis={SpacerAxis.horizontal} size={8} />
+            {selected && selected?.length > 0 && (
+              <>
+                <Paragraph
+                  visualStyle={TypographyVisualStyle.bodyMedium}
+                  color={TypographyColor.subdued}
+                >
+                  Selected Files:
+                </Paragraph>
+                <Flex behavior={FlexBehavior.container} wrap={FlexWrap.wrap}>
+                  {selected}
+                </Flex>
+                <Spacer axis={SpacerAxis.horizontal} size={8} />
+              </>
+            )}
+          </Flex>
+          <TreeView
+            {...args}
+            selectable={TreeViewSelectable.single}
+            onSelectedItemChange={handleSelectedItemChange}
+            ariaLabel="File browser example"
+            initialExpandedItems={['documents']}
+          >
+            <TreeItem
+              label="Documents"
+              itemId="documents"
+              icon={<FolderIcon />}
+            >
+              <TreeItem
+                label="Projects"
+                itemId="projects"
+                icon={<FolderIcon />}
+              >
+                <TreeItem
+                  label="Project A"
+                  itemId="project-a"
+                  icon={<FolderIcon />}
+                >
+                  <TreeItem
+                    label="README.md"
+                    itemId="readme"
+                    icon={<ArticleIcon />}
+                  />
+                  <TreeItem
+                    label="package.json"
+                    itemId="package"
+                    icon={<ArticleIcon />}
+                  />
+                </TreeItem>
+                <TreeItem
+                  label="Project B"
+                  itemId="project-b"
+                  icon={<FolderIcon />}
+                >
+                  <TreeItem
+                    label="index.html"
+                    itemId="index"
+                    icon={<ArticleIcon />}
+                  />
+                  <TreeItem
+                    label="styles.css"
+                    itemId="styles"
+                    icon={<ArticleIcon />}
+                  />
+                </TreeItem>
+              </TreeItem>
+              <TreeItem label="Images" itemId="images" icon={<FolderIcon />} o>
+                <TreeItem
+                  label="logo.png"
+                  itemId="logo"
+                  icon={<ArticleIcon />}
+                />
+                <TreeItem
+                  label="banner.jpg"
+                  itemId="banner"
+                  icon={<ArticleIcon />}
+                />
+              </TreeItem>
+            </TreeItem>
+            <TreeItem
+              label="Downloads"
+              itemId="downloads"
+              icon={<FolderIcon />}
+            >
+              <TreeItem
+                label="document.pdf"
+                itemId="document"
+                icon={<ArticleIcon />}
+              />
+              <TreeItem
+                label="archive.zip"
+                itemId="archive"
+                icon={<ArticleIcon />}
+              />
+            </TreeItem>
+          </TreeView>
+        </CardBody>
+      </Card>
+    );
+  },
+
+  args: {
+    selectable: TreeViewSelectable.single,
+    selectParents: false,
+  },
+};

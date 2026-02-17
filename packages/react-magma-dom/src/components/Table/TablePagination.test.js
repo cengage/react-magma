@@ -105,7 +105,7 @@ describe('Table Pagination', () => {
 
       fireEvent.click(nextBtn);
       expect(handlePageChange).toHaveBeenCalledWith(expect.any(Object), 2);
-      expect(getByText(/11-20/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/11-20/i);
     });
 
     it('should change page when clicking previous', () => {
@@ -123,7 +123,7 @@ describe('Table Pagination', () => {
 
       fireEvent.click(prevBtn);
       expect(handlePageChange).toHaveBeenCalledWith(expect.any(Object), 1);
-      expect(getByText(/1-10/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/1-10/i);
     });
 
     it('should change number of rows per page', () => {
@@ -148,7 +148,7 @@ describe('Table Pagination', () => {
 
       expect(handlePageChange).toHaveBeenCalledWith(expect.any(Object), 1);
       expect(handleRowsPerPageChange).toHaveBeenCalledWith(20);
-      expect(getByText(/1-20/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/1-20/i);
       expect(appliedSelection).toHaveDisplayValue('20');
     });
   });
@@ -171,7 +171,7 @@ describe('Table Pagination', () => {
       const nextBtn = getByTestId('nextBtn');
 
       fireEvent.click(nextBtn);
-      expect(getByText(/1-10/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/1-10/i);
 
       rerender(
         <TablePagination
@@ -182,7 +182,7 @@ describe('Table Pagination', () => {
         />
       );
 
-      expect(getByText(/11-20/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/11-20/i);
     });
 
     it('should change page when clicking previous', () => {
@@ -202,7 +202,7 @@ describe('Table Pagination', () => {
       const nextBtn = getByTestId('previousBtn');
 
       fireEvent.click(nextBtn);
-      expect(getByText(/11-20/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/11-20/i);
 
       rerender(
         <TablePagination
@@ -213,7 +213,7 @@ describe('Table Pagination', () => {
         />
       );
 
-      expect(getByText(/1-10/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/1-10/i);
     });
 
     it('should change number of rows per page', () => {
@@ -238,7 +238,7 @@ describe('Table Pagination', () => {
       fireEvent.click(rowsSelect);
       fireEvent.click(getByText('20'));
 
-      expect(getByText(/11-20/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/11-20/i);
 
       rerender(
         <TablePagination
@@ -250,7 +250,7 @@ describe('Table Pagination', () => {
         />
       );
 
-      expect(getByText(/1-20/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/1-20/i);
     });
   });
 

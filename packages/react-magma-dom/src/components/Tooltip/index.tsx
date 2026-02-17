@@ -124,8 +124,12 @@ export const StyledTooltip = styled.div<{
 
 // Using any for the ref because it is put on the passed in children which does not have a specific type
 export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
-  const [isVisible, setIsVisible] = React.useState<boolean>(props.open);
+  const [isVisible, setIsVisible] = React.useState<boolean>(
+    props.open ?? false
+  );
   const arrowElement = React.useRef(null);
+  const hideTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const isMountedRef = React.useRef<boolean>(true);
 
   const {
     arrowStyle,
@@ -163,7 +167,8 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
         offset(isArrowVisible ? 14 : 0),
         ...(isArrowVisible ? [arrow({ element: arrowElement })] : []),
       ],
-      placement: props.position || (TooltipPosition.top as AlignedPlacement),
+      placement: (position ??
+        TooltipPosition.top) as unknown as AlignedPlacement,
       whileElementsMounted: autoUpdate,
     });
 
@@ -187,7 +192,11 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     window.addEventListener('keydown', handleEsc);
 
     return () => {
+      isMountedRef.current = false;
       window.removeEventListener('keydown', handleEsc);
+      if (hideTimeoutRef.current) {
+        clearTimeout(hideTimeoutRef.current);
+      }
     };
   }, []);
 
@@ -201,11 +210,23 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   }
 
   function showTooltip() {
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+      hideTimeoutRef.current = null;
+    }
     setIsVisible(true);
   }
 
   function hideTooltip() {
-    setIsVisible(props.open);
+    if (hideTimeoutRef.current) {
+      clearTimeout(hideTimeoutRef.current);
+    }
+    hideTimeoutRef.current = setTimeout(() => {
+      if (isMountedRef.current) {
+        setIsVisible(props.open ?? false);
+      }
+      hideTimeoutRef.current = null;
+    }, 50);
   }
 
   const id = useGenerateId(defaultId);
@@ -259,7 +280,9 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
             id={id}
             isInverse={isInverse}
             position={
-              placement ? (placement as AlignedPlacement) : TooltipPosition.top
+              (placement
+                ? (placement as unknown)
+                : TooltipPosition.top) as TooltipPosition
             }
             theme={theme}
             role="tooltip"

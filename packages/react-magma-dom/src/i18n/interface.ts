@@ -126,10 +126,14 @@ export interface I18nInterface {
     backToCalendar: string;
     selectMonth: string;
     selectYear: string;
+    day: string;
+    month: string;
+    year: string;
 
     helpModal: {
       header: string;
       helpButtonAriaLabel: string;
+      tooltipContent: string;
       enter: {
         ariaLabel: string;
         explanation: string;
@@ -161,7 +165,6 @@ export interface I18nInterface {
   };
   dateTimePickerLabel: string;
   dropdown: {
-    menuItemSelectedAriaLabel: string;
     toggleMenuAriaLabel: string;
   };
   dropzone: {
@@ -249,6 +252,8 @@ export interface I18nInterface {
   select: {
     placeholder: string;
     clearIndicatorAriaLabel: string;
+    expandedAnnounce: string;
+    collapsedAnnounce: string;
     multi: {
       clearIndicatorAriaLabel: string;
     };

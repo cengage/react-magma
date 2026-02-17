@@ -349,9 +349,11 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
 
     const i18n = React.useContext(I18nContext);
 
+    const nodeLabel = getNodeText(labelText);
+
     const deleteAriaLabel = i18n.tag.deleteAriaLabel.replace(
       /\{labelText\}/g,
-      getNodeText(labelText)
+      nodeLabel
     );
 
     const { icon } = props;
@@ -368,6 +370,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
 
     return (
       <StyledTag
+        aria-label={onDelete ? deleteAriaLabel : nodeLabel}
         color={color}
         icon={icon}
         onClick={handleClick}
@@ -379,15 +382,10 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
         {...rest}
       >
         {icon}
-        <LabelWrap size={size} {...rest} theme={theme}>
+        <LabelWrap size={size} theme={theme} {...rest}>
           {children}
         </LabelWrap>
-        {onDelete && (
-          <CancelIcon
-            aria-label={deleteAriaLabel}
-            size={theme.iconSizes.small}
-          />
-        )}
+        {onDelete && <CancelIcon size={theme.iconSizes.small} />}
       </StyledTag>
     );
   }

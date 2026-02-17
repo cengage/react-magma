@@ -6,6 +6,7 @@ import { CloseIcon } from 'react-magma-icons';
 
 import { defaultComponents } from './components';
 import { ItemsList } from './ItemsList';
+import { SelectAnnouncer } from './SelectAnnouncer';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { IconWrapper, SelectedItemButton, SelectText } from './shared';
@@ -22,6 +23,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
     additionalContent,
     ariaDescribedBy,
+    ariaLabel,
     components: customComponents,
     errorMessage,
     hasError,
@@ -88,6 +90,10 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
           )
         );
       }
+    } else {
+      const index = filteredItems.findIndex(item => !isItemDisabled(item));
+
+      setHighlightedIndex(index);
     }
 
     onIsOpenChange &&
@@ -285,105 +291,111 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const floatingElementStyles = { ...floatingStyles, width: '100%' };
 
   return (
-    <SelectContainer
-      additionalContent={additionalContent}
-      descriptionId={ariaDescribedBy}
-      errorMessage={errorMessage}
-      getLabelProps={getLabelProps}
-      helperMessage={helperMessage}
-      isLabelVisuallyHidden={isLabelVisuallyHidden}
-      labelPosition={labelPosition}
-      labelStyle={labelStyle}
-      labelText={labelText}
-      labelWidth={labelWidth}
-      isInverse={isInverse}
-      messageStyle={messageStyle}
-    >
-      <SelectTriggerButton
-        ariaDescribedBy={ariaDescribedBy}
-        toggleButtonProps={toggleButtonProps}
-        hasError={hasError}
-        disabled={disabled}
+    <>
+      <SelectContainer
+        additionalContent={additionalContent}
+        ariaLabel={ariaLabel}
+        descriptionId={ariaDescribedBy}
+        errorMessage={errorMessage}
+        getLabelProps={getLabelProps}
+        helperMessage={helperMessage}
+        isLabelVisuallyHidden={isLabelVisuallyHidden}
+        labelPosition={labelPosition}
+        labelStyle={labelStyle}
+        labelText={labelText}
+        labelWidth={labelWidth}
         isInverse={isInverse}
-        setReference={refs.setReference}
-        style={inputStyle}
+        messageStyle={messageStyle}
       >
-        {selectedItems && selectedItems.length > 0 ? (
-          selectedItems.map((multiSelectedItem, index) => {
-            const multiSelectedItemString = itemToString(multiSelectedItem);
-            return (
-              <SelectedItemButton
-                aria-label={i18n.multiSelect.selectedItemButtonAriaLabel.replace(
-                  /\{selectedItem\}/g,
-                  multiSelectedItemString
-                )}
-                key={`selected-item-${index}`}
-                {...getSelectedItemProps({
-                  selectedItem: multiSelectedItem,
-                  index,
-                })}
-                onClick={event =>
-                  handleRemoveSelectedItem(event, multiSelectedItem)
-                }
-                onFocus={() => setActiveIndex(index)}
-                theme={theme}
-                isInverse={isInverse}
-                disabled={disabled}
-              >
-                {multiSelectedItemString}
-                <IconWrapper>
-                  <CloseIcon size={theme.iconSizes.xSmall} />
-                </IconWrapper>
-              </SelectedItemButton>
-            );
-          })
-        ) : (
-          <SelectText
-            isShowPlaceholder
-            isInverse={isInverse}
-            isDisabled={disabled}
-            theme={theme}
-          >
-            {typeof placeholder === 'string'
-              ? placeholder
-              : i18n.multiSelect.placeholder}
-          </SelectText>
-        )}
-      </SelectTriggerButton>
-
-      {isClearable && selectedItems?.length > 0 && (
-        <ClearIndicator
-          aria-label={clearIndicatorAriaLabel}
-          icon={<CloseIcon size={theme.iconSizes.xSmall} />}
-          isInverse={isInverse}
-          onClick={defaultHandleClearIndicatorClick}
-          size={ButtonSize.small}
-          variant={ButtonVariant.link}
+        <SelectTriggerButton
+          ariaDescribedBy={ariaDescribedBy}
+          toggleButtonProps={toggleButtonProps}
+          hasError={hasError}
           disabled={disabled}
-          testId="clearIndicator"
-          style={{
-            position: 'absolute',
-            right: '3.25em',
-            top: '50%',
-            transform: 'translateY(-50%)',
-          }}
+          isInverse={isInverse}
+          setReference={refs.setReference}
+          style={inputStyle}
+        >
+          {selectedItems && selectedItems.length > 0 ? (
+            selectedItems.map((multiSelectedItem, index) => {
+              const multiSelectedItemString = itemToString(multiSelectedItem);
+
+              return (
+                <SelectedItemButton
+                  aria-label={i18n.multiSelect.selectedItemButtonAriaLabel.replace(
+                    /\{selectedItem\}/g,
+                    multiSelectedItemString
+                  )}
+                  key={`selected-item-${index}`}
+                  {...getSelectedItemProps({
+                    selectedItem: multiSelectedItem,
+                    index,
+                  })}
+                  onClick={event =>
+                    handleRemoveSelectedItem(event, multiSelectedItem)
+                  }
+                  onFocus={() => setActiveIndex(index)}
+                  theme={theme}
+                  isInverse={isInverse}
+                  disabled={disabled}
+                >
+                  {multiSelectedItemString}
+                  <IconWrapper>
+                    <CloseIcon size={theme.iconSizes.xSmall} />
+                  </IconWrapper>
+                </SelectedItemButton>
+              );
+            })
+          ) : (
+            <SelectText
+              isShowPlaceholder
+              isInverse={isInverse}
+              isDisabled={disabled}
+              theme={theme}
+            >
+              {typeof placeholder === 'string'
+                ? placeholder
+                : i18n.multiSelect.placeholder}
+            </SelectText>
+          )}
+        </SelectTriggerButton>
+
+        {isClearable && selectedItems?.length > 0 && (
+          <ClearIndicator
+            aria-label={clearIndicatorAriaLabel}
+            icon={<CloseIcon size={theme.iconSizes.xSmall} />}
+            isInverse={isInverse}
+            onClick={defaultHandleClearIndicatorClick}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+            disabled={disabled}
+            testId="clearIndicator"
+            style={{
+              position: 'absolute',
+              right: '3.25em',
+              top: '50%',
+              transform: 'translateY(-50%)',
+            }}
+          />
+        )}
+        <ItemsList
+          customComponents={customComponents}
+          floatingElementStyles={floatingElementStyles}
+          getItemProps={getItemProps}
+          getMenuProps={getMenuProps}
+          highlightedIndex={highlightedIndex}
+          isOpen={isOpen}
+          isInverse={isInverse}
+          items={filteredItems}
+          itemToString={itemToString}
+          maxHeight={itemListMaxHeight ?? theme.select.menu.maxHeight}
+          menuStyle={menuStyle}
+          setFloating={refs.setFloating}
+          setHighlightedIndex={setHighlightedIndex}
         />
-      )}
-      <ItemsList
-        customComponents={customComponents}
-        floatingElementStyles={floatingElementStyles}
-        getItemProps={getItemProps}
-        getMenuProps={getMenuProps}
-        highlightedIndex={highlightedIndex}
-        isOpen={isOpen}
-        isInverse={isInverse}
-        items={getFilteredItems(items)}
-        itemToString={itemToString}
-        maxHeight={itemListMaxHeight ?? theme.select.menu.maxHeight}
-        menuStyle={menuStyle}
-        setFloating={refs.setFloating}
-        setHighlightedIndex={setHighlightedIndex}
-      />
-    </SelectContainer>
+      </SelectContainer>
+
+      <SelectAnnouncer isOpen={isOpen} labelText={labelText} />
+    </>
   );
 }

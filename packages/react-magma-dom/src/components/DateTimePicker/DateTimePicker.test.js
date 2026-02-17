@@ -104,6 +104,44 @@ describe('DateTimePicker', () => {
     });
   });
 
+  describe('Timezone', () => {
+    it('should render with correct abbreviature', async () => {
+      const date = new Date();
+      const timezone = 'Asia/Tokyo';
+      const timezoneAbbr = 'GMT+9';
+
+      const { getByText, getByPlaceholderText, getByLabelText } = render(
+        <DateTimePicker value={date} timezone={timezone} />
+      );
+
+      expect(getByText(timezoneAbbr)).toBeInTheDocument();
+      expect(getByText(timezoneAbbr)).not.toBeVisible();
+
+      const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
+
+      expect(input.value).toContain(timezoneAbbr);
+
+      await userEvent.click(getByLabelText('Toggle Calendar Widget'));
+
+      expect(getByText(timezoneAbbr)).toBeVisible();
+    });
+
+    it('should not render anything if timezone is incorrect', async () => {
+      const date = new Date();
+      const timezone = 'XYZ';
+
+      const { getByText, getByPlaceholderText } = render(
+        <DateTimePicker value={date} timezone={timezone} />
+      );
+
+      expect(() => getByText(timezone)).toThrow();
+
+      const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
+
+      expect(input.value).not.toContain(timezone);
+    });
+  });
+
   describe('Clearable functionality', () => {
     it('should render a clear button when isClearable is true and there is a value', () => {
       const valueDate = new Date('January 23, 2019 10:30 AM');
@@ -330,13 +368,14 @@ describe('DateTimePicker', () => {
     it('should respect minDate when provided', () => {
       const minDate = new Date('2024-01-01');
 
-      const { getByTestId, getByText, getByPlaceholderText, getByLabelText } =
-        render(
-          <DateTimePicker
-            labelText="Date Time Picker Label"
-            minDate={minDate}
-          />
-        );
+      const {
+        getByTestId,
+        getAllByText,
+        getByPlaceholderText,
+        getByLabelText,
+      } = render(
+        <DateTimePicker labelText="Date Time Picker Label" minDate={minDate} />
+      );
 
       const input = getByPlaceholderText('mm/dd/yyyy hh:mm AM');
 
@@ -345,10 +384,11 @@ describe('DateTimePicker', () => {
       userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       const calendar = getByTestId('calendarMonthContainer');
+      const disabledDay = getAllByText('31')[0];
 
       expect(calendar).toBeVisible();
-      expect(getByText('31')).toBeVisible();
-      expect(getByText('31')).toHaveAttribute('aria-disabled', 'true');
+      expect(getAllByText('31')[0]).toBeVisible();
+      expect(getAllByText('31')[0]).toHaveAttribute('aria-disabled', 'true');
     });
 
     it('should respect maxDate when provided', () => {

@@ -156,7 +156,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   const lastFocus = React.useRef<any>();
   const helperButtonRef = React.useRef<any>();
   const context = React.useContext(CalendarContext);
-  const [dayFocusable, setDayFocusable] = React.useState<boolean>(false);
   const prevCalendarOpened = usePrevious(props.calendarOpened);
   const focusTrapElement = useFocusLock(props.calendarOpened);
   const monthContainerRef = React.useRef<HTMLDivElement>(null);
@@ -166,7 +165,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
       lastFocus.current = document.activeElement;
 
       if (props.focusOnOpen) {
-        setDayFocusable(true);
         context.setDateFocused(true);
       }
     }
@@ -178,12 +176,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
     }
   }, [context.helperInformationShown]);
 
-  function onCalendarTableFocus() {
-    setDayFocusable(true);
-  }
-
   function onCalendarTableBlur() {
-    setDayFocusable(false);
     context.setDateFocused(false);
   }
 
@@ -245,7 +238,6 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
 
             <Table
               onBlur={onCalendarTableBlur}
-              onFocus={onCalendarTableFocus}
               theme={theme}
               role="application"
               dateTimePickerContent={!!props.dateTimePickerContent}
@@ -257,13 +249,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                   .map((week, i) => (
                     <tr key={i}>
                       {week.map((day, dayOfWeek) => (
-                        <CalendarDay
-                          key={dayOfWeek}
-                          isInverse={context.isInverse}
-                          day={day}
-                          dayFocusable={dayFocusable}
-                          onDateChange={context.onDateChange}
-                        />
+                        <CalendarDay key={dayOfWeek} day={day} />
                       ))}
                     </tr>
                   ))}
@@ -272,14 +258,14 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             {props.dateTimePickerContent && props.dateTimePickerContent}
             <HeaderWrapper theme={theme} isInverse={context.isInverse}>
               <Tooltip
-                content={'Keyboard instructions'}
+                content={i18n.datePicker.helpModal.tooltipContent}
                 tooltipStyle={{ position: 'fixed' }}
               >
                 <HelperButton theme={theme}>
                   <IconButton
                     color={ButtonColor.subtle}
                     ref={helperButtonRef}
-                    aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
+                    aria-label={`${i18n.datePicker.helpModal.helpButtonAriaLabel} ${i18n.datePicker.helpModal.tooltipContent}`}
                     icon={<KeyboardIcon />}
                     onClick={context.showHelperInformation}
                     onFocus={turnOffDateFocused}

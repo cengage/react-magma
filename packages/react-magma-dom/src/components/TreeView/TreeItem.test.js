@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fireEvent, getByTestId, render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 
@@ -12,6 +12,11 @@ import { TreeItem, TreeView } from '.';
 const labelText = 'Tree Item Node 0';
 const itemId = 'node0';
 const testId = `${itemId}-tree-item`;
+
+global.ResizeObserver = jest.fn().mockImplementation(() => ({
+  observe: jest.fn(),
+  disconnect: jest.fn(),
+}));
 
 describe('TreeItem', () => {
   it('should render the component', () => {
