@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Breadcrumb): Fix bug when last item was link and had focus
+fix(Breadcrumb): Update last item to be a span instead of link.

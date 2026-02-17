@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(TreeView): create `selectParents` prop (`true` by default)
+feat(TreeView): Support `selectParents` prop (`true` by default).

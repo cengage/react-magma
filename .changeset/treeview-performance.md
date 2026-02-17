@@ -2,7 +2,7 @@
 'react-magma-dom': minor
 ---
 
-chore(TreeView): preformance refactor
+fix(TreeView): Performance refactor.
 
 - Introduced a new `treeViewReducer` to manage the state of the TreeView component, handling actions such as item selection, expansion, and item updates.
 - Refactored `useTreeView` and `useTreeItem` hooks to utilize the new reducer, improving state management and reducing re-renders.
