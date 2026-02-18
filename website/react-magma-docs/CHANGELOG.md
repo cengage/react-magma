@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.3.1-next.0
+
+### Patch Changes
+
+- e2c1f365e: Manually sync main -> dev (v4.11.0)
+- e2c1f365e: chore: Manually sync main -> dev (4.11.0)
+
 ## 5.3.0
 
 ### Minor Changes
