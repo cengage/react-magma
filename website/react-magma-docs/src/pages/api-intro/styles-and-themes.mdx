@@ -176,7 +176,7 @@ function DemoComponent() {
   return (
     <Card>
       <CardBody>
-        <CardHeading level={3}>Theme Example</CardHeading>
+        <CardHeading headingLevel={3}>Theme Example</CardHeading>
         <Input labelText="Text input" helperMessage="Helper text" />
         <Input labelText="Text input with error" errorMessage="Error message" />
         <RadioGroup labelText="Radio Group" name="radio">
@@ -624,6 +624,7 @@ This isn't a recommended usage of the Magma components, however it showcases a p
 ```tsx
 import React from 'react';
 
+import styled from '@emotion/styled';
 import {
   AppBar,
   Button,
@@ -654,12 +655,13 @@ import {
   TabPanelsContainer,
   TabPanel,
   Tag,
+  TagColor,
+  TagSize,
   Tooltip,
   ThemeContext,
+  TypographyContextVariant,
 } from 'react-magma-dom';
 import { InfoIcon } from 'react-magma-icons';
-
-import styled from '../../theme/styled';
 
 const springfieldDonut = Object.assign({}, magma, {
   colors: Object.assign({}, magma.colors, {
@@ -1134,7 +1136,11 @@ export function Example() {
                     <CardBody>
                       <Flex behavior={FlexBehavior.container}>
                         <Flex behavior={FlexBehavior.item} md={2}>
-                          <Tag color="primary" isInverse size="medium">
+                          <Tag
+                            color={TagColor.primary}
+                            isInverse
+                            size={TagSize.medium}
+                          >
                             Free!
                           </Tag>
                         </Flex>
@@ -1154,7 +1160,11 @@ export function Example() {
                     <CardBody>
                       <Flex behavior={FlexBehavior.container}>
                         <Flex behavior={FlexBehavior.item} md={2}>
-                          <Tag color="primary" isInverse size="medium">
+                          <Tag
+                            color={TagColor.primary}
+                            isInverse
+                            size={TagSize.medium}
+                          >
                             $20
                           </Tag>
                         </Flex>
@@ -1174,7 +1184,11 @@ export function Example() {
                     <CardBody>
                       <Flex behavior={FlexBehavior.container}>
                         <Flex behavior={FlexBehavior.item} md={2}>
-                          <Tag color="primary" isInverse size="medium">
+                          <Tag
+                            color={TagColor.primary}
+                            isInverse
+                            size={TagSize.medium}
+                          >
                             $30
                           </Tag>
                         </Flex>

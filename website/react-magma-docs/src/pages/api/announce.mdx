@@ -55,7 +55,7 @@ possibly interrupting the current task. Using `off` will silence these updates, 
 ```tsx
 import React from 'react';
 
-import { Announce, Button } from 'react-magma-dom';
+import { Announce, AnnouncePoliteness, Button } from 'react-magma-dom';
 
 export function Example() {
   const [announceContentAssertive, setAnnounceContentAssertive] =
@@ -85,7 +85,7 @@ export function Example() {
           Update assertive content
         </Button>
       </p>
-      <Announce politeness="assertive">
+      <Announce politeness={AnnouncePoliteness.assertive}>
         <p>{announceContentAssertive}</p>
       </Announce>
       <hr />
@@ -93,7 +93,7 @@ export function Example() {
       <p>
         <Button onClick={updateAnnounceContentOff}>Update off content</Button>
       </p>
-      <Announce politeness="off">
+      <Announce politeness={AnnouncePoliteness.off}>
         <p>{announceContentOff}</p>
       </Announce>
     </>

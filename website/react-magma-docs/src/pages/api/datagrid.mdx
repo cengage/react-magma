@@ -838,7 +838,9 @@ export function Example() {
     { id: 6, name: 'Sour Cream ', price: 4, stock: 86 },
   ];
 
-  const [selectedItems, setSelectedItems] = React.useState([]);
+  const [selectedItems, setSelectedItems] = React.useState<(string | number)[]>(
+    []
+  );
 
   const sortedItems = React.useMemo(() => {
     if (sortConfig.key === 'selected') {
@@ -905,7 +907,7 @@ export function Example() {
 
   function handleHeaderSelect(ev: React.ChangeEvent<HTMLInputElement>) {
     if (ev.target.checked && selectedItems.length === 0) {
-      const checkedIds = [];
+      const checkedIds: number[] = [];
       products.filter(prod => checkedIds.push(prod.id));
       setSelectedItems(checkedIds);
     } else {

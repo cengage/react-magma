@@ -55,9 +55,12 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
-  const headingRef = React.useRef<HTMLHeadingElement>();
+  const headingRef = React.useRef<HTMLHeadingElement>(null);
   const [isLocked, setIsLocked] = React.useState<boolean>(false);
-  const focusTrapElement = useFocusLock(isLocked, headingRef);
+  const focusTrapElement = useFocusLock(
+    isLocked,
+    headingRef as React.MutableRefObject<HTMLHeadingElement>
+  );
 
   function handleLock() {
     setIsLocked(!isLocked);
@@ -89,9 +92,13 @@ import React from 'react';
 import { useFocusLock, Toggle } from 'react-magma-dom';
 
 export function Example() {
-  const bodyRef = React.useRef<HTMLDivElement>();
+  const bodyRef = React.useRef<HTMLDivElement>(null);
   const [isLocked, setIsLocked] = React.useState<boolean>(false);
-  const focusTrapElement = useFocusLock(isLocked, undefined, bodyRef);
+  const focusTrapElement = useFocusLock(
+    isLocked,
+    undefined,
+    bodyRef as React.MutableRefObject<HTMLDivElement>
+  );
 
   function handleLock() {
     setIsLocked(!isLocked);

@@ -336,7 +336,12 @@ To have a `TreeItem` selected initially, pass an array of `{itemId: 'itemId', ch
 ```tsx
 import React from 'react';
 
-import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
+import {
+  TreeView,
+  TreeItem,
+  TreeViewSelectable,
+  IndeterminateCheckboxStatus,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -344,8 +349,14 @@ export function Example() {
       ariaLabel="preselected-treeview"
       selectable={TreeViewSelectable.multi}
       preselectedItems={[
-        { itemId: 'presel-Birds', checkedStatus: 'checked' },
-        { itemId: 'presel-Amphibians', checkedStatus: 'checked' },
+        {
+          itemId: 'presel-Birds',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
+        {
+          itemId: 'presel-Amphibians',
+          checkedStatus: IndeterminateCheckboxStatus.checked,
+        },
       ]}
     >
       <TreeItem label="Mammals" itemId="presel-Mammals">
@@ -537,7 +548,7 @@ import {
   TreeView,
   TreeItem,
   TreeViewSelectable,
-  Toggle,
+  TreeItemSelectedInterface,
 } from 'react-magma-dom';
 import { FolderIcon, ArticleIcon } from 'react-magma-icons';
 
@@ -630,7 +641,7 @@ import {
 
 function createControlledTags(
   items: TreeItemSelectedInterface[] = [],
-  api: TreeViewApi
+  api?: TreeViewApi
 ) {
   const selected =
     items &&
@@ -642,7 +653,7 @@ function createControlledTags(
           size={TagSize.small}
           color={TagColor.primary}
           onDelete={() =>
-            api.selectItem({
+            api?.selectItem({
               itemId: i.itemId,
               checkedStatus: IndeterminateCheckboxStatus.unchecked,
             })
@@ -664,7 +675,7 @@ function createControlledTags(
           size={TagSize.small}
           color={TagColor.default}
           onDelete={() =>
-            api.selectItem({
+            api?.selectItem({
               itemId: i.itemId,
               checkedStatus: IndeterminateCheckboxStatus.unchecked,
             })
@@ -681,9 +692,11 @@ function createControlledTags(
 }
 
 export function Example() {
-  const [selectedItems, setSelectedItems] = React.useState(null);
+  const [selectedItems, setSelectedItems] = React.useState<
+    TreeItemSelectedInterface[] | undefined
+  >(undefined);
 
-  const apiRef = React.useRef<TreeViewApi>(null);
+  const apiRef = React.useRef<TreeViewApi>();
 
   const { selected, indeterminate } = createControlledTags(
     selectedItems,
@@ -772,13 +785,13 @@ export function Example() {
       </>
       <ButtonGroup size={ButtonSize.small} variant={ButtonVariant.solid}>
         <Button
-          onClick={() => apiRef.current.selectAll()}
+          onClick={() => apiRef.current?.selectAll()}
           color={ButtonColor.secondary}
         >
           Select all
         </Button>
         <Button
-          onClick={() => apiRef.current.clearAll()}
+          onClick={() => apiRef.current?.clearAll()}
           color={ButtonColor.secondary}
         >
           Clear all
@@ -1439,11 +1452,11 @@ export function Example() {
   };
 
   const toggleExpandAll = () => {
-    apiRef.current.expandAll();
+    apiRef.current?.expandAll();
   };
 
   const toggleCollapseAll = () => {
-    apiRef.current.collapseAll();
+    apiRef.current?.collapseAll();
   };
 
   return (
@@ -1609,7 +1622,7 @@ export function Example() {
     const treeLength = items.length + 1;
     const newItemId = 'new-parent-' + treeLength;
 
-    apiRef.current.addItem({
+    apiRef.current?.addItem({
       itemId: newItemId,
       parentId: null,
       icon: undefined,
@@ -1635,7 +1648,7 @@ export function Example() {
       parentItem &&
       String(parentItem.id) + '-' + String(parentItem.children.length + 1);
 
-    apiRef.current.addItem({
+    apiRef.current?.addItem({
       itemId: newItemId,
       parentId: String(parentItem.id),
       icon: undefined,

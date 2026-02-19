@@ -317,16 +317,16 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
-  const inputRef = React.useRef<HTMLInputElement>();
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
-  function onFormSubmit(event: React.FormEventHandler) {
+  function onFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     alert('Form Submitted');
   }
 
-  function onFormReset(event: React.FormEventHandler) {
+  function onFormReset(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    inputRef.current.value = '';
+    if (inputRef.current) inputRef.current.value = '';
   }
 
   return (
@@ -385,10 +385,10 @@ import React from 'react';
 import { Button, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   function handleButtonFocus() {
-    buttonRef.current.focus();
+    buttonRef.current?.focus();
   }
 
   return (

@@ -28,7 +28,7 @@ import React from 'react';
 import { Select } from 'react-magma-dom';
 
 export function Example() {
-  const [selectedItem, updateSelectedItem] = React.useState('');
+  const [selectedItem, updateSelectedItem] = React.useState(null as any);
 
   function onSelectedItemChange(changes) {
     updateSelectedItem(changes.selectedItem);
@@ -508,7 +508,7 @@ import React from 'react';
 import { Select, Card, CardBody } from 'react-magma-dom';
 
 export function Example() {
-  const [selectedItem, updateSelectedItem] = React.useState('');
+  const [selectedItem, updateSelectedItem] = React.useState(null as any);
 
   function onSelectedItemChange(changes) {
     updateSelectedItem(changes.selectedItem);
@@ -631,7 +631,7 @@ export function Example() {
   const [changes, updateChanges] = React.useState({});
   const [highlightedIndex, updateHighlightedIndex] = React.useState(-1);
   const [isOpen, updateIsOpen] = React.useState(false);
-  const [selectedItem, updateSelectedItem] = React.useState('');
+  const [selectedItem, updateSelectedItem] = React.useState(null as any);
 
   function onStateChange(newChanges) {
     const { type } = newChanges;
@@ -702,7 +702,7 @@ import { Select } from 'react-magma-dom';
 export function Example() {
   const [highlightedIndex, updateHighlightedIndex] = React.useState(0);
   const [isOpen, updateIsOpen] = React.useState(false);
-  const [selectedItem, updateSelectedItem] = React.useState('');
+  const [selectedItem, updateSelectedItem] = React.useState(null as any);
 
   function onHighlightedIndexChange(changes) {
     updateHighlightedIndex(changes.highlightedIndex);
@@ -855,8 +855,9 @@ import React from 'react';
 import { Select } from 'react-magma-dom';
 
 export function Example() {
-  const [currentSelectEvent, updateCurrentSelectEvent] =
-    React.useState(undefined);
+  const [currentSelectEvent, updateCurrentSelectEvent] = React.useState<
+    string | undefined
+  >(undefined);
 
   function handleSelectBlur(event) {
     updateCurrentSelectEvent('Blur');
@@ -1097,7 +1098,7 @@ import styled from '@emotion/styled';
 import { Select } from 'react-magma-dom';
 
 export function Example() {
-  const CustomStyledItem = styled.li(props => ({
+  const CustomStyledItem = styled.li<{ isFocused?: boolean }>(props => ({
     alignSelf: 'center',
     background: props.isFocused ? props.theme.colors.neutral200 : 'transparent',
     lineHeight: '24px',
