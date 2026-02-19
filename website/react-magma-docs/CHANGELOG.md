@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.1-next.1
+
+### Patch Changes
+
+- 18c7b0b4c: fix(docs): added new script for mdx tscheck to improve type checking in documentation
+
 ## 5.3.1-next.0
 
 ### Patch Changes
