@@ -941,6 +941,31 @@ describe('Combobox', () => {
     expect(renderedCombobox.value).toEqual(customItems[2].label);
   });
 
+  it('should have updated aria-label for selected item', async () => {
+    const { getByLabelText, getByText, getAllByText } = render(
+      <Combobox labelText={labelText} items={items} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    await userEvent.click(renderedCombobox);
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('aria-label', 'Red');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('aria-label', 'Blue');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Green')).toHaveAttribute('aria-label', 'Green');
+    await userEvent.keyboard('{Enter}');
+
+    await userEvent.click(renderedCombobox);
+    expect(getByText('Green')).toHaveAttribute(
+      'aria-label',
+      'Green is selected'
+    );
+  });
+
   describe('events', () => {
     it('onBlur', async () => {
       const onBlur = jest.fn();

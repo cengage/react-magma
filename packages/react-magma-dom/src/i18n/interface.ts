@@ -98,8 +98,10 @@ export interface I18nInterface {
   combobox: {
     clearIndicatorAriaLabel: string;
     createLabel: string;
+    clearAnnounce: string;
     multi: {
       clearIndicatorAriaLabel: string;
+      clearAnnounce: string;
     };
     loading: string;
   };
@@ -252,10 +254,12 @@ export interface I18nInterface {
   select: {
     placeholder: string;
     clearIndicatorAriaLabel: string;
+    clearAnnounce: string;
     expandedAnnounce: string;
     collapsedAnnounce: string;
     multi: {
       clearIndicatorAriaLabel: string;
+      clearAnnounce: string;
     };
   };
   simplePagination: {

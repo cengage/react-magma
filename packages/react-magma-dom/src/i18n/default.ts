@@ -97,9 +97,11 @@ export const defaultI18n: I18nInterface = {
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
     createLabel: 'Create "{inputValue}"',
+    clearAnnounce: '{selectedItem} has been removed',
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',
+      clearAnnounce: 'All selected items have been removed',
     },
     loading: 'Loading...',
   },
@@ -233,10 +235,10 @@ export const defaultI18n: I18nInterface = {
   },
   multiSelect: {
     placeholder: 'Select...',
-    selectedItemButtonAriaLabel: 'reset item {selectedItem}',
+    selectedItemButtonAriaLabel: 'clear item {selectedItem}',
   },
   multiCombobox: {
-    selectedItemButtonAriaLabel: 'reset item {selectedItem}',
+    selectedItemButtonAriaLabel: 'clear item {selectedItem}',
   },
   pagination: {
     nextButtonLabel: 'Next Page',
@@ -267,11 +269,13 @@ export const defaultI18n: I18nInterface = {
     placeholder: 'Select...',
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
+    clearAnnounce: '{selectedItem} has been removed',
     expandedAnnounce: '{labelText} list expanded',
     collapsedAnnounce: '{labelText} list collapsed',
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',
+      clearAnnounce: 'All selected items have been removed',
     },
   },
   simplePagination: {

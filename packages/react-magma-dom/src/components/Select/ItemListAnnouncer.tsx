@@ -4,7 +4,7 @@ import { I18nContext } from '../../i18n';
 import { Announce } from '../Announce';
 import { VisuallyHidden } from '../VisuallyHidden';
 
-export function SelectAnnouncer({ isOpen, labelText }) {
+export function ItemListAnnouncer({ isOpen, labelText }) {
   const i18n = React.useContext(I18nContext);
 
   const announceMessage = isOpen
