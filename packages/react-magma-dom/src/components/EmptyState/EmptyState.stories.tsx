@@ -226,16 +226,6 @@ export const Inverse = {
     ...Default.args,
     isInverse: true,
   },
-
-  decorators: [
-    (Story: React.ComponentType) => (
-      <Card background={magma.colors.primary600} isInverse>
-        <CardBody>
-          <Story />
-        </CardBody>
-      </Card>
-    ),
-  ],
 };
 
 export const InverseDanger = {
@@ -245,16 +235,6 @@ export const InverseDanger = {
     ...DangerMode.args,
     isInverse: true,
   },
-
-  decorators: [
-    (Story: React.ComponentType) => (
-      <Card background={magma.colors.primary600} isInverse>
-        <CardBody>
-          <Story />
-        </CardBody>
-      </Card>
-    ),
-  ],
 };
 
 export const Minimal = {
@@ -320,14 +300,4 @@ export const LoadingInverse = {
     isLoading: true,
     isInverse: true,
   },
-
-  decorators: [
-    (Story: React.ComponentType) => (
-      <Card background={magma.colors.primary600} isInverse>
-        <CardBody>
-          <Story />
-        </CardBody>
-      </Card>
-    ),
-  ],
 };
