@@ -66,22 +66,50 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 }
 
 .emotion-6 {
-  color: #454545;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
   margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
 }
 
 @media (min-width: 600px) {
   .emotion-6 {
-    font-size: 16px;
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
     line-height: 24px;
   }
 }
 
 .emotion-8 {
+  color: #454545;
   color: #707070;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
@@ -99,36 +127,21 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 12px;
-}
-
-.emotion-12 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  gap: 12px;
+  width: 100%;
 }
 
-.emotion-14 {
+.emotion-10.emotion-10>* {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-12 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -173,24 +186,24 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   width: auto;
 }
 
-.emotion-14:not(:disabled):focus {
+.emotion-12:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-14:not(:disabled):hover,
-.emotion-14:not(:disabled):focus {
+.emotion-12:not(:disabled):hover,
+.emotion-12:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-14:not(:disabled):active {
+.emotion-12:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-14:not(:disabled):active:after {
+.emotion-12:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -200,13 +213,13 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   transition: transform 0s;
 }
 
-.emotion-14 svg {
+.emotion-12 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-16 {
+.emotion-14 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -283,22 +296,50 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 }
 
 .emotion-6 {
-  color: #454545;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
   margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
 }
 
 @media (min-width: 600px) {
   .emotion-6 {
-    font-size: 16px;
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
     line-height: 24px;
   }
 }
 
 .emotion-8 {
+  color: #454545;
   color: #707070;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
@@ -316,36 +357,21 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 12px;
-}
-
-.emotion-12 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  gap: 12px;
+  width: 100%;
 }
 
-.emotion-14 {
+.emotion-10.emotion-10>* {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-12 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -390,24 +416,24 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   width: auto;
 }
 
-.emotion-14:not(:disabled):focus {
+.emotion-12:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-14:not(:disabled):hover,
-.emotion-14:not(:disabled):focus {
+.emotion-12:not(:disabled):hover,
+.emotion-12:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-14:not(:disabled):active {
+.emotion-12:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-14:not(:disabled):active:after {
+.emotion-12:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -417,13 +443,13 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   transition: transform 0s;
 }
 
-.emotion-14 svg {
+.emotion-12 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-16 {
+.emotion-14 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -457,11 +483,13 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
       </div>
       <h3
         class="emotion-6 emotion-7"
+        style="color: rgb(69, 69, 69);"
       >
         Error occurred
       </h3>
       <p
-        class="emotion-8 emotion-9"
+        class="emotion-8 emotion-7"
+        color="subdued"
       >
         Something went wrong
       </p>
@@ -469,22 +497,18 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
     <div
       class="emotion-10 emotion-11"
     >
-      <div
+      <button
         class="emotion-12 emotion-13"
+        color="primary"
+        shape="fill"
+        type="button"
       >
-        <button
+        <span
           class="emotion-14 emotion-15"
-          color="primary"
-          shape="fill"
-          type="button"
         >
-          <span
-            class="emotion-16 emotion-17"
-          >
-            Retry
-          </span>
-        </button>
-      </div>
+          Retry
+        </span>
+      </button>
     </div>
   </div>
 </div>
@@ -556,22 +580,49 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
 }
 
 .emotion-6 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
   color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
   margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #A6DEFF;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
 }
 
 @media (min-width: 600px) {
   .emotion-6 {
-    font-size: 16px;
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
     line-height: 24px;
   }
 }
 
 .emotion-8 {
-  color: #F5F5F5;
+  color: #FFFFFF;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
@@ -649,22 +700,49 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
 }
 
 .emotion-6 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
   color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
   margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #A6DEFF;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
 }
 
 @media (min-width: 600px) {
   .emotion-6 {
-    font-size: 16px;
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
     line-height: 24px;
   }
 }
 
 .emotion-8 {
-  color: #F5F5F5;
+  color: #FFFFFF;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
@@ -699,11 +777,13 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
       </div>
       <h3
         class="emotion-6 emotion-7"
+        style="color: rgb(255, 255, 255);"
       >
         Error
       </h3>
       <p
-        class="emotion-8 emotion-9"
+        class="emotion-8 emotion-7"
+        color="default"
       >
         Something went wrong
       </p>
@@ -778,22 +858,49 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
 }
 
 .emotion-6 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
   color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
   margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #A6DEFF;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
 }
 
 @media (min-width: 600px) {
   .emotion-6 {
-    font-size: 16px;
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
     line-height: 24px;
   }
 }
 
 .emotion-8 {
-  color: #F5F5F5;
+  color: #FFFFFF;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
@@ -871,22 +978,49 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
 }
 
 .emotion-6 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
   color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
   margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #A6DEFF;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
 }
 
 @media (min-width: 600px) {
   .emotion-6 {
-    font-size: 16px;
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
     line-height: 24px;
   }
 }
 
 .emotion-8 {
-  color: #F5F5F5;
+  color: #FFFFFF;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
@@ -921,11 +1055,13 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
       </div>
       <h3
         class="emotion-6 emotion-7"
+        style="color: rgb(255, 255, 255);"
       >
         No results
       </h3>
       <p
-        class="emotion-8 emotion-9"
+        class="emotion-8 emotion-7"
+        color="default"
       >
         Try another search
       </p>
@@ -1165,7 +1301,7 @@ exports[`EmptyState Loading state should render loading spinner with inverse col
 </div>
 `;
 
-exports[`EmptyState should render children between text and buttons 1`] = `
+exports[`EmptyState should render additionalContent between text and actions 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1203,22 +1339,50 @@ exports[`EmptyState should render children between text and buttons 1`] = `
 }
 
 .emotion-4 {
-  color: #454545;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
   margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-4:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
 }
 
 @media (min-width: 600px) {
   .emotion-4 {
-    font-size: 16px;
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 18px;
     line-height: 24px;
   }
 }
 
 .emotion-6 {
+  color: #454545;
   color: #707070;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
@@ -1236,36 +1400,21 @@ exports[`EmptyState should render children between text and buttons 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 12px;
-}
-
-.emotion-10 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  gap: 12px;
+  width: 100%;
 }
 
-.emotion-12 {
+.emotion-8.emotion-8>* {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-10 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1310,24 +1459,24 @@ exports[`EmptyState should render children between text and buttons 1`] = `
   width: auto;
 }
 
-.emotion-12:not(:disabled):focus {
+.emotion-10:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-12:not(:disabled):hover,
-.emotion-12:not(:disabled):focus {
+.emotion-10:not(:disabled):hover,
+.emotion-10:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-12:not(:disabled):active {
+.emotion-10:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-12:not(:disabled):active:after {
+.emotion-10:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -1337,13 +1486,13 @@ exports[`EmptyState should render children between text and buttons 1`] = `
   transition: transform 0s;
 }
 
-.emotion-12 svg {
+.emotion-10 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-14 {
+.emotion-12 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1392,22 +1541,50 @@ exports[`EmptyState should render children between text and buttons 1`] = `
 }
 
 .emotion-4 {
-  color: #454545;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
   margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-4:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
 }
 
 @media (min-width: 600px) {
   .emotion-4 {
-    font-size: 16px;
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 18px;
     line-height: 24px;
   }
 }
 
 .emotion-6 {
+  color: #454545;
   color: #707070;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
@@ -1425,36 +1602,21 @@ exports[`EmptyState should render children between text and buttons 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 12px;
-}
-
-.emotion-10 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  gap: 12px;
+  width: 100%;
 }
 
-.emotion-12 {
+.emotion-8.emotion-8>* {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-10 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1499,24 +1661,24 @@ exports[`EmptyState should render children between text and buttons 1`] = `
   width: auto;
 }
 
-.emotion-12:not(:disabled):focus {
+.emotion-10:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-12:not(:disabled):hover,
-.emotion-12:not(:disabled):focus {
+.emotion-10:not(:disabled):hover,
+.emotion-10:not(:disabled):focus {
   background: #292F7C;
   color: #FFFFFF;
 }
 
-.emotion-12:not(:disabled):active {
+.emotion-10:not(:disabled):active {
   background: #1A1E51;
   color: #FFFFFF;
 }
 
-.emotion-12:not(:disabled):active:after {
+.emotion-10:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -1526,13 +1688,13 @@ exports[`EmptyState should render children between text and buttons 1`] = `
   transition: transform 0s;
 }
 
-.emotion-12 svg {
+.emotion-10 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-14 {
+.emotion-12 {
   visibility: visible;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1553,11 +1715,13 @@ exports[`EmptyState should render children between text and buttons 1`] = `
     >
       <h3
         class="emotion-4 emotion-5"
+        style="color: rgb(69, 69, 69);"
       >
         No results
       </h3>
       <p
-        class="emotion-6 emotion-7"
+        class="emotion-6 emotion-5"
+        color="subdued"
       >
         Try a different search
       </p>
@@ -1570,28 +1734,24 @@ exports[`EmptyState should render children between text and buttons 1`] = `
     <div
       class="emotion-8 emotion-9"
     >
-      <div
+      <button
         class="emotion-10 emotion-11"
+        color="primary"
+        shape="fill"
+        type="button"
       >
-        <button
+        <span
           class="emotion-12 emotion-13"
-          color="primary"
-          shape="fill"
-          type="button"
         >
-          <span
-            class="emotion-14 emotion-15"
-          >
-            Search Again
-          </span>
-        </button>
-      </div>
+          Search Again
+        </span>
+      </button>
     </div>
   </div>
 </div>
 `;
 
-exports[`EmptyState should render illustration as fixed-size rounded square 1`] = `
+exports[`EmptyState should render icon in circular container 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -1657,16 +1817,41 @@ exports[`EmptyState should render illustration as fixed-size rounded square 1`] 
 }
 
 .emotion-6 {
-  color: #454545;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
   margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
 }
 
 @media (min-width: 600px) {
   .emotion-6 {
-    font-size: 16px;
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
     line-height: 24px;
   }
 }
@@ -1736,16 +1921,41 @@ exports[`EmptyState should render illustration as fixed-size rounded square 1`] 
 }
 
 .emotion-6 {
-  color: #454545;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 24px;
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
   margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
 }
 
 @media (min-width: 600px) {
   .emotion-6 {
-    font-size: 16px;
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
     line-height: 24px;
   }
 }
@@ -1772,6 +1982,7 @@ exports[`EmptyState should render illustration as fixed-size rounded square 1`] 
       </div>
       <h3
         class="emotion-6 emotion-7"
+        style="color: rgb(69, 69, 69);"
       >
         Test
       </h3>

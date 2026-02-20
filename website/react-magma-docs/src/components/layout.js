@@ -12,7 +12,6 @@ import './layout.css';
 import { ButtonProps } from './ButtonProps';
 import { CodeBlock } from './CodeBlock';
 import { Divider } from './Divider';
-import { EmptyStateProps } from './EmptyStateProps';
 import { IconButtonProps } from './IconButtonProps';
 import { LayoutComponent } from './LayoutComponent';
 import { LeadParagraph } from './LeadParagraph';
@@ -93,7 +92,6 @@ export const Layout = ({ children, pageContext }) => {
             <PageContent {...props}>{props.children}</PageContent>
           ),
           ButtonProps,
-          EmptyStateProps,
           IconButtonProps,
           SimplePropsTable,
           ...properties.reduce((acc, { name, properties }) => {

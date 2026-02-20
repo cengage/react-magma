@@ -9,8 +9,8 @@ props:
 
 <LeadParagraph>
   The EmptyState component communicates a lack of content and guides users
-  towards action. It supports an illustration, title, body text, up to three
-  action buttons, and custom content via children.
+  towards action. It supports an icon, title, description, composed action
+  buttons, and additional custom content.
 </LeadParagraph>
 
 ## Basic Usage
@@ -18,27 +18,44 @@ props:
 ```tsx
 import React from 'react';
 
-import { EmptyState } from 'react-magma-dom';
+import {
+  EmptyState,
+  Button,
+  ButtonColor,
+  ButtonVariant,
+  ButtonGroup,
+} from 'react-magma-dom';
 import { SearchIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
-      illustration={<SearchIcon />}
+      icon={<SearchIcon />}
       title="No results found"
-      body="Try adjusting your search or filter criteria to find the courses you are looking for."
-      primaryAction={{
-        label: 'Search Again',
-        onClick: () => console.log('Search clicked'),
-      }}
-      secondaryAction={{
-        label: 'Clear Filters',
-        onClick: () => console.log('Clear clicked'),
-      }}
-      tertiaryAction={{
-        label: 'Browse All Courses',
-        onClick: () => console.log('Browse clicked'),
-      }}
+      description="Try adjusting your search or filter criteria to find the courses you are looking for."
+      actions={
+        <ButtonGroup>
+          <Button
+            color={ButtonColor.primary}
+            onClick={() => console.log('Search clicked')}
+          >
+            Search Again
+          </Button>
+          <Button
+            color={ButtonColor.secondary}
+            onClick={() => console.log('Clear clicked')}
+          >
+            Clear Filters
+          </Button>
+          <Button
+            color={ButtonColor.primary}
+            variant={ButtonVariant.link}
+            onClick={() => console.log('Browse clicked')}
+          >
+            Browse All Courses
+          </Button>
+        </ButtonGroup>
+      }
     />
   );
 }
@@ -46,24 +63,29 @@ export function Example() {
 
 ## Tertiary Action
 
-The tertiary action renders as a link-style button below the primary and secondary buttons. Use it for a lower-priority alternative action.
+A link-style button below the primary and secondary buttons. Use it for a lower-priority alternative action.
 
 ```tsx
 import React from 'react';
 
-import { EmptyState } from 'react-magma-dom';
+import { EmptyState, Button, ButtonColor, ButtonVariant } from 'react-magma-dom';
 import { SearchIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
-      illustration={<SearchIcon />}
+      icon={<SearchIcon />}
       title="No courses found"
-      body="We couldn't find any courses matching your search. Try browsing the full catalog."
-      tertiaryAction={{
-        label: 'Browse Course Catalog',
-        onClick: () => console.log('Browse clicked'),
-      }}
+      description="We couldn't find any courses matching your search. Try browsing the full catalog."
+      actions={
+        <Button
+          color={ButtonColor.primary}
+          variant={ButtonVariant.link}
+          onClick={() => console.log('Browse clicked')}
+        >
+          Browse Course Catalog
+        </Button>
+      }
     />
   );
 }
@@ -71,58 +93,70 @@ export function Example() {
 
 ## Danger Mode
 
-Use the `isDanger` prop to display an error state with danger colors on the illustration. The buttons remain the default primary color for consistency.
+Use the `isDanger` prop to display an error state with danger colors on the icon. The buttons remain the default primary color for consistency.
 
 ```tsx
 import React from 'react';
 
-import { EmptyState } from 'react-magma-dom';
+import { EmptyState, Button, ButtonColor, ButtonGroup } from 'react-magma-dom';
 import { ErrorIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
-      illustration={<ErrorIcon />}
+      icon={<ErrorIcon />}
       isDanger
       title="Unable to load assignments"
-      body="We encountered an error while loading your course content. Please try again or contact support."
-      primaryAction={{
-        label: 'Try Again',
-        onClick: () => console.log('Retry clicked'),
-      }}
-      secondaryAction={{
-        label: 'Contact Support',
-        onClick: () => console.log('Contact clicked'),
-      }}
+      description="We encountered an error while loading your course content. Please try again or contact support."
+      actions={
+        <ButtonGroup>
+          <Button
+            color={ButtonColor.primary}
+            onClick={() => console.log('Retry clicked')}
+          >
+            Try Again
+          </Button>
+          <Button
+            color={ButtonColor.secondary}
+            onClick={() => console.log('Contact clicked')}
+          >
+            Contact Support
+          </Button>
+        </ButtonGroup>
+      }
     />
   );
 }
 ```
 
-## Without Illustration
+## Without Icon
 
-The illustration is optional. You can render an EmptyState with just text and actions.
+The icon is optional. You can render an EmptyState with just text and actions.
 
 ```tsx
 import React from 'react';
 
-import { EmptyState } from 'react-magma-dom';
+import { EmptyState, Button, ButtonColor } from 'react-magma-dom';
 
 export function Example() {
   return (
     <EmptyState
       title="No submissions yet"
-      body="Students have not submitted any assignments for this course yet. Check back after the due date."
-      primaryAction={{
-        label: 'View Assignment Details',
-        onClick: () => console.log('View clicked'),
-      }}
+      description="Students have not submitted any assignments for this course yet. Check back after the due date."
+      actions={
+        <Button
+          color={ButtonColor.primary}
+          onClick={() => console.log('View clicked')}
+        >
+          View Assignment Details
+        </Button>
+      }
     />
   );
 }
 ```
 
-## Without Buttons
+## Without Actions
 
 Action buttons are also optional. You can display an informational empty state without any actions.
 
@@ -135,9 +169,9 @@ import { NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      illustration={<NotificationsIcon />}
+      icon={<NotificationsIcon />}
       title="No upcoming deadlines"
-      body="You're all caught up! There are no assignments or quizzes due this week."
+      description="You're all caught up! There are no assignments or quizzes due this week."
     />
   );
 }
@@ -164,7 +198,16 @@ The `isInverse` prop renders the component with colors suitable for dark backgro
 ```tsx
 import React from 'react';
 
-import { EmptyState, Card, CardBody, magma } from 'react-magma-dom';
+import {
+  EmptyState,
+  Button,
+  ButtonColor,
+  ButtonVariant,
+  ButtonGroup,
+  Card,
+  CardBody,
+  magma,
+} from 'react-magma-dom';
 import { SearchIcon } from 'react-magma-icons';
 
 export function Example() {
@@ -172,22 +215,36 @@ export function Example() {
     <Card background={magma.colors.primary600} isInverse>
       <CardBody>
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           isInverse
           title="No results found"
-          body="Try adjusting your search or filter criteria to find the courses you are looking for."
-          primaryAction={{
-            label: 'Search Again',
-            onClick: () => console.log('Search clicked'),
-          }}
-          secondaryAction={{
-            label: 'Clear Filters',
-            onClick: () => console.log('Clear clicked'),
-          }}
-          tertiaryAction={{
-            label: 'Browse All Courses',
-            onClick: () => console.log('Browse clicked'),
-          }}
+          description="Try adjusting your search or filter criteria to find the courses you are looking for."
+          actions={
+            <ButtonGroup>
+              <Button
+                color={ButtonColor.primary}
+                isInverse
+                onClick={() => console.log('Search clicked')}
+              >
+                Search Again
+              </Button>
+              <Button
+                color={ButtonColor.secondary}
+                isInverse
+                onClick={() => console.log('Clear clicked')}
+              >
+                Clear Filters
+              </Button>
+              <Button
+                color={ButtonColor.primary}
+                isInverse
+                variant={ButtonVariant.link}
+                onClick={() => console.log('Browse clicked')}
+              >
+                Browse All Courses
+              </Button>
+            </ButtonGroup>
+          }
         />
       </CardBody>
     </Card>
@@ -211,9 +268,9 @@ export function Example() {
 
 The loading spinner color adapts to `isDanger` and `isInverse` props.
 
-## Custom Children
+## Additional Content
 
-Pass children to render custom content between the text and action buttons. This is useful for inline search fields, filter chips, or other interactive elements.
+Use the `additionalContent` prop to render custom content between the text and action buttons. This is useful for inline search fields, filter chips, or other interactive elements.
 
 ```tsx
 import React from 'react';
@@ -224,72 +281,82 @@ import { SearchIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      illustration={<SearchIcon />}
+      icon={<SearchIcon />}
       title="No results found"
-      body="Try a different search term or browse by category."
-    >
-      <Search
-        isClearable
-        placeholder="Search courses..."
-        onSearch={value => console.log('Search:', value)}
-      />
-    </EmptyState>
+      description="Try a different search term or browse by category."
+      additionalContent={
+        <Search
+          isClearable
+          placeholder="Search courses..."
+          onSearch={value => console.log('Search:', value)}
+        />
+      }
+    />
   );
 }
 ```
 
-You can also use children for browsable categories. Here, clickable `Tag` components let users browse courses by category.
+You can also use `additionalContent` for browsable categories. Here, clickable `Tag` components let users browse courses by category.
 
 ```tsx
 import React from 'react';
 
-import { EmptyState, Tag } from 'react-magma-dom';
+import { EmptyState, Button, ButtonColor, ButtonVariant, Tag } from 'react-magma-dom';
 import { SearchIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
-      illustration={<SearchIcon />}
+      icon={<SearchIcon />}
       title="No courses found"
-      body="Try browsing by category instead."
-      tertiaryAction={{
-        label: 'Browse All Courses',
-        onClick: () => console.log('Browse clicked'),
-      }}
-    >
-      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
-        <Tag onClick={() => console.log('Biology')}>Biology</Tag>
-        <Tag onClick={() => console.log('Chemistry')}>Chemistry</Tag>
-        <Tag onClick={() => console.log('Physics')}>Physics</Tag>
-        <Tag onClick={() => console.log('Mathematics')}>Mathematics</Tag>
-        <Tag onClick={() => console.log('Computer Science')}>Computer Science</Tag>
-      </div>
-    </EmptyState>
+      description="Try browsing by category instead."
+      actions={
+        <Button
+          color={ButtonColor.primary}
+          variant={ButtonVariant.link}
+          onClick={() => console.log('Browse clicked')}
+        >
+          Browse All Courses
+        </Button>
+      }
+      additionalContent={
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <Tag onClick={() => console.log('Biology')}>Biology</Tag>
+          <Tag onClick={() => console.log('Chemistry')}>Chemistry</Tag>
+          <Tag onClick={() => console.log('Physics')}>Physics</Tag>
+          <Tag onClick={() => console.log('Mathematics')}>Mathematics</Tag>
+          <Tag onClick={() => console.log('Computer Science')}>Computer Science</Tag>
+        </div>
+      }
+    />
   );
 }
 ```
 
-Children can also include form inputs. Here, an `Input` field lets students enter a course access code directly from the empty state.
+Additional content can also include form inputs. Here, an `Input` field lets students enter a course access code directly from the empty state.
 
 ```tsx
 import React from 'react';
 
-import { EmptyState, Input } from 'react-magma-dom';
+import { EmptyState, Button, ButtonColor, Input } from 'react-magma-dom';
 import { SchoolIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
-      illustration={<SchoolIcon />}
+      icon={<SchoolIcon />}
       title="No courses yet"
-      body="Enter a course access code from your instructor to get started."
-      primaryAction={{
-        label: 'Join Course',
-        onClick: () => console.log('Join clicked'),
-      }}
-    >
-      <Input placeholder="Enter access code" />
-    </EmptyState>
+      description="Enter a course access code from your instructor to get started."
+      actions={
+        <Button
+          color={ButtonColor.primary}
+          onClick={() => console.log('Join clicked')}
+        >
+          Join Course
+        </Button>
+      }
+      additionalContent={<Input placeholder="Enter access code" />}
+    />
   );
 }
 ```
@@ -307,23 +374,24 @@ export function Example() {
 
   return (
     <EmptyState
-      illustration={<NotificationsIcon />}
+      icon={<NotificationsIcon />}
       title="No new announcements"
-      body="There are no announcements for your courses right now."
-    >
-      <Toggle
-        checked={enabled}
-        labelText="Notify me when new announcements are posted"
-        onChange={() => setEnabled(prev => !prev)}
-      />
-    </EmptyState>
+      description="There are no announcements for your courses right now."
+      additionalContent={
+        <Toggle
+          checked={enabled}
+          labelText="Notify me when new announcements are posted"
+          onChange={() => setEnabled(prev => !prev)}
+        />
+      }
+    />
   );
 }
 ```
 
 ## EmptyState Props
 
-**EmptyStateProps** are listed below.
+**Any other props supplied will be provided to the wrapping `div` element.**
 
 <EmptyStateProps />
 

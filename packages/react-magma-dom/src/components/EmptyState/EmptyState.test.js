@@ -4,6 +4,8 @@ import { render, fireEvent } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import { Button, ButtonColor, ButtonVariant } from '../Button';
+import { ButtonGroup } from '../ButtonGroup';
 import { EmptyState } from '.';
 
 const SearchIcon = () => (
@@ -27,33 +29,36 @@ describe('EmptyState', () => {
     expect(getByText(title)).toBeInTheDocument();
   });
 
-  it('should render with body text', () => {
-    const body = 'Try adjusting your search criteria';
-    const { getByText } = render(<EmptyState body={body} />);
+  it('should render with description text', () => {
+    const description = 'Try adjusting your search criteria';
+    const { getByText } = render(<EmptyState description={description} />);
 
-    expect(getByText(body)).toBeInTheDocument();
+    expect(getByText(description)).toBeInTheDocument();
   });
 
-  it('should render with illustration', () => {
+  it('should render with icon', () => {
     const { getByTestId } = render(
-      <EmptyState illustration={<SearchIcon />} title="Test" />
+      <EmptyState icon={<SearchIcon />} title="Test" />
     );
 
     expect(getByTestId('test-icon')).toBeInTheDocument();
   });
 
-  it('should render illustration as fixed-size rounded square', () => {
+  it('should render icon in circular container', () => {
     const { container } = render(
-      <EmptyState illustration={<SearchIcon />} title="Test" />
+      <EmptyState icon={<SearchIcon />} title="Test" />
     );
 
     expect(container).toMatchSnapshot();
   });
 
-  it('should render primary action button and handle click', () => {
+  it('should render actions', () => {
     const onClick = jest.fn();
     const { getByText } = render(
-      <EmptyState title="Test" primaryAction={{ label: 'Add Item', onClick }} />
+      <EmptyState
+        title="Test"
+        actions={<Button onClick={onClick}>Add Item</Button>}
+      />
     );
 
     const button = getByText('Add Item');
@@ -63,45 +68,19 @@ describe('EmptyState', () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it('should render secondary action button and handle click', () => {
-    const onClick = jest.fn();
+  it('should render multiple actions via ButtonGroup', () => {
     const { getByText } = render(
       <EmptyState
         title="Test"
-        secondaryAction={{ label: 'Clear Filters', onClick }}
-      />
-    );
-
-    const button = getByText('Clear Filters');
-    expect(button).toBeInTheDocument();
-
-    fireEvent.click(button);
-    expect(onClick).toHaveBeenCalledTimes(1);
-  });
-
-  it('should render tertiary action button and handle click', () => {
-    const onClick = jest.fn();
-    const { getByText } = render(
-      <EmptyState
-        title="Test"
-        tertiaryAction={{ label: 'Browse All Courses', onClick }}
-      />
-    );
-
-    const button = getByText('Browse All Courses');
-    expect(button).toBeInTheDocument();
-
-    fireEvent.click(button);
-    expect(onClick).toHaveBeenCalledTimes(1);
-  });
-
-  it('should render all three action buttons', () => {
-    const { getByText } = render(
-      <EmptyState
-        title="Test"
-        primaryAction={{ label: 'Search Again', onClick: jest.fn() }}
-        secondaryAction={{ label: 'Clear Filters', onClick: jest.fn() }}
-        tertiaryAction={{ label: 'Browse All Courses', onClick: jest.fn() }}
+        actions={
+          <ButtonGroup>
+            <Button color={ButtonColor.primary}>Search Again</Button>
+            <Button color={ButtonColor.secondary}>Clear Filters</Button>
+            <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
+              Browse All Courses
+            </Button>
+          </ButtonGroup>
+        }
       />
     );
 
@@ -110,18 +89,18 @@ describe('EmptyState', () => {
     expect(getByText('Browse All Courses')).toBeInTheDocument();
   });
 
-  it('should render children between text and buttons', () => {
+  it('should render additionalContent between text and actions', () => {
     const { container } = render(
       <EmptyState
         title="No results"
-        body="Try a different search"
-        primaryAction={{ label: 'Search Again', onClick: jest.fn() }}
-      >
-        <div data-testid="custom-content">Custom content</div>
-      </EmptyState>
+        description="Try a different search"
+        actions={<Button>Search Again</Button>}
+        additionalContent={
+          <div data-testid="custom-content">Custom content</div>
+        }
+      />
     );
 
-    // Children should be inside the content area, between text and buttons
     const contentSlot = container.querySelector(
       '[data-testid="custom-content"]'
     );
@@ -135,11 +114,11 @@ describe('EmptyState', () => {
     it('should render danger mode styling', () => {
       const { container } = render(
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           isDanger
           title="Error occurred"
-          body="Something went wrong"
-          primaryAction={{ label: 'Retry', onClick: jest.fn() }}
+          description="Something went wrong"
+          actions={<Button>Retry</Button>}
         />
       );
 
@@ -151,24 +130,39 @@ describe('EmptyState', () => {
     it('should render inverse mode styling', () => {
       const { container } = render(
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           isInverse
           title="No results"
-          body="Try another search"
+          description="Try another search"
         />
       );
 
       expect(container).toMatchSnapshot();
     });
 
+    it('should render inverse description at full opacity', () => {
+      const { getByText } = render(
+        <EmptyState
+          icon={<SearchIcon />}
+          isInverse
+          title="No results"
+          description="Try another search"
+        />
+      );
+
+      const description = getByText('Try another search');
+      expect(description).toHaveStyleRule('color', magma.colors.neutral100);
+      expect(description).not.toHaveStyleRule('opacity', '0.7');
+    });
+
     it('should render inverse danger mode styling', () => {
       const { container } = render(
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           isDanger
           isInverse
           title="Error"
-          body="Something went wrong"
+          description="Something went wrong"
         />
       );
 
@@ -182,7 +176,7 @@ describe('EmptyState', () => {
         <EmptyState
           isLoading
           title="This should not show"
-          body="This should not show either"
+          description="This should not show either"
         />
       );
 
@@ -207,10 +201,10 @@ describe('EmptyState', () => {
     it('should not violate accessibility standards', async () => {
       const { container } = render(
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           title="No results found"
-          body="Try adjusting your search criteria"
-          primaryAction={{ label: 'Clear Filters', onClick: jest.fn() }}
+          description="Try adjusting your search criteria"
+          actions={<Button>Clear Filters</Button>}
         />
       );
 
@@ -221,11 +215,11 @@ describe('EmptyState', () => {
     it('should not violate accessibility standards in danger mode', async () => {
       const { container } = render(
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           isDanger
           title="Error occurred"
-          body="Please try again"
-          primaryAction={{ label: 'Retry', onClick: jest.fn() }}
+          description="Please try again"
+          actions={<Button>Retry</Button>}
         />
       );
 
@@ -233,15 +227,21 @@ describe('EmptyState', () => {
       expect(results).toHaveNoViolations();
     });
 
-    it('should not violate accessibility standards with all three actions', async () => {
+    it('should not violate accessibility standards with multiple actions', async () => {
       const { container } = render(
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           title="No results found"
-          body="Try adjusting your search criteria"
-          primaryAction={{ label: 'Search Again', onClick: jest.fn() }}
-          secondaryAction={{ label: 'Clear Filters', onClick: jest.fn() }}
-          tertiaryAction={{ label: 'Browse All Courses', onClick: jest.fn() }}
+          description="Try adjusting your search criteria"
+          actions={
+            <ButtonGroup>
+              <Button color={ButtonColor.primary}>Search Again</Button>
+              <Button color={ButtonColor.secondary}>Clear Filters</Button>
+              <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
+                Browse All Courses
+              </Button>
+            </ButtonGroup>
+          }
         />
       );
 
@@ -250,12 +250,13 @@ describe('EmptyState', () => {
     });
   });
 
-  describe('Custom children', () => {
-    it('should render custom children', () => {
+  describe('Additional content', () => {
+    it('should render additional content', () => {
       const { getByText } = render(
-        <EmptyState title="Test">
-          <div>Custom content</div>
-        </EmptyState>
+        <EmptyState
+          title="Test"
+          additionalContent={<div>Custom content</div>}
+        />
       );
 
       expect(getByText('Custom content')).toBeInTheDocument();

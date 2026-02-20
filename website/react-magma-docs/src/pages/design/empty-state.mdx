@@ -48,28 +48,28 @@ The message and illustration should relate to the specific context. A "no search
 ## Anatomy
 
 <figure>
-  <img src="../../images/empty-state-v2/empty-state-anatomy-v2.png" alt="Annotated diagram of an empty state with numbered callouts labeling: 1. Illustration (circular icon), 2. Title, 3. Body text, 4. Custom content area, 5. Primary action (solid button), 6. Secondary action (outlined button), 7. Tertiary action (link-style button below the button row)." />
+  <img src="../../images/empty-state-v2/empty-state-anatomy-v2.png" alt="Annotated diagram of an empty state with numbered callouts labeling: 1. Icon (circular container), 2. Title, 3. Description, 4. Additional content area, 5. Primary action (solid button), 6. Secondary action (outlined button), 7. Tertiary action (link-style button below the button row)." />
 </figure>
 
-1. **Illustration** — A rounded square container (48px, 12px radius) with an icon that visually represents the empty state
+1. **Icon** — A circular container with an icon that visually represents the empty state
 2. **Title** — A brief heading that explains the situation
-3. **Body** — Additional context or instructions (optional)
-4. **Custom Content** — Custom content area between text and actions, such as a search field or filter chips (optional)
+3. **Description** — Additional context or instructions (optional)
+4. **Additional Content** — Custom content area between text and actions, such as a search field or filter chips (optional)
 5. **Primary Action** — A solid primary button for the main action the user can take (optional)
 6. **Secondary Action** — An outlined button beside the primary button for an alternative action (optional)
 7. **Tertiary Action** — A link-style button below the button row for a lower-priority action (optional)
 
 ---
 
-## Custom Content
+## Additional Content
 
-Pass children to embed custom interactive content between the body text and action buttons. Use it for inline search fields, category filters, or other contextual content that helps users take immediate action without leaving the empty state.
+Use the `additionalContent` prop to embed custom interactive content between the description and action buttons. Use it for inline search fields, category filters, or other contextual content that helps users take immediate action without leaving the empty state.
 
 <figure>
-  <img src="../../images/empty-state-v2/empty-state-content-slot.png" alt="Empty state with a search icon, 'No results found' title, body text, and an inline search input field rendered as custom content between the body text and action buttons." />
+  <img src="../../images/empty-state-v2/empty-state-content-slot.png" alt="Empty state with a search icon, 'No results found' title, description, and an inline search input field rendered as additional content between the description and action buttons." />
 </figure>
 
-Common custom content uses:
+Common additional content uses:
 - **Search fields** — Let users search directly from the empty state
 - **Filter chips or tags** — Offer quick category browsing options
 - **Inline forms** — Collect input to populate the empty area
@@ -147,13 +147,13 @@ For use on dark backgrounds. The illustration uses a primary500 background with 
   </div>
 </div>
 
-### Body Text
+### Description
 
 <div className="two-col">
   <div className="row">
     <div className="col col-1">
       <figure>
-        <img src="../../images/empty-state-v2/content-body-correct.png" alt="Correct example: Helpful body copy that guides the user on what to do next." />
+        <img src="../../images/empty-state-v2/content-body-correct.png" alt="Correct example: Helpful description that guides the user on what to do next." />
         <figcaption>
           <p className="title title-correct">Correct</p>
           <p>Provide helpful guidance on what to do next.</p>
@@ -162,7 +162,7 @@ For use on dark backgrounds. The illustration uses a primary500 background with 
     </div>
     <div className="col col-2">
       <figure>
-        <img src="../../images/empty-state-v2/content-body-incorrect.png" alt="Incorrect example: Unhelpful body copy that provides no clear next step." />
+        <img src="../../images/empty-state-v2/content-body-incorrect.png" alt="Incorrect example: Unhelpful description that provides no clear next step." />
         <figcaption>
           <p className="title title-incorrect">Incorrect</p>
           <p>Don't leave users without guidance or blame them for the empty state.</p>
