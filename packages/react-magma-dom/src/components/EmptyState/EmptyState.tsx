@@ -22,7 +22,7 @@ export interface EmptyStateAction {
 export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Body/description text (omit to hide body) */
   body?: string;
-  /** Custom content rendered between text and buttons */
+  /** Custom content rendered between text and action buttons */
   children?: React.ReactNode;
   /** Use danger/error color scheme (red) */
   isDanger?: boolean;

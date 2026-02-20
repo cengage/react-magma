@@ -10,7 +10,7 @@ props:
 <LeadParagraph>
   The EmptyState component communicates a lack of content and guides users
   towards action. It supports an illustration, title, body text, up to three
-  action buttons, and a content slot for custom content.
+  action buttons, and custom content via children.
 </LeadParagraph>
 
 ## Basic Usage
@@ -65,33 +65,6 @@ export function Example() {
         onClick: () => console.log('Browse clicked'),
       }}
     />
-  );
-}
-```
-
-## Content Slot
-
-Pass children to render custom content between the text and action buttons. This is useful for inline search fields, filter chips, or other interactive elements.
-
-```tsx
-import React from 'react';
-
-import { EmptyState, Search } from 'react-magma-dom';
-import { SearchIcon } from 'react-magma-icons';
-
-export function Example() {
-  return (
-    <EmptyState
-      illustration={<SearchIcon />}
-      title="No results found"
-      body="Try a different search term or browse by category."
-    >
-      <Search
-        isClearable
-        placeholder="Search courses..."
-        onSearch={value => console.log('Search:', value)}
-      />
-    </EmptyState>
   );
 }
 ```
@@ -240,7 +213,32 @@ The loading spinner color adapts to `isDanger` and `isInverse` props.
 
 ## Custom Children
 
-You can pass custom content as children to the EmptyState component. Here, clickable `Tag` components let users browse courses by category.
+Pass children to render custom content between the text and action buttons. This is useful for inline search fields, filter chips, or other interactive elements.
+
+```tsx
+import React from 'react';
+
+import { EmptyState, Search } from 'react-magma-dom';
+import { SearchIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <EmptyState
+      illustration={<SearchIcon />}
+      title="No results found"
+      body="Try a different search term or browse by category."
+    >
+      <Search
+        isClearable
+        placeholder="Search courses..."
+        onSearch={value => console.log('Search:', value)}
+      />
+    </EmptyState>
+  );
+}
+```
+
+You can also use children for browsable categories. Here, clickable `Tag` components let users browse courses by category.
 
 ```tsx
 import React from 'react';
@@ -266,6 +264,58 @@ export function Example() {
         <Tag onClick={() => console.log('Mathematics')}>Mathematics</Tag>
         <Tag onClick={() => console.log('Computer Science')}>Computer Science</Tag>
       </div>
+    </EmptyState>
+  );
+}
+```
+
+Children can also include form inputs. Here, an `Input` field lets students enter a course access code directly from the empty state.
+
+```tsx
+import React from 'react';
+
+import { EmptyState, Input } from 'react-magma-dom';
+import { SchoolIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <EmptyState
+      illustration={<SchoolIcon />}
+      title="No courses yet"
+      body="Enter a course access code from your instructor to get started."
+      primaryAction={{
+        label: 'Join Course',
+        onClick: () => console.log('Join clicked'),
+      }}
+    >
+      <Input placeholder="Enter access code" />
+    </EmptyState>
+  );
+}
+```
+
+A `Toggle` can let users opt in to notifications from within an empty state.
+
+```tsx
+import React from 'react';
+
+import { EmptyState, Toggle } from 'react-magma-dom';
+import { NotificationsIcon } from 'react-magma-icons';
+
+export function Example() {
+  const [enabled, setEnabled] = React.useState(false);
+
+  return (
+    <EmptyState
+      illustration={<NotificationsIcon />}
+      title="No new announcements"
+      body="There are no announcements for your courses right now."
+    >
+      <Toggle
+        checked={enabled}
+        labelText="Notify me when new announcements are posted"
+        onChange={() => setEnabled(prev => !prev)}
+      />
     </EmptyState>
   );
 }

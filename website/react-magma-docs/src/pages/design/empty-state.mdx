@@ -48,28 +48,28 @@ The message and illustration should relate to the specific context. A "no search
 ## Anatomy
 
 <figure>
-  <img src="../../images/empty-state-v2/empty-state-anatomy-v2.png" alt="Annotated diagram of an empty state with numbered callouts labeling: 1. Illustration (rounded square with icon), 2. Title, 3. Body text, 4. Content slot (custom content area), 5. Primary action (solid button), 6. Secondary action (outlined button), 7. Tertiary action (link-style button below the button row)." />
+  <img src="../../images/empty-state-v2/empty-state-anatomy-v2.png" alt="Annotated diagram of an empty state with numbered callouts labeling: 1. Illustration (circular icon), 2. Title, 3. Body text, 4. Custom content area, 5. Primary action (solid button), 6. Secondary action (outlined button), 7. Tertiary action (link-style button below the button row)." />
 </figure>
 
 1. **Illustration** — A rounded square container (48px, 12px radius) with an icon that visually represents the empty state
 2. **Title** — A brief heading that explains the situation
 3. **Body** — Additional context or instructions (optional)
-4. **Content Slot** — Custom content area between text and actions, such as a search field or filter chips (optional)
+4. **Custom Content** — Custom content area between text and actions, such as a search field or filter chips (optional)
 5. **Primary Action** — A solid primary button for the main action the user can take (optional)
 6. **Secondary Action** — An outlined button beside the primary button for an alternative action (optional)
 7. **Tertiary Action** — A link-style button below the button row for a lower-priority action (optional)
 
 ---
 
-## Content Slot
+## Custom Content
 
-The content slot allows you to embed custom interactive content between the body text and action buttons. Use it for inline search fields, category filters, or other contextual content that helps users take immediate action without leaving the empty state.
+Pass children to embed custom interactive content between the body text and action buttons. Use it for inline search fields, category filters, or other contextual content that helps users take immediate action without leaving the empty state.
 
 <figure>
-  <img src="../../images/empty-state-v2/empty-state-content-slot.png" alt="Empty state with a search icon, 'No results found' title, body text, and an inline search input field rendered in the content slot between the body text and action buttons." />
+  <img src="../../images/empty-state-v2/empty-state-content-slot.png" alt="Empty state with a search icon, 'No results found' title, body text, and an inline search input field rendered as custom content between the body text and action buttons." />
 </figure>
 
-Common content slot uses:
+Common custom content uses:
 - **Search fields** — Let users search directly from the empty state
 - **Filter chips or tags** — Offer quick category browsing options
 - **Inline forms** — Collect input to populate the empty area

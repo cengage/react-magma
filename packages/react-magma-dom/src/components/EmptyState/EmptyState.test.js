@@ -117,12 +117,14 @@ describe('EmptyState', () => {
         body="Try a different search"
         primaryAction={{ label: 'Search Again', onClick: jest.fn() }}
       >
-        <div data-testid="content-slot">Custom content</div>
+        <div data-testid="custom-content">Custom content</div>
       </EmptyState>
     );
 
     // Children should be inside the content area, between text and buttons
-    const contentSlot = container.querySelector('[data-testid="content-slot"]');
+    const contentSlot = container.querySelector(
+      '[data-testid="custom-content"]'
+    );
     expect(contentSlot).toBeInTheDocument();
     expect(contentSlot.textContent).toBe('Custom content');
 

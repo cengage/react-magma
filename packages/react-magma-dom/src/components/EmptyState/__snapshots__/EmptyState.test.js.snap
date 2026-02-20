@@ -56,7 +56,7 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   width: 48px;
   height: 48px;
   background: #FDEFEE;
-  border-radius: 12px;
+  border-radius: 50%;
   color: #D32821;
 }
 
@@ -273,7 +273,7 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   width: 48px;
   height: 48px;
   background: #FDEFEE;
-  border-radius: 12px;
+  border-radius: 50%;
   color: #D32821;
 }
 
@@ -546,7 +546,7 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   width: 48px;
   height: 48px;
   background: #7F1714;
-  border-radius: 12px;
+  border-radius: 50%;
   color: #FFFFFF;
 }
 
@@ -639,7 +639,7 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   width: 48px;
   height: 48px;
   background: #7F1714;
-  border-radius: 12px;
+  border-radius: 50%;
   color: #FFFFFF;
 }
 
@@ -768,7 +768,7 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   width: 48px;
   height: 48px;
   background: #3942B0;
-  border-radius: 12px;
+  border-radius: 50%;
   color: #FFFFFF;
 }
 
@@ -861,7 +861,7 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   width: 48px;
   height: 48px;
   background: #3942B0;
-  border-radius: 12px;
+  border-radius: 50%;
   color: #FFFFFF;
 }
 
@@ -1563,7 +1563,7 @@ exports[`EmptyState should render children between text and buttons 1`] = `
       </p>
     </div>
     <div
-      data-testid="content-slot"
+      data-testid="custom-content"
     >
       Custom content
     </div>
@@ -1647,7 +1647,7 @@ exports[`EmptyState should render illustration as fixed-size rounded square 1`] 
   width: 48px;
   height: 48px;
   background: #E8E9F8;
-  border-radius: 12px;
+  border-radius: 50%;
   color: #3942B0;
 }
 
@@ -1726,7 +1726,7 @@ exports[`EmptyState should render illustration as fixed-size rounded square 1`] 
   width: 48px;
   height: 48px;
   background: #E8E9F8;
-  border-radius: 12px;
+  border-radius: 50%;
   color: #3942B0;
 }
 
