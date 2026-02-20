@@ -201,6 +201,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   const tableDaysHeaders = sortedDays.map((day, index) => (
     <Th
       key={index}
+      scope="col"
       theme={theme}
       isInverse={context.isInverse}
       aria-label={i18n.days.long[day]}
@@ -239,11 +240,12 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             <Table
               onBlur={onCalendarTableBlur}
               theme={theme}
-              role="application"
               dateTimePickerContent={!!props.dateTimePickerContent}
             >
-              <tbody>
+              <thead>
                 <tr>{tableDaysHeaders}</tr>
+              </thead>
+              <tbody>
                 {context
                   .buildCalendarMonth(context.focusedDate, true)
                   .map((week, i) => (
