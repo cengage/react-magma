@@ -282,7 +282,9 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
 
     reset();
 
-    setClearAnnouncement(i18n.select.multi.clearAnnounce);
+    setClearAnnouncement(
+      i18n.select.clearAnnounce.replace(/\{labelText\}/g, labelText)
+    );
 
     // Clear the announcement after a delay to allow for re-announcements
     setTimeout(() => {

@@ -101,7 +101,6 @@ export interface I18nInterface {
     clearAnnounce: string;
     multi: {
       clearIndicatorAriaLabel: string;
-      clearAnnounce: string;
     };
     loading: string;
   };
@@ -259,7 +258,6 @@ export interface I18nInterface {
     collapsedAnnounce: string;
     multi: {
       clearIndicatorAriaLabel: string;
-      clearAnnounce: string;
     };
   };
   simplePagination: {

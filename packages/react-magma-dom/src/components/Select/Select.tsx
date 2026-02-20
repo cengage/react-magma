@@ -198,8 +198,6 @@ export function Select<T>(props: SelectProps<T>) {
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
     event.stopPropagation();
 
-    const clearedItemText = itemToString(selectedItem);
-
     if (toggleButtonRef.current) {
       toggleButtonRef.current.focus();
     }
@@ -207,7 +205,7 @@ export function Select<T>(props: SelectProps<T>) {
     reset();
 
     setClearAnnouncement(
-      i18n.select.clearAnnounce.replace(/\{selectedItem\}/g, clearedItemText)
+      i18n.select.clearAnnounce.replace(/\{labelText\}/g, labelText)
     );
 
     // Clear the announcement after a delay to allow for re-announcements

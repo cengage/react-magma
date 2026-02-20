@@ -336,7 +336,9 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
     reset();
 
-    setClearAnnouncement(i18n.combobox.multi.clearAnnounce);
+    setClearAnnouncement(
+      i18n.select.clearAnnounce.replace(/\{labelText\}/g, labelText)
+    );
 
     // Clear the announcement after a delay to allow for re-announcements
     setTimeout(() => {

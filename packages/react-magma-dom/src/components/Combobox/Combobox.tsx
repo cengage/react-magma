@@ -266,10 +266,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
 
     reset();
 
-    const clearedItemText = itemToString(selectedItem);
-
     setClearAnnouncement(
-      i18n.combobox.clearAnnounce.replace(/\{selectedItem\}/g, clearedItemText)
+      i18n.combobox.clearAnnounce.replace(/\{labelText\}/g, labelText)
     );
 
     // Clear the announcement after a delay to allow for re-announcements
