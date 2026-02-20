@@ -107,7 +107,7 @@ const StyledIllustrationContainer = styled('div', {
   width: ${props => props.theme.spaceScale.spacing10};
   height: ${props => props.theme.spaceScale.spacing10};
   background: ${props => getIllustrationBackground(props)};
-  border-radius: ${props => props.theme.spaceScale.spacing04};
+  border-radius: 50%;
   color: ${props => getIllustrationIconColor(props)};
 
   svg {
