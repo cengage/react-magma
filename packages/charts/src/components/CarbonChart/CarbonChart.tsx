@@ -64,6 +64,10 @@ export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
    * Type of Chart: area, bar, donut, line, etc.
    */
   type: CarbonChartType;
+  /**
+   * Text for the aria-label attribute for main SVG container, if provided
+   */
+  ariaLabel?: string;
 }
 
 const CarbonChartWrapper = styled.div<{
@@ -362,7 +366,6 @@ const CarbonChartWrapper = styled.div<{
       margin: 0;
       min-width: ${props => props.theme.spaceScale.spacing13};
       overflow: hidden;
-      padding:;
       position: relative;
       right: ${props => props.theme.spaceScale.spacing04};
       text-align: center;
@@ -540,6 +543,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       type,
       dataSet,
       options,
+      ariaLabel,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext) as ThemeInterface;
@@ -609,9 +613,11 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     // Adding aria-label to main SVG container
     React.useEffect(() => {
-      document.querySelectorAll('.graph-frame ').forEach(div => {
-        div.setAttribute('aria-label', 'Interactive chart');
-      });
+      if (ariaLabel) {
+        document.querySelectorAll('.graph-frame ').forEach(div => {
+          div.setAttribute('aria-label', ariaLabel);
+        });
+      }
     });
 
     const groupsLength = Object.keys(buildColors()).length;
