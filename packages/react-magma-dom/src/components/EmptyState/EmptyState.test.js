@@ -4,7 +4,7 @@ import { render, fireEvent } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
-import { EmptyState, EmptyStateIllustrationSize } from '.';
+import { EmptyState } from '.';
 
 const SearchIcon = () => (
   <svg viewBox="0 0 24 24" data-testid="test-icon">
@@ -42,6 +42,14 @@ describe('EmptyState', () => {
     expect(getByTestId('test-icon')).toBeInTheDocument();
   });
 
+  it('should render illustration as fixed-size rounded square', () => {
+    const { container } = render(
+      <EmptyState illustration={<SearchIcon />} title="Test" />
+    );
+
+    expect(container).toMatchSnapshot();
+  });
+
   it('should render primary action button and handle click', () => {
     const onClick = jest.fn();
     const { getByText } = render(
@@ -60,108 +68,65 @@ describe('EmptyState', () => {
     const { getByText } = render(
       <EmptyState
         title="Test"
-        secondaryAction={{ label: 'Learn More', onClick }}
+        secondaryAction={{ label: 'Clear Filters', onClick }}
       />
     );
 
-    const button = getByText('Learn More');
+    const button = getByText('Clear Filters');
     expect(button).toBeInTheDocument();
 
     fireEvent.click(button);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it('should render both action buttons', () => {
-    const primaryClick = jest.fn();
-    const secondaryClick = jest.fn();
+  it('should render tertiary action button and handle click', () => {
+    const onClick = jest.fn();
     const { getByText } = render(
       <EmptyState
         title="Test"
-        primaryAction={{ label: 'Primary', onClick: primaryClick }}
-        secondaryAction={{ label: 'Secondary', onClick: secondaryClick }}
+        tertiaryAction={{ label: 'Browse All Courses', onClick }}
       />
     );
 
-    expect(getByText('Primary')).toBeInTheDocument();
-    expect(getByText('Secondary')).toBeInTheDocument();
+    const button = getByText('Browse All Courses');
+    expect(button).toBeInTheDocument();
+
+    fireEvent.click(button);
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  describe('Layout', () => {
-    it('should render vertical layout by default', () => {
-      const { container } = render(<EmptyState testId="empty" title="Test" />);
+  it('should render all three action buttons', () => {
+    const { getByText } = render(
+      <EmptyState
+        title="Test"
+        primaryAction={{ label: 'Search Again', onClick: jest.fn() }}
+        secondaryAction={{ label: 'Clear Filters', onClick: jest.fn() }}
+        tertiaryAction={{ label: 'Browse All Courses', onClick: jest.fn() }}
+      />
+    );
 
-      expect(container).toMatchSnapshot();
-    });
-
-    it('should render horizontal layout when vertical is false', () => {
-      const { container } = render(
-        <EmptyState testId="empty" title="Test" vertical={false} />
-      );
-
-      expect(container).toMatchSnapshot();
-    });
+    expect(getByText('Search Again')).toBeInTheDocument();
+    expect(getByText('Clear Filters')).toBeInTheDocument();
+    expect(getByText('Browse All Courses')).toBeInTheDocument();
   });
 
-  describe('Illustration sizes', () => {
-    it('should render sm illustration size', () => {
-      const { container } = render(
-        <EmptyState
-          illustration={<SearchIcon />}
-          illustrationSize={EmptyStateIllustrationSize.sm}
-          title="Test"
-        />
-      );
+  it('should render children between text and buttons', () => {
+    const { container } = render(
+      <EmptyState
+        title="No results"
+        body="Try a different search"
+        primaryAction={{ label: 'Search Again', onClick: jest.fn() }}
+      >
+        <div data-testid="content-slot">Custom content</div>
+      </EmptyState>
+    );
 
-      expect(container).toMatchSnapshot();
-    });
+    // Children should be inside the content area, between text and buttons
+    const contentSlot = container.querySelector('[data-testid="content-slot"]');
+    expect(contentSlot).toBeInTheDocument();
+    expect(contentSlot.textContent).toBe('Custom content');
 
-    it('should render md illustration size', () => {
-      const { container } = render(
-        <EmptyState
-          illustration={<SearchIcon />}
-          illustrationSize={EmptyStateIllustrationSize.md}
-          title="Test"
-        />
-      );
-
-      expect(container).toMatchSnapshot();
-    });
-
-    it('should render lg illustration size', () => {
-      const { container } = render(
-        <EmptyState
-          illustration={<SearchIcon />}
-          illustrationSize={EmptyStateIllustrationSize.lg}
-          title="Test"
-        />
-      );
-
-      expect(container).toMatchSnapshot();
-    });
-
-    it('should render xl illustration size', () => {
-      const { container } = render(
-        <EmptyState
-          illustration={<SearchIcon />}
-          illustrationSize={EmptyStateIllustrationSize.xl}
-          title="Test"
-        />
-      );
-
-      expect(container).toMatchSnapshot();
-    });
-
-    it('should render 2xl illustration size', () => {
-      const { container } = render(
-        <EmptyState
-          illustration={<SearchIcon />}
-          illustrationSize={EmptyStateIllustrationSize['2xl']}
-          title="Test"
-        />
-      );
-
-      expect(container).toMatchSnapshot();
-    });
+    expect(container).toMatchSnapshot();
   });
 
   describe('Danger mode', () => {
@@ -259,6 +224,22 @@ describe('EmptyState', () => {
           title="Error occurred"
           body="Please try again"
           primaryAction={{ label: 'Retry', onClick: jest.fn() }}
+        />
+      );
+
+      const results = await axe(container.innerHTML);
+      expect(results).toHaveNoViolations();
+    });
+
+    it('should not violate accessibility standards with all three actions', async () => {
+      const { container } = render(
+        <EmptyState
+          illustration={<SearchIcon />}
+          title="No results found"
+          body="Try adjusting your search criteria"
+          primaryAction={{ label: 'Search Again', onClick: jest.fn() }}
+          secondaryAction={{ label: 'Clear Filters', onClick: jest.fn() }}
+          tertiaryAction={{ label: 'Browse All Courses', onClick: jest.fn() }}
         />
       );
 

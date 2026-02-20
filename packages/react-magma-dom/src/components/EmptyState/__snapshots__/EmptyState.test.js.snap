@@ -2,10 +2,6 @@
 
 exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -13,50 +9,32 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FDEFEE;
-  border-radius: 50%;
-  color: #D32821;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 80px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 80px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
 }
 
 .emotion-4 {
@@ -64,60 +42,45 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #FDEFEE;
+  border-radius: 12px;
+  color: #D32821;
 }
 
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
 }
 
 .emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
   color: #454545;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   margin: 0;
 }
 
 @media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
+  .emotion-6 {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 
-.emotion-10 {
+.emotion-8 {
   color: #707070;
   font-size: 16px;
   line-height: 24px;
@@ -125,13 +88,13 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 }
 
 @media (min-width: 600px) {
-  .emotion-10 {
+  .emotion-8 {
     font-size: 16px;
     line-height: 24px;
   }
 }
 
-.emotion-12 {
+.emotion-10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -139,21 +102,30 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 8px;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 100%;
+  gap: 12px;
 }
 
-@media (min-width: 600px) {
-  .emotion-12 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    width: auto;
-  }
+.emotion-12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  gap: 12px;
 }
 
 .emotion-14 {
@@ -247,10 +219,6 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 }
 
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -258,50 +226,32 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FDEFEE;
-  border-radius: 50%;
-  color: #D32821;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 80px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 80px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
 }
 
 .emotion-4 {
@@ -309,60 +259,45 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #FDEFEE;
+  border-radius: 12px;
+  color: #D32821;
 }
 
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
 }
 
 .emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
   color: #454545;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   margin: 0;
 }
 
 @media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
+  .emotion-6 {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 
-.emotion-10 {
+.emotion-8 {
   color: #707070;
   font-size: 16px;
   line-height: 24px;
@@ -370,13 +305,13 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 }
 
 @media (min-width: 600px) {
-  .emotion-10 {
+  .emotion-8 {
     font-size: 16px;
     line-height: 24px;
   }
 }
 
-.emotion-12 {
+.emotion-10 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -384,21 +319,30 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 8px;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  width: 100%;
+  gap: 12px;
 }
 
-@media (min-width: 600px) {
-  .emotion-12 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    width: auto;
-  }
+.emotion-12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  gap: 12px;
 }
 
 .emotion-14 {
@@ -496,35 +440,35 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
     class="emotion-0 emotion-1"
   >
     <div
-      aria-hidden="true"
       class="emotion-2 emotion-3"
     >
-      <svg
-        data-testid="test-icon"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-        />
-      </svg>
-    </div>
-    <div
-      class="emotion-4 emotion-5"
-    >
       <div
+        aria-hidden="true"
+        class="emotion-4 emotion-5"
+      >
+        <svg
+          data-testid="test-icon"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+          />
+        </svg>
+      </div>
+      <h3
         class="emotion-6 emotion-7"
       >
-        <h3
-          class="emotion-8 emotion-9"
-        >
-          Error occurred
-        </h3>
-        <p
-          class="emotion-10 emotion-11"
-        >
-          Something went wrong
-        </p>
-      </div>
+        Error occurred
+      </h3>
+      <p
+        class="emotion-8 emotion-9"
+      >
+        Something went wrong
+      </p>
+    </div>
+    <div
+      class="emotion-10 emotion-11"
+    >
       <div
         class="emotion-12 emotion-13"
       >
@@ -546,1347 +490,8 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 </div>
 `;
 
-exports[`EmptyState Illustration sizes should render 2xl illustration size 1`] = `
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #E8E9F8;
-  border-radius: 50%;
-  color: #3942B0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 120px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 120px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
-}
-
-.emotion-4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-}
-
-.emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
-  color: #454545;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-
-@media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #E8E9F8;
-  border-radius: 50%;
-  color: #3942B0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 120px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 120px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
-}
-
-.emotion-4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-}
-
-.emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
-  color: #454545;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-
-@media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-<div>
-  <div
-    class="emotion-0 emotion-1"
-  >
-    <div
-      aria-hidden="true"
-      class="emotion-2 emotion-3"
-    >
-      <svg
-        data-testid="test-icon"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-        />
-      </svg>
-    </div>
-    <div
-      class="emotion-4 emotion-5"
-    >
-      <div
-        class="emotion-6 emotion-7"
-      >
-        <h3
-          class="emotion-8 emotion-9"
-        >
-          Test
-        </h3>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EmptyState Illustration sizes should render lg illustration size 1`] = `
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #E8E9F8;
-  border-radius: 50%;
-  color: #3942B0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 80px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 80px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
-}
-
-.emotion-4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-}
-
-.emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
-  color: #454545;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-
-@media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #E8E9F8;
-  border-radius: 50%;
-  color: #3942B0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 80px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 80px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
-}
-
-.emotion-4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-}
-
-.emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
-  color: #454545;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-
-@media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-<div>
-  <div
-    class="emotion-0 emotion-1"
-  >
-    <div
-      aria-hidden="true"
-      class="emotion-2 emotion-3"
-    >
-      <svg
-        data-testid="test-icon"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-        />
-      </svg>
-    </div>
-    <div
-      class="emotion-4 emotion-5"
-    >
-      <div
-        class="emotion-6 emotion-7"
-      >
-        <h3
-          class="emotion-8 emotion-9"
-        >
-          Test
-        </h3>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EmptyState Illustration sizes should render md illustration size 1`] = `
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #E8E9F8;
-  border-radius: 50%;
-  color: #3942B0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 64px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 64px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
-}
-
-.emotion-4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-}
-
-.emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
-  color: #454545;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-
-@media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #E8E9F8;
-  border-radius: 50%;
-  color: #3942B0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 64px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 64px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
-}
-
-.emotion-4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-}
-
-.emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
-  color: #454545;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-
-@media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-<div>
-  <div
-    class="emotion-0 emotion-1"
-  >
-    <div
-      aria-hidden="true"
-      class="emotion-2 emotion-3"
-    >
-      <svg
-        data-testid="test-icon"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-        />
-      </svg>
-    </div>
-    <div
-      class="emotion-4 emotion-5"
-    >
-      <div
-        class="emotion-6 emotion-7"
-      >
-        <h3
-          class="emotion-8 emotion-9"
-        >
-          Test
-        </h3>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EmptyState Illustration sizes should render sm illustration size 1`] = `
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #E8E9F8;
-  border-radius: 50%;
-  color: #3942B0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 48px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 48px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
-}
-
-.emotion-4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-}
-
-.emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
-  color: #454545;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-
-@media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #E8E9F8;
-  border-radius: 50%;
-  color: #3942B0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 48px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 48px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
-}
-
-.emotion-4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-}
-
-.emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
-  color: #454545;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-
-@media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-<div>
-  <div
-    class="emotion-0 emotion-1"
-  >
-    <div
-      aria-hidden="true"
-      class="emotion-2 emotion-3"
-    >
-      <svg
-        data-testid="test-icon"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-        />
-      </svg>
-    </div>
-    <div
-      class="emotion-4 emotion-5"
-    >
-      <div
-        class="emotion-6 emotion-7"
-      >
-        <h3
-          class="emotion-8 emotion-9"
-        >
-          Test
-        </h3>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EmptyState Illustration sizes should render xl illustration size 1`] = `
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #E8E9F8;
-  border-radius: 50%;
-  color: #3942B0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 96px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 96px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
-}
-
-.emotion-4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-}
-
-.emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
-  color: #454545;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-
-@media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  background: #E8E9F8;
-  border-radius: 50%;
-  color: #3942B0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 96px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 96px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
-}
-
-.emotion-4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-}
-
-.emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
-  color: #454545;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-
-@media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-<div>
-  <div
-    class="emotion-0 emotion-1"
-  >
-    <div
-      aria-hidden="true"
-      class="emotion-2 emotion-3"
-    >
-      <svg
-        data-testid="test-icon"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-        />
-      </svg>
-    </div>
-    <div
-      class="emotion-4 emotion-5"
-    >
-      <div
-        class="emotion-6 emotion-7"
-      >
-        <h3
-          class="emotion-8 emotion-9"
-        >
-          Test
-        </h3>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] = `
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1894,50 +499,32 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FAAEB0;
-  border-radius: 50%;
-  color: #7F1714;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 80px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 80px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
 }
 
 .emotion-4 {
@@ -1945,78 +532,59 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #7F1714;
+  border-radius: 12px;
+  color: #FFFFFF;
 }
 
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
 }
 
 .emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
   color: #FFFFFF;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   margin: 0;
 }
 
 @media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
+  .emotion-6 {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 
-.emotion-10 {
-  color: #FFFFFF;
+.emotion-8 {
+  color: #F5F5F5;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
 }
 
 @media (min-width: 600px) {
-  .emotion-10 {
+  .emotion-8 {
     font-size: 16px;
     line-height: 24px;
   }
 }
 
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2024,50 +592,32 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FAAEB0;
-  border-radius: 50%;
-  color: #7F1714;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 80px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 80px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
 }
 
 .emotion-4 {
@@ -2075,68 +625,53 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #7F1714;
+  border-radius: 12px;
+  color: #FFFFFF;
 }
 
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
 }
 
 .emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
   color: #FFFFFF;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   margin: 0;
 }
 
 @media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
+  .emotion-6 {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 
-.emotion-10 {
-  color: #FFFFFF;
+.emotion-8 {
+  color: #F5F5F5;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
 }
 
 @media (min-width: 600px) {
-  .emotion-10 {
+  .emotion-8 {
     font-size: 16px;
     line-height: 24px;
   }
@@ -2147,35 +682,31 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
     class="emotion-0 emotion-1"
   >
     <div
-      aria-hidden="true"
       class="emotion-2 emotion-3"
     >
-      <svg
-        data-testid="test-icon"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-        />
-      </svg>
-    </div>
-    <div
-      class="emotion-4 emotion-5"
-    >
       <div
+        aria-hidden="true"
+        class="emotion-4 emotion-5"
+      >
+        <svg
+          data-testid="test-icon"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+          />
+        </svg>
+      </div>
+      <h3
         class="emotion-6 emotion-7"
       >
-        <h3
-          class="emotion-8 emotion-9"
-        >
-          Error
-        </h3>
-        <p
-          class="emotion-10 emotion-11"
-        >
-          Something went wrong
-        </p>
-      </div>
+        Error
+      </h3>
+      <p
+        class="emotion-8 emotion-9"
+      >
+        Something went wrong
+      </p>
     </div>
   </div>
 </div>
@@ -2183,10 +714,6 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
 
 exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2194,50 +721,32 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #8B91DA;
-  border-radius: 50%;
-  color: #1A1E51;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 80px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 80px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
 }
 
 .emotion-4 {
@@ -2245,78 +754,59 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #3942B0;
+  border-radius: 12px;
+  color: #FFFFFF;
 }
 
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
 }
 
 .emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
   color: #FFFFFF;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   margin: 0;
 }
 
 @media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
+  .emotion-6 {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 
-.emotion-10 {
-  color: #FFFFFF;
+.emotion-8 {
+  color: #F5F5F5;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
 }
 
 @media (min-width: 600px) {
-  .emotion-10 {
+  .emotion-8 {
     font-size: 16px;
     line-height: 24px;
   }
 }
 
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2324,50 +814,32 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #8B91DA;
-  border-radius: 50%;
-  color: #1A1E51;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-shrink: 0;
-  -ms-flex-negative: 0;
-  flex-shrink: 0;
-  height: 80px;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  width: 80px;
-}
-
-.emotion-2 svg {
-  height: 50%;
-  width: 50%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
 }
 
 .emotion-4 {
@@ -2375,68 +847,53 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #3942B0;
+  border-radius: 12px;
+  color: #FFFFFF;
 }
 
-@media (min-width: 600px) {
-  .emotion-4 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
 }
 
 .emotion-6 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    text-align: center;
-  }
-}
-
-.emotion-8 {
   color: #FFFFFF;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   margin: 0;
 }
 
 @media (min-width: 600px) {
-  .emotion-8 {
-    font-size: 20px;
-    line-height: 32px;
+  .emotion-6 {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 
-.emotion-10 {
-  color: #FFFFFF;
+.emotion-8 {
+  color: #F5F5F5;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
 }
 
 @media (min-width: 600px) {
-  .emotion-10 {
+  .emotion-8 {
     font-size: 16px;
     line-height: 24px;
   }
@@ -2447,433 +904,31 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
     class="emotion-0 emotion-1"
   >
     <div
-      aria-hidden="true"
       class="emotion-2 emotion-3"
     >
-      <svg
-        data-testid="test-icon"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-        />
-      </svg>
-    </div>
-    <div
-      class="emotion-4 emotion-5"
-    >
       <div
+        aria-hidden="true"
+        class="emotion-4 emotion-5"
+      >
+        <svg
+          data-testid="test-icon"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+          />
+        </svg>
+      </div>
+      <h3
         class="emotion-6 emotion-7"
       >
-        <h3
-          class="emotion-8 emotion-9"
-        >
-          No results
-        </h3>
-        <p
-          class="emotion-10 emotion-11"
-        >
-          Try another search
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EmptyState Layout should render horizontal layout when vertical is false 1`] = `
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    max-width: 500px;
-    text-align: left;
-  }
-}
-
-.emotion-2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-2 {
-    -webkit-align-items: flex-start;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
-    align-items: flex-start;
-  }
-}
-
-.emotion-4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    text-align: left;
-  }
-}
-
-.emotion-6 {
-  color: #454545;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    max-width: 500px;
-    text-align: left;
-  }
-}
-
-.emotion-2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-2 {
-    -webkit-align-items: flex-start;
-    -webkit-box-align: flex-start;
-    -ms-flex-align: flex-start;
-    align-items: flex-start;
-  }
-}
-
-.emotion-4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    text-align: left;
-  }
-}
-
-.emotion-6 {
-  color: #454545;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-<div>
-  <div
-    class="emotion-0 emotion-1"
-    data-testid="empty"
-  >
-    <div
-      class="emotion-2 emotion-3"
-    >
-      <div
-        class="emotion-4 emotion-5"
+        No results
+      </h3>
+      <p
+        class="emotion-8 emotion-9"
       >
-        <h3
-          class="emotion-6 emotion-7"
-        >
-          Test
-        </h3>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`EmptyState Layout should render vertical layout by default 1`] = `
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-2 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-}
-
-.emotion-4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    text-align: center;
-  }
-}
-
-.emotion-6 {
-  color: #454545;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-.emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
-}
-
-.emotion-2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 16px;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-2 {
-    -webkit-align-items: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-  }
-}
-
-.emotion-4 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  gap: 8px;
-  text-align: center;
-  width: 100%;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    text-align: center;
-  }
-}
-
-.emotion-6 {
-  color: #454545;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 24px;
-  margin: 0;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    font-size: 20px;
-    line-height: 32px;
-  }
-}
-
-<div>
-  <div
-    class="emotion-0 emotion-1"
-    data-testid="empty"
-  >
-    <div
-      class="emotion-2 emotion-3"
-    >
-      <div
-        class="emotion-4 emotion-5"
-      >
-        <h3
-          class="emotion-6 emotion-7"
-        >
-          Test
-        </h3>
-      </div>
+        Try another search
+      </p>
     </div>
   </div>
 </div>
@@ -2881,10 +936,6 @@ exports[`EmptyState Layout should render vertical layout by default 1`] = `
 
 exports[`EmptyState Loading state should render loading spinner when isLoading is true 1`] = `
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2892,22 +943,16 @@ exports[`EmptyState Loading state should render loading spinner when isLoading i
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
 }
 
 .emotion-2 {
@@ -2922,10 +967,6 @@ exports[`EmptyState Loading state should render loading spinner when isLoading i
 }
 
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2933,22 +974,16 @@ exports[`EmptyState Loading state should render loading spinner when isLoading i
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
 }
 
 .emotion-2 {
@@ -2978,10 +1013,6 @@ exports[`EmptyState Loading state should render loading spinner when isLoading i
 
 exports[`EmptyState Loading state should render loading spinner with danger color 1`] = `
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2989,22 +1020,16 @@ exports[`EmptyState Loading state should render loading spinner with danger colo
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
 }
 
 .emotion-2 {
@@ -3019,10 +1044,6 @@ exports[`EmptyState Loading state should render loading spinner with danger colo
 }
 
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3030,22 +1051,16 @@ exports[`EmptyState Loading state should render loading spinner with danger colo
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
 }
 
 .emotion-2 {
@@ -3075,10 +1090,6 @@ exports[`EmptyState Loading state should render loading spinner with danger colo
 
 exports[`EmptyState Loading state should render loading spinner with inverse color 1`] = `
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3086,22 +1097,16 @@ exports[`EmptyState Loading state should render loading spinner with inverse col
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
 }
 
 .emotion-2 {
@@ -3116,10 +1121,6 @@ exports[`EmptyState Loading state should render loading spinner with inverse col
 }
 
 .emotion-0 {
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -3127,22 +1128,16 @@ exports[`EmptyState Loading state should render loading spinner with inverse col
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
   gap: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
   margin: 0 auto;
   max-width: 450px;
   min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
   text-align: center;
-}
-
-@media (min-width: 600px) {
-  .emotion-0 {
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    max-width: 450px;
-    text-align: center;
-  }
 }
 
 .emotion-2 {
@@ -3166,6 +1161,621 @@ exports[`EmptyState Loading state should render loading spinner with inverse col
       color="#FFFFFF"
       role="img"
     />
+  </div>
+</div>
+`;
+
+exports[`EmptyState should render children between text and buttons 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  color: #454545;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.emotion-6 {
+  color: #707070;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.emotion-8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.emotion-10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.emotion-12 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-12:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-12:not(:disabled):hover,
+.emotion-12:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-12:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-12:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-12 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-14 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  color: #454545;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.emotion-6 {
+  color: #707070;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.emotion-8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.emotion-10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.emotion-12 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-12:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-12:not(:disabled):hover,
+.emotion-12:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-12:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-12:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-12 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-14 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    <div
+      class="emotion-2 emotion-3"
+    >
+      <h3
+        class="emotion-4 emotion-5"
+      >
+        No results
+      </h3>
+      <p
+        class="emotion-6 emotion-7"
+      >
+        Try a different search
+      </p>
+    </div>
+    <div
+      data-testid="content-slot"
+    >
+      Custom content
+    </div>
+    <div
+      class="emotion-8 emotion-9"
+    >
+      <div
+        class="emotion-10 emotion-11"
+      >
+        <button
+          class="emotion-12 emotion-13"
+          color="primary"
+          shape="fill"
+          type="button"
+        >
+          <span
+            class="emotion-14 emotion-15"
+          >
+            Search Again
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EmptyState should render illustration as fixed-size rounded square 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #E8E9F8;
+  border-radius: 12px;
+  color: #3942B0;
+}
+
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
+}
+
+.emotion-6 {
+  color: #454545;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #E8E9F8;
+  border-radius: 12px;
+  color: #3942B0;
+}
+
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
+}
+
+.emotion-6 {
+  color: #454545;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    <div
+      class="emotion-2 emotion-3"
+    >
+      <div
+        aria-hidden="true"
+        class="emotion-4 emotion-5"
+      >
+        <svg
+          data-testid="test-icon"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+          />
+        </svg>
+      </div>
+      <h3
+        class="emotion-6 emotion-7"
+      >
+        Test
+      </h3>
+    </div>
   </div>
 </div>
 `;

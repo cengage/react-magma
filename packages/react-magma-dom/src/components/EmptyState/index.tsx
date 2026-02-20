@@ -1,2 +1,2 @@
-export { EmptyState, EmptyStateIllustrationSize } from './EmptyState';
+export { EmptyState } from './EmptyState';
 export type { EmptyStateProps, EmptyStateAction } from './EmptyState';

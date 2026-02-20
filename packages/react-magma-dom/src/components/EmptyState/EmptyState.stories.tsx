@@ -11,8 +11,10 @@ import {
 
 import { magma } from '../../theme/magma';
 import { Card, CardBody } from '../Card';
+import { Search } from '../Search';
+import { Tag } from '../Tag';
 
-import { EmptyState, EmptyStateProps, EmptyStateIllustrationSize } from '.';
+import { EmptyState, EmptyStateProps } from '.';
 
 const Template: StoryFn<EmptyStateProps> = args => {
   // Automatically show dark background when isInverse is toggled
@@ -33,12 +35,24 @@ export default {
   title: 'EmptyState',
   component: EmptyState,
   argTypes: {
-    illustrationSize: {
+    illustration: {
       control: { type: 'select' },
-      options: Object.values(EmptyStateIllustrationSize),
-    },
-    vertical: {
-      control: { type: 'boolean' },
+      options: [
+        'SearchIcon',
+        'FolderOpenIcon',
+        'ErrorIcon',
+        'AddIcon',
+        'NotificationsIcon',
+        'None',
+      ],
+      mapping: {
+        SearchIcon: <SearchIcon />,
+        FolderOpenIcon: <FolderOpenIcon />,
+        ErrorIcon: <ErrorIcon />,
+        AddIcon: <AddIcon />,
+        NotificationsIcon: <NotificationsIcon />,
+        None: undefined,
+      },
     },
     isDanger: {
       control: { type: 'boolean' },
@@ -60,22 +74,17 @@ export const Default = {
     title: 'No results found',
     body: 'Try adjusting your search or filter criteria to find what you are looking for.',
     primaryAction: {
-      label: 'Clear Filters',
+      label: 'Search Again',
       onClick: () => console.log('Primary action clicked'),
     },
     secondaryAction: {
-      label: 'Learn More',
+      label: 'Clear Filters',
       onClick: () => console.log('Secondary action clicked'),
     },
-  },
-};
-
-export const Horizontal = {
-  render: Template,
-
-  args: {
-    ...Default.args,
-    vertical: false,
+    tertiaryAction: {
+      label: 'Browse All Courses',
+      onClick: () => console.log('Tertiary action clicked'),
+    },
   },
 };
 
@@ -95,15 +104,6 @@ export const DangerMode = {
       label: 'Contact Support',
       onClick: () => console.log('Contact clicked'),
     },
-  },
-};
-
-export const DangerHorizontal = {
-  render: Template,
-
-  args: {
-    ...DangerMode.args,
-    vertical: false,
   },
 };
 
@@ -167,19 +167,55 @@ export const SecondaryActionOnly = {
   },
 };
 
-export const IllustrationSizes = {
+export const TertiaryActionOnly = {
+  render: Template,
+
+  args: {
+    illustration: <SearchIcon />,
+    title: 'No courses found',
+    body: 'Your search did not match any available courses.',
+    tertiaryAction: {
+      label: 'Browse All Courses',
+      onClick: () => console.log('Browse clicked'),
+    },
+  },
+};
+
+export const AllThreeButtons = {
+  render: Template,
+
+  args: {
+    illustration: <SearchIcon />,
+    title: 'No results found',
+    body: 'We could not find anything matching your search. Try different keywords or browse our catalog.',
+    primaryAction: {
+      label: 'Search Again',
+      onClick: () => console.log('Search clicked'),
+    },
+    secondaryAction: {
+      label: 'Clear Filters',
+      onClick: () => console.log('Clear clicked'),
+    },
+    tertiaryAction: {
+      label: 'Browse All Courses',
+      onClick: () => console.log('Browse clicked'),
+    },
+  },
+};
+
+export const WithContentSlot = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-      {Object.values(EmptyStateIllustrationSize).map(size => (
-        <EmptyState
-          key={size}
-          illustration={<SearchIcon />}
-          illustrationSize={size}
-          title={`Size: ${size}`}
-          body={`Illustration size set to "${size}"`}
-        />
-      ))}
-    </div>
+    <EmptyState
+      illustration={<SearchIcon />}
+      title="No results found"
+      body="Try a different search term or browse by category."
+    >
+      <Search
+        isClearable
+        onSearch={value => console.log('Search:', value)}
+        placeholder="Search courses..."
+      />
+    </EmptyState>
   ),
 };
 
@@ -221,26 +257,6 @@ export const InverseDanger = {
   ],
 };
 
-export const InverseHorizontal = {
-  render: Template,
-
-  args: {
-    ...Default.args,
-    isInverse: true,
-    vertical: false,
-  },
-
-  decorators: [
-    (Story: React.ComponentType) => (
-      <Card background={magma.colors.primary600} isInverse>
-        <CardBody>
-          <Story />
-        </CardBody>
-      </Card>
-    ),
-  ],
-};
-
 export const Minimal = {
   render: Template,
 
@@ -253,18 +269,28 @@ export const CustomChildren = {
   render: () => (
     <EmptyState
       illustration={<SearchIcon />}
-      title="Custom content below"
-      body="You can add any custom content as children."
+      title="No courses found"
+      body="Try browsing by category instead."
+      tertiaryAction={{
+        label: 'Browse All Courses',
+        onClick: () => console.log('Browse clicked'),
+      }}
     >
       <div
         style={{
-          marginTop: '16px',
-          padding: '16px',
-          background: '#f5f5f5',
-          borderRadius: '8px',
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '8px',
+          justifyContent: 'center',
         }}
       >
-        <p style={{ margin: 0 }}>This is custom content passed as children.</p>
+        <Tag onClick={() => console.log('Biology')}>Biology</Tag>
+        <Tag onClick={() => console.log('Chemistry')}>Chemistry</Tag>
+        <Tag onClick={() => console.log('Physics')}>Physics</Tag>
+        <Tag onClick={() => console.log('Mathematics')}>Mathematics</Tag>
+        <Tag onClick={() => console.log('Computer Science')}>
+          Computer Science
+        </Tag>
       </div>
     </EmptyState>
   ),

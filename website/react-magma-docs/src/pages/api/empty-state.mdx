@@ -8,9 +8,9 @@ props:
 <PageContent componentName="empty_state" type="api">
 
 <LeadParagraph>
-  The EmptyState component is used to communicate a lack of content to users
-  and guide them towards taking an action. It supports vertical and horizontal
-  layouts, illustrations, and action buttons.
+  The EmptyState component communicates a lack of content and guides users
+  towards action. It supports an illustration, title, body text, up to three
+  action buttons, and a content slot for custom content.
 </LeadParagraph>
 
 ## Basic Usage
@@ -26,77 +26,72 @@ export function Example() {
     <EmptyState
       illustration={<SearchIcon />}
       title="No results found"
-      body="Try adjusting your search or filter criteria to find what you are looking for."
+      body="Try adjusting your search or filter criteria to find the courses you are looking for."
       primaryAction={{
+        label: 'Search Again',
+        onClick: () => console.log('Search clicked'),
+      }}
+      secondaryAction={{
         label: 'Clear Filters',
         onClick: () => console.log('Clear clicked'),
       }}
-      secondaryAction={{
-        label: 'Learn More',
-        onClick: () => console.log('Learn more clicked'),
+      tertiaryAction={{
+        label: 'Browse All Courses',
+        onClick: () => console.log('Browse clicked'),
       }}
     />
   );
 }
 ```
 
-## Horizontal Layout
+## Tertiary Action
 
-By default, the EmptyState uses a vertical layout with centered content. Set `vertical={false}` to use a horizontal layout where the illustration appears beside the content.
+The tertiary action renders as a link-style button below the primary and secondary buttons. Use it for a lower-priority alternative action.
 
 ```tsx
 import React from 'react';
 
 import { EmptyState } from 'react-magma-dom';
-import { FolderOpenIcon } from 'react-magma-icons';
+import { SearchIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
-      illustration={<FolderOpenIcon />}
-      title="This folder is empty"
-      body="Upload files or create subfolders to get started."
-      vertical={false}
-      primaryAction={{
-        label: 'Upload Files',
-        onClick: () => console.log('Upload clicked'),
+      illustration={<SearchIcon />}
+      title="No courses found"
+      body="We couldn't find any courses matching your search. Try browsing the full catalog."
+      tertiaryAction={{
+        label: 'Browse Course Catalog',
+        onClick: () => console.log('Browse clicked'),
       }}
     />
   );
 }
 ```
 
-## Responsive Behavior
+## Content Slot
 
-On mobile devices (below 600px), the EmptyState automatically:
-- Uses vertical layout regardless of the `vertical` prop
-- Stacks buttons vertically for easier tapping
-- Centers all content
-
-The horizontal layout only applies on larger screens. Resize your browser to see the responsive behavior.
+Pass children to render custom content between the text and action buttons. This is useful for inline search fields, filter chips, or other interactive elements.
 
 ```tsx
 import React from 'react';
 
-import { EmptyState } from 'react-magma-dom';
-import { FolderOpenIcon } from 'react-magma-icons';
+import { EmptyState, Search } from 'react-magma-dom';
+import { SearchIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
-      illustration={<FolderOpenIcon />}
-      title="Resize your browser"
-      body="On mobile (below 600px), this will switch to vertical layout with stacked buttons."
-      vertical={false}
-      primaryAction={{
-        label: 'Primary Action',
-        onClick: () => console.log('Primary clicked'),
-      }}
-      secondaryAction={{
-        label: 'Secondary Action',
-        onClick: () => console.log('Secondary clicked'),
-      }}
-    />
+      illustration={<SearchIcon />}
+      title="No results found"
+      body="Try a different search term or browse by category."
+    >
+      <Search
+        isClearable
+        placeholder="Search courses..."
+        onSearch={value => console.log('Search:', value)}
+      />
+    </EmptyState>
   );
 }
 ```
@@ -116,8 +111,8 @@ export function Example() {
     <EmptyState
       illustration={<ErrorIcon />}
       isDanger
-      title="Something went wrong"
-      body="We encountered an error while processing your request. Please try again."
+      title="Unable to load assignments"
+      body="We encountered an error while loading your course content. Please try again or contact support."
       primaryAction={{
         label: 'Try Again',
         onClick: () => console.log('Retry clicked'),
@@ -127,41 +122,6 @@ export function Example() {
         onClick: () => console.log('Contact clicked'),
       }}
     />
-  );
-}
-```
-
-## Illustration Sizes
-
-The illustration container supports multiple sizes: `xs`, `sm`, `md`, `lg`, `xl`, and `2xl`.
-
-```tsx
-import React from 'react';
-
-import { EmptyState, EmptyStateIllustrationSize } from 'react-magma-dom';
-import { SearchIcon } from 'react-magma-icons';
-
-export function Example() {
-  return (
-    <>
-      <EmptyState
-        illustration={<SearchIcon />}
-        illustrationSize={EmptyStateIllustrationSize.sm}
-        title="Small illustration"
-      />
-      <br />
-      <EmptyState
-        illustration={<SearchIcon />}
-        illustrationSize={EmptyStateIllustrationSize.lg}
-        title="Large illustration (default)"
-      />
-      <br />
-      <EmptyState
-        illustration={<SearchIcon />}
-        illustrationSize={EmptyStateIllustrationSize['2xl']}
-        title="Extra extra large illustration"
-      />
-    </>
   );
 }
 ```
@@ -178,11 +138,11 @@ import { EmptyState } from 'react-magma-dom';
 export function Example() {
   return (
     <EmptyState
-      title="No items yet"
-      body="Start by creating your first item."
+      title="No submissions yet"
+      body="Students have not submitted any assignments for this course yet. Check back after the due date."
       primaryAction={{
-        label: 'Create Item',
-        onClick: () => console.log('Create clicked'),
+        label: 'View Assignment Details',
+        onClick: () => console.log('View clicked'),
       }}
     />
   );
@@ -203,8 +163,8 @@ export function Example() {
   return (
     <EmptyState
       illustration={<NotificationsIcon />}
-      title="No notifications"
-      body="You're all caught up! Check back later for new notifications."
+      title="No upcoming deadlines"
+      body="You're all caught up! There are no assignments or quizzes due this week."
     />
   );
 }
@@ -220,7 +180,7 @@ import React from 'react';
 import { EmptyState } from 'react-magma-dom';
 
 export function Example() {
-  return <EmptyState title="Nothing here" />;
+  return <EmptyState title="No courses enrolled" />;
 }
 ```
 
@@ -242,10 +202,18 @@ export function Example() {
           illustration={<SearchIcon />}
           isInverse
           title="No results found"
-          body="Try adjusting your search criteria."
+          body="Try adjusting your search or filter criteria to find the courses you are looking for."
           primaryAction={{
+            label: 'Search Again',
+            onClick: () => console.log('Search clicked'),
+          }}
+          secondaryAction={{
             label: 'Clear Filters',
             onClick: () => console.log('Clear clicked'),
+          }}
+          tertiaryAction={{
+            label: 'Browse All Courses',
+            onClick: () => console.log('Browse clicked'),
           }}
         />
       </CardBody>
@@ -272,30 +240,31 @@ The loading spinner color adapts to `isDanger` and `isInverse` props.
 
 ## Custom Children
 
-You can pass custom content as children to the EmptyState component.
+You can pass custom content as children to the EmptyState component. Here, clickable `Tag` components let users browse courses by category.
 
 ```tsx
 import React from 'react';
 
-import { EmptyState } from 'react-magma-dom';
+import { EmptyState, Tag } from 'react-magma-dom';
 import { SearchIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
     <EmptyState
       illustration={<SearchIcon />}
-      title="Custom content below"
-      body="You can add any custom content as children."
+      title="No courses found"
+      body="Try browsing by category instead."
+      tertiaryAction={{
+        label: 'Browse All Courses',
+        onClick: () => console.log('Browse clicked'),
+      }}
     >
-      <div
-        style={{
-          marginTop: '16px',
-          padding: '16px',
-          background: '#f5f5f5',
-          borderRadius: '8px',
-        }}
-      >
-        <p style={{ margin: 0 }}>This is custom content passed as children.</p>
+      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <Tag onClick={() => console.log('Biology')}>Biology</Tag>
+        <Tag onClick={() => console.log('Chemistry')}>Chemistry</Tag>
+        <Tag onClick={() => console.log('Physics')}>Physics</Tag>
+        <Tag onClick={() => console.log('Mathematics')}>Mathematics</Tag>
+        <Tag onClick={() => console.log('Computer Science')}>Computer Science</Tag>
       </div>
     </EmptyState>
   );

@@ -17,15 +17,15 @@ import './design-guidelines-styles.css';
 Use empty states when there is no data or content to display in a section or page. Empty states help users understand why the area is empty, what they can do to populate it, and that the system is working correctly (it's not an error).
 
 <figure>
-  <img src="../../images/empty-state/empty-state-intro.png" alt="Full-page empty state showing a session expired message with a calendar icon, explanatory text prompting the user to sign in again, and actions to sign in or learn more." />
+  <img src="../../images/empty-state-v2/empty-state-intro.png" alt="Full-page empty state showing a search icon, 'No results found' title, body text guiding the user to adjust their search, and three action buttons: Search Again (solid), Clear Filters (outlined), and Browse All Courses (link)." />
 </figure>
 
 Common scenarios include:
-- **First-time use** - No data yet (e.g., empty inbox, no saved items)
+- **First-time use** - No data yet (e.g., no courses enrolled, empty gradebook)
 - **No search results** - Query returned nothing
-- **Empty containers** - Empty folders, lists, or tables
+- **Empty containers** - Empty course lists, assignment folders, or grade tables
 - **Cleared content** - All notifications dismissed
-- **Error states** - Something went wrong
+- **Error states** - Something went wrong loading content
 
 ---
 
@@ -48,97 +48,47 @@ The message and illustration should relate to the specific context. A "no search
 ## Anatomy
 
 <figure>
-  <img src="../../images/empty-state/empty-state-anatomy.png" alt="Annotated diagram of an empty state with numbered callouts labeling the illustration, title, body text, primary button, and secondary link." />
+  <img src="../../images/empty-state-v2/empty-state-anatomy-v2.png" alt="Annotated diagram of an empty state with numbered callouts labeling: 1. Illustration (rounded square with icon), 2. Title, 3. Body text, 4. Content slot (custom content area), 5. Primary action (solid button), 6. Secondary action (outlined button), 7. Tertiary action (link-style button below the button row)." />
 </figure>
 
-1. **Illustration** - A circular container with an icon that visually represents the empty state
-2. **Title** - A brief heading that explains the situation
-3. **Body** - Additional context or instructions (optional)
-4. **Primary Action** - A button for the main action the user can take (optional)
-5. **Secondary Action** - A link button for an alternative action (optional)
+1. **Illustration** — A rounded square container (48px, 12px radius) with an icon that visually represents the empty state
+2. **Title** — A brief heading that explains the situation
+3. **Body** — Additional context or instructions (optional)
+4. **Content Slot** — Custom content area between text and actions, such as a search field or filter chips (optional)
+5. **Primary Action** — A solid primary button for the main action the user can take (optional)
+6. **Secondary Action** — An outlined button beside the primary button for an alternative action (optional)
+7. **Tertiary Action** — A link-style button below the button row for a lower-priority action (optional)
 
 ---
 
-## Layouts
+## Content Slot
 
-### Vertical Layout (Default)
-
-The vertical layout centers content and stacks elements. Use this for most empty states, especially in larger content areas like main pages or modals.
+The content slot allows you to embed custom interactive content between the body text and action buttons. Use it for inline search fields, category filters, or other contextual content that helps users take immediate action without leaving the empty state.
 
 <figure>
-  <img src="../../images/empty-state/layout-vertical.png" alt="Card-based empty state displaying a session expired message with an icon, supporting text, and sign-in and learn-more actions stacked vertically." />
+  <img src="../../images/empty-state-v2/empty-state-content-slot.png" alt="Empty state with a search icon, 'No results found' title, body text, and an inline search input field rendered in the content slot between the body text and action buttons." />
 </figure>
 
-### Horizontal Layout
-
-The horizontal layout places the illustration beside the content. Use this for narrower containers, sidebars, or when you want a more compact presentation.
-
-<figure>
-  <img src="../../images/empty-state/layout-horizontal.png" alt="Card-based empty state with a session expired message, icon aligned to the left, and sign-in and learn-more actions arranged horizontally." />
-</figure>
+Common content slot uses:
+- **Search fields** — Let users search directly from the empty state
+- **Filter chips or tags** — Offer quick category browsing options
+- **Inline forms** — Collect input to populate the empty area
 
 ---
 
-## Responsive Behavior
+## Button Hierarchy
 
-Empty states automatically adapt to mobile screens (below 600px):
-
-- **Layout** - Always uses vertical layout on mobile, even if horizontal is specified
-- **Buttons** - Stack vertically for easier tapping
-- **Content** - All text and elements are centered
-
-The horizontal layout only applies on larger screens (600px and above).
+EmptyState supports a three-tier button system to provide clear action priority:
 
 <figure>
-  <img src="../../images/empty-state/responsive-use-case.png" alt="Empty state shown at different viewport sizes, demonstrating how the layout adapts responsively." />
+  <img src="../../images/empty-state-v2/empty-state-button-hierarchy.png" alt="Empty state showing three action buttons with labels: 'Search Again' as a solid primary button, 'Clear Filters' as an outlined secondary button beside it, and 'Browse All Courses' as a link-style tertiary button below the button row." />
 </figure>
 
----
+- **Primary (solid)** — The main call to action. Use for the most important action, such as retrying a search or creating content.
+- **Secondary (outlined)** — An alternative action. Use for a secondary path like clearing filters or contacting support.
+- **Tertiary (link)** — A low-priority action. Use for a passive alternative like browsing a catalog or learning more.
 
-## Illustration Sizes
-
-The illustration container comes in five sizes to accommodate different contexts.
-
-<figure>
-  <img src="../../images/empty-state/illustration-sizes.png" alt="Row of search icons shown at increasing sizes, demonstrating available illustration scale options from small to extra large." />
-</figure>
-
-<table>
-  <thead>
-    <tr>
-      <th>Size</th>
-      <th>Dimensions</th>
-      <th>Use Case</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>sm</td>
-      <td>48px</td>
-      <td>Compact spaces, inline empty states</td>
-    </tr>
-    <tr>
-      <td>md</td>
-      <td>64px</td>
-      <td>Small cards, sidebar panels</td>
-    </tr>
-    <tr>
-      <td>lg</td>
-      <td>80px</td>
-      <td>Default size, most use cases</td>
-    </tr>
-    <tr>
-      <td>xl</td>
-      <td>96px</td>
-      <td>Prominent empty states</td>
-    </tr>
-    <tr>
-      <td>2xl</td>
-      <td>120px</td>
-      <td>Full-page empty states, high emphasis</td>
-    </tr>
-  </tbody>
-</table>
+Not all buttons are required. Use only the levels needed for the context — a simple empty state may only need a primary button, while a search results empty state might benefit from all three tiers.
 
 ---
 
@@ -146,10 +96,10 @@ The illustration container comes in five sizes to accommodate different contexts
 
 ### Default
 
-Uses the primary brand color (purple/blue) for the illustration. Appropriate for most informational empty states.
+Uses the primary brand color for the illustration. Appropriate for most informational empty states.
 
 <figure>
-  <img src="../../images/empty-state/color-default.png" alt="Card displaying a positive session message indicating the user is ready to continue, with a checkmark icon and a single sign-in action." />
+  <img src="../../images/empty-state-v2/color-default.png" alt="Default empty state with a primary-colored illustration icon in a rounded square, title, body text, and action buttons." />
 </figure>
 
 ### Danger
@@ -157,15 +107,15 @@ Uses the primary brand color (purple/blue) for the illustration. Appropriate for
 Uses the danger color (red) for the illustration only. Buttons remain the default primary color for consistency. Use when the empty state represents a problem that needs attention, such as a failed load or error condition.
 
 <figure>
-  <img src="../../images/empty-state/color-danger.png" alt="Card showing a session expired error state using red styling, indicating a higher-severity interruption that requires the user to sign in again." />
+  <img src="../../images/empty-state-v2/color-danger.png" alt="Danger empty state with a red illustration icon, error title, body text explaining the issue, and retry and contact support buttons." />
 </figure>
 
 ### Inverse
 
-For use on dark backgrounds. The colors are adjusted for optimal contrast and visibility.
+For use on dark backgrounds. The illustration uses a primary500 background with a white icon, and all text and button colors are adjusted for optimal contrast and visibility.
 
 <figure>
-  <img src="../../images/empty-state/color-inverse.png" alt="Dark-background empty state showing a no results found message with a search icon, explanatory text, and actions to clear filters or learn more." />
+  <img src="../../images/empty-state-v2/color-inverse.png" alt="Inverse empty state on a dark primary600 background with a primary500 illustration container, white icon, white text, and inverse-styled action buttons." />
 </figure>
 
 ---
@@ -178,7 +128,7 @@ For use on dark backgrounds. The colors are adjusted for optimal contrast and vi
   <div className="row">
     <div className="col col-1">
       <figure>
-        <img src="../../images/empty-state/content-title-correct.png" alt="Correct example: Clear, user-friendly empty state title that explains the situation." />
+        <img src="../../images/empty-state-v2/content-title-correct.png" alt="Correct example: Clear, user-friendly empty state title that explains the situation." />
         <figcaption>
           <p className="title title-correct">Correct</p>
           <p>Keep titles short and descriptive. Explain the situation clearly.</p>
@@ -187,7 +137,7 @@ For use on dark backgrounds. The colors are adjusted for optimal contrast and vi
     </div>
     <div className="col col-2">
       <figure>
-        <img src="../../images/empty-state/content-title-incorrect.png" alt="Incorrect example: Technical or vague title that doesn't help the user." />
+        <img src="../../images/empty-state-v2/content-title-incorrect.png" alt="Incorrect example: Technical or vague title that doesn't help the user." />
         <figcaption>
           <p className="title title-incorrect">Incorrect</p>
           <p>Don't use technical jargon, error codes, or vague messages.</p>
@@ -203,7 +153,7 @@ For use on dark backgrounds. The colors are adjusted for optimal contrast and vi
   <div className="row">
     <div className="col col-1">
       <figure>
-        <img src="../../images/empty-state/content-body-correct.png" alt="Correct example: Helpful body copy that guides the user on what to do next." />
+        <img src="../../images/empty-state-v2/content-body-correct.png" alt="Correct example: Helpful body copy that guides the user on what to do next." />
         <figcaption>
           <p className="title title-correct">Correct</p>
           <p>Provide helpful guidance on what to do next.</p>
@@ -212,7 +162,7 @@ For use on dark backgrounds. The colors are adjusted for optimal contrast and vi
     </div>
     <div className="col col-2">
       <figure>
-        <img src="../../images/empty-state/content-body-incorrect.png" alt="Incorrect example: Unhelpful body copy that provides no clear next step." />
+        <img src="../../images/empty-state-v2/content-body-incorrect.png" alt="Incorrect example: Unhelpful body copy that provides no clear next step." />
         <figcaption>
           <p className="title title-incorrect">Incorrect</p>
           <p>Don't leave users without guidance or blame them for the empty state.</p>
@@ -228,26 +178,18 @@ For use on dark backgrounds. The colors are adjusted for optimal contrast and vi
 
 ### First-Time Use
 
-When users haven't created any content yet, encourage them to get started.
+When students haven't enrolled in any courses yet, encourage them to browse the catalog and get started.
 
 <figure>
-  <img src="../../images/empty-state/use-case-first-time.png" alt="Empty state indicating no content exists yet, with an illustration, guidance text encouraging creation of a first item, and actions to create an item or learn more." />
-</figure>
-
-### No Search Results
-
-When a search returns nothing, help users refine their query.
-
-<figure>
-  <img src="../../images/empty-state/use-case-no-results.png" alt="Search empty state with a search icon, text explaining that no items match the current filters, and a primary action to clear filters." />
+  <img src="../../images/empty-state-v2/use-case-first-time.png" alt="Empty state with a book icon, 'No courses enrolled' title, body text encouraging the student to browse the course catalog, and a 'Browse Courses' primary button." />
 </figure>
 
 ### Error State
 
-When something goes wrong, explain the issue and provide a way to recover.
+When course materials fail to load, explain the issue and provide a way to recover.
 
 <figure>
-  <img src="../../images/empty-state/use-case-error.png" alt="Error empty state with a warning icon, message indicating content could not be loaded and changes may not be saved, and a retry button." />
+  <img src="../../images/empty-state-v2/use-case-error.png" alt="Danger empty state with a red error icon, 'Unable to load course materials' title, body text explaining the error and suggesting to retry, with 'Try Again' primary button and 'Contact Support' secondary button." />
 </figure>
 
 ---
@@ -258,7 +200,7 @@ Empty states are designed with accessibility in mind:
 
 - Text maintains a minimum 4.5:1 contrast ratio with the background
 - Illustrations are marked as decorative (`aria-hidden`) since they don't convey essential information
-- Action buttons are fully keyboard accessible
+- All action buttons — including the tertiary action — are fully keyboard accessible and reachable via tab navigation
 - All text content is available to screen readers
 
 </PageContent>

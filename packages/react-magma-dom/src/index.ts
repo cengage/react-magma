@@ -94,10 +94,7 @@ export type { DropdownExpandableMenuButtonProps } from './components/Dropdown/Dr
 export { DropdownExpandableMenuPanel } from './components/Dropdown/DropdownExpandableMenuPanel';
 export type { DropdownExpandableMenuPanelProps } from './components/Dropdown/DropdownExpandableMenuPanel';
 
-export {
-  EmptyState,
-  EmptyStateIllustrationSize,
-} from './components/EmptyState';
+export { EmptyState } from './components/EmptyState';
 export type {
   EmptyStateProps,
   EmptyStateAction,
