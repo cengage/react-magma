@@ -128,7 +128,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       >
         <StyledTextArea
           {...other}
-          aria-labelledby={
+          aria-describedby={
             descriptionId ? descriptionId : props['aria-describedby']
           }
           aria-invalid={!!errorMessage}
