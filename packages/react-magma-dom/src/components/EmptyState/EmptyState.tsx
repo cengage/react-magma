@@ -23,7 +23,7 @@ export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Description text displayed below the title (omit to hide) */
   description?: string;
   /** Icon element to display in the circular illustration area */
-  icon?: React.ReactElement;
+  illustration?: React.ReactElement;
   /** Use danger/error color scheme (red) */
   isDanger?: boolean;
   /** Use inverse (dark) color scheme */
@@ -132,7 +132,7 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
       actions,
       additionalContent,
       description,
-      icon,
+      illustration,
       isDanger = false,
       isLoading = false,
       testId,
@@ -157,28 +157,22 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
         >
           {isLoading ? (
             <Spinner
-              color={
-                isInverse
-                  ? theme.colors.neutral100
-                  : isDanger
-                    ? theme.colors.danger500
-                    : theme.colors.primary500
-              }
+              color={getIllustrationIconColor({ isInverse, isDanger, theme })}
               isInverse={isInverse}
               size={48}
             />
           ) : (
             <>
-              {(icon || title || description) && (
+              {(illustration || title || description) && (
                 <StyledHeader theme={theme}>
-                  {icon && (
+                  {illustration && (
                     <StyledIllustrationContainer
                       aria-hidden="true"
                       isDanger={isDanger}
                       isInverse={isInverse}
                       theme={theme}
                     >
-                      {icon}
+                      {illustration}
                     </StyledIllustrationContainer>
                   )}
                   {title && (

@@ -9,7 +9,7 @@ props:
 
 <LeadParagraph>
   The EmptyState component communicates a lack of content and guides users
-  towards action. It supports an icon, title, description, composed action
+  towards action. It supports an illustration, title, description, composed action
   buttons, and additional custom content.
 </LeadParagraph>
 
@@ -30,7 +30,7 @@ import { SearchIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      icon={<SearchIcon />}
+      illustration={<SearchIcon />}
       title="No results found"
       description="Try adjusting your search or filter criteria to find the courses you are looking for."
       actions={
@@ -74,7 +74,7 @@ import { SearchIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      icon={<SearchIcon />}
+      illustration={<SearchIcon />}
       title="No courses found"
       description="We couldn't find any courses matching your search. Try browsing the full catalog."
       actions={
@@ -93,7 +93,7 @@ export function Example() {
 
 ## Danger Mode
 
-Use the `isDanger` prop to display an error state with danger colors on the icon. The buttons remain the default primary color for consistency.
+Use the `isDanger` prop to display an error state with danger colors on the illustration. The buttons remain the default primary color for consistency.
 
 ```tsx
 import React from 'react';
@@ -104,7 +104,7 @@ import { ErrorIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      icon={<ErrorIcon />}
+      illustration={<ErrorIcon />}
       isDanger
       title="Unable to load assignments"
       description="We encountered an error while loading your course content. Please try again or contact support."
@@ -129,9 +129,9 @@ export function Example() {
 }
 ```
 
-## Without Icon
+## Without Illustration
 
-The icon is optional. You can render an EmptyState with just text and actions.
+The illustration is optional. You can render an EmptyState with just text and actions.
 
 ```tsx
 import React from 'react';
@@ -169,7 +169,7 @@ import { NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      icon={<NotificationsIcon />}
+      illustration={<NotificationsIcon />}
       title="No upcoming deadlines"
       description="You're all caught up! There are no assignments or quizzes due this week."
     />
@@ -215,7 +215,7 @@ export function Example() {
     <Card background={magma.colors.primary600} isInverse>
       <CardBody>
         <EmptyState
-          icon={<SearchIcon />}
+          illustration={<SearchIcon />}
           isInverse
           title="No results found"
           description="Try adjusting your search or filter criteria to find the courses you are looking for."
@@ -281,7 +281,7 @@ import { SearchIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      icon={<SearchIcon />}
+      illustration={<SearchIcon />}
       title="No results found"
       description="Try a different search term or browse by category."
       additionalContent={
@@ -307,7 +307,7 @@ import { SearchIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      icon={<SearchIcon />}
+      illustration={<SearchIcon />}
       title="No courses found"
       description="Try browsing by category instead."
       actions={
@@ -344,7 +344,7 @@ import { SchoolIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      icon={<SchoolIcon />}
+      illustration={<SchoolIcon />}
       title="No courses yet"
       description="Enter a course access code from your instructor to get started."
       actions={
@@ -374,7 +374,7 @@ export function Example() {
 
   return (
     <EmptyState
-      icon={<NotificationsIcon />}
+      illustration={<NotificationsIcon />}
       title="No new announcements"
       description="There are no announcements for your courses right now."
       additionalContent={

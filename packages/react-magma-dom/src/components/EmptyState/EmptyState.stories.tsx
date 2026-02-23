@@ -37,7 +37,7 @@ export default {
   title: 'EmptyState',
   component: EmptyState,
   argTypes: {
-    icon: {
+    illustration: {
       control: { type: 'select' },
       options: [
         'SearchIcon',
@@ -72,7 +72,7 @@ export const Default = {
   render: Template,
 
   args: {
-    icon: <SearchIcon />,
+    illustration: <SearchIcon />,
     title: 'No results found',
     description:
       'Try adjusting your search or filter criteria to find what you are looking for.',
@@ -106,7 +106,7 @@ export const DangerMode = {
   render: Template,
 
   args: {
-    icon: <ErrorIcon />,
+    illustration: <ErrorIcon />,
     title: 'Something went wrong',
     description:
       'We encountered an error while processing your request. Please try again.',
@@ -151,7 +151,7 @@ export const WithoutActions = {
   render: Template,
 
   args: {
-    icon: <FolderOpenIcon />,
+    illustration: <FolderOpenIcon />,
     title: 'This folder is empty',
     description: 'Upload files or create subfolders to get started.',
   },
@@ -161,7 +161,7 @@ export const TitleOnly = {
   render: Template,
 
   args: {
-    icon: <NotificationsIcon />,
+    illustration: <NotificationsIcon />,
     title: 'No notifications',
   },
 };
@@ -170,7 +170,7 @@ export const PrimaryActionOnly = {
   render: Template,
 
   args: {
-    icon: <AddIcon />,
+    illustration: <AddIcon />,
     title: 'Get started',
     description: 'Create your first project to begin.',
     actions: (
@@ -188,7 +188,7 @@ export const SecondaryActionOnly = {
   render: Template,
 
   args: {
-    icon: <SearchIcon />,
+    illustration: <SearchIcon />,
     title: 'No matches',
     description: 'We could not find any matching results.',
     actions: (
@@ -206,7 +206,7 @@ export const TertiaryActionOnly = {
   render: Template,
 
   args: {
-    icon: <SearchIcon />,
+    illustration: <SearchIcon />,
     title: 'No courses found',
     description: 'Your search did not match any available courses.',
     actions: (
@@ -225,7 +225,7 @@ export const AllThreeButtons = {
   render: Template,
 
   args: {
-    icon: <SearchIcon />,
+    illustration: <SearchIcon />,
     title: 'No results found',
     description:
       'We could not find anything matching your search. Try different keywords or browse our catalog.',
@@ -258,7 +258,7 @@ export const AllThreeButtons = {
 export const WithAdditionalContent = {
   render: () => (
     <EmptyState
-      icon={<SearchIcon />}
+      illustration={<SearchIcon />}
       title="No results found"
       description="Try a different search term or browse by category."
       additionalContent={
@@ -301,7 +301,7 @@ export const Minimal = {
 export const CustomChildren = {
   render: () => (
     <EmptyState
-      icon={<SearchIcon />}
+      illustration={<SearchIcon />}
       title="No courses found"
       description="Try browsing by category instead."
       actions={

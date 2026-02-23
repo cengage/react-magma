@@ -1751,7 +1751,7 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
 </div>
 `;
 
-exports[`EmptyState should render icon in circular container 1`] = `
+exports[`EmptyState should render illustration in circular container 1`] = `
 .emotion-0 {
   display: -webkit-box;
   display: -webkit-flex;

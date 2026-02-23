@@ -36,17 +36,17 @@ describe('EmptyState', () => {
     expect(getByText(description)).toBeInTheDocument();
   });
 
-  it('should render with icon', () => {
+  it('should render with illustration', () => {
     const { getByTestId } = render(
-      <EmptyState icon={<SearchIcon />} title="Test" />
+      <EmptyState illustration={<SearchIcon />} title="Test" />
     );
 
     expect(getByTestId('test-icon')).toBeInTheDocument();
   });
 
-  it('should render icon in circular container', () => {
+  it('should render illustration in circular container', () => {
     const { container } = render(
-      <EmptyState icon={<SearchIcon />} title="Test" />
+      <EmptyState illustration={<SearchIcon />} title="Test" />
     );
 
     expect(container).toMatchSnapshot();
@@ -114,7 +114,7 @@ describe('EmptyState', () => {
     it('should render danger mode styling', () => {
       const { container } = render(
         <EmptyState
-          icon={<SearchIcon />}
+          illustration={<SearchIcon />}
           isDanger
           title="Error occurred"
           description="Something went wrong"
@@ -130,7 +130,7 @@ describe('EmptyState', () => {
     it('should render inverse mode styling', () => {
       const { container } = render(
         <EmptyState
-          icon={<SearchIcon />}
+          illustration={<SearchIcon />}
           isInverse
           title="No results"
           description="Try another search"
@@ -143,7 +143,7 @@ describe('EmptyState', () => {
     it('should render inverse description at full opacity', () => {
       const { getByText } = render(
         <EmptyState
-          icon={<SearchIcon />}
+          illustration={<SearchIcon />}
           isInverse
           title="No results"
           description="Try another search"
@@ -158,7 +158,7 @@ describe('EmptyState', () => {
     it('should render inverse danger mode styling', () => {
       const { container } = render(
         <EmptyState
-          icon={<SearchIcon />}
+          illustration={<SearchIcon />}
           isDanger
           isInverse
           title="Error"
@@ -201,7 +201,7 @@ describe('EmptyState', () => {
     it('should not violate accessibility standards', async () => {
       const { container } = render(
         <EmptyState
-          icon={<SearchIcon />}
+          illustration={<SearchIcon />}
           title="No results found"
           description="Try adjusting your search criteria"
           actions={<Button>Clear Filters</Button>}
@@ -215,7 +215,7 @@ describe('EmptyState', () => {
     it('should not violate accessibility standards in danger mode', async () => {
       const { container } = render(
         <EmptyState
-          icon={<SearchIcon />}
+          illustration={<SearchIcon />}
           isDanger
           title="Error occurred"
           description="Please try again"
@@ -230,7 +230,7 @@ describe('EmptyState', () => {
     it('should not violate accessibility standards with multiple actions', async () => {
       const { container } = render(
         <EmptyState
-          icon={<SearchIcon />}
+          illustration={<SearchIcon />}
           title="No results found"
           description="Try adjusting your search criteria"
           actions={
