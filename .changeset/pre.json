@@ -10,6 +10,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "a11y-charts-add-optional-ariaLabel-prop",
     "a11y-docs-img-empty-alts",
     "a11y-docs-password-input-labels",
     "chore-charts-peer-deps",

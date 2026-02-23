@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 14.0.0-rc.3
+
+### Patch Changes
+
+- cb81479: chore: add optional `ariaLabel` property for SVG container
+
 ## 14.0.0-rc.2
 
 ### Patch Changes
