@@ -264,6 +264,7 @@ export interface I18nInterface {
     pageLabel: string;
     pagesLabel: string;
     selectedLabel: string;
+    selectPageLabel: string;
   };
   skipLink: {
     buttonText: string;
