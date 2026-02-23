@@ -12,6 +12,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "a11y-charts-add-optional-ariaLabel-prop",
     "fix-docs-ts",
     "hip-toys-pump",
     "manually-sync-4.11.0"
