@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.11.1-next.0
+
+### Patch Changes
+
+- aa87f4460: fix(Pagination): Update aria-label.
+
 ### Minor Changes
 
 - 5810cc13d: feat(Checkbox): Add new `ariaLabel` prop.
