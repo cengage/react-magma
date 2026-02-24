@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.11.1-next.1
+
+### Patch Changes
+
+- d8fc7ac03: fix(TextArea): Change `aria-labelledby` to `aria-describedby`.
+
 ## 4.11.1-next.0
 
 ### Patch Changes
