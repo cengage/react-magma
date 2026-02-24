@@ -72,6 +72,7 @@
     "fix-NavsTab-add-region",
     "fix-Pagination-add-announcement-selected-page",
     "fix-Pagination-aria-hidden-dots",
+    "fix-Pagination-aria-label",
     "fix-RadioButton-label-is-not-annouced-with-helper-message",
     "fix-Select-disabled-item",
     "fix-Select-expanded-collapsed-announced-state",

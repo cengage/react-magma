@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.52
+
+### Patch Changes
+
+- 1905265: fix(Pagination): Update aria-label.
+
 ## 5.1.0-rc.51
 
 ### Patch Changes
