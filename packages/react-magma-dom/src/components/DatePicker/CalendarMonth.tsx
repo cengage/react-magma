@@ -240,6 +240,7 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             <Table
               onBlur={onCalendarTableBlur}
               theme={theme}
+              role="grid"
               dateTimePickerContent={!!props.dateTimePickerContent}
             >
               <thead>
