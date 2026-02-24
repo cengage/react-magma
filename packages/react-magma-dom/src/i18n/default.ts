@@ -280,6 +280,7 @@ export const defaultI18n: I18nInterface = {
     pagesLabel: 'pages',
     pageNumberLabel: 'Page number',
     selectedLabel: 'selected',
+    selectPageLabel: 'Select page',
   },
   skipLink: {
     buttonText: 'Skip Navigation',
