@@ -15,6 +15,7 @@
     "a11y-charts-add-optional-ariaLabel-prop",
     "fix-Pagination-aria-label",
     "fix-TextArea-aria-accessibility-issue",
+    "fix-docs-issues",
     "fix-docs-ts",
     "hip-toys-pump",
     "manually-sync-4.11.0"

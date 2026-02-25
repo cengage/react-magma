@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.1-next.4
+
+### Patch Changes
+
+- 3dbb15705: fix(docs): Fix docs issues.
+
 ## 5.3.1-next.3
 
 ### Patch Changes
