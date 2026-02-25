@@ -70,7 +70,7 @@ export function Example() {
     updateShowBanner(false);
 
     setTimeout(() => {
-      buttonRef.current?.focus();
+      buttonRef.current && buttonRef.current.focus();
     }, 0);
   }
 
@@ -78,7 +78,7 @@ export function Example() {
     updateShowBanner(true);
 
     setTimeout(() => {
-      dismissibleButtonRef.current?.focus();
+      dismissibleButtonRef.current && dismissibleButtonRef.current.focus();
     }, 0);
   }
 

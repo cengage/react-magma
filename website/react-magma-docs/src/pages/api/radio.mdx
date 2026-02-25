@@ -501,17 +501,17 @@ export function Example() {
     if (!radioRef.current) {
       setRadioGroupVal(null);
       setAnnouncement('');
-    } else if (radioRef.current?.checked) {
+    } else if (radioRef.current && radioRef.current.checked) {
       setRadioGroupVal('');
       setAnnouncement('Option one deselected');
-    } else if (!radioRef.current?.checked) {
+    } else if (radioRef.current && !radioRef.current.checked) {
       setRadioGroupVal('1');
       setAnnouncement('Option one selected');
     }
   }
 
   function handleFocusOne() {
-    radioRef.current?.focus();
+    radioRef.current && radioRef.current.focus();
   }
 
   return (
@@ -520,7 +520,7 @@ export function Example() {
         labelText="Forward ref usage"
         id="forwardRefGroup"
         name="forwardRef"
-        value={radioGroupVal ?? undefined}
+        value={radioGroupVal}
       >
         <Radio
           ref={radioRef}

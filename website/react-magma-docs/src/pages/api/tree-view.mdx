@@ -641,7 +641,7 @@ import {
 
 function createControlledTags(
   items: TreeItemSelectedInterface[] = [],
-  api?: TreeViewApi
+  api: TreeViewApi
 ) {
   const selected =
     items &&
@@ -653,7 +653,7 @@ function createControlledTags(
           size={TagSize.small}
           color={TagColor.primary}
           onDelete={() =>
-            api?.selectItem({
+            api.selectItem({
               itemId: i.itemId,
               checkedStatus: IndeterminateCheckboxStatus.unchecked,
             })
@@ -675,7 +675,7 @@ function createControlledTags(
           size={TagSize.small}
           color={TagColor.default}
           onDelete={() =>
-            api?.selectItem({
+            api.selectItem({
               itemId: i.itemId,
               checkedStatus: IndeterminateCheckboxStatus.unchecked,
             })
@@ -785,13 +785,13 @@ export function Example() {
       </>
       <ButtonGroup size={ButtonSize.small} variant={ButtonVariant.solid}>
         <Button
-          onClick={() => apiRef.current?.selectAll()}
+          onClick={() => apiRef.current && apiRef.current.selectAll()}
           color={ButtonColor.secondary}
         >
           Select all
         </Button>
         <Button
-          onClick={() => apiRef.current?.clearAll()}
+          onClick={() => apiRef.current && apiRef.current.clearAll()}
           color={ButtonColor.secondary}
         >
           Clear all
@@ -1452,11 +1452,11 @@ export function Example() {
   };
 
   const toggleExpandAll = () => {
-    apiRef.current?.expandAll();
+    apiRef.current && apiRef.current.expandAll();
   };
 
   const toggleCollapseAll = () => {
-    apiRef.current?.collapseAll();
+    apiRef.current && apiRef.current.collapseAll();
   };
 
   return (
@@ -1622,14 +1622,15 @@ export function Example() {
     const treeLength = items.length + 1;
     const newItemId = 'new-parent-' + treeLength;
 
-    apiRef.current?.addItem({
-      itemId: newItemId,
-      parentId: null,
-      icon: undefined,
-      hasOwnTreeItems: false,
-      isDisabled: undefined,
-      checkedStatus: IndeterminateCheckboxStatus.unchecked,
-    });
+    apiRef.current &&
+      apiRef.current.addItem({
+        itemId: newItemId,
+        parentId: null,
+        icon: undefined,
+        hasOwnTreeItems: false,
+        isDisabled: undefined,
+        checkedStatus: IndeterminateCheckboxStatus.unchecked,
+      });
 
     setItems([
       ...items,
@@ -1648,14 +1649,15 @@ export function Example() {
       parentItem &&
       String(parentItem.id) + '-' + String(parentItem.children.length + 1);
 
-    apiRef.current?.addItem({
-      itemId: newItemId,
-      parentId: String(parentItem.id),
-      icon: undefined,
-      hasOwnTreeItems: false,
-      isDisabled: undefined,
-      checkedStatus: IndeterminateCheckboxStatus.unchecked,
-    });
+    apiRef.current &&
+      apiRef.current.addItem({
+        itemId: newItemId,
+        parentId: String(parentItem.id),
+        icon: undefined,
+        hasOwnTreeItems: false,
+        isDisabled: undefined,
+        checkedStatus: IndeterminateCheckboxStatus.unchecked,
+      });
 
     const newItems = items.map((item, index) => {
       if (index === items.length - 1) {

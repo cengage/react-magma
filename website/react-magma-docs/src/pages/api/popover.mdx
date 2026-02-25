@@ -123,13 +123,11 @@ export function Example() {
   const popoverApiRef = React.useRef<PopoverApi>();
 
   function handleClose(event: React.SyntheticEvent) {
-    if (popoverApiRef.current) {
-      popoverApiRef.current.closePopoverManually(event);
-    }
+    popoverApiRef.current && popoverApiRef.current.closePopoverManually(event);
   }
 
   function handleOpen(event: React.SyntheticEvent) {
-    popoverApiRef.current?.openPopoverManually(event);
+    popoverApiRef.current && popoverApiRef.current.openPopoverManually(event);
   }
 
   return (
