@@ -9,7 +9,7 @@ props:
 
 <LeadParagraph>
   The EmptyState component communicates a lack of content and guides users
-  towards action. It supports an illustration, title, description, composed action
+  towards action. It supports an icon, title, description, composed action
   buttons, and additional custom content.
 </LeadParagraph>
 
@@ -30,28 +30,14 @@ import { SearchIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      illustration={<SearchIcon />}
+      icon={<SearchIcon />}
       title="No results found"
       description="Try adjusting your search or filter criteria to find the courses you are looking for."
       actions={
         <ButtonGroup>
-          <Button
-            color={ButtonColor.primary}
-            onClick={() => console.log('Search clicked')}
-          >
-            Search Again
-          </Button>
-          <Button
-            color={ButtonColor.secondary}
-            onClick={() => console.log('Clear clicked')}
-          >
-            Clear Filters
-          </Button>
-          <Button
-            color={ButtonColor.primary}
-            variant={ButtonVariant.link}
-            onClick={() => console.log('Browse clicked')}
-          >
+          <Button color={ButtonColor.primary}>Search Again</Button>
+          <Button color={ButtonColor.secondary}>Clear Filters</Button>
+          <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
             Browse All Courses
           </Button>
         </ButtonGroup>
@@ -74,15 +60,11 @@ import { SearchIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      illustration={<SearchIcon />}
+      icon={<SearchIcon />}
       title="No courses found"
       description="We couldn't find any courses matching your search. Try browsing the full catalog."
       actions={
-        <Button
-          color={ButtonColor.primary}
-          variant={ButtonVariant.link}
-          onClick={() => console.log('Browse clicked')}
-        >
+        <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
           Browse Course Catalog
         </Button>
       }
@@ -93,7 +75,7 @@ export function Example() {
 
 ## Danger Mode
 
-Use the `isDanger` prop to display an error state with danger colors on the illustration. The buttons remain the default primary color for consistency.
+Use the `isDanger` prop to display an error state with danger colors on the icon. The buttons remain the default primary color for consistency.
 
 ```tsx
 import React from 'react';
@@ -104,24 +86,14 @@ import { ErrorIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      illustration={<ErrorIcon />}
+      icon={<ErrorIcon />}
       isDanger
       title="Unable to load assignments"
       description="We encountered an error while loading your course content. Please try again or contact support."
       actions={
         <ButtonGroup>
-          <Button
-            color={ButtonColor.primary}
-            onClick={() => console.log('Retry clicked')}
-          >
-            Try Again
-          </Button>
-          <Button
-            color={ButtonColor.secondary}
-            onClick={() => console.log('Contact clicked')}
-          >
-            Contact Support
-          </Button>
+          <Button color={ButtonColor.primary}>Try Again</Button>
+          <Button color={ButtonColor.secondary}>Contact Support</Button>
         </ButtonGroup>
       }
     />
@@ -129,9 +101,9 @@ export function Example() {
 }
 ```
 
-## Without Illustration
+## Without Icon
 
-The illustration is optional. You can render an EmptyState with just text and actions.
+The icon is optional. You can render an EmptyState with just text and actions.
 
 ```tsx
 import React from 'react';
@@ -144,12 +116,7 @@ export function Example() {
       title="No submissions yet"
       description="Students have not submitted any assignments for this course yet. Check back after the due date."
       actions={
-        <Button
-          color={ButtonColor.primary}
-          onClick={() => console.log('View clicked')}
-        >
-          View Assignment Details
-        </Button>
+        <Button color={ButtonColor.primary}>View Assignment Details</Button>
       }
     />
   );
@@ -169,7 +136,7 @@ import { NotificationsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      illustration={<NotificationsIcon />}
+      icon={<NotificationsIcon />}
       title="No upcoming deadlines"
       description="You're all caught up! There are no assignments or quizzes due this week."
     />
@@ -188,6 +155,35 @@ import { EmptyState } from 'react-magma-dom';
 
 export function Example() {
   return <EmptyState title="No courses enrolled" />;
+}
+```
+
+## Custom Graphic
+
+Use the `customGraphic` prop to replace the entire circular icon area with your own content. Unlike `icon`, which is always rendered inside a colored circle, `customGraphic` renders as-is with no wrapper. If both `icon` and `customGraphic` are provided, `customGraphic` takes priority.
+
+```tsx
+import React from 'react';
+
+import { EmptyState, Button, ButtonColor } from 'react-magma-dom';
+import { SearchIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <EmptyState
+      customGraphic={
+        <svg viewBox="0 0 200 150" width="200" height="150" xmlns="http://www.w3.org/2000/svg">
+          <rect width="200" height="150" rx="0" fill="#E0E0E0" />
+          <text x="100" y="80" textAnchor="middle" fill="#9E9E9E" fontSize="16" fontFamily="sans-serif">Graphic</text>
+        </svg>
+      }
+      title="No courses found"
+      description="Try browsing by category instead."
+      actions={
+        <Button color={ButtonColor.primary}>Browse Courses</Button>
+      }
+    />
+  );
 }
 ```
 
@@ -215,31 +211,22 @@ export function Example() {
     <Card background={magma.colors.primary600} isInverse>
       <CardBody>
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           isInverse
           title="No results found"
           description="Try adjusting your search or filter criteria to find the courses you are looking for."
           actions={
             <ButtonGroup>
-              <Button
-                color={ButtonColor.primary}
-                isInverse
-                onClick={() => console.log('Search clicked')}
-              >
+              <Button color={ButtonColor.primary} isInverse>
                 Search Again
               </Button>
-              <Button
-                color={ButtonColor.secondary}
-                isInverse
-                onClick={() => console.log('Clear clicked')}
-              >
+              <Button color={ButtonColor.secondary} isInverse>
                 Clear Filters
               </Button>
               <Button
                 color={ButtonColor.primary}
                 isInverse
                 variant={ButtonVariant.link}
-                onClick={() => console.log('Browse clicked')}
               >
                 Browse All Courses
               </Button>
@@ -281,15 +268,11 @@ import { SearchIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      illustration={<SearchIcon />}
+      icon={<SearchIcon />}
       title="No results found"
       description="Try a different search term or browse by category."
       additionalContent={
-        <Search
-          isClearable
-          placeholder="Search courses..."
-          onSearch={value => console.log('Search:', value)}
-        />
+        <Search isClearable placeholder="Search courses..." />
       }
     />
   );
@@ -307,25 +290,21 @@ import { SearchIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      illustration={<SearchIcon />}
+      icon={<SearchIcon />}
       title="No courses found"
       description="Try browsing by category instead."
       actions={
-        <Button
-          color={ButtonColor.primary}
-          variant={ButtonVariant.link}
-          onClick={() => console.log('Browse clicked')}
-        >
+        <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
           Browse All Courses
         </Button>
       }
       additionalContent={
         <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Tag onClick={() => console.log('Biology')}>Biology</Tag>
-          <Tag onClick={() => console.log('Chemistry')}>Chemistry</Tag>
-          <Tag onClick={() => console.log('Physics')}>Physics</Tag>
-          <Tag onClick={() => console.log('Mathematics')}>Mathematics</Tag>
-          <Tag onClick={() => console.log('Computer Science')}>Computer Science</Tag>
+          <Tag>Biology</Tag>
+          <Tag>Chemistry</Tag>
+          <Tag>Physics</Tag>
+          <Tag>Mathematics</Tag>
+          <Tag>Computer Science</Tag>
         </div>
       }
     />
@@ -344,16 +323,11 @@ import { SchoolIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      illustration={<SchoolIcon />}
+      icon={<SchoolIcon />}
       title="No courses yet"
       description="Enter a course access code from your instructor to get started."
       actions={
-        <Button
-          color={ButtonColor.primary}
-          onClick={() => console.log('Join clicked')}
-        >
-          Join Course
-        </Button>
+        <Button color={ButtonColor.primary}>Join Course</Button>
       }
       additionalContent={<Input placeholder="Enter access code" />}
     />
@@ -374,7 +348,7 @@ export function Example() {
 
   return (
     <EmptyState
-      illustration={<NotificationsIcon />}
+      icon={<NotificationsIcon />}
       title="No new announcements"
       description="There are no announcements for your courses right now."
       additionalContent={

@@ -1,10 +1,6 @@
 import * as React from 'react';
 
-import isPropValid from '@emotion/is-prop-valid';
-import styled from '@emotion/styled';
-
 import { InverseContext, useIsInverse } from '../../inverse';
-import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
@@ -14,6 +10,13 @@ import {
   TypographyContextVariant,
   TypographyVisualStyle,
 } from '../Typography';
+import {
+  getIconColor,
+  StyledActions,
+  StyledEmptyState,
+  StyledHeader,
+  StyledIconContainer,
+} from './styles';
 
 export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
   /** Actions rendered below the content area (compose your own Buttons / ButtonGroup) */
@@ -22,8 +25,10 @@ export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
   additionalContent?: React.ReactNode;
   /** Description text displayed below the title (omit to hide) */
   description?: string;
-  /** Icon element to display in the circular illustration area */
-  illustration?: React.ReactElement;
+  /** Custom graphic that replaces the entire circular icon area — renders as-is with no wrapper */
+  customGraphic?: React.ReactNode;
+  /** Icon element displayed inside the circular illustration area */
+  icon?: React.ReactElement;
   /** Use danger/error color scheme (red) */
   isDanger?: boolean;
   /** Use inverse (dark) color scheme */
@@ -38,101 +43,14 @@ export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
 }
 
-interface StyledEmptyStateProps {
-  isInverse?: boolean;
-  theme: ThemeInterface;
-}
-
-const StyledEmptyState = styled('div', {
-  shouldForwardProp: isPropValid,
-})<StyledEmptyStateProps>`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: ${props => props.theme.spaceScale.spacing05};
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  font-family: ${props => props.theme.bodyFont};
-  text-align: center;
-`;
-
-interface StyledIllustrationContainerProps {
-  isDanger?: boolean;
-  isInverse?: boolean;
-  theme: ThemeInterface;
-}
-
-function getIllustrationBackground(
-  props: StyledIllustrationContainerProps
-): string {
-  if (props.isInverse) {
-    return props.isDanger
-      ? props.theme.colors.danger700
-      : props.theme.colors.primary500;
-  }
-
-  return props.isDanger
-    ? props.theme.colors.danger100
-    : props.theme.colors.primary100;
-}
-
-function getIllustrationIconColor(
-  props: StyledIllustrationContainerProps
-): string {
-  if (props.isInverse) {
-    return props.theme.colors.neutral100;
-  }
-
-  return props.isDanger
-    ? props.theme.colors.danger500
-    : props.theme.colors.primary500;
-}
-
-const StyledIllustrationContainer = styled('div', {
-  shouldForwardProp: isPropValid,
-})<StyledIllustrationContainerProps>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: ${props => props.theme.spaceScale.spacing10};
-  height: ${props => props.theme.spaceScale.spacing10};
-  background: ${props => getIllustrationBackground(props)};
-  border-radius: 50%;
-  color: ${props => getIllustrationIconColor(props)};
-
-  svg {
-    width: ${props => props.theme.spaceScale.spacing07};
-    height: ${props => props.theme.spaceScale.spacing07};
-  }
-`;
-
-const StyledHeader = styled('div')<{ theme: ThemeInterface }>`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: ${props => props.theme.spaceScale.spacing03};
-  width: 100%;
-`;
-
-const StyledActions = styled('div')`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-
-  && > * {
-    justify-content: center;
-  }
-`;
-
 export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
   (props, ref) => {
     const {
       actions,
       additionalContent,
+      customGraphic,
       description,
-      illustration,
+      icon,
       isDanger = false,
       isLoading = false,
       testId,
@@ -157,23 +75,27 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
         >
           {isLoading ? (
             <Spinner
-              color={getIllustrationIconColor({ isInverse, isDanger, theme })}
+              color={getIconColor({ isInverse, isDanger, theme })}
               isInverse={isInverse}
               size={48}
             />
           ) : (
             <>
-              {(illustration || title || description) && (
+              {(customGraphic || icon || title || description) && (
                 <StyledHeader theme={theme}>
-                  {illustration && (
-                    <StyledIllustrationContainer
-                      aria-hidden="true"
-                      isDanger={isDanger}
-                      isInverse={isInverse}
-                      theme={theme}
-                    >
-                      {illustration}
-                    </StyledIllustrationContainer>
+                  {customGraphic ? (
+                    <div aria-hidden="true">{customGraphic}</div>
+                  ) : (
+                    icon && (
+                      <StyledIconContainer
+                        aria-hidden="true"
+                        isDanger={isDanger}
+                        isInverse={isInverse}
+                        theme={theme}
+                      >
+                        {icon}
+                      </StyledIconContainer>
+                    )
                   )}
                   {title && (
                     <Heading

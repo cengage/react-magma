@@ -37,7 +37,7 @@ export default {
   title: 'EmptyState',
   component: EmptyState,
   argTypes: {
-    illustration: {
+    icon: {
       control: { type: 'select' },
       options: [
         'SearchIcon',
@@ -72,29 +72,15 @@ export const Default = {
   render: Template,
 
   args: {
-    illustration: <SearchIcon />,
+    icon: <SearchIcon />,
     title: 'No results found',
     description:
       'Try adjusting your search or filter criteria to find what you are looking for.',
     actions: (
       <ButtonGroup>
-        <Button
-          color={ButtonColor.primary}
-          onClick={() => console.log('Primary action clicked')}
-        >
-          Search Again
-        </Button>
-        <Button
-          color={ButtonColor.secondary}
-          onClick={() => console.log('Secondary action clicked')}
-        >
-          Clear Filters
-        </Button>
-        <Button
-          color={ButtonColor.primary}
-          variant={ButtonVariant.link}
-          onClick={() => console.log('Tertiary action clicked')}
-        >
+        <Button color={ButtonColor.primary}>Search Again</Button>
+        <Button color={ButtonColor.secondary}>Clear Filters</Button>
+        <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
           Browse All Courses
         </Button>
       </ButtonGroup>
@@ -106,25 +92,15 @@ export const DangerMode = {
   render: Template,
 
   args: {
-    illustration: <ErrorIcon />,
+    icon: <ErrorIcon />,
     title: 'Something went wrong',
     description:
       'We encountered an error while processing your request. Please try again.',
     isDanger: true,
     actions: (
       <ButtonGroup>
-        <Button
-          color={ButtonColor.primary}
-          onClick={() => console.log('Retry clicked')}
-        >
-          Try Again
-        </Button>
-        <Button
-          color={ButtonColor.secondary}
-          onClick={() => console.log('Contact clicked')}
-        >
-          Contact Support
-        </Button>
+        <Button color={ButtonColor.primary}>Try Again</Button>
+        <Button color={ButtonColor.secondary}>Contact Support</Button>
       </ButtonGroup>
     ),
   },
@@ -136,14 +112,7 @@ export const WithoutIcon = {
   args: {
     title: 'No items yet',
     description: 'Start by creating your first item.',
-    actions: (
-      <Button
-        color={ButtonColor.primary}
-        onClick={() => console.log('Create clicked')}
-      >
-        Create Item
-      </Button>
-    ),
+    actions: <Button color={ButtonColor.primary}>Create Item</Button>,
   },
 };
 
@@ -151,7 +120,7 @@ export const WithoutActions = {
   render: Template,
 
   args: {
-    illustration: <FolderOpenIcon />,
+    icon: <FolderOpenIcon />,
     title: 'This folder is empty',
     description: 'Upload files or create subfolders to get started.',
   },
@@ -161,7 +130,7 @@ export const TitleOnly = {
   render: Template,
 
   args: {
-    illustration: <NotificationsIcon />,
+    icon: <NotificationsIcon />,
     title: 'No notifications',
   },
 };
@@ -170,17 +139,10 @@ export const PrimaryActionOnly = {
   render: Template,
 
   args: {
-    illustration: <AddIcon />,
+    icon: <AddIcon />,
     title: 'Get started',
     description: 'Create your first project to begin.',
-    actions: (
-      <Button
-        color={ButtonColor.primary}
-        onClick={() => console.log('Create clicked')}
-      >
-        Create Project
-      </Button>
-    ),
+    actions: <Button color={ButtonColor.primary}>Create Project</Button>,
   },
 };
 
@@ -188,17 +150,10 @@ export const SecondaryActionOnly = {
   render: Template,
 
   args: {
-    illustration: <SearchIcon />,
+    icon: <SearchIcon />,
     title: 'No matches',
     description: 'We could not find any matching results.',
-    actions: (
-      <Button
-        color={ButtonColor.secondary}
-        onClick={() => console.log('View all clicked')}
-      >
-        View All Items
-      </Button>
-    ),
+    actions: <Button color={ButtonColor.secondary}>View All Items</Button>,
   },
 };
 
@@ -206,15 +161,11 @@ export const TertiaryActionOnly = {
   render: Template,
 
   args: {
-    illustration: <SearchIcon />,
+    icon: <SearchIcon />,
     title: 'No courses found',
     description: 'Your search did not match any available courses.',
     actions: (
-      <Button
-        color={ButtonColor.primary}
-        variant={ButtonVariant.link}
-        onClick={() => console.log('Browse clicked')}
-      >
+      <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
         Browse All Courses
       </Button>
     ),
@@ -225,29 +176,15 @@ export const AllThreeButtons = {
   render: Template,
 
   args: {
-    illustration: <SearchIcon />,
+    icon: <SearchIcon />,
     title: 'No results found',
     description:
       'We could not find anything matching your search. Try different keywords or browse our catalog.',
     actions: (
       <ButtonGroup>
-        <Button
-          color={ButtonColor.primary}
-          onClick={() => console.log('Search clicked')}
-        >
-          Search Again
-        </Button>
-        <Button
-          color={ButtonColor.secondary}
-          onClick={() => console.log('Clear clicked')}
-        >
-          Clear Filters
-        </Button>
-        <Button
-          color={ButtonColor.primary}
-          variant={ButtonVariant.link}
-          onClick={() => console.log('Browse clicked')}
-        >
+        <Button color={ButtonColor.primary}>Search Again</Button>
+        <Button color={ButtonColor.secondary}>Clear Filters</Button>
+        <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
           Browse All Courses
         </Button>
       </ButtonGroup>
@@ -258,16 +195,10 @@ export const AllThreeButtons = {
 export const WithAdditionalContent = {
   render: () => (
     <EmptyState
-      illustration={<SearchIcon />}
+      icon={<SearchIcon />}
       title="No results found"
       description="Try a different search term or browse by category."
-      additionalContent={
-        <Search
-          isClearable
-          onSearch={value => console.log('Search:', value)}
-          placeholder="Search courses..."
-        />
-      }
+      additionalContent={<Search isClearable placeholder="Search courses..." />}
     />
   ),
 };
@@ -301,15 +232,11 @@ export const Minimal = {
 export const CustomChildren = {
   render: () => (
     <EmptyState
-      illustration={<SearchIcon />}
+      icon={<SearchIcon />}
       title="No courses found"
       description="Try browsing by category instead."
       actions={
-        <Button
-          color={ButtonColor.primary}
-          variant={ButtonVariant.link}
-          onClick={() => console.log('Browse clicked')}
-        >
+        <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
           Browse All Courses
         </Button>
       }
@@ -322,15 +249,43 @@ export const CustomChildren = {
             justifyContent: 'center',
           }}
         >
-          <Tag onClick={() => console.log('Biology')}>Biology</Tag>
-          <Tag onClick={() => console.log('Chemistry')}>Chemistry</Tag>
-          <Tag onClick={() => console.log('Physics')}>Physics</Tag>
-          <Tag onClick={() => console.log('Mathematics')}>Mathematics</Tag>
-          <Tag onClick={() => console.log('Computer Science')}>
-            Computer Science
-          </Tag>
+          <Tag>Biology</Tag>
+          <Tag>Chemistry</Tag>
+          <Tag>Physics</Tag>
+          <Tag>Mathematics</Tag>
+          <Tag>Computer Science</Tag>
         </div>
       }
+    />
+  ),
+};
+
+export const CustomGraphic = {
+  render: () => (
+    <EmptyState
+      customGraphic={
+        <svg
+          viewBox="0 0 200 150"
+          width="200"
+          height="150"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <rect width="200" height="150" rx="0" fill="#E0E0E0" />
+          <text
+            x="100"
+            y="80"
+            textAnchor="middle"
+            fill="#9E9E9E"
+            fontSize="16"
+            fontFamily="sans-serif"
+          >
+            Graphic
+          </text>
+        </svg>
+      }
+      title="No courses found"
+      description="Try browsing by category instead."
+      actions={<Button color={ButtonColor.primary}>Browse Courses</Button>}
     />
   ),
 };

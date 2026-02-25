@@ -1,18 +1,14 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { SearchIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 import { Button, ButtonColor, ButtonVariant } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
 import { EmptyState } from '.';
-
-const SearchIcon = () => (
-  <svg viewBox="0 0 24 24" data-testid="test-icon">
-    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
-  </svg>
-);
 
 describe('EmptyState', () => {
   it('should correctly apply the testId', () => {
@@ -36,23 +32,23 @@ describe('EmptyState', () => {
     expect(getByText(description)).toBeInTheDocument();
   });
 
-  it('should render with illustration', () => {
-    const { getByTestId } = render(
-      <EmptyState illustration={<SearchIcon />} title="Test" />
+  it('should render with icon', () => {
+    const { container } = render(
+      <EmptyState icon={<SearchIcon />} title="Test" />
     );
 
-    expect(getByTestId('test-icon')).toBeInTheDocument();
+    expect(container.querySelector('svg')).toBeInTheDocument();
   });
 
-  it('should render illustration in circular container', () => {
+  it('should render icon in circular container', () => {
     const { container } = render(
-      <EmptyState illustration={<SearchIcon />} title="Test" />
+      <EmptyState icon={<SearchIcon />} title="Test" />
     );
 
     expect(container).toMatchSnapshot();
   });
 
-  it('should render actions', () => {
+  it('should render actions', async () => {
     const onClick = jest.fn();
     const { getByText } = render(
       <EmptyState
@@ -64,7 +60,7 @@ describe('EmptyState', () => {
     const button = getByText('Add Item');
     expect(button).toBeInTheDocument();
 
-    fireEvent.click(button);
+    await userEvent.click(button);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
@@ -114,7 +110,7 @@ describe('EmptyState', () => {
     it('should render danger mode styling', () => {
       const { container } = render(
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           isDanger
           title="Error occurred"
           description="Something went wrong"
@@ -130,7 +126,7 @@ describe('EmptyState', () => {
     it('should render inverse mode styling', () => {
       const { container } = render(
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           isInverse
           title="No results"
           description="Try another search"
@@ -143,7 +139,7 @@ describe('EmptyState', () => {
     it('should render inverse description at full opacity', () => {
       const { getByText } = render(
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           isInverse
           title="No results"
           description="Try another search"
@@ -158,7 +154,7 @@ describe('EmptyState', () => {
     it('should render inverse danger mode styling', () => {
       const { container } = render(
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           isDanger
           isInverse
           title="Error"
@@ -201,7 +197,7 @@ describe('EmptyState', () => {
     it('should not violate accessibility standards', async () => {
       const { container } = render(
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           title="No results found"
           description="Try adjusting your search criteria"
           actions={<Button>Clear Filters</Button>}
@@ -215,7 +211,7 @@ describe('EmptyState', () => {
     it('should not violate accessibility standards in danger mode', async () => {
       const { container } = render(
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           isDanger
           title="Error occurred"
           description="Please try again"
@@ -230,7 +226,7 @@ describe('EmptyState', () => {
     it('should not violate accessibility standards with multiple actions', async () => {
       const { container } = render(
         <EmptyState
-          illustration={<SearchIcon />}
+          icon={<SearchIcon />}
           title="No results found"
           description="Try adjusting your search criteria"
           actions={
@@ -260,6 +256,37 @@ describe('EmptyState', () => {
       );
 
       expect(getByText('Custom content')).toBeInTheDocument();
+    });
+  });
+
+  describe('Custom graphic', () => {
+    it('should render customGraphic without circular container', () => {
+      const { getByAltText, container } = render(
+        <EmptyState
+          customGraphic={
+            <img src="illustration.svg" alt="custom illustration" />
+          }
+          title="Test"
+        />
+      );
+
+      expect(getByAltText('custom illustration')).toBeInTheDocument();
+      expect(container).toMatchSnapshot();
+    });
+
+    it('should prioritize customGraphic over icon', () => {
+      const { getByAltText, container } = render(
+        <EmptyState
+          customGraphic={
+            <img src="illustration.svg" alt="custom illustration" />
+          }
+          icon={<SearchIcon />}
+          title="Test"
+        />
+      );
+
+      expect(getByAltText('custom illustration')).toBeInTheDocument();
+      expect(container.querySelector('svg')).not.toBeInTheDocument();
     });
   });
 });
