@@ -1014,7 +1014,7 @@ export function Example() {
   const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   function handleClose(event: React.SyntheticEvent) {
-    buttonRef.current?.focus();
+    buttonRef.current && buttonRef.current.focus();
   }
 
   return (

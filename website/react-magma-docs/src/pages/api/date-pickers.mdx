@@ -120,12 +120,12 @@ export function Example() {
   const datePickerRef = React.useRef<HTMLInputElement>(null);
 
   function handleDateChange(newChosenDate: Date | null) {
-    setChosenDate(newChosenDate ?? undefined);
+    setChosenDate(newChosenDate);
   }
 
   function handleClearDate() {
     handleDateChange(null);
-    datePickerRef.current.focus();
+    datePickerRef.current && datePickerRef.current.focus();
   }
 
   return (
@@ -232,7 +232,7 @@ export function Example() {
   );
 
   function handleDateChange(newChosenDate: Date | null) {
-    setChosenDate(newChosenDate ?? undefined);
+    setChosenDate(newChosenDate);
   }
 
   return (

@@ -388,7 +388,7 @@ export function Example() {
   const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   function handleButtonFocus() {
-    buttonRef.current?.focus();
+    buttonRef.current && buttonRef.current.focus();
   }
 
   return (

@@ -184,7 +184,7 @@ export function Example() {
   const [chosenTime, setChosenTime] = React.useState<string | null>(null);
 
   function handleDateChange(newChosenDate: Date | null) {
-    let newDate: Date | undefined = newChosenDate ?? undefined;
+    let newDate: Date | undefined = newChosenDate;
 
     if (chosenTime && newChosenDate) {
       const [timePart, ampm] = chosenTime.split(' ');

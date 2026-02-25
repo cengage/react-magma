@@ -12,7 +12,11 @@ export {
 } from './components/AIButton';
 export { Alert, AlertProps } from './components/Alert';
 export { AlertVariant } from './components/AlertBase';
-export { Announce, AnnounceProps } from './components/Announce';
+export {
+  Announce,
+  AnnounceProps,
+  AnnouncePoliteness,
+} from './components/Announce';
 export { AppBar, AppBarProps, AppBarPosition } from './components/AppBar';
 export {
   Badge,

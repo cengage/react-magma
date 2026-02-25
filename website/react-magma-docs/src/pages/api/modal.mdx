@@ -46,7 +46,7 @@ export function Example() {
 
   function handleOnClose() {
     setShowModal(false);
-    buttonRef.current?.focus();
+    buttonRef.current && buttonRef.current.focus();
   }
 
   return (
@@ -107,7 +107,7 @@ export function Example() {
         header="Modal Small"
         onClose={() => {
           setShowSmallModal(false);
-          smallButtonRef.current?.focus();
+          smallButtonRef.current && smallButtonRef.current.focus();
         }}
         isOpen={showSmallModal}
       >
@@ -121,7 +121,7 @@ export function Example() {
         header="Modal Large"
         onClose={() => {
           setShowLargeModal(false);
-          largeButtonRef.current?.focus();
+          largeButtonRef.current && largeButtonRef.current.focus();
         }}
         isOpen={showLargeModal}
       >
@@ -212,7 +212,7 @@ export function Example() {
         size={ModalSize.small}
         onClose={() => {
           setShowModal(false);
-          buttonRef.current?.focus();
+          buttonRef.current && buttonRef.current.focus();
         }}
         isOpen={showModal}
       >
@@ -229,7 +229,7 @@ export function Example() {
         size={ModalSize.small}
         onClose={() => {
           setShowModalHeader(false);
-          headerButtonRef.current?.focus();
+          headerButtonRef.current && headerButtonRef.current.focus();
         }}
         isOpen={showModalHeader}
       >
@@ -271,7 +271,7 @@ export function Example() {
         }
         onClose={() => {
           setShowModalHeaderRef(false);
-          headerRefButtonRef.current?.focus();
+          headerRefButtonRef.current && headerRefButtonRef.current.focus();
         }}
         isOpen={showModalHeaderRef}
         headerRef={handleGetHeaderRef}
@@ -292,7 +292,9 @@ export function Example() {
           </Paragraph>
           <ButtonGroup>
             <Button
-              onClick={() => customHeadingRef.current.focus()}
+              onClick={() =>
+                customHeadingRef.current && customHeadingRef.current.focus()
+              }
               color={ButtonColor.subtle}
             >
               Focus Heading
@@ -358,7 +360,7 @@ export function Example() {
         isCloseButtonHidden
         onClose={() => {
           setShowModal(false);
-          buttonRef.current?.focus();
+          buttonRef.current && buttonRef.current.focus();
         }}
         isOpen={showModal}
       >
@@ -398,13 +400,13 @@ export function Example() {
   function closeModal() {
     setMagmaCloseCalledTimes(magmaCloseCalledTimes + 1);
     setShowModal(false);
-    buttonRef.current?.focus();
+    buttonRef.current && buttonRef.current.focus();
   }
 
   function customCloseModal() {
     setInternalCloseCalledTimes(internalCloseCalledTimes + 1);
     setShowModal(false);
-    buttonRef.current?.focus();
+    buttonRef.current && buttonRef.current.focus();
   }
 
   return (
@@ -622,7 +624,7 @@ export function Example() {
         header="Modal Title"
         onClose={() => {
           setShowModal(false);
-          buttonRef.current?.focus();
+          buttonRef.current && buttonRef.current.focus();
         }}
         isOpen={showModal}
         isInverse
