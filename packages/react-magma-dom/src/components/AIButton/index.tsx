@@ -5,7 +5,7 @@ import { IconProps } from 'react-magma-icons';
 import { StyledAIButton } from './StyledAIButton';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
-import { resolveProps, XOR } from '../../utils';
+import { resolveProps } from '../../utils';
 import { ButtonGroupContext } from '../ButtonGroup';
 
 export enum AIButtonVariant {
