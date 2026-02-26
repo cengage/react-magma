@@ -1,11 +1,9 @@
-name: preview
+name: preview-v2
 on:
   pull_request:
     branches:
-      - dev
-      - main
-      - v3
-      - patch
+      - v2/dev
+      - v2/main
     types: [opened, edited, synchronize, reopened]
 jobs:
   build:
@@ -28,23 +26,8 @@ jobs:
         run: npm test
       - name: Coverage
         uses: codecov/codecov-action@v1
-      - name: Build Docs
-        run: npm run build:docs
       - name: Build Storybook
         run: npm run build:storybook
-      - name: Deploy Doc Preview to Netlify
-        uses: nwtgck/actions-netlify@v1.1
-        with:
-          publish-dir: './website/react-magma-docs/public'
-          production-branch: main
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: false
-          alias: docs-preview-${{ github.event.number }}
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       - name: Deploy Storybook to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
@@ -54,7 +37,7 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: false
-          alias: storybook-preview-${{ github.event.number }}
+          alias: storybook-preview-v2-${{ github.event.number }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

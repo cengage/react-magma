@@ -1,8 +1,8 @@
-name: Publish Latest
+name: Publish V2
 on:
   push:
     branches:
-      - main
+      - v2/main
 jobs:
   build:
     runs-on: macos-latest
@@ -41,38 +41,6 @@ jobs:
         run: |
           echo "::set-output name=alias::$(npm run --silent getAlias)"
           echo "::set-output name=version::$(npm run --silent getVersion)"
-      - name: Build Docs
-        run: npm run build:docs
-        env:
-          PATH_PREFIX: /version/${{ steps.info.outputs.version }}
-      - name: Deploy Docs to Netlify
-        uses: nwtgck/actions-netlify@v1.1
-        with:
-          publish-dir: './website/react-magma-docs/public'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Deploy from GitHub Actions'
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-          alias: ${{ steps.info.outputs.alias }}
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      - name: Build Landing Page
-        run: npm run build:landing
-      - name: Update landing page on Netlify
-        uses: nwtgck/actions-netlify@v1.1
-        with:
-          publish-dir: './website/react-magma-landing/dist'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: 'Deploy Landing page from GitHub Actions'
-          enable-pull-request-comment: true
-          enable-commit-comment: true
-          overwrites-pull-request-comment: true
-          production-deploy: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       - name: Sync main -> dev
         uses: tukasz/direct-merge-action@master
         with:
