@@ -39,7 +39,7 @@ describe('Accordion', () => {
 
     expect(btn).toHaveStyleRule('background', 'transparent');
     expect(panel).toHaveStyleRule('background', 'transparent');
-    expect(accordion).toHaveStyleRule('background', 'transparent');
+    expect(accordion).toHaveStyleRule('background', '#00ff7b');
   });
 
   it('should render the component with the correct inverse styles', () => {
@@ -60,7 +60,7 @@ describe('Accordion', () => {
 
     expect(btn).toHaveStyleRule('background', 'transparent');
     expect(panel).toHaveStyleRule('background', 'transparent');
-    expect(accordion).toHaveStyleRule('background', 'transparent');
+    expect(accordion).toHaveStyleRule('background', '#00ff7b');
   });
 
   it('should render the component a left-aligned icon', () => {
