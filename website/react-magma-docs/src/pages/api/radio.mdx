@@ -178,16 +178,20 @@ If an error message is present, it will replace the helper text. Can be a node o
 import React from 'react';
 
 import {
-  RadioGroup,
-  Radio,
+  Announce,
   Button,
   ButtonColor,
   ButtonGroup,
+  RadioGroup,
+  Radio,
+  VisuallyHidden,
 } from 'react-magma-dom';
 
 export function Example() {
   const [hasError, setHasError] = React.useState(false);
   const [requiredFieldsValue, setRequiredFieldsValue] = React.useState('');
+  const clearedText = 'Input has been reset to default value.';
+  const [announcement, setAnnouncement] = React.useState('');
 
   function changeValue(e) {
     setRequiredFieldsValue(e.target.value);
@@ -204,6 +208,10 @@ export function Example() {
   function reset() {
     setHasError(false);
     setRequiredFieldsValue('');
+    setAnnouncement('');
+    setTimeout(() => {
+      setAnnouncement(clearedText);
+    }, 10);
   }
 
   const errorMsg = hasError ? 'Please select a color' : null;
@@ -230,6 +238,9 @@ export function Example() {
           Reset
         </Button>
       </ButtonGroup>
+      <Announce>
+        <VisuallyHidden>{announcement}</VisuallyHidden>
+      </Announce>
     </>
   );
 }
