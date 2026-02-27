@@ -5,7 +5,7 @@ on:
       - v4/dev
 permissions:
   id-token: write
-  contents: read
+  contents: write
 jobs:
   build:
     runs-on: macos-latest
