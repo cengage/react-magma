@@ -13,11 +13,14 @@
   },
   "changesets": [
     "a11y-charts-add-optional-ariaLabel-prop",
+    "eight-pigs-buy",
     "fix-Pagination-aria-label",
     "fix-TextArea-aria-accessibility-issue",
     "fix-docs-issues",
     "fix-docs-ts",
     "hip-toys-pump",
-    "manually-sync-4.11.0"
+    "manually-sync-4.11.0",
+    "nine-pigs-buy",
+    "ten-pigs-buy"
   ]
 }

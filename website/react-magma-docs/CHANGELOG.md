@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.3.1-next.5
+
+### Patch Changes
+
+- 3248b4eaa: chore: Add support for trusted publishers
+- fdb81200c: chore: Add support for trusted publishers
+- bc00a54ef: chore: Add support for trusted publishers
+
 ## 5.3.1-next.4
 
 ### Patch Changes
