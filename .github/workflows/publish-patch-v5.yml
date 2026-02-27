@@ -5,7 +5,7 @@ on:
       - 'patch-v5/*'
 permissions:
   id-token: write
-  contents: read
+  contents: write
 jobs:
   build:
     runs-on: macos-latest

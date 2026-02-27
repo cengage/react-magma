@@ -5,7 +5,7 @@ name: "Publish Patch V4 (patch-v4/*)"
       - 'patch-v4/*'
 permissions:
   id-token: write
-  contents: read
+  contents: write
 jobs:
   build:
     runs-on: macos-latest
