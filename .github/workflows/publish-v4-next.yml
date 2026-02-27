@@ -4,7 +4,7 @@ on:
     branches:
       - v4/dev
 permissions:
-  id-token: write  # Required for OIDC
+  id-token: write
   contents: read
 jobs:
   build:
@@ -31,7 +31,6 @@ jobs:
         run: |
           git config --global user.name 'github-bot'
           git config --global user.email 'github-bot@users.noreply.github.com'
-          echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} > .npmrc
       - name: Check if Prerelease
         id: check_files
         uses: andstor/file-existence-action@v1

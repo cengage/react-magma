@@ -4,7 +4,7 @@ on:
     branches:
       - main
 permissions:
-  id-token: write  # Required for OIDC
+  id-token: write
   contents: read
 jobs:
   build:
@@ -31,7 +31,6 @@ jobs:
         run: |
           git config --global user.name 'github-bot'
           git config --global user.email 'github-bot@users.noreply.github.com'
-          echo //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }} > .npmrc
       - name: Publish
         run: |
           npm run version:exit
