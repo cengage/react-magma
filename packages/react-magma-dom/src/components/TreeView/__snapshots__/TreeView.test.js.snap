@@ -1803,7 +1803,6 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-5-checkbox"
                           id="item-id-5-checkbox"
@@ -3777,7 +3776,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-3-checkbox"
                           disabled=""
@@ -3880,7 +3878,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-4-checkbox"
                           id="item-id-4-checkbox"
@@ -3981,7 +3978,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-5-checkbox"
                           id="item-id-5-checkbox"
@@ -5824,7 +5820,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-3-checkbox"
                           disabled=""
@@ -5927,7 +5922,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-4-checkbox"
                           id="item-id-4-checkbox"
@@ -6028,7 +6022,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-5-checkbox"
                           id="item-id-5-checkbox"
@@ -7871,7 +7864,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-3-checkbox"
                           disabled=""
@@ -7974,7 +7966,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-4-checkbox"
                           id="item-id-4-checkbox"
@@ -8075,7 +8066,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-5-checkbox"
                           id="item-id-5-checkbox"
@@ -10049,7 +10039,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-3-checkbox"
                           disabled=""
@@ -10152,7 +10141,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-4-checkbox"
                           id="item-id-4-checkbox"
@@ -10253,7 +10241,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-5-checkbox"
                           id="item-id-5-checkbox"
@@ -12227,7 +12214,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-3-checkbox"
                           disabled=""
@@ -12330,7 +12316,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-4-checkbox"
                           id="item-id-4-checkbox"
@@ -12431,7 +12416,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-5-checkbox"
                           id="item-id-5-checkbox"
@@ -14274,7 +14258,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-3-checkbox"
                           disabled=""
@@ -14377,7 +14360,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-4-checkbox"
                           id="item-id-4-checkbox"
@@ -14478,7 +14460,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                         class="emotion-34 emotion-35"
                       >
                         <input
-                          aria-checked="false"
                           class="emotion-36 emotion-37"
                           data-testid="item-id-5-checkbox"
                           id="item-id-5-checkbox"
