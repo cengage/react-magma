@@ -1,3 +1,4 @@
+import isPropValid from '@emotion/is-prop-valid';
 import styled from '@emotion/styled';
 
 import { ThemeInterface } from '../../theme/magma';
@@ -18,7 +19,7 @@ export function getIconBackground(props: {
     : props.theme.colors.primary100;
 }
 
-export function getIconColor(props: {
+export function getIllustrationIconColor(props: {
   isDanger?: boolean;
   isInverse?: boolean;
   theme: ThemeInterface;
@@ -32,8 +33,9 @@ export function getIconColor(props: {
     : props.theme.colors.primary500;
 }
 
-export const StyledEmptyState = styled.div<{
-  isInverse?: boolean;
+export const StyledEmptyState = styled('div', {
+  shouldForwardProp: isPropValid,
+})<{
   theme: ThemeInterface;
 }>`
   display: flex;
@@ -47,7 +49,9 @@ export const StyledEmptyState = styled.div<{
   text-align: center;
 `;
 
-export const StyledIconContainer = styled.div<{
+export const StyledIconContainer = styled('div', {
+  shouldForwardProp: isPropValid,
+})<{
   isDanger?: boolean;
   isInverse?: boolean;
   theme: ThemeInterface;
@@ -60,7 +64,7 @@ export const StyledIconContainer = styled.div<{
   height: ${props => props.theme.spaceScale.spacing10};
   background: ${props => getIconBackground(props)};
   border-radius: 50%;
-  color: ${props => getIconColor(props)};
+  color: ${props => getIllustrationIconColor(props)};
 
   svg {
     width: ${props => props.theme.spaceScale.spacing07};

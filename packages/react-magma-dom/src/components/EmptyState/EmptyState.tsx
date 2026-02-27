@@ -11,7 +11,7 @@ import {
   TypographyVisualStyle,
 } from '../Typography';
 import {
-  getIconColor,
+  getIllustrationIconColor,
   StyledActions,
   StyledEmptyState,
   StyledHeader,
@@ -69,13 +69,12 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
         <StyledEmptyState
           {...rest}
           data-testid={testId}
-          isInverse={isInverse}
           ref={ref}
           theme={theme}
         >
           {isLoading ? (
             <Spinner
-              color={getIconColor({ isInverse, isDanger, theme })}
+              color={getIllustrationIconColor({ isInverse, isDanger, theme })}
               isInverse={isInverse}
               size={48}
             />
