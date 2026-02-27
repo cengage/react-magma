@@ -152,7 +152,6 @@ export const IndeterminateCheckbox = React.forwardRef<
       <StyledContainer style={containerStyle}>
         <HiddenInput
           {...other}
-          aria-checked={ariaCheckedValue}
           aria-describedby={describedBy}
           checked={isChecked}
           data-testid={testId}
