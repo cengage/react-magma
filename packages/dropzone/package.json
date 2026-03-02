@@ -19,7 +19,7 @@
     "test-watch": "jest --watch"
   },
   "dependencies": {
-    "polished": "^3.2.0",
+    "polished": "^3.7.2",
     "react-dropzone": "11.3.2"
   },
   "devDependencies": {
