@@ -105,6 +105,38 @@ export function Example() {
 }
 ```
 
+## Opens in New Tab
+
+Use the `opensInNewTab` prop to make links open in a new browser tab or window. This automatically adds the necessary accessibility attributes (`target="_blank"`, `rel="noopener noreferrer"`) and screen reader text ("Opens in a new tab") to ensure the link is secure and accessible.
+
+```tsx
+import React from 'react';
+
+import { Hyperlink, Spacer, SpacerAxis } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Hyperlink to="https://www.google.com">
+        Same Tab Link
+      </Hyperlink>
+      <Spacer size="12" axis={SpacerAxis.horizontal} />
+      <Hyperlink opensInNewTab to="https://www.google.com">
+        New Tab Link
+      </Hyperlink>
+      <Spacer size="12" axis={SpacerAxis.horizontal} />
+      <Hyperlink 
+        styledAs="Button" 
+        opensInNewTab 
+        to="https://www.google.com"
+      >
+        Button Style New Tab
+      </Hyperlink>
+    </>
+  );
+}
+```
+
 ## Icon
 
 ```tsx
