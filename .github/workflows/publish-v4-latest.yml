@@ -33,6 +33,8 @@ jobs:
           git config --global user.name 'github-bot'
           git config --global user.email 'github-bot@users.noreply.github.com'
       - name: Publish
+        env:
+          NPM_CONFIG_PROVENANCE: true
         run: |
           npm run version:exit
           npm run version:pkgs

@@ -43,6 +43,8 @@ jobs:
           npm run version:prerelease
           git add .changeset/pre.json
       - name: Publish
+        env:
+          NPM_CONFIG_PROVENANCE: true
         run: |
           npm run version:pkgs
           git commit -am "chore: enter prerelease mode"
