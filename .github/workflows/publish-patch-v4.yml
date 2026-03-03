@@ -11,12 +11,13 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Setup
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           check-latest: true
+          registry-url: 'https://registry.npmjs.org'
       - name: Check Node version
         run: node -v
       - name: Update NPM version
@@ -30,6 +31,8 @@ jobs:
           git config --global user.name 'github-bot'
           git config --global user.email 'github-bot@users.noreply.github.com'
       - name: Publish
+        env:
+          NPM_CONFIG_PROVENANCE: true
         run: |
           npm run version:exit
           npm run version:pkgs
