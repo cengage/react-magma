@@ -117,19 +117,13 @@ import { Hyperlink, Spacer, SpacerAxis } from 'react-magma-dom';
 export function Example() {
   return (
     <>
-      <Hyperlink to="https://www.google.com">
-        Same Tab Link
-      </Hyperlink>
+      <Hyperlink to="https://www.google.com">Same Tab Link</Hyperlink>
       <Spacer size="12" axis={SpacerAxis.horizontal} />
       <Hyperlink opensInNewTab to="https://www.google.com">
         New Tab Link
       </Hyperlink>
       <Spacer size="12" axis={SpacerAxis.horizontal} />
-      <Hyperlink 
-        styledAs="Button" 
-        opensInNewTab 
-        to="https://www.google.com"
-      >
+      <Hyperlink styledAs="Button" opensInNewTab to="https://www.google.com">
         Button Style New Tab
       </Hyperlink>
     </>
@@ -327,11 +321,7 @@ import { OpenInNewIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <>
-      <Hyperlink
-        opensInNewTab
-        to="https://www.google.com"
-        hasUnderline={false}
-      >
+      <Hyperlink opensInNewTab to="https://www.google.com" hasUnderline={false}>
         Google
       </Hyperlink>
       <Spacer size={'8px'} axis={SpacerAxis.both} />
