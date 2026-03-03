@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.17
+
+### Patch Changes
+
+- f6cb809: fix(Tag & Button & Input & Combobox & Datagrid & RadioButton): Fix accessibility issues for examples.
+
 ## 7.0.0-rc.16
 
 ### Patch Changes

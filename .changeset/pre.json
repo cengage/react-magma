@@ -100,6 +100,7 @@
     "fix-select-focus-behaviour",
     "fix-table-datagrid-screen-reader-announcements",
     "fix-tablepagination-duplicate-screenreader",
+    "fix-tag-button-doc-issues",
     "fix-timepicker-broken-auto-fill",
     "fix-timepicker-update-styles",
     "major-charts-v13-release",
