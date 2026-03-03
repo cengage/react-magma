@@ -949,12 +949,14 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Button, ButtonColor, Datagrid } from 'react-magma-dom';
+import { Announce, Button, ButtonColor, Datagrid, VisuallyHidden } from 'react-magma-dom';
 
 export function Example() {
   const [selectedRows, updatedSelectedRows] = React.useState<
     (string | number)[]
   >([1]);
+  const clearedText = 'Inputs have been reset to default values.';
+  const [announcement, setAnnouncement] = React.useState('');
 
   const columns = [
     { field: 'col1', header: 'Col 1' },
@@ -1166,13 +1168,24 @@ export function Example() {
     },
   ];
 
+  function reset(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    if (selectedRows.length === 0) {
+      return;
+    }
+    updatedSelectedRows([])
+    setAnnouncement('');
+    setTimeout(() => {
+      setAnnouncement(clearedText);
+    }, 10);
+  }
+
   return (
     <>
       <strong>Selected Rows: </strong>
       <pre>{JSON.stringify(selectedRows, null, 2)}</pre>
       <Button
         color={ButtonColor.danger}
-        onClick={() => updatedSelectedRows([])}
+        onClick={reset}
       >
         Reset Selected Rows
       </Button>
@@ -1186,6 +1199,9 @@ export function Example() {
         tableTitle="Controlled Selectable Column table"
         hasSquareCorners
       />
+      <Announce>
+        <VisuallyHidden>{announcement}</VisuallyHidden>
+      </Announce>
     </>
   );
 }
