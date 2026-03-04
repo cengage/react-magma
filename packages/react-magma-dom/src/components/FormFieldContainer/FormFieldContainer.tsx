@@ -100,6 +100,10 @@ export interface FormFieldContainerBaseProps {
    * @internal
    */
   testId?: string;
+  /**
+   * @internal
+   */
+  additionalContent?: React.ReactNode;
 }
 
 const StyledFormFieldContainer = styled.div<{
@@ -139,6 +143,20 @@ function InputPositionWrapper(props) {
   return props.children;
 }
 
+const UpperWrapper = styled.div<{ labelPosition?: LabelPosition }>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: ${props =>
+    props.labelPosition === LabelPosition.left
+      ? `0 ${props.theme.spaceScale.spacing03} 0 0`
+      : `0 0 ${props.theme.spaceScale.spacing03} 0`};
+
+  & > label {
+    margin: 0;
+  }
+`;
+
 export const FormFieldContainer = React.forwardRef<
   HTMLDivElement,
   FormFieldContainerProps
@@ -164,6 +182,7 @@ export const FormFieldContainer = React.forwardRef<
     maxLength,
     messageStyle,
     testId,
+    additionalContent,
     ...rest
   } = props;
   const theme = React.useContext(ThemeContext);
@@ -188,20 +207,25 @@ export const FormFieldContainer = React.forwardRef<
         theme={theme}
       >
         {labelText && (
-          <Label
-            actionable={actionable}
-            htmlFor={fieldId}
-            iconPosition={iconPosition}
-            labelPosition={labelPosition}
-            size={inputSize}
-            style={labelStyle}
-          >
-            {isLabelVisuallyHidden ? (
-              <VisuallyHidden>{labelText}</VisuallyHidden>
-            ) : (
-              labelText
-            )}
-          </Label>
+          <UpperWrapper labelPosition={labelPosition} theme={theme}>
+            <Label
+              actionable={actionable}
+              htmlFor={fieldId}
+              iconPosition={iconPosition}
+              labelPosition={labelPosition}
+              size={inputSize}
+              style={labelStyle}
+            >
+              {isLabelVisuallyHidden ? (
+                <VisuallyHidden>{labelText}</VisuallyHidden>
+              ) : (
+                labelText
+              )}
+            </Label>
+            {additionalContent &&
+              labelPosition !== LabelPosition.left &&
+              additionalContent}
+          </UpperWrapper>
         )}
         <InputPositionWrapper
           labelPosition={labelPosition}

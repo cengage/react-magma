@@ -4,7 +4,6 @@ import { render } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
-import { CharacterCounter } from '../CharacterCounter';
 
 import { FormFieldContainer } from '.';
 

@@ -190,16 +190,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
         hasLabel={!!labelText}
         labelPosition={labelPosition}
         labelStyle={labelStyle}
-        labelText={
-          labelPosition !== LabelPosition.left && additionalContent ? (
-            <>
-              {labelText}
-              {labelText && additionalContent}
-            </>
-          ) : (
-            labelText
-          )
-        }
+        labelText={labelText}
         labelWidth={labelWidth}
         isInverse={isInverse}
         helperMessage={helperMessage}
