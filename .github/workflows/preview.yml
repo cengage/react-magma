@@ -6,9 +6,6 @@ on:
       - main
       - v4/dev
       - v4/main
-      - 'dev-patch'
-      - 'patch-*'
-      - 'chore/react-18-upgrade'
     types: [opened, synchronize]
 
 jobs:
@@ -16,9 +13,9 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
       - name: Setup
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           check-latest: true
@@ -37,12 +34,18 @@ jobs:
       - name: Run Playwright tests
         run: npm run playwright:test
         timeout-minutes: 60
-      - name: Coverage
-        uses: codecov/codecov-action@v1
       - name: Build Docs
         run: npm run build:docs
       - name: Build Storybook
         run: npm run build:storybook
+      - name: Set version prefix
+        id: version
+        run: |
+          if [[ "${{ github.base_ref }}" == v4/* ]]; then
+            echo "prefix=v4" >> $GITHUB_OUTPUT
+          else
+            echo "prefix=v5" >> $GITHUB_OUTPUT
+          fi
       - name: Deploy Doc Preview to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
@@ -51,7 +54,7 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: false
-          alias: docs-preview-${{ github.event.number }}
+          alias: docs-preview-${{ steps.version.outputs.prefix }}-${{ github.event.number }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -63,7 +66,7 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: false
-          alias: storybook-preview-${{ github.event.number }}
+          alias: storybook-preview-${{ steps.version.outputs.prefix }}-${{ github.event.number }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
