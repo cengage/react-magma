@@ -21,6 +21,8 @@ jobs:
           check-latest: true
       - name: Check Node version
         run: node -v
+      - name: Update NPM version
+        run: npm install -g "npm@^11.11.0"
       - name: Check NPM version
         run: npm -v
       - name: Install
