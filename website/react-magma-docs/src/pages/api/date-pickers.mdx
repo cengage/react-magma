@@ -79,8 +79,8 @@ export function Example() {
   }
 
   function hasErrorMessage() {
-    const convertedMinDate = getDateFromString(minDate);
-    const convertedMaxDate = getDateFromString(maxDate);
+    const convertedMinDate = getDateFromString(minDate) ?? undefined;
+    const convertedMaxDate = getDateFromString(maxDate) ?? undefined;
 
     if (
       chosenDate &&
@@ -120,7 +120,7 @@ export function Example() {
   const datePickerRef = React.useRef<HTMLInputElement>(null);
 
   function handleDateChange(newChosenDate: Date | null) {
-    setChosenDate(newChosenDate);
+    setChosenDate(newChosenDate ?? undefined);
   }
 
   function handleClearDate() {
@@ -232,7 +232,7 @@ export function Example() {
   );
 
   function handleDateChange(newChosenDate: Date | null) {
-    setChosenDate(newChosenDate);
+    setChosenDate(newChosenDate ?? undefined);
   }
 
   return (

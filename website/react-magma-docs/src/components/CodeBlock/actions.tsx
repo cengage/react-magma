@@ -115,6 +115,7 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
         '@react-magma/schema-renderer':
           pkg.dependencies['@react-magma/schema-renderer'],
         uuid: pkg.dependencies['uuid'],
+        '@types/react': pkg.devDependencies['@types/react'],
       }}
       providedFiles={{
         'index.tsx': { content: CODESANDBOX_INDEX_FILE },

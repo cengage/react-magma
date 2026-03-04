@@ -494,12 +494,14 @@ import {
 
 export function Example() {
   const radioRef = React.useRef<HTMLInputElement>(null);
-  const [radioGroupVal, setRadioGroupVal] = React.useState<string | null>(null);
+  const [radioGroupVal, setRadioGroupVal] = React.useState<string | undefined>(
+    undefined
+  );
   const [announcement, setAnnouncement] = React.useState('');
 
   function handleSelectOne() {
     if (!radioRef.current) {
-      setRadioGroupVal(null);
+      setRadioGroupVal(undefined);
       setAnnouncement('');
     } else if (radioRef.current && radioRef.current.checked) {
       setRadioGroupVal('');

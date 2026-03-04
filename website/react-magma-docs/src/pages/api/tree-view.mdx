@@ -641,7 +641,7 @@ import {
 
 function createControlledTags(
   items: TreeItemSelectedInterface[] = [],
-  api: TreeViewApi
+  api?: TreeViewApi
 ) {
   const selected =
     items &&
@@ -653,7 +653,7 @@ function createControlledTags(
           size={TagSize.small}
           color={TagColor.primary}
           onDelete={() =>
-            api.selectItem({
+            api?.selectItem({
               itemId: i.itemId,
               checkedStatus: IndeterminateCheckboxStatus.unchecked,
             })
@@ -675,7 +675,7 @@ function createControlledTags(
           size={TagSize.small}
           color={TagColor.default}
           onDelete={() =>
-            api.selectItem({
+            api?.selectItem({
               itemId: i.itemId,
               checkedStatus: IndeterminateCheckboxStatus.unchecked,
             })

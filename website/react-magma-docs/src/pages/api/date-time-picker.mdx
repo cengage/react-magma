@@ -143,8 +143,8 @@ export function Example() {
   }
 
   function hasErrorMessage() {
-    const convertedMinDate = getDateFromString(minDate);
-    const convertedMaxDate = getDateFromString(maxDate);
+    const convertedMinDate = getDateFromString(minDate) ?? undefined;
+    const convertedMaxDate = getDateFromString(maxDate) ?? undefined;
 
     if (
       chosenDate &&
@@ -184,7 +184,7 @@ export function Example() {
   const [chosenTime, setChosenTime] = React.useState<string | null>(null);
 
   function handleDateChange(newChosenDate: Date | null) {
-    let newDate: Date | undefined = newChosenDate;
+    let newDate: Date | undefined = newChosenDate ?? undefined;
 
     if (chosenTime && newChosenDate) {
       const [timePart, ampm] = chosenTime.split(' ');
