@@ -157,8 +157,8 @@
     "webpack-filter-warnings-plugin": "1.2.1"
   },
   "engines": {
-    "node": ">=18.20.4",
-    "npm": ">=v10.7.0"
+    "node": ">=22.14.0",
+    "npm": ">=11.11.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.21",
