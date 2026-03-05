@@ -1,5 +1,15 @@
 # Change Log
 
+## 5.3.1-next.6
+
+### Patch Changes
+
+- 0fc596b03: chore: pin eslint-plugin-mdx to v2
+- 75e16fb29: chore: combine workflows into publish.yml and preview.yml.
+- ffadd0283: chore: Update publish.yml files to fix publishing issues.
+- Updated dependencies [9e45d2ff0]
+  - react-magma-dom@4.11.1-next.2
+
 ## 5.3.1-next.5
 
 ### Patch Changes

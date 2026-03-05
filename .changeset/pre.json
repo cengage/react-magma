@@ -13,6 +13,10 @@
   },
   "changesets": [
     "a11y-charts-add-optional-ariaLabel-prop",
+    "chore-fix-eslint-error",
+    "chore-update-publish-yml-2",
+    "chore-update-publish-yml",
+    "chore-upgrade-polished-version",
     "eight-pigs-buy",
     "fix-Pagination-aria-label",
     "fix-TextArea-aria-accessibility-issue",

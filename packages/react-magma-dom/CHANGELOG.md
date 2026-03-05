@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.11.1-next.2
+
+### Patch Changes
+
+- 9e45d2ff0: chore: Upgrade polished vesrion to `3.7.2`.
+
 ## 4.11.1-next.1
 
 ### Patch Changes
