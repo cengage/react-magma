@@ -620,7 +620,7 @@ describe('Modal', () => {
         </>
       );
 
-      expect(getByTestId('closeButton')).toHaveFocus();
+      expect(getByTestId('modal-closebtn')).toHaveFocus();
     });
 
     it('should not focus the first element if there is no heading and nothing else to focus', () => {

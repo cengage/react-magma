@@ -43,6 +43,11 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   header?: React.ReactNode;
   /**
+   * Number to indicate which level heading will render (e.g. h1, h2 etc.)
+   * @default 2
+   */
+  headerLevel?: 1 | 2 | 3 | 4 | 5 | 6;
+  /**
    * If true, clicking the backdrop will not dismiss the modal
    * @default false
    */
@@ -152,7 +157,7 @@ const ModalHeader = styled.div<{ theme?: ThemeInterface }>`
   }
 `;
 
-const H1 = styled(Heading)<{ theme?: ThemeInterface }>`
+const H2 = styled(Heading)<{ theme?: ThemeInterface }>`
   font-size: ${props =>
     props.theme.typographyVisualStyles.headingSmall.desktop.fontSize};
   line-height: ${props =>
@@ -275,6 +280,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       isBackgroundClickDisabled,
       isEscKeyDownDisabled,
       header,
+      headerLevel = 2,
       isCloseButtonHidden,
       isOpen,
       unmountOnExit = true,
@@ -336,22 +342,19 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 {header && (
                   <ModalHeader theme={theme}>
                     {header && (
-                      <H1
+                      <H2
                         id={headingId}
-                        level={1}
+                        level={headerLevel}
                         ref={headingRef}
                         visualStyle={TypographyVisualStyle.headingSmall}
                         tabIndex={-1}
                         theme={theme}
                       >
                         {header}
-                      </H1>
+                      </H2>
                     )}
                   </ModalHeader>
                 )}
-                <ModalBody ref={bodyRef} theme={theme}>
-                  {children}
-                </ModalBody>
                 {!isCloseButtonHidden && (
                   <CloseBtn>
                     <IconButton
@@ -368,6 +371,9 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                     />
                   </CloseBtn>
                 )}
+                <ModalBody ref={bodyRef} theme={theme}>
+                  {children}
+                </ModalBody>
               </ModalContent>
             </ModalContainer>
             <ModalBackdrop
