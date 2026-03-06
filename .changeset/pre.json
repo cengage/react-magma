@@ -12,6 +12,7 @@
   },
   "changesets": [
     "chore-publish-v2-test",
-    "chore-publish-v2"
+    "chore-publish-v2",
+    "fix-modal-accessibility-wcag"
   ]
 }
