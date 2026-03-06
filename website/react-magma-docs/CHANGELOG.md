@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.1-next.7
+
+### Patch Changes
+
+- b5c6fdc04: fix(Tag & Button & Input & Combobox & Datagrid & RadioButton): Fix accessibility issues for examples.
+
 ## 5.3.1-next.6
 
 ### Patch Changes
