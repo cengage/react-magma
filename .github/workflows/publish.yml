@@ -54,9 +54,9 @@ jobs:
           npm run version:pkgs
           if ! git diff --quiet; then
             if [[ "${GITHUB_REF_NAME}" == "v2/dev" ]]; then
-              git commit -am "chore: enter prerelease mode"
+              git commit -am "chore: version packages for v2-next release"
             else
-              git commit -am "chore: exit prerelease mode"
+              git commit -am "chore: version packages for v2-latest release"
             fi
           fi
           if [[ "${GITHUB_REF_NAME}" == "v2/dev" ]]; then

@@ -44,7 +44,7 @@
     "changeset": "changeset add",
     "version:pkgs": "changeset version",
     "release": "changeset publish",
-    "release:v2-next": "changeset publish --tag v2-next",
+    "release:v2-next": "changeset publish",
     "release:v2-latest": "changeset publish --tag v2-latest",
     "version:prerelease": "changeset pre enter v2-next",
     "version:exit": "changeset pre exit"
