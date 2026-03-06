@@ -1,5 +1,12 @@
 # Change Log
 
+## 2.6.1-v2-next.0
+
+### Patch Changes
+
+- ab7e1552: chore(v2): publishing all packages not just dom.
+- 2628dfbe: chore(v2): create publish.yml for v2 .
+
 ## 2.6.0
 
 ### Minor Changes
