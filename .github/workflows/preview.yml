@@ -10,34 +10,49 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
       - name: Setup
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '14'
+          node-version: '22'
           check-latest: true
       - name: Check Node version
         run: node -v
       - name: Update NPM version
-        run: npm install -g "npm@^7.6.3"
+        run: npm install -g "npm@^11.11.0"
+      - name: Check NPM version
+        run: npm -v
       - name: Install
-        run: npm ci
+        run: npm ci --legacy-peer-deps
       - name: Test
         run: npm test
-      - name: Coverage
-        uses: codecov/codecov-action@v1
       - name: Build Storybook
         run: npm run build:storybook
-      - name: Deploy Storybook to Netlify
+      - name: Deploy Dev Storybook to Netlify
+        if: github.event.pull_request.base.ref == 'v2/dev'
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './storybook-static'
-          production-branch: main
+          production-branch: v2/main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: false
-          alias: storybook-preview-v2-${{ github.event.number }}
+          alias: storybook-preview-v2-dev-${{ github.event.number }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Deploy Main Storybook to Netlify
+        if: github.event.pull_request.base.ref == 'v2/main'
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './storybook-static'
+          production-branch: v2/main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: false
+          alias: storybook-preview-v2-main-${{ github.event.number }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
