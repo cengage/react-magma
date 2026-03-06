@@ -26,8 +26,6 @@ jobs:
         run: npm ci --legacy-peer-deps
       - name: Test
         run: npm test
-      - name: Coverage
-        uses: codecov/codecov-action@v1
       - name: Build Storybook
         run: npm run build:storybook
       - name: Deploy Dev Storybook to Netlify
@@ -40,7 +38,7 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: false
-          alias: storybook-preview-v2-dev
+          alias: storybook-preview-v2-dev-${{ github.event.number }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -54,7 +52,7 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: false
-          alias: storybook-preview-v2-main
+          alias: storybook-preview-v2-main-${{ github.event.number }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
