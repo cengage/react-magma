@@ -4,6 +4,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cengage/react-magma.git",
+    "directory": "packages/dropzone"
+  },
   "license": "MIT",
   "source": "src/index.ts",
   "main": "dist/fileuploader.js",
