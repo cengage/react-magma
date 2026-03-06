@@ -1,6 +1,6 @@
 {
   "mode": "pre",
-  "tag": "next",
+  "tag": "v2-next",
   "initialVersions": {
     "@react-magma/charts": "0.0.4",
     "@react-magma/dropzone": "0.1.5",

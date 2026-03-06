@@ -9,8 +9,8 @@
     "url": "https://github.com/cengage/react-magma.git"
   },
   "engines": {
-    "npm": "^7.3.0",
-    "node": "^14.15.0"
+    "npm": "^11.11.0",
+    "node": "^22.0.0"
   },
   "scripts": {
     "pkg": "manypkg run",
@@ -23,12 +23,12 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "test-dom": "lerna run test --scope react-magma-dom -- --watch --coverage=false",
-    "storybook": "NODE_OPTIONS='--max-old-space-size=4096' start-storybook -p 6006",
+    "storybook": "NODE_OPTIONS='--openssl-legacy-provider --max-old-space-size=4096' start-storybook -p 6006",
     "build:docs": "lerna run build --scope react-magma-docs --stream --no-progress",
     "build:lite": "lerna run build --ignore react-magma-docs --stream --no-progress",
-    "build": "lerna run build --stream --no-progress",
+    "build": "lerna run build --ignore react-magma-docs --stream --no-progress",
     "build:landing": "node website/react-magma-landing/scripts/build.js",
-    "build:storybook": "build-storybook",
+    "build:storybook": "NODE_OPTIONS='--openssl-legacy-provider' build-storybook",
     "bootstrap": "lerna bootstrap",
     "lint": "lerna run lint",
     "develop": "npm run docs",
@@ -44,7 +44,9 @@
     "changeset": "changeset add",
     "version:pkgs": "changeset version",
     "release": "changeset publish",
-    "version:prerelease": "changeset pre enter next",
+    "release:v2-next": "changeset publish --tag v2-next",
+    "release:v2-latest": "changeset publish --tag v2-latest",
+    "version:prerelease": "changeset pre enter v2-next",
     "version:exit": "changeset pre exit"
   },
   "config": {

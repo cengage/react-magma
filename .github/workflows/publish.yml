@@ -1,10 +1,12 @@
-name: preview-v2
+name: Publish Packages
 on:
-  pull_request:
+  push:
     branches:
       - v2/dev
       - v2/main
-    types: [opened, edited, synchronize, reopened]
+permissions:
+  id-token: write
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,6 +18,7 @@ jobs:
         with:
           node-version: '22'
           check-latest: true
+          registry-url: 'https://registry.npmjs.org'
       - name: Check Node version
         run: node -v
       - name: Update NPM version
@@ -26,12 +29,47 @@ jobs:
         run: npm ci --legacy-peer-deps
       - name: Test
         run: npm test
-      - name: Coverage
-        uses: codecov/codecov-action@v1
+      - name: Configure NPM
+        run: |
+          git config --global user.name 'github-bot'
+          git config --global user.email 'github-bot@users.noreply.github.com'
+      - name: Check if Prerelease
+        if: github.ref_name == 'v2/dev'
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: ".changeset/pre.json"
+      - name: Enter Prerelease Mode
+        if: github.ref_name == 'v2/dev' && steps.check_files.outputs.files_exists == 'false'
+        run: |
+          npm run version:prerelease
+          git add .changeset/pre.json
+      - name: Exit Prerelease Mode
+        if: github.ref_name == 'v2/main'
+        run: npm run version:exit
+      - name: Publish
+        env:
+          NPM_CONFIG_PROVENANCE: true
+        run: |
+          npm run version:pkgs
+          if ! git diff --quiet; then
+            if [[ "${GITHUB_REF_NAME}" == "v2/dev" ]]; then
+              git commit -am "chore: enter prerelease mode"
+            else
+              git commit -am "chore: exit prerelease mode"
+            fi
+          fi
+          if [[ "${GITHUB_REF_NAME}" == "v2/dev" ]]; then
+            npm run release:v2-next
+          else
+            npm run release:v2-latest
+          fi
+          git push --follow-tags
       - name: Build Storybook
+        if: github.ref_name == 'v2/dev' || github.ref_name == 'v2/main'
         run: npm run build:storybook
       - name: Deploy Dev Storybook to Netlify
-        if: github.event.pull_request.base.ref == 'v2/dev'
+        if: github.ref_name == 'v2/dev'
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './storybook-static'
@@ -45,7 +83,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       - name: Deploy Main Storybook to Netlify
-        if: github.event.pull_request.base.ref == 'v2/main'
+        if: github.ref_name == 'v2/main'
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './storybook-static'
