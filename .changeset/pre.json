@@ -70,6 +70,7 @@
     "fix-Dropdown-focus-behaviour",
     "fix-Hyperlink-new-prop",
     "fix-Modal-fix-focus-order",
+    "fix-NativeSelect-a11y-additional-content-issue",
     "fix-NavTabs-fix-obscured-focus",
     "fix-NavsTab-add-region",
     "fix-Pagination-add-announcement-selected-page",

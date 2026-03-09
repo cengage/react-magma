@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.55
+
+### Patch Changes
+
+- c5bf081: fix(NativeSelect): move `additionalContent` from `<label>`. Add internal prop to `FormFieldContainer`. Fix accessibility issue.
+
 ## 5.1.0-rc.54
 
 ### Minor Changes
