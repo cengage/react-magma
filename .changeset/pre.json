@@ -68,6 +68,7 @@
     "fix-Dropdown-add-aria-contols",
     "fix-Dropdown-escape-issue",
     "fix-Dropdown-focus-behaviour",
+    "fix-Hyperlink-new-prop",
     "fix-Modal-fix-focus-order",
     "fix-NavTabs-fix-obscured-focus",
     "fix-NavsTab-add-region",

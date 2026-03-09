@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.54
+
+### Minor Changes
+
+- 48e8a74: fix(Hyperlink): add new `opensInNewTab` prop.
+
 ## 5.1.0-rc.53
 
 ### Patch Changes
