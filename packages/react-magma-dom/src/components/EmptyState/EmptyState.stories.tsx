@@ -260,10 +260,10 @@ export const CustomChildren = {
   ),
 };
 
-export const CustomGraphic = {
+export const Graphic = {
   render: () => (
     <EmptyState
-      customGraphic={
+      graphic={
         <svg
           viewBox="0 0 200 150"
           width="200"

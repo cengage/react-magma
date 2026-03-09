@@ -132,9 +132,9 @@ export function Example() {
 }
 ```
 
-## Custom Graphic
+## Graphic
 
-Use the `customGraphic` prop to replace the entire circular icon area with your own content. Unlike `icon`, which is always rendered inside a colored circle, `customGraphic` renders as-is with no wrapper. If both `icon` and `customGraphic` are provided, `customGraphic` takes priority.
+Use the `graphic` prop to replace the entire circular icon area with your own content. Unlike `icon`, which is always rendered inside a colored circle, `graphic` renders as-is with no wrapper. If both `icon` and `graphic` are provided, `graphic` takes priority.
 
 ```tsx
 import React from 'react';
@@ -145,7 +145,7 @@ import { SearchIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <EmptyState
-      customGraphic={
+      graphic={
         <svg viewBox="0 0 200 150" width="200" height="150" xmlns="http://www.w3.org/2000/svg">
           <rect width="200" height="150" rx="0" fill="#E0E0E0" />
           <text x="100" y="80" textAnchor="middle" fill="#616161" fontSize="16" fontFamily="sans-serif">Graphic</text>

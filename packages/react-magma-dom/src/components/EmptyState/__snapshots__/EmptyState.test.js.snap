@@ -1,184 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EmptyState Custom graphic should render customGraphic without circular container 1`] = `
-.emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 16px;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  text-align: center;
-}
-
-.emotion-2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-}
-
-.emotion-4 {
-  border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  padding: 0;
-  color: #292F7C;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: .32px;
-  line-height: 24px;
-  text-transform: none;
-}
-
-.emotion-4:focus {
-  border-bottom: 2px solid #0074B7;
-  outline: 0;
-  -webkit-transition: border 0.1s linear;
-  transition: border 0.1s linear;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    font-size: 12px;
-    letter-spacing: .32px;
-    line-height: 16px;
-  }
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    font-size: 18px;
-    line-height: 24px;
-  }
-}
-
-.emotion-0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 16px;
-  margin: 0 auto;
-  max-width: 450px;
-  min-width: 240px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  text-align: center;
-}
-
-.emotion-2 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-}
-
-.emotion-4 {
-  border-bottom: 2px solid transparent;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  padding: 0;
-  color: #292F7C;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: .32px;
-  line-height: 24px;
-  text-transform: none;
-}
-
-.emotion-4:focus {
-  border-bottom: 2px solid #0074B7;
-  outline: 0;
-  -webkit-transition: border 0.1s linear;
-  transition: border 0.1s linear;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    font-size: 12px;
-    letter-spacing: .32px;
-    line-height: 16px;
-  }
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    font-size: 18px;
-    line-height: 24px;
-  }
-}
-
-<div>
-  <div
-    class="emotion-0 emotion-1"
-  >
-    <div
-      class="emotion-2 emotion-3"
-    >
-      <div
-        aria-hidden="true"
-      >
-        <img
-          alt="custom illustration"
-          src="illustration.svg"
-        />
-      </div>
-      <h3
-        class="emotion-4 emotion-5"
-        style="color: rgb(69, 69, 69);"
-      >
-        Test
-      </h3>
-    </div>
-  </div>
-</div>
-`;
-
 exports[`EmptyState Danger mode should render danger mode styling 1`] = `
 .emotion-0 {
   display: -webkit-box;
@@ -694,6 +515,185 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
           Retry
         </span>
       </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EmptyState Graphic should render graphic without circular container 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-4:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-4:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    <div
+      class="emotion-2 emotion-3"
+    >
+      <div
+        aria-hidden="true"
+      >
+        <img
+          alt="custom illustration"
+          src="illustration.svg"
+        />
+      </div>
+      <h3
+        class="emotion-4 emotion-5"
+        style="color: rgb(69, 69, 69);"
+      >
+        Test
+      </h3>
     </div>
   </div>
 </div>

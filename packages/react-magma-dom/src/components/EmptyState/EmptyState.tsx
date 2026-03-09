@@ -25,8 +25,8 @@ export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
   additionalContent?: React.ReactNode;
   /** Description text displayed below the title (omit to hide) */
   description?: string;
-  /** Custom graphic that replaces the entire circular icon area — renders as-is with no wrapper */
-  customGraphic?: React.ReactNode;
+  /** Graphic that replaces the entire circular icon area — renders as-is with no wrapper */
+  graphic?: React.ReactNode;
   /** Icon element displayed inside the circular illustration area */
   icon?: React.ReactElement;
   /** Use danger/error color scheme (red) */
@@ -48,7 +48,7 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
     const {
       actions,
       additionalContent,
-      customGraphic,
+      graphic,
       description,
       icon,
       isDanger = false,
@@ -80,10 +80,10 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
             />
           ) : (
             <>
-              {(customGraphic || icon || title || description) && (
+              {(graphic || icon || title || description) && (
                 <StyledHeader theme={theme}>
-                  {customGraphic ? (
-                    <div aria-hidden="true">{customGraphic}</div>
+                  {graphic ? (
+                    <div aria-hidden="true">{graphic}</div>
                   ) : (
                     icon && (
                       <StyledIconContainer

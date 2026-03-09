@@ -259,13 +259,11 @@ describe('EmptyState', () => {
     });
   });
 
-  describe('Custom graphic', () => {
-    it('should render customGraphic without circular container', () => {
+  describe('Graphic', () => {
+    it('should render graphic without circular container', () => {
       const { getByAltText, container } = render(
         <EmptyState
-          customGraphic={
-            <img src="illustration.svg" alt="custom illustration" />
-          }
+          graphic={<img src="illustration.svg" alt="custom illustration" />}
           title="Test"
         />
       );
@@ -274,12 +272,10 @@ describe('EmptyState', () => {
       expect(container).toMatchSnapshot();
     });
 
-    it('should prioritize customGraphic over icon', () => {
+    it('should prioritize graphic over icon', () => {
       const { getByAltText, container } = render(
         <EmptyState
-          customGraphic={
-            <img src="illustration.svg" alt="custom illustration" />
-          }
+          graphic={<img src="illustration.svg" alt="custom illustration" />}
           icon={<SearchIcon />}
           title="Test"
         />
