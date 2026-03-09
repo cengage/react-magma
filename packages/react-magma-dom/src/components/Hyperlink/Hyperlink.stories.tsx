@@ -40,7 +40,6 @@ export const Default = {
     return (
       <>
         <Hyperlink
-          target="_blank"
           {...args}
           icon={
             iconPosition === HyperlinkIconPosition.both
@@ -61,6 +60,7 @@ export const Default = {
     hasUnderline: false,
     icon: <KeyboardArrowRightIcon aria-hidden />,
     iconPosition: HyperlinkIconPosition.right,
+    opensInNewTab: true,
   },
 };
 
@@ -72,7 +72,7 @@ export const All = {
           <CardBody>
             <Hyperlink
               textTransform={ButtonTextTransform.none}
-              target="_blank"
+              opensInNewTab
               to="https://www.google.com"
             >
               Google
@@ -81,7 +81,7 @@ export const All = {
             <Hyperlink
               color={ButtonColor.marketing}
               styledAs="Button"
-              target="_blank"
+              opensInNewTab
               to="https://www.google.com"
             >
               Google
@@ -89,7 +89,7 @@ export const All = {
             <Spacer size={'8px'} axis={SpacerAxis.horizontal} />
             <Hyperlink
               styledAs="Button"
-              target="_blank"
+              opensInNewTab
               to="https://www.google.com"
               icon={<KeyboardArrowLeftIcon aria-hidden />}
               iconPosition={HyperlinkIconPosition.left}
@@ -100,7 +100,7 @@ export const All = {
             <Hyperlink
               color={ButtonColor.danger}
               styledAs="Button"
-              target="_blank"
+              opensInNewTab
               to="https://www.google.com"
               icon={[
                 <KeyboardArrowLeftIcon aria-hidden key={0} />,
@@ -114,7 +114,7 @@ export const All = {
             <Hyperlink
               color={ButtonColor.secondary}
               styledAs="Button"
-              target="_blank"
+              opensInNewTab
               to="https://www.google.com"
               icon={<KeyboardArrowRightIcon aria-hidden />}
               iconPosition={HyperlinkIconPosition.right}
@@ -133,7 +133,7 @@ export const All = {
               <span style={{ flex: '0 0 auto' }}>
                 <Hyperlink
                   textTransform={ButtonTextTransform.none}
-                  target="_blank"
+                  opensInNewTab
                   to="#"
                   hasUnderline={false}
                   icon={<KeyboardArrowLeftIcon aria-hidden />}
@@ -145,7 +145,7 @@ export const All = {
               <span style={{ flex: '0 0 auto' }}>
                 <Hyperlink
                   textTransform={ButtonTextTransform.none}
-                  target="_blank"
+                  opensInNewTab
                   to="#"
                   hasUnderline={false}
                   icon={<KeyboardArrowRightIcon aria-hidden />}
@@ -165,7 +165,7 @@ export const All = {
               brownie lemon drops tootsie roll pudding muffin powder pudding.{' '}
               <Hyperlink
                 textTransform={ButtonTextTransform.none}
-                target="_blank"
+                opensInNewTab
                 to="https://www.cengage.com/"
                 icon={
                   <OpenInNewIcon size={magma.iconSizes.small} aria-hidden />
@@ -176,7 +176,7 @@ export const All = {
               </Hyperlink>{' '}
               Pastry dragée cheesecake chocolate bar donut jujubes candy canes
               sugar plum bonbon. Toffee pie macaroon{' '}
-              <Hyperlink target="_blank" to="https://www.apple.com/">
+              <Hyperlink opensInNewTab to="https://www.apple.com/">
                 apple
               </Hyperlink>{' '}
               pie gummi bears gummi bears shortbread.
@@ -208,7 +208,7 @@ export const All = {
               You can{' '}
               <Hyperlink
                 textTransform={ButtonTextTransform.none}
-                target="_blank"
+                opensInNewTab
                 to="https://www.google.com"
                 hasUnderline={false}
                 icon={[
@@ -244,7 +244,7 @@ export const All = {
               You can{' '}
               <Hyperlink
                 textTransform={ButtonTextTransform.none}
-                target="_blank"
+                opensInNewTab
                 to="https://www.google.com"
                 hasUnderline={false}
                 icon={[
@@ -278,7 +278,7 @@ export const All = {
               You can{' '}
               <Hyperlink
                 textTransform={ButtonTextTransform.none}
-                target="_blank"
+                opensInNewTab
                 to="https://www.google.com"
                 hasUnderline={false}
                 icon={[
@@ -312,7 +312,7 @@ export const All = {
               You can{' '}
               <Hyperlink
                 textTransform={ButtonTextTransform.none}
-                target="_blank"
+                opensInNewTab
                 to="https://www.google.com"
                 hasUnderline={false}
                 icon={[
@@ -346,7 +346,7 @@ export const All = {
               You can{' '}
               <Hyperlink
                 textTransform={ButtonTextTransform.none}
-                target="_blank"
+                opensInNewTab
                 to="https://www.google.com"
                 hasUnderline={false}
                 icon={[
@@ -386,7 +386,7 @@ export const Inverse = {
           <CardBody>
             <Hyperlink
               textTransform={ButtonTextTransform.none}
-              target="_blank"
+              opensInNewTab
               to="https://www.google.com"
               isInverse
             >
@@ -396,7 +396,7 @@ export const Inverse = {
             <Hyperlink
               color={ButtonColor.marketing}
               styledAs="Button"
-              target="_blank"
+              opensInNewTab
               to="https://www.google.com"
               isInverse
             >
@@ -405,7 +405,7 @@ export const Inverse = {
             <Spacer size={'8px'} axis={SpacerAxis.horizontal} />
             <Hyperlink
               styledAs="Button"
-              target="_blank"
+              opensInNewTab
               to="https://www.google.com"
               isInverse
               hasUnderline={false}
@@ -418,7 +418,7 @@ export const Inverse = {
             <Hyperlink
               color={ButtonColor.danger}
               styledAs="Button"
-              target="_blank"
+              opensInNewTab
               to="https://www.google.com"
               isInverse
               hasUnderline={false}
@@ -434,7 +434,7 @@ export const Inverse = {
             <Hyperlink
               color={ButtonColor.secondary}
               styledAs="Button"
-              target="_blank"
+              opensInNewTab
               to="https://www.google.com"
               hasUnderline={false}
               isInverse
@@ -455,7 +455,7 @@ export const Inverse = {
               <span style={{ flex: '0 0 auto' }}>
                 <Hyperlink
                   textTransform={ButtonTextTransform.none}
-                  target="_blank"
+                  opensInNewTab
                   to="#"
                   hasUnderline={false}
                   icon={<KeyboardArrowLeftIcon aria-hidden />}
@@ -468,7 +468,7 @@ export const Inverse = {
               <span style={{ flex: '0 0 auto' }}>
                 <Hyperlink
                   textTransform={ButtonTextTransform.none}
-                  target="_blank"
+                  opensInNewTab
                   to="#"
                   hasUnderline={false}
                   icon={<KeyboardArrowRightIcon aria-hidden />}
@@ -489,7 +489,7 @@ export const Inverse = {
               brownie lemon drops tootsie roll pudding muffin powder pudding.{' '}
               <Hyperlink
                 textTransform={ButtonTextTransform.none}
-                target="_blank"
+                opensInNewTab
                 to="https://www.cengage.com/"
                 icon={
                   <OpenInNewIcon size={magma.iconSizes.small} aria-hidden />
@@ -501,7 +501,7 @@ export const Inverse = {
               </Hyperlink>{' '}
               Pastry dragée cheesecake chocolate bar donut jujubes candy canes
               sugar plum bonbon. Toffee pie macaroon{' '}
-              <Hyperlink target="_blank" to="https://www.apple.com/" isInverse>
+              <Hyperlink opensInNewTab to="https://www.apple.com/" isInverse>
                 apple
               </Hyperlink>{' '}
               pie gummi bears gummi bears shortbread.
@@ -524,7 +524,7 @@ export const Inverse = {
               <Hyperlink
                 isInverse
                 textTransform={ButtonTextTransform.none}
-                target="_blank"
+                opensInNewTab
                 to="https://www.google.com"
                 hasUnderline={false}
                 icon={[
@@ -562,7 +562,7 @@ export const Inverse = {
               <Hyperlink
                 isInverse
                 textTransform={ButtonTextTransform.none}
-                target="_blank"
+                opensInNewTab
                 to="https://www.google.com"
                 hasUnderline={false}
                 icon={[
@@ -598,7 +598,7 @@ export const Inverse = {
               <Hyperlink
                 isInverse
                 textTransform={ButtonTextTransform.none}
-                target="_blank"
+                opensInNewTab
                 to="https://www.google.com"
                 hasUnderline={false}
                 icon={[
@@ -634,7 +634,7 @@ export const Inverse = {
               <Hyperlink
                 isInverse
                 textTransform={ButtonTextTransform.none}
-                target="_blank"
+                opensInNewTab
                 to="https://www.google.com"
                 hasUnderline={false}
                 icon={[
@@ -670,7 +670,7 @@ export const Inverse = {
               <Hyperlink
                 isInverse
                 textTransform={ButtonTextTransform.none}
-                target="_blank"
+                opensInNewTab
                 to="https://www.google.com"
                 hasUnderline={false}
                 icon={[
