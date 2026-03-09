@@ -2962,7 +2962,7 @@ export const ComplexWithAdditionalContent = {
           wrap={FlexWrap.nowrap}
         >
           <Flex behavior={FlexBehavior.item}>
-            <Hyperlink to="google.com" target="_blank" hasUnderline={false}>
+            <Hyperlink to="google.com" opensInNewTab hasUnderline={false}>
               Most common activity length is 39 chars but what if longer
             </Hyperlink>
           </Flex>
@@ -3437,7 +3437,7 @@ export const VirtualizedLargeTree = {
           wrap={FlexWrap.nowrap}
         >
           <Flex behavior={FlexBehavior.item}>
-            <Hyperlink to="google.com" target="_blank" hasUnderline={false}>
+            <Hyperlink to="google.com" opensInNewTab hasUnderline={false}>
               Most common activity length is 39 chars but what if longer
             </Hyperlink>
           </Flex>
