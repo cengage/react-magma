@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.18
+
+### Patch Changes
+
+- 816b4a3: chore: Update publish.yml files to fix publishing issues.
+
 ## 7.0.0-rc.17
 
 ### Patch Changes

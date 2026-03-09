@@ -31,6 +31,7 @@
     "chore-storybook",
     "chore-test-packages-upgrade",
     "chore-update-docs-and-landing-page",
+    "chore-update-publish-yml",
     "chore-update-react-magma-icons.version",
     "chore-upgrade-gatsby-react-helmet",
     "chore-upgrade-minor-deps",
