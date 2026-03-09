@@ -648,7 +648,6 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
       class="emotion-2 emotion-3"
     >
       <div
-        aria-hidden="true"
         class="emotion-4 emotion-5"
       >
         <svg
@@ -949,7 +948,6 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
       class="emotion-2 emotion-3"
     >
       <div
-        aria-hidden="true"
         class="emotion-4 emotion-5"
       >
         <svg
@@ -1234,7 +1232,6 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
       class="emotion-2 emotion-3"
     >
       <div
-        aria-hidden="true"
         class="emotion-4 emotion-5"
       >
         <svg
@@ -2168,7 +2165,6 @@ exports[`EmptyState should render icon in circular container 1`] = `
       class="emotion-2 emotion-3"
     >
       <div
-        aria-hidden="true"
         class="emotion-4 emotion-5"
       >
         <svg

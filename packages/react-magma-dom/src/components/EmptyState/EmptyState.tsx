@@ -87,7 +87,6 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
                   ) : (
                     icon && (
                       <StyledIconContainer
-                        aria-hidden="true"
                         isDanger={isDanger}
                         isInverse={isInverse}
                         theme={theme}

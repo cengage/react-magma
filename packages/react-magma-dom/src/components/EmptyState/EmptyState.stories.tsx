@@ -275,7 +275,7 @@ export const CustomGraphic = {
             x="100"
             y="80"
             textAnchor="middle"
-            fill="#9E9E9E"
+            fill="#616161"
             fontSize="16"
             fontFamily="sans-serif"
           >

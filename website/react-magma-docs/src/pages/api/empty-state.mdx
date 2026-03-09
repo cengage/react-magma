@@ -8,7 +8,7 @@ props:
 <PageContent componentName="empty_state" type="api">
 
 <LeadParagraph>
-  The EmptyState component communicates a lack of content and guides users
+  The Empty State component communicates a lack of content and guides users
   towards action. It supports an icon, title, description, composed action
   buttons, and additional custom content.
 </LeadParagraph>
@@ -41,32 +41,6 @@ export function Example() {
             Browse All Courses
           </Button>
         </ButtonGroup>
-      }
-    />
-  );
-}
-```
-
-## Tertiary Action
-
-A link-style button below the primary and secondary buttons. Use it for a lower-priority alternative action.
-
-```tsx
-import React from 'react';
-
-import { EmptyState, Button, ButtonColor, ButtonVariant } from 'react-magma-dom';
-import { SearchIcon } from 'react-magma-icons';
-
-export function Example() {
-  return (
-    <EmptyState
-      icon={<SearchIcon />}
-      title="No courses found"
-      description="We couldn't find any courses matching your search. Try browsing the full catalog."
-      actions={
-        <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
-          Browse Course Catalog
-        </Button>
       }
     />
   );
@@ -174,13 +148,143 @@ export function Example() {
       customGraphic={
         <svg viewBox="0 0 200 150" width="200" height="150" xmlns="http://www.w3.org/2000/svg">
           <rect width="200" height="150" rx="0" fill="#E0E0E0" />
-          <text x="100" y="80" textAnchor="middle" fill="#9E9E9E" fontSize="16" fontFamily="sans-serif">Graphic</text>
+          <text x="100" y="80" textAnchor="middle" fill="#616161" fontSize="16" fontFamily="sans-serif">Graphic</text>
         </svg>
       }
       title="No courses found"
       description="Try browsing by category instead."
       actions={
         <Button color={ButtonColor.primary}>Browse Courses</Button>
+      }
+    />
+  );
+}
+```
+
+## Loading State
+
+Use the `isLoading` prop to show a loading spinner instead of the content. This is useful when data is being fetched.
+
+```tsx
+import React from 'react';
+
+import { EmptyState } from 'react-magma-dom';
+
+export function Example() {
+  return <EmptyState isLoading />;
+}
+```
+
+The loading spinner color adapts to `isDanger` and `isInverse` props.
+
+## Additional Content
+
+Use the `additionalContent` prop to render custom content between the text and action buttons. This is useful for inline search fields, filter chips, or other interactive elements.
+
+```tsx
+import React from 'react';
+
+import { EmptyState, Search } from 'react-magma-dom';
+import { SearchIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <EmptyState
+      icon={<SearchIcon />}
+      title="No results found"
+      description="Try a different search term or browse by category."
+      additionalContent={
+        <Search isClearable placeholder="Search courses..." />
+      }
+    />
+  );
+}
+```
+
+### Tag
+
+You can also use `additionalContent` for browsable categories. Here, clickable `Tag` components let users browse courses by category.
+
+```tsx
+import React from 'react';
+
+import { EmptyState, Button, ButtonColor, ButtonVariant, Tag } from 'react-magma-dom';
+import { SearchIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <EmptyState
+      icon={<SearchIcon />}
+      title="No courses found"
+      description="Try browsing by category instead."
+      actions={
+        <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
+          Browse All Courses
+        </Button>
+      }
+      additionalContent={
+        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <Tag>Biology</Tag>
+          <Tag>Chemistry</Tag>
+          <Tag>Physics</Tag>
+          <Tag>Mathematics</Tag>
+          <Tag>Computer Science</Tag>
+        </div>
+      }
+    />
+  );
+}
+```
+
+### Input
+
+Additional content can also include form inputs. Here, an `Input` field lets students enter a course access code directly from the empty state.
+
+```tsx
+import React from 'react';
+
+import { EmptyState, Button, ButtonColor, Input } from 'react-magma-dom';
+import { SchoolIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <EmptyState
+      icon={<SchoolIcon />}
+      title="No courses yet"
+      description="Enter a course access code from your instructor to get started."
+      actions={
+        <Button color={ButtonColor.primary}>Join Course</Button>
+      }
+      additionalContent={<Input placeholder="Enter access code" />}
+    />
+  );
+}
+```
+
+### Toggle
+
+A `Toggle` can let users opt in to notifications from within an empty state.
+
+```tsx
+import React from 'react';
+
+import { EmptyState, Toggle } from 'react-magma-dom';
+import { NotificationsIcon } from 'react-magma-icons';
+
+export function Example() {
+  const [enabled, setEnabled] = React.useState(false);
+
+  return (
+    <EmptyState
+      icon={<NotificationsIcon />}
+      title="No new announcements"
+      description="There are no announcements for your courses right now."
+      additionalContent={
+        <Toggle
+          checked={enabled}
+          labelText="Notify me when new announcements are posted"
+          onChange={() => setEnabled(prev => !prev)}
+        />
       }
     />
   );
@@ -235,130 +339,6 @@ export function Example() {
         />
       </CardBody>
     </Card>
-  );
-}
-```
-
-## Loading State
-
-Use the `isLoading` prop to show a loading spinner instead of the content. This is useful when data is being fetched.
-
-```tsx
-import React from 'react';
-
-import { EmptyState } from 'react-magma-dom';
-
-export function Example() {
-  return <EmptyState isLoading />;
-}
-```
-
-The loading spinner color adapts to `isDanger` and `isInverse` props.
-
-## Additional Content
-
-Use the `additionalContent` prop to render custom content between the text and action buttons. This is useful for inline search fields, filter chips, or other interactive elements.
-
-```tsx
-import React from 'react';
-
-import { EmptyState, Search } from 'react-magma-dom';
-import { SearchIcon } from 'react-magma-icons';
-
-export function Example() {
-  return (
-    <EmptyState
-      icon={<SearchIcon />}
-      title="No results found"
-      description="Try a different search term or browse by category."
-      additionalContent={
-        <Search isClearable placeholder="Search courses..." />
-      }
-    />
-  );
-}
-```
-
-You can also use `additionalContent` for browsable categories. Here, clickable `Tag` components let users browse courses by category.
-
-```tsx
-import React from 'react';
-
-import { EmptyState, Button, ButtonColor, ButtonVariant, Tag } from 'react-magma-dom';
-import { SearchIcon } from 'react-magma-icons';
-
-export function Example() {
-  return (
-    <EmptyState
-      icon={<SearchIcon />}
-      title="No courses found"
-      description="Try browsing by category instead."
-      actions={
-        <Button color={ButtonColor.primary} variant={ButtonVariant.link}>
-          Browse All Courses
-        </Button>
-      }
-      additionalContent={
-        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
-          <Tag>Biology</Tag>
-          <Tag>Chemistry</Tag>
-          <Tag>Physics</Tag>
-          <Tag>Mathematics</Tag>
-          <Tag>Computer Science</Tag>
-        </div>
-      }
-    />
-  );
-}
-```
-
-Additional content can also include form inputs. Here, an `Input` field lets students enter a course access code directly from the empty state.
-
-```tsx
-import React from 'react';
-
-import { EmptyState, Button, ButtonColor, Input } from 'react-magma-dom';
-import { SchoolIcon } from 'react-magma-icons';
-
-export function Example() {
-  return (
-    <EmptyState
-      icon={<SchoolIcon />}
-      title="No courses yet"
-      description="Enter a course access code from your instructor to get started."
-      actions={
-        <Button color={ButtonColor.primary}>Join Course</Button>
-      }
-      additionalContent={<Input placeholder="Enter access code" />}
-    />
-  );
-}
-```
-
-A `Toggle` can let users opt in to notifications from within an empty state.
-
-```tsx
-import React from 'react';
-
-import { EmptyState, Toggle } from 'react-magma-dom';
-import { NotificationsIcon } from 'react-magma-icons';
-
-export function Example() {
-  const [enabled, setEnabled] = React.useState(false);
-
-  return (
-    <EmptyState
-      icon={<NotificationsIcon />}
-      title="No new announcements"
-      description="There are no announcements for your courses right now."
-      additionalContent={
-        <Toggle
-          checked={enabled}
-          labelText="Notify me when new announcements are posted"
-          onChange={() => setEnabled(prev => !prev)}
-        />
-      }
-    />
   );
 }
 ```
