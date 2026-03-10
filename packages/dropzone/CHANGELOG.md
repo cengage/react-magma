@@ -1,5 +1,16 @@
 # Change Log
 
+## 14.0.0-next.1
+
+### Patch Changes
+
+- de8db8f39: fix(publish): Add missing repository.url to package.json for npm provenance verification.
+- Updated dependencies [0223aac78]
+- Updated dependencies [6009a5824]
+- Updated dependencies [a939d4eea]
+- Updated dependencies [de8db8f39]
+  - react-magma-dom@4.12.0-next.3
+
 ## 13.0.1-next.0
 
 ### Patch Changes

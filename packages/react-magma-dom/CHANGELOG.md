@@ -1,5 +1,18 @@
 ## 4.11.0
 
+## 4.12.0-next.3
+
+### Minor Changes
+
+- 0223aac78: fix(Hyperlink): add new `opensInNewTab` prop.
+
+### Patch Changes
+
+- 6009a5824: fix(NativeSelect): move `additionalContent` from `<label>`. Add internal prop to `FormFieldContainer`. Fix accessibility issue.
+- a939d4eea: fix(Select & MultiSelect & Combobox & MultiCombobox): Add a state to announce changes after the input is cleared.
+  Updated doc example.
+- de8db8f39: fix(publish): Add missing repository.url to package.json for npm provenance verification.
+
 ## 4.11.1-next.2
 
 ### Patch Changes
