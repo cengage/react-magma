@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.59
+
+### Minor Changes
+
+- 39546f5: feat(EmptyState): Add EmptyState component
+
 ## 5.1.0-rc.58
 
 ### Patch Changes

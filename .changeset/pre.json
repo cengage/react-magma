@@ -44,6 +44,7 @@
     "feat-Popover-add-isFullWidth-prop",
     "feat-SplitDropdown-add-leading-icon",
     "feat-TreeView-selectParents-prop",
+    "feat-empty-state",
     "feat-treeview-performance",
     "fix-AIButton-box-shadow",
     "fix-Accordion-accessibility-render-issue",
