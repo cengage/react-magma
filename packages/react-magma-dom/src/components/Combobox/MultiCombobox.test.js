@@ -1066,6 +1066,40 @@ describe('MultiCombobox', () => {
     expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
   });
 
+  it('should skip disabled items when typing to filter', async () => {
+    const customItems = [
+      {
+        label: 'Red',
+        value: 'red',
+        disabled: false,
+      },
+      {
+        label: 'Blue',
+        value: 'blue',
+        disabled: true,
+      },
+      {
+        label: 'Green',
+        value: 'green',
+        disabled: false,
+      },
+    ];
+
+    const { getByLabelText, getByText } = render(
+      <MultiCombobox isMulti labelText={labelText} items={customItems} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, {
+      selector: 'input',
+    });
+
+    await userEvent.clear(renderedCombobox);
+    await userEvent.type(renderedCombobox, 'Blue');
+
+    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'false');
+    expect(getByText('Blue')).not.toHaveFocus();
+  });
+
   describe('events', () => {
     it('onBlur', () => {
       const onBlur = jest.fn();
