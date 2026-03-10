@@ -1,0 +1,2195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmptyState Danger mode should render danger mode styling 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #FDEFEE;
+  border-radius: 50%;
+  color: #D32821;
+}
+
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
+}
+
+.emotion-6 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.emotion-8 {
+  color: #454545;
+  color: #707070;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .emotion-8 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.emotion-10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.emotion-10.emotion-10>* {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-12 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-12:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-12:not(:disabled):hover,
+.emotion-12:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-12:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-12:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-12 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-14 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #FDEFEE;
+  border-radius: 50%;
+  color: #D32821;
+}
+
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
+}
+
+.emotion-6 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.emotion-8 {
+  color: #454545;
+  color: #707070;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .emotion-8 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.emotion-10 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.emotion-10.emotion-10>* {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-12 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-12:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-12:not(:disabled):hover,
+.emotion-12:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-12:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-12:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-12 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-14 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    <div
+      class="emotion-2 emotion-3"
+    >
+      <div
+        class="emotion-4 emotion-5"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon"
+          fill="currentColor"
+          height="24"
+          role="none"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10.5 3c4.1421 0 7.5 3.3579 7.5 7.5 0 1.7106-.5727 3.2875-1.5368 4.5493l3.9008 3.9004c.3905.3906.3905 1.0237 0 1.4143-.3906.3905-1.0237.3905-1.4143 0l-3.9004-3.9008C13.7875 17.4273 12.2106 18 10.5 18 6.3579 18 3 14.6421 3 10.5S6.3579 3 10.5 3zm0 2C7.4624 5 5 7.4624 5 10.5S7.4624 16 10.5 16s5.5-2.4624 5.5-5.5S13.5376 5 10.5 5z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <h3
+        class="emotion-6 emotion-7"
+        style="color: rgb(69, 69, 69);"
+      >
+        Error occurred
+      </h3>
+      <p
+        class="emotion-8 emotion-7"
+        color="subdued"
+      >
+        Something went wrong
+      </p>
+    </div>
+    <div
+      class="emotion-10 emotion-11"
+    >
+      <button
+        class="emotion-12 emotion-13"
+        color="primary"
+        shape="fill"
+        type="button"
+      >
+        <span
+          class="emotion-14 emotion-15"
+        >
+          Retry
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EmptyState Graphic should render graphic without circular container 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-4:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-4:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    <div
+      class="emotion-2 emotion-3"
+    >
+      <div
+        aria-hidden="true"
+      >
+        <img
+          alt="custom illustration"
+          src="illustration.svg"
+        />
+      </div>
+      <h3
+        class="emotion-4 emotion-5"
+        style="color: rgb(69, 69, 69);"
+      >
+        Test
+      </h3>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #7F1714;
+  border-radius: 50%;
+  color: #FFFFFF;
+}
+
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
+}
+
+.emotion-6 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #A6DEFF;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.emotion-8 {
+  color: #FFFFFF;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .emotion-8 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #7F1714;
+  border-radius: 50%;
+  color: #FFFFFF;
+}
+
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
+}
+
+.emotion-6 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #A6DEFF;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.emotion-8 {
+  color: #FFFFFF;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .emotion-8 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    <div
+      class="emotion-2 emotion-3"
+    >
+      <div
+        class="emotion-4 emotion-5"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon"
+          fill="currentColor"
+          height="24"
+          role="none"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10.5 3c4.1421 0 7.5 3.3579 7.5 7.5 0 1.7106-.5727 3.2875-1.5368 4.5493l3.9008 3.9004c.3905.3906.3905 1.0237 0 1.4143-.3906.3905-1.0237.3905-1.4143 0l-3.9004-3.9008C13.7875 17.4273 12.2106 18 10.5 18 6.3579 18 3 14.6421 3 10.5S6.3579 3 10.5 3zm0 2C7.4624 5 5 7.4624 5 10.5S7.4624 16 10.5 16s5.5-2.4624 5.5-5.5S13.5376 5 10.5 5z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <h3
+        class="emotion-6 emotion-7"
+        style="color: rgb(255, 255, 255);"
+      >
+        Error
+      </h3>
+      <p
+        class="emotion-8 emotion-7"
+        color="default"
+      >
+        Something went wrong
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #3942B0;
+  border-radius: 50%;
+  color: #FFFFFF;
+}
+
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
+}
+
+.emotion-6 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #A6DEFF;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.emotion-8 {
+  color: #FFFFFF;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .emotion-8 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #3942B0;
+  border-radius: 50%;
+  color: #FFFFFF;
+}
+
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
+}
+
+.emotion-6 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #A6DEFF;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.emotion-8 {
+  color: #FFFFFF;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .emotion-8 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    <div
+      class="emotion-2 emotion-3"
+    >
+      <div
+        class="emotion-4 emotion-5"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon"
+          fill="currentColor"
+          height="24"
+          role="none"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10.5 3c4.1421 0 7.5 3.3579 7.5 7.5 0 1.7106-.5727 3.2875-1.5368 4.5493l3.9008 3.9004c.3905.3906.3905 1.0237 0 1.4143-.3906.3905-1.0237.3905-1.4143 0l-3.9004-3.9008C13.7875 17.4273 12.2106 18 10.5 18 6.3579 18 3 14.6421 3 10.5S6.3579 3 10.5 3zm0 2C7.4624 5 5 7.4624 5 10.5S7.4624 16 10.5 16s5.5-2.4624 5.5-5.5S13.5376 5 10.5 5z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <h3
+        class="emotion-6 emotion-7"
+        style="color: rgb(255, 255, 255);"
+      >
+        No results
+      </h3>
+      <p
+        class="emotion-8 emotion-7"
+        color="default"
+      >
+        Try another search
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EmptyState Loading state should render loading spinner when isLoading is true 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  -webkit-animation: spinner-border 0.75s linear infinite;
+  animation: spinner-border 0.75s linear infinite;
+  border: 2px solid #3942B0;
+  border-right-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  -webkit-animation: spinner-border 0.75s linear infinite;
+  animation: spinner-border 0.75s linear infinite;
+  border: 2px solid #3942B0;
+  border-right-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    <span
+      aria-label="Loading"
+      class="emotion-2 emotion-3"
+      color="#3942B0"
+      role="img"
+    />
+  </div>
+</div>
+`;
+
+exports[`EmptyState Loading state should render loading spinner with danger color 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  -webkit-animation: spinner-border 0.75s linear infinite;
+  animation: spinner-border 0.75s linear infinite;
+  border: 2px solid #D32821;
+  border-right-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  -webkit-animation: spinner-border 0.75s linear infinite;
+  animation: spinner-border 0.75s linear infinite;
+  border: 2px solid #D32821;
+  border-right-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    <span
+      aria-label="Loading"
+      class="emotion-2 emotion-3"
+      color="#D32821"
+      role="img"
+    />
+  </div>
+</div>
+`;
+
+exports[`EmptyState Loading state should render loading spinner with inverse color 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  -webkit-animation: spinner-border 0.75s linear infinite;
+  animation: spinner-border 0.75s linear infinite;
+  border: 2px solid #FFFFFF;
+  border-right-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  -webkit-animation: spinner-border 0.75s linear infinite;
+  animation: spinner-border 0.75s linear infinite;
+  border: 2px solid #FFFFFF;
+  border-right-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  height: 48px;
+  width: 48px;
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    <span
+      aria-label="Loading"
+      class="emotion-2 emotion-3"
+      color="#FFFFFF"
+      role="img"
+    />
+  </div>
+</div>
+`;
+
+exports[`EmptyState should render additionalContent between text and actions 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-4:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.emotion-6 {
+  color: #454545;
+  color: #707070;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.emotion-8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.emotion-8.emotion-8>* {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-10 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-10:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-10:not(:disabled):hover,
+.emotion-10:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-10:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-10:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-10 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-12 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-4:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-4 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.emotion-6 {
+  color: #454545;
+  color: #707070;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
+
+.emotion-8 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.emotion-8.emotion-8>* {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-10 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background: #3942B0;
+  border: 0;
+  border-color: #3942B0;
+  border-radius: 8px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  height: 40px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  letter-spacing: inherit;
+  line-height: 24px;
+  margin: 0;
+  min-width: 96px;
+  overflow: hidden;
+  padding: 12px 16px;
+  position: relative;
+  text-align: center;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  touch-action: manipulation;
+  -webkit-transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: auto;
+}
+
+.emotion-10:not(:disabled):focus {
+  outline: 2px solid #0074B7;
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+.emotion-10:not(:disabled):hover,
+.emotion-10:not(:disabled):focus {
+  background: #292F7C;
+  color: #FFFFFF;
+}
+
+.emotion-10:not(:disabled):active {
+  background: #1A1E51;
+  color: #FFFFFF;
+}
+
+.emotion-10:not(:disabled):active:after {
+  opacity: 0.4;
+  -webkit-transform: translate(-50%, -50%) scale(0);
+  -moz-transform: translate(-50%, -50%) scale(0);
+  -ms-transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%) scale(0);
+  -webkit-transition: -webkit-transform 0s;
+  transition: transform 0s;
+}
+
+.emotion-10 svg {
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.emotion-12 {
+  visibility: visible;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    <div
+      class="emotion-2 emotion-3"
+    >
+      <h3
+        class="emotion-4 emotion-5"
+        style="color: rgb(69, 69, 69);"
+      >
+        No results
+      </h3>
+      <p
+        class="emotion-6 emotion-5"
+        color="subdued"
+      >
+        Try a different search
+      </p>
+    </div>
+    <div
+      data-testid="custom-content"
+    >
+      Custom content
+    </div>
+    <div
+      class="emotion-8 emotion-9"
+    >
+      <button
+        class="emotion-10 emotion-11"
+        color="primary"
+        shape="fill"
+        type="button"
+      >
+        <span
+          class="emotion-12 emotion-13"
+        >
+          Search Again
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`EmptyState should render icon in circular container 1`] = `
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #E8E9F8;
+  border-radius: 50%;
+  color: #3942B0;
+}
+
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
+}
+
+.emotion-6 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+.emotion-0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 450px;
+  min-width: 240px;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  text-align: center;
+}
+
+.emotion-2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.emotion-4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  background: #E8E9F8;
+  border-radius: 50%;
+  color: #3942B0;
+}
+
+.emotion-4 svg {
+  width: 28px;
+  height: 28px;
+}
+
+.emotion-6 {
+  border-bottom: 2px solid transparent;
+  font-family: "Work Sans",Helvetica,sans-serif;
+  padding: 0;
+  color: #292F7C;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .32px;
+  line-height: 16px;
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .32px;
+  line-height: 24px;
+  text-transform: none;
+}
+
+.emotion-6:focus {
+  border-bottom: 2px solid #0074B7;
+  outline: 0;
+  -webkit-transition: border 0.1s linear;
+  transition: border 0.1s linear;
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 12px;
+    letter-spacing: .32px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 600px) {
+  .emotion-6 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+<div>
+  <div
+    class="emotion-0 emotion-1"
+  >
+    <div
+      class="emotion-2 emotion-3"
+    >
+      <div
+        class="emotion-4 emotion-5"
+      >
+        <svg
+          aria-hidden="true"
+          class="icon"
+          fill="currentColor"
+          height="24"
+          role="none"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10.5 3c4.1421 0 7.5 3.3579 7.5 7.5 0 1.7106-.5727 3.2875-1.5368 4.5493l3.9008 3.9004c.3905.3906.3905 1.0237 0 1.4143-.3906.3905-1.0237.3905-1.4143 0l-3.9004-3.9008C13.7875 17.4273 12.2106 18 10.5 18 6.3579 18 3 14.6421 3 10.5S6.3579 3 10.5 3zm0 2C7.4624 5 5 7.4624 5 10.5S7.4624 16 10.5 16s5.5-2.4624 5.5-5.5S13.5376 5 10.5 5z"
+            fill-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <h3
+        class="emotion-6 emotion-7"
+        style="color: rgb(69, 69, 69);"
+      >
+        Test
+      </h3>
+    </div>
+  </div>
+</div>
+`;
