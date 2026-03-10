@@ -12,7 +12,9 @@ import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { ClearAnnouncer } from '../Select/ClearAnnouncer';
 import { defaultComponents } from '../Select/components';
+import { ItemListAnnouncer } from '../Select/ItemListAnnouncer';
 import { ItemsList } from '../Select/ItemsList';
 import { SelectContainer } from '../Select/SelectContainer';
 import { IconWrapper, SelectedItemButton } from '../Select/shared';
@@ -65,6 +67,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+  const [clearAnnouncement, setClearAnnouncement] = React.useState('');
 
   const [allItems, displayItems, setDisplayItems, updateItemsRef] =
     useComboboxItems(defaultItems, items);
@@ -327,6 +330,15 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     }
 
     reset();
+
+    setClearAnnouncement(
+      i18n.select.clearAnnounce.replace(/\{labelText\}/g, labelText)
+    );
+
+    // Clear the announcement after a delay to allow for re-announcements
+    setTimeout(() => {
+      setClearAnnouncement('');
+    }, 1000);
   }
 
   const selectedItemsContent =
@@ -480,6 +492,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         menuStyle={menuStyle}
         setFloating={refs.setFloating}
       />
+      <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
+      {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}
     </SelectContainer>
   );
 }
