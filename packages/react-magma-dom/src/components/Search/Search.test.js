@@ -192,4 +192,27 @@ describe('Search', () => {
       return expect(result).toHaveNoViolations();
     });
   });
+
+  it('should render non-interactive icon with role="img" and aria-label for predictive search', () => {
+    const { container } = render(
+      <Search onSearch={onSearchSpy} isPredictive iconAriaLabel="Search icon" />
+    );
+
+    const iconWrapper = container.querySelector('span[role="img"]');
+    expect(iconWrapper).toBeInTheDocument();
+    expect(iconWrapper).toHaveAttribute('aria-label', 'Search icon');
+
+    expect(container.querySelector('button')).not.toBeInTheDocument();
+  });
+
+  it('should render interactive icon button with aria-label for regular search', () => {
+    const { container } = render(
+      <Search onSearch={onSearchSpy} iconAriaLabel="Search button" />
+    );
+
+    const iconButton = container.querySelector(
+      'button[aria-label="Search button"]'
+    );
+    expect(iconButton).toBeInTheDocument();
+  });
 });
