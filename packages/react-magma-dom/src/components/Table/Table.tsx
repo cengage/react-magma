@@ -5,6 +5,7 @@ import { transparentize } from 'polished';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { hasActiveElementsInside } from '../../utils';
 import { headingMediumStyles } from '../Typography';
 
 export interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
@@ -251,11 +252,14 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
     // Scrollable tables get tabindex="0" so keyboard users can scroll with arrow keys.
     // Non-scrollable tables don't need tabindex - users navigate through interactive elements or browse mode.
     React.useEffect(() => {
+      if (hasActiveElementsInside(tableWrapperRef)) return;
+
       const checkScrollability = () => {
         if (tableWrapperRef.current) {
           const element = tableWrapperRef.current;
           const isHorizontallyScrollable =
             element.scrollWidth > element.clientWidth;
+
           setIsScrollable(isHorizontallyScrollable);
         }
       };
@@ -286,6 +290,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
       if (typeof tableTitle === 'string') {
         return `${tableTitle} (scrollable)`;
       }
+
       return 'Scrollable table';
     };
 
