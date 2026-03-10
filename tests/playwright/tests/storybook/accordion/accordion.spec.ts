@@ -353,7 +353,9 @@ test.describe('Accordion', () => {
 
     await randomButton.click();
 
-    await expect(storyBookIframe.getByText('ComboBox Example')).toBeVisible();
+    await expect(
+      storyBookIframe.getByText('ComboBox Example', { exact: true })
+    ).toBeVisible();
     await expect(
       storyBookIframe.getByRole('button', { name: 'Basic Dropdown' })
     ).toBeVisible();

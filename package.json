@@ -144,8 +144,8 @@
     "typescript-eslint": "8.34.1"
   },
   "engines": {
-    "node": ">=20.19.2",
-    "npm": ">=10.8.2"
+    "node": ">=22.14.0",
+    "npm": ">=11.11.0"
   },
   "overrides": {
     "storybook": "$storybook"

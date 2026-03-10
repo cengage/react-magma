@@ -585,6 +585,30 @@ describe('Select', () => {
     expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
   });
 
+  it('should have updated aria-label for selected item', async () => {
+    const { getByLabelText, getByText, getAllByText } = render(
+      <Select labelText={labelText} items={items} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    await userEvent.click(renderedSelect);
+    expect(getByText('Red')).toHaveAttribute('aria-label', 'Red');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('aria-label', 'Blue');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Green')).toHaveAttribute('aria-label', 'Green');
+    await userEvent.keyboard('{Enter}');
+
+    await userEvent.click(renderedSelect);
+    expect(getAllByText('Green')[1]).toHaveAttribute(
+      'aria-label',
+      'Green is selected'
+    );
+  });
+
   describe('additional content', () => {
     const helpLinkLabel = 'Learn more';
 

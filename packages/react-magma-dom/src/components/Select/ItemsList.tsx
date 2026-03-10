@@ -36,6 +36,7 @@ interface ItemsListProps<T> {
   menuStyle?: React.CSSProperties;
   setFloating?: (node: ReferenceType) => void;
   setHighlightedIndex?: (index: number) => void;
+  selectedItem?: string;
 }
 
 const NoItemsMessage = styled.span<{
@@ -73,6 +74,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     menuStyle,
     setFloating,
     setHighlightedIndex,
+    selectedItem,
   } = props;
 
   const theme = React.useContext(ThemeContext);
@@ -128,10 +130,10 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
       >
         <StyledList
           isOpen={isOpen}
-          {...getMenuProps()}
           maxHeight={heightString}
           role="listbox"
           onMouseLeave={() => {}}
+          {...getMenuProps()}
         >
           {isOpen && hasItems ? (
             items.map((item, index) => {
@@ -147,6 +149,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
               });
 
               const key = `${itemString}${index}`;
+              const isSelected = selectedItem === itemToString(item);
 
               const itemProps: ItemRenderOptions<T> = {
                 isFocused: highlightedIndex === index,
@@ -160,6 +163,9 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
                 ...otherDownshiftItemProps,
                 onMouseMove: () => {},
                 role: 'option',
+                'aria-label': isSelected
+                  ? `${selectedItem} is selected`
+                  : itemString,
               };
 
               return <Item<T> {...itemProps} key={key} />;
