@@ -94,6 +94,9 @@ export type { DropdownExpandableMenuButtonProps } from './components/Dropdown/Dr
 export { DropdownExpandableMenuPanel } from './components/Dropdown/DropdownExpandableMenuPanel';
 export type { DropdownExpandableMenuPanelProps } from './components/Dropdown/DropdownExpandableMenuPanel';
 
+export { EmptyState } from './components/EmptyState';
+export type { EmptyStateProps } from './components/EmptyState';
+
 export * from './components/Flex';
 export { Form } from './components/Form';
 export type { FormProps } from './components/Form';
