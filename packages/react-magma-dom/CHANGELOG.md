@@ -1,5 +1,12 @@
 ## 4.10.0
 
+## 5.1.0-rc.56
+
+### Patch Changes
+
+- 9804026: fix(Select & MultiSelect & Combobox & MultiCombobox): Add a state to announce changes after the input is cleared.
+  Updated doc example.
+
 ## 5.1.0-rc.55
 
 ### Patch Changes
