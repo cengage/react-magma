@@ -249,7 +249,7 @@ export const Table = React.forwardRef<HTMLTableElement, TableProps>(
 
     const tableWrapper = `table-wrapper-${testId}`;
 
-    // Scrollable tables get tabindex="0" so keyboard users can scroll with arrow keys.
+    // Scrollable tables without interactive elements get tabindex="0" so keyboard users can scroll with arrow keys.
     // Non-scrollable tables don't need tabindex - users navigate through interactive elements or browse mode.
     React.useEffect(() => {
       if (hasActiveElementsInside(tableWrapperRef)) return;
