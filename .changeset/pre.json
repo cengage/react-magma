@@ -27,6 +27,7 @@
     "fix-docs-ts",
     "fix-publish-repository-url",
     "fix-tag-button-doc-issues",
+    "fix-version-bump",
     "hip-toys-pump",
     "manually-sync-4.11.0",
     "nine-pigs-buy",

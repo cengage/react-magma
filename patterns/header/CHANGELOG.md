@@ -1,5 +1,11 @@
 # Change Log
 
+## 15.0.0-next.2
+
+### Patch Changes
+
+- d88363512: fix(publish): Force version bump for packages stuck at already-published prerelease versions.
+
 ## 15.0.0-next.1
 
 ### Patch Changes

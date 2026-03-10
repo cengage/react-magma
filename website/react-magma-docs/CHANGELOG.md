@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.3.1-next.9
+
+### Patch Changes
+
+- Updated dependencies [d88363512]
+  - react-magma-dom@4.12.0-next.4
+  - @cengage-patterns/header@15.0.0-next.2
+
 ## 5.3.1-next.8
 
 ### Patch Changes

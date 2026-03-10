@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.4
+
+### Patch Changes
+
+- d88363512: fix(publish): Force version bump for packages stuck at already-published prerelease versions.
+
 ## 4.12.0-next.3
 
 ### Minor Changes
