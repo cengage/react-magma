@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.58
+
+### Patch Changes
+
+- 8160393: fix(Search, Input): add `role="img"` for the `SearchIcon` and fix `Form` docs issues.
+
 ## 5.1.0-rc.57
 
 ### Patch Changes
