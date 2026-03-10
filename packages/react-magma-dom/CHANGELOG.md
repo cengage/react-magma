@@ -1,5 +1,42 @@
 ## 4.10.0
 
+## 5.1.0-rc.59
+
+### Minor Changes
+
+- 39546f5: feat(EmptyState): Add EmptyState component
+
+## 5.1.0-rc.58
+
+### Patch Changes
+
+- 8160393: fix(Search, Input): add `role="img"` for the `SearchIcon` and fix `Form` docs issues.
+
+## 5.1.0-rc.57
+
+### Patch Changes
+
+- bac4f4a: fix(Combobox): Prevent focusing disabled options.
+
+## 5.1.0-rc.56
+
+### Patch Changes
+
+- 9804026: fix(Select & MultiSelect & Combobox & MultiCombobox): Add a state to announce changes after the input is cleared.
+  Updated doc example.
+
+## 5.1.0-rc.55
+
+### Patch Changes
+
+- c5bf081: fix(NativeSelect): move `additionalContent` from `<label>`. Add internal prop to `FormFieldContainer`. Fix accessibility issue.
+
+## 5.1.0-rc.54
+
+### Minor Changes
+
+- 48e8a74: fix(Hyperlink): add new `opensInNewTab` prop.
+
 ## 5.1.0-rc.53
 
 ### Patch Changes

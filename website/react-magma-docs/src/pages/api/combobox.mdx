@@ -234,7 +234,7 @@ prop. If no `newItemTransform` function is passed in, the created item will be t
 ```tsx
 import React from 'react';
 
-import { Combobox } from 'react-magma-dom';
+import { Announce, Combobox, VisuallyHidden } from 'react-magma-dom';
 
 export function Example() {
   const defaultItems = [
@@ -243,6 +243,8 @@ export function Example() {
     { label: 'Green', value: 'green' },
   ];
   const [items, updateItems] = React.useState(defaultItems);
+  const clearedText = 'Inputs have been reset to default values.';
+  const [announcement, setAnnouncement] = React.useState('');
 
   function newItemTransform(item) {
     return {
@@ -253,6 +255,10 @@ export function Example() {
 
   function resetItems() {
     updateItems([...defaultItems]);
+    setAnnouncement('');
+    setTimeout(() => {
+      setAnnouncement(clearedText);
+    }, 10);
   }
 
   function onItemCreated(item) {
@@ -261,7 +267,7 @@ export function Example() {
 
   return (
     <>
-      <button onClick={resetItems}>Reset Items</button>
+      <button onClick={resetItems} style={{ marginRight: '12px' }}>Reset Items</button>
       <strong>Items: </strong>
       <pre>{JSON.stringify(items, null, 2)}</pre>
       <Combobox
@@ -271,6 +277,9 @@ export function Example() {
         newItemTransform={newItemTransform}
         onItemCreated={onItemCreated}
       />
+      <Announce>
+        <VisuallyHidden>{announcement}</VisuallyHidden>
+      </Announce>
     </>
   );
 }

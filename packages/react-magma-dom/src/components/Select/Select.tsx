@@ -8,9 +8,10 @@ import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import { ButtonSize, ButtonVariant } from '../Button';
+import { ClearAnnouncer } from './ClearAnnouncer';
 import { defaultComponents } from './components';
+import { ItemListAnnouncer } from './ItemListAnnouncer';
 import { ItemsList } from './ItemsList';
-import { SelectAnnouncer } from './SelectAnnouncer';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { SelectText } from './shared';
@@ -59,6 +60,7 @@ export function Select<T>(props: SelectProps<T>) {
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+  const [clearAnnouncement, setClearAnnouncement] = React.useState('');
 
   const ref = useForkedRef(innerRef || null, toggleButtonRef);
 
@@ -201,6 +203,15 @@ export function Select<T>(props: SelectProps<T>) {
     }
 
     reset();
+
+    setClearAnnouncement(
+      i18n.select.clearAnnounce.replace(/\{labelText\}/g, labelText)
+    );
+
+    // Clear the announcement after a delay to allow for re-announcements
+    setTimeout(() => {
+      setClearAnnouncement('');
+    }, 1000);
   }
 
   const clearIndicatorAriaLabel = i18n.select.clearIndicatorAriaLabel
@@ -297,10 +308,12 @@ export function Select<T>(props: SelectProps<T>) {
           menuStyle={menuStyle}
           setFloating={refs.setFloating}
           setHighlightedIndex={setHighlightedIndex}
+          selectedItem={selectedItem ? itemToString(selectedItem) : ''}
         />
       </SelectContainer>
 
-      <SelectAnnouncer isOpen={isOpen} labelText={labelText} />
+      <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
+      {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}
     </>
   );
 }
