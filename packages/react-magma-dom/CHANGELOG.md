@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.8
+
+### Minor Changes
+
+- 226794151: feat(EmptyState): Add EmptyState component
+
 ## 4.12.0-next.7
 
 ### Patch Changes
