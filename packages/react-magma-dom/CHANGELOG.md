@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.6
+
+### Patch Changes
+
+- df6bd1530: fix(Search, Input): add `role="img"` for the `SearchIcon` and fix `Form` docs issues.
+
 ## 4.12.0-next.5
 
 ### Patch Changes

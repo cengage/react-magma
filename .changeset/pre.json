@@ -22,6 +22,7 @@
     "fix-Hyperlink-new-prop",
     "fix-NativeSelect-a11y-additional-content-issue",
     "fix-Pagination-aria-label",
+    "fix-Search-and-Form-issues",
     "fix-Select-clear-functionality",
     "fix-TextArea-aria-accessibility-issue",
     "fix-docs-issues",
