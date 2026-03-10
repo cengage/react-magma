@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.5
+
+### Patch Changes
+
+- f104417aa: fix(Combobox): Prevent focusing disabled options.
+
 ## 4.12.0-next.4
 
 ### Patch Changes
