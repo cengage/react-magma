@@ -18,6 +18,7 @@
     "chore-update-publish-yml",
     "chore-upgrade-polished-version",
     "eight-pigs-buy",
+    "fix-ButtonGroup-acessibility-list",
     "fix-Combobox-search-disabled-options",
     "fix-Hyperlink-new-prop",
     "fix-NativeSelect-a11y-additional-content-issue",
