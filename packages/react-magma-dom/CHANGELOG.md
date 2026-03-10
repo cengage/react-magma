@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.57
+
+### Patch Changes
+
+- bac4f4a: fix(Combobox): Prevent focusing disabled options.
+
 ## 5.1.0-rc.56
 
 ### Patch Changes
