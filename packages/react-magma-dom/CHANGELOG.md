@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.13
+
+### Patch Changes
+
+- 59dc5ec54: fix(Table): Remove focus from `Table` with interactive elements
+
 ## 4.12.0-next.12
 
 ### Patch Changes

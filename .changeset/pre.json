@@ -30,6 +30,7 @@
     "fix-Pagination-aria-label",
     "fix-Search-and-Form-issues",
     "fix-Select-clear-functionality",
+    "fix-Table-remove-focus",
     "fix-TextArea-aria-accessibility-issue",
     "fix-docs-issues",
     "fix-docs-ts",
