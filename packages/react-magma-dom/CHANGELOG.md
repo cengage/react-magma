@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.12
+
+### Patch Changes
+
+- ad2682877: fix(Combobox): Fix issue when focused item wasn't scrolled into view.
+
 ## 4.12.0-next.11
 
 ### Patch Changes

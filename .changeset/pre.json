@@ -23,6 +23,7 @@
     "fix-CharacterCounter-error-message",
     "fix-Checkbox-remove-aria-checked",
     "fix-Combobox-search-disabled-options",
+    "fix-Combobox-zoom-200%-issue",
     "fix-Dropdown-sorting-issue",
     "fix-Hyperlink-new-prop",
     "fix-NativeSelect-a11y-additional-content-issue",
