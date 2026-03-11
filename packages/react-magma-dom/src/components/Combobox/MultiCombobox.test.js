@@ -587,6 +587,34 @@ describe('MultiCombobox', () => {
     });
   });
 
+  it('should have aria-label with selected items', async () => {
+    const { getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red', 'Blue']}
+      />
+    );
+
+    const label = getByText(labelText);
+
+    expect(label).toHaveAttribute(
+      'aria-label',
+      'Label Multi-select Selected: Red, Blue'
+    );
+  });
+
+  it('should have aria-label without selected items', async () => {
+    const { getByText } = render(
+      <MultiCombobox isMulti labelText={labelText} items={items} />
+    );
+
+    const label = getByText(labelText);
+
+    expect(label).toHaveAttribute('aria-label', 'Label Multi-select');
+  });
+
   describe('isTypeahead', () => {
     describe('when isTypeahead is true,', () => {
       it('should be able to select an item that is not in the items list', async () => {

@@ -323,6 +323,19 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     .replace(/\{labelText\}/g, labelText)
     .replace(/\{selectedItem\}/g, itemsArrayToString(selectedItems));
 
+  const multiComboboxAriaLabel =
+    selectedItems.length > 0
+      ? i18n.combobox.multi.ariaLabelWithSelectedItems
+          .replace(/\{labelText\}/g, labelText)
+          .replace(
+            /\{selectedItems\}/g,
+            selectedItems.map(item => itemToString(item)).join(', ')
+          )
+      : i18n.combobox.multi.ariaLabelWithoutSelectedItems.replace(
+          /\{labelText\}/g,
+          labelText
+        );
+
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
     event.stopPropagation();
 
@@ -425,6 +438,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   return (
     <SelectContainer
+      ariaLabel={multiComboboxAriaLabel}
       descriptionId={ariaDescribedBy}
       errorMessage={errorMessage}
       getLabelProps={getLabelProps}
@@ -483,6 +497,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         )}
       </ComboboxInput>
       <ItemsList
+        aria-multiselectable="true"
         customComponents={customComponents}
         floatingElementStyles={floatingElementStyles}
         getItemProps={getItemProps}
