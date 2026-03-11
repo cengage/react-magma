@@ -1394,4 +1394,62 @@ describe('MultiCombobox', () => {
       });
     });
   });
+
+  describe('Accessibility - scrollIntoView', () => {
+    it('should call scrollIntoView on focused item when navigating with keyboard', async () => {
+      const mockScrollIntoView = jest.fn();
+      Element.prototype.scrollIntoView = mockScrollIntoView;
+
+      const { getByLabelText } = render(
+        <MultiCombobox isMulti labelText={labelText} items={items} />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, {
+        selector: 'input',
+      });
+
+      await userEvent.click(renderedCombobox);
+
+      await userEvent.keyboard('{ArrowDown}');
+
+      await waitFor(() => {
+        expect(mockScrollIntoView).toHaveBeenCalledWith({
+          behavior: 'smooth',
+          block: 'nearest',
+        });
+      });
+
+      await userEvent.keyboard('{ArrowDown}');
+
+      await waitFor(() => {
+        expect(mockScrollIntoView).toHaveBeenCalledTimes(2);
+      });
+
+      mockScrollIntoView.mockRestore();
+    });
+
+    it('should add data-highlighted attribute to focused item', async () => {
+      const { getByLabelText, getByText } = render(
+        <MultiCombobox isMulti labelText={labelText} items={items} />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, {
+        selector: 'input',
+      });
+
+      await userEvent.click(renderedCombobox);
+      await userEvent.keyboard('{ArrowDown}');
+
+      await waitFor(() => {
+        expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
+      });
+
+      await userEvent.keyboard('{ArrowDown}');
+
+      await waitFor(() => {
+        expect(getByText('Red')).toHaveAttribute('data-highlighted', 'false');
+        expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'true');
+      });
+    });
+  });
 });

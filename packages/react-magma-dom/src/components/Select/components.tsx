@@ -58,6 +58,7 @@ export function DefaultItem<T>({
       ref={itemRef}
       isDisabled={isDisabled}
       aria-disabled={isDisabled}
+      data-highlighted={props.isFocused}
     >
       {itemString}
     </StyledItem>
