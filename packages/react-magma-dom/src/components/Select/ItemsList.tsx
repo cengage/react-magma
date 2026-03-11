@@ -80,6 +80,29 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
+  // Scroll highlighted item into view for accessibility
+  React.useEffect(() => {
+    if (isOpen && highlightedIndex !== undefined && highlightedIndex >= 0) {
+      const animationFrame = requestAnimationFrame(() => {
+        const highlightedElement = document.querySelector(
+          '[data-highlighted="true"]'
+        );
+
+        if (
+          highlightedElement &&
+          typeof highlightedElement.scrollIntoView === 'function'
+        ) {
+          highlightedElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+          });
+        }
+      });
+
+      return () => cancelAnimationFrame(animationFrame);
+    }
+  }, [highlightedIndex, isOpen]);
+
   const hasItems = items && items.length > 0;
 
   const heightString = convertStyleValueToString(maxHeight);
