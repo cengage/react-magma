@@ -20,6 +20,7 @@
     "eight-pigs-buy",
     "feat-empty-state",
     "fix-ButtonGroup-acessibility-list",
+    "fix-CharacterCounter-error-message",
     "fix-Combobox-search-disabled-options",
     "fix-Hyperlink-new-prop",
     "fix-NativeSelect-a11y-additional-content-issue",

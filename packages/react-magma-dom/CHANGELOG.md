@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.9
+
+### Patch Changes
+
+- e6f019d83: fix(CharacterCounter & Input & TextArea): Update announcement for error message.
+
 ## 4.12.0-next.8
 
 ### Minor Changes
