@@ -21,6 +21,7 @@
     "feat-empty-state",
     "fix-ButtonGroup-acessibility-list",
     "fix-CharacterCounter-error-message",
+    "fix-Checkbox-remove-aria-checked",
     "fix-Combobox-search-disabled-options",
     "fix-Dropdown-sorting-issue",
     "fix-Hyperlink-new-prop",

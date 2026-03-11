@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.11
+
+### Patch Changes
+
+- 9d14beed5: fix(Checkbox): remove `aria-checked`.
+
 ## 4.12.0-next.10
 
 ### Patch Changes
