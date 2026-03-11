@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.60
+
+### Patch Changes
+
+- ac9e3ff: fix(CharacterCounter & Input & TextArea): Update announcement for error message.
+
 ## 5.1.0-rc.59
 
 ### Minor Changes
