@@ -107,7 +107,8 @@ export const defaultI18n: I18nInterface = {
   datePicker: {
     startOfWeek: 'sunday',
     calendarIconAriaLabel: 'Toggle Calendar Widget',
-    calendarOpenAnnounce: 'Calendar Widget is now open.',
+    calendarOpenAnnounce:
+      'Calendar Widget is now open. Refer to the keyboard instructions for navigating the widget.',
     calendarCloseAriaLabel: 'Close Calendar Widget',
     previousMonthAriaLabel: 'Navigate back one month',
     nextMonthAriaLabel: 'Navigate forward one month',
