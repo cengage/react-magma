@@ -1,5 +1,13 @@
 ## 4.10.0
 
+## 5.1.0-rc.64
+
+### Patch Changes
+
+- b74a6d4: fix(Combobox): Fix leak on rerender.
+- 30a7da5: fix(DatePicker): Remove `aria-selected` and change the announced text when opening the `DatePicker`.
+- be245ef: fix(Table): Remove focus from `Table` with interactive elements
+
 ## 5.1.0-rc.63
 
 ### Patch Changes
