@@ -110,12 +110,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const id = useGenerateId(defaultId);
 
-    const descriptionId =
-      errorMessage || helperMessage || maxCount || maxLength
-        ? `${id}__desc`
-        : null;
-
     const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
+    const counterDescriptionId =
+      typeof maxCharacters === 'number' && hasCharacterCounter
+        ? `${id}__counter`
+        : null;
+    const messageDescriptionId =
+      errorMessage || helperMessage ? `${id}__message` : null;
+    const descriptionId =
+      [counterDescriptionId, messageDescriptionId].filter(Boolean).join(' ') ||
+      null;
 
     const maxLengthNum =
       !hasCharacterCounter && maxLength ? maxLength : undefined;

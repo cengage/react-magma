@@ -189,9 +189,12 @@ export const FormFieldContainer = React.forwardRef<
   const isInverse = useIsInverse(isInverseProp);
 
   const countProps = maxCount || maxLength;
-
-  const descriptionId =
-    errorMessage || helperMessage || countProps ? `${fieldId}__desc` : null;
+  const counterDescriptionId =
+    typeof countProps === 'number' && hasCharacterCounter
+      ? `${fieldId}__counter`
+      : null;
+  const messageDescriptionId =
+    errorMessage || helperMessage ? `${fieldId}__message` : null;
 
   return (
     <InverseContext.Provider value={{ isInverse }}>
@@ -235,7 +238,7 @@ export const FormFieldContainer = React.forwardRef<
           {typeof countProps === 'number' && hasCharacterCounter && (
             <CharacterCounter
               hasCharacterCounter={hasCharacterCounter}
-              id={descriptionId}
+              id={counterDescriptionId}
               inputLength={inputLength}
               isInverse={isInverse}
               maxCount={maxCount}
@@ -246,11 +249,8 @@ export const FormFieldContainer = React.forwardRef<
 
           {(errorMessage || helperMessage) && (
             <InputMessage
-              aria-describedby={
-                errorMessage ? `${errorMessage}` : `${helperMessage}`
-              }
               hasError={!!errorMessage}
-              id={descriptionId}
+              id={messageDescriptionId}
               isInverse={isInverse}
               style={messageStyle}
             >
