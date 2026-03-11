@@ -67,6 +67,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
   const [clearAnnouncement, setClearAnnouncement] = React.useState('');
+  const clearAnnouncementTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
   function isCreatedItem(item) {
     return (
@@ -168,6 +169,15 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
 
   const [allItems, displayItems, setDisplayItems, updateItemsRef] =
     useComboboxItems(defaultItems, items);
+
+  // Cleanup timeout on unmount
+  React.useEffect(() => {
+    return () => {
+      if (clearAnnouncementTimeoutRef.current) {
+        clearTimeout(clearAnnouncementTimeoutRef.current);
+      }
+    };
+  }, []);
 
   function getValidItem(itemToCheck: T, key: string): object {
     // When using Typeahead, don't validate the items
@@ -271,7 +281,10 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     );
 
     // Clear the announcement after a delay to allow for re-announcements
-    setTimeout(() => {
+    if (clearAnnouncementTimeoutRef.current) {
+      clearTimeout(clearAnnouncementTimeoutRef.current);
+    }
+    clearAnnouncementTimeoutRef.current = setTimeout(() => {
       setClearAnnouncement('');
     }, 1000);
   }
