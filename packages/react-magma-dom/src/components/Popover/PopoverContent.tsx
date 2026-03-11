@@ -3,12 +3,12 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import { FloatingArrow } from '@floating-ui/react';
 
-import { hasActiveElementsChecker, PopoverContext } from './Popover';
+import { PopoverContext } from './Popover';
 import { PopoverHeader, PopoverFooter } from './PopoverSection';
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useForkedRef } from '../../utils';
+import { hasActiveElementsInside, useForkedRef } from '../../utils';
 import { Announce } from '../Announce';
 import { Card } from '../Card';
 
@@ -79,7 +79,7 @@ export const PopoverContent = React.forwardRef<
   const focusTrapRef = useFocusLock(
     context.focusTrap &&
       context.isOpen &&
-      hasActiveElementsChecker(context.contentRef)
+      hasActiveElementsInside(context.contentRef)
   );
 
   const styledChildren = React.Children.toArray(children).map(item =>
