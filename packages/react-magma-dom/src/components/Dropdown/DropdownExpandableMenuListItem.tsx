@@ -53,7 +53,7 @@ export const DropdownExpandableMenuListItem = React.forwardRef<
   React.useEffect(() => {
     if (!expandableMenuItemContext.disabled)
       context.registerDropdownMenuItem(context.itemRefArray, ownRef);
-  }, []);
+  }, [expandableMenuItemContext.disabled]);
 
   return (
     <StyledDropdownMenuItem

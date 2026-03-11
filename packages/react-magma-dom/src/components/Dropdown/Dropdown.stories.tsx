@@ -994,3 +994,94 @@ export const Performance = {
 
   args: { ...Default.args },
 };
+
+const CustomDropdown = ({
+  onClick,
+  isFirst,
+  isLast,
+  moveUp,
+  moveDown,
+  args,
+}: {
+  onClick: VoidFunction;
+  isFirst: boolean;
+  isLast: boolean;
+  moveUp: VoidFunction;
+  moveDown: VoidFunction;
+  args: any;
+}) => {
+  return (
+    <Dropdown {...args}>
+      <DropdownButton>open</DropdownButton>
+      <DropdownContent>
+        <DropdownMenuItem disabled={isLast} onClick={moveDown}>
+          move down
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={onClick}>nothing</DropdownMenuItem>
+        <DropdownMenuItem onClick={onClick}>nothing</DropdownMenuItem>
+        <DropdownMenuItem disabled={isFirst} onClick={moveUp}>
+          move up
+        </DropdownMenuItem>
+      </DropdownContent>
+    </Dropdown>
+  );
+};
+
+export const DropdownExpandableMenuWithSorting = {
+  render: args => {
+    const [templates, setTemplates] = React.useState([
+      { id: 1, title: 'test1', content: 'Some content 1 ' },
+      { id: 2, title: 'test2', content: 'Some content 2 ' },
+      { id: 3, title: 'test3', content: 'Some content 3 ' },
+    ]);
+
+    const moveDown = (id: number) => {
+      setTemplates(prev => {
+        const index = prev.findIndex(t => t.id === id);
+
+        if (index === prev.length - 1) return prev;
+
+        const newArr = [...prev];
+        const [item] = newArr.splice(index, 1);
+
+        newArr.splice(index + 1, 0, item);
+
+        return newArr;
+      });
+    };
+
+    const moveUp = (id: number) => {
+      setTemplates(prev => {
+        const index = prev.findIndex(t => t.id === id);
+
+        if (index === 0) return prev;
+
+        const newArr = [...prev];
+        const [item] = newArr.splice(index, 1);
+
+        newArr.splice(index - 1, 0, item);
+
+        return newArr;
+      });
+    };
+
+    return (
+      <div>
+        {templates.map((el, idx) => (
+          <div key={el.id}>
+            <span>{el.content}</span>
+            <CustomDropdown
+              args={args}
+              isLast={idx === templates.length - 1}
+              isFirst={idx === 0}
+              onClick={() => {}}
+              moveDown={() => moveDown(el.id)}
+              moveUp={() => moveUp(el.id)}
+            />
+            <Spacer size={16} />
+          </div>
+        ))}
+      </div>
+    );
+  },
+};
