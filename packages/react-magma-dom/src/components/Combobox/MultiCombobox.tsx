@@ -68,9 +68,19 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
   const [clearAnnouncement, setClearAnnouncement] = React.useState('');
+  const clearAnnouncementTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
   const [allItems, displayItems, setDisplayItems, updateItemsRef] =
     useComboboxItems(defaultItems, items);
+
+  // Cleanup timeout on unmount
+  React.useEffect(() => {
+    return () => {
+      if (clearAnnouncementTimeoutRef.current) {
+        clearTimeout(clearAnnouncementTimeoutRef.current);
+      }
+    };
+  }, []);
 
   function checkSelectedItemValidity(itemToCheck) {
     // When using Typeahead, don't validate the items
@@ -336,7 +346,10 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     );
 
     // Clear the announcement after a delay to allow for re-announcements
-    setTimeout(() => {
+    if (clearAnnouncementTimeoutRef.current) {
+      clearTimeout(clearAnnouncementTimeoutRef.current);
+    }
+    clearAnnouncementTimeoutRef.current = setTimeout(() => {
       setClearAnnouncement('');
     }, 1000);
   }

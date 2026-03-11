@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { magma } from '../../theme/magma';
@@ -1341,9 +1341,9 @@ describe('MultiCombobox', () => {
         selector: 'input',
       });
 
-      await userEvent.click(renderedCombobox);
+      userEvent.click(renderedCombobox);
 
-      await userEvent.keyboard('{ArrowDown}');
+      userEvent.keyboard('{ArrowDown}');
 
       await waitFor(() => {
         expect(mockScrollIntoView).toHaveBeenCalledWith({
@@ -1352,7 +1352,7 @@ describe('MultiCombobox', () => {
         });
       });
 
-      await userEvent.keyboard('{ArrowDown}');
+      userEvent.keyboard('{ArrowDown}');
 
       await waitFor(() => {
         expect(mockScrollIntoView).toHaveBeenCalledTimes(2);
@@ -1370,14 +1370,14 @@ describe('MultiCombobox', () => {
         selector: 'input',
       });
 
-      await userEvent.click(renderedCombobox);
-      await userEvent.keyboard('{ArrowDown}');
+      userEvent.click(renderedCombobox);
+      userEvent.keyboard('{ArrowDown}');
 
       await waitFor(() => {
         expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
       });
 
-      await userEvent.keyboard('{ArrowDown}');
+      userEvent.keyboard('{ArrowDown}');
 
       await waitFor(() => {
         expect(getByText('Red')).toHaveAttribute('data-highlighted', 'false');
