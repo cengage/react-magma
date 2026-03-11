@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.62
+
+### Patch Changes
+
+- bf43aba: fix(Checkbox): remove `aria-checked`.
+
 ## 5.1.0-rc.61
 
 ### Patch Changes

@@ -56,6 +56,7 @@
     "fix-Breadcrumb-last-item-focus",
     "fix-ButtonGroup-acessibility-list",
     "fix-CharacterCounter-error-message",
+    "fix-Checkbox-remove-aria-checked",
     "fix-Combobox-accessibility",
     "fix-Combobox-not-readable-placeholder-for-NVDA",
     "fix-Combobox-search-disabled-options",
