@@ -71,6 +71,7 @@
     "fix-Dropdown-add-aria-contols",
     "fix-Dropdown-escape-issue",
     "fix-Dropdown-focus-behaviour",
+    "fix-Dropdown-sorting-issue",
     "fix-Hyperlink-new-prop",
     "fix-Modal-fix-focus-order",
     "fix-NativeSelect-a11y-additional-content-issue",

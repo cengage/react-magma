@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.61
+
+### Patch Changes
+
+- fb3b23a: fix(Dropdown): Fix state update when filtering or reordering.
+
 ## 5.1.0-rc.60
 
 ### Patch Changes
