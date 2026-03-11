@@ -22,6 +22,7 @@
     "fix-ButtonGroup-acessibility-list",
     "fix-CharacterCounter-error-message",
     "fix-Combobox-search-disabled-options",
+    "fix-Dropdown-sorting-issue",
     "fix-Hyperlink-new-prop",
     "fix-NativeSelect-a11y-additional-content-issue",
     "fix-Pagination-aria-label",

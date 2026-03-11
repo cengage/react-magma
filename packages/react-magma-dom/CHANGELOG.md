@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.10
+
+### Patch Changes
+
+- d478346ef: fix(Dropdown): Fix state update when filtering or reordering.
+
 ## 4.12.0-next.9
 
 ### Patch Changes
