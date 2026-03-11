@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.63
+
+### Patch Changes
+
+- 47085d5: fix(Combobox): Fix issue when focused item wasn't scrolled into view.
+
 ## 5.1.0-rc.62
 
 ### Patch Changes
