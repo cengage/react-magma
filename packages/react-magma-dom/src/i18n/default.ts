@@ -193,6 +193,9 @@ export const defaultI18n: I18nInterface = {
     bytes: 'Bytes',
     deleteFile: 'Delete file',
     removeFile: 'Remove file',
+    fileAdded: 'File {fileName} has been added',
+    fileRemoved: 'File {fileName} has been removed',
+    fileDeleted: 'File {fileName} has been deleted',
   },
   header: {
     navigationButtonLabel: 'Open navigation menu',

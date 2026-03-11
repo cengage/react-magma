@@ -31,6 +31,8 @@ import {
   useGenerateId,
   useIsInverse,
   styled,
+  Announce,
+  VisuallyHidden,
 } from 'react-magma-dom';
 import { CloudUploadIcon } from 'react-magma-icons';
 
@@ -222,6 +224,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
 
     const [files, setFiles] = React.useState<FilePreview[]>([]);
     const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+    const [announcement, setAnnouncement] = React.useState<string>('');
 
     const isInverse = useIsInverse(isInverseProp);
     const theme: ThemeInterface = React.useContext(ThemeContext);
@@ -230,8 +233,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
 
     const onDrop = React.useCallback(
       (acceptedFiles: FilePreview[], rejectedFiles: FileRejection[]) => {
-        setFiles((files: FilePreview[]) => [
-          ...files,
+        const newFiles = [
           ...acceptedFiles.map((file: FilePreview) =>
             Object.assign(file, {
               preview: URL.createObjectURL(file),
@@ -243,9 +245,24 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                 errors,
               })
           ),
-        ]);
+        ];
+
+        setFiles((prevFiles: FilePreview[]) => [...prevFiles, ...newFiles]);
+
+        if (acceptedFiles.length > 0) {
+          const fileNames = acceptedFiles.map(file => file.name).join(', ');
+          const message =
+            acceptedFiles.length === 1
+              ? (
+                  i18n.dropzone as unknown as { fileAdded?: string }
+                ).fileAdded?.replace(/\{fileName\}/g, fileNames) ||
+                `File ${fileNames} has been added`
+              : `${acceptedFiles.length} files have been added: ${fileNames}`;
+
+          setAnnouncement(message);
+        }
       },
-      []
+      [i18n]
     );
 
     const {
@@ -275,38 +292,61 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
 
     const inputProps = getInputProps({ id });
 
-    const dragState: DragState = errorMessage
-      ? 'error'
-      : isDragAccept
-        ? 'dragAccept'
-        : isDragReject
-          ? 'dragReject'
-          : isDragActive
-            ? 'dragActive'
-            : 'default';
+    let dragState: DragState = 'default';
+
+    if (errorMessage) {
+      dragState = 'error';
+    } else if (isDragAccept) {
+      dragState = 'dragAccept';
+    } else if (isDragReject) {
+      dragState = 'dragReject';
+    } else if (isDragActive) {
+      dragState = 'dragActive';
+    }
 
     const handleRemoveFile = (removedFile: FilePreview) => {
-      setFiles(files => files.filter(file => file !== removedFile));
-      onRemoveFile &&
-        typeof onRemoveFile === 'function' &&
+      setFiles(prevFiles => prevFiles.filter(file => file !== removedFile));
+
+      if (onRemoveFile && typeof onRemoveFile === 'function') {
         onRemoveFile(removedFile);
+      }
+
+      const message =
+        (
+          i18n.dropzone as unknown as { fileRemoved?: string }
+        ).fileRemoved?.replace(/\{fileName\}/g, removedFile.name) ||
+        `File ${removedFile.name} has been removed`;
+
+      setAnnouncement(message);
     };
 
     const handleDeleteFile = (removedFile: FilePreview) => {
-      setFiles(files => files.filter(file => file !== removedFile));
-      onDeleteFile &&
-        typeof onDeleteFile === 'function' &&
+      setFiles(prevFiles => prevFiles.filter(file => file !== removedFile));
+
+      if (onDeleteFile && typeof onDeleteFile === 'function') {
         onDeleteFile(removedFile);
+      }
+
+      const message =
+        (
+          i18n.dropzone as unknown as { fileDeleted?: string }
+        ).fileDeleted?.replace(/\{fileName\}/g, removedFile.name) ||
+        `File ${removedFile.name} has been deleted`;
+
+      setAnnouncement(message);
     };
 
-    const setProgress = (props: { percent: number; file: FilePreview }) => {
-      setFiles(files =>
-        files.map(file =>
-          file === props.file
+    const setProgress = (progressProps: {
+      percent: number;
+      file: FilePreview;
+    }) => {
+      setFiles(prevFiles =>
+        prevFiles.map(file =>
+          file === progressProps.file
             ? Object.assign(file, {
                 processor: {
                   ...file.processor,
-                  percent: `${props.percent}%`,
+                  percent: `${progressProps.percent}%`,
                   status: 'pending',
                 },
               })
@@ -315,10 +355,10 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       );
     };
 
-    const setFinished = (props: { file: FilePreview }) => {
-      setFiles(files =>
-        files.map(file =>
-          file === props.file
+    const setFinished = (finishedProps: { file: FilePreview }) => {
+      setFiles(prevFiles =>
+        prevFiles.map(file =>
+          file === finishedProps.file
             ? Object.assign(file, {
                 processor: {
                   ...file.processor,
@@ -331,34 +371,20 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       );
     };
 
-    const setError = (props: { errors: FileError[]; file: FilePreview }) => {
-      setFiles(files =>
-        files.map(file =>
-          file === props.file
+    const setError = (errorProps: {
+      errors: FileError[];
+      file: FilePreview;
+    }) => {
+      setFiles(prevFiles =>
+        prevFiles.map(file =>
+          file === errorProps.file
             ? Object.assign(file, {
-                errors: props.errors,
+                errors: errorProps.errors,
                 processor: { ...file.processor, status: 'error' },
               })
             : file
         )
       );
-    };
-
-    const formatError = (
-      code: string | null,
-      constraints: { maxFiles?: number; minFiles?: number }
-    ) => {
-      if (code === null) return null;
-      const error = i18n.dropzone.errors[code];
-
-      switch (code) {
-        case 'too-many-files':
-          return `${error.message} ${constraints.maxFiles} ${i18n.dropzone.files}.`;
-        case 'too-few-files':
-          return `${error.message} ${constraints.minFiles} ${i18n.dropzone.files}.`;
-        default:
-          return error.message;
-      }
     };
 
     React.useEffect(
@@ -371,38 +397,61 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
     );
 
     React.useEffect(() => {
+      const formatError = (
+        code: string | null,
+        constraints: { maxFiles?: number; minFiles?: number }
+      ) => {
+        if (code === null) return null;
+        const error = i18n.dropzone.errors[code];
+
+        switch (code) {
+          case 'too-many-files':
+            return `${error.message} ${constraints.maxFiles} ${i18n.dropzone.files}.`;
+          case 'too-few-files':
+            return `${error.message} ${constraints.minFiles} ${i18n.dropzone.files}.`;
+          default:
+            return error.message;
+        }
+      };
+
       const minFileError = minFiles && files.length < minFiles;
       const maxFileError = maxFiles && files.length > maxFiles;
 
-      setErrorMessage(
-        formatError(
-          maxFileError
-            ? 'too-many-files'
-            : minFileError
-              ? 'too-few-files'
-              : null,
-          { minFiles, maxFiles }
-        )
-      );
+      let errorCode: string | null = null;
+
+      if (maxFileError) {
+        errorCode = 'too-many-files';
+      } else if (minFileError) {
+        errorCode = 'too-few-files';
+      }
+
+      setErrorMessage(formatError(errorCode, { minFiles, maxFiles }));
 
       if (sendFiles && files.length > 0 && !maxFileError && !minFileError) {
-        setFiles((files: FilePreview[]) => {
-          return files.map((file: FilePreview) => {
-            !file.errors &&
-              !file.processor &&
-              onSendFile &&
+        setFiles((prevFiles: FilePreview[]) => {
+          return prevFiles.map((file: FilePreview) => {
+            if (!file.errors && !file.processor && onSendFile) {
               onSendFile({
                 file,
                 onError: setError,
                 onFinish: setFinished,
                 onProgress: setProgress,
               });
+            }
 
             return file;
           });
         });
       }
-    }, [sendFiles, files.length, onSendFile]);
+    }, [
+      sendFiles,
+      files.length,
+      onSendFile,
+      maxFiles,
+      minFiles,
+      i18n.dropzone.errors,
+      i18n.dropzone.files,
+    ]);
 
     return (
       <InverseContext.Provider value={{ isInverse }}>
@@ -499,6 +548,10 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
             thumbnails={thumbnails}
           />
         ))}
+
+        <VisuallyHidden>
+          <Announce>{announcement}</Announce>
+        </VisuallyHidden>
       </InverseContext.Provider>
     );
   }
