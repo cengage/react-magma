@@ -554,12 +554,11 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
         </FormFieldContainer>
         <PreviewList as="ul">
           {files.map((file: FilePreview) => (
-            <PreviewItem>
+            <PreviewItem key={file.name}>
               <Preview
                 accept={accept}
                 file={file}
                 isInverse={isInverse}
-                key={file.name}
                 maxSize={maxSize}
                 minSize={minSize}
                 onDeleteFile={handleDeleteFile}
