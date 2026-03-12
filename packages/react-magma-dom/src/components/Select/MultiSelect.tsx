@@ -273,6 +273,19 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     .replace(/\{labelText\}/g, labelText)
     .replace(/\{selectedItem\}/g, itemsArrayToString(selectedItems));
 
+  const multiSelectAriaLabel =
+    selectedItems.length > 0
+      ? i18n.select.multi.ariaLabelWithSelectedItems
+          .replace(/\{labelText\}/g, labelText)
+          .replace(
+            /\{selectedItems\}/g,
+            selectedItems.map(item => itemToString(item)).join(', ')
+          )
+      : i18n.select.multi.ariaLabelWithoutSelectedItems.replace(
+          /\{labelText\}/g,
+          labelText
+        );
+
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
     event.stopPropagation();
 
@@ -309,7 +322,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     <>
       <SelectContainer
         additionalContent={additionalContent}
-        ariaLabel={ariaLabel}
+        ariaLabel={ariaLabel ?? multiSelectAriaLabel}
         descriptionId={ariaDescribedBy}
         errorMessage={errorMessage}
         getLabelProps={getLabelProps}
@@ -394,6 +407,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
           />
         )}
         <ItemsList
+          aria-multiselectable="true"
           customComponents={customComponents}
           floatingElementStyles={floatingElementStyles}
           getItemProps={getItemProps}

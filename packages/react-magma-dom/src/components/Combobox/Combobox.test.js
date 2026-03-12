@@ -942,7 +942,7 @@ describe('Combobox', () => {
   });
 
   it('should have updated aria-label for selected item', async () => {
-    const { getByLabelText, getByText, getAllByText } = render(
+    const { getByLabelText, getByText } = render(
       <Combobox labelText={labelText} items={items} />
     );
 

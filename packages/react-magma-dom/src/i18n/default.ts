@@ -101,6 +101,9 @@ export const defaultI18n: I18nInterface = {
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',
+      ariaLabelWithSelectedItems:
+        '{labelText} Multi-select Selected: {selectedItems}',
+      ariaLabelWithoutSelectedItems: '{labelText} Multi-select',
     },
     loading: 'Loading...',
   },
@@ -275,6 +278,9 @@ export const defaultI18n: I18nInterface = {
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',
+      ariaLabelWithSelectedItems:
+        '{labelText} Multi-select Selected: {selectedItems}',
+      ariaLabelWithoutSelectedItems: '{labelText} Multi-select',
     },
   },
   simplePagination: {
