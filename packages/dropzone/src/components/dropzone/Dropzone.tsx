@@ -190,6 +190,13 @@ const Wrapper = styled.div<{ isInverse?: boolean }>`
   padding: ${({ theme }) => theme.spaceScale.spacing01};
 `;
 
+const PreviewList = styled.div`
+  list-style: none;
+  padding: 0;
+`;
+
+const PreviewItem = styled.li``;
+
 export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
   (props, ref) => {
     const {
@@ -230,6 +237,8 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
     const theme: ThemeInterface = React.useContext(ThemeContext);
     const i18n: I18nInterface = React.useContext(I18nContext);
     const id = useGenerateId(defaultId);
+
+    const browseFileButtonRef = React.useRef<HTMLButtonElement>(null);
 
     const onDrop = React.useCallback(
       (acceptedFiles: FilePreview[], rejectedFiles: FileRejection[]) => {
@@ -318,6 +327,8 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
         `File ${removedFile.name} has been removed`;
 
       setAnnouncement(message);
+
+      browseFileButtonRef.current && browseFileButtonRef.current.focus();
     };
 
     const handleDeleteFile = (removedFile: FilePreview) => {
@@ -334,6 +345,8 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
         `File ${removedFile.name} has been deleted`;
 
       setAnnouncement(message);
+
+      browseFileButtonRef.current && browseFileButtonRef.current.focus();
     };
 
     const setProgress = (progressProps: {
@@ -503,6 +516,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                   isInverse={isInverse}
                   onClick={open}
                   style={{ margin: 0 }}
+                  ref={browseFileButtonRef}
                 >
                   {i18n.dropzone.browseFiles}
                 </Button>
@@ -528,6 +542,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                   onClick={open}
                   style={{ margin: 0 }}
                   variant={ButtonVariant.solid}
+                  ref={browseFileButtonRef}
                 >
                   {i18n.dropzone.browseFiles}
                 </Button>
@@ -535,19 +550,23 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
             )}
           </Container>
         </FormFieldContainer>
-        {files.map((file: FilePreview) => (
-          <Preview
-            accept={accept}
-            file={file}
-            isInverse={isInverse}
-            key={file.name}
-            maxSize={maxSize}
-            minSize={minSize}
-            onDeleteFile={handleDeleteFile}
-            onRemoveFile={handleRemoveFile}
-            thumbnails={thumbnails}
-          />
-        ))}
+        <PreviewList as="ul">
+          {files.map((file: FilePreview) => (
+            <PreviewItem>
+              <Preview
+                accept={accept}
+                file={file}
+                isInverse={isInverse}
+                key={file.name}
+                maxSize={maxSize}
+                minSize={minSize}
+                onDeleteFile={handleDeleteFile}
+                onRemoveFile={handleRemoveFile}
+                thumbnails={thumbnails}
+              />
+            </PreviewItem>
+          ))}
+        </PreviewList>
 
         <VisuallyHidden>
           <Announce>{announcement}</Announce>
