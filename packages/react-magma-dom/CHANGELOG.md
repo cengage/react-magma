@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.14
+
+### Patch Changes
+
+- 69eeb1e22: fix(MultiCombobox & MultiSelect): Add announcing current values with label.
+
 ## 4.12.0-next.13
 
 ### Patch Changes
