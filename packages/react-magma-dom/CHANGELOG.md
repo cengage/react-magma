@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.65
+
+### Patch Changes
+
+- ae600ef: fix(MultiCombobox & MultiSelect): Add announcing current values with label.
+
 ## 5.1.0-rc.64
 
 ### Patch Changes

@@ -78,6 +78,7 @@
     "fix-Dropdown-sorting-issue",
     "fix-Hyperlink-new-prop",
     "fix-Modal-fix-focus-order",
+    "fix-MultiCombobox-announce-values",
     "fix-NativeSelect-a11y-additional-content-issue",
     "fix-NavTabs-fix-obscured-focus",
     "fix-NavsTab-add-region",
