@@ -56,10 +56,14 @@ export function Example() {
       <AIButton aria-label="Leading custom icon" leadingIcon={<SettingsIcon />}>
         Leading custom icon
       </AIButton>
-      <AIButton leadingIcon={false} trailingIcon={<SettingsIcon />}>
+      <AIButton
+        aria-label="Trailing custom icon"
+        leadingIcon={false}
+        trailingIcon={<SettingsIcon />}
+      >
         Trailing custom icon
       </AIButton>
-      <AIButton leadingIcon={<SettingsIcon />} trailingIcon={<SettingsIcon />}>
+      <AIButton aria-label="Both Icons" trailingIcon={<SettingsIcon />}>
         Both Icons
       </AIButton>
     </ButtonGroup>

@@ -75,6 +75,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     setFloating,
     setHighlightedIndex,
     selectedItem,
+    ...rest
   } = props;
 
   const theme = React.useContext(ThemeContext);
@@ -157,6 +158,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
           role="listbox"
           onMouseLeave={() => {}}
           {...getMenuProps()}
+          {...rest}
         >
           {isOpen && hasItems ? (
             items.map((item, index) => {
