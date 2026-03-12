@@ -24,6 +24,7 @@
     "fix-Checkbox-remove-aria-checked",
     "fix-Combobox-search-disabled-options",
     "fix-Combobox-zoom-200%-issue",
+    "fix-DatePicker-remove-aria-selected",
     "fix-Dropdown-sorting-issue",
     "fix-Hyperlink-new-prop",
     "fix-MultiCombobox-announce-values",

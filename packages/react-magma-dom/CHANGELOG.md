@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.15
+
+### Patch Changes
+
+- 84ecd2ee8: fix(DatePicker): Remove `aria-selected` and change the announced text when opening the `DatePicker`.
+
 ## 4.12.0-next.14
 
 ### Patch Changes
