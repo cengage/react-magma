@@ -27,6 +27,11 @@ export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
   description?: string;
   /** Graphic that replaces the entire circular icon area — renders as-is with no wrapper */
   graphic?: React.ReactNode;
+  /**
+   * Number to indicate which level heading will render (e.g. h1, h2 etc.)
+   * @default 3
+   */
+  headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   /** Icon element displayed inside the circular illustration area */
   icon?: React.ReactElement;
   /** Use danger/error color scheme (red) */
@@ -50,6 +55,7 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
       additionalContent,
       graphic,
       description,
+      headingLevel = 3,
       icon,
       isDanger = false,
       isLoading = false,
@@ -97,7 +103,7 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
                   )}
                   {title && (
                     <Heading
-                      level={3}
+                      level={headingLevel}
                       visualStyle={TypographyVisualStyle.heading2XSmall}
                       contextVariant={TypographyContextVariant.expressive}
                       noMargins

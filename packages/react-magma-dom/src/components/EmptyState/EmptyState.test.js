@@ -286,4 +286,24 @@ describe('EmptyState', () => {
       expect(container.querySelector('svg')).not.toBeInTheDocument();
     });
   });
+
+  describe('Heading Level', () => {
+    it('should render heading with default level 3', () => {
+      const { container } = render(<EmptyState title="Test" />);
+
+      const heading = container.querySelector('h3');
+      expect(heading).toBeInTheDocument();
+      expect(heading?.textContent).toBe('Test');
+    });
+
+    it('should render heading with specified level', () => {
+      const { container } = render(
+        <EmptyState title="Test" headingLevel={2} />
+      );
+
+      const heading = container.querySelector('h2');
+      expect(heading).toBeInTheDocument();
+      expect(heading?.textContent).toBe('Test');
+    });
+  });
 });
