@@ -270,6 +270,8 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
 
           setAnnouncement(message);
         }
+
+        browseFileButtonRef.current && browseFileButtonRef.current.focus();
       },
       [i18n]
     );
