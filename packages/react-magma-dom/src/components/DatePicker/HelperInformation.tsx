@@ -9,6 +9,7 @@ import { TypographyVisualStyle } from '../Typography';
 
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { useFocusLock } from '../../hooks/useFocusLock';
 
 interface HelperInformationProps {
   isOpen?: boolean;
@@ -78,11 +79,20 @@ export const HelperInformation: React.FunctionComponent<
 > = (props: HelperInformationProps) => {
   const i18n = React.useContext(I18nContext);
   const theme = React.useContext(ThemeContext);
+  const backButtonRef = React.useRef<HTMLButtonElement>();
+  const focusTrapRef = useFocusLock(props.isOpen, backButtonRef);
+
+  React.useEffect(() => {
+    if (props.isOpen && backButtonRef.current) {
+      backButtonRef.current.focus();
+    }
+  }, [props.isOpen]);
 
   return (
-    <StyledPopup>
+    <StyledPopup ref={focusTrapRef}>
       <StyledNavContainer>
         <IconButton
+          ref={backButtonRef}
           icon={<ArrowBackIcon />}
           size={ButtonSize.small}
           style={{ top: '4px', left: '-12px' }}
