@@ -104,8 +104,8 @@ export const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
                   {title && (
                     <Heading
                       level={headingLevel}
-                      visualStyle={TypographyVisualStyle.heading2XSmall}
-                      contextVariant={TypographyContextVariant.expressive}
+                      visualStyle={TypographyVisualStyle.headingXSmall}
+                      contextVariant={TypographyContextVariant.default}
                       noMargins
                       isInverse={isInverse}
                       style={{
