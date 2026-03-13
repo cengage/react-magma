@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.66
+
+### Patch Changes
+
+- 3de4dd6: fix(EmptyState): Add 'headingLevel' prop
+
 ## 5.1.0-rc.65
 
 ### Patch Changes

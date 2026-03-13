@@ -122,6 +122,7 @@
     "major-dropzone-v13-release",
     "major-v5-release",
     "manually-sync-4.10.0",
-    "storybook-csf3"
+    "storybook-csf3",
+    "update-empty-state"
   ]
 }
