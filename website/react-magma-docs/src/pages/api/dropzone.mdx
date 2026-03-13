@@ -10,7 +10,11 @@ title: Dropzone
   commonly used within forms but may also exist on their own.
 </LeadParagraph>
 
-<Alert variant="warning"><strong>Important!</strong> Dropzone is imported from <code>@react-magma/dropzone</code> which must be installed as a peer dependency.</Alert>
+<Alert variant="warning">
+  <strong>Important!</strong> Dropzone is imported from{' '}
+  <code>@react-magma/dropzone</code> which must be installed as a peer
+  dependency.
+</Alert>
 
 ## Basic Usage
 
@@ -98,6 +102,7 @@ import { Button, Spacer } from 'react-magma-dom';
 
 export function Example() {
   const [sendFiles, setSendFiles] = React.useState<boolean>(false);
+  const uploadFilesButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const onSendFile = (props: OnSendFileProps) => {
     const { onProgress, onError, onFinish, file } = props;
@@ -109,6 +114,12 @@ export function Example() {
 
       if (percent >= 100) {
         clearInterval(interval);
+        setSendFiles(false);
+
+        setTimeout(() => {
+          uploadFilesButtonRef.current?.focus();
+        }, 0);
+
         onFinish && onFinish({ file });
       }
 
@@ -138,7 +149,11 @@ export function Example() {
         sendFiles={sendFiles}
       />
       <Spacer size={12} />
-      <Button disabled={sendFiles} onClick={() => setSendFiles(true)}>
+      <Button
+        disabled={sendFiles}
+        onClick={() => setSendFiles(true)}
+        ref={uploadFilesButtonRef}
+      >
         Upload files
       </Button>
     </div>
