@@ -369,6 +369,13 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
             : file
         )
       );
+
+      // Announce progress every 25% to avoid too many announcements
+      if (progressProps.percent > 0 && progressProps.percent % 25 === 0) {
+        const message = `Uploading ${progressProps.file.name}, ${progressProps.percent}% complete`;
+
+        setAnnouncement(message);
+      }
     };
 
     const setFinished = (finishedProps: { file: FilePreview }) => {
@@ -385,6 +392,11 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
             : file
         )
       );
+
+      // Announce successful upload
+      const message = `${finishedProps.file.name} uploaded successfully`;
+
+      setAnnouncement(message);
     };
 
     const setError = (errorProps: {
