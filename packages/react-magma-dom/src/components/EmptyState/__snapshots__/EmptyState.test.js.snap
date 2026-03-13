@@ -69,18 +69,11 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   border-bottom: 2px solid transparent;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 0;
-  color: #292F7C;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: .32px;
+  color: #454545;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 24px;
-  text-transform: none;
+  margin: 0;
 }
 
 .emotion-6:focus {
@@ -88,14 +81,6 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    font-size: 12px;
-    letter-spacing: .32px;
-    line-height: 16px;
-  }
 }
 
 @media (min-width: 600px) {
@@ -299,18 +284,11 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   border-bottom: 2px solid transparent;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 0;
-  color: #292F7C;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: .32px;
+  color: #454545;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 24px;
-  text-transform: none;
+  margin: 0;
 }
 
 .emotion-6:focus {
@@ -318,14 +296,6 @@ exports[`EmptyState Danger mode should render danger mode styling 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    font-size: 12px;
-    letter-spacing: .32px;
-    line-height: 16px;
-  }
 }
 
 @media (min-width: 600px) {
@@ -561,18 +531,11 @@ exports[`EmptyState Graphic should render graphic without circular container 1`]
   border-bottom: 2px solid transparent;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 0;
-  color: #292F7C;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: .32px;
+  color: #454545;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 24px;
-  text-transform: none;
+  margin: 0;
 }
 
 .emotion-4:focus {
@@ -580,14 +543,6 @@ exports[`EmptyState Graphic should render graphic without circular container 1`]
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    font-size: 12px;
-    letter-spacing: .32px;
-    line-height: 16px;
-  }
 }
 
 @media (min-width: 600px) {
@@ -637,18 +592,11 @@ exports[`EmptyState Graphic should render graphic without circular container 1`]
   border-bottom: 2px solid transparent;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 0;
-  color: #292F7C;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: .32px;
+  color: #454545;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 24px;
-  text-transform: none;
+  margin: 0;
 }
 
 .emotion-4:focus {
@@ -656,14 +604,6 @@ exports[`EmptyState Graphic should render graphic without circular container 1`]
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    font-size: 12px;
-    letter-spacing: .32px;
-    line-height: 16px;
-  }
 }
 
 @media (min-width: 600px) {
@@ -769,17 +709,10 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 0;
   color: #FFFFFF;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: .32px;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 24px;
-  text-transform: none;
+  margin: 0;
 }
 
 .emotion-6:focus {
@@ -787,14 +720,6 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    font-size: 12px;
-    letter-spacing: .32px;
-    line-height: 16px;
-  }
 }
 
 @media (min-width: 600px) {
@@ -889,17 +814,10 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 0;
   color: #FFFFFF;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: .32px;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 24px;
-  text-transform: none;
+  margin: 0;
 }
 
 .emotion-6:focus {
@@ -907,14 +825,6 @@ exports[`EmptyState Inverse mode should render inverse danger mode styling 1`] =
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    font-size: 12px;
-    letter-spacing: .32px;
-    line-height: 16px;
-  }
 }
 
 @media (min-width: 600px) {
@@ -1053,17 +963,10 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 0;
   color: #FFFFFF;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: .32px;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 24px;
-  text-transform: none;
+  margin: 0;
 }
 
 .emotion-6:focus {
@@ -1071,14 +974,6 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    font-size: 12px;
-    letter-spacing: .32px;
-    line-height: 16px;
-  }
 }
 
 @media (min-width: 600px) {
@@ -1173,17 +1068,10 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 0;
   color: #FFFFFF;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: .32px;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 24px;
-  text-transform: none;
+  margin: 0;
 }
 
 .emotion-6:focus {
@@ -1191,14 +1079,6 @@ exports[`EmptyState Inverse mode should render inverse mode styling 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    font-size: 12px;
-    letter-spacing: .32px;
-    line-height: 16px;
-  }
 }
 
 @media (min-width: 600px) {
@@ -1539,18 +1419,11 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
   border-bottom: 2px solid transparent;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 0;
-  color: #292F7C;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: .32px;
+  color: #454545;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 24px;
-  text-transform: none;
+  margin: 0;
 }
 
 .emotion-4:focus {
@@ -1558,14 +1431,6 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    font-size: 12px;
-    letter-spacing: .32px;
-    line-height: 16px;
-  }
 }
 
 @media (min-width: 600px) {
@@ -1741,18 +1606,11 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
   border-bottom: 2px solid transparent;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 0;
-  color: #292F7C;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: .32px;
+  color: #454545;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 24px;
-  text-transform: none;
+  margin: 0;
 }
 
 .emotion-4:focus {
@@ -1760,14 +1618,6 @@ exports[`EmptyState should render additionalContent between text and actions 1`]
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
-}
-
-@media (min-width: 600px) {
-  .emotion-4 {
-    font-size: 12px;
-    letter-spacing: .32px;
-    line-height: 16px;
-  }
 }
 
 @media (min-width: 600px) {
@@ -2017,18 +1867,11 @@ exports[`EmptyState should render icon in circular container 1`] = `
   border-bottom: 2px solid transparent;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 0;
-  color: #292F7C;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: .32px;
+  color: #454545;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 24px;
-  text-transform: none;
+  margin: 0;
 }
 
 .emotion-6:focus {
@@ -2036,14 +1879,6 @@ exports[`EmptyState should render icon in circular container 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    font-size: 12px;
-    letter-spacing: .32px;
-    line-height: 16px;
-  }
 }
 
 @media (min-width: 600px) {
@@ -2121,18 +1956,11 @@ exports[`EmptyState should render icon in circular container 1`] = `
   border-bottom: 2px solid transparent;
   font-family: "Work Sans",Helvetica,sans-serif;
   padding: 0;
-  color: #292F7C;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .32px;
-  line-height: 16px;
-  text-transform: uppercase;
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: .32px;
+  color: #454545;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 24px;
-  text-transform: none;
+  margin: 0;
 }
 
 .emotion-6:focus {
@@ -2140,14 +1968,6 @@ exports[`EmptyState should render icon in circular container 1`] = `
   outline: 0;
   -webkit-transition: border 0.1s linear;
   transition: border 0.1s linear;
-}
-
-@media (min-width: 600px) {
-  .emotion-6 {
-    font-size: 12px;
-    letter-spacing: .32px;
-    line-height: 16px;
-  }
 }
 
 @media (min-width: 600px) {
