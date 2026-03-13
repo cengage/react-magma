@@ -237,6 +237,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
     const theme: ThemeInterface = React.useContext(ThemeContext);
     const i18n: I18nInterface = React.useContext(I18nContext);
     const id = useGenerateId(defaultId);
+    const helperMessageId = useGenerateId(`${id}-helper`);
 
     const browseFileButtonRef = React.useRef<HTMLButtonElement>(null);
 
@@ -483,7 +484,11 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
           messageStyle={{ minHeight: 0 }}
           data-testid={testId}
         >
-          <HelperMessage theme={theme} isInverse={isInverse}>
+          <HelperMessage
+            id={helperMessageId}
+            theme={theme}
+            isInverse={isInverse}
+          >
             {helperMessage}
           </HelperMessage>
           <Container
@@ -519,6 +524,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                   onClick={open}
                   style={{ margin: 0 }}
                   ref={browseFileButtonRef}
+                  aria-describedby={helperMessage ? helperMessageId : undefined}
                 >
                   {i18n.dropzone.browseFiles}
                 </Button>
@@ -545,6 +551,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
                   style={{ margin: 0 }}
                   variant={ButtonVariant.solid}
                   ref={browseFileButtonRef}
+                  aria-describedby={helperMessage ? helperMessageId : undefined}
                 >
                   {i18n.dropzone.browseFiles}
                 </Button>

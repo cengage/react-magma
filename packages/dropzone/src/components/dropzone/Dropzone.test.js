@@ -637,7 +637,7 @@ describe('File Uploader', () => {
       expect(queryByText(files[0].name)).toBeInTheDocument();
     });
 
-    const removeIcon = getByLabelText('Remove file');
+    const removeIcon = getByLabelText(`Remove file ${files[0].name}`);
 
     await userEvent.click(removeIcon);
 
@@ -663,7 +663,7 @@ describe('File Uploader', () => {
 
     rerender(ui);
 
-    const removeIcon = await findByLabelText('Remove file');
+    const removeIcon = await findByLabelText(`Remove file ${files[0].name}`);
 
     await userEvent.click(removeIcon);
 
