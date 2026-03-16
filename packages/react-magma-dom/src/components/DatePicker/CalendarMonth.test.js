@@ -56,7 +56,7 @@ describe('Calendar Month', () => {
       userEvent.tab();
       expect(getByText(/18/i)).toHaveFocus();
       userEvent.tab();
-      expect(getByLabelText(/help/i)).toHaveFocus();
+      expect(getByLabelText(/keyboard instructions for calendar widget/i)).toHaveFocus();
       userEvent.tab();
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
       userEvent.tab();
@@ -129,7 +129,7 @@ describe('Calendar Month', () => {
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
 
       userEvent.tab({ shift: true });
-      expect(getByLabelText(/help/i)).toHaveFocus();
+      expect(getByLabelText(/keyboard instructions for calendar widget/i)).toHaveFocus();
 
       userEvent.tab({ shift: true });
       expect(getByText(/18/i)).toHaveFocus();
@@ -165,7 +165,7 @@ describe('Calendar Month', () => {
       </CalendarContext.Provider>
     );
 
-    fireEvent.click(getByLabelText('Calendar Widget Help'));
+    fireEvent.click(getByLabelText('Keyboard instructions for calendar widget'));
 
     expect(showHelperInformation).toHaveBeenCalled();
   });
@@ -213,7 +213,7 @@ describe('Calendar Month', () => {
       </CalendarContext.Provider>
     );
 
-    getByLabelText('Calendar Widget Help').focus();
+    getByLabelText('Keyboard instructions for calendar widget').focus();
 
     expect(setDateFocused).toHaveBeenCalledWith(false);
   });

@@ -123,7 +123,12 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
   const startOfWeek = days.indexOf(i18n.datePicker.startOfWeek);
   const sortedDays = days.slice(startOfWeek).concat(days.slice(0, startOfWeek));
   const tableDaysHeaders = sortedDays.map((day, index) => (
-    <Th key={index} theme={theme}>
+    <Th
+      key={index}
+      scope="col"
+      aria-label={i18n.days.long[day]}
+      theme={theme}
+    >
       {i18n.days.min[day]}
     </Th>
   ));
@@ -151,13 +156,15 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             <CalendarHeader ref={headingRef} focusHeader={focusHeader} />
 
             <Table
-              role="presentation"
+              role="grid"
               onBlur={onCalendarTableBlur}
               onFocus={onCalendarTableFocus}
               theme={theme}
             >
-              <tbody>
+              <thead>
                 <tr>{tableDaysHeaders}</tr>
+              </thead>
+              <tbody>
                 {context
                   .buildCalendarMonth(context.focusedDate)
                   .map((week, i) => (
@@ -174,22 +181,21 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
                   ))}
               </tbody>
             </Table>
-            <Tooltip
-              content={'Keyboard instructions'}
-              tooltipStyle={{ position: 'fixed' }}
-            >
-              <HelperButton theme={theme}>
+            <HelperButton theme={theme} onFocus={turnOffDateFocused}>
+              <Tooltip
+                content={'Keyboard instructions'}
+                tooltipStyle={{ position: 'fixed' }}
+              >
                 <IconButton
                   aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
                   icon={<KeyboardIcon />}
                   onClick={context.showHelperInformation}
                   size={ButtonSize.small}
-                  onFocus={turnOffDateFocused}
                   type={ButtonType.button}
                   variant={ButtonVariant.link}
                 />
-              </HelperButton>
-            </Tooltip>
+              </Tooltip>
+            </HelperButton>
 
             <CloseButton theme={theme}>
               <IconButton
