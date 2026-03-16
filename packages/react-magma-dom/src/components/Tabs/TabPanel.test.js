@@ -6,7 +6,6 @@ import { TabPanel } from './TabPanel';
 import { TabPanelsContainer } from './TabPanelsContainer';
 import { TabsContainerContext } from './TabsContainer';
 import { axe } from '../../../axe-helper';
-import { magma } from '../../theme/magma';
 
 describe('TabPanel', () => {
   it('should correctly apply the testId', () => {
@@ -82,5 +81,24 @@ describe('Test for accessibility', () => {
     return axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
+  });
+
+  it('should have all necessary accessibility attributes', () => {
+    const testId = 'test-id';
+
+    const { getAllByTestId } = render(
+      <TabsContainerContext.Provider value={{ activeTabIndex: 0 }}>
+        <TabPanelsContainer>
+          <TabPanel testId={testId}>Tab Panel Text</TabPanel>
+        </TabPanelsContainer>
+      </TabsContainerContext.Provider>
+    );
+
+    expect(getAllByTestId(testId)[0]).toHaveAttribute('role', 'tabpanel');
+    expect(getAllByTestId(testId)[0]).toHaveAttribute(
+      'aria-labelledby',
+      'tab-0'
+    );
+    expect(getAllByTestId(testId)[0]).toHaveAttribute('id', 'tabpanel-0');
   });
 });

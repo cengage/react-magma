@@ -335,13 +335,13 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   const multiComboboxAriaLabel =
     selectedItems.length > 0
-      ? i18n.combobox.multi.ariaLabelWithSelectedItems
+      ? i18n.combobox.multi?.ariaLabelWithSelectedItems
           .replace(/\{labelText\}/g, labelText)
           .replace(
             /\{selectedItems\}/g,
             selectedItems.map(item => itemToString(item)).join(', ')
           )
-      : i18n.combobox.multi.ariaLabelWithoutSelectedItems.replace(
+      : i18n.combobox.multi?.ariaLabelWithoutSelectedItems.replace(
           /\{labelText\}/g,
           labelText
         );

@@ -316,13 +316,13 @@ import {
   ButtonGroup,
   Input,
   Spacer,
-  VisuallyHidden
+  VisuallyHidden,
 } from 'react-magma-dom';
 
 export function Example() {
-  const inputRef = React.useRef<HTMLInputElement>();
   const clearedText = 'Inputs have been reset to default values.';
   const [announcement, setAnnouncement] = React.useState('');
+  const [inputValue, setInputValue] = React.useState('');
 
   function onFormSubmit(event: React.FormEventHandler) {
     event.preventDefault();
@@ -331,7 +331,7 @@ export function Example() {
 
   function onFormReset(event: React.FormEventHandler) {
     event.preventDefault();
-    inputRef.current.value = '';
+    setInputValue('');
     setAnnouncement('');
     setTimeout(() => {
       setAnnouncement(clearedText);
@@ -340,7 +340,11 @@ export function Example() {
 
   return (
     <form onSubmit={onFormSubmit} onReset={onFormReset}>
-      <Input ref={inputRef} labelText="Form Field" value="" />
+      <Input
+        labelText="Form Field"
+        value={inputValue}
+        onChange={e => setInputValue(e.target.value)}
+      />
       <Spacer size="12" />
       <ButtonGroup>
         <Button type={ButtonType.submit}>Submit</Button>

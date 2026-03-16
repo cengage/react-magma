@@ -1,9 +1,11 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import { CheckIcon } from 'react-magma-icons';
 
 import { Tab } from './Tab';
+import { TabPanel } from './TabPanel';
+import { TabPanelsContainer } from './TabPanelsContainer';
 import { TabsContainer } from './TabsContainer';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -276,20 +278,50 @@ it('should show fire a custom onClick event', () => {
 });
 
 describe('Test for accessibility', () => {
-  it('Does not violate accessibility standards', () => {
+  it('Does not violate accessibility standards', async () => {
+    jest.useFakeTimers();
     const testId = 'test-id';
     const { container } = render(
       <TabsContainer>
         <Tabs>
           <Tab testId={testId}>Tab Text</Tab>
         </Tabs>
+        <TabPanelsContainer>
+          <TabPanel>Tab Content</TabPanel>
+        </TabPanelsContainer>
       </TabsContainer>
     );
+
+    act(() => {
+      jest.runAllTimers();
+    });
+    jest.useRealTimers();
 
     return axe(container.innerHTML, {
       rules: { listitem: { enabled: false } },
     }).then(result => {
       return expect(result).toHaveNoViolations();
     });
+  });
+
+  it('should have all necessary accessibility attributes', () => {
+    const testId = 'test-id';
+    const { getAllByTestId } = render(
+      <TabsContainer>
+        <Tabs>
+          <Tab testId={testId}>Tab Text</Tab>
+        </Tabs>
+        <TabPanelsContainer>
+          <TabPanel>Tab Content</TabPanel>
+        </TabPanelsContainer>
+      </TabsContainer>
+    );
+
+    expect(getAllByTestId(testId)[0]).toHaveAttribute('role', 'tab');
+    expect(getAllByTestId(testId)[0]).toHaveAttribute(
+      'aria-controls',
+      'tabpanel-0'
+    );
+    expect(getAllByTestId(testId)[0]).toHaveAttribute('id', 'tab-0');
   });
 });
