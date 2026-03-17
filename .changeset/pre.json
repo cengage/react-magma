@@ -62,6 +62,7 @@
     "fix-Combobox-not-readable-placeholder-for-NVDA",
     "fix-Combobox-search-disabled-options",
     "fix-Combobox-zoom-200%-issue",
+    "fix-Datagrid-update-aria-label",
     "fix-Date-Picker-issues",
     "fix-DatePicker-clear-focus-input",
     "fix-DatePicker-fix-undefined-docus",
