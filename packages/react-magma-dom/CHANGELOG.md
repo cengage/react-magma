@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.68
+
+### Patch Changes
+
+- e2a7c9c: fix(Table): Update current page announcing.
+
 ## 5.1.0-rc.67
 
 ### Patch Changes

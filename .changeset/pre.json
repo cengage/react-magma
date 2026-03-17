@@ -94,6 +94,7 @@
     "fix-Select-focus-border",
     "fix-Select-scrollbar-issue",
     "fix-Storybook-select-issues",
+    "fix-Table-add-page-announcing",
     "fix-Table-remove-focus",
     "fix-Table-tabIndex-logic",
     "fix-Tag-fix-aria-label",
