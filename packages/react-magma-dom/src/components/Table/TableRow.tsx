@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 
-import { getAriaSortLabel, getTableSortIcon } from './utils';
+import { getAriaSort, getAriaSortLabel, getTableSortIcon } from './utils';
 import { I18nContext } from '../../i18n';
 import { magma } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -334,6 +334,11 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
             density={tableContext.density}
             hasSquareCorners={tableContext.hasSquareCorners}
             isInverse={tableContext.isInverse}
+            aria-sort={
+              tableContext.isSortableBySelected
+                ? getAriaSort(sortDirection)
+                : undefined
+            }
             style={{
               background: isHovering
                 ? transparentize(0.93, theme.colors.neutral900)
@@ -345,11 +350,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
                 status={headerRowStatus}
                 isInverse={getIsCheckboxInverse()}
                 labelStyle={{ padding: 0 }}
-                labelText={
-                  headerRowStatus === IndeterminateCheckboxStatus.unchecked
-                    ? i18n.table.selectable.selectAllRowsAriaLabel
-                    : i18n.table.selectable.deselectAllRowsAriaLabel
-                }
+                labelText={i18n.table.selectable.selectAllRowsAriaLabel}
                 isTextVisuallyHidden
                 onChange={onHeaderRowSelect}
               />
@@ -380,15 +381,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
               checked={isSelected}
               disabled={isSelectableDisabled}
               labelStyle={{ padding: 0 }}
-              labelText={
-                isSelected
-                  ? `${i18n.table.selectable.deselectRowAriaLabel} ${
-                      rowName || ''
-                    }`
-                  : `${i18n.table.selectable.selectRowAriaLabel} ${
-                      rowName || ''
-                    }`
-              }
+              labelText={`${i18n.table.selectable.selectRowAriaLabel} ${rowName || ''}`}
               isTextVisuallyHidden
               isInverse={getIsCheckboxInverse()}
               onChange={onTableRowSelect}

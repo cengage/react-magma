@@ -55,6 +55,8 @@ export const IndeterminateCheckbox = React.forwardRef<
       ? false
       : Boolean(props.status === 'checked')
   );
+  const [hasInteracted, setHasInteracted] = React.useState(false);
+  const isFirstRender = React.useRef(true);
 
   const id = useGenerateId(props.id);
 
@@ -64,10 +66,18 @@ export const IndeterminateCheckbox = React.forwardRef<
         ? false
         : Boolean(props.status === 'checked')
     );
+
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+    } else {
+      setHasInteracted(true);
+    }
   }, [props.status]);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { checked: targetChecked } = event.target;
+
+    setHasInteracted(true);
 
     props.onChange &&
       typeof props.onChange === 'function' &&
@@ -114,7 +124,8 @@ export const IndeterminateCheckbox = React.forwardRef<
       return getStringifiedLabelText(node.props.children);
   }
 
-  const showAnnounce = isChecked || isIndeterminate || isUnchecked;
+  const showAnnounce =
+    hasInteracted && (isChecked || isIndeterminate || isUnchecked);
   const announceText = isChecked
     ? replaceLabelTextForAnnounceText(
         i18n.indeterminateCheckbox.isCheckedAnnounce
