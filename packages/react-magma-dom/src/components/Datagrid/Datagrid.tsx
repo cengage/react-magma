@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { defaultComponents } from './components';
 import { useControlled } from '../../hooks/useControlled';
 import { useDataPagination } from '../../hooks/useDataPagination';
 import { XOR } from '../../utils';
@@ -17,7 +18,6 @@ import {
   TablePaginationProps,
   TableSortDirection,
 } from '../Table';
-import { defaultComponents } from './components';
 
 export interface DatagridColumn extends TableHeaderCellProps {
   /**
@@ -298,6 +298,7 @@ export const Datagrid = React.forwardRef<HTMLTableElement, DatagridProps>(
             >
               {columns.map(({ field, header, ...other }) => (
                 <TableHeaderCell
+                  header={header}
                   key={`headercell${field}`}
                   {...other}
                   isRowHeader={false}

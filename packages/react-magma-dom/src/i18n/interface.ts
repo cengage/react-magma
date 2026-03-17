@@ -292,6 +292,7 @@ export interface I18nInterface {
     };
     selectable: {
       sortButtonAriaLabel: string;
+      sortButtonAriaLabelBySelected: string;
       selectAllRowsAriaLabel: string;
       selectRowAriaLabel: string;
       deselectAllRowsAriaLabel: string;

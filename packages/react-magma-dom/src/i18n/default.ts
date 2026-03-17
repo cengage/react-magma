@@ -310,7 +310,8 @@ export const defaultI18n: I18nInterface = {
       rowsPerPageLabel: 'Rows per page',
     },
     selectable: {
-      sortButtonAriaLabel: 'Sort rows',
+      sortButtonAriaLabel: 'Sort rows by {labelText}',
+      sortButtonAriaLabelBySelected: 'Sort rows by selected',
       selectAllRowsAriaLabel: 'Select all rows',
       selectRowAriaLabel: 'Select row',
       deselectAllRowsAriaLabel: 'Deselect all rows',
