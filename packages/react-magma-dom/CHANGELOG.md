@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.18
+
+### Patch Changes
+
+- 74d5155c1: fix(Table): Update current page announcing.
+
 ## 4.12.0-next.17
 
 ### Patch Changes
