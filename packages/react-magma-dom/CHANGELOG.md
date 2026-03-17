@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.17
+
+### Patch Changes
+
+- dcef9e9ba: fix(DataGrid): Update aria-label for table headers and rows.
+
 ## 4.12.0-next.16
 
 ### Patch Changes
