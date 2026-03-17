@@ -289,6 +289,7 @@ export interface I18nInterface {
       nextAriaLabel: string;
       previousAriaLabel: string;
       rowsPerPageLabel: string;
+      currentPageLabel: string;
     };
     selectable: {
       sortButtonAriaLabel: string;
