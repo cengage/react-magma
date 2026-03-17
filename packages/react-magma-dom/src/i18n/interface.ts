@@ -182,8 +182,11 @@ export interface I18nInterface {
     deleteFile: string;
     removeFile: string;
     fileAdded: string;
+    filesAdded: string;
     fileRemoved: string;
     fileDeleted: string;
+    fileUploading: string;
+    fileUploaded: string;
   };
   header: {
     navigationButtonLabel: string;

@@ -190,7 +190,7 @@ const Wrapper = styled.div<{ isInverse?: boolean }>`
   padding: ${({ theme }) => theme.spaceScale.spacing01};
 `;
 
-const PreviewList = styled.div`
+const PreviewList = styled.ul`
   list-style: none;
   padding: 0;
 `;
@@ -263,11 +263,10 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
           const fileNames = acceptedFiles.map(file => file.name).join(', ');
           const message =
             acceptedFiles.length === 1
-              ? (
-                  i18n.dropzone as unknown as { fileAdded?: string }
-                ).fileAdded?.replace(/\{fileName\}/g, fileNames) ||
-                `File ${fileNames} has been added`
-              : `${acceptedFiles.length} files have been added: ${fileNames}`;
+              ? i18n.dropzone.fileAdded.replace(/\{fileName\}/g, fileNames)
+              : i18n.dropzone.filesAdded
+                  .replace(/\{count\}/g, acceptedFiles.length.toString())
+                  .replace(/\{fileNames\}/g, fileNames);
 
           setAnnouncement(message);
         }
@@ -323,11 +322,10 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
         onRemoveFile(removedFile);
       }
 
-      const message =
-        (
-          i18n.dropzone as unknown as { fileRemoved?: string }
-        ).fileRemoved?.replace(/\{fileName\}/g, removedFile.name) ||
-        `File ${removedFile.name} has been removed`;
+      const message = i18n.dropzone.fileRemoved.replace(
+        /\{fileName\}/g,
+        removedFile.name
+      );
 
       setAnnouncement(message);
 
@@ -341,11 +339,10 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
         onDeleteFile(removedFile);
       }
 
-      const message =
-        (
-          i18n.dropzone as unknown as { fileDeleted?: string }
-        ).fileDeleted?.replace(/\{fileName\}/g, removedFile.name) ||
-        `File ${removedFile.name} has been deleted`;
+      const message = i18n.dropzone.fileDeleted.replace(
+        /\{fileName\}/g,
+        removedFile.name
+      );
 
       setAnnouncement(message);
 
@@ -372,7 +369,9 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
 
       // Announce progress every 25% to avoid too many announcements
       if (progressProps.percent > 0 && progressProps.percent % 25 === 0) {
-        const message = `Uploading ${progressProps.file.name}, ${progressProps.percent}% complete`;
+        const message = i18n.dropzone.fileUploading
+          .replace(/\{fileName\}/g, progressProps.file.name)
+          .replace(/\{percent\}/g, progressProps.percent.toString());
 
         setAnnouncement(message);
       }
@@ -394,7 +393,10 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
       );
 
       // Announce successful upload
-      const message = `${finishedProps.file.name} uploaded successfully`;
+      const message = i18n.dropzone.fileUploaded.replace(
+        /\{fileName\}/g,
+        finishedProps.file.name
+      );
 
       setAnnouncement(message);
     };
@@ -571,7 +573,7 @@ export const Dropzone = React.forwardRef<HTMLInputElement, DropzoneProps>(
             )}
           </Container>
         </FormFieldContainer>
-        <PreviewList as="ul">
+        <PreviewList>
           {files.map((file: FilePreview) => (
             <PreviewItem key={file.name}>
               <Preview
