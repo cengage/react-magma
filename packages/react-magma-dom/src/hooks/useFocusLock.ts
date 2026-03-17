@@ -85,6 +85,13 @@ export function useFocusLock(
           return;
         }
 
+        // If focused on header then focus on first item when tab is pressed
+        if (!shiftKey && document.activeElement === header?.current) {
+          event.preventDefault();
+          firstItem.focus();
+          return;
+        }
+
         // If focused on last item then focus on first item when tab is pressed
         if (!shiftKey && document.activeElement === lastItem) {
           event.preventDefault();
