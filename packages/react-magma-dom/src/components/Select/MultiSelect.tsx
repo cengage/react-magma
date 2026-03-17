@@ -54,6 +54,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     initialHighlightedIndex,
   } = props;
   const [clearAnnouncement, setClearAnnouncement] = React.useState('');
+  const [isItemFocused, setItemFocus] = React.useState(false);
 
   function checkSelectedItemValidity(itemToCheck: T) {
     const itemIndex = items.findIndex(
@@ -350,6 +351,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
 
               return (
                 <SelectedItemButton
+                  aria-hidden={!isItemFocused}
                   aria-label={i18n.multiSelect.selectedItemButtonAriaLabel.replace(
                     /\{selectedItem\}/g,
                     multiSelectedItemString
@@ -362,7 +364,14 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
                   onClick={event =>
                     handleRemoveSelectedItem(event, multiSelectedItem)
                   }
-                  onFocus={() => setActiveIndex(index)}
+                  onFocus={event => {
+                    event.stopPropagation();
+                    setActiveIndex(index);
+                    setItemFocus(true);
+                  }}
+                  onBlur={() => {
+                    setItemFocus(false);
+                  }}
                   theme={theme}
                   isInverse={isInverse}
                   disabled={disabled}
