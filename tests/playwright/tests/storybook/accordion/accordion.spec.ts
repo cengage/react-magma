@@ -310,7 +310,9 @@ test.describe('Accordion', () => {
 
     async function verifyShippingAddressContentHidden() {
       await expect(storyBookIframe.getByText('City')).toBeHidden();
-      await expect(storyBookIframe.getByText('State')).toBeHidden();
+      await expect(
+        storyBookIframe.getByText('State', { exact: true })
+      ).toBeHidden();
       await expect(
         storyBookIframe.getByText('Additional Information')
       ).toBeHidden();
@@ -349,7 +351,9 @@ test.describe('Accordion', () => {
     await verifyRandomContentHidden();
 
     await expect(storyBookIframe.getByText('City')).toBeVisible();
-    await expect(storyBookIframe.getByText('State')).toBeVisible();
+    await expect(
+      storyBookIframe.getByText('State', { exact: true })
+    ).toBeVisible();
     await expect(
       storyBookIframe.getByText('Additional Information')
     ).toBeVisible();
@@ -359,7 +363,9 @@ test.describe('Accordion', () => {
     await verifyPersonalInformationContentHidden();
     await verifyShippingAddressContentHidden();
 
-    await expect(storyBookIframe.getByText('ComboBox Example')).toBeVisible();
+    await expect(
+      storyBookIframe.getByText('ComboBox Example', { exact: true })
+    ).toBeVisible();
     await expect(
       storyBookIframe.getByRole('button', { name: 'Basic Dropdown' })
     ).toBeVisible();

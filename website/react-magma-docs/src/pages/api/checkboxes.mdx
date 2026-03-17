@@ -99,6 +99,7 @@ import {
   Checkbox,
   FormGroup,
   IndeterminateCheckbox,
+  IndeterminateCheckboxStatus,
   magma,
 } from 'react-magma-dom';
 
@@ -120,7 +121,7 @@ export function Example() {
         color={magma.colors.success}
         disabled
         labelText="Disabled indeterminate checkbox"
-        status="indeterminate"
+        status={IndeterminateCheckboxStatus.indeterminate}
       />
     </FormGroup>
   );
@@ -226,7 +227,7 @@ export function Example() {
     green: false,
   });
 
-  const handleChange = (event: React.Change) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [event.target.value]: event.target.checked });
   };
 
@@ -283,7 +284,7 @@ import { Checkbox } from 'react-magma-dom';
 export function Example() {
   const [hasError, setHasError] = React.useState<boolean>(true);
 
-  function handleChange(event: React.ChangeEventHandler) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setHasError(!event.target.checked);
   }
 

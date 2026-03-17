@@ -527,8 +527,7 @@ describe('Date Picker', () => {
     const defaultDate = new Date(2019, 0, 17);
     const now = new Date();
     const [month, year] = format(now, 'MMMM yyyy').split(' ');
-    const labelText = 'Date Picker Label';
-    const { getByLabelText, getByText, getAllByText } = render(
+    const { getByLabelText, getByText, container } = render(
       <DatePicker defaultDate={defaultDate} labelText={labelText} />
     );
 
@@ -544,7 +543,9 @@ describe('Date Picker', () => {
 
     expect(getByText(month)).not.toBeNull();
     expect(getByText(year)).not.toBeNull();
-    expect(getAllByText(format(now, 'd'))[0]).toHaveFocus();
+
+    const todayElement = container.querySelector('[aria-current="date"]');
+    expect(todayElement).toHaveFocus();
   });
 
   it('should focus on min date when it min date after today', () => {
@@ -773,7 +774,7 @@ describe('Date Picker', () => {
     });
 
     it('ArrowUp', () => {
-      const defaultDate = new Date();
+      const defaultDate = new Date(2019, 0, 17);
       const { getAllByText, container } = render(
         <DatePicker defaultDate={defaultDate} labelText={labelText} />
       );

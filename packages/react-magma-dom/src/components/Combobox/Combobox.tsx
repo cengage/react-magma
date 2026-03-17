@@ -12,7 +12,9 @@ import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import { ButtonShape, ButtonSize, ButtonVariant } from '../Button';
+import { ClearAnnouncer } from '../Select/ClearAnnouncer';
 import { defaultComponents } from '../Select/components';
+import { ItemListAnnouncer } from '../Select/ItemListAnnouncer';
 import { ItemsList } from '../Select/ItemsList';
 import { SelectContainer } from '../Select/SelectContainer';
 import { setFocusedItem } from '../Select/utils';
@@ -64,6 +66,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
 
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+  const [clearAnnouncement, setClearAnnouncement] = React.useState('');
+  const clearAnnouncementTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
   function isCreatedItem(item) {
     return (
@@ -164,6 +168,15 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
   const [allItems, displayItems, setDisplayItems, updateItemsRef] =
     useComboboxItems(defaultItems, items);
 
+  // Cleanup timeout on unmount
+  React.useEffect(() => {
+    return () => {
+      if (clearAnnouncementTimeoutRef.current) {
+        clearTimeout(clearAnnouncementTimeoutRef.current);
+      }
+    };
+  }, []);
+
   function getValidItem(itemToCheck: T, key: string): object {
     // When using Typeahead, don't validate the items
     if (isTypeahead) {
@@ -258,6 +271,18 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     }
 
     reset();
+
+    setClearAnnouncement(
+      i18n.combobox.clearAnnounce.replace(/\{labelText\}/g, labelText)
+    );
+
+    // Clear the announcement after a delay to allow for re-announcements
+    if (clearAnnouncementTimeoutRef.current) {
+      clearTimeout(clearAnnouncementTimeoutRef.current);
+    }
+    clearAnnouncementTimeoutRef.current = setTimeout(() => {
+      setClearAnnouncement('');
+    }, 1000);
   }
 
   const clearIndicatorAriaLabel = i18n.combobox.clearIndicatorAriaLabel
@@ -375,7 +400,10 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
         setFloating={refs.setFloating}
+        selectedItem={selectedItem ? itemToString(selectedItem) : ''}
       />
+      <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
+      {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}
     </SelectContainer>
   );
 }

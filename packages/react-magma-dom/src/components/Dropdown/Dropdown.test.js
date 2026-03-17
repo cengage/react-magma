@@ -1,12 +1,6 @@
 import React from 'react';
 
-import {
-  act,
-  fireEvent,
-  getByLabelText,
-  getByTestId,
-  render,
-} from '@testing-library/react';
+import { act, fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 import {
@@ -540,9 +534,9 @@ describe('Dropdown', () => {
   });
 
   it('should close the menu when escape key is pressed', () => {
-    const { getByText, getByTestId } = render(
+    const { getByTestId } = render(
       <Dropdown testId="dropdown">
-        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
         <DropdownContent>
           <DropdownMenuItem>Menu item</DropdownMenuItem>
         </DropdownContent>
@@ -551,7 +545,8 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-    fireEvent.click(getByText('Toggle me'));
+    const button = getByTestId('dropdownButton');
+    fireEvent.click(button);
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
@@ -564,6 +559,7 @@ describe('Dropdown', () => {
       code: 27,
     });
 
+    expect(button).toHaveFocus();
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
@@ -914,7 +910,7 @@ describe('Dropdown', () => {
     it('should close the menu when escape key is pressed', () => {
       const { getByText, getByTestId } = render(
         <Dropdown testId="dropdown">
-          <DropdownButton>Toggle me</DropdownButton>
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
           <DropdownContent>
             <p>test</p>
           </DropdownContent>
@@ -923,7 +919,8 @@ describe('Dropdown', () => {
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-      fireEvent.click(getByText('Toggle me'));
+      const button = getByTestId('dropdownButton');
+      fireEvent.click(button);
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule(
         'display',
@@ -939,6 +936,7 @@ describe('Dropdown', () => {
         code: 27,
       });
 
+      expect(button).toHaveFocus();
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
     });
 
@@ -947,7 +945,7 @@ describe('Dropdown', () => {
       const { getByText, getByTestId } = render(
         <Modal testId="modal" isOpen>
           <Dropdown testId="dropdown">
-            <DropdownButton>Toggle me</DropdownButton>
+            <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
             <DropdownContent>
               <p>test</p>
             </DropdownContent>
@@ -957,7 +955,8 @@ describe('Dropdown', () => {
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-      fireEvent.click(getByText('Toggle me'));
+      const button = getByTestId('dropdownButton');
+      fireEvent.click(button);
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule(
         'display',
@@ -974,6 +973,7 @@ describe('Dropdown', () => {
       });
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(button).toHaveFocus();
       expect(getByTestId('modal')).toBeInTheDocument();
     });
 

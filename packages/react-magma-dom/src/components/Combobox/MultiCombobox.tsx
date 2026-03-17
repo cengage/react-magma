@@ -12,7 +12,9 @@ import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { ClearAnnouncer } from '../Select/ClearAnnouncer';
 import { defaultComponents } from '../Select/components';
+import { ItemListAnnouncer } from '../Select/ItemListAnnouncer';
 import { ItemsList } from '../Select/ItemsList';
 import { SelectContainer } from '../Select/SelectContainer';
 import { IconWrapper, SelectedItemButton } from '../Select/shared';
@@ -65,9 +67,20 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+  const [clearAnnouncement, setClearAnnouncement] = React.useState('');
+  const clearAnnouncementTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
   const [allItems, displayItems, setDisplayItems, updateItemsRef] =
     useComboboxItems(defaultItems, items);
+
+  // Cleanup timeout on unmount
+  React.useEffect(() => {
+    return () => {
+      if (clearAnnouncementTimeoutRef.current) {
+        clearTimeout(clearAnnouncementTimeoutRef.current);
+      }
+    };
+  }, []);
 
   function checkSelectedItemValidity(itemToCheck) {
     // When using Typeahead, don't validate the items
@@ -316,6 +329,19 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     .replace(/\{labelText\}/g, labelText)
     .replace(/\{selectedItem\}/g, itemsArrayToString(selectedItems));
 
+  const multiComboboxAriaLabel =
+    selectedItems.length > 0
+      ? i18n.combobox.multi.ariaLabelWithSelectedItems
+          .replace(/\{labelText\}/g, labelText)
+          .replace(
+            /\{selectedItems\}/g,
+            selectedItems.map(item => itemToString(item)).join(', ')
+          )
+      : i18n.combobox.multi.ariaLabelWithoutSelectedItems.replace(
+          /\{labelText\}/g,
+          labelText
+        );
+
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
     event.stopPropagation();
 
@@ -327,6 +353,18 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     }
 
     reset();
+
+    setClearAnnouncement(
+      i18n.select.clearAnnounce.replace(/\{labelText\}/g, labelText)
+    );
+
+    // Clear the announcement after a delay to allow for re-announcements
+    if (clearAnnouncementTimeoutRef.current) {
+      clearTimeout(clearAnnouncementTimeoutRef.current);
+    }
+    clearAnnouncementTimeoutRef.current = setTimeout(() => {
+      setClearAnnouncement('');
+    }, 1000);
   }
 
   const selectedItemsContent =
@@ -408,6 +446,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   return (
     <SelectContainer
+      ariaLabel={multiComboboxAriaLabel}
       descriptionId={ariaDescribedBy}
       errorMessage={errorMessage}
       getLabelProps={getLabelProps}
@@ -466,6 +505,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         )}
       </ComboboxInput>
       <ItemsList
+        aria-multiselectable="true"
         customComponents={customComponents}
         floatingElementStyles={floatingElementStyles}
         getItemProps={getItemProps}
@@ -480,6 +520,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         menuStyle={menuStyle}
         setFloating={refs.setFloating}
       />
+      <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
+      {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}
     </SelectContainer>
   );
 }

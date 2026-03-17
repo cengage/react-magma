@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, fireEvent, act } from '@testing-library/react';
+import { render, fireEvent, act, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { magma } from '../../theme/magma';
@@ -877,6 +877,60 @@ describe('Combobox', () => {
     expect(renderedCombobox.value).toEqual(customItems[2].label);
   });
 
+  it('should have updated aria-label for selected item', async () => {
+    const { getByLabelText, getByText } = render(
+      <Combobox labelText={labelText} items={items} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+    await userEvent.click(renderedCombobox);
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('aria-label', 'Red');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('aria-label', 'Blue');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Green')).toHaveAttribute('aria-label', 'Green');
+    await userEvent.keyboard('{Enter}');
+
+    await userEvent.click(renderedCombobox);
+    expect(getByText('Green')).toHaveAttribute(
+      'aria-label',
+      'Green is selected'
+    );
+  });
+
+  it('should skip disabled items when typing to filter', async () => {
+    const customItems = [
+      {
+        label: 'Red',
+        value: 'red',
+        disabled: false,
+      },
+      {
+        label: 'Blue',
+        value: 'blue',
+        disabled: true,
+      },
+      {
+        label: 'Green',
+        value: 'green',
+        disabled: false,
+      },
+    ];
+    const { getByLabelText, getByText } = render(
+      <Combobox labelText={labelText} items={customItems} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+    await userEvent.type(renderedCombobox, 'Blue');
+
+    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'false');
+    expect(getByText('Blue')).not.toHaveFocus();
+  });
+
   describe('events', () => {
     it('onBlur', () => {
       const onBlur = jest.fn();
@@ -1102,6 +1156,64 @@ describe('Combobox', () => {
 
         expect(onEscKeyMock).toHaveBeenCalled();
         expect(queryByText('Modal Content')).not.toBeInTheDocument();
+      });
+    });
+  });
+
+  describe('Accessibility - scrollIntoView', () => {
+    it('should call scrollIntoView on focused item when navigating with keyboard', async () => {
+      const mockScrollIntoView = jest.fn();
+      Element.prototype.scrollIntoView = mockScrollIntoView;
+
+      const { getByLabelText } = render(
+        <Combobox labelText={labelText} items={items} />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, {
+        selector: 'input',
+      });
+
+      userEvent.click(renderedCombobox);
+
+      userEvent.keyboard('{ArrowDown}');
+
+      await waitFor(() => {
+        expect(mockScrollIntoView).toHaveBeenCalledWith({
+          behavior: 'smooth',
+          block: 'nearest',
+        });
+      });
+
+      userEvent.keyboard('{ArrowDown}');
+
+      await waitFor(() => {
+        expect(mockScrollIntoView).toHaveBeenCalledTimes(2);
+      });
+
+      mockScrollIntoView.mockRestore();
+    });
+
+    it('should add data-highlighted attribute to focused item', async () => {
+      const { getByLabelText, getByText } = render(
+        <Combobox labelText={labelText} items={items} />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, {
+        selector: 'input',
+      });
+
+      userEvent.click(renderedCombobox);
+      userEvent.keyboard('{ArrowDown}');
+
+      await waitFor(() => {
+        expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
+      });
+
+      userEvent.keyboard('{ArrowDown}');
+
+      await waitFor(() => {
+        expect(getByText('Red')).toHaveAttribute('data-highlighted', 'false');
+        expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'true');
       });
     });
   });

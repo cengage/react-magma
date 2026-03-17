@@ -124,7 +124,10 @@ export const PopoverTrigger = React.forwardRef<
 
   if (!children) {
     return (
-      <div ref={context.setReference} style={{ width: 'fit-content' }}>
+      <div
+        ref={context.setReference}
+        style={{ width: context.isFullWidth ? '100%' : 'fit-content' }}
+      >
         <IconButton
           {...other}
           shape={ButtonShape.fill}
@@ -155,7 +158,10 @@ export const PopoverTrigger = React.forwardRef<
     );
   }
   return (
-    <div ref={context.setReference} style={{ width: 'fit-content' }}>
+    <div
+      ref={context.setReference}
+      style={{ width: context.isFullWidth ? '100%' : 'fit-content' }}
+    >
       {typeof children === 'string' ? (
         <Button
           {...other}

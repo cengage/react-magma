@@ -64,6 +64,10 @@ export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
    * Type of Chart: area, bar, donut, line, etc.
    */
   type: CarbonChartType;
+  /**
+   * Text for the aria-label attribute for main SVG container, if provided
+   */
+  ariaLabel?: string;
 }
 
 const CarbonChartWrapper = styled.div<{
@@ -220,33 +224,33 @@ const CarbonChartWrapper = styled.div<{
     }
     .cds--cc--scatter circle.dot {
       filter: drop-shadow(
-            1px 0px 0px
-              ${props =>
-                props.isInverse
-                  ? props.theme.colors.primary600
-                  : props.theme.colors.neutral100}
-          )
-          drop-shadow(
-            -1px 0px 0px
-              ${props =>
-                props.isInverse
-                  ? props.theme.colors.primary600
-                  : props.theme.colors.neutral100}
-          )
-          drop-shadow(
-            0px 1px 0px
-              ${props =>
-                props.isInverse
-                  ? props.theme.colors.primary600
-                  : props.theme.colors.neutral100}
-          )
-          drop-shadow(
-            0px -1px 0px
-              ${props =>
-                props.isInverse
-                  ? props.theme.colors.primary600
-                  : props.theme.colors.neutral100}
-          );
+          1px 0px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          -1px 0px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          0px 1px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        )
+        drop-shadow(
+          0px -1px 0px
+            ${props =>
+              props.isInverse
+                ? props.theme.colors.primary600
+                : props.theme.colors.neutral100}
+        );
     }
     .cds--cc--scatter circle.dot.hovered {
       stroke-width: 0.5em;
@@ -326,22 +330,23 @@ const CarbonChartWrapper = styled.div<{
       transition: 0.1s all linear;
       stroke-width: 1.1em;
     }
-    
+
     .cds--cc--tooltip {
-    ${props => {
-      const chartColors =
-        (props.isInverse
-          ? props.theme.chartColorsInverse
-          : props.theme.chartColors) || [];
+      ${props => {
+        const chartColors =
+          (props.isInverse
+            ? props.theme.chartColorsInverse
+            : props.theme.chartColors) || [];
 
-      return chartColors.reduce((result, color, index) => {
-        const indexNum = index + 1;
+        return chartColors.reduce((result, color, index) => {
+          const indexNum = index + 1;
 
-        result += `.tooltip-${props.groupsLength}-1-${indexNum} { background-color: ${color}; }`;
+          result += `.tooltip-${props.groupsLength}-1-${indexNum} { background-color: ${color}; }`;
 
-        return result;
-      }, '');
-    }}
+          return result;
+        }, '');
+      }}
+    }
 
     .cds--overflow-menu-options__btn:focus {
       outline-color: ${props =>
@@ -360,7 +365,6 @@ const CarbonChartWrapper = styled.div<{
       margin: 0;
       min-width: ${props => props.theme.spaceScale.spacing13};
       overflow: hidden;
-      padding:;
       position: relative;
       right: ${props => props.theme.spaceScale.spacing04};
       text-align: center;
@@ -538,6 +542,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       type,
       dataSet,
       options,
+      ariaLabel,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
@@ -606,9 +611,11 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     // Adding aria-label to main SVG container
     React.useEffect(() => {
-      document.querySelectorAll('.graph-frame ').forEach(div => {
-        div.setAttribute('aria-label', 'Interactive chart');
-      });
+      if (ariaLabel) {
+        document.querySelectorAll('.graph-frame ').forEach(div => {
+          div.setAttribute('aria-label', ariaLabel);
+        });
+      }
     });
 
     const groupsLength = Object.keys(buildColors()).length;

@@ -10,6 +10,7 @@ import { useIsInverse } from '../../inverse';
 import { magma, ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { XOR } from '../../utils';
+import { Announce, AnnouncePoliteness } from '../Announce';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { DropdownDropDirection } from '../Dropdown';
@@ -17,6 +18,7 @@ import { IconButton } from '../IconButton';
 import { Label } from '../Label';
 import { NativeSelect } from '../NativeSelect';
 import { usePagination } from '../Pagination/usePagination';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface BaseTablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -139,7 +141,11 @@ const StyledContainer = styled.div<{
 
 const PageCount = styled(Label)<{ theme: ThemeInterface }>`
   margin: 0 ${props => props.theme.spaceScale.spacing08};
-`;
+` as React.ComponentType<
+  React.ComponentProps<typeof Label> & {
+    'aria-live'?: 'polite' | 'assertive' | 'off';
+  }
+>;
 
 const RowsPerPageLabel = styled.span<{
   isInverse?: boolean;
@@ -260,13 +266,15 @@ export const TablePagination = React.forwardRef<
   const displayPageEnd = isLastPage ? itemCount : page * rowsPerPage;
 
   function handleRowsPerPageChange(value) {
+    // Always reset page to 1 when rows per page changes
     if (!pageProp) {
       setPageState(1);
-
-      onPageChange &&
-        typeof onPageChange === 'function' &&
-        onPageChange({} as React.SyntheticEvent, 1);
     }
+
+    // Always notify parent to reset page, even if controlled
+    onPageChange &&
+      typeof onPageChange === 'function' &&
+      onPageChange({} as React.SyntheticEvent, 1);
 
     if (!rowsPerPageProp) {
       setRowsPerPageState(value);
@@ -277,6 +285,10 @@ export const TablePagination = React.forwardRef<
 
   const previousButton = pageButtons[0];
   const nextButton = pageButtons[pageButtons.length - 1];
+  const currentPageLabel = i18n.table.pagination.currentPageLabel.replace(
+    '{number}',
+    page
+  );
 
   return (
     <StyledContainer
@@ -297,10 +309,18 @@ export const TablePagination = React.forwardRef<
         />
       )}
 
-      <PageCount isInverse={isInverse} theme={theme}>
-        {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}
+      <PageCount
+        isInverse={isInverse}
+        theme={theme}
+        testId="page-count"
+        aria-live={AnnouncePoliteness.polite}
+        aria-atomic="true"
+      >
+        {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount} `}
       </PageCount>
-
+      <Announce>
+        <VisuallyHidden>{currentPageLabel}</VisuallyHidden>
+      </Announce>
       <ButtonGroup alignment={ButtonGroupAlignment.center}>
         <IconButton
           aria-label={i18n.table.pagination.previousAriaLabel}

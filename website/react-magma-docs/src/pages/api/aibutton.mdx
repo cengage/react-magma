@@ -22,7 +22,7 @@ import React from 'react';
 import { AIButton } from 'react-magma-dom';
 
 export function Example() {
-  return <AIButton>AI Trigger</AIButton>;
+  return <AIButton aria-label="AI Trigger">AI Trigger</AIButton>;
 }
 ```
 
@@ -53,11 +53,19 @@ import { SettingsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <ButtonGroup>
-      <AIButton leadingIcon={<SettingsIcon />}>Leading custom icon</AIButton>
-      <AIButton leadingIcon={false} trailingIcon={<SettingsIcon />}>
+      <AIButton aria-label="Leading custom icon" leadingIcon={<SettingsIcon />}>
+        Leading custom icon
+      </AIButton>
+      <AIButton
+        aria-label="Trailing custom icon"
+        leadingIcon={false}
+        trailingIcon={<SettingsIcon />}
+      >
         Trailing custom icon
       </AIButton>
-      <AIButton trailingIcon={<SettingsIcon />}>Both Icons</AIButton>
+      <AIButton aria-label="Both Icons" trailingIcon={<SettingsIcon />}>
+        Both Icons
+      </AIButton>
     </ButtonGroup>
   );
 }
@@ -75,9 +83,15 @@ import { AIButton, AIButtonSize, ButtonGroup } from 'react-magma-dom';
 export function Example() {
   return (
     <ButtonGroup>
-      <AIButton size={AIButtonSize.small}>Small</AIButton>
-      <AIButton size={AIButtonSize.medium}>Medium</AIButton>
-      <AIButton size={AIButtonSize.large}>Large</AIButton>
+      <AIButton aria-label="Small" size={AIButtonSize.small}>
+        Small
+      </AIButton>
+      <AIButton aria-label="Medium" size={AIButtonSize.medium}>
+        Medium
+      </AIButton>
+      <AIButton aria-label="Large" size={AIButtonSize.large}>
+        Large
+      </AIButton>
     </ButtonGroup>
   );
 }
@@ -95,8 +109,12 @@ import { AIButton, AIButtonVariant, ButtonGroup } from 'react-magma-dom';
 export function Example() {
   return (
     <ButtonGroup>
-      <AIButton variant={AIButtonVariant.variantA}>Variant A</AIButton>
-      <AIButton variant={AIButtonVariant.variantB}>Variant B</AIButton>
+      <AIButton aria-label="Variant A" variant={AIButtonVariant.variantA}>
+        Variant A
+      </AIButton>
+      <AIButton aria-label="Variant B" variant={AIButtonVariant.variantB}>
+        Variant B
+      </AIButton>
     </ButtonGroup>
   );
 }
@@ -112,6 +130,7 @@ import { AIButton } from 'react-magma-dom';
 export function Example() {
   return (
     <AIButton
+      aria-label="Custom Colors"
       leftColor="#00f"
       rightColor="#0ff"
       hoverColor="#0f0"
@@ -135,10 +154,16 @@ import { AIButton, AIButtonShape, ButtonGroup } from 'react-magma-dom';
 export function Example() {
   return (
     <ButtonGroup>
-      <AIButton shape={AIButtonShape.fill}>Fill</AIButton>
-      <AIButton shape={AIButtonShape.leftCap}>Left Cap</AIButton>
-      <AIButton shape={AIButtonShape.rightCap}>Right Cap</AIButton>
-      <AIButton shape={AIButtonShape.round} leadingIcon aria-label="Round" />
+      <AIButton aria-label="Fill" shape={AIButtonShape.fill}>
+        Fill
+      </AIButton>
+      <AIButton aria-label="Left Cap" shape={AIButtonShape.leftCap}>
+        Left Cap
+      </AIButton>
+      <AIButton aria-label="Right Cap" shape={AIButtonShape.rightCap}>
+        Right Cap
+      </AIButton>
+      <AIButton aria-label="Round" shape={AIButtonShape.round} leadingIcon />
     </ButtonGroup>
   );
 }
@@ -156,10 +181,16 @@ import { AIButton, AIButtonTextTransform, ButtonGroup } from 'react-magma-dom';
 export function Example() {
   return (
     <ButtonGroup>
-      <AIButton textTransform={AIButtonTextTransform.uppercase}>
+      <AIButton
+        aria-label="Uppercase transform"
+        textTransform={AIButtonTextTransform.uppercase}
+      >
         Uppercase transform
       </AIButton>
-      <AIButton textTransform={AIButtonTextTransform.none}>
+      <AIButton
+        aria-label="No Text Transform"
+        textTransform={AIButtonTextTransform.none}
+      >
         No Text Transform
       </AIButton>
     </ButtonGroup>
@@ -177,7 +208,11 @@ import React from 'react';
 import { AIButton } from 'react-magma-dom';
 
 export function Example() {
-  return <AIButton isFullWidth>Full Width</AIButton>;
+  return (
+    <AIButton aria-label="Full Width" isFullWidth>
+      Full Width
+    </AIButton>
+  );
 }
 ```
 
@@ -195,11 +230,22 @@ import { AIButton, AIButtonVariant, ButtonGroup } from 'react-magma-dom';
 export function Example() {
   return (
     <ButtonGroup>
-      <AIButton isAnimated>Animated Gradient</AIButton>
-      <AIButton isAnimated variant={AIButtonVariant.variantB}>
+      <AIButton aria-label="Animated Gradient" isAnimated>
+        Animated Gradient
+      </AIButton>
+      <AIButton
+        aria-label="Animated Second Gradient"
+        isAnimated
+        variant={AIButtonVariant.variantB}
+      >
         Animated Second Gradient
       </AIButton>
-      <AIButton isAnimated leftColor="#f00" rightColor="#0f0">
+      <AIButton
+        aria-label="Animated Custom Gradient"
+        isAnimated
+        leftColor="#f00"
+        rightColor="#0f0"
+      >
         Animated Custom Gradient
       </AIButton>
     </ButtonGroup>
@@ -236,10 +282,15 @@ export function Example() {
 
   return (
     <ButtonGroup>
-      <AIButton isLoading={isLoading} onClick={() => setIsLoading(true)}>
+      <AIButton
+        aria-label="Loading Button"
+        isLoading={isLoading}
+        onClick={() => setIsLoading(true)}
+      >
         Loading Button
       </AIButton>
       <AIButton
+        aria-label="Loading Icon Button"
         isLoading={isLoadingIcon}
         onClick={() => setIsLoadingIcon(true)}
       />
@@ -258,7 +309,11 @@ import React from 'react';
 import { AIButton } from 'react-magma-dom';
 
 export function Example() {
-  return <AIButton disabled>Disabled</AIButton>;
+  return (
+    <AIButton aria-label="Disabled" disabled>
+      Disabled
+    </AIButton>
+  );
 }
 ```
 
@@ -282,8 +337,14 @@ export function Example() {
     <Card isInverse>
       <CardBody>
         <ButtonGroup>
-          <AIButton isInverse>Inverse Variant A</AIButton>
-          <AIButton isInverse variant={AIButtonVariant.variantB}>
+          <AIButton aria-label="Inverse Variant A" isInverse>
+            Inverse Variant A
+          </AIButton>
+          <AIButton
+            aria-label="Inverse Variant B"
+            isInverse
+            variant={AIButtonVariant.variantB}
+          >
             Inverse Variant B
           </AIButton>
         </ButtonGroup>
@@ -316,8 +377,14 @@ export function Example() {
         <strong>Counter: </strong> <span id="counter">{counter}</span>
       </p>
       <ButtonGroup>
-        <AIButton onClick={handleUpdateCounter}>Click me</AIButton>
-        <AIButton disabled onClick={handleUpdateCounter}>
+        <AIButton aria-label="Increment Counter" onClick={handleUpdateCounter}>
+          Click me
+        </AIButton>
+        <AIButton
+          aria-label="Increment Counter Disabled"
+          disabled
+          onClick={handleUpdateCounter}
+        >
           Click me
         </AIButton>
       </ButtonGroup>

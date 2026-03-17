@@ -8,7 +8,9 @@ import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import { ButtonSize, ButtonVariant } from '../Button';
+import { ClearAnnouncer } from './ClearAnnouncer';
 import { defaultComponents } from './components';
+import { ItemListAnnouncer } from './ItemListAnnouncer';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
@@ -58,6 +60,7 @@ export function Select<T>(props: SelectProps<T>) {
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+  const [clearAnnouncement, setClearAnnouncement] = React.useState('');
 
   const ref = useForkedRef(innerRef || null, toggleButtonRef);
 
@@ -197,6 +200,15 @@ export function Select<T>(props: SelectProps<T>) {
     }
 
     reset();
+
+    setClearAnnouncement(
+      i18n.select.clearAnnounce.replace(/\{labelText\}/g, labelText)
+    );
+
+    // Clear the announcement after a delay to allow for re-announcements
+    setTimeout(() => {
+      setClearAnnouncement('');
+    }, 1000);
   }
 
   const clearIndicatorAriaLabel = i18n.select.clearIndicatorAriaLabel
@@ -223,76 +235,82 @@ export function Select<T>(props: SelectProps<T>) {
   const floatingElementStyles = { ...floatingStyles, width: '100%' };
 
   return (
-    <SelectContainer
-      additionalContent={additionalContent}
-      ariaLabel={ariaLabel}
-      descriptionId={ariaDescribedBy}
-      errorMessage={errorMessage}
-      getLabelProps={getLabelProps}
-      helperMessage={helperMessage}
-      isInverse={isInverse}
-      isLabelVisuallyHidden={isLabelVisuallyHidden}
-      labelPosition={labelPosition}
-      labelStyle={labelStyle}
-      labelText={labelText}
-      labelWidth={labelWidth}
-      messageStyle={messageStyle}
-    >
-      <SelectTriggerButton
-        ariaDescribedBy={ariaDescribedBy}
-        customComponents={customComponents}
-        disabled={disabled}
-        hasError={hasError}
+    <>
+      <SelectContainer
+        additionalContent={additionalContent}
+        ariaLabel={ariaLabel}
+        descriptionId={ariaDescribedBy}
+        errorMessage={errorMessage}
+        getLabelProps={getLabelProps}
+        helperMessage={helperMessage}
         isInverse={isInverse}
-        setReference={refs.setReference}
-        style={inputStyle}
-        toggleButtonProps={toggleButtonProps}
+        isLabelVisuallyHidden={isLabelVisuallyHidden}
+        labelPosition={labelPosition}
+        labelStyle={labelStyle}
+        labelText={labelText}
+        labelWidth={labelWidth}
+        messageStyle={messageStyle}
       >
-        <SelectText
-          data-testid="selectedItemText"
-          isClearable={isClearable}
-          isShowPlaceholder={!selectedItem}
+        <SelectTriggerButton
+          ariaDescribedBy={ariaDescribedBy}
+          customComponents={customComponents}
+          disabled={disabled}
+          hasError={hasError}
           isInverse={isInverse}
-          isDisabled={disabled}
-          theme={theme}
+          setReference={refs.setReference}
+          style={inputStyle}
+          toggleButtonProps={toggleButtonProps}
         >
-          {selectText}
-        </SelectText>
-      </SelectTriggerButton>
+          <SelectText
+            data-testid="selectedItemText"
+            isClearable={isClearable}
+            isShowPlaceholder={!selectedItem}
+            isInverse={isInverse}
+            isDisabled={disabled}
+            theme={theme}
+          >
+            {selectText}
+          </SelectText>
+        </SelectTriggerButton>
 
-      {isClearable && selectedItem && (
-        <ClearIndicator
-          aria-label={clearIndicatorAriaLabel}
-          icon={<CloseIcon size={theme.iconSizes.xSmall} />}
-          onClick={defaultHandleClearIndicatorClick}
+        {isClearable && selectedItem && (
+          <ClearIndicator
+            aria-label={clearIndicatorAriaLabel}
+            icon={<CloseIcon size={theme.iconSizes.xSmall} />}
+            onClick={defaultHandleClearIndicatorClick}
+            isInverse={isInverse}
+            size={ButtonSize.small}
+            style={{
+              position: 'absolute',
+              right: '3.25em',
+              top: '50%',
+              transform: 'translateY(-50%)',
+            }}
+            testId="clearIndicator"
+            variant={ButtonVariant.link}
+          />
+        )}
+
+        <ItemsList
+          customComponents={customComponents}
+          floatingElementStyles={floatingElementStyles}
+          getItemProps={getItemProps}
+          getMenuProps={getMenuProps}
+          highlightedIndex={highlightedIndex}
           isInverse={isInverse}
-          size={ButtonSize.small}
-          style={{
-            position: 'absolute',
-            right: '3.25em',
-            top: '50%',
-            transform: 'translateY(-50%)',
-          }}
-          testId="clearIndicator"
-          variant={ButtonVariant.link}
+          isOpen={isOpen}
+          items={items}
+          itemToString={itemToString}
+          maxHeight={itemListMaxHeight ?? theme.select.menu.maxHeight}
+          menuStyle={menuStyle}
+          setFloating={refs.setFloating}
+          setHighlightedIndex={setHighlightedIndex}
+          selectedItem={selectedItem ? itemToString(selectedItem) : ''}
         />
-      )}
+      </SelectContainer>
 
-      <ItemsList
-        customComponents={customComponents}
-        floatingElementStyles={floatingElementStyles}
-        getItemProps={getItemProps}
-        getMenuProps={getMenuProps}
-        highlightedIndex={highlightedIndex}
-        isInverse={isInverse}
-        isOpen={isOpen}
-        items={items}
-        itemToString={itemToString}
-        maxHeight={itemListMaxHeight ?? theme.select.menu.maxHeight}
-        menuStyle={menuStyle}
-        setFloating={refs.setFloating}
-        setHighlightedIndex={setHighlightedIndex}
-      />
-    </SelectContainer>
+      <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
+      {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}
+    </>
   );
 }

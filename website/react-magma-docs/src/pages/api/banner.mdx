@@ -50,10 +50,11 @@ import React from 'react';
 import {
   Banner,
   AlertVariant,
+  Announce,
+  AnnouncePoliteness,
   Button,
   ButtonColor,
   ButtonSize,
-  Announce,
   useDeviceDetect,
 } from 'react-magma-dom';
 
@@ -69,7 +70,7 @@ export function Example() {
     updateShowBanner(false);
 
     setTimeout(() => {
-      buttonRef.current.focus();
+      buttonRef.current && buttonRef.current.focus();
     }, 0);
   }
 
@@ -77,14 +78,14 @@ export function Example() {
     updateShowBanner(true);
 
     setTimeout(() => {
-      dismissibleButtonRef.current.focus();
+      dismissibleButtonRef.current && dismissibleButtonRef.current.focus();
     }, 0);
   }
 
   return (
     <>
       <Announce
-        politeness="assertive"
+        politeness={AnnouncePoliteness.assertive}
         aria-label={isMacOS ? bannerText : undefined}
       >
         {showBanner && (

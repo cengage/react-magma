@@ -165,7 +165,7 @@ function buildBorderRight(props: StyledButtonGroupProps): string {
 
 const buildNoSpaceButtonStyles = (
   props: StyledButtonGroupProps,
-  selector: string = ''
+  selector = ''
 ) => {
   const selectorWrapper = (styles: string) =>
     selector ? `${selector} { ${styles} }` : styles;

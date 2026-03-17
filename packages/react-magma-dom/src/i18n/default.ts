@@ -97,16 +97,21 @@ export const defaultI18n: I18nInterface = {
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
     createLabel: 'Create "{inputValue}"',
+    clearAnnounce: '{labelText} has been cleared',
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',
+      ariaLabelWithSelectedItems:
+        '{labelText} Multi-select Selected: {selectedItems}',
+      ariaLabelWithoutSelectedItems: '{labelText} Multi-select',
     },
     loading: 'Loading...',
   },
   datePicker: {
     startOfWeek: 'sunday',
     calendarIconAriaLabel: 'Toggle Calendar Widget',
-    calendarOpenAnnounce: 'Calendar Widget is now open.',
+    calendarOpenAnnounce:
+      'Calendar Widget is now open. Refer to the keyboard instructions for navigating the widget.',
     calendarCloseAriaLabel: 'Close Calendar Widget',
     previousMonthAriaLabel: 'Navigate back one month',
     nextMonthAriaLabel: 'Navigate forward one month',
@@ -124,7 +129,8 @@ export const defaultI18n: I18nInterface = {
     year: 'Year',
     helpModal: {
       header: 'Keyboard Shortcuts',
-      helpButtonAriaLabel: 'Calendar Widget Help',
+      helpButtonAriaLabel: 'Keyboard instructions for calendar widget',
+      tooltipContent: 'Keyboard instructions',
       enter: {
         ariaLabel: 'Enter key',
         explanation: 'Select the date in focus.',
@@ -232,10 +238,10 @@ export const defaultI18n: I18nInterface = {
   },
   multiSelect: {
     placeholder: 'Select...',
-    selectedItemButtonAriaLabel: 'reset item {selectedItem}',
+    selectedItemButtonAriaLabel: 'clear item {selectedItem}',
   },
   multiCombobox: {
-    selectedItemButtonAriaLabel: 'reset item {selectedItem}',
+    selectedItemButtonAriaLabel: 'clear item {selectedItem}',
   },
   pagination: {
     nextButtonLabel: 'Next Page',
@@ -266,9 +272,15 @@ export const defaultI18n: I18nInterface = {
     placeholder: 'Select...',
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
+    clearAnnounce: '{labelText} has been cleared',
+    expandedAnnounce: '{labelText} list expanded',
+    collapsedAnnounce: '{labelText} list collapsed',
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',
+      ariaLabelWithSelectedItems:
+        '{labelText} Multi-select Selected: {selectedItems}',
+      ariaLabelWithoutSelectedItems: '{labelText} Multi-select',
     },
   },
   simplePagination: {
@@ -277,6 +289,7 @@ export const defaultI18n: I18nInterface = {
     pagesLabel: 'pages',
     pageNumberLabel: 'Page number',
     selectedLabel: 'selected',
+    selectPageLabel: 'Select page',
   },
   skipLink: {
     buttonText: 'Skip Navigation',
@@ -295,9 +308,11 @@ export const defaultI18n: I18nInterface = {
       nextAriaLabel: 'Next page',
       previousAriaLabel: 'Previous page',
       rowsPerPageLabel: 'Rows per page',
+      currentPageLabel: 'Page {number}, current page',
     },
     selectable: {
-      sortButtonAriaLabel: 'Sort rows',
+      sortButtonAriaLabel: 'Sort rows by {labelText}',
+      sortButtonAriaLabelBySelected: 'Sort rows by selected',
       selectAllRowsAriaLabel: 'Select all rows',
       selectRowAriaLabel: 'Select row',
       deselectAllRowsAriaLabel: 'Deselect all rows',

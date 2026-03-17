@@ -166,7 +166,6 @@ export const ControlledNoMulti = {
   args: {
     isMulti: false,
     index: 0,
-    isMulti: false,
   },
 };
 

@@ -1,5 +1,180 @@
 # Change Log
 
+## 5.3.1-next.9
+
+### Patch Changes
+
+- Updated dependencies [d88363512]
+  - react-magma-dom@4.12.0-next.4
+  - @cengage-patterns/header@15.0.0-next.2
+
+## 5.3.1-next.8
+
+### Patch Changes
+
+- Updated dependencies [0223aac78]
+- Updated dependencies [6009a5824]
+- Updated dependencies [a939d4eea]
+- Updated dependencies [de8db8f39]
+  - react-magma-dom@4.12.0-next.3
+  - @react-magma/charts@14.0.0-next.2
+  - @react-magma/dropzone@14.0.0-next.1
+  - @react-magma/schema-renderer@14.0.0-next.1
+  - @cengage-patterns/header@15.0.0-next.1
+
+## 5.3.1-next.7
+
+### Patch Changes
+
+- b5c6fdc04: fix(Tag & Button & Input & Combobox & Datagrid & RadioButton): Fix accessibility issues for examples.
+
+## 5.3.1-next.6
+
+### Patch Changes
+
+- 0fc596b03: chore: pin eslint-plugin-mdx to v2
+- 75e16fb29: chore: combine workflows into publish.yml and preview.yml.
+- ffadd0283: chore: Update publish.yml files to fix publishing issues.
+- Updated dependencies [9e45d2ff0]
+  - react-magma-dom@4.11.1-next.2
+
+## 5.3.1-next.5
+
+### Patch Changes
+
+- 3248b4eaa: chore: Add support for trusted publishers
+- fdb81200c: chore: Add support for trusted publishers
+- bc00a54ef: chore: Add support for trusted publishers
+
+## 5.3.1-next.4
+
+### Patch Changes
+
+- 3dbb15705: fix(docs): Fix docs issues.
+
+## 5.3.1-next.3
+
+### Patch Changes
+
+- Updated dependencies [aa87f4460]
+  - react-magma-dom@4.11.1-next.0
+  - @react-magma/charts@13.0.2-next.1
+  - @react-magma/dropzone@13.0.1-next.0
+  - @react-magma/schema-renderer@13.0.1-next.0
+  - @cengage-patterns/header@14.0.1-next.0
+
+## 5.3.1-next.2
+
+### Patch Changes
+
+- Updated dependencies [2adadea18]
+  - @react-magma/charts@13.0.2-next.0
+
+## 5.3.1-next.1
+
+### Patch Changes
+
+- 18c7b0b4c: fix(docs): added new script for mdx tscheck to improve type checking in documentation
+
+## 5.3.1-next.0
+
+### Patch Changes
+
+- e2c1f365e: Manually sync main -> dev (v4.11.0)
+- e2c1f365e: chore: Manually sync main -> dev (4.11.0)
+
+## 5.3.0
+
+### Minor Changes
+
+- 5810cc13d: feat(Modal): New `headerLevel` prop. If not passed, header will default to level 2.
+
+### Patch Changes
+
+- 5810cc13d: fix(Docs): update error message for phone input and password input in stories and docs
+- 5810cc13d: chore: match workflows with dev and main
+- 5810cc13d: chore: Update React-magma-icons version to 3.2.4
+- 5810cc13d: chore: Update React-magma-icons version to 3.2.2
+- 5810cc13d: fix(AIButton): Fix typescript issue for Sandbox examples.
+- 5810cc13d: fix(Accordion): Fix bug with not-announced `Expand All/Collapse All` button
+- 5810cc13d: fix(Alert): Fix a SyntaxError in the Dismissible section.
+- 5810cc13d: fix(NavTabs, Tabs, Toast): Fix different issues.
+- 5810cc13d: fix(Nav Tabs): Update documentation to include `aria-labelledby` attribute for multi-instance examples.
+- 5810cc13d: fix(Select): Fix issue when scrollbar appears because of padding and negative margin.
+- 5810cc13d: fix(TimePicker): Fix issue accessibility issues for examples.
+- 5810cc13d: fix(Banner): small fix for docs
+- 5810cc13d: fix(Progress Bar & Radio Button & Native Select & Spinner): Fix various accessibility issues in example components.
+- 5810cc13d: fix(Button Group & Date Picker & Tag & AIButton): Fix typescript issues.
+- 5810cc13d: fix(Modal & Drawer): Added aria-haspopup="dialog" for trigger buttons and updated documentation.
+- 3e5c35196: chore: Manually sync main -> dev (4.10.1)
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+- Updated dependencies [5810cc13d]
+  - react-magma-dom@4.11.0
+  - @react-magma/charts@13.0.1
+  - @react-magma/dropzone@13.0.0
+  - @react-magma/schema-renderer@13.0.0
+  - @cengage-patterns/header@14.0.0
+
+## 5.3.0-next.18
+
+### Patch Changes
+
+- 9a93d9235: fix(AIButton): Fix typescript issue for Sandbox examples.
+
+## 5.3.0-next.17
+
+### Patch Changes
+
+- 59716083d: fix(Button Group & Date Picker & Tag & AIButton): Fix typescript issues.
+
 ## 5.3.0-next.16
 
 ### Patch Changes

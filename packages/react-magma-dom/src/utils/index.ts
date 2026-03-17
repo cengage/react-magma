@@ -372,3 +372,22 @@ export const handleNumericBeforeInput = (
     e.preventDefault();
   }
 };
+
+export function hasActiveElementsInside(ref) {
+  return (
+    Array.from(
+      ref.current?.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
+      ) || []
+    ).filter((element: HTMLElement) => {
+      const style = window.getComputedStyle(element);
+
+      return (
+        element instanceof HTMLElement &&
+        style.display !== 'none' &&
+        style.visibility !== 'hidden' &&
+        !element.hasAttribute('disabled')
+      );
+    }).length > 0
+  );
+}

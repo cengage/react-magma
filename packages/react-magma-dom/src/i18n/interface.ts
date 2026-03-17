@@ -98,8 +98,11 @@ export interface I18nInterface {
   combobox: {
     clearIndicatorAriaLabel: string;
     createLabel: string;
+    clearAnnounce: string;
     multi: {
       clearIndicatorAriaLabel: string;
+      ariaLabelWithSelectedItems: string;
+      ariaLabelWithoutSelectedItems: string;
     };
     loading: string;
   };
@@ -133,6 +136,7 @@ export interface I18nInterface {
     helpModal: {
       header: string;
       helpButtonAriaLabel: string;
+      tooltipContent: string;
       enter: {
         ariaLabel: string;
         explanation: string;
@@ -251,8 +255,13 @@ export interface I18nInterface {
   select: {
     placeholder: string;
     clearIndicatorAriaLabel: string;
+    clearAnnounce: string;
+    expandedAnnounce: string;
+    collapsedAnnounce: string;
     multi: {
       clearIndicatorAriaLabel: string;
+      ariaLabelWithSelectedItems: string;
+      ariaLabelWithoutSelectedItems: string;
     };
   };
   simplePagination: {
@@ -261,6 +270,7 @@ export interface I18nInterface {
     pageLabel: string;
     pagesLabel: string;
     selectedLabel: string;
+    selectPageLabel: string;
   };
   skipLink: {
     buttonText: string;
@@ -279,9 +289,11 @@ export interface I18nInterface {
       nextAriaLabel: string;
       previousAriaLabel: string;
       rowsPerPageLabel: string;
+      currentPageLabel: string;
     };
     selectable: {
       sortButtonAriaLabel: string;
+      sortButtonAriaLabelBySelected: string;
       selectAllRowsAriaLabel: string;
       selectRowAriaLabel: string;
       deselectAllRowsAriaLabel: string;

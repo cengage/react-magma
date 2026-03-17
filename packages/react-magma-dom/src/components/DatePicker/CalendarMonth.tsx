@@ -258,14 +258,14 @@ export const CalendarMonth: React.FunctionComponent<CalendarMonthProps> = (
             {props.dateTimePickerContent && props.dateTimePickerContent}
             <HeaderWrapper theme={theme} isInverse={context.isInverse}>
               <Tooltip
-                content={'Keyboard instructions'}
+                content={i18n.datePicker.helpModal.tooltipContent}
                 tooltipStyle={{ position: 'fixed' }}
               >
                 <HelperButton theme={theme}>
                   <IconButton
                     color={ButtonColor.subtle}
                     ref={helperButtonRef}
-                    aria-label={i18n.datePicker.helpModal.helpButtonAriaLabel}
+                    aria-label={`${i18n.datePicker.helpModal.helpButtonAriaLabel} ${i18n.datePicker.helpModal.tooltipContent}`}
                     icon={<KeyboardIcon />}
                     onClick={context.showHelperInformation}
                     onFocus={turnOffDateFocused}

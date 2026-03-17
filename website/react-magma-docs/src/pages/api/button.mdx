@@ -309,24 +309,32 @@ By default, buttons will have a type of `button`.
 import React from 'react';
 
 import {
+  Announce,
   Button,
   ButtonType,
   ButtonGroup,
   Input,
   Spacer,
+  VisuallyHidden,
 } from 'react-magma-dom';
 
 export function Example() {
-  const inputRef = React.useRef<HTMLInputElement>();
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const clearedText = 'Inputs have been reset to default values.';
+  const [announcement, setAnnouncement] = React.useState('');
 
-  function onFormSubmit(event: React.FormEventHandler) {
+  function onFormSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     alert('Form Submitted');
   }
 
-  function onFormReset(event: React.FormEventHandler) {
+  function onFormReset(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    inputRef.current.value = '';
+    if (inputRef.current) inputRef.current.value = '';
+    setAnnouncement('');
+    setTimeout(() => {
+      setAnnouncement(clearedText);
+    }, 10);
   }
 
   return (
@@ -337,6 +345,9 @@ export function Example() {
         <Button type={ButtonType.submit}>Submit</Button>
         <Button type={ButtonType.reset}>Reset</Button>
       </ButtonGroup>
+      <Announce>
+        <VisuallyHidden>{announcement}</VisuallyHidden>
+      </Announce>
     </form>
   );
 }
@@ -385,10 +396,10 @@ import React from 'react';
 import { Button, ButtonGroup } from 'react-magma-dom';
 
 export function Example() {
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   function handleButtonFocus() {
-    buttonRef.current.focus();
+    buttonRef.current && buttonRef.current.focus();
   }
 
   return (

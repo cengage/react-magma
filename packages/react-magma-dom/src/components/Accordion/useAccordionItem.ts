@@ -45,7 +45,7 @@ export function useAccordionItem(props: UseAccordionItemProps) {
   React.useEffect(() => {
     const newIsExpanded = isMulti
       ? Array.isArray(expandedIndex) && expandedIndex.includes(index)
-      : expandedIndex == index;
+      : expandedIndex === index;
 
     setIsExpanded(newIsExpanded);
   });
