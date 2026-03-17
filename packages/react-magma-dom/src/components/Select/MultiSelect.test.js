@@ -680,6 +680,34 @@ describe('MultiSelect', () => {
     expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
   });
 
+  it('should have aria-label with selected items', async () => {
+    const { getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red', 'Blue']}
+      />
+    );
+
+    const label = getByText(labelText);
+
+    expect(label).toHaveAttribute(
+      'aria-label',
+      'Label Multi-select Selected: Red, Blue'
+    );
+  });
+
+  it('should have aria-label without selected items', async () => {
+    const { getByText } = render(
+      <MultiSelect isMulti labelText={labelText} items={items} />
+    );
+
+    const label = getByText(labelText);
+
+    expect(label).toHaveAttribute('aria-label', 'Label Multi-select');
+  });
+
   describe('events', () => {
     it('onBlur', async () => {
       const onBlur = jest.fn();

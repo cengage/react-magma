@@ -53,11 +53,19 @@ import { SettingsIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <ButtonGroup>
-      <AIButton leadingIcon={<SettingsIcon />}>Leading custom icon</AIButton>
-      <AIButton leadingIcon={false} trailingIcon={<SettingsIcon />}>
+      <AIButton aria-label="Leading custom icon" leadingIcon={<SettingsIcon />}>
+        Leading custom icon
+      </AIButton>
+      <AIButton
+        aria-label="Trailing custom icon"
+        leadingIcon={false}
+        trailingIcon={<SettingsIcon />}
+      >
         Trailing custom icon
       </AIButton>
-      <AIButton trailingIcon={<SettingsIcon />}>Both Icons</AIButton>
+      <AIButton aria-label="Both Icons" trailingIcon={<SettingsIcon />}>
+        Both Icons
+      </AIButton>
     </ButtonGroup>
   );
 }

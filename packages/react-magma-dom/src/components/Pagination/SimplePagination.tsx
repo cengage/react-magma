@@ -188,7 +188,7 @@ export const SimplePagination = React.forwardRef<
       {count > 0 && (
         <>
           <NativeSelect
-            aria-label={i18n.select.placeholder}
+            aria-label={i18n.simplePagination.selectPageLabel}
             data-testid={testId ? `${testId}-select` : `pagination-select`}
             containerStyle={nativeSelectStyles}
             disabled={disabled}

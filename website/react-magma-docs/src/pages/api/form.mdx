@@ -132,6 +132,7 @@ export function Example() {
             }))
           }
           errorMessage={errors.firstName && 'First Name is required'}
+          autoComplete="given-name"
         />
         <Spacer size="12" />
         <Input
@@ -144,6 +145,7 @@ export function Example() {
             }))
           }
           errorMessage={errors.lastName && 'Last Name is required'}
+          autoComplete="family-name"
         />
         <Spacer size="12" />
         <Input
@@ -156,6 +158,7 @@ export function Example() {
             }))
           }
           errorMessage={errors.email && 'Email is required'}
+          autoComplete="email"
         />
         <Spacer size="24" />
       </>
@@ -203,9 +206,9 @@ export function Example() {
           }
         >
           <>
-            <Input labelText="Name" />
+            <Input labelText="Name" autoComplete="given-name" />
             <Spacer size="12" />
-            <Input labelText="Email" />
+            <Input labelText="Email" autoComplete="email" />
             <Spacer size="24" />
           </>
         </Form>

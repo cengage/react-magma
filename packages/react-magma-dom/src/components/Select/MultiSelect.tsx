@@ -4,18 +4,19 @@ import { autoUpdate } from '@floating-ui/react-dom';
 import { useMultipleSelection, useSelect } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
 
+import { ClearAnnouncer } from './ClearAnnouncer';
 import { defaultComponents } from './components';
+import { ItemListAnnouncer } from './ItemListAnnouncer';
 import { ItemsList } from './ItemsList';
-import { SelectAnnouncer } from './SelectAnnouncer';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { IconWrapper, SelectedItemButton, SelectText } from './shared';
+import { isItemDisabled } from './utils';
+import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import { ButtonSize, ButtonVariant } from '../Button';
-import { isItemDisabled } from './utils';
-import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 
 import { instanceOfDefaultItemObject, MultiSelectProps } from '.';
 
@@ -52,6 +53,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     isClearable,
     initialHighlightedIndex,
   } = props;
+  const [clearAnnouncement, setClearAnnouncement] = React.useState('');
 
   function checkSelectedItemValidity(itemToCheck: T) {
     const itemIndex = items.findIndex(
@@ -271,6 +273,19 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     .replace(/\{labelText\}/g, labelText)
     .replace(/\{selectedItem\}/g, itemsArrayToString(selectedItems));
 
+  const multiSelectAriaLabel =
+    selectedItems.length > 0
+      ? i18n.select.multi.ariaLabelWithSelectedItems
+          .replace(/\{labelText\}/g, labelText)
+          .replace(
+            /\{selectedItems\}/g,
+            selectedItems.map(item => itemToString(item)).join(', ')
+          )
+      : i18n.select.multi.ariaLabelWithoutSelectedItems.replace(
+          /\{labelText\}/g,
+          labelText
+        );
+
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
     event.stopPropagation();
 
@@ -279,6 +294,15 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     }
 
     reset();
+
+    setClearAnnouncement(
+      i18n.select.clearAnnounce.replace(/\{labelText\}/g, labelText)
+    );
+
+    // Clear the announcement after a delay to allow for re-announcements
+    setTimeout(() => {
+      setClearAnnouncement('');
+    }, 1000);
   }
 
   const { floatingStyles, refs, elements, update } = useMagmaFloating();
@@ -298,7 +322,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     <>
       <SelectContainer
         additionalContent={additionalContent}
-        ariaLabel={ariaLabel}
+        ariaLabel={ariaLabel ?? multiSelectAriaLabel}
         descriptionId={ariaDescribedBy}
         errorMessage={errorMessage}
         getLabelProps={getLabelProps}
@@ -383,6 +407,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
           />
         )}
         <ItemsList
+          aria-multiselectable="true"
           customComponents={customComponents}
           floatingElementStyles={floatingElementStyles}
           getItemProps={getItemProps}
@@ -399,7 +424,8 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
         />
       </SelectContainer>
 
-      <SelectAnnouncer isOpen={isOpen} labelText={labelText} />
+      <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
+      {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}
     </>
   );
 }

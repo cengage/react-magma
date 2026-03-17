@@ -1174,27 +1174,60 @@ However, these can be overridden by providing custom components to the `componen
 ```tsx
 import React from 'react';
 
-import { Select } from 'react-magma-dom';
+import { Announce, VisuallyHidden, Select } from 'react-magma-dom';
 
 export function Example() {
+  const [selectedItem, setSelectedItem] = React.useState({
+    label: 'Green',
+    value: 'green',
+  });
+  const [announcement, setAnnouncement] = React.useState('');
+  const [isCleared, setIsCleared] = React.useState(false);
+  const clearedText = 'All selected items have been cleared';
+
+  function handleOnChange(changes) {
+    setAnnouncement('');
+    setSelectedItem(changes.selectedItem);
+    setIsCleared(false);
+  }
+
+  function onClear(event, clearHandler) {
+    clearHandler(event);
+    setAnnouncement(clearedText);
+    setIsCleared(true);
+  }
+
   return (
-    <Select
-      id="customComponentsId"
-      labelText="Custom components"
-      items={[
-        { label: 'Red', value: 'red' },
-        { label: 'Blue', value: 'blue' },
-        { label: 'Green', value: 'green' },
-      ]}
-      initialSelectedItem={{ label: 'Green', value: 'green' }}
-      isClearable
-      components={{
-        ClearIndicator: props => <button onClick={props.onClick}>Clear</button>,
-        DropdownIndicator: () => (
-          <span style={{ border: '1px solid' }}>Dropdown</span>
-        ),
-      }}
-    />
+    <>
+      <Select
+        id="customComponentsId"
+        labelText="Custom components"
+        items={[
+          { label: 'Red', value: 'red' },
+          { label: 'Blue', value: 'blue' },
+          { label: 'Green', value: 'green' },
+        ]}
+        selectedItem={selectedItem}
+        onSelectedItemChange={handleOnChange}
+        isClearable
+        components={{
+          ClearIndicator: props => (
+            <button
+              aria-label="Clear selected value for Custom components"
+              onClick={event => onClear(event, props.onClick)}
+            >
+              Clear
+            </button>
+          ),
+          DropdownIndicator: () => (
+            <span style={{ border: '1px solid' }}>Dropdown</span>
+          ),
+        }}
+      />
+      <Announce>
+        <VisuallyHidden>{announcement}</VisuallyHidden>
+      </Announce>
+    </>
   );
 }
 ```

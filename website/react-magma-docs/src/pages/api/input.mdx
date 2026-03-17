@@ -275,12 +275,14 @@ For short forms with an error, clicking submit should bring the focus back to th
 ```tsx
 import React from 'react';
 
-import { Input, Button, ButtonGroup, Spacer } from 'react-magma-dom';
+import { Announce, Button, ButtonGroup, Input, Spacer, VisuallyHidden } from 'react-magma-dom';
 
 export function Example() {
   const [hasError, setHasError] = React.useState(false);
   const [nameValue, setNameValue] = React.useState('');
   const inputRef = React.useRef();
+  const clearedText = 'Input has been reset to default value.';
+  const [announcement, setAnnouncement] = React.useState('');
 
   function submit() {
     if (nameValue === '') {
@@ -295,6 +297,10 @@ export function Example() {
     setHasError(false);
     setNameValue('');
     inputRef.current.focus();
+    setAnnouncement('');
+    setTimeout(() => {
+      setAnnouncement(clearedText);
+    }, 10);
   }
 
   return (
@@ -315,6 +321,9 @@ export function Example() {
           Reset
         </Button>
       </ButtonGroup>
+      <Announce>
+        <VisuallyHidden>{announcement}</VisuallyHidden>
+      </Announce>
     </>
   );
 }

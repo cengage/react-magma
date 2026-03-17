@@ -145,14 +145,11 @@ export const IndeterminateCheckbox = React.forwardRef<
 
   const isInverse = useIsInverse(props.isInverse);
 
-  const ariaCheckedValue = isIndeterminate ? 'mixed' : !isUnchecked;
-
   return (
     <>
       <StyledContainer style={containerStyle}>
         <HiddenInput
           {...other}
-          aria-checked={ariaCheckedValue}
           aria-describedby={describedBy}
           checked={isChecked}
           data-testid={testId}

@@ -14,6 +14,7 @@ import {
 
 import { useIsInverse } from '../../inverse';
 import {
+  hasActiveElementsInside,
   isElementInteractive,
   resolveProps,
   useForkedRef,
@@ -159,25 +160,6 @@ export const PopoverContext = React.createContext<PopoverContextInterface>({
   setIsOpen: () => false,
 });
 
-export function hasActiveElementsChecker(ref) {
-  return (
-    Array.from(
-      ref.current?.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
-      ) || []
-    ).filter((element: HTMLElement) => {
-      const style = window.getComputedStyle(element);
-
-      return (
-        element instanceof HTMLElement &&
-        style.display !== 'none' &&
-        style.visibility !== 'hidden' &&
-        !element.hasAttribute('disabled')
-      );
-    }).length > 0
-  );
-}
-
 export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
   (props, forwardedRef) => {
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -192,7 +174,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     const arrowRef = React.useRef(null);
 
     const hasActiveElements = React.useMemo(
-      () => hasActiveElementsChecker(contentRef),
+      () => hasActiveElementsInside(contentRef),
       [contentRef, contentRef.current]
     );
 

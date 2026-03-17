@@ -1,5 +1,145 @@
 ## 4.10.0
 
+## 5.1.0-rc.68
+
+### Patch Changes
+
+- e2a7c9c: fix(Table): Update current page announcing.
+
+## 5.1.0-rc.67
+
+### Patch Changes
+
+- 6be25ab: fix(DataGrid): Update aria-label for table headers and rows.
+
+## 5.1.0-rc.66
+
+### Patch Changes
+
+- 3de4dd6: fix(EmptyState): Add 'headingLevel' prop
+
+## 5.1.0-rc.65
+
+### Patch Changes
+
+- ae600ef: fix(MultiCombobox & MultiSelect): Add announcing current values with label.
+
+## 5.1.0-rc.64
+
+### Patch Changes
+
+- b74a6d4: fix(Combobox): Fix leak on rerender.
+- 30a7da5: fix(DatePicker): Remove `aria-selected` and change the announced text when opening the `DatePicker`.
+- be245ef: fix(Table): Remove focus from `Table` with interactive elements
+
+## 5.1.0-rc.63
+
+### Patch Changes
+
+- 47085d5: fix(Combobox): Fix issue when focused item wasn't scrolled into view.
+
+## 5.1.0-rc.62
+
+### Patch Changes
+
+- bf43aba: fix(Checkbox): remove `aria-checked`.
+
+## 5.1.0-rc.61
+
+### Patch Changes
+
+- fb3b23a: fix(Dropdown): Fix state update when filtering or reordering.
+
+## 5.1.0-rc.60
+
+### Patch Changes
+
+- ac9e3ff: fix(CharacterCounter & Input & TextArea): Update announcement for error message.
+
+## 5.1.0-rc.59
+
+### Minor Changes
+
+- 39546f5: feat(EmptyState): Add EmptyState component
+
+## 5.1.0-rc.58
+
+### Patch Changes
+
+- 8160393: fix(Search, Input): add `role="img"` for the `SearchIcon` and fix `Form` docs issues.
+
+## 5.1.0-rc.57
+
+### Patch Changes
+
+- bac4f4a: fix(Combobox): Prevent focusing disabled options.
+
+## 5.1.0-rc.56
+
+### Patch Changes
+
+- 9804026: fix(Select & MultiSelect & Combobox & MultiCombobox): Add a state to announce changes after the input is cleared.
+  Updated doc example.
+
+## 5.1.0-rc.55
+
+### Patch Changes
+
+- c5bf081: fix(NativeSelect): move `additionalContent` from `<label>`. Add internal prop to `FormFieldContainer`. Fix accessibility issue.
+
+## 5.1.0-rc.54
+
+### Minor Changes
+
+- 48e8a74: fix(Hyperlink): add new `opensInNewTab` prop.
+
+## 5.1.0-rc.53
+
+### Patch Changes
+
+- 70a6688: fix(TextArea): Change `aria-labelledby` to `aria-describedby`.
+
+## 5.1.0-rc.52
+
+### Patch Changes
+
+- 1905265: fix(Pagination): Update aria-label.
+
+## 5.1.0-rc.51
+
+### Patch Changes
+
+- 295d8a6: fix(ButtonGroup): reverted Accessibility issue: now `ButtonGroup` is list in the HTML with role="list"
+
+## 5.1.0-rc.50
+
+### Patch Changes
+
+- a365b9e: fix(Dropdown): Fix bug with `Escape` focus behavior
+
+## 5.1.0-rc.49
+
+### Patch Changes
+
+- 1c056fd: fix(Table/Datagrid): Improve screen reader announcements for table navigation and pagination.
+
+  - Removed aria-live from Datagrid table to prevent automatic reading of entire table content when rows per page changes
+  - Added aria-live="polite" to TablePagination page count to announce pagination status updates
+  - Added proper ARIA attributes (role="region", aria-label/aria-labelledby) to scrollable table wrapper to prevent verbose screen reader announcements
+
+## 5.1.0-rc.48
+
+### Patch Changes
+
+- 54018e0: fix(Select, Multiselect): Separate focus and hover states and auto-focus first item for NVDA support
+
+## 5.1.0-rc.47
+
+### Patch Changes
+
+- 70feb95: fix(DatePicker): Update announcing tooltip logic.
+- c0c2903: fix(Treeview): Update storybook example.
+
 ## 5.1.0-rc.46
 
 ### Minor Changes

@@ -3,8 +3,8 @@ import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { NorthIcon, SortDoubleArrowIcon, SouthIcon } from 'react-magma-icons';
 
+import { getAriaSortLabel, getTableSortIcon } from './utils';
 import { I18nContext } from '../../i18n';
 import { magma } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -306,38 +306,16 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
       onSort && typeof onSort === 'function' && onSort();
     }
 
-    const SortIcon =
-      sortDirection === TableSortDirection.ascending ? (
-        <NorthIcon
-          color={
-            tableContext.isInverse
-              ? theme.colors.neutral100
-              : theme.colors.neutral700
-          }
-          size={theme.iconSizes.small}
-          testId="sort-ascending"
-        />
-      ) : sortDirection === TableSortDirection.descending ? (
-        <SouthIcon
-          color={
-            tableContext.isInverse
-              ? theme.colors.neutral100
-              : theme.colors.neutral700
-          }
-          size={theme.iconSizes.small}
-          testId="sort-descending"
-        />
-      ) : (
-        <SortDoubleArrowIcon
-          color={
-            tableContext.isInverse
-              ? transparentize(0.3, theme.colors.neutral100)
-              : theme.colors.neutral500
-          }
-          size={theme.iconSizes.small}
-          testId="sort-none"
-        />
-      );
+    const SortIcon = getTableSortIcon({
+      sortDirection,
+      isInverse: tableContext.isInverse,
+      theme,
+    });
+
+    const sortButtonAriaLabel =
+      i18n.table.selectable.sortButtonAriaLabelBySelected +
+      ' ' +
+      getAriaSortLabel(sortDirection);
 
     return (
       <StyledTableRow
@@ -379,6 +357,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
               />
               {tableContext.isSortableBySelected && (
                 <SortButton
+                  aria-label={sortButtonAriaLabel}
                   density={tableContext.density}
                   isInverse={tableContext.isInverse}
                   onClick={handleSort}
@@ -387,7 +366,6 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   data-testid={`${testId || ''}-sort-button`}
-                  aria-label={i18n.table.selectable.sortButtonAriaLabel}
                 >
                   <SortIconWrapper theme={theme}>{SortIcon}</SortIconWrapper>
                 </SortButton>
