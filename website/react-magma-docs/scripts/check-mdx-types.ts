@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
 
 // DOCS_ROOT is the directory from which the npm script is run
 const DOCS_ROOT = process.cwd();
@@ -154,20 +154,30 @@ function resolveTscPath(): string {
   }
 
   // Check the root node_modules tsc version
-  const rootTsc = path.resolve(DOCS_ROOT, '..', '..', 'node_modules', '.bin', 'tsc');
+  const rootTsc = path.resolve(
+    DOCS_ROOT,
+    '..',
+    '..',
+    'node_modules',
+    '.bin',
+    'tsc'
+  );
   if (fs.existsSync(rootTsc)) {
     try {
       const version = execSync(`"${rootTsc}" --version`, {
         encoding: 'utf-8',
       }).trim();
-      const major = parseInt(version.replace(/^Version\s+/, '').split('.')[0], 10);
+      const major = parseInt(
+        version.replace(/^Version\s+/, '').split('.')[0],
+        10
+      );
       if (major >= 5) {
         console.log(`Using root TypeScript: ${version}`);
         return rootTsc;
       }
       console.warn(
         `Root TypeScript is ${version} (too old). ` +
-        `This script requires TypeScript >= 5.0 for proper type checking.`
+          `This script requires TypeScript >= 5.0 for proper type checking.`
       );
     } catch {
       // fall through
@@ -177,7 +187,7 @@ function resolveTscPath(): string {
   // npx fallback — will use whatever version is available
   console.warn(
     'Could not find TypeScript >= 5.0. Falling back to npx tsc. ' +
-    'Install typescript@^5.0.0 in the docs package for reliable results.'
+      'Install typescript@^5.0.0 in the docs package for reliable results.'
   );
   return 'npx tsc';
 }
@@ -214,7 +224,9 @@ function main() {
     fs.writeFileSync(block.tmpFile, block.code, 'utf-8');
   }
 
-  console.log(`Written ${allBlocks.length} temp files to ${path.relative(DOCS_ROOT, TMP_DIR)}/`);
+  console.log(
+    `Written ${allBlocks.length} temp files to ${path.relative(DOCS_ROOT, TMP_DIR)}/`
+  );
 
   // Resolve tsc binary
   const tscPath = resolveTscPath();
