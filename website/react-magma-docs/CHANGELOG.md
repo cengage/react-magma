@@ -1,5 +1,16 @@
 # Change Log
 
+## 7.0.0-rc.19
+
+### Patch Changes
+
+- 1f5af65: chore: fix build
+- 8ff839b: chore: fix Hyperlink docs issue
+- Updated dependencies [c00f190]
+- Updated dependencies [35406a9]
+  - @react-magma/charts@14.0.0-rc.4
+  - react-magma-dom@5.1.0-rc.70
+
 ## 7.0.0-rc.18
 
 ### Patch Changes

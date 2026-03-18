@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.70
+
+### Patch Changes
+
+- 35406a9: fix(publish): Add missing repository.url to package.json for npm provenance verification.
+
 ## 5.1.0-rc.69
 
 ### Patch Changes

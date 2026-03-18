@@ -1,6 +1,6 @@
 {
   "name": "@react-magma/charts",
-  "version": "14.0.0-rc.3",
+  "version": "14.0.0-rc.4",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -50,7 +50,7 @@
     "identity-obj-proxy": "3.0.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-magma-dom": "^5.1.0-rc.47",
+    "react-magma-dom": "^5.1.0-rc.70",
     "react-magma-icons": "^3.2.4",
     "rollup": "^4.52.4",
     "rollup-plugin-postcss": "^4.0.2"
