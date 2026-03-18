@@ -1,5 +1,19 @@
 # Change Log
 
+## 2.2.18
+
+### Patch Changes
+
+- 0b2b41ed8: chore(v2): publishing all packages not just dom.
+- 0b2b41ed8: chore(v2): create publish.yml for v2 .
+- Updated dependencies [0b2b41ed8]
+- Updated dependencies [0b2b41ed8]
+  - react-magma-dom@2.6.1
+  - @react-magma/charts@0.0.5
+  - @react-magma/dropzone@0.1.6
+  - @react-magma/schema-renderer@0.0.13
+  - @cengage-patterns/header@2.0.13
+
 ## 2.2.18-v2-next.2
 
 ### Patch Changes
