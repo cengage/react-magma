@@ -277,7 +277,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
     reset();
 
     setClearAnnouncement(
-      i18n.combobox.clearAnnounce.replace(/\{labelText\}/g, labelText)
+      i18n.combobox.clearAnnounce?.replace(/\{labelText\}/g, labelText)
     );
 
     // Clear the announcement after a delay to allow for re-announcements
@@ -290,8 +290,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
   }
 
   const clearIndicatorAriaLabel = i18n.combobox.clearIndicatorAriaLabel
-    .replace(/\{labelText\}/g, labelText)
-    .replace(/\{selectedItem\}/g, itemToString(selectedItem));
+    ?.replace(/\{labelText\}/g, labelText)
+    ?.replace(/\{selectedItem\}/g, itemToString(selectedItem));
 
   function handleOnKeyDown(event: React.KeyboardEvent) {
     const count = document.querySelectorAll('[aria-modal="true"]').length;
