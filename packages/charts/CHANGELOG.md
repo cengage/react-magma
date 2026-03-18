@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 14.0.0-next.3
+
+### Patch Changes
+
+- 55782f9e0: fix(charts): trap focus in Carbon Charts "Show as table" modal
+
 ## 14.0.0-next.2
 
 ### Patch Changes
