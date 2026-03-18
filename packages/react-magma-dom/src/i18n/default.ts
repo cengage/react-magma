@@ -209,10 +209,9 @@ export const defaultI18n: I18nInterface = {
     },
   },
   indeterminateCheckbox: {
-    isCheckedAnnounce: 'All subitems are checked for {labelText} checkbox',
-    isIndeterminateAnnounce:
-      'Some, but not all, subitems are checked for {labelText} checkbox',
-    isUncheckedAnnounce: 'No subitems are checked for {labelText} checkbox',
+    isCheckedAnnounce: 'All subitems are selected',
+    isIndeterminateAnnounce: 'Some subitems are selected',
+    isUncheckedAnnounce: 'No subitems are selected',
   },
   input: {
     isClearableAriaLabel: 'Clear Input',

@@ -11,7 +11,7 @@ import {
   TableSortDirection,
 } from './Table';
 import { baseTableCellStyle, buildCellPaddingStyle } from './TableCell';
-import { getAriaSort, getAriaSortLabel, getTableSortIcon } from './utils';
+import { getAriaSort, getTableSortIcon } from './utils';
 import { I18nContext } from '../..';
 import { ThemeContext } from '../../theme/ThemeContext';
 
@@ -207,10 +207,9 @@ export const TableHeaderCell = React.forwardRef<
 
   const widthString = typeof width === 'number' ? `${width}px` : width;
 
-  const sortRowsAriaLabel = i18n.table.selectable.sortButtonAriaLabel.replace(
-    '{labelText}',
-    header + ' ' + getAriaSortLabel(sortDirection)
-  );
+  const sortRowsAriaLabel = isSortable
+    ? i18n.table.selectable.sortButtonAriaLabel.replace('{labelText}', header)
+    : undefined;
 
   return (
     <StyledTableHeaderCell
