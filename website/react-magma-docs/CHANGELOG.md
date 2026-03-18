@@ -1,5 +1,31 @@
 # Change Log
 
+## 2.2.18-v2-next.2
+
+### Patch Changes
+
+- Updated dependencies [f34ef11c]
+  - react-magma-dom@2.6.1-v2-next.2
+
+## 2.2.18-v2-next.1
+
+### Patch Changes
+
+- Updated dependencies [35777b6a]
+  - react-magma-dom@2.6.1-v2-next.1
+
+## 2.2.18-v2-next.0
+
+### Patch Changes
+
+- Updated dependencies [ab7e1552]
+- Updated dependencies [2628dfbe]
+  - react-magma-dom@2.6.1-v2-next.0
+  - @react-magma/charts@0.0.5-v2-next.0
+  - @react-magma/dropzone@0.1.6-v2-next.0
+  - @react-magma/schema-renderer@0.0.13-v2-next.0
+  - @cengage-patterns/header@2.0.13-v2-next.0
+
 ## 2.2.17
 
 ### Patch Changes

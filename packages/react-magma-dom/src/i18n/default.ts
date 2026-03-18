@@ -103,7 +103,7 @@ export const defaultI18n: I18nInterface = {
     todayAriaLabel: '(Today)',
     helpModal: {
       header: 'Keyboard Shortcuts',
-      helpButtonAriaLabel: 'Calendar Widget Help',
+      helpButtonAriaLabel: 'Keyboard instructions for calendar widget',
       enter: {
         ariaLabel: 'Enter key',
         explanation: 'Select the date in focus.',

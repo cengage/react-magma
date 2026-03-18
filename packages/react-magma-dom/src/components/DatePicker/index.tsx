@@ -153,6 +153,32 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     const ref = useForkedRef(forwardedRef, inputRef);
 
     React.useEffect(() => {
+      if (calendarOpened) {
+        const handleNativeEscape = (event: KeyboardEvent) => {
+          if (event.key === 'Escape') {
+            event.stopImmediatePropagation();
+            event.preventDefault();
+
+            if (helperInformationShown) {
+              hideHelperInformation();
+            } else {
+              setCalendarOpened(false);
+              if (iconRef.current) {
+                iconRef.current.focus();
+              }
+            }
+          }
+        };
+
+        document.addEventListener('keydown', handleNativeEscape, true);
+
+        return () => {
+          document.removeEventListener('keydown', handleNativeEscape, true);
+        };
+      }
+    }, [calendarOpened, helperInformationShown]);
+
+    React.useEffect(() => {
       if (!calendarOpened) {
         setDateFocused(false);
       }
@@ -304,6 +330,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     function handleInputKeyDown(event: React.KeyboardEvent) {
       if (event.key === 'Escape') {
         event.preventDefault();
+        event.stopPropagation();
         setCalendarOpened(false);
         inputRef.current.focus();
       }
@@ -324,8 +351,15 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         }
       } else {
         if (event.key === 'Escape') {
-          setCalendarOpened(false);
-          iconRef.current.focus();
+          event.preventDefault();
+          event.stopPropagation();
+
+          if (helperInformationShown) {
+            hideHelperInformation();
+          } else {
+            setCalendarOpened(false);
+            iconRef.current.focus();
+          }
         }
 
         if (event.key === '?') {
