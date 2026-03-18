@@ -611,17 +611,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   height: 24px;
 }
 
-.emotion-114 {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-118 {
+.emotion-116 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -665,24 +655,24 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   width: auto;
 }
 
-.emotion-118:not(:disabled):focus {
+.emotion-116:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-118:not(:disabled):hover,
-.emotion-118:not(:disabled):focus {
+.emotion-116:not(:disabled):hover,
+.emotion-116:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-118:not(:disabled):active {
+.emotion-116:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-118:not(:disabled):active:after {
+.emotion-116:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -692,13 +682,13 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   transition: transform 0s;
 }
 
-.emotion-118 svg {
+.emotion-116 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-122 {
+.emotion-120 {
   padding-left: 4px;
 }
 
@@ -1311,17 +1301,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   height: 24px;
 }
 
-.emotion-114 {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-118 {
+.emotion-116 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -1365,24 +1345,24 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   width: auto;
 }
 
-.emotion-118:not(:disabled):focus {
+.emotion-116:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-118:not(:disabled):hover,
-.emotion-118:not(:disabled):focus {
+.emotion-116:not(:disabled):hover,
+.emotion-116:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-118:not(:disabled):active {
+.emotion-116:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-118:not(:disabled):active:after {
+.emotion-116:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -1392,13 +1372,13 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   transition: transform 0s;
 }
 
-.emotion-118 svg {
+.emotion-116 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-122 {
+.emotion-120 {
   padding-left: 4px;
 }
 
@@ -1874,13 +1854,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-114 emotion-115"
-                          >
-                            No subitems are checked for item-title-5 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -1892,7 +1866,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
               size="16"
             />
             <button
-              class="emotion-118 emotion-19"
+              class="emotion-116 emotion-19"
               color="primary"
               data-testid="showAllBtn"
               shape="fill"
@@ -1917,7 +1891,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                   />
                 </svg>
                 <span
-                  class="emotion-122 emotion-123"
+                  class="emotion-120 emotion-121"
                 >
                   Show All
                 </span>
@@ -2539,16 +2513,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-82 {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-84 {
   color: #454545;
   list-style-type: none;
   cursor: default;
@@ -2558,16 +2522,16 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   padding-inline-start: 8px;
 }
 
-.emotion-84:focus {
+.emotion-82:focus {
   outline: none;
 }
 
-.emotion-84:focus>*:first-child {
+.emotion-82:focus>*:first-child {
   outline-offset: -2px;
   outline: 2px solid #0074B7;
 }
 
-.emotion-84>div:first-of-type {
+.emotion-82>div:first-of-type {
   position: relative;
   -webkit-padding-start: 8px;
   padding-inline-start: 8px;
@@ -2578,11 +2542,11 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   padding-right: 4px;
 }
 
-.emotion-84>div:first-of-type:hover {
+.emotion-82>div:first-of-type:hover {
   background: rgba(0,0,0,0.05);
 }
 
-.emotion-88 {
+.emotion-86 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -2592,7 +2556,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   height: 24px;
 }
 
-.emotion-98 {
+.emotion-96 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2620,13 +2584,13 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   margin: 0 8px 0 0;
 }
 
-.emotion-98:before,
-.emotion-98:after {
+.emotion-96:before,
+.emotion-96:after {
   content: '';
   position: absolute;
 }
 
-.emotion-98:after {
+.emotion-96:after {
   border-radius: 50%;
   height: 40px;
   left: -8px;
@@ -2642,7 +2606,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   width: 40px;
 }
 
-.emotion-98 svg {
+.emotion-96 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -2651,13 +2615,13 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   transition: all 0.2s ease-out;
 }
 
-.emotion-98:after {
+.emotion-96:after {
   background: #3942B0;
   top: -10px;
   left: -10px;
 }
 
-.emotion-126 {
+.emotion-120 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -2701,24 +2665,24 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   width: auto;
 }
 
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-126:not(:disabled):hover,
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):hover,
+.emotion-120:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-126:not(:disabled):active {
+.emotion-120:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-126:not(:disabled):active:after {
+.emotion-120:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -2728,13 +2692,13 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   transition: transform 0s;
 }
 
-.emotion-126 svg {
+.emotion-120 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-130 {
+.emotion-124 {
   padding-left: 4px;
 }
 
@@ -3344,16 +3308,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-82 {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-84 {
   color: #454545;
   list-style-type: none;
   cursor: default;
@@ -3363,16 +3317,16 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   padding-inline-start: 8px;
 }
 
-.emotion-84:focus {
+.emotion-82:focus {
   outline: none;
 }
 
-.emotion-84:focus>*:first-child {
+.emotion-82:focus>*:first-child {
   outline-offset: -2px;
   outline: 2px solid #0074B7;
 }
 
-.emotion-84>div:first-of-type {
+.emotion-82>div:first-of-type {
   position: relative;
   -webkit-padding-start: 8px;
   padding-inline-start: 8px;
@@ -3383,11 +3337,11 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   padding-right: 4px;
 }
 
-.emotion-84>div:first-of-type:hover {
+.emotion-82>div:first-of-type:hover {
   background: rgba(0,0,0,0.05);
 }
 
-.emotion-88 {
+.emotion-86 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -3397,7 +3351,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   height: 24px;
 }
 
-.emotion-98 {
+.emotion-96 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3425,13 +3379,13 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   margin: 0 8px 0 0;
 }
 
-.emotion-98:before,
-.emotion-98:after {
+.emotion-96:before,
+.emotion-96:after {
   content: '';
   position: absolute;
 }
 
-.emotion-98:after {
+.emotion-96:after {
   border-radius: 50%;
   height: 40px;
   left: -8px;
@@ -3447,7 +3401,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   width: 40px;
 }
 
-.emotion-98 svg {
+.emotion-96 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -3456,13 +3410,13 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   transition: all 0.2s ease-out;
 }
 
-.emotion-98:after {
+.emotion-96:after {
   background: #3942B0;
   top: -10px;
   left: -10px;
 }
 
-.emotion-126 {
+.emotion-120 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -3506,24 +3460,24 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   width: auto;
 }
 
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-126:not(:disabled):hover,
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):hover,
+.emotion-120:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-126:not(:disabled):active {
+.emotion-120:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-126:not(:disabled):active:after {
+.emotion-120:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -3533,13 +3487,13 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   transition: transform 0s;
 }
 
-.emotion-126 svg {
+.emotion-120 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-130 {
+.emotion-124 {
   padding-left: 4px;
 }
 
@@ -3876,13 +3830,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-3 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -3892,7 +3840,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                 <li
                   aria-checked="false"
                   aria-expanded="false"
-                  class="emotion-84 emotion-33"
+                  class="emotion-82 emotion-33"
                   data-testid="item-id-4"
                   id="item-id-4"
                   role="treeitem"
@@ -3906,7 +3854,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                   >
                     <div
                       aria-hidden="true"
-                      class="emotion-88 emotion-69"
+                      class="emotion-86 emotion-69"
                       data-testid="item-id-4-expand"
                     >
                       <svg
@@ -3945,7 +3893,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                         >
                           <span
                             aria-hidden="true"
-                            class="emotion-98 emotion-45"
+                            class="emotion-96 emotion-45"
                             color="#3942B0"
                             style="margin-right: 8px;"
                           >
@@ -3976,13 +3924,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-4 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -3992,7 +3934,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                 <li
                   aria-checked="false"
                   aria-expanded="false"
-                  class="emotion-84 emotion-33"
+                  class="emotion-82 emotion-33"
                   data-testid="item-id-5"
                   id="item-id-5"
                   role="treeitem"
@@ -4006,7 +3948,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                   >
                     <div
                       aria-hidden="true"
-                      class="emotion-88 emotion-69"
+                      class="emotion-86 emotion-69"
                       data-testid="item-id-5-expand"
                     >
                       <svg
@@ -4045,7 +3987,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                         >
                           <span
                             aria-hidden="true"
-                            class="emotion-98 emotion-45"
+                            class="emotion-96 emotion-45"
                             color="#3942B0"
                             style="margin-right: 8px;"
                           >
@@ -4076,13 +4018,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-5 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -4094,7 +4030,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
               size="16"
             />
             <button
-              class="emotion-126 emotion-19"
+              class="emotion-120 emotion-19"
               color="primary"
               data-testid="showAllBtn"
               shape="fill"
@@ -4119,7 +4055,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                   />
                 </svg>
                 <span
-                  class="emotion-130 emotion-131"
+                  class="emotion-124 emotion-125"
                 >
                   Show All
                 </span>
@@ -4741,16 +4677,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-82 {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-84 {
   color: #454545;
   list-style-type: none;
   cursor: default;
@@ -4760,16 +4686,16 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   padding-inline-start: 8px;
 }
 
-.emotion-84:focus {
+.emotion-82:focus {
   outline: none;
 }
 
-.emotion-84:focus>*:first-child {
+.emotion-82:focus>*:first-child {
   outline-offset: -2px;
   outline: 2px solid #0074B7;
 }
 
-.emotion-84>div:first-of-type {
+.emotion-82>div:first-of-type {
   position: relative;
   -webkit-padding-start: 8px;
   padding-inline-start: 8px;
@@ -4780,11 +4706,11 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   padding-right: 4px;
 }
 
-.emotion-84>div:first-of-type:hover {
+.emotion-82>div:first-of-type:hover {
   background: rgba(0,0,0,0.05);
 }
 
-.emotion-88 {
+.emotion-86 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -4794,7 +4720,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   height: 24px;
 }
 
-.emotion-126 {
+.emotion-120 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -4838,24 +4764,24 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   width: auto;
 }
 
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-126:not(:disabled):hover,
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):hover,
+.emotion-120:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-126:not(:disabled):active {
+.emotion-120:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-126:not(:disabled):active:after {
+.emotion-120:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -4865,13 +4791,13 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   transition: transform 0s;
 }
 
-.emotion-126 svg {
+.emotion-120 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-130 {
+.emotion-124 {
   padding-left: 4px;
 }
 
@@ -5481,16 +5407,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-82 {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-84 {
   color: #454545;
   list-style-type: none;
   cursor: default;
@@ -5500,16 +5416,16 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   padding-inline-start: 8px;
 }
 
-.emotion-84:focus {
+.emotion-82:focus {
   outline: none;
 }
 
-.emotion-84:focus>*:first-child {
+.emotion-82:focus>*:first-child {
   outline-offset: -2px;
   outline: 2px solid #0074B7;
 }
 
-.emotion-84>div:first-of-type {
+.emotion-82>div:first-of-type {
   position: relative;
   -webkit-padding-start: 8px;
   padding-inline-start: 8px;
@@ -5520,11 +5436,11 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   padding-right: 4px;
 }
 
-.emotion-84>div:first-of-type:hover {
+.emotion-82>div:first-of-type:hover {
   background: rgba(0,0,0,0.05);
 }
 
-.emotion-88 {
+.emotion-86 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -5534,7 +5450,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   height: 24px;
 }
 
-.emotion-126 {
+.emotion-120 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -5578,24 +5494,24 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   width: auto;
 }
 
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-126:not(:disabled):hover,
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):hover,
+.emotion-120:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-126:not(:disabled):active {
+.emotion-120:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-126:not(:disabled):active:after {
+.emotion-120:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -5605,13 +5521,13 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   transition: transform 0s;
 }
 
-.emotion-126 svg {
+.emotion-120 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-130 {
+.emotion-124 {
   padding-left: 4px;
 }
 
@@ -5947,13 +5863,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-3 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -5963,7 +5873,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                 <li
                   aria-checked="false"
                   aria-expanded="false"
-                  class="emotion-84 emotion-33"
+                  class="emotion-82 emotion-33"
                   data-testid="item-id-4"
                   id="item-id-4"
                   role="treeitem"
@@ -5977,7 +5887,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                   >
                     <div
                       aria-hidden="true"
-                      class="emotion-88 emotion-69"
+                      class="emotion-86 emotion-69"
                       data-testid="item-id-4-expand"
                     >
                       <svg
@@ -6047,13 +5957,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-4 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -6063,7 +5967,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                 <li
                   aria-checked="false"
                   aria-expanded="false"
-                  class="emotion-84 emotion-33"
+                  class="emotion-82 emotion-33"
                   data-testid="item-id-5"
                   id="item-id-5"
                   role="treeitem"
@@ -6077,7 +5981,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                   >
                     <div
                       aria-hidden="true"
-                      class="emotion-88 emotion-69"
+                      class="emotion-86 emotion-69"
                       data-testid="item-id-5-expand"
                     >
                       <svg
@@ -6147,13 +6051,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-5 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -6165,7 +6063,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
               size="16"
             />
             <button
-              class="emotion-126 emotion-19"
+              class="emotion-120 emotion-19"
               color="primary"
               data-testid="showAllBtn"
               shape="fill"
@@ -6190,7 +6088,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                   />
                 </svg>
                 <span
-                  class="emotion-130 emotion-131"
+                  class="emotion-124 emotion-125"
                 >
                   Show All
                 </span>
@@ -6812,16 +6710,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-82 {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-84 {
   color: #454545;
   list-style-type: none;
   cursor: default;
@@ -6831,16 +6719,16 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   padding-inline-start: 8px;
 }
 
-.emotion-84:focus {
+.emotion-82:focus {
   outline: none;
 }
 
-.emotion-84:focus>*:first-child {
+.emotion-82:focus>*:first-child {
   outline-offset: -2px;
   outline: 2px solid #0074B7;
 }
 
-.emotion-84>div:first-of-type {
+.emotion-82>div:first-of-type {
   position: relative;
   -webkit-padding-start: 8px;
   padding-inline-start: 8px;
@@ -6851,11 +6739,11 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   padding-right: 4px;
 }
 
-.emotion-84>div:first-of-type:hover {
+.emotion-82>div:first-of-type:hover {
   background: rgba(0,0,0,0.05);
 }
 
-.emotion-88 {
+.emotion-86 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -6865,7 +6753,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   height: 24px;
 }
 
-.emotion-126 {
+.emotion-120 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -6909,24 +6797,24 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   width: auto;
 }
 
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-126:not(:disabled):hover,
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):hover,
+.emotion-120:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-126:not(:disabled):active {
+.emotion-120:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-126:not(:disabled):active:after {
+.emotion-120:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -6936,13 +6824,13 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   transition: transform 0s;
 }
 
-.emotion-126 svg {
+.emotion-120 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-130 {
+.emotion-124 {
   padding-left: 4px;
 }
 
@@ -7552,16 +7440,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-82 {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-84 {
   color: #454545;
   list-style-type: none;
   cursor: default;
@@ -7571,16 +7449,16 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   padding-inline-start: 8px;
 }
 
-.emotion-84:focus {
+.emotion-82:focus {
   outline: none;
 }
 
-.emotion-84:focus>*:first-child {
+.emotion-82:focus>*:first-child {
   outline-offset: -2px;
   outline: 2px solid #0074B7;
 }
 
-.emotion-84>div:first-of-type {
+.emotion-82>div:first-of-type {
   position: relative;
   -webkit-padding-start: 8px;
   padding-inline-start: 8px;
@@ -7591,11 +7469,11 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   padding-right: 4px;
 }
 
-.emotion-84>div:first-of-type:hover {
+.emotion-82>div:first-of-type:hover {
   background: rgba(0,0,0,0.05);
 }
 
-.emotion-88 {
+.emotion-86 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -7605,7 +7483,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   height: 24px;
 }
 
-.emotion-126 {
+.emotion-120 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -7649,24 +7527,24 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   width: auto;
 }
 
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-126:not(:disabled):hover,
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):hover,
+.emotion-120:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-126:not(:disabled):active {
+.emotion-120:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-126:not(:disabled):active:after {
+.emotion-120:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -7676,13 +7554,13 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   transition: transform 0s;
 }
 
-.emotion-126 svg {
+.emotion-120 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-130 {
+.emotion-124 {
   padding-left: 4px;
 }
 
@@ -8018,13 +7896,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-3 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -8034,7 +7906,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                 <li
                   aria-checked="false"
                   aria-expanded="false"
-                  class="emotion-84 emotion-33"
+                  class="emotion-82 emotion-33"
                   data-testid="item-id-4"
                   id="item-id-4"
                   role="treeitem"
@@ -8048,7 +7920,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                   >
                     <div
                       aria-hidden="true"
-                      class="emotion-88 emotion-69"
+                      class="emotion-86 emotion-69"
                       data-testid="item-id-4-expand"
                     >
                       <svg
@@ -8118,13 +7990,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-4 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -8134,7 +8000,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                 <li
                   aria-checked="false"
                   aria-expanded="false"
-                  class="emotion-84 emotion-33"
+                  class="emotion-82 emotion-33"
                   data-testid="item-id-5"
                   id="item-id-5"
                   role="treeitem"
@@ -8148,7 +8014,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                   >
                     <div
                       aria-hidden="true"
-                      class="emotion-88 emotion-69"
+                      class="emotion-86 emotion-69"
                       data-testid="item-id-5-expand"
                     >
                       <svg
@@ -8218,13 +8084,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-5 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -8236,7 +8096,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
               size="16"
             />
             <button
-              class="emotion-126 emotion-19"
+              class="emotion-120 emotion-19"
               color="primary"
               data-testid="showAllBtn"
               shape="fill"
@@ -8261,7 +8121,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                   />
                 </svg>
                 <span
-                  class="emotion-130 emotion-131"
+                  class="emotion-124 emotion-125"
                 >
                   Show All
                 </span>
@@ -8883,16 +8743,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-82 {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-84 {
   color: #454545;
   list-style-type: none;
   cursor: default;
@@ -8902,16 +8752,16 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   padding-inline-start: 8px;
 }
 
-.emotion-84:focus {
+.emotion-82:focus {
   outline: none;
 }
 
-.emotion-84:focus>*:first-child {
+.emotion-82:focus>*:first-child {
   outline-offset: -2px;
   outline: 2px solid #0074B7;
 }
 
-.emotion-84>div:first-of-type {
+.emotion-82>div:first-of-type {
   position: relative;
   -webkit-padding-start: 8px;
   padding-inline-start: 8px;
@@ -8922,11 +8772,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   padding-right: 4px;
 }
 
-.emotion-84>div:first-of-type:hover {
+.emotion-82>div:first-of-type:hover {
   background: rgba(0,0,0,0.05);
 }
 
-.emotion-88 {
+.emotion-86 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -8936,7 +8786,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   height: 24px;
 }
 
-.emotion-98 {
+.emotion-96 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -8964,13 +8814,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   margin: 0 8px 0 0;
 }
 
-.emotion-98:before,
-.emotion-98:after {
+.emotion-96:before,
+.emotion-96:after {
   content: '';
   position: absolute;
 }
 
-.emotion-98:after {
+.emotion-96:after {
   border-radius: 50%;
   height: 40px;
   left: -8px;
@@ -8986,7 +8836,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: 40px;
 }
 
-.emotion-98 svg {
+.emotion-96 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -8995,13 +8845,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   transition: all 0.2s ease-out;
 }
 
-.emotion-98:after {
+.emotion-96:after {
   background: #3942B0;
   top: -10px;
   left: -10px;
 }
 
-.emotion-126 {
+.emotion-120 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -9045,24 +8895,24 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: auto;
 }
 
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-126:not(:disabled):hover,
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):hover,
+.emotion-120:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-126:not(:disabled):active {
+.emotion-120:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-126:not(:disabled):active:after {
+.emotion-120:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -9072,13 +8922,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   transition: transform 0s;
 }
 
-.emotion-126 svg {
+.emotion-120 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-130 {
+.emotion-124 {
   padding-left: 4px;
 }
 
@@ -9688,16 +9538,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-82 {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-84 {
   color: #454545;
   list-style-type: none;
   cursor: default;
@@ -9707,16 +9547,16 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   padding-inline-start: 8px;
 }
 
-.emotion-84:focus {
+.emotion-82:focus {
   outline: none;
 }
 
-.emotion-84:focus>*:first-child {
+.emotion-82:focus>*:first-child {
   outline-offset: -2px;
   outline: 2px solid #0074B7;
 }
 
-.emotion-84>div:first-of-type {
+.emotion-82>div:first-of-type {
   position: relative;
   -webkit-padding-start: 8px;
   padding-inline-start: 8px;
@@ -9727,11 +9567,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   padding-right: 4px;
 }
 
-.emotion-84>div:first-of-type:hover {
+.emotion-82>div:first-of-type:hover {
   background: rgba(0,0,0,0.05);
 }
 
-.emotion-88 {
+.emotion-86 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -9741,7 +9581,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   height: 24px;
 }
 
-.emotion-98 {
+.emotion-96 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -9769,13 +9609,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   margin: 0 8px 0 0;
 }
 
-.emotion-98:before,
-.emotion-98:after {
+.emotion-96:before,
+.emotion-96:after {
   content: '';
   position: absolute;
 }
 
-.emotion-98:after {
+.emotion-96:after {
   border-radius: 50%;
   height: 40px;
   left: -8px;
@@ -9791,7 +9631,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: 40px;
 }
 
-.emotion-98 svg {
+.emotion-96 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -9800,13 +9640,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   transition: all 0.2s ease-out;
 }
 
-.emotion-98:after {
+.emotion-96:after {
   background: #3942B0;
   top: -10px;
   left: -10px;
 }
 
-.emotion-126 {
+.emotion-120 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -9850,24 +9690,24 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: auto;
 }
 
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-126:not(:disabled):hover,
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):hover,
+.emotion-120:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-126:not(:disabled):active {
+.emotion-120:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-126:not(:disabled):active:after {
+.emotion-120:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -9877,13 +9717,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   transition: transform 0s;
 }
 
-.emotion-126 svg {
+.emotion-120 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-130 {
+.emotion-124 {
   padding-left: 4px;
 }
 
@@ -10220,13 +10060,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-3 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -10236,7 +10070,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                 <li
                   aria-checked="false"
                   aria-expanded="false"
-                  class="emotion-84 emotion-33"
+                  class="emotion-82 emotion-33"
                   data-testid="item-id-4"
                   id="item-id-4"
                   role="treeitem"
@@ -10250,7 +10084,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   >
                     <div
                       aria-hidden="true"
-                      class="emotion-88 emotion-69"
+                      class="emotion-86 emotion-69"
                       data-testid="item-id-4-expand"
                     >
                       <svg
@@ -10289,7 +10123,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         >
                           <span
                             aria-hidden="true"
-                            class="emotion-98 emotion-45"
+                            class="emotion-96 emotion-45"
                             color="#3942B0"
                             style="margin-right: 8px;"
                           >
@@ -10320,13 +10154,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-4 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -10336,7 +10164,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                 <li
                   aria-checked="false"
                   aria-expanded="false"
-                  class="emotion-84 emotion-33"
+                  class="emotion-82 emotion-33"
                   data-testid="item-id-5"
                   id="item-id-5"
                   role="treeitem"
@@ -10350,7 +10178,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   >
                     <div
                       aria-hidden="true"
-                      class="emotion-88 emotion-69"
+                      class="emotion-86 emotion-69"
                       data-testid="item-id-5-expand"
                     >
                       <svg
@@ -10389,7 +10217,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         >
                           <span
                             aria-hidden="true"
-                            class="emotion-98 emotion-45"
+                            class="emotion-96 emotion-45"
                             color="#3942B0"
                             style="margin-right: 8px;"
                           >
@@ -10420,13 +10248,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-5 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -10438,7 +10260,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
               size="16"
             />
             <button
-              class="emotion-126 emotion-19"
+              class="emotion-120 emotion-19"
               color="primary"
               data-testid="showAllBtn"
               shape="fill"
@@ -10463,7 +10285,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   />
                 </svg>
                 <span
-                  class="emotion-130 emotion-131"
+                  class="emotion-124 emotion-125"
                 >
                   Show All
                 </span>
@@ -11085,16 +10907,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-82 {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-84 {
   color: #454545;
   list-style-type: none;
   cursor: default;
@@ -11104,16 +10916,16 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   padding-inline-start: 8px;
 }
 
-.emotion-84:focus {
+.emotion-82:focus {
   outline: none;
 }
 
-.emotion-84:focus>*:first-child {
+.emotion-82:focus>*:first-child {
   outline-offset: -2px;
   outline: 2px solid #0074B7;
 }
 
-.emotion-84>div:first-of-type {
+.emotion-82>div:first-of-type {
   position: relative;
   -webkit-padding-start: 8px;
   padding-inline-start: 8px;
@@ -11124,11 +10936,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   padding-right: 4px;
 }
 
-.emotion-84>div:first-of-type:hover {
+.emotion-82>div:first-of-type:hover {
   background: rgba(0,0,0,0.05);
 }
 
-.emotion-88 {
+.emotion-86 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -11138,7 +10950,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   height: 24px;
 }
 
-.emotion-98 {
+.emotion-96 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -11166,13 +10978,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   margin: 0 8px 0 0;
 }
 
-.emotion-98:before,
-.emotion-98:after {
+.emotion-96:before,
+.emotion-96:after {
   content: '';
   position: absolute;
 }
 
-.emotion-98:after {
+.emotion-96:after {
   border-radius: 50%;
   height: 40px;
   left: -8px;
@@ -11188,7 +11000,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: 40px;
 }
 
-.emotion-98 svg {
+.emotion-96 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -11197,13 +11009,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   transition: all 0.2s ease-out;
 }
 
-.emotion-98:after {
+.emotion-96:after {
   background: #3942B0;
   top: -10px;
   left: -10px;
 }
 
-.emotion-126 {
+.emotion-120 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -11247,24 +11059,24 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: auto;
 }
 
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-126:not(:disabled):hover,
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):hover,
+.emotion-120:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-126:not(:disabled):active {
+.emotion-120:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-126:not(:disabled):active:after {
+.emotion-120:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -11274,13 +11086,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   transition: transform 0s;
 }
 
-.emotion-126 svg {
+.emotion-120 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-130 {
+.emotion-124 {
   padding-left: 4px;
 }
 
@@ -11890,16 +11702,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-82 {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-84 {
   color: #454545;
   list-style-type: none;
   cursor: default;
@@ -11909,16 +11711,16 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   padding-inline-start: 8px;
 }
 
-.emotion-84:focus {
+.emotion-82:focus {
   outline: none;
 }
 
-.emotion-84:focus>*:first-child {
+.emotion-82:focus>*:first-child {
   outline-offset: -2px;
   outline: 2px solid #0074B7;
 }
 
-.emotion-84>div:first-of-type {
+.emotion-82>div:first-of-type {
   position: relative;
   -webkit-padding-start: 8px;
   padding-inline-start: 8px;
@@ -11929,11 +11731,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   padding-right: 4px;
 }
 
-.emotion-84>div:first-of-type:hover {
+.emotion-82>div:first-of-type:hover {
   background: rgba(0,0,0,0.05);
 }
 
-.emotion-88 {
+.emotion-86 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -11943,7 +11745,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   height: 24px;
 }
 
-.emotion-98 {
+.emotion-96 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -11971,13 +11773,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   margin: 0 8px 0 0;
 }
 
-.emotion-98:before,
-.emotion-98:after {
+.emotion-96:before,
+.emotion-96:after {
   content: '';
   position: absolute;
 }
 
-.emotion-98:after {
+.emotion-96:after {
   border-radius: 50%;
   height: 40px;
   left: -8px;
@@ -11993,7 +11795,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: 40px;
 }
 
-.emotion-98 svg {
+.emotion-96 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
@@ -12002,13 +11804,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   transition: all 0.2s ease-out;
 }
 
-.emotion-98:after {
+.emotion-96:after {
   background: #3942B0;
   top: -10px;
   left: -10px;
 }
 
-.emotion-126 {
+.emotion-120 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -12052,24 +11854,24 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   width: auto;
 }
 
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-126:not(:disabled):hover,
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):hover,
+.emotion-120:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-126:not(:disabled):active {
+.emotion-120:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-126:not(:disabled):active:after {
+.emotion-120:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -12079,13 +11881,13 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   transition: transform 0s;
 }
 
-.emotion-126 svg {
+.emotion-120 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-130 {
+.emotion-124 {
   padding-left: 4px;
 }
 
@@ -12422,13 +12224,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-3 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -12438,7 +12234,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                 <li
                   aria-checked="false"
                   aria-expanded="false"
-                  class="emotion-84 emotion-33"
+                  class="emotion-82 emotion-33"
                   data-testid="item-id-4"
                   id="item-id-4"
                   role="treeitem"
@@ -12452,7 +12248,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   >
                     <div
                       aria-hidden="true"
-                      class="emotion-88 emotion-69"
+                      class="emotion-86 emotion-69"
                       data-testid="item-id-4-expand"
                     >
                       <svg
@@ -12491,7 +12287,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         >
                           <span
                             aria-hidden="true"
-                            class="emotion-98 emotion-45"
+                            class="emotion-96 emotion-45"
                             color="#3942B0"
                             style="margin-right: 8px;"
                           >
@@ -12522,13 +12318,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-4 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -12538,7 +12328,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                 <li
                   aria-checked="false"
                   aria-expanded="false"
-                  class="emotion-84 emotion-33"
+                  class="emotion-82 emotion-33"
                   data-testid="item-id-5"
                   id="item-id-5"
                   role="treeitem"
@@ -12552,7 +12342,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   >
                     <div
                       aria-hidden="true"
-                      class="emotion-88 emotion-69"
+                      class="emotion-86 emotion-69"
                       data-testid="item-id-5-expand"
                     >
                       <svg
@@ -12591,7 +12381,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         >
                           <span
                             aria-hidden="true"
-                            class="emotion-98 emotion-45"
+                            class="emotion-96 emotion-45"
                             color="#3942B0"
                             style="margin-right: 8px;"
                           >
@@ -12622,13 +12412,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-5 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -12640,7 +12424,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
               size="16"
             />
             <button
-              class="emotion-126 emotion-19"
+              class="emotion-120 emotion-19"
               color="primary"
               data-testid="showAllBtn"
               shape="fill"
@@ -12665,7 +12449,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                   />
                 </svg>
                 <span
-                  class="emotion-130 emotion-131"
+                  class="emotion-124 emotion-125"
                 >
                   Show All
                 </span>
@@ -13287,16 +13071,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-82 {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-84 {
   color: #454545;
   list-style-type: none;
   cursor: default;
@@ -13306,16 +13080,16 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   padding-inline-start: 8px;
 }
 
-.emotion-84:focus {
+.emotion-82:focus {
   outline: none;
 }
 
-.emotion-84:focus>*:first-child {
+.emotion-82:focus>*:first-child {
   outline-offset: -2px;
   outline: 2px solid #0074B7;
 }
 
-.emotion-84>div:first-of-type {
+.emotion-82>div:first-of-type {
   position: relative;
   -webkit-padding-start: 8px;
   padding-inline-start: 8px;
@@ -13326,11 +13100,11 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   padding-right: 4px;
 }
 
-.emotion-84>div:first-of-type:hover {
+.emotion-82>div:first-of-type:hover {
   background: rgba(0,0,0,0.05);
 }
 
-.emotion-88 {
+.emotion-86 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -13340,7 +13114,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   height: 24px;
 }
 
-.emotion-126 {
+.emotion-120 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -13384,24 +13158,24 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   width: auto;
 }
 
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-126:not(:disabled):hover,
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):hover,
+.emotion-120:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-126:not(:disabled):active {
+.emotion-120:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-126:not(:disabled):active:after {
+.emotion-120:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -13411,13 +13185,13 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   transition: transform 0s;
 }
 
-.emotion-126 svg {
+.emotion-120 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-130 {
+.emotion-124 {
   padding-left: 4px;
 }
 
@@ -14027,16 +13801,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-82 {
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  position: absolute;
-  overflow: hidden;
-  top: auto;
-  white-space: nowrap;
-  width: 1px;
-}
-
-.emotion-84 {
   color: #454545;
   list-style-type: none;
   cursor: default;
@@ -14046,16 +13810,16 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   padding-inline-start: 8px;
 }
 
-.emotion-84:focus {
+.emotion-82:focus {
   outline: none;
 }
 
-.emotion-84:focus>*:first-child {
+.emotion-82:focus>*:first-child {
   outline-offset: -2px;
   outline: 2px solid #0074B7;
 }
 
-.emotion-84>div:first-of-type {
+.emotion-82>div:first-of-type {
   position: relative;
   -webkit-padding-start: 8px;
   padding-inline-start: 8px;
@@ -14066,11 +13830,11 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   padding-right: 4px;
 }
 
-.emotion-84>div:first-of-type:hover {
+.emotion-82>div:first-of-type:hover {
   background: rgba(0,0,0,0.05);
 }
 
-.emotion-88 {
+.emotion-86 {
   display: inline-block;
   vertical-align: middle;
   margin-right: 8px;
@@ -14080,7 +13844,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   height: 24px;
 }
 
-.emotion-126 {
+.emotion-120 {
   -webkit-align-items: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
@@ -14124,24 +13888,24 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   width: auto;
 }
 
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):focus {
   outline: 2px solid #0074B7;
   outline-offset: 2px;
   z-index: 1;
 }
 
-.emotion-126:not(:disabled):hover,
-.emotion-126:not(:disabled):focus {
+.emotion-120:not(:disabled):hover,
+.emotion-120:not(:disabled):focus {
   background: #E8E9F8;
   color: #3942B0;
 }
 
-.emotion-126:not(:disabled):active {
+.emotion-120:not(:disabled):active {
   background: #BABDE9;
   color: #292F7C;
 }
 
-.emotion-126:not(:disabled):active:after {
+.emotion-120:not(:disabled):active:after {
   opacity: 0.4;
   -webkit-transform: translate(-50%, -50%) scale(0);
   -moz-transform: translate(-50%, -50%) scale(0);
@@ -14151,13 +13915,13 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   transition: transform 0s;
 }
 
-.emotion-126 svg {
+.emotion-120 svg {
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
 
-.emotion-130 {
+.emotion-124 {
   padding-left: 4px;
 }
 
@@ -14493,13 +14257,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-3 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -14509,7 +14267,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                 <li
                   aria-checked="false"
                   aria-expanded="false"
-                  class="emotion-84 emotion-33"
+                  class="emotion-82 emotion-33"
                   data-testid="item-id-4"
                   id="item-id-4"
                   role="treeitem"
@@ -14523,7 +14281,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                   >
                     <div
                       aria-hidden="true"
-                      class="emotion-88 emotion-69"
+                      class="emotion-86 emotion-69"
                       data-testid="item-id-4-expand"
                     >
                       <svg
@@ -14593,13 +14351,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-4 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -14609,7 +14361,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                 <li
                   aria-checked="false"
                   aria-expanded="false"
-                  class="emotion-84 emotion-33"
+                  class="emotion-82 emotion-33"
                   data-testid="item-id-5"
                   id="item-id-5"
                   role="treeitem"
@@ -14623,7 +14375,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                   >
                     <div
                       aria-hidden="true"
-                      class="emotion-88 emotion-69"
+                      class="emotion-86 emotion-69"
                       data-testid="item-id-5-expand"
                     >
                       <svg
@@ -14693,13 +14445,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                         </label>
                         <div
                           aria-live="polite"
-                        >
-                          <div
-                            class="emotion-82 emotion-83"
-                          >
-                            No subitems are checked for item-title-5 checkbox
-                          </div>
-                        </div>
+                        />
                       </div>
                     </div>
                   </div>
@@ -14711,7 +14457,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
               size="16"
             />
             <button
-              class="emotion-126 emotion-19"
+              class="emotion-120 emotion-19"
               color="primary"
               data-testid="showAllBtn"
               shape="fill"
@@ -14736,7 +14482,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                   />
                 </svg>
                 <span
-                  class="emotion-130 emotion-131"
+                  class="emotion-124 emotion-125"
                 >
                   Show All
                 </span>
