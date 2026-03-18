@@ -321,7 +321,13 @@ import { OpenInNewIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <>
-      <Hyperlink opensInNewTab to="https://www.google.com" hasUnderline={false}>
+      <Hyperlink 
+        opensInNewTab 
+        to="https://www.google.com" 
+        hasUnderline={false} 
+        icon={<OpenInNewIcon size={magma.iconSizes.small} aria-hidden />}
+        iconPosition={HyperlinkIconPosition.right}
+      >
         Google
       </Hyperlink>
       <Spacer size={'8px'} axis={SpacerAxis.both} />
@@ -330,8 +336,6 @@ export function Example() {
       <Hyperlink
         opensInNewTab
         to="https://sallysbakingaddiction.com/triple-chocolate-layer-cake/"
-        icon={<OpenInNewIcon size={magma.iconSizes.small} aria-hidden />}
-        iconPosition={HyperlinkIconPosition.right}
       >
         I love chocolate cake
       </Hyperlink>{' '}
