@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Checkbox): remove `aria-checked`.
+fix(Checkbox): Remove `aria-checked`.

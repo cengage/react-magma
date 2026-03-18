@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(NativeSelect): move `additionalContent` from `<label>`. Add internal prop to `FormFieldContainer`. Fix accessibility issue.
+fix(NativeSelect): Update markup to remove `additionalContent` from `<label>`.

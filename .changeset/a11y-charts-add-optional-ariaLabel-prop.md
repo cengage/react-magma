@@ -1,5 +1,6 @@
 ---
 '@react-magma/charts': patch
+'react-magma-dom': patch
 ---
 
-chore: add optional `ariaLabel` property for SVG container
+fix(Charts): Add optional `ariaLabel` property for SVG container
