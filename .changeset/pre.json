@@ -31,6 +31,7 @@
     "fix-Dropdown-sorting-issue",
     "fix-Hyperlink-new-prop",
     "fix-MultiCombobox-announce-values",
+    "fix-MultiSelect-update-label-annoucement",
     "fix-NativeSelect-a11y-additional-content-issue",
     "fix-Pagination-aria-label",
     "fix-Search-and-Form-issues",

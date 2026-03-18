@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.21
+
+### Patch Changes
+
+- b18dc2bac: fix(Combobox): Prevent the clear button’s label from being announced.
+
 ## 4.12.0-next.20
 
 ### Patch Changes
