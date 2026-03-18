@@ -25,6 +25,7 @@ import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 import { ThemeInterface, ThemeContext, useIsInverse } from 'react-magma-dom';
 
+import { useCarbonModalFocusManagement } from '../../hooks/useCarbonModalFocusManagement';
 import './carbon-charts.css';
 
 export enum CarbonChartType {
@@ -548,6 +549,21 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     } = props;
     const theme = React.useContext(ThemeContext) as ThemeInterface;
     const isInverse = useIsInverse(isInverseProp);
+    const internalRef = React.useRef<HTMLDivElement | null>(null);
+
+    const mergedRef = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        internalRef.current = node;
+        if (typeof ref === 'function') {
+          ref(node);
+        } else if (ref) {
+          (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        }
+      },
+      [ref]
+    );
+
+    useCarbonModalFocusManagement(internalRef);
     const allCharts = {
       area: AreaChart,
       areaStacked: StackedAreaChart,
@@ -625,7 +641,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     return (
       <CarbonChartWrapper
         data-testid={testId}
-        ref={ref}
+        ref={mergedRef}
         isInverse={isInverse}
         theme={theme}
         className="carbon-chart-wrapper"
