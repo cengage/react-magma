@@ -553,7 +553,9 @@ describe('Datagrid', () => {
 
       expect(headerCheckbox).toHaveProperty('indeterminate');
 
-      headerCheckbox.click();
+      act(() => {
+        headerCheckbox.click();
+      });
 
       expect(onSelectedRowsChange).toHaveBeenCalledWith([]);
     });
