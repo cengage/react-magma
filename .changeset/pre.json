@@ -13,6 +13,7 @@
   },
   "changesets": [
     "a11y-charts-add-optional-ariaLabel-prop",
+    "a11y-sortable-table-labels",
     "chore-fix-eslint-error",
     "chore-update-publish-yml-2",
     "chore-update-publish-yml",
