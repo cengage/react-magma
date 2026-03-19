@@ -31,7 +31,6 @@
     "fix-DatePicker-remove-aria-selected",
     "fix-Dropdown-sorting-issue",
     "fix-Dropzone-accessibility",
-    "fix-Dropzone-docs-example",
     "fix-Hyperlink-docs",
     "fix-Hyperlink-new-prop",
     "fix-MultiCombobox-announce-values",
@@ -50,11 +49,7 @@
     "fix-docs-ts",
     "fix-publish-repository-url",
     "fix-tag-button-doc-issues",
-    "fix-version-bump",
     "hip-toys-pump",
-    "manually-sync-4.11.0",
-    "nine-pigs-buy",
-    "ten-pigs-buy",
-    "update-empty-state"
+    "silent-rabbits-joke"
   ]
 }
