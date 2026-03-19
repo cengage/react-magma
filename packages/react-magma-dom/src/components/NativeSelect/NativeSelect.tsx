@@ -160,17 +160,20 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
 
       const total = select.options.length;
       let index = select.selectedIndex;
+      const direction =
+        e.key === 'ArrowDown' ? 1 : e.key === 'ArrowUp' ? -1 : 0;
 
-      switch (e.key) {
-        case 'ArrowDown':
-          index = (index + 1) % total;
-          break;
-        case 'ArrowUp':
-          index = (index - 1 + total) % total;
-          break;
-        default:
-          return;
-      }
+      if (direction === 0) return;
+
+      // Skip disabled options
+      let attempts = 0;
+      do {
+        index = (index + direction + total) % total;
+        attempts++;
+      } while (select.options[index].disabled && attempts < total);
+
+      // If all options are disabled, do nothing
+      if (select.options[index].disabled) return;
 
       e.preventDefault();
       select.selectedIndex = index;
@@ -203,7 +206,11 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
           <StyledNativeSelect
             data-testid={testId}
             aria-describedby={
-              errorMessage || helperMessage ? `${id}__desc` : undefined
+              errorMessage || helperMessage ? `${id}__message` : undefined
+            }
+            aria-invalid={!!errorMessage || undefined}
+            aria-labelledby={
+              additionalContent && labelText ? `${id}__label` : undefined
             }
             hasError={!!errorMessage}
             disabled={disabled}
