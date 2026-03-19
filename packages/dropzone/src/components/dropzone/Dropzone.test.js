@@ -479,10 +479,12 @@ describe('File Uploader', () => {
     act(() => fireDrop(dropzone, data));
 
     await flushPromises(rerender, ui);
-    await act(() => waitFor(() => getByLabelText('Delete file')));
+    await act(() =>
+      waitFor(() => getByLabelText(`Delete file ${files[0].name}`))
+    );
 
     expect(getByText(files[0].name)).toBeInTheDocument();
-    expect(getByLabelText('Delete file')).toBeInTheDocument();
+    expect(getByLabelText(`Delete file ${files[0].name}`)).toBeInTheDocument();
   });
 
   it('deletes the file when the Delete File icon is clicked', async () => {
@@ -501,10 +503,12 @@ describe('File Uploader', () => {
     act(() => fireDrop(dropzone, data));
 
     await flushPromises(rerender, ui);
-    await act(() => waitFor(() => getByLabelText('Delete file')));
+    await act(() =>
+      waitFor(() => getByLabelText(`Delete file ${files[0].name}`))
+    );
 
     expect(getByText(files[0].name)).toBeInTheDocument();
-    const deleteIcon = getByLabelText('Delete file');
+    const deleteIcon = getByLabelText(`Delete file ${files[0].name}`);
 
     userEvent.click(deleteIcon);
 
@@ -535,10 +539,12 @@ describe('File Uploader', () => {
     act(() => fireDrop(dropzone, data));
 
     await flushPromises(rerender, ui);
-    await act(() => waitFor(() => getByLabelText('Delete file')));
+    await act(() =>
+      waitFor(() => getByLabelText(`Delete file ${files[0].name}`))
+    );
 
     expect(getByText(files[0].name)).toBeInTheDocument();
-    const deleteIcon = getByLabelText('Delete file');
+    const deleteIcon = getByLabelText(`Delete file ${files[0].name}`);
 
     userEvent.click(deleteIcon);
 
@@ -557,9 +563,13 @@ describe('File Uploader', () => {
     const dropzone = getByTestId(testId);
     fireDrop(dropzone, data);
 
-    await flushPromises(rerender, ui);
-    expect(queryByText(files[0].name)).toBeInTheDocument();
-    const removeIcon = getByLabelText('Remove file');
+    rerender(ui);
+
+    await waitFor(() => {
+      expect(queryByText(files[0].name)).toBeInTheDocument();
+    });
+
+    const removeIcon = getByLabelText(`Remove file ${files[0].name}`);
 
     userEvent.click(removeIcon);
 
@@ -574,13 +584,14 @@ describe('File Uploader', () => {
 
     const ui = <Dropzone onRemoveFile={onRemoveFileSpy} testId={testId} />;
 
-    const { getByTestId, getByLabelText, rerender } = render(ui);
+    const { getByTestId, findByLabelText, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
     fireDrop(dropzone, data);
 
-    await flushPromises(rerender, ui);
-    const removeIcon = getByLabelText('Remove file');
+    rerender(ui);
+
+    const removeIcon = await findByLabelText(`Remove file ${files[0].name}`);
 
     userEvent.click(removeIcon);
 
