@@ -1232,6 +1232,45 @@ describe('Modal', () => {
     });
   });
 
+  describe('nested modals', () => {
+    it('should keep focus trapped in the top-most modal and not get stuck', () => {
+      const onCloseOuter = jest.fn();
+      const onCloseInner = jest.fn();
+
+      const { getAllByTestId, getByTestId, getByText } = render(
+        <>
+          <Modal header="Outer Modal" isOpen onClose={onCloseOuter}>
+            <button data-testid="outerBtn">Outer Button</button>
+          </Modal>
+          <Modal header="Inner Modal" isOpen onClose={onCloseInner}>
+            <button data-testid="innerBtn1">Yes</button>
+            <button data-testid="innerBtn2">No</button>
+          </Modal>
+        </>
+      );
+
+      // Inner modal heading should have focus
+      expect(getByText('Inner Modal')).toHaveFocus();
+
+      // The inner modal's close button is the second one rendered
+      const innerCloseBtn = getAllByTestId('modal-closebtn')[1];
+
+      // Tab should cycle through inner modal items: Close → Yes → No → Close
+      userEvent.tab();
+      expect(innerCloseBtn).toHaveFocus();
+
+      userEvent.tab();
+      expect(getByTestId('innerBtn1')).toHaveFocus();
+
+      userEvent.tab();
+      expect(getByTestId('innerBtn2')).toHaveFocus();
+
+      // Tab should wrap back to close button, not get stuck
+      userEvent.tab();
+      expect(innerCloseBtn).toHaveFocus();
+    });
+  });
+
   describe('i18n', () => {
     it('should use the close aria-label', () => {
       const closeAriaLabel = 'test aria label';

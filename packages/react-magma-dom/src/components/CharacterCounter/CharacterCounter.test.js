@@ -128,24 +128,46 @@ describe('CharacterCounter', () => {
   });
 
   describe('accessibility', () => {
-    it('Should have the aria-live attribute "polite" until inputLength gets to 100%', () => {
+    it('Should have aria-live "off" on the visible element to avoid duplicate announcements', () => {
       const { getByText } = render(
         <CharacterCounter inputLength={2} maxCount={4} />
       );
 
       const characterCounter = getByText('2 ' + charactersLeft).parentElement;
 
-      expect(characterCounter).toHaveAttribute('aria-live', 'polite');
+      expect(characterCounter).toHaveAttribute('aria-live', 'off');
     });
 
-    it('Should have the aria-live attribute "assertive" when inputLength exceeds 100%', () => {
-      const { getByText } = render(
+    it('Should announce with aria-live "polite" via hidden element after debounce', () => {
+      jest.useFakeTimers();
+      const { getByTestId } = render(
+        <CharacterCounter inputLength={2} maxCount={4} />
+      );
+
+      act(() => {
+        jest.advanceTimersByTime(3000);
+      });
+
+      const srMessage = getByTestId('screenReaderMessage');
+      expect(srMessage).toHaveAttribute('aria-live', 'polite');
+      expect(srMessage).toHaveTextContent('2 ' + charactersLeft);
+      jest.useRealTimers();
+    });
+
+    it('Should announce with aria-live "assertive" via hidden element when inputLength exceeds 100%', () => {
+      jest.useFakeTimers();
+      const { getByTestId } = render(
         <CharacterCounter inputLength={5} maxCount={4} />
       );
 
-      const characterCounter = getByText('1 ' + characterOver).parentElement;
+      act(() => {
+        jest.advanceTimersByTime(3000);
+      });
 
-      expect(characterCounter).toHaveAttribute('aria-live', 'assertive');
+      const srMessage = getByTestId('screenReaderMessage');
+      expect(srMessage).toHaveAttribute('aria-live', 'assertive');
+      expect(srMessage).toHaveTextContent('1 ' + characterOver);
+      jest.useRealTimers();
     });
   });
 
