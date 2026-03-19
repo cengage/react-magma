@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-fix(Hyperlink): New `opensInNewTab` prop.
+feat(Hyperlink): New `opensInNewTab` prop.

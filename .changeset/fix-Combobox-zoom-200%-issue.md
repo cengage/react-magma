@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Combobox): Fix issue when focused item was not scrolled into view.
+fix(Combobox): Ensure focused items scroll into view during keyboard navigation, particularly at higher zoom levels (200%). Also fix timeout cleanup for clear announcements.
