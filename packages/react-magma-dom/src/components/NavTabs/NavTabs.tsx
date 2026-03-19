@@ -12,12 +12,15 @@ import {
   TabsContainerContext,
 } from '../Tabs';
 import { NavTabProps, NavTab } from './NavTab';
+import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { getNormalizedScrollLeft, Omit } from '../../utils';
+import { Announce } from '../Announce';
 import { TabsOrientation, TabsTextTransform } from '../Tabs/shared';
 import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
 import { useTabsMeta } from '../Tabs/utils';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {
   'aria-label'?: string;
@@ -82,6 +85,8 @@ export const NavTabs = React.forwardRef<
 
   const navTabChildren = React.Children.toArray(children);
   const childrenWrapperRef = React.useRef<HTMLUListElement>();
+  const [scrollAnnouncement, setScrollAnnouncement] = React.useState('');
+  const i18n = React.useContext(I18nContext);
 
   const hasChildFocus = navTabChildren.some(child => {
     if (React.isValidElement(child)) {
@@ -172,7 +177,27 @@ export const NavTabs = React.forwardRef<
     scroll(nextScrollStart);
   };
 
+  const handlePrevScrollWithAnnouncement = () => {
+    handleStartScrollClick();
+    setScrollAnnouncement(i18n.tabs.scrolledBackAnnounce);
+    setTimeout(() => setScrollAnnouncement(''), 100);
+  };
+
+  const handleNextScrollWithAnnouncement = () => {
+    handleEndScrollClick();
+    setScrollAnnouncement(i18n.tabs.scrolledForwardAnnounce);
+    setTimeout(() => setScrollAnnouncement(''), 100);
+  };
+
   React.useEffect(scrollInitialActiveIndexIntoView, []);
+
+  React.useEffect(() => {
+    if (!displayScroll.start) {
+      nextButtonRef.current?.focus();
+    } else if (!displayScroll.end) {
+      prevButtonRef.current?.focus();
+    }
+  }, [displayScroll.start, displayScroll.end]);
 
   return (
     <StyledContainer
@@ -190,7 +215,7 @@ export const NavTabs = React.forwardRef<
         backgroundColor={background}
         buttonVisible={displayScroll.start}
         isInverse={isInverse}
-        onClick={handleStartScrollClick}
+        onClick={handlePrevScrollWithAnnouncement}
         orientation={orientation || TabsOrientation.horizontal}
         ref={prevButtonRef}
         theme={theme}
@@ -225,11 +250,14 @@ export const NavTabs = React.forwardRef<
         backgroundColor={background}
         buttonVisible={displayScroll.end}
         isInverse={isInverse}
-        onClick={handleEndScrollClick}
+        onClick={handleNextScrollWithAnnouncement}
         orientation={orientation || TabsOrientation.horizontal}
         ref={nextButtonRef}
         theme={theme}
       />
+      <VisuallyHidden>
+        <Announce>{scrollAnnouncement}</Announce>
+      </VisuallyHidden>
     </StyledContainer>
   );
 });

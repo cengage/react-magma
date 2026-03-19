@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 
 import { Tab } from './Tab';
 import { TabPanel } from './TabPanel';
@@ -828,7 +828,8 @@ describe('Tabs', () => {
 });
 
 describe('Test for accessibility', () => {
-  it('Does not violate accessibility standards', () => {
+  it('Does not violate accessibility standards', async () => {
+    jest.useFakeTimers();
     const { container } = render(
       <TabsContainer activeIndex={0}>
         <Tabs testId={'dd'} orientation="horizontal">
@@ -845,10 +846,14 @@ describe('Test for accessibility', () => {
       </TabsContainer>
     );
 
-    return axe(container.innerHTML, {
-      rules: { listitem: { enabled: false } },
-    }).then(result => {
-      return expect(result).toHaveNoViolations();
+    act(() => {
+      jest.runAllTimers();
     });
+    jest.useRealTimers();
+
+    const result = await axe(container.innerHTML, {
+      rules: { listitem: { enabled: false } },
+    });
+    expect(result).toHaveNoViolations();
   });
 });

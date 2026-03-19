@@ -311,6 +311,8 @@ export interface I18nInterface {
     verticalTabsInstructions: string;
     previousButtonLabel: string;
     nextButtonLabel: string;
+    scrolledBackAnnounce: string;
+    scrolledForwardAnnounce: string;
   };
   tag: {
     deleteAriaLabel: string;

@@ -326,22 +326,22 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   const clearIndicatori18n =
     selectedItems.length > 1
-      ? i18n.combobox.multi.clearIndicatorAriaLabel
-      : i18n.combobox.clearIndicatorAriaLabel;
+      ? i18n.combobox.multi?.clearIndicatorAriaLabel
+      : i18n.combobox?.clearIndicatorAriaLabel;
 
   const clearIndicatorAriaLabel = clearIndicatori18n
-    .replace(/\{labelText\}/g, labelText)
-    .replace(/\{selectedItem\}/g, itemsArrayToString(selectedItems));
+    ?.replace(/\{labelText\}/g, labelText)
+    ?.replace(/\{selectedItem\}/g, itemsArrayToString(selectedItems));
 
   const multiComboboxAriaLabel =
     selectedItems.length > 0
-      ? i18n.combobox.multi.ariaLabelWithSelectedItems
-          .replace(/\{labelText\}/g, labelText)
-          .replace(
+      ? i18n.combobox.multi?.ariaLabelWithSelectedItems
+          ?.replace(/\{labelText\}/g, labelText)
+          ?.replace(
             /\{selectedItems\}/g,
             selectedItems.map(item => itemToString(item)).join(', ')
           )
-      : i18n.combobox.multi.ariaLabelWithoutSelectedItems.replace(
+      : i18n.combobox.multi?.ariaLabelWithoutSelectedItems?.replace(
           /\{labelText\}/g,
           labelText
         );
@@ -360,7 +360,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     reset();
 
     setClearAnnouncement(
-      i18n.select.clearAnnounce.replace(/\{labelText\}/g, labelText)
+      i18n.select?.clearAnnounce?.replace(/\{labelText\}/g, labelText)
     );
 
     // Clear the announcement after a delay to allow for re-announcements
@@ -378,7 +378,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         {selectedItems.map((multiSelectedItem, index) => {
           return (
             <SelectedItemButton
-              aria-label={i18n.multiCombobox.selectedItemButtonAriaLabel.replace(
+              aria-label={i18n.multiCombobox.selectedItemButtonAriaLabel?.replace(
                 /\{selectedItem\}/g,
                 itemToString(multiSelectedItem)
               )}
