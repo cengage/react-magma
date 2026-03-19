@@ -1,3 +1,53 @@
+## 4.12.0
+
+### Minor Changes
+
+- e23b1a2f9: feat(EmptyState): New `EmptyState` component.
+- e23b1a2f9: feat(Hyperlink): New `opensInNewTab` prop.
+
+### Patch Changes
+
+- e23b1a2f9: fix(Charts): Add optional `ariaLabel` property for SVG container. The default "Interactive chart" label is no longer applied when `ariaLabel` is not provided.
+- e23b1a2f9: fix(Charts): Trap focus in "Show as table" modal
+- e23b1a2f9: fix(Table, Datagrid): Fix screen reader announcements for sortable and selectable tables.
+
+  - Restore descriptive `aria-label` on sort buttons ("Sort rows by {column}") without direction suffix, as `aria-sort` on the `<th>` already conveys direction.
+  - Add `aria-sort` to the selectable column header cell in `TableRow` when `isSortableBySelected` is enabled.
+  - Row checkboxes now use unique accessible names via `rowName` prop (e.g. "Select row Cheese").
+  - Checkbox labels are now static ("Select all rows" / "Select row") and no longer toggle to "Deselect" to prevent redundant screen reader announcements.
+  - Suppress `IndeterminateCheckbox` live region on initial render to prevent JAWS from reading all checkboxes on page load.
+  - Simplify `IndeterminateCheckbox` announce text to remove repeated label text.
+
+- e23b1a2f9: - fix(Modal): Fix focus escaping the modal in Safari by explicitly managing Tab navigation in `useFocusLock`.
+  - fix(CharacterCounter): Fix VoiceOver announcement duplication by separating the visible counter from the live region. Screen reader announcements now work cross-platform (previously macOS-only).
+- e23b1a2f9: chore: Upgrade polished version to `3.7.2`.
+- e23b1a2f9: fix(ButtonGroup): Update markup to use list structure for accessibility.
+
+  **Important**: We have modified the HTML structure of `ButtonGroup` component to meet accessibility requirements by wrapping children in `<li>` elements. If you have custom styles targeting the `ButtonGroup` component's direct children, please update them accordingly.
+
+- e23b1a2f9: fix(CharacterCounter, Input, TextArea): Separate `aria-describedby` references for character counter and error/helper messages so screen readers can announce both independently.
+- e23b1a2f9: fix(IndeterminateCheckbox): Remove redundant `aria-checked` attribute, as the native `checked` property and `indeterminate` state already convey the checkbox status.
+- e23b1a2f9: fix(Combobox): Prevent focus on disabled options.
+- e23b1a2f9: fix(Combobox): Ensure focused items scroll into view during keyboard navigation, particularly at higher zoom levels (200%). Also fix timeout cleanup for clear announcements.
+- e23b1a2f9: fix(DataGrid): Add `aria-sort` attribute to sortable table header cells and descriptive `aria-label` to sort buttons.
+- e23b1a2f9: fix(DatePicker): Remove `aria-selected` and change the announced text when opening the component.
+- e23b1a2f9: fix(Dropdown): Re-register menu items when `disabled` prop changes, fixing state issues when items are reordered or their disabled state changes.
+- e23b1a2f9: fix(MultiCombobox, MultiSelect): Add `aria-label` that includes selected items. Add `aria-multiselectable="true"` to the listbox.
+- e23b1a2f9: fix(MultiSelect): Prevent the clear button’s label from being announced.
+- e23b1a2f9: fix(NativeSelect): Update markup to remove `additionalContent` from `<label>`.
+- e23b1a2f9: fix(NativeSelect): Add `aria-invalid` for error state, update `aria-describedby` reference, add `aria-labelledby` for additional content, and skip disabled options during keyboard navigation.
+- e23b1a2f9: fix(Pagination): Move `aria-current` from list item to page button. Add descriptive `aria-label` to SimplePagination's page selector.
+- e23b1a2f9: fix(Search, Input): Add `role="img"` to non-clickable icon wrapper for accessibility.
+- e23b1a2f9: fix(Select, MultiSelect, Combobox, MultiCombobox): Add state to announce changes after the input is cleared.
+- e23b1a2f9: fix(Select, Multiselect): Separate focus and hover states and auto-focus first item for NVDA support.
+
+  **Note**: The Select and MultiSelect trigger element's ARIA role has changed from `role="button"` to `role="combobox"` to align with the WAI-ARIA combobox pattern. If your tests query the Select trigger by `role("button")`, update them to use `role("combobox")`.
+
+- e23b1a2f9: fix(Tab & NavTab): Add focus on the back and next buttons. Add announce tab content. Update aria-labels.
+  fix(Combobox, MultiCombobox): Add defensive optional chaining on i18n `.replace()` calls to prevent crashes if i18n values are undefined.
+- e23b1a2f9: fix(Table): Add screen reader announcement for the current page when navigating table pagination.
+- e23b1a2f9: fix(Table): Remove focus from `Table` with interactive elements.
+- e23b1a2f9: fix(Textarea): Change `aria-labelledby` to `aria-describedby`.
 
 ## 4.11.0
 

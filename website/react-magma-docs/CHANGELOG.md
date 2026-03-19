@@ -1,5 +1,54 @@
 # Change Log
 
+## 5.3.1
+
+### Patch Changes
+
+- e23b1a2f9: chore: pin eslint-plugin-mdx to v2
+- e23b1a2f9: chore: combine workflows into publish.yml and preview.yml.
+- e23b1a2f9: chore: Update publish.yml files to fix publishing issues.
+- e23b1a2f9: chore: Add support for trusted publishers
+- e23b1a2f9: chore: fix Hyperlink docs issue
+- e23b1a2f9: fix(docs): Fix docs issues.
+- e23b1a2f9: fix(docs): added new script for mdx tscheck to improve type checking in documentation
+- e23b1a2f9: fix(publish): Add missing repository.url to package.json for npm provenance verification.
+- e23b1a2f9: fix(Tag, Button, Input, Combobox, DataGrid, RadioButton): Fix accessibility issues for examples.
+- e23b1a2f9: Manually sync main -> dev (v4.11.0)
+- e23b1a2f9: Cleanup changelogs
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+- Updated dependencies [e23b1a2f9]
+  - @react-magma/charts@13.0.2
+  - react-magma-dom@4.12.0
+  - @react-magma/dropzone@12.0.2
+  - @react-magma/schema-renderer@14.0.0
+  - @cengage-patterns/header@15.0.0
+
 ## 5.3.1-next.12
 
 ### Patch Changes
