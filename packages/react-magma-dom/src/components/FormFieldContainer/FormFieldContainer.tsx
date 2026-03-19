@@ -213,6 +213,7 @@ export const FormFieldContainer = React.forwardRef<
             <Label
               actionable={actionable}
               htmlFor={fieldId}
+              id={`${fieldId}__label`}
               iconPosition={iconPosition}
               labelPosition={labelPosition}
               size={inputSize}
