@@ -178,16 +178,20 @@ If an error message is present, it will replace the helper text. Can be a node o
 import React from 'react';
 
 import {
-  RadioGroup,
-  Radio,
+  Announce,
   Button,
   ButtonColor,
   ButtonGroup,
+  RadioGroup,
+  Radio,
+  VisuallyHidden,
 } from 'react-magma-dom';
 
 export function Example() {
   const [hasError, setHasError] = React.useState(false);
   const [requiredFieldsValue, setRequiredFieldsValue] = React.useState('');
+  const clearedText = 'Input has been reset to default value.';
+  const [announcement, setAnnouncement] = React.useState('');
 
   function changeValue(e) {
     setRequiredFieldsValue(e.target.value);
@@ -204,6 +208,10 @@ export function Example() {
   function reset() {
     setHasError(false);
     setRequiredFieldsValue('');
+    setAnnouncement('');
+    setTimeout(() => {
+      setAnnouncement(clearedText);
+    }, 10);
   }
 
   const errorMsg = hasError ? 'Please select a color' : null;
@@ -230,6 +238,9 @@ export function Example() {
           Reset
         </Button>
       </ButtonGroup>
+      <Announce>
+        <VisuallyHidden>{announcement}</VisuallyHidden>
+      </Announce>
     </>
   );
 }
@@ -359,7 +370,7 @@ export function Example() {
   const inputStyles = { alignSelf: 'center' };
 
   return (
-    <RadioGroup labelText="Nodes for labels">
+    <RadioGroup labelText="Nodes for labels" name="nodesForLabelsGroup">
       <Radio
         labelText={<span style={labelStyles}>Option 1</span>}
         inputStyle={inputStyles}
@@ -493,25 +504,25 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
-  const radioRef = React.useRef();
-  const [radioGroupVal, setRadioGroupVal] = React.useState(null);
+  const radioRef = React.useRef<HTMLInputElement>(null);
+  const [radioGroupVal, setRadioGroupVal] = React.useState<string | null>(null);
   const [announcement, setAnnouncement] = React.useState('');
 
   function handleSelectOne() {
     if (!radioRef.current) {
       setRadioGroupVal(null);
       setAnnouncement('');
-    } else if (radioRef.current.checked) {
+    } else if (radioRef.current && radioRef.current.checked) {
       setRadioGroupVal('');
       setAnnouncement('Option one deselected');
-    } else if (!radioRef.current.checked) {
+    } else if (radioRef.current && !radioRef.current.checked) {
       setRadioGroupVal('1');
       setAnnouncement('Option one selected');
     }
   }
 
   function handleFocusOne() {
-    radioRef.current.focus();
+    radioRef.current && radioRef.current.focus();
   }
 
   return (

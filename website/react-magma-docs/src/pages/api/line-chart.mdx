@@ -74,10 +74,10 @@ const data = [
 const componentProps = {
   xAxis: {
     label: '2019 Annual Sales Figures',
-    tickFormat: ['Jan', 'Feb', 'March', 'April', 'May'],
+    tickFormat: (d, i) => ['Jan', 'Feb', 'March', 'April', 'May'][i] || '',
   },
   yAxis: {
-    domain: [10, 80],
+    domain: [10, 80] as any,
     label: 'Conversion Rate',
     tickFormat: t => `$${t}k`,
     tickValues: [10, 20, 30, 40, 50, 60, 70, 80],
@@ -92,6 +92,11 @@ export function Example() {
       description="description - Lorem ipsum dolor sitamet, consectetur adipiscing elit."
       title="Annual sales figures for 2019"
       type="line"
+      lastFocusedScatterPoint={undefined as any}
+      pointRefArray={undefined as any}
+      registerPoint={undefined as any}
+      tabRef={undefined as any}
+      unregisterPoint={undefined as any}
     />
   );
 }

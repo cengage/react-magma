@@ -33,7 +33,7 @@ export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The element that triggers the tooltip when it is hovered or focused. Must be a react element (not a string) and should be a focusable element to meet a11y requirements
    */
-  children: React.ReactElement;
+  children?: React.ReactElement;
   /**
    * Style properties for the component container element which includes both the tooltip trigger and the tooltip popover content
    */
@@ -236,12 +236,14 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     throw new Error('Tooltip children can only be one element.');
   }
 
-  const tooltipTrigger = React.cloneElement(children, {
-    'aria-describedby': isVisible ? id : null,
-    onBlur: hideTooltip,
-    onFocus: showTooltip,
-    ref: combinedRef,
-  });
+  const tooltipTrigger = React.isValidElement(children)
+    ? React.cloneElement(children, {
+        'aria-describedby': isVisible ? id : null,
+        onBlur: hideTooltip,
+        onFocus: showTooltip,
+        ref: combinedRef,
+      })
+    : null;
 
   const combinedTooltipStyles = {
     zIndex: theme.tooltip.zIndex,

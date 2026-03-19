@@ -125,7 +125,7 @@ export function Example() {
 
   function handleClearDate() {
     handleDateChange(null);
-    datePickerRef.current.focus();
+    datePickerRef.current && datePickerRef.current.focus();
   }
 
   return (
@@ -298,8 +298,8 @@ import { DatePicker } from 'react-magma-dom';
 export function Example() {
   const [inputValue, setInputValue] = React.useState<string>('');
 
-  function handleInputChange(event: React.EventChangeHandler) {
-    setInputValue(event.target.value);
+  function handleInputChange(event: React.ChangeEvent<Element>) {
+    setInputValue((event.target as HTMLInputElement).value);
   }
 
   return (
@@ -360,11 +360,11 @@ import { DatePicker } from 'react-magma-dom';
 export function Example() {
   const [isFocused, updateIsFocused] = React.useState<boolean>(false);
 
-  function handleInputBlur(event: React.FocusChangeHandler) {
+  function handleInputBlur(event: React.FocusEvent<Element>) {
     updateIsFocused(false);
   }
 
-  function handleInputFocus(event: React.FocusChangeHandler) {
+  function handleInputFocus(event: React.FocusEvent<Element>) {
     updateIsFocused(true);
   }
 
@@ -400,7 +400,10 @@ import { DatePicker } from 'react-magma-dom';
 export function Example() {
   const [changedValue, setChangedValue] = React.useState<string | Date>('');
 
-  function handleChange(value: string | Date, event: React.EventChangeHandler) {
+  function handleChange(
+    value: string,
+    event: React.SyntheticEvent | React.ChangeEvent<Element>
+  ) {
     setChangedValue(value);
   }
 

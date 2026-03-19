@@ -218,7 +218,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
               onClick={handleRemoveFile}
               variant={ButtonVariant.link}
               color={ButtonColor.secondary}
-              aria-label={i18n.dropzone.removeFile}
+              aria-label={`${i18n.dropzone.removeFile} ${file.name}`}
               icon={<CloseIcon />}
             />
           </StatusIcons>
@@ -248,7 +248,7 @@ export const Preview = forwardRef<HTMLDivElement, PreviewProps>(
               onClick={handleDeleteFile}
               variant={ButtonVariant.link}
               color={ButtonColor.secondary}
-              aria-label={i18n.dropzone.deleteFile}
+              aria-label={`${i18n.dropzone.deleteFile} ${file.name}`}
               icon={<DeleteIcon />}
             />
           </Transition>

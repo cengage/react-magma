@@ -5,7 +5,7 @@ import { IconProps } from 'react-magma-icons';
 import { StyledAIButton } from './StyledAIButton';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
-import { resolveProps, XOR } from '../../utils';
+import { resolveProps } from '../../utils';
 import { ButtonGroupContext } from '../ButtonGroup';
 
 export enum AIButtonVariant {
@@ -110,7 +110,7 @@ export interface TextAIButtonProps extends BaseAIButtonProps {
   /**
    * The content of the component
    */
-  children: React.ReactChild | React.ReactChild[];
+  children: React.ReactNode;
   /**
    * Icon to display on the right side within the component
    */
@@ -123,17 +123,20 @@ export interface TextAIButtonProps extends BaseAIButtonProps {
 
 export interface IconOnlyAIButtonProps extends BaseAIButtonProps {
   /**
-   * Icon to display on the right side within the component
-   */
-  leadingIcon?: true | React.ReactElement<IconProps>;
-  /**
    * The text the screen reader will announce. Required for icon-only buttons
    */
   'aria-label': string;
+  /**
+   * The content of the component
+   */
   children?: never;
+  /**
+   * Icon to display on the left side within the component
+   */
+  leadingIcon: true | React.ReactElement<IconProps>;
 }
 
-export type AIButtonProps = XOR<TextAIButtonProps, IconOnlyAIButtonProps>;
+export type AIButtonProps = TextAIButtonProps | IconOnlyAIButtonProps;
 
 export const AIButton = React.forwardRef<HTMLButtonElement, AIButtonProps>(
   (props, ref) => {

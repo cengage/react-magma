@@ -297,6 +297,9 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
           : TabsIconPosition.top;
     }
 
+    const tabId = `tab-${index}`;
+    const panelId = `tabpanel-${index}`;
+
     if (unstyled) {
       const child = React.Children.only(children) as React.ReactElement;
 
@@ -329,8 +332,10 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
         >
           {React.cloneElement(child, {
             ...clonedElProps,
+            'aria-controls': panelId,
             'aria-selected': isActive,
             disabled,
+            id: tabId,
             onClick: e => handleClick(index, e),
             ref,
             role: 'tab',
@@ -354,10 +359,12 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       >
         <StyledTab
           {...rest}
+          aria-controls={panelId}
           aria-selected={isActive}
           data-testid={testId}
           disabled={disabled}
           iconPosition={tabIconPosition}
+          id={tabId}
           isActive={isActive}
           isInverse={isInverse}
           isFullWidth={isFullWidth}

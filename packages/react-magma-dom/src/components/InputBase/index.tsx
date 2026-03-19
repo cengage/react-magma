@@ -771,6 +771,7 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
             />
             {icon && !onIconClick && (
               <IconWrapper
+                role="img"
                 aria-label={iconAriaLabel}
                 iconPosition={iconPosition}
                 inputSize={inputSize ?? InputSize.medium}

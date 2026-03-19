@@ -1,5 +1,29 @@
 # Change Log
 
+## 15.0.0-next.2
+
+### Patch Changes
+
+- d88363512: fix(publish): Force version bump for packages stuck at already-published prerelease versions.
+
+## 15.0.0-next.1
+
+### Patch Changes
+
+- de8db8f39: fix(publish): Add missing repository.url to package.json for npm provenance verification.
+- Updated dependencies [0223aac78]
+- Updated dependencies [6009a5824]
+- Updated dependencies [a939d4eea]
+- Updated dependencies [de8db8f39]
+  - react-magma-dom@4.12.0-next.3
+
+## 14.0.1-next.0
+
+### Patch Changes
+
+- Updated dependencies [aa87f4460]
+  - react-magma-dom@4.11.1-next.0
+
 ## 14.0.0
 
 ## 14.0.0-next.1

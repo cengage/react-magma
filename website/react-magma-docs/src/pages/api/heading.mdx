@@ -323,11 +323,13 @@ import React from 'react';
 import { Button, Heading } from 'react-magma-dom';
 
 export function Example() {
-  const headingRef = React.useRef<HTMLHeadingElement>();
+  const headingRef = React.useRef<HTMLHeadingElement>(null);
 
   function handleClick() {
-    headingRef.current.tabIndex = -1;
-    headingRef.current.focus();
+    if (headingRef.current) {
+      headingRef.current.tabIndex = -1;
+      headingRef.current.focus();
+    }
   }
 
   return (
@@ -335,7 +337,6 @@ export function Example() {
       <Heading ref={headingRef} level={1}>
         Heading to Be Focused
       </Heading>
-
       <Button onClick={handleClick}>Click to focus heading</Button>
     </>
   );

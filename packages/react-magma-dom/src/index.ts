@@ -12,7 +12,11 @@ export {
 } from './components/AIButton';
 export { Alert, AlertProps } from './components/Alert';
 export { AlertVariant } from './components/AlertBase';
-export { Announce, AnnounceProps } from './components/Announce';
+export {
+  Announce,
+  AnnounceProps,
+  AnnouncePoliteness,
+} from './components/Announce';
 export { AppBar, AppBarProps, AppBarPosition } from './components/AppBar';
 export {
   Badge,
@@ -120,6 +124,7 @@ export {
   DropdownExpandableMenuPanel,
   DropdownExpandableMenuPanelProps,
 } from './components/Dropdown/DropdownExpandableMenuPanel';
+export { EmptyState, EmptyStateProps } from './components/EmptyState';
 export * from './components/Flex';
 export { Form, FormProps } from './components/Form';
 export { FormGroup, FormGroupProps } from './components/FormGroup';

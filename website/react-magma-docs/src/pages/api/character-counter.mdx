@@ -40,7 +40,11 @@ import { Input } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Input maxCount={4} value="hi" labelText="Inital Value Character Counter" />
+    <Input
+      maxCount={4}
+      value="hi"
+      labelText="Initial Value Character Counter"
+    />
   );
 }
 ```
@@ -96,6 +100,7 @@ export function Example() {
       value={{
         ...defaultI18n,
         characterCounter: {
+          characterAllowed: 'allowed in this custom string',
           charactersAllowed: 'allowed in this custom string',
           charactersLeft: 'left in this custom string',
           characterLeft: 'left in this custom string',

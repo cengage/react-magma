@@ -101,13 +101,13 @@ The `textPosition` property takes the values `left` and `right`. The default val
 ```tsx
 import React from 'react';
 
-import { Toggle } from 'react-magma-dom';
+import { Toggle, ToggleTextPosition } from 'react-magma-dom';
 
 export function Example() {
   return (
     <>
       <Toggle labelText="Text left" />
-      <Toggle labelText="Text right" textPosition="right" />
+      <Toggle labelText="Text right" textPosition={ToggleTextPosition.right} />
     </>
   );
 }

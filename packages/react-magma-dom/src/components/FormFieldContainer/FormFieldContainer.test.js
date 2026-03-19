@@ -4,7 +4,6 @@ import { render } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
-import { CharacterCounter } from '../CharacterCounter';
 
 import { FormFieldContainer } from '.';
 
@@ -114,6 +113,30 @@ describe('FormFieldContainer', () => {
       </FormFieldContainer>
     );
     expect(getByText(labelText)).toHaveStyle('flex-basis: 20%');
+  });
+
+  it('Should render the label with an id based on fieldId', () => {
+    const { getByText } = render(
+      <FormFieldContainer fieldId="my-field" labelText={labelText}>
+        {TEXT}
+      </FormFieldContainer>
+    );
+
+    const label = getByText(labelText);
+    expect(label).toHaveAttribute('id', 'my-field__label');
+  });
+
+  it('Should render the error message with an id based on fieldId', () => {
+    const errorMsg = 'Test error';
+    const { container } = render(
+      <FormFieldContainer fieldId="my-field" errorMessage={errorMsg}>
+        {TEXT}
+      </FormFieldContainer>
+    );
+
+    const messageEl = document.getElementById('my-field__message');
+    expect(messageEl).toBeInTheDocument();
+    expect(messageEl).toHaveTextContent(errorMsg);
   });
 
   it('Does not violate accessibility standards', () => {

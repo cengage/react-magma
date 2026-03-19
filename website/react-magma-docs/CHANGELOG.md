@@ -1,5 +1,108 @@
 # Change Log
 
+## 5.3.1-next.12
+
+### Patch Changes
+
+- Updated dependencies [347359010]
+  - @react-magma/dropzone@14.0.0-next.3
+
+## 5.3.1-next.11
+
+### Patch Changes
+
+- Updated dependencies [6cd334279]
+  - @react-magma/dropzone@14.0.0-next.2
+
+## 5.3.1-next.10
+
+### Patch Changes
+
+- ac5a19b2c: chore: fix Hyperlink docs issue
+
+## 5.3.1-next.9
+
+### Patch Changes
+
+- Updated dependencies [d88363512]
+  - react-magma-dom@4.12.0-next.4
+  - @cengage-patterns/header@15.0.0-next.2
+
+## 5.3.1-next.8
+
+### Patch Changes
+
+- Updated dependencies [0223aac78]
+- Updated dependencies [6009a5824]
+- Updated dependencies [a939d4eea]
+- Updated dependencies [de8db8f39]
+  - react-magma-dom@4.12.0-next.3
+  - @react-magma/charts@14.0.0-next.2
+  - @react-magma/dropzone@14.0.0-next.1
+  - @react-magma/schema-renderer@14.0.0-next.1
+  - @cengage-patterns/header@15.0.0-next.1
+
+## 5.3.1-next.7
+
+### Patch Changes
+
+- b5c6fdc04: fix(Tag & Button & Input & Combobox & Datagrid & RadioButton): Fix accessibility issues for examples.
+
+## 5.3.1-next.6
+
+### Patch Changes
+
+- 0fc596b03: chore: pin eslint-plugin-mdx to v2
+- 75e16fb29: chore: combine workflows into publish.yml and preview.yml.
+- ffadd0283: chore: Update publish.yml files to fix publishing issues.
+- Updated dependencies [9e45d2ff0]
+  - react-magma-dom@4.11.1-next.2
+
+## 5.3.1-next.5
+
+### Patch Changes
+
+- 3248b4eaa: chore: Add support for trusted publishers
+- fdb81200c: chore: Add support for trusted publishers
+- bc00a54ef: chore: Add support for trusted publishers
+
+## 5.3.1-next.4
+
+### Patch Changes
+
+- 3dbb15705: fix(docs): Fix docs issues.
+
+## 5.3.1-next.3
+
+### Patch Changes
+
+- Updated dependencies [aa87f4460]
+  - react-magma-dom@4.11.1-next.0
+  - @react-magma/charts@13.0.2-next.1
+  - @react-magma/dropzone@13.0.1-next.0
+  - @react-magma/schema-renderer@13.0.1-next.0
+  - @cengage-patterns/header@14.0.1-next.0
+
+## 5.3.1-next.2
+
+### Patch Changes
+
+- Updated dependencies [2adadea18]
+  - @react-magma/charts@13.0.2-next.0
+
+## 5.3.1-next.1
+
+### Patch Changes
+
+- 18c7b0b4c: fix(docs): added new script for mdx tscheck to improve type checking in documentation
+
+## 5.3.1-next.0
+
+### Patch Changes
+
+- e2c1f365e: Manually sync main -> dev (v4.11.0)
+- e2c1f365e: chore: Manually sync main -> dev (4.11.0)
+
 ## 5.3.0
 
 ### Minor Changes

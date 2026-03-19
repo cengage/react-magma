@@ -285,7 +285,7 @@ export function Example() {
     <Grid
       gridTemplateColumns={'auto 1fr'}
       gridTemplateRows={'auto 1fr'}
-      gridTemplateAreas={('sidebar header header', 'sidebar content content')}
+      gridTemplateAreas="sidebar header header sidebar content content"
       gridGap={'0.25em'}
     >
       {isLargeScreen ? (
@@ -303,7 +303,7 @@ export function Example() {
         </Drawer>
       ) : (
         <GridItem
-          as={'sidebar'}
+          as="div"
           gridColumn="1 / 2"
           gridRow="1 / 3"
           style={{ background: magma.colors.secondary700, width: '240px' }}
@@ -325,7 +325,7 @@ export function Example() {
       </GridItem>
 
       <GridItem
-        as="content"
+        as="div"
         gridColumn="2 / 3"
         style={{
           maxWidth: '1600px',
@@ -366,6 +366,7 @@ import {
   DrawerPosition,
   Grid,
   GridItem,
+  GridJustifyContent,
   magma,
   useMediaQuery,
 } from 'react-magma-dom';
@@ -386,7 +387,7 @@ export function Example() {
       gridJustifyContent={GridJustifyContent.center}
       gridTemplateColumns="auto 1fr"
       gridTemplateRows="auto 1fr"
-      gridTemplateAreas={('header header', 'sidebar content', 'sidebar footer')}
+      gridTemplateAreas="header header sidebar content sidebar footer"
       gridGap="2px"
     >
       <GridItem as="header" gridColumn="1 / 4">
@@ -416,7 +417,7 @@ export function Example() {
         </Drawer>
       ) : (
         <GridItem
-          as="sidebar"
+          as="div"
           gridColumn="1 / 2"
           gridRow="2 / 4"
           style={{
@@ -431,7 +432,7 @@ export function Example() {
       )}
 
       <GridItem
-        as="content"
+        as="div"
         gridColumn="2 / 4"
         gridRow="2"
         style={{

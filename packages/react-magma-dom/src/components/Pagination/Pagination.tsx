@@ -266,13 +266,11 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                     );
                   } else if (type === 'page') {
                     return (
-                      <StyledListItem
-                        aria-current={
-                          ariaCurrent ? 'page' : Boolean(ariaCurrent)
-                        }
-                        key={index}
-                      >
+                      <StyledListItem key={index}>
                         <PageButton
+                          aria-current={
+                            ariaCurrent ? 'page' : Boolean(ariaCurrent)
+                          }
                           ref={setPageButtonRef(page)}
                           isInverse={isInverse}
                           isSelected={isSelected}

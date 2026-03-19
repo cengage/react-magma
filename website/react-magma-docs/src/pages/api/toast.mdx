@@ -196,7 +196,7 @@ export function Example() {
       <Button onClick={handleButtonClick}>Show Toast in Announce</Button>
       <Announce>
         {showToast && (
-          <Toast dismissible onDismiss={handleToastDismiss}>
+          <Toast isDismissible onDismiss={handleToastDismiss}>
             Dismissible Toast
           </Toast>
         )}

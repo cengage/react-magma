@@ -1,7 +1,12 @@
 {
   "name": "@react-magma/schema-renderer",
-  "version": "13.0.0",
+  "version": "14.0.0-next.1",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cengage/react-magma.git",
+    "directory": "packages/schema-renderer"
+  },
   "main": "dist/index.js",
   "module": "dist/react-magma-schema-renderer.esm.js",
   "typings": "dist/index.d.ts",
@@ -24,7 +29,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-dropzone": "11.3.2",
-    "react-magma-dom": "^4.11.0",
+    "react-magma-dom": "^4.12.0-next.3",
     "react-magma-icons": "^3.2.4",
     "tsdx": "^0.14.1",
     "uuid": "^11.1.0"
@@ -37,12 +42,13 @@
     "downshift": "^5.4.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.11.0-next.3",
+    "react-magma-dom": "^4.12.0-next.3",
     "react-magma-icons": "^3.2.4",
     "uuid": "^8.3.0 || ^9.0.0 || ^10.0.0 || ^11.0.0"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=22.14.0",
+    "npm": ">=11.11.0"
   },
   "publishConfig": {
     "access": "public"

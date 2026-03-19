@@ -349,7 +349,9 @@ import { Button, Transition, Checkbox } from 'react-magma-dom';
 
 export function Example() {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [properties, setProperties] = React.useState({});
+  const [properties, setProperties] = React.useState<Record<string, boolean>>(
+    {}
+  );
 
   const Box = styled('div')`
     height: 250px;
@@ -399,13 +401,13 @@ export function Example() {
         labelText="collapse"
         checked={properties.collapse}
         disabled={
-          properties.slideTop |
-          properties.slideBottom |
-          properties.slideLeft |
-          properties.slideRight |
-          properties.nudgeTop |
-          properties.nudgeBottom |
-          properties.nudgeLeft |
+          properties.slideTop ||
+          properties.slideBottom ||
+          properties.slideLeft ||
+          properties.slideRight ||
+          properties.nudgeTop ||
+          properties.nudgeBottom ||
+          properties.nudgeLeft ||
           properties.nudgeRight
         }
         onChange={() =>
@@ -416,13 +418,13 @@ export function Example() {
         labelText="slideTop"
         checked={properties.slideTop}
         disabled={
-          properties.collapse |
-          properties.slideBottom |
-          properties.slideLeft |
-          properties.slideRight |
-          properties.nudgeTop |
-          properties.nudgeBottom |
-          properties.nudgeLeft |
+          properties.collapse ||
+          properties.slideBottom ||
+          properties.slideLeft ||
+          properties.slideRight ||
+          properties.nudgeTop ||
+          properties.nudgeBottom ||
+          properties.nudgeLeft ||
           properties.nudgeRight
         }
         onChange={() =>
@@ -433,13 +435,13 @@ export function Example() {
         labelText="slideBottom"
         checked={properties.slideBottom}
         disabled={
-          properties.collapse |
-          properties.slideTop |
-          properties.slideLeft |
-          properties.slideRight |
-          properties.nudgeTop |
-          properties.nudgeBottom |
-          properties.nudgeLeft |
+          properties.collapse ||
+          properties.slideTop ||
+          properties.slideLeft ||
+          properties.slideRight ||
+          properties.nudgeTop ||
+          properties.nudgeBottom ||
+          properties.nudgeLeft ||
           properties.nudgeRight
         }
         onChange={() =>
@@ -453,13 +455,13 @@ export function Example() {
         labelText="slideRight"
         checked={properties.slideRight}
         disabled={
-          properties.collapse |
-          properties.slideTop |
-          properties.slideBottom |
-          properties.slideLeft |
-          properties.nudgeTop |
-          properties.nudgeBottom |
-          properties.nudgeLeft |
+          properties.collapse ||
+          properties.slideTop ||
+          properties.slideBottom ||
+          properties.slideLeft ||
+          properties.nudgeTop ||
+          properties.nudgeBottom ||
+          properties.nudgeLeft ||
           properties.nudgeRight
         }
         onChange={() =>
@@ -473,13 +475,13 @@ export function Example() {
         labelText="slideLeft"
         checked={properties.slideLeft}
         disabled={
-          properties.collapse |
-          properties.slideTop |
-          properties.slideBottom |
-          properties.slideRight |
-          properties.nudgeTop |
-          properties.nudgeBottom |
-          properties.nudgeLeft |
+          properties.collapse ||
+          properties.slideTop ||
+          properties.slideBottom ||
+          properties.slideRight ||
+          properties.nudgeTop ||
+          properties.nudgeBottom ||
+          properties.nudgeLeft ||
           properties.nudgeRight
         }
         onChange={() =>
@@ -490,11 +492,11 @@ export function Example() {
         labelText="nudgeTop"
         checked={properties.nudgeTop}
         disabled={
-          properties.collapse |
-          properties.slideTop |
-          properties.slideBottom |
-          properties.slideLeft |
-          properties.slideRight |
+          properties.collapse ||
+          properties.slideTop ||
+          properties.slideBottom ||
+          properties.slideLeft ||
+          properties.slideRight ||
           properties.nudgeBottom
         }
         onChange={() =>
@@ -505,11 +507,11 @@ export function Example() {
         labelText="nudgeBottom"
         checked={properties.nudgeBottom}
         disabled={
-          properties.collapse |
-          properties.slideTop |
-          properties.slideBottom |
-          properties.slideLeft |
-          properties.slideRight |
+          properties.collapse ||
+          properties.slideTop ||
+          properties.slideBottom ||
+          properties.slideLeft ||
+          properties.slideRight ||
           properties.nudgeTop
         }
         onChange={() =>
@@ -523,11 +525,11 @@ export function Example() {
         labelText="nudgeRight"
         checked={properties.nudgeRight}
         disabled={
-          properties.collapse |
-          properties.slideTop |
-          properties.slideBottom |
-          properties.slideLeft |
-          properties.slideRight |
+          properties.collapse ||
+          properties.slideTop ||
+          properties.slideBottom ||
+          properties.slideLeft ||
+          properties.slideRight ||
           properties.nudgeLeft
         }
         onChange={() =>
@@ -541,11 +543,11 @@ export function Example() {
         labelText="nudgeLeft"
         checked={properties.nudgeLeft}
         disabled={
-          properties.collapse |
-          properties.slideTop |
-          properties.slideBottom |
-          properties.slideLeft |
-          properties.slideRight |
+          properties.collapse ||
+          properties.slideTop ||
+          properties.slideBottom ||
+          properties.slideLeft ||
+          properties.slideRight ||
           properties.nudgeRight
         }
         onChange={() =>
