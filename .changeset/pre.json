@@ -16,6 +16,7 @@
     "a11y-charts-manage-focus",
     "a11y-sortable-table-labels",
     "chore-fix-eslint-error",
+    "chore-fix-modal-safari-focus",
     "chore-update-publish-yml-2",
     "chore-update-publish-yml",
     "chore-upgrade-polished-version",

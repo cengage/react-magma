@@ -1,5 +1,12 @@
 ## 4.11.0
 
+## 4.12.0-next.24
+
+### Patch Changes
+
+- 21f934f12: - fix(Modal): Fix focus escaping the modal in Safari.
+  - fix(CharacterCounter): Fix voice over announcement duplication when `maxCount` is applied in Safari.
+
 ## 4.12.0-next.23
 
 ### Patch Changes
