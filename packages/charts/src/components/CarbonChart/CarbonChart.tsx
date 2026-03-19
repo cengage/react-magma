@@ -25,6 +25,7 @@ import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 import { ThemeInterface, ThemeContext, useIsInverse } from 'react-magma-dom';
 
+import { useCarbonModalFocusManagement } from '../../hooks/useCarbonModalFocusManagement';
 import './carbon-charts.css';
 
 export enum CarbonChartType {
@@ -64,6 +65,10 @@ export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
    * Type of Chart: area, bar, donut, line, etc.
    */
   type: CarbonChartType;
+  /**
+   * Text for the aria-label attribute for main SVG container, if provided
+   */
+  ariaLabel?: string;
 }
 
 const CarbonChartWrapper = styled.div<{
@@ -361,7 +366,6 @@ const CarbonChartWrapper = styled.div<{
       margin: 0;
       min-width: ${props => props.theme.spaceScale.spacing13};
       overflow: hidden;
-      padding:;
       position: relative;
       right: ${props => props.theme.spaceScale.spacing04};
       text-align: center;
@@ -539,10 +543,26 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       type,
       dataSet,
       options,
+      ariaLabel,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
+    const internalRef = React.useRef<HTMLDivElement | null>(null);
+
+    const mergedRef = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        internalRef.current = node;
+        if (typeof ref === 'function') {
+          ref(node);
+        } else if (ref) {
+          (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        }
+      },
+      [ref]
+    );
+
+    useCarbonModalFocusManagement(internalRef);
     const allCharts = {
       area: AreaChart,
       areaStacked: StackedAreaChart,
@@ -607,9 +627,11 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     // Adding aria-label to main SVG container
     React.useEffect(() => {
-      document.querySelectorAll('.graph-frame ').forEach(div => {
-        div.setAttribute('aria-label', 'Interactive chart');
-      });
+      if (ariaLabel) {
+        document.querySelectorAll('.graph-frame ').forEach(div => {
+          div.setAttribute('aria-label', ariaLabel);
+        });
+      }
     });
 
     const groupsLength = Object.keys(buildColors()).length;
@@ -617,7 +639,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     return (
       <CarbonChartWrapper
         data-testid={testId}
-        ref={ref}
+        ref={mergedRef}
         isInverse={isInverse}
         theme={theme}
         className="carbon-chart-wrapper"

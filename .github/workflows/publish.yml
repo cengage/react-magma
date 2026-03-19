@@ -1,0 +1,201 @@
+name: Publish Packages
+on:
+  push:
+    branches:
+      - dev
+      - main
+      - v4/dev
+      - v4/main
+permissions:
+  id-token: write
+  contents: write
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          check-latest: true
+          registry-url: 'https://registry.npmjs.org'
+      - name: Check Node version
+        run: node -v
+      - name: Update NPM version
+        run: npm install -g "npm@^11.11.0"
+      - name: Check NPM version
+        run: npm -v
+      - name: Install
+        run: npm ci --legacy-peer-deps
+      - name: Test
+        run: npm test
+      - name: Install Playwright Browsers
+        if: github.ref_name == 'dev'
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        if: github.ref_name == 'dev'
+        run: npm run playwright:test
+        timeout-minutes: 60
+      - name: Configure NPM
+        run: |
+          git config --global user.name 'github-bot'
+          git config --global user.email 'github-bot@users.noreply.github.com'
+      - name: Check if Prerelease
+        if: github.ref_name == 'dev' || github.ref_name == 'v4/dev'
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: ".changeset/pre.json"
+      - name: Enter Prerelease Mode
+        if: (github.ref_name == 'dev' || github.ref_name == 'v4/dev') && steps.check_files.outputs.files_exists == 'false'
+        run: |
+          npm run version:prerelease
+          git add .changeset/pre.json
+      - name: Exit Prerelease Mode
+        if: github.ref_name == 'v4/main' || github.ref_name == 'main'
+        run: npm run version:exit
+      - name: Publish
+        env:
+          NPM_CONFIG_PROVENANCE: true
+        run: |
+          npm run version:pkgs
+          if ! git diff --quiet; then
+            if [[ "${GITHUB_REF_NAME}" == "dev" || "${GITHUB_REF_NAME}" == "v4/dev" ]]; then
+              git commit -am "chore: enter prerelease mode"
+            else
+              git commit -am "chore: exit prerelease mode"
+            fi
+          fi
+          npm run release
+          git push --follow-tags
+      - name: Get Alias
+        id: info
+        run: |
+          echo "alias=$(npm run --silent getAlias)" >> "$GITHUB_OUTPUT"
+          echo "version=$(npm run --silent getVersion)" >> "$GITHUB_OUTPUT"
+      - name: Build Docs (Prerelease)
+        if: github.ref_name == 'dev' || github.ref_name == 'v4/dev'
+        run: npm run build:docs
+      - name: Build Docs (Versioned)
+        if: github.ref_name == 'v4/main' || github.ref_name == 'main'
+        run: npm run build:docs
+        env:
+          PATH_PREFIX: /version/${{ steps.info.outputs.version }}
+      - name: Build Storybook
+        if: github.ref_name == 'dev' || github.ref_name == 'v4/dev' || github.ref_name == 'v4/main' || github.ref_name == 'main'
+        run: npm run build:storybook
+      - name: Deploy Docs to Netlify (RC)
+        if: github.ref_name == 'dev'
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './website/react-magma-docs/public'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy from GitHub Actions'
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+          alias: rc
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Deploy Docs to Netlify (Next)
+        if: github.ref_name == 'v4/dev'
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './website/react-magma-docs/public'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy from GitHub Actions'
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+          alias: next
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Deploy Docs to Netlify (Versioned)
+        if: github.ref_name == 'v4/main' || github.ref_name == 'main'
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './website/react-magma-docs/public'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy from GitHub Actions'
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+          alias: ${{ steps.info.outputs.alias }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Deploy Dev Storybook to Netlify
+        if: github.ref_name == 'dev'
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './storybook-static'
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: false
+          alias: storybook-preview-dev
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Deploy v4 Dev Storybook to Netlify
+        if: github.ref_name == 'v4/dev'
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './storybook-static'
+          production-branch: v4/main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: false
+          alias: storybook-preview-v4-dev
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Deploy v4 Latest Storybook to Netlify
+        if: github.ref_name == 'v4/main'
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './storybook-static'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+          alias: storybook-v4
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Deploy v5 Latest Storybook to Netlify
+        if: github.ref_name == 'main'
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './storybook-static'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+          alias: storybook-v5
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Build Landing Page
+        if: github.ref_name == 'v4/main' || github.ref_name == 'main'
+        run: npm run build:landing
+      - name: Update landing page on Netlify
+        if: github.ref_name == 'v4/main' || github.ref_name == 'main'
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './website/react-magma-landing/dist'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy Landing page from GitHub Actions'
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+          production-deploy: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

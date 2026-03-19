@@ -101,6 +101,49 @@ describe('NativeSelect', () => {
     expect(getByText(errorMessage)).toBeInTheDocument();
   });
 
+  it('should set aria-invalid on the select when in error state', () => {
+    const { getByTestId } = render(
+      <NativeSelect errorMessage="Error" testId={testId}>
+        <option>Red</option>
+      </NativeSelect>
+    );
+
+    expect(getByTestId(testId)).toHaveAttribute('aria-invalid', 'true');
+  });
+
+  it('should not set aria-invalid when there is no error', () => {
+    const { getByTestId } = render(
+      <NativeSelect testId={testId}>
+        <option>Red</option>
+      </NativeSelect>
+    );
+
+    expect(getByTestId(testId)).not.toHaveAttribute('aria-invalid');
+  });
+
+  it('should set aria-describedby referencing the error message element', () => {
+    const { getByTestId } = render(
+      <NativeSelect errorMessage="Error" testId={testId} id="my-select">
+        <option>Red</option>
+      </NativeSelect>
+    );
+
+    const select = getByTestId(testId);
+    expect(select).toHaveAttribute('aria-describedby', 'my-select__message');
+    expect(document.getElementById('my-select__message')).toBeInTheDocument();
+  });
+
+  it('should set aria-describedby referencing the helper message element', () => {
+    const { getByTestId } = render(
+      <NativeSelect helperMessage="Help text" testId={testId} id="my-select">
+        <option>Red</option>
+      </NativeSelect>
+    );
+
+    const select = getByTestId(testId);
+    expect(select).toHaveAttribute('aria-describedby', 'my-select__message');
+  });
+
   it('should render an inverse error state', () => {
     const errorMessage = 'This is an error';
     const { getByTestId, getByText } = render(
@@ -234,5 +277,75 @@ describe('NativeSelect', () => {
         queryByTestId(`${testId}-additional-content-wrapper`)
       ).not.toBeInTheDocument();
     });
+
+    it('should set aria-labelledby when additionalContent and labelText are present', () => {
+      const { getByTestId } = render(
+        <NativeSelect
+          testId={testId}
+          id="my-select"
+          labelText="Select color"
+          additionalContent={
+            <Tooltip content="Learn more">
+              <IconButton
+                aria-label="Learn more"
+                icon={<HelpIcon />}
+                onClick={() => {}}
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          }
+        >
+          <option>Red</option>
+        </NativeSelect>
+      );
+
+      const select = getByTestId(testId);
+      expect(select).toHaveAttribute('aria-labelledby', 'my-select__label');
+      expect(document.getElementById('my-select__label')).toHaveTextContent(
+        'Select color'
+      );
+    });
+
+    it('should not set aria-labelledby when there is no additionalContent', () => {
+      const { getByTestId } = render(
+        <NativeSelect testId={testId} labelText="Select color">
+          <option>Red</option>
+        </NativeSelect>
+      );
+
+      expect(getByTestId(testId)).not.toHaveAttribute('aria-labelledby');
+    });
+  });
+
+  it('should skip disabled options when navigating with arrow keys', async () => {
+    const testId = 'select';
+    const { getByTestId } = render(
+      <NativeSelect testId={testId} defaultValue="1">
+        <option value="1">1</option>
+        <option value="2" disabled>
+          2
+        </option>
+        <option value="3">3</option>
+      </NativeSelect>
+    );
+
+    const selectElement = getByTestId(testId);
+    selectElement.focus();
+
+    expect(selectElement).toHaveDisplayValue('1');
+
+    // ArrowDown should skip disabled option "2" and go to "3"
+    await userEvent.keyboard('{ArrowDown}');
+    expect(selectElement).toHaveDisplayValue('3');
+
+    // ArrowDown should cycle back to "1", skipping disabled "2"
+    await userEvent.keyboard('{ArrowDown}');
+    expect(selectElement).toHaveDisplayValue('1');
+
+    // ArrowUp should skip disabled "2" and go to "3"
+    await userEvent.keyboard('{ArrowUp}');
+    expect(selectElement).toHaveDisplayValue('3');
   });
 });

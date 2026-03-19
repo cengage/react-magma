@@ -136,15 +136,22 @@ This prop may be customized between `hasAttribution` and the main quote element 
 ```tsx
 import React from 'react';
 
-import { BlockQuote, BlockQuoteItem } from 'react-magma-dom';
+import {
+  BlockQuote,
+  BlockQuoteItem,
+  TypographyContextVariant,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
     <BlockQuote>
-      <BlockQuoteItem contextVariant="narrative">
+      <BlockQuoteItem contextVariant={TypographyContextVariant.narrative}>
         I like biscuits!
       </BlockQuoteItem>
-      <BlockQuoteItem contextVariant="expressive" hasAttribution>
+      <BlockQuoteItem
+        contextVariant={TypographyContextVariant.expressive}
+        hasAttribution
+      >
         Sir Nottingshire
       </BlockQuoteItem>
     </BlockQuote>

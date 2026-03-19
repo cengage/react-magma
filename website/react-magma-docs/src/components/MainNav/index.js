@@ -341,7 +341,7 @@ export const MainNav = ({ ...props }) => {
                 <StyledHyperlink
                   aria-label="View project on GitHub"
                   to="https://github.com/cengage/react-magma"
-                  target="_blank"
+                  opensInNewTab
                 >
                   <Heading2>
                     GitHub

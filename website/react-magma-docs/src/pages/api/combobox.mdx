@@ -175,7 +175,7 @@ export function Example() {
   const [changes, updateChanges] = React.useState({});
   const [highlightedIndex, updateHighlightedIndex] = React.useState<number>(-1);
   const [isOpen, updateIsOpen] = React.useState<boolean>(false);
-  const [selectedItem] = React.useState({});
+  const [selectedItem, updateSelectedItem] = React.useState({});
 
   function onStateChange(newChanges) {
     const { type } = newChanges;
@@ -247,7 +247,7 @@ prop. If no `newItemTransform` function is passed in, the created item will be t
 ```tsx
 import React from 'react';
 
-import { Combobox } from 'react-magma-dom';
+import { Announce, Combobox, VisuallyHidden } from 'react-magma-dom';
 
 export function Example() {
   const defaultItems = [
@@ -256,6 +256,8 @@ export function Example() {
     { label: 'Green', value: 'green' },
   ];
   const [items, updateItems] = React.useState(defaultItems);
+  const clearedText = 'Inputs have been reset to default values.';
+  const [announcement, setAnnouncement] = React.useState('');
 
   function newItemTransform(item) {
     return {
@@ -266,6 +268,10 @@ export function Example() {
 
   function resetItems() {
     updateItems([...defaultItems]);
+    setAnnouncement('');
+    setTimeout(() => {
+      setAnnouncement(clearedText);
+    }, 10);
   }
 
   function onItemCreated(item) {
@@ -274,7 +280,9 @@ export function Example() {
 
   return (
     <>
-      <button onClick={resetItems}>Reset Items</button>
+      <button onClick={resetItems} style={{ marginRight: '12px' }}>
+        Reset Items
+      </button>
       <strong>Items: </strong>
       <pre>{JSON.stringify(items, null, 2)}</pre>
       <Combobox
@@ -284,6 +292,9 @@ export function Example() {
         newItemTransform={newItemTransform}
         onItemCreated={onItemCreated}
       />
+      <Announce>
+        <VisuallyHidden>{announcement}</VisuallyHidden>
+      </Announce>
     </>
   );
 }
@@ -808,8 +819,12 @@ export function Example() {
     'Axolotl',
   ];
 
-  const [suggestedItems, setSuggestedItems] = React.useState([]);
-  const [, updateSelectedItems] = React.useState([]);
+  const [suggestedItems, setSuggestedItems] = React.useState<
+    { label: string; value: string }[]
+  >([]);
+  const [, updateSelectedItems] = React.useState<
+    { label: string; value: string }[]
+  >([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [inputQuery, setInputQuery] = React.useState('');
 
@@ -1149,7 +1164,9 @@ export function Example() {
     const { value } = item;
 
     return {
-      id: uuidv4(),
+      id:
+        parseInt(uuidv4().replace(/-/g, '').substring(0, 8), 16) ||
+        Math.floor(Math.random() * 10000),
       actual: value,
       representation: value.charAt(0).toUpperCase() + value.slice(1),
     };
@@ -1193,7 +1210,7 @@ import styled from '@emotion/styled';
 import { Combobox } from 'react-magma-dom';
 
 export function Example() {
-  const CustomStyledItem = styled.li(props => ({
+  const CustomStyledItem = styled.li<{ isFocused?: boolean }>(props => ({
     alignSelf: 'center',
     background: props.isFocused ? props.theme.colors.neutral200 : 'transparent',
     lineHeight: '24px',
@@ -1324,12 +1341,10 @@ export function Example() {
       isClearable
       onInputValueChange={handleInputValueChange}
       components={{
-        ClearIndicator: props => <button onClick={props.onClick}>Clear</button>,
-        DropdownIndicator: React.forwardRef((props, ref) => (
-          <button ref={ref} onClick={props.onClick}>
-            Dropdown
-          </button>
-        )),
+        ClearIndicator: props => (
+          <button onClick={props.onClick as any}>Clear</button>
+        ),
+        DropdownIndicator: () => <span>▼</span>,
         LoadingIndicator: props => <>Loading</>,
       }}
     />
@@ -1362,6 +1377,10 @@ export function Example() {
           clearIndicatorAriaLabel:
             'click to reset selection for {labelText}. {selectedItem} is currently selected',
           createLabel: 'Custom Create "{inputValue}"',
+          multi: {
+            clearIndicatorAriaLabel: 'clear all',
+          },
+          loading: 'Loading items',
         },
         multiCombobox: {
           selectedItemButtonAriaLabel:

@@ -12,6 +12,8 @@ import { I18nContext } from '../../i18n';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { omit, Omit, getNormalizedScrollLeft } from '../../utils';
+import { Announce } from '../Announce';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export enum TabsAlignment {
   center = 'center',
@@ -220,6 +222,8 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
     const [buttonRefArray, registerTabButton] = useDescendants();
 
     const childrenWrapperRef = React.useRef<HTMLUListElement>();
+    const [scrollAnnouncement, setScrollAnnouncement] = React.useState('');
+    const [panelAnnouncement, setPanelAnnouncement] = React.useState('');
 
     function getTabsMeta() {
       const tabsNode = tabsWrapperRef.current;
@@ -305,6 +309,29 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
 
     React.useEffect(scrollInitialActiveIndexIntoView, []);
 
+    React.useEffect(() => {
+      if (!displayScroll.start) {
+        nextButtonRef.current?.focus();
+      } else if (!displayScroll.end) {
+        prevButtonRef.current?.focus();
+      }
+    }, [displayScroll.start, displayScroll.end]);
+
+    // Announce panel content when active tab changes (including initial mount)
+    React.useEffect(() => {
+      setTimeout(() => {
+        const panelId = `tabpanel-${activeTabIndex}`;
+        const panelElement = document.getElementById(panelId);
+
+        if (panelElement) {
+          const panelText = panelElement.textContent || '';
+
+          setPanelAnnouncement(panelText.trim());
+          setTimeout(() => setPanelAnnouncement(''), 100);
+        }
+      }, 100);
+    }, [activeTabIndex]);
+
     function changeHandler(
       newActiveIndex: number,
       event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -319,9 +346,11 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
 
       onChange && typeof onChange === 'function' && onChange(newActiveIndex);
 
-      newActiveIndex === activeTabIndex
-        ? scrollSelectedIntoView()
-        : setActiveTabIndex(newActiveIndex);
+      if (newActiveIndex === activeTabIndex) {
+        scrollSelectedIntoView();
+      } else {
+        setActiveTabIndex(newActiveIndex);
+      }
     }
 
     function tabIsEnabled(tabIndex) {
@@ -421,6 +450,18 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
         : i18n.tabs.horizontalTabsInstructions
     }`;
 
+    const handlePrevScrollWithAnnouncement = () => {
+      handleStartScrollClick();
+      setScrollAnnouncement(i18n.tabs.scrolledBackAnnounce);
+      setTimeout(() => setScrollAnnouncement(''), 100);
+    };
+
+    const handleNextScrollWithAnnouncement = () => {
+      handleEndScrollClick();
+      setScrollAnnouncement(i18n.tabs.scrolledForwardAnnounce);
+      setTimeout(() => setScrollAnnouncement(''), 100);
+    };
+
     const other = omit(['aria-label'], rest);
 
     return (
@@ -437,7 +478,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           backgroundColor={background}
           buttonVisible={displayScroll.start}
           isInverse={isInverse}
-          onClick={handleStartScrollClick}
+          onClick={handlePrevScrollWithAnnouncement}
           orientation={orientation || TabsOrientation.horizontal}
           ref={prevButtonRef}
           theme={theme}
@@ -478,11 +519,17 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           backgroundColor={background}
           buttonVisible={displayScroll.end}
           isInverse={isInverse}
-          onClick={handleEndScrollClick}
+          onClick={handleNextScrollWithAnnouncement}
           orientation={orientation || TabsOrientation.horizontal}
           ref={nextButtonRef}
           theme={theme}
         />
+        <VisuallyHidden>
+          <Announce>{scrollAnnouncement}</Announce>
+        </VisuallyHidden>
+        <VisuallyHidden>
+          <Announce>{panelAnnouncement}</Announce>
+        </VisuallyHidden>
       </StyledContainer>
     );
   }

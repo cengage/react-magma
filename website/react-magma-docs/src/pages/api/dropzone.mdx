@@ -97,11 +97,12 @@ then switched to true when needed.
 ```tsx
 import React from 'react';
 
-import { Dropzone } from '@react-magma/dropzone';
+import { Dropzone, OnSendFileProps } from '@react-magma/dropzone';
 import { Button, Spacer } from 'react-magma-dom';
 
 export function Example() {
   const [sendFiles, setSendFiles] = React.useState<boolean>(false);
+  const uploadFilesButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const onSendFile = (props: OnSendFileProps) => {
     const { onProgress, onError, onFinish, file } = props;
@@ -113,6 +114,12 @@ export function Example() {
 
       if (percent >= 100) {
         clearInterval(interval);
+        setSendFiles(false);
+
+        setTimeout(() => {
+          uploadFilesButtonRef.current.focus();
+        }, 0);
+
         onFinish && onFinish({ file });
       }
 
@@ -142,7 +149,11 @@ export function Example() {
         sendFiles={sendFiles}
       />
       <Spacer size={12} />
-      <Button disabled={sendFiles} onClick={() => setSendFiles(true)}>
+      <Button
+        disabled={sendFiles}
+        onClick={() => setSendFiles(true)}
+        ref={uploadFilesButtonRef}
+      >
         Upload files
       </Button>
     </div>
@@ -167,7 +178,7 @@ Since the dropzone uses the [FileReader API](https://developer.mozilla.org/en-US
 ```tsx
 import React from 'react';
 
-import { Dropzone } from '@react-magma/dropzone';
+import { Dropzone, OnSendFileProps } from '@react-magma/dropzone';
 
 export function Example() {
   const [file, setFile] = React.useState<string>();
@@ -208,7 +219,7 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Dropzone } from '@react-magma/dropzone';
+import { Dropzone, OnSendFileProps } from '@react-magma/dropzone';
 import { Textarea } from 'react-magma-dom';
 
 export function Example() {
@@ -250,7 +261,7 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Dropzone } from '@react-magma/dropzone';
+import { Dropzone, OnSendFileProps } from '@react-magma/dropzone';
 import { Datagrid } from 'react-magma-dom';
 
 export function Example() {
@@ -259,7 +270,7 @@ export function Example() {
 
   const csvToJson = csv => {
     const lines = csv.split('\n');
-    const result = [];
+    const result: Record<string, any>[] = [];
     const headers = lines[0].split(',');
 
     for (let i = 1; i < lines.length; i++) {

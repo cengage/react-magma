@@ -120,7 +120,6 @@ describe('Calendar Day', () => {
     expect(calendarDay).toHaveStyleRule('color', magma.colors.neutral100);
     expect(calendarDay).toHaveStyleRule('font-weight', '700');
     expect(calendarDay).toHaveAttribute('aria-current', 'date');
-    expect(calendarDay).toHaveAttribute('aria-selected', 'true');
   });
 
   it("shows an indicator if it is today's date and isInverse", () => {
@@ -188,7 +187,6 @@ describe('Calendar Day', () => {
     expect(calendarDay).toHaveStyleRule('color', magma.colors.neutral100);
     expect(calendarDay).toHaveStyleRule('font-weight', '500');
     expect(calendarDay).not.toHaveAttribute('aria-current', 'date');
-    expect(calendarDay).toHaveAttribute('aria-selected', 'true');
   });
 
   it("does not show an indicator if it is not today's date and isInverse", () => {

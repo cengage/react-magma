@@ -53,7 +53,7 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { DatePicker, I18nContext, defaultI18n, es } from 'react-magma-dom';
+import { DatePicker, I18nContext, defaultI18n } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -61,6 +61,7 @@ export function Example() {
       value={{
         ...defaultI18n,
         months: {
+          ...defaultI18n.months,
           long: {
             january: 'Enero',
             february: 'Febrero',
@@ -89,6 +90,7 @@ export function Example() {
           },
         },
         datePicker: {
+          ...defaultI18n.datePicker,
           startOfWeek: 'monday',
           calendarIconAriaLabel: 'Calendario',
           calendarOpenAnnounce:
@@ -105,9 +107,13 @@ export function Example() {
           backToCalendar: 'Volver al calendario',
           selectMonth: 'Seleccione un mes',
           selectYear: 'Seleccione un año',
+          day: 'Día',
+          month: 'Mes',
+          year: 'Año',
           helpModal: {
             header: 'Atajos de teclado',
             helpButtonAriaLabel: 'Ayuda de calendario',
+            tooltipContent: 'Instrucciones de teclado',
             enter: {
               ariaLabel: 'Introducir clave',
               explanation: 'Seleccione la fecha en foco.',
@@ -139,7 +145,6 @@ export function Example() {
             },
           },
         },
-        locale: es,
       }}
     >
       <DatePicker labelText="Español" />

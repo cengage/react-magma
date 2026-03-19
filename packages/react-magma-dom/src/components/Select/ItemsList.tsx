@@ -36,6 +36,7 @@ interface ItemsListProps<T> {
   menuStyle?: React.CSSProperties;
   setFloating?: (node: ReferenceType) => void;
   setHighlightedIndex?: (index: number) => void;
+  selectedItem?: string;
 }
 
 const NoItemsMessage = styled.span<{
@@ -73,10 +74,35 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     menuStyle,
     setFloating,
     setHighlightedIndex,
+    selectedItem,
+    ...rest
   } = props;
 
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+
+  // Scroll highlighted item into view for accessibility
+  React.useEffect(() => {
+    if (isOpen && highlightedIndex !== undefined && highlightedIndex >= 0) {
+      const animationFrame = requestAnimationFrame(() => {
+        const highlightedElement = document.querySelector(
+          '[data-highlighted="true"]'
+        );
+
+        if (
+          highlightedElement &&
+          typeof highlightedElement.scrollIntoView === 'function'
+        ) {
+          highlightedElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+          });
+        }
+      });
+
+      return () => cancelAnimationFrame(animationFrame);
+    }
+  }, [highlightedIndex, isOpen]);
 
   const hasItems = items && items.length > 0;
 
@@ -128,10 +154,11 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
       >
         <StyledList
           isOpen={isOpen}
-          {...getMenuProps()}
           maxHeight={heightString}
           role="listbox"
           onMouseLeave={() => {}}
+          {...getMenuProps()}
+          {...rest}
         >
           {isOpen && hasItems ? (
             items.map((item, index) => {
@@ -147,6 +174,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
               });
 
               const key = `${itemString}${index}`;
+              const isSelected = selectedItem === itemToString(item);
 
               const itemProps: ItemRenderOptions<T> = {
                 isFocused: highlightedIndex === index,
@@ -160,6 +188,9 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
                 ...otherDownshiftItemProps,
                 onMouseMove: () => {},
                 role: 'option',
+                'aria-label': isSelected
+                  ? `${selectedItem} is selected`
+                  : itemString,
               };
 
               return <Item<T> {...itemProps} key={key} />;

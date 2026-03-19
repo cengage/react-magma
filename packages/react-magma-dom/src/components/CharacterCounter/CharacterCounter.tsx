@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 
-import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { I18nContext } from '../../i18n';
 import { magma } from '../../theme/magma';
 import { debounce } from '../../utils';
@@ -155,13 +154,11 @@ export const CharacterCounter = React.forwardRef<
     };
   }, [inputLength, debouncedSetScreenReaderMessage, characterTitle]);
 
-  const { isMacOS } = useDeviceDetect();
-
   return (
     <>
       <div ref={ref} data-testid={testId} {...rest} id={id}>
         <StyledInputMessage
-          aria-live={getAriaLiveState()}
+          aria-live="off"
           hasCharacterCounter={hasCharacterCounter}
           hasError={isOverMaxCount}
           isInverse={isInverse}
@@ -171,15 +168,15 @@ export const CharacterCounter = React.forwardRef<
         >
           {characterTitle}
         </StyledInputMessage>
-        {isMacOS && screenReaderMessage && (
-          <HiddenLabelText
-            aria-live="assertive"
-            data-testid="screenReaderMessage"
-          >
-            {screenReaderMessage}
-          </HiddenLabelText>
-        )}
       </div>
+      {screenReaderMessage && (
+        <HiddenLabelText
+          aria-live={getAriaLiveState()}
+          data-testid="screenReaderMessage"
+        >
+          {screenReaderMessage}
+        </HiddenLabelText>
+      )}
     </>
   );
 });

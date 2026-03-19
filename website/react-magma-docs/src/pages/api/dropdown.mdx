@@ -966,8 +966,8 @@ import {
 export function Example() {
   const [activeValue, setActiveValue] = React.useState<string>('two');
 
-  function changeActiveValue(value: string) {
-    setActiveValue(value);
+  function changeActiveValue(value?: string | number) {
+    setActiveValue(String(value));
   }
 
   return (
@@ -1011,10 +1011,10 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   function handleClose(event: React.SyntheticEvent) {
-    buttonRef.current.focus();
+    buttonRef.current && buttonRef.current.focus();
   }
 
   return (

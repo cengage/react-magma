@@ -178,7 +178,7 @@ export const DropdownMenuItem = React.forwardRef<
   React.useEffect(() => {
     if (!disabled)
       context.registerDropdownMenuItem(context.itemRefArray, ownRef);
-  }, []);
+  }, [disabled]);
 
   return (
     <StyledItem

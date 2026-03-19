@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig",
+  "include": [".mdx-typecheck-tmp/**/*.tsx"],
+  "compilerOptions": {
+    "removeComments": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitAny": false,
+    "noImplicitReturns": false,
+    "noImplicitThis": false,
+    "strict": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  }
+}

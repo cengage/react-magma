@@ -31,7 +31,7 @@ import {
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
     <>
@@ -41,7 +41,7 @@ export function Example() {
         isOpen={showDrawer}
         onClose={() => {
           setShowDrawer(false);
-          buttonRef.current.focus();
+          buttonRef.current && buttonRef.current.focus();
         }}
         position={DrawerPosition.bottom}
       >
@@ -80,7 +80,7 @@ import {
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
     <>
@@ -90,7 +90,7 @@ export function Example() {
         isOpen={showDrawer}
         onClose={() => {
           setShowDrawer(false);
-          buttonRef.current.focus();
+          buttonRef.current && buttonRef.current.focus();
         }}
         position={DrawerPosition.right}
       >
@@ -133,14 +133,14 @@ import {
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
     <>
       <Drawer
         onClose={() => {
           setShowDrawer(false);
-          buttonRef.current.focus();
+          buttonRef.current && buttonRef.current.focus();
         }}
         isOpen={showDrawer}
         position={DrawerPosition.right}
@@ -184,7 +184,7 @@ import {
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
     <Card isInverse>
@@ -196,7 +196,7 @@ export function Example() {
           isOpen={showDrawer}
           onClose={() => {
             setShowDrawer(false);
-            buttonRef.current.focus();
+            buttonRef.current && buttonRef.current.focus();
           }}
           position={DrawerPosition.right}
         >
@@ -236,7 +236,7 @@ import {
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
     <>
@@ -247,7 +247,7 @@ export function Example() {
         isOpen={showDrawer}
         onClose={() => {
           setShowDrawer(false);
-          buttonRef.current.focus();
+          buttonRef.current && buttonRef.current.focus();
         }}
         position={DrawerPosition.left}
       >
@@ -289,7 +289,7 @@ import {
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
     <I18nContext.Provider
@@ -305,7 +305,7 @@ export function Example() {
         isOpen={showDrawer}
         onClose={() => {
           setShowDrawer(false);
-          buttonRef.current.focus();
+          buttonRef.current && buttonRef.current.focus();
         }}
         position={DrawerPosition.bottom}
       >

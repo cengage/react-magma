@@ -42,11 +42,11 @@ import {
 
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   function handleOnClose() {
     setShowModal(false);
-    buttonRef.current.focus();
+    buttonRef.current && buttonRef.current.focus();
   }
 
   return (
@@ -97,8 +97,8 @@ import {
 export function Example() {
   const [showSmallModal, setShowSmallModal] = React.useState(false);
   const [showLargeModal, setShowLargeModal] = React.useState(false);
-  const smallButtonRef = React.useRef();
-  const largeButtonRef = React.useRef();
+  const smallButtonRef = React.useRef<HTMLButtonElement>(null);
+  const largeButtonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
     <>
@@ -107,7 +107,7 @@ export function Example() {
         header="Modal Small"
         onClose={() => {
           setShowSmallModal(false);
-          smallButtonRef.current.focus();
+          smallButtonRef.current && smallButtonRef.current.focus();
         }}
         isOpen={showSmallModal}
       >
@@ -121,7 +121,7 @@ export function Example() {
         header="Modal Large"
         onClose={() => {
           setShowLargeModal(false);
-          largeButtonRef.current.focus();
+          largeButtonRef.current && largeButtonRef.current.focus();
         }}
         isOpen={showLargeModal}
       >
@@ -193,9 +193,9 @@ export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const [showModalHeader, setShowModalHeader] = React.useState(false);
   const [showModalHeaderRef, setShowModalHeaderRef] = React.useState(false);
-  const buttonRef = React.useRef();
-  const headerButtonRef = React.useRef();
-  const headerRefButtonRef = React.useRef();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const headerButtonRef = React.useRef<HTMLButtonElement>(null);
+  const headerRefButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const [customHeadingRef, setCustomHeadingRef] = React.useState(
     React.useRef<any>()
@@ -212,7 +212,7 @@ export function Example() {
         size={ModalSize.small}
         onClose={() => {
           setShowModal(false);
-          buttonRef.current.focus();
+          buttonRef.current && buttonRef.current.focus();
         }}
         isOpen={showModal}
       >
@@ -229,7 +229,7 @@ export function Example() {
         size={ModalSize.small}
         onClose={() => {
           setShowModalHeader(false);
-          headerButtonRef.current.focus();
+          headerButtonRef.current && headerButtonRef.current.focus();
         }}
         isOpen={showModalHeader}
       >
@@ -271,7 +271,7 @@ export function Example() {
         }
         onClose={() => {
           setShowModalHeaderRef(false);
-          headerRefButtonRef.current.focus();
+          headerRefButtonRef.current && headerRefButtonRef.current.focus();
         }}
         isOpen={showModalHeaderRef}
         headerRef={handleGetHeaderRef}
@@ -292,7 +292,9 @@ export function Example() {
           </Paragraph>
           <ButtonGroup>
             <Button
-              onClick={() => customHeadingRef.current.focus()}
+              onClick={() =>
+                customHeadingRef.current && customHeadingRef.current.focus()
+              }
               color={ButtonColor.subtle}
             >
               Focus Heading
@@ -349,7 +351,7 @@ import { Button, Modal, Paragraph } from 'react-magma-dom';
 
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
     <>
@@ -358,7 +360,7 @@ export function Example() {
         isCloseButtonHidden
         onClose={() => {
           setShowModal(false);
-          buttonRef.current.focus();
+          buttonRef.current && buttonRef.current.focus();
         }}
         isOpen={showModal}
       >
@@ -393,18 +395,18 @@ export function Example() {
   const [magmaCloseCalledTimes, setMagmaCloseCalledTimes] = React.useState(0);
   const [internalCloseCalledTimes, setInternalCloseCalledTimes] =
     React.useState(0);
-  const buttonRef = React.useRef();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   function closeModal() {
     setMagmaCloseCalledTimes(magmaCloseCalledTimes + 1);
     setShowModal(false);
-    buttonRef.current.focus();
+    buttonRef.current && buttonRef.current.focus();
   }
 
   function customCloseModal() {
     setInternalCloseCalledTimes(internalCloseCalledTimes + 1);
     setShowModal(false);
-    buttonRef.current.focus();
+    buttonRef.current && buttonRef.current.focus();
   }
 
   return (
@@ -449,8 +451,8 @@ import {
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
   const [showModal2, setShowModal2] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
-  const nestedButtonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const nestedButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const closeModal = () => {
     setShowModal(false);
@@ -614,7 +616,7 @@ import {
 
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
     <>
@@ -622,7 +624,7 @@ export function Example() {
         header="Modal Title"
         onClose={() => {
           setShowModal(false);
-          buttonRef.current.focus();
+          buttonRef.current && buttonRef.current.focus();
         }}
         isOpen={showModal}
         isInverse

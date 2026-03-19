@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import { ThemeContext, magma } from 'react-magma-dom';
 
 import { CarbonChart, CarbonChartType } from '.';
@@ -10,6 +10,16 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
   unobserve: jest.fn(),
   disconnect: jest.fn(),
 }));
+
+// Capture MutationObserver callbacks so we can trigger them manually
+let mutationObserverCallback;
+global.MutationObserver = jest.fn().mockImplementation(callback => {
+  mutationObserverCallback = callback;
+  return {
+    observe: jest.fn(),
+    disconnect: jest.fn(),
+  };
+});
 
 const dataSet = [
   {
@@ -577,6 +587,171 @@ describe('CarbonChart', () => {
           target: '.cds--modal-footer.cds--modal-footer',
         }
       );
+    });
+  });
+
+  describe('Modal Focus Management', () => {
+    let wrapper;
+    let modal;
+    let closeButton;
+    let otherButton;
+
+    beforeEach(() => {
+      jest.useFakeTimers();
+      jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => {
+        cb(0);
+        return 0;
+      });
+      const testId = 'focus-mgmt-test';
+      const { getByTestId } = render(
+        <CarbonChart
+          testId={testId}
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.bar}
+        />
+      );
+
+      wrapper = getByTestId(testId);
+
+      // Manually create Carbon modal DOM inside the wrapper
+      modal = document.createElement('div');
+      modal.className = 'cds--modal';
+
+      closeButton = document.createElement('button');
+      closeButton.className = 'cds--modal-close';
+      closeButton.textContent = 'Close';
+
+      otherButton = document.createElement('button');
+      otherButton.textContent = 'Copy';
+
+      modal.appendChild(closeButton);
+      modal.appendChild(otherButton);
+      wrapper.appendChild(modal);
+    });
+
+    afterEach(() => {
+      window.requestAnimationFrame.mockRestore();
+      jest.useRealTimers();
+    });
+
+    // Simulate Carbon's handleShowModal: sets aria-modal, role, style
+    function simulateModalOpen() {
+      modal.setAttribute('aria-modal', 'true');
+      modal.setAttribute('role', 'dialog');
+      modal.style.visibility = 'visible';
+      modal.style.opacity = '1';
+      act(() => {
+        mutationObserverCallback([
+          { type: 'attributes', attributeName: 'aria-modal', target: modal },
+          { type: 'attributes', attributeName: 'style', target: modal },
+        ]);
+      });
+      jest.runAllTimers();
+      act(() => {
+        jest.advanceTimersByTime(0);
+      });
+    }
+
+    // Simulate Carbon's handleHideModal: removes aria-modal, role, sets hidden
+    function simulateModalClose() {
+      modal.removeAttribute('aria-modal');
+      modal.removeAttribute('role');
+      modal.style.visibility = 'hidden';
+      modal.style.opacity = '0';
+      act(() => {
+        mutationObserverCallback([
+          { type: 'attributes', attributeName: 'aria-modal', target: modal },
+          { type: 'attributes', attributeName: 'style', target: modal },
+        ]);
+      });
+    }
+
+    it('should move focus to the close button when modal opens', () => {
+      const triggerButton = document.createElement('button');
+      triggerButton.textContent = 'Show as table';
+      wrapper.appendChild(triggerButton);
+      triggerButton.focus();
+
+      simulateModalOpen();
+
+      expect(document.activeElement).toBe(closeButton);
+    });
+
+    it('should restore focus to the previously focused element when modal closes', () => {
+      const triggerButton = document.createElement('button');
+      triggerButton.textContent = 'Show as table';
+      wrapper.appendChild(triggerButton);
+      triggerButton.focus();
+
+      simulateModalOpen();
+      simulateModalClose();
+
+      expect(document.activeElement).toBe(triggerButton);
+    });
+
+    it('should move focus into modal on second open after close', () => {
+      const triggerButton = document.createElement('button');
+      triggerButton.textContent = 'Show as table';
+      wrapper.appendChild(triggerButton);
+      triggerButton.focus();
+
+      // First open/close cycle
+      simulateModalOpen();
+      simulateModalClose();
+      expect(document.activeElement).toBe(triggerButton);
+
+      // Second open - focus should move into modal again
+      simulateModalOpen();
+      expect(document.activeElement).toBe(closeButton);
+    });
+
+    it('should trap focus with Tab wrapping from last to first element', () => {
+      simulateModalOpen();
+
+      otherButton.focus();
+      expect(document.activeElement).toBe(otherButton);
+
+      const tabEvent = new KeyboardEvent('keydown', {
+        key: 'Tab',
+        bubbles: true,
+      });
+      Object.defineProperty(tabEvent, 'shiftKey', { value: false });
+      document.dispatchEvent(tabEvent);
+
+      expect(document.activeElement).toBe(closeButton);
+    });
+
+    it('should trap focus with Shift+Tab wrapping from first to last element', () => {
+      simulateModalOpen();
+
+      closeButton.focus();
+      expect(document.activeElement).toBe(closeButton);
+
+      const shiftTabEvent = new KeyboardEvent('keydown', {
+        key: 'Tab',
+        shiftKey: true,
+        bubbles: true,
+      });
+      document.dispatchEvent(shiftTabEvent);
+
+      expect(document.activeElement).toBe(otherButton);
+    });
+
+    it('should redirect focus back to modal when focus escapes to an outside element', () => {
+      simulateModalOpen();
+      expect(document.activeElement).toBe(closeButton);
+
+      // Simulate overflow menu stealing focus (what Carbon does on second open)
+      const outsideButton = document.createElement('button');
+      outsideButton.className = 'cds--overflow-menu__trigger';
+      wrapper.appendChild(outsideButton);
+      outsideButton.focus();
+
+      // The redirect is deferred via setTimeout(0) to avoid re-entrancy issues
+      jest.runAllTimers();
+
+      expect(document.activeElement).toBe(closeButton);
     });
   });
 });

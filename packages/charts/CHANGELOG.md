@@ -1,5 +1,35 @@
 # @react-magma/charts
 
+## 14.0.0-next.3
+
+### Patch Changes
+
+- 55782f9e0: fix(charts): trap focus in Carbon Charts "Show as table" modal
+
+## 14.0.0-next.2
+
+### Patch Changes
+
+- de8db8f39: fix(publish): Add missing repository.url to package.json for npm provenance verification.
+- Updated dependencies [0223aac78]
+- Updated dependencies [6009a5824]
+- Updated dependencies [a939d4eea]
+- Updated dependencies [de8db8f39]
+  - react-magma-dom@4.12.0-next.3
+
+## 13.0.2-next.1
+
+### Patch Changes
+
+- Updated dependencies [aa87f4460]
+  - react-magma-dom@4.11.1-next.0
+
+## 13.0.2-next.0
+
+### Patch Changes
+
+- 2adadea18: chore: add optional `ariaLabel` property for SVG container
+
 ## 13.0.1
 
 ### Patch Changes

@@ -1,3 +1,4 @@
+
 ## 4.11.0
 
 ### Minor Changes
@@ -64,12 +65,6 @@
 
 - 5810cc13d: fix(TablePagination): Fixed screen reader announcing "Rows per page" twice by hiding the visible label from screenreaders.
 - 5810cc13d: fix(TimePicker): Update styles.
-
-## 4.10.1
-
-### Patch Changes
-
-- 10d3a7285: fix(DatePicker): fix issue with canvas (jsdom error)
 
 ## 4.10.0
 

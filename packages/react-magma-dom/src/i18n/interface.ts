@@ -98,8 +98,11 @@ export interface I18nInterface {
   combobox: {
     clearIndicatorAriaLabel: string;
     createLabel: string;
+    clearAnnounce: string;
     multi: {
       clearIndicatorAriaLabel: string;
+      ariaLabelWithSelectedItems: string;
+      ariaLabelWithoutSelectedItems: string;
     };
     loading: string;
   };
@@ -180,6 +183,12 @@ export interface I18nInterface {
     bytes: string;
     deleteFile: string;
     removeFile: string;
+    fileAdded: string;
+    filesAdded: string;
+    fileRemoved: string;
+    fileDeleted: string;
+    fileUploading: string;
+    fileUploaded: string;
   };
   header: {
     navigationButtonLabel: string;
@@ -252,10 +261,13 @@ export interface I18nInterface {
   select: {
     placeholder: string;
     clearIndicatorAriaLabel: string;
+    clearAnnounce: string;
     expandedAnnounce: string;
     collapsedAnnounce: string;
     multi: {
       clearIndicatorAriaLabel: string;
+      ariaLabelWithSelectedItems: string;
+      ariaLabelWithoutSelectedItems: string;
     };
   };
   simplePagination: {
@@ -264,6 +276,7 @@ export interface I18nInterface {
     pageLabel: string;
     pagesLabel: string;
     selectedLabel: string;
+    selectPageLabel: string;
   };
   skipLink: {
     buttonText: string;
@@ -282,9 +295,11 @@ export interface I18nInterface {
       nextAriaLabel: string;
       previousAriaLabel: string;
       rowsPerPageLabel: string;
+      currentPageLabel: string;
     };
     selectable: {
       sortButtonAriaLabel: string;
+      sortButtonAriaLabelBySelected: string;
       selectAllRowsAriaLabel: string;
       selectRowAriaLabel: string;
       deselectAllRowsAriaLabel: string;
@@ -296,6 +311,8 @@ export interface I18nInterface {
     verticalTabsInstructions: string;
     previousButtonLabel: string;
     nextButtonLabel: string;
+    scrolledBackAnnounce: string;
+    scrolledForwardAnnounce: string;
   };
   tag: {
     deleteAriaLabel: string;
