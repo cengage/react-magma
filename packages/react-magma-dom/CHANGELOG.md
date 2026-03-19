@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.22
+
+### Patch Changes
+
+- 0b3fa51b5: fix(NativeSelect): Improve accessibility for error state, aria attributes, tooltip, and keyboard navigation.
+
 ## 4.12.0-next.21
 
 ### Patch Changes

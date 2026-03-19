@@ -34,6 +34,7 @@
     "fix-MultiCombobox-announce-values",
     "fix-MultiSelect-update-label-annoucement",
     "fix-NativeSelect-a11y-additional-content-issue",
+    "fix-NativeSelect-a11y-error-and-keyboard",
     "fix-Pagination-aria-label",
     "fix-Search-and-Form-issues",
     "fix-Select-clear-functionality",
