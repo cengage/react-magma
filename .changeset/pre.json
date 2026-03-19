@@ -31,6 +31,7 @@
     "fix-DatePicker-remove-aria-selected",
     "fix-Dropdown-sorting-issue",
     "fix-Dropzone-accessibility",
+    "fix-Dropzone-docs-example",
     "fix-Hyperlink-docs",
     "fix-Hyperlink-new-prop",
     "fix-MultiCombobox-announce-values",

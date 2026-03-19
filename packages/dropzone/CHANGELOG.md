@@ -1,5 +1,11 @@
 # Change Log
 
+## 14.0.0-next.3
+
+### Patch Changes
+
+- 347359010: fix(Dropzone): Fix docs example
+
 ## 14.0.0-next.2
 
 ### Patch Changes
