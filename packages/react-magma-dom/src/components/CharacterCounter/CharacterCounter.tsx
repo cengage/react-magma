@@ -168,15 +168,15 @@ export const CharacterCounter = React.forwardRef<
         >
           {characterTitle}
         </StyledInputMessage>
-        {screenReaderMessage && (
-          <HiddenLabelText
-            aria-live={getAriaLiveState()}
-            data-testid="screenReaderMessage"
-          >
-            {screenReaderMessage}
-          </HiddenLabelText>
-        )}
       </div>
+      {screenReaderMessage && (
+        <HiddenLabelText
+          aria-live={getAriaLiveState()}
+          data-testid="screenReaderMessage"
+        >
+          {screenReaderMessage}
+        </HiddenLabelText>
+      )}
     </>
   );
 });
