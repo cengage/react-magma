@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.1-next.10
+
+### Patch Changes
+
+- ac5a19b2c: chore: fix Hyperlink docs issue
+
 ## 5.3.1-next.9
 
 ### Patch Changes
