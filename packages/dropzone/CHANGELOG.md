@@ -1,5 +1,11 @@
 # Change Log
 
+## 14.0.0-rc.2
+
+### Patch Changes
+
+- 56f2ed8: fix(Dropzone): Fix accessibility issues
+
 ## 14.0.0-rc.1
 
 ### Patch Changes
