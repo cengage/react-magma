@@ -117,7 +117,7 @@ export function Example() {
         setSendFiles(false);
 
         setTimeout(() => {
-          uploadFilesButtonRef.current?.focus();
+          uploadFilesButtonRef.current.focus();
         }, 0);
 
         onFinish && onFinish({ file });
