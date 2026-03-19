@@ -1,5 +1,11 @@
 ## 4.11.0
 
+## 4.12.0-next.23
+
+### Patch Changes
+
+- 5bad2f704: fix(Tab & NavTab): Add focus on the back and next buttons. Add announce tab content. Update aria-labels.
+
 ## 4.12.0-next.22
 
 ### Patch Changes

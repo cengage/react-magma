@@ -39,6 +39,7 @@
     "fix-Search-and-Form-issues",
     "fix-Select-clear-functionality",
     "fix-Select-focus-border",
+    "fix-Tab-update-focus-behavior-arir-labels",
     "fix-Table-add-page-announcing",
     "fix-Table-remove-focus",
     "fix-TextArea-aria-accessibility-issue",
