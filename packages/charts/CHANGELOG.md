@@ -1,5 +1,12 @@
 # @react-magma/charts
 
+## 13.0.2
+
+### Patch Changes
+
+- e23b1a2f9: fix(Charts): Add optional `ariaLabel` property for SVG container. The default "Interactive chart" label is no longer applied when `ariaLabel` is not provided.
+- e23b1a2f9: fix(Charts): Trap focus in "Show as table" modal
+
 ## 14.0.0-next.3
 
 ### Patch Changes
