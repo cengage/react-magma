@@ -1,4 +1,4 @@
-name: Build and Deploy Docs for V2.6.0
+name: Build and Deploy Docs for V2.6.1
 # This workflow is triggered on push to the chore/deploy-v2-docs branch.
 
 on:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: react-magma-dom@2.6.0
+          ref: react-magma-dom@2.6.1
       - name: Setup
         uses: actions/setup-node@v4
         with:
@@ -30,7 +30,7 @@ jobs:
       - name: Build Docs
         run:  NODE_OPTIONS=--openssl-legacy-provider npm run build:docs
         env:
-          PATH_PREFIX: /version/2.6.0
+          PATH_PREFIX: /version/2.6.1
 
       - name: Deploy Docs to Netlify
         uses: nwtgck/actions-netlify@v1.1
@@ -41,7 +41,7 @@ jobs:
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: true
-          alias: 2.6.0
+          alias: 2.6.1
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
