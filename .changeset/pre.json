@@ -29,6 +29,7 @@
     "fix-Datagrid-update-aria-label",
     "fix-DatePicker-remove-aria-selected",
     "fix-Dropdown-sorting-issue",
+    "fix-Dropzone-accessibility",
     "fix-Hyperlink-docs",
     "fix-Hyperlink-new-prop",
     "fix-MultiCombobox-announce-values",

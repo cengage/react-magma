@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.3.1-next.11
+
+### Patch Changes
+
+- Updated dependencies [6cd334279]
+  - @react-magma/dropzone@14.0.0-next.2
+
 ## 5.3.1-next.10
 
 ### Patch Changes

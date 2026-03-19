@@ -1,5 +1,11 @@
 # Change Log
 
+## 14.0.0-next.2
+
+### Patch Changes
+
+- 6cd334279: fix(Dropzone): Fix accessibility issues
+
 ## 14.0.0-next.1
 
 ### Patch Changes
