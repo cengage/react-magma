@@ -325,6 +325,8 @@ export const defaultI18n: I18nInterface = {
       'use the down and up arrow keys to activate other tabs',
     nextButtonLabel: 'Scroll tabs forward',
     previousButtonLabel: 'Scroll tabs back',
+    scrolledBackAnnounce: 'Scrolled tabs backward',
+    scrolledForwardAnnounce: 'Scrolled tabs forward',
   },
   tag: {
     deleteAriaLabel: 'Delete {labelText} tag',

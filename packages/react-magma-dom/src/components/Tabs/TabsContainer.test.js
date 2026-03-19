@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
 
 import { Tab } from './Tab';
 import { TabPanel } from './TabPanel';
@@ -10,6 +10,15 @@ import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 
 import { Tabs } from '.';
+
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+
+afterEach(() => {
+  jest.clearAllTimers();
+  jest.useRealTimers();
+});
 
 describe('Tabs Container', () => {
   it('should correctly apply the testId', () => {
@@ -82,7 +91,7 @@ it('should render with inverse styles', () => {
 });
 
 describe('Test for accessibility', () => {
-  it('Does not violate accessibility standards', () => {
+  it('Does not violate accessibility standards', async () => {
     const { container } = render(
       <TabsContainer activeIndex={0}>
         <Tabs>
@@ -98,6 +107,11 @@ describe('Test for accessibility', () => {
         </TabPanelsContainer>
       </TabsContainer>
     );
+
+    act(() => {
+      jest.runAllTimers();
+    });
+    jest.useRealTimers();
 
     return axe(container.innerHTML, {
       rules: { listitem: { enabled: false } },
