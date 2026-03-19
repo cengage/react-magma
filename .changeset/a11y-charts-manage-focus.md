@@ -1,5 +1,6 @@
 ---
 '@react-magma/charts': patch
+'react-magma-dom': patch
 ---
 
-fix(charts): trap focus in Carbon Charts "Show as table" modal 
+fix(Charts): Trap focus in "Show as table" modal 

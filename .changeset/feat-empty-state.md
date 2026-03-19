@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(EmptyState): Add EmptyState component
+feat(EmptyState): New `EmptyState` component.

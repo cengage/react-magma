@@ -2,6 +2,6 @@
 'react-magma-dom': patch
 ---
 
-fix(ButtonGroup): Accessibility issue: now `ButtonGroup` is list in the HTML with role="list".
+fix(ButtonGroup): Update markup to use list structure for accessibility.
 
-**Important**: We have modified the HTML structure of `ButtonGroup` component to meet accessibility requirements by changing it from a `div` to `div` with `"role=ul"` and `li` structure. If you have custom styles targeting the `ButtonGroup` component, please update them accordingly to ensure compatibility with our new accessibility improvements.
+**Important**: We have modified the HTML structure of `ButtonGroup` component to meet accessibility requirements by wrapping children in `<li>` elements. If you have custom styles targeting the `ButtonGroup` component's direct children, please update them accordingly.

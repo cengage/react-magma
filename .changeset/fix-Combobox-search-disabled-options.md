@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Combobox): Prevent focusing disabled options.
+fix(Combobox): Prevent focus on disabled options.

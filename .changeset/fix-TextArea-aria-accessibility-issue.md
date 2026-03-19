@@ -3,4 +3,4 @@
 'react-magma-dom': patch
 ---
 
-fix(TextArea): Change `aria-labelledby` to `aria-describedby`.
+fix(Textarea): Change `aria-labelledby` to `aria-describedby`.
