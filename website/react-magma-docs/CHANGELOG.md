@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.2-next.0
+
+### Patch Changes
+
+- 13a0edfe6: Chore: Sync main to dev after v4 release
+
 ## 5.3.1
 
 ### Patch Changes
