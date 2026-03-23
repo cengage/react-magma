@@ -115,6 +115,8 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     reset,
   } = useMultipleSelection<T>({
     ...props,
+    // Disable downshift's built-in a11y removal message to use custom clearAnnounce
+    getA11yRemovalMessage: () => '',
     ...(props.initialSelectedItems && {
       initialSelectedItems: props.initialSelectedItems.filter(
         checkSelectedItemValidity
@@ -207,6 +209,20 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   function handleRemoveSelectedItem(event: React.SyntheticEvent, selectedItem) {
     event.stopPropagation();
 
+    // Announce the removal of the specific item
+    const itemName = itemToString(selectedItem);
+    const removeMessage = i18n.select.multi?.removeItemAnnounce?.replace(
+      /\{selectedItem\}/g,
+      itemName
+    );
+
+    setClearAnnouncement(removeMessage);
+
+    // Clear the announcement after a delay
+    setTimeout(() => {
+      setClearAnnouncement('');
+    }, 1000);
+
     onRemoveSelectedItem && typeof onRemoveSelectedItem === 'function'
       ? onRemoveSelectedItem(selectedItem)
       : removeSelectedItem(selectedItem);
@@ -296,9 +312,15 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
 
     reset();
 
-    setClearAnnouncement(
-      i18n.select.clearAnnounce.replace(/\{labelText\}/g, labelText)
-    );
+    const selectedItemsText = itemsArrayToString(selectedItems);
+    const clearMessage =
+      selectedItems.length > 1
+        ? i18n.select.multi?.clearAnnounce
+            ?.replace(/\{labelText\}/g, labelText)
+            ?.replace(/\{selectedItems\}/g, selectedItemsText)
+        : i18n.select.clearAnnounce?.replace(/\{labelText\}/g, labelText);
+
+    setClearAnnouncement(clearMessage || '');
 
     // Clear the announcement after a delay to allow for re-announcements
     setTimeout(() => {

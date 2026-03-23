@@ -101,6 +101,8 @@ export interface I18nInterface {
     clearAnnounce: string;
     multi: {
       clearIndicatorAriaLabel: string;
+      clearAnnounce: string;
+      removeItemAnnounce: string;
       ariaLabelWithSelectedItems: string;
       ariaLabelWithoutSelectedItems: string;
     };
@@ -266,6 +268,8 @@ export interface I18nInterface {
     collapsedAnnounce: string;
     multi: {
       clearIndicatorAriaLabel: string;
+      clearAnnounce: string;
+      removeItemAnnounce: string;
       ariaLabelWithSelectedItems: string;
       ariaLabelWithoutSelectedItems: string;
     };
