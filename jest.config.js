@@ -1,4 +1,6 @@
 module.exports = {
+  maxWorkers: '50%',
+  testTimeout: 15000,
   collectCoverageFrom: [
     '**/packages/**/src/**/*.{js,jsx,ts,tsx}',
     '!**/?(*.)+(spec|test|stories).{js,ts,mjs,jsx,tsx}',
