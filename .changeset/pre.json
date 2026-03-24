@@ -33,6 +33,7 @@
     "chore-storybook-v10",
     "chore-storybook",
     "chore-test-packages-upgrade",
+    "chore-tests",
     "chore-update-docs-and-landing-page",
     "chore-update-publish-yml",
     "chore-update-react-magma-icons.version",

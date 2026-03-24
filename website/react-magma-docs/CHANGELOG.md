@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.20
+
+### Patch Changes
+
+- 37aa746: chore: update test configs
+
 ## 7.0.0-rc.19
 
 ### Patch Changes
