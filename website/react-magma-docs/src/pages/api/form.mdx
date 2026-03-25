@@ -25,6 +25,8 @@ import {
   Form,
   Input,
   Spacer,
+  Announce,
+  VisuallyHidden,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -93,34 +95,28 @@ export function Example() {
       lastName: false,
       email: false,
     });
+
+    setAnnouncement('');
+
+    setTimeout(() => {
+      setAnnouncement(
+        'Changes discarded. Form inputs have been reset to default.'
+      );
+    }, 10);
   };
 
   const errorMessage = React.useMemo(() => {
-    let message = '';
+    const errorCount = Object.values(errors).filter(Boolean).length;
 
-    if (Object.values(errors).some(error => error)) {
-      message += 'Please fix the following errors:\n';
+    if (!errorCount) {
+      return '';
     }
 
-    for (const error in errors) {
-      if (errors[error]) {
-        switch (error) {
-          case 'firstName':
-            message += '· First Name is required\n';
-            break;
-          case 'lastName':
-            message += '· Last Name is required\n';
-            break;
-          case 'email':
-            message += '· Email is required\n';
-            break;
-          default:
-            return;
-        }
-      }
+    if (errorCount === 1) {
+      return 'There is 1 error in the form. Please review the field below.';
     }
 
-    return message;
+    return `There are ${errorCount} errors in the form. Please review the fields below.`;
   }, [errors]);
 
   return (
@@ -181,6 +177,9 @@ export function Example() {
           ref={emailRef}
         />
         <Spacer size="24" />
+        <Announce>
+          <VisuallyHidden>{announcement}</VisuallyHidden>
+        </Announce>
       </>
     </Form>
   );
