@@ -12,6 +12,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "fix-Combobox-docs-issues",
     "fix-Form-docs-issues",
     "tall-worms-add"
   ]

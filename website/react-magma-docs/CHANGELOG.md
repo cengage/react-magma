@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.2-next.2
+
+### Patch Changes
+
+- 40a9c8bd6: fix(Docs): Fix docs issues on the `Combobox` page.
+
 ## 5.3.2-next.1
 
 ### Patch Changes
