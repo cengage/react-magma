@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.21
+
+### Patch Changes
+
+- 05edd33: fix(Docs): Fix docs issues on the `Form` page.
+
 ## 7.0.0-rc.20
 
 ### Patch Changes
