@@ -1423,6 +1423,58 @@ describe('MultiCombobox', () => {
     });
   });
 
+  it('should announce the removal of a selected item', async () => {
+    const { getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+        isClearable
+      />
+    );
+
+    await userEvent.click(getByText('Red', { selector: 'button' }));
+
+    await waitFor(() => {
+      expect(getByText('Red has been removed')).toBeInTheDocument();
+    });
+  });
+
+  it('should announce clearing multiple selected items', async () => {
+    const { getByLabelText, getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red', 'Blue']}
+        isClearable
+      />
+    );
+
+    await userEvent.click(getByLabelText(/reset selection/i));
+
+    expect(
+      getByText('Label has been cleared. Red, Blue were removed')
+    ).toBeInTheDocument();
+  });
+
+  it('should announce clearing single selected item', async () => {
+    const { getByLabelText, getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+        isClearable
+      />
+    );
+
+    await userEvent.click(getByLabelText(/reset selection/i));
+
+    expect(getByText('Label has been cleared')).toBeInTheDocument();
+  });
+
   describe('Accessibility - scrollIntoView', () => {
     it('should call scrollIntoView on focused item when navigating with keyboard', async () => {
       const mockScrollIntoView = jest.fn();

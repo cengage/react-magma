@@ -53,8 +53,21 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     isClearable,
     initialHighlightedIndex,
   } = props;
+
+  const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
   const [clearAnnouncement, setClearAnnouncement] = React.useState('');
   const [isItemFocused, setItemFocus] = React.useState(false);
+  const clearAnnouncementTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  // Cleanup timeout on unmount
+  React.useEffect(() => {
+    return () => {
+      if (clearAnnouncementTimeoutRef.current) {
+        clearTimeout(clearAnnouncementTimeoutRef.current);
+      }
+    };
+  }, []);
 
   function checkSelectedItemValidity(itemToCheck: T) {
     const itemIndex = items.findIndex(
@@ -216,10 +229,13 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       itemName
     );
 
-    setClearAnnouncement(removeMessage);
+    setClearAnnouncement(removeMessage || '');
 
     // Clear the announcement after a delay
-    setTimeout(() => {
+    if (clearAnnouncementTimeoutRef.current) {
+      clearTimeout(clearAnnouncementTimeoutRef.current);
+    }
+    clearAnnouncementTimeoutRef.current = setTimeout(() => {
       setClearAnnouncement('');
     }, 1000);
 
@@ -227,9 +243,6 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
       ? onRemoveSelectedItem(selectedItem)
       : removeSelectedItem(selectedItem);
   }
-
-  const theme = React.useContext(ThemeContext);
-  const i18n = React.useContext(I18nContext);
 
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
   const forkedtoggleButtonRef = useForkedRef(innerRef || null, toggleButtonRef);
@@ -323,7 +336,10 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     setClearAnnouncement(clearMessage || '');
 
     // Clear the announcement after a delay to allow for re-announcements
-    setTimeout(() => {
+    if (clearAnnouncementTimeoutRef.current) {
+      clearTimeout(clearAnnouncementTimeoutRef.current);
+    }
+    clearAnnouncementTimeoutRef.current = setTimeout(() => {
       setClearAnnouncement('');
     }, 1000);
   }

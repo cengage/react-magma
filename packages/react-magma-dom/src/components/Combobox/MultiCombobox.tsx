@@ -301,7 +301,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       itemName
     );
 
-    setClearAnnouncement(removeMessage);
+    setClearAnnouncement(removeMessage || '');
 
     // Clear the announcement after a delay
     if (clearAnnouncementTimeoutRef.current) {
