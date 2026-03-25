@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.2-next.1
+
+### Patch Changes
+
+- 80b7a7b44: fix(Docs): Fix docs issues on the `Form` page.
+
 ## 5.3.2-next.0
 
 ### Patch Changes
