@@ -62,6 +62,7 @@
     "fix-CharacterCounter-error-message",
     "fix-Checkbox-remove-aria-checked",
     "fix-Combobox-accessibility",
+    "fix-Combobox-docs-issues",
     "fix-Combobox-fix-leak",
     "fix-Combobox-not-readable-placeholder-for-NVDA",
     "fix-Combobox-search-disabled-options",

@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.22
+
+### Patch Changes
+
+- efda2df: fix(Docs): Fix docs issues on the `Combobox` page.
+
 ## 7.0.0-rc.21
 
 ### Patch Changes
