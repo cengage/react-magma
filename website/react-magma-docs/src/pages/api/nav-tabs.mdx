@@ -207,7 +207,7 @@ export function Example() {
 Options for the `textTransform` prop for navtabs include `uppercase` and `none`, with `uppercase` (all caps) being the default value.
 This sets the CSS `text-transform` property.
 
-<Alert variant="warning" style={{padding: '4px'}}>When multiple `NavTabs` components are used on the same page, each one should have its own accessible name. You can provide this by using `aria-labelledby`, ensuring that every `NavTabs` instance has a unique label.</Alert>
+<Alert variant="warning" style={{padding: '4px'}}>When multiple `NavTabs` components are used on the same page, each one should have its own accessible name. You can provide this by using `aria-label`, ensuring that every `NavTabs` instance has a unique label.</Alert>
 
 ```tsx
 import React from 'react';
@@ -218,8 +218,8 @@ export function Example() {
   return (
     <>
       <NavTabs
+        aria-label="Uppercase Nav Tabs region"
         textTransform={TabsTextTransform.uppercase}
-        aria-labelledby="Uppercase Nav Tabs region"
       >
         <NavTab isActive to="javascript:void(0)">
           First uppercase
@@ -230,8 +230,8 @@ export function Example() {
       <br />
       <br />
       <NavTabs
+        aria-label="Lowercase Nav Tabs region"
         textTransform={TabsTextTransform.none}
-        aria-labelledby="Lowercase Nav Tabs region"
       >
         <NavTab isActive to="javascript:void(0)">
           First lowercase
@@ -460,8 +460,7 @@ export function Example() {
   return (
     <>
       <NavTabs
-        aria-label="Icon Position Left Nav Tabs"
-        aria-labelledby="Icon Position Left Nav Tabs"
+        aria-label="Icon Position Left Nav Tabs region"
         iconPosition={TabsIconPosition.left}
       >
         <NavTab icon={<EmailIcon />} isActive to="javascript:void(0)">
@@ -480,8 +479,7 @@ export function Example() {
       <br />
 
       <NavTabs
-        aria-label="Icon Position Right Nav Tabs"
-        aria-labelledby="Icon Position Right Nav Tabs"
+        aria-label="Icon Position Right Nav Tabs region"
         iconPosition={TabsIconPosition.right}
       >
         <NavTab icon={<EmailIcon />} isActive to="javascript:void(0)">
