@@ -1,7 +1,13 @@
 import React from 'react';
 
-import { act, render } from '@testing-library/react';
-import { ThemeContext, magma } from 'react-magma-dom';
+import {
+  act,
+  render,
+  screen,
+  fireEvent,
+  waitFor,
+} from '@testing-library/react';
+import { ThemeContext, magma, DropdownMenuItem } from 'react-magma-dom';
 
 import { CarbonChart, CarbonChartType } from '.';
 
@@ -752,6 +758,147 @@ describe('CarbonChart', () => {
       jest.runAllTimers();
 
       expect(document.activeElement).toBe(closeButton);
+    });
+  });
+
+  describe('chartToolbar prop', () => {
+    const toolbarProps = {
+      dataSet,
+      options: chartOptions,
+      type: CarbonChartType.bar,
+      chartToolbar: {},
+    };
+
+    it('should render the show-as-table button with aria-haspopup="dialog"', () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      const button = screen.getByRole('button', {
+        name: chartOptions.title,
+      });
+      expect(button).toHaveAttribute('aria-haspopup', 'dialog');
+      expect(button).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    it('should render the fullscreen button without aria-haspopup', () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      const button = screen.getByRole('button', {
+        name: `View ${chartOptions.title} full screen`,
+      });
+      expect(button).not.toHaveAttribute('aria-haspopup');
+    });
+
+    it('should open the table modal when show-as-table button is clicked', () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      fireEvent.click(screen.getByRole('button', { name: chartOptions.title }));
+
+      expect(screen.getByRole('dialog')).toBeInTheDocument();
+      expect(
+        screen.getByRole('heading', {
+          level: 2,
+          name: `Tabular representation ${chartOptions.title}`,
+        })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('columnheader', { name: 'Group' })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('columnheader', { name: 'Value' })
+      ).toBeInTheDocument();
+    });
+
+    it('should render chart data in the table modal', () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      fireEvent.click(screen.getByRole('button', { name: chartOptions.title }));
+
+      expect(screen.getByRole('cell', { name: 'Qty' })).toBeInTheDocument();
+      expect(screen.getByRole('cell', { name: '65000' })).toBeInTheDocument();
+    });
+
+    it('should set aria-expanded to true when modal is open', () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      const tableButton = screen.getByRole('button', {
+        name: chartOptions.title,
+      });
+      fireEvent.click(tableButton);
+
+      expect(tableButton).toHaveAttribute('aria-expanded', 'true');
+    });
+
+    it('should not render the table button when showAsTable is false', () => {
+      render(
+        <CarbonChart {...toolbarProps} chartToolbar={{ showAsTable: false }} />
+      );
+
+      expect(
+        screen.queryByRole('button', { name: chartOptions.title })
+      ).not.toBeInTheDocument();
+    });
+
+    it('should not render the fullscreen button when fullscreen is false', () => {
+      render(
+        <CarbonChart {...toolbarProps} chartToolbar={{ fullscreen: false }} />
+      );
+
+      expect(
+        screen.queryByRole('button', { name: /full screen/i })
+      ).not.toBeInTheDocument();
+    });
+
+    it('should always render the more options dropdown with built-in download items', () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      const moreBtn = screen.getByRole('button', { name: 'More options' });
+      expect(moreBtn).toBeInTheDocument();
+
+      fireEvent.click(moreBtn);
+      expect(screen.getByText('Download as CSV')).toBeVisible();
+      expect(screen.getByText('Download as PNG')).toBeVisible();
+      expect(screen.getByText('Download as JPG')).toBeVisible();
+    });
+
+    it('should render additional moreOptions items below built-in downloads', () => {
+      render(
+        <CarbonChart
+          {...toolbarProps}
+          chartToolbar={{
+            moreOptions: <DropdownMenuItem>Custom Action</DropdownMenuItem>,
+          }}
+        />
+      );
+
+      const moreBtn = screen.getByRole('button', { name: 'More options' });
+      fireEvent.click(moreBtn);
+      expect(screen.getByText('Download as CSV')).toBeVisible();
+      expect(screen.getByText('Download as PNG')).toBeVisible();
+      expect(screen.getByText('Download as JPG')).toBeVisible();
+      expect(screen.getByText('Custom Action')).toBeVisible();
+    });
+
+    it('should support custom table columns', () => {
+      render(
+        <CarbonChart
+          {...toolbarProps}
+          chartToolbar={{
+            tableColumns: [
+              { header: 'Category', key: 'group' },
+              { header: 'Count', key: 'value' },
+            ],
+          }}
+        />
+      );
+
+      fireEvent.click(screen.getByRole('button', { name: chartOptions.title }));
+
+      expect(
+        screen.getByRole('columnheader', { name: 'Category' })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('columnheader', { name: 'Count' })
+      ).toBeInTheDocument();
     });
   });
 });
