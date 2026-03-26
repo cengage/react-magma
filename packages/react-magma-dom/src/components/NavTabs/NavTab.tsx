@@ -239,6 +239,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
             textTransform={textTransform}
             theme={theme}
             tabIndex={0}
+            role="tab"
           >
             {icon && (
               <StyledIcon
