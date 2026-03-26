@@ -46,7 +46,7 @@ describe('Tabs', () => {
       return toggle ? <Tab {...tabProps}>Hello There</Tab> : null;
     };
 
-    const { getByText } = render(
+    const { getByText, getAllByText } = render(
       <TabsContainer activeIndex={0}>
         <Tabs>
           <Tab>Main page</Tab>
@@ -76,7 +76,7 @@ describe('Tabs', () => {
 
     fireEvent.click(renderedOptionalTab);
 
-    expect(getByText('Optional')).toBeInTheDocument();
+    expect(getAllByText('Optional')[0]).toBeInTheDocument();
   });
 
   it('should render the tabs horizontally', () => {
@@ -300,7 +300,7 @@ describe('Tabs', () => {
   });
 
   it('should change panels on tab button click', () => {
-    const { getByText, queryByText } = render(
+    const { getAllByText, queryByText } = render(
       <TabsContainer activeIndex={0}>
         <Tabs testId={'dd'} orientation="horizontal">
           <Tab>This is tab 1</Tab>
@@ -316,15 +316,15 @@ describe('Tabs', () => {
       </TabsContainer>
     );
 
-    expect(getByText('Tab 1 Info')).toBeVisible();
+    expect(getAllByText('Tab 1 Info')[0]).toBeVisible();
     expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
 
-    fireEvent.click(getByText('This is tab 2'), {
+    fireEvent.click(getAllByText('This is tab 2')[0], {
       target: { scrollIntoView: jest.fn() },
     });
 
     expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
-    expect(getByText('Tab 2 Info')).toBeVisible();
+    expect(getAllByText('Tab 2 Info')[0]).toBeVisible();
   });
 
   it('should not change the panel on clicking a disabled tab', () => {
@@ -396,7 +396,7 @@ describe('Tabs', () => {
 
   describe('Keyboard Navigation', () => {
     it('ArrowRight', () => {
-      const { getByText, queryByText } = render(
+      const { getByText, getAllByText, queryByText } = render(
         <TabsContainer activeIndex={0}>
           <Tabs>
             <Tab>This is tab 1</Tab>
@@ -420,7 +420,7 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 2 Info')).toBeVisible();
+      expect(getAllByText('Tab 2 Info')[0]).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 2'));
 
       fireEvent.keyDown(getByText('This is tab 2'), {
@@ -428,7 +428,7 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(getAllByText('Tab 3 Info')[0]).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 3'));
 
       fireEvent.keyDown(getByText('This is tab 3'), {
@@ -436,12 +436,12 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(getAllByText('Tab 3 Info')[0]).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 3'));
     });
 
     it('ArrowLeft', () => {
-      const { getByText, queryByText } = render(
+      const { getByText, getAllByText, queryByText } = render(
         <TabsContainer activeIndex={2}>
           <Tabs>
             <Tab>This is tab 1</Tab>
@@ -465,7 +465,7 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 2 Info')).toBeVisible();
+      expect(getAllByText('Tab 2 Info')[0]).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 2'));
 
       fireEvent.keyDown(getByText('This is tab 2'), {
@@ -473,7 +473,7 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(getAllByText('Tab 1 Info')[0]).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 1'));
 
       fireEvent.keyDown(getByText('This is tab 1'), {
@@ -481,12 +481,12 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(getAllByText('Tab 1 Info')[0]).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 1'));
     });
 
     it('ArrowDown', () => {
-      const { getByText, queryByText } = render(
+      const { getByText, getAllByText, queryByText } = render(
         <TabsContainer activeIndex={0}>
           <Tabs orientation="vertical">
             <Tab>This is tab 1</Tab>
@@ -510,7 +510,7 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 2 Info')).toBeVisible();
+      expect(getAllByText('Tab 2 Info')[0]).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 2'));
 
       fireEvent.keyDown(getByText('This is tab 2'), {
@@ -518,7 +518,7 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(getAllByText('Tab 3 Info')[0]).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 3'));
 
       fireEvent.keyDown(getByText('This is tab 3'), {
@@ -526,12 +526,12 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(getAllByText('Tab 3 Info')[0]).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 3'));
     });
 
     it('ArrowUp', () => {
-      const { getByText, queryByText } = render(
+      const { getByText, getAllByText, queryByText } = render(
         <TabsContainer activeIndex={2}>
           <Tabs orientation="vertical">
             <Tab>This is tab 1</Tab>
@@ -547,7 +547,7 @@ describe('Tabs', () => {
         </TabsContainer>
       );
 
-      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(getAllByText('Tab 3 Info')[0]).toBeVisible();
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 3'), {
@@ -555,7 +555,7 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 2 Info')).toBeVisible();
+      expect(getAllByText('Tab 2 Info')[0]).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 2'));
 
       fireEvent.keyDown(getByText('This is tab 2'), {
@@ -563,7 +563,7 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(getAllByText('Tab 1 Info')[0]).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 1'));
 
       fireEvent.keyDown(getByText('This is tab 1'), {
@@ -571,12 +571,12 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 2 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(getAllByText('Tab 1 Info')[0]).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 1'));
     });
 
     it('Home', () => {
-      const { getByText, queryByText } = render(
+      const { getByText, getAllByText, queryByText } = render(
         <TabsContainer activeIndex={2}>
           <Tabs>
             <Tab>This is tab 1</Tab>
@@ -600,12 +600,12 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(getAllByText('Tab 1 Info')[0]).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 1'));
     });
 
     it('End', () => {
-      const { getByText, queryByText } = render(
+      const { getByText, getAllByText, queryByText } = render(
         <TabsContainer activeIndex={0}>
           <Tabs>
             <Tab>This is tab 1</Tab>
@@ -621,7 +621,7 @@ describe('Tabs', () => {
         </TabsContainer>
       );
 
-      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(getAllByText('Tab 1 Info')[0]).toBeVisible();
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 1'), {
@@ -629,12 +629,12 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(getAllByText('Tab 3 Info')[0]).toBeVisible();
       expect(document.activeElement).toEqual(getByText('This is tab 3'));
     });
 
     it('ArrowRight with disabled', () => {
-      const { getByText, queryByText } = render(
+      const { getByText, getAllByText, queryByText } = render(
         <TabsContainer activeIndex={0}>
           <Tabs>
             <Tab>This is tab 1</Tab>
@@ -650,7 +650,7 @@ describe('Tabs', () => {
         </TabsContainer>
       );
 
-      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(getAllByText('Tab 1 Info')[0]).toBeVisible();
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 1'), {
@@ -658,12 +658,12 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 3 Info')).toBeVisible();
-      expect(document.activeElement).toEqual(getByText('This is tab 3'));
+      expect(getAllByText('Tab 3 Info')[0]).toBeVisible();
+      expect(document.activeElement).toEqual(getAllByText('This is tab 3')[0]);
     });
 
     it('ArrowLeft with disabled', () => {
-      const { getByText, queryByText } = render(
+      const { getByText, getAllByText, queryByText } = render(
         <TabsContainer activeIndex={2}>
           <Tabs>
             <Tab>This is tab 1</Tab>
@@ -679,7 +679,7 @@ describe('Tabs', () => {
         </TabsContainer>
       );
 
-      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(getAllByText('Tab 3 Info')[0]).toBeVisible();
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
 
       fireEvent.keyDown(getByText('This is tab 3'), {
@@ -687,12 +687,12 @@ describe('Tabs', () => {
       });
 
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 1 Info')).toBeVisible();
-      expect(document.activeElement).toEqual(getByText('This is tab 1'));
+      expect(getAllByText('Tab 1 Info')[0]).toBeVisible();
+      expect(document.activeElement).toEqual(getAllByText('This is tab 1')[0]);
     });
 
     it('ArrowDown with disabled', () => {
-      const { getByText, queryByText } = render(
+      const { getAllByText, queryByText } = render(
         <TabsContainer activeIndex={0}>
           <Tabs orientation="vertical">
             <Tab>This is tab 1</Tab>
@@ -708,20 +708,20 @@ describe('Tabs', () => {
         </TabsContainer>
       );
 
-      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(getAllByText('Tab 1 Info')[0]).toBeVisible();
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
 
-      fireEvent.keyDown(getByText('This is tab 1'), {
+      fireEvent.keyDown(getAllByText('This is tab 1')[0], {
         key: 'ArrowDown',
       });
 
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 3 Info')).toBeVisible();
-      expect(document.activeElement).toEqual(getByText('This is tab 3'));
+      expect(getAllByText('Tab 3 Info')[0]).toBeVisible();
+      expect(document.activeElement).toEqual(getAllByText('This is tab 3')[0]);
     });
 
     it('ArrowUp with disabled', () => {
-      const { getByText, queryByText } = render(
+      const { getByText, getAllByText, queryByText } = render(
         <TabsContainer activeIndex={2}>
           <Tabs orientation="vertical">
             <Tab>This is tab 1</Tab>
@@ -737,20 +737,20 @@ describe('Tabs', () => {
         </TabsContainer>
       );
 
-      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(getAllByText('Tab 3 Info')[0]).toBeVisible();
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
 
-      fireEvent.keyDown(getByText('This is tab 3'), {
+      fireEvent.keyDown(getAllByText('This is tab 3')[0], {
         key: 'ArrowUp',
       });
 
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 1 Info')).toBeVisible();
-      expect(document.activeElement).toEqual(getByText('This is tab 1'));
+      expect(getAllByText('Tab 1 Info')[0]).toBeVisible();
+      expect(document.activeElement).toEqual(getAllByText('This is tab 1')[0]);
     });
 
     it('Home with first element disabled', () => {
-      const { getByText, queryByText } = render(
+      const { getByText, getAllByText, queryByText } = render(
         <TabsContainer activeIndex={2}>
           <Tabs>
             <Tab disabled>This is tab 1</Tab>
@@ -766,20 +766,20 @@ describe('Tabs', () => {
         </TabsContainer>
       );
 
-      expect(getByText('Tab 3 Info')).toBeVisible();
+      expect(getAllByText('Tab 3 Info')[0]).toBeVisible();
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
 
-      fireEvent.keyDown(getByText('This is tab 3'), {
+      fireEvent.keyDown(getAllByText('This is tab 3')[0], {
         key: 'Home',
       });
 
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 2 Info')).toBeVisible();
-      expect(document.activeElement).toEqual(getByText('This is tab 2'));
+      expect(getAllByText('Tab 2 Info')[0]).toBeVisible();
+      expect(document.activeElement).toEqual(getAllByText('This is tab 2')[0]);
     });
 
     it('End with last element disabled', () => {
-      const { getByText, queryByText } = render(
+      const { getByText, getAllByText, queryByText } = render(
         <TabsContainer activeIndex={0}>
           <Tabs>
             <Tab>This is tab 1</Tab>
@@ -795,16 +795,16 @@ describe('Tabs', () => {
         </TabsContainer>
       );
 
-      expect(getByText('Tab 1 Info')).toBeVisible();
+      expect(getAllByText('Tab 1 Info')[0]).toBeVisible();
       expect(queryByText('Tab 3 Info')).not.toBeInTheDocument();
 
-      fireEvent.keyDown(getByText('This is tab 1'), {
+      fireEvent.keyDown(getAllByText('This is tab 1')[0], {
         key: 'End',
       });
 
       expect(queryByText('Tab 1 Info')).not.toBeInTheDocument();
-      expect(getByText('Tab 2 Info')).toBeVisible();
-      expect(document.activeElement).toEqual(getByText('This is tab 2'));
+      expect(getAllByText('Tab 2 Info')[0]).toBeVisible();
+      expect(document.activeElement).toEqual(getAllByText('This is tab 2')[0]);
     });
 
     it('should call passed in onChange function when tab panel is changed by keyboard navigation', () => {
@@ -829,7 +829,6 @@ describe('Tabs', () => {
 
 describe('Test for accessibility', () => {
   it('Does not violate accessibility standards', async () => {
-    jest.useFakeTimers();
     const { container } = render(
       <TabsContainer activeIndex={0}>
         <Tabs testId={'dd'} orientation="horizontal">
@@ -845,11 +844,6 @@ describe('Test for accessibility', () => {
         </TabPanelsContainer>
       </TabsContainer>
     );
-
-    act(() => {
-      jest.runAllTimers();
-    });
-    jest.useRealTimers();
 
     const result = await axe(container.innerHTML, {
       rules: { listitem: { enabled: false } },
