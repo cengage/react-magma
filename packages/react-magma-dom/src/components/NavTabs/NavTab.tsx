@@ -200,6 +200,7 @@ export const NavTab = React.forwardRef<any, NavTabProps>(
         isFullWidth={isFullWidth}
         isInverse={isInverse}
         orientation={orientation}
+        role="presentation"
         theme={theme}
       >
         {component ? (
