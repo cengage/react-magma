@@ -1314,9 +1314,16 @@ export function Example() {
       isClearable
       onInputValueChange={handleInputValueChange}
       components={{
-        ClearIndicator: props => <button onClick={props.onClick}>Clear</button>,
+        ClearIndicator: props => 
+          <button onClick={props.onClick} aria-label="Clear selection">
+            Clear
+          </button>,
         DropdownIndicator: React.forwardRef((props, ref) => (
-          <button ref={ref} onClick={props.onClick}>
+          <button 
+            ref={ref} 
+            onClick={props.onClick} 
+            aria-label="Expand dropdown"
+          >
             Dropdown
           </button>
         )),
