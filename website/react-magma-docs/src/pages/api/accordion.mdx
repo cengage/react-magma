@@ -117,12 +117,14 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
+  Announce,
   Button,
   ButtonSize,
   ButtonVariant,
   ButtonGroup,
   Spacer,
   useDeviceDetect,
+  VisuallyHidden,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -175,6 +177,11 @@ export function Example() {
           <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
         </AccordionItem>
       </Accordion>
+      <VisuallyHidden>
+        <Announce>
+          {isAllExpanded ? 'All sections expanded' : 'All sections collapsed'}
+        </Announce>
+      </VisuallyHidden>
     </>
   );
 }
