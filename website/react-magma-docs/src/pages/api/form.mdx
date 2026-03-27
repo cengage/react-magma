@@ -28,6 +28,11 @@ import {
 } from 'react-magma-dom';
 
 export function Example() {
+  const [announcement, setAnnouncement] = React.useState('');
+  const firstNameRef = React.useRef<any>();
+  const lastNameRef = React.useRef<any>();
+  const emailRef = React.useRef<any>();
+
   const [state, setState] = React.useState({
     firstName: '',
     lastName: '',
@@ -52,16 +57,28 @@ export function Example() {
     event.preventDefault();
     resetErrors();
 
-    if (!state.firstName) {
-      setErrors(prevErrors => ({ ...prevErrors, firstName: true }));
+    const errors = {
+      firstName: !state.firstName,
+      lastName: !state.lastName,
+      email: !state.email,
+    };
+
+    setErrors(errors);
+
+    if (errors.firstName) {
+      firstNameRef.current?.focus();
+
+      return;
     }
 
-    if (!state.lastName) {
-      setErrors(prevErrors => ({ ...prevErrors, lastName: true }));
+    if (errors.lastName) {
+      lastNameRef.current?.focus();
+
+      return;
     }
 
-    if (!state.email) {
-      setErrors(prevErrors => ({ ...prevErrors, email: true }));
+    if (errors.email) {
+      emailRef.current?.focus();
     }
   };
 
@@ -133,6 +150,7 @@ export function Example() {
           }
           errorMessage={errors.firstName && 'First Name is required'}
           autoComplete="given-name"
+          ref={firstNameRef}
         />
         <Spacer size="12" />
         <Input
@@ -146,6 +164,7 @@ export function Example() {
           }
           errorMessage={errors.lastName && 'Last Name is required'}
           autoComplete="family-name"
+          ref={lastNameRef}
         />
         <Spacer size="12" />
         <Input
@@ -159,6 +178,7 @@ export function Example() {
           }
           errorMessage={errors.email && 'Email is required'}
           autoComplete="email"
+          ref={emailRef}
         />
         <Spacer size="24" />
       </>
