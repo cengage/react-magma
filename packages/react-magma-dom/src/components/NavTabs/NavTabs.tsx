@@ -225,6 +225,7 @@ export const NavTabs = React.forwardRef<
           alignment={alignment ? alignment : TabsAlignment.left}
           orientation={orientation}
           ref={childrenWrapperRef}
+          role="tablist"
         >
           <NavTabsContext.Provider
             value={{
