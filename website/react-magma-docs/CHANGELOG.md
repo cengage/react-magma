@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.23
+
+### Patch Changes
+
+- ed803d6: fix(IconButton & Modal & Form & Accordion & Nav Tabs): Fix doc examples to enhance accessibility.
+
 ## 7.0.0-rc.22
 
 ### Patch Changes

@@ -87,6 +87,7 @@
     "fix-Form-docs-issues",
     "fix-Hyperlink-docs",
     "fix-Hyperlink-new-prop",
+    "fix-IconButton-Modal-Form-doc-examples",
     "fix-Modal-fix-focus-order",
     "fix-MultiCombobox-announce-values",
     "fix-MultiSelect-update-label-annoucement",
