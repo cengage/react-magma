@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.2-next.3
+
+### Patch Changes
+
+- 3699ab645: fix(IconButton & Modal & Form & Accordion & Nav Tabs): Fix doc examples to enhance accessibility.
+
 ## 5.3.2-next.2
 
 ### Patch Changes
