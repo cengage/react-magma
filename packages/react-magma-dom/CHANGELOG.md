@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.73
+
+### Patch Changes
+
+- 34b7d19: fix(Popover): Fix second accessibility issue.
+
 ## 5.1.0-rc.72
 
 ### Patch Changes
