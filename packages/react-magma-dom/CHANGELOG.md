@@ -1,5 +1,12 @@
 ## 4.10.0
 
+## 5.1.0-rc.74
+
+### Patch Changes
+
+- 43a6ce1: fix(MultiCombobox & MultiSelect): Fix issue with clearable `MultiCombobox` and `MultiSelect`
+- b6a333b: fix(MultiSelect): Fix test naming.
+
 ## 5.1.0-rc.73
 
 ### Patch Changes
