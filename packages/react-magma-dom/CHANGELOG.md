@@ -1,5 +1,12 @@
 ## 4.12.0
 
+## 4.12.1-next.0
+
+### Patch Changes
+
+- 2712b8907: fix(Popover): Fix second accessibility issue.
+- 2712b8907: fix(Popover): Fix accessibility issue.
+
 ### Minor Changes
 
 - e23b1a2f9: feat(EmptyState): New `EmptyState` component.
