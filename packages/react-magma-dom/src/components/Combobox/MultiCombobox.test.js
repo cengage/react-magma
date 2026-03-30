@@ -1356,6 +1356,56 @@ describe('MultiCombobox', () => {
     });
   });
 
+  it('should announce the removal of a selected item', () => {
+    const { getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+        isClearable
+      />
+    );
+
+    userEvent.click(getByText('Red', { selector: 'button' }));
+
+    expect(getByText('Red has been removed')).toBeInTheDocument();
+  });
+
+  it('should announce clearing multiple selected items', () => {
+    const { getByLabelText, getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red', 'Blue']}
+        isClearable
+      />
+    );
+
+    userEvent.click(getByLabelText(/reset selection/i));
+
+    expect(
+      getByText('Label has been cleared. Red, Blue were removed')
+    ).toBeInTheDocument();
+  });
+
+  it('should announce clearing single selected item', () => {
+    const { getByLabelText, getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+        isClearable
+      />
+    );
+
+    userEvent.click(getByLabelText(/reset selection/i));
+
+    expect(getByText('Label has been cleared')).toBeInTheDocument();
+  });
+
   describe('Accessibility - scrollIntoView', () => {
     it('should call scrollIntoView on focused item when navigating with keyboard', async () => {
       const mockScrollIntoView = jest.fn();
