@@ -1,5 +1,11 @@
 ## 4.12.0
 
+## 4.12.1-next.2
+
+### Patch Changes
+
+- ea5b7cbbe: fix(Tabs): Fix broken Tabs page in docs and refactor code for component.
+
 ## 4.12.1-next.1
 
 ### Patch Changes
