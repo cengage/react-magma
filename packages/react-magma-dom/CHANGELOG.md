@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.72
+
+### Patch Changes
+
+- b8f03ee: fix(Popover): Fix accessibility issue.
+
 ## 5.1.0-rc.71
 
 ### Patch Changes

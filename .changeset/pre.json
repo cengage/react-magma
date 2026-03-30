@@ -97,6 +97,7 @@
     "fix-Pagination-add-announcement-selected-page",
     "fix-Pagination-aria-hidden-dots",
     "fix-Pagination-aria-label",
+    "fix-Popover-accessibility-issue",
     "fix-RadioButton-label-is-not-annouced-with-helper-message",
     "fix-Search-and-Form-issues",
     "fix-Select-clear-functionality",
