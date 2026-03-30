@@ -1,5 +1,11 @@
 ## 4.12.0
 
+## 4.12.1-next.1
+
+### Patch Changes
+
+- efaa44f8d: fix(MultiCombobox & MultiSelect): Fix issue with clearable `MultiCombobox` and `MultiSelect`
+
 ## 4.12.1-next.0
 
 ### Patch Changes

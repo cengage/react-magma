@@ -15,6 +15,7 @@
     "fix-Combobox-docs-issues",
     "fix-Form-docs-issues",
     "fix-IconButton-Modal-Form-doc-examples",
+    "fix-MultiCombobox-announce-a11y",
     "fix-Popover-accessibility-issue-v2",
     "fix-Popover-accessibility-issue",
     "tall-worms-add"
