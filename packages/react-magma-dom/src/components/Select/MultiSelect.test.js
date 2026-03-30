@@ -313,7 +313,7 @@ describe('MultiSelect', () => {
     ).toBeInTheDocument();
   });
 
-  it('should announce 123123', async () => {
+  it('should announce clearing single selected item', async () => {
     const { getByLabelText, getByText } = render(
       <MultiSelect
         isMulti
