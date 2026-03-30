@@ -192,8 +192,12 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
 
     const theme = React.useContext(ThemeContext);
 
-    const { activeTabIndex, setActiveTabIndex, isInverseContainer } =
-      React.useContext(TabsContainerContext);
+    const {
+      activeTabIndex,
+      setActiveTabIndex,
+      isInverseContainer,
+      instanceId,
+    } = React.useContext(TabsContainerContext);
 
     const isInverse =
       typeof props.isInverse !== 'undefined'
@@ -224,6 +228,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
     const childrenWrapperRef = React.useRef<HTMLUListElement>();
     const [scrollAnnouncement, setScrollAnnouncement] = React.useState('');
     const [panelAnnouncement, setPanelAnnouncement] = React.useState('');
+    const isInitialMount = React.useRef(true);
 
     function getTabsMeta() {
       const tabsNode = tabsWrapperRef.current;
@@ -317,20 +322,24 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       }
     }, [displayScroll.start, displayScroll.end]);
 
-    // Announce panel content when active tab changes (including initial mount)
+    // Announce panel content when active tab changes (excluding initial mount)
     React.useEffect(() => {
-      setTimeout(() => {
-        const panelId = `tabpanel-${activeTabIndex}`;
-        const panelElement = document.getElementById(panelId);
+      if (isInitialMount.current) {
+        isInitialMount.current = false;
+        return;
+      }
 
-        if (panelElement) {
-          const panelText = panelElement.textContent || '';
+      const panelId = `tabpanel-${instanceId}-${activeTabIndex}`;
+      const panelElement = document.getElementById(panelId);
 
-          setPanelAnnouncement(panelText.trim());
-          setTimeout(() => setPanelAnnouncement(''), 100);
-        }
-      }, 100);
-    }, [activeTabIndex]);
+      if (panelElement) {
+        const panelText = panelElement.textContent || '';
+
+        setPanelAnnouncement(panelText.trim());
+        const timeout = setTimeout(() => setPanelAnnouncement(''), 1000);
+        return () => clearTimeout(timeout);
+      }
+    }, [activeTabIndex, instanceId]);
 
     function changeHandler(
       newActiveIndex: number,
@@ -450,16 +459,28 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
         : i18n.tabs.horizontalTabsInstructions
     }`;
 
+    const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
     const handlePrevScrollWithAnnouncement = () => {
       handleStartScrollClick();
       setScrollAnnouncement(i18n.tabs.scrolledBackAnnounce);
-      setTimeout(() => setScrollAnnouncement(''), 100);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        setScrollAnnouncement('');
+      }, 100);
     };
 
     const handleNextScrollWithAnnouncement = () => {
       handleEndScrollClick();
       setScrollAnnouncement(i18n.tabs.scrolledForwardAnnounce);
-      setTimeout(() => setScrollAnnouncement(''), 100);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        setScrollAnnouncement('');
+      }, 100);
     };
 
     const other = omit(['aria-label'], rest);
