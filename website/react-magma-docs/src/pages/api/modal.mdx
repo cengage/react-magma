@@ -20,9 +20,6 @@ properly manages focus; moving to the modal content, and keeping it there until 
 The modal will _only_ render if the `isOpen` prop is set to true. For that reason, it is redundant to show the modal using the following anti-pattern: `{flag && <Modal isOpen={flag} />`. Instead,
 simply use `<Modal isOpen={flag} />`
 
-Although not required, it is helpful to inform users (especially screen reader users) when a button or link will trigger a modal dialog.
-This can be done by supplementing the button label or link text with "(opens modal dialog)" using the <Link to="/api/visually-hidden/">VisuallyHidden</Link> component.
-
 <Alert variant="warning">
   The modal trigger button must have the{' '}
   <inlineCode>aria-haspopup="dialog"</inlineCode> attribute for accessibility

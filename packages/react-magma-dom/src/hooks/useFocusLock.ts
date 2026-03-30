@@ -19,14 +19,29 @@ export function useFocusLock(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
       ) || []
     ).filter((element): element is HTMLElement => {
+      if (!(element instanceof HTMLElement)) {
+        return false;
+      }
       const style = window.getComputedStyle(element);
-      return (
-        element instanceof HTMLElement &&
-        style.display !== 'none' &&
-        style.visibility !== 'hidden' &&
-        !element.hasAttribute('disabled') &&
-        element.tabIndex !== -1
-      );
+      if (
+        style.display === 'none' ||
+        style.visibility === 'hidden' ||
+        element.hasAttribute('disabled') ||
+        element.tabIndex === -1
+      ) {
+        return false;
+      }
+      // CSS `display` is not inherited, so children of a `display:none` parent
+      // still report their own display value. Walk up the ancestor chain to
+      // exclude elements hidden by a collapsed ancestor (e.g. a closed calendar).
+      let ancestor: HTMLElement | null = element.parentElement;
+      while (ancestor && ancestor !== rootNode.current) {
+        if (window.getComputedStyle(ancestor).display === 'none') {
+          return false;
+        }
+        ancestor = ancestor.parentElement;
+      }
+      return true;
     });
   };
 
@@ -63,13 +78,21 @@ export function useFocusLock(
       if (!focusableItems.current) return;
 
       const { key, shiftKey } = event;
-      const {
-        length,
-        0: firstItem,
-        [length - 1]: lastItem,
-      } = focusableItems.current;
 
       if (active && key === 'Tab') {
+        // Refresh the list on every Tab so CSS-toggled visibility changes
+        // (e.g. a DatePicker calendar opening/closing via display:none) are
+        // always reflected — the MutationObserver only fires on childList
+        // mutations and cannot detect styled-component class/style updates.
+        updateFocusableItems();
+
+        // Destructure after the refresh so values reflect the current DOM state.
+        const {
+          length,
+          0: firstItem,
+          [focusableItems.current.length - 1]: lastItem,
+        } = focusableItems.current;
+
         // Only handle Tab if focus is inside this focus lock's root.
         // This prevents nested modals from interfering with each other.
         const activeEl = document.activeElement as HTMLElement;
