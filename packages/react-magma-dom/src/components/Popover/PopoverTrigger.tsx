@@ -114,6 +114,7 @@ export const PopoverTrigger = React.forwardRef<
             !context.isDisabled
               ? context.popoverContentId.current
               : null,
+          'aria-expanded': context.isOpen,
         })
       : children;
 
@@ -190,7 +191,6 @@ export const PopoverTrigger = React.forwardRef<
         <TriggerButtonContainer
           aria-label={ariaLabel}
           aria-haspopup="dialog"
-          aria-expanded={context.isOpen}
           aria-controls={context.popoverContentId.current}
           id={context.popoverTriggerId.current}
           tabIndex={
