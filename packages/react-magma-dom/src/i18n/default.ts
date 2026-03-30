@@ -101,6 +101,9 @@ export const defaultI18n: I18nInterface = {
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',
+      clearAnnounce:
+        '{labelText} has been cleared. {selectedItems} were removed',
+      removeItemAnnounce: '{selectedItem} has been removed',
       ariaLabelWithSelectedItems:
         '{labelText} Multi-select Selected: {selectedItems}',
       ariaLabelWithoutSelectedItems: '{labelText} Multi-select',
@@ -283,6 +286,9 @@ export const defaultI18n: I18nInterface = {
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',
+      clearAnnounce:
+        '{labelText} has been cleared. {selectedItems} were removed',
+      removeItemAnnounce: '{selectedItem} has been removed',
       ariaLabelWithSelectedItems:
         '{labelText} Multi-select Selected: {selectedItems}',
       ariaLabelWithoutSelectedItems: '{labelText} Multi-select',

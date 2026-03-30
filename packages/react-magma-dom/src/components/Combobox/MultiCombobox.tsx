@@ -105,6 +105,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     reset,
   } = useMultipleSelection({
     ...props,
+    // Disable downshift's built-in a11y removal message to use custom clearAnnounce
+    getA11yRemovalMessage: () => '',
     ...(props.initialSelectedItems && {
       initialSelectedItems: props.initialSelectedItems.filter(
         checkSelectedItemValidity
@@ -292,6 +294,23 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   function handleRemoveSelectedItem(event: React.SyntheticEvent, selectedItem) {
     event.stopPropagation();
 
+    // Announce the removal of the specific item
+    const itemName = itemToString(selectedItem);
+    const removeMessage = i18n.combobox.multi?.removeItemAnnounce?.replace(
+      /\{selectedItem\}/g,
+      itemName
+    );
+
+    setClearAnnouncement(removeMessage || '');
+
+    // Clear the announcement after a delay
+    if (clearAnnouncementTimeoutRef.current) {
+      clearTimeout(clearAnnouncementTimeoutRef.current);
+    }
+    clearAnnouncementTimeoutRef.current = setTimeout(() => {
+      setClearAnnouncement('');
+    }, 1000);
+
     onRemoveSelectedItem && typeof onRemoveSelectedItem === 'function'
       ? onRemoveSelectedItem(selectedItem)
       : removeSelectedItem(selectedItem);
@@ -359,9 +378,15 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
     reset();
 
-    setClearAnnouncement(
-      i18n.select?.clearAnnounce?.replace(/\{labelText\}/g, labelText)
-    );
+    const selectedItemsText = itemsArrayToString(selectedItems);
+    const clearMessage =
+      selectedItems.length > 1
+        ? i18n.combobox.multi?.clearAnnounce
+            ?.replace(/\{labelText\}/g, labelText)
+            ?.replace(/\{selectedItems\}/g, selectedItemsText)
+        : i18n.combobox.clearAnnounce?.replace(/\{labelText\}/g, labelText);
+
+    setClearAnnouncement(clearMessage || '');
 
     // Clear the announcement after a delay to allow for re-announcements
     if (clearAnnouncementTimeoutRef.current) {
