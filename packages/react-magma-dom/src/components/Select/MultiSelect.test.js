@@ -278,6 +278,56 @@ describe('MultiSelect', () => {
     ).not.toBeInTheDocument();
   });
 
+  it('should announce the removal of a selected item', () => {
+    const { getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+        isClearable
+      />
+    );
+
+    userEvent.click(getByText('Red', { selector: 'button' }));
+
+    expect(getByText('Red has been removed')).toBeInTheDocument();
+  });
+
+  it('should announce clearing multiple selected items', () => {
+    const { getByLabelText, getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red', 'Blue']}
+        isClearable
+      />
+    );
+
+    userEvent.click(getByLabelText(/reset selection/i));
+
+    expect(
+      getByText('Label has been cleared. Red, Blue were removed')
+    ).toBeInTheDocument();
+  });
+
+  it('should announce clearing single selected item', () => {
+    const { getByLabelText, getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+        isClearable
+      />
+    );
+
+    userEvent.click(getByLabelText(/reset selection/i));
+
+    expect(getByText('Label has been cleared')).toBeInTheDocument();
+  });
+
   it('should allow for the removal of selected items with the keyboard', () => {
     const selectedItems = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText, queryByText } = render(
