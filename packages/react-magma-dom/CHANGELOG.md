@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.75
+
+### Patch Changes
+
+- 2843afc: fix(Tabs): Improve performance and refactor code.
+
 ## 5.1.0-rc.74
 
 ### Patch Changes

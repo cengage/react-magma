@@ -113,6 +113,7 @@
     "fix-Table-add-page-announcing",
     "fix-Table-remove-focus",
     "fix-Table-tabIndex-logic",
+    "fix-Tabs-refactor-code",
     "fix-Tag-fix-aria-label",
     "fix-TextArea-aria-accessibility-issue",
     "fix-TextArea-helpermessage-is-not-announced",
