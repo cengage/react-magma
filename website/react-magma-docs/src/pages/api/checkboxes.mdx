@@ -23,9 +23,9 @@ If you do not want to have your checkbox be in a controlled state, but need the 
 
 <Alert variant="warning">
   When rendering a list of checkboxes, wrap them in a{' '}
-  <inlineCode>&lt;ul&gt;</inlineCode> element with each checkbox inside a{' '}
-  <inlineCode>&lt;li&gt;</inlineCode> element. This ensures proper semantic HTML
-  structure and improves accessibility.
+  <inlineCode>&lt;List&gt;</inlineCode> element with each checkbox inside a{' '}
+  <inlineCode>&lt;ListItem&gt;</inlineCode> element. This ensures proper
+  semantic HTML structure and improves accessibility.
 </Alert>
 
 <Link to="/api/indeterminate">Indeterminate Checkboxes</Link> are similar to
@@ -36,7 +36,7 @@ See also: <Link to="/api/radio">Radio Buttons</Link> and <Link to="/api/toggle">
 ```tsx
 import React from 'react';
 
-import { Checkbox, FormGroup } from 'react-magma-dom';
+import { Checkbox, FormGroup, List, ListItem } from 'react-magma-dom';
 
 export function Example() {
   const [checked, updateChecked] = React.useState<boolean>(false);
@@ -47,25 +47,25 @@ export function Example() {
 
   return (
     <FormGroup labelText="Choose one or more">
-      <ul style={{ margin: 0 }}>
-        <li style={{ listStyleType: 'none', margin: 0 }}>
+      <List>
+        <ListItem style={{ listStyleType: 'none' }}>
           <Checkbox
             defaultChecked
             id="customId"
             labelText="Uncontrolled checkbox"
           />
-        </li>
-        <li style={{ listStyleType: 'none', margin: 0 }}>
+        </ListItem>
+        <ListItem style={{ listStyleType: 'none' }}>
           <Checkbox
             checked={checked}
             labelText="Controlled checkbox"
             onChange={handleUpdateChecked}
           />
-        </li>
-        <li style={{ listStyleType: 'none', margin: 0 }}>
+        </ListItem>
+        <ListItem style={{ listStyleType: 'none' }}>
           <Checkbox labelText="Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines" />
-        </li>
-      </ul>
+        </ListItem>
+      </List>
     </FormGroup>
   );
 }
@@ -78,40 +78,40 @@ By default, the checkboxes use the theme's primary color. But any other color ma
 ```tsx
 import React from 'react';
 
-import { Checkbox, FormGroup, magma } from 'react-magma-dom';
+import { Checkbox, FormGroup, List, ListItem, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
     <FormGroup labelText="Choose one or more colors">
-      <ul style={{ margin: 0 }}>
-        <li style={{ listStyleType: 'none', margin: 0 }}>
+      <List>
+        <ListItem style={{ listStyleType: 'none' }}>
           <Checkbox checked labelText="Default color" />
-        </li>
-        <li style={{ listStyleType: 'none', margin: 0 }}>
+        </ListItem>
+        <ListItem style={{ listStyleType: 'none' }}>
           <Checkbox
             checked
             color={magma.colors.success}
             labelText="Success color"
           />
-        </li>
-        <li style={{ listStyleType: 'none', margin: 0 }}>
+        </ListItem>
+        <ListItem style={{ listStyleType: 'none' }}>
           <Checkbox
             checked
             color={magma.colors.danger}
             labelText="Danger color"
           />
-        </li>
-        <li style={{ listStyleType: 'none', margin: 0 }}>
+        </ListItem>
+        <ListItem style={{ listStyleType: 'none' }}>
           <Checkbox
             checked
             color={magma.colors.warning}
             labelText="Warning color"
           />
-        </li>
-        <li style={{ listStyleType: 'none', margin: 0 }}>
+        </ListItem>
+        <ListItem style={{ listStyleType: 'none' }}>
           <Checkbox checked color={magma.colors.info} labelText="Info color" />
-        </li>
-      </ul>
+        </ListItem>
+      </List>
     </FormGroup>
   );
 }
@@ -128,38 +128,39 @@ import {
   Checkbox,
   FormGroup,
   IndeterminateCheckbox,
-  IndeterminateCheckboxStatus,
+  List,
+  ListItem,
   magma,
 } from 'react-magma-dom';
 
 export function Example() {
   return (
     <FormGroup labelText="Choose one or more">
-      <ul style={{ margin: 0 }}>
-        <li style={{ listStyleType: 'none', margin: 0 }}>
+      <List>
+        <ListItem style={{ listStyleType: 'none' }}>
           <Checkbox
             color={magma.colors.success}
             disabled
             labelText="Disabled checkbox"
           />
-        </li>
-        <li style={{ listStyleType: 'none', margin: 0 }}>
+        </ListItem>
+        <ListItem style={{ listStyleType: 'none' }}>
           <Checkbox
             checked
             color={magma.colors.success}
             disabled
             labelText="Disabled checked checkbox"
           />
-        </li>
-        <li style={{ listStyleType: 'none', margin: 0 }}>
+        </ListItem>
+        <ListItem style={{ listStyleType: 'none' }}>
           <IndeterminateCheckbox
             color={magma.colors.success}
             disabled
             labelText="Disabled indeterminate checkbox"
             status="indeterminate"
           />
-        </li>
-      </ul>
+        </ListItem>
+      </List>
     </FormGroup>
   );
 }
@@ -179,6 +180,8 @@ import {
   FormGroup,
   IndeterminateCheckbox,
   IndeterminateCheckboxStatus,
+  List,
+  ListItem,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -186,47 +189,47 @@ export function Example() {
     <Card isInverse>
       <CardBody>
         <FormGroup isInverse labelText="Choose inverse options">
-          <ul style={{ margin: 0 }}>
-            <li style={{ listStyleType: 'none', margin: 0 }}>
+          <List>
+            <ListItem style={{ listStyleType: 'none' }}>
               <Checkbox isInverse labelText="Inverse" />
-            </li>
-            <li style={{ listStyleType: 'none', margin: 0 }}>
+            </ListItem>
+            <ListItem style={{ listStyleType: 'none' }}>
               <Checkbox checked isInverse labelText="Inverse checked" />
-            </li>
-            <li style={{ listStyleType: 'none', margin: 0 }}>
+            </ListItem>
+            <ListItem style={{ listStyleType: 'none' }}>
               <IndeterminateCheckbox
                 status={IndeterminateCheckboxStatus.indeterminate}
                 isInverse
                 labelText="Indeterminate inverse"
               />
-            </li>
-            <li style={{ listStyleType: 'none', margin: 0 }}>
+            </ListItem>
+            <ListItem style={{ listStyleType: 'none' }}>
               <Checkbox disabled isInverse labelText="Disabled inverse" />
-            </li>
-            <li style={{ listStyleType: 'none', margin: 0 }}>
+            </ListItem>
+            <ListItem style={{ listStyleType: 'none' }}>
               <Checkbox
                 checked
                 disabled
                 isInverse
                 labelText="Disabled checked inverse"
               />
-            </li>
-            <li style={{ listStyleType: 'none', margin: 0 }}>
+            </ListItem>
+            <ListItem style={{ listStyleType: 'none' }}>
               <IndeterminateCheckbox
                 disabled
                 isInverse
                 labelText="Disabled indeterminate inverse"
                 status={IndeterminateCheckboxStatus.indeterminate}
               />
-            </li>
-            <li style={{ listStyleType: 'none', margin: 0 }}>
+            </ListItem>
+            <ListItem style={{ listStyleType: 'none' }}>
               <Checkbox
                 errorMessage="Please check this box"
                 isInverse
                 labelText="Checkbox with error"
               />
-            </li>
-          </ul>
+            </ListItem>
+          </List>
         </FormGroup>
       </CardBody>
     </Card>
@@ -242,22 +245,28 @@ The `textPosition` property takes the values `left` and `right`. The default val
 ```tsx
 import React from 'react';
 
-import { Checkbox, CheckboxTextPosition, FormGroup } from 'react-magma-dom';
+import {
+  Checkbox,
+  CheckboxTextPosition,
+  FormGroup,
+  List,
+  ListItem,
+} from 'react-magma-dom';
 
 export function Example() {
   return (
     <FormGroup labelText="Text positions">
-      <ul style={{ margin: 0 }}>
-        <li style={{ listStyleType: 'none', margin: 0 }}>
+      <List>
+        <ListItem style={{ listStyleType: 'none' }}>
           <Checkbox
             labelText="Text left"
             textPosition={CheckboxTextPosition.left}
           />
-        </li>
-        <li style={{ listStyleType: 'none', margin: 0 }}>
+        </ListItem>
+        <ListItem style={{ listStyleType: 'none' }}>
           <Checkbox labelText="Text right" />
-        </li>
-      </ul>
+        </ListItem>
+      </List>
     </FormGroup>
   );
 }
@@ -270,7 +279,7 @@ The `errorMessage` prop can be used on the `FormGroup` component to display an e
 ```tsx
 import React from 'react';
 
-import { Checkbox, FormGroup } from 'react-magma-dom';
+import { Checkbox, FormGroup, List, ListItem } from 'react-magma-dom';
 
 interface CheckboxState {
   yellow: boolean;
@@ -301,8 +310,8 @@ export function Example() {
         labelText="Choose one or more colors *"
         errorMessage={hasError ? 'Please choose at least one color' : null}
       >
-        <ul style={{ margin: 0 }}>
-          <li style={{ listStyleType: 'none', margin: 0 }}>
+        <List>
+          <ListItem style={{ listStyleType: 'none' }}>
             <Checkbox
               checked={state.yellow}
               labelText="Yellow 1"
@@ -310,8 +319,8 @@ export function Example() {
               onChange={handleChange}
               value="yellow"
             />
-          </li>
-          <li style={{ listStyleType: 'none', margin: 0 }}>
+          </ListItem>
+          <ListItem style={{ listStyleType: 'none' }}>
             <Checkbox
               checked={state.red}
               labelText="Red"
@@ -319,8 +328,8 @@ export function Example() {
               onChange={handleChange}
               value="red"
             />
-          </li>
-          <li style={{ listStyleType: 'none', margin: 0 }}>
+          </ListItem>
+          <ListItem style={{ listStyleType: 'none' }}>
             <Checkbox
               checked={state.green}
               labelText="Green"
@@ -328,8 +337,8 @@ export function Example() {
               onChange={handleChange}
               value="green"
             />
-          </li>
-        </ul>
+          </ListItem>
+        </List>
       </FormGroup>
     </>
   );
@@ -399,12 +408,12 @@ Additional `labelStyle` and `inputStyle` properties are available to style the r
 ```tsx
 import React from 'react';
 
-import { Checkbox } from 'react-magma-dom';
+import { Checkbox, List, ListItem } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <ul style={{ margin: 0 }}>
-      <li style={{ listStyleType: 'none', margin: 0 }}>
+    <List>
+      <ListItem style={{ listStyleType: 'none' }}>
         <Checkbox
           checked
           containerStyle={{ border: '1px dotted purple' }}
@@ -412,11 +421,11 @@ export function Example() {
           labelStyle={{ color: 'brown', fontStyle: 'italic' }}
           labelText="Custom styles"
         />
-      </li>
-      <li style={{ listStyleType: 'none', margin: 0 }}>
+      </ListItem>
+      <ListItem style={{ listStyleType: 'none' }}>
         <Checkbox checked labelText="No custom styles" />
-      </li>
-    </ul>
+      </ListItem>
+    </List>
   );
 }
 ```
@@ -459,7 +468,8 @@ import {
   IndeterminateCheckbox,
   I18nContext,
   IndeterminateCheckboxStatus,
-  magma,
+  List,
+  ListItem,
 } from 'react-magma-dom';
 
 export function Example() {
@@ -509,22 +519,22 @@ export function Example() {
           status={status}
           labelText="Colors"
         />
-        <ul style={{ margin: 0, paddingLeft: magma.spaceScale.spacing08 }}>
-          <li style={{ listStyleType: 'none', margin: 0 }}>
+        <List>
+          <ListItem style={{ listStyleType: 'none' }}>
             <Checkbox
               checked={checkedItems[0]}
               onChange={handleUpdateRedChecked}
               labelText="Red"
             />
-          </li>
-          <li style={{ listStyleType: 'none', margin: 0 }}>
+          </ListItem>
+          <ListItem style={{ listStyleType: 'none' }}>
             <Checkbox
               checked={checkedItems[1]}
               onChange={handleUpdateBlueChecked}
               labelText="Blue"
             />
-          </li>
-        </ul>
+          </ListItem>
+        </List>
       </fieldset>
     </I18nContext.Provider>
   );
