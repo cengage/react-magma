@@ -279,7 +279,6 @@ it('should show fire a custom onClick event', () => {
 
 describe('Test for accessibility', () => {
   it('Does not violate accessibility standards', async () => {
-    jest.useFakeTimers();
     const testId = 'test-id';
     const { container } = render(
       <TabsContainer>
@@ -292,11 +291,6 @@ describe('Test for accessibility', () => {
       </TabsContainer>
     );
 
-    act(() => {
-      jest.runAllTimers();
-    });
-    jest.useRealTimers();
-
     return axe(container.innerHTML, {
       rules: { listitem: { enabled: false } },
     }).then(result => {
@@ -306,7 +300,7 @@ describe('Test for accessibility', () => {
 
   it('should have all necessary accessibility attributes', () => {
     const testId = 'test-id';
-    const { getAllByTestId } = render(
+    const { getAllByRole } = render(
       <TabsContainer>
         <Tabs>
           <Tab testId={testId}>Tab Text</Tab>
@@ -317,11 +311,14 @@ describe('Test for accessibility', () => {
       </TabsContainer>
     );
 
-    expect(getAllByTestId(testId)[0]).toHaveAttribute('role', 'tab');
-    expect(getAllByTestId(testId)[0]).toHaveAttribute(
-      'aria-controls',
-      'tabpanel-0'
-    );
-    expect(getAllByTestId(testId)[0]).toHaveAttribute('id', 'tab-0');
+    const tab = getAllByRole('tab')[0];
+    const panel = getAllByRole('tabpanel')[0];
+
+    expect(tab).toHaveAttribute('role', 'tab');
+    expect(tab).toHaveAttribute('aria-controls', panel.id);
+    expect(tab).toHaveAttribute('id', tab.id);
+
+    expect(panel).toHaveAttribute('aria-labelledby', tab.id);
+    expect(panel).toHaveAttribute('role', 'tabpanel');
   });
 });

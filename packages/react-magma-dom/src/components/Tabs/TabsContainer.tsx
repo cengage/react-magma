@@ -21,6 +21,7 @@ export interface TabsContainerProps
 
 interface TabsContainerContextInterface {
   activeTabIndex: number;
+  instanceId: string;
   isInverseContainer: boolean;
   setActiveTabIndex: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -28,6 +29,7 @@ interface TabsContainerContextInterface {
 export const TabsContainerContext =
   React.createContext<TabsContainerContextInterface>({
     activeTabIndex: 0,
+    instanceId: '',
     isInverseContainer: false,
     setActiveTabIndex: () => 0,
   });
@@ -51,6 +53,10 @@ export const TabsContainer = React.forwardRef<
   TabsContainerProps
 >((props, ref) => {
   const { activeIndex, children, testId } = props;
+
+  const instanceId = React.useRef(
+    `${Math.random().toString(36).slice(2, 8)}`
+  ).current;
 
   React.useEffect(() => {
     if (activeIndex >= 0) {
@@ -76,6 +82,7 @@ export const TabsContainer = React.forwardRef<
     <TabsContainerContext.Provider
       value={{
         activeTabIndex,
+        instanceId,
         setActiveTabIndex,
         isInverseContainer,
       }}

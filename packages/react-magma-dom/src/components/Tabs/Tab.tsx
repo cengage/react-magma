@@ -251,7 +251,8 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
     const resolvedProps = resolveProps(contextProps, props);
     const { children, icon, disabled, testId, unstyled, ...rest } =
       resolvedProps;
-    const { activeTabIndex } = React.useContext(TabsContainerContext);
+    const { activeTabIndex, instanceId } =
+      React.useContext(TabsContainerContext);
     const { buttonRefArray, registerTabButton } = React.useContext(TabsContext);
     const ownRef = React.useRef<HTMLDivElement>();
     const forceUpdate = useForceUpdate();
@@ -300,8 +301,8 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
           : TabsIconPosition.top;
     }
 
-    const tabId = `tab-${index}`;
-    const panelId = `tabpanel-${index}`;
+    const tabId = `tab-${instanceId}-${index}`;
+    const panelId = `tabpanel-${instanceId}-${index}`;
 
     if (unstyled) {
       const child = React.Children.only(children) as React.ReactElement;

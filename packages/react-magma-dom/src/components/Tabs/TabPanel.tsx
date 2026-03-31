@@ -39,11 +39,12 @@ export const TabPanel = React.forwardRef<HTMLDivElement, TabPanelProps>(
 
     const theme = React.useContext(ThemeContext);
 
-    const { activeTabIndex } = React.useContext(TabsContainerContext);
+    const { activeTabIndex, instanceId } =
+      React.useContext(TabsContainerContext);
     const activeTab = activeTabIndex === index;
 
-    const panelId = `tabpanel-${index}`;
-    const tabId = `tab-${index}`;
+    const panelId = `tabpanel-${instanceId}-${index}`;
+    const tabId = `tab-${instanceId}-${index}`;
 
     return activeTab ? (
       <StyledTabPanel
