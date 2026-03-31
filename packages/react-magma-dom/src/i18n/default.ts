@@ -324,6 +324,7 @@ export const defaultI18n: I18nInterface = {
     selectable: {
       sortButtonAriaLabel: 'Sort rows by {labelText}',
       sortButtonAriaLabelBySelected: 'Sort rows by selected',
+      sortDirectionNone: 'not sorted',
       selectAllRowsAriaLabel: 'Select all rows',
       selectRowAriaLabel: 'Select row',
       deselectAllRowsAriaLabel: 'Deselect all rows',
