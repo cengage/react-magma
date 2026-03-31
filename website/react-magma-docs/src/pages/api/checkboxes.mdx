@@ -21,6 +21,8 @@ The label/checkbox association will be handled via the passed in `id` if one is 
 Checkboxes can either be controlled or uncontrolled. If you pass in a `checked` prop, it is a controlled input. That means that to change the checkbox's state, you must updated the `checked` prop's value.
 If you do not want to have your checkbox be in a controlled state, but need the initial checked value to be set, pass in the `defaultChecked` prop with the value you would like on initial render.
 
+<Alert variant="warning">When rendering a list of checkboxes, wrap them in a `<ul>` element with each checkbox inside a `<li>` element. This ensures proper semantic HTML structure and improves accessibility.</Alert>
+
 <Link to="/api/indeterminate">Indeterminate Checkboxes</Link> are similar to standard checkboxes but with three available statuses.<br />
 See also: <Link to="/api/radio">Radio Buttons</Link> and <Link to="/api/toggle">Toggle Switches</Link>.
 
@@ -38,19 +40,25 @@ export function Example() {
 
   return (
     <FormGroup labelText="Choose one or more">
-      <Checkbox
-        defaultChecked
-        id="customId"
-        labelText="Uncontrolled checkbox"
-      />
-
-      <Checkbox
-        checked={checked}
-        labelText="Controlled checkbox"
-        onChange={handleUpdateChecked}
-      />
-
-      <Checkbox labelText="Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines" />
+      <ul style={{ margin: 0 }}>
+        <li style={{ listStyleType: 'none', margin: 0 }}>
+          <Checkbox
+            defaultChecked
+            id="customId"
+            labelText="Uncontrolled checkbox"
+          />
+        </li>
+        <li style={{ listStyleType: 'none', margin: 0 }}>
+          <Checkbox
+            checked={checked}
+            labelText="Controlled checkbox"
+            onChange={handleUpdateChecked}
+          />
+        </li>
+        <li style={{ listStyleType: 'none', margin: 0 }}>
+          <Checkbox labelText="Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines" />
+        </li>
+      </ul>
     </FormGroup>
   );
 }
@@ -68,19 +76,35 @@ import { Checkbox, FormGroup, magma } from 'react-magma-dom';
 export function Example() {
   return (
     <FormGroup labelText="Choose one or more colors">
-      <Checkbox checked labelText="Default color" />
-      <Checkbox
-        checked
-        color={magma.colors.success}
-        labelText="Success color"
-      />
-      <Checkbox checked color={magma.colors.danger} labelText="Danger color" />
-      <Checkbox
-        checked
-        color={magma.colors.warning}
-        labelText="Warning color"
-      />
-      <Checkbox checked color={magma.colors.info} labelText="Info color" />
+      <ul style={{ margin: 0 }}>
+        <li style={{ listStyleType: 'none', margin: 0 }}>
+          <Checkbox checked labelText="Default color" />
+        </li>
+        <li style={{ listStyleType: 'none', margin: 0 }}>
+          <Checkbox
+            checked
+            color={magma.colors.success}
+            labelText="Success color"
+          />
+        </li>
+        <li style={{ listStyleType: 'none', margin: 0 }}>
+          <Checkbox
+            checked
+            color={magma.colors.danger}
+            labelText="Danger color"
+          />
+        </li>
+        <li style={{ listStyleType: 'none', margin: 0 }}>
+          <Checkbox
+            checked
+            color={magma.colors.warning}
+            labelText="Warning color"
+          />
+        </li>
+        <li style={{ listStyleType: 'none', margin: 0 }}>
+          <Checkbox checked color={magma.colors.info} labelText="Info color" />
+        </li>
+      </ul>
     </FormGroup>
   );
 }
@@ -103,23 +127,31 @@ import {
 export function Example() {
   return (
     <FormGroup labelText="Choose one or more">
-      <Checkbox
-        color={magma.colors.success}
-        disabled
-        labelText="Disabled checkbox"
-      />
-      <Checkbox
-        checked
-        color={magma.colors.success}
-        disabled
-        labelText="Disabled checked checkbox"
-      />
-      <IndeterminateCheckbox
-        color={magma.colors.success}
-        disabled
-        labelText="Disabled indeterminate checkbox"
-        status="indeterminate"
-      />
+      <ul style={{ margin: 0 }}>
+        <li style={{ listStyleType: 'none', margin: 0 }}>
+          <Checkbox
+            color={magma.colors.success}
+            disabled
+            labelText="Disabled checkbox"
+          />
+        </li>
+        <li style={{ listStyleType: 'none', margin: 0 }}>
+          <Checkbox
+            checked
+            color={magma.colors.success}
+            disabled
+            labelText="Disabled checked checkbox"
+          />
+        </li>
+        <li style={{ listStyleType: 'none', margin: 0 }}>
+          <IndeterminateCheckbox
+            color={magma.colors.success}
+            disabled
+            labelText="Disabled indeterminate checkbox"
+            status="indeterminate"
+          />
+        </li>
+      </ul>
     </FormGroup>
   );
 }
@@ -146,31 +178,47 @@ export function Example() {
     <Card isInverse>
       <CardBody>
         <FormGroup isInverse labelText="Choose inverse options">
-          <Checkbox isInverse labelText="Inverse" />
-          <Checkbox checked isInverse labelText="Inverse checked" />
-          <IndeterminateCheckbox
-            status={IndeterminateCheckboxStatus.indeterminate}
-            isInverse
-            labelText="Indeterminate inverse"
-          />
-          <Checkbox disabled isInverse labelText="Disabled inverse" />
-          <Checkbox
-            checked
-            disabled
-            isInverse
-            labelText="Disabled checked inverse"
-          />
-          <IndeterminateCheckbox
-            disabled
-            isInverse
-            labelText="Disabled indeterminate inverse"
-            status={IndeterminateCheckboxStatus.indeterminate}
-          />
-          <Checkbox
-            errorMessage="Please check this box"
-            isInverse
-            labelText="Checkbox with error"
-          />
+          <ul style={{ margin: 0 }}>
+            <li style={{ listStyleType: 'none', margin: 0 }}>
+              <Checkbox isInverse labelText="Inverse" />
+            </li>
+            <li style={{ listStyleType: 'none', margin: 0 }}>
+              <Checkbox checked isInverse labelText="Inverse checked" />
+            </li>
+            <li style={{ listStyleType: 'none', margin: 0 }}>
+              <IndeterminateCheckbox
+                status={IndeterminateCheckboxStatus.indeterminate}
+                isInverse
+                labelText="Indeterminate inverse"
+              />
+            </li>
+            <li style={{ listStyleType: 'none', margin: 0 }}>
+              <Checkbox disabled isInverse labelText="Disabled inverse" />
+            </li>
+            <li style={{ listStyleType: 'none', margin: 0 }}>
+              <Checkbox
+                checked
+                disabled
+                isInverse
+                labelText="Disabled checked inverse"
+              />
+            </li>
+            <li style={{ listStyleType: 'none', margin: 0 }}>
+              <IndeterminateCheckbox
+                disabled
+                isInverse
+                labelText="Disabled indeterminate inverse"
+                status={IndeterminateCheckboxStatus.indeterminate}
+              />
+            </li>
+            <li style={{ listStyleType: 'none', margin: 0 }}>
+              <Checkbox
+                errorMessage="Please check this box"
+                isInverse
+                labelText="Checkbox with error"
+              />
+            </li>
+          </ul>
         </FormGroup>
       </CardBody>
     </Card>
@@ -191,11 +239,17 @@ import { Checkbox, CheckboxTextPosition, FormGroup } from 'react-magma-dom';
 export function Example() {
   return (
     <FormGroup labelText="Text positions">
-      <Checkbox
-        labelText="Text left"
-        textPosition={CheckboxTextPosition.left}
-      />
-      <Checkbox labelText="Text right" />
+      <ul style={{ margin: 0 }}>
+        <li style={{ listStyleType: 'none', margin: 0 }}>
+          <Checkbox
+            labelText="Text left"
+            textPosition={CheckboxTextPosition.left}
+          />
+        </li>
+        <li style={{ listStyleType: 'none', margin: 0 }}>
+          <Checkbox labelText="Text right" />
+        </li>
+      </ul>
     </FormGroup>
   );
 }
@@ -239,27 +293,35 @@ export function Example() {
         labelText="Choose one or more colors *"
         errorMessage={hasError ? 'Please choose at least one color' : null}
       >
-        <Checkbox
-          checked={state.yellow}
-          labelText="Yellow 1"
-          name="color"
-          onChange={handleChange}
-          value="yellow"
-        />
-        <Checkbox
-          checked={state.red}
-          labelText="Red"
-          name="color"
-          onChange={handleChange}
-          value="red"
-        />
-        <Checkbox
-          checked={state.green}
-          labelText="Green"
-          name="color"
-          onChange={handleChange}
-          value="green"
-        />
+        <ul style={{ margin: 0 }}>
+          <li style={{ listStyleType: 'none', margin: 0 }}>
+            <Checkbox
+              checked={state.yellow}
+              labelText="Yellow 1"
+              name="color"
+              onChange={handleChange}
+              value="yellow"
+            />
+          </li>
+          <li style={{ listStyleType: 'none', margin: 0 }}>
+            <Checkbox
+              checked={state.red}
+              labelText="Red"
+              name="color"
+              onChange={handleChange}
+              value="red"
+            />
+          </li>
+          <li style={{ listStyleType: 'none', margin: 0 }}>
+            <Checkbox
+              checked={state.green}
+              labelText="Green"
+              name="color"
+              onChange={handleChange}
+              value="green"
+            />
+          </li>
+        </ul>
       </FormGroup>
     </>
   );
@@ -326,17 +388,20 @@ import { Checkbox } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <>
-      <Checkbox
-        checked
-        containerStyle={{ border: '1px dotted purple' }}
-        inputStyle={{ boxShadow: '3px 3px 3px rgba(0, 0 , 0, .6)' }}
-        labelStyle={{ color: 'brown', fontStyle: 'italic' }}
-        labelText="Custom styles"
-      />
-
-      <Checkbox checked labelText="No custom styles" />
-    </>
+    <ul style={{ margin: 0 }}>
+      <li style={{ listStyleType: 'none', margin: 0 }}>
+        <Checkbox
+          checked
+          containerStyle={{ border: '1px dotted purple' }}
+          inputStyle={{ boxShadow: '3px 3px 3px rgba(0, 0 , 0, .6)' }}
+          labelStyle={{ color: 'brown', fontStyle: 'italic' }}
+          labelText="Custom styles"
+        />
+      </li>
+      <li style={{ listStyleType: 'none', margin: 0 }}>
+        <Checkbox checked labelText="No custom styles" />
+      </li>
+    </ul>
   );
 }
 ```
@@ -422,23 +487,30 @@ export function Example() {
         },
       }}
     >
-      <IndeterminateCheckbox
-        onChange={handleUpdateIndeterminateChecked}
-        status={status}
-        labelText="Colors"
-      />
-      <div style={{ marginLeft: magma.spaceScale.spacing08 }}>
-        <Checkbox
-          checked={checkedItems[0]}
-          onChange={handleUpdateRedChecked}
-          labelText="Red"
+      <fieldset style={{ border: 'none', margin: 0, padding: 0 }}>
+        <legend>All Colors</legend>
+        <IndeterminateCheckbox
+          onChange={handleUpdateIndeterminateChecked}
+          status={status}
+          labelText="Colors"
         />
-        <Checkbox
-          checked={checkedItems[1]}
-          onChange={handleUpdateBlueChecked}
-          labelText="Blue"
-        />
-      </div>
+        <ul style={{ margin: 0, paddingLeft: magma.spaceScale.spacing08 }}>
+          <li style={{ listStyleType: 'none', margin: 0 }}>
+            <Checkbox
+              checked={checkedItems[0]}
+              onChange={handleUpdateRedChecked}
+              labelText="Red"
+            />
+          </li>
+          <li style={{ listStyleType: 'none', margin: 0 }}>
+            <Checkbox
+              checked={checkedItems[1]}
+              onChange={handleUpdateBlueChecked}
+              labelText="Blue"
+            />
+          </li>
+        </ul>
+      </fieldset>
     </I18nContext.Provider>
   );
 }
