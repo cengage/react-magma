@@ -48,21 +48,21 @@ export function Example() {
   return (
     <FormGroup labelText="Choose one or more">
       <List>
-        <ListItem style={{ listStyleType: 'none' }}>
+        <ListItem style={{ listStyleType: 'none', margin: 0 }}>
           <Checkbox
             defaultChecked
             id="customId"
             labelText="Uncontrolled checkbox"
           />
         </ListItem>
-        <ListItem style={{ listStyleType: 'none' }}>
+        <ListItem style={{ listStyleType: 'none', margin: 0 }}>
           <Checkbox
             checked={checked}
             labelText="Controlled checkbox"
             onChange={handleUpdateChecked}
           />
         </ListItem>
-        <ListItem style={{ listStyleType: 'none' }}>
+        <ListItem style={{ listStyleType: 'none', margin: 0 }}>
           <Checkbox labelText="Checkbox label is really long and can wrap to multiple lines lorem ipsum dolar sit amet is really long and can wrap to multiple lines" />
         </ListItem>
       </List>
@@ -84,31 +84,31 @@ export function Example() {
   return (
     <FormGroup labelText="Choose one or more colors">
       <List>
-        <ListItem style={{ listStyleType: 'none' }}>
+        <ListItem style={{ listStyleType: 'none', margin: 0 }}>
           <Checkbox checked labelText="Default color" />
         </ListItem>
-        <ListItem style={{ listStyleType: 'none' }}>
+        <ListItem style={{ listStyleType: 'none', margin: 0 }}>
           <Checkbox
             checked
             color={magma.colors.success}
             labelText="Success color"
           />
         </ListItem>
-        <ListItem style={{ listStyleType: 'none' }}>
+        <ListItem style={{ listStyleType: 'none', margin: 0 }}>
           <Checkbox
             checked
             color={magma.colors.danger}
             labelText="Danger color"
           />
         </ListItem>
-        <ListItem style={{ listStyleType: 'none' }}>
+        <ListItem style={{ listStyleType: 'none', margin: 0 }}>
           <Checkbox
             checked
             color={magma.colors.warning}
             labelText="Warning color"
           />
         </ListItem>
-        <ListItem style={{ listStyleType: 'none' }}>
+        <ListItem style={{ listStyleType: 'none', margin: 0 }}>
           <Checkbox checked color={magma.colors.info} labelText="Info color" />
         </ListItem>
       </List>
@@ -137,14 +137,14 @@ export function Example() {
   return (
     <FormGroup labelText="Choose one or more">
       <List>
-        <ListItem style={{ listStyleType: 'none' }}>
+        <ListItem style={{ listStyleType: 'none', margin: 0 }}>
           <Checkbox
             color={magma.colors.success}
             disabled
             labelText="Disabled checkbox"
           />
         </ListItem>
-        <ListItem style={{ listStyleType: 'none' }}>
+        <ListItem style={{ listStyleType: 'none', margin: 0 }}>
           <Checkbox
             checked
             color={magma.colors.success}
@@ -152,7 +152,7 @@ export function Example() {
             labelText="Disabled checked checkbox"
           />
         </ListItem>
-        <ListItem style={{ listStyleType: 'none' }}>
+        <ListItem style={{ listStyleType: 'none', margin: 0 }}>
           <IndeterminateCheckbox
             color={magma.colors.success}
             disabled
@@ -190,23 +190,23 @@ export function Example() {
       <CardBody>
         <FormGroup isInverse labelText="Choose inverse options">
           <List>
-            <ListItem style={{ listStyleType: 'none' }}>
+            <ListItem style={{ listStyleType: 'none', margin: 0 }}>
               <Checkbox isInverse labelText="Inverse" />
             </ListItem>
-            <ListItem style={{ listStyleType: 'none' }}>
+            <ListItem style={{ listStyleType: 'none', margin: 0 }}>
               <Checkbox checked isInverse labelText="Inverse checked" />
             </ListItem>
-            <ListItem style={{ listStyleType: 'none' }}>
+            <ListItem style={{ listStyleType: 'none', margin: 0 }}>
               <IndeterminateCheckbox
                 status={IndeterminateCheckboxStatus.indeterminate}
                 isInverse
                 labelText="Indeterminate inverse"
               />
             </ListItem>
-            <ListItem style={{ listStyleType: 'none' }}>
+            <ListItem style={{ listStyleType: 'none', margin: 0 }}>
               <Checkbox disabled isInverse labelText="Disabled inverse" />
             </ListItem>
-            <ListItem style={{ listStyleType: 'none' }}>
+            <ListItem style={{ listStyleType: 'none', margin: 0 }}>
               <Checkbox
                 checked
                 disabled
@@ -214,7 +214,7 @@ export function Example() {
                 labelText="Disabled checked inverse"
               />
             </ListItem>
-            <ListItem style={{ listStyleType: 'none' }}>
+            <ListItem style={{ listStyleType: 'none', margin: 0 }}>
               <IndeterminateCheckbox
                 disabled
                 isInverse
@@ -222,7 +222,7 @@ export function Example() {
                 status={IndeterminateCheckboxStatus.indeterminate}
               />
             </ListItem>
-            <ListItem style={{ listStyleType: 'none' }}>
+            <ListItem style={{ listStyleType: 'none', margin: 0 }}>
               <Checkbox
                 errorMessage="Please check this box"
                 isInverse
@@ -257,13 +257,13 @@ export function Example() {
   return (
     <FormGroup labelText="Text positions">
       <List>
-        <ListItem style={{ listStyleType: 'none' }}>
+        <ListItem style={{ listStyleType: 'none', margin: 0 }}>
           <Checkbox
             labelText="Text left"
             textPosition={CheckboxTextPosition.left}
           />
         </ListItem>
-        <ListItem style={{ listStyleType: 'none' }}>
+        <ListItem style={{ listStyleType: 'none', margin: 0 }}>
           <Checkbox labelText="Text right" />
         </ListItem>
       </List>
@@ -311,7 +311,7 @@ export function Example() {
         errorMessage={hasError ? 'Please choose at least one color' : null}
       >
         <List>
-          <ListItem style={{ listStyleType: 'none' }}>
+          <ListItem style={{ listStyleType: 'none', margin: 0 }}>
             <Checkbox
               checked={state.yellow}
               labelText="Yellow 1"
@@ -320,7 +320,7 @@ export function Example() {
               value="yellow"
             />
           </ListItem>
-          <ListItem style={{ listStyleType: 'none' }}>
+          <ListItem style={{ listStyleType: 'none', margin: 0 }}>
             <Checkbox
               checked={state.red}
               labelText="Red"
@@ -329,7 +329,7 @@ export function Example() {
               value="red"
             />
           </ListItem>
-          <ListItem style={{ listStyleType: 'none' }}>
+          <ListItem style={{ listStyleType: 'none', margin: 0 }}>
             <Checkbox
               checked={state.green}
               labelText="Green"
@@ -413,7 +413,7 @@ import { Checkbox, List, ListItem } from 'react-magma-dom';
 export function Example() {
   return (
     <List>
-      <ListItem style={{ listStyleType: 'none' }}>
+      <ListItem style={{ listStyleType: 'none', margin: 0 }}>
         <Checkbox
           checked
           containerStyle={{ border: '1px dotted purple' }}
@@ -422,7 +422,7 @@ export function Example() {
           labelText="Custom styles"
         />
       </ListItem>
-      <ListItem style={{ listStyleType: 'none' }}>
+      <ListItem style={{ listStyleType: 'none', margin: 0 }}>
         <Checkbox checked labelText="No custom styles" />
       </ListItem>
     </List>
@@ -519,15 +519,15 @@ export function Example() {
           status={status}
           labelText="Colors"
         />
-        <List>
-          <ListItem style={{ listStyleType: 'none' }}>
+        <List style={{ paddingLeft: magma.spaceScale.spacing08 }}>
+          <ListItem style={{ listStyleType: 'none', margin: 0 }}>
             <Checkbox
               checked={checkedItems[0]}
               onChange={handleUpdateRedChecked}
               labelText="Red"
             />
           </ListItem>
-          <ListItem style={{ listStyleType: 'none' }}>
+          <ListItem style={{ listStyleType: 'none', margin: 0 }}>
             <Checkbox
               checked={checkedItems[1]}
               onChange={handleUpdateBlueChecked}
