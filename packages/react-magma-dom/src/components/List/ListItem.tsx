@@ -80,6 +80,7 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
       iconColor,
       testId,
       isInverse: isInverseProp,
+      ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
@@ -87,6 +88,7 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
     return (
       <InverseContext.Provider value={{ isInverse }}>
         <StyledListItem
+          {...rest}
           as={description ? 'p' : 'li'}
           description={description as any}
           icon={icon}
