@@ -686,7 +686,7 @@ const ToolbarActions = styled.div<{ theme: ThemeInterface }>`
     white-space: nowrap;
   }
 
-  [role='menu'] {
+  [data-testid='dropdownContent'] {
     padding: ${props => props.theme.spaceScale.spacing03} 0;
   }
 
