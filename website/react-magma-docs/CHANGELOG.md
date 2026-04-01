@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.24
+
+### Patch Changes
+
+- 3f28a17: fix(Checkbox): Update doc examples.
+
 ## 7.0.0-rc.23
 
 ### Patch Changes
