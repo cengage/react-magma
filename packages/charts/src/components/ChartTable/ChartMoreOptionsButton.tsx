@@ -7,10 +7,12 @@ import {
   DropdownContent,
 } from 'react-magma-dom';
 
+import { useChartToolbarI18n } from './chartToolbarI18n';
+
 export interface ChartMoreOptionsButtonProps {
   /**
    * Accessible label for the trigger button.
-   * @default "More options"
+   * @default "More options" (i18n overridable)
    */
   ariaLabel?: string;
   /** Menu items rendered inside the dropdown (DropdownMenuItem, DropdownDivider, etc.) */
@@ -25,15 +27,17 @@ export interface ChartMoreOptionsButtonProps {
 }
 
 export function ChartMoreOptionsButton({
-  ariaLabel = 'More options',
+  ariaLabel,
   children,
   icon,
   isInverse,
 }: ChartMoreOptionsButtonProps) {
+  const t = useChartToolbarI18n();
+  const resolvedAriaLabel = ariaLabel ?? t.moreOptionsAriaLabel;
   return (
     <Dropdown isInverse={isInverse}>
       <DropdownButton
-        aria-label={ariaLabel}
+        aria-label={resolvedAriaLabel}
         icon={icon}
         variant={ButtonVariant.link}
       />

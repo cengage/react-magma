@@ -17,7 +17,7 @@ export interface ChartDataTableColumn {
 }
 
 export interface ChartDataTableProps {
-  /** Column definitions (header + key). Defaults to Group / Value if omitted. */
+  /** Column definitions (header + key). If omitted, columns are auto-derived from the dataset object keys. */
   columns?: ChartDataTableColumn[];
   /** Array of data objects. Each object should have keys matching the column `key` values. */
   dataSet: Array<Record<string, React.ReactNode>>;
@@ -54,13 +54,18 @@ export function ChartDataTable({
         </TableRow>
       </TableHead>
       <TableBody>
-        {dataSet.map((row, index) => (
-          <TableRow key={index}>
-            {resolvedColumns.map(col => (
-              <TableCell key={col.key}>{row[col.key]}</TableCell>
-            ))}
-          </TableRow>
-        ))}
+        {dataSet.map((row, index) => {
+          const rowKey = resolvedColumns
+            .map(col => String(row[col.key] ?? ''))
+            .join('-');
+          return (
+            <TableRow key={`${rowKey}-${index}`}>
+              {resolvedColumns.map(col => (
+                <TableCell key={col.key}>{row[col.key]}</TableCell>
+              ))}
+            </TableRow>
+          );
+        })}
       </TableBody>
     </Table>
   );

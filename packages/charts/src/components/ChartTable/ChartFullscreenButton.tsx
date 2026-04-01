@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { ButtonVariant, IconButton, Tooltip } from 'react-magma-dom';
 
+import { useChartToolbarI18n } from './chartToolbarI18n';
+
 export interface ChartFullscreenButtonProps {
   /** Accessible label for the button, e.g. "View Overall Performance in full screen" */
   ariaLabel: string;
@@ -22,7 +24,7 @@ export interface ChartFullscreenButtonProps {
   buttonRef?: React.Ref<HTMLButtonElement>;
   /**
    * Tooltip text shown on hover.
-   * @default "Make full screen" / "Exit full screen" based on state
+   * @default "Make full screen" / "Exit full screen" based on state (i18n overridable)
    */
   tooltipContent?: string;
 }
@@ -37,8 +39,9 @@ export function ChartFullscreenButton({
   onClick,
   tooltipContent,
 }: ChartFullscreenButtonProps) {
+  const t = useChartToolbarI18n();
   const resolvedTooltip =
-    tooltipContent ?? (isFullscreen ? 'Exit full screen' : 'Make full screen');
+    tooltipContent ?? (isFullscreen ? t.exitFullScreen : t.makeFullScreen);
   const resolvedIcon = isFullscreen && exitIcon ? exitIcon : icon;
 
   return (

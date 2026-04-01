@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { Heading, TypographyVisualStyle } from 'react-magma-dom';
+import { Heading, ThemeContext, TypographyVisualStyle } from 'react-magma-dom';
 
 export interface ChartToolbarProps {
   /** Toolbar action buttons (ChartTableButton, ChartFullscreenButton, ChartMoreOptionsButton, etc.) */
@@ -26,10 +26,10 @@ const ToolbarWrapper = styled.div`
   justify-content: space-between;
 `;
 
-const ActionsWrapper = styled.div`
+const ActionsWrapper = styled.div<{ theme: any }>`
   align-items: center;
   display: flex;
-  gap: 4px;
+  gap: ${props => props.theme.spaceScale.spacing02};
 `;
 
 export function ChartToolbar({
@@ -38,12 +38,13 @@ export function ChartToolbar({
   headingVisualStyle = TypographyVisualStyle.headingSmall,
   title,
 }: ChartToolbarProps) {
+  const theme = React.useContext(ThemeContext);
   return (
     <ToolbarWrapper>
       <Heading level={headingLevel} noMargins visualStyle={headingVisualStyle}>
         {title}
       </Heading>
-      <ActionsWrapper>{children}</ActionsWrapper>
+      <ActionsWrapper theme={theme}>{children}</ActionsWrapper>
     </ToolbarWrapper>
   );
 }

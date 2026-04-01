@@ -1,9 +1,10 @@
 import * as React from 'react';
 
 import styled from '@emotion/styled';
-import { Button, Modal, ModalSize } from 'react-magma-dom';
+import { Button, Modal, ModalSize, ThemeContext } from 'react-magma-dom';
 
 import { ChartDataTable, ChartDataTableColumn } from './ChartDataTable';
+import { useChartToolbarI18n } from './chartToolbarI18n';
 
 export interface ChartTableModalProps {
   /** The chart's data passed to ChartDataTable */
@@ -30,39 +31,45 @@ export interface ChartTableModalProps {
   headerLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   /**
    * First line of the modal heading.
-   * @default "Tabular representation"
+   * @default "Tabular representation" (i18n overridable)
    */
   headerLabel?: string;
-  /** Magma Modal size */
+  /**
+   * Magma Modal size.
+   * @default ModalSize.large
+   */
   size?: ModalSize;
 }
 
-const ModalFooter = styled.div`
+const ModalFooter = styled.div<{ theme: any }>`
   display: flex;
   justify-content: flex-end;
-  padding-top: 16px;
+  padding-top: ${props => props.theme.spaceScale.spacing05};
 `;
 
 export function ChartTableModal({
   columns,
   dataSet,
-  headerLabel = 'Tabular representation',
+  headerLabel,
   headerLevel = 2,
   isInverse,
   isOpen,
   onClose,
   onDownloadCsv,
-  size,
+  size = ModalSize.large,
   title,
 }: ChartTableModalProps) {
+  const t = useChartToolbarI18n();
+  const theme = React.useContext(ThemeContext);
+  const resolvedHeaderLabel = headerLabel ?? t.tabularRepresentationLabel;
   const header = React.useMemo(
     () => (
       <span>
-        <span style={{ display: 'block' }}>{headerLabel}</span>
+        <span style={{ display: 'block' }}>{resolvedHeaderLabel}</span>
         <span style={{ display: 'block' }}>{title}</span>
       </span>
     ),
-    [headerLabel, title]
+    [resolvedHeaderLabel, title]
   );
 
   return (
@@ -80,9 +87,9 @@ export function ChartTableModal({
         isInverse={isInverse}
       />
       {onDownloadCsv && (
-        <ModalFooter>
+        <ModalFooter theme={theme}>
           <Button isInverse={isInverse} onClick={onDownloadCsv}>
-            Download as CSV
+            {t.downloadAsCsv}
           </Button>
         </ModalFooter>
       )}

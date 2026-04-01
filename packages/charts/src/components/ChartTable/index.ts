@@ -18,3 +18,6 @@ export type { ChartTableModalProps } from './ChartTableModal';
 
 export { ChartToolbar } from './ChartToolbar';
 export type { ChartToolbarProps } from './ChartToolbar';
+
+export { useChartToolbarI18n } from './chartToolbarI18n';
+export type { ChartToolbarI18n } from './chartToolbarI18n';

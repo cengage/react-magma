@@ -1,12 +1,6 @@
 import React from 'react';
 
-import {
-  act,
-  render,
-  screen,
-  fireEvent,
-  waitFor,
-} from '@testing-library/react';
+import { act, render, screen, fireEvent } from '@testing-library/react';
 import { ThemeContext, magma, DropdownMenuItem } from 'react-magma-dom';
 
 import { CarbonChart, CarbonChartType } from '.';

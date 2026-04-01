@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { ButtonVariant, IconButton, Tooltip } from 'react-magma-dom';
 
+import { useChartToolbarI18n } from './chartToolbarI18n';
+
 export interface ChartTableButtonProps {
   /** Accessible label for the button – should describe the chart, e.g. "Overall Performance" */
   ariaLabel: string;
@@ -20,7 +22,7 @@ export interface ChartTableButtonProps {
   buttonRef?: React.Ref<HTMLButtonElement>;
   /**
    * Tooltip text shown on hover.
-   * @default "Show as table"
+   * @default "Show as table" (i18n overridable)
    */
   tooltipContent?: string;
 }
@@ -32,10 +34,12 @@ export function ChartTableButton({
   isInverse,
   isTableOpen,
   onClick,
-  tooltipContent = 'Show as table',
+  tooltipContent,
 }: ChartTableButtonProps) {
+  const t = useChartToolbarI18n();
+  const resolvedTooltip = tooltipContent ?? t.showAsTableTooltip;
   return (
-    <Tooltip content={tooltipContent} isInverse={isInverse}>
+    <Tooltip content={resolvedTooltip} isInverse={isInverse}>
       <IconButton
         aria-expanded={isTableOpen}
         aria-haspopup="dialog"

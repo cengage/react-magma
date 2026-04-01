@@ -47,6 +47,7 @@ import {
   ChartTableModal,
 } from '../ChartTable';
 import type { ChartDataTableColumn } from '../ChartTable';
+import { useChartToolbarI18n } from '../ChartTable/chartToolbarI18n';
 
 export enum CarbonChartType {
   area = 'area',
@@ -83,13 +84,13 @@ export interface ChartToolbarConfig {
   fullscreen?: boolean;
   /**
    * Additional menu items rendered inside a "More options" dropdown,
-   * below the built-in "Download as CSV" and "Download as PNG" items.
+   * below the built-in "Download as CSV", "Download as PNG", and "Download as JPG" items.
    * Pass DropdownMenuItem elements.
    */
   moreOptions?: React.ReactNode;
   /**
    * Custom column definitions for the table modal.
-   * Defaults to [{ header: 'Group', key: 'group' }, { header: 'Value', key: 'value' }].
+   * If omitted, columns are auto-derived from the dataset object keys.
    */
   tableColumns?: ChartDataTableColumn[];
   /**
@@ -664,10 +665,10 @@ const ChartTitle = styled.h2<{
       : props.theme.colors.neutral700} !important;
 `;
 
-const ToolbarActions = styled.div`
+const ToolbarActions = styled.div<{ theme: ThemeInterface }>`
   align-items: center;
   display: flex;
-  gap: 4px;
+  gap: ${props => props.theme.spaceScale.spacing02};
 
   > * button,
   > button {
@@ -679,25 +680,39 @@ const ToolbarActions = styled.div`
   }
 
   [role='tooltip'] {
-    padding: 4px 8px;
+    padding: ${props => props.theme.spaceScale.spacing03}
+      ${props => props.theme.spaceScale.spacing04};
+    text-align: center;
     white-space: nowrap;
+  }
+
+  [role='menu'] {
+    padding: ${props => props.theme.spaceScale.spacing03} 0;
   }
 
   [role='menuitem'],
   [data-testid='dropdownMenuItem'] {
-    padding: 8px 16px;
+    padding: ${props => props.theme.spaceScale.spacing03}
+      ${props => props.theme.spaceScale.spacing05};
   }
 `;
+
+function sanitizeCsvValue(value: string): string {
+  if (/^[=+\-@\t\r]/.test(value)) {
+    return `'${value}`;
+  }
+  return value;
+}
 
 function downloadCsv(dataSet: Array<Record<string, unknown>>, title: string) {
   if (!dataSet.length) return;
   const keys = Object.keys(dataSet[0]);
-  const header = keys.join(',');
+  const header = keys.map(k => sanitizeCsvValue(k)).join(',');
   const rows = dataSet.map(row =>
     keys
       .map(k => {
         const v = row[k];
-        const s = String(v ?? '');
+        const s = sanitizeCsvValue(String(v ?? ''));
         return s.includes(',') || s.includes('"') || s.includes('\n')
           ? `"${s.replace(/"/g, '""')}"`
           : s;
@@ -908,8 +923,10 @@ function CarbonChartToolbar({
   title,
   wrapperRef,
 }: InternalToolbarProps) {
+  const t = useChartToolbarI18n();
   const showTable = config.showAsTable !== false;
   const showFullscreen = config.fullscreen !== false;
+  const resolvedTitle = title || 'Chart';
 
   const handleDownloadCsv = React.useCallback(() => {
     downloadCsv(dataSet, title);
@@ -926,13 +943,13 @@ function CarbonChartToolbar({
   const moreOptionsContent = (
     <>
       <DropdownMenuItem onClick={handleDownloadCsv}>
-        Download as CSV
+        {t.downloadAsCsv}
       </DropdownMenuItem>
       <DropdownMenuItem onClick={handleDownloadPng}>
-        Download as PNG
+        {t.downloadAsPng}
       </DropdownMenuItem>
       <DropdownMenuItem onClick={handleDownloadJpg}>
-        Download as JPG
+        {t.downloadAsJpg}
       </DropdownMenuItem>
       {config.moreOptions && (
         <>
@@ -950,12 +967,12 @@ function CarbonChartToolbar({
       theme={theme}
     >
       <ChartTitle isInverse={isInverse} theme={theme}>
-        {title}
+        {resolvedTitle}
       </ChartTitle>
-      <ToolbarActions>
+      <ToolbarActions theme={theme}>
         {showTable && (
           <ChartTableButton
-            ariaLabel={title}
+            ariaLabel={resolvedTitle}
             icon={<TableChartIcon size={20} />}
             isInverse={isInverse}
             isTableOpen={isTableOpen}
@@ -964,7 +981,7 @@ function CarbonChartToolbar({
         )}
         {showFullscreen && (
           <ChartFullscreenButton
-            ariaLabel={`${isFullscreen ? 'Exit' : 'View'} ${title} full screen`}
+            ariaLabel={`${isFullscreen ? 'Exit' : 'View'} ${resolvedTitle} full screen`}
             icon={<FullscreenIcon size={20} />}
             exitIcon={<FullscreenExitIcon size={20} />}
             isInverse={isInverse}
@@ -1061,9 +1078,13 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     const toggleFullscreen = React.useCallback(() => {
       if (!document.fullscreenElement && internalRef.current) {
-        internalRef.current.requestFullscreen();
+        internalRef.current.requestFullscreen().catch(() => {
+          // Fullscreen request may be denied by the browser or user agent
+        });
       } else if (document.fullscreenElement) {
-        document.exitFullscreen();
+        document.exitFullscreen().catch(() => {
+          // Exit fullscreen may fail if already exited
+        });
       }
     }, []);
 
