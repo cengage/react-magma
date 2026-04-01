@@ -162,13 +162,13 @@ export const PopoverTrigger = React.forwardRef<
               : null
           }
         />
-        <VisuallyHidden>
-          {isMacOS && isSafari && (
+        {isMacOS && isSafari && (
+          <VisuallyHidden>
             <Announce>
               {context.isOpen ? 'Popover is expanded' : 'Popover is collapsed'}
             </Announce>
-          )}
-        </VisuallyHidden>
+          </VisuallyHidden>
+        )}
       </div>
     );
   }
@@ -225,13 +225,13 @@ export const PopoverTrigger = React.forwardRef<
           {styledChildren}
         </TriggerButtonContainer>
       )}
-      <VisuallyHidden>
-        {isMacOS && isSafari && (
+      {isMacOS && isSafari && (
+        <VisuallyHidden>
           <Announce>
             {context.isOpen ? 'Popover is expanded' : 'Popover is collapsed'}
           </Announce>
-        )}
-      </VisuallyHidden>
+        </VisuallyHidden>
+      )}
     </div>
   );
 });
