@@ -15,6 +15,7 @@ export type ItemRenderOptions<T> = {
   itemRef: React.Ref<HTMLLIElement>;
   itemString: string;
   theme: ThemeInterface;
+  isSelected?: boolean;
   [key: string]: any;
 };
 
@@ -49,6 +50,7 @@ export function DefaultItem<T>({
   itemString,
   isInverse,
   isDisabled,
+  isSelected,
   ...props
 }: ItemRenderOptions<T>) {
   return (
@@ -58,6 +60,7 @@ export function DefaultItem<T>({
       ref={itemRef}
       isDisabled={isDisabled}
       aria-disabled={isDisabled}
+      aria-selected={isSelected}
       data-highlighted={props.isFocused}
     >
       {itemString}

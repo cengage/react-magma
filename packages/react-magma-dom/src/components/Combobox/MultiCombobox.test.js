@@ -914,7 +914,7 @@ describe('MultiCombobox', () => {
 
     await userEvent.type(renderedCombobox, 'R');
 
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
   });
 
   it('should select the first item highlighted in items list', async () => {
@@ -1111,21 +1111,21 @@ describe('MultiCombobox', () => {
 
     await userEvent.click(renderedCombobox);
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
 
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'true');
 
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
 
     // Looping back to the first item
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
 
     // Looping back to the last item
     await userEvent.keyboard('{ArrowUp}');
-    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
   });
 
   it('should skip disabled items and navigate to the next active item', async () => {
@@ -1160,11 +1160,11 @@ describe('MultiCombobox', () => {
     });
 
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
 
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'false');
-    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'false');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
   });
 
   it('should skip disabled items when typing to filter', async () => {
