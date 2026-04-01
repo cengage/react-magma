@@ -5,6 +5,7 @@ import { IconProps, InfoIcon } from 'react-magma-icons';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Omit, useForkedRef, XOR } from '../../utils';
+import { Announce } from '../Announce';
 import {
   Button,
   ButtonProps,
@@ -15,6 +16,8 @@ import {
 } from '../Button';
 import { IconButton } from '../IconButton';
 import { PopoverContext } from './Popover';
+import useDeviceDetect from '../../hooks/useDeviceDetect';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 interface IconOnlyPopoverTriggerProps extends Omit<ButtonProps, 'children'> {
   /**
@@ -102,6 +105,8 @@ export const PopoverTrigger = React.forwardRef<
     }
   }
 
+  const { isMacOS, isSafari } = useDeviceDetect();
+
   const styledChildren =
     children && typeof children !== 'string'
       ? React.cloneElement(children as React.ReactElement, {
@@ -157,6 +162,13 @@ export const PopoverTrigger = React.forwardRef<
               : null
           }
         />
+        <VisuallyHidden>
+          {isMacOS && isSafari && (
+            <Announce>
+              {context.isOpen ? 'Popover is expanded' : 'Popover is collapsed'}
+            </Announce>
+          )}
+        </VisuallyHidden>
       </div>
     );
   }
@@ -213,6 +225,13 @@ export const PopoverTrigger = React.forwardRef<
           {styledChildren}
         </TriggerButtonContainer>
       )}
+      <VisuallyHidden>
+        {isMacOS && isSafari && (
+          <Announce>
+            {context.isOpen ? 'Popover is expanded' : 'Popover is collapsed'}
+          </Announce>
+        )}
+      </VisuallyHidden>
     </div>
   );
 });
