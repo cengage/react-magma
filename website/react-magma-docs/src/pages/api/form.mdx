@@ -67,20 +67,20 @@ export function Example() {
 
     setErrors(errors);
 
-    if (errors.firstName) {
-      firstNameRef.current?.focus();
+    if (errors.firstName && firstNameRef.current) {
+      firstNameRef.current.focus();
 
       return;
     }
 
-    if (errors.lastName) {
-      lastNameRef.current?.focus();
+    if (errors.lastName && lastNameRef.current) {
+      lastNameRef.current.focus();
 
       return;
     }
 
-    if (errors.email) {
-      emailRef.current?.focus();
+    if (errors.email && emailRef.current) {
+      emailRef.current.focus();
     }
   };
 
