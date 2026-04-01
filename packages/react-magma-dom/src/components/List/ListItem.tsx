@@ -88,6 +88,7 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
     return (
       <InverseContext.Provider value={{ isInverse }}>
         <StyledListItem
+          {...rest}
           as={description ? 'p' : 'li'}
           description={description as any}
           icon={icon}
@@ -96,7 +97,6 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
           ref={ref}
           theme={theme}
           testId={testId}
-          {...rest}
         >
           {icon && (
             <StyledIcon
