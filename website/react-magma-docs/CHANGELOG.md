@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.2-next.5
+
+### Patch Changes
+
+- f5fa98354: fix(Checkbox): Update doc examples.
+
 ## 5.3.2-next.4
 
 ### Patch Changes

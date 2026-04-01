@@ -12,6 +12,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "fix-Checkbox-doc-issues",
     "fix-Combobox-docs-issues",
     "fix-Form-docs-issues",
     "fix-IconButton-Modal-Form-doc-examples",
