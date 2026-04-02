@@ -1,5 +1,12 @@
 ## 4.10.0
 
+## 5.1.0-rc.78
+
+### Patch Changes
+
+- e7062bc: fix(Datagrid): Add announce initial sort order.
+- d7872d7: fix(Definition List): Update doc examples.
+
 ## 5.1.0-rc.77
 
 ### Patch Changes
