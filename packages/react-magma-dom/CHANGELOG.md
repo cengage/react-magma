@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.76
+
+### Patch Changes
+
+- 2eae51f: fix(Popover): Fix accessibility issue with announcement for MacOS + Safari.
+
 ## 5.1.0-rc.75
 
 ### Patch Changes

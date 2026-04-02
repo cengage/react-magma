@@ -102,6 +102,7 @@
     "fix-Pagination-aria-label",
     "fix-Popover-accessibility-issue-v2",
     "fix-Popover-accessibility-issue",
+    "fix-Popover-announcement",
     "fix-RadioButton-label-is-not-annouced-with-helper-message",
     "fix-Search-and-Form-issues",
     "fix-Select-clear-functionality",
