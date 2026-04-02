@@ -52,7 +52,7 @@ const NoItemsMessage = styled.span<{
   text-align: center;
 `;
 
-const LoadingWrapper = styled.span<{}>`
+const LoadingWrapper = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -184,6 +184,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
                 itemString,
                 key,
                 theme,
+                isSelected,
                 isDisabled: isDisabled,
                 ...otherDownshiftItemProps,
                 onMouseMove: () => {},

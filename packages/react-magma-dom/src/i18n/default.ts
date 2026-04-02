@@ -319,7 +319,6 @@ export const defaultI18n: I18nInterface = {
       nextAriaLabel: 'Next page',
       previousAriaLabel: 'Previous page',
       rowsPerPageLabel: 'Rows per page',
-      currentPageLabel: 'Page {number}, current page',
     },
     selectable: {
       sortButtonAriaLabel: 'Sort rows by {labelText}',
