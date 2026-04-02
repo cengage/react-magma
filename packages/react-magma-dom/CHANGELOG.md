@@ -1,5 +1,11 @@
 ## 4.12.0
 
+## 4.12.1-next.6
+
+### Patch Changes
+
+- 69da96842: fix(Combobox, Select, Datagrid): fix accessibility issues.
+
 ## 4.12.1-next.5
 
 ### Patch Changes

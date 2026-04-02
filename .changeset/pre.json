@@ -13,6 +13,7 @@
   },
   "changesets": [
     "fix-Checkbox-doc-issues",
+    "fix-Combobox-Select-Datagrid-accessibility-issues",
     "fix-Combobox-docs-issues",
     "fix-Datagrid-accessibility-issue",
     "fix-Form-docs-issues",
