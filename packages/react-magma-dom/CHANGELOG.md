@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.77
+
+### Patch Changes
+
+- f86720d: fix(Combobox, Select, Datagrid): fix accessibility issues.
+
 ## 5.1.0-rc.76
 
 ### Patch Changes

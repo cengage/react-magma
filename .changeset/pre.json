@@ -62,6 +62,7 @@
     "fix-CharacterCounter-error-message",
     "fix-Checkbox-doc-issues",
     "fix-Checkbox-remove-aria-checked",
+    "fix-Combobox-Select-Datagrid-accessibility-issues",
     "fix-Combobox-accessibility",
     "fix-Combobox-docs-issues",
     "fix-Combobox-fix-leak",
