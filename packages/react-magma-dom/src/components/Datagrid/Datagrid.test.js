@@ -689,7 +689,7 @@ describe('Datagrid', () => {
       ).toBeInTheDocument();
       expect(
         getByText(
-          `1-${pagination.rowsPerPage.toString()} of ${pagination.itemCount}`
+          `Page ${pagination.page}: 1-${pagination.rowsPerPage.toString()} of ${pagination.itemCount}`
         )
       ).toBeInTheDocument();
       expect(getByTestId('previousBtn')).toBeInTheDocument();

@@ -689,7 +689,7 @@ describe('Combobox', () => {
 
     fireEvent.change(renderedCombobox, { target: { value: 'R' } });
 
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
   });
 
   it('should select the first item highlighted in items list on enter', () => {
@@ -804,7 +804,7 @@ describe('Combobox', () => {
     expect(getByTestId('customClearIndicator')).toBeInTheDocument();
   });
 
-  it('should loop to the first item and last item when down arrow and up arrow is pressed', async () => {
+  it('should loop to the first item and last item when down arrow and up arrow is pressed', () => {
     const { getByLabelText, getByText } = render(
       <Combobox labelText={labelText} items={items} />
     );
@@ -813,23 +813,23 @@ describe('Combobox', () => {
       selector: 'input',
     });
 
-    await userEvent.click(renderedCombobox);
-    await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    userEvent.click(renderedCombobox);
+    userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
 
-    await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'true');
+    userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'true');
 
-    await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+    userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
 
     // Looping back to the first item
-    await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
 
     // Looping back to the last item
-    await userEvent.keyboard('{ArrowUp}');
-    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+    userEvent.keyboard('{ArrowUp}');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
   });
 
   it('should skip disabled items and navigate to the next active item', async () => {
@@ -860,14 +860,14 @@ describe('Combobox', () => {
       renderedCombobox.focus();
     });
 
-    await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
 
-    await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'false');
-    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+    userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'false');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
 
-    await userEvent.keyboard('{Enter}');
+    userEvent.keyboard('{Enter}');
     expect(renderedCombobox.value).toEqual(customItems[2].label);
 
     act(() => {
@@ -927,7 +927,7 @@ describe('Combobox', () => {
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
     await userEvent.type(renderedCombobox, 'Blue');
 
-    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'false');
+    expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'false');
     expect(getByText('Blue')).not.toHaveFocus();
   });
 
@@ -1205,16 +1205,37 @@ describe('Combobox', () => {
       userEvent.click(renderedCombobox);
       userEvent.keyboard('{ArrowDown}');
 
-      await waitFor(() => {
-        expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
-      });
+      expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
 
       userEvent.keyboard('{ArrowDown}');
 
-      await waitFor(() => {
-        expect(getByText('Red')).toHaveAttribute('data-highlighted', 'false');
-        expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'true');
+      expect(getByText('Red')).toHaveAttribute('data-highlighted', 'false');
+      expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'true');
+    });
+
+    it('selected item should have aria-selected attribute set to true', () => {
+      const { getByLabelText, getByText } = render(
+        <Combobox labelText={labelText} items={items} />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, {
+        selector: 'input',
       });
+
+      userEvent.click(renderedCombobox);
+      userEvent.keyboard('{ArrowDown}');
+      userEvent.keyboard('{Enter}');
+      userEvent.click(renderedCombobox);
+      userEvent.keyboard('{ArrowDown}');
+
+      expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+
+      userEvent.keyboard('{Enter}');
+      userEvent.click(renderedCombobox);
+      userEvent.keyboard('{ArrowDown}');
+
+      expect(getByText('Red')).toHaveAttribute('aria-selected', 'false');
+      expect(getByText('Blue')).toHaveAttribute('aria-selected', 'true');
     });
   });
 });
