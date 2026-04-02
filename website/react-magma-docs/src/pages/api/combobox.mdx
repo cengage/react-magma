@@ -1342,9 +1342,19 @@ export function Example() {
       onInputValueChange={handleInputValueChange}
       components={{
         ClearIndicator: props => (
-          <button onClick={props.onClick as any}>Clear</button>
+          <button onClick={props.onClick} aria-label="Clear selection">
+            Clear
+          </button>
         ),
-        DropdownIndicator: () => <span>▼</span>,
+        DropdownIndicator: React.forwardRef((props, ref) => (
+          <button
+            ref={ref}
+            onClick={props.onClick}
+            aria-label="Expand dropdown"
+          >
+            Dropdown
+          </button>
+        )),
         LoadingIndicator: props => <>Loading</>,
       }}
     />
@@ -1378,6 +1388,9 @@ export function Example() {
             'click to reset selection for {labelText}. {selectedItem} is currently selected',
           createLabel: 'Custom Create "{inputValue}"',
           multi: {
+            clearAnnounce:
+              '{labelText} has been cleared. Items {selectedItems} were removed',
+            removeItemAnnounce: '{selectedItem} was removed',
             clearIndicatorAriaLabel: 'clear all',
           },
           loading: 'Loading items',

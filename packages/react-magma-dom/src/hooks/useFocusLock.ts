@@ -24,8 +24,7 @@ export function useFocusLock(
         element instanceof HTMLElement &&
         style.display !== 'none' &&
         style.visibility !== 'hidden' &&
-        !element.hasAttribute('disabled') &&
-        element.tabIndex !== -1
+        !element.hasAttribute('disabled')
       );
     });
   };
@@ -70,18 +69,7 @@ export function useFocusLock(
       } = focusableItems.current;
 
       if (active && key === 'Tab') {
-        // Only handle Tab if focus is inside this focus lock's root.
-        // This prevents nested modals from interfering with each other.
-        const activeEl = document.activeElement as HTMLElement;
-        if (
-          rootNode.current &&
-          !rootNode.current.contains(activeEl) &&
-          activeEl !== header?.current
-        ) {
-          return;
-        }
-
-        // If no focusable items, prevent tabbing entirely
+        // If no focusable items are
         if (length === 0) {
           event.preventDefault();
           return;
@@ -90,40 +78,29 @@ export function useFocusLock(
         // If only one item then prevent tabbing when locked
         if (length === 1) {
           event.preventDefault();
-          if (firstItem !== activeEl) {
+          if (firstItem !== document.activeElement) {
             firstItem.focus();
           }
+
           return;
         }
 
-        // Explicitly manage all Tab navigation so focus never escapes
-        // the trap (Safari does not respect aria-modal for containment)
-        event.preventDefault();
-
-        const currentIndex = focusableItems.current.indexOf(activeEl);
-
-        if (currentIndex === -1) {
-          // Focus is on an untracked element (e.g. the header)
-          if (shiftKey) {
-            lastItem.focus();
-          } else {
-            firstItem.focus();
-          }
+        // If focused on last item then focus on first item when tab is pressed
+        if (!shiftKey && document.activeElement === lastItem) {
+          event.preventDefault();
+          firstItem.focus();
           return;
         }
 
-        if (shiftKey) {
-          if (currentIndex === 0) {
-            lastItem.focus();
-          } else {
-            focusableItems.current[currentIndex - 1].focus();
-          }
-        } else {
-          if (currentIndex === length - 1) {
-            firstItem.focus();
-          } else {
-            focusableItems.current[currentIndex + 1].focus();
-          }
+        // If focused on first item then focus on last item when shift + tab is pressed
+        if (
+          shiftKey &&
+          (document.activeElement === firstItem ||
+            document.activeElement === header?.current)
+        ) {
+          event.preventDefault();
+          lastItem.focus();
+          return;
         }
       }
     };

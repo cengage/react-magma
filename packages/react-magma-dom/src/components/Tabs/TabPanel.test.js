@@ -67,7 +67,7 @@ it('should render with inverse styles', () => {
 });
 
 describe('Test for accessibility', () => {
-  it('Does not violate accessibility standards', () => {
+  it('Does not violate accessibility standards', async () => {
     const testId = 'test-id';
 
     const { container } = render(
@@ -78,7 +78,7 @@ describe('Test for accessibility', () => {
       </TabsContainerContext.Provider>
     );
 
-    return axe(container.innerHTML).then(result => {
+    return await axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
   });
@@ -86,7 +86,7 @@ describe('Test for accessibility', () => {
   it('should have all necessary accessibility attributes', () => {
     const testId = 'test-id';
 
-    const { getAllByTestId } = render(
+    const { getAllByRole } = render(
       <TabsContainerContext.Provider value={{ activeTabIndex: 0 }}>
         <TabPanelsContainer>
           <TabPanel testId={testId}>Tab Panel Text</TabPanel>
@@ -94,11 +94,9 @@ describe('Test for accessibility', () => {
       </TabsContainerContext.Provider>
     );
 
-    expect(getAllByTestId(testId)[0]).toHaveAttribute('role', 'tabpanel');
-    expect(getAllByTestId(testId)[0]).toHaveAttribute(
-      'aria-labelledby',
-      'tab-0'
-    );
-    expect(getAllByTestId(testId)[0]).toHaveAttribute('id', 'tabpanel-0');
+    const tabPanel = getAllByRole('tabpanel')[0];
+    expect(tabPanel).toHaveAttribute('role', 'tabpanel');
+    expect(tabPanel).toHaveAttribute('aria-labelledby', 'tab-undefined-0');
+    expect(tabPanel).toHaveAttribute('id', 'tabpanel-undefined-0');
   });
 });

@@ -1,5 +1,48 @@
 ## 4.12.0
 
+## 4.12.1-next.6
+
+### Patch Changes
+
+- 69da96842: fix(Combobox, Select, Datagrid): fix accessibility issues.
+
+## 4.12.1-next.5
+
+### Patch Changes
+
+- 12c86ad69: chore: Fix focuslock issue for DatePicker component.
+
+## 4.12.1-next.4
+
+### Patch Changes
+
+- d27221ff5: fix(Datagrid): Add announce initial sort order.
+
+## 4.12.1-next.3
+
+### Patch Changes
+
+- af0dfbf37: fix(Popover): Fix accessibility issue with announcement for MacOS + Safari.
+
+## 4.12.1-next.2
+
+### Patch Changes
+
+- ea5b7cbbe: fix(Tabs): Fix broken Tabs page in docs and refactor code for component.
+
+## 4.12.1-next.1
+
+### Patch Changes
+
+- efaa44f8d: fix(MultiCombobox & MultiSelect): Fix issue with clearable `MultiCombobox` and `MultiSelect`
+
+## 4.12.1-next.0
+
+### Patch Changes
+
+- 2712b8907: fix(Popover): Fix second accessibility issue.
+- 2712b8907: fix(Popover): Fix accessibility issue.
+
 ### Minor Changes
 
 - e23b1a2f9: feat(EmptyState): New `EmptyState` component.

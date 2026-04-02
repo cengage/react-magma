@@ -346,19 +346,21 @@ export function Example() {
   ];
 
   const Row = styled.div`
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 16px;
-  `;
+    display: grid;
+    grid-template-columns: 10vw auto;
+    align-items: center;
+    margin-bottom: 20px;
 
-  const TermStyled = styled.div`
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-  `;
+    dt {
+      grid-column: 1;
+    }
 
-  const DescriptionStyled = styled.div`
-    text-align: right;
+    dd {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: center;
+      text-align: left;
+    }
   `;
 
   return (
@@ -383,28 +385,24 @@ export function Example() {
 
       <Card style={{ marginBottom: '32px' }}>
         <CardBody>
+          <Paragraph noTopMargin>Custom Styles</Paragraph>
           <DefinitionList>
-            <Paragraph noTopMargin>Custom Styles</Paragraph>
             {dataWithMultipleTerms.map((item, index) => (
               <Row key={index}>
-                <TermStyled>
-                  {item.term.map((term, i) => (
-                    <DefinitionListItem
-                      key={`term-${index}-${i}`}
-                      type={DefinitionListType.term}
-                    >
-                      {term}
-                    </DefinitionListItem>
-                  ))}
-                </TermStyled>
-                <DescriptionStyled>
+                {item.term.map((term, i) => (
                   <DefinitionListItem
-                    key={`desc-${index}`}
-                    type={DefinitionListType.description}
+                    key={`term-${index}-${i}`}
+                    type={DefinitionListType.term}
                   >
-                    {item.description}
+                    {term}
                   </DefinitionListItem>
-                </DescriptionStyled>
+                ))}
+                <DefinitionListItem
+                  key={`desc-${index}`}
+                  type={DefinitionListType.description}
+                >
+                  {item.description}
+                </DefinitionListItem>
               </Row>
             ))}
           </DefinitionList>

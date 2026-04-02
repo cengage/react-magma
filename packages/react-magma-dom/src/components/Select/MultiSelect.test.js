@@ -278,6 +278,56 @@ describe('MultiSelect', () => {
     ).not.toBeInTheDocument();
   });
 
+  it('should announce the removal of a selected item', () => {
+    const { getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+        isClearable
+      />
+    );
+
+    userEvent.click(getByText('Red', { selector: 'button' }));
+
+    expect(getByText('Red has been removed')).toBeInTheDocument();
+  });
+
+  it('should announce clearing multiple selected items', () => {
+    const { getByLabelText, getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red', 'Blue']}
+        isClearable
+      />
+    );
+
+    userEvent.click(getByLabelText(/reset selection/i));
+
+    expect(
+      getByText('Label has been cleared. Red, Blue were removed')
+    ).toBeInTheDocument();
+  });
+
+  it('should announce clearing single selected item', () => {
+    const { getByLabelText, getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+        isClearable
+      />
+    );
+
+    userEvent.click(getByLabelText(/reset selection/i));
+
+    expect(getByText('Label has been cleared')).toBeInTheDocument();
+  });
+
   it('should allow for the removal of selected items with the keyboard', () => {
     const selectedItems = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText, queryByText } = render(
@@ -623,21 +673,21 @@ describe('MultiSelect', () => {
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
     await userEvent.click(renderedSelect);
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
 
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'true');
 
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
 
     // Looping back to the first item
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
 
     // Looping back to the last item
     await userEvent.keyboard('{ArrowUp}');
-    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
   });
 
   it('should skip disabled items and navigate to the next active item', async () => {
@@ -669,11 +719,11 @@ describe('MultiSelect', () => {
       renderedSelect.focus();
     });
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
 
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'false');
-    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'false');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
   });
 
   it('should have aria-label with selected items', async () => {

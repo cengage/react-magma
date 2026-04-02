@@ -101,6 +101,8 @@ export interface I18nInterface {
     clearAnnounce: string;
     multi: {
       clearIndicatorAriaLabel: string;
+      clearAnnounce: string;
+      removeItemAnnounce: string;
       ariaLabelWithSelectedItems: string;
       ariaLabelWithoutSelectedItems: string;
     };
@@ -266,6 +268,8 @@ export interface I18nInterface {
     collapsedAnnounce: string;
     multi: {
       clearIndicatorAriaLabel: string;
+      clearAnnounce: string;
+      removeItemAnnounce: string;
       ariaLabelWithSelectedItems: string;
       ariaLabelWithoutSelectedItems: string;
     };
@@ -295,11 +299,11 @@ export interface I18nInterface {
       nextAriaLabel: string;
       previousAriaLabel: string;
       rowsPerPageLabel: string;
-      currentPageLabel: string;
     };
     selectable: {
       sortButtonAriaLabel: string;
       sortButtonAriaLabelBySelected: string;
+      sortDirectionNone: string;
       selectAllRowsAriaLabel: string;
       selectRowAriaLabel: string;
       deselectAllRowsAriaLabel: string;

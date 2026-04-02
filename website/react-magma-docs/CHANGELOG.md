@@ -1,5 +1,53 @@
 # Change Log
 
+## 5.3.2-next.6
+
+### Patch Changes
+
+- 914282f2a: fix(Definition List): Update doc examples.
+
+## 5.3.2-next.5
+
+### Patch Changes
+
+- f5fa98354: fix(Checkbox): Update doc examples.
+
+## 5.3.2-next.4
+
+### Patch Changes
+
+- Updated dependencies [2712b8907]
+- Updated dependencies [2712b8907]
+  - react-magma-dom@4.12.1-next.0
+  - @react-magma/charts@13.0.3-next.0
+  - @react-magma/dropzone@12.0.3-next.0
+  - @react-magma/schema-renderer@14.0.1-next.0
+  - @cengage-patterns/header@15.0.1-next.0
+
+## 5.3.2-next.3
+
+### Patch Changes
+
+- 3699ab645: fix(IconButton & Modal & Form & Accordion & Nav Tabs): Fix doc examples to enhance accessibility.
+
+## 5.3.2-next.2
+
+### Patch Changes
+
+- 40a9c8bd6: fix(Docs): Fix docs issues on the `Combobox` page.
+
+## 5.3.2-next.1
+
+### Patch Changes
+
+- 80b7a7b44: fix(Docs): Fix docs issues on the `Form` page.
+
+## 5.3.2-next.0
+
+### Patch Changes
+
+- 13a0edfe6: Chore: Sync main to dev after v4 release
+
 ## 5.3.1
 
 ### Patch Changes

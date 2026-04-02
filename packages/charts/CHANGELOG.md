@@ -1,5 +1,13 @@
 # @react-magma/charts
 
+## 13.0.3-next.0
+
+### Patch Changes
+
+- Updated dependencies [2712b8907]
+- Updated dependencies [2712b8907]
+  - react-magma-dom@4.12.1-next.0
+
 ## 13.0.2
 
 ### Patch Changes
