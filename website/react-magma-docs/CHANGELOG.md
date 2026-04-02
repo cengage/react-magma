@@ -1,5 +1,28 @@
 # Change Log
 
+## 5.3.2
+
+### Patch Changes
+
+- 36452c03a: fix(Checkbox, ListItem): Wrap checkbox doc examples in List/ListItem for semantic HTML. Forward rest props on ListItem component.
+- 36452c03a: fix(Combobox): Add aria-labels and proper button semantics to custom indicator doc examples.
+- 36452c03a: fix(DefinitionList): Fix semantic structure in custom-styled doc example. Replace flexbox wrappers with CSS grid.
+- 36452c03a: fix(Form): Add screen reader announcements for form reset and improve error summary in doc examples.
+- 36452c03a: fix(IconButton, Modal, Form, Accordion, NavTabs): Improve accessibility in doc examples. Add `role="tablist"`, `role="tab"`, and `role="presentation"` to NavTabs source.
+- Updated dependencies [36452c03a]
+- Updated dependencies [36452c03a]
+- Updated dependencies [36452c03a]
+- Updated dependencies [36452c03a]
+- Updated dependencies [36452c03a]
+- Updated dependencies [36452c03a]
+- Updated dependencies [36452c03a]
+- Updated dependencies [36452c03a]
+  - react-magma-dom@4.12.1
+  - @react-magma/charts@13.0.3
+  - @react-magma/dropzone@12.0.3
+  - @react-magma/schema-renderer@14.0.1
+  - @cengage-patterns/header@15.0.1
+
 ## 5.3.2-next.6
 
 ### Patch Changes
