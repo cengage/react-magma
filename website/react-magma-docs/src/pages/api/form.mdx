@@ -25,9 +25,16 @@ import {
   Form,
   Input,
   Spacer,
+  Announce,
+  VisuallyHidden,
 } from 'react-magma-dom';
 
 export function Example() {
+  const [announcement, setAnnouncement] = React.useState('');
+  const firstNameRef = React.useRef<any>();
+  const lastNameRef = React.useRef<any>();
+  const emailRef = React.useRef<any>();
+
   const [state, setState] = React.useState({
     firstName: '',
     lastName: '',
@@ -52,16 +59,28 @@ export function Example() {
     event.preventDefault();
     resetErrors();
 
-    if (!state.firstName) {
-      setErrors(prevErrors => ({ ...prevErrors, firstName: true }));
+    const errors = {
+      firstName: !state.firstName,
+      lastName: !state.lastName,
+      email: !state.email,
+    };
+
+    setErrors(errors);
+
+    if (errors.firstName && firstNameRef.current) {
+      firstNameRef.current.focus();
+
+      return;
     }
 
-    if (!state.lastName) {
-      setErrors(prevErrors => ({ ...prevErrors, lastName: true }));
+    if (errors.lastName && lastNameRef.current) {
+      lastNameRef.current.focus();
+
+      return;
     }
 
-    if (!state.email) {
-      setErrors(prevErrors => ({ ...prevErrors, email: true }));
+    if (errors.email && emailRef.current) {
+      emailRef.current.focus();
     }
   };
 
@@ -76,34 +95,28 @@ export function Example() {
       lastName: false,
       email: false,
     });
+
+    setAnnouncement('');
+
+    setTimeout(() => {
+      setAnnouncement(
+        'Changes discarded. Form inputs have been reset to default.'
+      );
+    }, 10);
   };
 
   const errorMessage = React.useMemo(() => {
-    let message = '';
+    const errorCount = Object.values(errors).filter(Boolean).length;
 
-    if (Object.values(errors).some(error => error)) {
-      message += 'Please fix the following errors:\n';
+    if (!errorCount) {
+      return '';
     }
 
-    for (const error in errors) {
-      if (errors[error]) {
-        switch (error) {
-          case 'firstName':
-            message += '· First Name is required\n';
-            break;
-          case 'lastName':
-            message += '· Last Name is required\n';
-            break;
-          case 'email':
-            message += '· Email is required\n';
-            break;
-          default:
-            return;
-        }
-      }
+    if (errorCount === 1) {
+      return 'There is 1 error in the form. Please review the field below.';
     }
 
-    return message;
+    return `There are ${errorCount} errors in the form. Please review the fields below.`;
   }, [errors]);
 
   return (
@@ -133,6 +146,7 @@ export function Example() {
           }
           errorMessage={errors.firstName && 'First Name is required'}
           autoComplete="given-name"
+          ref={firstNameRef}
         />
         <Spacer size="12" />
         <Input
@@ -146,6 +160,7 @@ export function Example() {
           }
           errorMessage={errors.lastName && 'Last Name is required'}
           autoComplete="family-name"
+          ref={lastNameRef}
         />
         <Spacer size="12" />
         <Input
@@ -159,8 +174,12 @@ export function Example() {
           }
           errorMessage={errors.email && 'Email is required'}
           autoComplete="email"
+          ref={emailRef}
         />
         <Spacer size="24" />
+        <Announce>
+          <VisuallyHidden>{announcement}</VisuallyHidden>
+        </Announce>
       </>
     </Form>
   );

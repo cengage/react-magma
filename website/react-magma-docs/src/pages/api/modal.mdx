@@ -20,8 +20,11 @@ properly manages focus; moving to the modal content, and keeping it there until 
 The modal will _only_ render if the `isOpen` prop is set to true. For that reason, it is redundant to show the modal using the following anti-pattern: `{flag && <Modal isOpen={flag} />`. Instead,
 simply use `<Modal isOpen={flag} />`
 
-Although not required, it is helpful to inform users (especially screen reader users) when a button or link will trigger a modal dialog.
-This can be done by supplementing the button label or link text with "(opens modal dialog)" using the <Link to="/api/visually-hidden/">VisuallyHidden</Link> component.
+<Alert variant="warning">
+  The modal trigger button must have the{' '}
+  <inlineCode>aria-haspopup="dialog"</inlineCode> attribute for accessibility
+  purposes.
+</Alert>
 
 <Alert variant="warning">
   The modal trigger button must have the{' '}
@@ -32,13 +35,7 @@ This can be done by supplementing the button label or link text with "(opens mod
 ```tsx
 import React from 'react';
 
-import {
-  Button,
-  Hyperlink,
-  Modal,
-  Paragraph,
-  VisuallyHidden,
-} from 'react-magma-dom';
+import { Button, Hyperlink, Modal, Paragraph } from 'react-magma-dom';
 
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
@@ -70,7 +67,6 @@ export function Example() {
         ref={buttonRef}
       >
         Modal
-        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
       </Button>
     </>
   );
@@ -90,7 +86,6 @@ import {
   Modal,
   ModalSize,
   Paragraph,
-  VisuallyHidden,
   ButtonGroup,
 } from 'react-magma-dom';
 
@@ -138,7 +133,6 @@ export function Example() {
           ref={smallButtonRef}
         >
           Small Modal
-          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>
         <Button
           aria-haspopup="dialog"
@@ -147,7 +141,6 @@ export function Example() {
           ref={largeButtonRef}
         >
           Large Modal
-          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>
       </ButtonGroup>
     </>
@@ -183,7 +176,6 @@ import {
   magma,
   ModalSize,
   Paragraph,
-  VisuallyHidden,
   ButtonGroup,
   ButtonGroupAlignment,
 } from 'react-magma-dom';
@@ -316,7 +308,6 @@ export function Example() {
           ref={buttonRef}
         >
           Modal with no header
-          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>
         <Button
           aria-haspopup="dialog"
@@ -324,7 +315,6 @@ export function Example() {
           ref={headerButtonRef}
         >
           Modal with header
-          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>
         <Button
           aria-haspopup="dialog"
@@ -388,7 +378,7 @@ If you would like to add a custom close button to the `Modal` be sure not to use
 ```tsx
 import React from 'react';
 
-import { Button, Modal, Paragraph, VisuallyHidden } from 'react-magma-dom';
+import { Button, Modal, Paragraph } from 'react-magma-dom';
 
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
@@ -426,7 +416,7 @@ export function Example() {
         onClick={() => setShowModal(true)}
         ref={buttonRef}
       >
-        Modal <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        Modal
       </Button>
     </>
   );
@@ -440,13 +430,7 @@ Although we don't recommend using nested modals, the ability for one nested moda
 ```tsx
 import React from 'react';
 
-import {
-  Button,
-  Modal,
-  ModalSize,
-  Paragraph,
-  VisuallyHidden,
-} from 'react-magma-dom';
+import { Button, Modal, ModalSize, Paragraph } from 'react-magma-dom';
 
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
@@ -487,7 +471,6 @@ export function Example() {
         ref={buttonRef}
       >
         Modal
-        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
       </Button>
       <Modal
         size={ModalSize.small}
@@ -609,7 +592,6 @@ import {
   Hyperlink,
   Modal,
   Paragraph,
-  VisuallyHidden,
   Card,
   CardBody,
 } from 'react-magma-dom';
@@ -659,7 +641,6 @@ export function Example() {
             isInverse
           >
             Inverse Modal
-            <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
           </Button>
         </CardBody>
       </Card>

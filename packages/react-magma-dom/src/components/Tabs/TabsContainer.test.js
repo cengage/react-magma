@@ -11,15 +11,6 @@ import { magma } from '../../theme/magma';
 
 import { Tabs } from '.';
 
-beforeEach(() => {
-  jest.useFakeTimers();
-});
-
-afterEach(() => {
-  jest.clearAllTimers();
-  jest.useRealTimers();
-});
-
 describe('Tabs Container', () => {
   it('should correctly apply the testId', () => {
     const testId = 'test-id';
@@ -91,7 +82,7 @@ it('should render with inverse styles', () => {
 });
 
 describe('Test for accessibility', () => {
-  it('Does not violate accessibility standards', async () => {
+  it('Does not violate accessibility standards', () => {
     const { container } = render(
       <TabsContainer activeIndex={0}>
         <Tabs>
@@ -107,11 +98,6 @@ describe('Test for accessibility', () => {
         </TabPanelsContainer>
       </TabsContainer>
     );
-
-    act(() => {
-      jest.runAllTimers();
-    });
-    jest.useRealTimers();
 
     return axe(container.innerHTML, {
       rules: { listitem: { enabled: false } },

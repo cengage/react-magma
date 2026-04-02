@@ -101,6 +101,9 @@ export const defaultI18n: I18nInterface = {
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',
+      clearAnnounce:
+        '{labelText} has been cleared. {selectedItems} were removed',
+      removeItemAnnounce: '{selectedItem} has been removed',
       ariaLabelWithSelectedItems:
         '{labelText} Multi-select Selected: {selectedItems}',
       ariaLabelWithoutSelectedItems: '{labelText} Multi-select',
@@ -283,6 +286,9 @@ export const defaultI18n: I18nInterface = {
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',
+      clearAnnounce:
+        '{labelText} has been cleared. {selectedItems} were removed',
+      removeItemAnnounce: '{selectedItem} has been removed',
       ariaLabelWithSelectedItems:
         '{labelText} Multi-select Selected: {selectedItems}',
       ariaLabelWithoutSelectedItems: '{labelText} Multi-select',
@@ -313,11 +319,11 @@ export const defaultI18n: I18nInterface = {
       nextAriaLabel: 'Next page',
       previousAriaLabel: 'Previous page',
       rowsPerPageLabel: 'Rows per page',
-      currentPageLabel: 'Page {number}, current page',
     },
     selectable: {
       sortButtonAriaLabel: 'Sort rows by {labelText}',
       sortButtonAriaLabelBySelected: 'Sort rows by selected',
+      sortDirectionNone: 'not sorted',
       selectAllRowsAriaLabel: 'Select all rows',
       selectRowAriaLabel: 'Select row',
       deselectAllRowsAriaLabel: 'Deselect all rows',

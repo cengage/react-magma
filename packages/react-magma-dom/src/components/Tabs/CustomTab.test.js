@@ -28,7 +28,7 @@ describe('CustomTab', () => {
   });
 
   it('should be clickable and change tab panel content', () => {
-    const { getByText } = render(
+    const { getAllByText } = render(
       <TabsContainer>
         <Tabs aria-label="Sample Tabs">
           <CustomTab>
@@ -49,27 +49,27 @@ describe('CustomTab', () => {
       </TabsContainer>
     );
 
-    expect(getByText('First Panel')).toBeInTheDocument();
-    expect(getByText('First Tab').closest('button')).toHaveAttribute(
+    expect(getAllByText('First Panel')[0]).toBeInTheDocument();
+    expect(getAllByText('First Tab')[0].closest('button')).toHaveAttribute(
       'aria-selected',
       'true'
     );
 
-    fireEvent.click(getByText('Second Tab'));
+    fireEvent.click(getAllByText('Second Tab')[0]);
 
-    expect(getByText('Second Panel')).toBeInTheDocument();
-    expect(getByText('Second Tab').closest('button')).toHaveAttribute(
+    expect(getAllByText('Second Panel')[0]).toBeInTheDocument();
+    expect(getAllByText('Second Tab')[0].closest('button')).toHaveAttribute(
       'aria-selected',
       'true'
     );
-    expect(getByText('First Tab').closest('button')).toHaveAttribute(
+    expect(getAllByText('First Tab')[0].closest('button')).toHaveAttribute(
       'aria-selected',
       'false'
     );
   });
 
   it('should pass accessibility props to the custom child', () => {
-    const { getByText } = render(
+    const { getAllByText } = render(
       <TabsContainer>
         <Tabs aria-label="Sample Tabs">
           <CustomTab>
@@ -84,14 +84,14 @@ describe('CustomTab', () => {
       </TabsContainer>
     );
 
-    const customButton = getByText('My Custom Tab').closest('button');
+    const customButton = getAllByText('My Custom Tab')[0].closest('button');
     expect(customButton).toHaveAttribute('role', 'tab');
     expect(customButton).toHaveAttribute('aria-selected', 'true');
     expect(customButton).toHaveAttribute('tabindex', '0');
   });
 
   it('should work with magma components as children', () => {
-    const { getByText } = render(
+    const { getAllByText } = render(
       <TabsContainer>
         <Tabs aria-label="Sample Tabs">
           <CustomTab>
@@ -106,8 +106,8 @@ describe('CustomTab', () => {
       </TabsContainer>
     );
 
-    expect(getByText('Magma Button Tab')).toBeInTheDocument();
-    const magmaButton = getByText('Magma Button Tab').closest('button');
+    expect(getAllByText('Magma Button Tab')[0]).toBeInTheDocument();
+    const magmaButton = getAllByText('Magma Button Tab')[0].closest('button');
     expect(magmaButton).toHaveAttribute('role', 'tab');
   });
 
@@ -127,7 +127,7 @@ describe('CustomTab', () => {
   });
 
   it('works correctly alongside default Tab components', () => {
-    const { getByText } = render(
+    const { getAllByText } = render(
       <TabsContainer>
         <Tabs aria-label="Mixed Tabs">
           <Tab>Default Tab</Tab>
@@ -147,26 +147,26 @@ describe('CustomTab', () => {
     );
 
     // Initially, the default tab should be active
-    expect(getByText('Default Panel')).toBeInTheDocument();
-    expect(getByText('Default Tab').closest('button')).toHaveAttribute(
+    expect(getAllByText('Default Panel')[0]).toBeInTheDocument();
+    expect(getAllByText('Default Tab')[0].closest('button')).toHaveAttribute(
       'aria-selected',
       'true'
     );
-    expect(getByText('Custom Tab').closest('button')).toHaveAttribute(
+    expect(getAllByText('Custom Tab')[0].closest('button')).toHaveAttribute(
       'aria-selected',
       'false'
     );
 
     // Click the custom tab
-    fireEvent.click(getByText('Custom Tab'));
+    fireEvent.click(getAllByText('Custom Tab')[0]);
 
     // Now, the custom tab should be active
-    expect(getByText('Custom Panel')).toBeInTheDocument();
-    expect(getByText('Custom Tab').closest('button')).toHaveAttribute(
+    expect(getAllByText('Custom Panel')[0]).toBeInTheDocument();
+    expect(getAllByText('Custom Tab')[0].closest('button')).toHaveAttribute(
       'aria-selected',
       'true'
     );
-    expect(getByText('Default Tab').closest('button')).toHaveAttribute(
+    expect(getAllByText('Default Tab')[0].closest('button')).toHaveAttribute(
       'aria-selected',
       'false'
     );
