@@ -749,6 +749,7 @@ export const Sortable = {
                   onSort={() => {
                     requestSort('name');
                   }}
+                  header="Name"
                   isSortable
                   sortDirection={
                     sortConfig.key === 'name'
@@ -769,6 +770,7 @@ export const Sortable = {
                       ? sortConfig.direction
                       : TableSortDirection.none
                   }
+                  header="Price"
                 >
                   Price
                 </TableHeaderCell>
@@ -783,6 +785,7 @@ export const Sortable = {
                       ? sortConfig.direction
                       : TableSortDirection.none
                   }
+                  header="In Stock"
                 >
                   In Stock
                 </TableHeaderCell>
