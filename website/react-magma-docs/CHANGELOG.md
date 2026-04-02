@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.25
+
+### Patch Changes
+
+- d343a22: fix(Select): remove unused import.
+
 ## 7.0.0-rc.24
 
 ### Patch Changes

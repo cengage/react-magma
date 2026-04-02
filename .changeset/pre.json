@@ -111,6 +111,7 @@
     "fix-Select-expanded-collapsed-announced-state",
     "fix-Select-focus-border",
     "fix-Select-scrollbar-issue",
+    "fix-Select-test-typo",
     "fix-Storybook-select-issues",
     "fix-Tab-update-focus-behavior-arir-labels",
     "fix-Table-add-page-announcing",
