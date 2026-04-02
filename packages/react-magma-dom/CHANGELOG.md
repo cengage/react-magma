@@ -1,5 +1,11 @@
 ## 4.12.0
 
+## 4.12.1-next.3
+
+### Patch Changes
+
+- af0dfbf37: fix(Popover): Fix accessibility issue with announcement for MacOS + Safari.
+
 ## 4.12.1-next.2
 
 ### Patch Changes

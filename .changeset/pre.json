@@ -19,6 +19,7 @@
     "fix-MultiCombobox-announce-a11y",
     "fix-Popover-accessibility-issue-v2",
     "fix-Popover-accessibility-issue",
+    "fix-Popover-announcement",
     "fix-Tabs-doc-example",
     "tall-worms-add"
   ]
