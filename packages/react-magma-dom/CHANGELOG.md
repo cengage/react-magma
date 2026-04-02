@@ -1,5 +1,11 @@
 ## 4.12.0
 
+## 4.12.1-next.5
+
+### Patch Changes
+
+- 12c86ad69: chore: Fix focuslock issue for DatePicker component.
+
 ## 4.12.1-next.4
 
 ### Patch Changes
