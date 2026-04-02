@@ -14,8 +14,7 @@ jobs:
       - name: Setup
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          check-latest: true
+          node-version: '22.20.0'
       - name: Check Node version
         run: node -v
       - name: Update NPM version
