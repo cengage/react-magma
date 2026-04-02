@@ -184,6 +184,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
                 itemString,
                 key,
                 theme,
+                isSelected,
                 isDisabled: isDisabled,
                 ...otherDownshiftItemProps,
                 onMouseMove: () => {},

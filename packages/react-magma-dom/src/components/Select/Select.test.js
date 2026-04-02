@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  getByRole,
+  render,
+  waitFor,
+} from '@testing-library/react';
 import { HelpIcon } from 'react-magma-icons';
 
 import { defaultI18n } from '../../i18n/default';
@@ -532,21 +538,21 @@ describe('Select', () => {
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
     await userEvent.click(renderedSelect);
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
 
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'true');
 
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
 
     // Looping back to the first item
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
 
     // Looping back to the last item
     await userEvent.keyboard('{ArrowUp}');
-    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
   });
 
   it('should skip disabled items and navigate to the next active item', async () => {
@@ -578,11 +584,11 @@ describe('Select', () => {
       renderedSelect.focus();
     });
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
 
     await userEvent.keyboard('{ArrowDown}');
-    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'false');
-    expect(getByText('Green')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'false');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
   });
 
   it('should have updated aria-label for selected item', async () => {
@@ -827,6 +833,38 @@ describe('Select', () => {
       await userEvent.keyboard('{Enter}');
 
       expect(onKeyUp).toHaveBeenCalled();
+    });
+
+    it('selected item should have aria-selected attribute set to true', async () => {
+      const { getByLabelText, getByRole } = render(
+        <Select labelText={labelText} items={items} />
+      );
+
+      const renderedSelect = getByLabelText(labelText, {
+        selector: 'div',
+      });
+
+      await userEvent.click(renderedSelect);
+      await userEvent.keyboard('{Enter}');
+      await userEvent.click(renderedSelect);
+
+      expect(getByRole('option', { name: /Red/i })).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
+
+      await userEvent.keyboard('{ArrowDown}');
+      await userEvent.keyboard('{Enter}');
+      await userEvent.click(renderedSelect);
+
+      expect(getByRole('option', { name: /Red/i })).toHaveAttribute(
+        'aria-selected',
+        'false'
+      );
+      expect(getByRole('option', { name: /Blue/i })).toHaveAttribute(
+        'aria-selected',
+        'true'
+      );
     });
   });
 });

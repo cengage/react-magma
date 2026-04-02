@@ -10,7 +10,7 @@ import { useIsInverse } from '../../inverse';
 import { magma, ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { XOR } from '../../utils';
-import { Announce, AnnouncePoliteness } from '../Announce';
+import { AnnouncePoliteness } from '../Announce';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { DropdownDropDirection } from '../Dropdown';
@@ -18,7 +18,6 @@ import { IconButton } from '../IconButton';
 import { Label } from '../Label';
 import { NativeSelect } from '../NativeSelect';
 import { usePagination } from '../Pagination/usePagination';
-import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface BaseTablePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -285,10 +284,6 @@ export const TablePagination = React.forwardRef<
 
   const previousButton = pageButtons[0];
   const nextButton = pageButtons[pageButtons.length - 1];
-  const currentPageLabel = i18n.table.pagination.currentPageLabel.replace(
-    '{number}',
-    page
-  );
 
   return (
     <StyledContainer
@@ -316,11 +311,8 @@ export const TablePagination = React.forwardRef<
         aria-live={AnnouncePoliteness.polite}
         aria-atomic="true"
       >
-        {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount} `}
+        {`Page ${page}: ${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount} `}
       </PageCount>
-      <Announce>
-        <VisuallyHidden>{currentPageLabel}</VisuallyHidden>
-      </Announce>
       <ButtonGroup alignment={ButtonGroupAlignment.center}>
         <IconButton
           aria-label={i18n.table.pagination.previousAriaLabel}
