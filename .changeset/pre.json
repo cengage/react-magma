@@ -14,6 +14,7 @@
   "changesets": [
     "fix-Checkbox-doc-issues",
     "fix-Combobox-docs-issues",
+    "fix-Datagrid-accessibility-issue",
     "fix-Form-docs-issues",
     "fix-IconButton-Modal-Form-doc-examples",
     "fix-MultiCombobox-announce-a11y",

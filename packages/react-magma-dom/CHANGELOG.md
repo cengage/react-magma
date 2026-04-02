@@ -1,5 +1,11 @@
 ## 4.12.0
 
+## 4.12.1-next.4
+
+### Patch Changes
+
+- d27221ff5: fix(Datagrid): Add announce initial sort order.
+
 ## 4.12.1-next.3
 
 ### Patch Changes
