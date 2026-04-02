@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.2-next.6
+
+### Patch Changes
+
+- 914282f2a: fix(Definition List): Update doc examples.
+
 ## 5.3.2-next.5
 
 ### Patch Changes
