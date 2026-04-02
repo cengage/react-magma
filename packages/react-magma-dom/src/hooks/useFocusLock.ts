@@ -88,6 +88,11 @@ export function useFocusLock(
           return;
         }
 
+        // Check if activeElement is in the focusable list
+        const isActiveElementFocusable = focusableItems.current.includes(
+          document.activeElement as HTMLElement
+        );
+
         // If focused on last item then focus on first item when tab is pressed
         if (!shiftKey && document.activeElement === lastItem) {
           event.preventDefault();
@@ -104,6 +109,18 @@ export function useFocusLock(
         ) {
           event.preventDefault();
           lastItem.focus();
+
+          return;
+        }
+
+        // Handle case when focus is lost or not in the focusable list
+        if (!isActiveElementFocusable) {
+          event.preventDefault();
+          if (shiftKey) {
+            lastItem.focus();
+          } else {
+            firstItem.focus();
+          }
 
           return;
         }
