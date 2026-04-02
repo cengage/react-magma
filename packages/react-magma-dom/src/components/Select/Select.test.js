@@ -1,12 +1,6 @@
 import React from 'react';
 
-import {
-  act,
-  fireEvent,
-  getByRole,
-  render,
-  waitFor,
-} from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { HelpIcon } from 'react-magma-icons';
 
 import { defaultI18n } from '../../i18n/default';
