@@ -20,11 +20,8 @@
     "fix-Form-docs-issues",
     "fix-IconButton-Modal-Form-doc-examples",
     "fix-MultiCombobox-announce-a11y",
-    "fix-Popover-accessibility-issue-v2",
     "fix-Popover-accessibility-issue",
-    "fix-Popover-announcement",
     "fix-Tabs-doc-example",
-    "fix-focus-lock-issue",
-    "tall-worms-add"
+    "fix-focus-lock-issue"
   ]
 }

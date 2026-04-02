@@ -1,5 +1,6 @@
 ---
 'react-magma-docs': patch
+'react-magma-dom': patch
 ---
 
-fix(Checkbox): Update doc examples.
+fix(Checkbox, ListItem): Wrap checkbox doc examples in List/ListItem for semantic HTML. Forward rest props on ListItem component.

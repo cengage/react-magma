@@ -2,4 +2,4 @@
 'react-magma-docs': patch
 ---
 
-fix(Docs): Fix docs issues on the `Form` page.
+fix(Form): Add screen reader announcements for form reset and improve error summary in doc examples.

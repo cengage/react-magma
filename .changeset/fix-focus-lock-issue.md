@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-chore: Fix focuslock issue for DatePicker component.
+fix(useFocusLock): Re-capture focus when active element escapes focus-locked containers (DatePicker, Modal, etc.).

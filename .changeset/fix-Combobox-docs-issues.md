@@ -2,4 +2,4 @@
 'react-magma-docs': patch
 ---
 
-fix(Docs): Fix docs issues on the `Combobox` page.
+fix(Combobox): Add aria-labels and proper button semantics to custom indicator doc examples.
