@@ -154,7 +154,7 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     } ${sameDateAsChosenDate ? i18n.datePicker.selectedDayAriaLabel : ''}`;
 
     return (
-      <CalendarDayCell role="gridcell" onFocus={onCalendarDayFocus} theme={theme}>
+      <CalendarDayCell role="presentation" onFocus={onCalendarDayFocus} theme={theme}>
         <CalendarDayInner
           aria-disabled={disabled}
           aria-label={ariaLabel}
@@ -163,6 +163,7 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
           isFocused={dayFocusable && sameDateAsFocusedDate}
           onClick={onDayClick}
           ref={dayRef}
+          role="gridcell"
           tabIndex={sameDateAsFocusedDate ? 0 : -1}
           type="button"
           theme={theme}
