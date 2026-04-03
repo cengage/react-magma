@@ -1,5 +1,18 @@
 ## 4.12.0
 
+## 4.12.1
+
+### Patch Changes
+
+- 36452c03a: fix(Checkbox, ListItem): Wrap checkbox doc examples in List/ListItem for semantic HTML. Forward rest props on ListItem component.
+- 36452c03a: fix(Combobox, Select, Datagrid): Add `aria-selected` to Combobox/Select list items. Simplify TablePagination page announcement. **Breaking:** removes `table.pagination.currentPageLabel` from the i18n interface.
+- 36452c03a: fix(Datagrid): Append current sort direction to sortable column header `aria-label` (e.g. "Sort rows by Name, ascending"). Adds new i18n key `table.selectable.sortDirectionNone`.
+- 36452c03a: fix(IconButton, Modal, Form, Accordion, NavTabs): Improve accessibility in doc examples. Add `role="tablist"`, `role="tab"`, and `role="presentation"` to NavTabs source.
+- 36452c03a: fix(MultiCombobox, MultiSelect): Replace default removal announcements with custom screen reader messages that name the removed items. Adds new i18n keys: `combobox.multi.clearAnnounce`, `combobox.multi.removeItemAnnounce`, `select.multi.clearAnnounce`, `select.multi.removeItemAnnounce`.
+- 36452c03a: fix(Popover): Move `aria-haspopup`, `aria-expanded`, and `aria-controls` from the trigger wrapper onto the trigger child element, so custom trigger elements correctly expose popover state to screen readers.
+- 36452c03a: fix(Tabs): Generate unique IDs per TabsContainer instance to prevent ID collisions when multiple Tabs appear on the same page. Skip panel content announcement on initial mount.
+- 36452c03a: fix(useFocusLock): Re-capture focus when active element escapes focus-locked containers (DatePicker, Modal, etc.).
+
 ## 4.12.1-next.6
 
 ### Patch Changes

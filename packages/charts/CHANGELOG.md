@@ -1,5 +1,7 @@
 # @react-magma/charts
 
+## 13.0.3
+
 ## 13.0.3-next.0
 
 ### Patch Changes
