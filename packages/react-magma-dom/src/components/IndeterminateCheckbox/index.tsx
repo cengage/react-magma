@@ -9,7 +9,7 @@ import {
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { Omit, useGenerateId } from '../../utils';
+import { descriptionSuffix, Omit, useGenerateId } from '../../utils';
 import { Announce } from '../Announce';
 import {
   CheckboxProps,
@@ -140,7 +140,7 @@ export const IndeterminateCheckbox = React.forwardRef<
           )
         : '';
 
-  const descriptionId = errorMessage ? `${id}__desc` : null;
+  const descriptionId = errorMessage ? `${id}${descriptionSuffix}` : null;
   const groupDescriptionId = context.descriptionId;
 
   const describedBy =

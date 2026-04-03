@@ -391,3 +391,5 @@ export function hasActiveElementsInside(ref) {
     }).length > 0
   );
 }
+
+export const descriptionSuffix = '__desc';

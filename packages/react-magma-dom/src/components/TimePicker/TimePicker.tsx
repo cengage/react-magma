@@ -181,9 +181,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       handleAmPmKeyDown,
     } = useTimePicker(props);
 
-    const hoursLabel = `${labelText}, ${i18n.timePicker.hoursAriaLabel}`;
-    const minutesLabel = `${labelText}, ${i18n.timePicker.minutesAriaLabel}`;
-    const amPmLabel = `${labelText}, ${
+    const amPmLabel = `${
       amPm === am
         ? i18n.timePicker.amButtonAriaLabel
         : i18n.timePicker.pmButtonAriaLabel
@@ -217,7 +215,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
               style={{ marginRight: theme.spaceScale.spacing02 }}
             />
             <StyledNumInput
-              aria-label={hoursLabel}
+              aria-label={i18n.timePicker.hoursAriaLabel}
               aria-describedby={descriptionId}
               data-testid="hoursTimeInput"
               id={hourId}
@@ -247,7 +245,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
               :
             </Divider>
             <StyledNumInput
-              aria-label={minutesLabel}
+              aria-label={i18n.timePicker.minutesAriaLabel}
               data-testid="minutesTimeInput"
               id={minuteId}
               isInverse={isInverse}

@@ -129,8 +129,8 @@ describe('NativeSelect', () => {
     );
 
     const select = getByTestId(testId);
-    expect(select).toHaveAttribute('aria-describedby', 'my-select__message');
-    expect(document.getElementById('my-select__message')).toBeInTheDocument();
+    expect(select).toHaveAttribute('aria-describedby', 'my-select__desc');
+    expect(document.getElementById('my-select__desc')).toBeInTheDocument();
   });
 
   it('should set aria-describedby referencing the helper message element', () => {
@@ -141,7 +141,7 @@ describe('NativeSelect', () => {
     );
 
     const select = getByTestId(testId);
-    expect(select).toHaveAttribute('aria-describedby', 'my-select__message');
+    expect(select).toHaveAttribute('aria-describedby', 'my-select__desc');
   });
 
   it('should render an inverse error state', () => {

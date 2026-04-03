@@ -7,7 +7,12 @@ import { CheckBoxIcon, CheckBoxOutlineBlankIcon } from 'react-magma-icons';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { omit, reactNodeToString, useGenerateId } from '../../utils';
+import {
+  descriptionSuffix,
+  omit,
+  reactNodeToString,
+  useGenerateId,
+} from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { FormGroupContext } from '../FormGroup';
 import { InputMessage } from '../Input/InputMessage';
@@ -209,7 +214,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     } = props;
     const other = omit(['defaultChecked'], rest);
 
-    const descriptionId = errorMessage && `${id}__desc`;
+    const descriptionId = errorMessage && `${id}${descriptionSuffix}`;
     const groupDescriptionId = context.descriptionId;
 
     const describedBy =
