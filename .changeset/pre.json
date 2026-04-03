@@ -11,7 +11,9 @@
     "react-magma-landing": "1.0.10"
   },
   "changesets": [
+    "a11y-datepicker-nvda-controls-fix",
     "a11y-datepicker-wcag-fixes",
+    "chore-publish-v2-node",
     "chore-publish-v2-test",
     "chore-publish-v2",
     "fix-modal-accessibility-wcag"

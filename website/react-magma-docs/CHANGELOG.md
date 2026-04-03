@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.2.18-v2-next.3
+
+### Patch Changes
+
+- cf04da083: chore(v2): pin node version.
+- Updated dependencies [4d2055a62]
+  - react-magma-dom@2.6.1-v2-next.3
+
 ## 2.2.18-v2-next.2
 
 ### Patch Changes
