@@ -238,8 +238,7 @@ export function DatePickerForm() {
         }
       >
         <div ref={wrapperRef}>
-          <TimePicker labelText="Time *" errorMessage={error} />
-          {/* <DatePicker
+          <DatePicker
             isDateFieldInput
             labelText="Birthday *"
             value={birthday}
@@ -248,7 +247,7 @@ export function DatePickerForm() {
               setError('');
             }}
             errorMessage={error}
-          /> */}
+          />
         </div>
         <Spacer size="12" />
       </Form>
