@@ -14,7 +14,11 @@ import { InputDateFields, useDateField } from './useDateField';
 import { I18nContext } from '../../../i18n';
 import { useIsInverse } from '../../../inverse';
 import { ThemeContext } from '../../../theme/ThemeContext';
-import { descriptionSuffix, handleNumericBeforeInput } from '../../../utils';
+import {
+  descriptionSuffix,
+  handleNumericBeforeInput,
+  labelSuffix,
+} from '../../../utils';
 import {
   ButtonShape,
   ButtonSize,
@@ -40,7 +44,6 @@ export interface DateFieldInputProps
   setReference?: (node: ReferenceType) => void;
   iconRef?: React.RefObject<HTMLButtonElement>;
   isClearable?: boolean;
-  iconAriaLabel?: string;
   inputRef?: React.RefObject<HTMLDivElement>;
   inputValue: Date | string;
   handleDateChange?: (day: Date, event) => void;
@@ -365,6 +368,8 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
           onClick={focusInputContainer}
           onFocus={handleOnFocus}
           onBlur={handleOnBlur}
+          role="group"
+          aria-labelledby={`${id}${labelSuffix}`}
         >
           {renderDateFields()}
         </InputsContainer>
@@ -386,7 +391,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
         <IconWrapper theme={theme}>
           <IconButtonContainer theme={theme} isClickable>
             <IconButton
-              aria-label={props.iconAriaLabel}
+              aria-label={i18n.datePicker.calendarIconAriaLabel}
               data-testid="toggle-calendar-button"
               icon={<EventIcon />}
               size={ButtonSize.small}

@@ -12,6 +12,7 @@ import { useTimePicker, UseTimePickerProps } from './useTimePicker';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
+import { labelSuffix } from '../../utils';
 import { FormFieldContainer } from '../FormFieldContainer';
 import { inputWrapperStyles } from '../InputBase';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -181,12 +182,12 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       handleAmPmKeyDown,
     } = useTimePicker(props);
 
-    const amPmLabel = `${
+    const hoursLabel = i18n.timePicker.hoursAriaLabel;
+    const minutesLabel = i18n.timePicker.minutesAriaLabel;
+    const amPmLabel =
       amPm === am
         ? i18n.timePicker.amButtonAriaLabel
-        : i18n.timePicker.pmButtonAriaLabel
-    }`;
-
+        : i18n.timePicker.pmButtonAriaLabel;
     const hasTime = !isEmpty(hour) || !isEmpty(minute);
 
     return (
@@ -207,6 +208,8 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             hasError={!!errorMessage}
             theme={theme}
             style={inputStyle}
+            role="group"
+            aria-labelledby={`${id}${labelSuffix}`}
           >
             <ScheduleIcon
               color={
@@ -215,7 +218,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
               style={{ marginRight: theme.spaceScale.spacing02 }}
             />
             <StyledNumInput
-              aria-label={i18n.timePicker.hoursAriaLabel}
+              aria-label={hoursLabel}
               aria-describedby={descriptionId}
               data-testid="hoursTimeInput"
               id={hourId}
@@ -245,7 +248,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
               :
             </Divider>
             <StyledNumInput
-              aria-label={i18n.timePicker.minutesAriaLabel}
+              aria-label={minutesLabel}
               data-testid="minutesTimeInput"
               id={minuteId}
               isInverse={isInverse}

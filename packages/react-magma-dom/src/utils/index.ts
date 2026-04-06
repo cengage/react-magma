@@ -393,3 +393,4 @@ export function hasActiveElementsInside(ref) {
 }
 
 export const descriptionSuffix = '__desc';
+export const labelSuffix = '__label';
