@@ -134,6 +134,7 @@ export interface I18nInterface {
     day: string;
     month: string;
     year: string;
+    invalidYearError: string;
 
     helpModal: {
       header: string;

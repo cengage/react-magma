@@ -1574,6 +1574,51 @@ describe('Date Picker', () => {
       expect(yearInput).toHaveValue('2026');
     });
 
+    it('should render error message when user enters an invalid year', () => {
+      const { getByTestId, getByText } = render(
+        <DatePicker isDateFieldInput />
+      );
+
+      const monthInput = getByTestId('month-input');
+      const dayInput = getByTestId('day-input');
+      const yearInput = getByTestId('year-input');
+
+      userEvent.type(monthInput, '1');
+      userEvent.type(dayInput, '15');
+      userEvent.type(yearInput, '1800');
+
+      expect(monthInput).toHaveDisplayValue('01');
+      expect(dayInput).toHaveDisplayValue('15');
+      expect(yearInput).toHaveDisplayValue('1800');
+      expect(
+        getByText('Invalid date. Please enter a year between 1900 and 2099.')
+      ).toBeInTheDocument();
+    });
+
+    it('should render invalid year error message after showing custom error message', () => {
+      const customErrorMessage = 'Please, enter a date';
+      const { getByTestId, getByText } = render(
+        <DatePicker isDateFieldInput errorMessage={customErrorMessage} />
+      );
+
+      const monthInput = getByTestId('month-input');
+      const dayInput = getByTestId('day-input');
+      const yearInput = getByTestId('year-input');
+
+      expect(getByText(customErrorMessage)).toBeInTheDocument();
+
+      userEvent.type(monthInput, '10');
+      userEvent.type(dayInput, '22');
+      userEvent.type(yearInput, '1861');
+
+      expect(monthInput).toHaveDisplayValue('10');
+      expect(dayInput).toHaveDisplayValue('22');
+      expect(yearInput).toHaveDisplayValue('1861');
+      expect(
+        getByText('Invalid date. Please enter a year between 1900 and 2099.')
+      ).toBeInTheDocument();
+    });
+
     describe('Focus behavior', () => {
       it('should handle input focus behavior via tabbing', () => {
         const { getByTestId } = render(<DatePicker isDateFieldInput />);

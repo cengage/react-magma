@@ -11,6 +11,7 @@ import {
   IsClearableContainer,
 } from './StyledDateFieldInput';
 import { InputDateFields, useDateField } from './useDateField';
+import { VisuallyHidden } from '../../..';
 import { I18nContext } from '../../../i18n';
 import { useIsInverse } from '../../../inverse';
 import { ThemeContext } from '../../../theme/ThemeContext';
@@ -104,6 +105,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   const didMountRef = React.useRef(false);
   const firstFieldRef = fieldRefs[fieldOrder[0]]?.current;
   const [isFocused, setIsFocused] = React.useState(false);
+  const [isInvalidYear, setIsInvalidYear] = React.useState(false);
 
   const dayId = `${id}__day`;
   const monthId = `${id}__month`;
@@ -230,6 +232,10 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     firstFieldRef?.focus();
   };
 
+  const invalidYearErrorMessage = i18n.datePicker.invalidYearError
+    .replace('{minYear}', MIN_YEAR.toString())
+    .replace('{maxYear}', MAX_YEAR.toString());
+
   React.useEffect(() => {
     let isMounted = true;
 
@@ -240,26 +246,37 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       return;
     }
 
-    const allFieldsEmpty = isEmpty(day) && isEmpty(month) && isEmpty(year);
+    const allFieldsEmpty = !month && !day && !year;
 
     if (allFieldsEmpty && isMounted) {
       handleDateChange?.(null, null);
       onClearDate?.();
+      setIsInvalidYear(false);
 
       return;
     }
 
-    const isCompletedDate =
-      month &&
-      day &&
-      year &&
-      Number(year) >= MIN_YEAR &&
-      Number(year) <= MAX_YEAR;
+    const yearValue = Number(year);
+    const isValidYear =
+      !isEmpty(year) && yearValue >= MIN_YEAR && yearValue <= MAX_YEAR;
+    const hasAllFields = month && day && year;
 
-    if (!isCompletedDate) return;
+    // Prevents showing the error message when user is still filling out the fields
+    if (!hasAllFields) {
+      setIsInvalidYear(false);
+      return;
+    }
+
+    if (!isValidYear) {
+      setIsInvalidYear(true);
+      return;
+    }
+
     const newDate = hasMonthLongFormat
       ? new Date(`${month} ${day}, ${year}`)
-      : new Date(Number(year), Number(month) - 1, Number(day));
+      : new Date(yearValue, Number(month) - 1, Number(day));
+
+    setIsInvalidYear(false);
 
     if (!isNaN(newDate.getTime()) && isMounted) {
       handleDateChange?.(newDate, null);
@@ -349,7 +366,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   return (
     <FormFieldContainer
       containerStyle={containerStyle}
-      errorMessage={errorMessage}
+      errorMessage={isInvalidYear ? invalidYearErrorMessage : errorMessage}
       fieldId={id}
       helperMessage={helperMessage}
       isInverse={isInverse}
@@ -405,6 +422,9 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             />
           </IconButtonContainer>
         </IconWrapper>
+        <VisuallyHidden>
+          <input id={id} aria-hidden="true" tabIndex={-1} />
+        </VisuallyHidden>
       </DateFieldInputContainer>
     </FormFieldContainer>
   );
