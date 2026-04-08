@@ -1,21 +1,17 @@
 # Change Log
 
-## 2.6.1-v2-next.3
+## 2.6.2
 
 ### Patch Changes
 
-- 4d2055a62: fix(DatePicker): accessibility fixes for WCAG 2.2 AA compliance
+- 3f1abc66: fix(Modal): Accessibility fixes for WCAG 2.2 AA compliance
 
-  - WAPLAT-45616: Fix Date and Time Picker (NVDA screen reader blocks the focus for keyboard navigation for the dates in the calendar table)
-    - Adjusted ARIA roles in the calendar day cell to improve compatibility with NVDA screen reader.
-    - Changed the td role to presentation and moved the gridcell role to the interactive element (button).
-    - This prevents NVDA from switching to browse mode when navigating dates with arrow keys and allows keyboard navigation to work correctly with the screen reader.
+  - A11Y-5089: Change modal heading from h1 to h2
+  - A11Y-5090: Fix DOM order for close button
+  - A11Y-5091: Improve keyboard focus sequence
+  - Add headerLevel prop (defaults to 2)
 
-## 2.6.1-v2-next.2
-
-### Patch Changes
-
-- f34ef11c: fix(DatePicker): accessibility fixes for WCAG 2.2 AA compliance
+  fix(DatePicker): accessibility fixes for WCAG 2.2 AA compliance
 
   - A11Y-5197: Fix ESC key behavior to prevent closing parent modal
     - Add native DOM event listener in capture phase to intercept ESC before Modal's listener
@@ -34,23 +30,12 @@
     - Uses useFocusLock hook for proper focus management
   - A11Y-5201: Ensure focus returns to calendar after closing keyboard shortcuts
 
-## 2.6.1-v2-next.1
+  fix(DatePicker): accessibility fixes for WCAG 2.2 AA compliance
 
-### Patch Changes
-
-- 35777b6a: fix(Modal): Accessibility fixes for WCAG 2.2 AA compliance
-
-  - A11Y-5089: Change modal heading from h1 to h2
-  - A11Y-5090: Fix DOM order for close button
-  - A11Y-5091: Improve keyboard focus sequence
-  - Add headerLevel prop (defaults to 2)
-
-## 2.6.1-v2-next.0
-
-### Patch Changes
-
-- ab7e1552: chore(v2): publishing all packages not just dom.
-- 2628dfbe: chore(v2): create publish.yml for v2 .
+  - WAPLAT-45616: Fix Date and Time Picker (NVDA screen reader blocks the focus for keyboard navigation for the dates in the calendar table)
+    - Adjusted ARIA roles in the calendar day cell to improve compatibility with NVDA screen reader.
+    - Changed the td role to presentation and moved the gridcell role to the interactive element (button).
+    - This prevents NVDA from switching to browse mode when navigating dates with arrow keys and allows keyboard navigation to work correctly with the screen reader.
 
 ## 2.6.0
 
