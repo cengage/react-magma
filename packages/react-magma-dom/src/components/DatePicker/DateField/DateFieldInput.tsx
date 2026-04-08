@@ -14,7 +14,11 @@ import { InputDateFields, useDateField } from './useDateField';
 import { I18nContext } from '../../../i18n';
 import { useIsInverse } from '../../../inverse';
 import { ThemeContext } from '../../../theme/ThemeContext';
-import { handleNumericBeforeInput } from '../../../utils';
+import {
+  descriptionSuffix,
+  handleNumericBeforeInput,
+  labelSuffix,
+} from '../../../utils';
 import {
   ButtonShape,
   ButtonSize,
@@ -40,7 +44,6 @@ export interface DateFieldInputProps
   setReference?: (node: ReferenceType) => void;
   iconRef?: React.RefObject<HTMLButtonElement>;
   isClearable?: boolean;
-  iconAriaLabel?: string;
   inputRef?: React.RefObject<HTMLDivElement>;
   inputValue: Date | string;
   handleDateChange?: (day: Date, event) => void;
@@ -77,7 +80,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   } = props;
 
   const {
-    allMonthNames,
     month,
     day,
     year,
@@ -92,7 +94,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     setYearValue,
     handleFieldKeyDown,
     formatWithLeadingZero,
-    getIndexMonth,
   } = useDateField({
     dateFormat,
   });
@@ -126,11 +127,12 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       case InputDateFields.Day:
         return (
           <StyledNumInput
+            aria-describedby={
+              errorMessage || helperMessage
+                ? `${id}${descriptionSuffix}`
+                : undefined
+            }
             aria-label={datePicker.day}
-            aria-valuemin={1}
-            aria-valuemax={31}
-            aria-valuenow={Number(day)}
-            aria-valuetext={day}
             data-testid="day-input"
             id={dayId}
             isInverse={isInverse}
@@ -152,17 +154,12 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       case InputDateFields.Month:
         return (
           <StyledNumInput
+            aria-describedby={
+              errorMessage || helperMessage
+                ? `${id}${descriptionSuffix}`
+                : undefined
+            }
             aria-label={datePicker.month}
-            aria-valuemax={12}
-            aria-valuemin={1}
-            aria-valuenow={
-              hasMonthLongFormat
-                ? getIndexMonth(month)[0] + 1
-                : Number(month) - 1
-            }
-            aria-valuetext={
-              hasMonthLongFormat ? month : allMonthNames[Number(month) - 1]
-            }
             data-testid="month-input"
             id={monthId}
             isInverse={isInverse}
@@ -190,11 +187,12 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       case InputDateFields.Year:
         return (
           <StyledNumInput
+            aria-describedby={
+              errorMessage || helperMessage
+                ? `${id}${descriptionSuffix}`
+                : undefined
+            }
             aria-label={datePicker.year}
-            aria-valuemin={MIN_YEAR}
-            aria-valuemax={MAX_YEAR}
-            aria-valuenow={Number(year)}
-            aria-valuetext={year}
             data-testid="year-input"
             id={yearId}
             isInverse={isInverse}
@@ -370,6 +368,8 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
           onClick={focusInputContainer}
           onFocus={handleOnFocus}
           onBlur={handleOnBlur}
+          role="group"
+          aria-labelledby={`${id}${labelSuffix}`}
         >
           {renderDateFields()}
         </InputsContainer>
@@ -391,7 +391,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
         <IconWrapper theme={theme}>
           <IconButtonContainer theme={theme} isClickable>
             <IconButton
-              aria-label={props.iconAriaLabel}
+              aria-label={i18n.datePicker.calendarIconAriaLabel}
               data-testid="toggle-calendar-button"
               icon={<EventIcon />}
               size={ButtonSize.small}
