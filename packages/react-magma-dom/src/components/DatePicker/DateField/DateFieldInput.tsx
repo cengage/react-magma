@@ -11,7 +11,6 @@ import {
   IsClearableContainer,
 } from './StyledDateFieldInput';
 import { InputDateFields, useDateField } from './useDateField';
-import { VisuallyHidden } from '../../..';
 import { I18nContext } from '../../../i18n';
 import { useIsInverse } from '../../../inverse';
 import { ThemeContext } from '../../../theme/ThemeContext';
@@ -33,6 +32,7 @@ import {
 import { IconButton } from '../../IconButton';
 import { IconButtonContainer } from '../../InputBase';
 import { Divider, StyledNumInput } from '../../TimePicker';
+import { VisuallyHidden } from '../../VisuallyHidden';
 import { MAX_YEAR, MIN_YEAR } from '../utils';
 
 export interface DateFieldInputProps
@@ -124,16 +124,21 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     return isEmpty(month) ? 3.25 : 2;
   };
 
+  const invalidYearErrorMessage = i18n.datePicker.invalidYearError
+    .replace('{minYear}', MIN_YEAR.toString())
+    .replace('{maxYear}', MAX_YEAR.toString());
+
+  const ariaDescribedBy =
+    invalidYearErrorMessage || errorMessage || helperMessage
+      ? `${id}${descriptionSuffix}`
+      : undefined;
+
   const renderInput = (key: string) => {
     switch (key) {
       case InputDateFields.Day:
         return (
           <StyledNumInput
-            aria-describedby={
-              errorMessage || helperMessage
-                ? `${id}${descriptionSuffix}`
-                : undefined
-            }
+            aria-describedby={ariaDescribedBy}
             aria-label={datePicker.day}
             data-testid="day-input"
             id={dayId}
@@ -156,11 +161,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       case InputDateFields.Month:
         return (
           <StyledNumInput
-            aria-describedby={
-              errorMessage || helperMessage
-                ? `${id}${descriptionSuffix}`
-                : undefined
-            }
+            aria-describedby={ariaDescribedBy}
             aria-label={datePicker.month}
             data-testid="month-input"
             id={monthId}
@@ -189,11 +190,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       case InputDateFields.Year:
         return (
           <StyledNumInput
-            aria-describedby={
-              errorMessage || helperMessage
-                ? `${id}${descriptionSuffix}`
-                : undefined
-            }
+            aria-describedby={ariaDescribedBy}
             aria-label={datePicker.year}
             data-testid="year-input"
             id={yearId}
@@ -231,10 +228,6 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     // Focus the first available field in fieldOrder
     firstFieldRef?.focus();
   };
-
-  const invalidYearErrorMessage = i18n.datePicker.invalidYearError
-    .replace('{minYear}', MIN_YEAR.toString())
-    .replace('{maxYear}', MAX_YEAR.toString());
 
   React.useEffect(() => {
     let isMounted = true;
