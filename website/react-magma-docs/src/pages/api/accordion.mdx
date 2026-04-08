@@ -123,7 +123,6 @@ import {
   ButtonVariant,
   ButtonGroup,
   Spacer,
-  useDeviceDetect,
   VisuallyHidden,
 } from 'react-magma-dom';
 
@@ -148,8 +147,6 @@ export function Example() {
     }
   };
 
-  const { isWindows, isSafari } = useDeviceDetect();
-
   return (
     <>
       <ButtonGroup>
@@ -157,7 +154,6 @@ export function Example() {
           onClick={handleToggleAll}
           size={ButtonSize.small}
           variant={ButtonVariant.solid}
-          role={isWindows || isSafari ? 'status' : undefined}
         >
           {isAllExpanded ? 'Collapse All' : 'Expand All'}
         </Button>
