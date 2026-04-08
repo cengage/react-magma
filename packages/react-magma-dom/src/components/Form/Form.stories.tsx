@@ -3,30 +3,32 @@ import React from 'react';
 import { StoryFn, Meta } from '@storybook/react/types-6-0';
 import { SettingsIcon } from 'react-magma-icons';
 
-import { Button, ButtonColor, ButtonType } from '../Button';
-import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
-import { Checkbox } from '../Checkbox';
-import { Combobox } from '../Combobox';
-import { DatePicker } from '../DatePicker';
 import {
+  Checkbox,
+  Combobox,
   Dropdown,
   DropdownButton,
   DropdownContent,
   DropdownMenuItem,
-} from '../Dropdown';
-import { FormGroup } from '../FormGroup';
-import { IconButton } from '../IconButton';
-import { Input } from '../Input';
-import { Paragraph } from '../Paragraph';
+  FormGroup,
+  IconButton,
+  Input,
+  Modal,
+  Paragraph,
+  Radio,
+  RadioGroup,
+  Search,
+  Select,
+  Spacer,
+  Textarea,
+  TimePicker,
+  Toggle,
+  Tooltip,
+} from '../..';
+import { Button, ButtonColor, ButtonType } from '../Button';
+import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
+import { DatePicker } from '../DatePicker';
 import { PasswordInput } from '../PasswordInput';
-import { Radio } from '../Radio';
-import { RadioGroup } from '../RadioGroup';
-import { Search } from '../Search';
-import { Select } from '../Select';
-import { Textarea } from '../Textarea';
-import { TimePicker } from '../TimePicker';
-import { Toggle } from '../Toggle';
-import { Tooltip } from '../Tooltip';
 
 import { Form, FormProps } from '.';
 
@@ -127,3 +129,128 @@ export const Expanded = {
     style: { padding: '4px 16px 16px' },
   },
 };
+
+export function PasswordInputForm() {
+  const passwordRef = React.useRef<HTMLInputElement>(null);
+  const [password, setPassword] = React.useState('');
+  const [error, setError] = React.useState('');
+
+  const validate = () => {
+    if (!password) {
+      setError('Please enter a password!');
+      return true;
+    }
+    setError('');
+    return false;
+  };
+
+  const onSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const hasError = validate();
+    if (hasError && passwordRef.current) {
+      passwordRef.current.focus();
+    }
+  };
+
+  const cancel = () => {
+    setPassword('');
+    setError('');
+  };
+
+  return (
+    <Form
+      onSubmit={onSubmit}
+      header="Password Input Form"
+      description="Enter your password below."
+      actions={
+        <ButtonGroup>
+          <Button color={ButtonColor.secondary} onClick={cancel}>
+            Cancel
+          </Button>
+          <Button type={ButtonType.submit}>Submit</Button>
+        </ButtonGroup>
+      }
+    >
+      <PasswordInput
+        labelText="Password *"
+        value={password}
+        onChange={e => {
+          setPassword(e.target.value);
+          setError('');
+        }}
+        errorMessage={error}
+        autoComplete="current-password"
+        ref={passwordRef}
+      />
+      <Spacer size="12" />
+    </Form>
+  );
+}
+
+export function DatePickerForm() {
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const [birthday, setBirthday] = React.useState<Date | undefined>(undefined);
+  const [error, setError] = React.useState('');
+
+  const focusDateInput = () => {
+    const input = wrapperRef.current?.querySelector('input');
+    input?.focus();
+  };
+
+  const validate = () => {
+    if (!birthday) {
+      setError('Please select a date!');
+      return true;
+    }
+    setError('');
+    return false;
+  };
+
+  const onSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const hasError = validate();
+
+    if (hasError) {
+      setTimeout(() => {
+        focusDateInput();
+      }, 0);
+    }
+  };
+
+  const cancel = () => {
+    setBirthday(undefined);
+    setError('');
+  };
+
+  return (
+    <Modal isOpen>
+      <Form
+        onSubmit={onSubmit}
+        header="DatePicker Form"
+        description="Select your birthday below."
+        actions={
+          <ButtonGroup>
+            <Button color={ButtonColor.secondary} onClick={cancel}>
+              Cancel
+            </Button>
+            <Button type={ButtonType.submit}>Submit</Button>
+          </ButtonGroup>
+        }
+      >
+        <div ref={wrapperRef}>
+          <DatePicker
+            isDateFieldInput
+            labelText="Birthday *"
+            value={birthday}
+            onDateChange={date => {
+              setBirthday(date);
+              setError('');
+            }}
+            errorMessage={error}
+          />
+        </div>
+        <Spacer size="12" />
+      </Form>
+    </Modal>
+  );
+}

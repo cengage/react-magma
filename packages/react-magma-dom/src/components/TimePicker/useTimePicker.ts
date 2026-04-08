@@ -3,7 +3,7 @@ import * as React from 'react';
 import { enUS } from 'date-fns/locale';
 
 import { I18nContext } from '../../i18n';
-import { useGenerateId, Omit } from '../../utils';
+import { useGenerateId, Omit, descriptionSuffix } from '../../utils';
 import { FormFieldContainerBaseProps } from '../FormFieldContainer';
 
 export interface UseTimePickerProps
@@ -65,7 +65,8 @@ export function useTimePicker(props: UseTimePickerProps) {
 
   const hourId = `${id}__hour`;
   const minuteId = `${id}__minute`;
-  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+  const descriptionId =
+    errorMessage || helperMessage ? `${id}${descriptionSuffix}` : null;
 
   function updateTime(newTime: string) {
     setTime(newTime);

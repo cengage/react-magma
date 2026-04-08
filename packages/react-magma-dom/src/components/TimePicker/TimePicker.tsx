@@ -12,6 +12,7 @@ import { useTimePicker, UseTimePickerProps } from './useTimePicker';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
+import { labelSuffix } from '../../utils';
 import { FormFieldContainer } from '../FormFieldContainer';
 import { inputWrapperStyles } from '../InputBase';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -181,14 +182,12 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
       handleAmPmKeyDown,
     } = useTimePicker(props);
 
-    const hoursLabel = `${labelText}, ${i18n.timePicker.hoursAriaLabel}`;
-    const minutesLabel = `${labelText}, ${i18n.timePicker.minutesAriaLabel}`;
-    const amPmLabel = `${labelText}, ${
+    const hoursLabel = i18n.timePicker.hoursAriaLabel;
+    const minutesLabel = i18n.timePicker.minutesAriaLabel;
+    const amPmLabel =
       amPm === am
         ? i18n.timePicker.amButtonAriaLabel
-        : i18n.timePicker.pmButtonAriaLabel
-    }`;
-
+        : i18n.timePicker.pmButtonAriaLabel;
     const hasTime = !isEmpty(hour) || !isEmpty(minute);
 
     return (
@@ -209,6 +208,8 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             hasError={!!errorMessage}
             theme={theme}
             style={inputStyle}
+            role="group"
+            aria-labelledby={`${id}${labelSuffix}`}
           >
             <ScheduleIcon
               color={

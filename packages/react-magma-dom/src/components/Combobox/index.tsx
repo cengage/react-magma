@@ -16,7 +16,7 @@ import {
 import { InternalCombobox } from './Combobox';
 import { MultiCombobox } from './MultiCombobox';
 import { useIsInverse } from '../../inverse';
-import { Omit, useGenerateId, XOR } from '../../utils';
+import { descriptionSuffix, Omit, useGenerateId, XOR } from '../../utils';
 import { LabelPosition } from '../Label';
 
 export interface ComboboxProps<T extends SelectOptions>
@@ -169,7 +169,8 @@ export function Combobox<T>(props: XORComboboxProps<T>) {
   const hasError = !!errorMessage;
 
   const id = useGenerateId(defaultId);
-  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+  const descriptionId =
+    errorMessage || helperMessage ? `${id}${descriptionSuffix}` : null;
 
   const isInverse = useIsInverse(props.isInverse);
 

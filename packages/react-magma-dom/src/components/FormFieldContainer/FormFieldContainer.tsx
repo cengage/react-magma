@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 
 import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { descriptionSuffix, labelSuffix } from '../../utils';
 import { CharacterCounter } from '../CharacterCounter';
 import { InputMessage } from '../Input/InputMessage';
 import { InputIconPosition, InputSize } from '../InputBase';
@@ -193,7 +194,7 @@ export const FormFieldContainer = React.forwardRef<
       ? `${fieldId}__counter`
       : null;
   const messageDescriptionId =
-    errorMessage || helperMessage ? `${fieldId}__message` : null;
+    errorMessage || helperMessage ? `${fieldId}${descriptionSuffix}` : null;
 
   return (
     <InverseContext.Provider value={{ isInverse }}>
@@ -213,7 +214,7 @@ export const FormFieldContainer = React.forwardRef<
             <Label
               actionable={actionable}
               htmlFor={fieldId}
-              id={`${fieldId}__label`}
+              id={`${fieldId}${labelSuffix}`}
               iconPosition={iconPosition}
               labelPosition={labelPosition}
               size={inputSize}

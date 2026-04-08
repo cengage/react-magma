@@ -391,3 +391,6 @@ export function hasActiveElementsInside(ref) {
     }).length > 0
   );
 }
+
+export const descriptionSuffix = '__desc';
+export const labelSuffix = '__label';
