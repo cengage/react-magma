@@ -1,9 +1,9 @@
 ---
-'@react-magma/dropzone': minor
-'@react-magma/schema-renderer': minor
-'@cengage-patterns/header': minor
-'react-magma-dom': minor
-'react-magma-docs': minor
+'@react-magma/dropzone': patch
+'@react-magma/schema-renderer': patch
+'@cengage-patterns/header': patch
+'react-magma-dom': patch
+'react-magma-docs': patch
 ---
 
 Chore: update react-magma-icons version
