@@ -35,7 +35,7 @@ import {
   FullscreenExitIcon,
   FullscreenIcon,
   MoreVertIcon,
-  TableChartIcon,
+  TableIcon,
 } from 'react-magma-icons';
 
 import { useCarbonModalFocusManagement } from '../../hooks/useCarbonModalFocusManagement';
@@ -973,7 +973,7 @@ function CarbonChartToolbar({
         {showTable && (
           <ChartTableButton
             ariaLabel={resolvedTitle}
-            icon={<TableChartIcon size={20} />}
+            icon={<TableIcon size={20} />}
             isInverse={isInverse}
             isTableOpen={isTableOpen}
             onClick={onOpenTable}

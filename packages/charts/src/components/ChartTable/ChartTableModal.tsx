@@ -47,6 +47,18 @@ const ModalFooter = styled.div<{ theme: any }>`
   padding-top: ${props => props.theme.spaceScale.spacing05};
 `;
 
+const HeaderLabel = styled.span`
+  display: block;
+  font-size: 14px;
+  font-weight: normal;
+  color: #707070;
+  line-height: 20px;
+`;
+
+const HeaderTitle = styled.span`
+  display: block;
+`;
+
 export function ChartTableModal({
   columns,
   dataSet,
@@ -65,8 +77,8 @@ export function ChartTableModal({
   const header = React.useMemo(
     () => (
       <span>
-        <span style={{ display: 'block' }}>{resolvedHeaderLabel}</span>
-        <span style={{ display: 'block' }}>{title}</span>
+        <HeaderLabel>{resolvedHeaderLabel}</HeaderLabel>
+        <HeaderTitle>{title}</HeaderTitle>
       </span>
     ),
     [resolvedHeaderLabel, title]
