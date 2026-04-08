@@ -1,5 +1,18 @@
 # Change Log
 
+## 2.2.18
+
+### Patch Changes
+
+- Updated dependencies [e7eb1c08]
+- Updated dependencies [e7eb1c08]
+- Updated dependencies [e7eb1c08]
+  - react-magma-dom@2.6.1
+  - @react-magma/charts@0.0.5
+  - @react-magma/dropzone@0.1.6
+  - @react-magma/schema-renderer@0.0.13
+  - @cengage-patterns/header@2.0.13
+
 ## 2.2.18-v2-next.3
 
 ### Patch Changes
