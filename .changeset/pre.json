@@ -2,17 +2,13 @@
   "mode": "pre",
   "tag": "v2-next",
   "initialVersions": {
-    "@react-magma/charts": "0.0.4",
-    "@react-magma/dropzone": "0.1.5",
-    "react-magma-dom": "2.6.0",
-    "@react-magma/schema-renderer": "0.0.12",
-    "@cengage-patterns/header": "2.0.12",
-    "react-magma-docs": "2.2.17",
+    "@react-magma/charts": "0.0.5",
+    "@react-magma/dropzone": "0.1.6",
+    "react-magma-dom": "2.6.2",
+    "@react-magma/schema-renderer": "0.0.13",
+    "@cengage-patterns/header": "2.0.13",
+    "react-magma-docs": "2.2.19",
     "react-magma-landing": "1.0.10"
   },
-  "changesets": [
-    "chore-publish-v2-node",
-    "chore-publish-v2-test",
-    "chore-publish-v2"
-  ]
+  "changesets": []
 }
