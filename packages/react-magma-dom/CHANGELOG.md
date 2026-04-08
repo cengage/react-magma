@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.79
+
+### Patch Changes
+
+- f169e3e: fix(Date Picker & Time Picker & Native Select): Update aria attributes.
+
 ## 5.1.0-rc.78
 
 ### Patch Changes

@@ -73,6 +73,7 @@
     "fix-Datagrid-test",
     "fix-Datagrid-update-aria-label",
     "fix-Date-Picker-issues",
+    "fix-DatePicker-accessibility-issues",
     "fix-DatePicker-clear-focus-input",
     "fix-DatePicker-fix-undefined-docus",
     "fix-DatePicker-focus-today-calendar",
