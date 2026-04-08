@@ -3,7 +3,7 @@ import * as React from 'react';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId } from '../../utils';
+import { descriptionSuffix, useGenerateId } from '../../utils';
 import { Announce } from '../Announce';
 import { Button, ButtonVariant, ButtonType, ButtonSize } from '../Button';
 import {
@@ -117,7 +117,8 @@ export const PasswordInput = React.forwardRef<
     ? showPasswordButtonText
     : i18n.password.shown.buttonText;
 
-  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+  const descriptionId =
+    errorMessage || helperMessage ? `${id}${descriptionSuffix}` : null;
   const theme = React.useContext(ThemeContext);
 
   const isInverse = useIsInverse(props.isInverse);
