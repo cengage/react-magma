@@ -138,6 +138,25 @@ const ChartContentWrapper = styled.div`
   position: relative;
 `;
 
+const FullscreenRoot = styled.div<{
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}>`
+  height: 100%;
+  width: 100%;
+
+  &:fullscreen,
+  &:-webkit-full-screen {
+    background: ${props =>
+      props.isInverse
+        ? props.theme.colors.primary700
+        : props.theme.colors.neutral100};
+    .cds--chart-holder {
+      height: 100vh !important;
+    }
+  }
+`;
+
 const CarbonChartWrapper = styled.div<{
   isInverse?: boolean;
   groupsLength: number;
@@ -1172,35 +1191,37 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     const showTable = chartToolbar?.showAsTable !== false;
 
     return (
-      <CarbonChartWrapper
-        data-testid={testId}
-        ref={mergedRef}
-        isInverse={isInverse}
-        theme={theme}
-        className={`carbon-chart-wrapper${chartToolbar ? ' has-magma-toolbar' : ''}`}
-        groupsLength={groupsLength < 6 ? groupsLength : 14}
-        {...rest}
-      >
-        <ChartContentWrapper>
-          {chartToolbar && (
-            <CarbonChartToolbar
-              config={chartToolbar}
-              dataSet={dataSet as Array<Record<string, unknown>>}
-              isInverse={isInverse}
-              isTableOpen={isTableOpen}
-              isFullscreen={isFullscreen}
-              onOpenTable={openTableModal}
-              onToggleFullscreen={toggleFullscreen}
-              theme={theme}
-              title={chartTitle}
-              wrapperRef={internalRef}
-            />
-          )}
-          <ChartType data={dataSet} options={newOptions} />
-        </ChartContentWrapper>
+      <FullscreenRoot ref={mergedRef} isInverse={isInverse} theme={theme}>
+        <CarbonChartWrapper
+          data-testid={testId}
+          isInverse={isInverse}
+          theme={theme}
+          className={`carbon-chart-wrapper${chartToolbar ? ' has-magma-toolbar' : ''}`}
+          groupsLength={groupsLength < 6 ? groupsLength : 14}
+          {...rest}
+        >
+          <ChartContentWrapper>
+            {chartToolbar && (
+              <CarbonChartToolbar
+                config={chartToolbar}
+                dataSet={dataSet as Array<Record<string, unknown>>}
+                isInverse={isInverse}
+                isTableOpen={isTableOpen}
+                isFullscreen={isFullscreen}
+                onOpenTable={openTableModal}
+                onToggleFullscreen={toggleFullscreen}
+                theme={theme}
+                title={chartTitle}
+                wrapperRef={internalRef}
+              />
+            )}
+            <ChartType data={dataSet} options={newOptions} />
+          </ChartContentWrapper>
+        </CarbonChartWrapper>
         {chartToolbar && showTable && (
           <ChartTableModal
             columns={chartToolbar.tableColumns}
+            portalContainer={isFullscreen ? internalRef.current : undefined}
             dataSet={dataSet as Array<Record<string, React.ReactNode>>}
             headerLabel={chartToolbar.tableHeaderLabel}
             headerLevel={chartToolbar.tableHeaderLevel}
@@ -1211,7 +1232,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
             title={chartTitle}
           />
         )}
-      </CarbonChartWrapper>
+      </FullscreenRoot>
     );
   }
 );

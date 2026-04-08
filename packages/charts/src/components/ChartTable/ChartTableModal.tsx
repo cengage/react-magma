@@ -12,6 +12,12 @@ export interface ChartTableModalProps {
   /** Column definitions forwarded to ChartDataTable */
   columns?: ChartDataTableColumn[];
   /**
+   * DOM element to portal the modal into. Defaults to `document.body`.
+   * When the chart is in fullscreen, pass the fullscreen element so the
+   * modal renders inside it and is visible to the browser.
+   */
+  portalContainer?: HTMLElement | null;
+  /**
    * If true, the modal uses inverse (dark) styling.
    * @default false
    */
@@ -55,12 +61,23 @@ const HeaderLabel = styled.span`
   line-height: 20px;
 `;
 
+const containerStyle: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+const contentStyle: React.CSSProperties = {
+  width: '100%',
+  margin: 0,
+};
+
 const HeaderTitle = styled.span`
   display: block;
 `;
 
 export function ChartTableModal({
   columns,
+  portalContainer,
   dataSet,
   headerLabel,
   headerLevel = 2,
@@ -86,12 +103,15 @@ export function ChartTableModal({
 
   return (
     <Modal
+      portalContainer={portalContainer}
+      containerStyle={portalContainer ? containerStyle : undefined}
       header={header}
       headerLevel={headerLevel}
       isInverse={isInverse}
       isOpen={isOpen}
       onClose={onClose}
       size={size}
+      style={portalContainer ? contentStyle : undefined}
     >
       <ChartDataTable
         columns={columns}
