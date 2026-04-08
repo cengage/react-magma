@@ -1,5 +1,11 @@
 ## 4.12.0
 
+## 4.12.2-next.0
+
+### Patch Changes
+
+- 8e280adf5: fix(Date Picker & Time Picker & Native Select): Update aria attributes.
+
 ## 4.12.1
 
 ### Patch Changes
