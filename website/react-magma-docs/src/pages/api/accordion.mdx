@@ -121,7 +121,6 @@ import {
   Button,
   ButtonSize,
   ButtonVariant,
-  ButtonGroup,
   Spacer,
   VisuallyHidden,
 } from 'react-magma-dom';
@@ -149,7 +148,7 @@ export function Example() {
 
   return (
     <>
-      <ButtonGroup>
+      <div aria-live="polite">
         <Button
           onClick={handleToggleAll}
           size={ButtonSize.small}
@@ -157,7 +156,7 @@ export function Example() {
         >
           {isAllExpanded ? 'Collapse All' : 'Expand All'}
         </Button>
-      </ButtonGroup>
+      </div>
       <Spacer size="12" />
       <Accordion index={expandedIndex} onExpandedChange={handleExpandedChange}>
         <AccordionItem>
