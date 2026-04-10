@@ -148,15 +148,14 @@ export function Example() {
 
   return (
     <>
-      <div aria-live="polite">
-        <Button
-          onClick={handleToggleAll}
-          size={ButtonSize.small}
-          variant={ButtonVariant.solid}
-        >
-          {isAllExpanded ? 'Collapse All' : 'Expand All'}
-        </Button>
-      </div>
+      <Button
+        aria-expanded={isAllExpanded}
+        onClick={handleToggleAll}
+        size={ButtonSize.small}
+        variant={ButtonVariant.solid}
+      >
+        {isAllExpanded ? 'Collapse All' : 'Expand All'}
+      </Button>
       <Spacer size="12" />
       <Accordion index={expandedIndex} onExpandedChange={handleExpandedChange}>
         <AccordionItem>
@@ -169,7 +168,7 @@ export function Example() {
         </AccordionItem>
         <AccordionItem>
           <AccordionButton>Section 3</AccordionButton>
-          <AccordionPanel>Content for section two lorem ipsum</AccordionPanel>
+          <AccordionPanel>Content for section three lorem ipsum</AccordionPanel>
         </AccordionItem>
       </Accordion>
       <VisuallyHidden>
