@@ -117,18 +117,17 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  Announce,
   Button,
   ButtonSize,
   ButtonVariant,
   Spacer,
-  VisuallyHidden,
 } from 'react-magma-dom';
 
 export function Example() {
   const [expandedIndex, setExpandedIndex] = React.useState<number[]>([]);
 
   const isAllExpanded = expandedIndex.length > 0;
+  const buttonText = isAllExpanded ? 'Collapse All' : 'Expand All';
 
   const handleToggleAll = () => {
     if (isAllExpanded) {
@@ -150,11 +149,12 @@ export function Example() {
     <>
       <Button
         aria-expanded={isAllExpanded}
+        aria-label={buttonText}
         onClick={handleToggleAll}
         size={ButtonSize.small}
         variant={ButtonVariant.solid}
       >
-        {isAllExpanded ? 'Collapse All' : 'Expand All'}
+        {buttonText}
       </Button>
       <Spacer size="12" />
       <Accordion index={expandedIndex} onExpandedChange={handleExpandedChange}>
@@ -171,11 +171,6 @@ export function Example() {
           <AccordionPanel>Content for section three lorem ipsum</AccordionPanel>
         </AccordionItem>
       </Accordion>
-      <VisuallyHidden>
-        <Announce>
-          {isAllExpanded ? 'All sections expanded' : 'All sections collapsed'}
-        </Announce>
-      </VisuallyHidden>
     </>
   );
 }
