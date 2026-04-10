@@ -116,6 +116,36 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
   ];
 }
 
+export function useScrollTabFocus(
+  tabsWrapperRef: React.RefObject<HTMLElement>,
+  orientation?: TabsOrientation
+) {
+  const focusFirstVisibleTab = React.useCallback(() => {
+    const wrapper = tabsWrapperRef.current;
+    if (!wrapper) return;
+
+    const tabs = wrapper.querySelectorAll<HTMLElement>('[role="tab"], a');
+    if (!tabs || tabs.length === 0) return;
+
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const isVertical = orientation === TabsOrientation.vertical;
+
+    for (const tab of Array.from(tabs)) {
+      const tabRect = tab.getBoundingClientRect();
+      const isVisible = isVertical
+        ? tabRect.top >= wrapperRect.top && tabRect.bottom <= wrapperRect.bottom
+        : tabRect.left >= wrapperRect.left &&
+          tabRect.right <= wrapperRect.right;
+      if (isVisible) {
+        tab.focus();
+        break;
+      }
+    }
+  }, [tabsWrapperRef, orientation]);
+
+  return { focusFirstVisibleTab };
+}
+
 // ScrollSpy by Dewaun Ayers:
 // https://blog.devgenius.io/diy-scrollspy-4f1c270cafaf
 

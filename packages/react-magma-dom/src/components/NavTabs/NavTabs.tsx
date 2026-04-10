@@ -19,7 +19,7 @@ import { getNormalizedScrollLeft, Omit } from '../../utils';
 import { Announce } from '../Announce';
 import { TabsOrientation, TabsTextTransform } from '../Tabs/shared';
 import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
-import { useTabsMeta } from '../Tabs/utils';
+import { useTabsMeta, useScrollTabFocus } from '../Tabs/utils';
 import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {
@@ -171,27 +171,30 @@ export const NavTabs = React.forwardRef<
     scroll(nextScrollStart);
   };
 
+  const { focusFirstVisibleTab } = useScrollTabFocus(
+    tabsWrapperRef,
+    orientation
+  );
+
   const handlePrevScrollWithAnnouncement = () => {
     handleStartScrollClick();
     setScrollAnnouncement(i18n.tabs.scrolledBackAnnounce);
-    setTimeout(() => setScrollAnnouncement(''), 100);
+    setTimeout(() => {
+      setScrollAnnouncement('');
+      focusFirstVisibleTab();
+    }, 300);
   };
 
   const handleNextScrollWithAnnouncement = () => {
     handleEndScrollClick();
     setScrollAnnouncement(i18n.tabs.scrolledForwardAnnounce);
-    setTimeout(() => setScrollAnnouncement(''), 100);
+    setTimeout(() => {
+      setScrollAnnouncement('');
+      focusFirstVisibleTab();
+    }, 300);
   };
 
   React.useEffect(scrollInitialActiveIndexIntoView, []);
-
-  React.useEffect(() => {
-    if (!displayScroll.start) {
-      nextButtonRef.current?.focus();
-    } else if (!displayScroll.end) {
-      prevButtonRef.current?.focus();
-    }
-  }, [displayScroll.start, displayScroll.end]);
 
   return (
     <StyledContainer
