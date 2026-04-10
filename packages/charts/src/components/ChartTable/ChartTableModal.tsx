@@ -53,12 +53,15 @@ const ModalFooter = styled.div<{ theme: any }>`
   padding-top: ${props => props.theme.spaceScale.spacing05};
 `;
 
-const HeaderLabel = styled.span`
+const HeaderLabel = styled.span<{ isInverse?: boolean; theme: any }>`
   display: block;
-  font-size: 14px;
+  font-size: ${props => props.theme.typeScale.size02.fontSize};
   font-weight: normal;
-  color: #707070;
-  line-height: 20px;
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral500};
+  line-height: ${props => props.theme.typeScale.size02.lineHeight};
 `;
 
 const containerStyle: React.CSSProperties = {
@@ -94,11 +97,13 @@ export function ChartTableModal({
   const header = React.useMemo(
     () => (
       <span>
-        <HeaderLabel>{resolvedHeaderLabel}</HeaderLabel>
+        <HeaderLabel isInverse={isInverse} theme={theme}>
+          {resolvedHeaderLabel}
+        </HeaderLabel>
         <HeaderTitle>{title}</HeaderTitle>
       </span>
     ),
-    [resolvedHeaderLabel, title]
+    [resolvedHeaderLabel, title, isInverse, theme]
   );
 
   return (
