@@ -1574,8 +1574,8 @@ describe('Date Picker', () => {
       expect(yearInput).toHaveValue('2026');
     });
 
-    it('should render error message when user enters an invalid year', () => {
-      const { getByTestId, getByText } = render(
+    it('should render error message when user enters an invalid year and on blur', () => {
+      const { getByTestId, getByText, queryByText } = render(
         <DatePicker isDateFieldInput />
       );
 
@@ -1591,13 +1591,19 @@ describe('Date Picker', () => {
       expect(dayInput).toHaveDisplayValue('15');
       expect(yearInput).toHaveDisplayValue('1800');
       expect(
+        queryByText('Invalid date. Please enter a year between 1900 and 2099.')
+      ).not.toBeInTheDocument();
+
+      userEvent.tab();
+
+      expect(
         getByText('Invalid date. Please enter a year between 1900 and 2099.')
       ).toBeInTheDocument();
     });
 
     it('should render invalid year error message after showing custom error message', () => {
       const customErrorMessage = 'Please, enter a date';
-      const { getByTestId, getByText } = render(
+      const { getByTestId, getByText, queryByText } = render(
         <DatePicker isDateFieldInput errorMessage={customErrorMessage} />
       );
 
@@ -1614,6 +1620,13 @@ describe('Date Picker', () => {
       expect(monthInput).toHaveDisplayValue('10');
       expect(dayInput).toHaveDisplayValue('22');
       expect(yearInput).toHaveDisplayValue('1861');
+
+      expect(
+        queryByText('Invalid date. Please enter a year between 1900 and 2099.')
+      ).not.toBeInTheDocument();
+
+      userEvent.tab();
+
       expect(
         getByText('Invalid date. Please enter a year between 1900 and 2099.')
       ).toBeInTheDocument();

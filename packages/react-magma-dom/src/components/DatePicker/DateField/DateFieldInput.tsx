@@ -33,7 +33,7 @@ import { IconButton } from '../../IconButton';
 import { IconButtonContainer } from '../../InputBase';
 import { Divider, StyledNumInput } from '../../TimePicker';
 import { VisuallyHidden } from '../../VisuallyHidden';
-import { MAX_YEAR, MIN_YEAR } from '../utils';
+import { MAX_YEAR, MIN_YEAR, isYearOutOfRange } from '../utils';
 
 export interface DateFieldInputProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'> {
@@ -230,54 +230,42 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   };
 
   React.useEffect(() => {
-    let isMounted = true;
-
-    // Preventing calling handleDateChange and onClearDate on initial mount when fields are empty
     if (!didMountRef.current) {
       didMountRef.current = true;
-
       return;
     }
 
     const allFieldsEmpty = !month && !day && !year;
 
-    if (allFieldsEmpty && isMounted) {
+    if (allFieldsEmpty) {
       handleDateChange?.(null, null);
       onClearDate?.();
       setIsInvalidYear(false);
-
       return;
     }
 
-    const yearValue = Number(year);
-    const isValidYear =
-      !isEmpty(year) && yearValue >= MIN_YEAR && yearValue <= MAX_YEAR;
     const hasAllFields = month && day && year;
 
-    // Prevents showing the error message when user is still filling out the fields
     if (!hasAllFields) {
       setIsInvalidYear(false);
       return;
     }
 
-    if (!isValidYear) {
-      setIsInvalidYear(true);
+    const yearValue = Number(year);
+
+    if (isYearOutOfRange(yearValue)) {
       return;
     }
+
+    setIsInvalidYear(false);
 
     const newDate = hasMonthLongFormat
       ? new Date(`${month} ${day}, ${year}`)
       : new Date(yearValue, Number(month) - 1, Number(day));
 
-    setIsInvalidYear(false);
-
-    if (!isNaN(newDate.getTime()) && isMounted) {
+    if (!isNaN(newDate.getTime())) {
       handleDateChange?.(newDate, null);
     }
-
-    return () => {
-      isMounted = false;
-    };
   }, [month, day, year, hasMonthLongFormat]);
 
   React.useEffect(() => {
@@ -352,6 +340,14 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   };
 
   const handleOnBlur = (e: React.FocusEvent) => {
+    const isLeavingGroup = !e.currentTarget.contains(e.relatedTarget as Node);
+
+    if (isLeavingGroup && month && day && year) {
+      if (isYearOutOfRange(Number(year))) {
+        setIsInvalidYear(true);
+      }
+    }
+
     onInputBlur?.(e);
     setIsFocused(false);
   };
