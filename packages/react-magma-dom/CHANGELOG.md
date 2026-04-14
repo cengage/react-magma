@@ -1,5 +1,11 @@
 ## 4.12.0
 
+## 4.12.2-next.1
+
+### Patch Changes
+
+- f251a365f: fix(Date Field Input): Add error message when the user enters an invalid date.
+
 ## 4.12.2-next.0
 
 ### Patch Changes

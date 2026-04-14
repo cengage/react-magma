@@ -12,6 +12,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "fix-DateFieldInput-error-message",
     "fix-DatePicker-accessibility-issues",
     "manually-sync-4.12.1"
   ]
