@@ -32,7 +32,8 @@ import {
 import { IconButton } from '../../IconButton';
 import { IconButtonContainer } from '../../InputBase';
 import { Divider, StyledNumInput } from '../../TimePicker';
-import { MAX_YEAR, MIN_YEAR } from '../utils';
+import { VisuallyHidden } from '../../VisuallyHidden';
+import { MAX_YEAR, MIN_YEAR, isYearOutOfRange } from '../utils';
 
 export interface DateFieldInputProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize' | 'fieldId'> {
@@ -104,6 +105,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   const didMountRef = React.useRef(false);
   const firstFieldRef = fieldRefs[fieldOrder[0]]?.current;
   const [isFocused, setIsFocused] = React.useState(false);
+  const [isInvalidYear, setIsInvalidYear] = React.useState(false);
 
   const dayId = `${id}__day`;
   const monthId = `${id}__month`;
@@ -122,16 +124,21 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     return isEmpty(month) ? 3.25 : 2;
   };
 
+  const invalidYearErrorMessage = i18n.datePicker.invalidYearError
+    .replace('{minYear}', MIN_YEAR.toString())
+    .replace('{maxYear}', MAX_YEAR.toString());
+
+  const ariaDescribedBy =
+    invalidYearErrorMessage || errorMessage || helperMessage
+      ? `${id}${descriptionSuffix}`
+      : undefined;
+
   const renderInput = (key: string) => {
     switch (key) {
       case InputDateFields.Day:
         return (
           <StyledNumInput
-            aria-describedby={
-              errorMessage || helperMessage
-                ? `${id}${descriptionSuffix}`
-                : undefined
-            }
+            aria-describedby={ariaDescribedBy}
             aria-label={datePicker.day}
             data-testid="day-input"
             id={dayId}
@@ -154,11 +161,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       case InputDateFields.Month:
         return (
           <StyledNumInput
-            aria-describedby={
-              errorMessage || helperMessage
-                ? `${id}${descriptionSuffix}`
-                : undefined
-            }
+            aria-describedby={ariaDescribedBy}
             aria-label={datePicker.month}
             data-testid="month-input"
             id={monthId}
@@ -187,11 +190,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       case InputDateFields.Year:
         return (
           <StyledNumInput
-            aria-describedby={
-              errorMessage || helperMessage
-                ? `${id}${descriptionSuffix}`
-                : undefined
-            }
+            aria-describedby={ariaDescribedBy}
             aria-label={datePicker.year}
             data-testid="year-input"
             id={yearId}
@@ -231,43 +230,42 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   };
 
   React.useEffect(() => {
-    let isMounted = true;
-
-    // Preventing calling handleDateChange and onClearDate on initial mount when fields are empty
     if (!didMountRef.current) {
       didMountRef.current = true;
-
       return;
     }
 
-    const allFieldsEmpty = isEmpty(day) && isEmpty(month) && isEmpty(year);
+    const allFieldsEmpty = !month && !day && !year;
 
-    if (allFieldsEmpty && isMounted) {
+    if (allFieldsEmpty) {
       handleDateChange?.(null, null);
       onClearDate?.();
-
+      setIsInvalidYear(false);
       return;
     }
 
-    const isCompletedDate =
-      month &&
-      day &&
-      year &&
-      Number(year) >= MIN_YEAR &&
-      Number(year) <= MAX_YEAR;
+    const hasAllFields = month && day && year;
 
-    if (!isCompletedDate) return;
-    const newDate = hasMonthLongFormat
-      ? new Date(`${month} ${day}, ${year}`)
-      : new Date(Number(year), Number(month) - 1, Number(day));
-
-    if (!isNaN(newDate.getTime()) && isMounted) {
-      handleDateChange?.(newDate, null);
+    if (!hasAllFields) {
+      setIsInvalidYear(false);
+      return;
     }
 
-    return () => {
-      isMounted = false;
-    };
+    const yearValue = Number(year);
+
+    if (isYearOutOfRange(yearValue)) {
+      return;
+    }
+
+    setIsInvalidYear(false);
+
+    const newDate = hasMonthLongFormat
+      ? new Date(`${month} ${day}, ${year}`)
+      : new Date(yearValue, Number(month) - 1, Number(day));
+
+    if (!isNaN(newDate.getTime())) {
+      handleDateChange?.(newDate, null);
+    }
   }, [month, day, year, hasMonthLongFormat]);
 
   React.useEffect(() => {
@@ -342,6 +340,14 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   };
 
   const handleOnBlur = (e: React.FocusEvent) => {
+    const isLeavingGroup = !e.currentTarget.contains(e.relatedTarget as Node);
+
+    if (isLeavingGroup && month && day && year) {
+      if (isYearOutOfRange(Number(year))) {
+        setIsInvalidYear(true);
+      }
+    }
+
     onInputBlur?.(e);
     setIsFocused(false);
   };
@@ -349,7 +355,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   return (
     <FormFieldContainer
       containerStyle={containerStyle}
-      errorMessage={errorMessage}
+      errorMessage={isInvalidYear ? invalidYearErrorMessage : errorMessage}
       fieldId={id}
       helperMessage={helperMessage}
       isInverse={isInverse}
@@ -405,6 +411,9 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
             />
           </IconButtonContainer>
         </IconWrapper>
+        <VisuallyHidden>
+          <input id={id} aria-hidden="true" tabIndex={-1} />
+        </VisuallyHidden>
       </DateFieldInputContainer>
     </FormFieldContainer>
   );

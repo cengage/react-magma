@@ -130,6 +130,8 @@ export const defaultI18n: I18nInterface = {
     day: 'Day',
     month: 'Month',
     year: 'Year',
+    invalidYearError:
+      'Invalid date. Please enter a year between {minYear} and {maxYear}.',
     helpModal: {
       header: 'Keyboard Shortcuts',
       helpButtonAriaLabel: 'Keyboard instructions for calendar widget',
