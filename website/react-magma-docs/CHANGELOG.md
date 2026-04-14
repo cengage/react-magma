@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.26
+
+### Patch Changes
+
+- e901432: fix(Accordion): Update doc example.
+
 ## 7.0.0-rc.25
 
 ### Patch Changes
