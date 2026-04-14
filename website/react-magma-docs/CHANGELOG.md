@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.3-next.2
+
+### Patch Changes
+
+- fe4223dab: fix(Accordion): Update doc example.
+
 ## 5.3.3-next.1
 
 ### Patch Changes
