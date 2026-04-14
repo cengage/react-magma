@@ -1,5 +1,6 @@
 ---
 '@react-magma/charts': minor
+'react-magma-dom': minor
 ---
 
 feat: Add accessible chart toolbar with "Show as table", fullscreen, and "More options" buttons

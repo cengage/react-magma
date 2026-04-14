@@ -94,6 +94,17 @@ export interface I18nInterface {
       keyboardInstructionsTooltip: string;
       legendButtonAriaLabel: string;
     };
+    toolbar?: {
+      defaultTitle?: string;
+      downloadAsCsv?: string;
+      downloadAsJpg?: string;
+      downloadAsPng?: string;
+      exitFullScreen?: string;
+      makeFullScreen?: string;
+      moreOptionsAriaLabel?: string;
+      showAsTableTooltip?: string;
+      tabularRepresentationLabel?: string;
+    };
   };
   combobox: {
     clearIndicatorAriaLabel: string;

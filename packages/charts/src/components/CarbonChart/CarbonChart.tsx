@@ -717,7 +717,8 @@ const ToolbarActions = styled.div<{ theme: ThemeInterface }>`
 `;
 
 function sanitizeCsvValue(value: string): string {
-  if (/^[=+\-@\t\r]/.test(value)) {
+  const trimmed = value.trimStart();
+  if (/^[=+\-@\t\r]/.test(trimmed)) {
     return `'${value}`;
   }
   return value;
@@ -945,7 +946,7 @@ function CarbonChartToolbar({
   const t = useChartToolbarI18n();
   const showTable = config.showAsTable !== false;
   const showFullscreen = config.fullscreen !== false;
-  const resolvedTitle = title || 'Chart';
+  const resolvedTitle = title || t.defaultTitle;
 
   const handleDownloadCsv = React.useCallback(() => {
     downloadCsv(dataSet, title);
@@ -1033,6 +1034,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
+    const toolbarI18n = useChartToolbarI18n();
     const internalRef = React.useRef<HTMLDivElement | null>(null);
 
     const [isTableOpen, setIsTableOpen] = React.useState(false);
@@ -1107,7 +1109,8 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       }
     }, []);
 
-    const chartTitle: string = (options as any).title || '';
+    const chartTitle: string =
+      (options as any).title || toolbarI18n.defaultTitle;
 
     const handleModalDownloadCsv = React.useCallback(() => {
       downloadCsv(dataSet as Array<Record<string, unknown>>, chartTitle);

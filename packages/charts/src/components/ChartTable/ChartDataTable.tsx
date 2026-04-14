@@ -17,7 +17,7 @@ export interface ChartDataTableColumn {
 }
 
 export interface ChartDataTableProps {
-  /** Column definitions (header + key). If omitted, columns are auto-derived from the dataset object keys. */
+  /** Column definitions (header + key). If omitted, columns are auto-derived from the dataset object keys with the first character capitalized (e.g. "group" → "Group"). */
   columns?: ChartDataTableColumn[];
   /** Array of data objects. Each object should have keys matching the column `key` values. */
   dataSet: Array<Record<string, React.ReactNode>>;
