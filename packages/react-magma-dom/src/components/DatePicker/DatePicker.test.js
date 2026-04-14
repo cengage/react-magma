@@ -1606,6 +1606,66 @@ describe('Date Picker', () => {
       expect(yearInput).toHaveValue('2026');
     });
 
+    it('should render error message when user enters an invalid year and on blur', async () => {
+      const user = userEvent.setup();
+      const { getByTestId, getByText, queryByText } = render(
+        <DatePicker isDateFieldInput />
+      );
+
+      const monthInput = getByTestId('month-input');
+      const dayInput = getByTestId('day-input');
+      const yearInput = getByTestId('year-input');
+
+      await user.type(monthInput, '1');
+      await user.type(dayInput, '15');
+      await user.type(yearInput, '1800');
+
+      expect(monthInput).toHaveDisplayValue('01');
+      expect(dayInput).toHaveDisplayValue('15');
+      expect(yearInput).toHaveDisplayValue('1800');
+      expect(
+        queryByText('Invalid date. Please enter a year between 1900 and 2099.')
+      ).not.toBeInTheDocument();
+
+      await user.tab();
+
+      expect(
+        getByText('Invalid date. Please enter a year between 1900 and 2099.')
+      ).toBeInTheDocument();
+    });
+
+    it('should render invalid year error message after showing custom error message', async () => {
+      const user = userEvent.setup();
+      const customErrorMessage = 'Please, enter a date';
+      const { getByTestId, getByText, queryByText } = render(
+        <DatePicker isDateFieldInput errorMessage={customErrorMessage} />
+      );
+
+      const monthInput = getByTestId('month-input');
+      const dayInput = getByTestId('day-input');
+      const yearInput = getByTestId('year-input');
+
+      expect(getByText(customErrorMessage)).toBeInTheDocument();
+
+      await user.type(monthInput, '10');
+      await user.type(dayInput, '22');
+      await user.type(yearInput, '1861');
+
+      expect(monthInput).toHaveDisplayValue('10');
+      expect(dayInput).toHaveDisplayValue('22');
+      expect(yearInput).toHaveDisplayValue('1861');
+
+      expect(
+        queryByText('Invalid date. Please enter a year between 1900 and 2099.')
+      ).not.toBeInTheDocument();
+
+      await user.tab();
+
+      expect(
+        getByText('Invalid date. Please enter a year between 1900 and 2099.')
+      ).toBeInTheDocument();
+    });
+
     describe('Focus behavior', () => {
       it('should handle input focus behavior via tabbing', async () => {
         const user = userEvent.setup();

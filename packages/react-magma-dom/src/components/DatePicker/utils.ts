@@ -184,3 +184,7 @@ export function setYearForDate(prevDate, numberYear: number) {
 export const MAX_YEAR = 2099;
 
 export const MIN_YEAR = 1900;
+
+export const isYearOutOfRange = (year: number) => {
+  return year < MIN_YEAR || year > MAX_YEAR;
+};
