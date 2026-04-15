@@ -20,14 +20,14 @@ See the <Link to="/api/toast/">Toasts documentation</Link> for more information.
 ```tsx
 import React from 'react';
 
-import { Alert } from 'react-magma-dom';
+import { Alert, Hyperlink } from 'react-magma-dom';
 
 export function Example() {
   return (
     <>
       <Alert isDismissible>I'm an Alert</Alert>
       <Alert>
-        I'm an Alert with <a href="#">linked text</a>
+        I'm an Alert with <Hyperlink href="#">linked text</Hyperlink>
       </Alert>
     </>
   );
@@ -42,7 +42,7 @@ This prop determines the icon and color scheme used to style the Alert.
 ```tsx
 import React from 'react';
 
-import { Alert, AlertVariant } from 'react-magma-dom';
+import { Alert, AlertVariant, Hyperlink } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -51,7 +51,7 @@ export function Example() {
       <Alert variant={AlertVariant.info}>Info Alert</Alert>
       <Alert variant={AlertVariant.success}>Success Alert</Alert>
       <Alert variant={AlertVariant.warning}>
-        Warning Alert with <a href="#">linked text</a>
+        Warning Alert with <Hyperlink href="#">linked text</Hyperlink>
       </Alert>
       <Alert variant={AlertVariant.danger}>
         Danger Alert
@@ -155,7 +155,7 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Alert, AlertVariant, Container } from 'react-magma-dom';
+import { Alert, AlertVariant, Container, Hyperlink } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -167,7 +167,10 @@ export function Example() {
         Inverse Success Alert
       </Alert>
       <Alert variant={AlertVariant.warning} isInverse>
-        Inverse Warning Alert with <a href="#">linked text</a>
+        Inverse Warning Alert with{' '}
+        <Hyperlink href="#" isInverse>
+          linked text
+        </Hyperlink>
       </Alert>
       <Alert variant={AlertVariant.danger} isInverse>
         Inverse Danger Alert
