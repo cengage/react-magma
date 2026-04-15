@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta } from '@storybook/react-webpack5';
+import { Meta } from '@storybook/react';
 
 import {
   Modal,
@@ -724,6 +724,63 @@ export const Inverse = () => {
           <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>
       </Container>
+    </>
+  );
+};
+
+export const EscWithForeignAriaModal = () => {
+  const [showModal, setShowModal] = React.useState(true);
+  const [foreignModalMounted, setForeignModalMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    const foreignModal = document.createElement('div');
+
+    foreignModal.setAttribute('aria-modal', 'true');
+    foreignModal.setAttribute('role', 'dialog');
+    foreignModal.setAttribute('id', 'fake-optanon-modal');
+    foreignModal.style.display = 'none';
+    foreignModal.textContent = 'Hidden foreign modal';
+
+    document.body.appendChild(foreignModal);
+    setForeignModalMounted(true);
+
+    return () => {
+      foreignModal.remove();
+    };
+  }, []);
+
+  return (
+    <>
+      <Paragraph>
+        This story mounts the modal open from the first render and injects a
+        second hidden <code>aria-modal="true"</code> element into the DOM.
+      </Paragraph>
+
+      <Paragraph>
+        Expected repro steps:
+        <br />
+        1. Open this story
+        <br />
+        2. Click inside the modal once if needed
+        <br />
+        3. Press <code>Esc</code>
+      </Paragraph>
+
+      <Paragraph>
+        Foreign modal mounted: {foreignModalMounted ? 'yes' : 'no'}
+      </Paragraph>
+
+      <Modal
+        header="Repro modal"
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+      >
+        <Paragraph noTopMargin>
+          Press Esc. If the bug is in our modal, this should hit the broken path
+          when another aria-modal exists in the DOM.
+        </Paragraph>
+        <Button onClick={() => setShowModal(false)}>Close</Button>
+      </Modal>
     </>
   );
 };
