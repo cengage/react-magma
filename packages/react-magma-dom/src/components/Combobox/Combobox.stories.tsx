@@ -1293,3 +1293,58 @@ export const FullPageExample = {
 
   parameters: { controls: { exclude: ['labelPosition'] } },
 };
+
+export const ControlledSelectedItem = {
+  render: () => {
+    const items = [
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ];
+    const [selectedItem, setSelectedItem] = React.useState<
+      { label: string; value: string } | undefined
+    >(undefined);
+
+    return (
+      <Combobox
+        id="controlledSelectedItemId"
+        labelText="Controlled selectedItem"
+        items={items}
+        selectedItem={selectedItem}
+        onSelectedItemChange={changes => setSelectedItem(changes.selectedItem)}
+      />
+    );
+  },
+};
+
+export const ControlledItems = {
+  render: () => {
+    const defaultItems = [
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ];
+    const [items, updateItems] = React.useState(defaultItems);
+
+    function newItemTransform(item: { value: string }) {
+      return {
+        label: item.value,
+        value: item.value.toLowerCase(),
+      };
+    }
+
+    function onItemCreated(item: { label: string; value: string }) {
+      updateItems(prev => [...prev, item]);
+    }
+
+    return (
+      <Combobox
+        id="controlledItemsId"
+        labelText="Controlled items"
+        items={items}
+        newItemTransform={newItemTransform}
+        onItemCreated={onItemCreated}
+      />
+    );
+  },
+};
