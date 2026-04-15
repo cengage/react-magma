@@ -27,7 +27,7 @@ export function Example() {
     <>
       <Alert isDismissible>I'm an Alert</Alert>
       <Alert>
-        I'm an Alert with <Hyperlink href="#">linked text</Hyperlink>
+        I'm an Alert with <Hyperlink to="#">linked text</Hyperlink>
       </Alert>
     </>
   );
@@ -51,7 +51,7 @@ export function Example() {
       <Alert variant={AlertVariant.info}>Info Alert</Alert>
       <Alert variant={AlertVariant.success}>Success Alert</Alert>
       <Alert variant={AlertVariant.warning}>
-        Warning Alert with <Hyperlink href="#">linked text</Hyperlink>
+        Warning Alert with <Hyperlink to="#">linked text</Hyperlink>
       </Alert>
       <Alert variant={AlertVariant.danger}>
         Danger Alert
@@ -168,7 +168,7 @@ export function Example() {
       </Alert>
       <Alert variant={AlertVariant.warning} isInverse>
         Inverse Warning Alert with{' '}
-        <Hyperlink href="#" isInverse>
+        <Hyperlink to="#" isInverse>
           linked text
         </Hyperlink>
       </Alert>
