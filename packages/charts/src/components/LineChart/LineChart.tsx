@@ -653,7 +653,7 @@ export function LineChart<T>(props: LineChartProps<T>) {
               color={theme.iterableColors[i]}
               dataIndex={i}
               isHidden={hiddenData.includes(i)}
-              key={i}
+              key={name}
               name={name}
               onClick={handleLegendClick}
               onKeyDown={i === 0 ? handleFirstLegendButtonKeydown : undefined}

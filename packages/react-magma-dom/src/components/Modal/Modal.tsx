@@ -85,6 +85,13 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   unmountOnExit?: boolean;
   /**
+   * DOM element to portal the modal into. Defaults to `document.body`.
+   * Useful when the modal must render inside a specific subtree, such as
+   * when the parent element has been put into the browser's fullscreen mode
+   * (only DOM within the fullscreen element is rendered by the browser).
+   */
+  portalContainer?: HTMLElement | null;
+  /**
    * @internal
    */
   containerTransition?: Omit<TransitionProps, 'isOpen'>;
@@ -238,6 +245,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       children,
       closeAriaLabel,
       closeButtonSize,
+      portalContainer,
       containerStyle,
       containerTransition,
       isBackgroundClickDisabled,
@@ -469,7 +477,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               />
             )}
           </div>,
-          document.getElementsByTagName('body')[0]
+          portalContainer ?? document.getElementsByTagName('body')[0]
         )
       : null;
   }
