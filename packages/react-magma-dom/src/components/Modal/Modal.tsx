@@ -314,8 +314,11 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     }, [isModalOpen]);
 
     function handleModalClick(event: React.SyntheticEvent) {
+      const contentEl = document.getElementById(contentId);
+
       if (
-        !document.getElementById(contentId).contains(event.target as Node) &&
+        contentEl &&
+        !contentEl.contains(event.target as Node) &&
         event.target === currentTarget
       ) {
         handleClose(event);
@@ -341,12 +344,12 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         ).length;
 
         if (modalCount <= 1 && modalsInDom !== 1) {
-          if (
-            document.getElementById(id).contains(event.target as HTMLDivElement)
-          ) {
+          const modalEl = document.getElementById(id);
+
+          if (modalEl && modalEl.contains(event.target as HTMLDivElement)) {
             handleClose(event);
           } else {
-            headingRef.current.focus();
+            headingRef.current?.focus();
           }
         } else {
           handleClose(event);
