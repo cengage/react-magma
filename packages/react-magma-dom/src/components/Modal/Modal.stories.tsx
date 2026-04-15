@@ -761,9 +761,9 @@ export const EscWithForeignAriaModal = () => {
         <br />
         1. Open this story
         <br />
-        2. Click inside the modal once if needed
+        2. Press <code>Esc</code>
         <br />
-        3. Press <code>Esc</code>
+        3. Clarify that modal closes and no errors are thrown in the console
       </Paragraph>
 
       <Paragraph>
