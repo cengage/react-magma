@@ -12,9 +12,12 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "accessible-chart-toolbar",
     "fix-Accordion-update-doc-example",
     "fix-DateFieldInput-error-message",
     "fix-DatePicker-accessibility-issues",
-    "manually-sync-4.12.1"
+    "icons-version",
+    "manually-sync-4.12.1",
+    "modal-portal-container"
   ]
 }

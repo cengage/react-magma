@@ -1,5 +1,15 @@
 # @react-magma/schema-renderer
 
+## 15.0.0-next.1
+
+### Patch Changes
+
+- cab09c2ad: Chore: update react-magma-icons version
+- Updated dependencies [cab09c2ad]
+- Updated dependencies [cab09c2ad]
+- Updated dependencies [cab09c2ad]
+  - react-magma-dom@4.13.0-next.2
+
 ## 14.0.2-next.0
 
 ### Patch Changes

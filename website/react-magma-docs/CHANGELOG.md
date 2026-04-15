@@ -1,5 +1,19 @@
 # Change Log
 
+## 5.3.3-next.3
+
+### Patch Changes
+
+- cab09c2ad: Chore: update react-magma-icons version
+- Updated dependencies [cab09c2ad]
+- Updated dependencies [cab09c2ad]
+- Updated dependencies [cab09c2ad]
+  - @react-magma/charts@14.0.0-next.1
+  - react-magma-dom@4.13.0-next.2
+  - @react-magma/dropzone@12.0.4-next.1
+  - @react-magma/schema-renderer@15.0.0-next.1
+  - @cengage-patterns/header@16.0.0-next.1
+
 ## 5.3.3-next.2
 
 ### Patch Changes

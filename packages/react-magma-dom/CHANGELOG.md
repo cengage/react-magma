@@ -1,5 +1,27 @@
 ## 4.12.0
 
+## 4.13.0-next.2
+
+### Minor Changes
+
+- cab09c2ad: feat: Add accessible chart toolbar with "Show as table", fullscreen, and "More options" buttons
+
+  Adds a new `chartToolbar` prop to `CarbonChart` that renders a WCAG 2.2 compliant toolbar replacing Carbon's built-in navigation controls. When provided, Carbon's toolbar is automatically disabled and replaced with accessible Magma components featuring:
+
+  - **Show as table** button with `aria-haspopup="dialog"` and `aria-expanded`, opening a focus-trapped Magma Modal with semantic headings and an accessible data table
+  - **Fullscreen** button without `aria-haspopup` (fixing the previous WCAG violation)
+  - **More options** dropdown using Magma's Dropdown component with proper menu semantics
+
+  Also exports standalone composable components (`ChartTableButton`, `ChartFullscreenButton`, `ChartMoreOptionsButton`, `ChartTableModal`, `ChartDataTable`, `ChartToolbar`) for adopters who need granular control outside of `CarbonChart`.
+
+- cab09c2ad: feat(Modal): add `portalContainer` prop to control portal target
+
+  Adds an optional `portalContainer` prop to `Modal` that lets consumers specify the DOM element the modal should be portaled into. Defaults to `document.body` (unchanged behavior).
+
+### Patch Changes
+
+- cab09c2ad: Chore: update react-magma-icons version
+
 ## 4.12.2-next.1
 
 ### Patch Changes
