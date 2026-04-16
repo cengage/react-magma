@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Meta } from '@storybook/react';
-
 import {
   Modal,
   ModalProps,
@@ -763,7 +761,7 @@ export const EscWithForeignAriaModal = () => {
         <br />
         2. Press <code>Esc</code>
         <br />
-        3. Clarify that modal closes and no errors are thrown in the console
+        3. Verify that the modal closes
       </Paragraph>
 
       <Paragraph>

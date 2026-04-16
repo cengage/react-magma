@@ -311,7 +311,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           false
         );
       };
-    }, [isModalOpen]);
+    }, [isModalOpen, isEscKeyDownDisabled]);
 
     function handleModalClick(event: React.SyntheticEvent) {
       const contentEl = document.getElementById(contentId);
