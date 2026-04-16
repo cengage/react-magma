@@ -140,12 +140,13 @@ export function useFocusLock(
       if (!focusableItems.current) return;
 
       const { key, shiftKey } = event;
-      const { length } = focusableItems.current;
-      const firstItem = focusableItems.current[0];
-      const lastItem = focusableItems.current[length - 1];
 
       if (active && key === 'Tab') {
         updateFocusableItems();
+
+        const { length } = focusableItems.current;
+        const firstItem = focusableItems.current[0];
+        const lastItem = focusableItems.current[length - 1];
 
         const activeElement = document.activeElement as HTMLElement | null;
         const eventTarget = event.target as Node | null;
