@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { render } from '@testing-library/react';
-import { darken, lighten } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -42,6 +41,42 @@ describe('Badge', () => {
     expect(getByText(TEXT)).toHaveStyleRule(
       'line-height',
       magma.typeScale.size02.lineHeight
+    );
+  });
+
+  it('should have styles when badge is clickable', () => {
+    const { getByText } = render(
+      <Badge color="primary" onClick={() => {}}>
+        {TEXT}
+      </Badge>
+    );
+
+    expect(getByText(TEXT)).toHaveStyleRule('cursor', 'pointer');
+
+    expect(getByText(TEXT)).toHaveStyleRule(
+      'outline',
+      `2px solid ${magma.colors.focus}`,
+      { target: ':focus' }
+    );
+
+    expect(getByText(TEXT)).toHaveStyleRule(
+      'outline-offset',
+      `${magma.spaceScale.spacing01}`,
+      { target: ':focus' }
+    );
+  });
+
+  it('should have styles when badge is clickable and isInverse', () => {
+    const { getByText } = render(
+      <Badge color="primary" onClick={() => {}} isInverse>
+        {TEXT}
+      </Badge>
+    );
+
+    expect(getByText(TEXT)).toHaveStyleRule(
+      'outline',
+      `2px solid ${magma.colors.focusInverse}`,
+      { target: ':focus' }
     );
   });
 
