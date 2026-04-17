@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.81
+
+### Patch Changes
+
+- 409d2a3: fix(Badge): Add focus outline offset.
+
 ## 5.1.0-rc.80
 
 ### Patch Changes

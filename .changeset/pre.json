@@ -56,6 +56,7 @@
     "fix-Accordion-update-doc-example",
     "fix-Alert-docs-acessibility-issues",
     "fix-Alert-right-padding-missing",
+    "fix-Badge-focus-outline",
     "fix-Banner-add-role-and-aria-label",
     "fix-Banner-docs-accessibility-issues",
     "fix-Breadcrumb-last-item-focus",
