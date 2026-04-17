@@ -14,6 +14,7 @@
   "changesets": [
     "accessible-chart-toolbar",
     "fix-Accordion-update-doc-example",
+    "fix-Badge-focus-outline",
     "fix-DateFieldInput-error-message",
     "fix-DatePicker-accessibility-issues",
     "icons-version",
