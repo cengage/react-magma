@@ -162,6 +162,7 @@ const StyledButton = styled.button<BadgeProps>`
         props.isInverse
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
+    outline-offset: ${props => props.theme.spaceScale.spacing01};
   }
 `;
 
