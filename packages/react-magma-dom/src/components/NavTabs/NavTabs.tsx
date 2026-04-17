@@ -87,6 +87,7 @@ export const NavTabs = React.forwardRef<
   const childrenWrapperRef = React.useRef<HTMLUListElement>();
   const [scrollAnnouncement, setScrollAnnouncement] = React.useState('');
   const i18n = React.useContext(I18nContext);
+  const isScrollFocusRef = React.useRef(false);
 
   const hasChildFocus = navTabChildren.some(child => {
     if (React.isValidElement(child)) {
@@ -95,6 +96,10 @@ export const NavTabs = React.forwardRef<
   });
 
   const handleNavTabFocus = (event: React.FocusEvent<HTMLElement>) => {
+    if (isScrollFocusRef.current) {
+      return;
+    }
+
     const navTabElement = event.currentTarget;
 
     navTabElement.scrollIntoView({
@@ -181,7 +186,9 @@ export const NavTabs = React.forwardRef<
     setScrollAnnouncement(i18n.tabs.scrolledBackAnnounce);
     setTimeout(() => {
       setScrollAnnouncement('');
+      isScrollFocusRef.current = true;
       focusFirstVisibleTab();
+      isScrollFocusRef.current = false;
     }, 300);
   };
 
@@ -190,7 +197,9 @@ export const NavTabs = React.forwardRef<
     setScrollAnnouncement(i18n.tabs.scrolledForwardAnnounce);
     setTimeout(() => {
       setScrollAnnouncement('');
+      isScrollFocusRef.current = true;
       focusFirstVisibleTab();
+      isScrollFocusRef.current = false;
     }, 300);
   };
 

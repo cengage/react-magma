@@ -118,24 +118,26 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
 
 export function useScrollTabFocus(
   tabsWrapperRef: React.RefObject<HTMLElement>,
-  orientation?: TabsOrientation
+  orientation: TabsOrientation
 ) {
   const focusFirstVisibleTab = React.useCallback(() => {
     const wrapper = tabsWrapperRef.current;
     if (!wrapper) return;
 
-    const tabs = wrapper.querySelectorAll<HTMLElement>('[role="tab"], a');
+    const tabs = wrapper.querySelectorAll<HTMLElement>('[role="tab"]');
     if (!tabs || tabs.length === 0) return;
 
     const wrapperRect = wrapper.getBoundingClientRect();
     const isVertical = orientation === TabsOrientation.vertical;
+    const tolerance = 2;
 
     for (const tab of Array.from(tabs)) {
       const tabRect = tab.getBoundingClientRect();
       const isVisible = isVertical
-        ? tabRect.top >= wrapperRect.top && tabRect.bottom <= wrapperRect.bottom
-        : tabRect.left >= wrapperRect.left &&
-          tabRect.right <= wrapperRect.right;
+        ? tabRect.top >= wrapperRect.top - tolerance &&
+          tabRect.bottom <= wrapperRect.bottom + tolerance
+        : tabRect.left >= wrapperRect.left - tolerance &&
+          tabRect.right <= wrapperRect.right + tolerance;
       if (isVisible) {
         tab.focus();
         break;
