@@ -15,6 +15,7 @@
     "accessible-chart-toolbar",
     "fix-Accordion-update-doc-example",
     "fix-Badge-focus-outline",
+    "fix-Datagrid-Table-accessibility-issue",
     "fix-DateFieldInput-error-message",
     "fix-DatePicker-accessibility-issues",
     "fix-package-runtime-deps",

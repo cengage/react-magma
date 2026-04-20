@@ -1,5 +1,11 @@
 ## 4.12.0
 
+## 4.13.0-next.5
+
+### Patch Changes
+
+- a3fe4f22e: fix(Datagrid, Table): Fix the issue where the focus is lost when the button becomes disabled
+
 ## 4.13.0-next.4
 
 ### Patch Changes
