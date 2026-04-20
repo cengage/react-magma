@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Meta } from '@storybook/react';
-
 import {
   Modal,
   ModalProps,
@@ -48,7 +46,7 @@ export const Default = {
       React.RefAttributes<HTMLDivElement>
   ) => {
     const [showModal, setShowModal] = React.useState(false);
-    const buttonRef = React.useRef<HTMLButtonElement>();
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
 
     return (
       <>
@@ -57,7 +55,7 @@ export const Default = {
           header="Modal Title"
           onClose={() => {
             setShowModal(false);
-            buttonRef.current.focus();
+            buttonRef.current?.focus();
           }}
           isOpen={showModal}
         >
@@ -84,7 +82,7 @@ export const Default = {
 
 export const BackgroundCickDisabled = () => {
   const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
     <>
@@ -93,7 +91,7 @@ export const BackgroundCickDisabled = () => {
         isBackgroundClickDisabled
         onClose={() => {
           setShowModal(false);
-          buttonRef.current.focus();
+          buttonRef.current?.focus();
         }}
         isOpen={showModal}
       >
@@ -117,7 +115,7 @@ export const BackgroundCickDisabled = () => {
 
 export const LongContentWithScrolling = () => {
   const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   const onModalShow = () => {
     setShowModal(true);
@@ -125,7 +123,7 @@ export const LongContentWithScrolling = () => {
 
   const onModalClose = () => {
     setShowModal(false);
-    buttonRef.current.focus();
+    buttonRef.current?.focus();
   };
 
   return (
@@ -180,7 +178,7 @@ export const LongContentWithScrolling = () => {
 
 export const RadioInModal = () => {
   const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   const onModalShow = () => {
     setShowModal(true);
@@ -188,7 +186,7 @@ export const RadioInModal = () => {
 
   const onModalClose = () => {
     setShowModal(false);
-    buttonRef.current.focus();
+    buttonRef.current?.focus();
   };
 
   return (
@@ -212,7 +210,7 @@ export const ModalContentUpdate = () => {
   const [page, setPage] = React.useState(1);
   const [showHidden, setShowHidden] = React.useState(false);
   const [goToNextPageEnabled, setGoToNextPageEnabled] = React.useState(true);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
   const [mainHeaderRef, setmainHeaderRef] = React.useState(React.useRef<any>());
 
   const handleGetHeaderRef = ref => {
@@ -225,7 +223,7 @@ export const ModalContentUpdate = () => {
 
   const onModalClose = () => {
     setShowModal(false);
-    buttonRef.current.focus();
+    buttonRef.current?.focus();
   };
 
   const goToPage1 = () => {
@@ -303,7 +301,7 @@ export const ModalContentUpdate = () => {
 
 export const NoHeaderOrFocusableContent = () => {
   const [showModalNoFocus, setShowModalNoFocus] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   const onModalNoFocusShow = () => {
     setShowModalNoFocus(true);
@@ -311,7 +309,7 @@ export const NoHeaderOrFocusableContent = () => {
 
   const onModalNoFocusClose = () => {
     setShowModalNoFocus(false);
-    buttonRef.current.focus();
+    buttonRef.current?.focus();
   };
 
   return (
@@ -348,7 +346,7 @@ export const ModalInAModal = () => {
   const [showModal2, setShowModal2] = React.useState(false);
   const [mainHeaderRef, setmainHeaderRef] = React.useState(React.useRef<any>());
 
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   const handleGetHeaderRef = ref => {
     setmainHeaderRef(ref);
@@ -365,7 +363,7 @@ export const ModalInAModal = () => {
         header="Modal Title"
         onClose={() => {
           setShowModal(false);
-          buttonRef.current.focus();
+          buttonRef.current?.focus();
         }}
         isOpen={showModal}
         headerRef={handleGetHeaderRef}
@@ -589,8 +587,8 @@ export const HeaderReference = () => {
   const [customHeadingRef, setCustomHeadingRef] = React.useState(
     React.useRef<any>()
   );
-  const customButtonRef = React.useRef<HTMLButtonElement>();
-  const defaultButtonRef = React.useRef<HTMLButtonElement>();
+  const customButtonRef = React.useRef<HTMLButtonElement>(null);
+  const defaultButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const handleGetHeaderRef = ref => {
     setCustomHeadingRef(ref);
@@ -602,7 +600,7 @@ export const HeaderReference = () => {
 
   const onModalClose = () => {
     setShowModal(false);
-    customButtonRef.current.focus();
+    customButtonRef.current?.focus();
   };
 
   const onModalShowDefault = () => {
@@ -611,7 +609,7 @@ export const HeaderReference = () => {
 
   const onModalCloseDefault = () => {
     setShowDefaultModal(false);
-    defaultButtonRef.current.focus();
+    defaultButtonRef.current?.focus();
   };
 
   const onHeadingFocus = () => {
@@ -693,7 +691,7 @@ export const HeaderReference = () => {
 
 export const Inverse = () => {
   const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   return (
     <>
@@ -701,7 +699,7 @@ export const Inverse = () => {
         header="Modal Title"
         onClose={() => {
           setShowModal(false);
-          buttonRef.current.focus();
+          buttonRef.current?.focus();
         }}
         isOpen={showModal}
         isInverse
@@ -800,4 +798,61 @@ export const WithPortalContainer = {
       </div>
     );
   },
+};
+
+export const EscWithForeignAriaModal = () => {
+  const [showModal, setShowModal] = React.useState(true);
+  const [foreignModalMounted, setForeignModalMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    const foreignModal = document.createElement('div');
+
+    foreignModal.setAttribute('aria-modal', 'true');
+    foreignModal.setAttribute('role', 'dialog');
+    foreignModal.setAttribute('id', 'fake-optanon-modal');
+    foreignModal.style.display = 'none';
+    foreignModal.textContent = 'Hidden foreign modal';
+
+    document.body.appendChild(foreignModal);
+    setForeignModalMounted(true);
+
+    return () => {
+      foreignModal.remove();
+    };
+  }, []);
+
+  return (
+    <>
+      <Paragraph>
+        This story mounts the modal open from the first render and injects a
+        second hidden <code>{'aria-modal="true"'}</code> element into the DOM.
+      </Paragraph>
+
+      <Paragraph>
+        Expected repro steps:
+        <br />
+        1. Open this story
+        <br />
+        2. Press <code>Esc</code>
+        <br />
+        3. Verify that the modal closes
+      </Paragraph>
+
+      <Paragraph>
+        Foreign modal mounted: {foreignModalMounted ? 'yes' : 'no'}
+      </Paragraph>
+
+      <Modal
+        header="Repro modal"
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+      >
+        <Paragraph noTopMargin>
+          Press Esc. If the bug is in our modal, this should hit the broken path
+          when another aria-modal exists in the DOM.
+        </Paragraph>
+        <Button onClick={() => setShowModal(false)}>Close</Button>
+      </Modal>
+    </>
+  );
 };
