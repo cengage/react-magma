@@ -71,6 +71,7 @@
     "fix-Combobox-not-readable-placeholder-for-NVDA",
     "fix-Combobox-search-disabled-options",
     "fix-Combobox-zoom-200%-issue",
+    "fix-Datagrid-Table-accessibility-issue",
     "fix-Datagrid-accessibility-issue",
     "fix-Datagrid-test",
     "fix-Datagrid-update-aria-label",
