@@ -97,6 +97,7 @@
     "fix-Hyperlink-docs",
     "fix-Hyperlink-new-prop",
     "fix-IconButton-Modal-Form-doc-examples",
+    "fix-Modal-esc-handler",
     "fix-Modal-fix-focus-order",
     "fix-MultiCombobox-announce-a11y",
     "fix-MultiCombobox-announce-values",
