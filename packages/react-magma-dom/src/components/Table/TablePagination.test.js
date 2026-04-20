@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 
 import { TablePagination } from '.';
+import userEvent from '@testing-library/user-event';
 
 describe('Table Pagination', () => {
   it('should find element by testId', () => {
@@ -90,11 +91,44 @@ describe('Table Pagination', () => {
     );
   });
 
+  it('should move focus to the previous button when clicking next and the next page is disabled', () => {
+    const { getByTestId } = render(
+      <TablePagination itemCount={20} isInverse rowsPerPage={10} />
+    );
+    const nextBtn = getByTestId('nextBtn');
+    const previousBtn = getByTestId('previousBtn');
+
+    userEvent.click(nextBtn);
+
+    waitFor(() => {
+      expect(previousBtn).toHaveFocus();
+    });
+  });
+
+  it('should move focus to the next button when clicking previous and the previous page is disabled', () => {
+    const { getByTestId } = render(
+      <TablePagination
+        itemCount={20}
+        isInverse
+        defaultPage={2}
+        rowsPerPage={10}
+      />
+    );
+    const nextBtn = getByTestId('nextBtn');
+    const previousBtn = getByTestId('previousBtn');
+
+    userEvent.click(previousBtn);
+
+    waitFor(() => {
+      expect(nextBtn).toHaveFocus();
+    });
+  });
+
   describe('uncontrolled', () => {
     it('should change page when clicking next', () => {
       const handlePageChange = jest.fn();
 
-      const { getByTestId, getByText } = render(
+      const { getByTestId } = render(
         <TablePagination
           itemCount={20}
           isInverse
@@ -111,7 +145,7 @@ describe('Table Pagination', () => {
     it('should change page when clicking previous', () => {
       const handlePageChange = jest.fn();
 
-      const { getByTestId, getByText } = render(
+      const { getByTestId } = render(
         <TablePagination
           itemCount={20}
           defaultPage={2}
@@ -130,7 +164,7 @@ describe('Table Pagination', () => {
       const handlePageChange = jest.fn();
       const handleRowsPerPageChange = jest.fn();
 
-      const { getByTestId, getByText } = render(
+      const { getByTestId } = render(
         <TablePagination
           itemCount={20}
           isInverse
@@ -160,7 +194,7 @@ describe('Table Pagination', () => {
         page = newPage;
       };
 
-      const { getByTestId, getByText, rerender } = render(
+      const { getByTestId, rerender } = render(
         <TablePagination
           itemCount={20}
           isInverse
@@ -191,7 +225,7 @@ describe('Table Pagination', () => {
         page = newPage;
       };
 
-      const { getByTestId, getByText, rerender } = render(
+      const { getByTestId, rerender } = render(
         <TablePagination
           itemCount={20}
           isInverse
