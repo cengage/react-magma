@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { axe } from '../../../axe-helper';
@@ -465,6 +465,30 @@ describe('Modal', () => {
       });
 
       expect(onCloseSpy).toHaveBeenCalled();
+    });
+
+    it('should close on Escape when modal starts open and a foreign aria-modal exists in the DOM', async () => {
+      const onCloseSpy = jest.fn();
+
+      const foreignModal = document.createElement('div');
+      foreignModal.setAttribute('aria-modal', 'true');
+      foreignModal.setAttribute('role', 'dialog');
+      foreignModal.style.display = 'none';
+      document.body.appendChild(foreignModal);
+
+      render(
+        <Modal header="Hello" isOpen onClose={onCloseSpy}>
+          Modal Content
+        </Modal>
+      );
+
+      userEvent.keyboard('{Escape}');
+
+      await waitFor(() => {
+        expect(onCloseSpy).toHaveBeenCalled();
+      });
+
+      foreignModal.remove();
     });
 
     it('should not force close when pressing the escape button if isModalClosingControlledManually is true', async () => {
