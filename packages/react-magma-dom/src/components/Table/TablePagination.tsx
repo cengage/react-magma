@@ -228,6 +228,8 @@ export const TablePagination = React.forwardRef<
 
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+  const previousButtonRef = React.useRef<HTMLButtonElement>(null);
+  const nextButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const hasRowPerPageChangeFunction =
     onRowsPerPageChange && typeof onRowsPerPageChange === 'function';
@@ -285,6 +287,26 @@ export const TablePagination = React.forwardRef<
   const previousButton = pageButtons[0];
   const nextButton = pageButtons[pageButtons.length - 1];
 
+  const previousButtonClick = event => {
+    previousButton.onClick(event);
+
+    setTimeout(() => {
+      if (previousButtonRef.current?.disabled) {
+        nextButtonRef.current?.focus();
+      }
+    }, 0);
+  };
+
+  const nextButtonClick = event => {
+    nextButton.onClick(event);
+
+    setTimeout(() => {
+      if (nextButtonRef.current?.disabled) {
+        previousButtonRef.current?.focus();
+      }
+    }, 0);
+  };
+
   return (
     <StyledContainer
       {...other}
@@ -315,22 +337,24 @@ export const TablePagination = React.forwardRef<
       </PageCount>
       <ButtonGroup alignment={ButtonGroupAlignment.center}>
         <IconButton
+          ref={previousButtonRef}
           aria-label={i18n.table.pagination.previousAriaLabel}
           color={ButtonColor.secondary}
           disabled={previousButton.disabled}
           icon={<WestIcon />}
           isInverse={isInverse}
-          onClick={previousButton.onClick}
+          onClick={previousButtonClick}
           testId="previousBtn"
           variant={ButtonVariant.link}
         />
         <IconButton
+          ref={nextButtonRef}
           aria-label={i18n.table.pagination.nextAriaLabel}
           color={ButtonColor.secondary}
           disabled={nextButton.disabled}
           icon={<EastIcon />}
           isInverse={isInverse}
-          onClick={nextButton.onClick}
+          onClick={nextButtonClick}
           testId="nextBtn"
           variant={ButtonVariant.link}
         />
