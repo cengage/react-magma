@@ -1,5 +1,11 @@
 ## 4.12.0
 
+## 4.13.0-next.6
+
+### Patch Changes
+
+- 51b6fdb60: fix(Modal): Fix bug when `Modal` doesn't close after pressing `Esc`
+
 ## 4.13.0-next.5
 
 ### Patch Changes

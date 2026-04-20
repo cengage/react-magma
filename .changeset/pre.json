@@ -18,6 +18,7 @@
     "fix-Datagrid-Table-accessibility-issue",
     "fix-DateFieldInput-error-message",
     "fix-DatePicker-accessibility-issues",
+    "fix-Modal-esc-handler",
     "fix-package-runtime-deps",
     "icons-version",
     "manually-sync-4.12.1",
