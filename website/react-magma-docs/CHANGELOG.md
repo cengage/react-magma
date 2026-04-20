@@ -1,5 +1,14 @@
 # Change Log
 
+## 5.3.3-next.4
+
+### Patch Changes
+
+- Updated dependencies [a8ae4ab55]
+  - react-magma-dom@4.13.0-next.4
+  - @react-magma/schema-renderer@15.0.0-next.2
+  - @cengage-patterns/header@16.0.0-next.2
+
 ## 5.3.3-next.3
 
 ### Patch Changes

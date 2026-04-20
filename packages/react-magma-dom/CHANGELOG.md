@@ -1,5 +1,11 @@
 ## 4.12.0
 
+## 4.13.0-next.4
+
+### Patch Changes
+
+- a8ae4ab55: chore(deps): move runtime-only dependencies out of peerDependencies and into package dependencies where needed
+
 ## 4.13.0-next.3
 
 ### Patch Changes

@@ -17,6 +17,7 @@
     "fix-Badge-focus-outline",
     "fix-DateFieldInput-error-message",
     "fix-DatePicker-accessibility-issues",
+    "fix-package-runtime-deps",
     "icons-version",
     "manually-sync-4.12.1",
     "modal-portal-container"

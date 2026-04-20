@@ -1,5 +1,11 @@
 # @react-magma/schema-renderer
 
+## 15.0.0-next.2
+
+### Patch Changes
+
+- a8ae4ab55: chore(deps): move runtime-only dependencies out of peerDependencies and into package dependencies where needed
+
 ## 15.0.0-next.1
 
 ### Patch Changes
