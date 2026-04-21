@@ -1,5 +1,22 @@
 # Change Log
 
+## 12.0.4-next.1
+
+### Patch Changes
+
+- cab09c2ad: Chore: update react-magma-icons version
+- Updated dependencies [cab09c2ad]
+- Updated dependencies [cab09c2ad]
+- Updated dependencies [cab09c2ad]
+  - react-magma-dom@4.13.0-next.2
+
+## 12.0.4-next.0
+
+### Patch Changes
+
+- Updated dependencies [8e280adf5]
+  - react-magma-dom@4.12.2-next.0
+
 ## 12.0.3
 
 ## 12.0.3-next.0

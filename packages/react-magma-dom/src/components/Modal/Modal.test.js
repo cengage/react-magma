@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { axe } from '../../../axe-helper';
@@ -221,6 +221,97 @@ describe('Modal', () => {
     expect(queryByTestId('modal-closebtn')).not.toBeInTheDocument();
   });
 
+  describe('portalContainer prop', () => {
+    let host;
+
+    afterEach(() => {
+      if (host && host.parentNode) {
+        host.parentNode.removeChild(host);
+      }
+      host = null;
+    });
+
+    it('portals into document.body by default', () => {
+      const { getByTestId } = render(
+        <Modal isOpen testId="default-portal" header="Hello">
+          Modal Content
+        </Modal>
+      );
+
+      const modal = getByTestId('default-portal');
+      expect(modal.parentElement.parentElement).toBe(document.body);
+    });
+
+    it('portals into the provided container and not into document.body', () => {
+      host = document.createElement('div');
+      document.body.appendChild(host);
+
+      const { getByTestId, getByText } = render(
+        <Modal
+          isOpen
+          testId="custom-portal"
+          header="Hello"
+          portalContainer={host}
+        >
+          Modal Content
+        </Modal>
+      );
+
+      const modal = getByTestId('custom-portal');
+      expect(host.contains(modal)).toBe(true);
+      expect(getByText('Modal Content')).toBeInTheDocument();
+      // Sanity: the modal tree is inside host, not a direct child of body.
+      expect(modal.parentElement.parentElement).not.toBe(document.body);
+    });
+
+    it('remains fully interactive when portaled into a custom container', async () => {
+      jest.useFakeTimers();
+      host = document.createElement('div');
+      document.body.appendChild(host);
+
+      const onClose = jest.fn();
+      const { getByTestId } = render(
+        <Modal
+          isOpen
+          testId="interactive-portal"
+          header="Hello"
+          onClose={onClose}
+          portalContainer={host}
+        >
+          Modal Content
+        </Modal>
+      );
+
+      // Close button lives inside the portaled tree and still fires onClose.
+      const closeBtn = getByTestId('modal-closebtn');
+      expect(host.contains(closeBtn)).toBe(true);
+
+      fireEvent.click(closeBtn);
+      await act(async () => {
+        jest.runAllTimers();
+      });
+
+      expect(onClose).toHaveBeenCalledTimes(1);
+      jest.useRealTimers();
+    });
+
+    it('falls back to document.body when portalContainer is null', () => {
+      const { getByTestId } = render(
+        <Modal
+          isOpen
+          testId="null-portal"
+          header="Hello"
+          portalContainer={null}
+        >
+          Modal Content
+        </Modal>
+      );
+
+      const modal = getByTestId('null-portal');
+      expect(modal.parentElement.parentElement).toBe(document.body);
+    });
+  });
+
   describe('Closing', () => {
     beforeEach(() => {
       jest.useFakeTimers();
@@ -374,6 +465,30 @@ describe('Modal', () => {
       });
 
       expect(onCloseSpy).toHaveBeenCalled();
+    });
+
+    it('should close on Escape when modal starts open and a foreign aria-modal exists in the DOM', async () => {
+      const onCloseSpy = jest.fn();
+
+      const foreignModal = document.createElement('div');
+      foreignModal.setAttribute('aria-modal', 'true');
+      foreignModal.setAttribute('role', 'dialog');
+      foreignModal.style.display = 'none';
+      document.body.appendChild(foreignModal);
+
+      render(
+        <Modal header="Hello" isOpen onClose={onCloseSpy}>
+          Modal Content
+        </Modal>
+      );
+
+      userEvent.keyboard('{Escape}');
+
+      await waitFor(() => {
+        expect(onCloseSpy).toHaveBeenCalled();
+      });
+
+      foreignModal.remove();
     });
 
     it('should not force close when pressing the escape button if isModalClosingControlledManually is true', async () => {

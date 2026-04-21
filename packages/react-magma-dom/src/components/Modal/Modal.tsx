@@ -85,6 +85,13 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   unmountOnExit?: boolean;
   /**
+   * DOM element to portal the modal into. Defaults to `document.body`.
+   * Useful when the modal must render inside a specific subtree, such as
+   * when the parent element has been put into the browser's fullscreen mode
+   * (only DOM within the fullscreen element is rendered by the browser).
+   */
+  portalContainer?: HTMLElement | null;
+  /**
    * @internal
    */
   containerTransition?: Omit<TransitionProps, 'isOpen'>;
@@ -238,6 +245,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       children,
       closeAriaLabel,
       closeButtonSize,
+      portalContainer,
       containerStyle,
       containerTransition,
       isBackgroundClickDisabled,
@@ -307,11 +315,14 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           false
         );
       };
-    }, [isModalOpen]);
+    }, [isModalOpen, isEscKeyDownDisabled]);
 
     function handleModalClick(event: React.SyntheticEvent) {
+      const contentEl = document.getElementById(contentId);
+
       if (
-        !document.getElementById(contentId).contains(event.target as Node) &&
+        contentEl &&
+        !contentEl.contains(event.target as Node) &&
         event.target === currentTarget
       ) {
         handleClose(event);
@@ -336,12 +347,12 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           '[aria-modal="true"]'
         ).length;
         if (modalCount <= 1 && modalsInDom !== 1) {
-          if (
-            document.getElementById(id).contains(event.target as HTMLDivElement)
-          ) {
+          const modalEl = document.getElementById(id);
+
+          if (modalEl && modalEl.contains(event.target as HTMLDivElement)) {
             handleClose(event);
           } else {
-            headingRef.current.focus();
+            headingRef.current?.focus();
           }
         } else {
           handleClose(event);
@@ -469,7 +480,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               />
             )}
           </div>,
-          document.getElementsByTagName('body')[0]
+          portalContainer ?? document.getElementsByTagName('body')[0]
         )
       : null;
   }

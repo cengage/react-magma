@@ -7,14 +7,12 @@ export function generateId(id?: string) {
 }
 
 export function useGenerateId(newId?: string) {
-  const [id, updateId] = React.useState<string>(newId);
+  const [id, updateId] = React.useState<string>(() => generateId(newId));
 
   React.useEffect(() => {
-    updateId(generateId(newId));
-  }, []);
-
-  React.useEffect(() => {
-    newId && updateId(generateId(newId));
+    if (newId) {
+      updateId(generateId(newId));
+    }
   }, [newId]);
 
   return id;
@@ -391,3 +389,6 @@ export function hasActiveElementsInside(ref) {
     }).length > 0
   );
 }
+
+export const descriptionSuffix = '__desc';
+export const labelSuffix = '__label';

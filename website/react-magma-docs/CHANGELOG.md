@@ -1,5 +1,51 @@
 # Change Log
 
+## 5.3.3-next.4
+
+### Patch Changes
+
+- Updated dependencies [a8ae4ab55]
+  - react-magma-dom@4.13.0-next.4
+  - @react-magma/schema-renderer@15.0.0-next.2
+  - @cengage-patterns/header@16.0.0-next.2
+
+## 5.3.3-next.3
+
+### Patch Changes
+
+- cab09c2ad: Chore: update react-magma-icons version
+- Updated dependencies [cab09c2ad]
+- Updated dependencies [cab09c2ad]
+- Updated dependencies [cab09c2ad]
+  - @react-magma/charts@14.0.0-next.1
+  - react-magma-dom@4.13.0-next.2
+  - @react-magma/dropzone@12.0.4-next.1
+  - @react-magma/schema-renderer@15.0.0-next.1
+  - @cengage-patterns/header@16.0.0-next.1
+
+## 5.3.3-next.2
+
+### Patch Changes
+
+- fe4223dab: fix(Accordion): Update doc example.
+
+## 5.3.3-next.1
+
+### Patch Changes
+
+- Updated dependencies [8e280adf5]
+  - react-magma-dom@4.12.2-next.0
+  - @react-magma/charts@13.0.4-next.0
+  - @react-magma/dropzone@12.0.4-next.0
+  - @react-magma/schema-renderer@14.0.2-next.0
+  - @cengage-patterns/header@15.0.2-next.0
+
+## 5.3.3-next.0
+
+### Patch Changes
+
+- 4b570f73c: chore: Manually sync main -> dev (4.12.1)
+
 ## 5.3.2
 
 ### Patch Changes

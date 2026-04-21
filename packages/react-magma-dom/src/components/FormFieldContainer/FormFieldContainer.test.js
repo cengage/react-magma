@@ -134,7 +134,7 @@ describe('FormFieldContainer', () => {
       </FormFieldContainer>
     );
 
-    const messageEl = document.getElementById('my-field__message');
+    const messageEl = document.getElementById('my-field__desc');
     expect(messageEl).toBeInTheDocument();
     expect(messageEl).toHaveTextContent(errorMsg);
   });
