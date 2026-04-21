@@ -199,10 +199,22 @@ export function useFocusLock(
          *
          * This keeps the default logic intact and avoids breaking nested focus locks.
          */
+        // Check whether the active element sits inside a nested active lock.
+        // If so, that lock should handle Tab — not this (outer) one.
+        const isInsideNestedLock =
+          !!activeElement &&
+          Array.from(activeFocusLockRoots).some(
+            lockRoot =>
+              lockRoot !== rootNode.current &&
+              rootNode.current!.contains(lockRoot) &&
+              lockRoot.contains(activeElement)
+          );
+
         if (
           length > 0 &&
-          isEventInsideCurrentLock &&
+          (isEventInsideCurrentLock || isSafari) &&
           !isActiveElementTracked &&
+          !isInsideNestedLock &&
           (isActiveElementInsideCurrentLock || activeElement === document.body)
         ) {
           event.preventDefault();
