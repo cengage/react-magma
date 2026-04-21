@@ -8,7 +8,7 @@ import { CheckIcon } from 'react-magma-icons';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId } from '../../utils';
+import { descriptionSuffix, useGenerateId } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { FormGroupContext } from '../FormGroup';
 import { InputMessage } from '../Input/InputMessage';
@@ -289,7 +289,7 @@ export const Toggle = React.forwardRef<HTMLInputElement, ToggleProps>(
     const theme = React.useContext(ThemeContext);
     const context = React.useContext(FormGroupContext);
 
-    const descriptionId = errorMessage ? `${id}__desc` : null;
+    const descriptionId = errorMessage ? `${id}${descriptionSuffix}` : null;
     const groupDescriptionId = context.descriptionId;
 
     const describedBy =

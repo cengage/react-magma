@@ -1,5 +1,28 @@
 # @react-magma/schema-renderer
 
+## 15.0.0-next.2
+
+### Patch Changes
+
+- a8ae4ab55: chore(deps): move runtime-only dependencies out of peerDependencies and into package dependencies where needed
+
+## 15.0.0-next.1
+
+### Patch Changes
+
+- cab09c2ad: Chore: update react-magma-icons version
+- Updated dependencies [cab09c2ad]
+- Updated dependencies [cab09c2ad]
+- Updated dependencies [cab09c2ad]
+  - react-magma-dom@4.13.0-next.2
+
+## 14.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [8e280adf5]
+  - react-magma-dom@4.12.2-next.0
+
 ## 14.0.1
 
 ## 14.0.1-next.0

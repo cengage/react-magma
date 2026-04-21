@@ -7,7 +7,7 @@ import { transparentize } from 'polished';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId } from '../../utils';
+import { descriptionSuffix, labelSuffix, useGenerateId } from '../../utils';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
@@ -206,11 +206,13 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
           <StyledNativeSelect
             data-testid={testId}
             aria-describedby={
-              errorMessage || helperMessage ? `${id}__message` : undefined
+              errorMessage || helperMessage
+                ? `${id}${descriptionSuffix}`
+                : undefined
             }
             aria-invalid={!!errorMessage || undefined}
             aria-labelledby={
-              additionalContent && labelText ? `${id}__label` : undefined
+              additionalContent && labelText ? `${id}${labelSuffix}` : undefined
             }
             hasError={!!errorMessage}
             disabled={disabled}

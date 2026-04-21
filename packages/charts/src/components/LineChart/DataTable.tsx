@@ -15,7 +15,7 @@ export interface DataTableProps {
   data?: any;
 }
 
-export const DataTable = props => {
+export const DataTable = (props: DataTableProps) => {
   const { data } = props;
 
   return (
@@ -32,8 +32,8 @@ export const DataTable = props => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((dataset, i) => (
-            <TableRow key={i}>
+          {data.map((dataset: any, i: number) => (
+            <TableRow key={dataset.label ?? `row-${i}`}>
               <TableHeaderCell
                 scope={TableHeaderCellScope.row}
                 style={{

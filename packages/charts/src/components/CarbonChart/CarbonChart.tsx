@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import * as React from 'react';
 
 import {
@@ -23,10 +24,30 @@ import {
 } from '@carbon/charts-react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { ThemeInterface, ThemeContext, useIsInverse } from 'react-magma-dom';
+import {
+  DropdownDivider,
+  DropdownMenuItem,
+  ThemeInterface,
+  ThemeContext,
+  useIsInverse,
+} from 'react-magma-dom';
+import {
+  FullscreenExitIcon,
+  FullscreenIcon,
+  MoreVertIcon,
+  TableIcon,
+} from 'react-magma-icons';
 
 import { useCarbonModalFocusManagement } from '../../hooks/useCarbonModalFocusManagement';
 import './carbon-charts.css';
+import {
+  ChartFullscreenButton,
+  ChartMoreOptionsButton,
+  ChartTableButton,
+  ChartTableModal,
+} from '../ChartTable';
+import type { ChartDataTableColumn } from '../ChartTable';
+import { useChartToolbarI18n } from '../ChartTable/chartToolbarI18n';
 
 export enum CarbonChartType {
   area = 'area',
@@ -49,6 +70,41 @@ export enum CarbonChartType {
   combo = 'combo',
 }
 
+export interface ChartToolbarConfig {
+  /**
+   * When true, renders a "Show as table" button that opens a Magma Modal
+   * with the chart data in an accessible table.
+   * @default true
+   */
+  showAsTable?: boolean;
+  /**
+   * When true, renders a fullscreen toggle button.
+   * @default true
+   */
+  fullscreen?: boolean;
+  /**
+   * Additional menu items rendered inside a "More options" dropdown,
+   * below the built-in "Download as CSV", "Download as PNG", and "Download as JPG" items.
+   * Pass DropdownMenuItem elements.
+   */
+  moreOptions?: React.ReactNode;
+  /**
+   * Custom column definitions for the table modal.
+   * If omitted, columns are auto-derived from the dataset object keys.
+   */
+  tableColumns?: ChartDataTableColumn[];
+  /**
+   * First line of the modal heading.
+   * @default "Tabular representation"
+   */
+  tableHeaderLabel?: string;
+  /**
+   * Heading level for the modal header.
+   * @default 2
+   */
+  tableHeaderLevel?: 1 | 2 | 3 | 4 | 5 | 6;
+}
+
 export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
   dataSet: Array<Object>;
   isInverse?: boolean;
@@ -69,13 +125,55 @@ export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
    * Text for the aria-label attribute for main SVG container, if provided
    */
   ariaLabel?: string;
+  /**
+   * When provided, renders an accessible Magma toolbar above the chart with
+   * "Show as table", fullscreen, and "More options" buttons. Carbon's built-in
+   * toolbar is automatically disabled.
+   */
+  chartToolbar?: ChartToolbarConfig;
 }
+
+const ChartContentWrapper = styled.div`
+  height: 100%;
+  position: relative;
+`;
+
+const FullscreenRoot = styled.div<{
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}>`
+  height: 100%;
+  width: 100%;
+
+  &:fullscreen,
+  &:-webkit-full-screen {
+    background: ${props =>
+      props.isInverse
+        ? props.theme.colors.primary700
+        : props.theme.colors.neutral100};
+    .cds--chart-holder {
+      height: 100vh !important;
+    }
+  }
+`;
 
 const CarbonChartWrapper = styled.div<{
   isInverse?: boolean;
   groupsLength: number;
   theme: ThemeInterface;
 }>`
+  &:fullscreen,
+  &:-webkit-full-screen {
+    background: ${props =>
+      props.isInverse
+        ? props.theme.colors.primary700
+        : props.theme.colors.neutral100};
+
+    .cds--chart-holder {
+      height: 100vh !important;
+    }
+  }
+
   .cds--data-table thead tr th {
     background: ${props =>
       props.isInverse ? props.theme.colors.primary700 : ''} !important;
@@ -131,9 +229,9 @@ const CarbonChartWrapper = styled.div<{
     }
   }
 
-  p,
-  div,
-  text,
+  .chart-holder p,
+  .chart-holder div,
+  .chart-holder text,
   .cds--cc--axes g.axis .axis-title,
   .cds--cc--title p.title,
   .cds--cc--axes g.axis g.tick text {
@@ -488,6 +586,10 @@ const CarbonChartWrapper = styled.div<{
     }
   }
 
+  &.has-magma-toolbar .cds--cc--title p.title {
+    visibility: hidden;
+  }
+
   svg:not(:root) {
     overflow: visible;
   }
@@ -535,6 +637,389 @@ interface ColorsObject {
   [key: string]: string;
 }
 
+const ToolbarWrapper = styled.div<{
+  isFullscreen?: boolean;
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}>`
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  left: ${props => (props.isFullscreen ? '2em' : '0')};
+  position: absolute;
+  right: ${props => (props.isFullscreen ? '2em' : '0')};
+  top: ${props => (props.isFullscreen ? '2em' : '0')};
+  z-index: 2;
+
+  button {
+    color: ${props =>
+      props.isInverse
+        ? props.theme.colors.neutral100
+        : props.theme.colors.primary500};
+
+    &:focus {
+      outline: 2px solid
+        ${props =>
+          props.isInverse
+            ? props.theme.colors.focusInverse
+            : props.theme.colors.focus};
+      outline-offset: 0;
+    }
+  }
+`;
+
+const ChartTitle = styled.h2<{
+  isInverse?: boolean;
+  theme: ThemeInterface;
+}>`
+  font-family: ${props => props.theme.bodyFont} !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: normal !important;
+  line-height: 1.25 !important;
+  margin: 0 !important;
+  color: ${props =>
+    props.isInverse
+      ? props.theme.colors.neutral100
+      : props.theme.colors.neutral700} !important;
+`;
+
+const ToolbarActions = styled.div<{ theme: ThemeInterface }>`
+  align-items: center;
+  display: flex;
+  gap: ${props => props.theme.spaceScale.spacing02};
+
+  > * button,
+  > button {
+    height: 2rem;
+    min-height: 2rem;
+    min-width: 2rem;
+    padding: 4px;
+    width: 2rem;
+  }
+
+  [role='tooltip'] {
+    padding: ${props => props.theme.spaceScale.spacing03}
+      ${props => props.theme.spaceScale.spacing04};
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  [data-testid='dropdownContent'] {
+    padding: ${props => props.theme.spaceScale.spacing03} 0;
+  }
+
+  [role='menuitem'],
+  [data-testid='dropdownMenuItem'] {
+    padding: ${props => props.theme.spaceScale.spacing03}
+      ${props => props.theme.spaceScale.spacing05};
+  }
+`;
+
+function sanitizeCsvValue(value: string): string {
+  const trimmed = value.trimStart();
+  if (/^[=+\-@\t\r]/.test(trimmed)) {
+    return `'${value}`;
+  }
+  return value;
+}
+
+function downloadCsv(dataSet: Array<Record<string, unknown>>, title: string) {
+  if (!dataSet.length) return;
+  const keys = Object.keys(dataSet[0]);
+  const header = keys.map(k => sanitizeCsvValue(k)).join(',');
+  const rows = dataSet.map(row =>
+    keys
+      .map(k => {
+        const v = row[k];
+        const s = sanitizeCsvValue(String(v ?? ''));
+        return s.includes(',') || s.includes('"') || s.includes('\n')
+          ? `"${s.replace(/"/g, '""')}"`
+          : s;
+      })
+      .join(',')
+  );
+  const csv = [header, ...rows].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${title || 'chart-data'}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function inlineStyles(source: Element, target: Element) {
+  const computed = window.getComputedStyle(source);
+  if (target instanceof HTMLElement || target instanceof SVGElement) {
+    target.setAttribute(
+      'style',
+      Array.from(computed)
+        .map(prop => `${prop}:${computed.getPropertyValue(prop)}`)
+        .join(';')
+    );
+  }
+  for (let i = 0; i < source.children.length; i++) {
+    if (target.children[i]) {
+      inlineStyles(source.children[i], target.children[i]);
+    }
+  }
+}
+
+interface LegendItem {
+  label: string;
+  color: string;
+}
+
+function readLegendItems(wrapper: HTMLElement): LegendItem[] {
+  const items: LegendItem[] = [];
+  wrapper.querySelectorAll('.legend-item').forEach(item => {
+    const checkbox = item.querySelector<HTMLElement>('.checkbox');
+    const label = item.querySelector('p');
+    if (checkbox && label) {
+      items.push({
+        color: checkbox.style.background || checkbox.style.backgroundColor,
+        label: label.textContent || '',
+      });
+    }
+  });
+  return items;
+}
+
+function drawLegend(
+  ctx: CanvasRenderingContext2D,
+  items: LegendItem[],
+  startY: number,
+  canvasWidth: number,
+  scale: number
+) {
+  const fontSize = 13 * scale;
+  const swatchSize = 12 * scale;
+  const gap = 8 * scale;
+  const itemGap = 16 * scale;
+  const paddingX = 16 * scale;
+
+  ctx.font = `${fontSize}px sans-serif`;
+  ctx.textBaseline = 'middle';
+
+  let x = paddingX;
+  let y = startY;
+
+  for (const item of items) {
+    const textWidth = ctx.measureText(item.label).width;
+    const itemWidth = swatchSize + gap + textWidth + itemGap;
+
+    if (x + itemWidth > canvasWidth - paddingX && x > paddingX) {
+      x = paddingX;
+      y += fontSize + gap;
+    }
+
+    ctx.fillStyle = item.color;
+    ctx.fillRect(x, y - swatchSize / 2, swatchSize, swatchSize);
+
+    ctx.fillStyle = '#161616';
+    ctx.fillText(item.label, x + swatchSize + gap, y);
+
+    x += itemWidth;
+  }
+
+  return y + fontSize + gap;
+}
+
+function downloadImage(
+  wrapperRef: React.RefObject<HTMLDivElement | null>,
+  title: string,
+  format: 'png' | 'jpg'
+) {
+  const wrapper = wrapperRef.current;
+  if (!wrapper) return;
+  const svg = wrapper.querySelector('svg.layout-svg-wrapper');
+  if (!svg) return;
+
+  const svgRect = svg.getBoundingClientRect();
+  const legendItems = readLegendItems(wrapper);
+  const scale = 2;
+
+  // Measure legend height
+  const tempCanvas = document.createElement('canvas');
+  const tempCtx = tempCanvas.getContext('2d');
+  const fontSize = 13 * scale;
+  const swatchSize = 12 * scale;
+  const gap = 8 * scale;
+  const itemGap = 16 * scale;
+  const paddingX = 16 * scale;
+  const canvasWidth = svgRect.width * scale;
+
+  let legendHeight = 0;
+  if (legendItems.length > 0 && tempCtx) {
+    tempCtx.font = `${fontSize}px sans-serif`;
+    let x = paddingX;
+    let rows = 1;
+    for (const item of legendItems) {
+      const textWidth = tempCtx.measureText(item.label).width;
+      const itemWidth = swatchSize + gap + textWidth + itemGap;
+      if (x + itemWidth > canvasWidth - paddingX && x > paddingX) {
+        x = paddingX;
+        rows++;
+      }
+      x += itemWidth;
+    }
+    legendHeight = rows * (fontSize + gap) + gap * 2;
+  }
+
+  const width = svgRect.width * scale;
+  const height = svgRect.height * scale + legendHeight;
+
+  const clone = svg.cloneNode(true) as SVGSVGElement;
+  clone.setAttribute('width', String(svgRect.width));
+  clone.setAttribute('height', String(svgRect.height));
+  clone.setAttribute('viewBox', `0 0 ${svgRect.width} ${svgRect.height}`);
+  clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+
+  inlineStyles(svg, clone);
+
+  const serializer = new XMLSerializer();
+  const svgString = serializer.serializeToString(clone);
+  const svgBlob = new Blob([svgString], {
+    type: 'image/svg+xml;charset=utf-8',
+  });
+  const url = URL.createObjectURL(svgBlob);
+
+  const mimeType = format === 'jpg' ? 'image/jpeg' : 'image/png';
+  const ext = format === 'jpg' ? 'jpg' : 'png';
+
+  const img = new Image();
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0, svgRect.width * scale, svgRect.height * scale);
+    URL.revokeObjectURL(url);
+
+    if (legendItems.length > 0) {
+      drawLegend(ctx, legendItems, svgRect.height * scale + gap, width, scale);
+    }
+
+    canvas.toBlob(blob => {
+      if (!blob) return;
+      const imgUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = imgUrl;
+      a.download = `${title || 'chart'}.${ext}`;
+      a.click();
+      URL.revokeObjectURL(imgUrl);
+    }, mimeType);
+  };
+  img.src = url;
+}
+
+interface InternalToolbarProps {
+  config: ChartToolbarConfig;
+  dataSet: Array<Record<string, unknown>>;
+  isInverse: boolean;
+  isTableOpen: boolean;
+  isFullscreen: boolean;
+  onOpenTable: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onToggleFullscreen: () => void;
+  theme: ThemeInterface;
+  title: string;
+  wrapperRef: React.RefObject<HTMLDivElement | null>;
+}
+
+function CarbonChartToolbar({
+  config,
+  dataSet,
+  isInverse,
+  isTableOpen,
+  isFullscreen,
+  onOpenTable,
+  onToggleFullscreen,
+  theme,
+  title,
+  wrapperRef,
+}: InternalToolbarProps) {
+  const t = useChartToolbarI18n();
+  const showTable = config.showAsTable !== false;
+  const showFullscreen = config.fullscreen !== false;
+  const resolvedTitle = title || t.defaultTitle;
+
+  const handleDownloadCsv = React.useCallback(() => {
+    downloadCsv(dataSet, title);
+  }, [dataSet, title]);
+
+  const handleDownloadPng = React.useCallback(() => {
+    downloadImage(wrapperRef, title, 'png');
+  }, [wrapperRef, title]);
+
+  const handleDownloadJpg = React.useCallback(() => {
+    downloadImage(wrapperRef, title, 'jpg');
+  }, [wrapperRef, title]);
+
+  const moreOptionsContent = (
+    <>
+      <DropdownMenuItem onClick={handleDownloadCsv}>
+        {t.downloadAsCsv}
+      </DropdownMenuItem>
+      <DropdownMenuItem onClick={handleDownloadPng}>
+        {t.downloadAsPng}
+      </DropdownMenuItem>
+      <DropdownMenuItem onClick={handleDownloadJpg}>
+        {t.downloadAsJpg}
+      </DropdownMenuItem>
+      {config.moreOptions && (
+        <>
+          <DropdownDivider />
+          {config.moreOptions}
+        </>
+      )}
+    </>
+  );
+
+  return (
+    <ToolbarWrapper
+      isFullscreen={isFullscreen}
+      isInverse={isInverse}
+      theme={theme}
+    >
+      <ChartTitle isInverse={isInverse} theme={theme}>
+        {resolvedTitle}
+      </ChartTitle>
+      <ToolbarActions theme={theme}>
+        {showTable && (
+          <ChartTableButton
+            ariaLabel={resolvedTitle}
+            icon={<TableIcon size={20} />}
+            isInverse={isInverse}
+            isTableOpen={isTableOpen}
+            onClick={onOpenTable}
+          />
+        )}
+        {showFullscreen && (
+          <ChartFullscreenButton
+            ariaLabel={`${isFullscreen ? 'Exit' : 'View'} ${resolvedTitle} full screen`}
+            icon={<FullscreenIcon size={20} />}
+            exitIcon={<FullscreenExitIcon size={20} />}
+            isInverse={isInverse}
+            isFullscreen={isFullscreen}
+            onClick={onToggleFullscreen}
+          />
+        )}
+        <ChartMoreOptionsButton
+          icon={<MoreVertIcon size={20} />}
+          isInverse={isInverse}
+        >
+          {moreOptionsContent}
+        </ChartMoreOptionsButton>
+      </ToolbarActions>
+    </ToolbarWrapper>
+  );
+}
+
 export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
   (props, ref) => {
     const {
@@ -544,11 +1029,17 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       dataSet,
       options,
       ariaLabel,
+      chartToolbar,
       ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
+    const toolbarI18n = useChartToolbarI18n();
     const internalRef = React.useRef<HTMLDivElement | null>(null);
+
+    const [isTableOpen, setIsTableOpen] = React.useState(false);
+    const [isFullscreen, setIsFullscreen] = React.useState(false);
+    const lastTableTriggerRef = React.useRef<HTMLButtonElement | null>(null);
 
     const mergedRef = React.useCallback(
       (node: HTMLDivElement | null) => {
@@ -561,6 +1052,69 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       },
       [ref]
     );
+
+    const fullscreenEnabled = chartToolbar
+      ? chartToolbar.fullscreen !== false
+      : false;
+
+    const savedHeightRef = React.useRef<string>('');
+
+    React.useEffect(() => {
+      if (!fullscreenEnabled) return;
+
+      const onFullscreenChange = () => {
+        const isFs = !!document.fullscreenElement;
+        setIsFullscreen(isFs);
+
+        const chartHolder =
+          internalRef.current?.querySelector<HTMLElement>('.cds--chart-holder');
+        if (chartHolder) {
+          if (isFs) {
+            savedHeightRef.current = chartHolder.style.height;
+            chartHolder.style.height = '100vh';
+          } else {
+            chartHolder.style.height = savedHeightRef.current;
+          }
+        }
+      };
+      document.addEventListener('fullscreenchange', onFullscreenChange);
+      return () =>
+        document.removeEventListener('fullscreenchange', onFullscreenChange);
+    }, [fullscreenEnabled]);
+
+    const openTableModal = React.useCallback(
+      (event: React.MouseEvent<HTMLButtonElement>) => {
+        lastTableTriggerRef.current = event.currentTarget;
+        setIsTableOpen(true);
+      },
+      []
+    );
+
+    const closeTableModal = React.useCallback(() => {
+      setIsTableOpen(false);
+      setTimeout(() => {
+        lastTableTriggerRef.current?.focus();
+      }, 0);
+    }, []);
+
+    const toggleFullscreen = React.useCallback(() => {
+      if (!document.fullscreenElement && internalRef.current) {
+        internalRef.current.requestFullscreen().catch(() => {
+          // Fullscreen request may be denied by the browser or user agent
+        });
+      } else if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {
+          // Exit fullscreen may fail if already exited
+        });
+      }
+    }, []);
+
+    const chartTitle: string =
+      (options as any).title || toolbarI18n.defaultTitle;
+
+    const handleModalDownloadCsv = React.useCallback(() => {
+      downloadCsv(dataSet as Array<Record<string, unknown>>, chartTitle);
+    }, [dataSet, chartTitle]);
 
     useCarbonModalFocusManagement(internalRef);
     const allCharts = {
@@ -621,6 +1175,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
           type: 'none',
         },
       },
+      ...(chartToolbar ? { toolbar: { enabled: false } } : {}),
     };
 
     const ChartType = allCharts[type] as any;
@@ -636,18 +1191,51 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     const groupsLength = Object.keys(buildColors()).length;
 
+    const showTable = chartToolbar?.showAsTable !== false;
+
     return (
-      <CarbonChartWrapper
-        data-testid={testId}
-        ref={mergedRef}
-        isInverse={isInverse}
-        theme={theme}
-        className="carbon-chart-wrapper"
-        groupsLength={groupsLength < 6 ? groupsLength : 14}
-        {...rest}
-      >
-        <ChartType data={dataSet} options={newOptions} />
-      </CarbonChartWrapper>
+      <FullscreenRoot ref={mergedRef} isInverse={isInverse} theme={theme}>
+        <CarbonChartWrapper
+          data-testid={testId}
+          isInverse={isInverse}
+          theme={theme}
+          className={`carbon-chart-wrapper${chartToolbar ? ' has-magma-toolbar' : ''}`}
+          groupsLength={groupsLength < 6 ? groupsLength : 14}
+          {...rest}
+        >
+          <ChartContentWrapper>
+            {chartToolbar && (
+              <CarbonChartToolbar
+                config={chartToolbar}
+                dataSet={dataSet as Array<Record<string, unknown>>}
+                isInverse={isInverse}
+                isTableOpen={isTableOpen}
+                isFullscreen={isFullscreen}
+                onOpenTable={openTableModal}
+                onToggleFullscreen={toggleFullscreen}
+                theme={theme}
+                title={chartTitle}
+                wrapperRef={internalRef}
+              />
+            )}
+            <ChartType data={dataSet} options={newOptions} />
+          </ChartContentWrapper>
+        </CarbonChartWrapper>
+        {chartToolbar && showTable && (
+          <ChartTableModal
+            columns={chartToolbar.tableColumns}
+            portalContainer={isFullscreen ? internalRef.current : undefined}
+            dataSet={dataSet as Array<Record<string, React.ReactNode>>}
+            headerLabel={chartToolbar.tableHeaderLabel}
+            headerLevel={chartToolbar.tableHeaderLevel}
+            isInverse={isInverse}
+            isOpen={isTableOpen}
+            onClose={closeTableModal}
+            onDownloadCsv={handleModalDownloadCsv}
+            title={chartTitle}
+          />
+        )}
+      </FullscreenRoot>
     );
   }
 );

@@ -1,6 +1,6 @@
 {
   "name": "@cengage-patterns/header",
-  "version": "15.0.1",
+  "version": "15.0.1-next.2",
   "homepage": "https://react-magma.cengage.com/version/next/patterns/header/",
   "repository": {
     "type": "git",
@@ -23,30 +23,18 @@
   "devDependencies": {
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
-    "date-fns": "^2.16.1",
-    "downshift": "^5.4.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.12.1",
-    "react-magma-icons": "^3.2.4",
-    "uuid": "^11.1.0"
+    "react-magma-dom": "^4.13.0-next.4",
+    "react-magma-icons": "^3.2.5"
   },
   "peerDependencies": {
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
-    "@types/uuid": "^8.3.0",
-    "date-fns": "^2.12.0",
-    "downshift": "^5.4.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.12.1-next.0",
-    "react-magma-icons": "^3.2.4",
-    "uuid": "^8.3.0 || ^9.0.0 || ^10.0.0 || ^11.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@types/uuid": {
-      "optional": true
-    }
+    "react-magma-dom": "^4.13.0-next.2",
+    "react-magma-icons": "^3.2.5"
   },
   "engines": {
     "node": ">=22.14.0",
