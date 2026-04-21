@@ -150,6 +150,7 @@
     "fix-tag-button-doc-issues",
     "fix-timepicker-broken-auto-fill",
     "fix-timepicker-update-styles",
+    "fix-useFocusLock-navigation",
     "major-charts-v13-release",
     "major-dropzone-v13-release",
     "major-v5-release",

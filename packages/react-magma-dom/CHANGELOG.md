@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.84
+
+### Patch Changes
+
+- 6dfd2dd: fix(useFocusLock): Fix bug with focus outside.
+
 ## 5.1.0-rc.83
 
 ### Patch Changes
