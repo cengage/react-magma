@@ -1,7 +1,11 @@
 import { useMemo } from 'react';
 
 export const useDeviceDetect = () => {
-  const userAgent = useMemo(() => navigator.userAgent.toLowerCase(), []);
+  const userAgent = useMemo(
+    () =>
+      typeof navigator !== 'undefined' ? navigator.userAgent.toLowerCase() : '',
+    []
+  );
 
   const isSafari = useMemo(
     () => /^((?!chrome|android).)*safari/i.test(userAgent),
