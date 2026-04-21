@@ -5,6 +5,48 @@ order: 4
 
 <PageContent componentName="changelog" type="api_intro">
 
+## 4.13.0
+
+### Minor Changes
+
+- cab09c2ad: feat(Charts): Add accessible chart toolbar with "Show as table", fullscreen, and "More options" buttons
+
+  Adds a new `chartToolbar` prop to `CarbonChart` that renders a WCAG 2.2 compliant toolbar replacing Carbon's built-in navigation controls. When provided, Carbon's toolbar is automatically disabled and replaced with accessible Magma components featuring:
+
+  - **Show as table** button with `aria-haspopup="dialog"` and `aria-expanded`, opening a focus-trapped Magma Modal with semantic headings and an accessible data table
+  - **Fullscreen** button without `aria-haspopup` (fixing the previous WCAG violation)
+  - **More options** dropdown using Magma's Dropdown component with proper menu semantics
+
+  Also exports standalone composable components (`ChartTableButton`, `ChartFullscreenButton`, `ChartMoreOptionsButton`, `ChartTableModal`, `ChartDataTable`, `ChartToolbar`) for adopters who need granular control outside of `CarbonChart`.
+
+- cab09c2ad: feat(Modal): Add `portalContainer` prop to control portal target
+
+  Adds an optional `portalContainer` prop to `Modal` that lets consumers specify the DOM element the modal should be portaled into. Defaults to `document.body` (unchanged behavior).
+
+### Patch Changes
+
+- 222870250: fix(Badge): Add focus outline offset.
+- a3fe4f22e: fix(Datagrid, Table): Fix the issue where the focus is lost when the button becomes disabled
+- f251a365f: fix(Date Field Input): Add error message when the user enters an invalid date.
+- 8e280adf5: fix(Date Picker & Time Picker & Native Select): Update aria attributes.
+- 51b6fdb60: fix(Modal): Fix bug when `Modal` doesn't close after pressing `Esc`
+- a8ae4ab55: chore(deps): move runtime-only dependencies out of peerDependencies and into package dependencies where needed
+- b4a517e58: fix(useFocusLock): Fix bug with focus outside.
+- cab09c2ad: Chore: update react-magma-icons version
+
+## 4.12.1
+
+### Patch Changes
+
+- 36452c03a: fix(Checkbox, ListItem): Wrap checkbox doc examples in List/ListItem for semantic HTML. Forward rest props on ListItem component.
+- 36452c03a: fix(Combobox, Select, Datagrid): Add `aria-selected` to Combobox/Select list items. Simplify TablePagination page announcement. **Breaking:** removes `table.pagination.currentPageLabel` from the i18n interface.
+- 36452c03a: fix(Datagrid): Append current sort direction to sortable column header `aria-label` (e.g. "Sort rows by Name, ascending"). Adds new i18n key `table.selectable.sortDirectionNone`.
+- 36452c03a: fix(IconButton, Modal, Form, Accordion, NavTabs): Improve accessibility in doc examples. Add `role="tablist"`, `role="tab"`, and `role="presentation"` to NavTabs source.
+- 36452c03a: fix(MultiCombobox, MultiSelect): Replace default removal announcements with custom screen reader messages that name the removed items. Adds new i18n keys: `combobox.multi.clearAnnounce`, `combobox.multi.removeItemAnnounce`, `select.multi.clearAnnounce`, `select.multi.removeItemAnnounce`.
+- 36452c03a: fix(Popover): Move `aria-haspopup`, `aria-expanded`, and `aria-controls` from the trigger wrapper onto the trigger child element, so custom trigger elements correctly expose popover state to screen readers.
+- 36452c03a: fix(Tabs): Generate unique IDs per TabsContainer instance to prevent ID collisions when multiple Tabs appear on the same page. Skip panel content announcement on initial mount.
+- 36452c03a: fix(useFocusLock): Re-capture focus when active element escapes focus-locked containers (DatePicker, Modal, etc.).
+
 ## 4.11.0
 
 ### Minor Changes
