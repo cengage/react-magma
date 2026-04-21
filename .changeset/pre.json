@@ -20,6 +20,7 @@
     "fix-DatePicker-accessibility-issues",
     "fix-Modal-esc-handler",
     "fix-package-runtime-deps",
+    "fix-useFocusLock-navigation",
     "icons-version",
     "manually-sync-4.12.1",
     "modal-portal-container"

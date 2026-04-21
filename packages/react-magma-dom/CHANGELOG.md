@@ -1,5 +1,11 @@
 ## 4.12.0
 
+## 4.13.0-next.7
+
+### Patch Changes
+
+- b4a517e58: fix(useFocusLock): Fix bug with focus outside.
+
 ## 4.13.0-next.6
 
 ### Patch Changes
