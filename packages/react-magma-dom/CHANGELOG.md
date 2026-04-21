@@ -1,3 +1,31 @@
+## 4.13.0
+
+### Minor Changes
+
+- 3fa7c5753: feat: Add accessible chart toolbar with "Show as table", fullscreen, and "More options" buttons
+
+  Adds a new `chartToolbar` prop to `CarbonChart` that renders a WCAG 2.2 compliant toolbar replacing Carbon's built-in navigation controls. When provided, Carbon's toolbar is automatically disabled and replaced with accessible Magma components featuring:
+
+  - **Show as table** button with `aria-haspopup="dialog"` and `aria-expanded`, opening a focus-trapped Magma Modal with semantic headings and an accessible data table
+  - **Fullscreen** button without `aria-haspopup` (fixing the previous WCAG violation)
+  - **More options** dropdown using Magma's Dropdown component with proper menu semantics
+
+  Also exports standalone composable components (`ChartTableButton`, `ChartFullscreenButton`, `ChartMoreOptionsButton`, `ChartTableModal`, `ChartDataTable`, `ChartToolbar`) for adopters who need granular control outside of `CarbonChart`.
+
+- 3fa7c5753: feat(Modal): add `portalContainer` prop to control portal target
+
+  Adds an optional `portalContainer` prop to `Modal` that lets consumers specify the DOM element the modal should be portaled into. Defaults to `document.body` (unchanged behavior).
+
+### Patch Changes
+
+- 3fa7c5753: fix(Badge): Add focus outline offset.
+- 3fa7c5753: fix(Datagrid, Table): Fix the issue where the focus is lost when the button becomes disabled
+- 3fa7c5753: fix(Date Field Input): Add error message when the user enters an invalid date.
+- 3fa7c5753: fix(Date Picker & Time Picker & Native Select): Update aria attributes.
+- 3fa7c5753: fix(Modal): Fix bug when `Modal` doesn't close after pressing `Esc`
+- 3fa7c5753: chore(deps): move runtime-only dependencies out of peerDependencies and into package dependencies where needed
+- 3fa7c5753: fix(useFocusLock): Fix bug with focus outside.
+- 3fa7c5753: Chore: update react-magma-icons version
 
 ## 4.12.1
 
