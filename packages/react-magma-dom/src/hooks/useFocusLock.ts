@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { useDeviceDetect } from './useDeviceDetect';
+
 export interface FocusableElement extends HTMLElement {
   focus(options?: FocusOptions): void;
 }
@@ -77,6 +79,13 @@ function deduplicateTabStops(allFocusable: HTMLElement[]): HTMLElement[] {
   });
 }
 
+/**
+ * Module-level registry of currently active focus-lock root elements.
+ * Used in Safari to prevent an outer lock from handling Tab for elements
+ * that belong to an inner (descendant) lock.
+ */
+const activeFocusLockRoots = new Set<HTMLElement>();
+
 export function useFocusLock(
   active: boolean,
   header?: React.MutableRefObject<FocusableElement>,
@@ -84,6 +93,8 @@ export function useFocusLock(
 ): React.MutableRefObject<any> {
   const rootNode = React.useRef<HTMLElement>(null);
   const focusableItems = React.useRef<Array<HTMLElement>>([]);
+
+  const { isSafari } = useDeviceDetect();
 
   // The filter is necessary for the proper functioning of focus in drawer-navigation or similar cases
   const updateFocusableItems = () => {
@@ -108,14 +119,20 @@ export function useFocusLock(
 
   React.useEffect(() => {
     if (active) {
+      const root = rootNode.current;
+
+      if (root) {
+        activeFocusLockRoots.add(root);
+      }
+
       updateFocusableItems();
 
       const observer: MutationObserver = new MutationObserver(() => {
         updateFocusableItems();
       });
 
-      if (rootNode.current) {
-        observer.observe(rootNode.current, { childList: true, subtree: true });
+      if (root) {
+        observer.observe(root, { childList: true, subtree: true });
       }
 
       if (header && header.current) {
@@ -130,6 +147,10 @@ export function useFocusLock(
       }
 
       return () => {
+        if (root) {
+          activeFocusLockRoots.delete(root);
+        }
+
         observer.disconnect();
       };
     }
@@ -195,7 +216,7 @@ export function useFocusLock(
           return;
         }
 
-        // If no focusable items are
+        // If no focusable items
         if (length === 0) {
           event.preventDefault();
 
@@ -212,6 +233,75 @@ export function useFocusLock(
           return;
         }
 
+        // If focused on header then focus on first/last item
+        if (document.activeElement === header?.current) {
+          event.preventDefault();
+          (shiftKey ? lastItem : firstItem).focus();
+
+          return;
+        }
+
+        /**
+         * Safari does not keep Tab navigation inside React portals,
+         * so we manually move focus to the next/prev item for every Tab.
+         * Other browsers handle intermediate navigation natively and
+         * only need the boundary guards below.
+         */
+        if (isSafari) {
+          // In Safari we manually manage every Tab, so we must exclude:
+          // 1. Elements hidden by an ancestor (e.g. closed DatePicker calendar)
+          // 2. Elements inside a nested active focus lock (they have their own handler)
+          const nestedLockRoots = Array.from(activeFocusLockRoots).filter(
+            lockRoot =>
+              lockRoot !== rootNode.current &&
+              rootNode.current!.contains(lockRoot)
+          );
+
+          const visibleItems = focusableItems.current.filter(el => {
+            if (
+              typeof (el as any).checkVisibility === 'function' &&
+              !(el as any).checkVisibility()
+            ) {
+              return false;
+            }
+
+            // Skip elements managed by a nested lock
+            if (
+              nestedLockRoots.length > 0 &&
+              nestedLockRoots.some(lockRoot => lockRoot.contains(el))
+            ) {
+              return false;
+            }
+
+            return true;
+          });
+          const visibleLength = visibleItems.length;
+
+          if (visibleLength === 0) {
+            event.preventDefault();
+
+            return;
+          }
+
+          const idx = visibleItems.indexOf(activeElement as HTMLElement);
+
+          // Active element is not in this lock's own elements
+          // (it must be inside a nested lock) — let that lock handle it.
+          if (idx === -1) {
+            return;
+          }
+
+          event.preventDefault();
+
+          if (shiftKey) {
+            visibleItems[idx <= 0 ? visibleLength - 1 : idx - 1].focus();
+          } else {
+            visibleItems[idx >= visibleLength - 1 ? 0 : idx + 1].focus();
+          }
+
+          return;
+        }
+
         // If focused on last item then focus on first item when tab is pressed
         if (!shiftKey && document.activeElement === lastItem) {
           event.preventDefault();
@@ -221,11 +311,7 @@ export function useFocusLock(
         }
 
         // If focused on first item then focus on last item when shift + tab is pressed
-        if (
-          shiftKey &&
-          (document.activeElement === firstItem ||
-            document.activeElement === header?.current)
-        ) {
+        if (shiftKey && document.activeElement === firstItem) {
           event.preventDefault();
           lastItem.focus();
 
