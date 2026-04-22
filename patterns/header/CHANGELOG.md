@@ -1,5 +1,12 @@
 # Change Log
 
+## 15.0.1
+
+### Patch Changes
+
+- 3fa7c5753: chore(deps): move runtime-only dependencies out of peerDependencies and into package dependencies where needed
+- 3fa7c5753: Chore: update react-magma-icons version
+
 ## 16.0.0-next.2
 
 ### Patch Changes

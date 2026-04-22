@@ -1,5 +1,11 @@
 # Change Log
 
+## 12.0.4
+
+### Patch Changes
+
+- 3fa7c5753: Chore: update react-magma-icons version
+
 ## 12.0.4-next.1
 
 ### Patch Changes

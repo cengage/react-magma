@@ -1,5 +1,28 @@
 # Change Log
 
+## 5.3.3
+
+### Patch Changes
+
+- 3fa7c5753: fix(Accordion): Update doc example.
+- 3fa7c5753: Chore: update react-magma-icons version
+- 3fa7c5753: chore: Manually sync main -> dev (4.12.1)
+- Updated dependencies [3fa7c5753]
+- Updated dependencies [3fa7c5753]
+- Updated dependencies [3fa7c5753]
+- Updated dependencies [3fa7c5753]
+- Updated dependencies [3fa7c5753]
+- Updated dependencies [3fa7c5753]
+- Updated dependencies [3fa7c5753]
+- Updated dependencies [3fa7c5753]
+- Updated dependencies [3fa7c5753]
+- Updated dependencies [3fa7c5753]
+  - @react-magma/charts@13.1.0
+  - react-magma-dom@4.13.0
+  - @react-magma/schema-renderer@14.0.1
+  - @cengage-patterns/header@15.0.1
+  - @react-magma/dropzone@12.0.4
+
 ## 5.3.3-next.4
 
 ### Patch Changes
