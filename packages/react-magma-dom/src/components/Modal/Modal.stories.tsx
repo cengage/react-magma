@@ -726,6 +726,82 @@ export const Inverse = () => {
   );
 };
 
+export const WithPortalContainer = {
+  render: (
+    args: React.JSX.IntrinsicAttributes &
+      ModalProps &
+      React.RefAttributes<HTMLDivElement>
+  ) => {
+    const [showModal, setShowModal] = React.useState(false);
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+    const mainRef = React.useRef<HTMLDivElement>(null);
+    const [isFullscreen, setIsFullscreen] = React.useState(false);
+
+    React.useEffect(() => {
+      const onChange = () =>
+        setIsFullscreen(document.fullscreenElement === mainRef.current);
+
+      document.addEventListener('fullscreenchange', onChange);
+
+      return () => document.removeEventListener('fullscreenchange', onChange);
+    }, []);
+
+    const toggleFullscreen = () => {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        mainRef.current?.requestFullscreen();
+      }
+    };
+
+    return (
+      <div
+        ref={mainRef}
+        role="main"
+        style={{
+          padding: '24px',
+          background: '#f4f4f4',
+          minHeight: '200px',
+        }}
+      >
+        <ButtonGroup>
+          <Button ref={buttonRef} onClick={() => setShowModal(true)}>
+            Show Modal
+            <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+          </Button>
+          <Button onClick={toggleFullscreen}>
+            {isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
+          </Button>
+        </ButtonGroup>
+        <Modal
+          {...args}
+          header="Portaled Modal"
+          portalContainer={mainRef.current}
+          isOpen={showModal}
+          onClose={() => {
+            setShowModal(false);
+            buttonRef.current?.focus();
+          }}
+        >
+          <Paragraph noTopMargin>
+            This modal is rendered inside the main container rather than
+            <code> document.body</code>, so it remains visible when the
+            container is in fullscreen mode.
+          </Paragraph>
+          <ButtonGroup alignment={ButtonGroupAlignment.right}>
+            <Button
+              color={ButtonColor.secondary}
+              onClick={() => setShowModal(false)}
+            >
+              Close
+            </Button>
+          </ButtonGroup>
+        </Modal>
+      </div>
+    );
+  },
+};
+
 export const EscWithForeignAriaModal = () => {
   const [showModal, setShowModal] = React.useState(true);
   const [foreignModalMounted, setForeignModalMounted] = React.useState(false);

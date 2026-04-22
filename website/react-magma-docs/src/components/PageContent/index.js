@@ -187,7 +187,8 @@ export const PageContent = ({ children, componentName, type }) => {
   const apiLink = apiDocs?.node.fields.slug;
   const dataVisualizationLink = dataVisualization?.node.fields.slug;
 
-  const hasDocs = !!(apiDocs || designDocs || dataVisualization);
+  const hasNavTabs = !!(apiDocs || designDocs);
+  const hasDocs = !!(hasNavTabs || dataVisualization);
 
   let apiNavTabToLink = apiLink;
 
@@ -226,22 +227,26 @@ export const PageContent = ({ children, componentName, type }) => {
       {hasDocs ? (
         <>
           <StyledTabsContainer isInverse={isInverse}>
-            <TabsWrapper>
-              <StyledTabs aria-label="">
-                {apiDocs ? (
-                  <NavTab
-                    component={<Link to={apiNavTabToLink}>Implementation</Link>}
-                    isActive={type === NAV_TABS.API}
-                  />
-                ) : null}
-                {designDocs ? (
-                  <NavTab
-                    component={<Link to={designNavTabToLink}>Design</Link>}
-                    isActive={type === NAV_TABS.DESIGN}
-                  />
-                ) : null}
-              </StyledTabs>
-            </TabsWrapper>
+            {hasNavTabs && (
+              <TabsWrapper>
+                <StyledTabs aria-label="">
+                  {apiDocs ? (
+                    <NavTab
+                      component={
+                        <Link to={apiNavTabToLink}>Implementation</Link>
+                      }
+                      isActive={type === NAV_TABS.API}
+                    />
+                  ) : null}
+                  {designDocs ? (
+                    <NavTab
+                      component={<Link to={designNavTabToLink}>Design</Link>}
+                      isActive={type === NAV_TABS.DESIGN}
+                    />
+                  ) : null}
+                </StyledTabs>
+              </TabsWrapper>
+            )}
 
             <StyledTabPanelsContainer>
               <StyledTabPanel>
