@@ -1,5 +1,11 @@
 ## 4.13.0
 
+## 4.13.1-next.0
+
+### Patch Changes
+
+- 72cef0432: fix(Tabs & NavTabs): Add focus management for the first item during scrolling and navigation.
+
 ### Minor Changes
 
 - 3fa7c5753: feat: Add accessible chart toolbar with "Show as table", fullscreen, and "More options" buttons

@@ -12,6 +12,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "fix-NavTabs-Tabs-update focus-management",
     "manually-sync-4.13.0"
   ]
 }
