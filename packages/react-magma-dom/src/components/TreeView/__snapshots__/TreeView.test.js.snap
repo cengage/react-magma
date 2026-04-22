@@ -275,9 +275,14 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   outline: none;
 }
 
-.emotion-32:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-32:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-32>div:first-of-type {
@@ -454,9 +459,14 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   outline: none;
 }
 
-.emotion-48:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-48:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-48>div:first-of-type {
@@ -581,9 +591,14 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   outline: none;
 }
 
-.emotion-96:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-96:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-96>div:first-of-type {
@@ -965,9 +980,14 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   outline: none;
 }
 
-.emotion-32:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-32:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-32>div:first-of-type {
@@ -1144,9 +1164,14 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   outline: none;
 }
 
-.emotion-48:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-48:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-48>div:first-of-type {
@@ -1271,9 +1296,14 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   outline: none;
 }
 
-.emotion-96:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-96:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-96>div:first-of-type {
@@ -2180,9 +2210,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   outline: none;
 }
 
-.emotion-32:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-32:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-32>div:first-of-type {
@@ -2359,9 +2394,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   outline: none;
 }
 
-.emotion-48:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-48:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-48>div:first-of-type {
@@ -2486,9 +2526,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   outline: none;
 }
 
-.emotion-64:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-64:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-64>div:first-of-type {
@@ -2526,9 +2571,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   outline: none;
 }
 
-.emotion-82:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-82:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-82>div:first-of-type {
@@ -2975,9 +3025,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   outline: none;
 }
 
-.emotion-32:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-32:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-32>div:first-of-type {
@@ -3154,9 +3209,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   outline: none;
 }
 
-.emotion-48:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-48:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-48>div:first-of-type {
@@ -3281,9 +3341,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   outline: none;
 }
 
-.emotion-64:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-64:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-64>div:first-of-type {
@@ -3321,9 +3386,14 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   outline: none;
 }
 
-.emotion-82:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-82:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-82>div:first-of-type {
@@ -4344,9 +4414,14 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   outline: none;
 }
 
-.emotion-32:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-32:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-32>div:first-of-type {
@@ -4523,9 +4598,14 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   outline: none;
 }
 
-.emotion-48:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-48:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-48>div:first-of-type {
@@ -4650,9 +4730,14 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   outline: none;
 }
 
-.emotion-64:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-64:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-64>div:first-of-type {
@@ -4690,9 +4775,14 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   outline: none;
 }
 
-.emotion-82:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-82:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-82>div:first-of-type {
@@ -5074,9 +5164,14 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   outline: none;
 }
 
-.emotion-32:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-32:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-32>div:first-of-type {
@@ -5253,9 +5348,14 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   outline: none;
 }
 
-.emotion-48:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-48:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-48>div:first-of-type {
@@ -5380,9 +5480,14 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   outline: none;
 }
 
-.emotion-64:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-64:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-64>div:first-of-type {
@@ -5420,9 +5525,14 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   outline: none;
 }
 
-.emotion-82:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-82:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-82>div:first-of-type {
@@ -6377,9 +6487,14 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   outline: none;
 }
 
-.emotion-32:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-32:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-32>div:first-of-type {
@@ -6556,9 +6671,14 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   outline: none;
 }
 
-.emotion-48:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-48:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-48>div:first-of-type {
@@ -6683,9 +6803,14 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   outline: none;
 }
 
-.emotion-64:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-64:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-64>div:first-of-type {
@@ -6723,9 +6848,14 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   outline: none;
 }
 
-.emotion-82:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-82:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-82>div:first-of-type {
@@ -7107,9 +7237,14 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   outline: none;
 }
 
-.emotion-32:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-32:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-32>div:first-of-type {
@@ -7286,9 +7421,14 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   outline: none;
 }
 
-.emotion-48:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-48:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-48>div:first-of-type {
@@ -7413,9 +7553,14 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   outline: none;
 }
 
-.emotion-64:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-64:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-64>div:first-of-type {
@@ -7453,9 +7598,14 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   outline: none;
 }
 
-.emotion-82:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-82:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-82>div:first-of-type {
@@ -8410,9 +8560,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-32:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-32:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-32>div:first-of-type {
@@ -8589,9 +8744,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-48:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-48:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-48>div:first-of-type {
@@ -8716,9 +8876,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-64:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-64:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-64>div:first-of-type {
@@ -8756,9 +8921,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-82:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-82:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-82>div:first-of-type {
@@ -9205,9 +9375,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-32:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-32:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-32>div:first-of-type {
@@ -9384,9 +9559,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-48:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-48:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-48>div:first-of-type {
@@ -9511,9 +9691,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-64:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-64:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-64>div:first-of-type {
@@ -9551,9 +9736,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-82:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-82:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-82>div:first-of-type {
@@ -10574,9 +10764,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-32:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-32:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-32>div:first-of-type {
@@ -10753,9 +10948,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-48:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-48:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-48>div:first-of-type {
@@ -10880,9 +11080,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-64:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-64:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-64>div:first-of-type {
@@ -10920,9 +11125,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-82:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-82:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-82>div:first-of-type {
@@ -11369,9 +11579,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-32:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-32:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-32>div:first-of-type {
@@ -11548,9 +11763,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-48:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-48:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-48>div:first-of-type {
@@ -11675,9 +11895,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-64:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-64:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-64>div:first-of-type {
@@ -11715,9 +11940,14 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   outline: none;
 }
 
-.emotion-82:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-82:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-82>div:first-of-type {
@@ -12738,9 +12968,14 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   outline: none;
 }
 
-.emotion-32:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-32:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-32>div:first-of-type {
@@ -12917,9 +13152,14 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   outline: none;
 }
 
-.emotion-48:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-48:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-48>div:first-of-type {
@@ -13044,9 +13284,14 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   outline: none;
 }
 
-.emotion-64:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-64:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-64>div:first-of-type {
@@ -13084,9 +13329,14 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   outline: none;
 }
 
-.emotion-82:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-82:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-82>div:first-of-type {
@@ -13468,9 +13718,14 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   outline: none;
 }
 
-.emotion-32:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-32:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-32>div:first-of-type {
@@ -13647,9 +13902,14 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   outline: none;
 }
 
-.emotion-48:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-48:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-48>div:first-of-type {
@@ -13774,9 +14034,14 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   outline: none;
 }
 
-.emotion-64:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-64:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-64>div:first-of-type {
@@ -13814,9 +14079,14 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   outline: none;
 }
 
-.emotion-82:focus>*:first-child {
-  outline-offset: -2px;
+.emotion-82:focus>*:first-child::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   outline: 2px solid #0074B7;
+  outline-offset: -2px;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .emotion-82>div:first-of-type {

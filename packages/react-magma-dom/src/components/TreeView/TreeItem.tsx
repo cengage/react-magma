@@ -80,12 +80,19 @@ const StyledTreeItem = styled.li<{
     outline: none;
 
     & > *:first-child {
-      outline-offset: -2px;
-      outline: 2px solid
-        ${props =>
-          props.isInverse
-            ? props.theme.colors.focusInverse
-            : props.theme.colors.focus};
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        outline: 2px solid
+          ${props =>
+            props.isInverse
+              ? props.theme.colors.focusInverse
+              : props.theme.colors.focus};
+        outline-offset: -2px;
+        pointer-events: none;
+        z-index: 2;
+      }
     }
   }
 
@@ -202,6 +209,40 @@ const StyledExpandWrapper = styled.div<{
     size !== undefined ? `${size}px` : theme.spaceScale.spacing06};
 `;
 
+const Divider = styled.div<{
+  theme?: ThemeInterface;
+  isInverse?: boolean;
+  dividerLeft: string;
+}>`
+  position: absolute;
+  top: ${props => props.theme.spaceScale.spacing08};
+  bottom: 0;
+  inset-inline-start: ${props => props.dividerLeft};
+  width: 2px;
+  background-color: ${props =>
+    props.isInverse
+      ? transparentize(0.7, props.theme.colors.neutral100)
+      : props.theme.colors.neutral300};
+  pointer-events: none;
+  z-index: 1;
+`;
+
+const VirtualizedConnector = styled.div<{
+  theme?: ThemeInterface;
+  isInverse?: boolean;
+}>`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: ${props =>
+    props.isInverse
+      ? transparentize(0.7, props.theme.colors.neutral100)
+      : props.theme.colors.neutral300};
+  pointer-events: none;
+  z-index: 1;
+`;
+
 const StyledCheckboxWrapper = styled.div<{
   theme?: ThemeInterface;
   hasAdditionalContent?: boolean;
@@ -270,11 +311,14 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const { handleExpandedChange } = React.useContext(TreeViewExpansionContext);
     const {
       expandIconStyles,
+      hasDivider,
       hasIcons,
       isTopLevelSelectable,
       selectable,
       selectParents = true,
     } = React.useContext(TreeViewConfigContext);
+
+    console.log(hasDivider);
 
     // Pass the resolved values to useTreeItem
     const propsWithHierarchy = {
@@ -711,6 +755,40 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 </>
               )}
             </StyledItemWrapper>
+
+            {hasDivider &&
+              (hierarchyContext.isVirtualized
+                ? itemDepth > 0 &&
+                  Array.from({ length: itemDepth }, (_, d) => (
+                    <VirtualizedConnector
+                      key={`connector-${d}`}
+                      theme={theme}
+                      isInverse={isInverse}
+                      style={{
+                        insetInlineStart: `calc(${calculateOffset(
+                          TreeNodeType.branch,
+                          d,
+                          false,
+                          false,
+                          true
+                        )} + ${expandIconStyles?.size !== undefined ? `${expandIconStyles.size}px` : theme.spaceScale.spacing06} / 2 - 1px)`,
+                      }}
+                    />
+                  ))
+                : hasOwnTreeItems &&
+                  expanded && (
+                    <Divider
+                      theme={theme}
+                      isInverse={isInverse}
+                      dividerLeft={`calc(${calculateOffset(
+                        TreeNodeType.branch,
+                        itemDepth,
+                        false,
+                        false,
+                        false
+                      )} + ${expandIconStyles?.size !== undefined ? `${expandIconStyles.size}px` : theme.spaceScale.spacing06} / 2 - 1px) `}
+                    />
+                  ))}
 
             {React.Children.map(
               children,
