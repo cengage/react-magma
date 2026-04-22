@@ -1,5 +1,11 @@
 # Change Log
 
+## 14.0.0-rc.3
+
+### Patch Changes
+
+- e316bcb: Chore: update react-magma-icons version
+
 ## 14.0.0-rc.2
 
 ### Patch Changes

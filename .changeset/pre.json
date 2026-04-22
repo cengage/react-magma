@@ -15,6 +15,7 @@
     "a11y-docs-img-empty-alts",
     "a11y-docs-password-input-labels",
     "a11y-sortable-table-labels",
+    "accessible-chart-toolbar",
     "chore-charts-peer-deps",
     "chore-delete-deprecated-packages",
     "chore-disable-docs-formatting",
@@ -153,10 +154,12 @@
     "fix-timepicker-broken-auto-fill",
     "fix-timepicker-update-styles",
     "fix-useFocusLock-navigation",
+    "icons-version",
     "major-charts-v13-release",
     "major-dropzone-v13-release",
     "major-v5-release",
     "manually-sync-4.10.0",
+    "modal-portal-container",
     "storybook-csf3",
     "update-empty-state"
   ]
