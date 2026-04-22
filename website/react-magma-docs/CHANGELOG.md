@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.4-next.0
+
+### Patch Changes
+
+- b2c0be1bc: chore: Manually sync v4/main -> v4/dev (4.13.0)
+
 ## 5.3.3
 
 ### Patch Changes
