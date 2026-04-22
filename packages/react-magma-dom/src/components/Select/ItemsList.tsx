@@ -81,6 +81,15 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
 
+  const setFloatingRef = React.useCallback(
+    (node: Element | null) => {
+      if (setFloating) {
+        setFloating(isOpen ? node : null);
+      }
+    },
+    [isOpen, setFloating]
+  );
+
   // Scroll highlighted item into view for accessibility
   React.useEffect(() => {
     if (isOpen && highlightedIndex !== undefined && highlightedIndex >= 0) {
@@ -140,10 +149,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
   }
 
   return (
-    <div
-      ref={el => isOpen && setFloating && setFloating(el)}
-      style={{ ...floatingElementStyles, zIndex: '2' }}
-    >
+    <div ref={setFloatingRef} style={{ ...floatingElementStyles, zIndex: '2' }}>
       <StyledCard
         hasDropShadow
         isInverse={isInverse}
