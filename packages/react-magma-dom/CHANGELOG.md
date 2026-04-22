@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.85
+
+### Patch Changes
+
+- 43ad69b: fix(Combobox & Select): Clear floating element ref when the dropdown closes so controlled `selectedItem` and `items` updates re-render correctly.
+
 ## 5.1.0-rc.84
 
 ### Patch Changes
