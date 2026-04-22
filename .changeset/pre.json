@@ -142,6 +142,7 @@
     "fix-doc-examples",
     "fix-drawer-scrollable-content",
     "fix-modal-trigger-button",
+    "fix-package-runtime-deps",
     "fix-publish-repository-url",
     "fix-select-aria-label",
     "fix-select-disabled-aria-label",
