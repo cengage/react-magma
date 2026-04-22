@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { render, waitForElementToBeRemoved } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { axe } from '../../../axe-helper';
@@ -12,6 +17,10 @@ import { Button } from '../Button';
 import { Modal } from '.';
 
 describe('Modal', () => {
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
   describe('a11y', () => {
     it('With header, does not violate accessibility standards', async () => {
       const { baseElement } = render(
@@ -281,29 +290,32 @@ describe('Modal', () => {
       document.body.appendChild(host);
 
       const onClose = jest.fn();
-      const { getByTestId } = render(
-        <Modal
-          isOpen
-          testId="interactive-portal"
-          header="Hello"
-          onClose={onClose}
-          portalContainer={host}
-        >
-          Modal Content
-        </Modal>
-      );
+      try {
+        const { getByTestId } = render(
+          <Modal
+            isOpen
+            testId="interactive-portal"
+            header="Hello"
+            onClose={onClose}
+            portalContainer={host}
+          >
+            Modal Content
+          </Modal>
+        );
 
-      // Close button lives inside the portaled tree and still fires onClose.
-      const closeBtn = getByTestId('modal-closebtn');
-      expect(host.contains(closeBtn)).toBe(true);
+        // Close button lives inside the portaled tree and still fires onClose.
+        const closeBtn = getByTestId('modal-closebtn');
+        expect(host.contains(closeBtn)).toBe(true);
 
-      fireEvent.click(closeBtn);
-      await act(async () => {
-        jest.runAllTimers();
-      });
+        fireEvent.click(closeBtn);
+        await act(async () => {
+          jest.runAllTimers();
+        });
 
-      expect(onClose).toHaveBeenCalledTimes(1);
-      jest.useRealTimers();
+        expect(onClose).toHaveBeenCalledTimes(1);
+      } finally {
+        jest.useRealTimers();
+      }
     });
 
     it('falls back to document.body when portalContainer is null', () => {
