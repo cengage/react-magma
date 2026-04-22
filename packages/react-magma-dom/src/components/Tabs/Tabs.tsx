@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { TabsOrientation, TabsTextTransform } from './shared';
 import { TabsContainerContext } from './TabsContainer';
 import { ButtonNext, ButtonPrev } from './TabsScrollButtons';
-import { useTabsMeta } from './utils';
+import { useTabsMeta, useScrollTabFocus } from './utils';
 import { useDescendants } from '../../hooks/useDescendants';
 import { I18nContext } from '../../i18n';
 import { ThemeInterface } from '../../theme/magma';
@@ -322,13 +322,10 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
 
     React.useEffect(scrollInitialActiveIndexIntoView, []);
 
-    React.useEffect(() => {
-      if (!displayScroll.start) {
-        nextButtonRef.current?.focus();
-      } else if (!displayScroll.end) {
-        prevButtonRef.current?.focus();
-      }
-    }, [displayScroll.start, displayScroll.end]);
+    const { focusFirstVisibleTab } = useScrollTabFocus(
+      tabsWrapperRef,
+      orientation
+    );
 
     // Announce panel content when active tab changes (excluding initial mount)
     React.useEffect(() => {
@@ -481,7 +478,8 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       }
       timeoutRef.current = setTimeout(() => {
         setScrollAnnouncement('');
-      }, 100);
+        focusFirstVisibleTab();
+      }, 300);
     };
 
     const handleNextScrollWithAnnouncement = () => {
@@ -492,7 +490,8 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       }
       timeoutRef.current = setTimeout(() => {
         setScrollAnnouncement('');
-      }, 100);
+        focusFirstVisibleTab();
+      }, 300);
     };
 
     const other = omit(['aria-label'], rest);
