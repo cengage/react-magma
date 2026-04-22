@@ -1,5 +1,18 @@
 # Change Log
 
+## 7.0.0-rc.27
+
+### Patch Changes
+
+- e316bcb: Chore: update react-magma-icons version
+- Updated dependencies [e316bcb]
+- Updated dependencies [0c67f7f]
+- Updated dependencies [e316bcb]
+- Updated dependencies [e316bcb]
+  - @react-magma/charts@14.0.0-rc.5
+  - react-magma-dom@5.1.0-rc.87
+  - @react-magma/dropzone@14.0.0-rc.3
+
 ## 7.0.0-rc.26
 
 ### Patch Changes
