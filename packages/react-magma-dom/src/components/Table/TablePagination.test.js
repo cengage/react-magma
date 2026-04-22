@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { render, fireEvent, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 
 import { TablePagination } from '.';
-import userEvent from '@testing-library/user-event';
 
 describe('Table Pagination', () => {
   it('should find element by testId', () => {
