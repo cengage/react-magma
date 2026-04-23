@@ -317,3 +317,4 @@ export * from './components/TreeView';
 export * from './components/CharacterCounter';
 export * from './components/ToggleButton';
 export * from './components/ToggleButtonGroup';
+export * from './components/Fieldset';
