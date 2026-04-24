@@ -92,8 +92,8 @@ export const Inverse = {
     <Card isInverse>
       <CardBody>
         <Fieldset {...args} isInverse>
-          <Checkbox isInverse labelText="Option A" />
-          <Checkbox isInverse labelText="Option B" />
+          <Checkbox labelText="Option A" />
+          <Checkbox labelText="Option B" />
         </Fieldset>
       </CardBody>
     </Card>

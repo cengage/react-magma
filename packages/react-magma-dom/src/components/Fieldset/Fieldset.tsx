@@ -2,20 +2,14 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 
-import { useIsInverse } from '../../inverse';
+import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 
-export interface FieldsetProps
-  extends React.HTMLAttributes<HTMLFieldSetElement> {
+interface FieldsetCommonProps {
   /**
-   * Action that fires when the as prop is set to 'div' or 'fieldset'
-   * @default 'fieldset'
-   */
-  as?: 'fieldset' | 'div';
-  /**
-   * @children required
+   * @children
    */
   children: React.ReactNode;
   isInverse?: boolean;
@@ -38,7 +32,35 @@ export interface FieldsetProps
   visuallyHiddenLegend?: boolean;
 }
 
+export interface FieldsetAsFieldsetProps
+  extends FieldsetCommonProps,
+    Omit<React.FieldsetHTMLAttributes<HTMLFieldSetElement>, 'children'> {
+  /**
+   * Element to render for the fieldset container.
+   * @default 'fieldset'
+   */
+  as?: 'fieldset';
+}
+
+export interface FieldsetAsDivProps
+  extends FieldsetCommonProps,
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+  /**
+   * Element to render for the fieldset container.
+   */
+  as: 'div';
+}
+
+export type FieldsetProps = FieldsetAsFieldsetProps | FieldsetAsDivProps;
+
 const StyledFieldset = styled.fieldset`
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+`;
+
+const StyledDiv = styled.div`
   border: 0;
   margin: 0;
   padding: 0;
@@ -61,49 +83,58 @@ const HiddenSpan = styled.span`
   ${HiddenStyles};
 `;
 
-export const Fieldset = React.forwardRef<HTMLFieldSetElement, FieldsetProps>(
-  (props, ref) => {
-    const {
-      as = 'fieldset',
-      children,
-      legend,
-      legendId: legendIdProp,
-      testId,
-      visuallyHiddenLegend,
-      ...rest
-    } = props;
+export const Fieldset = React.forwardRef<
+  HTMLFieldSetElement | HTMLDivElement,
+  FieldsetProps
+>((props, ref) => {
+  const {
+    as = 'fieldset',
+    children,
+    legend,
+    legendId: legendIdProp,
+    testId,
+    visuallyHiddenLegend,
+    ...rest
+  } = props;
 
-    const legendId = useGenerateId(legendIdProp);
-    const theme = React.useContext(ThemeContext);
+  const legendId = useGenerateId(legendIdProp);
+  const theme = React.useContext(ThemeContext);
 
-    useIsInverse(props.isInverse);
+  const isInverse = useIsInverse(props.isInverse);
 
-    if (as === 'div') {
-      const LegendElement = visuallyHiddenLegend ? HiddenSpan : StyledSpan;
+  if (as === 'div') {
+    const LegendElement = visuallyHiddenLegend ? HiddenSpan : StyledSpan;
 
-      return (
-        <StyledFieldset
-          {...rest}
+    return (
+      <InverseContext.Provider value={{ isInverse }}>
+        <StyledDiv
+          {...(rest as React.HTMLAttributes<HTMLDivElement>)}
           aria-labelledby={legendId}
           data-testid={testId}
-          ref={ref}
+          ref={ref as React.Ref<HTMLDivElement>}
           role="group"
-          as="div"
           theme={theme}
         >
           <LegendElement id={legendId}>{legend}</LegendElement>
           {children}
-        </StyledFieldset>
-      );
-    }
+        </StyledDiv>
+      </InverseContext.Provider>
+    );
+  }
 
-    const LegendElement = visuallyHiddenLegend ? HiddenLegend : StyledLegend;
+  const LegendElement = visuallyHiddenLegend ? HiddenLegend : StyledLegend;
 
-    return (
-      <StyledFieldset {...rest} data-testid={testId} ref={ref} theme={theme}>
+  return (
+    <InverseContext.Provider value={{ isInverse }}>
+      <StyledFieldset
+        {...(rest as React.FieldsetHTMLAttributes<HTMLFieldSetElement>)}
+        data-testid={testId}
+        ref={ref as React.Ref<HTMLFieldSetElement>}
+        theme={theme}
+      >
         <LegendElement id={legendId}>{legend}</LegendElement>
         {children}
       </StyledFieldset>
-    );
-  }
-);
+    </InverseContext.Provider>
+  );
+});
