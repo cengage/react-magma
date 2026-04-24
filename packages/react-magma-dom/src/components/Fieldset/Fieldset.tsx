@@ -7,7 +7,12 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { useGenerateId } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 
-interface FieldsetCommonProps {
+export interface FieldsetCommonProps {
+  /**
+   * Element to render for the fieldset container.
+   * @default 'fieldset'
+   */
+  as?: 'fieldset' | 'div';
   /**
    * @children
    */
@@ -35,19 +40,12 @@ interface FieldsetCommonProps {
 export interface FieldsetAsFieldsetProps
   extends FieldsetCommonProps,
     Omit<React.FieldsetHTMLAttributes<HTMLFieldSetElement>, 'children'> {
-  /**
-   * Element to render for the fieldset container.
-   * @default 'fieldset'
-   */
   as?: 'fieldset';
 }
 
 export interface FieldsetAsDivProps
   extends FieldsetCommonProps,
     Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
-  /**
-   * Element to render for the fieldset container.
-   */
   as: 'div';
 }
 
