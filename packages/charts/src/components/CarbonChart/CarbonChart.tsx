@@ -490,6 +490,9 @@ const CarbonChartWrapper = styled.div<{
             : props.theme.colors.focus} !important;
       outline-offset: 0;
     }
+    circle.dot:focus {
+      outline: none !important;
+    }
     .cds--overflow-menu-options__btn:focus,
     .cds--overflow-menu:focus,
     .cds--overflow-menu__trigger:focus,
@@ -594,6 +597,17 @@ const CarbonChartWrapper = styled.div<{
     overflow: visible;
   }
 
+  circle.dot:focus {
+    outline: none;
+    stroke: ${props =>
+      props.isInverse
+        ? props.theme.colors.focusInverse
+        : props.theme.colors.focus} !important;
+    stroke-width: 6px !important;
+    stroke-opacity: 1 !important;
+    paint-order: stroke fill;
+  }
+
   .cds--cc--chart-wrapper text {
     font-size: ${props => props.theme.typeScale.size02.fontSize};
   }
@@ -635,6 +649,11 @@ enum ChartTheme {
 
 interface ColorsObject {
   [key: string]: string;
+}
+
+interface ExtendedChartOptions extends ChartOptions {
+  title?: string;
+  colors?: string[];
 }
 
 const ToolbarWrapper = styled.div<{
@@ -838,85 +857,123 @@ function downloadImage(
 
   const svgRect = svg.getBoundingClientRect();
   const legendItems = readLegendItems(wrapper);
-  const scale = 2;
 
-  // Measure legend height
-  const tempCanvas = document.createElement('canvas');
-  const tempCtx = tempCanvas.getContext('2d');
-  const fontSize = 13 * scale;
-  const swatchSize = 12 * scale;
-  const gap = 8 * scale;
-  const itemGap = 16 * scale;
-  const paddingX = 16 * scale;
-  const canvasWidth = svgRect.width * scale;
+  const doWork = () => {
+    const scale = 2;
 
-  let legendHeight = 0;
-  if (legendItems.length > 0 && tempCtx) {
-    tempCtx.font = `${fontSize}px sans-serif`;
-    let x = paddingX;
-    let rows = 1;
-    for (const item of legendItems) {
-      const textWidth = tempCtx.measureText(item.label).width;
-      const itemWidth = swatchSize + gap + textWidth + itemGap;
-      if (x + itemWidth > canvasWidth - paddingX && x > paddingX) {
-        x = paddingX;
-        rows++;
+    // Measure legend height
+    const tempCanvas = document.createElement('canvas');
+    const tempCtx = tempCanvas.getContext('2d');
+    const fontSize = 13 * scale;
+    const swatchSize = 12 * scale;
+    const gap = 8 * scale;
+    const itemGap = 16 * scale;
+    const paddingX = 16 * scale;
+    const canvasWidth = svgRect.width * scale;
+
+    let legendHeight = 0;
+    if (legendItems.length > 0 && tempCtx) {
+      tempCtx.font = `${fontSize}px sans-serif`;
+      let x = paddingX;
+      let rows = 1;
+      for (const item of legendItems) {
+        const textWidth = tempCtx.measureText(item.label).width;
+        const itemWidth = swatchSize + gap + textWidth + itemGap;
+        if (x + itemWidth > canvasWidth - paddingX && x > paddingX) {
+          x = paddingX;
+          rows++;
+        }
+        x += itemWidth;
       }
-      x += itemWidth;
-    }
-    legendHeight = rows * (fontSize + gap) + gap * 2;
-  }
-
-  const width = svgRect.width * scale;
-  const height = svgRect.height * scale + legendHeight;
-
-  const clone = svg.cloneNode(true) as SVGSVGElement;
-  clone.setAttribute('width', String(svgRect.width));
-  clone.setAttribute('height', String(svgRect.height));
-  clone.setAttribute('viewBox', `0 0 ${svgRect.width} ${svgRect.height}`);
-  clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-
-  inlineStyles(svg, clone);
-
-  const serializer = new XMLSerializer();
-  const svgString = serializer.serializeToString(clone);
-  const svgBlob = new Blob([svgString], {
-    type: 'image/svg+xml;charset=utf-8',
-  });
-  const url = URL.createObjectURL(svgBlob);
-
-  const mimeType = format === 'jpg' ? 'image/jpeg' : 'image/png';
-  const ext = format === 'jpg' ? 'jpg' : 'png';
-
-  const img = new Image();
-  img.onload = () => {
-    const canvas = document.createElement('canvas');
-    canvas.width = width;
-    canvas.height = height;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(img, 0, 0, svgRect.width * scale, svgRect.height * scale);
-    URL.revokeObjectURL(url);
-
-    if (legendItems.length > 0) {
-      drawLegend(ctx, legendItems, svgRect.height * scale + gap, width, scale);
+      legendHeight = rows * (fontSize + gap) + gap * 2;
     }
 
-    canvas.toBlob(blob => {
-      if (!blob) return;
-      const imgUrl = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = imgUrl;
-      a.download = `${title || 'chart'}.${ext}`;
-      a.click();
-      URL.revokeObjectURL(imgUrl);
-    }, mimeType);
+    const width = svgRect.width * scale;
+    const height = svgRect.height * scale + legendHeight;
+
+    const clone = svg.cloneNode(true) as SVGSVGElement;
+    clone.setAttribute('width', String(svgRect.width));
+    clone.setAttribute('height', String(svgRect.height));
+    clone.setAttribute('viewBox', `0 0 ${svgRect.width} ${svgRect.height}`);
+    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+
+    inlineStyles(svg, clone);
+
+    const serializer = new XMLSerializer();
+    const svgString = serializer.serializeToString(clone);
+    const svgBlob = new Blob([svgString], {
+      type: 'image/svg+xml;charset=utf-8',
+    });
+    const url = URL.createObjectURL(svgBlob);
+
+    const mimeType = format === 'jpg' ? 'image/jpeg' : 'image/png';
+    const ext = format === 'jpg' ? 'jpg' : 'png';
+
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, svgRect.width * scale, svgRect.height * scale);
+      URL.revokeObjectURL(url);
+
+      if (legendItems.length > 0) {
+        drawLegend(
+          ctx,
+          legendItems,
+          svgRect.height * scale + gap,
+          width,
+          scale
+        );
+      }
+
+      canvas.toBlob(blob => {
+        if (!blob) return;
+        const imgUrl = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = imgUrl;
+        a.download = `${title || 'chart'}.${ext}`;
+        a.click();
+        URL.revokeObjectURL(imgUrl);
+      }, mimeType);
+    };
+    img.onerror = () => URL.revokeObjectURL(url);
+    img.src = url;
   };
-  img.src = url;
+
+  // Defer to idle time with a 2-second deadline so it always runs.
+  if (typeof requestIdleCallback === 'function') {
+    requestIdleCallback(doWork, { timeout: 2000 });
+  } else {
+    setTimeout(doWork, 0);
+  }
 }
+
+const ALL_CHARTS: Record<CarbonChartType, React.ComponentType<any>> = {
+  area: AreaChart,
+  areaStacked: StackedAreaChart,
+  bar: SimpleBarChart,
+  barGrouped: GroupedBarChart,
+  barStacked: StackedBarChart,
+  donut: DonutChart,
+  line: LineChart,
+  lollipop: LollipopChart,
+  pie: PieChart,
+  radar: RadarChart,
+  boxplot: BoxplotChart,
+  bubble: BubbleChart,
+  bullet: BulletChart,
+  gauge: GaugeChart,
+  histogram: HistogramChart,
+  meter: MeterChart,
+  scatter: ScatterChart,
+  combo: ComboChart,
+};
 
 interface InternalToolbarProps {
   config: ChartToolbarConfig;
@@ -1078,8 +1135,15 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         }
       };
       document.addEventListener('fullscreenchange', onFullscreenChange);
-      return () =>
+      return () => {
         document.removeEventListener('fullscreenchange', onFullscreenChange);
+        // Restore height if the component unmounts while in fullscreen.
+        const chartHolder =
+          internalRef.current?.querySelector<HTMLElement>('.cds--chart-holder');
+        if (chartHolder && document.fullscreenElement) {
+          chartHolder.style.height = savedHeightRef.current;
+        }
+      };
     }, [fullscreenEnabled]);
 
     const openTableModal = React.useCallback(
@@ -1092,9 +1156,9 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     const closeTableModal = React.useCallback(() => {
       setIsTableOpen(false);
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         lastTableTriggerRef.current?.focus();
-      }, 0);
+      });
     }, []);
 
     const toggleFullscreen = React.useCallback(() => {
@@ -1110,64 +1174,47 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     }, []);
 
     const chartTitle: string =
-      (options as any).title || toolbarI18n.defaultTitle;
+      (options as ExtendedChartOptions).title || toolbarI18n.defaultTitle;
 
     const handleModalDownloadCsv = React.useCallback(() => {
       downloadCsv(dataSet as Array<Record<string, unknown>>, chartTitle);
     }, [dataSet, chartTitle]);
 
     useCarbonModalFocusManagement(internalRef);
-    const allCharts = {
-      area: AreaChart,
-      areaStacked: StackedAreaChart,
-      bar: SimpleBarChart,
-      barGrouped: GroupedBarChart,
-      barStacked: StackedBarChart,
-      donut: DonutChart,
-      line: LineChart,
-      lollipop: LollipopChart,
-      pie: PieChart,
-      radar: RadarChart,
-      boxplot: BoxplotChart,
-      bubble: BubbleChart,
-      bullet: BulletChart,
-      gauge: GaugeChart,
-      histogram: HistogramChart,
-      meter: MeterChart,
-      scatter: ScatterChart,
-      combo: ComboChart,
-    };
 
-    function buildColors() {
+    const colorScale = React.useMemo(() => {
       const scaleColorsObj: ColorsObject = {};
-
-      const allGroups = dataSet.map(item => {
-        return 'group' in item ? item['group'] : null;
-      });
-      const uniqueGroups = allGroups.filter(
-        (g, index) => allGroups.indexOf(g) === index
-      );
-      const customColors = ((options as any).colors as string[]) || [];
+      const customColors = (options as ExtendedChartOptions).colors || [];
       const allColors = [...customColors, ...theme.chartColors];
       const allInverseColors = [...customColors, ...theme.chartColorsInverse];
+      const allGroups = dataSet.map(item =>
+        'group' in item ? (item as Record<string, unknown>)['group'] : null
+      );
+      const uniqueGroups = Array.from(new Set(allGroups));
 
-      uniqueGroups.forEach((group, i) => {
-        if (uniqueGroups.length <= allColors.length) {
-          return (scaleColorsObj[group || ('null' as any)] = isInverse
+      if (uniqueGroups.length <= allColors.length) {
+        for (let i = 0; i < uniqueGroups.length; i++) {
+          const group = uniqueGroups[i];
+          scaleColorsObj[String(group ?? 'null')] = isInverse
             ? allInverseColors[i]
-            : allColors[i]);
+            : allColors[i];
         }
-        return {};
-      });
+      }
 
       return scaleColorsObj;
-    }
+    }, [
+      dataSet,
+      options,
+      theme.chartColors,
+      theme.chartColorsInverse,
+      isInverse,
+    ]);
 
     const newOptions = {
       ...options,
       theme: isInverse ? ChartTheme.G100 : ChartTheme.WHITE,
       color: {
-        scale: buildColors(),
+        scale: colorScale,
       },
       tooltip: {
         ...(options?.tooltip || {}),
@@ -1178,20 +1225,106 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       ...(chartToolbar ? { toolbar: { enabled: false } } : {}),
     };
 
-    const ChartType = allCharts[type] as any;
+    const ChartType = ALL_CHARTS[type];
 
-    // Adding aria-label to main SVG container
     React.useEffect(() => {
-      if (ariaLabel) {
-        document.querySelectorAll('.graph-frame ').forEach(div => {
-          div.setAttribute('aria-label', ariaLabel);
-        });
-      }
-    });
+      if (!ariaLabel) return;
+      const rafId = requestAnimationFrame(() => {
+        const svgEl = internalRef.current?.querySelector('.graph-frame');
+        if (!svgEl) return;
+        svgEl.setAttribute('aria-label', ariaLabel);
+      });
+      return () => cancelAnimationFrame(rafId);
+    }, [ariaLabel]);
 
-    const groupsLength = Object.keys(buildColors()).length;
+    // Make Carbon Charts data points keyboard-focusable.
+    React.useEffect(() => {
+      const wrapper = internalRef.current;
+      if (!wrapper) return;
+
+      const isDot = (el: EventTarget | null): el is SVGCircleElement =>
+        el instanceof Element &&
+        el.nodeName.toLowerCase() === 'circle' &&
+        el.classList.contains('dot');
+
+      const onFocusIn = (e: FocusEvent) => {
+        if (!isDot(e.target)) return;
+        const dot = e.target as SVGCircleElement;
+        dot.style.opacity = '1';
+        const { left, top, width, height } = dot.getBoundingClientRect();
+        const cx = left + width / 2;
+        const cy = top + height / 2;
+        dot.dispatchEvent(
+          new MouseEvent('mouseover', {
+            bubbles: true,
+            clientX: cx,
+            clientY: cy,
+            screenX: cx,
+            screenY: cy,
+          })
+        );
+        dot.dispatchEvent(
+          new MouseEvent('mousemove', {
+            bubbles: true,
+            clientX: cx,
+            clientY: cy,
+            screenX: cx,
+            screenY: cy,
+          })
+        );
+      };
+
+      const onFocusOut = (e: FocusEvent) => {
+        if (!isDot(e.target)) return;
+        const dot = e.target;
+        dot.style.opacity = '';
+        dot.dispatchEvent(new MouseEvent('mouseout', { bubbles: true }));
+      };
+
+      const onKeyDown = (e: KeyboardEvent) => {
+        if (!isDot(e.target)) return;
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault();
+        const dot = e.target;
+        const { left, top, width, height } = dot.getBoundingClientRect();
+        const cx = left + width / 2;
+        const cy = top + height / 2;
+        dot.dispatchEvent(
+          new MouseEvent('click', {
+            bubbles: true,
+            clientX: cx,
+            clientY: cy,
+          })
+        );
+      };
+
+      const rafId = requestAnimationFrame(() => {
+        wrapper
+          .querySelectorAll<SVGCircleElement>('circle.dot')
+          .forEach(dot => {
+            if (!dot.hasAttribute('tabindex')) {
+              dot.setAttribute('tabindex', '0');
+            }
+          });
+      });
+
+      wrapper.addEventListener('focusin', onFocusIn);
+      wrapper.addEventListener('focusout', onFocusOut);
+      wrapper.addEventListener('keydown', onKeyDown);
+
+      return () => {
+        cancelAnimationFrame(rafId);
+        wrapper.removeEventListener('focusin', onFocusIn);
+        wrapper.removeEventListener('focusout', onFocusOut);
+        wrapper.removeEventListener('keydown', onKeyDown);
+      };
+    }, [type]);
+
+    const groupsLength = Object.keys(colorScale).length;
 
     const showTable = chartToolbar?.showAsTable !== false;
+
+    if (!ChartType) return null;
 
     return (
       <FullscreenRoot ref={mergedRef} isInverse={isInverse} theme={theme}>
