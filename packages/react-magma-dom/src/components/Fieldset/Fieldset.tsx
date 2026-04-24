@@ -14,7 +14,7 @@ export interface FieldsetCommonProps {
    */
   as?: 'fieldset' | 'div';
   /**
-   * @children
+   * @children required
    */
   children: React.ReactNode;
   isInverse?: boolean;

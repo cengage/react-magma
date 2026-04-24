@@ -79,8 +79,8 @@ import { Fieldset, Radio, RadioGroup } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Fieldset legend="Choose one">
-      <RadioGroup labelText="Choose one" name="radio-example">
+    <Fieldset legend="Choose one" legendId="radio-legend">
+      <RadioGroup labelledById="radio-legend" name="radio-example">
         <Radio labelText="Radio A" value="a" />
         <Radio labelText="Radio B" value="b" />
         <Radio labelText="Radio C" value="c" />

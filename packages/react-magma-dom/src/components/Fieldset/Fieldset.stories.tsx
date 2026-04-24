@@ -75,7 +75,7 @@ export const WithCheckboxes = {
 export const WithRadios = {
   render: (args: FieldsetProps) => (
     <Fieldset {...args}>
-      <RadioGroup labelText="Choose one" name="radio-example">
+      <RadioGroup labelledById="radio-legend" name="radio-example">
         <Radio labelText="Radio A" value="a" />
         <Radio labelText="Radio B" value="b" />
         <Radio labelText="Radio C" value="c" />
@@ -83,7 +83,8 @@ export const WithRadios = {
     </Fieldset>
   ),
   args: {
-    legend: 'Radio group',
+    legend: 'Choose one',
+    legendId: 'radio-legend',
   },
 };
 
