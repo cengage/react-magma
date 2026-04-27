@@ -35,6 +35,11 @@ const info = {
         type: 'boolean',
       },
     },
+    drawerStyle: {
+      control: {
+        type: 'object',
+      },
+    },
   },
 };
 
