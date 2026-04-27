@@ -3255,7 +3255,7 @@ export const ComplexWithAdditionalContent = {
   },
 };
 
-export function TreeViewWithDifferentElements(args) {
+export function TreeViewWithDifferentElements(args: Partial<TreeViewProps>) {
   const parrotsInDropdown = () => {
     return (
       <div style={{ width: '100%', marginTop: '12px' }}>

@@ -5496,4 +5496,106 @@ describe('TreeView', () => {
       });
     });
   });
+
+  describe('hasDivider', () => {
+    it('should not render divider by default', () => {
+      const { container } = render(
+        <TreeView testId={testId} initialExpandedItems={['item1']}>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(
+        container.querySelector('[class*="Divider"]')
+      ).not.toBeInTheDocument();
+    });
+
+    it('should render divider when hasDivider is true and item is expanded', () => {
+      const { container } = render(
+        <TreeView testId={testId} hasDivider initialExpandedItems={['item1']}>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const dividers = container.querySelectorAll('[class*="Divider"]');
+
+      expect(dividers.length).toBeGreaterThan(0);
+    });
+
+    it('should not render divider when hasDivider is true but item is collapsed', () => {
+      const { container } = render(
+        <TreeView testId={testId} hasDivider>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(
+        container.querySelector('[class*="Divider"]')
+      ).not.toBeInTheDocument();
+    });
+
+    it('should show divider after expanding and hide after collapsing', async () => {
+      const { container, getByTestId } = render(
+        <TreeView testId={testId} hasDivider>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(
+        container.querySelector('[class*="Divider"]')
+      ).not.toBeInTheDocument();
+
+      // Expand
+      await act(async () => {
+        await userEvent.click(getByTestId('item1-expand'));
+      });
+
+      expect(container.querySelector('[class*="Divider"]')).toBeInTheDocument();
+
+      // Collapse
+      await act(async () => {
+        await userEvent.click(getByTestId('item1-expand'));
+      });
+
+      expect(
+        container.querySelector('[class*="Divider"]')
+      ).not.toBeInTheDocument();
+    });
+
+    it('should not render divider on leaf nodes', () => {
+      const { container } = render(
+        <TreeView testId={testId} hasDivider>
+          <TreeItem label="Leaf" itemId="leaf" testId="leaf" />
+        </TreeView>
+      );
+
+      expect(
+        container.querySelector('[class*="Divider"]')
+      ).not.toBeInTheDocument();
+    });
+  });
 });

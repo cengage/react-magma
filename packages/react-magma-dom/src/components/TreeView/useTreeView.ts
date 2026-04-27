@@ -131,7 +131,7 @@ export interface UseTreeViewProps {
    */
   testId?: string;
   /**
-   * If true, TreeView will render a divider for items with children.
+   * If true, TreeView will render a divider for expanded items with children.
    */
   hasDivider?: boolean;
 }

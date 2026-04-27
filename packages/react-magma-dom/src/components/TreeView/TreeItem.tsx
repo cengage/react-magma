@@ -318,8 +318,6 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       selectParents = true,
     } = React.useContext(TreeViewConfigContext);
 
-    console.log(hasDivider);
-
     // Pass the resolved values to useTreeItem
     const propsWithHierarchy = {
       ...props,
