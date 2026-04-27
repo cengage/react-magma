@@ -5512,7 +5512,7 @@ describe('TreeView', () => {
       );
 
       expect(
-        container.querySelector('[class*="Divider"]')
+        container.querySelector('[data-testid$="-divider"]')
       ).not.toBeInTheDocument();
     });
 
@@ -5529,9 +5529,9 @@ describe('TreeView', () => {
         </TreeView>
       );
 
-      const dividers = container.querySelectorAll('[class*="Divider"]');
-
-      expect(dividers.length).toBeGreaterThan(0);
+      expect(
+        container.querySelector('[data-testid="item1-divider"]')
+      ).toBeInTheDocument();
     });
 
     it('should not render divider when hasDivider is true but item is collapsed', () => {
@@ -5548,7 +5548,7 @@ describe('TreeView', () => {
       );
 
       expect(
-        container.querySelector('[class*="Divider"]')
+        container.querySelector('[data-testid$="-divider"]')
       ).not.toBeInTheDocument();
     });
 
@@ -5566,7 +5566,7 @@ describe('TreeView', () => {
       );
 
       expect(
-        container.querySelector('[class*="Divider"]')
+        container.querySelector('[data-testid="item1-divider"]')
       ).not.toBeInTheDocument();
 
       // Expand
@@ -5574,7 +5574,9 @@ describe('TreeView', () => {
         await userEvent.click(getByTestId('item1-expand'));
       });
 
-      expect(container.querySelector('[class*="Divider"]')).toBeInTheDocument();
+      expect(
+        container.querySelector('[data-testid="item1-divider"]')
+      ).toBeInTheDocument();
 
       // Collapse
       await act(async () => {
@@ -5582,7 +5584,7 @@ describe('TreeView', () => {
       });
 
       expect(
-        container.querySelector('[class*="Divider"]')
+        container.querySelector('[data-testid="item1-divider"]')
       ).not.toBeInTheDocument();
     });
 
@@ -5594,7 +5596,7 @@ describe('TreeView', () => {
       );
 
       expect(
-        container.querySelector('[class*="Divider"]')
+        container.querySelector('[data-testid$="-divider"]')
       ).not.toBeInTheDocument();
     });
   });

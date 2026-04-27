@@ -760,6 +760,7 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                   Array.from({ length: itemDepth }, (_, d) => (
                     <VirtualizedConnector
                       key={`connector-${d}`}
+                      data-testid={`${testId || itemId}-virtualized-connector-${d}`}
                       theme={theme}
                       isInverse={isInverse}
                       style={{
@@ -776,6 +777,7 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 : hasOwnTreeItems &&
                   expanded && (
                     <Divider
+                      data-testid={`${testId || itemId}-divider`}
                       theme={theme}
                       isInverse={isInverse}
                       dividerLeft={`calc(${calculateOffset(
