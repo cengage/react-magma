@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { InverseContext, useIsInverse } from '../../inverse';
@@ -51,18 +52,19 @@ export interface FieldsetAsDivProps
 
 export type FieldsetProps = FieldsetAsFieldsetProps | FieldsetAsDivProps;
 
-const StyledFieldset = styled.fieldset`
+const baseStyles = css`
   border: 0;
   margin: 0;
   padding: 0;
   min-width: 0;
 `;
 
+const StyledFieldset = styled.fieldset`
+  ${baseStyles};
+`;
+
 const StyledDiv = styled.div`
-  border: 0;
-  margin: 0;
-  padding: 0;
-  min-width: 0;
+  ${baseStyles};
 `;
 
 const HiddenLegend = styled.legend`
