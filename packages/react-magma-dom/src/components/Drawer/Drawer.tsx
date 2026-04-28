@@ -57,6 +57,7 @@ export interface DrawerProps extends Omit<ModalProps, 'size'> {
 export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
   (props, _ref) => {
     const {
+      style,
       drawerStyle: propDrawerStyle,
       containerStyle,
       position,
@@ -86,7 +87,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
         }}
         containerTransition={containerTransition}
         hasDrawerAnimation={isAnimated}
-        style={{ ...drawerStyle, ...propDrawerStyle }}
+        style={{ ...drawerStyle, ...style, ...propDrawerStyle }}
         {...rest}
       />
     );

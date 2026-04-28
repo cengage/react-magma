@@ -196,5 +196,22 @@ describe('Drawer', () => {
       expect(modalContent).toHaveStyle('background: green');
       expect(modalContent).toHaveStyle('color: red');
     });
+
+    it('should merge drawerStyle and style, with drawerStyle taking precedence', () => {
+      const { getByTestId } = render(
+        <Drawer
+          isOpen
+          testId="my-drawer"
+          style={{ color: 'blue', background: 'yellow' }}
+          drawerStyle={{ color: 'red' }}
+        >
+          {TEXT}
+        </Drawer>
+      );
+
+      const modalContent = getByTestId('modal-content');
+      expect(modalContent).toHaveStyle('background: yellow');
+      expect(modalContent).toHaveStyle('color: red');
+    });
   });
 });
