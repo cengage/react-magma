@@ -1926,11 +1926,11 @@ export function Example() {
 }
 ```
 
-## Divider
+## Guide Lines
 
-When `hasDivider` is set to `true`, a vertical line is rendered alongside expanded parent items to visually connect them with their children. This helps users understand the hierarchy at a glance, especially in deep or complex trees.
+When `hasGuideLines` is set to `true`, a vertical line is rendered alongside expanded parent items to visually connect them with their children. This helps users understand the hierarchy at a glance, especially in deep or complex trees.
 
-By default, `hasDivider` is set to `false`.
+By default, `hasGuideLines` is set to `false`.
 
 ```tsx
 import React from 'react';
@@ -1940,10 +1940,10 @@ import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
 export function Example() {
   return (
     <TreeView
-      ariaLabel="divider-example"
+      ariaLabel="guideline-example"
       selectable={TreeViewSelectable.single}
       initialExpandedItems={['divider-Mammals', 'divider-Dogs']}
-      hasDivider
+      hasGuideLines
     >
       <TreeItem label="Mammals" itemId="divider-Mammals">
         <TreeItem label="Dogs" itemId="divider-Dogs">

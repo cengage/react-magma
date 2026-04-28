@@ -131,9 +131,9 @@ export interface UseTreeViewProps {
    */
   testId?: string;
   /**
-   * If true, TreeView will render a divider for expanded items with children.
+   * If true, TreeView will render guide lines for expanded items with children.
    */
-  hasDivider?: boolean;
+  hasGuideLines?: boolean;
 }
 
 interface ExpandIconStylesProps {
@@ -163,7 +163,7 @@ export function useTreeView(props: UseTreeViewProps) {
     isTopLevelSelectable = true,
     expandIconStyles,
     selectParents = true,
-    hasDivider = false,
+    hasGuideLines = false,
   } = props;
 
   const hasPreselectedItems = Boolean(preselectedItems);
@@ -636,7 +636,7 @@ export function useTreeView(props: UseTreeViewProps) {
       isTopLevelSelectable,
       selectParents,
       expandIconStyles,
-      hasDivider,
+      hasGuideLines,
       registerTreeItem,
       treeItemRefArray,
     }),
@@ -648,7 +648,7 @@ export function useTreeView(props: UseTreeViewProps) {
       isTopLevelSelectable,
       selectParents,
       expandIconStyles,
-      hasDivider,
+      hasGuideLines,
       registerTreeItem,
       treeItemRefArray,
     ]

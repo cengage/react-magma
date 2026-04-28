@@ -209,36 +209,38 @@ const StyledExpandWrapper = styled.div<{
     size !== undefined ? `${size}px` : theme.spaceScale.spacing06};
 `;
 
-const Divider = styled.div<{
+const GuideLine = styled.div<{
   theme?: ThemeInterface;
   isInverse?: boolean;
-  dividerLeft: string;
+  guideLineLeft: string;
 }>`
   position: absolute;
   top: ${props => props.theme.spaceScale.spacing08};
   bottom: 0;
-  inset-inline-start: ${props => props.dividerLeft};
-  width: 2px;
-  background-color: ${props =>
-    props.isInverse
-      ? transparentize(0.7, props.theme.colors.neutral100)
-      : props.theme.colors.neutral300};
+  inset-inline-start: ${props => props.guideLineLeft};
+  width: 0;
+  border-inline-start: 1px solid
+    ${props =>
+      props.isInverse
+        ? transparentize(0.7, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
   pointer-events: none;
   z-index: 1;
 `;
 
-const VirtualizedConnector = styled.div<{
+const VirtualizedGuideLine = styled.div<{
   theme?: ThemeInterface;
   isInverse?: boolean;
 }>`
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 2px;
-  background-color: ${props =>
-    props.isInverse
-      ? transparentize(0.7, props.theme.colors.neutral100)
-      : props.theme.colors.neutral300};
+  width: 0;
+  border-inline-start: 1px solid
+    ${props =>
+      props.isInverse
+        ? transparentize(0.7, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
   pointer-events: none;
   z-index: 1;
 `;
@@ -311,7 +313,7 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const { handleExpandedChange } = React.useContext(TreeViewExpansionContext);
     const {
       expandIconStyles,
-      hasDivider,
+      hasGuideLines,
       hasIcons,
       isTopLevelSelectable,
       selectable,
@@ -754,13 +756,13 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
               )}
             </StyledItemWrapper>
 
-            {hasDivider &&
+            {hasGuideLines &&
               (hierarchyContext.isVirtualized
                 ? itemDepth > 0 &&
                   Array.from({ length: itemDepth }, (_, d) => (
-                    <VirtualizedConnector
-                      key={`connector-${d}`}
-                      data-testid={`${testId || itemId}-virtualized-connector-${d}`}
+                    <VirtualizedGuideLine
+                      key={`guideline-${d}`}
+                      data-testid={`${testId || itemId}-virtualized-guideline-${d}`}
                       theme={theme}
                       isInverse={isInverse}
                       style={{
@@ -770,23 +772,23 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                           false,
                           false,
                           true
-                        )} + ${expandIconStyles?.size !== undefined ? `${expandIconStyles.size}px` : theme.spaceScale.spacing06} / 2 - 1px)`,
+                        )} + ${expandIconStyles?.size !== undefined ? `${expandIconStyles.size}px` : theme.spaceScale.spacing06} / 2 - 0.5px)`,
                       }}
                     />
                   ))
                 : hasOwnTreeItems &&
                   expanded && (
-                    <Divider
-                      data-testid={`${testId || itemId}-divider`}
+                    <GuideLine
+                      data-testid={`${testId || itemId}-guideline`}
                       theme={theme}
                       isInverse={isInverse}
-                      dividerLeft={`calc(${calculateOffset(
+                      guideLineLeft={`calc(${calculateOffset(
                         TreeNodeType.branch,
                         itemDepth,
                         false,
                         false,
                         false
-                      )} + ${expandIconStyles?.size !== undefined ? `${expandIconStyles.size}px` : theme.spaceScale.spacing06} / 2 - 1px) `}
+                      )} + ${expandIconStyles?.size !== undefined ? `${expandIconStyles.size}px` : theme.spaceScale.spacing06} / 2 - 0.5px) `}
                     />
                   ))}
 

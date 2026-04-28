@@ -111,7 +111,7 @@ export default {
       control: 'number',
       defaultValue: 800,
     },
-    hasDivider: {
+    hasGuideLines: {
       control: 'boolean',
       defaultValue: false,
     },
