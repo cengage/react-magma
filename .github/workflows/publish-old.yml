@@ -49,7 +49,7 @@ jobs:
         with:
           # node-version: '18'
           # Uncomment this for 4.3.0, node version 20+
-          node-version: '20'
+          node-version: '22'
           check-latest: true
 
       - name: Install
