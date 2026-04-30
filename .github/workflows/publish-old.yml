@@ -52,11 +52,8 @@ jobs:
           node-version: '22'
           check-latest: true
 
-      - name: Update npm
-        run: npm install -g npm@latest
-
       - name: Install
-        run: npm ci --legacy-peer-deps
+        run: npm ci --legacy-peer-deps --ignore-engines
 
       # Uncomment this step for 4.3.0
       # - name: Add import statement in index.js
