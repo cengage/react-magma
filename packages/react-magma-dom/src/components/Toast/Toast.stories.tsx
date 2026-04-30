@@ -122,3 +122,49 @@ export const TwoLine = {
     ...Default.args,
   },
 };
+
+export const Strict = {
+  render: args => {
+    const [showToast, setShowToast] = React.useState(false);
+
+    function handleClick() {
+      setShowToast(true);
+    }
+
+    function handleDismiss() {
+      setShowToast(false);
+    }
+
+    return (
+      <React.StrictMode>
+        <div
+          style={{
+            background: args.isInverse ? magma.colors.primary600 : 'none',
+          }}
+        >
+          <Button
+            size={ButtonSize.small}
+            onClick={handleClick}
+            isInverse={args.isInverse}
+          >
+            Show Toast in Strict Mode
+          </Button>
+          <Announce>
+            {showToast ? (
+              <Toast onDismiss={handleDismiss} {...args}>
+                Default Toast in Strict Mode
+              </Toast>
+            ) : null}
+          </Announce>
+        </div>
+      </React.StrictMode>
+    );
+  },
+
+  args: {
+    variant: AlertVariant.info,
+    toastDuration: 5000,
+    disableAutoDismiss: false,
+    isInverse: false,
+  },
+};
