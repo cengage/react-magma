@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.88
+
+### Minor Changes
+
+- f82988d: feat(Fieldset): Create `Fieldset` component
+
 ## 5.1.0-rc.87
 
 ### Minor Changes
