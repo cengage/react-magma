@@ -52,8 +52,11 @@ jobs:
           node-version: '22'
           check-latest: true
 
+      - name: Disable engine-strict check
+        run: echo "engine-strict=false" > .npmrc
+
       - name: Install
-        run: npm ci --legacy-peer-deps --ignore-engines
+        run: npm ci --legacy-peer-deps
 
       # Uncomment this step for 4.3.0
       # - name: Add import statement in index.js
