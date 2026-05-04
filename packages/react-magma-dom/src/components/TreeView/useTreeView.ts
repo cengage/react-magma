@@ -130,6 +130,10 @@ export interface UseTreeViewProps {
    * @internal
    */
   testId?: string;
+  /**
+   * If true, TreeView will render guide lines for expanded items with children.
+   */
+  hasGuideLines?: boolean;
 }
 
 interface ExpandIconStylesProps {
@@ -159,6 +163,7 @@ export function useTreeView(props: UseTreeViewProps) {
     isTopLevelSelectable = true,
     expandIconStyles,
     selectParents = true,
+    hasGuideLines = false,
   } = props;
 
   const hasPreselectedItems = Boolean(preselectedItems);
@@ -631,6 +636,7 @@ export function useTreeView(props: UseTreeViewProps) {
       isTopLevelSelectable,
       selectParents,
       expandIconStyles,
+      hasGuideLines,
       registerTreeItem,
       treeItemRefArray,
     }),
@@ -642,6 +648,7 @@ export function useTreeView(props: UseTreeViewProps) {
       isTopLevelSelectable,
       selectParents,
       expandIconStyles,
+      hasGuideLines,
       registerTreeItem,
       treeItemRefArray,
     ]

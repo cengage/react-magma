@@ -111,6 +111,10 @@ export default {
       control: 'number',
       defaultValue: 800,
     },
+    hasGuideLines: {
+      control: 'boolean',
+      defaultValue: false,
+    },
   },
   args: {
     isInverse: false,
@@ -3251,7 +3255,7 @@ export const ComplexWithAdditionalContent = {
   },
 };
 
-export function TreeViewWithDifferentElements() {
+export function TreeViewWithDifferentElements(args: Partial<TreeViewProps>) {
   const parrotsInDropdown = () => {
     return (
       <div style={{ width: '100%', marginTop: '12px' }}>
@@ -3325,6 +3329,7 @@ export function TreeViewWithDifferentElements() {
 
   return (
     <TreeView
+      {...args}
       selectable={TreeViewSelectable.off}
       initialExpandedItems={[
         'parrots-AdditionalContent',
