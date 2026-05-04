@@ -193,6 +193,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       React.useState(0);
 
     React.useEffect(() => {
+      mountedRef.current = true;
       lastFocus.current = document.activeElement as HTMLElement;
       if (!props.disableAutoDismiss) {
         setAutoHideTimer(props.toastDuration);
