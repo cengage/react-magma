@@ -1633,7 +1633,6 @@ describe('Date Picker', () => {
     });
 
     it('should clear invalid year error and aria-describedby after selecting a valid date from the calendar', async () => {
-      const user = userEvent.setup();
       const { getByTestId, getByLabelText, queryByText, getAllByText } = render(
         <DatePicker isDateFieldInput labelText="Date" />
       );
@@ -1642,21 +1641,21 @@ describe('Date Picker', () => {
       const dayInput = getByTestId('day-input');
       const yearInput = getByTestId('year-input');
 
-      await user.type(monthInput, '04');
-      await user.type(dayInput, '04');
-      await user.type(yearInput, '0004');
-      await user.tab();
+      userEvent.type(monthInput, '04');
+      userEvent.type(dayInput, '04');
+      userEvent.type(yearInput, '0004');
+      userEvent.tab();
 
       expect(
         queryByText('Invalid date. Please enter a year between 1900 and 2099.')
       ).toBeInTheDocument();
       expect(monthInput).toHaveAttribute('aria-describedby');
 
-      await user.click(getByLabelText('Toggle Calendar Widget'));
+      userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
       const today = new Date();
       const dayButtons = getAllByText(today.getDate().toString());
-      await user.click(dayButtons[0]);
+      userEvent.click(dayButtons[0]);
 
       expect(
         queryByText('Invalid date. Please enter a year between 1900 and 2099.')
