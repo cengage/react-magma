@@ -80,12 +80,19 @@ const StyledTreeItem = styled.li<{
     outline: none;
 
     & > *:first-child {
-      outline-offset: -2px;
-      outline: 2px solid
-        ${props =>
-          props.isInverse
-            ? props.theme.colors.focusInverse
-            : props.theme.colors.focus};
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        outline: 2px solid
+          ${props =>
+            props.isInverse
+              ? props.theme.colors.focusInverse
+              : props.theme.colors.focus};
+        outline-offset: -2px;
+        pointer-events: none;
+        z-index: 2;
+      }
     }
   }
 
@@ -201,6 +208,42 @@ const StyledExpandWrapper = styled.div<{
     size !== undefined ? `${size}px` : theme.spaceScale.spacing06};
 `;
 
+const GuideLine = styled.div<{
+  theme?: ThemeInterface;
+  isInverse?: boolean;
+  guideLineLeft: string;
+}>`
+  position: absolute;
+  top: ${props => props.theme.spaceScale.spacing08};
+  bottom: 0;
+  inset-inline-start: ${props => props.guideLineLeft};
+  width: 0;
+  border-inline-start: 1px solid
+    ${props =>
+      props.isInverse
+        ? transparentize(0.7, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
+  pointer-events: none;
+  z-index: 1;
+`;
+
+const VirtualizedGuideLine = styled.div<{
+  theme?: ThemeInterface;
+  isInverse?: boolean;
+}>`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-inline-start: 1px solid
+    ${props =>
+      props.isInverse
+        ? transparentize(0.7, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
+  pointer-events: none;
+  z-index: 1;
+`;
+
 const StyledCheckboxWrapper = styled.div<{
   theme?: ThemeInterface;
   hasAdditionalContent?: boolean;
@@ -269,6 +312,7 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const { handleExpandedChange } = React.useContext(TreeViewExpansionContext);
     const {
       expandIconStyles,
+      hasGuideLines,
       hasIcons,
       isTopLevelSelectable,
       selectable,
@@ -706,6 +750,42 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 </>
               )}
             </StyledItemWrapper>
+
+            {hasGuideLines &&
+              (hierarchyContext.isVirtualized
+                ? itemDepth > 0 &&
+                  Array.from({ length: itemDepth }, (_, d) => (
+                    <VirtualizedGuideLine
+                      key={`guideline-${d}`}
+                      data-testid={`${testId || itemId}-virtualized-guideline-${d}`}
+                      theme={theme}
+                      isInverse={isInverse}
+                      style={{
+                        insetInlineStart: `calc(${calculateOffset(
+                          TreeNodeType.branch,
+                          d,
+                          false,
+                          false,
+                          true
+                        )} + ${expandIconStyles?.size !== undefined ? `${expandIconStyles.size}px` : theme.spaceScale.spacing06} / 2 - 0.5px)`,
+                      }}
+                    />
+                  ))
+                : hasOwnTreeItems &&
+                  expanded && (
+                    <GuideLine
+                      data-testid={`${testId || itemId}-guideline`}
+                      theme={theme}
+                      isInverse={isInverse}
+                      guideLineLeft={`calc(${calculateOffset(
+                        TreeNodeType.branch,
+                        itemDepth,
+                        false,
+                        false,
+                        false
+                      )} + ${expandIconStyles?.size !== undefined ? `${expandIconStyles.size}px` : theme.spaceScale.spacing06} / 2 - 0.5px) `}
+                    />
+                  ))}
 
             {React.Children.map(
               children,
