@@ -1632,6 +1632,41 @@ describe('Date Picker', () => {
       ).toBeInTheDocument();
     });
 
+    it('should clear invalid year error and aria-describedby after selecting a valid date from the calendar', async () => {
+      const user = userEvent.setup();
+      const { getByTestId, getByLabelText, queryByText, getAllByText } = render(
+        <DatePicker isDateFieldInput labelText="Date" />
+      );
+
+      const monthInput = getByTestId('month-input');
+      const dayInput = getByTestId('day-input');
+      const yearInput = getByTestId('year-input');
+
+      await user.type(monthInput, '04');
+      await user.type(dayInput, '04');
+      await user.type(yearInput, '0004');
+      await user.tab();
+
+      expect(
+        queryByText('Invalid date. Please enter a year between 1900 and 2099.')
+      ).toBeInTheDocument();
+      expect(monthInput).toHaveAttribute('aria-describedby');
+
+      await user.click(getByLabelText('Toggle Calendar Widget'));
+
+      const today = new Date();
+      const dayButtons = getAllByText(today.getDate().toString());
+      await user.click(dayButtons[0]);
+
+      expect(
+        queryByText('Invalid date. Please enter a year between 1900 and 2099.')
+      ).not.toBeInTheDocument();
+
+      expect(monthInput).not.toHaveAttribute('aria-describedby');
+      expect(dayInput).not.toHaveAttribute('aria-describedby');
+      expect(yearInput).not.toHaveAttribute('aria-describedby');
+    });
+
     describe('Focus behavior', () => {
       it('should handle input focus behavior via tabbing', () => {
         const { getByTestId } = render(<DatePicker isDateFieldInput />);
