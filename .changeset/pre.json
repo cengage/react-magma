@@ -81,6 +81,7 @@
     "fix-Date-Picker-issues",
     "fix-DateFieldInput-error-message",
     "fix-DatePicker-accessibility-issues",
+    "fix-DatePicker-announcement-issue",
     "fix-DatePicker-clear-focus-input",
     "fix-DatePicker-fix-undefined-docus",
     "fix-DatePicker-focus-today-calendar",

@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.89
+
+### Patch Changes
+
+- d03006e: fix(DatePicker): fix issue with error announcement
+
 ## 5.1.0-rc.88
 
 ### Minor Changes
