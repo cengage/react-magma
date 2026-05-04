@@ -1,0 +1,4 @@
+# Snyk policy file. See https://docs.snyk.io/manage-risk/policies/the-.snyk-file
+version: v1.25.0
+ignore: {}
+patch: {}
