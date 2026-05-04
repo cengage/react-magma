@@ -135,6 +135,7 @@
     "fix-TextArea-aria-accessibility-issue",
     "fix-TextArea-helpermessage-is-not-announced",
     "fix-TimePicker-doc-issues",
+    "fix-Toast-not-closing",
     "fix-ToggleButton-transform",
     "fix-ToggleButtonGroup-broken-styles",
     "fix-Tooltip-Loading-indicator-issues",

@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.90
+
+### Patch Changes
+
+- 295d7df: fix(Toast): Fix: Toast not closing on click or timeout (Strict Mode issue with unmount)
+
 ## 5.1.0-rc.89
 
 ### Patch Changes
