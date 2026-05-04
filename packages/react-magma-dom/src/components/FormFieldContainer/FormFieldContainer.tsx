@@ -2,9 +2,11 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 
+import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { descriptionSuffix, labelSuffix } from '../../utils';
+import { Announce } from '../Announce';
 import { CharacterCounter } from '../CharacterCounter';
 import { InputMessage } from '../Input/InputMessage';
 import { InputIconPosition, InputSize } from '../InputBase';
@@ -188,6 +190,7 @@ export const FormFieldContainer = React.forwardRef<
   } = props;
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
+  const { isSafari } = useDeviceDetect();
 
   const countProps = maxCount || maxLength;
   const counterDescriptionId =
@@ -260,6 +263,16 @@ export const FormFieldContainer = React.forwardRef<
                 <>{errorMessage ? errorMessage : helperMessage}</>
               )}
             </InputMessage>
+          )}
+
+          {isSafari && (
+            <VisuallyHidden>
+              <Announce>
+                {(errorMessage || helperMessage) && (
+                  <>{errorMessage ? errorMessage : helperMessage}</>
+                )}
+              </Announce>
+            </VisuallyHidden>
           )}
         </InputPositionWrapper>
       </StyledFormFieldContainer>
