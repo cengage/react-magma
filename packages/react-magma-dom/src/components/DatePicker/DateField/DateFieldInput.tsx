@@ -129,7 +129,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     .replace('{maxYear}', MAX_YEAR.toString());
 
   const ariaDescribedBy =
-    invalidYearErrorMessage || errorMessage || helperMessage
+    isInvalidYear || errorMessage || helperMessage
       ? `${id}${descriptionSuffix}`
       : undefined;
 
@@ -232,6 +232,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
   React.useEffect(() => {
     if (!didMountRef.current) {
       didMountRef.current = true;
+
       return;
     }
 
@@ -241,6 +242,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
       handleDateChange?.(null, null);
       onClearDate?.();
       setIsInvalidYear(false);
+
       return;
     }
 
@@ -248,6 +250,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
 
     if (!hasAllFields) {
       setIsInvalidYear(false);
+
       return;
     }
 
@@ -273,6 +276,7 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
 
     if (!inputValue && isMounted) {
       onClear();
+      setIsInvalidYear(false);
 
       return () => {
         isMounted = false;
@@ -285,6 +289,10 @@ export const DateFieldInput: React.FunctionComponent<DateFieldInputProps> = (
     const yearValue = date.getFullYear().toString();
 
     if (isMounted) {
+      if (!isYearOutOfRange(Number(yearValue))) {
+        setIsInvalidYear(false);
+      }
+
       setDayValue(formatWithLeadingZero(Number(dayValue)));
       setMonthValue(
         hasMonthLongFormat
