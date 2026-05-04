@@ -1,0 +1,118 @@
+---
+pageTitle: Fieldset API
+title: Fieldset
+props:
+  - FieldsetCommonProps
+---
+
+<PageContent componentName="fieldset" type="api">
+
+<LeadParagraph>
+  The `Fieldset` component renders a semantic &lt;fieldset&gt; element with a
+  &lt;legend&gt; to provide accessible grouping for related controls such as
+  *checkboxes* and *radios*. This follows the WCAG technique H71 and aligns with
+  the WAI-ARIA APG checkbox pattern for grouping form controls.
+</LeadParagraph>
+
+## Basic Usage
+
+```tsx
+import React from 'react';
+
+import { Fieldset, Checkbox } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Fieldset legend="Select your options">
+      <Checkbox labelText="Option A" />
+      <Checkbox labelText="Option B" />
+      <Checkbox labelText="Option C" />
+    </Fieldset>
+  );
+}
+```
+
+## Visually Hidden Legend
+
+Use the `visuallyHiddenLegend` prop to visually hide the legend while keeping it accessible to screen readers.
+
+```tsx
+import React from 'react';
+
+import { Fieldset, Checkbox } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Fieldset legend="Hidden legend" visuallyHiddenLegend>
+      <Checkbox labelText="Option A" />
+      <Checkbox labelText="Option B" />
+    </Fieldset>
+  );
+}
+```
+
+## Div Variant
+
+Set `as="div"` to render a `div` with `role="group"` and `aria-labelledby` instead of a native `fieldset` element. The legend text is rendered as a `span`.
+
+```tsx
+import React from 'react';
+
+import { Fieldset, Checkbox } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Fieldset as="div" legend="Div group label">
+      <Checkbox labelText="Option A" />
+      <Checkbox labelText="Option B" />
+    </Fieldset>
+  );
+}
+```
+
+## With Radios
+
+```tsx
+import React from 'react';
+
+import { Fieldset, Radio, RadioGroup } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Fieldset legend="Choose one" legendId="radio-legend">
+      <RadioGroup labelledById="radio-legend" name="radio-example">
+        <Radio labelText="Radio A" value="a" />
+        <Radio labelText="Radio B" value="b" />
+        <Radio labelText="Radio C" value="c" />
+      </RadioGroup>
+    </Fieldset>
+  );
+}
+```
+
+## Inverse
+
+```tsx
+import React from 'react';
+
+import { Fieldset, Checkbox, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse>
+      <CardBody>
+        <Fieldset legend="Inverse fieldset" isInverse>
+          <Checkbox labelText="Option A" />
+          <Checkbox labelText="Option B" />
+        </Fieldset>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Fieldset Props
+
+<FieldsetCommonProps />
+
+</PageContent>
