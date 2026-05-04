@@ -50,6 +50,7 @@
     "feat-Modal-add-headel-level-prop",
     "feat-Popover-add-isFullWidth-prop",
     "feat-SplitDropdown-add-leading-icon",
+    "feat-TreeView-GuideLines",
     "feat-TreeView-selectParents-prop",
     "feat-empty-state",
     "feat-treeview-performance",

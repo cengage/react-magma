@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.91
+
+### Minor Changes
+
+- a5f68a4: feat(TreeView): create `Guide Lines` for expanded items with `hasGuideLines` prop (`false` by default)
+
 ## 5.1.0-rc.90
 
 ### Patch Changes
