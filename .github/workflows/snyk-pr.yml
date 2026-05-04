@@ -33,12 +33,22 @@ jobs:
       - name: Install Snyk CLI
         run: npm install -g snyk
 
-      - name: Snyk dependency scan
+      - name: Snyk dependency scan — charts
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk test --file=packages/charts/package.json --file=packages/react-magma-dom/package.json --policy-path=.snyk
+        run: snyk test --file=packages/charts/package.json --policy-path=.snyk
+
+      - name: Snyk dependency scan — react-magma-dom
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: snyk test --file=packages/react-magma-dom/package.json --policy-path=.snyk
+
+      - name: Snyk dependency scan — dropzone
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        run: snyk test --file=packages/dropzone/package.json --policy-path=.snyk
 
       - name: Snyk Code (SAST)
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        run: snyk code test --file=packages/charts/package.json --file=packages/react-magma-dom/package.json --policy-path=.snyk
+        run: snyk code test --policy-path=.snyk
