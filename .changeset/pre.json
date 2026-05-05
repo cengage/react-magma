@@ -91,6 +91,7 @@
     "fix-Definition-List-docs",
     "fix-Docs-Miscellaneous-issues",
     "fix-Drawer-content-not-scrollable",
+    "fix-Drawer-drawerStyle-prop-issue",
     "fix-Dropdown-accessibility-issues",
     "fix-Dropdown-add-aria-attributes",
     "fix-Dropdown-add-aria-contols",

@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.92
+
+### Patch Changes
+
+- 4ddaecd: fix(Drawer): Apply `drawerStyle` prop to Drawer panel
+
 ## 5.1.0-rc.91
 
 ### Minor Changes
