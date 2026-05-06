@@ -169,29 +169,33 @@ export const StyledFakeInput = styled.span<{
   }
 `;
 
-export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  (props, ref) => {
+export const Checkbox = React.memo(
+  React.forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
     const { checked, id: defaultId, defaultChecked, onChange } = props;
-    const [isChecked, updateIsChecked] = React.useState(
-      Boolean(defaultChecked) || Boolean(checked)
+    const isControlled = typeof checked === 'boolean';
+
+    // For uncontrolled usage we still need local state to track the current
+    // checked value. For controlled usage we read directly from the prop —
+    // mirroring it in state caused TWO renders per `checked` change (one for
+    // the prop change, one for the useEffect-driven setState), which is
+    // expensive when many Checkboxes update at once.
+    const [uncontrolledChecked, setUncontrolledChecked] = React.useState(
+      Boolean(defaultChecked)
     );
 
-    const id = useGenerateId(defaultId);
-    const isControlled = typeof checked === 'boolean' ? true : false;
+    const isChecked = isControlled ? (checked as boolean) : uncontrolledChecked;
 
-    React.useEffect(() => {
-      if (typeof checked === 'boolean') {
-        updateIsChecked(checked);
-      }
-    }, [checked]);
+    const id = useGenerateId(defaultId);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
       const { checked: targetChecked } = event.target;
 
-      onChange && typeof onChange === 'function' && onChange(event);
+      if (typeof onChange === 'function') {
+        onChange(event);
+      }
 
       if (!isControlled) {
-        updateIsChecked(targetChecked);
+        setUncontrolledChecked(targetChecked);
       }
     }
 
@@ -285,5 +289,5 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         )}
       </>
     );
-  }
+  })
 );

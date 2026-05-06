@@ -20,6 +20,13 @@ export interface TreeViewItemInterface {
 
 export interface TreeViewSelectionContextInterface {
   items: TreeViewItemInterface[];
+  /**
+   * O(1) lookup map of items keyed by itemId.
+   * Built once per items update by the TreeView and shared via context so
+   * individual TreeItem instances do not have to do `items.find(...)`
+   * (which is O(N) per item, i.e. O(N^2) per re-render storm).
+   */
+  itemsById: Map<string, TreeViewItemInterface>;
   selectedItems: Array<TreeItemSelectedInterface>;
   selectItem: (
     data: Pick<TreeViewItemInterface, 'itemId' | 'checkedStatus'>
@@ -34,6 +41,7 @@ export interface TreeViewSelectionContextInterface {
 export const TreeViewSelectionContext =
   React.createContext<TreeViewSelectionContextInterface>({
     items: [],
+    itemsById: new Map(),
     selectedItems: [],
     selectItem: () => undefined,
     selectable: TreeViewSelectable.single,
