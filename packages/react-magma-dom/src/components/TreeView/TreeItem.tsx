@@ -459,38 +459,61 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
         <ArticleIcon aria-hidden />
       );
 
-    const labelText = (
-      <StyledLabelWrapper
-        theme={theme}
-        isDisabled={isDisabled}
-        isInverse={isInverse}
-        style={labelStyle}
-        id={`${itemId}-label`}
-        data-testid={`${testId || itemId}-label`}
-      >
-        {hasIcons && (
-          <IconWrapper
-            isInverse={isInverse}
-            theme={theme}
-            isDisabled={isDisabled}
-            data-testid={`${testId || itemId}-icon`}
-          >
-            {icon || defaultIcon}
-          </IconWrapper>
-        )}
-        {label}
-      </StyledLabelWrapper>
+    // Memoise the label JSX so the `checkboxProps` memo below actually has
+    // a stable `labelText` reference between renders. Previously this
+    // element was re-created on every render, which forced
+    // `checkboxProps` to also be re-created and any future React.memo on
+    // Checkbox/IndeterminateCheckbox would always bail out.
+    const labelText = React.useMemo(
+      () => (
+        <StyledLabelWrapper
+          theme={theme}
+          isDisabled={isDisabled}
+          isInverse={isInverse}
+          style={labelStyle}
+          id={`${itemId}-label`}
+          data-testid={`${testId || itemId}-label`}
+        >
+          {hasIcons && (
+            <IconWrapper
+              isInverse={isInverse}
+              theme={theme}
+              isDisabled={isDisabled}
+              data-testid={`${testId || itemId}-icon`}
+            >
+              {icon || defaultIcon}
+            </IconWrapper>
+          )}
+          {label}
+        </StyledLabelWrapper>
+      ),
+      [
+        theme,
+        isDisabled,
+        isInverse,
+        labelStyle,
+        itemId,
+        testId,
+        hasIcons,
+        icon,
+        defaultIcon,
+        label,
+      ]
     );
 
-    const treeItemAdditionalContent = additionalContent ? (
-      <AdditionalContentWrapper
-        theme={theme}
-        id={`${itemId}-additionalcontentwrapper`}
-        data-testid={`${testId ?? itemId}-additionalcontentwrapper`}
-      >
-        {additionalContent}
-      </AdditionalContentWrapper>
-    ) : null;
+    const treeItemAdditionalContent = React.useMemo(
+      () =>
+        additionalContent ? (
+          <AdditionalContentWrapper
+            theme={theme}
+            id={`${itemId}-additionalcontentwrapper`}
+            data-testid={`${testId ?? itemId}-additionalcontentwrapper`}
+          >
+            {additionalContent}
+          </AdditionalContentWrapper>
+        ) : null,
+      [additionalContent, theme, itemId, testId]
+    );
 
     // Memoize inline style objects to prevent unnecessary re-renders
     const checkboxInputStyle = React.useMemo(

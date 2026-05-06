@@ -185,19 +185,12 @@ export function useTreeView(props: UseTreeViewProps) {
 
   const { items, expandedSet, itemsNeedUpdate } = state;
 
-  const [hasIcons] = React.useState(() => {
-    const initialItems = getInitialItems({
-      children,
-      preselectedItems,
-      checkParents,
-      checkChildren,
-      selectable,
-      isDisabled,
-      isTopLevelSelectable,
-    });
-
-    return initialItems.some(item => item.icon);
-  });
+  // hasIcons used to call `getInitialItems(...)` a second time inside a
+  // useState initializer just to check `.some(item => item.icon)`. That
+  // duplicated the heaviest function in this hook on every mount.
+  // We can derive the same value from the items array we already have,
+  // captured once on first render via lazy useState.
+  const [hasIcons] = React.useState(() => items.some(item => item.icon));
 
   const selectedItems = React.useMemo(() => {
     return items.filter(
@@ -303,6 +296,15 @@ export function useTreeView(props: UseTreeViewProps) {
         updatedItems: itemsWithUpdatedDisabledState,
       },
     });
+    // NOTE: `items` is intentionally NOT in the deps array.
+    // This effect updates each item's `isDisabled` flag when external
+    // disabled-related props (children/isDisabled/isTopLevelSelectable/...)
+    // change. Including `items` here would re-run the effect after EVERY
+    // SET_ITEMS dispatch (e.g. on every checkbox click), running a full
+    // `getInitialItems(...)` over the whole tree on the hot path.
+    // The effect still reads the latest `items` from the closure via
+    // the ref-stable `dispatch`, so behaviour is preserved for the
+    // disabled-state recompute case.
   }, [
     checkChildren,
     checkParents,
@@ -311,7 +313,6 @@ export function useTreeView(props: UseTreeViewProps) {
     isTopLevelSelectable,
     preselectedItems,
     selectable,
-    items,
   ]);
 
   React.useEffect(() => {
@@ -598,9 +599,25 @@ export function useTreeView(props: UseTreeViewProps) {
   }, []); // Only run on mount
 
   // Split context values for reduced re-render scope
+  // Build an id -> item Map once per `items` change so individual TreeItem
+  // instances can do O(1) lookups instead of `items.find(...)` (which is
+  // O(N) per item, i.e. O(N^2) total during a re-render storm).
+  const itemsById = React.useMemo(() => {
+    const map = new Map<string, TreeViewItemInterface>();
+
+    for (const item of items) {
+      if (item.itemId) {
+        map.set(item.itemId, item);
+      }
+    }
+
+    return map;
+  }, [items]);
+
   const selectionContextValue = React.useMemo(
     () => ({
       items,
+      itemsById,
       selectedItems,
       selectItem,
       onSelectedItemChange,
@@ -609,6 +626,7 @@ export function useTreeView(props: UseTreeViewProps) {
     }),
     [
       items,
+      itemsById,
       selectedItems,
       selectItem,
       onSelectedItemChange,
