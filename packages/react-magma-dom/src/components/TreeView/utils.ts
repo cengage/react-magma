@@ -739,10 +739,9 @@ const processParentsSelectionMut = ({
   }
 };
 
-// Internal: scans the subtree under `itemId` to decide whether the next
-// toggle should turn it on or off. Operates directly on the shared
-// itemMap/parentChildMap without allocating an intermediate children
-// array. Used by `toggleMulti` on the hot path.
+// Internal: same logic as `getMultiToggledStatus`, but operates directly on
+// the shared itemMap/parentChildMap without allocating an intermediate
+// `getChildren(...)` array. Used by `toggleMulti` on the hot path.
 const getMultiToggledStatusFromMaps = ({
   itemMap,
   parentChildMap,
