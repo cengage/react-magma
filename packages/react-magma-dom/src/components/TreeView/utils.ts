@@ -479,22 +479,6 @@ export const getChildrenIds = ({
   return result;
 };
 
-// Optimized: Use Set for O(1) lookup instead of array.includes
-const getChildren = ({
-  items,
-  itemId,
-  parentChildMap,
-}: {
-  items: TreeViewItemInterface[];
-  itemId: TreeViewItemInterface['itemId'];
-  parentChildMap?: Map<string, string[]>;
-}) => {
-  const childrenIds = getChildrenIds({ items, itemId, parentChildMap });
-  const childrenIdSet = new Set(childrenIds);
-
-  return items.filter(item => childrenIdSet.has(item.itemId));
-};
-
 // Optimized: Use Set for O(1) lookup and reduce iterations
 const getChildrenUniqueStatuses = ({
   items,
@@ -709,32 +693,6 @@ export const selectSingle = ({
   }));
 };
 
-// Optimized: Use Map for O(1) lookups and iterative approach instead of recursion
-const processParentsSelection = ({
-  items,
-  itemId,
-  checkedStatus,
-  isTopLevelSelectable = true,
-}: {
-  items: TreeViewItemInterface[];
-  itemId: TreeViewItemInterface['itemId'];
-  checkedStatus: TreeViewItemInterface['checkedStatus'];
-  isTopLevelSelectable?: boolean;
-}) => {
-  const itemMap = new Map(items.map(item => [item.itemId, item]));
-  const parentChildMap = buildParentChildMap(items);
-
-  processParentsSelectionMut({
-    itemMap,
-    parentChildMap,
-    itemId,
-    checkedStatus,
-    isTopLevelSelectable,
-  });
-
-  return Array.from(itemMap.values());
-};
-
 // Internal: walks parents bottom-up and updates them in `itemMap` in place.
 // Reused by `toggleMulti` so we don't rebuild itemMap/parentChildMap per call.
 const processParentsSelectionMut = ({
@@ -795,31 +753,6 @@ const processParentsSelectionMut = ({
 };
 
 // Optimized: Early exit and use Map for faster lookups
-const getMultiToggledStatus = ({
-  items,
-  itemId,
-  parentChildMap,
-}: {
-  items: TreeViewItemInterface[];
-  itemId: string;
-  parentChildMap?: Map<string, string[]>;
-}) => {
-  const children = getChildren({ items, itemId, parentChildMap });
-
-  // Early exit: check if any enabled child is unchecked
-  for (const item of children) {
-    if (item.isDisabled) continue;
-
-    if (
-      !item.checkedStatus ||
-      item.checkedStatus === IndeterminateCheckboxStatus.unchecked
-    ) {
-      return IndeterminateCheckboxStatus.checked;
-    }
-  }
-
-  return IndeterminateCheckboxStatus.unchecked;
-};
 
 // Internal: same logic as `getMultiToggledStatus`, but operates directly on
 // the shared itemMap/parentChildMap without allocating an intermediate
