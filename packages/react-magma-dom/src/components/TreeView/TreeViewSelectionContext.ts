@@ -21,10 +21,8 @@ export interface TreeViewItemInterface {
 export interface TreeViewSelectionContextInterface {
   items: TreeViewItemInterface[];
   /**
-   * O(1) lookup map of items keyed by itemId.
-   * Built once per items update by the TreeView and shared via context so
-   * individual TreeItem instances do not have to do `items.find(...)`
-   * (which is O(N) per item, i.e. O(N^2) per re-render storm).
+   * O(1) item lookup map keyed by itemId. Built once per items update so
+   * TreeItem instances avoid an O(N) `items.find(...)` per render.
    */
   itemsById: Map<string, TreeViewItemInterface>;
   selectedItems: Array<TreeItemSelectedInterface>;

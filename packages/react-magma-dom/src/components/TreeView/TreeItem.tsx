@@ -551,14 +551,10 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       [additionalContent, theme, itemId, testId]
     );
 
-    // Pre-build a stable hierarchy-context value per child position so
-    // that re-renders of THIS TreeItem (caused by the shared
-    // TreeViewSelectionContext firing on every checkbox click) do not
-    // produce a new object on each child's
-    // <TreeItemHierarchyContext.Provider value={...}>. Without this,
-    // every nested TreeItem re-renders on every selection change even
-    // when its own data hasn't changed, which defeats the React.memo
-    // wrapping TreeItem and dominates the cost on large trees.
+    // Stable per-child hierarchy values. The reference must not change on
+    // re-renders triggered by TreeViewSelectionContext, otherwise every
+    // nested TreeItem re-renders through the context and React.memo is
+    // defeated.
     const childHierarchies = React.useMemo(() => {
       const count = React.Children.count(children);
       const arr = new Array(count);
@@ -841,14 +837,7 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                   return child;
                 }
 
-                // Pass hierarchy info through context. The value MUST be a
-                // memoised reference (per child index) — otherwise every
-                // re-render of THIS TreeItem (which happens for every item
-                // on every checkbox click via TreeViewSelectionContext)
-                // produces a new object, invalidates the child's
-                // TreeItemHierarchyContext subscription and forces the
-                // child (and therefore its whole subtree) to re-render,
-                // defeating React.memo on TreeItem entirely.
+                // Use the stable, pre-memoised value (see childHierarchies above).
                 const nestedHierarchyValue = childHierarchies[childIndex];
 
                 return (

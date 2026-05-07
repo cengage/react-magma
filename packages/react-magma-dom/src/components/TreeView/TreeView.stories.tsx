@@ -3837,20 +3837,16 @@ export const LargeTreePerformanceIssue = {
       [generateTree, levels, childrenCount]
     );
 
-    // Pre-expand top-level (and optionally second-level) ids so the
-    // re-render storm of all mounted TreeItem instances actually fires
-    // on each checkbox click, exposing the O(N^2) `items.find()` cost
-    // inside useTreeItem.
+    // Pre-expand top-level (and second-level) ids so the re-render storm of
+    // all mounted TreeItem instances fires on each checkbox click.
     const initialExpandedItems = React.useMemo(() => {
-      // if (!preExpandTopLevel) return [];
+      if (!preExpandTopLevel) return [];
       const ids: string[] = [];
 
       for (let i = 0; i < childrenCount; i++) {
         ids.push(`item-0-${i}`);
       }
 
-      // Also expand the FIRST top-level subtree fully (one column),
-      // so a click in that area hits a deep re-render path too.
       if (levels >= 2) {
         for (let i = 0; i < childrenCount; i++) {
           ids.push(`item-1-${i}`);
@@ -3859,8 +3855,6 @@ export const LargeTreePerformanceIssue = {
 
       return ids;
     }, [preExpandTopLevel, levels, childrenCount]);
-
-    console.log(initialExpandedItems);
 
     const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
     const [indeterminateIds, setIndeterminateIds] = React.useState<string[]>(

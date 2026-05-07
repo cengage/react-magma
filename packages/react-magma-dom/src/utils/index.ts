@@ -9,13 +9,9 @@ export function generateId(id?: string) {
 export function useGenerateId(newId?: string) {
   const [id, updateId] = React.useState<string>(() => generateId(newId));
 
-  // Only re-generate the id when `newId` actually changes between renders
-  // (and is non-empty). The previous implementation always ran an effect on
-  // mount that called `setState` if `newId` was truthy, causing an extra
-  // render for every component that uses `useGenerateId` with a stable id
-  // (e.g. each TreeItem checkbox passes `${itemId}-checkbox`). Tracking the
-  // previous value via ref avoids the mount-time double render while still
-  // honouring later prop changes.
+  // Only re-generate the id when `newId` actually changes between renders.
+  // Tracking the previous value via ref avoids a mount-time setState that
+  // would force every consumer of useGenerateId into an extra render.
   const prevNewIdRef = React.useRef(newId);
 
   React.useEffect(() => {

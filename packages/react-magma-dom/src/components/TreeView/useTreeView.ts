@@ -296,15 +296,10 @@ export function useTreeView(props: UseTreeViewProps) {
         updatedItems: itemsWithUpdatedDisabledState,
       },
     });
-    // NOTE: `items` is intentionally NOT in the deps array.
-    // This effect updates each item's `isDisabled` flag when external
-    // disabled-related props (children/isDisabled/isTopLevelSelectable/...)
-    // change. Including `items` here would re-run the effect after EVERY
-    // SET_ITEMS dispatch (e.g. on every checkbox click), running a full
-    // `getInitialItems(...)` over the whole tree on the hot path.
-    // The effect still reads the latest `items` from the closure via
-    // the ref-stable `dispatch`, so behaviour is preserved for the
-    // disabled-state recompute case.
+    // `items` is intentionally NOT in the deps: this effect only needs to
+    // re-run when external disabled-related props change. Including it would
+    // re-run getInitialItems(...) on every SET_ITEMS dispatch (every click).
+    // The latest `items` is still read via the closure on each invocation.
   }, [
     checkChildren,
     checkParents,
@@ -594,10 +589,7 @@ export function useTreeView(props: UseTreeViewProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Only run on mount
 
-  // Split context values for reduced re-render scope
-  // Build an id -> item Map once per `items` change so individual TreeItem
-  // instances can do O(1) lookups instead of `items.find(...)` (which is
-  // O(N) per item, i.e. O(N^2) total during a re-render storm).
+  // id -> item map for O(1) lookups in TreeItem (was items.find: O(N)).
   const itemsById = React.useMemo(() => {
     const map = new Map<string, TreeViewItemInterface>();
 

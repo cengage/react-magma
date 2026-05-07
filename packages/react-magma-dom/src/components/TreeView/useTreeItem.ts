@@ -112,9 +112,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     selectParents = true,
   } = React.useContext(TreeViewConfigContext);
 
-  // Use the shared id->item Map (O(1)) instead of `items.find(...)` (O(N)).
-  // On a tree of N nodes a re-render storm previously cost O(N^2) just
-  // to look up each TreeItem's data.
+  // O(1) lookup via the shared id->item Map; replaces an O(N) items.find()
+  // that turned re-render storms into O(N^2).
   const treeViewItemData = React.useMemo(() => {
     return itemsById.get(itemId);
   }, [itemId, itemsById]);
@@ -170,12 +169,8 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     forceUpdate();
   }, [forceUpdate, isDisabled, registerTreeItem, treeItemRefArray]);
 
-  // Stable click/change handlers so memoised consumers (Checkbox /
-  // IndeterminateCheckbox wrapped in React.memo, plus the parent
-  // `checkboxProps` useMemo in TreeItem) can actually skip re-renders when
-  // their item's data is unchanged. Previously these were re-declared as
-  // plain functions on every render, which forced `checkboxProps` to be a
-  // new object every time.
+  // Stable handlers so memoised checkboxProps (and React.memo on the
+  // Checkbox / IndeterminateCheckbox children) can actually skip work.
   const handleClick = React.useCallback(
     (
       event: React.SyntheticEvent | React.ChangeEvent,

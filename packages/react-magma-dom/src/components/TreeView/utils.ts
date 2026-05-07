@@ -306,14 +306,9 @@ const getTreeViewData = ({
     .flat();
 };
 
-// Optimized: Use Map for O(1) lookups while maintaining recursive logic
-//
-// IMPORTANT: this is the public entry. It builds itemMap/parentChildMap once,
-// then delegates to `processChildrenSelectionMut`, which mutates the shared
-// itemMap in place during recursion. Previously every recursive call rebuilt
-// `new Map(items.map(...))` and `Array.from(itemMap.values())`, turning a
-// single click into O(K * N) Map allocations on a tree of N nodes with a
-// K-sized subtree under the clicked item.
+// Public entry: builds itemMap/parentChildMap once and delegates to the
+// mutable variant. Avoids per-recursion-call `new Map(items.map(...))`
+// and `Array.from(...)` allocations on a hot path.
 const processChildrenSelection = ({
   items,
   itemId,
@@ -341,10 +336,9 @@ const processChildrenSelection = ({
   return Array.from(itemMap.values());
 };
 
-// Internal: mutates `itemMap` in place. No array/Map allocations per node.
-// Behaviour is intentionally identical to the previous implementation,
-// including the "look at all descendants when computing the parent's
-// indeterminate status" rule (see commentary inside).
+// Internal: mutates `itemMap` in place. Behaviour is identical to the
+// previous implementation, including the "inspect ALL descendants when
+// computing the parent's indeterminate status" rule.
 const processChildrenSelectionMut = ({
   itemMap,
   parentChildMap,
@@ -384,11 +378,8 @@ const processChildrenSelectionMut = ({
     }
   }
 
-  // Determine this item's resulting status by inspecting ALL descendants
-  // (preserves prior semantics where a deep mismatch can flip the parent
-  // to `indeterminate`). Traversal uses the shared parentChildMap and the
-  // shared itemMap — no new allocations besides a small Set<boolean> and
-  // a stack used for the BFS-equivalent walk.
+  // Inspect ALL descendants to decide between `checkedStatus` and
+  // `indeterminate` for this parent.
   const descendantStatuses = new Set<boolean>();
   const stack: string[] = directChildren ? [...directChildren] : [];
 
@@ -682,7 +673,7 @@ export const selectSingle = ({
   }));
 };
 
-// Internal: walks parents bottom-up and updates them in `itemMap` in place.
+// Internal: walks parents bottom-up, mutating `itemMap` in place.
 // Reused by `toggleMulti` so we don't rebuild itemMap/parentChildMap per call.
 const processParentsSelectionMut = ({
   itemMap,
@@ -739,9 +730,8 @@ const processParentsSelectionMut = ({
   }
 };
 
-// Internal: same logic as `getMultiToggledStatus`, but operates directly on
-// the shared itemMap/parentChildMap without allocating an intermediate
-// `getChildren(...)` array. Used by `toggleMulti` on the hot path.
+// Internal: scans the subtree under `itemId` directly on the shared maps,
+// without allocating an intermediate children array.
 const getMultiToggledStatusFromMaps = ({
   itemMap,
   parentChildMap,
@@ -798,9 +788,8 @@ export const toggleMulti = ({
   UseTreeViewProps,
   'checkChildren' | 'checkParents' | 'isTopLevelSelectable'
 >) => {
-  // Build the shared lookup maps once. Previously each helper that
-  // `toggleMulti` called rebuilt its own `new Map(items.map(...))` and
-  // `Array.from(itemMap.values())`, costing 4-6 extra O(N) passes per click.
+  // Build the shared lookup maps once and reuse them across all helpers
+  // below, instead of letting each rebuild its own.
   const parentChildMap = buildParentChildMap(items);
   const itemMap = new Map<string, TreeViewItemInterface>();
 
@@ -977,10 +966,8 @@ export const getInitialExpandedIds = ({
 };
 
 // Structural shallow comparison for arrays of TreeItemSelectedInterface-shaped
-// objects. Previously this used `JSON.stringify(a) === JSON.stringify(b)`,
-// which is allocation-heavy on a 900+ node tree and runs on the hot path
-// (effects in useTreeView). This version is O(N) with no string allocations
-// and compares only the fields that actually define a change.
+// objects. Replaces a previous JSON.stringify-based check that ran on the
+// hot path (effects in useTreeView).
 export const isEqualArrays = <T>(arrayA: T[], arrayB: T[]) => {
   if (arrayA === arrayB) return true;
   if (!arrayA || !arrayB) return false;

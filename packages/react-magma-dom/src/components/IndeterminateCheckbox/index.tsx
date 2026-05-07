@@ -63,10 +63,8 @@ function getStringifiedLabelText(node: React.ReactNode): string {
 export const IndeterminateCheckbox = React.memo(
   React.forwardRef<HTMLInputElement, IndeterminateCheckboxProps>(
     (props, ref) => {
-      // Derive isChecked / isIndeterminate / isUnchecked directly from props.status.
-      // Previously these were mirrored in component state with a useEffect that
-      // wrote to state on every status change, causing TWO renders per update.
-      // For a controlled component there is no reason to mirror the prop in state.
+      // Derive directly from props.status. Mirroring in state would cause an
+      // extra render on every status change for no benefit on a controlled component.
       const isChecked = props.status === 'checked';
       const isIndeterminate = props.status === 'indeterminate';
       const isUnchecked = props.status === 'unchecked';
@@ -77,9 +75,9 @@ export const IndeterminateCheckbox = React.memo(
 
       const id = useGenerateId(props.id);
 
-      // Sync the native `indeterminate` flag on the input element. This is a
-      // dedicated layout effect so we don't recreate a ref callback on every
-      // render (which would force React to detach/attach the ref every time).
+      // Sync the native `indeterminate` flag on the input element via a
+      // layout effect; the ref callback stays stable to avoid detach/attach
+      // on every render.
       const inputRef = React.useRef<HTMLInputElement | null>(null);
 
       React.useLayoutEffect(() => {
@@ -100,9 +98,8 @@ export const IndeterminateCheckbox = React.memo(
             (ref as React.MutableRefObject<HTMLInputElement | null>).current =
               el;
           }
-          // Intentionally not depending on `isIndeterminate` — the layout effect
-          // above keeps the DOM flag in sync. Keeping this callback stable avoids
-          // ref detach/attach on every render.
+          // `isIndeterminate` intentionally omitted from deps: the layout
+          // effect above keeps the DOM flag in sync.
         },
         [ref] // eslint-disable-line react-hooks/exhaustive-deps
       );
@@ -136,10 +133,8 @@ export const IndeterminateCheckbox = React.memo(
       const showAnnounce =
         hasInteracted && (isChecked || isIndeterminate || isUnchecked);
 
-      // Compute announce text only when we will actually render it. The previous
-      // implementation re-walked the entire `labelText` React tree on every
-      // render (via getStringifiedLabelText) and ran a regex replace, even when
-      // the announce region was hidden.
+      // Compute announce text only when it will be rendered (avoids walking
+      // the labelText React tree on every render).
       const announceText = React.useMemo(() => {
         if (!showAnnounce) return '';
 

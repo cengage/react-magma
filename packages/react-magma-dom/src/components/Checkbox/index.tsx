@@ -174,11 +174,8 @@ export const Checkbox = React.memo(
     const { checked, id: defaultId, defaultChecked, onChange } = props;
     const isControlled = typeof checked === 'boolean';
 
-    // For uncontrolled usage we still need local state to track the current
-    // checked value. For controlled usage we read directly from the prop —
-    // mirroring it in state caused TWO renders per `checked` change (one for
-    // the prop change, one for the useEffect-driven setState), which is
-    // expensive when many Checkboxes update at once.
+    // Local state only for uncontrolled usage; controlled reads directly
+    // from the `checked` prop to avoid an extra render per change.
     const [uncontrolledChecked, setUncontrolledChecked] = React.useState(
       Boolean(defaultChecked)
     );
