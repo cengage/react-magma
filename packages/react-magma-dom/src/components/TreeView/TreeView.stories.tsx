@@ -3842,7 +3842,7 @@ export const LargeTreePerformanceIssue = {
     // on each checkbox click, exposing the O(N^2) `items.find()` cost
     // inside useTreeItem.
     const initialExpandedItems = React.useMemo(() => {
-      if (!preExpandTopLevel) return [];
+      // if (!preExpandTopLevel) return [];
       const ids: string[] = [];
 
       for (let i = 0; i < childrenCount; i++) {
@@ -3859,6 +3859,8 @@ export const LargeTreePerformanceIssue = {
 
       return ids;
     }, [preExpandTopLevel, levels, childrenCount]);
+
+    console.log(initialExpandedItems);
 
     const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
     const [indeterminateIds, setIndeterminateIds] = React.useState<string[]>(
@@ -3981,11 +3983,7 @@ export const LargeTreePerformanceIssue = {
     selectParents: true,
     enableVirtualization: false,
     preExpandTopLevel: false,
-    levels: 3,
-    childrenCount: 50,
+    levels: 2,
+    childrenCount: 30,
   },
-};
-
-export const Test = () => {
-  return <TreeView />;
 };
