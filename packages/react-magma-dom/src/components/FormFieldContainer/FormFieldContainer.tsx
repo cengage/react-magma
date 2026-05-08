@@ -190,7 +190,7 @@ export const FormFieldContainer = React.forwardRef<
   } = props;
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
-  const { isSafari } = useDeviceDetect();
+  const { isWindows, isChrome } = useDeviceDetect();
 
   const countProps = maxCount || maxLength;
   const counterDescriptionId =
@@ -265,7 +265,7 @@ export const FormFieldContainer = React.forwardRef<
             </InputMessage>
           )}
 
-          {isSafari && (
+          {!(isWindows && isChrome) && (
             <VisuallyHidden>
               <Announce>
                 {(errorMessage || helperMessage) && (
