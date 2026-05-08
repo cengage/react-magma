@@ -288,7 +288,7 @@ describe('ChartTableButton', () => {
     fireEvent.mouseEnter(button);
 
     await waitFor(() => {
-      expect(screen.getAllByText('View data as table')).toBeInTheDocument();
+      expect(screen.getByText('View data as table')).toBeInTheDocument();
     });
   });
 });
@@ -344,7 +344,7 @@ describe('ChartFullscreenButton', () => {
 
     fireEvent.mouseEnter(screen.getByRole('button', { name: 'Fullscreen' }));
     await waitFor(() => {
-      expect(screen.getAllByText('Make full screen')).toBeInTheDocument();
+      expect(screen.getByText('Make full screen')).toBeInTheDocument();
     });
   });
 
@@ -361,7 +361,7 @@ describe('ChartFullscreenButton', () => {
 
     fireEvent.mouseEnter(screen.getByRole('button', { name: 'Fullscreen' }));
     await waitFor(() => {
-      expect(screen.getAllByText('Exit full screen')).toBeInTheDocument();
+      expect(screen.getByText('Exit full screen')).toBeInTheDocument();
     });
   });
 });
@@ -402,7 +402,7 @@ describe('ChartMoreOptionsButton', () => {
     );
 
     fireEvent.click(screen.getByRole('button', { name: 'More options' }));
-    expect(screen.getAllByText('Download as CSV')).toBeVisible();
+    expect(screen.getByText('Download as CSV')).toBeVisible();
   });
 });
 
