@@ -75,6 +75,16 @@ export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
    * @internal
    */
   theme?: ThemeInterface;
+  /**
+   * ARIA role for the ButtonGroup container.
+   * @default "group" for div mode, "list" for list mode
+   */
+  role?: string;
+  /**
+   * Renders ButtonGroup as a `<ul>` with children wrapped in `<li>`.
+   * @default false
+   */
+  isList?: boolean;
 }
 
 export interface ButtonGroupContextInterface {
@@ -96,6 +106,7 @@ interface StyledButtonGroupProps {
   orientation?: ButtonGroupOrientation;
   variant?: ButtonVariant;
   theme: ThemeInterface;
+  isList?: boolean;
 }
 
 function buildButtonMargin(props: StyledButtonGroupProps): string {
@@ -167,6 +178,15 @@ function buildBorderRight(props: StyledButtonGroupProps): string {
     : `1px solid ${props.theme.colors.neutral100}`;
 }
 
+function shouldApplyNoSpaceStyles(props: StyledButtonGroupProps): boolean {
+  return (
+    props.noSpace &&
+    props.orientation === ButtonGroupOrientation.horizontal &&
+    props.variant === ButtonVariant.solid &&
+    props.alignment !== ButtonGroupAlignment.apart
+  );
+}
+
 const buildNoSpaceButtonStyles = (
   props: StyledButtonGroupProps,
   selector: string = ''
@@ -206,43 +226,85 @@ const buildNoSpaceButtonStyles = (
   `;
 };
 
-const buildHorizontalMarginReset = () => css`
-  &:first-child:not(:only-child) {
-    > button {
-      margin-left: 0;
-    }
-  }
+const buildDivChildStyles = (props: StyledButtonGroupProps) => css`
+  margin: ${buildButtonMargin(props)};
+  flex: ${buildFlex(props)};
 
-  &:last-child:not(:only-child) {
-    > button {
-      margin-right: 0;
+  button {
+    &:nth-child(2) {
+      width: 40px;
     }
+    width: ${props.alignment === ButtonGroupAlignment.fill ? '100%' : ''};
   }
 `;
 
-const buildVerticalMarginReset = () => css`
-  &:first-child:not(:only-child) {
-    > button {
-      margin-top: 0;
-    }
-  }
+const buildButtonChildStyles = (props: StyledButtonGroupProps) => css`
+  margin: ${buildButtonMargin(props)};
+  flex: ${buildFlex(props)};
 
-  &:last-child:not(:only-child) {
-    > button {
-      margin-bottom: 0;
+  ${props.alignment === ButtonGroupAlignment.fill &&
+  css`
+    &:not([aria-label]):not([title]) {
+      width: 100%;
     }
-  }
+    &[aria-label]:empty,
+    &[title]:empty {
+      width: auto;
+      flex: none;
+    }
+    &:has(svg):not(:has(:not(svg))) {
+      width: auto;
+      flex: none;
+    }
+  `}
 `;
 
-function shouldApplyNoSpaceStyles(props: StyledButtonGroupProps): boolean {
-  return (
-    props.noSpace &&
-    props.orientation === ButtonGroupOrientation.horizontal &&
-    props.variant === ButtonVariant.solid &&
-    props.alignment !== ButtonGroupAlignment.apart
-  );
-}
+const buildHorizontalMarginReset = (isList = false) => css`
+  ${isList
+    ? css`
+        &:first-child:not(:only-child) > button {
+          margin-left: 0;
+        }
+        &:last-child:not(:only-child) > button {
+          margin-right: 0;
+        }
+      `
+    : css`
+        &:first-child:not(:only-child) {
+          margin-left: 0;
+        }
+        &:last-child:not(:only-child) {
+          margin-right: 0;
+        }
+      `}
+`;
 
+const buildVerticalMarginReset = (isList = false) => css`
+  ${isList
+    ? css`
+        &:first-child:not(:only-child) > button {
+          margin-top: 0; !importantant
+        }
+        &:last-child:not(:only-child) > button {
+          margin-bottom: 0; !importantant
+        }
+      `
+    : css`
+        &:first-child:not(:only-child) {
+          margin-top: 0;
+        }
+        &:last-child:not(:only-child) {
+          margin-bottom: 0;
+        }
+      `}
+`;
+
+const buildOrientationMarginReset = (props: StyledButtonGroupProps) => css`
+  ${props.orientation === ButtonGroupOrientation.horizontal &&
+  buildHorizontalMarginReset(props.isList)}
+  ${props.orientation === ButtonGroupOrientation.vertical &&
+  buildVerticalMarginReset(props.isList)}
+`;
 const StyledButtonGroup = styled.div<StyledButtonGroupProps>`
   list-style: none;
   margin: 0;
@@ -265,52 +327,18 @@ const StyledButtonGroup = styled.div<StyledButtonGroupProps>`
       row-gap: ${props.theme.spaceScale.spacing03};
     `}
 
+  /* List mode */
+
   > li > div {
-    margin: ${props => buildButtonMargin(props)};
-    flex: ${props => buildFlex(props)};
-    div > button,
-    button {
-      // Split buttons
-      &:nth-child(2) {
-        width: 40px;
-      }
-      width: ${props =>
-        props.alignment === ButtonGroupAlignment.fill ? '100%' : ''};
-    }
+    ${props => buildDivChildStyles(props)}
   }
 
   > li > button {
-    margin: ${props => buildButtonMargin(props)};
-    flex: ${props => buildFlex(props)};
-
-    // Only apply width 100% to buttons that are NOT icon-only buttons
-    ${props =>
-      props.alignment === ButtonGroupAlignment.fill &&
-      css`
-        &:not([aria-label]):not([title]) {
-          width: 100%;
-        }
-        &[aria-label]:empty,
-        &[title]:empty {
-          width: auto;
-          flex: none;
-        }
-        // Check if button has only icon content (no text)
-        &:has(svg):not(:has(:not(svg))) {
-          width: auto;
-          flex: none;
-        }
-      `}
+    ${props => buildButtonChildStyles(props)}
   }
 
   > li {
-    ${props =>
-      props.orientation === ButtonGroupOrientation.horizontal &&
-      buildHorizontalMarginReset()}
-
-    ${props =>
-      props.orientation === ButtonGroupOrientation.vertical &&
-      buildVerticalMarginReset()}
+    ${props => buildOrientationMarginReset(props)}
 
     ${props =>
       shouldApplyNoSpaceStyles(props) &&
@@ -325,10 +353,26 @@ const StyledButtonGroup = styled.div<StyledButtonGroupProps>`
       `};
   }
 
-  // Styles for ToggleButtonGroup
   > li > button {
     ${props =>
-      shouldApplyNoSpaceStyles(props) && buildNoSpaceButtonStyles(props)};
+      shouldApplyNoSpaceStyles(props) && buildNoSpaceButtonStyles(props)}
+  }
+
+  /* Div mode */
+
+  > div {
+    ${props => buildDivChildStyles(props)}
+    ${props => buildOrientationMarginReset(props)}
+    ${props =>
+      shouldApplyNoSpaceStyles(props) &&
+      buildNoSpaceButtonStyles(props, 'button')}
+  }
+
+  > button {
+    ${props => buildButtonChildStyles(props)}
+    ${props => buildOrientationMarginReset(props)}
+    ${props =>
+      shouldApplyNoSpaceStyles(props) && buildNoSpaceButtonStyles(props)}
   }
 `;
 
@@ -345,6 +389,7 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
       alignment,
       children,
       color,
+      isList = false,
       isInverse,
       orientation,
       noSpace,
@@ -352,32 +397,45 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
       testId,
       textTransform,
       variant,
+      role = 'group',
       ...rest
     } = props;
     const context = { variant, color, size, textTransform, isInverse };
     const theme = React.useContext(ThemeContext);
 
-    const wrappedChildren = React.Children.map(children, child => (
-      <StyledButtonItem>{child}</StyledButtonItem>
-    ));
+    const styledGroupProps = {
+      alignment: alignment || ButtonGroupAlignment.left,
+      color: color || ButtonColor.primary,
+      isList,
+      isInverse,
+      orientation: orientation || ButtonGroupOrientation.horizontal,
+      noSpace,
+      variant: variant || ButtonVariant.solid,
+      theme,
+      ref,
+      role,
+      'data-testid': testId,
+      ...rest,
+    };
+
+    if (isList) {
+      const wrappedChildren = React.Children.map(children, child => (
+        <StyledButtonItem>{child}</StyledButtonItem>
+      ));
+
+      return (
+        <StyledButtonGroup {...styledGroupProps} as={'ul'} role="list">
+          <ButtonGroupContext.Provider value={context}>
+            {wrappedChildren}
+          </ButtonGroupContext.Provider>
+        </StyledButtonGroup>
+      );
+    }
 
     return (
-      <StyledButtonGroup
-        alignment={alignment || ButtonGroupAlignment.left}
-        color={color || ButtonColor.primary}
-        isInverse={isInverse}
-        orientation={orientation || ButtonGroupOrientation.horizontal}
-        noSpace={noSpace}
-        variant={variant || ButtonVariant.solid}
-        theme={theme}
-        ref={ref}
-        data-testid={testId}
-        {...rest}
-        as={'ul'}
-        role="list"
-      >
+      <StyledButtonGroup {...styledGroupProps}>
         <ButtonGroupContext.Provider value={context}>
-          {wrappedChildren}
+          {children}
         </ButtonGroupContext.Provider>
       </StyledButtonGroup>
     );
