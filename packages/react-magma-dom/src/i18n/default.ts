@@ -371,4 +371,8 @@ export const defaultI18n: I18nInterface = {
     warning: 'warning icon',
     danger: 'danger icon',
   },
+  expansionState: {
+    expanded: 'expanded',
+    collapsed: 'collapsed',
+  },
 };
