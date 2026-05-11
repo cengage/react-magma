@@ -85,7 +85,7 @@ jobs:
           PATH_PREFIX: /version/${{ steps.info.outputs.version }}
       - name: Build Storybook
         if: github.ref_name == 'dev' || github.ref_name == 'v4/dev' || github.ref_name == 'v4/main' || github.ref_name == 'main'
-        run: npm run build:storybook
+        run: npm run build-storybook
       - name: Chromatic (update baseline)
         if: github.ref_name == 'dev' || github.ref_name == 'main'
         uses: chromaui/action@v11

@@ -39,7 +39,7 @@ jobs:
       - name: Build Docs
         run: npm run build:docs
       - name: Build Storybook
-        run: npm run build:storybook
+        run: npm run build-storybook
       - name: Chromatic
         if: github.base_ref == 'dev' || github.base_ref == 'main'
         uses: chromaui/action@v11
