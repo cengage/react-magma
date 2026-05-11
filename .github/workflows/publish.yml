@@ -86,6 +86,13 @@ jobs:
       - name: Build Storybook
         if: github.ref_name == 'dev' || github.ref_name == 'v4/dev' || github.ref_name == 'v4/main' || github.ref_name == 'main'
         run: npm run build:storybook
+      - name: Chromatic (update baseline)
+        if: github.ref_name == 'dev' || github.ref_name == 'main'
+        uses: chromaui/action@v11
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          storybookBuildDir: storybook-static
+          autoAcceptChanges: true
       - name: Deploy Docs to Netlify (RC)
         if: github.ref_name == 'dev'
         uses: nwtgck/actions-netlify@v1.1

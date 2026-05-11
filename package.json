@@ -17,11 +17,12 @@
     "build:docs": "NODE_OPTIONS='--max-old-space-size=4096' lerna run build --scope react-magma-docs --no-progress",
     "build:landing": "node website/react-magma-landing/scripts/build.js",
     "build:lite": "NODE_OPTIONS='--max-old-space-size=4096' lerna run build --ignore react-magma-docs --concurrency=6 --no-progress",
-    "build:storybook": "NODE_OPTIONS='--max-old-space-size=4096' storybook build",
+    "build-storybook": "NODE_OPTIONS='--max-old-space-size=4096' storybook build",
     "changeset": "changeset add",
     "check:pkgs": "manypkg check",
     "clean": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes && rimraf node_modules",
     "clean:docs": "lerna exec --scope react-magma-docs 'gatsby clean' && lerna clean --yes --scope react-magma-docs ",
+    "chromatic": "npx chromatic",
     "copy:readme": "copy README.md packages/react-magma-dom",
     "develop": "npm run docs",
     "docs": "lerna run --scope react-magma-docs develop",
@@ -152,6 +153,7 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.55.1",
-    "babel-loader": "^10.0.0"
+    "babel-loader": "^10.0.0",
+    "chromatic": "^16.8.0"
   }
 }
