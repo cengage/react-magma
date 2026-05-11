@@ -49,19 +49,19 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           BRANCH_TAG: ${{ matrix.tag }}
-        run: snyk monitor --file=packages/charts/package.json --project-tags=branch="$BRANCH_TAG" --policy-path=.snyk
+        run: snyk monitor --file=packages/charts/package.json --target-reference="$BRANCH_TAG" --policy-path=.snyk
 
       - name: Snyk Monitor — react-magma-dom
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           BRANCH_TAG: ${{ matrix.tag }}
-        run: snyk monitor --file=packages/react-magma-dom/package.json --project-tags=branch="$BRANCH_TAG" --policy-path=.snyk
+        run: snyk monitor --file=packages/react-magma-dom/package.json --target-reference="$BRANCH_TAG" --policy-path=.snyk
 
       - name: Snyk Monitor — dropzone
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
           BRANCH_TAG: ${{ matrix.tag }}
-        run: snyk monitor --file=packages/dropzone/package.json --project-tags=branch="$BRANCH_TAG" --policy-path=.snyk
+        run: snyk monitor --file=packages/dropzone/package.json --target-reference="$BRANCH_TAG" --policy-path=.snyk
 
       - name: Snyk Code Test (SAST report)
         env:
