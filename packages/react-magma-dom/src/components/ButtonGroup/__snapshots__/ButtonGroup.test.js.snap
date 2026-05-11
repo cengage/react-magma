@@ -4948,7 +4948,6 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   list-style: none;
   margin: 0;
   padding: 0;
-  display: contents;
 }
 
 .emotion-4 {
@@ -5242,7 +5241,6 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   list-style: none;
   margin: 0;
   padding: 0;
-  display: contents;
 }
 
 .emotion-4 {

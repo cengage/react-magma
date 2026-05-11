@@ -76,11 +76,6 @@ export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   theme?: ThemeInterface;
   /**
-   * ARIA role for the ButtonGroup container.
-   * @default "group" for div mode, "list" for list mode
-   */
-  role?: string;
-  /**
    * Renders ButtonGroup as a `<ul>` with children wrapped in `<li>`.
    * @default false
    */
@@ -283,10 +278,10 @@ const buildVerticalMarginReset = (isList = false) => css`
   ${isList
     ? css`
         &:first-child:not(:only-child) > button {
-          margin-top: 0; !importantant
+          margin-top: 0 !important;
         }
         &:last-child:not(:only-child) > button {
-          margin-bottom: 0; !importantant
+          margin-bottom: 0 !important;
         }
       `
     : css`
@@ -380,7 +375,6 @@ const StyledButtonItem = styled.li`
   list-style: none;
   margin: 0;
   padding: 0;
-  display: contents;
 `;
 
 export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
