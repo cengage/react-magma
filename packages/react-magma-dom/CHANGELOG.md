@@ -1,5 +1,20 @@
 ## 4.13.0
 
+## 4.14.0-next.1
+
+### Minor Changes
+
+- b00af414c: feat(Fieldset): Create `Fieldset` component
+- fb4c1f19a: feat(TreeView): create `Guide Lines` for expanded items with `hasGuideLines` prop (`false` by default)
+
+### Patch Changes
+
+- 0cfe72a2e: fix(DatePicker): fix issue with error announcement
+- 606fa2410: fix(Drawer): Apply `drawerStyle` prop to Drawer panel
+- f448af016: fix(Toast): Fix: Toast not closing on click or timeout (Strict Mode issue with unmount)
+- 637f28516: fix(Treeview): Add an announcement for the expansion state of the TreeItem.
+- f73d54809: chore: update uuid to 11.1.1
+
 ## 4.13.1-next.0
 
 ### Patch Changes

@@ -12,7 +12,17 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "chore-fixBuild",
+    "feat-Fieldset-new-component",
+    "feat-TreeView-GuideLines",
+    "fix-Charts-acessibility-issues",
+    "fix-DatePicker-announcement-issue",
+    "fix-Drawer-drawerStyle-prop-issue",
     "fix-NavTabs-Tabs-update focus-management",
-    "manually-sync-4.13.0"
+    "fix-Toast-not-closing",
+    "fix-Treeview-VO-doesn't-announce-state",
+    "manually-sync-4.13.0",
+    "snyk-stuff",
+    "update-uuid"
   ]
 }

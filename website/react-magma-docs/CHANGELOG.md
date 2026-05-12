@@ -1,5 +1,26 @@
 # Change Log
 
+## 5.3.4-next.2
+
+### Patch Changes
+
+- 81b5300dd: chore: Fix build
+- f73d54809: chore: add Snyk security scanning to CI/CD
+- f73d54809: chore: update uuid to 11.1.1
+- Updated dependencies [b00af414c]
+- Updated dependencies [fb4c1f19a]
+- Updated dependencies [f6364883d]
+- Updated dependencies [0cfe72a2e]
+- Updated dependencies [606fa2410]
+- Updated dependencies [f448af016]
+- Updated dependencies [637f28516]
+- Updated dependencies [f73d54809]
+  - react-magma-dom@4.14.0-next.1
+  - @react-magma/charts@14.0.0-next.1
+  - @react-magma/schema-renderer@15.0.0-next.1
+  - @react-magma/dropzone@13.0.0-next.1
+  - @cengage-patterns/header@16.0.0-next.1
+
 ## 5.3.4-next.1
 
 ### Patch Changes
