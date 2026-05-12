@@ -3740,7 +3740,7 @@ export const SelectChildrenOnly = {
                   />
                 </TreeItem>
               </TreeItem>
-              <TreeItem label="Images" itemId="images" icon={<FolderIcon />} o>
+              <TreeItem label="Images" itemId="images" icon={<FolderIcon />}>
                 <TreeItem
                   label="logo.png"
                   itemId="logo"
@@ -3820,11 +3820,11 @@ export const LargeTreePerformanceIssue = {
         if (level >= levelsInner) return null;
 
         return Array.from({ length: childrenCountInner }).map((_, index) => {
-          const id = `${prefix}-${level}-${index}`;
+          const id = `${prefix}-${index}`;
 
           return (
             <TreeItem key={id} label={`Node ${id}`} itemId={id}>
-              {generateTree(levelsInner, childrenCountInner, prefix, level + 1)}
+              {generateTree(levelsInner, childrenCountInner, id, level + 1)}
             </TreeItem>
           );
         });

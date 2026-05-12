@@ -488,12 +488,15 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       [isDisabled, selectable, handleClick, itemId]
     );
 
-    const defaultIcon =
-      nodeType === TreeNodeType.branch ? (
-        <FolderIcon aria-hidden />
-      ) : (
-        <ArticleIcon aria-hidden />
-      );
+    const defaultIcon = React.useMemo(
+      () =>
+        nodeType === TreeNodeType.branch ? (
+          <FolderIcon aria-hidden />
+        ) : (
+          <ArticleIcon aria-hidden />
+        ),
+      [nodeType]
+    );
 
     // Memoise the label JSX so the `checkboxProps` memo below actually has
     // a stable `labelText` reference between renders. Previously this

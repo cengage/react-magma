@@ -125,7 +125,6 @@ export const IndeterminateCheckbox = React.memo(
         labelStyle,
         labelText,
         isTextVisuallyHidden,
-        status,
         testId,
         ...other
       } = props;
