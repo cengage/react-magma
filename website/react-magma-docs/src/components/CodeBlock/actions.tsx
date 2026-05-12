@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, useEffect, useState } from 'react';
 
 import styled from '@emotion/styled';
-import CodeSandboxer from 'react-codesandboxer';
+import { getParameters } from 'codesandbox/lib/api/define';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
   Button,
@@ -85,61 +85,67 @@ interface CodeSandboxActionProps extends HTMLAttributes<HTMLButtonElement> {
   code: string;
 }
 export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
-  return (
-    <CodeSandboxer
-      name="react-magma-example"
-      example={props.code}
-      examplePath="does/not/do/anything/but/is/required.tsx"
-      pkgJSON={pkg}
-      gitInfo={{
-        account: 'cengage',
-        repository: 'react-magma',
-        branch: 'main',
-        host: 'github',
-      }}
-      dependencies={{
-        '@data-driven-forms/react-form-renderer':
-          pkg.dependencies['@data-driven-forms/react-form-renderer'],
-        '@emotion/react': pkg.dependencies['@emotion/react'],
-        '@emotion/styled': pkg.dependencies['@emotion/styled'],
-        'date-fns': pkg.dependencies['date-fns'],
-        downshift: pkg.dependencies['downshift'],
-        react: pkg.dependencies['react'],
-        'framer-motion': pkg.dependencies['framer-motion'],
-        'react-dom': pkg.dependencies['react-dom'],
-        'react-magma-icons': pkg.dependencies['react-magma-icons'],
-        'react-magma-dom': pkg.dependencies['react-magma-dom'],
-        '@react-magma/charts': pkg.dependencies['@react-magma/charts'],
-        '@cengage-patterns/header':
-          pkg.dependencies['@cengage-patterns/header'],
-        '@react-magma/schema-renderer':
-          pkg.dependencies['@react-magma/schema-renderer'],
-        uuid: pkg.dependencies['uuid'],
-      }}
-      providedFiles={{
-        'index.tsx': { content: CODESANDBOX_INDEX_FILE },
-        'App.tsx': { content: CODESANDBOX_APP_FILE },
-        'styles.css': { content: CODESANDBOX_CSS_FILE },
-      }}
-      template="create-react-app-typescript"
-    >
-      {(props: { error: string; isDeploying: boolean; isLoading: boolean }) => {
-        const { error, isDeploying, isLoading } = props;
-        const deploying = isDeploying || isLoading || false;
-        if (error) console.log(error);
+  const handleOpenSandbox = () => {
+    const parameters = getParameters({
+      files: {
+        'package.json': {
+          content: JSON.stringify(
+            {
+              dependencies: {
+                '@data-driven-forms/react-form-renderer':
+                  pkg.dependencies['@data-driven-forms/react-form-renderer'],
+                '@emotion/react': pkg.dependencies['@emotion/react'],
+                '@emotion/styled': pkg.dependencies['@emotion/styled'],
+                'date-fns': pkg.dependencies['date-fns'],
+                downshift: pkg.dependencies['downshift'],
+                react: pkg.dependencies['react'],
+                'framer-motion': pkg.dependencies['framer-motion'],
+                'react-dom': pkg.dependencies['react-dom'],
+                'react-magma-icons': pkg.dependencies['react-magma-icons'],
+                'react-magma-dom': pkg.dependencies['react-magma-dom'],
+                '@react-magma/charts': pkg.dependencies['@react-magma/charts'],
+                uuid: pkg.dependencies['uuid'],
+              },
+            },
+            null,
+            2
+          ),
+          isBinary: false,
+        },
+        'index.tsx': {
+          content: CODESANDBOX_INDEX_FILE,
+          isBinary: false,
+        },
+        'App.tsx': {
+          content: CODESANDBOX_APP_FILE,
+          isBinary: false,
+        },
+        'styles.css': {
+          content: CODESANDBOX_CSS_FILE,
+          isBinary: false,
+        },
+        'example.tsx': {
+          content: props.code,
+          isBinary: false,
+        },
+      },
+    });
 
-        return (
-          <Button
-            color={ButtonColor.secondary}
-            disabled={deploying}
-            size={ButtonSize.small}
-            variant={ButtonVariant.link}
-          >
-            Edit in CodeSandbox
-          </Button>
-        );
-      }}
-    </CodeSandboxer>
+    window.open(
+      `https://codesandbox.io/api/v1/sandboxes/define?parameters=${parameters}`,
+      '_blank'
+    );
+  };
+
+  return (
+    <Button
+      color={ButtonColor.secondary}
+      onClick={handleOpenSandbox}
+      size={ButtonSize.small}
+      variant={ButtonVariant.link}
+    >
+      Edit in CodeSandbox
+    </Button>
   );
 };
 
