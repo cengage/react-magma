@@ -1,5 +1,11 @@
 ## 4.13.0
 
+## 4.14.0-next.2
+
+### Patch Changes
+
+- 2cfea354b: fix(Treeview, Checkbox): Improve performance.
+
 ## 4.14.0-next.1
 
 ### Minor Changes
