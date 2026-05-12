@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.93
+
+### Patch Changes
+
+- a11b243: fix(Treeview): Add an announcement for the expansion state of the TreeItem.
+
 ## 5.1.0-rc.92
 
 ### Patch Changes
