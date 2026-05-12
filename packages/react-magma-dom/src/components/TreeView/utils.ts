@@ -313,7 +313,9 @@ const getTreeViewData = ({
     .flat();
 };
 
-// Optimized: Use Map for O(1) lookups while maintaining recursive logic
+// Public entry: builds itemMap/parentChildMap once and delegates to the
+// mutable variant. Avoids per-recursion-call `new Map(items.map(...))`
+// and `Array.from(...)` allocations on a hot path.
 const processChildrenSelection = ({
   items,
   itemId,
@@ -329,77 +331,97 @@ const processChildrenSelection = ({
 }) => {
   const map = parentChildMap || buildParentChildMap(items);
   const itemMap = new Map(items.map(item => [item.itemId, item]));
+
+  processChildrenSelectionMut({
+    itemMap,
+    parentChildMap: map,
+    itemId,
+    checkedStatus,
+    forceCheckedStatusForDisabled,
+  });
+
+  return Array.from(itemMap.values());
+};
+
+// Internal: mutates `itemMap` in place. Behaviour is identical to the
+// previous implementation, including the "inspect ALL descendants when
+// computing the parent's indeterminate status" rule.
+const processChildrenSelectionMut = ({
+  itemMap,
+  parentChildMap,
+  itemId,
+  checkedStatus,
+  forceCheckedStatusForDisabled,
+}: {
+  itemMap: Map<string, TreeViewItemInterface>;
+  parentChildMap: Map<string, string[]>;
+  itemId: TreeViewItemInterface['itemId'];
+  checkedStatus: TreeViewItemInterface['checkedStatus'];
+  forceCheckedStatusForDisabled?: boolean;
+}) => {
   const item = itemMap.get(itemId);
 
-  // Update the current item
-  if (item) {
-    if (item.isDisabled && !forceCheckedStatusForDisabled) {
-      itemMap.set(itemId, item);
-    } else {
-      itemMap.set(itemId, { ...item, checkedStatus });
-    }
+  // Update the current item (skip if disabled and not forced).
+  if (item && (!item.isDisabled || forceCheckedStatusForDisabled)) {
+    itemMap.set(itemId, { ...item, checkedStatus });
   }
 
   if (!item?.hasOwnTreeItems) {
-    return Array.from(itemMap.values());
+    return;
   }
 
-  // Get direct children
-  const directChildren = map.get(itemId) || [];
+  // Recurse into direct children, mutating the shared map.
+  const directChildren = parentChildMap.get(itemId);
 
-  // Recursively process each direct child
-  let currentItems = Array.from(itemMap.values());
-
-  for (const childId of directChildren) {
-    currentItems = processChildrenSelection({
-      items: currentItems,
-      itemId: childId,
-      checkedStatus,
-      forceCheckedStatusForDisabled,
-      parentChildMap: map,
-    });
-  }
-
-  // Rebuild map with updated items
-  const updatedItemMap = new Map(currentItems.map(item => [item.itemId, item]));
-
-  // Get all children (including nested) to check their statuses
-  const childrenIds = getChildrenIds({
-    items: currentItems,
-    itemId,
-    parentChildMap: map,
-  });
-
-  // Check if all children have the same checked status
-  const childrenStatuses = new Set<boolean>();
-
-  for (const id of childrenIds) {
-    if (id === itemId) continue;
-    const child = updatedItemMap.get(id);
-
-    if (child) {
-      childrenStatuses.add(
-        child.checkedStatus === IndeterminateCheckboxStatus.checked
-      );
+  if (directChildren) {
+    for (const childId of directChildren) {
+      processChildrenSelectionMut({
+        itemMap,
+        parentChildMap,
+        itemId: childId,
+        checkedStatus,
+        forceCheckedStatusForDisabled,
+      });
     }
   }
 
-  const isAllChildrenWithTheSameCheckedStatus = childrenStatuses.size === 1;
-  const itemCheckedStatus = isAllChildrenWithTheSameCheckedStatus
+  // Inspect ALL descendants to decide between `checkedStatus` and
+  // `indeterminate` for this parent.
+  const descendantStatuses = new Set<boolean>();
+  const stack: string[] = directChildren ? [...directChildren] : [];
+
+  while (stack.length > 0) {
+    const id = stack.pop() as string;
+    const child = itemMap.get(id);
+
+    if (child) {
+      descendantStatuses.add(
+        child.checkedStatus === IndeterminateCheckboxStatus.checked
+      );
+    }
+
+    const grand = parentChildMap.get(id);
+
+    if (grand) {
+      for (const gId of grand) {
+        stack.push(gId);
+      }
+    }
+  }
+
+  const isAllDescendantsSameCheckedStatus = descendantStatuses.size === 1;
+  const itemCheckedStatus = isAllDescendantsSameCheckedStatus
     ? checkedStatus
     : IndeterminateCheckboxStatus.indeterminate;
 
-  // Update the parent item with the calculated status
-  const updatedItem = updatedItemMap.get(itemId);
+  const updatedItem = itemMap.get(itemId);
 
   if (updatedItem) {
-    updatedItemMap.set(itemId, {
+    itemMap.set(itemId, {
       ...updatedItem,
       checkedStatus: itemCheckedStatus,
     });
   }
-
-  return Array.from(updatedItemMap.values());
 };
 
 // Optimized: Build parent-child relationship map once for O(1) lookups
@@ -446,22 +468,6 @@ export const getChildrenIds = ({
   }
 
   return result;
-};
-
-// Optimized: Use Set for O(1) lookup instead of array.includes
-const getChildren = ({
-  items,
-  itemId,
-  parentChildMap,
-}: {
-  items: TreeViewItemInterface[];
-  itemId: TreeViewItemInterface['itemId'];
-  parentChildMap?: Map<string, string[]>;
-}) => {
-  const childrenIds = getChildrenIds({ items, itemId, parentChildMap });
-  const childrenIdSet = new Set(childrenIds);
-
-  return items.filter(item => childrenIdSet.has(item.itemId));
 };
 
 // Optimized: Use Set for O(1) lookup and reduce iterations
@@ -678,30 +684,30 @@ export const selectSingle = ({
   }));
 };
 
-// Optimized: Use Map for O(1) lookups and iterative approach instead of recursion
-const processParentsSelection = ({
-  items,
+// Internal: walks parents bottom-up, mutating `itemMap` in place.
+// Reused by `toggleMulti` so we don't rebuild itemMap/parentChildMap per call.
+const processParentsSelectionMut = ({
+  itemMap,
+  parentChildMap,
   itemId,
   checkedStatus,
   isTopLevelSelectable = true,
 }: {
-  items: TreeViewItemInterface[];
+  itemMap: Map<string, TreeViewItemInterface>;
+  parentChildMap: Map<string, string[]>;
   itemId: TreeViewItemInterface['itemId'];
   checkedStatus: TreeViewItemInterface['checkedStatus'];
   isTopLevelSelectable?: boolean;
 }) => {
-  const itemMap = new Map(items.map(item => [item.itemId, item]));
-  const parentChildMap = buildParentChildMap(items);
-
   let currentItem = itemMap.get(itemId);
   let currentStatus = checkedStatus;
 
   // Iteratively process parents from bottom to top
   while (currentItem && currentItem.parentId !== null) {
     const parentId = currentItem.parentId;
-    const parent = itemMap.get(parentId);
+    const parent = parentId ? itemMap.get(parentId) : undefined;
 
-    if (!parent) break;
+    if (!parent || !parentId) break;
 
     if (!isTopLevelSelectable && !parent.parentId) break;
 
@@ -728,38 +734,49 @@ const processParentsSelection = ({
       ? currentStatus
       : IndeterminateCheckboxStatus.indeterminate;
 
-    // Update parent
+    // Update parent in shared map
     itemMap.set(parentId, { ...parent, checkedStatus: parentStatus });
 
     // Move up to next parent
     currentItem = parent;
     currentStatus = parentStatus;
   }
-
-  return Array.from(itemMap.values());
 };
 
-// Optimized: Early exit and use Map for faster lookups
-const getMultiToggledStatus = ({
-  items,
-  itemId,
+// Internal: scans the subtree under `itemId` directly on the shared maps,
+// without allocating an intermediate children array.
+const getMultiToggledStatusFromMaps = ({
+  itemMap,
   parentChildMap,
+  itemId,
 }: {
-  items: TreeViewItemInterface[];
+  itemMap: Map<string, TreeViewItemInterface>;
+  parentChildMap: Map<string, string[]>;
   itemId: string;
-  parentChildMap?: Map<string, string[]>;
 }) => {
-  const children = getChildren({ items, itemId, parentChildMap });
+  const stack: string[] = [itemId];
 
-  // Early exit: check if any enabled child is unchecked
-  for (const item of children) {
-    if (item.isDisabled) continue;
+  while (stack.length > 0) {
+    const id = stack.pop() as string;
+    const item = itemMap.get(id);
 
-    if (
-      !item.checkedStatus ||
-      item.checkedStatus === IndeterminateCheckboxStatus.unchecked
-    ) {
-      return IndeterminateCheckboxStatus.checked;
+    if (!item) continue;
+
+    if (!item.isDisabled) {
+      if (
+        !item.checkedStatus ||
+        item.checkedStatus === IndeterminateCheckboxStatus.unchecked
+      ) {
+        return IndeterminateCheckboxStatus.checked;
+      }
+    }
+
+    const children = parentChildMap.get(id);
+
+    if (children) {
+      for (const childId of children) {
+        stack.push(childId);
+      }
     }
   }
 
@@ -784,48 +801,58 @@ export const toggleMulti = ({
   UseTreeViewProps,
   'checkChildren' | 'checkParents' | 'isTopLevelSelectable'
 >) => {
-  // Build parent-child map once for reuse
+  // Build the shared lookup maps once and reuse them across all helpers
+  // below, instead of letting each rebuild its own.
   const parentChildMap = buildParentChildMap(items);
-  const itemMap = new Map(items.map(item => [item.itemId, item]));
-  const item = itemMap.get(itemId);
+  const itemMap = new Map<string, TreeViewItemInterface>();
+
+  for (const it of items) {
+    if (it.itemId) itemMap.set(it.itemId, it);
+  }
+
+  const item = itemId ? itemMap.get(itemId) : undefined;
 
   if (isTopLevelSelectable === false && !item?.parentId) {
     return items;
   }
 
+  if (!itemId) {
+    return items;
+  }
+
   const checkedStatus =
     checkChildren && !forceCheckedStatus
-      ? getMultiToggledStatus({ items, itemId, parentChildMap })
+      ? getMultiToggledStatusFromMaps({ itemMap, parentChildMap, itemId })
       : rawCheckedStatus;
 
-  // Update the item itself
+  // Update the item itself in the shared map.
   if (item) {
     itemMap.set(itemId, { ...item, checkedStatus });
   }
 
-  let resultItems = Array.from(itemMap.values());
-
-  // Process children if needed
+  // Process children if needed (mutates itemMap in place).
   if (checkChildren) {
-    resultItems = processChildrenSelection({
-      items: resultItems,
+    processChildrenSelectionMut({
+      itemMap,
+      parentChildMap,
       itemId,
       checkedStatus,
-      parentChildMap,
     });
   }
 
-  // Process parents if needed
+  // Process parents if needed (mutates itemMap in place).
   if (checkParents) {
-    resultItems = processParentsSelection({
-      items: resultItems,
+    processParentsSelectionMut({
+      itemMap,
+      parentChildMap,
       itemId,
       checkedStatus,
       isTopLevelSelectable,
     });
   }
 
-  return resultItems;
+  // Single materialisation at the end.
+  return Array.from(itemMap.values());
 };
 
 const getParentIds = ({
@@ -957,8 +984,31 @@ export const getInitialExpandedIds = ({
   }, []);
 };
 
+// Structural shallow comparison for arrays of TreeItemSelectedInterface-shaped
+// objects. Replaces a previous JSON.stringify-based check that ran on the
+// hot path (effects in useTreeView).
 export const isEqualArrays = <T>(arrayA: T[], arrayB: T[]) => {
-  return JSON.stringify(arrayA) === JSON.stringify(arrayB);
+  if (arrayA === arrayB) return true;
+  if (!arrayA || !arrayB) return false;
+  if (arrayA.length !== arrayB.length) return false;
+
+  for (let i = 0; i < arrayA.length; i++) {
+    const a = arrayA[i] as unknown as TreeItemSelectedInterface | undefined;
+    const b = arrayB[i] as unknown as TreeItemSelectedInterface | undefined;
+
+    if (a === b) continue;
+    if (!a || !b) return false;
+
+    if (
+      a.itemId !== b.itemId ||
+      a.checkedStatus !== b.checkedStatus ||
+      a.isDisabled !== b.isDisabled
+    ) {
+      return false;
+    }
+  }
+
+  return true;
 };
 
 export const isSelectedItemsChanged = (

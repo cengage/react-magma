@@ -155,3 +155,124 @@ export const Behavior = () => {
     </FormGroup>
   );
 };
+
+/**
+ * Performance reproduction story.
+ *
+ * Renders a large list of controlled IndeterminateCheckbox + Checkbox
+ * to measure how long mass status updates take.
+ *
+ * Buttons trigger:
+ *  - "Check all" — sets every status to `checked`
+ *  - "Uncheck all" — sets every status to `unchecked`
+ *  - "Indeterminate all" — sets every status to `indeterminate`
+ *
+ * Each click measures the time from setState to the next paint
+ * via requestAnimationFrame, and prints it.
+ */
+export const PerformanceLargeList = (args: { count: number }) => {
+  const { count } = args;
+
+  const [statuses, setStatuses] = React.useState<IndeterminateCheckboxStatus[]>(
+    () =>
+      Array.from({ length: count }, () => IndeterminateCheckboxStatus.unchecked)
+  );
+  const [lastMs, setLastMs] = React.useState<number | null>(null);
+  const [lastAction, setLastAction] = React.useState<string>('—');
+
+  // Re-create statuses array if count changes
+  React.useEffect(() => {
+    setStatuses(
+      Array.from({ length: count }, () => IndeterminateCheckboxStatus.unchecked)
+    );
+  }, [count]);
+
+  const measure = React.useCallback((label: string, mutate: () => void) => {
+    const start = performance.now();
+
+    mutate();
+
+    // Two RAFs: first fires after React commit, second after paint.
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setLastAction(label);
+        setLastMs(performance.now() - start);
+      });
+    });
+  }, []);
+
+  const setAll = React.useCallback(
+    (status: IndeterminateCheckboxStatus, label: string) => {
+      measure(label, () => {
+        setStatuses(prev => prev.map(() => status));
+      });
+    },
+    [measure]
+  );
+
+  return (
+    <div>
+      <p>
+        Count: <strong>{count}</strong> · Last action:{' '}
+        <strong>{lastAction}</strong> · Time:{' '}
+        <strong>{lastMs == null ? '—' : `${lastMs.toFixed(0)} ms`}</strong>
+      </p>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+        <button
+          type="button"
+          onClick={() =>
+            setAll(IndeterminateCheckboxStatus.checked, 'Check all')
+          }
+        >
+          Check all
+        </button>
+        <button
+          type="button"
+          onClick={() =>
+            setAll(IndeterminateCheckboxStatus.unchecked, 'Uncheck all')
+          }
+        >
+          Uncheck all
+        </button>
+        <button
+          type="button"
+          onClick={() =>
+            setAll(
+              IndeterminateCheckboxStatus.indeterminate,
+              'Indeterminate all'
+            )
+          }
+        >
+          Indeterminate all
+        </button>
+      </div>
+      <div
+        style={{
+          maxHeight: 600,
+          overflow: 'auto',
+          border: '1px solid #ccc',
+          padding: 8,
+        }}
+      >
+        {statuses.map((status, i) => (
+          <IndeterminateCheckbox
+            key={i}
+            id={`perf-cb-${i}`}
+            labelText={`Checkbox ${i}`}
+            status={status}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+PerformanceLargeList.argTypes = {
+  count: {
+    control: { type: 'number', min: 100, max: 10000, step: 100 },
+  },
+};
+
+PerformanceLargeList.args = {
+  count: 1400,
+};
