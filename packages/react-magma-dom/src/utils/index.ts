@@ -9,10 +9,16 @@ export function generateId(id?: string) {
 export function useGenerateId(newId?: string) {
   const [id, updateId] = React.useState<string>(() => generateId(newId));
 
+  // Only re-generate the id when `newId` actually changes between renders.
+  // Tracking the previous value via ref avoids a mount-time setState that
+  // would force every consumer of useGenerateId into an extra render.
+  const prevNewIdRef = React.useRef(newId);
+
   React.useEffect(() => {
-    if (newId) {
+    if (newId && newId !== prevNewIdRef.current) {
       updateId(generateId(newId));
     }
+    prevNewIdRef.current = newId;
   }, [newId]);
 
   return id;
