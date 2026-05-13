@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, useEffect, useState } from 'react';
 
 import styled from '@emotion/styled';
-import { getParameters } from 'codesandbox/lib/api/define';
+import LZString from 'lz-string';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
   Button,
@@ -84,9 +84,30 @@ export const ActionsLeft = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
 interface CodeSandboxActionProps extends HTMLAttributes<HTMLButtonElement> {
   code: string;
 }
-export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
+
+interface IFiles {
+  template?: 'create-react-app-typescript';
+  files: {
+    [key: string]: {
+      content: string;
+    };
+  };
+}
+
+function compress(input: string) {
+  return LZString.compressToBase64(input)
+    .replace(/\+/g, `-`) // Convert '+' to '-'
+    .replace(/\//g, `_`) // Convert '/' to '_'
+    .replace(/=+$/, ``); // Remove ending '='
+}
+
+function getParameters(params: IFiles) {
+  return compress(JSON.stringify(params));
+}
+export const CodeSandboxAction = ({ code }: CodeSandboxActionProps) => {
   const handleOpenSandbox = () => {
     const parameters = getParameters({
+      template: 'create-react-app-typescript',
       files: {
         'package.json': {
           content: JSON.stringify(
@@ -110,30 +131,26 @@ export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
             null,
             2
           ),
-          isBinary: false,
         },
         'index.tsx': {
           content: CODESANDBOX_INDEX_FILE,
-          isBinary: false,
         },
         'App.tsx': {
           content: CODESANDBOX_APP_FILE,
-          isBinary: false,
         },
         'styles.css': {
           content: CODESANDBOX_CSS_FILE,
-          isBinary: false,
         },
         'example.tsx': {
-          content: props.code,
-          isBinary: false,
+          content: code,
         },
       },
     });
 
     window.open(
       `https://codesandbox.io/api/v1/sandboxes/define?parameters=${parameters}`,
-      '_blank'
+      '_blank',
+      'noopener,noreferrer'
     );
   };
 
