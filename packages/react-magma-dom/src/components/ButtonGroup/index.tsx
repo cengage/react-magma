@@ -224,7 +224,6 @@ const buildNoSpaceButtonStyles = (
 const buildDivChildStyles = (props: StyledButtonGroupProps) => css`
   margin: ${buildButtonMargin(props)};
   flex: ${buildFlex(props)};
-
   button {
     &:nth-child(2) {
       width: 40px;
