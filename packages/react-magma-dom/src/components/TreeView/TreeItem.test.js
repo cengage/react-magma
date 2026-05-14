@@ -143,10 +143,6 @@ describe('TreeItem', () => {
         </TreeView>
       );
 
-      expect(getByTestId(`${testId}-expand`)).toHaveAttribute(
-        'aria-hidden',
-        'true'
-      );
       expect(getByTestId(`${testId}-expand`)).toHaveStyleRule(
         'color',
         transparentize(0.6, magma.colors.neutral500)

@@ -1857,7 +1857,6 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
                     id="item-id-5-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-96 emotion-97"
                       data-testid="item-id-5-expand"
                     >
@@ -3915,7 +3914,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                     id="item-id-3-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-64 emotion-65"
                       data-testid="item-id-3-expand"
                     >
@@ -4011,7 +4009,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                     id="item-id-4-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-82 emotion-65"
                       data-testid="item-id-4-expand"
                     >
@@ -4105,7 +4102,6 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
                     id="item-id-5-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-82 emotion-65"
                       data-testid="item-id-5-expand"
                     >
@@ -6032,7 +6028,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                     id="item-id-3-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-64 emotion-65"
                       data-testid="item-id-3-expand"
                     >
@@ -6128,7 +6123,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                     id="item-id-4-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-82 emotion-65"
                       data-testid="item-id-4-expand"
                     >
@@ -6222,7 +6216,6 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
                     id="item-id-5-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-82 emotion-65"
                       data-testid="item-id-5-expand"
                     >
@@ -8149,7 +8142,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                     id="item-id-3-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-64 emotion-65"
                       data-testid="item-id-3-expand"
                     >
@@ -8245,7 +8237,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                     id="item-id-4-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-82 emotion-65"
                       data-testid="item-id-4-expand"
                     >
@@ -8339,7 +8330,6 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
                     id="item-id-5-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-82 emotion-65"
                       data-testid="item-id-5-expand"
                     >
@@ -10397,7 +10387,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     id="item-id-3-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-64 emotion-65"
                       data-testid="item-id-3-expand"
                     >
@@ -10493,7 +10482,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     id="item-id-4-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-82 emotion-65"
                       data-testid="item-id-4-expand"
                     >
@@ -10587,7 +10575,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     id="item-id-5-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-82 emotion-65"
                       data-testid="item-id-5-expand"
                     >
@@ -12645,7 +12632,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     id="item-id-3-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-64 emotion-65"
                       data-testid="item-id-3-expand"
                     >
@@ -12741,7 +12727,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     id="item-id-4-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-82 emotion-65"
                       data-testid="item-id-4-expand"
                     >
@@ -12835,7 +12820,6 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
                     id="item-id-5-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-82 emotion-65"
                       data-testid="item-id-5-expand"
                     >
@@ -14762,7 +14746,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                     id="item-id-3-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-64 emotion-65"
                       data-testid="item-id-3-expand"
                     >
@@ -14858,7 +14841,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                     id="item-id-4-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-82 emotion-65"
                       data-testid="item-id-4-expand"
                     >
@@ -14952,7 +14934,6 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
                     id="item-id-5-itemwrapper"
                   >
                     <div
-                      aria-hidden="true"
                       class="emotion-82 emotion-65"
                       data-testid="item-id-5-expand"
                     >

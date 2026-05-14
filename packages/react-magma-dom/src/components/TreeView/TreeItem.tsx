@@ -27,17 +27,21 @@ import {
   getTreeItemWrapperCursor,
   TreeNodeType,
 } from './utils';
+import { I18nContext } from '../..';
+import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { mergeRefs } from '../../utils';
+import { Announce } from '../Announce';
 import { Checkbox } from '../Checkbox';
 import {
   IndeterminateCheckbox,
   IndeterminateCheckboxStatus,
 } from '../IndeterminateCheckbox';
 import { Transition } from '../Transition';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface TreeItemProps extends UseTreeItemProps {}
 
@@ -335,6 +339,8 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     );
 
     const { isDisabled } = contextValue;
+    const { isMacOS } = useDeviceDetect();
+    const i18n = React.useContext(I18nContext);
 
     const {
       checkboxChangeHandler,
@@ -711,7 +717,6 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
             >
               {hasOwnTreeItems && (
                 <StyledExpandWrapper
-                  aria-hidden={Boolean(!expanded)}
                   size={expandIconStyles?.size}
                   color={expandIconStyles?.color}
                   data-testid={`${testId || itemId}-expand`}
@@ -822,6 +827,15 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
               }
             )}
           </StyledTreeItem>
+          {isMacOS && (
+            <VisuallyHidden>
+              <Announce>
+                {expanded
+                  ? i18n.expansionState.expanded
+                  : i18n.expansionState.collapsed}
+              </Announce>
+            </VisuallyHidden>
+          )}
         </div>
       </TreeItemContext.Provider>
     );
