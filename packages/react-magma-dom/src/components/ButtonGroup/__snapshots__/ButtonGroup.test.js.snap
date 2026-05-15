@@ -1880,7 +1880,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 }
 
 .emotion-0>li>div button {
-  width: 100%;
+  width: calc(100% - 42px);
 }
 
 .emotion-0>li>div button:nth-child(2) {
@@ -1929,7 +1929,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 }
 
 .emotion-0>div button {
-  width: 100%;
+  width: calc(100% - 42px);
 }
 
 .emotion-0>div button:nth-child(2) {
@@ -2264,7 +2264,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 }
 
 .emotion-0>li>div button {
-  width: 100%;
+  width: calc(100% - 42px);
 }
 
 .emotion-0>li>div button:nth-child(2) {
@@ -2313,7 +2313,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 }
 
 .emotion-0>div button {
-  width: 100%;
+  width: calc(100% - 42px);
 }
 
 .emotion-0>div button:nth-child(2) {
@@ -2816,7 +2816,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-0>li>div button {
-  width: 100%;
+  width: calc(100% - 42px);
 }
 
 .emotion-0>li>div button:nth-child(2) {
@@ -2865,7 +2865,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-0>div button {
-  width: 100%;
+  width: calc(100% - 42px);
 }
 
 .emotion-0>div button:nth-child(2) {
@@ -3195,7 +3195,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-0>li>div button {
-  width: 100%;
+  width: calc(100% - 42px);
 }
 
 .emotion-0>li>div button:nth-child(2) {
@@ -3244,7 +3244,7 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-0>div button {
-  width: 100%;
+  width: calc(100% - 42px);
 }
 
 .emotion-0>div button:nth-child(2) {
@@ -4766,7 +4766,7 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  row-gap: 8px;
+  gap: 0;
 }
 
 .emotion-0>li>div {
@@ -4792,6 +4792,14 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
 }
 
 .emotion-0>li:last-child:not(:only-child)>button {
+  margin-right: 0;
+}
+
+.emotion-0>li:first-child:not(:only-child)>div {
+  margin-left: 0;
+}
+
+.emotion-0>li:last-child:not(:only-child)>div {
   margin-right: 0;
 }
 
@@ -4883,6 +4891,14 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   margin-right: 0;
 }
 
+.emotion-0>div:first-child:not(:only-child)>div {
+  margin-left: 0;
+}
+
+.emotion-0>div:last-child:not(:only-child)>div {
+  margin-right: 0;
+}
+
 .emotion-0>div:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
@@ -4918,6 +4934,14 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
 }
 
 .emotion-0>button:last-child:not(:only-child)>button {
+  margin-right: 0;
+}
+
+.emotion-0>button:first-child:not(:only-child)>div {
+  margin-left: 0;
+}
+
+.emotion-0>button:last-child:not(:only-child)>div {
   margin-right: 0;
 }
 
@@ -5059,7 +5083,7 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  row-gap: 8px;
+  gap: 0;
 }
 
 .emotion-0>li>div {
@@ -5085,6 +5109,14 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
 }
 
 .emotion-0>li:last-child:not(:only-child)>button {
+  margin-right: 0;
+}
+
+.emotion-0>li:first-child:not(:only-child)>div {
+  margin-left: 0;
+}
+
+.emotion-0>li:last-child:not(:only-child)>div {
   margin-right: 0;
 }
 
@@ -5176,6 +5208,14 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   margin-right: 0;
 }
 
+.emotion-0>div:first-child:not(:only-child)>div {
+  margin-left: 0;
+}
+
+.emotion-0>div:last-child:not(:only-child)>div {
+  margin-right: 0;
+}
+
 .emotion-0>div:first-child:not(:only-child) button {
   border-radius: 8px 0 0 8px;
   border-right: 0;
@@ -5211,6 +5251,14 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
 }
 
 .emotion-0>button:last-child:not(:only-child)>button {
+  margin-right: 0;
+}
+
+.emotion-0>button:first-child:not(:only-child)>div {
+  margin-left: 0;
+}
+
+.emotion-0>button:last-child:not(:only-child)>div {
   margin-right: 0;
 }
 

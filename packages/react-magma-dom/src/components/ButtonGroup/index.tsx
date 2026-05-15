@@ -26,7 +26,10 @@ export enum ButtonGroupOrientation {
   vertical = 'vertical',
 }
 
-export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+type ButtonGroupElement = HTMLDivElement | HTMLUListElement;
+
+export interface ButtonGroupProps
+  extends React.HTMLAttributes<ButtonGroupElement> {
   /**
    * @children required
    */
@@ -108,6 +111,9 @@ function buildButtonMargin(props: StyledButtonGroupProps): string {
   if (props.noSpace) {
     return '0';
   }
+  if (props.isList) {
+    return '0';
+  }
   if (props.orientation === ButtonGroupOrientation.horizontal) {
     return `0 ${props.theme.spaceScale.spacing02}`;
   }
@@ -160,6 +166,10 @@ function buildNoSpaceBorderColor(props: StyledButtonGroupProps): string {
 }
 
 function buildFlex(props: StyledButtonGroupProps): string {
+  if (props.isList) {
+    return 'none';
+  }
+
   return props.alignment === ButtonGroupAlignment.fill &&
     props.orientation === ButtonGroupOrientation.horizontal
     ? '1'
@@ -225,10 +235,13 @@ const buildDivChildStyles = (props: StyledButtonGroupProps) => css`
   margin: ${buildButtonMargin(props)};
   flex: ${buildFlex(props)};
   button {
+    // Split button
     &:nth-child(2) {
       width: 40px;
     }
-    width: ${props.alignment === ButtonGroupAlignment.fill ? '100%' : ''};
+    width: ${props.alignment === ButtonGroupAlignment.fill
+      ? 'calc(100% - 42px)'
+      : ''};
   }
 `;
 
@@ -262,6 +275,13 @@ const buildHorizontalMarginReset = (isList = false) => css`
         &:last-child:not(:only-child) > button {
           margin-right: 0;
         }
+        // SplitButton wrapper
+        &:first-child:not(:only-child) > div {
+          margin-left: 0;
+        }
+        &:last-child:not(:only-child) > div {
+          margin-right: 0;
+        }
       `
     : css`
         &:first-child:not(:only-child) {
@@ -280,6 +300,13 @@ const buildVerticalMarginReset = (isList = false) => css`
           margin-top: 0 !important;
         }
         &:last-child:not(:only-child) > button {
+          margin-bottom: 0 !important;
+        }
+        // SplitButton wrapper
+        &:first-child:not(:only-child) > div {
+          margin-top: 0 !important;
+        }
+        &:last-child:not(:only-child) > div {
           margin-bottom: 0 !important;
         }
       `
@@ -317,8 +344,15 @@ const StyledButtonGroup = styled.div<StyledButtonGroupProps>`
 
   ${props =>
     props.orientation === ButtonGroupOrientation.horizontal &&
+    !props.isList &&
     css`
       row-gap: ${props.theme.spaceScale.spacing03};
+    `}
+
+  ${props =>
+    props.isList &&
+    css`
+      gap: ${props.noSpace ? '0' : props.theme.spaceScale.spacing03};
     `}
 
   /* List mode */
@@ -332,6 +366,13 @@ const StyledButtonGroup = styled.div<StyledButtonGroupProps>`
   }
 
   > li {
+    ${props =>
+      props.alignment === ButtonGroupAlignment.fill &&
+      props.orientation === ButtonGroupOrientation.horizontal &&
+      css`
+        flex: 1;
+      `}
+
     ${props => buildOrientationMarginReset(props)}
 
     ${props =>
@@ -376,61 +417,69 @@ const StyledButtonItem = styled.li`
   padding: 0;
 `;
 
-export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
-  (props, ref) => {
-    const {
-      alignment,
-      children,
-      color,
-      isList = false,
-      isInverse,
-      orientation,
-      noSpace,
-      size,
-      testId,
-      textTransform,
-      variant,
-      role = 'group',
-      ...rest
-    } = props;
-    const context = { variant, color, size, textTransform, isInverse };
-    const theme = React.useContext(ThemeContext);
+export const ButtonGroup = React.forwardRef<
+  ButtonGroupElement,
+  ButtonGroupProps
+>((props, ref) => {
+  const {
+    alignment,
+    children,
+    color,
+    isList = false,
+    isInverse,
+    orientation,
+    noSpace,
+    size,
+    testId,
+    textTransform,
+    variant,
+    role = 'group',
+    ...rest
+  } = props;
+  const context = { variant, color, size, textTransform, isInverse };
+  const theme = React.useContext(ThemeContext);
 
-    const styledGroupProps = {
-      alignment: alignment || ButtonGroupAlignment.left,
-      color: color || ButtonColor.primary,
-      isList,
-      isInverse,
-      orientation: orientation || ButtonGroupOrientation.horizontal,
-      noSpace,
-      variant: variant || ButtonVariant.solid,
-      theme,
-      ref,
-      role,
-      'data-testid': testId,
-      ...rest,
-    };
+  const baseStyledGroupProps = {
+    alignment: alignment || ButtonGroupAlignment.left,
+    color: color || ButtonColor.primary,
+    isList,
+    isInverse,
+    orientation: orientation || ButtonGroupOrientation.horizontal,
+    noSpace,
+    variant: variant || ButtonVariant.solid,
+    theme,
+    role,
+    'data-testid': testId,
+    ...rest,
+  };
 
-    if (isList) {
-      const wrappedChildren = React.Children.map(children, child => (
-        <StyledButtonItem>{child}</StyledButtonItem>
-      ));
-
-      return (
-        <StyledButtonGroup {...styledGroupProps} as={'ul'} role="list">
-          <ButtonGroupContext.Provider value={context}>
-            {wrappedChildren}
-          </ButtonGroupContext.Provider>
-        </StyledButtonGroup>
-      );
-    }
+  if (isList) {
+    const wrappedChildren = React.Children.map(children, child => (
+      <StyledButtonItem>{child}</StyledButtonItem>
+    ));
 
     return (
-      <StyledButtonGroup {...styledGroupProps}>
+      <StyledButtonGroup
+        {...baseStyledGroupProps}
+        as="ul"
+        role="list"
+        ref={ref as React.ForwardedRef<HTMLDivElement>}
+      >
         <ButtonGroupContext.Provider value={context}>
-          {children}
+          {wrappedChildren}
         </ButtonGroupContext.Provider>
       </StyledButtonGroup>
     );
   }
-);
+
+  return (
+    <StyledButtonGroup
+      {...baseStyledGroupProps}
+      ref={ref as React.ForwardedRef<HTMLDivElement>}
+    >
+      <ButtonGroupContext.Provider value={context}>
+        {children}
+      </ButtonGroupContext.Provider>
+    </StyledButtonGroup>
+  );
+});
