@@ -16,6 +16,7 @@
     "feat-Fieldset-new-component",
     "feat-TreeView-GuideLines",
     "fix-Charts-acessibility-issues",
+    "fix-CodeSandbox-not-launching",
     "fix-DatePicker-announcement-issue",
     "fix-Drawer-drawerStyle-prop-issue",
     "fix-NavTabs-Tabs-update focus-management",

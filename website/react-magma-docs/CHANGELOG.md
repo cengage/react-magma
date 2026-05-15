@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.4-next.3
+
+### Patch Changes
+
+- e398406b6: fix(CodeSandbox): Fix CodeSandbox launch issue in documentation
+
 ## 5.3.4-next.2
 
 ### Patch Changes
