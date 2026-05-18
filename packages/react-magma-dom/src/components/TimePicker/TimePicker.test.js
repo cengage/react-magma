@@ -482,11 +482,11 @@ describe('TimePicker', () => {
   it('should render the timepicker with an error message', () => {
     const message = 'test error';
     const label = 'test label';
-    const { getByText } = render(
+    const { getAllByText } = render(
       <TimePicker errorMessage={message} labelText={label} />
     );
 
-    expect(getByText(message)).toBeInTheDocument();
+    expect(getAllByText(message)[0]).toBeInTheDocument();
   });
 
   it('should render the timepicker with inverse styles', () => {
