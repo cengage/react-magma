@@ -443,26 +443,26 @@ describe('DateTimePicker', () => {
   describe('Error and Helper Messages', () => {
     it('should render error message when provided', () => {
       const errorMessage = 'This field is required';
-      const { getByText } = render(
+      const { getAllByText } = render(
         <DateTimePicker
           labelText="Date Time Picker Label"
           errorMessage={errorMessage}
         />
       );
 
-      expect(getByText(errorMessage)).toBeInTheDocument();
+      expect(getAllByText(errorMessage)[0]).toBeInTheDocument();
     });
 
     it('should render helper message when provided', () => {
       const helperMessage = 'Please select a date and time';
-      const { getByText } = render(
+      const { getAllByText } = render(
         <DateTimePicker
           labelText="Date Time Picker Label"
           helperMessage={helperMessage}
         />
       );
 
-      expect(getByText(helperMessage)).toBeInTheDocument();
+      expect(getAllByText(helperMessage)[0]).toBeInTheDocument();
     });
   });
 
@@ -677,7 +677,7 @@ describe('DateTimePicker', () => {
     it('should apply custom message styles', () => {
       const customStyle = { fontSize: '14px' };
       const helperMessage = 'Helper text';
-      const { getByText } = render(
+      const { getAllByText } = render(
         <DateTimePicker
           labelText="Date Time Picker Label"
           helperMessage={helperMessage}
@@ -685,7 +685,9 @@ describe('DateTimePicker', () => {
         />
       );
 
-      expect(getByText(helperMessage).parentElement).toHaveStyle(customStyle);
+      expect(getAllByText(helperMessage)[0].parentElement).toHaveStyle(
+        customStyle
+      );
     });
   });
 

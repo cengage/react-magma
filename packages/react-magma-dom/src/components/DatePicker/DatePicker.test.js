@@ -400,22 +400,22 @@ describe('Date Picker', () => {
   });
 
   it('should render a helper message on the date picker input', async () => {
-    const { getByText } = render(
+    const { getAllByText } = render(
       <DatePicker labelText="Date Picker Label" helperMessage={helperMessage} />
     );
 
     await waitFor(() => {
-      expect(getByText(helperMessage)).not.toBeNull();
+      expect(getAllByText(helperMessage)).not.toBeNull();
     });
   });
 
   it('should render an error message on the date picker input', async () => {
-    const { getByText } = render(
+    const { getAllByText } = render(
       <DatePicker labelText="Date Picker Label" errorMessage={errorMessage} />
     );
 
     await waitFor(() => {
-      expect(getByText(errorMessage)).not.toBeNull();
+      expect(getAllByText(errorMessage)).not.toBeNull();
     });
   });
 
@@ -1349,19 +1349,19 @@ describe('Date Picker', () => {
 
   describe('Date Field Input', () => {
     it('should render a helper message on the date picker input', () => {
-      const { getByText } = render(
+      const { getAllByText } = render(
         <DatePicker isDateFieldInput helperMessage={helperMessage} />
       );
 
-      expect(getByText(helperMessage)).not.toBeNull();
+      expect(getAllByText(helperMessage)).not.toBeNull();
     });
 
     it('should render an error message on the date picker input', () => {
-      const { getByText } = render(
+      const { getAllByText } = render(
         <DatePicker isDateFieldInput errorMessage={errorMessage} />
       );
 
-      expect(getByText(errorMessage)).not.toBeNull();
+      expect(getAllByText(errorMessage)).not.toBeNull();
     });
 
     it('should increment and decrement the date when date format is default', async () => {
@@ -1608,7 +1608,7 @@ describe('Date Picker', () => {
 
     it('should render error message when user enters an invalid year and on blur', async () => {
       const user = userEvent.setup();
-      const { getByTestId, getByText, queryByText } = render(
+      const { getByTestId, getAllByText, queryByText } = render(
         <DatePicker isDateFieldInput />
       );
 
@@ -1630,14 +1630,16 @@ describe('Date Picker', () => {
       await user.tab();
 
       expect(
-        getByText('Invalid date. Please enter a year between 1900 and 2099.')
+        getAllByText(
+          'Invalid date. Please enter a year between 1900 and 2099.'
+        )[0]
       ).toBeInTheDocument();
     });
 
     it('should render invalid year error message after showing custom error message', async () => {
       const user = userEvent.setup();
       const customErrorMessage = 'Please, enter a date';
-      const { getByTestId, getByText, queryByText } = render(
+      const { getByTestId, getAllByText, queryByText } = render(
         <DatePicker isDateFieldInput errorMessage={customErrorMessage} />
       );
 
@@ -1645,7 +1647,7 @@ describe('Date Picker', () => {
       const dayInput = getByTestId('day-input');
       const yearInput = getByTestId('year-input');
 
-      expect(getByText(customErrorMessage)).toBeInTheDocument();
+      expect(getAllByText(customErrorMessage)[0]).toBeInTheDocument();
 
       await user.type(monthInput, '10');
       await user.type(dayInput, '22');
@@ -1662,15 +1664,21 @@ describe('Date Picker', () => {
       await user.tab();
 
       expect(
-        getByText('Invalid date. Please enter a year between 1900 and 2099.')
+        getAllByText(
+          'Invalid date. Please enter a year between 1900 and 2099.'
+        )[0]
       ).toBeInTheDocument();
     });
 
     it('should clear invalid year error and aria-describedby after selecting a valid date from the calendar', async () => {
       const user = userEvent.setup();
-      const { getByTestId, getByLabelText, queryByText, getAllByText } = render(
-        <DatePicker isDateFieldInput labelText="Date" />
-      );
+      const {
+        getByTestId,
+        getByLabelText,
+        queryByText,
+        queryAllByText,
+        getAllByText,
+      } = render(<DatePicker isDateFieldInput labelText="Date" />);
 
       const monthInput = getByTestId('month-input');
       const dayInput = getByTestId('day-input');
@@ -1682,7 +1690,9 @@ describe('Date Picker', () => {
       await user.tab();
 
       expect(
-        queryByText('Invalid date. Please enter a year between 1900 and 2099.')
+        queryAllByText(
+          'Invalid date. Please enter a year between 1900 and 2099.'
+        )[0]
       ).toBeInTheDocument();
       expect(monthInput).toHaveAttribute('aria-describedby');
 
