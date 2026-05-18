@@ -235,9 +235,17 @@ describe('Indeterminate Checkbox', () => {
 
   it('announces status changes triggered by direct user interaction', () => {
     const testId = 'click-id';
-    const { getByTestId, getByText } = render(
-      <IndeterminateCheckbox testId={testId} status="unchecked" />
-    );
+    function ControlledCheckbox() {
+      const [status, setStatus] = React.useState('unchecked');
+      return (
+        <IndeterminateCheckbox
+          testId={testId}
+          status={status}
+          onChange={e => setStatus(e.target.checked ? 'checked' : 'unchecked')}
+        />
+      );
+    }
+    const { getByTestId, getByText } = render(<ControlledCheckbox />);
 
     fireEvent.click(getByTestId(testId));
 
