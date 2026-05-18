@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.95
+
+### Patch Changes
+
+- 3c08bb2: fix(DatePicker): fix issue with error announcement v2
+
 ## 5.1.0-rc.94
 
 ### Minor Changes
