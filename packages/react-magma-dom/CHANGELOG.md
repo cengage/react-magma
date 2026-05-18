@@ -1,5 +1,15 @@
 ## 4.13.0
 
+## 4.14.0-next.4
+
+### Minor Changes
+
+- 473c756b1: feat(ButtonGroup): add `isList` prop for semantic list rendering.
+
+### Patch Changes
+
+- de758c5f3: fix(DatePicker): fix issue with error announcement v2
+
 ## 4.14.0-next.3
 
 ### Patch Changes

@@ -13,11 +13,13 @@
   },
   "changesets": [
     "chore-fixBuild",
+    "feat-ButtonGroup-add-isList-prop",
     "feat-Fieldset-new-component",
     "feat-TreeView-GuideLines",
     "fix-Charts-acessibility-issues",
     "fix-CodeSandbox-not-launching",
     "fix-DatePicker-announcement-issue",
+    "fix-DatePicker-error-announcement-v2",
     "fix-Drawer-drawerStyle-prop-issue",
     "fix-NavTabs-Tabs-update focus-management",
     "fix-Toast-not-closing",
