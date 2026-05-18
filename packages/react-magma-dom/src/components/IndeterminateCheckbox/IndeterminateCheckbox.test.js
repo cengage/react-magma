@@ -219,4 +219,36 @@ describe('Indeterminate Checkbox', () => {
       return expect(result).toHaveNoViolations();
     });
   });
+
+  it('does not announce status changes triggered only by prop updates (e.g. TreeView parent cascade)', () => {
+    const testId = 'cascade-id';
+    const { queryByText, rerender } = render(
+      <IndeterminateCheckbox testId={testId} status="unchecked" />
+    );
+
+    rerender(<IndeterminateCheckbox testId={testId} status="checked" />);
+    expect(queryByText('All subitems are selected')).not.toBeInTheDocument();
+
+    rerender(<IndeterminateCheckbox testId={testId} status="indeterminate" />);
+    expect(queryByText('Some subitems are selected')).not.toBeInTheDocument();
+  });
+
+  it('announces status changes triggered by direct user interaction', () => {
+    const testId = 'click-id';
+    function ControlledCheckbox() {
+      const [status, setStatus] = React.useState('unchecked');
+      return (
+        <IndeterminateCheckbox
+          testId={testId}
+          status={status}
+          onChange={e => setStatus(e.target.checked ? 'checked' : 'unchecked')}
+        />
+      );
+    }
+    const { getByTestId, getByText } = render(<ControlledCheckbox />);
+
+    fireEvent.click(getByTestId(testId));
+
+    expect(getByText('All subitems are selected')).toBeInTheDocument();
+  });
 });
