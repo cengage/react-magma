@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.94
+
+### Minor Changes
+
+- 7f133fd: feat(ButtonGroup): add `isList` prop for semantic list rendering.
+
 ## 5.1.0-rc.93
 
 ### Patch Changes
