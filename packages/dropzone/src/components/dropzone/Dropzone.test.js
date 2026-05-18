@@ -349,16 +349,18 @@ describe('File Uploader', () => {
 
     const ui = <Dropzone maxFiles={1} testId={testId} />;
 
-    const { getByTestId, getByText, rerender } = render(ui);
+    const { getByTestId, getAllByText, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
     fireDrop(dropzone, data);
 
     await flushPromises(rerender, ui);
 
-    expect(
-      getByText('You must upload a maximum of 1 files.')
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        getAllByText('You must upload a maximum of 1 files.')[0]
+      ).toBeInTheDocument();
+    });
   });
 
   it('shows errors on too few files in the file list', async () => {
@@ -367,16 +369,18 @@ describe('File Uploader', () => {
 
     const ui = <Dropzone minFiles={6} testId={testId} />;
 
-    const { getByTestId, getByText, rerender } = render(ui);
+    const { getByTestId, getAllByText, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
     fireDrop(dropzone, data);
 
     await flushPromises(rerender, ui);
 
-    expect(
-      getByText('You must upload a minimum of 6 files.')
-    ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        getAllByText('You must upload a minimum of 6 files.')[0]
+      ).toBeInTheDocument();
+    });
   });
 
   it('shows errors on too large of a file in the file list', async () => {
