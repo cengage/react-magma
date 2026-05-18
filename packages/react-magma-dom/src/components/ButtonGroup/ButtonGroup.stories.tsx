@@ -107,6 +107,11 @@ export default {
         type: 'boolean',
       },
     },
+    isList: {
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 } as Meta;
 
