@@ -357,4 +357,8 @@ export interface I18nInterface {
     warning: string;
     danger: string;
   };
+  expansionState: {
+    expanded: string;
+    collapsed: string;
+  };
 }

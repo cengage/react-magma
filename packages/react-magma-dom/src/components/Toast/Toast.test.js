@@ -239,4 +239,44 @@ describe('Toast', () => {
       magma.colors.success100
     );
   });
+
+  describe('strictMode', () => {
+    it('should auto-dismiss in StrictMode', async () => {
+      const onDismiss = jest.fn();
+
+      render(
+        <React.StrictMode>
+          <Toast onDismiss={onDismiss}>Toast Content</Toast>
+        </React.StrictMode>
+      );
+
+      act(() => {
+        jest.advanceTimersByTime(6000);
+      });
+
+      await waitFor(() => {
+        expect(onDismiss).toHaveBeenCalled();
+      });
+    });
+
+    it('should call onDismiss if the dismiss button is clicked', async () => {
+      const onDismiss = jest.fn();
+
+      const { container } = render(
+        <React.StrictMode>
+          <Toast onDismiss={onDismiss}>Toast Content</Toast>
+        </React.StrictMode>
+      );
+
+      const button = container.querySelector('button');
+
+      fireEvent.click(button);
+
+      await act(async () => {
+        jest.runOnlyPendingTimers();
+      });
+
+      expect(onDismiss).toHaveBeenCalled();
+    });
+  });
 });

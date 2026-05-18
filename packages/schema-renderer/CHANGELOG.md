@@ -1,5 +1,26 @@
 # @react-magma/schema-renderer
 
+## 15.0.0-next.1
+
+### Patch Changes
+
+- f73d54809: chore: update uuid to 11.1.1
+- Updated dependencies [b00af414c]
+- Updated dependencies [fb4c1f19a]
+- Updated dependencies [0cfe72a2e]
+- Updated dependencies [606fa2410]
+- Updated dependencies [f448af016]
+- Updated dependencies [637f28516]
+- Updated dependencies [f73d54809]
+  - react-magma-dom@4.14.0-next.1
+
+## 14.0.2-next.0
+
+### Patch Changes
+
+- Updated dependencies [72cef0432]
+  - react-magma-dom@4.13.1-next.0
+
 ## 14.0.1
 
 ### Patch Changes

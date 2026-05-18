@@ -124,6 +124,10 @@ export default {
       control: 'number',
       defaultValue: 0,
     },
+    hasGuideLines: {
+      control: 'boolean',
+      defaultValue: false,
+    },
   },
 } as Meta;
 
@@ -3237,7 +3241,7 @@ export const ComplexWithAdditionalContent = {
   },
 };
 
-export function TreeViewWithDifferentElements() {
+export function TreeViewWithDifferentElements(args: Partial<TreeViewProps>) {
   const parrotsInDropdown = () => {
     return (
       <div style={{ width: '100%', marginTop: '12px' }}>
@@ -3311,6 +3315,7 @@ export function TreeViewWithDifferentElements() {
 
   return (
     <TreeView
+      {...args}
       selectable={TreeViewSelectable.off}
       initialExpandedItems={[
         'parrots-AdditionalContent',
@@ -3735,7 +3740,7 @@ export const SelectChildrenOnly = {
                   />
                 </TreeItem>
               </TreeItem>
-              <TreeItem label="Images" itemId="images" icon={<FolderIcon />} o>
+              <TreeItem label="Images" itemId="images" icon={<FolderIcon />}>
                 <TreeItem
                   label="logo.png"
                   itemId="logo"
@@ -3773,5 +3778,206 @@ export const SelectChildrenOnly = {
   args: {
     selectable: TreeViewSelectable.single,
     selectParents: false,
+  },
+};
+
+/**
+ * Performance reproduction story.
+ *
+ * Generates a large multi-select tree (default LEVELS=4, CHILDREN=15 → ~54,240 nodes)
+ * to reproduce the lag that happens when a parent checkbox is clicked
+ * with selectable=multi, checkChildren=true, checkParents=true.
+ *
+ * Two amplifiers are intentionally enabled:
+ *  - large total node count (N) — makes processChildrenSelection's per-call
+ *    `new Map(items.map(...))` rebuild expensive (O(K·N) per click).
+ *  - top-level nodes are pre-expanded — so the re-render storm hits
+ *    every mounted TreeItem (each does `items.find()` → O(N²) per render).
+ *
+ * Repro steps:
+ *  1. Open the story.
+ *  2. Click the checkbox of any top-level parent — the UI will freeze.
+ *
+ * Reduce LEVELS / CHILDREN args if your machine cannot handle the default.
+ */
+export const LargeTreePerformanceIssue = {
+  render: (
+    args: Partial<TreeViewProps> & {
+      levels: number;
+      childrenCount: number;
+      preExpandTopLevel: boolean;
+    }
+  ) => {
+    const { levels, childrenCount, preExpandTopLevel, ...treeProps } = args;
+
+    const generateTree = React.useCallback(
+      (
+        levelsInner: number,
+        childrenCountInner: number,
+        prefix = 'item',
+        level = 0
+      ): React.ReactNode => {
+        if (level >= levelsInner) return null;
+
+        return Array.from({ length: childrenCountInner }).map((_, index) => {
+          const id = `${prefix}-${index}`;
+
+          return (
+            <TreeItem key={id} label={`Node ${id}`} itemId={id}>
+              {generateTree(levelsInner, childrenCountInner, id, level + 1)}
+            </TreeItem>
+          );
+        });
+      },
+      []
+    );
+
+    const treeChildren = React.useMemo(
+      () => generateTree(levels, childrenCount),
+      [generateTree, levels, childrenCount]
+    );
+
+    // Pre-expand top-level (and second-level) ids so the re-render storm of
+    // all mounted TreeItem instances fires on each checkbox click.
+    const initialExpandedItems = React.useMemo(() => {
+      if (!preExpandTopLevel) return [];
+      const ids: string[] = [];
+
+      for (let i = 0; i < childrenCount; i++) {
+        ids.push(`item-0-${i}`);
+      }
+
+      if (levels >= 2) {
+        for (let i = 0; i < childrenCount; i++) {
+          ids.push(`item-1-${i}`);
+        }
+      }
+
+      return ids;
+    }, [preExpandTopLevel, levels, childrenCount]);
+
+    const [selectedIds, setSelectedIds] = React.useState<string[]>([]);
+    const [indeterminateIds, setIndeterminateIds] = React.useState<string[]>(
+      []
+    );
+    const [lastClickMs, setLastClickMs] = React.useState<number | null>(null);
+    const clickStartRef = React.useRef<number | null>(null);
+
+    const onSelectedItemChange = React.useCallback(
+      (items: TreeItemSelectedInterface[]) => {
+        const nextSelected: string[] = [];
+        const nextIndeterminate: string[] = [];
+
+        for (const it of items) {
+          if (!it.itemId) continue;
+          if (it.checkedStatus === IndeterminateCheckboxStatus.checked) {
+            nextSelected.push(it.itemId);
+          } else if (
+            it.checkedStatus === IndeterminateCheckboxStatus.indeterminate
+          ) {
+            nextIndeterminate.push(it.itemId);
+          }
+        }
+
+        setSelectedIds(nextSelected);
+        setIndeterminateIds(nextIndeterminate);
+
+        if (clickStartRef.current != null) {
+          setLastClickMs(performance.now() - clickStartRef.current);
+          clickStartRef.current = null;
+        }
+      },
+      []
+    );
+
+    // Capture the timestamp at the moment of click on any checkbox,
+    // so we can show how long the resulting render/update took.
+    const onCaptureClick = React.useCallback((e: React.MouseEvent) => {
+      const target = e.target as HTMLElement;
+
+      if (target.closest('input[type="checkbox"]')) {
+        clickStartRef.current = performance.now();
+      }
+    }, []);
+
+    const totalNodes = React.useMemo(() => {
+      // Total = sum_{i=1..levels} childrenCount^i
+      let total = 0;
+      let pow = 1;
+
+      for (let i = 0; i < levels; i++) {
+        pow *= childrenCount;
+        total += pow;
+      }
+
+      return total;
+    }, [levels, childrenCount]);
+
+    return (
+      <Card isInverse={treeProps.isInverse}>
+        <CardBody>
+          <Paragraph visualStyle={TypographyVisualStyle.headingSmall}>
+            Total nodes: {totalNodes.toLocaleString()} (levels={levels},
+            children/level={childrenCount})
+          </Paragraph>
+          <Paragraph>
+            Expand a top-level node, then click its checkbox. With
+            selectable=multi + checkChildren + checkParents this should freeze
+            the UI noticeably.
+          </Paragraph>
+          <Paragraph>
+            Last click → onSelectedItemChange:&nbsp;
+            <strong>
+              {lastClickMs == null ? '—' : `${lastClickMs.toFixed(0)} ms`}
+            </strong>
+          </Paragraph>
+          <div onClickCapture={onCaptureClick}>
+            <TreeView
+              {...treeProps}
+              ariaLabel="Large performance test tree"
+              initialExpandedItems={initialExpandedItems}
+              onSelectedItemChange={onSelectedItemChange}
+            >
+              {treeChildren}
+            </TreeView>
+          </div>
+          <Spacer
+            size={magma.spaceScale.spacing04}
+            axis={SpacerAxis.vertical}
+          />
+          <Paragraph>
+            Selected: <strong>{selectedIds.length}</strong>
+            &nbsp;·&nbsp; Indeterminate:{' '}
+            <strong>{indeterminateIds.length}</strong>
+          </Paragraph>
+        </CardBody>
+      </Card>
+    );
+  },
+  argTypes: {
+    levels: {
+      control: { type: 'number', min: 1, max: 5, step: 1 },
+      description: 'Tree depth',
+    },
+    childrenCount: {
+      control: { type: 'number', min: 2, max: 80, step: 1 },
+      description: 'Number of children per level',
+    },
+    preExpandTopLevel: {
+      control: 'boolean',
+      description:
+        'Pre-expand top-level (and second-level) nodes so the re-render storm fires on click.',
+    },
+  },
+  args: {
+    selectable: TreeViewSelectable.multi,
+    checkParents: true,
+    checkChildren: true,
+    isTopLevelSelectable: true,
+    selectParents: true,
+    enableVirtualization: false,
+    preExpandTopLevel: false,
+    levels: 2,
+    childrenCount: 30,
   },
 };

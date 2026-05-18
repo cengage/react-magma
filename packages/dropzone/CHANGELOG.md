@@ -1,5 +1,25 @@
 # Change Log
 
+## 13.0.0-next.1
+
+### Patch Changes
+
+- Updated dependencies [b00af414c]
+- Updated dependencies [fb4c1f19a]
+- Updated dependencies [0cfe72a2e]
+- Updated dependencies [606fa2410]
+- Updated dependencies [f448af016]
+- Updated dependencies [637f28516]
+- Updated dependencies [f73d54809]
+  - react-magma-dom@4.14.0-next.1
+
+## 12.0.5-next.0
+
+### Patch Changes
+
+- Updated dependencies [72cef0432]
+  - react-magma-dom@4.13.1-next.0
+
 ## 12.0.4
 
 ### Patch Changes

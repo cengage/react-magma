@@ -1,5 +1,48 @@
 ## 4.13.0
 
+## 4.14.0-next.4
+
+### Minor Changes
+
+- 473c756b1: feat(ButtonGroup): add `isList` prop for semantic list rendering.
+
+### Patch Changes
+
+- de758c5f3: fix(DatePicker): fix issue with error announcement v2
+
+## 4.14.0-next.3
+
+### Patch Changes
+
+- edb6f7569: fix(TreeView): Stop All subitems are selected from being announced once per descendant when a parent is checked.
+
+## 4.14.0-next.2
+
+### Patch Changes
+
+- 2cfea354b: fix(Treeview, Checkbox): Improve performance.
+
+## 4.14.0-next.1
+
+### Minor Changes
+
+- b00af414c: feat(Fieldset): Create `Fieldset` component
+- fb4c1f19a: feat(TreeView): create `Guide Lines` for expanded items with `hasGuideLines` prop (`false` by default)
+
+### Patch Changes
+
+- 0cfe72a2e: fix(DatePicker): fix issue with error announcement
+- 606fa2410: fix(Drawer): Apply `drawerStyle` prop to Drawer panel
+- f448af016: fix(Toast): Fix: Toast not closing on click or timeout (Strict Mode issue with unmount)
+- 637f28516: fix(Treeview): Add an announcement for the expansion state of the TreeItem.
+- f73d54809: chore: update uuid to 11.1.1
+
+## 4.13.1-next.0
+
+### Patch Changes
+
+- 72cef0432: fix(Tabs & NavTabs): Add focus management for the first item during scrolling and navigation.
+
 ### Minor Changes
 
 - 3fa7c5753: feat: Add accessible chart toolbar with "Show as table", fullscreen, and "More options" buttons

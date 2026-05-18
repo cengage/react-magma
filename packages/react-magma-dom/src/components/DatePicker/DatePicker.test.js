@@ -368,19 +368,19 @@ describe('Date Picker', () => {
   });
 
   it('should render a helper message on the date picker input', () => {
-    const { getByText } = render(
+    const { getAllByText } = render(
       <DatePicker labelText="Date Picker Label" helperMessage={helperMessage} />
     );
 
-    expect(getByText(helperMessage)).not.toBeNull();
+    expect(getAllByText(helperMessage)[0]).toBeInTheDocument();
   });
 
   it('should render an error message on the date picker input', () => {
-    const { getByText } = render(
+    const { getAllByText } = render(
       <DatePicker labelText="Date Picker Label" errorMessage={errorMessage} />
     );
 
-    expect(getByText(errorMessage)).not.toBeNull();
+    expect(getAllByText(errorMessage)[0]).toBeInTheDocument();
   });
 
   it('should require the date picker input', () => {
@@ -1344,19 +1344,19 @@ describe('Date Picker', () => {
 
   describe('Date Field Input', () => {
     it('should render a helper message on the date picker input', () => {
-      const { getByText } = render(
+      const { getAllByText } = render(
         <DatePicker isDateFieldInput helperMessage={helperMessage} />
       );
 
-      expect(getByText(helperMessage)).not.toBeNull();
+      expect(getAllByText(helperMessage)[0]).toBeInTheDocument();
     });
 
     it('should render an error message on the date picker input', () => {
-      const { getByText } = render(
+      const { getAllByText } = render(
         <DatePicker isDateFieldInput errorMessage={errorMessage} />
       );
 
-      expect(getByText(errorMessage)).not.toBeNull();
+      expect(getAllByText(errorMessage)[0]).toBeInTheDocument();
     });
 
     it('should increment and decrement the date', () => {
@@ -1575,7 +1575,7 @@ describe('Date Picker', () => {
     });
 
     it('should render error message when user enters an invalid year and on blur', () => {
-      const { getByTestId, getByText, queryByText } = render(
+      const { getByTestId, getAllByText, queryByText } = render(
         <DatePicker isDateFieldInput />
       );
 
@@ -1597,13 +1597,15 @@ describe('Date Picker', () => {
       userEvent.tab();
 
       expect(
-        getByText('Invalid date. Please enter a year between 1900 and 2099.')
+        getAllByText(
+          'Invalid date. Please enter a year between 1900 and 2099.'
+        )[0]
       ).toBeInTheDocument();
     });
 
     it('should render invalid year error message after showing custom error message', () => {
       const customErrorMessage = 'Please, enter a date';
-      const { getByTestId, getByText, queryByText } = render(
+      const { getByTestId, getAllByText, queryByText } = render(
         <DatePicker isDateFieldInput errorMessage={customErrorMessage} />
       );
 
@@ -1611,7 +1613,7 @@ describe('Date Picker', () => {
       const dayInput = getByTestId('day-input');
       const yearInput = getByTestId('year-input');
 
-      expect(getByText(customErrorMessage)).toBeInTheDocument();
+      expect(getAllByText(customErrorMessage)[0]).toBeInTheDocument();
 
       userEvent.type(monthInput, '10');
       userEvent.type(dayInput, '22');
@@ -1628,8 +1630,46 @@ describe('Date Picker', () => {
       userEvent.tab();
 
       expect(
-        getByText('Invalid date. Please enter a year between 1900 and 2099.')
+        getAllByText(
+          'Invalid date. Please enter a year between 1900 and 2099.'
+        )[0]
       ).toBeInTheDocument();
+    });
+
+    it('should clear invalid year error and aria-describedby after selecting a valid date from the calendar', async () => {
+      const { getByTestId, getByLabelText, queryByText, getAllByText } = render(
+        <DatePicker isDateFieldInput labelText="Date" />
+      );
+
+      const monthInput = getByTestId('month-input');
+      const dayInput = getByTestId('day-input');
+      const yearInput = getByTestId('year-input');
+
+      userEvent.type(monthInput, '04');
+      userEvent.type(dayInput, '04');
+      userEvent.type(yearInput, '0004');
+      userEvent.tab();
+
+      expect(
+        getAllByText(
+          'Invalid date. Please enter a year between 1900 and 2099.'
+        )[0]
+      ).toBeInTheDocument();
+      expect(monthInput).toHaveAttribute('aria-describedby');
+
+      userEvent.click(getByLabelText('Toggle Calendar Widget'));
+
+      const today = new Date();
+      const dayButtons = getAllByText(today.getDate().toString());
+      userEvent.click(dayButtons[0]);
+
+      expect(
+        queryByText('Invalid date. Please enter a year between 1900 and 2099.')
+      ).not.toBeInTheDocument();
+
+      expect(monthInput).not.toHaveAttribute('aria-describedby');
+      expect(dayInput).not.toHaveAttribute('aria-describedby');
+      expect(yearInput).not.toHaveAttribute('aria-describedby');
     });
 
     describe('Focus behavior', () => {
