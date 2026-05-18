@@ -23,6 +23,7 @@
     "fix-Toast-not-closing",
     "fix-TreeView-and-Checkbox-performance",
     "fix-Treeview-VO-doesn't-announce-state",
+    "fix-treeview-repeated-subitem-announcement",
     "manually-sync-4.13.0",
     "snyk-stuff",
     "update-uuid"

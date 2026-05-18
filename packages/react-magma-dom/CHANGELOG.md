@@ -1,5 +1,11 @@
 ## 4.13.0
 
+## 4.14.0-next.3
+
+### Patch Changes
+
+- edb6f7569: fix(TreeView): Stop All subitems are selected from being announced once per descendant when a parent is checked.
+
 ## 4.14.0-next.2
 
 ### Patch Changes
