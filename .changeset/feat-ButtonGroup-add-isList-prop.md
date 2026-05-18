@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(ButtonGroup): add `isList` prop for semantic list rendering.
+feat(ButtonGroup): Add `isList` prop to render the group as a semantic list (`<ul>`/`<li>`) for assistive technologies.

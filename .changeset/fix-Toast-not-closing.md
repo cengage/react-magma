@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Toast): Fix: Toast not closing on click or timeout (Strict Mode issue with unmount)
+fix(Toast): Toast now closes on click or timeout when used under React Strict Mode (resolves an unmount handling issue).

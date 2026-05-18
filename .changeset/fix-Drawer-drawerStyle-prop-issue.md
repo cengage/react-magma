@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Drawer): Apply `drawerStyle` prop to Drawer panel
+fix(Drawer): Apply the `drawerStyle` prop to the Drawer panel element.

@@ -35,7 +35,7 @@
 
   Also exports standalone composable components (`ChartTableButton`, `ChartFullscreenButton`, `ChartMoreOptionsButton`, `ChartTableModal`, `ChartDataTable`, `ChartToolbar`) for adopters who need granular control outside of `CarbonChart`.
 
-## 14.0.0-next.1
+## 14.0.0-next.0
 
 ### Minor Changes
 
@@ -64,8 +64,6 @@
   - react-magma-dom@4.12.2-next.0
 
 ## 13.0.3
-
-## 13.0.3-next.0
 
 ### Patch Changes
 
@@ -218,8 +216,6 @@
 
 ## 11.0.0
 
-## 11.0.0-next.2
-
 ### Patch Changes
 
 - Updated dependencies [edbc5c0a2]
@@ -351,8 +347,6 @@
   - react-magma-dom@4.2.1-next.0
 
 ## 5.0.0
-
-## 5.0.0-next.0
 
 ### Patch Changes
 

@@ -4,4 +4,4 @@
 '@react-magma/schema-renderer': patch
 ---
 
-chore: update uuid to 11.1.1
+chore(deps): Update `uuid` to 11.1.1.

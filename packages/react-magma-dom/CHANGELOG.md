@@ -1,5 +1,3 @@
-## 4.13.0
-
 ## 4.14.0-next.4
 
 ### Minor Changes
@@ -37,7 +35,7 @@
 - 637f28516: fix(Treeview): Add an announcement for the expansion state of the TreeItem.
 - f73d54809: chore: update uuid to 11.1.1
 
-## 4.13.1-next.0
+## 4.13.0
 
 ### Patch Changes
 

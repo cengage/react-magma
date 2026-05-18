@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(TreeView): Stop All subitems are selected from being announced once per descendant when a parent is checked.
+fix(TreeView): Announce "All subitems are selected" only once when a parent is checked, instead of once per descendant.

@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(TreeView): create `Guide Lines` for expanded items with `hasGuideLines` prop (`false` by default)
+feat(TreeView): Add `hasGuideLines` prop to render vertical guide lines on expanded items (defaults to `false`).

@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Treeview, Checkbox): Improve performance.
+fix(TreeView, Checkbox): Improve render performance, especially for deeply nested trees.

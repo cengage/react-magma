@@ -34,7 +34,7 @@
 
 - a8ae4ab55: chore(deps): move runtime-only dependencies out of peerDependencies and into package dependencies where needed
 
-## 15.0.0-next.1
+## 15.0.0-next.0
 
 ### Patch Changes
 
@@ -44,14 +44,12 @@
 - Updated dependencies [cab09c2ad]
   - react-magma-dom@4.13.0-next.2
 
-## 14.0.2-next.0
+## 14.0.1-next.1
 
 ### Patch Changes
 
 - Updated dependencies [8e280adf5]
   - react-magma-dom@4.12.2-next.0
-
-## 14.0.1
 
 ## 14.0.1-next.0
 
@@ -62,8 +60,6 @@
   - react-magma-dom@4.12.1-next.0
 
 ## 14.0.0
-
-## 14.0.0-next.1
 
 ### Patch Changes
 
@@ -83,8 +79,6 @@
 
 ## 13.0.0
 
-## 13.0.0-next.1
-
 ### Patch Changes
 
 - Updated dependencies [2e6c1e441]
@@ -99,16 +93,12 @@
 
 ## 12.0.1
 
-## 12.0.1-next.0
-
 ### Patch Changes
 
 - Updated dependencies [10d3a7285]
   - react-magma-dom@4.10.1-next.0
 
 ## 12.0.0
-
-## 12.0.0-next.2
 
 ### Patch Changes
 
@@ -131,8 +121,6 @@
   - react-magma-dom@4.9.1-next.0
 
 ## 11.0.0
-
-## 11.0.0-next.1
 
 ### Patch Changes
 
