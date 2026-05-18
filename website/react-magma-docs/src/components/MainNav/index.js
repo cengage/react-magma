@@ -14,6 +14,25 @@ import {
 } from 'react-magma-dom';
 import { LaunchIcon } from 'react-magma-icons';
 
+const pkg = require('../../../package.json');
+
+const rmVersion = (pkg.dependencies['react-magma-dom'] || '').replace(
+  /^[\^~]/,
+  ''
+);
+
+const VersionTag = styled.span`
+  background: ${magma.colors.neutral300};
+  border-radius: ${magma.borderRadius || '4px'};
+  color: ${magma.colors.neutral700};
+  font-size: ${magma.typeScale.size01.fontSize};
+  font-weight: 500;
+  line-height: 1;
+  margin-left: ${magma.spaceScale.spacing03};
+  padding: 2px 6px;
+  vertical-align: middle;
+`;
+
 const StyledWrapper = styled.div`
   margin-top: 8px;
   *:focus {
@@ -339,12 +358,15 @@ export const MainNav = ({ ...props }) => {
                 </StyledLink>
 
                 <StyledHyperlink
-                  aria-label="View project on GitHub"
+                  aria-label={`View project on GitHub (version ${rmVersion})`}
                   to="https://github.com/cengage/react-magma"
                   opensInNewTab
                 >
                   <Heading2>
-                    GitHub
+                    <span>
+                      GitHub
+                      {rmVersion && <VersionTag>v{rmVersion}</VersionTag>}
+                    </span>
                     <LaunchIcon size={magma.iconSizes.small} />
                   </Heading2>
                 </StyledHyperlink>

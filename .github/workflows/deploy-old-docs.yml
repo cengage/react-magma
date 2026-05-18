@@ -1,0 +1,191 @@
+name: Build and Deploy Old Docs (unified)
+# Replaces deploy-v2-docs.yml, deploy-v3-docs.yml, and publish-old.yml.
+# Triggered by pushing to chore/deploy-old-docs. Each matrix entry checks
+# out a release tag, overlays the CodeSandbox API fix from patches/codesandbox/,
+# builds the docs, and redeploys to the same Netlify version alias.
+#
+# All matrix values are static literals defined below; no untrusted external
+# input is interpolated into shell commands.
+
+on:
+  push:
+    branches:
+      - chore/deploy-old-docs
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - version: '2.6.1'
+            actionsPatch: actions-v2
+            nodeVersion: '18'
+            needsLegacyOpenssl: true
+            needsStyledImport: true
+          - version: '3.11.0'
+            actionsPatch: actions-emotion-core
+            nodeVersion: '18'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.0.0'
+            actionsPatch: actions-emotion-core
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.1.0'
+            actionsPatch: actions-emotion-core
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.1.1'
+            actionsPatch: actions-emotion-core
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.2.0'
+            actionsPatch: actions-emotion-core
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.3.0'
+            actionsPatch: actions-emotion-core
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: true
+          - version: '4.4.0'
+            actionsPatch: actions-emotion-core
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.5.0'
+            actionsPatch: actions-emotion-react
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.6.0'
+            actionsPatch: actions-emotion-react
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.7.0'
+            actionsPatch: actions-emotion-react
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.8.0'
+            actionsPatch: actions-emotion-react
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.9.0'
+            actionsPatch: actions-emotion-react
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.9.1'
+            actionsPatch: actions-emotion-react
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.10.0'
+            actionsPatch: actions-emotion-react
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.10.1'
+            actionsPatch: actions-emotion-react
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.11.0'
+            actionsPatch: actions-emotion-react
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.12.0'
+            actionsPatch: actions-emotion-react
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.12.1'
+            actionsPatch: actions-emotion-react
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+          - version: '4.13.0'
+            actionsPatch: actions-emotion-react
+            nodeVersion: '22'
+            needsLegacyOpenssl: false
+            needsStyledImport: false
+
+    env:
+      RM_VERSION: ${{ matrix.version }}
+      RM_ACTIONS_PATCH: ${{ matrix.actionsPatch }}
+
+    steps:
+      - name: Checkout release tag
+        uses: actions/checkout@v4
+        with:
+          ref: react-magma-dom@${{ matrix.version }}
+
+      - name: Checkout deploy branch (for patches)
+        uses: actions/checkout@v4
+        with:
+          ref: chore/deploy-old-docs
+          path: ._patches
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.nodeVersion }}
+          check-latest: true
+
+      - name: Apply CodeSandbox source patch
+        run: |
+          cp "._patches/patches/codesandbox/${RM_ACTIONS_PATCH}.tsx" \
+             website/react-magma-docs/src/components/CodeBlock/actions.tsx
+          node ._patches/patches/codesandbox/update-package.js
+
+      - name: Disable engine-strict check
+        run: echo "engine-strict=false" > .npmrc
+
+      - name: Install
+        run: npm install --legacy-peer-deps
+
+      - name: Add styled import statement
+        if: matrix.needsStyledImport
+        run: |
+          echo "import _styled from '@emotion/styled';" \
+            | cat - packages/react-magma-dom/dist/esm/index.js > temp \
+            && mv temp packages/react-magma-dom/dist/esm/index.js
+
+      - name: Build Docs (legacy openssl)
+        if: matrix.needsLegacyOpenssl
+        env:
+          PATH_PREFIX: /version/${{ matrix.version }}
+          NODE_OPTIONS: --openssl-legacy-provider
+        run: npm run build:docs
+
+      - name: Build Docs
+        if: '!matrix.needsLegacyOpenssl'
+        env:
+          PATH_PREFIX: /version/${{ matrix.version }}
+        run: npm run build:docs
+
+      - name: Deploy Docs to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './website/react-magma-docs/public'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Deploy from GitHub Actions'
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+          alias: ${{ matrix.version }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
