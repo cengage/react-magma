@@ -2,6 +2,12 @@
 
 ## 13.1.0
 
+### Patch Changes
+
+- 1aef43f36: fix(charts): Show the tooltip on the focused data point when tabbing through chart dots.
+
+## 13.1.0
+
 ### Minor Changes
 
 - 3fa7c5753: feat: Add accessible chart toolbar with "Show as table", fullscreen, and "More options" buttons

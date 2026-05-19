@@ -2,6 +2,8 @@
 
 ## 12.0.4
 
+## 12.0.4
+
 ### Patch Changes
 
 - 3fa7c5753: Chore: update react-magma-icons version

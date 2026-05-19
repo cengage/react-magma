@@ -1,5 +1,24 @@
 ## 4.13.0
 
+## 4.14.0
+
+### Minor Changes
+
+- 1aef43f36: feat(ButtonGroup): Add `isList` prop to render the group as a semantic list (`<ul>`/`<li>`) for assistive technologies.
+- 1aef43f36: feat(Fieldset): Add new `Fieldset` component for grouping related form controls under a shared legend.
+- 1aef43f36: feat(TreeView): Add `hasGuideLines` prop to render vertical guide lines on expanded items (defaults to `false`).
+
+### Patch Changes
+
+- 1aef43f36: fix(DatePicker): Reliably announce error messages to screen readers when an invalid date is entered.
+- 1aef43f36: fix(Drawer): Apply the `drawerStyle` prop to the Drawer panel element.
+- 1aef43f36: fix(Tabs, NavTabs): Improve focus management for the first tab during scrolling and keyboard navigation.
+- 1aef43f36: fix(Toast): Toast now closes on click or timeout when used under React Strict Mode (resolves an unmount handling issue).
+- 1aef43f36: fix(TreeView): Announce the expand/collapse state of `TreeItem` to screen readers.
+- 1aef43f36: fix(TreeView, Checkbox): Improve render performance, especially for deeply nested trees.
+- 1aef43f36: fix(TreeView): Announce "All subitems are selected" only once when a parent is checked, instead of once per descendant.
+- 1aef43f36: chore(deps): Update `uuid` to 11.1.1.
+
 ### Minor Changes
 
 - 3fa7c5753: feat: Add accessible chart toolbar with "Show as table", fullscreen, and "More options" buttons
