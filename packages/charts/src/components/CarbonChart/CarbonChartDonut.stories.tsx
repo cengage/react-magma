@@ -25,7 +25,9 @@ export default {
 
 const Template: StoryFn<CarbonChartProps> = args => (
   <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
-    <CarbonChart {...args}>Sample text</CarbonChart>
+    <CarbonChart {...args} chartToolbar={{}}>
+      Sample text
+    </CarbonChart>
   </Card>
 );
 

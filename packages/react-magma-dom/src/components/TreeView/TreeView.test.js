@@ -5357,4 +5357,112 @@ describe('TreeView', () => {
       });
     });
   });
+
+  describe('hasGuideLines', () => {
+    it('should not render guide lines by default', () => {
+      const { container } = render(
+        <TreeView testId={testId} initialExpandedItems={['item1']}>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(
+        container.querySelector('[data-testid$="-guideline"]')
+      ).not.toBeInTheDocument();
+    });
+
+    it('should render guide line when hasGuideLines is true and item is expanded', () => {
+      const { container } = render(
+        <TreeView
+          testId={testId}
+          hasGuideLines
+          initialExpandedItems={['item1']}
+        >
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(
+        container.querySelector('[data-testid="item1-guideline"]')
+      ).toBeInTheDocument();
+    });
+
+    it('should not render guide line when hasGuideLines is true but item is collapsed', () => {
+      const { container } = render(
+        <TreeView testId={testId} hasGuideLines>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(
+        container.querySelector('[data-testid$="-guideline"]')
+      ).not.toBeInTheDocument();
+    });
+
+    it('should show guide line after expanding and hide after collapsing', async () => {
+      const { container, getByTestId } = render(
+        <TreeView testId={testId} hasGuideLines>
+          <TreeItem label="Node 1" itemId="item1" testId="item1">
+            <TreeItem
+              label="Child 1"
+              itemId="item-child1"
+              testId="item-child1"
+            />
+          </TreeItem>
+        </TreeView>
+      );
+
+      expect(
+        container.querySelector('[data-testid="item1-guideline"]')
+      ).not.toBeInTheDocument();
+
+      // Expand
+      await act(async () => {
+        await userEvent.click(getByTestId('item1-expand'));
+      });
+
+      expect(
+        container.querySelector('[data-testid="item1-guideline"]')
+      ).toBeInTheDocument();
+
+      // Collapse
+      await act(async () => {
+        await userEvent.click(getByTestId('item1-expand'));
+      });
+
+      expect(
+        container.querySelector('[data-testid="item1-guideline"]')
+      ).not.toBeInTheDocument();
+    });
+
+    it('should not render guide line on leaf nodes', () => {
+      const { container } = render(
+        <TreeView testId={testId} hasGuideLines>
+          <TreeItem label="Leaf" itemId="leaf" testId="leaf" />
+        </TreeView>
+      );
+
+      expect(
+        container.querySelector('[data-testid$="-divider"]')
+      ).not.toBeInTheDocument();
+    });
+  });
 });

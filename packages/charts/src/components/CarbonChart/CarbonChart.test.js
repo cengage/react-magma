@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { act, render, screen, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { ThemeContext, magma, DropdownMenuItem } from 'react-magma-dom';
 
 import { CarbonChart, CarbonChartType } from '.';
@@ -588,6 +589,32 @@ describe('CarbonChart', () => {
         }
       );
     });
+
+    it('should move focus back after closing the More options dropdown and chart toolbar', () => {
+      const testId = 'modal-footer-border-test';
+      const { getByTestId, getByText } = render(
+        <ThemeContext.Provider value={magma}>
+          <CarbonChart
+            testId={testId}
+            dataSet={dataSet}
+            options={chartOptions}
+            type={CarbonChartType.bar}
+            isInverse={false}
+            chartToolbar={{}}
+          />
+        </ThemeContext.Provider>
+      );
+
+      const moreOptionsButton = getByTestId('chart-more-options-button');
+      userEvent.click(moreOptionsButton);
+
+      expect(getByText('Download as CSV')).toBeVisible();
+      expect(getByText('Download as PNG')).toBeVisible();
+      expect(getByText('Download as JPG')).toBeVisible();
+
+      userEvent.keyboard('{esc}');
+      expect(moreOptionsButton).toHaveFocus();
+    });
   });
 
   describe('Modal Focus Management', () => {
@@ -893,6 +920,143 @@ describe('CarbonChart', () => {
       expect(
         screen.getByRole('columnheader', { name: 'Count' })
       ).toBeInTheDocument();
+    });
+  });
+
+  describe('dot keyboard accessibility', () => {
+    let rafCallbacks;
+
+    beforeEach(() => {
+      rafCallbacks = [];
+      jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => {
+        rafCallbacks.push(cb);
+        return rafCallbacks.length - 1;
+      });
+    });
+
+    afterEach(() => {
+      window.requestAnimationFrame.mockRestore();
+      rafCallbacks = [];
+    });
+
+    function renderChart() {
+      const { getByTestId } = render(
+        <CarbonChart
+          testId="dot-tab-test"
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.scatter}
+        />
+      );
+      return getByTestId('dot-tab-test');
+    }
+
+    function addDot(wrapper) {
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      const dot = document.createElementNS(
+        'http://www.w3.org/2000/svg',
+        'circle'
+      );
+      dot.classList.add('dot');
+      svg.appendChild(dot);
+      wrapper.appendChild(svg);
+      return dot;
+    }
+
+    describe('tabbing', () => {
+      it('should stamp tabindex="0" on circle.dot elements so they are reachable by Tab', () => {
+        const wrapper = renderChart();
+        const dot = addDot(wrapper);
+
+        // The last captured RAF is the dots-stamping callback (no ariaLabel provided)
+        act(() => rafCallbacks[rafCallbacks.length - 1](0));
+
+        expect(dot).toHaveAttribute('tabindex', '0');
+      });
+
+      it('should not overwrite an existing tabindex on circle.dot', () => {
+        const wrapper = renderChart();
+        const dot = addDot(wrapper);
+        dot.setAttribute('tabindex', '-1');
+
+        act(() => rafCallbacks[rafCallbacks.length - 1](0));
+
+        expect(dot).toHaveAttribute('tabindex', '-1');
+      });
+    });
+
+    describe('focus on dot content', () => {
+      it('should set opacity to 1 when a dot receives focus', () => {
+        const wrapper = renderChart();
+        const dot = addDot(wrapper);
+
+        fireEvent.focusIn(dot);
+
+        expect(dot.style.opacity).toBe('1');
+      });
+
+      it('should dispatch mouseover on dot focusin to reveal tooltip data', () => {
+        const wrapper = renderChart();
+        const dot = addDot(wrapper);
+
+        const mouseoverSpy = jest.fn();
+        dot.addEventListener('mouseover', mouseoverSpy);
+
+        fireEvent.focusIn(dot);
+
+        expect(mouseoverSpy).toHaveBeenCalledTimes(1);
+      });
+
+      it('should dispatch mousemove on dot focusin', () => {
+        const wrapper = renderChart();
+        const dot = addDot(wrapper);
+
+        const mousemoveSpy = jest.fn();
+        dot.addEventListener('mousemove', mousemoveSpy);
+
+        fireEvent.focusIn(dot);
+
+        expect(mousemoveSpy).toHaveBeenCalledTimes(1);
+      });
+
+      it('should not change opacity for non-dot circle elements on focusin', () => {
+        const wrapper = renderChart();
+        const nonDot = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'circle'
+        );
+        wrapper.appendChild(nonDot);
+
+        fireEvent.focusIn(nonDot);
+
+        expect(nonDot.style.opacity).toBe('');
+      });
+    });
+
+    describe('data visibility', () => {
+      it('should reset dot opacity when dot loses focus', () => {
+        const wrapper = renderChart();
+        const dot = addDot(wrapper);
+
+        fireEvent.focusIn(dot);
+        expect(dot.style.opacity).toBe('1');
+
+        fireEvent.focusOut(dot);
+        expect(dot.style.opacity).toBe('');
+      });
+
+      it('should dispatch mouseout on dot focusout to hide tooltip', () => {
+        const wrapper = renderChart();
+        const dot = addDot(wrapper);
+
+        const mouseoutSpy = jest.fn();
+        dot.addEventListener('mouseout', mouseoutSpy);
+
+        fireEvent.focusIn(dot);
+        fireEvent.focusOut(dot);
+
+        expect(mouseoutSpy).toHaveBeenCalledTimes(1);
+      });
     });
   });
 });

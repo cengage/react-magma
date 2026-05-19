@@ -96,7 +96,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   } = props;
 
   // Consume split contexts for reduced re-render scope
-  const { items, selectedItems, selectItem } = React.useContext(
+  const { itemsById, selectedItems, selectItem } = React.useContext(
     TreeViewSelectionContext
   );
 
@@ -112,9 +112,11 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     selectParents = true,
   } = React.useContext(TreeViewConfigContext);
 
+  // O(1) lookup via the shared id->item Map; replaces an O(N) items.find()
+  // that turned re-render storms into O(N^2).
   const treeViewItemData = React.useMemo(() => {
-    return items.find(item => item.itemId === itemId);
-  }, [itemId, items]);
+    return itemsById.get(itemId);
+  }, [itemId, itemsById]);
 
   const isDisabled = treeViewItemData?.isDisabled;
 
@@ -167,47 +169,69 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     forceUpdate();
   }, [forceUpdate, isDisabled, registerTreeItem, treeItemRefArray]);
 
-  const checkboxChangeHandler = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    handleClick(event, itemId);
-  };
+  // Stable handlers so memoised checkboxProps (and React.memo on the
+  // Checkbox / IndeterminateCheckbox children) can actually skip work.
+  const handleClick = React.useCallback(
+    (
+      event: React.SyntheticEvent | React.ChangeEvent,
+      clickedItemId: string
+    ) => {
+      const isChecked = checkedStatus === IndeterminateCheckboxStatus.checked;
 
-  const handleClick = (event, itemId) => {
-    const isChecked = checkedStatus === IndeterminateCheckboxStatus.checked;
+      if (selectable === TreeViewSelectable.single && isChecked) {
+        return;
+      }
 
-    if (selectable === TreeViewSelectable.single && isChecked) {
-      return;
-    }
+      // If TreeViewSelectable.multi and top-level item is not selectable,
+      // skip selection logic.
+      if (
+        selectable === TreeViewSelectable.multi &&
+        topLevel &&
+        !isTopLevelSelectable
+      ) {
+        return;
+      }
 
-    //If TreeViewSelectable.multi and top-level item is not selectable, skip selection logic
-    if (
-      selectable === TreeViewSelectable.multi &&
-      topLevel &&
-      !isTopLevelSelectable
-    ) {
-      return;
-    }
+      // If selectParents is false and this is a parent item (has children),
+      // skip selection logic and onClick.
+      if (
+        selectable === TreeViewSelectable.single &&
+        !selectParents &&
+        hasOwnTreeItems
+      ) {
+        return;
+      }
 
-    // If selectParents is false and this is a parent item (has children), skip selection logic and onClick
-    if (
-      selectable === TreeViewSelectable.single &&
-      !selectParents &&
-      hasOwnTreeItems
-    ) {
-      return;
-    }
+      if (selectable !== TreeViewSelectable.off) {
+        selectItem({
+          itemId: clickedItemId,
+          checkedStatus: isChecked
+            ? IndeterminateCheckboxStatus.unchecked
+            : IndeterminateCheckboxStatus.checked,
+        });
+        if (typeof onClick === 'function') {
+          onClick();
+        }
+      }
+    },
+    [
+      checkedStatus,
+      selectable,
+      topLevel,
+      isTopLevelSelectable,
+      selectParents,
+      hasOwnTreeItems,
+      selectItem,
+      onClick,
+    ]
+  );
 
-    if (selectable !== TreeViewSelectable.off) {
-      selectItem({
-        itemId,
-        checkedStatus: isChecked
-          ? IndeterminateCheckboxStatus.unchecked
-          : IndeterminateCheckboxStatus.checked,
-      });
-      onClick && typeof onClick === 'function' && onClick();
-    }
-  };
+  const checkboxChangeHandler = React.useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>): void => {
+      handleClick(event, itemId);
+    },
+    [handleClick, itemId]
+  );
 
   function getFocusIndex(filteredArrayCurrent) {
     return (

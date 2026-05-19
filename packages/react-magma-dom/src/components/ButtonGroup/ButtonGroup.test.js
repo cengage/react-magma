@@ -559,4 +559,83 @@ describe('ButtonGroup', () => {
       expect(svg).toHaveAttribute('width', magma.iconSizes.xSmall.toString());
     });
   });
+
+  describe('isList', () => {
+    it('renders as a div by default (no isList)', () => {
+      const { getByTestId } = render(
+        <ButtonGroup testId={testId}>
+          <Button>1</Button>
+          <Button>2</Button>
+        </ButtonGroup>
+      );
+
+      const el = getByTestId(testId);
+      expect(el.tagName).toBe('DIV');
+      expect(el).not.toHaveAttribute('role', 'list');
+      expect(el.querySelector('li')).not.toBeInTheDocument();
+    });
+
+    it('renders as a ul with li children when isList is set', () => {
+      const { getByTestId } = render(
+        <ButtonGroup testId={testId} isList>
+          <Button>1</Button>
+          <Button>2</Button>
+        </ButtonGroup>
+      );
+
+      const el = getByTestId(testId);
+      expect(el.tagName).toBe('UL');
+      expect(el).toHaveAttribute('role', 'list');
+
+      const listItems = el.querySelectorAll(':scope > li');
+      expect(listItems).toHaveLength(2);
+    });
+
+    it('renders buttons inside li items when isList is set', () => {
+      const { getByTestId } = render(
+        <ButtonGroup testId={testId} isList>
+          <Button testId={`${testId}-1`}>1</Button>
+          <Button testId={`${testId}-2`}>2</Button>
+        </ButtonGroup>
+      );
+
+      const btn1 = getByTestId(`${testId}-1`);
+      const btn2 = getByTestId(`${testId}-2`);
+
+      expect(btn1.closest('li')).toBeInTheDocument();
+      expect(btn2.closest('li')).toBeInTheDocument();
+    });
+
+    it('does not violate accessibility standards with isList', () => {
+      const { container } = render(
+        <ButtonGroup isList>
+          <Button>1</Button>
+          <Button>2</Button>
+          <Button>3</Button>
+        </ButtonGroup>
+      );
+
+      return axe(container.innerHTML).then(result => {
+        return expect(result).toHaveNoViolations();
+      });
+    });
+
+    it('Snapshot: isList with noSpace horizontal', () => {
+      const { container } = render(
+        <ButtonGroup
+          testId={testId}
+          isList
+          noSpace
+          orientation={ButtonGroupOrientation.horizontal}
+          alignment={ButtonGroupAlignment.left}
+        >
+          <Button testId={`${testId}-1`}>1</Button>
+          <Button testId={`${testId}-2`}>2</Button>
+          <Button testId={`${testId}-3`}>3</Button>
+        </ButtonGroup>
+      );
+
+      expect(container).toMatchSnapshot();
+    });
+  });
 });

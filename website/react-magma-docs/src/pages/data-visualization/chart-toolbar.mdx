@@ -297,26 +297,4 @@ For adopters who need more granular control outside of `CarbonChart`, the follow
 - `ChartDataTable` — Renders chart data in a Magma `Table` with auto-derived columns
 - `ChartToolbar` — Flex layout wrapper with heading and action slot
 
-## Accessibility
-
-The toolbar addresses the following WCAG 2.2 guidelines:
-
-- **1.3.1 Info and Relationships (Level A)** — Chart title uses a semantic `<h2>` instead of `<p role="heading">`. Modal has a semantic heading. Table uses `<th>` elements.
-- **2.4.3 Focus Order (Level A)** — Focus moves into the modal when it opens, and returns to the trigger button when it closes.
-- **2.4.6 Headings and Labels (Level AA)** — "Show as table" button uses the chart title as its accessible label. Button labels are descriptive and unique.
-- **4.1.2 Name, Role, Value (Level A)** — Correct `aria-haspopup="dialog"` on the table button. No `aria-haspopup` on the fullscreen button. `aria-expanded` reflects modal state.
-
-### Issues Resolved
-
-| Issue                                                                 | Status |
-| --------------------------------------------------------------------- | ------ |
-| Focus does not move to close button when table dialog opens           | Fixed  |
-| Incorrect `aria-haspopup` on "Show as Table" and "Fullscreen" buttons | Fixed  |
-| Chart title uses `<p role="heading">` instead of `<h2>`               | Fixed  |
-| "Show as table" label is not descriptive enough                       | Fixed  |
-| Table dialog missing a semantic heading                               | Fixed  |
-| Table heading not semantic (`<div>` instead of `<th>`)                | Fixed  |
-| Screen reader announces extra content on button focus                 | Fixed  |
-| Screen reader silent after activating "Show as table"                 | Fixed  |
-
 </PageContent>

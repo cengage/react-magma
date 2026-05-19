@@ -284,6 +284,32 @@ export function Example() {
 }
 ```
 
+## List
+
+The `isList` prop allows you to render the `ButtonGroup` as a `<ul>` with `<li>` items. By default, `ButtonGroup` renders as a `<div>`.
+
+```tsx
+import React from 'react';
+
+import { ButtonGroup, Button } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <ButtonGroup>
+        <Button>Default 1</Button>
+        <Button>Default 2</Button>
+      </ButtonGroup>
+      <br />
+      <ButtonGroup isList>
+        <Button>List 1</Button>
+        <Button>List 2</Button>
+      </ButtonGroup>
+    </>
+  );
+}
+```
+
 ## ButtonGroup Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**

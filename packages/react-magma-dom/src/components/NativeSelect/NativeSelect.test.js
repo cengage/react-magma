@@ -89,7 +89,7 @@ describe('NativeSelect', () => {
 
   it('should render an error state', () => {
     const errorMessage = 'This is an error';
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getAllByText } = render(
       <NativeSelect errorMessage={errorMessage} testId={testId} />
     );
 
@@ -98,7 +98,7 @@ describe('NativeSelect', () => {
       `1px solid ${magma.colors.danger}`
     );
 
-    expect(getByText(errorMessage)).toBeInTheDocument();
+    expect(getAllByText(errorMessage)[0]).toBeInTheDocument();
   });
 
   it('should set aria-invalid on the select when in error state', () => {
@@ -146,7 +146,7 @@ describe('NativeSelect', () => {
 
   it('should render an inverse error state', () => {
     const errorMessage = 'This is an error';
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getAllByText } = render(
       <NativeSelect errorMessage={errorMessage} isInverse testId={testId} />
     );
 
@@ -155,7 +155,7 @@ describe('NativeSelect', () => {
       `1px solid ${magma.colors.danger300}`
     );
 
-    expect(getByText(errorMessage)).toBeInTheDocument();
+    expect(getAllByText(errorMessage)[0]).toBeInTheDocument();
   });
 
   it('should have cycling navigation through options with arrow keys', async () => {

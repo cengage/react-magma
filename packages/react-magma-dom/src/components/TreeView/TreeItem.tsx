@@ -27,17 +27,21 @@ import {
   getTreeItemWrapperCursor,
   TreeNodeType,
 } from './utils';
+import { I18nContext } from '../..';
+import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { useFocusLock } from '../../hooks/useFocusLock';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { mergeRefs } from '../../utils';
+import { Announce } from '../Announce';
 import { Checkbox } from '../Checkbox';
 import {
   IndeterminateCheckbox,
   IndeterminateCheckboxStatus,
 } from '../IndeterminateCheckbox';
 import { Transition } from '../Transition';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export interface TreeItemProps extends UseTreeItemProps {}
 
@@ -80,12 +84,19 @@ const StyledTreeItem = styled.li<{
     outline: none;
 
     & > *:first-child {
-      outline-offset: -2px;
-      outline: 2px solid
-        ${props =>
-          props.isInverse
-            ? props.theme.colors.focusInverse
-            : props.theme.colors.focus};
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        outline: 2px solid
+          ${props =>
+            props.isInverse
+              ? props.theme.colors.focusInverse
+              : props.theme.colors.focus};
+        outline-offset: -2px;
+        pointer-events: none;
+        z-index: 2;
+      }
     }
   }
 
@@ -201,6 +212,42 @@ const StyledExpandWrapper = styled.div<{
     size !== undefined ? `${size}px` : theme.spaceScale.spacing06};
 `;
 
+const GuideLine = styled.div<{
+  theme?: ThemeInterface;
+  isInverse?: boolean;
+  guideLineLeft: string;
+}>`
+  position: absolute;
+  top: ${props => props.theme.spaceScale.spacing08};
+  bottom: 0;
+  inset-inline-start: ${props => props.guideLineLeft};
+  width: 0;
+  border-inline-start: 1px solid
+    ${props =>
+      props.isInverse
+        ? transparentize(0.7, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
+  pointer-events: none;
+  z-index: 1;
+`;
+
+const VirtualizedGuideLine = styled.div<{
+  theme?: ThemeInterface;
+  isInverse?: boolean;
+}>`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-inline-start: 1px solid
+    ${props =>
+      props.isInverse
+        ? transparentize(0.7, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
+  pointer-events: none;
+  z-index: 1;
+`;
+
 const StyledCheckboxWrapper = styled.div<{
   theme?: ThemeInterface;
   hasAdditionalContent?: boolean;
@@ -269,6 +316,7 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     const { handleExpandedChange } = React.useContext(TreeViewExpansionContext);
     const {
       expandIconStyles,
+      hasGuideLines,
       hasIcons,
       isTopLevelSelectable,
       selectable,
@@ -290,6 +338,8 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
     );
 
     const { isDisabled } = contextValue;
+    const { isMacOS } = useDeviceDetect();
+    const i18n = React.useContext(I18nContext);
 
     const {
       checkboxChangeHandler,
@@ -444,45 +494,91 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       [isDisabled, selectable, handleClick, itemId]
     );
 
-    const defaultIcon =
-      nodeType === TreeNodeType.branch ? (
-        <FolderIcon aria-hidden />
-      ) : (
-        <ArticleIcon aria-hidden />
-      );
-
-    const labelText = (
-      <StyledLabelWrapper
-        theme={theme}
-        isDisabled={isDisabled}
-        isInverse={isInverse}
-        style={labelStyle}
-        id={`${itemId}-label`}
-        data-testid={`${testId || itemId}-label`}
-      >
-        {hasIcons && (
-          <IconWrapper
-            isInverse={isInverse}
-            theme={theme}
-            isDisabled={isDisabled}
-            data-testid={`${testId || itemId}-icon`}
-          >
-            {icon || defaultIcon}
-          </IconWrapper>
-        )}
-        {label}
-      </StyledLabelWrapper>
+    const defaultIcon = React.useMemo(
+      () =>
+        nodeType === TreeNodeType.branch ? (
+          <FolderIcon aria-hidden />
+        ) : (
+          <ArticleIcon aria-hidden />
+        ),
+      [nodeType]
     );
 
-    const treeItemAdditionalContent = additionalContent ? (
-      <AdditionalContentWrapper
-        theme={theme}
-        id={`${itemId}-additionalcontentwrapper`}
-        data-testid={`${testId ?? itemId}-additionalcontentwrapper`}
-      >
-        {additionalContent}
-      </AdditionalContentWrapper>
-    ) : null;
+    // Memoise the label JSX so the `checkboxProps` memo below actually has
+    // a stable `labelText` reference between renders. Previously this
+    // element was re-created on every render, which forced
+    // `checkboxProps` to also be re-created and any future React.memo on
+    // Checkbox/IndeterminateCheckbox would always bail out.
+    const labelText = React.useMemo(
+      () => (
+        <StyledLabelWrapper
+          theme={theme}
+          isDisabled={isDisabled}
+          isInverse={isInverse}
+          style={labelStyle}
+          id={`${itemId}-label`}
+          data-testid={`${testId || itemId}-label`}
+        >
+          {hasIcons && (
+            <IconWrapper
+              isInverse={isInverse}
+              theme={theme}
+              isDisabled={isDisabled}
+              data-testid={`${testId || itemId}-icon`}
+            >
+              {icon || defaultIcon}
+            </IconWrapper>
+          )}
+          {label}
+        </StyledLabelWrapper>
+      ),
+      [
+        theme,
+        isDisabled,
+        isInverse,
+        labelStyle,
+        itemId,
+        testId,
+        hasIcons,
+        icon,
+        defaultIcon,
+        label,
+      ]
+    );
+
+    const treeItemAdditionalContent = React.useMemo(
+      () =>
+        additionalContent ? (
+          <AdditionalContentWrapper
+            theme={theme}
+            id={`${itemId}-additionalcontentwrapper`}
+            data-testid={`${testId ?? itemId}-additionalcontentwrapper`}
+          >
+            {additionalContent}
+          </AdditionalContentWrapper>
+        ) : null,
+      [additionalContent, theme, itemId, testId]
+    );
+
+    // Stable per-child hierarchy values. The reference must not change on
+    // re-renders triggered by TreeViewSelectionContext, otherwise every
+    // nested TreeItem re-renders through the context and React.memo is
+    // defeated.
+    const childHierarchies = React.useMemo(() => {
+      const count = React.Children.count(children);
+      const arr = new Array(count);
+
+      for (let i = 0; i < count; i++) {
+        arr[i] = {
+          depth: itemDepth + 1,
+          parentDepth: itemDepth,
+          isTopLevel: false,
+          index: i,
+        };
+      }
+
+      return arr;
+    }, [children, itemDepth]);
 
     // Memoize inline style objects to prevent unnecessary re-renders
     const checkboxInputStyle = React.useMemo(
@@ -662,7 +758,6 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
             >
               {hasOwnTreeItems && (
                 <StyledExpandWrapper
-                  aria-hidden={Boolean(!expanded)}
                   size={expandIconStyles?.size}
                   color={expandIconStyles?.color}
                   data-testid={`${testId || itemId}-expand`}
@@ -707,6 +802,42 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
               )}
             </StyledItemWrapper>
 
+            {hasGuideLines &&
+              (hierarchyContext.isVirtualized
+                ? itemDepth > 0 &&
+                  Array.from({ length: itemDepth }, (_, d) => (
+                    <VirtualizedGuideLine
+                      key={`guideline-${d}`}
+                      data-testid={`${testId || itemId}-virtualized-guideline-${d}`}
+                      theme={theme}
+                      isInverse={isInverse}
+                      style={{
+                        insetInlineStart: `calc(${calculateOffset(
+                          TreeNodeType.branch,
+                          d,
+                          false,
+                          false,
+                          true
+                        )} + ${expandIconStyles?.size !== undefined ? `${expandIconStyles.size}px` : theme.spaceScale.spacing06} / 2 - 0.5px)`,
+                      }}
+                    />
+                  ))
+                : hasOwnTreeItems &&
+                  expanded && (
+                    <GuideLine
+                      data-testid={`${testId || itemId}-guideline`}
+                      theme={theme}
+                      isInverse={isInverse}
+                      guideLineLeft={`calc(${calculateOffset(
+                        TreeNodeType.branch,
+                        itemDepth,
+                        false,
+                        false,
+                        false
+                      )} + ${expandIconStyles?.size !== undefined ? `${expandIconStyles.size}px` : theme.spaceScale.spacing06} / 2 - 0.5px) `}
+                    />
+                  ))}
+
             {React.Children.map(
               children,
               (child: React.ReactElement<any>, childIndex) => {
@@ -714,13 +845,8 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                   return child;
                 }
 
-                // Pass hierarchy info through context instead of cloneElement
-                const nestedHierarchyValue = {
-                  depth: itemDepth + 1,
-                  parentDepth: itemDepth,
-                  isTopLevel: false,
-                  index: childIndex,
-                };
+                // Use the stable, pre-memoised value (see childHierarchies above).
+                const nestedHierarchyValue = childHierarchies[childIndex];
 
                 return (
                   <Transition isOpen={expanded} unmountOnExit>
@@ -737,6 +863,15 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
               }
             )}
           </StyledTreeItem>
+          {isMacOS && (
+            <VisuallyHidden>
+              <Announce>
+                {expanded
+                  ? i18n.expansionState.expanded
+                  : i18n.expansionState.collapsed}
+              </Announce>
+            </VisuallyHidden>
+          )}
         </div>
       </TreeItemContext.Provider>
     );

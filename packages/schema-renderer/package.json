@@ -1,6 +1,6 @@
 {
   "name": "@react-magma/schema-renderer",
-  "version": "14.0.1",
+  "version": "14.0.1-next.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
   "dependencies": {
     "date-fns": "^2.16.1",
     "downshift": "^5.4.5",
-    "uuid": "^11.1.0"
+    "uuid": "^11.1.1"
   },
   "devDependencies": {
     "@data-driven-forms/react-form-renderer": "^3.6.0",
@@ -31,7 +31,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-dropzone": "11.3.2",
-    "react-magma-dom": "^4.13.0",
+    "react-magma-dom": "^4.14.0-next.1",
     "react-magma-icons": "^3.2.5",
     "tsdx": "^0.14.1"
   },
@@ -41,7 +41,7 @@
     "@emotion/styled": "^11.13.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.13.0-next.2",
+    "react-magma-dom": "^4.14.0-next.1",
     "react-magma-icons": "^3.2.5"
   },
   "engines": {

@@ -130,6 +130,10 @@ export interface UseTreeViewProps {
    * @internal
    */
   testId?: string;
+  /**
+   * If true, TreeView will render guide lines for expanded items with children.
+   */
+  hasGuideLines?: boolean;
 }
 
 interface ExpandIconStylesProps {
@@ -159,6 +163,7 @@ export function useTreeView(props: UseTreeViewProps) {
     isTopLevelSelectable = true,
     expandIconStyles,
     selectParents = true,
+    hasGuideLines = false,
   } = props;
 
   const hasPreselectedItems = Boolean(preselectedItems);
@@ -180,19 +185,12 @@ export function useTreeView(props: UseTreeViewProps) {
 
   const { items, expandedSet, itemsNeedUpdate } = state;
 
-  const [hasIcons] = React.useState(() => {
-    const initialItems = getInitialItems({
-      children,
-      preselectedItems,
-      checkParents,
-      checkChildren,
-      selectable,
-      isDisabled,
-      isTopLevelSelectable,
-    });
-
-    return initialItems.some(item => item.icon);
-  });
+  // hasIcons used to call `getInitialItems(...)` a second time inside a
+  // useState initializer just to check `.some(item => item.icon)`. That
+  // duplicated the heaviest function in this hook on every mount.
+  // We can derive the same value from the items array we already have,
+  // captured once on first render via lazy useState.
+  const [hasIcons] = React.useState(() => items.some(item => item.icon));
 
   const selectedItems = React.useMemo(() => {
     return items.filter(
@@ -298,6 +296,10 @@ export function useTreeView(props: UseTreeViewProps) {
         updatedItems: itemsWithUpdatedDisabledState,
       },
     });
+    // `items` is intentionally NOT in the deps: this effect only needs to
+    // re-run when external disabled-related props change. Including it would
+    // re-run getInitialItems(...) on every SET_ITEMS dispatch (every click).
+    // The latest `items` is still read via the closure on each invocation.
   }, [
     checkChildren,
     checkParents,
@@ -306,7 +308,6 @@ export function useTreeView(props: UseTreeViewProps) {
     isTopLevelSelectable,
     preselectedItems,
     selectable,
-    items,
   ]);
 
   React.useEffect(() => {
@@ -588,10 +589,23 @@ export function useTreeView(props: UseTreeViewProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Only run on mount
 
-  // Split context values for reduced re-render scope
+  // id -> item map for O(1) lookups in TreeItem (was items.find: O(N)).
+  const itemsById = React.useMemo(() => {
+    const map = new Map<string, TreeViewItemInterface>();
+
+    for (const item of items) {
+      if (item.itemId) {
+        map.set(item.itemId, item);
+      }
+    }
+
+    return map;
+  }, [items]);
+
   const selectionContextValue = React.useMemo(
     () => ({
       items,
+      itemsById,
       selectedItems,
       selectItem,
       onSelectedItemChange,
@@ -600,6 +614,7 @@ export function useTreeView(props: UseTreeViewProps) {
     }),
     [
       items,
+      itemsById,
       selectedItems,
       selectItem,
       onSelectedItemChange,
@@ -627,6 +642,7 @@ export function useTreeView(props: UseTreeViewProps) {
       isTopLevelSelectable,
       selectParents,
       expandIconStyles,
+      hasGuideLines,
       registerTreeItem,
       treeItemRefArray,
     }),
@@ -638,6 +654,7 @@ export function useTreeView(props: UseTreeViewProps) {
       isTopLevelSelectable,
       selectParents,
       expandIconStyles,
+      hasGuideLines,
       registerTreeItem,
       treeItemRefArray,
     ]
