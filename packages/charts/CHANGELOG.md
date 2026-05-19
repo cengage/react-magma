@@ -1,26 +1,5 @@
 # @react-magma/charts
 
-## 14.0.0-next.1
-
-### Patch Changes
-
-- f6364883d: fix(charts): Add focusing for dot content - tooltip appears at the focused dot when tabbing through chart data points.
-- Updated dependencies [b00af414c]
-- Updated dependencies [fb4c1f19a]
-- Updated dependencies [0cfe72a2e]
-- Updated dependencies [606fa2410]
-- Updated dependencies [f448af016]
-- Updated dependencies [637f28516]
-- Updated dependencies [f73d54809]
-  - react-magma-dom@4.14.0-next.1
-
-## 13.1.1-next.0
-
-### Patch Changes
-
-- Updated dependencies [72cef0432]
-  - react-magma-dom@4.13.1-next.0
-
 ## 13.1.0
 
 ### Minor Changes
