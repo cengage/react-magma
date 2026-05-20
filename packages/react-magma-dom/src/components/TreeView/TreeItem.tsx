@@ -458,45 +458,91 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       [isInsideTreeItem]
     );
 
-    const defaultIcon =
-      nodeType === TreeNodeType.branch ? (
-        <FolderIcon aria-hidden />
-      ) : (
-        <ArticleIcon aria-hidden />
-      );
-
-    const labelText = (
-      <StyledLabelWrapper
-        theme={theme}
-        isDisabled={isDisabled}
-        isInverse={isInverse}
-        style={labelStyle}
-        id={`${itemId}-label`}
-        data-testid={`${testId || itemId}-label`}
-      >
-        {hasIcons && (
-          <IconWrapper
-            isInverse={isInverse}
-            theme={theme}
-            isDisabled={isDisabled}
-            data-testid={`${testId || itemId}-icon`}
-          >
-            {icon || defaultIcon}
-          </IconWrapper>
-        )}
-        {label}
-      </StyledLabelWrapper>
+    const defaultIcon = React.useMemo(
+      () =>
+        nodeType === TreeNodeType.branch ? (
+          <FolderIcon aria-hidden />
+        ) : (
+          <ArticleIcon aria-hidden />
+        ),
+      [nodeType]
     );
 
-    const treeItemAdditionalContent = additionalContent ? (
-      <AdditionalContentWrapper
-        theme={theme}
-        id={`${itemId}-additionalcontentwrapper`}
-        data-testid={`${testId ?? itemId}-additionalcontentwrapper`}
-      >
-        {additionalContent}
-      </AdditionalContentWrapper>
-    ) : null;
+    // Memoise the label JSX so the `checkboxProps` memo below actually has
+    // a stable `labelText` reference between renders. Previously this
+    // element was re-created on every render, which forced
+    // `checkboxProps` to also be re-created and any future React.memo on
+    // Checkbox/IndeterminateCheckbox would always bail out.
+    const labelText = React.useMemo(
+      () => (
+        <StyledLabelWrapper
+          theme={theme}
+          isDisabled={isDisabled}
+          isInverse={isInverse}
+          style={labelStyle}
+          id={`${itemId}-label`}
+          data-testid={`${testId || itemId}-label`}
+        >
+          {hasIcons && (
+            <IconWrapper
+              isInverse={isInverse}
+              theme={theme}
+              isDisabled={isDisabled}
+              data-testid={`${testId || itemId}-icon`}
+            >
+              {icon || defaultIcon}
+            </IconWrapper>
+          )}
+          {label}
+        </StyledLabelWrapper>
+      ),
+      [
+        theme,
+        isDisabled,
+        isInverse,
+        labelStyle,
+        itemId,
+        testId,
+        hasIcons,
+        icon,
+        defaultIcon,
+        label,
+      ]
+    );
+
+    const treeItemAdditionalContent = React.useMemo(
+      () =>
+        additionalContent ? (
+          <AdditionalContentWrapper
+            theme={theme}
+            id={`${itemId}-additionalcontentwrapper`}
+            data-testid={`${testId ?? itemId}-additionalcontentwrapper`}
+          >
+            {additionalContent}
+          </AdditionalContentWrapper>
+        ) : null,
+      [additionalContent, theme, itemId, testId]
+    );
+
+    // Stable per-child hierarchy values. The reference must not change on
+    // re-renders triggered by TreeViewSelectionContext, otherwise every
+    // nested TreeItem re-renders through the context and React.memo is
+    // defeated.
+    const childHierarchies = React.useMemo(() => {
+      const count = React.Children.count(children);
+      const arr = new Array(count);
+
+      for (let i = 0; i < count; i++) {
+        arr[i] = {
+          depth: itemDepth + 1,
+          parentDepth: itemDepth,
+          isTopLevel: false,
+          index: i,
+        };
+      }
+
+      return arr;
+    }, [children, itemDepth]);
 
     // Memoize inline style objects to prevent unnecessary re-renders
     const checkboxInputStyle = React.useMemo(
@@ -804,13 +850,8 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                   return child;
                 }
 
-                // Pass hierarchy info through context instead of cloneElement
-                const nestedHierarchyValue = {
-                  depth: itemDepth + 1,
-                  parentDepth: itemDepth,
-                  isTopLevel: false,
-                  index: childIndex,
-                };
+                // Use the stable, pre-memoised value (see childHierarchies above).
+                const nestedHierarchyValue = childHierarchies[childIndex];
 
                 return (
                   <Transition isOpen={expanded} unmountOnExit>
