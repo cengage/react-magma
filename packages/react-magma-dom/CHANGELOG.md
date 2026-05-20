@@ -1,47 +1,23 @@
 ## 4.13.0
 
-## 4.14.0-next.4
+## 4.14.0
 
 ### Minor Changes
 
-- 473c756b1: feat(ButtonGroup): add `isList` prop for semantic list rendering.
+- 1aef43f36: feat(ButtonGroup): Add `isList` prop to render the group as a semantic list (`<ul>`/`<li>`) for assistive technologies.
+- 1aef43f36: feat(Fieldset): Add new `Fieldset` component for grouping related form controls under a shared legend.
+- 1aef43f36: feat(TreeView): Add `hasGuideLines` prop to render vertical guide lines on expanded items (defaults to `false`).
 
 ### Patch Changes
 
-- de758c5f3: fix(DatePicker): fix issue with error announcement v2
-
-## 4.14.0-next.3
-
-### Patch Changes
-
-- edb6f7569: fix(TreeView): Stop All subitems are selected from being announced once per descendant when a parent is checked.
-
-## 4.14.0-next.2
-
-### Patch Changes
-
-- 2cfea354b: fix(Treeview, Checkbox): Improve performance.
-
-## 4.14.0-next.1
-
-### Minor Changes
-
-- b00af414c: feat(Fieldset): Create `Fieldset` component
-- fb4c1f19a: feat(TreeView): create `Guide Lines` for expanded items with `hasGuideLines` prop (`false` by default)
-
-### Patch Changes
-
-- 0cfe72a2e: fix(DatePicker): fix issue with error announcement
-- 606fa2410: fix(Drawer): Apply `drawerStyle` prop to Drawer panel
-- f448af016: fix(Toast): Fix: Toast not closing on click or timeout (Strict Mode issue with unmount)
-- 637f28516: fix(Treeview): Add an announcement for the expansion state of the TreeItem.
-- f73d54809: chore: update uuid to 11.1.1
-
-## 4.13.1-next.0
-
-### Patch Changes
-
-- 72cef0432: fix(Tabs & NavTabs): Add focus management for the first item during scrolling and navigation.
+- 1aef43f36: fix(DatePicker): Reliably announce error messages to screen readers when an invalid date is entered.
+- 1aef43f36: fix(Drawer): Apply the `drawerStyle` prop to the Drawer panel element.
+- 1aef43f36: fix(Tabs, NavTabs): Improve focus management for the first tab during scrolling and keyboard navigation.
+- 1aef43f36: fix(Toast): Toast now closes on click or timeout when used under React Strict Mode (resolves an unmount handling issue).
+- 1aef43f36: fix(TreeView): Announce the expand/collapse state of `TreeItem` to screen readers.
+- 1aef43f36: fix(TreeView, Checkbox): Improve render performance, especially for deeply nested trees.
+- 1aef43f36: fix(TreeView): Announce "All subitems are selected" only once when a parent is checked, instead of once per descendant.
+- 1aef43f36: chore(deps): Update `uuid` to 11.1.1.
 
 ### Minor Changes
 
