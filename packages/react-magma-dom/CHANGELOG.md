@@ -1,5 +1,3 @@
-## 4.13.0
-
 ## 4.14.0
 
 ### Minor Changes
@@ -18,6 +16,8 @@
 - 1aef43f36: fix(TreeView, Checkbox): Improve render performance, especially for deeply nested trees.
 - 1aef43f36: fix(TreeView): Announce "All subitems are selected" only once when a parent is checked, instead of once per descendant.
 - 1aef43f36: chore(deps): Update `uuid` to 11.1.1.
+
+## 4.13.0
 
 ### Minor Changes
 
