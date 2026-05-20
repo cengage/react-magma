@@ -1,5 +1,32 @@
 # Change Log
 
+## 5.3.4
+
+### Patch Changes
+
+- 0f0fd2878: chore(ci): Switch the publish and preview workflows to `ubuntu-latest` to fix Node out-of-memory errors
+- 1aef43f36: chore(docs): Fix Gatsby build by correcting CHANGELOG formatting.
+- 1aef43f36: chore(ci): Add Snyk security scanning to the CI/CD pipeline.
+- 1aef43f36: fix(docs): CodeSandbox examples now launch correctly from documentation pages.
+- 1aef43f36: chore(deps): Update `uuid` to 11.1.1.
+- Updated dependencies [1aef43f36]
+- Updated dependencies [1aef43f36]
+- Updated dependencies [1aef43f36]
+- Updated dependencies [1aef43f36]
+- Updated dependencies [1aef43f36]
+- Updated dependencies [1aef43f36]
+- Updated dependencies [1aef43f36]
+- Updated dependencies [1aef43f36]
+- Updated dependencies [1aef43f36]
+- Updated dependencies [1aef43f36]
+- Updated dependencies [1aef43f36]
+- Updated dependencies [1aef43f36]
+  - react-magma-dom@4.14.0
+  - @react-magma/charts@13.1.0
+  - @react-magma/dropzone@12.0.4
+  - @react-magma/schema-renderer@14.0.1
+  - @cengage-patterns/header@15.0.1
+
 ## 5.3.4-next.3
 
 ### Patch Changes

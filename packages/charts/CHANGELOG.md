@@ -1,25 +1,10 @@
 # @react-magma/charts
 
-## 14.0.0-next.1
+## 13.1.0
 
 ### Patch Changes
 
-- f6364883d: fix(charts): Add focusing for dot content - tooltip appears at the focused dot when tabbing through chart data points.
-- Updated dependencies [b00af414c]
-- Updated dependencies [fb4c1f19a]
-- Updated dependencies [0cfe72a2e]
-- Updated dependencies [606fa2410]
-- Updated dependencies [f448af016]
-- Updated dependencies [637f28516]
-- Updated dependencies [f73d54809]
-  - react-magma-dom@4.14.0-next.1
-
-## 13.1.1-next.0
-
-### Patch Changes
-
-- Updated dependencies [72cef0432]
-  - react-magma-dom@4.13.1-next.0
+- 1aef43f36: fix(charts): Show the tooltip on the focused data point when tabbing through chart dots.
 
 ## 13.1.0
 
@@ -35,7 +20,7 @@
 
   Also exports standalone composable components (`ChartTableButton`, `ChartFullscreenButton`, `ChartMoreOptionsButton`, `ChartTableModal`, `ChartDataTable`, `ChartToolbar`) for adopters who need granular control outside of `CarbonChart`.
 
-## 14.0.0-next.1
+## 14.0.0-next.0
 
 ### Minor Changes
 
@@ -64,8 +49,6 @@
   - react-magma-dom@4.12.2-next.0
 
 ## 13.0.3
-
-## 13.0.3-next.0
 
 ### Patch Changes
 
@@ -218,8 +201,6 @@
 
 ## 11.0.0
 
-## 11.0.0-next.2
-
 ### Patch Changes
 
 - Updated dependencies [edbc5c0a2]
@@ -351,8 +332,6 @@
   - react-magma-dom@4.2.1-next.0
 
 ## 5.0.0
-
-## 5.0.0-next.0
 
 ### Patch Changes
 
