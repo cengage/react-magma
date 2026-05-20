@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 13.1.1
+
+### Patch Changes
+
+- d368a9894: fix(charts): Show the tooltip on the focused data point when tabbing through chart dots.
+
 ## 13.1.1-next.0
 
 ### Patch Changes

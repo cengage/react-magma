@@ -1,5 +1,11 @@
 # Change Log
 
+## 12.0.5
+
+### Patch Changes
+
+- d368a9894: chore(deps): Republish to align the `react-magma-dom` peer dependency with the 4.14.0 release.
+
 ## 12.0.5-next.0
 
 ### Patch Changes
