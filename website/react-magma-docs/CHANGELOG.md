@@ -1,5 +1,14 @@
 # Change Log
 
+## 5.3.5
+
+### Patch Changes
+
+- Updated dependencies [d368a9894]
+- Updated dependencies [d368a9894]
+  - @react-magma/dropzone@12.0.5
+  - @react-magma/charts@13.1.1
+
 ## 5.3.5-next.0
 
 ### Patch Changes
