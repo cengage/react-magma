@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.96
+
+### Patch Changes
+
+- e475b83: fix(Treeview, Checkbox): Improve performance.
+
 ## 5.1.0-rc.95
 
 ### Patch Changes
