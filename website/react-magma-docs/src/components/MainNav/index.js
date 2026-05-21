@@ -193,11 +193,8 @@ function defaultPanelIndex(location) {
   if (location.pathname.includes('api')) {
     return [1];
   }
-  if (location.pathname.includes('patterns')) {
-    return [2];
-  }
   if (location.pathname.includes('data-visualization')) {
-    return [3];
+    return [2];
   }
 }
 
@@ -267,14 +264,6 @@ export const MainNav = ({ ...props }) => {
               ...navFields
             }
           }
-          patternsDocs: allMdx(
-            filter: { fileAbsolutePath: { glob: "**/src/pages/patterns/**" } }
-            sort: { order: ASC, fields: frontmatter___title }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
           dataVisualization: allMdx(
             filter: {
               fileAbsolutePath: { glob: "**/src/pages/data-visualization/**" }
@@ -297,16 +286,6 @@ export const MainNav = ({ ...props }) => {
           }
           apiIntro: allMdx(
             filter: { fileAbsolutePath: { glob: "**/src/pages/api-intro/**" } }
-            sort: { order: ASC, fields: frontmatter___order }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
-          patternsIntro: allMdx(
-            filter: {
-              fileAbsolutePath: { glob: "**/src/pages/patterns-intro/**" }
-            }
             sort: { order: ASC, fields: frontmatter___order }
           ) {
             edges {
@@ -426,44 +405,6 @@ export const MainNav = ({ ...props }) => {
                       <Heading3>API</Heading3>
                       <List>
                         {data.apiDocs.edges.map(({ node }) => (
-                          <ListItem key={node.fields.slug}>
-                            <StyledLink2
-                              activeStyle={activeStyle}
-                              onClick={props.handleClick}
-                              to={node.fields.slug}
-                            >
-                              {node.frontmatter.title}
-                            </StyledLink2>
-                          </ListItem>
-                        ))}
-                      </List>
-                    </StyledAccordionPanel>
-                  </StyledAccordionItem>
-
-                  <StyledAccordionItem
-                    isOpen={isAccordionItemOpen(location, 'patterns')}
-                  >
-                    <StyledAccordionButton>
-                      <Heading2>Patterns</Heading2>
-                    </StyledAccordionButton>
-                    <StyledAccordionPanel>
-                      <Heading3>Intro</Heading3>
-                      <List>
-                        {data.patternsIntro.edges.map(({ node }) => (
-                          <ListItem key={node.fields.slug}>
-                            <StyledLink2
-                              activeStyle={activeStyle}
-                              onClick={props.handleClick}
-                              to={node.fields.slug}
-                            >
-                              {node.frontmatter.title}
-                            </StyledLink2>
-                          </ListItem>
-                        ))}
-                      </List>
-                      <Heading3>API</Heading3>
-                      <List>
-                        {data.patternsDocs.edges.map(({ node }) => (
                           <ListItem key={node.fields.slug}>
                             <StyledLink2
                               activeStyle={activeStyle}

@@ -41,11 +41,6 @@ const getPathPrefix = path => {
       return 'api-intro';
     }
     return 'api';
-  } else if (/patterns/.test(path)) {
-    if (/intro/.test(path)) {
-      return 'patterns-intro';
-    }
-    return 'patterns';
   } else if (/data-visualization/.test(path)) {
     return 'data-visualization';
   }

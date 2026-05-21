@@ -1,17 +1,16 @@
 import React, { HTMLAttributes, useContext } from 'react';
 
 import { transform } from '@babel/core';
-import * as HEADER from '@cengage-patterns/header';
 import styled from '@emotion/styled';
 import * as CHARTS from '@react-magma/charts';
 import * as DROPZONE from '@react-magma/dropzone';
-import * as SCHEMA from '@react-magma/schema-renderer';
 import { es, zhCN } from 'date-fns/locale';
 import { Language } from 'prism-react-renderer';
 import { LiveError, LiveProvider, LivePreview } from 'react-live';
 import * as MAGMA from 'react-magma-dom';
 import * as ICONS from 'react-magma-icons';
 
+import * as HEADER from '../Header';
 import { CodeBlockContext } from './context';
 
 const SUPPORTED_LANGUAGES: Language[] = [
@@ -67,7 +66,6 @@ export const Preview = ({ ...props }: PreviewProps) => {
           ...ICONS,
           ICONS,
           ...HEADER,
-          ...SCHEMA,
           ...DROPZONE,
           ...CHARTS,
         }}

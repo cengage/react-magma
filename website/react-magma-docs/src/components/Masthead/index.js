@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Header } from '@cengage-patterns/header';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import {
@@ -11,6 +10,7 @@ import {
 } from 'react-magma-dom';
 import { GithubIcon } from 'react-magma-icons';
 
+import { Header } from '../Header';
 import { Logo } from '../Logo';
 
 const LogoLink = styled(Link)`
