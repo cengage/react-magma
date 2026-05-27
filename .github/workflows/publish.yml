@@ -90,7 +90,7 @@ jobs:
         run: npm run build-storybook
       - name: Chromatic (update baseline)
         if: github.ref_name == 'dev' || github.ref_name == 'main'
-        uses: chromaui/action@v11
+        uses: chromaui/action@v16
         with:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           storybookBuildDir: storybook-static
