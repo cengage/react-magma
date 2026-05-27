@@ -1,5 +1,29 @@
 ## 4.10.0
 
+## 5.1.0-rc.97
+
+### Patch Changes
+
+- 3413ba0: fix(NativeSelect): small change in the `handleKeyDown` function. Cherry-pick from #2358
+
+## 5.1.0-rc.96
+
+### Patch Changes
+
+- e475b83: fix(Treeview, Checkbox): Improve performance.
+
+## 5.1.0-rc.95
+
+### Patch Changes
+
+- 3c08bb2: fix(DatePicker): fix issue with error announcement v2
+
+## 5.1.0-rc.94
+
+### Minor Changes
+
+- 7f133fd: feat(ButtonGroup): add `isList` prop for semantic list rendering.
+
 ## 5.1.0-rc.93
 
 ### Patch Changes

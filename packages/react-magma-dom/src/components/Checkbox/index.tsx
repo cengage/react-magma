@@ -171,29 +171,30 @@ export const StyledFakeInput = styled.span<{
   }
 `;
 
-export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  (props, ref) => {
+export const Checkbox = React.memo(
+  React.forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
     const { checked, id: defaultId, defaultChecked, onChange } = props;
-    const [isChecked, updateIsChecked] = React.useState(
-      Boolean(defaultChecked) || Boolean(checked)
+    const isControlled = typeof checked === 'boolean';
+
+    // Local state only for uncontrolled usage; controlled reads directly
+    // from the `checked` prop to avoid an extra render per change.
+    const [uncontrolledChecked, setUncontrolledChecked] = React.useState(
+      Boolean(defaultChecked)
     );
 
-    const id = useGenerateId(defaultId);
-    const isControlled = typeof checked === 'boolean' ? true : false;
+    const isChecked = isControlled ? (checked as boolean) : uncontrolledChecked;
 
-    React.useEffect(() => {
-      if (typeof checked === 'boolean') {
-        updateIsChecked(checked);
-      }
-    }, [checked]);
+    const id = useGenerateId(defaultId);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
       const { checked: targetChecked } = event.target;
 
-      onChange && typeof onChange === 'function' && onChange(event);
+      if (typeof onChange === 'function') {
+        onChange(event);
+      }
 
       if (!isControlled) {
-        updateIsChecked(targetChecked);
+        setUncontrolledChecked(targetChecked);
       }
     }
 
@@ -287,5 +288,5 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         )}
       </>
     );
-  }
+  })
 );

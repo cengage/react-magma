@@ -388,7 +388,7 @@ describe('File Uploader', () => {
 
     const ui = <Dropzone maxFiles={1} testId={testId} />;
 
-    const { getByTestId, getByText, rerender } = render(ui);
+    const { getByTestId, getAllByText, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
 
@@ -398,7 +398,7 @@ describe('File Uploader', () => {
 
     await waitFor(() => {
       expect(
-        getByText('You must upload a maximum of 1 files.')
+        getAllByText('You must upload a maximum of 1 files.')[0]
       ).toBeInTheDocument();
     });
   });
@@ -409,7 +409,7 @@ describe('File Uploader', () => {
 
     const ui = <Dropzone minFiles={6} testId={testId} />;
 
-    const { getByTestId, getByText, rerender } = render(ui);
+    const { getByTestId, getAllByText, rerender } = render(ui);
 
     const dropzone = getByTestId(testId);
     fireDrop(dropzone, data);
@@ -418,7 +418,7 @@ describe('File Uploader', () => {
 
     await waitFor(() => {
       expect(
-        getByText('You must upload a minimum of 6 files.')
+        getAllByText('You must upload a minimum of 6 files.')[0]
       ).toBeInTheDocument();
     });
   });

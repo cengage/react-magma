@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.28
+
+### Patch Changes
+
+- 1db6ef8: fix(CodeSandbox): Fix CodeSandbox launch issue in documentation
+
 ## 7.0.0-rc.27
 
 ### Patch Changes
