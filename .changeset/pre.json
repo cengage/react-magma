@@ -1,0 +1,15 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@react-magma/charts": "13.1.1",
+    "@react-magma/dropzone": "12.0.5",
+    "react-magma-dom": "4.14.0",
+    "playwright": "1.0.0",
+    "react-magma-docs": "5.3.5",
+    "react-magma-landing": "1.1.8"
+  },
+  "changesets": [
+    "remove-deprecated-packages"
+  ]
+}

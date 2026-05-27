@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.6-next.0
+
+### Patch Changes
+
+- 94a214be9: chore: Remove the deprecated `@react-magma/schema-renderer` and `@cengage-patterns/header` packages.
+
 ## 5.3.5
 
 ### Patch Changes
