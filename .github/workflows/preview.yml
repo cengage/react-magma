@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup
         uses: actions/setup-node@v4
         with:
@@ -39,7 +41,15 @@ jobs:
       - name: Build Docs
         run: npm run build:docs
       - name: Build Storybook
-        run: npm run build:storybook
+        run: npm run build-storybook
+      - name: Chromatic
+        if: github.base_ref == 'dev' || github.base_ref == 'main'
+        uses: chromaui/action@v16
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          storybookBuildDir: storybook-static
+          onlyChanged: true
+          exitZeroOnChanges: true
       - name: Set version prefix
         id: version
         run: |

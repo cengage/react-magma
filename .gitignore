@@ -15,3 +15,5 @@ packages/react-magma-landing/dist
 
 .nx/cache
 .nx/workspace-data
+
+ed2go*

@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup
         uses: actions/setup-node@v4
         with:
@@ -85,7 +87,14 @@ jobs:
           PATH_PREFIX: /version/${{ steps.info.outputs.version }}
       - name: Build Storybook
         if: github.ref_name == 'dev' || github.ref_name == 'v4/dev' || github.ref_name == 'v4/main' || github.ref_name == 'main'
-        run: npm run build:storybook
+        run: npm run build-storybook
+      - name: Chromatic (update baseline)
+        if: github.ref_name == 'dev' || github.ref_name == 'main'
+        uses: chromaui/action@v16
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          storybookBuildDir: storybook-static
+          autoAcceptChanges: true
       - name: Deploy Docs to Netlify (RC)
         if: github.ref_name == 'dev'
         uses: nwtgck/actions-netlify@v1.1
