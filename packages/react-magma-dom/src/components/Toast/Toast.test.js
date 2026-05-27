@@ -4,6 +4,7 @@ import { act, render, fireEvent, waitFor } from '@testing-library/react';
 
 import { ToastsContainer } from './ToastsContainer';
 import { magma } from '../../theme/magma';
+import { tk } from '../../theme/utils/cssVar';
 
 import { Toast } from '.';
 
@@ -246,7 +247,7 @@ describe('Toast', () => {
 
     expect(getByTestId('test').firstChild.firstChild).toHaveStyleRule(
       'background',
-      magma.colors.success100
+      tk(magma, 'colors.success100')
     );
   });
 
