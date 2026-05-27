@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.98
+
+### Patch Changes
+
+- f6a744f: chore(deps): bump uuid to address security vulnerability
+
 ## 5.1.0-rc.97
 
 ### Patch Changes

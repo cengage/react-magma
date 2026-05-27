@@ -1,5 +1,15 @@
 # Change Log
 
+## 7.0.0-rc.29
+
+### Patch Changes
+
+- f6a744f: chore: add Chromatic visual regression testing to CI workflows
+- f6a744f: chore: add Snyk security scanning workflows for PRs and monitoring
+- f6a744f: chore: bump chromaui/action from v11 to v16 in CI workflows to pick up Chromatic CLI 16.x
+- Updated dependencies [f6a744f]
+  - react-magma-dom@5.1.0-rc.98
+
 ## 7.0.0-rc.28
 
 ### Patch Changes
