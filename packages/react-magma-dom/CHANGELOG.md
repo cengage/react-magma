@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.97
+
+### Patch Changes
+
+- 3413ba0: fix(NativeSelect): small change in the `handleKeyDown` function. Cherry-pick from #2358
+
 ## 5.1.0-rc.96
 
 ### Patch Changes

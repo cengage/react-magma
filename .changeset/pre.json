@@ -113,6 +113,7 @@
     "fix-MultiSelect-test-naming",
     "fix-MultiSelect-update-label-annoucement",
     "fix-NativeSelect-a11y-additional-content-issue",
+    "fix-NativeSelect-selection-logic",
     "fix-NavTabs-Tabs-update focus-management",
     "fix-NavTabs-fix-obscured-focus",
     "fix-NavsTab-add-region",
