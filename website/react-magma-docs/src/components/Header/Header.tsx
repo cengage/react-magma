@@ -21,7 +21,6 @@ import {
 } from 'react-magma-dom';
 import { MenuIcon } from 'react-magma-icons';
 
-// NOTE: These props are manually copied to header.mdx
 export interface HeaderProps extends AppBarProps {
   breakpoint?: number;
   callToActionProps?: HyperlinkProps;

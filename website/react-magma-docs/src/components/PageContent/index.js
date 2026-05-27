@@ -25,17 +25,11 @@ const NAV_TABS = {
   API_INTRO: 'api_intro',
   DESIGN: 'design',
   DESIGN_INTRO: 'design_intro',
-  PATTERNS: 'patterns',
-  PATTERNS_INTRO: 'patterns_intro',
   DATA_VISUALIZATION: 'data_visualization',
 };
 
 // Special case pages that don't have secondary navigation.
-const PAGES_NO_NAV = [
-  'contribution_guidelines',
-  'getting_started_patterns',
-  'select_migration',
-];
+const PAGES_NO_NAV = ['contribution_guidelines', 'select_migration'];
 
 const TabsWrapper = styled.div`
   position: sticky;
@@ -155,14 +149,6 @@ export const PageContent = ({ children, componentName, type }) => {
               ...navFields
             }
           }
-          patternsDocs: allMdx(
-            filter: { fileAbsolutePath: { glob: "**/src/pages/patterns/**" } }
-            sort: { order: ASC, fields: frontmatter___title }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
           dataVisualization: allMdx(
             filter: {
               fileAbsolutePath: { glob: "**/src/pages/data-visualization/**" }
@@ -191,22 +177,11 @@ export const PageContent = ({ children, componentName, type }) => {
               ...navFields
             }
           }
-          patternsIntro: allMdx(
-            filter: {
-              fileAbsolutePath: { glob: "**/src/pages/patterns-intro/**" }
-            }
-            sort: { order: ASC, fields: frontmatter___order }
-          ) {
-            edges {
-              ...navFields
-            }
-          }
         }
       `}
       render={data => {
         const apiDocs = getDataNode(data.apiDocs, componentName);
         const designDocs = getDataNode(data.designComponentDocs, componentName);
-        const patternsDocs = getDataNode(data.patternsDocs, componentName);
         const designPatternDocs = getDataNode(
           data.designPatternDocs,
           componentName
@@ -218,38 +193,26 @@ export const PageContent = ({ children, componentName, type }) => {
 
         const designIntro = getDataNode(data.designIntro, componentName);
         const apiIntro = getDataNode(data.apiIntro, componentName);
-        const patternsIntro = getDataNode(data.patternsIntro, componentName);
 
         const designLink = designDocs?.node.fields.slug;
         const apiLink = apiDocs?.node.fields.slug;
-        const patternsLink = patternsDocs?.node.fields.slug;
         const designPatternsLink = designPatternDocs?.node.fields.slug;
         const dataVisualizationLink = dataVisualization?.node.fields.slug;
 
-        const hasNavTabs = !!(
-          apiDocs ||
-          designDocs ||
-          patternsDocs ||
-          designPatternDocs
-        );
+        const hasNavTabs = !!(apiDocs || designDocs || designPatternDocs);
         const hasDocs = !!(hasNavTabs || dataVisualization);
 
-        const apiNavTabToLink = patternsDocs
-          ? patternsLink
-          : dataVisualization
-            ? dataVisualizationLink
-            : apiLink;
+        const apiNavTabToLink = dataVisualization
+          ? dataVisualizationLink
+          : apiLink;
         const designNavTabToLink = designPatternDocs
           ? designPatternsLink
           : designLink;
 
         const getPageData = () => {
-          if (designPatternDocs || patternsDocs) {
+          if (designPatternDocs) {
             if (type === NAV_TABS.DESIGN) {
               return designPatternDocs;
-            }
-            if (type === NAV_TABS.API) {
-              return patternsDocs;
             }
           }
           if (dataVisualization) {
@@ -265,15 +228,12 @@ export const PageContent = ({ children, componentName, type }) => {
               return designDocs;
             }
           }
-          if (designIntro || patternsIntro || apiIntro) {
+          if (designIntro || apiIntro) {
             if (type === NAV_TABS.API_INTRO) {
               return apiIntro;
             }
             if (type === NAV_TABS.DESIGN_INTRO) {
               return designIntro;
-            }
-            if (type === NAV_TABS.PATTERNS_INTRO) {
-              return patternsIntro;
             }
           }
         };
@@ -286,7 +246,7 @@ export const PageContent = ({ children, componentName, type }) => {
                   {hasNavTabs && (
                     <TabsWrapper>
                       <StyledTabs aria-label="">
-                        {apiDocs || patternsDocs ? (
+                        {apiDocs ? (
                           <NavTab
                             component={
                               <Link to={apiNavTabToLink}>Implementation</Link>
@@ -356,8 +316,6 @@ PageContent.propTypes = {
     'api_intro',
     'design',
     'design_intro',
-    'patterns',
-    'patterns_intro',
     'data_visualization',
   ]),
 };

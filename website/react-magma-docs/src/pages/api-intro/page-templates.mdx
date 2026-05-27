@@ -23,16 +23,19 @@ This template is ideal for applications that need as much of the screen as possi
 ```tsx
 import React from 'react';
 
-import { Header } from '@cengage-patterns/header';
 import {
+  AppBar,
+  ButtonVariant,
   Drawer,
   DrawerPosition,
   Grid,
   GridItem,
   GridJustifyContent,
+  IconButton,
   magma,
   useMediaQuery,
 } from 'react-magma-dom';
+import { MenuIcon } from 'react-magma-icons';
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
@@ -49,13 +52,15 @@ export function Example() {
       gridGap="0.5em"
     >
       <GridItem gridColumn="1 / 5">
-        <Header
-          isInverse
-          logo={<strong>LOGO</strong>}
-          breakpoint={magma.breakpoints.large}
-          isCompact={isSmallerScreen}
-          onMenuButtonClick={() => setShowDrawer(true)}
-        />
+        <AppBar isInverse isCompact={isSmallerScreen}>
+          <IconButton
+            aria-label="Open navigation menu"
+            icon={<MenuIcon />}
+            onClick={() => setShowDrawer(true)}
+            variant={ButtonVariant.link}
+          />
+          <strong>LOGO</strong>
+        </AppBar>
       </GridItem>
 
       <Drawer
@@ -151,15 +156,18 @@ This template is great for pages that focus more on reading content like marketi
 ```tsx
 import React from 'react';
 
-import { Header } from '@cengage-patterns/header';
 import {
+  AppBar,
+  ButtonVariant,
   Drawer,
   DrawerPosition,
   Grid,
   GridItem,
+  IconButton,
   magma,
   useMediaQuery,
 } from 'react-magma-dom';
+import { MenuIcon } from 'react-magma-icons';
 
 export function Example() {
   const [showDrawer, setShowDrawer] = React.useState(false);
@@ -175,16 +183,21 @@ export function Example() {
       gridGap="1em"
     >
       <GridItem gridColumn="1 / 3">
-        <Header
-          logo={<strong>LOGO</strong>}
-          breakpoint={magma.breakpoints.large}
+        <AppBar
           isCompact={isSmallerScreen}
-          onMenuButtonClick={() => setShowDrawer(true)}
           style={{
             backgroundColor: magma.colors.warning400,
             color: magma.colors.neutral100,
           }}
-        />
+        >
+          <IconButton
+            aria-label="Open navigation menu"
+            icon={<MenuIcon />}
+            onClick={() => setShowDrawer(true)}
+            variant={ButtonVariant.link}
+          />
+          <strong>LOGO</strong>
+        </AppBar>
       </GridItem>
 
       <Drawer
@@ -260,15 +273,18 @@ This template includes a screen region for a left sidebar and includes all of th
 ```tsx
 import React from 'react';
 
-import { Header } from '@cengage-patterns/header';
 import {
+  AppBar,
+  ButtonVariant,
   Drawer,
   DrawerPosition,
   Grid,
   GridItem,
+  IconButton,
   magma,
   useMediaQuery,
 } from 'react-magma-dom';
+import { MenuIcon } from 'react-magma-icons';
 
 export function Example() {
   const [openDrawer, setOpenDrawer] = React.useState(false);
@@ -313,15 +329,15 @@ export function Example() {
       )}
 
       <GridItem as={'header'} gridColumn="2 / 3">
-        <Header
-          isInverse
-          logo={<strong>LOGO</strong>}
-          breakpoint={magma.breakpoints.large}
-          isCompact={isSmallerScreen}
-          onMenuButtonClick={() => {
-            setOpenDrawer(!openDrawer);
-          }}
-        />
+        <AppBar isInverse isCompact={isSmallerScreen}>
+          <IconButton
+            aria-label="Open navigation menu"
+            icon={<MenuIcon />}
+            onClick={() => setOpenDrawer(!openDrawer)}
+            variant={ButtonVariant.link}
+          />
+          <strong>LOGO</strong>
+        </AppBar>
       </GridItem>
 
       <GridItem
@@ -360,16 +376,19 @@ This template also includes the sidebar screen region, but the header extends al
 ```tsx
 import React from 'react';
 
-import { Header } from '@cengage-patterns/header';
 import {
+  AppBar,
+  ButtonVariant,
   Drawer,
   DrawerPosition,
   Grid,
   GridItem,
   GridJustifyContent,
+  IconButton,
   magma,
   useMediaQuery,
 } from 'react-magma-dom';
+import { MenuIcon } from 'react-magma-icons';
 
 export function Example() {
   const [openDrawer, setOpenDrawer] = React.useState(false);
@@ -391,15 +410,15 @@ export function Example() {
       gridGap="2px"
     >
       <GridItem as="header" gridColumn="1 / 4">
-        <Header
-          isInverse
-          logo={<strong>LOGO</strong>}
-          breakpoint={magma.breakpoints.large}
-          isCompact={isSmallerScreen}
-          onMenuButtonClick={() => {
-            setOpenDrawer(!openDrawer);
-          }}
-        />
+        <AppBar isInverse isCompact={isSmallerScreen}>
+          <IconButton
+            aria-label="Open navigation menu"
+            icon={<MenuIcon />}
+            onClick={() => setOpenDrawer(!openDrawer)}
+            variant={ButtonVariant.link}
+          />
+          <strong>LOGO</strong>
+        </AppBar>
       </GridItem>
 
       {isLargeScreen ? (

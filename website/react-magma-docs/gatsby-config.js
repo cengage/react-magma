@@ -57,20 +57,6 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `patterns`,
-        path: `${__dirname}/src/pages/patterns`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `patterns-intro`,
-        path: `${__dirname}/src/pages/patterns-intro`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
         name: `data-visualization`,
         path: `${__dirname}/src/pages/data-visualization`,
       },
