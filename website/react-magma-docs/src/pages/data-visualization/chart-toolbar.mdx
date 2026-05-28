@@ -196,6 +196,47 @@ export function Example() {
 }
 ```
 
+## Custom Title Heading Level
+
+By default, the chart title renders as an `<h2>`. Use `titleLevel` to match the surrounding document outline (1–6). For example, if the chart sits beneath an `<h2>` section heading, set `titleLevel={3}` so the title becomes an `<h3>`.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart
+        type={CarbonChartType.donut}
+        dataSet={[
+          { group: 'High performance', value: 50 },
+          { group: 'Average performance', value: 30 },
+          { group: 'Poor performance', value: 15 },
+          { group: 'Not attempted', value: 5 },
+        ]}
+        options={{
+          title: 'Overall Activity Performance',
+          resizable: true,
+          height: '400px',
+          donut: {
+            center: { label: 'Questions' },
+          },
+          legend: {
+            truncation: { type: 'none' },
+          },
+        }}
+        chartToolbar={{
+          titleLevel: 3,
+        }}
+      />
+    </Card>
+  );
+}
+```
+
 ## Inverse Theme
 
 The toolbar respects the `isInverse` prop on `CarbonChart`, applying inverse styling to all toolbar buttons, the modal, and the data table.
@@ -288,8 +329,7 @@ The chart title is read from `options.title` (the standard Carbon Charts title o
         name: '1 | 2 | 3 | 4 | 5 | 6',
       },
       required: false,
-      description:
-        'Heading level for the chart title rendered in the toolbar (e.g. h1, h2, h3).',
+      description: 'Heading level for the chart title (e.g. h1, h2, h3).',
       defaultValue: '2',
     },
   }}

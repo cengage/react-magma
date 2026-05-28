@@ -104,7 +104,7 @@ export interface ChartToolbarConfig {
    */
   tableHeaderLevel?: 1 | 2 | 3 | 4 | 5 | 6;
   /**
-   * Heading level for the chart title rendered in the toolbar.
+   * Heading level for the chart title.
    * @default 2
    */
   titleLevel?: 1 | 2 | 3 | 4 | 5 | 6;
