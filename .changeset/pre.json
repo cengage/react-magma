@@ -10,6 +10,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "feat-Charts-titleLevel",
     "remove-deprecated-packages"
   ]
 }
