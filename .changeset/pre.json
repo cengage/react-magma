@@ -21,6 +21,7 @@
     "chore-bump-chromaui-action-v16",
     "chore-bump-uuid-security",
     "chore-charts-peer-deps",
+    "chore-ci-publish-ubuntu-runner",
     "chore-delete-deprecated-packages",
     "chore-disable-docs-formatting",
     "chore-docs-deps",

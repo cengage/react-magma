@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.30
+
+### Patch Changes
+
+- ec2eef1: chore(ci): Switch the publish and preview workflows to `ubuntu-latest` to fix Node out-of-memory errors
+
 ## 7.0.0-rc.29
 
 ### Patch Changes
