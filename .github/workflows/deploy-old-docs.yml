@@ -1,0 +1,363 @@
+name: Deploy Old Docs
+
+# ---------------------------------------------------------------------------
+# Keeps the per-version documentation sites for OLD library releases live and
+# patched, with the durable client-side CodeSandbox fix (PR #2495) applied.
+#
+# BUILD ONCE, REDEPLOY FOREVER:
+#   The first time a version is seen it is built from its release tag and the
+#   resulting static `public/` is stored as a tarball asset on the
+#   `docs-archive` GitHub Release. Every later run just DOWNLOADS that prebuilt
+#   output and redeploys it to Netlify -- the aging Gatsby/lerna toolchains run
+#   exactly once, not on every schedule. Use the `force_rebuild` dispatch input
+#   to rebuild from source on purpose.
+#
+# WHAT IT DEPLOYS (computed from git tags at run time -- never hand-edited):
+#   - majors <= 3 (v2, v3): their LATEST stable only (e.g. 2.6.2, 3.11.0)
+#   - majors >= 4          : ALL stable EXCEPT the latest (the latest is the
+#                            live docs deployed by publish.yml). Auto-grows as
+#                            new versions ship; auto-includes future v5+ lines.
+#   - all prereleases (-next / -rc / -alpha / -beta) are excluded.
+#   - tags that already ship the fix (no react-codesandboxer) are built/served
+#     without any patch.
+#
+# WHY THIS LIVES ON THE DEFAULT BRANCH (dev):
+#   The `schedule` (cron) trigger ONLY fires for the copy of this file on the
+#   repository default branch, and runs against default-branch state. So this
+#   workflow AND its patch assets (patches/codesandbox/) must live on `dev`.
+#   Note: each per-version Netlify deploy is the latest deploy for its unique
+#   alias, which Netlify retains indefinitely -- so the schedule is primarily
+#   belt-and-suspenders (re-apply fixes, survive policy changes / deletions),
+#   not a hard requirement for the URLs to keep existing.
+#
+# IF IT EVER STOPS RUNNING:
+#   GitHub auto-disables scheduled workflows in public repos after 60 days with
+#   no repository activity. Re-enable in one command:
+#       gh workflow enable deploy-old-docs.yml
+# ---------------------------------------------------------------------------
+
+on:
+  # TESTING PHASE: run the full pipeline on PRs that touch this workflow or its
+  # patches, so it can be validated end-to-end in CI. pull_request workflows run
+  # the workflow file FROM THE PR BRANCH, so this works *before* it lands on dev.
+  #
+  # TO CONVERT TO THE PRODUCTION CRON once validated: delete this `pull_request:`
+  # block and replace it with the schedule below. (schedule/cron only fires for
+  # the file on the DEFAULT branch -- which is why it must be merged to dev.)
+  #   schedule:
+  #     # 06:00 UTC on the 1st of every month. NOT '*/30' (fires day 1 AND 31,
+  #     # so short months get one run and the gap balloons past 30 days).
+  #     - cron: '0 6 1 * *'
+  pull_request:
+    paths:
+      - '.github/workflows/deploy-old-docs.yml'
+      - 'patches/codesandbox/**'
+  workflow_dispatch:
+    inputs:
+      force_rebuild:
+        description: 'Rebuild from source even if a cached build exists'
+        type: boolean
+        default: false
+      only_version:
+        description: 'Deploy only this exact version (e.g. 4.5.0). Blank = the full computed set.'
+        type: string
+        default: ''
+
+# GITHUB_TOKEN needs write to manage the docs-archive release assets.
+# (Netlify auth is via NETLIFY_* secrets, not GITHUB_TOKEN.)
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-old-docs
+  cancel-in-progress: false # queue overlapping runs; never kill an in-flight refresh.
+
+env:
+  ARCHIVE_RELEASE: docs-archive # Release that holds the prebuilt public-<version>.tar.gz assets.
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    outputs:
+      versions: ${{ steps.compute.outputs.versions }}
+    steps:
+      - name: Checkout (full history for tags)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # REQUIRED: default depth-1 omits tags -> empty matrix.
+
+      - name: Ensure archive release exists
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          if ! gh release view "$ARCHIVE_RELEASE" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create "$ARCHIVE_RELEASE" \
+              --repo "$GITHUB_REPOSITORY" \
+              --title "Old docs prebuilt archive" \
+              --notes "Prebuilt static docs for old versions, managed by .github/workflows/deploy-old-docs.yml. Each asset is public-<version>.tar.gz. Do not delete." \
+              --target "${{ github.sha }}"
+            echo "Created $ARCHIVE_RELEASE release."
+          else
+            echo "$ARCHIVE_RELEASE release already exists."
+          fi
+
+      - name: Compute version set from git tags
+        id: compute
+        env:
+          # Majors at or below this keep ONLY their latest stable (legacy lines).
+          # Majors above it keep ALL stable except the latest (active lines).
+          LEGACY_LATEST_ONLY_MAX: '3'
+          ONLY_VERSION: ${{ github.event.inputs.only_version }}
+        run: |
+          set -euo pipefail
+
+          # Stable (X.Y.Z, no prerelease suffix) versions for a major, semver-sorted.
+          list_stable() {
+            git tag -l "react-magma-dom@$1.*" \
+              | sed 's/^react-magma-dom@//' \
+              | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' \
+              | sort -V
+          }
+
+          if [ -n "${ONLY_VERSION:-}" ]; then
+            # Validate strictly -- this value flows into actions/checkout `ref:`.
+            if ! printf '%s' "$ONLY_VERSION" | grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+              echo "::error::only_version '$ONLY_VERSION' is not a plain X.Y.Z version."
+              exit 1
+            fi
+            if ! git rev-parse -q --verify "refs/tags/react-magma-dom@$ONLY_VERSION" >/dev/null; then
+              echo "::error::tag react-magma-dom@$ONLY_VERSION does not exist."
+              exit 1
+            fi
+            versions=$(printf '%s\n' "$ONLY_VERSION" | jq -R . | jq -s -c .)
+            echo "Single-version run: $versions"
+            echo "versions=$versions" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Distinct stable majors present in the tag namespace.
+          majors=$(git tag -l 'react-magma-dom@*' \
+            | sed 's/^react-magma-dom@//' \
+            | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' \
+            | cut -d. -f1 | sort -un)
+
+          selected=""
+          for m in $majors; do
+            stable=$(list_stable "$m")
+            [ -n "$stable" ] || continue
+            if [ "$m" -le "$LEGACY_LATEST_ONLY_MAX" ]; then
+              # legacy major -> keep only the latest stable
+              selected="$selected"$'\n'"$(printf '%s\n' "$stable" | tail -1)"
+            else
+              # active major -> keep all stable EXCEPT the latest.
+              # `sed '$d'` (delete last line) is portable; `head -n -1` is GNU-only.
+              selected="$selected"$'\n'"$(printf '%s\n' "$stable" | sed '$d')"
+            fi
+          done
+
+          versions=$(printf '%s\n' "$selected" \
+            | grep -E '^[0-9]' \
+            | sort -V \
+            | jq -R . | jq -s -c 'map(select(length>0))')
+
+          count=$(printf '%s' "$versions" | jq 'length')
+          echo "Deploy set ($count versions): $versions"
+
+          # Guard: a future tag-scheme change must fail loudly, not silently
+          # deploy nothing and let the old-version URLs quietly age out.
+          if [ "$count" -lt 3 ]; then
+            echo "::error::Discovered only $count version(s) (<3). Refusing to run -- the tag scheme may have changed."
+            exit 1
+          fi
+
+          echo "versions=$versions" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    needs: discover
+    runs-on: ubuntu-latest
+    timeout-minutes: 40 # generous for first-time legacy builds; not the 360-min default.
+    strategy:
+      fail-fast: false # one bad legacy build must NOT cancel the other versions.
+      max-parallel: 4 # be gentle on the Netlify deploy API and the runner pool.
+      matrix:
+        version: ${{ fromJSON(needs.discover.outputs.versions) }}
+    env:
+      RM_VERSION: ${{ matrix.version }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Check archive for a cached build
+        id: cache
+        env:
+          FORCE_REBUILD: ${{ github.event.inputs.force_rebuild }}
+        run: |
+          set -euo pipefail
+          asset="public-${RM_VERSION}.tar.gz"
+          force="${FORCE_REBUILD:-false}"
+          hit=false
+          if [ "$force" != "true" ]; then
+            if gh release view "$ARCHIVE_RELEASE" --repo "$GITHUB_REPOSITORY" \
+                 --json assets -q '.assets[].name' 2>/dev/null | grep -qx "$asset"; then
+              hit=true
+            fi
+          fi
+          echo "asset=$asset" >> "$GITHUB_OUTPUT"
+          echo "hit=$hit" >> "$GITHUB_OUTPUT"
+          echo "version=$RM_VERSION asset=$asset cacheHit=$hit force=$force"
+
+      # ---------------------------------------------------------------------
+      # CACHE HIT -> just restore the prebuilt static output, no toolchain.
+      # ---------------------------------------------------------------------
+      - name: Restore prebuilt docs
+        if: steps.cache.outputs.hit == 'true'
+        run: |
+          set -euo pipefail
+          mkdir -p site
+          gh release download "$ARCHIVE_RELEASE" --repo "$GITHUB_REPOSITORY" \
+            --pattern "${{ steps.cache.outputs.asset }}" --output build.tar.gz
+          tar xzf build.tar.gz -C site
+          echo "Restored prebuilt docs for v$RM_VERSION from $ARCHIVE_RELEASE."
+
+      # ---------------------------------------------------------------------
+      # CACHE MISS / force_rebuild -> build from the release tag exactly once.
+      # ---------------------------------------------------------------------
+      - name: Checkout release tag (working tree)
+        if: steps.cache.outputs.hit != 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: react-magma-dom@${{ matrix.version }}
+          fetch-depth: 1
+
+      - name: Checkout patch assets from default branch
+        if: steps.cache.outputs.hit != 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }} # immutable default-branch commit for this run.
+          path: ._patches
+          sparse-checkout: patches/codesandbox
+          sparse-checkout-cone-mode: false
+
+      - name: Inspect tag and derive build settings
+        if: steps.cache.outputs.hit != 'true'
+        id: cfg
+        run: |
+          set -euo pipefail
+          PKG=website/react-magma-docs/package.json
+          MAJOR="${RM_VERSION%%.*}"
+
+          has() { grep -q "\"$1\"" "$PKG" && echo true || echo false; }
+
+          NEEDS_PATCH=$(has react-codesandboxer)  # absent on tags that already ship the fix
+          HAS_CORE=$(has @emotion/core)           # emotion 10 family
+          HAS_REACT=$(has @emotion/react)         # emotion 11 family
+
+          # Patch variant (only consulted when NEEDS_PATCH=true):
+          if [ "$MAJOR" -eq 2 ]; then
+            VARIANT=actions-v2
+          elif [ "$HAS_REACT" = true ]; then
+            VARIANT=actions-emotion-react
+          else
+            VARIANT=actions-emotion-core
+          fi
+
+          # The @emotion/styled v10 dist references _styled without importing it,
+          # so the emotion-10 (core) family needs the shim; emotion-11 does not.
+          NEEDS_STYLED_IMPORT="$HAS_CORE"
+
+          # Node is pinned to 22 for ALL versions (see the Setup Node step). A
+          # modern `npm install` of every in-scope tag resolves transitive deps
+          # that need Node >= 20's global `File`, so the tags' own .nvmrc (Node
+          # 14/16/18) no longer builds ("ReferenceError: File is not defined").
+          # Verified via local dry-runs on 3.11.0 / 4.3.0 / 4.13.0.
+
+          {
+            echo "needsPatch=$NEEDS_PATCH"
+            echo "variant=$VARIANT"
+            echo "needsStyledImport=$NEEDS_STYLED_IMPORT"
+          } >> "$GITHUB_OUTPUT"
+
+          echo "v=$RM_VERSION major=$MAJOR patch=$NEEDS_PATCH variant=$VARIANT styledShim=$NEEDS_STYLED_IMPORT"
+
+      - name: Setup Node 22
+        # All in-scope tags' own .nvmrc (Node 14/16/18) is too old to `npm install`
+        # today (deps need Node >= 20's global `File`); Node 22 builds them all.
+        if: steps.cache.outputs.hit != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          check-latest: true
+
+      - name: Apply CodeSandbox source patch
+        if: steps.cache.outputs.hit != 'true' && steps.cfg.outputs.needsPatch == 'true'
+        run: |
+          set -euo pipefail
+          cp "._patches/patches/codesandbox/${{ steps.cfg.outputs.variant }}.tsx" \
+             website/react-magma-docs/src/components/CodeBlock/actions.tsx
+          node ._patches/patches/codesandbox/update-package.js
+
+      - name: Disable engine-strict check
+        if: steps.cache.outputs.hit != 'true'
+        run: echo "engine-strict=false" > .npmrc
+
+      - name: Install
+        if: steps.cache.outputs.hit != 'true'
+        run: npm install --legacy-peer-deps
+
+      - name: Add @emotion/styled import shim (emotion 10 family)
+        if: steps.cache.outputs.hit != 'true' && steps.cfg.outputs.needsStyledImport == 'true'
+        run: |
+          set -euo pipefail
+          F=packages/react-magma-dom/dist/esm/index.js
+          test -f "$F" || { echo "::error::expected built artifact $F after install"; exit 1; }
+          # Only add the import if _styled is not ALREADY declared. Some emotion-10
+          # builds (e.g. 3.11.0) already `import _styled from '@emotion/styled-base'`;
+          # prepending again fails with "Identifier '_styled' has already been declared".
+          if grep -qE "^import _styled[ =]" "$F"; then
+            echo "styled shim skipped: _styled already declared in $F"
+          else
+            echo "import _styled from '@emotion/styled';" | cat - "$F" > "$F.tmp" && mv "$F.tmp" "$F"
+            echo "styled shim applied to $F"
+          fi
+
+      - name: Build docs
+        if: steps.cache.outputs.hit != 'true'
+        env:
+          PATH_PREFIX: /version/${{ matrix.version }}
+          # Every in-scope version is a legacy Gatsby 2/3 site; modern Node's
+          # OpenSSL 3 breaks webpack's MD4 hashing without this. Harmless where
+          # unneeded; 3.11.0 also embeds it in its own build:docs script.
+          NODE_OPTIONS: --openssl-legacy-provider
+        run: npm run build:docs
+
+      - name: Archive built output (build once, keep forever)
+        if: steps.cache.outputs.hit != 'true'
+        run: |
+          set -euo pipefail
+          OUT=website/react-magma-docs/public
+          test -d "$OUT" || { echo "::error::build produced no $OUT"; exit 1; }
+          mkdir -p site
+          cp -R "$OUT/." site/
+          tar czf "${{ steps.cache.outputs.asset }}" -C site .
+          gh release upload "$ARCHIVE_RELEASE" --repo "$GITHUB_REPOSITORY" \
+            "${{ steps.cache.outputs.asset }}" --clobber
+          echo "Stored prebuilt docs for v$RM_VERSION as ${{ steps.cache.outputs.asset }}."
+
+      # ---------------------------------------------------------------------
+      # DEPLOY (both paths publish ./site to the per-version Netlify alias).
+      # ---------------------------------------------------------------------
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.1
+        with:
+          publish-dir: './site'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: 'Old-docs redeploy v${{ matrix.version }}'
+          enable-pull-request-comment: false
+          enable-commit-comment: false
+          # production-deploy MUST stay false/unset: nwtgck only sends the alias
+          # as the Netlify branch (the per-version URL + retention key) for
+          # non-production deploys.
+          alias: ${{ matrix.version }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
