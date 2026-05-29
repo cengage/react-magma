@@ -103,6 +103,11 @@ export interface ChartToolbarConfig {
    * @default 2
    */
   tableHeaderLevel?: 1 | 2 | 3 | 4 | 5 | 6;
+  /**
+   * Heading level for the chart title.
+   * @default 2
+   */
+  titleLevel?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -1043,7 +1048,11 @@ function CarbonChartToolbar({
       isInverse={isInverse}
       theme={theme}
     >
-      <ChartTitle isInverse={isInverse} theme={theme}>
+      <ChartTitle
+        as={`h${config.titleLevel ?? 2}` as keyof JSX.IntrinsicElements}
+        isInverse={isInverse}
+        theme={theme}
+      >
         {resolvedTitle}
       </ChartTitle>
       <ToolbarActions theme={theme}>
