@@ -848,6 +848,27 @@ describe('CarbonChart', () => {
       ).not.toBeInTheDocument();
     });
 
+    it('should render the chart title as h2 by default', () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      expect(
+        screen.getByRole('heading', { level: 2, name: chartOptions.title })
+      ).toBeInTheDocument();
+    });
+
+    it('should render the chart title at the level set by titleLevel', () => {
+      render(
+        <CarbonChart {...toolbarProps} chartToolbar={{ titleLevel: 3 }} />
+      );
+
+      expect(
+        screen.getByRole('heading', { level: 3, name: chartOptions.title })
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByRole('heading', { level: 2, name: chartOptions.title })
+      ).not.toBeInTheDocument();
+    });
+
     it('should always render the more options dropdown with built-in download items', () => {
       render(<CarbonChart {...toolbarProps} />);
 
