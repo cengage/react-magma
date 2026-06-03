@@ -127,14 +127,19 @@ export const PasswordInput = React.forwardRef<
     SHOW_PASSWORD_BUTTON_TEXT === i18n.password.shown.buttonText &&
     HIDE_PASSWORD_BUTTON_TEXT === i18n.password.hidden.buttonText;
 
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement | null>(null);
   const [buttonWidth, setButtonWidth] = React.useState<number>(0);
 
   React.useLayoutEffect(() => {
     if (buttonRef.current && !usesDefaultText) {
       setButtonWidth(buttonRef.current.offsetWidth);
     }
-  }, [usesDefaultText, SHOW_PASSWORD_BUTTON_TEXT, HIDE_PASSWORD_BUTTON_TEXT]);
+  }, [
+    usesDefaultText,
+    passwordShown,
+    SHOW_PASSWORD_BUTTON_TEXT,
+    HIDE_PASSWORD_BUTTON_TEXT,
+  ]);
 
   const getButtonWidth = () => {
     if (usesDefaultText) {
@@ -152,6 +157,7 @@ export const PasswordInput = React.forwardRef<
     } else if (inputSize === InputSize.large && usesDefaultText) {
       return { width: 'calc(100% - 64px)' };
     } else {
+      // right margin (3px) so input doesn't overflow
       return { width: `calc(100% - ${buttonWidth + 3}px)` };
     }
   };
