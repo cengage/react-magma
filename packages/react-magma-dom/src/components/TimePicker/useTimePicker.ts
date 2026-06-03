@@ -37,7 +37,8 @@ export interface UseTimePickerProps
 
 export function useTimePicker(props: UseTimePickerProps) {
   const { errorMessage, helperMessage, minutesStep, onChange } = props;
-  const step = minutesStep && minutesStep > 0 ? minutesStep : 1;
+  const parsedStep = Number(minutesStep);
+  const step = parsedStep > 0 ? parsedStep : 1;
   const i18n = React.useContext(I18nContext);
 
   const locale = i18n.locale || enUS;
