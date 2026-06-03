@@ -36,7 +36,8 @@ export interface UseTimePickerProps
 }
 
 export function useTimePicker(props: UseTimePickerProps) {
-  const { errorMessage, helperMessage, onChange } = props;
+  const { errorMessage, helperMessage, minutesStep, onChange } = props;
+  const step = minutesStep && minutesStep > 0 ? minutesStep : 1;
   const i18n = React.useContext(I18nContext);
 
   const locale = i18n.locale || enUS;
@@ -238,30 +239,29 @@ export function useTimePicker(props: UseTimePickerProps) {
       amPmRef.current.focus();
     }
 
-    if (event.key === 'ArrowUp') {
-      const next = Number(minute || '0') + 1;
-
-      if (next > 59) return;
-
-      const newMinute = calculateMinute(next);
+    const applyMinute = (value: number) => {
+      const newMinute = calculateMinute(value);
 
       setMinute(newMinute);
       setHour(hour || '12');
       updateTime(`${hour || '12'}:${newMinute} ${amPm}`);
       event.preventDefault();
+    };
+
+    if (event.key === 'ArrowUp') {
+      const current = Number(minute || '0');
+
+      if (current === 59) return;
+
+      applyMinute(Math.min(current + step, 59));
     }
 
     if (event.key === 'ArrowDown') {
-      const prev = minute ? Number(minute) - 1 : 0;
+      if (minute === '00') return;
 
-      if (prev < 0) return;
+      const current = minute ? Number(minute) : 0;
 
-      const newMinute = calculateMinute(prev);
-
-      setMinute(newMinute);
-      setHour(hour || '12');
-      updateTime(`${hour || '12'}:${newMinute} ${amPm}`);
-      event.preventDefault();
+      applyMinute(Math.max(current - step, 0));
     }
   }
 
