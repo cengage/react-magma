@@ -90,7 +90,6 @@ export const Events = () => {
         labelText="Time Due"
         onChange={handleOnChange}
         value={timeValue}
-        minutesStep="4"
       />
       <br />
       <Button onClick={() => setTimeValue(undefined)}>Clear Time</Button>
