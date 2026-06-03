@@ -128,16 +128,19 @@ export const PasswordInput = React.forwardRef<
     HIDE_PASSWORD_BUTTON_TEXT === i18n.password.hidden.buttonText;
 
   const buttonRef = React.useRef<HTMLButtonElement>();
+  const [buttonWidth, setButtonWidth] = React.useState<number>(0);
+
+  React.useLayoutEffect(() => {
+    if (buttonRef.current && !usesDefaultText) {
+      setButtonWidth(buttonRef.current.offsetWidth);
+    }
+  }, [usesDefaultText, SHOW_PASSWORD_BUTTON_TEXT, HIDE_PASSWORD_BUTTON_TEXT]);
 
   const getButtonWidth = () => {
     if (usesDefaultText) {
-      if (inputSize === InputSize.large) {
-        return '64px';
-      }
-
-      return '54px';
-    } else {
-      return `${buttonRef?.current?.offsetWidth}px`;
+      return inputSize === InputSize.large ? '64px' : '54px';
+    } else if (buttonWidth !== 0) {
+      return `${buttonWidth}px`;
     }
   };
 
@@ -149,7 +152,7 @@ export const PasswordInput = React.forwardRef<
     } else if (inputSize === InputSize.large && usesDefaultText) {
       return { width: 'calc(100% - 64px)' };
     } else {
-      return { width: `calc(100% - ${buttonRef?.current?.offsetWidth}px)` };
+      return { width: `calc(100% - ${buttonWidth + 3}px)` };
     }
   };
 
