@@ -11,6 +11,7 @@
   },
   "changesets": [
     "feat-Charts-titleLevel",
+    "fix-PasswordInput-broken-styles",
     "remove-deprecated-packages"
   ]
 }

@@ -1,5 +1,11 @@
 ## 4.14.0
 
+## 4.14.1-next.0
+
+### Patch Changes
+
+- 9ae682ce8: fix(PasswordInput): Fix styles for the custom button
+
 ### Minor Changes
 
 - 1aef43f36: feat(ButtonGroup): Add `isList` prop to render the group as a semantic list (`<ul>`/`<li>`) for assistive technologies.
