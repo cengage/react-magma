@@ -146,6 +146,7 @@
     "fix-Tag-fix-aria-label",
     "fix-TextArea-aria-accessibility-issue",
     "fix-TextArea-helpermessage-is-not-announced",
+    "fix-TimePicker-broken-minutesStep-prop",
     "fix-TimePicker-doc-issues",
     "fix-Toast-not-closing",
     "fix-ToggleButton-transform",

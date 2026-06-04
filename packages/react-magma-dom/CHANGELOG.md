@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.99
+
+### Patch Changes
+
+- 1e85bdd: fix(TimePicker): Fix issue with `minutesStep` prop.
+
 ## 5.1.0-rc.98
 
 ### Patch Changes
