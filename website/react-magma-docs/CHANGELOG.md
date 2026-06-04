@@ -1,5 +1,11 @@
 # Change Log
 
+## 7.0.0-rc.31
+
+### Patch Changes
+
+- 0ae413f: chore: fix build in ci
+
 ## 7.0.0-rc.30
 
 ### Patch Changes

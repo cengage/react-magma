@@ -30,6 +30,7 @@
     "chore-dom-peer-deps",
     "chore-dropzone-peer-deps",
     "chore-fix-build",
+    "chore-fix-chromatic",
     "chore-fix-components",
     "chore-fix-docs-build",
     "chore-fix-dropzone-build",
