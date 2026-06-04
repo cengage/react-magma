@@ -353,6 +353,90 @@ describe('TimePicker', () => {
 
       expect(minutesInput).toHaveAttribute('step', '5');
     });
+
+    it('should increment minutes by minutesStep on arrow up', () => {
+      const { getByTestId } = render(
+        <TimePicker label="label" minutesStep={15} />
+      );
+
+      const minutesInput = getByTestId('minutesTimeInput');
+
+      act(() => {
+        minutesInput.focus();
+      });
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+      expect(minutesInput.value).toEqual('15');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+      expect(minutesInput.value).toEqual('30');
+    });
+
+    it('should decrement minutes by minutesStep on arrow down', () => {
+      const { getByTestId } = render(
+        <TimePicker label="label" minutesStep={3} />
+      );
+
+      const minutesInput = getByTestId('minutesTimeInput');
+
+      act(() => {
+        minutesInput.focus();
+      });
+
+      fireEvent.change(minutesInput, { target: { value: '10' } });
+      expect(minutesInput.value).toEqual('10');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowDown' });
+      expect(minutesInput.value).toEqual('07');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowDown' });
+      expect(minutesInput.value).toEqual('04');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowDown' });
+      expect(minutesInput.value).toEqual('01');
+    });
+
+    it('should clamp to 59 on arrow up when minutesStep would overflow', () => {
+      const { getByTestId } = render(
+        <TimePicker label="label" minutesStep={15} />
+      );
+
+      const minutesInput = getByTestId('minutesTimeInput');
+
+      act(() => {
+        minutesInput.focus();
+      });
+
+      fireEvent.change(minutesInput, { target: { value: '50' } });
+      expect(minutesInput.value).toEqual('50');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+      expect(minutesInput.value).toEqual('59');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+      expect(minutesInput.value).toEqual('59');
+    });
+
+    it('should clamp to 0 on arrow down when minutesStep would underflow', () => {
+      const { getByTestId } = render(
+        <TimePicker label="label" minutesStep={3} />
+      );
+
+      const minutesInput = getByTestId('minutesTimeInput');
+
+      act(() => {
+        minutesInput.focus();
+      });
+
+      fireEvent.change(minutesInput, { target: { value: '01' } });
+      expect(minutesInput.value).toEqual('01');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowDown' });
+      expect(minutesInput.value).toEqual('00');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowDown' });
+      expect(minutesInput.value).toEqual('00');
+    });
   });
 
   describe('AM/PM', () => {
