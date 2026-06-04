@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.100
+
+### Patch Changes
+
+- abee630: fix(PasswordInput): Fix styles for the custom button
+
 ## 5.1.0-rc.99
 
 ### Patch Changes

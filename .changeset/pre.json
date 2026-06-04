@@ -126,6 +126,7 @@
     "fix-Pagination-add-announcement-selected-page",
     "fix-Pagination-aria-hidden-dots",
     "fix-Pagination-aria-label",
+    "fix-PasswordInput-broken-styles",
     "fix-Popover-accessibility-issue-v2",
     "fix-Popover-accessibility-issue",
     "fix-Popover-announcement",
