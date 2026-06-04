@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 
 import { Pagination, PaginationType } from '.';
+import userEvent from '@testing-library/user-event';
 
 describe('Pagination', () => {
   it('Should find element by testId', () => {
@@ -78,18 +79,18 @@ describe('Pagination', () => {
     expect(button).toHaveStyleRule('height', magma.spaceScale.spacing11);
   });
 
-  it('Should change the active page when clicking a pagination button', () => {
+  it('Should change the active page when clicking a pagination button', async () => {
     const { getByText } = render(<Pagination count={4} />);
     const button = getByText('2').parentElement;
 
     expect(button).toHaveStyleRule('background', magma.colors.neutral100);
 
-    fireEvent.click(button);
+    await userEvent.click(button);
 
     expect(button).toHaveStyleRule('background', magma.colors.primary);
   });
 
-  it('Should change the active page when clicking the previous button', () => {
+  it('Should change the active page when clicking the previous button', async () => {
     const { getByLabelText } = render(<Pagination count={4} defaultPage={2} />);
     const previousButton = getByLabelText('Previous Page');
 
@@ -98,7 +99,7 @@ describe('Pagination', () => {
       magma.colors.neutral100
     );
 
-    fireEvent.click(previousButton);
+    await userEvent.click(previousButton);
 
     expect(previousButton).toHaveStyleRule(
       'background',
@@ -106,25 +107,25 @@ describe('Pagination', () => {
     );
   });
 
-  it('Should change the active page when clicking the next button', () => {
+  it('Should change the active page when clicking the next button', async () => {
     const { getByLabelText } = render(<Pagination count={4} defaultPage={3} />);
     const nextButton = getByLabelText('Next Page');
 
     expect(nextButton).toHaveStyleRule('background', magma.colors.neutral100);
 
-    fireEvent.click(nextButton);
+    await userEvent.click(nextButton);
 
     expect(nextButton).toHaveStyleRule('background', magma.colors.neutral100);
   });
 
-  it('Should change the active page number', () => {
+  it('Should change the active page number', async () => {
     const handleChangePage = jest.fn();
     const { getByText } = render(
       <Pagination count={4} onPageChange={handleChangePage} />
     );
     const activeButton = getByText('2').parentElement;
 
-    fireEvent.click(activeButton);
+    await userEvent.click(activeButton);
 
     expect(handleChangePage).toHaveBeenCalled();
   });

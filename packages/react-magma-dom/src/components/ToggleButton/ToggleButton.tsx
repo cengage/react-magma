@@ -81,6 +81,7 @@ export function setIconWidth(props: ToggleButtonIconProps) {
   if (props.size === ButtonSize.large) {
     return props.theme.spaceScale.spacing11;
   }
+
   return props.theme.spaceScale.spacing09;
 }
 
@@ -90,6 +91,7 @@ export function setBackgroundColor(props) {
     if (props.isInverse) {
       return transparentize(0.5, props.theme.colors.neutral900);
     }
+
     return transparentize(0.5, props.theme.colors.neutral300);
   }
 }
@@ -132,6 +134,7 @@ export const ToggleButton = React.forwardRef<
     onClick,
     testId,
     value,
+    ...other
   } = props;
 
   const context = React.useContext(ToggleButtonGroupContext);
@@ -183,49 +186,38 @@ export const ToggleButton = React.forwardRef<
       context.onChange(event);
   };
 
+  const sharedToggleButtonProps = {
+    ...other,
+    'aria-checked': isSelected,
+    color: ButtonColor.subtle,
+    disabled: disabled,
+    theme: theme,
+    id: context.descriptionId,
+    isInverse: inverseCheck,
+    onClick: context.exclusive ? handleClickExclusive : handleClick,
+    ref: ref,
+    enforced: context.enforced,
+    role: roleCheck,
+    isSelected: isSelected,
+    exclusive: context.exclusive,
+    size: props.size || context.size,
+    testId: testId,
+    value: value,
+  };
+
   return (
     <>
       {icon ? (
         <StyledToggleButtonIcon
-          aria-checked={isSelected}
+          {...sharedToggleButtonProps}
           aria-label={ariaLabel}
-          color={ButtonColor.subtle}
-          disabled={disabled}
-          theme={theme}
           hasLabel={children ? true : false}
           icon={icon}
-          id={context.descriptionId}
-          isInverse={inverseCheck}
-          onClick={context.exclusive ? handleClickExclusive : handleClick}
-          ref={ref}
-          enforced={context.enforced}
-          role={roleCheck}
-          isSelected={isSelected}
-          exclusive={context.exclusive}
-          size={props.size || context.size}
-          testId={testId}
-          value={value}
         >
           <>{children}</>
         </StyledToggleButtonIcon>
       ) : (
-        <StyledToggleButtonText
-          aria-checked={isSelected}
-          color={ButtonColor.subtle}
-          disabled={disabled}
-          theme={theme}
-          id={context.descriptionId}
-          isInverse={inverseCheck}
-          onClick={context.exclusive ? handleClickExclusive : handleClick}
-          ref={ref}
-          enforced={context.enforced}
-          role={roleCheck}
-          isSelected={isSelected}
-          exclusive={context.exclusive}
-          size={props.size || context.size}
-          testId={testId}
-          value={value}
-        >
+        <StyledToggleButtonText {...sharedToggleButtonProps}>
           {children}
         </StyledToggleButtonText>
       )}

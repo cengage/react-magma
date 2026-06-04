@@ -5,6 +5,7 @@ import { IconProps, InfoIcon } from 'react-magma-icons';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Omit, useForkedRef, XOR } from '../../utils';
+import { Announce } from '../Announce';
 import {
   Button,
   ButtonProps,
@@ -15,6 +16,8 @@ import {
 } from '../Button';
 import { IconButton } from '../IconButton';
 import { PopoverContext } from './Popover';
+import useDeviceDetect from '../../hooks/useDeviceDetect';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 interface IconOnlyPopoverTriggerProps extends Omit<ButtonProps, 'children'> {
   /**
@@ -102,18 +105,23 @@ export const PopoverTrigger = React.forwardRef<
     }
   }
 
+  const { isMacOS, isSafari } = useDeviceDetect();
+
   const styledChildren =
     children && typeof children !== 'string'
       ? React.cloneElement(children as React.ReactElement, {
           theme,
           onClick: handleClick,
           ref: ref,
+          'aria-haspopup': 'dialog',
+          'aria-controls': context.popoverContentId.current,
           'aria-describedby':
             context.hoverable &&
             !context.hasActiveElements &&
             !context.isDisabled
               ? context.popoverContentId.current
               : null,
+          'aria-expanded': context.isOpen,
         })
       : children;
 
@@ -124,7 +132,10 @@ export const PopoverTrigger = React.forwardRef<
 
   if (!children) {
     return (
-      <div ref={context.setReference} style={{ width: 'fit-content' }}>
+      <div
+        ref={context.setReference}
+        style={{ width: context.isFullWidth ? '100%' : 'fit-content' }}
+      >
         <IconButton
           {...other}
           shape={ButtonShape.fill}
@@ -151,11 +162,22 @@ export const PopoverTrigger = React.forwardRef<
               : null
           }
         />
+        {isMacOS && isSafari && (
+          <VisuallyHidden>
+            <Announce>
+              {context.isOpen ? 'Popover is expanded' : 'Popover is collapsed'}
+            </Announce>
+          </VisuallyHidden>
+        )}
       </div>
     );
   }
+
   return (
-    <div ref={context.setReference} style={{ width: 'fit-content' }}>
+    <div
+      ref={context.setReference}
+      style={{ width: context.isFullWidth ? '100%' : 'fit-content' }}
+    >
       {typeof children === 'string' ? (
         <Button
           {...other}
@@ -183,9 +205,6 @@ export const PopoverTrigger = React.forwardRef<
       ) : (
         <TriggerButtonContainer
           aria-label={ariaLabel}
-          aria-haspopup="dialog"
-          aria-expanded={context.isOpen}
-          aria-controls={context.popoverContentId.current}
           id={context.popoverTriggerId.current}
           tabIndex={
             tabIndex
@@ -205,6 +224,13 @@ export const PopoverTrigger = React.forwardRef<
         >
           {styledChildren}
         </TriggerButtonContainer>
+      )}
+      {isMacOS && isSafari && (
+        <VisuallyHidden>
+          <Announce>
+            {context.isOpen ? 'Popover is expanded' : 'Popover is collapsed'}
+          </Announce>
+        </VisuallyHidden>
       )}
     </div>
   );

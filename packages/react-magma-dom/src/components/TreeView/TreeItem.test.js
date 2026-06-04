@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fireEvent, getByTestId, render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 
@@ -143,10 +143,6 @@ describe('TreeItem', () => {
         </TreeView>
       );
 
-      expect(getByTestId(`${testId}-expand`)).toHaveAttribute(
-        'aria-hidden',
-        'true'
-      );
       expect(getByTestId(`${testId}-expand`)).toHaveStyleRule(
         'color',
         transparentize(0.6, magma.colors.neutral500)
@@ -155,7 +151,7 @@ describe('TreeItem', () => {
   });
 
   describe('onClick', () => {
-    it('gets called when the item is clicked', () => {
+    it('gets called when the item is clicked', async () => {
       const onClick = jest.fn();
       const { getByText } = render(
         <TreeItem
@@ -166,7 +162,7 @@ describe('TreeItem', () => {
         />
       );
 
-      userEvent.click(getByText(labelText));
+      await userEvent.click(getByText(labelText));
 
       expect(onClick).toHaveBeenCalled();
     });

@@ -7,14 +7,18 @@ export function generateId(id?: string) {
 }
 
 export function useGenerateId(newId?: string) {
-  const [id, updateId] = React.useState<string>(newId);
+  const [id, updateId] = React.useState<string>(() => generateId(newId));
+
+  // Only re-generate the id when `newId` actually changes between renders.
+  // Tracking the previous value via ref avoids a mount-time setState that
+  // would force every consumer of useGenerateId into an extra render.
+  const prevNewIdRef = React.useRef(newId);
 
   React.useEffect(() => {
-    updateId(generateId(newId));
-  }, []);
-
-  React.useEffect(() => {
-    newId && updateId(generateId(newId));
+    if (newId && newId !== prevNewIdRef.current) {
+      updateId(generateId(newId));
+    }
+    prevNewIdRef.current = newId;
   }, [newId]);
 
   return id;
@@ -37,17 +41,21 @@ export type XOR<T, U> = T | U extends object
 
 export function usePrevious(value) {
   const ref = React.useRef();
+
   React.useEffect(() => {
     ref.current = value;
   });
+
   return ref.current;
 }
 
 export function debounce(func, wait) {
   let timeout;
+
   function debounced(...args) {
     // tslint:disable-next-line
     const context = this;
+
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(() => {
       timeout = null;
@@ -71,6 +79,7 @@ export function detectScrollType() {
   }
 
   const dummy = document.createElement('div');
+
   dummy.appendChild(document.createTextNode('ABCD'));
   dummy.dir = 'rtl';
   dummy.style.fontSize = '14px';
@@ -151,6 +160,7 @@ export function animate(property, element, to, options: any = {}) {
 
     if (time >= 1) {
       requestAnimationFrame(() => {});
+
       return;
     }
 
@@ -162,6 +172,7 @@ export function animate(property, element, to, options: any = {}) {
   }
 
   requestAnimationFrame(step);
+
   return cancel;
 }
 
@@ -183,6 +194,7 @@ export function useForkedRef(...refs) {
     if (refs.every(ref => ref === null)) {
       return null;
     }
+
     return (node: any) => {
       refs.forEach(ref => {
         assignRef(ref, node);
@@ -213,6 +225,7 @@ export const addPxStyleStrings = (
   const pxValues: number[] = styleStrings.map(styleString => {
     return parseInt(styleString.toString().replace(/\s*px$/, ''));
   });
+
   return pxValues.reduce((total, value) => total + value).toString() + 'px';
 };
 
@@ -222,6 +235,7 @@ export const removePxStyleStrings = (
   const numericValues: number[] = styleStrings.map(item =>
     parseInt(item.toString().replace(/\s*px$/, ''), 10)
   );
+
   return numericValues.reduce((total, value) => total + value, 0);
 };
 
@@ -345,3 +359,52 @@ export const mergeRefs = <T>(...refs: Array<React.Ref<T> | undefined>) => {
     });
   };
 };
+
+export function isElementInteractive(element: EventTarget | null): boolean {
+  if (!element || !(element instanceof HTMLElement)) return false;
+
+  const tag = element.tagName.toLowerCase();
+
+  if (
+    ['button', 'input', 'select', 'textarea', 'a'].includes(tag) ||
+    (element.hasAttribute('tabindex') && element.tabIndex >= 0)
+  ) {
+    if (tag === 'a' && !(element as HTMLAnchorElement).href) return false;
+
+    return !element.hasAttribute('disabled');
+  }
+
+  return false;
+}
+
+export const handleNumericBeforeInput = (
+  e: React.FormEvent<HTMLInputElement>
+) => {
+  const native = e.nativeEvent as InputEvent;
+
+  if (typeof native.data === 'string' && /\D/.test(native.data)) {
+    e.preventDefault();
+  }
+};
+
+export function hasActiveElementsInside(ref) {
+  return (
+    Array.from(
+      ref.current?.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
+      ) || []
+    ).filter((element: HTMLElement) => {
+      const style = window.getComputedStyle(element);
+
+      return (
+        element instanceof HTMLElement &&
+        style.display !== 'none' &&
+        style.visibility !== 'hidden' &&
+        !element.hasAttribute('disabled')
+      );
+    }).length > 0
+  );
+}
+
+export const descriptionSuffix = '__desc';
+export const labelSuffix = '__label';

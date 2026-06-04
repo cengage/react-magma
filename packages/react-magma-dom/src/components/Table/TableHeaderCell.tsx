@@ -3,7 +3,6 @@ import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { SortDoubleArrowIcon, SouthIcon, NorthIcon } from 'react-magma-icons';
 
 import {
   TableCellAlign,
@@ -12,6 +11,8 @@ import {
   TableSortDirection,
 } from './Table';
 import { baseTableCellStyle, buildCellPaddingStyle } from './TableCell';
+import { getAriaSort, getAriaSortLabel, getTableSortIcon } from './utils';
+import { I18nContext } from '../..';
 import { ThemeContext } from '../../theme/ThemeContext';
 
 export interface TableHeaderCellProps
@@ -61,6 +62,10 @@ export interface TableHeaderCellProps
    * Indicates how many rows the header cell spans or extends
    */
   rowSpan?: number;
+  /**
+   * @internal
+   */
+  header?: string;
 }
 
 export enum TableHeaderCellScope {
@@ -183,36 +188,36 @@ export const TableHeaderCell = React.forwardRef<
     sortDirection,
     testId,
     width,
+    header,
     ...other
   } = props;
   const theme = React.useContext(ThemeContext);
   const tableContext = React.useContext(TableContext);
+  const i18n = React.useContext(I18nContext);
 
   function handleSort() {
     onSort && typeof onSort === 'function' && onSort();
   }
 
-  const SortIcon =
-    sortDirection === TableSortDirection.ascending ? (
-      <NorthIcon size={theme.iconSizes.small} />
-    ) : sortDirection === TableSortDirection.descending ? (
-      <SouthIcon size={theme.iconSizes.small} />
-    ) : (
-      <SortDoubleArrowIcon
-        color={
-          tableContext.isInverse
-            ? transparentize(0.3, theme.colors.neutral100)
-            : theme.colors.neutral500
-        }
-        size={theme.iconSizes.small}
-      />
-    );
+  const SortIcon = getTableSortIcon({
+    sortDirection: sortDirection,
+    isInverse: tableContext.isInverse,
+    theme,
+  });
 
   const widthString = typeof width === 'number' ? `${width}px` : width;
+
+  const sortDirectionLabel =
+    getAriaSortLabel(sortDirection) || i18n.table.selectable.sortDirectionNone;
+  const sortRowsAriaLabel = isSortable
+    ? i18n.table.selectable.sortButtonAriaLabel.replace('{labelText}', header) +
+      `, ${sortDirectionLabel}`
+    : undefined;
 
   return (
     <StyledTableHeaderCell
       {...other}
+      aria-sort={getAriaSort(sortDirection)}
       data-testid={testId}
       density={tableContext.density}
       hasSquareCorners={tableContext.hasSquareCorners}
@@ -228,6 +233,7 @@ export const TableHeaderCell = React.forwardRef<
     >
       {isSortable ? (
         <SortButton
+          aria-label={sortRowsAriaLabel}
           density={tableContext.density}
           isInverse={tableContext.isInverse}
           onClick={handleSort}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { StoryObj, StoryFn, Meta } from '@storybook/react/types-6-0';
+import { StoryObj, StoryFn, Meta } from '@storybook/react-webpack5';
 import { EmailIcon, AndroidIcon, NotificationsIcon } from 'react-magma-icons';
 
 import { Button } from '../Button';
@@ -45,34 +45,24 @@ export default {
   ],
   argTypes: {
     alignment: {
-      control: {
-        type: 'select',
-        options: TabsAlignment,
-      },
+      control: { type: 'select' },
+      options: Object.values(TabsAlignment),
     },
     borderPosition: {
-      control: {
-        type: 'select',
-        options: TabsBorderPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(TabsBorderPosition),
     },
     iconPosition: {
-      control: {
-        type: 'select',
-        options: TabsIconPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(TabsIconPosition),
     },
     orientation: {
-      control: {
-        type: 'select',
-        options: TabsOrientation,
-      },
+      control: { type: 'select' },
+      options: Object.values(TabsOrientation),
     },
     textTransform: {
-      control: {
-        type: 'select',
-        options: TabsTextTransform,
-      },
+      control: { type: 'select' },
+      options: Object.values(TabsTextTransform),
     },
     isInverse: {
       control: {

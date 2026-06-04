@@ -178,16 +178,20 @@ If an error message is present, it will replace the helper text. Can be a node o
 import React from 'react';
 
 import {
-  RadioGroup,
-  Radio,
+  Announce,
   Button,
   ButtonColor,
   ButtonGroup,
+  RadioGroup,
+  Radio,
+  VisuallyHidden,
 } from 'react-magma-dom';
 
 export function Example() {
   const [hasError, setHasError] = React.useState(false);
   const [requiredFieldsValue, setRequiredFieldsValue] = React.useState('');
+  const clearedText = 'Input has been reset to default value.';
+  const [announcement, setAnnouncement] = React.useState('');
 
   function changeValue(e) {
     setRequiredFieldsValue(e.target.value);
@@ -204,6 +208,10 @@ export function Example() {
   function reset() {
     setHasError(false);
     setRequiredFieldsValue('');
+    setAnnouncement('');
+    setTimeout(() => {
+      setAnnouncement(clearedText);
+    }, 10);
   }
 
   const errorMsg = hasError ? 'Please select a color' : null;
@@ -230,6 +238,9 @@ export function Example() {
           Reset
         </Button>
       </ButtonGroup>
+      <Announce>
+        <VisuallyHidden>{announcement}</VisuallyHidden>
+      </Announce>
     </>
   );
 }
@@ -436,14 +447,7 @@ export function Example() {
 
 Adding the `isTextVisuallyHidden` prop will make the label text for either the radio group or the radio button available to screen readers, but will hide it visually.
 
-<Alert variant="warning">
-  Use caution when using the <inlineCode>isTextVisuallyHidden</inlineCode> prop;
-  it should only be used in rare circumstances when the purpose of the radio
-  button is conveyed in another way. While screen readers will announce the
-  label when the radio button gains focus, it is still best to have a visual
-  label. This is especially helpful for individuals with cognitive disabilities
-  and users who have fine motor control limitations.
-</Alert>
+<Alert variant="warning">Use caution when using the <code>isTextVisuallyHidden</code> prop; it should only be used in rare circumstances when the purpose of the radio button is conveyed in another way. While screen readers will announce the label when the radio button gains focus, it is still best to have a visual label. This is especially helpful for individuals with cognitive disabilities and users who have fine motor control limitations.</Alert>
 
 ```tsx
 import React from 'react';
@@ -488,19 +492,25 @@ import {
   Button,
   ButtonColor,
   ButtonGroup,
+  Announce,
+  VisuallyHidden,
 } from 'react-magma-dom';
 
 export function Example() {
   const radioRef = React.useRef();
   const [radioGroupVal, setRadioGroupVal] = React.useState(null);
+  const [announcement, setAnnouncement] = React.useState('');
 
   function handleSelectOne() {
     if (!radioRef.current) {
       setRadioGroupVal(null);
+      setAnnouncement('');
     } else if (radioRef.current.checked) {
       setRadioGroupVal('');
+      setAnnouncement('Option one deselected');
     } else if (!radioRef.current.checked) {
       setRadioGroupVal('1');
+      setAnnouncement('Option one selected');
     }
   }
 
@@ -532,6 +542,9 @@ export function Example() {
           Focus option 1
         </Button>
       </ButtonGroup>
+      <Announce>
+        <VisuallyHidden>{announcement}</VisuallyHidden>
+      </Announce>
     </>
   );
 }
@@ -541,7 +554,7 @@ export function Example() {
 
 Passing in the `testId` prop will add the `data-testid` attribute to the wrapper element for `RadioGroup` and the input element for `Radio` for easier querying in tests.
 
-```html noCodeSandbox
+```html-noCodeSandbox
 <RadioGroup
   labelText="Labelled by label"
   name="labelledByProp"

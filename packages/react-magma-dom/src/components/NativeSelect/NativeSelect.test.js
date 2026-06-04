@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { transparentize } from 'polished';
 import { HelpIcon } from 'react-magma-icons';
 
@@ -11,6 +11,7 @@ import { IconButton } from '../IconButton';
 import { Tooltip } from '../Tooltip';
 
 import { NativeSelect } from '.';
+import userEvent from '@testing-library/user-event';
 
 describe('NativeSelect', () => {
   const testId = 'test-id';
@@ -62,7 +63,7 @@ describe('NativeSelect', () => {
     );
   });
 
-  it('should update the selected option', () => {
+  it('should update the selected option', async () => {
     const { getByTestId } = render(
       <NativeSelect testId={testId}>
         <option>1</option>
@@ -72,7 +73,7 @@ describe('NativeSelect', () => {
     );
     const activeOption = getByTestId(testId);
 
-    fireEvent.change(getByTestId(testId), { target: { value: 2 } });
+    await userEvent.selectOptions(getByTestId(testId), '2');
 
     expect(activeOption).toHaveDisplayValue('2');
   });
@@ -88,7 +89,7 @@ describe('NativeSelect', () => {
 
   it('should render an error state', () => {
     const errorMessage = 'This is an error';
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getAllByText } = render(
       <NativeSelect errorMessage={errorMessage} testId={testId} />
     );
 
@@ -97,12 +98,55 @@ describe('NativeSelect', () => {
       `1px solid ${magma.colors.danger}`
     );
 
-    expect(getByText(errorMessage)).toBeInTheDocument();
+    expect(getAllByText(errorMessage)[0]).toBeInTheDocument();
+  });
+
+  it('should set aria-invalid on the select when in error state', () => {
+    const { getByTestId } = render(
+      <NativeSelect errorMessage="Error" testId={testId}>
+        <option>Red</option>
+      </NativeSelect>
+    );
+
+    expect(getByTestId(testId)).toHaveAttribute('aria-invalid', 'true');
+  });
+
+  it('should not set aria-invalid when there is no error', () => {
+    const { getByTestId } = render(
+      <NativeSelect testId={testId}>
+        <option>Red</option>
+      </NativeSelect>
+    );
+
+    expect(getByTestId(testId)).not.toHaveAttribute('aria-invalid');
+  });
+
+  it('should set aria-describedby referencing the error message element', () => {
+    const { getByTestId } = render(
+      <NativeSelect errorMessage="Error" testId={testId} id="my-select">
+        <option>Red</option>
+      </NativeSelect>
+    );
+
+    const select = getByTestId(testId);
+    expect(select).toHaveAttribute('aria-describedby', 'my-select__desc');
+    expect(document.getElementById('my-select__desc')).toBeInTheDocument();
+  });
+
+  it('should set aria-describedby referencing the helper message element', () => {
+    const { getByTestId } = render(
+      <NativeSelect helperMessage="Help text" testId={testId} id="my-select">
+        <option>Red</option>
+      </NativeSelect>
+    );
+
+    const select = getByTestId(testId);
+    expect(select).toHaveAttribute('aria-describedby', 'my-select__desc');
   });
 
   it('should render an inverse error state', () => {
     const errorMessage = 'This is an error';
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getAllByText } = render(
       <NativeSelect errorMessage={errorMessage} isInverse testId={testId} />
     );
 
@@ -111,7 +155,37 @@ describe('NativeSelect', () => {
       `1px solid ${magma.colors.danger300}`
     );
 
-    expect(getByText(errorMessage)).toBeInTheDocument();
+    expect(getAllByText(errorMessage)[0]).toBeInTheDocument();
+  });
+
+  it('should have cycling navigation through options with arrow keys', async () => {
+    const testId = 'select';
+    const { getByTestId } = render(
+      <NativeSelect testId={testId} defaultValue="1">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </NativeSelect>
+    );
+
+    const selectElement = getByTestId(testId);
+    selectElement.focus();
+
+    expect(selectElement).toHaveDisplayValue('1');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(selectElement).toHaveDisplayValue('2');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(selectElement).toHaveDisplayValue('3');
+
+    // Cycle back to first option
+    await userEvent.keyboard('{ArrowDown}');
+    expect(selectElement).toHaveDisplayValue('1');
+
+    // Cycle to last option
+    await userEvent.keyboard('{ArrowUp}');
+    expect(selectElement).toHaveDisplayValue('3');
   });
 
   describe('additional content', () => {
@@ -121,7 +195,7 @@ describe('NativeSelect', () => {
       alert('Help link clicked!');
     };
 
-    it('Should accept additional content to the right of the native select label', () => {
+    it('should accept additional content to the right of the native select label', () => {
       const { getByTestId } = render(
         <NativeSelect
           testId={testId}
@@ -144,7 +218,7 @@ describe('NativeSelect', () => {
       expect(getByTestId('Icon Button')).toBeInTheDocument();
     });
 
-    it(`Should display additional content inline with the native select label when labelPosition is set to 'left'`, () => {
+    it(`should display additional content inline with the native select label when labelPosition is set to 'left'`, () => {
       const { getByTestId } = render(
         <NativeSelect
           labelPosition="left"
@@ -170,7 +244,7 @@ describe('NativeSelect', () => {
       );
     });
 
-    it(`Should display an additional wrapper with additionalContent'`, () => {
+    it(`should display an additional wrapper with additionalContent'`, () => {
       const { queryByTestId } = render(
         <NativeSelect
           labelPosition="left"
@@ -195,13 +269,53 @@ describe('NativeSelect', () => {
       ).toBeInTheDocument();
     });
 
-    it(`Shouldn't display an additional wrapper without additionalContent'`, () => {
+    it(`shouldn't display an additional wrapper without additionalContent'`, () => {
       const { queryByTestId } = render(
         <NativeSelect labelPosition="left" testId={testId} />
       );
       expect(
         queryByTestId(`${testId}-additional-content-wrapper`)
       ).not.toBeInTheDocument();
+    });
+
+    it('should set aria-labelledby when additionalContent and labelText are present', () => {
+      const { getByTestId } = render(
+        <NativeSelect
+          testId={testId}
+          id="my-select"
+          labelText="Select color"
+          additionalContent={
+            <Tooltip content="Learn more">
+              <IconButton
+                aria-label="Learn more"
+                icon={<HelpIcon />}
+                onClick={() => {}}
+                type={ButtonType.button}
+                size={ButtonSize.small}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          }
+        >
+          <option>Red</option>
+        </NativeSelect>
+      );
+
+      const select = getByTestId(testId);
+      expect(select).toHaveAttribute('aria-labelledby', 'my-select__label');
+      expect(document.getElementById('my-select__label')).toHaveTextContent(
+        'Select color'
+      );
+    });
+
+    it('should not set aria-labelledby when there is no additionalContent', () => {
+      const { getByTestId } = render(
+        <NativeSelect testId={testId} labelText="Select color">
+          <option>Red</option>
+        </NativeSelect>
+      );
+
+      expect(getByTestId(testId)).not.toHaveAttribute('aria-labelledby');
     });
   });
 });

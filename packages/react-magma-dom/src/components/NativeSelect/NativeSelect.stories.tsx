@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react-webpack5';
 import { HelpIcon } from 'react-magma-icons';
 
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
@@ -36,10 +36,8 @@ export default {
       },
     },
     labelPosition: {
-      control: {
-        type: 'select',
-        options: LabelPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(LabelPosition),
     },
     labelWidth: {
       control: {
@@ -78,6 +76,7 @@ const WithContentTemplate: StoryFn<NativeSelectProps> = args => {
   const onHelpLinkClick = () => {
     alert('Help link clicked!');
   };
+
   return (
     <NativeSelect
       {...args}

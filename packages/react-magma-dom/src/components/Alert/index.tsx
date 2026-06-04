@@ -2,10 +2,11 @@ import * as React from 'react';
 
 import { AlertBase, AlertVariant } from '../AlertBase';
 
-/**
- * @children required
- */
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Enables additional right aligned children within the Alert.
    */
@@ -20,6 +21,10 @@ export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default false
    */
   isDismissible?: boolean;
+  /**
+   * Reference to the dismiss button element
+   */
+  dismissibleButtonRef?: React.Ref<HTMLButtonElement>;
   isInverse?: boolean;
   /**
    * Action that fires when the close button is clicked (required when isDismissible is true)

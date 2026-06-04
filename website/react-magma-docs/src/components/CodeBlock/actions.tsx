@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, useEffect, useState } from 'react';
 
 import styled from '@emotion/styled';
-import CodeSandboxer from 'react-codesandboxer';
+import LZString from 'lz-string';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import {
   Button,
@@ -31,12 +31,13 @@ const CODESANDBOX_CSS_FILE = `
 `;
 const CODESANDBOX_INDEX_FILE = `
 import * as React from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import App from './App';
 
 const rootElement = document.getElementById('root');
-render(<App />, rootElement);
+const root = createRoot(rootElement);
+root.render(<App />);
 `;
 
 const CODESANDBOX_APP_FILE = `
@@ -70,6 +71,7 @@ const ActionsDiv = styled.div<{ isInverse?: boolean }>`
 
 export const Actions = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
   const isInverse = useIsInverse();
+
   return <ActionsDiv {...props} isInverse={isInverse} />;
 };
 
@@ -84,62 +86,85 @@ export const ActionsLeft = ({ ...props }: HTMLAttributes<HTMLDivElement>) => {
 interface CodeSandboxActionProps extends HTMLAttributes<HTMLButtonElement> {
   code: string;
 }
-export const CodeSandboxAction = ({ ...props }: CodeSandboxActionProps) => {
-  return (
-    <CodeSandboxer
-      name="react-magma-example"
-      example={props.code}
-      examplePath="does/not/do/anything/but/is/required.tsx"
-      pkgJSON={pkg}
-      gitInfo={{
-        account: 'cengage',
-        repository: 'react-magma',
-        branch: 'main',
-        host: 'github',
-      }}
-      dependencies={{
-        '@data-driven-forms/react-form-renderer':
-          pkg.dependencies['@data-driven-forms/react-form-renderer'],
-        '@emotion/react': pkg.dependencies['@emotion/react'],
-        '@emotion/styled': pkg.dependencies['@emotion/styled'],
-        'date-fns': pkg.dependencies['date-fns'],
-        downshift: pkg.dependencies['downshift'],
-        react: pkg.dependencies['react'],
-        'framer-motion': pkg.dependencies['framer-motion'],
-        'react-dom': pkg.dependencies['react-dom'],
-        'react-magma-icons': pkg.dependencies['react-magma-icons'],
-        'react-magma-dom': pkg.dependencies['react-magma-dom'],
-        '@react-magma/charts': pkg.dependencies['@react-magma/charts'],
-        '@cengage-patterns/header':
-          pkg.dependencies['@cengage-patterns/header'],
-        '@react-magma/schema-renderer':
-          pkg.dependencies['@react-magma/schema-renderer'],
-        uuid: pkg.dependencies['uuid'],
-      }}
-      providedFiles={{
-        'index.tsx': { content: CODESANDBOX_INDEX_FILE },
-        'App.tsx': { content: CODESANDBOX_APP_FILE },
-        'styles.css': { content: CODESANDBOX_CSS_FILE },
-      }}
-      template="create-react-app-typescript"
-    >
-      {(props: { error: string; isDeploying: boolean; isLoading: boolean }) => {
-        const { error, isDeploying, isLoading } = props;
-        const deploying = isDeploying || isLoading || false;
-        if (error) console.log(error);
 
-        return (
-          <Button
-            color={ButtonColor.secondary}
-            disabled={deploying}
-            size={ButtonSize.small}
-            variant={ButtonVariant.link}
-          >
-            Edit in CodeSandbox
-          </Button>
-        );
-      }}
-    </CodeSandboxer>
+interface IFiles {
+  template?: 'create-react-app-typescript';
+  files: {
+    [key: string]: {
+      content: string;
+    };
+  };
+}
+
+function compress(input: string) {
+  return LZString.compressToBase64(input)
+    .replace(/\+/g, `-`) // Convert '+' to '-'
+    .replace(/\//g, `_`) // Convert '/' to '_'
+    .replace(/=+$/, ``); // Remove ending '='
+}
+
+function getParameters(params: IFiles) {
+  return compress(JSON.stringify(params));
+}
+export const CodeSandboxAction = ({ code }: CodeSandboxActionProps) => {
+  const handleOpenSandbox = () => {
+    const parameters = getParameters({
+      template: 'create-react-app-typescript',
+      files: {
+        'package.json': {
+          content: JSON.stringify(
+            {
+              dependencies: {
+                '@data-driven-forms/react-form-renderer':
+                  pkg.dependencies['@data-driven-forms/react-form-renderer'],
+                '@emotion/react': pkg.dependencies['@emotion/react'],
+                '@emotion/styled': pkg.dependencies['@emotion/styled'],
+                'date-fns': pkg.dependencies['date-fns'],
+                downshift: pkg.dependencies['downshift'],
+                react: pkg.dependencies['react'],
+                'framer-motion': pkg.dependencies['framer-motion'],
+                'react-dom': pkg.dependencies['react-dom'],
+                'react-magma-icons': pkg.dependencies['react-magma-icons'],
+                'react-magma-dom': pkg.dependencies['react-magma-dom'],
+                '@react-magma/charts': pkg.dependencies['@react-magma/charts'],
+                uuid: pkg.dependencies['uuid'],
+              },
+            },
+            null,
+            2
+          ),
+        },
+        'index.tsx': {
+          content: CODESANDBOX_INDEX_FILE,
+        },
+        'App.tsx': {
+          content: CODESANDBOX_APP_FILE,
+        },
+        'styles.css': {
+          content: CODESANDBOX_CSS_FILE,
+        },
+        'example.tsx': {
+          content: code,
+        },
+      },
+    });
+
+    window.open(
+      `https://codesandbox.io/api/v1/sandboxes/define?parameters=${parameters}`,
+      '_blank',
+      'noopener,noreferrer'
+    );
+  };
+
+  return (
+    <Button
+      color={ButtonColor.secondary}
+      onClick={handleOpenSandbox}
+      size={ButtonSize.small}
+      variant={ButtonVariant.link}
+    >
+      Edit in CodeSandbox
+    </Button>
   );
 };
 

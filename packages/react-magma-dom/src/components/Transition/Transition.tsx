@@ -13,10 +13,11 @@ import { MotionVariants } from '../../theme/components/transition';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-/**
- * @children required
- */
 export interface TransitionProps extends HTMLMotionProps<'div'> {
+  /**
+   * @children optional
+   */
+  children?: React.ReactNode | undefined;
   /**
    * If `true`, the element will unmount when `in={false}` and animation is done
    * @default false
@@ -144,7 +145,9 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
       (acc, key) => {
         if (rest[key] && transitionsArr[key]) {
           const themeVariant = transitionsArr[key];
+
           rest[key] = undefined;
+
           return {
             baseStyle: {
               ...acc.baseStyle,
@@ -179,6 +182,7 @@ export const Transition = React.forwardRef<HTMLDivElement, TransitionProps>(
             },
           };
         }
+
         return acc;
       },
       { motion: customTransition, baseStyle: {} }

@@ -13,7 +13,13 @@ import {
 } from '@floating-ui/react';
 
 import { useIsInverse } from '../../inverse';
-import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
+import {
+  hasActiveElementsInside,
+  isElementInteractive,
+  resolveProps,
+  useForkedRef,
+  useGenerateId,
+} from '../../utils';
 import { ButtonGroupContext } from '../ButtonGroup';
 
 export enum PopoverPosition {
@@ -110,6 +116,12 @@ export interface PopoverProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default PopoverAlignment.center
    */
   alignment?: PopoverAlignment;
+  /**
+   * If true, the popover trigger will take the full width of its container.
+   * This allows buttons with isFullWidth prop to render at full width.
+   * @default false
+   */
+  isFullWidth?: boolean;
 }
 
 export interface PopoverContextInterface {
@@ -135,51 +147,18 @@ export interface PopoverContextInterface {
   hasPointer?: boolean;
   focusTrap?: boolean;
   hasActiveElements?: boolean;
+  isFullWidth?: boolean;
 }
 
-const StyledContainer = styled.div`
+const StyledContainer = styled.div<{ isFullWidth?: boolean }>`
   display: inline-block;
+  width: ${props => (props.isFullWidth ? '100%' : 'auto')};
 `;
 
 export const PopoverContext = React.createContext<PopoverContextInterface>({
   isOpen: false,
   setIsOpen: () => false,
 });
-
-export function hasActiveElementsChecker(ref) {
-  return (
-    Array.from(
-      ref.current?.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
-      ) || []
-    ).filter((element: HTMLElement) => {
-      const style = window.getComputedStyle(element);
-      return (
-        element instanceof HTMLElement &&
-        style.display !== 'none' &&
-        style.visibility !== 'hidden' &&
-        !element.hasAttribute('disabled')
-      );
-    }).length > 0
-  );
-}
-
-export function isElementInteractive(element: EventTarget | null): boolean {
-  if (!element || !(element instanceof HTMLElement)) return false;
-
-  const tag = element.tagName.toLowerCase();
-
-  if (
-    ['button', 'input', 'select', 'textarea', 'a'].includes(tag) ||
-    element.hasAttribute('tabindex')
-  ) {
-    if (tag === 'a' && !(element as HTMLAnchorElement).href) return false;
-
-    return !element.hasAttribute('disabled');
-  }
-
-  return false;
-}
 
 export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
   (props, forwardedRef) => {
@@ -195,7 +174,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
     const arrowRef = React.useRef(null);
 
     const hasActiveElements = React.useMemo(
-      () => hasActiveElementsChecker(contentRef),
+      () => hasActiveElementsInside(contentRef),
       [contentRef, contentRef.current]
     );
 
@@ -215,6 +194,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
       apiRef,
       focusTrap,
       alignment = PopoverAlignment.center,
+      isFullWidth,
       ...other
     } = props;
 
@@ -386,6 +366,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           hasPointer,
           focusTrap,
           hasActiveElements,
+          isFullWidth,
         }}
       >
         <StyledContainer
@@ -398,6 +379,7 @@ export const Popover = React.forwardRef<HTMLDivElement, PopoverProps>(
           onMouseLeave={handleMouseLeave}
           id={popoverId}
           onFocus={onFocus}
+          isFullWidth={isFullWidth}
         >
           {children}
         </StyledContainer>

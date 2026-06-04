@@ -3,7 +3,7 @@ import * as React from 'react';
 import { enUS } from 'date-fns/locale';
 
 import { I18nContext } from '../../i18n';
-import { useGenerateId, Omit } from '../../utils';
+import { useGenerateId, Omit, descriptionSuffix } from '../../utils';
 import { FormFieldContainerBaseProps } from '../FormFieldContainer';
 
 export interface UseTimePickerProps
@@ -26,13 +26,19 @@ export interface UseTimePickerProps
    */
   value?: string | undefined;
   /**
+   * @internal
+   */
+  timezone?: string;
+  /**
    * Function called when the component is changed to a new time
    */
   onChange?: (value: string) => void;
 }
 
 export function useTimePicker(props: UseTimePickerProps) {
-  const { errorMessage, helperMessage, onChange } = props;
+  const { errorMessage, helperMessage, minutesStep, onChange } = props;
+  const parsedStep = Number(minutesStep);
+  const step = parsedStep > 0 ? parsedStep : 1;
   const i18n = React.useContext(I18nContext);
 
   const locale = i18n.locale || enUS;
@@ -61,7 +67,8 @@ export function useTimePicker(props: UseTimePickerProps) {
 
   const hourId = `${id}__hour`;
   const minuteId = `${id}__minute`;
-  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+  const descriptionId =
+    errorMessage || helperMessage ? `${id}${descriptionSuffix}` : null;
 
   function updateTime(newTime: string) {
     setTime(newTime);
@@ -74,6 +81,7 @@ export function useTimePicker(props: UseTimePickerProps) {
       `^([01]?[0-9]|2[0-3]):[0-5][0-9]( (${amPmRegex}))?$`,
       'g'
     );
+
     return timeRegex.test(passedInTime);
   }
 
@@ -187,6 +195,34 @@ export function useTimePicker(props: UseTimePickerProps) {
     if (event.key === 'ArrowRight') {
       minuteRef.current.focus();
     }
+
+    if (event.key === 'ArrowUp') {
+      const next = Number(hour || '0') + 1;
+
+      if (next > 12) return;
+
+      const newHour = calculateHour(next);
+
+      setHour(newHour);
+      setMinute(minute || '00');
+      updateTime(`${newHour}:${minute || '00'} ${amPm}`);
+
+      event.preventDefault();
+    }
+
+    if (event.key === 'ArrowDown') {
+      const prev = hour ? Number(hour) - 1 : 1;
+
+      if (prev < 1) return;
+
+      const newHour = calculateHour(prev);
+
+      setHour(newHour);
+      setMinute(minute || '00');
+      updateTime(`${newHour}:${minute || '00'} ${amPm}`);
+
+      event.preventDefault();
+    }
   }
 
   function handleMinuteKeyDown(event: React.KeyboardEvent, minChangeFunc) {
@@ -202,6 +238,31 @@ export function useTimePicker(props: UseTimePickerProps) {
 
     if (event.key === 'ArrowRight') {
       amPmRef.current.focus();
+    }
+
+    const applyMinute = (value: number) => {
+      const newMinute = calculateMinute(value);
+
+      setMinute(newMinute);
+      setHour(hour || '12');
+      updateTime(`${hour || '12'}:${newMinute} ${amPm}`);
+      event.preventDefault();
+    };
+
+    if (event.key === 'ArrowUp') {
+      const current = Number(minute || '0');
+
+      if (current === 59) return;
+
+      applyMinute(Math.min(current + step, 59));
+    }
+
+    if (event.key === 'ArrowDown') {
+      if (minute === '00') return;
+
+      const current = minute ? Number(minute) : 0;
+
+      applyMinute(Math.max(current - step, 0));
     }
   }
 

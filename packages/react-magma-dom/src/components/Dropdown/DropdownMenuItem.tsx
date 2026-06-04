@@ -6,7 +6,6 @@ import { transparentize } from 'polished';
 import { IconProps, CheckIcon } from 'react-magma-icons';
 
 import { DropdownContext } from './Dropdown';
-import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Omit, useForkedRef } from '../../utils';
 
@@ -44,11 +43,13 @@ export function menuColors(props) {
     if (props.isInverse) {
       return transparentize(0.6, props.theme.colors.neutral100);
     }
+
     return transparentize(0.4, props.theme.colors.neutral500);
   }
   if (props.isInverse) {
     return props.theme.colors.neutral100;
   }
+
   return props.theme.colors.neutral700;
 }
 
@@ -59,6 +60,7 @@ export function menuBackground(props) {
   if (props.isInverse) {
     return props.theme.colors.primary600;
   }
+
   return props.theme.colors.neutral200;
 }
 
@@ -179,9 +181,7 @@ export const DropdownMenuItem = React.forwardRef<
   React.useEffect(() => {
     if (!disabled)
       context.registerDropdownMenuItem(context.itemRefArray, ownRef);
-  }, []);
-
-  const i18n = React.useContext(I18nContext);
+  }, [disabled]);
 
   return (
     <StyledItem
@@ -207,7 +207,7 @@ export const DropdownMenuItem = React.forwardRef<
       )}
       {isActive && (
         <IconWrapper isInverse={context.isInverse} theme={theme}>
-          <CheckIcon aria-label={i18n.dropdown.menuItemSelectedAriaLabel} />
+          <CheckIcon />
         </IconWrapper>
       )}
       {children}

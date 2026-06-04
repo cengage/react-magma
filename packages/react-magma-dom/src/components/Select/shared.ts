@@ -7,13 +7,11 @@ import { Card } from '../Card';
 import { inputBaseStyles } from '../InputBase';
 
 function buildListHoverColor(props) {
-  if (props.isFocused) {
-    if (props.isInverse) {
-      return props.theme.colors.primary600;
-    }
-    return props.theme.colors.neutral200;
+  if (props.isInverse) {
+    return props.theme.colors.primary600;
   }
-  return 'transparent';
+
+  return props.theme.colors.neutral200;
 }
 
 function buildListFocusColor(props) {
@@ -21,8 +19,10 @@ function buildListFocusColor(props) {
     if (props.isInverse) {
       return props.theme.colors.focusInverse;
     }
+
     return props.theme.colors.focus;
   }
+
   return 'transparent';
 }
 
@@ -31,11 +31,13 @@ function buildListItemColor(props) {
     if (props.isInverse) {
       return transparentize(0.6, props.theme.colors.neutral100);
     }
+
     return transparentize(0.4, props.theme.colors.neutral500);
   }
   if (props.isInverse) {
     return props.theme.colors.neutral100;
   }
+
   return props.theme.colors.neutral700;
 }
 
@@ -111,7 +113,7 @@ export const StyledItem = styled('li')<{
   isDisabled?: boolean;
 }>`
   align-self: center;
-  background: ${props => buildListHoverColor(props)};
+  background: transparent;
   border: 2px solid;
   border-color: ${props => buildListFocusColor(props)};
   cursor: default;
@@ -121,7 +123,8 @@ export const StyledItem = styled('li')<{
   padding: 8px 16px;
   &:hover {
     background: ${props => buildListHoverColor(props)};
-    border-color: transparent;
+    border-color: ${props =>
+      props.isFocused ? buildListFocusColor(props) : 'transparent'};
     cursor: ${props => (props.isDisabled ? 'not-allowed' : 'pointer')};
   }
 `;
@@ -135,29 +138,35 @@ export const SelectedItemsWrapper = styled.span`
 
 function buildSelectedItemButtonBackground(props) {
   const { isInverse, disabled } = props;
+
   if (disabled) {
     if (isInverse) {
       return transparentize(0.7, props.theme.colors.neutral100);
     }
+
     return props.theme.colors.neutral300;
   }
   if (isInverse) {
     return props.theme.colors.tertiary;
   }
+
   return props.theme.colors.primary;
 }
 
 function buildSelectedItemButtonColor(props) {
   const { isInverse, disabled } = props;
+
   if (disabled) {
     if (isInverse) {
       return transparentize(0.6, props.theme.colors.neutral100);
     }
+
     return transparentize(0.4, props.theme.colors.neutral500);
   }
   if (isInverse) {
     return props.theme.colors.primary600;
   }
+
   return props.theme.colors.neutral100;
 }
 

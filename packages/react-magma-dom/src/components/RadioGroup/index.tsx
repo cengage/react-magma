@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { omit, useGenerateId } from '../../utils';
+import { descriptionSuffix, omit, useGenerateId } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
@@ -13,10 +13,11 @@ const HiddenLabel = styled.label`
   ${HiddenStyles};
 `;
 
-/**
- * @children required
- */
 export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Action that fires when the radio group loses focus
    */
@@ -108,6 +109,7 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
       const { value: newSelectedValue } = event.target;
+
       props.onChange &&
         typeof props.onChange === 'function' &&
         props.onChange(event);
@@ -130,7 +132,8 @@ export const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     } = props;
     const other = omit(['onBlur', 'onChange', 'onFocus', 'id'], rest);
 
-    const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+    const descriptionId =
+      errorMessage || helperMessage ? `${id}${descriptionSuffix}` : null;
 
     const theme = React.useContext(ThemeContext);
 

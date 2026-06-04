@@ -35,13 +35,23 @@ export function useAccordionButton(
     typeof onExpandedChange === 'function' && onExpandedChange(index);
 
     if (!isControlled) {
-      isMulti && Array.isArray(expandedIndex)
-        ? isExpanded
-          ? setExpandedIndex(expandedIndex.filter(item => item !== index))
-          : setExpandedIndex(expandedIndex.concat([index]))
-        : isExpanded
-          ? setExpandedIndex(null)
-          : setExpandedIndex(index);
+      if (isMulti) {
+        const newExpandedIndex = Array.isArray(expandedIndex)
+          ? expandedIndex
+          : [];
+
+        if (isExpanded) {
+          setExpandedIndex(newExpandedIndex.filter(item => item !== index));
+        } else {
+          setExpandedIndex(newExpandedIndex.concat([index]));
+        }
+      } else {
+        if (isExpanded) {
+          setExpandedIndex(null);
+        } else {
+          setExpandedIndex(index);
+        }
+      }
     }
   };
 
@@ -59,6 +69,7 @@ export function useAccordionButton(
 
   const focusLast = () => {
     const arrLength = buttonRefArray.current.length;
+
     (
       buttonRefArray.current[arrLength - 1].current as HTMLButtonElement
     ).focus();

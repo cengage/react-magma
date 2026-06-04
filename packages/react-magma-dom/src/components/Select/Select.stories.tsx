@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, StoryFn } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react-webpack5';
 import { HelpIcon } from 'react-magma-icons';
 
 import { ButtonSize, ButtonType, ButtonVariant } from '../Button';
@@ -10,17 +10,15 @@ import { IconButton } from '../IconButton';
 import { LabelPosition } from '../Label';
 import { Tooltip } from '../Tooltip';
 
-import { MultiSelectProps, Select, SelectOptions, SelectProps } from './';
+import { MultiSelectProps, Select, SelectOptions } from './';
 
 export default {
   title: 'Select',
   component: Select,
   argTypes: {
     labelPosition: {
-      control: {
-        type: 'select',
-        options: LabelPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(LabelPosition),
     },
     labelWidth: {
       control: {
@@ -241,7 +239,7 @@ export const MultiWithDisabledItems = {
       { label: 'Red', value: 'red' },
       { label: 'Green', value: 'green' },
       { label: 'Blue-Disabled', value: 'blue', disabled: true },
-      { label: 'Purple mountain majesty', value: 'purple' },
+      { label: 'Purple mountain majesty', value: 'purple', disabled: false },
       { label: 'Orange', value: 'orange', disabled: false },
       { label: 'Yellow-Disabled', value: 'Yellow-Disabled', disabled: true },
     ],

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { Meta } from '@storybook/react/types-6-0';
+import { Meta } from '@storybook/react-webpack5';
 
 import { TypographyVisualStyle } from '../Typography';
 import { DefinitionList } from './DefinitionList';
@@ -19,10 +19,8 @@ export default {
       },
     },
     visualStyle: {
-      control: {
-        type: 'select',
-        options: TypographyVisualStyle,
-      },
+      control: { type: 'select' },
+      options: Object.values(TypographyVisualStyle),
     },
   },
 } as Meta;
@@ -34,6 +32,7 @@ export const Simple = {
       { term: 'Tea', description: 'Another hot beverage' },
       { term: 'Milk', description: 'A cold beverage' },
     ];
+
     return (
       <Card isInverse={args.isInverse}>
         <CardBody>

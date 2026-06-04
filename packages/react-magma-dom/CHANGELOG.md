@@ -1,8 +1,703 @@
-## 4.10.1
+## 4.10.0
+
+## 5.1.0-rc.101
 
 ### Patch Changes
 
-- 49d826503: fix(DatePicker): fix issue with canvas (jsdom error)
+- 81c50f6: fix(CharacterCounter): Prevent the character count from being announced twice by screen readers on Windows + Chrome.
+
+## 5.1.0-rc.100
+
+### Patch Changes
+
+- abee630: fix(PasswordInput): Fix styles for the custom button
+
+## 5.1.0-rc.99
+
+### Patch Changes
+
+- 1e85bdd: fix(TimePicker): Fix issue with `minutesStep` prop.
+
+## 5.1.0-rc.98
+
+### Patch Changes
+
+- f6a744f: chore(deps): bump uuid to address security vulnerability
+
+## 5.1.0-rc.97
+
+### Patch Changes
+
+- 3413ba0: fix(NativeSelect): small change in the `handleKeyDown` function. Cherry-pick from #2358
+
+## 5.1.0-rc.96
+
+### Patch Changes
+
+- e475b83: fix(Treeview, Checkbox): Improve performance.
+
+## 5.1.0-rc.95
+
+### Patch Changes
+
+- 3c08bb2: fix(DatePicker): fix issue with error announcement v2
+
+## 5.1.0-rc.94
+
+### Minor Changes
+
+- 7f133fd: feat(ButtonGroup): add `isList` prop for semantic list rendering.
+
+## 5.1.0-rc.93
+
+### Patch Changes
+
+- a11b243: fix(Treeview): Add an announcement for the expansion state of the TreeItem.
+
+## 5.1.0-rc.92
+
+### Patch Changes
+
+- 4ddaecd: fix(Drawer): Apply `drawerStyle` prop to Drawer panel
+
+## 5.1.0-rc.91
+
+### Minor Changes
+
+- a5f68a4: feat(TreeView): create `Guide Lines` for expanded items with `hasGuideLines` prop (`false` by default)
+
+## 5.1.0-rc.90
+
+### Patch Changes
+
+- 295d7df: fix(Toast): Fix: Toast not closing on click or timeout (Strict Mode issue with unmount)
+
+## 5.1.0-rc.89
+
+### Patch Changes
+
+- d03006e: fix(DatePicker): fix issue with error announcement
+
+## 5.1.0-rc.88
+
+### Minor Changes
+
+- f82988d: feat(Fieldset): Create `Fieldset` component
+
+## 5.1.0-rc.87
+
+### Minor Changes
+
+- e316bcb: feat: Add accessible chart toolbar with "Show as table", fullscreen, and "More options" buttons
+
+  Adds a new `chartToolbar` prop to `CarbonChart` that renders a WCAG 2.2 compliant toolbar replacing Carbon's built-in navigation controls. When provided, Carbon's toolbar is automatically disabled and replaced with accessible Magma components featuring:
+
+  - **Show as table** button with `aria-haspopup="dialog"` and `aria-expanded`, opening a focus-trapped Magma Modal with semantic headings and an accessible data table
+  - **Fullscreen** button without `aria-haspopup` (fixing the previous WCAG violation)
+  - **More options** dropdown using Magma's Dropdown component with proper menu semantics
+
+  Also exports standalone composable components (`ChartTableButton`, `ChartFullscreenButton`, `ChartMoreOptionsButton`, `ChartTableModal`, `ChartDataTable`, `ChartToolbar`) for adopters who need granular control outside of `CarbonChart`.
+
+- e316bcb: feat(Modal): add `portalContainer` prop to control portal target
+
+  Adds an optional `portalContainer` prop to `Modal` that lets consumers specify the DOM element the modal should be portaled into. Defaults to `document.body` (unchanged behavior).
+
+### Patch Changes
+
+- 0c67f7f: fix(Tabs & NavTabs): Add focus management for the first item during scrolling and navigation.
+- e316bcb: Chore: update react-magma-icons version
+
+## 5.1.0-rc.86
+
+### Patch Changes
+
+- acbfd10: chore(deps): move runtime-only dependencies out of peerDependencies and into package dependencies where needed
+
+## 5.1.0-rc.85
+
+### Patch Changes
+
+- 43ad69b: fix(Combobox & Select): Clear floating element ref when the dropdown closes so controlled `selectedItem` and `items` updates re-render correctly.
+
+## 5.1.0-rc.84
+
+### Patch Changes
+
+- 6dfd2dd: fix(useFocusLock): Fix bug with focus outside.
+
+## 5.1.0-rc.83
+
+### Patch Changes
+
+- 79082b4: fix(Modal): Fix bug when `Modal` doesn't close after pressing `Esc`
+
+## 5.1.0-rc.82
+
+### Patch Changes
+
+- 039e42e: fix(Datagrid, Table): Fix the issue where the focus is lost when the button becomes disabled
+
+## 5.1.0-rc.81
+
+### Patch Changes
+
+- 409d2a3: fix(Badge): Add focus outline offset.
+
+## 5.1.0-rc.80
+
+### Patch Changes
+
+- 1d3b633: fix(Date Field Input): Add error message when the user enters an invalid date.
+
+## 5.1.0-rc.79
+
+### Patch Changes
+
+- f169e3e: fix(Date Picker & Time Picker & Native Select): Update aria attributes.
+
+## 5.1.0-rc.78
+
+### Patch Changes
+
+- e7062bc: fix(Datagrid): Add announce initial sort order.
+- d7872d7: fix(Definition List): Update doc examples.
+
+## 5.1.0-rc.77
+
+### Patch Changes
+
+- f86720d: fix(Combobox, Select, Datagrid): fix accessibility issues.
+
+## 5.1.0-rc.76
+
+### Patch Changes
+
+- 2eae51f: fix(Popover): Fix accessibility issue with announcement for MacOS + Safari.
+
+## 5.1.0-rc.75
+
+### Patch Changes
+
+- 2843afc: fix(Tabs): Improve performance and refactor code.
+
+## 5.1.0-rc.74
+
+### Patch Changes
+
+- 43a6ce1: fix(MultiCombobox & MultiSelect): Fix issue with clearable `MultiCombobox` and `MultiSelect`
+- b6a333b: fix(MultiSelect): Fix test naming.
+
+## 5.1.0-rc.73
+
+### Patch Changes
+
+- 34b7d19: fix(Popover): Fix second accessibility issue.
+
+## 5.1.0-rc.72
+
+### Patch Changes
+
+- b8f03ee: fix(Popover): Fix accessibility issue.
+
+## 5.1.0-rc.71
+
+### Patch Changes
+
+- 9642689: fix(Tab & NavTab): Add focus on the back and next buttons. Add announce tab content. Update aria-labels.
+
+## 5.1.0-rc.70
+
+### Patch Changes
+
+- 35406a9: fix(publish): Add missing repository.url to package.json for npm provenance verification.
+
+## 5.1.0-rc.69
+
+### Patch Changes
+
+- 79b947a: fix(Table & Datagrid): Fix screen reader announcements for sortable and selectable tables (A11Y-529, A11Y-530, A11Y-531, A11Y-532).
+
+  - Restore descriptive `aria-label` on sort buttons ("Sort rows by column name") without direction suffix, as `aria-sort` on the th element already conveys direction (A11Y-532)
+  - Add `aria-sort` to the selectable column header cell in `TableRow` when `isSortableBySelected` is enabled (A11Y-532)
+  - Row checkboxes now use unique accessible names via `rowName` prop (e.g. "Select row Cheese") (A11Y-531)
+  - Checkbox labels are now static ("Select all rows" / "Select row") and no longer toggle to "Deselect" to prevent redundant screen reader announcements (A11Y-529)
+  - Suppress `IndeterminateCheckbox` live region on initial render to prevent JAWS from reading all checkboxes on page load (A11Y-530)
+  - Simplify `IndeterminateCheckbox` announce text to remove repeated label text (A11Y-530)
+
+- 9767b64: fix(DataGrid): fix test
+- d7322ac: fix(Combobox): Prevent the clear button’s label from being announced.
+
+## 5.1.0-rc.68
+
+### Patch Changes
+
+- e2a7c9c: fix(Table): Update current page announcing.
+
+## 5.1.0-rc.67
+
+### Patch Changes
+
+- 6be25ab: fix(DataGrid): Update aria-label for table headers and rows.
+
+## 5.1.0-rc.66
+
+### Patch Changes
+
+- 3de4dd6: fix(EmptyState): Add 'headingLevel' prop
+
+## 5.1.0-rc.65
+
+### Patch Changes
+
+- ae600ef: fix(MultiCombobox & MultiSelect): Add announcing current values with label.
+
+## 5.1.0-rc.64
+
+### Patch Changes
+
+- b74a6d4: fix(Combobox): Fix leak on rerender.
+- 30a7da5: fix(DatePicker): Remove `aria-selected` and change the announced text when opening the `DatePicker`.
+- be245ef: fix(Table): Remove focus from `Table` with interactive elements
+
+## 5.1.0-rc.63
+
+### Patch Changes
+
+- 47085d5: fix(Combobox): Fix issue when focused item wasn't scrolled into view.
+
+## 5.1.0-rc.62
+
+### Patch Changes
+
+- bf43aba: fix(Checkbox): remove `aria-checked`.
+
+## 5.1.0-rc.61
+
+### Patch Changes
+
+- fb3b23a: fix(Dropdown): Fix state update when filtering or reordering.
+
+## 5.1.0-rc.60
+
+### Patch Changes
+
+- ac9e3ff: fix(CharacterCounter & Input & TextArea): Update announcement for error message.
+
+## 5.1.0-rc.59
+
+### Minor Changes
+
+- 39546f5: feat(EmptyState): Add EmptyState component
+
+## 5.1.0-rc.58
+
+### Patch Changes
+
+- 8160393: fix(Search, Input): add `role="img"` for the `SearchIcon` and fix `Form` docs issues.
+
+## 5.1.0-rc.57
+
+### Patch Changes
+
+- bac4f4a: fix(Combobox): Prevent focusing disabled options.
+
+## 5.1.0-rc.56
+
+### Patch Changes
+
+- 9804026: fix(Select & MultiSelect & Combobox & MultiCombobox): Add a state to announce changes after the input is cleared.
+  Updated doc example.
+
+## 5.1.0-rc.55
+
+### Patch Changes
+
+- c5bf081: fix(NativeSelect): move `additionalContent` from `<label>`. Add internal prop to `FormFieldContainer`. Fix accessibility issue.
+
+## 5.1.0-rc.54
+
+### Minor Changes
+
+- 48e8a74: fix(Hyperlink): add new `opensInNewTab` prop.
+
+## 5.1.0-rc.53
+
+### Patch Changes
+
+- 70a6688: fix(TextArea): Change `aria-labelledby` to `aria-describedby`.
+
+## 5.1.0-rc.52
+
+### Patch Changes
+
+- 1905265: fix(Pagination): Update aria-label.
+
+## 5.1.0-rc.51
+
+### Patch Changes
+
+- 295d8a6: fix(ButtonGroup): reverted Accessibility issue: now `ButtonGroup` is list in the HTML with role="list"
+
+## 5.1.0-rc.50
+
+### Patch Changes
+
+- a365b9e: fix(Dropdown): Fix bug with `Escape` focus behavior
+
+## 5.1.0-rc.49
+
+### Patch Changes
+
+- 1c056fd: fix(Table/Datagrid): Improve screen reader announcements for table navigation and pagination.
+
+  - Removed aria-live from Datagrid table to prevent automatic reading of entire table content when rows per page changes
+  - Added aria-live="polite" to TablePagination page count to announce pagination status updates
+  - Added proper ARIA attributes (role="region", aria-label/aria-labelledby) to scrollable table wrapper to prevent verbose screen reader announcements
+
+## 5.1.0-rc.48
+
+### Patch Changes
+
+- 54018e0: fix(Select, Multiselect): Separate focus and hover states and auto-focus first item for NVDA support
+
+## 5.1.0-rc.47
+
+### Patch Changes
+
+- 70feb95: fix(DatePicker): Update announcing tooltip logic.
+- c0c2903: fix(Treeview): Update storybook example.
+
+## 5.1.0-rc.46
+
+### Minor Changes
+
+- 92b1b12: feat(TreeView): create `selectParents` prop (`true` by default)
+
+## 5.1.0-rc.45
+
+### Minor Changes
+
+- b1190a4: feat(Popover): Add `isFullWidth` prop to allow the trigger button and content to expand to 100% width.
+
+## 5.1.0-rc.44
+
+### Patch Changes
+
+- 037f739: fix(DatePicker): Update aria-label for calendar widget. Add announcing tooltip content for calendar widget button.
+
+## 5.1.0-rc.43
+
+### Patch Changes
+
+- bfe0a86: fix(Combobox): Fix issue when NVDA doesn't read placeholder.
+
+## 5.1.0-rc.42
+
+### Patch Changes
+
+- 5de8d5f: fix(Breadcrumb): Fix bug when last item was link and had focus
+
+## 5.1.0-rc.41
+
+### Patch Changes
+
+- 2ce6371: fix(Select): add announcement to `expanded`/`collapsed` state of `Select`.
+
+## 5.1.0-rc.40
+
+### Patch Changes
+
+- 21f2a5f: fix(DatePicker): Improve updating values in input when `isDateFieldInput=true`
+
+## 5.1.0-rc.39
+
+### Patch Changes
+
+- 006cc16: fix(Datagrid): Fixed semantic markup for Sort Rows button in selectable and sortable variant.
+
+## 5.1.0-rc.38
+
+### Minor Changes
+
+- 1fbd27e: feat(TreeView): performance refactor
+
+  - Introduced a new `treeViewReducer` to manage the state of the TreeView component, handling actions such as item selection, expansion, and item updates.
+  - Refactored `useTreeView` and `useTreeItem` hooks to utilize the new reducer, improving state management and reducing re-renders.
+  - Enhanced utility functions for better performance, including optimized selection and status processing using Maps for O(1) lookups.
+  - Updated context providers to split responsibilities for selection, expansion, and configuration, allowing for more granular updates and improved performance.
+  - Added `enableVirtualization` and `height` props.
+
+## 5.1.0-rc.37
+
+### Patch Changes
+
+- 134ba62: fix(Dropdown): Remove `aria-label` from DropdownMenuItem icon. Add `role=menu` to DropdownContent for DropdownMenuNavItem children. Fix docs examples.
+
+## 5.1.0-rc.36
+
+### Patch Changes
+
+- 889febe: fix(Select): add aria-disabled attribute to disabled select elements.
+
+## 5.1.0-rc.35
+
+### Patch Changes
+
+- 5ae4eaa: fix(Tooltip & Loading Indicator): Force visibility tooltip content when user hover it. Fix announcing `Loading` twice for Loading indicator.
+
+## 5.1.0-rc.34
+
+### Patch Changes
+
+- 13f34ba: fix(DatePicker): Fix focusing input field after clearing date and when `isDateFieldInput=true`.
+
+## 5.1.0-rc.33
+
+### Patch Changes
+
+- 031c1a2: fix(Modal & Drawer): Fix focus order for header, close button, and content.
+
+## 5.1.0-rc.32
+
+### Patch Changes
+
+- 4bdabdc: fix(DatePicker): Automatically focus today or min date on open state.
+
+## 5.1.0-rc.31
+
+### Patch Changes
+
+- fa98316: fix(Pagination): Add announcement when selected page updates.
+
+## 5.1.0-rc.30
+
+### Patch Changes
+
+- be89a2e: fix(Pagination): Add `aria-hidden=true` for ellipsis.
+
+## 5.1.0-rc.29
+
+### Patch Changes
+
+- 6638f3a: fix(ToggleButtonGroup): Fix some broken css styles.
+
+## 5.1.0-rc.28
+
+### Patch Changes
+
+- c40071c: fix(TablePagination): Fixed screen reader announcing "Rows per page" twice by hiding the visible label from screen readers
+
+## 5.1.0-rc.27
+
+### Patch Changes
+
+- 9772fa8: fix(Alert): Add margin right for alert content.
+- cd401e0: fix(Banner): Add `role` and `aria-label` attributes for icon.
+
+## 5.1.0-rc.26
+
+### Minor Changes
+
+- 7709c40: feat(DatePicker): Add new keyboard controls.
+
+## 5.1.0-rc.25
+
+### Patch Changes
+
+- 0d50986: fix(RadioButton): Fix announcing label text with error or helper message.
+
+## 5.1.0-rc.24
+
+### Patch Changes
+
+- edc04f5: fix(Select, Multiselect, Combobox & Multicombobox): Fix navigation throughth the disabled items.
+
+## 5.1.0-rc.23
+
+### Patch Changes
+
+- 6bd1b65: fix(TextArea): Add an ARIA announcement helper to inform users how many characters are left.
+
+## 5.1.0-rc.22
+
+### Patch Changes
+
+- abec578: fix(Tag): Add a new `aria-label` attribute to the component to improve accessibility.
+
+## 5.1.0-rc.21
+
+### Patch Changes
+
+- c1023e8: fix(Dropdown): Fix bug with focus behaviour
+
+## 5.1.0-rc.20
+
+### Patch Changes
+
+- c48a806: fix(Banner): add the `dismissibleButtonRef` prop to the `Banner` and fix docs page
+
+## 5.1.0-rc.19
+
+### Patch Changes
+
+- 3494bf4: fix(Drawer): Fix content scrolling inside the Drawer when overflowing.
+
+## 5.1.0-rc.18
+
+### Patch Changes
+
+- 365304c: fix(Dropdown & Accordion): Add aria attributes for Dropdown menu and nested items to improve accessibility.
+
+## 5.1.0-rc.17
+
+### Patch Changes
+
+- 02e0d3e: fix(Alert): add the `dismissibleButtonRef` prop to the `Alert` and fix docs page
+
+## 5.1.0-rc.16
+
+### Patch Changes
+
+- 38da9ad: fix(ButtonGroup): Accessibility issue: now `ButtonGroup` is list in the HTML with role="list"
+
+## 5.1.0-rc.15
+
+### Patch Changes
+
+- c9a0d84: fix(Dropdown): Add aria-controls attribute for Dropdown trigger button.
+
+## 5.1.0-rc.14
+
+### Patch Changes
+
+- 72073a2: fix(Nav Tabs): Fix obscured content when the elements is focused.
+
+## 5.1.0-rc.13
+
+### Patch Changes
+
+- ed37531: fix(Accordion): Fix accessibility render issue
+
+## 5.1.0-rc.12
+
+### Patch Changes
+
+- 50340c1: fix(Select & Multiselect): Add `ariaLabel` prop to provide alternative text for screen readers.
+
+## 5.1.0-rc.11
+
+### Patch Changes
+
+- 703a54d: fix(Select, NativeSelect, Combobox): Add cyclical navigation across options.
+
+## 5.1.0-rc.10
+
+### Patch Changes
+
+- 3bf7047: fix(Table): Change logic for `tabIndex`.
+
+## 5.1.0-rc.9
+
+### Minor Changes
+
+- b192a72: feat(SplitDropdown): Add new `leadingIcon` prop.
+
+## 5.1.0-rc.8
+
+### Patch Changes
+
+- e2c8b57: fix(TimePicker): Update styles
+
+## 5.1.0-rc.7
+
+### Minor Changes
+
+- 16045e8: feat(DateTimePicker): Add `timezone` prop. When used, returns Date object with the timezone
+
+## 5.1.0-rc.6
+
+### Patch Changes
+
+- 6f1229f: fix(Combobox, MultiCombobox): Improve NVDA Browse Mode navigation across the page.
+
+## 5.1.0-rc.5
+
+### Patch Changes
+
+- c8facd1: fix(ToggleButton): Fix issue with `textTransform` prop.
+
+## 5.1.0-rc.4
+
+### Patch Changes
+
+- c528ab6: fix(Drawer & Modal): Fix content scrolling underneath the Drawer and Modal when it’s open
+
+## 5.1.0-rc.3
+
+### Minor Changes
+
+- b3b6422: feat(Checkbox): Add new `ariaLabel` prop.
+
+## 5.0.1-rc.2
+
+### Patch Changes
+
+- a997d8e: fix(AIButton): Fix box-shadows.
+
+## 5.0.1-rc.1
+
+### Patch Changes
+
+- ff53255: chore: update react-magma-dom peer dependencies
+
+## 5.0.1-rc.0
+
+### Patch Changes
+
+- 844a2a3: fix(DatePicker): fix issue with canvas (jsdom error) for react-18
+- e0e6ac5: fix(TimePicker): Fix issue with auto fill.
+
+### Minor Changes
+
+- ef8a2740a: feat(Button): Update icon size for `Button`, `IconButton`, `DropdownButton`, `ButtonGroup` and `ToggleButton`.
+- ef8a2740a: feat(DatePicker): Add new `Today` button for navigation and update styles.
+- ef8a2740a: feat(DatePicker): Provide ability to more quickly change the month and/or year. Update aria-labels and styles.
+- ef8a2740a: feat(Drawer): Add `showBackgroundOverlay` prop.
+- ef8a2740a: feat(Dropdown & IconButton): Add `leadingIcon` prop.
+- ef8a2740a: feat(Popover): Add the `alignment` prop and allow customization of the width.
+- ef8a2740a: feat(Popover): Support programmatically opening component with `openPopoverManually`.
+- ef8a2740a: feat(Tabs): New `CustomTab` component.
+- ef8a2740a: feat(Table & Datagrid): New prop `tableTitle` which supports a captioned title above each Table and Datagrid. New props `hasOutsideBorder`, `hasTablePagination` to `Table`.
+- ef8a2740a: feat(TimePicker): Add auto fill functionality.
+- ef8a2740a: feat(Toggle): Remove animation.
+- ef8a2740a: feat(TreeView): New `additionalContent` prop. Removed animation from Checkbox and Radio components.
+- ef8a2740a: feat(TreeView): New `expandIconStyles` and `hoverColor` props and more styles customization support.
+- ef8a2740a: feat(AIButton): New `AIButton` component.
+- ef8a2740a: feat(DateTimePicker): New `DateTimePicker` component.
+- ef8a2740a: feat(Drawer): Add `isAnimated` prop to control slide animation.
+- ef8a2740a: feat(MultiSelect): Make selected items disabled when component is disabled.
+- ef8a2740a: feat(TreeView): Component now handles dynamic addition of parents and children to parent nodes.
+- ef8a2740a: feat(react-magma-icons): Update react-magma-icons version to 3.2.0. New icons: Phishing, QuestionMark, Target, Media, Notebook.
+
+### Patch Changes
+
+- ef8a2740a: chore(Chart): updated @react-magma/charts package to include all necessary styles directly in the package and corrected named exports for better usability, eliminating the need to import styles from /dist.
+- ef8a2740a: fix(Alert): Add `aria-label` and `role="img"` for icon.
+- ef8a2740a: fix(DatePicker): Add an announcement during the change to the next or previous month.
+- ef8a2740a: fix(Drawer): Fix missing animation for sliding in.
+- ef8a2740a: fix(Dropdown): Add `aria-label` to NavItem for Windows + Firefox for NVDA announce.
+- ef8a2740a: fix(Dropzone): Pass `dropzoneOptions` prop to `Dropzone`.
+- ef8a2740a: fix(Input): Improve the logic for updating the value in the `handleChange` function.
+- ef8a2740a: fix(IndeterminateCheckbox): Fix screenreader reading 'unticked' on indeterminate state.
+- ef8a2740a: fix(Popover & Tooltip): Fix an issue when pressing `Escape` doesn't stop bubbling.
+- ef8a2740a: fix(Popover): Fix a bug with several popovers on the same page.
+- ef8a2740a: fix(RadioButton): Add `aria-hidden` to decorative icons to hide them from assistive technology.
+- ef8a2740a: fix(Table): New props `colSpan` and `rowSpan` for TableHeaderCell
+- ef8a2740a: fix(TablePagination): Update `newRowsPerPage` to return a number instead of a string
+- ef8a2740a: fix(Tooltip): Fix issue with screenreaders on non interactive elements.
+- ef8a2740a: fix(TreeItem): Fixed issue with twice calling event.
+- ef8a2740a: fix(Button): Fix styles for `round` button.
+- ef8a2740a: fix(CharacterCounter): Fix screenreader properly conveying the remainder on user input.
 
 ## 4.10.0
 

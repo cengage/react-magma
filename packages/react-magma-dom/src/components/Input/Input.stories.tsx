@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 
-import { Meta, StoryFn } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react-webpack5';
 import { HelpIcon, NotificationsIcon, WorkIcon } from 'react-magma-icons';
 
 import {
@@ -43,16 +43,12 @@ export default {
   component: Input,
   argTypes: {
     iconPosition: {
-      control: {
-        type: 'select',
-        options: InputIconPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(InputIconPosition),
     },
     inputSize: {
-      control: {
-        type: 'select',
-        options: InputSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(InputSize),
     },
     isClearable: {
       control: {
@@ -70,16 +66,12 @@ export default {
       },
     },
     labelPosition: {
-      control: {
-        type: 'select',
-        options: LabelPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(LabelPosition),
     },
     type: {
-      control: {
-        type: 'select',
-        options: InputType,
-      },
+      control: { type: 'select' },
+      options: Object.values(InputType),
     },
     labelText: {
       control: 'text',
@@ -226,6 +218,7 @@ export const HelpLink = {
     const onHelpLinkClick = () => {
       alert('Help link clicked!');
     };
+
     return (
       <>
         <Input labelText="Help link - top" {...args}>
@@ -300,6 +293,7 @@ export const WithTwoIcons = {
     const onHelpLinkClick = () => {
       alert('Help link clicked!');
     };
+
     return (
       <>
         <Input
@@ -407,7 +401,11 @@ export const PhoneInput = () => {
         </>
       }
       type={InputType.tel}
-      errorMessage={hasError ? 'Please enter a phone number' : null}
+      errorMessage={
+        hasError
+          ? 'Please enter a valid phone number in the format 123-456-7890'
+          : null
+      }
       value={inputVal}
       onChange={handleChange}
     />
@@ -793,6 +791,7 @@ export function TimeInput() {
     const { hours, minutes } = makeHoursAndMinutesFromMilliseconds(
       totalDurationMilliseconds
     );
+
     setHours(hours);
     setMinutes(minutes);
   }, [totalDurationMilliseconds]);

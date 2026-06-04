@@ -4,15 +4,16 @@ import styled from '@emotion/styled';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { omit, useGenerateId } from '../../utils';
+import { descriptionSuffix, omit, useGenerateId } from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { InputMessage } from '../Input/InputMessage';
 import { Label } from '../Label';
 
-/**
- * @children required
- */
 export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Style properties for the component container element
    */
@@ -80,7 +81,8 @@ export const FormGroup = React.forwardRef<HTMLDivElement, FormGroupProps>(
     } = props;
     const other = omit(['id'], rest);
 
-    const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+    const descriptionId =
+      errorMessage || helperMessage ? `${id}${descriptionSuffix}` : null;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(props.isInverse);
 

@@ -3,7 +3,7 @@
 Bubble:
 <div class="item">
   <figure>
-    <img src="../../images/chart-types/bubble.jpg" alt="GATSBY_EMPTY_ALT" />
+    <img src="../../images/chart-types/bubble.jpg" alt=" " />
   </figure>
   <div class="description">
     <h2>Bubble</h2>
@@ -18,7 +18,7 @@ Bubble:
 Radar:
 <div class="item">
   <figure>
-    <img src="../../images/chart-types/radar.jpg" alt="GATSBY_EMPTY_ALT" />
+    <img src="../../images/chart-types/radar.jpg" alt=" " />
   </figure>
   <div class="description">
     <h2>Radar</h2>
@@ -34,7 +34,7 @@ Radar:
 Histogram:
 <div class="item">
   <figure>
-    <img src="../../images/chart-types/histogram.jpg" alt="GATSBY_EMPTY_ALT" />
+    <img src="../../images/chart-types/histogram.jpg" alt=" " />
   </figure>
   <div class="description">
     <h2>Histogram</h2>
@@ -50,7 +50,7 @@ Histogram:
 Boxplot:
 <div class="item">
   <figure>
-    <img src="../../images/chart-types/boxplot.jpg" alt="GATSBY_EMPTY_ALT" />
+    <img src="../../images/chart-types/boxplot.jpg" alt=" " />
   </figure>
   <div class="description">
     <h2>Boxplot</h2>
@@ -65,7 +65,7 @@ Boxplot:
 Bullet:
 <div class="item">
   <figure>
-    <img src="../../images/chart-types/bullet.jpg" alt="GATSBY_EMPTY_ALT" />
+    <img src="../../images/chart-types/bullet.jpg" alt=" " />
   </figure>
   <div class="description">
     <h2>Bullet</h2>
@@ -80,7 +80,7 @@ Bullet:
 Meter:
 <div class="item">
   <figure>
-    <img src="../../images/chart-types/meter.jpg" alt="GATSBY_EMPTY_ALT" />
+    <img src="../../images/chart-types/meter.jpg" alt=" " />
   </figure>
   <div class="description">
     <h2>Meter</h2>
@@ -95,7 +95,7 @@ Meter:
 Gauge:
 <div class="item">
   <figure>
-    <img src="../../images/chart-types/gauge.jpg" alt="GATSBY_EMPTY_ALT" />
+    <img src="../../images/chart-types/gauge.jpg" alt=" " />
   </figure>
   <div class="description">
     <h2>Gauge</h2>
@@ -110,7 +110,7 @@ Gauge:
 Combo:
 <div class="item">
   <figure>
-    <img src="../../images/chart-types/combo.jpg" alt="GATSBY_EMPTY_ALT" />
+    <img src="../../images/chart-types/combo.jpg" alt=" " />
   </figure>
   <div class="description">
     <h2>Combo</h2>
@@ -128,7 +128,7 @@ Scatter:
 <div class="container">
   <div class="item">
     <figure>
-      <img src="../../images/chart-types/scatter.jpg" alt="GATSBY_EMPTY_ALT" />
+      <img src="../../images/chart-types/scatter.jpg" alt=" " />
     </figure>
     <div class="description">
       <h2>Scatter</h2>

@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { Meta } from '@storybook/react';
-import { es } from 'date-fns/locale';
+import { Meta } from '@storybook/react-webpack5';
 
-import { Button, defaultI18n, I18nContext, magma } from '../..';
+import { Button, magma } from '../..';
 import { LabelPosition } from '../Label';
 
 import { DateTimePicker } from '.';
@@ -25,10 +24,8 @@ export default {
       },
     },
     labelPosition: {
-      control: {
-        type: 'select',
-        options: LabelPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(LabelPosition),
     },
     labelWidth: {
       control: {
@@ -43,6 +40,11 @@ export default {
     isInverse: {
       control: {
         type: 'boolean',
+      },
+    },
+    timezone: {
+      control: {
+        type: 'text',
       },
     },
   },
@@ -82,8 +84,19 @@ export const ClearingTheDateAndTime = {
   render: args => {
     const [chosenDate, setChosenDate] = React.useState<Date | null>(null);
     const [chosenTime, setChosenTime] = React.useState<string | null>(null);
+    const [chosenTimezone, setChosenTimezone] = React.useState<string | null>(
+      null
+    );
 
-    function handleDateChange(newChosenDate: Date | null) {
+    function handleDateChange(
+      newChosenDate: Date | null,
+      event: React.SyntheticEvent,
+      timezone?: string
+    ) {
+      if (timezone) {
+        setChosenTimezone(timezone);
+      }
+
       let newDate = newChosenDate;
 
       if (chosenTime && newChosenDate) {
@@ -111,8 +124,10 @@ export const ClearingTheDateAndTime = {
       setChosenDate(newDate);
     }
 
-    function handleTimeChange(newChosenTime: string | null) {
+    function handleTimeChange(newChosenTime: string | null, timezone?: string) {
       setChosenTime(newChosenTime);
+
+      setChosenTimezone(timezone ?? null);
 
       if (chosenDate && newChosenTime) {
         const [timePart, ampm] = newChosenTime.split(' ');
@@ -134,6 +149,7 @@ export const ClearingTheDateAndTime = {
           hours,
           minutes
         );
+
         setChosenDate(newDate);
       }
     }
@@ -154,6 +170,10 @@ export const ClearingTheDateAndTime = {
           <strong>Chosen Time: </strong>
           {chosenTime && <span>{chosenTime}</span>}
         </p>
+        <p>
+          <strong>Chosen Timezone: </strong>
+          {chosenTimezone && <span>{chosenTimezone}</span>}
+        </p>
         <DateTimePicker
           {...args}
           onDateChange={handleDateChange}
@@ -162,7 +182,7 @@ export const ClearingTheDateAndTime = {
           isClearable
         />
         <br />
-        <Button onClick={() => handleDateChange(null)}>
+        <Button onClick={event => handleDateChange(null, event)}>
           Clear Date and Time
         </Button>
       </div>

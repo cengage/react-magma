@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Header } from '@cengage-patterns/header';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import {
@@ -8,6 +7,7 @@ import {
   AppBarPosition,
   ButtonVariant,
   IconButton,
+  AppBar,
 } from 'react-magma-dom';
 import { GithubIcon } from 'react-magma-icons';
 
@@ -37,7 +37,7 @@ const LogoLink = styled(Link)`
   }
 `;
 
-const StyledHeader = styled(Header)`
+const StyledHeader = styled(AppBar)`
   box-shadow: none;
   padding: 24px;
 `;
@@ -78,7 +78,7 @@ const RepoLink = styled.span`
   display: flex;
   align-items: center;
   position: relative;
-  left: 52px;
+  padding-right: 12px;
 `;
 
 const HeaderLogo = (
@@ -97,9 +97,11 @@ const HeaderLogo = (
       <IconButton
         icon={<GithubIcon />}
         variant={ButtonVariant.link}
-        onClick={() =>
-          window.open('https://github.com/cengage/react-magma', '_blank')
-        }
+        onClick={() => {
+          if (typeof window !== 'undefined') {
+            window.open('https://github.com/cengage/react-magma', '_blank');
+          }
+        }}
       />
     </RepoLink>
   </HeaderWrap>
@@ -110,10 +112,10 @@ export const Masthead = props => {
     <StyledHeader
       breakpoint={magma.breakpoints.medium}
       isCompact
-      logo={HeaderLogo}
       position={AppBarPosition.sticky}
       style={{ gridArea: 'masthead' }}
     >
+      {HeaderLogo}
       {props.children}
     </StyledHeader>
   );

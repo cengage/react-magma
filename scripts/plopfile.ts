@@ -9,7 +9,7 @@ interface Answers {
   useTheme: boolean;
   useI18n: boolean;
   useInverse: boolean;
-  destinationDirectory: 'components' | 'patterns';
+  destinationDirectory: 'components';
 }
 
 async function createPackage() {
@@ -92,6 +92,7 @@ async function createPackage() {
   const { runPrompts, runActions } = plop.getGenerator('component');
 
   const answers = await runPrompts();
+
   await runActions(answers);
 }
 

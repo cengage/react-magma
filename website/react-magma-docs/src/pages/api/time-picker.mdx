@@ -49,7 +49,7 @@ import React from 'react';
 import { TimePicker } from 'react-magma-dom';
 
 export function Example() {
-  return <TimePicker labelText="Time Due" minutesStep="15" />;
+  return <TimePicker labelText="Time Due" minutesStep={15} />;
 }
 ```
 
@@ -137,13 +137,23 @@ The `value` and `onChange` props can be used for clear value.
 ```tsx
 import React from 'react';
 
-import { Button, TimePicker } from 'react-magma-dom';
+import { Button, TimePicker, Announce, VisuallyHidden } from 'react-magma-dom';
 
 export function Example() {
   const [timeValue, setTimeValue] = React.useState<string | undefined>('');
+  const [announcement, setAnnouncement] = React.useState('');
+  const [isCleared, setIsCleared] = React.useState(false);
+  const clearedText = 'Time has been cleared';
 
   function handleOnChange(value) {
+    setAnnouncement(isCleared ? clearedText : '');
     setTimeValue(value);
+    setIsCleared(false);
+  }
+
+  function onButtonClick() {
+    setIsCleared(timeValue ? true : false);
+    setTimeValue(undefined);
   }
 
   return (
@@ -154,7 +164,10 @@ export function Example() {
         value={timeValue}
       />
       <br />
-      <Button onClick={() => handleOnChange(undefined)}>Clear Time</Button>
+      <Button onClick={onButtonClick}>Clear Time</Button>
+      <Announce>
+        <VisuallyHidden>{announcement}</VisuallyHidden>
+      </Announce>
     </>
   );
 }
@@ -175,7 +188,7 @@ export function Example() {
       containerStyle={{ border: '1px solid gray' }}
       labelStyle={{ fontStyle: 'italic' }}
       helperMessage="Helper text"
-      messageStyle={{ background: 'pink' }}
+      messageStyle={{ background: '#0000C7', color: '#FFFFFF' }}
       inputStyle={{ border: '2px dotted black', width: '100%' }}
       labelText="Time Due"
     />

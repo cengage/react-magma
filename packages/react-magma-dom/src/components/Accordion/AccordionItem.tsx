@@ -9,12 +9,13 @@ import {
 } from './useAccordionItem';
 import { ThemeInterface } from '../../theme/magma';
 
-/**
- * @children required
- */
 export interface AccordionItemProps
   extends UseAccordionItemProps,
     React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @internal
    */

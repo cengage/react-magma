@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react-webpack5';
 
 import { Card, CardBody } from '../Card';
 import { InputSize } from '../InputBase';
@@ -31,10 +31,8 @@ export default {
       },
     },
     inputSize: {
-      control: {
-        type: 'select',
-        options: InputSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(InputSize),
     },
     isPredictive: {
       defaultValue: false,

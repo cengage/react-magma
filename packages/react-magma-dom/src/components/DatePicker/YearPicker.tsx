@@ -4,6 +4,7 @@ import { getYear } from 'date-fns';
 
 import { CalendarContext } from './CalendarContext';
 import { StyledSelect } from './StyledSelect';
+import { MAX_YEAR, MIN_YEAR } from './utils';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { NativeSelect } from '../NativeSelect';
@@ -18,8 +19,8 @@ export const YearPicker: React.FunctionComponent<YearPickerProps> = (
 ) => {
   const { currentYear, isInverse } = props;
   const { minDate, maxDate } = React.useContext(CalendarContext);
-  const minYear = minDate ? getYear(minDate) : 1900;
-  const maxYear = maxDate ? getYear(maxDate) : 2099;
+  const minYear = minDate ? getYear(minDate) : MIN_YEAR;
+  const maxYear = maxDate ? getYear(maxDate) : MAX_YEAR;
   const theme = React.useContext(ThemeContext);
   const { setYearFocusedDate } = React.useContext(CalendarContext);
   const i18n = React.useContext(I18nContext);

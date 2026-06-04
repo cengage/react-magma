@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react-webpack5';
 import { HelpIcon } from 'react-magma-icons';
 
 import { ButtonType, ButtonSize, ButtonVariant } from '../Button';
@@ -58,10 +58,8 @@ export default {
       },
     },
     labelPosition: {
-      control: {
-        type: 'select',
-        options: LabelPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(LabelPosition),
     },
     maxLength: {
       control: {
@@ -95,6 +93,7 @@ export const WithChildren = {
     const onHelpLinkClick = () => {
       alert('Help link clicked!');
     };
+
     return (
       <Input labelText={labelText} {...args}>
         <Tooltip content={helpLinkLabel}>

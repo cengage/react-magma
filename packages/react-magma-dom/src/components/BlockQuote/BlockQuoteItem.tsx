@@ -14,12 +14,13 @@ import {
 
 import { BlockQuoteProps } from '.';
 
-/**
- * @children required
- */
 export interface BlockQuoteItemProps
   extends BlockQuoteProps,
     React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * The color of the component, helping to convey meaning or relative emphasis
    * @default TypographyColor.default

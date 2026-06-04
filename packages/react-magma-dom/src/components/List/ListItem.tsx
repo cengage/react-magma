@@ -9,12 +9,13 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 import { ListProps } from './';
 
-/**
- * @children required
- */
 export interface ListItemProps
   extends ListProps,
     React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @deprecated = true
    * Please use DefinitionList instead
@@ -39,6 +40,7 @@ function getListDisplay(props) {
   if (props.icon) {
     return 'grid';
   }
+
   return 'list-item';
 }
 
@@ -78,6 +80,7 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
       iconColor,
       testId,
       isInverse: isInverseProp,
+      ...rest
     } = props;
     const theme = React.useContext(ThemeContext);
     const isInverse = useIsInverse(isInverseProp);
@@ -85,6 +88,7 @@ export const ListItem = React.forwardRef<HTMLDivElement, ListItemProps>(
     return (
       <InverseContext.Provider value={{ isInverse }}>
         <StyledListItem
+          {...rest}
           as={description ? 'p' : 'li'}
           description={description as any}
           icon={icon}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, StoryFn } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react-webpack5';
 
 import { magma } from '../../theme/magma';
 import { Button, ButtonSize, ButtonVariant } from '../Button';
@@ -32,10 +32,8 @@ export default {
   title: 'Accordion',
   argTypes: {
     iconPosition: {
-      control: {
-        type: 'select',
-        options: AccordionIconPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(AccordionIconPosition),
     },
     isInverse: {
       control: {
@@ -166,7 +164,6 @@ export const ControlledNoMulti = {
   args: {
     isMulti: false,
     index: 0,
-    isMulti: false,
   },
 };
 

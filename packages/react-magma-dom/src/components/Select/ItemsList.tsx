@@ -7,17 +7,17 @@ import {
   UseSelectGetMenuPropsOptions,
 } from 'downshift';
 
-import { I18nContext } from '../../i18n';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { convertStyleValueToString } from '../../utils';
-import { Spinner } from '../Spinner';
 import {
   defaultComponents,
   ItemRenderOptions,
   SelectComponents,
 } from './components';
 import { StyledCard, StyledItem, StyledList } from './shared';
-import { isItemDisabled } from './utils';
+import { isItemDisabled, setFocusedItem } from './utils';
+import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { convertStyleValueToString } from '../../utils';
+import { Spinner } from '../Spinner';
 
 import { instanceOfToBeCreatedItemObject } from '.';
 
@@ -36,6 +36,7 @@ interface ItemsListProps<T> {
   menuStyle?: React.CSSProperties;
   setFloating?: (node: ReferenceType) => void;
   setHighlightedIndex?: (index: number) => void;
+  selectedItem?: string;
 }
 
 const NoItemsMessage = styled.span<{
@@ -73,10 +74,44 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     menuStyle,
     setFloating,
     setHighlightedIndex,
+    selectedItem,
+    ...rest
   } = props;
 
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+
+  const setFloatingRef = React.useCallback(
+    (node: Element | null) => {
+      if (setFloating) {
+        setFloating(isOpen ? node : null);
+      }
+    },
+    [isOpen, setFloating]
+  );
+
+  // Scroll highlighted item into view for accessibility
+  React.useEffect(() => {
+    if (isOpen && highlightedIndex !== undefined && highlightedIndex >= 0) {
+      const animationFrame = requestAnimationFrame(() => {
+        const highlightedElement = document.querySelector(
+          '[data-highlighted="true"]'
+        );
+
+        if (
+          highlightedElement &&
+          typeof highlightedElement.scrollIntoView === 'function'
+        ) {
+          highlightedElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+          });
+        }
+      });
+
+      return () => cancelAnimationFrame(animationFrame);
+    }
+  }, [highlightedIndex, isOpen]);
 
   const hasItems = items && items.length > 0;
 
@@ -97,29 +132,39 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
     );
   };
 
-  function handleEscape(event: React.KeyboardEvent) {
-    if (event.key === 'Escape') {
-      event.nativeEvent.stopImmediatePropagation();
+  function handleKeyDown(event: React.KeyboardEvent) {
+    switch (event.key) {
+      case 'Escape':
+        event.nativeEvent.stopImmediatePropagation();
+        break;
+      case 'ArrowDown':
+        setFocusedItem(1, highlightedIndex, items, setHighlightedIndex);
+        break;
+      case 'ArrowUp':
+        setFocusedItem(-1, highlightedIndex, items, setHighlightedIndex);
+        break;
+      default:
+        break;
     }
   }
 
   return (
-    <div
-      ref={el => isOpen && setFloating && setFloating(el)}
-      style={{ ...floatingElementStyles, zIndex: '2' }}
-    >
+    <div ref={setFloatingRef} style={{ ...floatingElementStyles, zIndex: '2' }}>
       <StyledCard
         hasDropShadow
         isInverse={isInverse}
         isOpen={isOpen}
-        onKeyDown={handleEscape}
+        onKeyDown={handleKeyDown}
         style={menuStyle}
         theme={theme}
       >
         <StyledList
           isOpen={isOpen}
-          {...getMenuProps()}
           maxHeight={heightString}
+          role="listbox"
+          onMouseLeave={() => {}}
+          {...getMenuProps()}
+          {...rest}
         >
           {isOpen && hasItems ? (
             items.map((item, index) => {
@@ -135,6 +180,7 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
               });
 
               const key = `${itemString}${index}`;
+              const isSelected = selectedItem === itemToString(item);
 
               const itemProps: ItemRenderOptions<T> = {
                 isFocused: highlightedIndex === index,
@@ -144,15 +190,15 @@ export function ItemsList<T>(props: ItemsListProps<T>) {
                 itemString,
                 key,
                 theme,
+                isSelected,
                 isDisabled: isDisabled,
                 ...otherDownshiftItemProps,
+                onMouseMove: () => {},
+                role: 'option',
+                'aria-label': isSelected
+                  ? `${selectedItem} is selected`
+                  : itemString,
               };
-
-              if (isDisabled) {
-                itemProps.onMouseEnter = () => {
-                  setHighlightedIndex && setHighlightedIndex(-1);
-                };
-              }
 
               return <Item<T> {...itemProps} key={key} />;
             })

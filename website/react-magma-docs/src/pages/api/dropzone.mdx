@@ -10,11 +10,7 @@ title: Dropzone
   commonly used within forms but may also exist on their own.
 </LeadParagraph>
 
-<Alert variant="warning">
-  <strong>Important!</strong> Dropzone is imported from{' '}
-  <inlineCode>@react-magma/dropzone</inlineCode> which must be installed as a
-  peer dependency.
-</Alert>
+<Alert variant="warning"><strong>Important!</strong> Dropzone is imported from <code>@react-magma/dropzone</code> which must be installed as a peer dependency.</Alert>
 
 ## Basic Usage
 
@@ -97,11 +93,12 @@ then switched to true when needed.
 ```tsx
 import React from 'react';
 
-import { Dropzone } from '@react-magma/dropzone';
+import { Dropzone, OnSendFileProps } from '@react-magma/dropzone';
 import { Button, Spacer } from 'react-magma-dom';
 
 export function Example() {
   const [sendFiles, setSendFiles] = React.useState<boolean>(false);
+  const uploadFilesButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const onSendFile = (props: OnSendFileProps) => {
     const { onProgress, onError, onFinish, file } = props;
@@ -113,6 +110,12 @@ export function Example() {
 
       if (percent >= 100) {
         clearInterval(interval);
+        setSendFiles(false);
+
+        setTimeout(() => {
+          uploadFilesButtonRef.current?.focus();
+        }, 0);
+
         onFinish && onFinish({ file });
       }
 
@@ -142,7 +145,11 @@ export function Example() {
         sendFiles={sendFiles}
       />
       <Spacer size={12} />
-      <Button disabled={sendFiles} onClick={() => setSendFiles(true)}>
+      <Button
+        disabled={sendFiles}
+        onClick={() => setSendFiles(true)}
+        ref={uploadFilesButtonRef}
+      >
         Upload files
       </Button>
     </div>
@@ -167,7 +174,7 @@ Since the dropzone uses the [FileReader API](https://developer.mozilla.org/en-US
 ```tsx
 import React from 'react';
 
-import { Dropzone } from '@react-magma/dropzone';
+import { Dropzone, OnSendFileProps } from '@react-magma/dropzone';
 
 export function Example() {
   const [file, setFile] = React.useState<string>();
@@ -175,6 +182,7 @@ export function Example() {
   const onSendFile = (props: OnSendFileProps) => {
     const { file, onFinish } = props;
     const reader = new FileReader();
+
     reader.onload = function (evt) {
       setFile(
         (evt &&
@@ -208,7 +216,7 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Dropzone } from '@react-magma/dropzone';
+import { Dropzone, OnSendFileProps } from '@react-magma/dropzone';
 import { Textarea } from 'react-magma-dom';
 
 export function Example() {
@@ -217,6 +225,7 @@ export function Example() {
   const onSendFile = (props: OnSendFileProps) => {
     const { file, onFinish } = props;
     const reader = new FileReader();
+
     reader.onload = function (evt) {
       setFile(
         (evt &&
@@ -250,7 +259,7 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Dropzone } from '@react-magma/dropzone';
+import { Dropzone, OnSendFileProps } from '@react-magma/dropzone';
 import { Datagrid } from 'react-magma-dom';
 
 export function Example() {
@@ -284,6 +293,7 @@ export function Example() {
   const onSendFile = (props: OnSendFileProps) => {
     const { file, onFinish } = props;
     const reader = new FileReader();
+
     reader.onload = function (evt) {
       const [columns, rows] =
         (evt &&
@@ -291,6 +301,7 @@ export function Example() {
           evt.target.result &&
           csvToJson(evt.target.result.toString())) ||
         [];
+
       setColumns(columns);
       setFile(rows);
       onFinish && onFinish({ file });

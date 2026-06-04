@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { act } from 'react';
 
-import { act, render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { HelperInformation } from './HelperInformation';
@@ -9,14 +9,6 @@ import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 
 describe('Calendar Month', () => {
-  beforeEach(() => {
-    jest.useFakeTimers();
-  });
-
-  afterEach(() => {
-    jest.useRealTimers();
-  });
-
   it('helper information should be visible when open', async () => {
     const { getByText } = render(<HelperInformation isOpen />);
 
@@ -32,7 +24,9 @@ describe('Calendar Month', () => {
       </>
     );
 
-    getByText(/click/i).focus();
+    act(() => {
+      getByText(/click/i).focus();
+    });
 
     rerender(
       <>
@@ -41,27 +35,23 @@ describe('Calendar Month', () => {
       </>
     );
 
-    fireEvent.click(getByLabelText(/close/i));
-
-    await act(async () => {
-      jest.runAllTimers();
-    });
+    await userEvent.click(getByLabelText(/close/i));
 
     expect(onCloseSpy).toHaveBeenCalled();
   });
 
-  it('should hold focus inside the helper information', () => {
+  it('should hold focus inside the helper information', async () => {
     const { getByLabelText } = render(<HelperInformation isOpen />);
 
     const button = getByLabelText('Close Calendar Widget');
 
-    userEvent.tab();
+    await userEvent.tab();
 
     expect(button).toBeInTheDocument();
     expect(button).toHaveFocus();
 
-    userEvent.tab();
-    userEvent.tab();
+    await userEvent.tab();
+    await userEvent.tab();
 
     expect(button).toHaveFocus();
   });

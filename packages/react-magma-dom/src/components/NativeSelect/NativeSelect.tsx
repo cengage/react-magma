@@ -7,7 +7,7 @@ import { transparentize } from 'polished';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId } from '../../utils';
+import { descriptionSuffix, labelSuffix, useGenerateId } from '../../utils';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
@@ -16,12 +16,13 @@ import { inputBaseStyles, inputWrapperStyles } from '../InputBase';
 import { LabelPosition } from '../Label';
 import { DefaultDropdownIndicator } from '../Select/components';
 
-/**
- * @children required
- */
 export interface NativeSelectProps
   extends Omit<FormFieldContainerBaseProps, 'inputSize'>,
     React.SelectHTMLAttributes<HTMLSelectElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Content above the select. For use with Icon Buttons to relay information.
    */
@@ -65,6 +66,7 @@ function borderColors(props) {
     if (props.disabled) {
       return transparentize(0.85, props.theme.colors.neutral100);
     }
+
     return transparentize(0.5, props.theme.colors.neutral100);
   }
   if (props.hasError) {
@@ -73,6 +75,7 @@ function borderColors(props) {
   if (props.disabled) {
     return props.theme.colors.neutral300;
   }
+
   return props.theme.colors.neutral500;
 }
 
@@ -151,6 +154,36 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
 
     const hasLabel = !!labelText;
 
+    const selectRef = React.useRef<HTMLSelectElement>(null);
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLSelectElement>) => {
+      const select = selectRef.current;
+
+      if (!select) return;
+
+      const total = select.options.length;
+      let index = select.selectedIndex;
+      const direction =
+        e.key === 'ArrowDown' ? 1 : e.key === 'ArrowUp' ? -1 : 0;
+
+      if (direction === 0) return;
+
+      // Skip disabled options
+      let attempts = 0;
+
+      do {
+        index = (index + direction + total) % total;
+        attempts++;
+      } while (select.options[index].disabled && attempts < total);
+
+      // If all options are disabled, do nothing
+      if (select.options[index].disabled) return;
+
+      e.preventDefault();
+      select.selectedIndex = index;
+      select.dispatchEvent(new Event('change', { bubbles: true }));
+    };
+
     const nativeSelect = (
       <StyledFormFieldContainer
         additionalContent={additionalContent}
@@ -161,16 +194,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
         hasLabel={!!labelText}
         labelPosition={labelPosition}
         labelStyle={labelStyle}
-        labelText={
-          labelPosition !== LabelPosition.left && additionalContent ? (
-            <>
-              {labelText}
-              {labelText && additionalContent}
-            </>
-          ) : (
-            labelText
-          )
-        }
+        labelText={labelText}
         labelWidth={labelWidth}
         isInverse={isInverse}
         helperMessage={helperMessage}
@@ -185,11 +209,21 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
         >
           <StyledNativeSelect
             data-testid={testId}
-            aria-describedby={`${id}__desc`}
+            aria-describedby={
+              errorMessage || helperMessage
+                ? `${id}${descriptionSuffix}`
+                : undefined
+            }
+            aria-invalid={!!errorMessage || undefined}
+            aria-labelledby={
+              additionalContent && labelText ? `${id}${labelSuffix}` : undefined
+            }
             hasError={!!errorMessage}
             disabled={disabled}
             id={id}
             isInverse={isInverse}
+            ref={selectRef}
+            onKeyDown={handleKeyDown}
             theme={theme}
             {...other}
           >
@@ -215,6 +249,7 @@ export const NativeSelect = React.forwardRef<HTMLDivElement, NativeSelectProps>(
           </StyledAdditionalContentWrapper>
         );
       }
+
       return props.children;
     }
 

@@ -97,16 +97,24 @@ export const defaultI18n: I18nInterface = {
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
     createLabel: 'Create "{inputValue}"',
+    clearAnnounce: '{labelText} has been cleared',
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',
+      clearAnnounce:
+        '{labelText} has been cleared. {selectedItems} were removed',
+      removeItemAnnounce: '{selectedItem} has been removed',
+      ariaLabelWithSelectedItems:
+        '{labelText} Multi-select Selected: {selectedItems}',
+      ariaLabelWithoutSelectedItems: '{labelText} Multi-select',
     },
     loading: 'Loading...',
   },
   datePicker: {
     startOfWeek: 'sunday',
     calendarIconAriaLabel: 'Toggle Calendar Widget',
-    calendarOpenAnnounce: 'Calendar Widget is now open.',
+    calendarOpenAnnounce:
+      'Calendar Widget is now open. Refer to the keyboard instructions for navigating the widget.',
     calendarCloseAriaLabel: 'Close Calendar Widget',
     previousMonthAriaLabel: 'Navigate back one month',
     nextMonthAriaLabel: 'Navigate forward one month',
@@ -119,9 +127,15 @@ export const defaultI18n: I18nInterface = {
     backToCalendar: 'Back to Calendar',
     selectMonth: 'Select a month',
     selectYear: 'Select a year',
+    day: 'Day',
+    month: 'Month',
+    year: 'Year',
+    invalidYearError:
+      'Invalid date. Please enter a year between {minYear} and {maxYear}.',
     helpModal: {
       header: 'Keyboard Shortcuts',
-      helpButtonAriaLabel: 'Calendar Widget Help',
+      helpButtonAriaLabel: 'Keyboard instructions for calendar widget',
+      tooltipContent: 'Keyboard instructions',
       enter: {
         ariaLabel: 'Enter key',
         explanation: 'Select the date in focus.',
@@ -153,7 +167,6 @@ export const defaultI18n: I18nInterface = {
   },
   dateTimePickerLabel: 'Pick a date and time',
   dropdown: {
-    menuItemSelectedAriaLabel: '(selected)',
     toggleMenuAriaLabel: 'Toggle menu',
   },
   dropzone: {
@@ -189,6 +202,12 @@ export const defaultI18n: I18nInterface = {
     bytes: 'Bytes',
     deleteFile: 'Delete file',
     removeFile: 'Remove file',
+    fileAdded: 'File {fileName} has been added',
+    filesAdded: '{count} files have been added: {fileNames}',
+    fileRemoved: 'File {fileName} has been removed',
+    fileDeleted: 'File {fileName} has been deleted',
+    fileUploading: 'Uploading {fileName}, {percent}% complete',
+    fileUploaded: '{fileName} uploaded successfully',
   },
   header: {
     navigationButtonLabel: 'Open navigation menu',
@@ -201,10 +220,9 @@ export const defaultI18n: I18nInterface = {
     },
   },
   indeterminateCheckbox: {
-    isCheckedAnnounce: 'All subitems are checked for {labelText} checkbox',
-    isIndeterminateAnnounce:
-      'Some, but not all, subitems are checked for {labelText} checkbox',
-    isUncheckedAnnounce: 'No subitems are checked for {labelText} checkbox',
+    isCheckedAnnounce: 'All subitems are selected',
+    isIndeterminateAnnounce: 'Some subitems are selected',
+    isUncheckedAnnounce: 'No subitems are selected',
   },
   input: {
     isClearableAriaLabel: 'Clear Input',
@@ -230,10 +248,10 @@ export const defaultI18n: I18nInterface = {
   },
   multiSelect: {
     placeholder: 'Select...',
-    selectedItemButtonAriaLabel: 'reset item {selectedItem}',
+    selectedItemButtonAriaLabel: 'clear item {selectedItem}',
   },
   multiCombobox: {
-    selectedItemButtonAriaLabel: 'reset item {selectedItem}',
+    selectedItemButtonAriaLabel: 'clear item {selectedItem}',
   },
   pagination: {
     nextButtonLabel: 'Next Page',
@@ -264,9 +282,18 @@ export const defaultI18n: I18nInterface = {
     placeholder: 'Select...',
     clearIndicatorAriaLabel:
       'reset selection for {labelText}. {selectedItem} is selected',
+    clearAnnounce: '{labelText} has been cleared',
+    expandedAnnounce: '{labelText} list expanded',
+    collapsedAnnounce: '{labelText} list collapsed',
     multi: {
       clearIndicatorAriaLabel:
         'reset selection for {labelText}. {selectedItem} are selected',
+      clearAnnounce:
+        '{labelText} has been cleared. {selectedItems} were removed',
+      removeItemAnnounce: '{selectedItem} has been removed',
+      ariaLabelWithSelectedItems:
+        '{labelText} Multi-select Selected: {selectedItems}',
+      ariaLabelWithoutSelectedItems: '{labelText} Multi-select',
     },
   },
   simplePagination: {
@@ -275,6 +302,7 @@ export const defaultI18n: I18nInterface = {
     pagesLabel: 'pages',
     pageNumberLabel: 'Page number',
     selectedLabel: 'selected',
+    selectPageLabel: 'Select page',
   },
   skipLink: {
     buttonText: 'Skip Navigation',
@@ -295,7 +323,9 @@ export const defaultI18n: I18nInterface = {
       rowsPerPageLabel: 'Rows per page',
     },
     selectable: {
-      sortButtonAriaLabel: 'Sort rows',
+      sortButtonAriaLabel: 'Sort rows by {labelText}',
+      sortButtonAriaLabelBySelected: 'Sort rows by selected',
+      sortDirectionNone: 'not sorted',
       selectAllRowsAriaLabel: 'Select all rows',
       selectRowAriaLabel: 'Select row',
       deselectAllRowsAriaLabel: 'Deselect all rows',
@@ -309,6 +339,8 @@ export const defaultI18n: I18nInterface = {
       'use the down and up arrow keys to activate other tabs',
     nextButtonLabel: 'Scroll tabs forward',
     previousButtonLabel: 'Scroll tabs back',
+    scrolledBackAnnounce: 'Scrolled tabs backward',
+    scrolledForwardAnnounce: 'Scrolled tabs forward',
   },
   tag: {
     deleteAriaLabel: 'Delete {labelText} tag',
@@ -338,5 +370,9 @@ export const defaultI18n: I18nInterface = {
     success: 'success icon',
     warning: 'warning icon',
     danger: 'danger icon',
+  },
+  expansionState: {
+    expanded: 'expanded',
+    collapsed: 'collapsed',
   },
 };

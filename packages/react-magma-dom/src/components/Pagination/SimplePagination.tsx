@@ -13,6 +13,7 @@ import { ButtonColor, ButtonShape, ButtonVariant } from '../Button';
 import { Spacer } from '../Spacer';
 import { Tooltip } from '../Tooltip';
 import { VisuallyHidden } from '../VisuallyHidden';
+import { pageAriaLabel, paginationLabel } from './utils';
 
 import { NavButton, PaginationProps } from './';
 
@@ -21,11 +22,13 @@ function buildLabelColor(props) {
     if (props.disabled) {
       return transparentize(0.8, props.theme.colors.neutral100);
     }
+
     return props.theme.colors.neutral100;
   }
   if (props.disabled) {
     return props.theme.colors.neutral500;
   }
+
   return props.theme.colors.neutral700;
 }
 
@@ -78,7 +81,9 @@ export const SimplePagination = React.forwardRef<
 
   const id = useGenerateId(defaultId);
 
-  let [selectedPage, setSelectedPage] = React.useState(page || defaultPage);
+  let [selectedPage, setSelectedPage] = React.useState(
+    page || defaultPage || 1
+  );
 
   React.useEffect(() => {
     setSelectedPage(page);
@@ -115,33 +120,23 @@ export const SimplePagination = React.forwardRef<
       onPageChange(event, selectedPage);
   }
 
-  function paginationLabel() {
-    return `${i18n.simplePagination.ofLabel}
-        ${count}
-        ${
-          count <= 1
-            ? i18n.simplePagination.pageLabel
-            : i18n.simplePagination.pagesLabel
-        }`;
-  }
-
-  const pageAriaLabel = `${i18n.simplePagination.pageNumberLabel}
-    ${selectedPage}
-    ${paginationLabel()}
-    ${i18n.simplePagination.selectedLabel}`;
-
   const disabledPrevTooltip =
-    disabled || selectedPage <= 1 || count <= 0 || count == null;
+    disabled || selectedPage <= 1 || count <= 0 || count === null;
 
   const disabledNextTooltip =
-    disabled || selectedPage >= count || count == null;
+    disabled || selectedPage >= count || count === null;
 
   const prevTooltipContent = i18n.pagination.previousButtonLabel;
   const nextTooltipContent = i18n.pagination.nextButtonLabel;
+  const pageAriaLabelText = pageAriaLabel(
+    selectedPage,
+    count,
+    i18n.simplePagination
+  );
 
   const PrevButton = (
     <NavButton
-      aria-label={i18n.pagination.previousButtonLabel}
+      aria-label={prevTooltipContent}
       variant={ButtonVariant.link}
       color={ButtonColor.secondary}
       disabled={disabledPrevTooltip}
@@ -193,7 +188,7 @@ export const SimplePagination = React.forwardRef<
       {count > 0 && (
         <>
           <NativeSelect
-            aria-label={i18n.select.placeholder}
+            aria-label={i18n.simplePagination.selectPageLabel}
             data-testid={testId ? `${testId}-select` : `pagination-select`}
             containerStyle={nativeSelectStyles}
             disabled={disabled}
@@ -204,7 +199,7 @@ export const SimplePagination = React.forwardRef<
           >
             {Array.from({ length: count }, (_, i) => (
               <option
-                aria-label={pageAriaLabel}
+                aria-label={pageAriaLabelText}
                 data-testid={testId ? `${testId}-option-${i}` : `option-${i}`}
                 key={i}
                 onChange={handleChange}
@@ -219,10 +214,10 @@ export const SimplePagination = React.forwardRef<
             aria-hidden="true"
             data-testid={testId ? `${testId}-label` : `label`}
           >
-            {paginationLabel()}
+            {paginationLabel(count, i18n.simplePagination)}
           </label>
           <VisuallyHidden>
-            <Announce>{pageAriaLabel}</Announce>
+            <Announce>{pageAriaLabelText}</Announce>
           </VisuallyHidden>
         </>
       )}

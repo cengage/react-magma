@@ -1,23 +1,21 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { Meta } from '@storybook/react-webpack5';
 
 import { magma } from '../../theme/magma';
 import { Button } from '../Button';
 import { Card, CardBody } from '../Card';
 import { Input } from '../Input';
 
-import { ProgressBar, ProgressBarColor, ProgressBarProps } from '.';
+import { ProgressBar, ProgressBarColor } from '.';
 
 export default {
   title: 'ProgressBar',
   component: ProgressBar,
   argTypes: {
     color: {
-      control: {
-        type: 'select',
-        options: ProgressBarColor,
-      },
+      control: { type: 'select' },
+      options: Object.values(ProgressBarColor),
     },
     height: {
       control: {

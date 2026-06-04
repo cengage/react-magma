@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react-webpack5';
 import { AccountCircleIcon } from 'react-magma-icons';
 
 import { Button } from '../Button';
@@ -110,7 +110,7 @@ const Template: StoryFn<TagProps> = args => {
               console.log('clicked');
             }}
           >
-            Deletetable Tag
+            Deletetable
           </Tag>
         </p>
       </CardBody>
@@ -123,16 +123,12 @@ export default {
   component: Tag,
   argTypes: {
     size: {
-      control: {
-        type: 'select',
-        options: TagSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(TagSize),
     },
     color: {
-      control: {
-        type: 'select',
-        options: TagColor,
-      },
+      control: { type: 'select' },
+      options: Object.values(TagColor),
     },
     disabled: {
       control: {
@@ -159,9 +155,11 @@ export const Default = {
 export const OnClick = {
   render: args => {
     const [counter, setCounter] = React.useState<number>(0);
+
     function updateCounter() {
       setCounter(count => count + 1);
     }
+
     return (
       <Card isInverse={args.isInverse}>
         <CardBody>
@@ -192,7 +190,7 @@ export const WithDelete = {
           <p>
             {isVisibleDefault && (
               <Tag {...args} onDelete={() => setIsVisibleDefault(false)}>
-                Delete
+                Math
               </Tag>
             )}
           </p>
@@ -203,7 +201,7 @@ export const WithDelete = {
                 onDelete={() => setIsVisibleIcon(false)}
                 icon={<AccountCircleIcon />}
               >
-                Delete Icon
+                Deleteable
               </Tag>
             )}
           </p>
@@ -214,7 +212,7 @@ export const WithDelete = {
                 {...args}
                 onDelete={() => setIsVisibleSmall(false)}
               >
-                Delete Small
+                Deleteable Small
               </Tag>
             )}
           </p>
@@ -226,7 +224,7 @@ export const WithDelete = {
                 onDelete={() => setIsVisibleSmallIcon(false)}
                 icon={<AccountCircleIcon />}
               >
-                Delete Icon Small
+                Icon Small
               </Tag>
             )}
           </p>

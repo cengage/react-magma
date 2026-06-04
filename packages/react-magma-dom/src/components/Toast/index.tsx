@@ -11,10 +11,11 @@ import {
 } from '../AlertBase';
 import { ToastsContext } from './ToastsContainer';
 
-/**
- * @children required
- */
 export interface ToastProps extends AlertBaseProps {
+  /**
+   * @children required
+   */
+  children: React.ReactNode | undefined;
   /**
    * CSS properties for the alert component within the toast container
    */
@@ -193,6 +194,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       React.useState(0);
 
     React.useEffect(() => {
+      mountedRef.current = true;
       lastFocus.current = document.activeElement as HTMLElement;
       if (!props.disableAutoDismiss) {
         setAutoHideTimer(props.toastDuration);
@@ -207,10 +209,12 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
     React.useEffect(() => {
       if (!props.disableAutoDismiss) {
         const focusableElements = getTrapElements(containerElement);
+
         focusableElements.forEach(element => {
           element.addEventListener('focus', handlePause);
           element.addEventListener('blur', handleResume);
         });
+
         return () => {
           focusableElements.forEach(element => {
             element.removeEventListener('focus', handlePause);

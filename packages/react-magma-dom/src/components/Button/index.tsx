@@ -83,11 +83,12 @@ export interface ButtonStyles {
   variant?: ButtonVariant;
 }
 
-/**
- * @children required
- */
 interface BaseButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @internal
    */

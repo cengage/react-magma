@@ -8,6 +8,7 @@ export const formatFileSize = (
   const k = 1024;
   const sizes = [bytesLabel, 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
+
   return (
     parseFloat((bytes / Math.pow(k, i)).toFixed(decimalPoint)) + ' ' + sizes[i]
   );

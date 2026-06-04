@@ -10,11 +10,12 @@ import {
   TypographyComponent,
 } from '../Typography';
 
-/**
- * @children required
- */
 export interface ParagraphProps
   extends React.HTMLAttributes<HTMLParagraphElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * The color of the component, helping to convey meaning or relative emphasis
    * @default TypographyColor.default

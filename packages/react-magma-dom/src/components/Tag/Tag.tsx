@@ -23,12 +23,12 @@ export enum TagSize {
   small = 'small',
 }
 
-/**
- * @children required
- */
-
 export interface BaseTagProps
   extends Omit<React.HTMLAttributes<HTMLButtonElement>, 'onClick'> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Color changes between 'primary', 'low contrast', and 'high contrast' style variants between each Tag.
    * @default TagColor.default
@@ -93,11 +93,13 @@ function buildBoxShadow(props) {
           props.theme.colors.neutral100
         )}`;
       }
+
       return `0 0 0 1px ${transparentize(0.5, props.theme.colors.neutral100)}`;
     }
     if (props.disabled) {
       return `0 0 0 1px ${props.theme.colors.neutral300}`;
     }
+
     return `inset 0 0 0  1px ${props.theme.colors.neutral400}`;
   }
 }
@@ -107,7 +109,8 @@ function buildButtonBackground(props) {
     if (props.disabled) {
       // Disabled inverse state background colors
       switch (props.color) {
-        case 'primary' || 'highContrast':
+        case 'primary':
+        case 'highContrast':
           return transparentize(0.7, props.theme.colors.neutral100);
         case 'lowContrast':
           return `none`;
@@ -129,7 +132,8 @@ function buildButtonBackground(props) {
   } else if (props.disabled && !props.isInverse) {
     // Disabled state background colors
     switch (props.color) {
-      case 'primary' || 'highContrast':
+      case 'primary':
+      case 'highContrast':
         return transparentize(0.4, props.theme.colors.neutral300);
       case 'lowContrast':
         return props.theme.colors.neutral100;
@@ -155,7 +159,8 @@ function buildButtonTextColor(props) {
     if (props.disabled) {
       // Disabled inverse state text colors
       switch (props.color) {
-        case 'primary' || 'highContrast':
+        case 'primary':
+        case 'highContrast':
           return transparentize(0.6, props.theme.colors.neutral100);
 
         case 'lowContrast':
@@ -202,6 +207,7 @@ function buildSvgOpacity(props) {
       if (props.disabled) {
         return '40%';
       }
+
       return '75%';
     }
   }
@@ -209,6 +215,7 @@ function buildSvgOpacity(props) {
     if (props.disabled) {
       return '60%';
     }
+
     return '75%';
   }
   if (props.color === 'lowContrast' && props.disabled) {
@@ -216,6 +223,7 @@ function buildSvgOpacity(props) {
   } else if (props.disabled) {
     return '40%';
   }
+
   return '1';
 }
 
@@ -349,9 +357,11 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
 
     const i18n = React.useContext(I18nContext);
 
+    const nodeLabel = getNodeText(labelText);
+
     const deleteAriaLabel = i18n.tag.deleteAriaLabel.replace(
       /\{labelText\}/g,
-      getNodeText(labelText)
+      nodeLabel
     );
 
     const { icon } = props;
@@ -368,6 +378,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
 
     return (
       <StyledTag
+        aria-label={onDelete ? deleteAriaLabel : nodeLabel}
         color={color}
         icon={icon}
         onClick={handleClick}
@@ -379,15 +390,10 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
         {...rest}
       >
         {icon}
-        <LabelWrap size={size} {...rest} theme={theme}>
+        <LabelWrap size={size} theme={theme} {...rest}>
           {children}
         </LabelWrap>
-        {onDelete && (
-          <CancelIcon
-            aria-label={deleteAriaLabel}
-            size={theme.iconSizes.small}
-          />
-        )}
+        {onDelete && <CancelIcon size={theme.iconSizes.small} />}
       </StyledTag>
     );
   }

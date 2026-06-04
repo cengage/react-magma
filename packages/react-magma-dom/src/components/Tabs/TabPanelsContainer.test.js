@@ -6,7 +6,6 @@ import { Tab } from './Tab';
 import { TabPanel } from './TabPanel';
 import { TabPanelsContainer } from './TabPanelsContainer';
 import { TabsContainer } from './TabsContainer';
-import { magma } from '../../theme/magma';
 
 import { Tabs } from '.';
 
@@ -68,7 +67,7 @@ describe('Tab Panels Container', () => {
   });
 
   it('should use children isInverse props to render with inverse styles', () => {
-    const { getByText } = render(
+    const { getAllByText } = render(
       <TabsContainer>
         <Tabs>
           <Tab>This is tab 1</Tab>
@@ -84,12 +83,12 @@ describe('Tab Panels Container', () => {
       </TabsContainer>
     );
 
-    expect(getByText('Tab 1 Info')).toHaveStyleRule('background', 'none');
+    expect(getAllByText('Tab 1 Info')[0]).toHaveStyleRule('background', 'none');
 
-    fireEvent.click(getByText('This is tab 2'), {
+    fireEvent.click(getAllByText('This is tab 2')[0], {
       target: { scrollIntoView: jest.fn() },
     });
 
-    expect(getByText('Tab 2 Info')).toHaveStyleRule('background', 'none');
+    expect(getAllByText('Tab 2 Info')[1]).toHaveStyleRule('background', 'none');
   });
 });

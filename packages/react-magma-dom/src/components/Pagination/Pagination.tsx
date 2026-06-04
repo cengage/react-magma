@@ -4,12 +4,15 @@ import styled from '@emotion/styled';
 import { ArrowBackIcon, ArrowForwardIcon } from 'react-magma-icons';
 
 import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
 import { ButtonColor, ButtonShape, ButtonSize, ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
 import { PageButton, pageButtonTypeSize } from './PageButton';
 import { usePagination } from './usePagination';
-import { ThemeContext } from '../../theme/ThemeContext';
+import { Announce, AnnouncePoliteness } from '../Announce';
 import { SimplePagination } from '../Pagination/SimplePagination';
+import { VisuallyHidden } from '../VisuallyHidden';
+import { pageAriaLabel } from './utils';
 
 export interface BasePaginationProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -190,6 +193,28 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
     });
 
     const i18n = React.useContext(I18nContext);
+    const [focusedPage, setFocusedPage] = React.useState<number | null>(null);
+    const pageButtonRefs = React.useRef<Map<number, HTMLButtonElement>>(
+      new Map()
+    );
+
+    React.useEffect(() => {
+      if (focusedPage !== null && pageButtonRefs.current.has(focusedPage)) {
+        const button = pageButtonRefs.current.get(focusedPage);
+
+        button?.focus();
+        setFocusedPage(null);
+      }
+    }, [focusedPage, pageButtons]);
+
+    const setPageButtonRef =
+      (pageNumber: number) => (el: HTMLButtonElement | null) => {
+        if (el) {
+          pageButtonRefs.current.set(pageNumber, el);
+        } else {
+          pageButtonRefs.current.delete(pageNumber);
+        }
+      };
 
     return (
       <>
@@ -217,13 +242,20 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
             <StyledList>
               {pageButtons.map(
                 (
-                  { 'aria-current': ariaCurrent, page, type, ...other },
+                  {
+                    'aria-current': ariaCurrent,
+                    page,
+                    type,
+                    isSelected,
+                    ...other
+                  },
                   index
                 ) => {
                   if (type === 'start-ellipsis' || type === 'end-ellipsis') {
                     return (
                       <StyledEllipsis
                         aria-current={Boolean(ariaCurrent)}
+                        aria-hidden="true"
                         key={index}
                         isInverse={isInverse}
                         size={size}
@@ -234,19 +266,28 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
                     );
                   } else if (type === 'page') {
                     return (
-                      <StyledListItem
-                        aria-current={
-                          ariaCurrent ? 'page' : Boolean(ariaCurrent)
-                        }
-                        key={index}
-                      >
+                      <StyledListItem key={index}>
                         <PageButton
+                          aria-current={
+                            ariaCurrent ? 'page' : Boolean(ariaCurrent)
+                          }
+                          ref={setPageButtonRef(page)}
                           isInverse={isInverse}
+                          isSelected={isSelected}
                           size={buttonSize}
                           {...other}
+                          onClick={event => {
+                            setFocusedPage(page);
+                            other.onClick?.(event);
+                          }}
                         >
                           {page}
                         </PageButton>
+                        <VisuallyHidden>
+                          <Announce
+                            politeness={AnnouncePoliteness.assertive}
+                          >{`${isSelected ? pageAriaLabel(page, count, i18n.simplePagination) : ''}`}</Announce>
+                        </VisuallyHidden>
                       </StyledListItem>
                     );
                   } else if (type === 'previous' || type === 'next') {

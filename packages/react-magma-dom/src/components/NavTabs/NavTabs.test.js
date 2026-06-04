@@ -10,6 +10,13 @@ import { magma } from '../../theme/magma';
 import { NavTabs } from '.';
 
 describe('NavTabs', () => {
+  beforeAll(() => {
+    Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', {
+      configurable: true,
+      value: jest.fn(),
+    });
+  });
+
   it('should find element by testId', () => {
     const testId = 'test-id';
     const { getByTestId } = render(<NavTabs testId={testId} />);

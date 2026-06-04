@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { isItemDisabled } from '../Select/utils';
+
 export function useComboboxItems(defaultItems, items) {
   const afterInitialRender = React.useRef(false);
   const allItems = React.useRef(defaultItems || items);
@@ -7,6 +9,7 @@ export function useComboboxItems(defaultItems, items) {
 
   function updateItemsRef(newItem) {
     const newItems = [...allItems.current, newItem];
+
     allItems.current = newItems;
     setDisplayItems(newItems);
   }
@@ -14,6 +17,7 @@ export function useComboboxItems(defaultItems, items) {
   React.useEffect(() => {
     if (!afterInitialRender.current) {
       afterInitialRender.current = true;
+
       return;
     }
 
@@ -73,7 +77,11 @@ export function defaultOnInputValueChange(
           .filter(Boolean)
       : items.current;
 
-    setHighlightedIndex(0);
+    const firstEnabledIndex = filteredItems.findIndex(
+      item => !isItemDisabled(item)
+    );
+
+    setHighlightedIndex(firstEnabledIndex);
     setDisplayItems(filteredItems);
   }
 

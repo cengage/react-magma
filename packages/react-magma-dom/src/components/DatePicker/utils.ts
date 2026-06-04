@@ -1,3 +1,4 @@
+/* eslint-disable import/no-duplicates */
 import {
   addDays,
   addMonths,
@@ -54,34 +55,42 @@ export function handleKeyPress(
   switch (key) {
     case 'ArrowUp':
       e.preventDefault();
+
       return subWeeks(prevDate, 1);
 
     case 'ArrowLeft':
       e.preventDefault();
+
       return subDays(prevDate, 1);
 
     case 'Home':
       e.preventDefault();
+
       return startOfWeek(prevDate);
 
     case 'PageUp':
       e.preventDefault();
+
       return subMonths(prevDate, 1);
 
     case 'ArrowDown':
       e.preventDefault();
+
       return addWeeks(prevDate, 1);
 
     case 'ArrowRight':
       e.preventDefault();
+
       return addDays(prevDate, 1);
 
     case 'End':
       e.preventDefault();
+
       return endOfWeek(prevDate);
 
     case 'PageDown':
       e.preventDefault();
+
       return addMonths(prevDate, 1);
 
     case 'Escape':
@@ -119,6 +128,7 @@ export function getCalendarMonthWeeks(
     }
 
     let day = null;
+
     if ((i >= prevDays && i < totalDays - nextDays) || enableOutsideDays) {
       day = addDays(currentDay, i);
     }
@@ -170,3 +180,11 @@ export function setMonthForDate(prevDate, numberMonth: number) {
 export function setYearForDate(prevDate, numberYear: number) {
   return setYear(prevDate, numberYear);
 }
+
+export const MAX_YEAR = 2099;
+
+export const MIN_YEAR = 1900;
+
+export const isYearOutOfRange = (year: number) => {
+  return year < MIN_YEAR || year > MAX_YEAR;
+};

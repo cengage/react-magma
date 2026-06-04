@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import { axe } from '../../../axe-helper';
 
@@ -30,7 +31,7 @@ describe('AIButton', () => {
     expect(getByText(buttonText)).toBeInTheDocument();
   });
 
-  it('should run the clickHandler on click', () => {
+  it('should run the clickHandler on click', async () => {
     const buttonText = 'Test';
     const clickHandler = jest.fn();
 
@@ -39,7 +40,7 @@ describe('AIButton', () => {
     );
     const button = getByText(buttonText);
 
-    fireEvent.click(button);
+    await userEvent.click(button);
     expect(clickHandler).toHaveBeenCalled();
   });
 

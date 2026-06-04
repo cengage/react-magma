@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Meta } from '@storybook/react/types-6-0';
+import { Meta } from '@storybook/react-webpack5';
 import {
   ArrowDropDownIcon,
   CloseIcon,
@@ -65,16 +65,12 @@ export default {
       },
     },
     position: {
-      control: {
-        type: 'select',
-        options: PopoverPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(PopoverPosition),
     },
     alignment: {
-      control: {
-        type: 'select',
-        options: PopoverAlignment,
-      },
+      control: { type: 'select' },
+      options: Object.values(PopoverAlignment),
     },
     hoverable: {
       defaultValue: false,
@@ -518,6 +514,42 @@ const CustomTriggerButtonTemplate = args => {
 
 export const CustomTriggerButton = {
   render: CustomTriggerButtonTemplate,
+
+  args: {
+    width: 'target',
+  },
+
+  parameters: { controls: { exclude: ['hoverable'] } },
+};
+
+const FullWidthButtonTemplate = args => {
+  return (
+    <Card
+      style={{
+        padding: '20px',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+      isInverse={args.isInverse}
+    >
+      <Popover {...args} isFullWidth>
+        <PopoverTrigger>
+          <Button isFullWidth>Full Width Button Trigger</Button>
+        </PopoverTrigger>
+        <PopoverContent>
+          <div style={{ padding: '16px' }}>
+            This popover has a full-width button trigger. The{' '}
+            <code>isFullWidth</code> prop on the Popover component allows the
+            trigger button to expand to 100% width.
+          </div>
+        </PopoverContent>
+      </Popover>
+    </Card>
+  );
+};
+
+export const FullWidthButton = {
+  render: FullWidthButtonTemplate,
 
   args: {
     width: 'target',

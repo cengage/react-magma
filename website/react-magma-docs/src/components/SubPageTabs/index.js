@@ -66,15 +66,19 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
   const isInverse = useIsInverse();
 
   const headings = useMemo(
-    () => pageData?.node?.headings?.map(heading => heading.value) || [],
-    [pageData?.node?.headings]
+    () => pageData?.node?.fields.headings || [],
+    [pageData?.node?.fields.headings]
   );
 
   const hasHeadings = headings.length > 0;
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.hash) {
-      window.scrollTo(0, 0);
+    if (typeof window !== 'undefined' && !window.location.hash) {
+      const timeout = setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 100);
+
+      return () => clearTimeout(timeout);
     }
   }, []);
 
@@ -82,12 +86,16 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
     if (typeof window !== 'undefined') {
       return window.location.hash ? window.location.hash.substring(1) : null;
     }
+
     return null;
   }, []);
 
   const scrollToElement = useCallback(
     elementId => {
+      if (typeof window === 'undefined') return false;
+
       const element = document.getElementById(elementId);
+
       if (!element) return false;
 
       setIsScrolling(true);
@@ -106,6 +114,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
         const index = headings.findIndex(
           heading => convertTextToId(heading) === elementId
         );
+
         if (index !== -1) {
           setActiveTab(index);
         }
@@ -113,6 +122,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
         return true;
       } catch (error) {
         console.error('Error scrolling to element:', error);
+
         return false;
       } finally {
         setTimeout(() => {
@@ -140,10 +150,13 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
       !initialScrollApplied &&
       !isScrolling
     ) {
-      window.scrollTo(0, 0);
+      if (typeof window !== 'undefined') {
+        window.scrollTo(0, 0);
+      }
 
       const timer = setTimeout(() => {
         let success = scrollToElement(initialSectionId);
+
         setInitialScrollApplied(true);
 
         if (!success) {
@@ -154,9 +167,11 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
               const retry2 = setTimeout(() => {
                 scrollToElement(initialSectionId);
               }, 800);
+
               return () => clearTimeout(retry2);
             }
           }, 400);
+
           return () => clearTimeout(retry1);
         }
       }, 500);
@@ -174,7 +189,14 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
   ]);
 
   useEffect(() => {
-    if (!initialScrollApplied || isScrolling) return;
+    if (
+      typeof window === 'undefined' ||
+      !window.IntersectionObserver ||
+      !initialScrollApplied ||
+      isScrolling
+    ) {
+      return;
+    }
 
     const rootMarginValue = `0px 0px -70% 0px`;
 
@@ -212,6 +234,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
 
     return headings.map((heading, index) => {
       const id = convertTextToId(heading);
+
       return (
         <StyledNavTab
           key={id}

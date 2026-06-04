@@ -1,7 +1,6 @@
 {
   "extends": "../../tsconfig",
   "include": ["src/**/*"],
-  "exclude": ["**/*.stories.*"],
   "compilerOptions": {
     "removeComments": false,
     "noUnusedParameters": false,

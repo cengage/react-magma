@@ -20,6 +20,7 @@ function menuItemPadding(props) {
     if (props.expandableMenuButtonHasIcon) {
       return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} 72px`;
     }
+
     return `${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing05} ${props.theme.spaceScale.spacing03} ${props.theme.spaceScale.spacing08}`;
   }
 }
@@ -52,7 +53,7 @@ export const DropdownExpandableMenuListItem = React.forwardRef<
   React.useEffect(() => {
     if (!expandableMenuItemContext.disabled)
       context.registerDropdownMenuItem(context.itemRefArray, ownRef);
-  }, []);
+  }, [expandableMenuItemContext.disabled]);
 
   return (
     <StyledDropdownMenuItem

@@ -6,11 +6,11 @@ import { transparentize } from 'polished';
 
 import { ThemeContext } from '../../theme/ThemeContext';
 
-/**
- * @children required
- */
-
 export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * The color variant of the badge
    * @default BadgeColor.primary
@@ -102,6 +102,7 @@ export function buildBadgeTextColor(props) {
   if (props.color === BadgeColor.light) {
     return props.theme.colors.neutral700;
   }
+
   return props.theme.colors.neutral100;
 }
 
@@ -110,8 +111,10 @@ export function buildBadgeBorderColor(props) {
     if (props.isInverse) {
       return transparentize(0.3, props.theme.colors.neutral100);
     }
+
     return props.color;
   }
+
   return 'transparent';
 }
 
@@ -162,6 +165,7 @@ const StyledButton = styled.button<BadgeProps>`
         props.isInverse
           ? props.theme.colors.focusInverse
           : props.theme.colors.focus};
+    outline-offset: ${props => props.theme.spaceScale.spacing01};
   }
 `;
 

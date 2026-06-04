@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react-webpack5';
 import { Card } from 'react-magma-dom';
 
 import { CarbonChart, CarbonChartProps, CarbonChartType } from '.';
@@ -15,10 +15,8 @@ export default {
       },
     },
     type: {
-      control: {
-        type: 'select',
-        options: CarbonChartType,
-      },
+      control: { type: 'select' },
+      options: Object.values(CarbonChartType),
     },
   },
 } as Meta;

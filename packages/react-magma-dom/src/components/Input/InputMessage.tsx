@@ -22,11 +22,13 @@ export interface InputMessageProps
 
 function BuildMessageColor(props) {
   const { isInverse, hasError, theme } = props;
+
   if (isInverse) {
     return hasError
       ? theme.colors.danger200
       : transparentize(0.3, props.theme.colors.neutral100);
   }
+
   return hasError ? theme.colors.danger : theme.colors.neutral500;
 }
 
@@ -67,6 +69,7 @@ export const InputMessage: React.FunctionComponent<InputMessageProps> = ({
     if (maxCount || hasError) {
       return props.children;
     }
+
     return <Announce>{props.children}</Announce>;
   }
 

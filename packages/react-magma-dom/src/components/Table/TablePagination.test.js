@@ -1,12 +1,13 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
 
 import { TablePagination } from '.';
+import userEvent from '@testing-library/user-event';
 
 describe('Table Pagination', () => {
   it('should find element by testId', () => {
@@ -90,11 +91,44 @@ describe('Table Pagination', () => {
     );
   });
 
+  it('should move focus to the previous button when clicking next and the next page is disabled', () => {
+    const { getByTestId } = render(
+      <TablePagination itemCount={20} isInverse rowsPerPage={10} />
+    );
+    const nextBtn = getByTestId('nextBtn');
+    const previousBtn = getByTestId('previousBtn');
+
+    userEvent.click(nextBtn);
+
+    waitFor(() => {
+      expect(previousBtn).toHaveFocus();
+    });
+  });
+
+  it('should move focus to the next button when clicking previous and the previous page is disabled', () => {
+    const { getByTestId } = render(
+      <TablePagination
+        itemCount={20}
+        isInverse
+        defaultPage={2}
+        rowsPerPage={10}
+      />
+    );
+    const nextBtn = getByTestId('nextBtn');
+    const previousBtn = getByTestId('previousBtn');
+
+    userEvent.click(previousBtn);
+
+    waitFor(() => {
+      expect(nextBtn).toHaveFocus();
+    });
+  });
+
   describe('uncontrolled', () => {
     it('should change page when clicking next', () => {
       const handlePageChange = jest.fn();
 
-      const { getByTestId, getByText } = render(
+      const { getByTestId } = render(
         <TablePagination
           itemCount={20}
           isInverse
@@ -105,13 +139,13 @@ describe('Table Pagination', () => {
 
       fireEvent.click(nextBtn);
       expect(handlePageChange).toHaveBeenCalledWith(expect.any(Object), 2);
-      expect(getByText(/11-20/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/11-20/i);
     });
 
     it('should change page when clicking previous', () => {
       const handlePageChange = jest.fn();
 
-      const { getByTestId, getByText } = render(
+      const { getByTestId } = render(
         <TablePagination
           itemCount={20}
           defaultPage={2}
@@ -123,14 +157,14 @@ describe('Table Pagination', () => {
 
       fireEvent.click(prevBtn);
       expect(handlePageChange).toHaveBeenCalledWith(expect.any(Object), 1);
-      expect(getByText(/1-10/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/1-10/i);
     });
 
     it('should change number of rows per page', () => {
       const handlePageChange = jest.fn();
       const handleRowsPerPageChange = jest.fn();
 
-      const { getByTestId, getByText } = render(
+      const { getByTestId } = render(
         <TablePagination
           itemCount={20}
           isInverse
@@ -148,7 +182,7 @@ describe('Table Pagination', () => {
 
       expect(handlePageChange).toHaveBeenCalledWith(expect.any(Object), 1);
       expect(handleRowsPerPageChange).toHaveBeenCalledWith(20);
-      expect(getByText(/1-20/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/1-20/i);
       expect(appliedSelection).toHaveDisplayValue('20');
     });
   });
@@ -160,7 +194,7 @@ describe('Table Pagination', () => {
         page = newPage;
       };
 
-      const { getByTestId, getByText, rerender } = render(
+      const { getByTestId, rerender } = render(
         <TablePagination
           itemCount={20}
           isInverse
@@ -171,7 +205,7 @@ describe('Table Pagination', () => {
       const nextBtn = getByTestId('nextBtn');
 
       fireEvent.click(nextBtn);
-      expect(getByText(/1-10/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/1-10/i);
 
       rerender(
         <TablePagination
@@ -182,7 +216,7 @@ describe('Table Pagination', () => {
         />
       );
 
-      expect(getByText(/11-20/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/11-20/i);
     });
 
     it('should change page when clicking previous', () => {
@@ -191,7 +225,7 @@ describe('Table Pagination', () => {
         page = newPage;
       };
 
-      const { getByTestId, getByText, rerender } = render(
+      const { getByTestId, rerender } = render(
         <TablePagination
           itemCount={20}
           isInverse
@@ -202,7 +236,7 @@ describe('Table Pagination', () => {
       const nextBtn = getByTestId('previousBtn');
 
       fireEvent.click(nextBtn);
-      expect(getByText(/11-20/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/11-20/i);
 
       rerender(
         <TablePagination
@@ -213,7 +247,7 @@ describe('Table Pagination', () => {
         />
       );
 
-      expect(getByText(/1-10/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/1-10/i);
     });
 
     it('should change number of rows per page', () => {
@@ -238,7 +272,7 @@ describe('Table Pagination', () => {
       fireEvent.click(rowsSelect);
       fireEvent.click(getByText('20'));
 
-      expect(getByText(/11-20/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/11-20/i);
 
       rerender(
         <TablePagination
@@ -250,7 +284,7 @@ describe('Table Pagination', () => {
         />
       );
 
-      expect(getByText(/1-20/i)).toBeInTheDocument();
+      expect(getByTestId('page-count')).toHaveTextContent(/1-20/i);
     });
   });
 

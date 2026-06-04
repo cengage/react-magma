@@ -20,19 +20,12 @@ properly manages focus; moving to the modal content, and keeping it there until 
 The modal will _only_ render if the `isOpen` prop is set to true. For that reason, it is redundant to show the modal using the following anti-pattern: `{flag && <Modal isOpen={flag} />`. Instead,
 simply use `<Modal isOpen={flag} />`
 
-Although not required, it is helpful to inform users (especially screen reader users) when a button or link will trigger a modal dialog.
-This can be done by supplementing the button label or link text with "(opens modal dialog)" using the <Link to="/api/visually-hidden/">VisuallyHidden</Link> component.
+<Alert variant="warning">The modal trigger button must have the <code>aria-haspopup="dialog"</code> attribute for accessibility purposes.</Alert>
 
 ```tsx
 import React from 'react';
 
-import {
-  Button,
-  Hyperlink,
-  Modal,
-  Paragraph,
-  VisuallyHidden,
-} from 'react-magma-dom';
+import { Button, Hyperlink, Modal, Paragraph } from 'react-magma-dom';
 
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
@@ -58,9 +51,12 @@ export function Example() {
           modal
         </Paragraph>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
-        Show Modal
-        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
+        Modal
       </Button>
     </>
   );
@@ -80,7 +76,6 @@ import {
   Modal,
   ModalSize,
   Paragraph,
-  VisuallyHidden,
   ButtonGroup,
 } from 'react-magma-dom';
 
@@ -122,20 +117,20 @@ export function Example() {
 
       <ButtonGroup>
         <Button
+          aria-haspopup="dialog"
           size={ButtonSize.small}
           onClick={() => setShowSmallModal(true)}
           ref={smallButtonRef}
         >
-          Show Small Modal
-          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+          Small Modal
         </Button>
         <Button
+          aria-haspopup="dialog"
           size={ButtonSize.large}
           onClick={() => setShowLargeModal(true)}
           ref={largeButtonRef}
         >
-          Show Large Modal
-          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+          Large Modal
         </Button>
       </ButtonGroup>
     </>
@@ -145,7 +140,8 @@ export function Example() {
 
 ## Modal Header
 
-The modal header prop is optional. It can accept a node or a string, and will be rendered inside an H1.
+The modal header prop is optional. It can accept a node or a string, and will be rendered inside an H2 by default.
+The level of the header can be changed using the `headerLevel` prop.
 
 If there is a header passed in, the focus will be placed on the header when the modal opens. If not, the focus will be placed on
 the first actionable element.
@@ -170,7 +166,6 @@ import {
   magma,
   ModalSize,
   Paragraph,
-  VisuallyHidden,
   ButtonGroup,
   ButtonGroupAlignment,
 } from 'react-magma-dom';
@@ -205,11 +200,14 @@ export function Example() {
       >
         <Paragraph noTopMargin>This modal has no header.</Paragraph>
         <ButtonGroup alignment={ButtonGroupAlignment.center}>
-          <Button onClick={() => setShowModal(false)}>OK</Button>
+          <Button aria-haspopup="dialog" onClick={() => setShowModal(false)}>
+            OK
+          </Button>
         </ButtonGroup>
       </Modal>
       <Modal
         header="This modal has a header"
+        headerLevel={3}
         size={ModalSize.small}
         onClose={() => {
           setShowModalHeader(false);
@@ -219,11 +217,40 @@ export function Example() {
       >
         <Paragraph noTopMargin>This modal has a header.</Paragraph>
         <ButtonGroup alignment={ButtonGroupAlignment.center}>
-          <Button onClick={() => setShowModalHeader(false)}>OK</Button>
+          <Button
+            aria-haspopup="dialog"
+            onClick={() => setShowModalHeader(false)}
+          >
+            OK
+          </Button>
         </ButtonGroup>
       </Modal>
 
       <Modal
+        header={
+          <Flex
+            behavior={FlexBehavior.container}
+            direction={FlexDirection.column}
+            alignItems={FlexAlignItems.center}
+            justify={FlexJustify.center}
+            style={{ marginLeft: '30px' }}
+          >
+            <CheckIcon
+              style={{
+                background: magma.colors.success,
+                color: magma.colors.neutral100,
+                width: '36px',
+                height: '36px',
+                padding: '8px',
+                borderRadius: '50%',
+                marginBottom: '20px',
+              }}
+            />
+            <h3 ref={customHeadingRef} tabIndex={-1} style={{ margin: 0 }}>
+              Confirmation header
+            </h3>
+          </Flex>
+        }
         onClose={() => {
           setShowModalHeaderRef(false);
           headerRefButtonRef.current.focus();
@@ -240,19 +267,6 @@ export function Example() {
           spacing={2}
           wrap={FlexWrap.nowrap}
         >
-          <CheckIcon
-            style={{
-              background: magma.colors.success,
-              color: magma.colors.neutral100,
-              width: '36px',
-              height: '36px',
-              padding: '8px',
-              borderRadius: '50%',
-            }}
-          />
-          <h2 ref={customHeadingRef} tabIndex={-1}>
-            Confirmation header
-          </h2>
           <Paragraph>
             With watermelon ostriches. Gourds utters at welding equipment a oink
             oink haybine. Goose hammers cattle rats in crows. Blue berries
@@ -276,20 +290,27 @@ export function Example() {
       </Modal>
 
       <ButtonGroup>
-        <Button onClick={() => setShowModal(true)} ref={buttonRef}>
-          Show Modal with no header
-          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
-        </Button>
-        <Button onClick={() => setShowModalHeader(true)} ref={headerButtonRef}>
-          Show Modal with header
-          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowModal(true)}
+          ref={buttonRef}
+        >
+          Modal with no header
         </Button>
         <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowModalHeader(true)}
+          ref={headerButtonRef}
+        >
+          Modal with header
+        </Button>
+        <Button
+          aria-haspopup="dialog"
           style={{ marginLeft: '0' }}
           onClick={() => setShowModalHeaderRef(true)}
           ref={headerRefButtonRef}
         >
-          Show Modal with headerRef
+          Modal with headerRef
         </Button>
       </ButtonGroup>
     </>
@@ -326,8 +347,12 @@ export function Example() {
         </Paragraph>
         <Button onClick={() => setShowModal(false)}>Close this Dialog</Button>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
-        Show Modal
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
+        Modal
       </Button>
     </>
   );
@@ -341,7 +366,7 @@ If you would like to add a custom close button to the `Modal` be sure not to use
 ```tsx
 import React from 'react';
 
-import { Button, Modal, Paragraph, VisuallyHidden } from 'react-magma-dom';
+import { Button, Modal, Paragraph } from 'react-magma-dom';
 
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
@@ -374,8 +399,12 @@ export function Example() {
       <Paragraph>
         <strong>Internal Close Called Times:</strong> {internalCloseCalledTimes}
       </Paragraph>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
-        Show Modal <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
+        Modal
       </Button>
     </>
   );
@@ -389,13 +418,7 @@ Although we don't recommend using nested modals, the ability for one nested moda
 ```tsx
 import React from 'react';
 
-import {
-  Button,
-  Modal,
-  ModalSize,
-  Paragraph,
-  VisuallyHidden,
-} from 'react-magma-dom';
+import { Button, Modal, ModalSize, Paragraph } from 'react-magma-dom';
 
 export function Example() {
   const [showModal, setShowModal] = React.useState(false);
@@ -422,21 +445,28 @@ export function Example() {
       >
         <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
 
-        <Button onClick={() => setShowModal2(true)} ref={nestedButtonRef}>
-          Show Modal 2
+        <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowModal2(true)}
+          ref={nestedButtonRef}
+        >
+          Nested Modal
         </Button>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
-        Show Modal
-        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
+        Modal
       </Button>
       <Modal
         size={ModalSize.small}
-        header="Modal 2 Title"
+        header="Nested Modal Title"
         onClose={() => closeModal2()}
         isOpen={showModal2}
       >
-        <Paragraph noMargins>This is modal 2</Paragraph>
+        <Paragraph noMargins>This is nested modal</Paragraph>
       </Modal>
     </>
   );
@@ -490,8 +520,12 @@ export function Example() {
 
   return (
     <>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
-        Show Modal
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
+        Confirmation Modal
       </Button>
       <Modal
         header="Modal Title"
@@ -546,7 +580,6 @@ import {
   Hyperlink,
   Modal,
   Paragraph,
-  VisuallyHidden,
   Card,
   CardBody,
 } from 'react-magma-dom';
@@ -589,9 +622,13 @@ export function Example() {
       </Modal>
       <Card isInverse>
         <CardBody>
-          <Button onClick={() => setShowModal(true)} ref={buttonRef} isInverse>
-            Show Modal
-            <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+          <Button
+            aria-haspopup="dialog"
+            onClick={() => setShowModal(true)}
+            ref={buttonRef}
+            isInverse
+          >
+            Inverse Modal
           </Button>
         </CardBody>
       </Card>

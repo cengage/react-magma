@@ -1,7 +1,12 @@
 {
   "name": "@react-magma/charts",
-  "version": "12.0.1",
+  "version": "14.0.0-rc.5",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cengage/react-magma.git",
+    "directory": "packages/charts"
+  },
   "exports": {
     ".": {
       "import": "./dist/charts.modern.module.js",
@@ -22,42 +27,45 @@
     "build": "rollup -c rollup.config.js --bundleConfigAsCjs",
     "build-watch": "rollup -c rollup.config.js --watch --bundleConfigAsCjs",
     "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "lint:check": "eslint ./src --max-warnings=0",
     "test": "jest",
-    "test-watch": "jest --watch"
+    "test-watch": "jest --watch",
+    "compiler-checks": "tsc --noEmit --project ./tsconfig.json"
   },
   "dependencies": {
-    "@carbon/charts-react": "^1.14.8",
-    "d3": "^7.9.0",
-    "d3-cloud": "^1.2.7",
-    "d3-sankey": "^0.12.3",
-    "victory": "^37.3.6"
+    "@carbon/charts-react": "1.23.7",
+    "d3": "7.9.0",
+    "d3-cloud": "1.2.7",
+    "d3-sankey": "0.12.3"
   },
   "devDependencies": {
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.0",
+    "dom-to-image-more": "3.6.0",
     "@rollup/plugin-commonjs": "^28.0.8",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.1.4",
-    "dom-to-image-more": "3.1.4",
-    "identity-obj-proxy": "^3.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.10.1",
-    "react-magma-icons": "^3.2.0",
+    "framer-motion": "^12.23.22",
+    "identity-obj-proxy": "3.0.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-magma-dom": "^5.1.0-rc.87",
+    "react-magma-icons": "^3.2.5",
     "rollup": "^4.52.4",
     "rollup-plugin-postcss": "^4.0.2"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.13.0",
-    "@emotion/styled": "^11.13.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-magma-dom": "^4.10.1-next.0",
-    "react-magma-icons": "^3.2.0"
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-magma-dom": "^5.1.0-rc.3",
+    "react-magma-icons": "^3.2.5"
   },
   "engines": {
-    "node": ">=14.15.0",
-    "npm": ">=7.3.0"
+    "node": ">=22.14.0",
+    "npm": ">=11.11.0"
   },
   "publishConfig": {
     "access": "public"

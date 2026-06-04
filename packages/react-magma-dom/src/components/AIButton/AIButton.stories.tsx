@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react-webpack5';
 import { SettingsIcon } from 'react-magma-icons';
 
 import { ButtonGroup } from '../ButtonGroup';
@@ -45,34 +45,24 @@ export default {
   component: AIButton,
   argTypes: {
     size: {
-      control: {
-        type: 'select',
-        options: AIButtonSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(AIButtonSize),
     },
     variant: {
-      control: {
-        type: 'select',
-        options: AIButtonVariant,
-      },
+      control: { type: 'select' },
+      options: Object.values(AIButtonVariant),
     },
     shape: {
-      control: {
-        type: 'select',
-        options: AIButtonShape,
-      },
+      control: { type: 'select' },
+      options: Object.values(AIButtonShape),
     },
     textTransform: {
-      control: {
-        type: 'select',
-        options: AIButtonTextTransform,
-      },
+      control: { type: 'select' },
+      options: Object.values(AIButtonTextTransform),
     },
     type: {
-      control: {
-        type: 'select',
-        options: AIButtonType,
-      },
+      control: { type: 'select' },
+      options: Object.values(AIButtonType),
     },
     isLoading: {
       control: {

@@ -100,6 +100,7 @@ export function buildAIBorderColor(initialProps) {
     if (props.isInverse) {
       return 'none';
     }
+
     return props.theme.colors.neutral300;
   }
 
@@ -117,6 +118,7 @@ export function buildAIColor(initialProps) {
     if (props.isInverse) {
       return transparentize(0.6, props.theme.colors.neutral100);
     }
+
     return transparentize(0.4, props.theme.colors.neutral500);
   }
 
@@ -157,5 +159,9 @@ export function buildAIActiveColor(initialProps) {
 }
 
 export function buildBoxShadow(props) {
-  return `0 1px 6px ${transparentize(0.5, props.theme.colors.primary400)}`;
+  if (!props.disabled) {
+    return props.isInverse
+      ? `0 2px 6px 0 ${transparentize(0.82, props.theme.colors.neutral900)}`
+      : `0 1px 6px ${transparentize(0.5, props.theme.colors.primary400)}`;
+  }
 }

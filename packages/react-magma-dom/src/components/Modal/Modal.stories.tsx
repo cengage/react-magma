@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { Modal, ModalSize, NativeSelect, Toggle, VisuallyHidden } from '../..';
+import {
+  Modal,
+  ModalProps,
+  ModalSize,
+  NativeSelect,
+  Toggle,
+  VisuallyHidden,
+} from '../..';
 import { Button, ButtonColor } from '../Button';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { Combobox } from '../Combobox';
@@ -21,36 +28,56 @@ import { Spacer } from '../Spacer';
 const info = {
   component: Modal,
   title: 'Modal',
+  argTypes: {
+    isCloseButtonHidden: {
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
 };
 
 export default info;
 
-export const Default = () => {
-  const [showModal, setShowModal] = React.useState(false);
-  const buttonRef = React.useRef<HTMLButtonElement>();
+export const Default = {
+  render: (
+    args: React.JSX.IntrinsicAttributes &
+      ModalProps &
+      React.RefAttributes<HTMLDivElement>
+  ) => {
+    const [showModal, setShowModal] = React.useState(false);
+    const buttonRef = React.useRef<HTMLButtonElement>();
 
-  return (
-    <>
-      <Modal
-        header="Modal Title"
-        onClose={() => {
-          setShowModal(false);
-          buttonRef.current.focus();
-        }}
-        isOpen={showModal}
-      >
-        <Paragraph noTopMargin>This is a modal, doing modal things.</Paragraph>
-        <ButtonGroup alignment={ButtonGroupAlignment.right}>
-          <Button color={ButtonColor.secondary}>Cancel</Button>
-          <Button>Save</Button>
-        </ButtonGroup>
-      </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
-        Show Modal
-        <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
-      </Button>
-    </>
-  );
+    return (
+      <>
+        <Modal
+          {...args}
+          header="Modal Title"
+          onClose={() => {
+            setShowModal(false);
+            buttonRef.current.focus();
+          }}
+          isOpen={showModal}
+        >
+          <Paragraph noTopMargin>
+            This is a modal, doing modal things.
+          </Paragraph>
+          <ButtonGroup alignment={ButtonGroupAlignment.right}>
+            <Button color={ButtonColor.secondary}>Cancel</Button>
+            <Button>Save</Button>
+          </ButtonGroup>
+        </Modal>
+        <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowModal(true)}
+          ref={buttonRef}
+        >
+          Show Modal
+          <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+        </Button>
+      </>
+    );
+  },
 };
 
 export const BackgroundCickDisabled = () => {
@@ -74,7 +101,11 @@ export const BackgroundCickDisabled = () => {
           <Button>Save</Button>
         </ButtonGroup>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
         Show Modal
         <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
       </Button>
@@ -138,7 +169,7 @@ export const LongContentWithScrolling = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </Paragraph>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>
+      <Button aria-haspopup="dialog" onClick={onModalShow} ref={buttonRef}>
         Show Modal
       </Button>
     </>
@@ -167,7 +198,7 @@ export const RadioInModal = () => {
           <Radio labelText="Option two label" value="2" />
         </RadioGroup>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>
+      <Button aria-haspopup="dialog" onClick={onModalShow} ref={buttonRef}>
         Show Modal
       </Button>
     </>
@@ -261,7 +292,7 @@ export const ModalContentUpdate = () => {
           )}
         </div>
       </Modal>
-      <Button onClick={onModalShow} ref={buttonRef}>
+      <Button aria-haspopup="dialog" onClick={onModalShow} ref={buttonRef}>
         Show Modal
       </Button>
     </>
@@ -299,7 +330,11 @@ export const NoHeaderOrFocusableContent = () => {
         </Paragraph>
       </Modal>
 
-      <Button onClick={onModalNoFocusShow} ref={buttonRef}>
+      <Button
+        aria-haspopup="dialog"
+        onClick={onModalNoFocusShow}
+        ref={buttonRef}
+      >
         Show Modal with nothing focusable
       </Button>
     </>
@@ -369,10 +404,16 @@ export const ModalInAModal = () => {
           isClearable
         />
         <Paragraph>
-          <Button onClick={() => setShowModal2(true)}>Show Modal 2</Button>
+          <Button aria-haspopup="dialog" onClick={() => setShowModal2(true)}>
+            Show Modal 2
+          </Button>
         </Paragraph>
       </Modal>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
         Show Modal
       </Button>
       <Modal
@@ -491,7 +532,11 @@ export const CloseModalWithConfirmation = () => {
 
   return (
     <>
-      <Button onClick={() => setShowModal(true)} ref={buttonRef}>
+      <Button
+        aria-haspopup="dialog"
+        onClick={() => setShowModal(true)}
+        ref={buttonRef}
+      >
         Show Modal
       </Button>
       <Modal
@@ -625,10 +670,18 @@ export const HeaderReference = () => {
       </Modal>
 
       <ButtonGroup>
-        <Button onClick={onModalShow} ref={customButtonRef}>
+        <Button
+          aria-haspopup="dialog"
+          onClick={onModalShow}
+          ref={customButtonRef}
+        >
           Show Custom Heading Modal
         </Button>
-        <Button onClick={onModalShowDefault} ref={defaultButtonRef}>
+        <Button
+          aria-haspopup="dialog"
+          onClick={onModalShowDefault}
+          ref={defaultButtonRef}
+        >
           Show Modal with Default Heading
         </Button>
       </ButtonGroup>
@@ -659,11 +712,149 @@ export const Inverse = () => {
         </Paragraph>
       </Modal>
       <Container isInverse style={{ padding: '12px' }}>
-        <Button onClick={() => setShowModal(true)} ref={buttonRef} isInverse>
+        <Button
+          aria-haspopup="dialog"
+          onClick={() => setShowModal(true)}
+          ref={buttonRef}
+          isInverse
+        >
           Show Modal
           <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
         </Button>
       </Container>
+    </>
+  );
+};
+
+export const WithPortalContainer = {
+  render: (
+    args: React.JSX.IntrinsicAttributes &
+      ModalProps &
+      React.RefAttributes<HTMLDivElement>
+  ) => {
+    const [showModal, setShowModal] = React.useState(false);
+    const buttonRef = React.useRef<HTMLButtonElement>(null);
+    const mainRef = React.useRef<HTMLDivElement>(null);
+    const [isFullscreen, setIsFullscreen] = React.useState(false);
+
+    React.useEffect(() => {
+      const onChange = () =>
+        setIsFullscreen(document.fullscreenElement === mainRef.current);
+
+      document.addEventListener('fullscreenchange', onChange);
+
+      return () => document.removeEventListener('fullscreenchange', onChange);
+    }, []);
+
+    const toggleFullscreen = () => {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        mainRef.current?.requestFullscreen();
+      }
+    };
+
+    return (
+      <div
+        ref={mainRef}
+        role="main"
+        style={{
+          padding: '24px',
+          background: '#f4f4f4',
+          minHeight: '200px',
+        }}
+      >
+        <ButtonGroup>
+          <Button ref={buttonRef} onClick={() => setShowModal(true)}>
+            Show Modal
+            <VisuallyHidden>(opens modal dialog)</VisuallyHidden>
+          </Button>
+          <Button onClick={toggleFullscreen}>
+            {isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
+          </Button>
+        </ButtonGroup>
+        <Modal
+          {...args}
+          header="Portaled Modal"
+          portalContainer={mainRef.current}
+          isOpen={showModal}
+          onClose={() => {
+            setShowModal(false);
+            buttonRef.current?.focus();
+          }}
+        >
+          <Paragraph noTopMargin>
+            This modal is rendered inside the main container rather than
+            <code> document.body</code>, so it remains visible when the
+            container is in fullscreen mode.
+          </Paragraph>
+          <ButtonGroup alignment={ButtonGroupAlignment.right}>
+            <Button
+              color={ButtonColor.secondary}
+              onClick={() => setShowModal(false)}
+            >
+              Close
+            </Button>
+          </ButtonGroup>
+        </Modal>
+      </div>
+    );
+  },
+};
+
+export const EscWithForeignAriaModal = () => {
+  const [showModal, setShowModal] = React.useState(true);
+  const [foreignModalMounted, setForeignModalMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    const foreignModal = document.createElement('div');
+
+    foreignModal.setAttribute('aria-modal', 'true');
+    foreignModal.setAttribute('role', 'dialog');
+    foreignModal.setAttribute('id', 'fake-optanon-modal');
+    foreignModal.style.display = 'none';
+    foreignModal.textContent = 'Hidden foreign modal';
+
+    document.body.appendChild(foreignModal);
+    setForeignModalMounted(true);
+
+    return () => {
+      foreignModal.remove();
+    };
+  }, []);
+
+  return (
+    <>
+      <Paragraph>
+        This story mounts the modal open from the first render and injects a
+        second hidden <code>aria-modal="true"</code> element into the DOM.
+      </Paragraph>
+
+      <Paragraph>
+        Expected repro steps:
+        <br />
+        1. Open this story
+        <br />
+        2. Press <code>Esc</code>
+        <br />
+        3. Verify that the modal closes
+      </Paragraph>
+
+      <Paragraph>
+        Foreign modal mounted: {foreignModalMounted ? 'yes' : 'no'}
+      </Paragraph>
+
+      <Modal
+        header="Repro modal"
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+      >
+        <Paragraph noTopMargin>
+          Press Esc. If the bug is in our modal, this should hit the broken path
+          when another aria-modal exists in the DOM.
+        </Paragraph>
+        <Button onClick={() => setShowModal(false)}>Close</Button>
+      </Modal>
     </>
   );
 };

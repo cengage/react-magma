@@ -1,6 +1,7 @@
 const baseConfig = require('../../jest.config');
 
 const name = __dirname.split('/').pop();
+
 module.exports = {
   ...baseConfig,
   collectCoverageFrom: [
@@ -11,7 +12,6 @@ module.exports = {
     name,
     color: 'green',
   },
-  projects: ['.'],
   rootDir: '../..',
   testMatch: [`**/${name}/**/?(*.)+(spec|test).{js,ts,tsx,mjs}`],
 };
