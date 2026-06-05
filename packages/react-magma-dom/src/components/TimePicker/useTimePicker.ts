@@ -251,18 +251,21 @@ export function useTimePicker(props: UseTimePickerProps) {
 
     if (event.key === 'ArrowUp') {
       const current = Number(minute || '0');
+      const next = (Math.floor(current / step) + 1) * step;
 
-      if (current === 59) return;
+      if (next > 59) return;
 
-      applyMinute(Math.min(current + step, 59));
+      applyMinute(next);
     }
 
     if (event.key === 'ArrowDown') {
-      if (minute === '00') return;
-
       const current = minute ? Number(minute) : 0;
 
-      applyMinute(Math.max(current - step, 0));
+      if (minute && current === 0) return;
+
+      const prev = (Math.ceil(current / step) - 1) * step;
+
+      applyMinute(Math.max(prev, 0));
     }
   }
 
