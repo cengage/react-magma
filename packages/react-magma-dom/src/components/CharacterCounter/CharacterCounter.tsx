@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 
+import { useDeviceDetect } from '../../hooks/useDeviceDetect';
 import { I18nContext } from '../../i18n';
 import { magma } from '../../theme/magma';
 import { debounce } from '../../utils';
@@ -80,7 +81,7 @@ export const CharacterCounter = React.forwardRef<
 
   const i18n = React.useContext(I18nContext);
 
-  const { isMacOS, isWindows, isChrome } = useDeviceDetect();
+  const { isWindows, isChrome } = useDeviceDetect();
 
   // Temporary while both 'maxLength' and 'maxCount' are supported. To be removed in future iterations.
   const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
