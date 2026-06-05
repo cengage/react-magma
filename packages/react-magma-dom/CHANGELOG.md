@@ -1,5 +1,11 @@
 ## 4.14.0
 
+## 4.14.1-next.1
+
+### Patch Changes
+
+- be9d33690: fix(CharacterCounter): Prevent the character count from being announced twice by screen readers on Windows + Chrome.
+
 ## 4.14.1-next.0
 
 ### Patch Changes
