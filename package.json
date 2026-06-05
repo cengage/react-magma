@@ -84,11 +84,11 @@
     "@eslint/eslintrc": "3.3.1",
     "@eslint/js": "9.29.0",
     "@manypkg/cli": "0.24.0",
-    "@storybook/addon-a11y": "10.2.6",
-    "@storybook/addon-docs": "10.2.6",
+    "@storybook/addon-a11y": "10.2.10",
+    "@storybook/addon-docs": "10.2.10",
     "@storybook/addon-webpack5-compiler-babel": "^4.0.0",
-    "@storybook/react": "10.2.6",
-    "@storybook/react-webpack5": "10.2.6",
+    "@storybook/react": "10.2.10",
+    "@storybook/react-webpack5": "10.2.10",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "16.3.0",
@@ -137,7 +137,7 @@
     "react-test-renderer": "^18.3.1",
     "rollup-plugin-postcss": "4.0.2",
     "shelljs": "0.10.0",
-    "storybook": "10.2.6",
+    "storybook": "10.2.10",
     "ts-node": "10.9.2",
     "tsdx": "0.14.1",
     "typedoc": "^0.28.5",
@@ -149,7 +149,10 @@
     "npm": ">=11.11.0"
   },
   "overrides": {
-    "storybook": "$storybook"
+    "storybook": "$storybook",
+    "@pnpm/npm-conf": ">=3.0.2",
+    "markdown-it": ">=14.1.1",
+    "@eslint/plugin-kit": ">=0.3.4"
   },
   "devDependencies": {
     "@playwright/test": "^1.55.1",
