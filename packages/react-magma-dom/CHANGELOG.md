@@ -1,5 +1,11 @@
 ## 4.10.0
 
+## 5.1.0-rc.102
+
+### Patch Changes
+
+- d68afd1: fix(TimePicker): Update logic for `minutesStep` prop
+
 ## 5.1.0-rc.101
 
 ### Patch Changes
