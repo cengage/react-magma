@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import { tk } from '../../theme/utils/cssVar';
 import { Badge } from '../Badge';
 
 import { Banner } from '.';
@@ -29,7 +30,7 @@ describe('Banner', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.warning100
+        tk(magma, 'colors.warning100')
       );
 
       const closeBtn = getByLabelText('Close this message');
@@ -52,7 +53,7 @@ describe('Banner', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.success100
+        tk(magma, 'colors.success100')
       );
 
       const closeBtn = getByLabelText('Close this message');
@@ -75,7 +76,7 @@ describe('Banner', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.info100
+        tk(magma, 'colors.info100')
       );
 
       const closeBtn = getByLabelText('Close this message');
@@ -98,7 +99,7 @@ describe('Banner', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.danger100
+        tk(magma, 'colors.danger100')
       );
 
       const closeBtn = getByLabelText('Close this message');
@@ -122,7 +123,7 @@ describe('Banner', () => {
 
         expect(getByTestId(testId)).toHaveStyleRule(
           'background',
-          magma.colors.warning700
+          tk(magma, 'colors.warning700')
         );
 
         const closeBtn = getByLabelText('Close this message');
@@ -145,7 +146,7 @@ describe('Banner', () => {
 
         expect(getByTestId(testId)).toHaveStyleRule(
           'background',
-          magma.colors.success700
+          tk(magma, 'colors.success700')
         );
 
         const closeBtn = getByLabelText('Close this message');
@@ -168,7 +169,7 @@ describe('Banner', () => {
 
         expect(getByTestId(testId)).toHaveStyleRule(
           'background',
-          magma.colors.info700
+          tk(magma, 'colors.info700')
         );
 
         const closeBtn = getByLabelText('Close this message');
@@ -191,7 +192,7 @@ describe('Banner', () => {
 
         expect(getByTestId(testId)).toHaveStyleRule(
           'background',
-          magma.colors.danger700
+          tk(magma, 'colors.danger700')
         );
 
         const closeBtn = getByLabelText('Close this message');

@@ -48,7 +48,7 @@ describe('Alert', () => {
 
     expect(container.firstChild).toHaveStyleRule(
       'outline',
-      `2px solid ${magma.colors.info500}`,
+      `2px solid var(--magma-color-focus, ${magma.colors.focus})`,
       {
         target: ':focus',
       }

@@ -17,6 +17,7 @@ import { I18nContext, I18nInterface } from '../..';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { tk } from '../../theme/utils/cssVar';
 import { useGenerateId } from '../../utils';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
@@ -66,24 +67,24 @@ export function buildAlertBackground(props) {
   if (props.isInverse) {
     switch (props.variant) {
       case 'success':
-        return props.theme.colors.success700;
+        return tk(props.theme, 'colors.success700');
       case 'warning':
-        return props.theme.colors.warning700;
+        return tk(props.theme, 'colors.warning700');
       case 'danger':
-        return props.theme.colors.danger700;
+        return tk(props.theme, 'colors.danger700');
       default:
-        return props.theme.colors.info700;
+        return tk(props.theme, 'colors.info700');
     }
   }
   switch (props.variant) {
     case 'success':
-      return props.theme.colors.success100;
+      return tk(props.theme, 'colors.success100');
     case 'warning':
-      return props.theme.colors.warning100;
+      return tk(props.theme, 'colors.warning100');
     case 'danger':
-      return props.theme.colors.danger100;
+      return tk(props.theme, 'colors.danger100');
     default:
-      return props.theme.colors.info100;
+      return tk(props.theme, 'colors.info100');
   }
 }
 
@@ -91,40 +92,40 @@ export function buildAlertBorder(props) {
   if (props.isInverse) {
     switch (props.variant) {
       case 'success':
-        return props.theme.colors.success300;
+        return tk(props.theme, 'colors.success300');
       case 'warning':
-        return props.theme.colors.warning300;
+        return tk(props.theme, 'colors.warning300');
       case 'danger':
-        return props.theme.colors.danger200;
+        return tk(props.theme, 'colors.danger200');
       default:
-        return props.theme.colors.info300;
+        return tk(props.theme, 'colors.info300');
     }
   }
   switch (props.variant) {
     case 'success':
-      return props.theme.colors.success500;
+      return tk(props.theme, 'colors.success500');
     case 'warning':
-      return props.theme.colors.warning500;
+      return tk(props.theme, 'colors.warning500');
     case 'danger':
-      return props.theme.colors.danger500;
+      return tk(props.theme, 'colors.danger500');
     default:
-      return props.theme.colors.info500;
+      return tk(props.theme, 'colors.info500');
   }
 }
 
 export function buildAlertColor(props) {
   if (props.isInverse) {
-    return props.theme.colors.neutral100;
+    return tk(props.theme, 'colors.neutral100');
   }
   switch (props.variant) {
     case 'success':
-      return props.theme.colors.success500;
+      return tk(props.theme, 'colors.success500');
     case 'warning':
-      return props.theme.colors.warning500;
+      return tk(props.theme, 'colors.warning500');
     case 'danger':
-      return props.theme.colors.danger500;
+      return tk(props.theme, 'colors.danger500');
     default:
-      return props.theme.colors.info500;
+      return tk(props.theme, 'colors.info500');
   }
 }
 
@@ -132,40 +133,40 @@ export function buildLinkColor(props) {
   if (props.isInverse) {
     switch (props.variant) {
       case 'success':
-        return props.theme.colors.success200;
+        return tk(props.theme, 'colors.success200');
       case 'warning':
-        return props.theme.colors.warning200;
+        return tk(props.theme, 'colors.warning200');
       case 'danger':
-        return props.theme.colors.danger200;
+        return tk(props.theme, 'colors.danger200');
       default:
-        return props.theme.colors.info200;
+        return tk(props.theme, 'colors.info200');
     }
   }
   switch (props.variant) {
     case 'success':
-      return props.theme.colors.success700;
+      return tk(props.theme, 'colors.success700');
     case 'warning':
-      return props.theme.colors.warning700;
+      return tk(props.theme, 'colors.warning700');
     case 'danger':
-      return props.theme.colors.danger700;
+      return tk(props.theme, 'colors.danger700');
     default:
-      return props.theme.colors.info700;
+      return tk(props.theme, 'colors.info700');
   }
 }
 
 export function buildLinkHoverColor(props) {
   if (props.isInverse) {
-    return props.theme.colors.neutral100;
+    return tk(props.theme, 'colors.neutral100');
   }
   switch (props.variant) {
     case 'success':
-      return props.theme.colors.success;
+      return tk(props.theme, 'colors.success');
     case 'warning':
-      return props.theme.colors.warning;
+      return tk(props.theme, 'colors.warning');
     case 'danger':
-      return props.theme.colors.danger;
+      return tk(props.theme, 'colors.danger');
     default:
-      return props.theme.colors.info;
+      return tk(props.theme, 'colors.info');
   }
 }
 
@@ -177,26 +178,27 @@ const StyledAlert = styled.div<AlertBaseProps>`
       : `fadein ${transitionDuration}ms`};
   display: flex;
   flex-direction: column;
-  font-size: ${props => props.theme.typeScale.size03.fontSize};
-  font-family: ${props => props.theme.bodyFont};
-  line-height: ${props => props.theme.typeScale.size03.lineHeight};
-  margin-bottom: ${props => props.theme.spaceScale.spacing06};
+  font-size: ${props => tk(props.theme, 'typeScale.size03.fontSize')};
+  font-family: ${props => tk(props.theme, 'bodyFont')};
+  line-height: ${props => tk(props.theme, 'typeScale.size03.lineHeight')};
+  margin-bottom: ${props => tk(props.theme, 'spaceScale.spacing06')};
   max-width: 100%;
   padding: 0;
   position: relative;
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
-    font-size: ${props => props.theme.typeScale.size02.fontSize};
-    letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
-    line-height: ${props => props.theme.typeScale.size02.lineHeight};
+    font-size: ${props => tk(props.theme, 'typeScale.size02.fontSize')};
+    letter-spacing: ${props =>
+      tk(props.theme, 'typeScale.size02.letterSpacing')};
+    line-height: ${props => tk(props.theme, 'typeScale.size02.lineHeight')};
   }
 
   &:focus {
     outline: 2px solid
       ${props =>
         props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+          ? tk(props.theme, 'colors.focusInverse')
+          : tk(props.theme, 'colors.focus')};
   }
 
   ${props =>
@@ -266,7 +268,7 @@ const StyledAlert = styled.div<AlertBaseProps>`
 const StyledAlertInner = styled.div<AlertBaseProps>`
   background: ${buildAlertBackground};
   border: 1px solid ${buildAlertBorder};
-  border-radius: ${props => props.theme.borderRadius};
+  border-radius: ${props => tk(props.theme, 'borderRadius')};
   color: ${buildAlertColor};
   display: flex;
   position: relative;
@@ -278,7 +280,7 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
         ? `0 2px 8px 0 ${transparentize(0.3, props.theme.colors.neutral900)}`
         : `0 2px 8px 0 ${transparentize(0.6, props.theme.colors.neutral900)}`};
       padding-right: 0;
-      height: ${props.theme.spaceScale.spacing11};
+      height: ${tk(props.theme, 'spaceScale.spacing11')};
     `}
 `;
 
@@ -289,11 +291,11 @@ const AlertContents = styled.div<{
   align-items: ${props => (props.additionalContent ? 'center' : '')};
   align-self: center;
   flex-grow: 1;
-  font-family: ${props => props.theme.bodyFont};
-  padding: ${props => props.theme.spaceScale.spacing04} 0;
+  font-family: ${props => tk(props.theme, 'bodyFont')};
+  padding: ${props => tk(props.theme, 'spaceScale.spacing04')} 0;
   display: ${props => (props.additionalContent ? 'flex' : '')};
   margin-right: ${props =>
-    !props.isDismissible ? props.theme.spaceScale.spacing03 : ''};
+    !props.isDismissible ? tk(props.theme, 'spaceScale.spacing03') : ''};
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     padding-left: 0;
   }
@@ -303,7 +305,7 @@ export const AdditionalContentWrapper = styled.div`
   flex: 1 0 auto;
   justify-content: flex-end;
   display: flex;
-  margin-left: ${props => props.theme.spaceScale.spacing05};
+  margin-left: ${props => tk(props.theme, 'spaceScale.spacing05')};
 `;
 
 const IconWrapperStyles = css`
@@ -315,11 +317,11 @@ const IconWrapperStyles = css`
 
 const IconWrapper = styled.span<{ isToast?: boolean; theme: ThemeInterface }>`
   ${IconWrapperStyles}
-  padding: 0 ${props => props.theme.spaceScale.spacing03} 0 ${props =>
-    props.theme.spaceScale.spacing04};
+  padding: 0 ${props => tk(props.theme, 'spaceScale.spacing03')} 0 ${props =>
+    tk(props.theme, 'spaceScale.spacing04')};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
-    padding: 0 ${props => props.theme.spaceScale.spacing03};
+    padding: 0 ${props => tk(props.theme, 'spaceScale.spacing03')};
     svg {
       width: 20px;
     }
@@ -330,13 +332,13 @@ const ProgressRingWrapper = styled.div`
   margin-top: 6px;
   position: absolute;
   top: auto;
-  right: ${props => props.theme.spaceScale.spacing02};
+  right: ${props => tk(props.theme, 'spaceScale.spacing02')};
 `;
 
 const DismissibleIconWrapper = styled.span<AlertBaseProps>`
   ${IconWrapperStyles}
   margin-left: ${props =>
-    props.additionalContent ? props.theme.spaceScale.spacing03 : ''};
+    props.additionalContent ? tk(props.theme, 'spaceScale.spacing03') : ''};
 `;
 
 const whitelistProps = ['icon', 'isInverse', 'theme', 'variant'];
@@ -351,15 +353,15 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   isToast?: boolean;
 }>`
   align-self: stretch;
-  border-radius: 0 ${props => props.theme.borderRadius}
-    ${props => props.theme.borderRadius} 0;
+  border-radius: 0 ${props => tk(props.theme, 'borderRadius')}
+    ${props => tk(props.theme, 'borderRadius')} 0;
   color: inherit;
   height: auto;
   margin: ${props => (props.isToast ? '4px' : '0 -1px 0 0')};
   padding: ${props =>
     props.isToast
-      ? `0 ${props.theme.spaceScale.spacing04}`
-      : `0 ${props.theme.spaceScale.spacing03}`};
+      ? `0 ${tk(props.theme, 'spaceScale.spacing04')}`
+      : `0 ${tk(props.theme, 'spaceScale.spacing03')}`};
   width: auto;
   &:not(:disabled):hover {
     background: none;
@@ -371,8 +373,8 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
     outline: 2px solid
       ${props =>
         props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+          ? tk(props.theme, 'colors.focusInverse')
+          : tk(props.theme, 'colors.focus')};
     outline-offset: 0 !important;
   }
   &:not(:disabled):active {
