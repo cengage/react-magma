@@ -55,6 +55,7 @@ export const AccordionPanel = React.forwardRef<
         isInverse={isInverse}
         ref={ref}
         theme={theme}
+        role="region"
       >
         {children}
       </StyledPanel>
