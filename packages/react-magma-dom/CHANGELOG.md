@@ -1,5 +1,133 @@
 
 
+## 4.14.0
+
+### Minor Changes
+
+- 1aef43f36: feat(ButtonGroup): Add `isList` prop to render the group as a semantic list (`<ul>`/`<li>`) for assistive technologies.
+- 1aef43f36: feat(Fieldset): Add new `Fieldset` component for grouping related form controls under a shared legend.
+- 1aef43f36: feat(TreeView): Add `hasGuideLines` prop to render vertical guide lines on expanded items (defaults to `false`).
+
+### Patch Changes
+
+- 1aef43f36: fix(DatePicker): Reliably announce error messages to screen readers when an invalid date is entered.
+- 1aef43f36: fix(Drawer): Apply the `drawerStyle` prop to the Drawer panel element.
+- 1aef43f36: fix(Tabs, NavTabs): Improve focus management for the first tab during scrolling and keyboard navigation.
+- 1aef43f36: fix(Toast): Toast now closes on click or timeout when used under React Strict Mode (resolves an unmount handling issue).
+- 1aef43f36: fix(TreeView): Announce the expand/collapse state of `TreeItem` to screen readers.
+- 1aef43f36: fix(TreeView, Checkbox): Improve render performance, especially for deeply nested trees.
+- 1aef43f36: fix(TreeView): Announce "All subitems are selected" only once when a parent is checked, instead of once per descendant.
+- 1aef43f36: chore(deps): Update `uuid` to 11.1.1.
+
+## 4.13.0
+
+### Minor Changes
+
+- 3fa7c5753: feat: Add accessible chart toolbar with "Show as table", fullscreen, and "More options" buttons
+
+  Adds a new `chartToolbar` prop to `CarbonChart` that renders a WCAG 2.2 compliant toolbar replacing Carbon's built-in navigation controls. When provided, Carbon's toolbar is automatically disabled and replaced with accessible Magma components featuring:
+
+  - **Show as table** button with `aria-haspopup="dialog"` and `aria-expanded`, opening a focus-trapped Magma Modal with semantic headings and an accessible data table
+  - **Fullscreen** button without `aria-haspopup` (fixing the previous WCAG violation)
+  - **More options** dropdown using Magma's Dropdown component with proper menu semantics
+
+  Also exports standalone composable components (`ChartTableButton`, `ChartFullscreenButton`, `ChartMoreOptionsButton`, `ChartTableModal`, `ChartDataTable`, `ChartToolbar`) for adopters who need granular control outside of `CarbonChart`.
+
+- 3fa7c5753: feat(Modal): add `portalContainer` prop to control portal target
+
+  Adds an optional `portalContainer` prop to `Modal` that lets consumers specify the DOM element the modal should be portaled into. Defaults to `document.body` (unchanged behavior).
+
+### Patch Changes
+
+- 3fa7c5753: fix(Badge): Add focus outline offset.
+- 3fa7c5753: fix(Datagrid, Table): Fix the issue where the focus is lost when the button becomes disabled
+- 3fa7c5753: fix(Date Field Input): Add error message when the user enters an invalid date.
+- 3fa7c5753: fix(Date Picker & Time Picker & Native Select): Update aria attributes.
+- 3fa7c5753: fix(Modal): Fix bug when `Modal` doesn't close after pressing `Esc`
+- 3fa7c5753: chore(deps): move runtime-only dependencies out of peerDependencies and into package dependencies where needed
+- 3fa7c5753: fix(useFocusLock): Fix bug with focus outside.
+- 3fa7c5753: Chore: update react-magma-icons version
+
+## 4.12.1
+
+### Patch Changes
+
+- 36452c03a: fix(Checkbox, ListItem): Wrap checkbox doc examples in List/ListItem for semantic HTML. Forward rest props on ListItem component.
+- 36452c03a: fix(Combobox, Select, Datagrid): Add `aria-selected` to Combobox/Select list items. Simplify TablePagination page announcement. **Breaking:** removes `table.pagination.currentPageLabel` from the i18n interface.
+- 36452c03a: fix(Datagrid): Append current sort direction to sortable column header `aria-label` (e.g. "Sort rows by Name, ascending"). Adds new i18n key `table.selectable.sortDirectionNone`.
+- 36452c03a: fix(IconButton, Modal, Form, Accordion, NavTabs): Improve accessibility in doc examples. Add `role="tablist"`, `role="tab"`, and `role="presentation"` to NavTabs source.
+- 36452c03a: fix(MultiCombobox, MultiSelect): Replace default removal announcements with custom screen reader messages that name the removed items. Adds new i18n keys: `combobox.multi.clearAnnounce`, `combobox.multi.removeItemAnnounce`, `select.multi.clearAnnounce`, `select.multi.removeItemAnnounce`.
+- 36452c03a: fix(Popover): Move `aria-haspopup`, `aria-expanded`, and `aria-controls` from the trigger wrapper onto the trigger child element, so custom trigger elements correctly expose popover state to screen readers.
+- 36452c03a: fix(Tabs): Generate unique IDs per TabsContainer instance to prevent ID collisions when multiple Tabs appear on the same page. Skip panel content announcement on initial mount.
+- 36452c03a: fix(useFocusLock): Re-capture focus when active element escapes focus-locked containers (DatePicker, Modal, etc.).
+
+## 4.11.0
+
+### Minor Changes
+
+- 5810cc13d: feat(Checkbox): Add new `ariaLabel` prop.
+- 5810cc13d: feat(DatePicker): Add new keyboard controls.
+- 5810cc13d: feat(DateTimePicker): Add `timezone` prop. When used, returns Date object with the timezone.
+- 5810cc13d: feat(Popover): Add `isFullWidth` prop to allow the trigger button and content to expand to 100% width.
+- 5810cc13d: feat(SplitDropdown): Add new `leadingIcon` prop.
+- 5810cc13d: feat(TreeView): Support `selectParents` prop (`true` by default).
+- 5810cc13d: feat(Treeview): Add virtualization support.
+- 5810cc13d: feat(TreeView): Performance refactor.
+
+  - Introduced a new `treeViewReducer` to manage the state of the TreeView component, handling actions such as item selection, expansion, and item updates.
+  - Refactored `useTreeView` and `useTreeItem` hooks to utilize the new reducer, improving state management and reducing re-renders.
+  - Enhanced utility functions for better performance, including optimized selection and status processing using Maps for O(1) lookups.
+  - Updated context providers to split responsibilities for selection, expansion, and configuration, allowing for more granular updates and improved performance.
+
+### Patch Changes
+
+- 5810cc13d: fix(AIButton): Fix box-shadows.
+- 5810cc13d: fix(Accordion): Fix accessibility render issue
+- 5810cc13d: fix(Alert): add the `dismissibleButtonRef` prop to the `Alert`.
+- 5810cc13d: fix(Alert): Add margin right for alert content.
+- 5810cc13d: fix(Banner): Add `role` and `aria-label` attributes for icon.
+- 5810cc13d: fix(Banner): add the `dismissibleButtonRef` prop to the `Banner`
+- 5810cc13d: fix(Breadcrumb): Update last item to be a span instead of link.
+- 5810cc13d: fix(Combobox, MultiCombobox): Improve NVDA Browse Mode navigation across the page.
+- 5810cc13d: fix(Combobox): Fix issue when NVDA doesn't read placeholder.
+- 5810cc13d: fix(DatePicker): Update aria-label for calendar widget. Add announcing tooltip content for calendar widget button.
+- 5810cc13d: fix(DatePicker): Fix focusing input field after clearing date and when `isDateFieldInput=true`.
+- 5810cc13d: fix(DatePicker): Update announcing tooltip logic.
+- 5810cc13d: fix(DatePicker): Automatically focus today or min date on open state.
+- 5810cc13d: fix(DatePicker): Improve updating values in input when `isDateFieldInput=true`
+- 5810cc13d: fix(Drawer): Fix content scrolling inside the Drawer when overflowing.
+- 5810cc13d: fix(Dropdown): Remove `aria-label` from DropdownMenuItem icon. Add `role=menu` to DropdownContent for DropdownMenuNavItem children.
+- 5810cc13d: fix(Dropdown & Accordion): Add aria attributes for Dropdown menu and nested items to improve accessibility.
+- 5810cc13d: fix(Dropdown): Add aria-controls attribute for Dropdown trigger button.
+- 5810cc13d: fix(Dropdown): Fix bug with `Escape` focus behavior
+- 5810cc13d: fix(Modal, Drawer): Fix focus order for header, close button, and content.
+- 5810cc13d: fix(NavTabs): Fix obscured content when the elements is focused.
+- 5810cc13d: fix(Pagination): Add announcement when selected page updates.
+- 5810cc13d: fix(Pagination): Add `aria-hidden=true` for ellipsis.
+- 5810cc13d: fix(RadioButton): Fix announcing label text with error or helper message.
+- 5810cc13d: fix(Select, Multiselect, Combobox & Multicombobox): Fix navigation throughth the disabled items.
+- 5810cc13d: fix(Select): Add announcement to `expanded`/`collapsed` state of `Select`.
+- 5810cc13d: fix(Select, Multiselect): Separate focus and hover states and auto-focus first item for NVDA support.
+- 5810cc13d: fix(Table): Change logic for `tabIndex`.
+- 5810cc13d: fix(Tag): Add a new `aria-label` attribute to the component to improve accessibility.
+- 5810cc13d: fix(Textarea): Add an ARIA announcement helper to inform users how many characters are left.
+- 5810cc13d: fix(ToggleButton): Fix issue with `textTransform` prop.
+- 5810cc13d: fix(LoadingIndicator): Fix announcing `Loading` twice for Loading indicator.
+- 5810cc13d: fix(Tooltip): Force visibility tooltip content when user hover it.
+- 5810cc13d: fix(Datagrid): Fixed semantic markup for Sort Rows button in selectable and sortable variant.
+- 5810cc13d: fix(Modal, Drawer): Fix content scrolling underneath the Drawer and Modal when it’s open.
+- 5810cc13d: fix(Select, Multiselect): Add `ariaLabel` prop to provide alternative text for screen readers.
+- 5810cc13d: fix(Select): add aria-disabled attribute to disabled select elements.
+- 5810cc13d: fix(Select, NativeSelect, Combobox): Add cyclical navigation across options.
+- 5810cc13d: fix(Table, Datagrid): Improve screen reader announcements for table navigation and pagination.
+
+  - Removed aria-live from Datagrid table to prevent automatic reading of entire table content when rows per page changes
+  - Added aria-live="polite" to TablePagination page count to announce pagination status updates
+  - Added proper ARIA attributes (role="region", aria-label/aria-labelledby) to scrollable table wrapper to prevent verbose screen reader announcements
+
+- 5810cc13d: fix(TablePagination): Fixed screen reader announcing "Rows per page" twice by hiding the visible label from screenreaders.
+- 5810cc13d: fix(TimePicker): Update styles.
+
 ## 4.10.0
 
 ### Minor Changes
