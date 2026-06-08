@@ -1,6 +1,11 @@
 # @react-magma/charts
 
-## 14.0.0-rc.5
+## 14.0.0
+
+### Major Changes
+
+- fa50907: feat(charts)!: Remove deprecated `LineChart` component. **Breaking:** `LineChart` is no longer exported from `@react-magma/charts` — use `CarbonChart` instead.
+- 7563b3b: Major version release v14.0.0 - Breaking changes and new features for charts package, including React 18 support. **Breaking:** `react`/`react-dom` peer dependencies are now `^18.3.1` and `react-magma-dom` is now `^5.0.0`; React 17 is no longer supported.
 
 ### Minor Changes
 
@@ -16,38 +21,11 @@
 
 ### Patch Changes
 
-- e316bcb: Chore: update react-magma-icons version
-
-## 14.0.0-rc.4
-
-### Patch Changes
-
-- c00f190: fix(charts): trap focus in Carbon Charts "Show as table" modal
-
-## 14.0.0-rc.3
-
-### Patch Changes
-
 - cb81479: chore: add optional `ariaLabel` property for SVG container
-
-## 14.0.0-rc.2
-
-### Patch Changes
-
-- 7c8c1ea: fix(Charts): Fix magma styles not applied to carbon charts.
-
-## 14.0.0-rc.1
-
-### Patch Changes
-
-- Updated dependencies [b3b6422]
-  - react-magma-dom@5.1.0-rc.3
-
-## 13.0.1-rc.0
-
-### Patch Changes
-
+- c00f190: fix(charts): trap focus in Carbon Charts "Show as table" modal
 - ff53255: chore: update charts peer dependencies
+- 7c8c1ea: fix(Charts): Fix magma styles not applied to carbon charts.
+- e316bcb: Chore: update react-magma-icons version
 
 ## 12.0.0
 

@@ -1,29 +1,16 @@
 # Change Log
 
-## 14.0.0-rc.3
+## 14.0.0
 
-### Patch Changes
+### Major Changes
 
-- e316bcb: Chore: update react-magma-icons version
-
-## 14.0.0-rc.2
-
-### Patch Changes
-
-- 56f2ed8: fix(Dropzone): Fix accessibility issues
-
-## 14.0.0-rc.1
-
-### Patch Changes
-
-- Updated dependencies [b3b6422]
-  - react-magma-dom@5.1.0-rc.3
-
-## 13.0.1-rc.0
+- 7563b3b: Major version release v14.0.0 - Breaking changes and new features for dropzone package, including React 18 support. **Breaking:** `react`/`react-dom` peer dependencies are now `^18.3.1` and `react-magma-dom` is now `^5.0.0`; React 17 is no longer supported.
 
 ### Patch Changes
 
 - ff53255: chore: update @react-magma/dropzone peer dependencies
+- 56f2ed8: fix(Dropzone): Fix accessibility issues
+- e316bcb: Chore: update react-magma-icons version
 
 ## 12.0.0
 
