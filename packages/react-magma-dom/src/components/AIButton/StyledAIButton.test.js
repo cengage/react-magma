@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 
 import { StyledAIButton } from './StyledAIButton';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import userEvent from '@testing-library/user-event';
 
 import { AIButtonVariant } from '.';
 
@@ -417,7 +418,7 @@ describe('Styled AI Button', () => {
     );
   });
 
-  it('should trigger the passed in function when clicked', () => {
+  it('should trigger the passed in function when clicked', async () => {
     const onClickSpy = jest.fn();
 
     const { getByTestId } = render(
@@ -426,13 +427,7 @@ describe('Styled AI Button', () => {
       </StyledAIButton>
     );
 
-    fireEvent(
-      getByTestId('button-test'),
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      })
-    );
+    await userEvent.click(getByTestId('button-test'));
     act(() => {
       expect(onClickSpy).toHaveBeenCalledTimes(1);
     });

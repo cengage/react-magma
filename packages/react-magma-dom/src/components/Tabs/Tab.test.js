@@ -1,9 +1,11 @@
 import React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import { CheckIcon } from 'react-magma-icons';
 
 import { Tab } from './Tab';
+import { TabPanel } from './TabPanel';
+import { TabPanelsContainer } from './TabPanelsContainer';
 import { TabsContainer } from './TabsContainer';
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -276,13 +278,16 @@ it('should show fire a custom onClick event', () => {
 });
 
 describe('Test for accessibility', () => {
-  it('Does not violate accessibility standards', () => {
+  it('Does not violate accessibility standards', async () => {
     const testId = 'test-id';
     const { container } = render(
       <TabsContainer>
         <Tabs>
           <Tab testId={testId}>Tab Text</Tab>
         </Tabs>
+        <TabPanelsContainer>
+          <TabPanel>Tab Content</TabPanel>
+        </TabPanelsContainer>
       </TabsContainer>
     );
 
@@ -291,5 +296,29 @@ describe('Test for accessibility', () => {
     }).then(result => {
       return expect(result).toHaveNoViolations();
     });
+  });
+
+  it('should have all necessary accessibility attributes', () => {
+    const testId = 'test-id';
+    const { getAllByRole } = render(
+      <TabsContainer>
+        <Tabs>
+          <Tab testId={testId}>Tab Text</Tab>
+        </Tabs>
+        <TabPanelsContainer>
+          <TabPanel>Tab Content</TabPanel>
+        </TabPanelsContainer>
+      </TabsContainer>
+    );
+
+    const tab = getAllByRole('tab')[0];
+    const panel = getAllByRole('tabpanel')[0];
+
+    expect(tab).toHaveAttribute('role', 'tab');
+    expect(tab).toHaveAttribute('aria-controls', panel.id);
+    expect(tab).toHaveAttribute('id', tab.id);
+
+    expect(panel).toHaveAttribute('aria-labelledby', tab.id);
+    expect(panel).toHaveAttribute('role', 'tabpanel');
   });
 });

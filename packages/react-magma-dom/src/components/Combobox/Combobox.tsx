@@ -12,9 +12,12 @@ import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import { ButtonShape, ButtonSize, ButtonVariant } from '../Button';
+import { ClearAnnouncer } from '../Select/ClearAnnouncer';
 import { defaultComponents } from '../Select/components';
+import { ItemListAnnouncer } from '../Select/ItemListAnnouncer';
 import { ItemsList } from '../Select/ItemsList';
 import { SelectContainer } from '../Select/SelectContainer';
+import { setFocusedItem } from '../Select/utils';
 
 import { ComboboxProps } from '.';
 
@@ -63,6 +66,8 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
 
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+  const [clearAnnouncement, setClearAnnouncement] = React.useState('');
+  const clearAnnouncementTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
   function isCreatedItem(item) {
     return (
@@ -117,6 +122,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         const inputValue = isCreatedItem(displayItems[0])
           ? ''
           : changes.inputValue;
+
         return {
           ...changes,
           inputValue,
@@ -126,6 +132,7 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         const inputValue = isCreatedItem(displayItems[0])
           ? ''
           : changes.inputValue;
+
         return {
           ...changes,
           inputValue,
@@ -147,6 +154,14 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
             ? itemToString(changes.selectedItem)
             : '',
         };
+      case useCombobox.stateChangeTypes.InputKeyDownArrowDown:
+      case useCombobox.stateChangeTypes.InputKeyDownArrowUp:
+        // Keep controlled navigation manually via handleOnKeyDown handler
+        return {
+          ...state,
+          highlightedIndex: state.highlightedIndex,
+          isOpen: true,
+        };
       default:
         return changes;
     }
@@ -155,11 +170,21 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
   const [allItems, displayItems, setDisplayItems, updateItemsRef] =
     useComboboxItems(defaultItems, items);
 
+  // Cleanup timeout on unmount
+  React.useEffect(() => {
+    return () => {
+      if (clearAnnouncementTimeoutRef.current) {
+        clearTimeout(clearAnnouncementTimeoutRef.current);
+      }
+    };
+  }, []);
+
   function getValidItem(itemToCheck: T, key: string): object {
     // When using Typeahead, don't validate the items
     if (isTypeahead) {
       return allItems;
     }
+
     return allItems.current.findIndex(
       i => itemToString(i) === itemToString(itemToCheck)
     ) !== -1
@@ -243,26 +268,51 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
 
     if (inputRef.current) {
       const inputElement = inputRef.current.querySelector('input');
+
       if (inputElement) {
         inputElement.focus();
       }
     }
 
     reset();
+
+    setClearAnnouncement(
+      i18n.combobox.clearAnnounce?.replace(/\{labelText\}/g, labelText)
+    );
+
+    // Clear the announcement after a delay to allow for re-announcements
+    if (clearAnnouncementTimeoutRef.current) {
+      clearTimeout(clearAnnouncementTimeoutRef.current);
+    }
+    clearAnnouncementTimeoutRef.current = setTimeout(() => {
+      setClearAnnouncement('');
+    }, 1000);
   }
 
   const clearIndicatorAriaLabel = i18n.combobox.clearIndicatorAriaLabel
-    .replace(/\{labelText\}/g, labelText)
-    .replace(/\{selectedItem\}/g, itemToString(selectedItem));
+    ?.replace(/\{labelText\}/g, labelText)
+    ?.replace(/\{selectedItem\}/g, itemToString(selectedItem));
 
-  function handleOnKeyDown(event: any) {
+  function handleOnKeyDown(event: React.KeyboardEvent) {
     const count = document.querySelectorAll('[aria-modal="true"]').length;
 
-    if (event.key === 'Escape') {
-      if (count >= 1 && inputRef.current) {
-        inputRef.current.focus();
-      }
-      event.nativeEvent.stopImmediatePropagation();
+    switch (event.key) {
+      case 'Escape':
+        if (count >= 1 && inputRef.current) {
+          inputRef.current.focus();
+        }
+        event.nativeEvent.stopImmediatePropagation();
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        setFocusedItem(1, highlightedIndex, displayItems, setHighlightedIndex);
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        setFocusedItem(-1, highlightedIndex, displayItems, setHighlightedIndex);
+        break;
+      default:
+        break;
     }
 
     onInputKeyDown &&
@@ -354,7 +404,10 @@ export function InternalCombobox<T>(props: ComboboxProps<T>) {
         maxHeight={itemListMaxHeight || theme.combobox.menu.maxHeight}
         menuStyle={menuStyle}
         setFloating={refs.setFloating}
+        selectedItem={selectedItem ? itemToString(selectedItem) : ''}
       />
+      <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
+      {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}
     </SelectContainer>
   );
 }

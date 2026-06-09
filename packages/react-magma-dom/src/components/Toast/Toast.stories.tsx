@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta } from '@storybook/react/types-6-0';
+import { Meta } from '@storybook/react-webpack5';
 
 import { magma } from '../../theme/magma';
 import { AlertVariant } from '../AlertBase';
@@ -30,13 +30,11 @@ export default {
       },
     },
     variant: {
-      control: {
-        type: 'select',
-        options: AlertVariant,
-      },
+      control: { type: 'select' },
+      options: Object.values(AlertVariant),
     },
   },
-} as Meta;
+} as Meta<typeof Toast>;
 
 export const Default = {
   render: args => {
@@ -122,5 +120,51 @@ export const TwoLine = {
 
   args: {
     ...Default.args,
+  },
+};
+
+export const Strict = {
+  render: args => {
+    const [showToast, setShowToast] = React.useState(false);
+
+    function handleClick() {
+      setShowToast(true);
+    }
+
+    function handleDismiss() {
+      setShowToast(false);
+    }
+
+    return (
+      <React.StrictMode>
+        <div
+          style={{
+            background: args.isInverse ? magma.colors.primary600 : 'none',
+          }}
+        >
+          <Button
+            size={ButtonSize.small}
+            onClick={handleClick}
+            isInverse={args.isInverse}
+          >
+            Show Toast in Strict Mode
+          </Button>
+          <Announce>
+            {showToast ? (
+              <Toast onDismiss={handleDismiss} {...args}>
+                Default Toast in Strict Mode
+              </Toast>
+            ) : null}
+          </Announce>
+        </div>
+      </React.StrictMode>
+    );
+  },
+
+  args: {
+    variant: AlertVariant.info,
+    toastDuration: 5000,
+    disableAutoDismiss: false,
+    isInverse: false,
   },
 };

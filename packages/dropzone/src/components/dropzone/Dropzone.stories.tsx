@@ -138,6 +138,7 @@ export const Image = {
     const onSendFile = (props: OnSendFileProps) => {
       const { file, onFinish } = props;
       const reader = new FileReader();
+
       reader.onload = function (evt) {
         setFile(
           (evt &&
@@ -183,6 +184,7 @@ export const Text = {
     const onSendFile = (props: OnSendFileProps) => {
       const { file, onFinish } = props;
       const reader = new FileReader();
+
       reader.onload = function (evt) {
         setFile(
           (evt &&
@@ -229,6 +231,7 @@ export const Csv = {
     const onSendFile = (props: OnSendFileProps) => {
       const { file, onFinish } = props;
       const reader = new FileReader();
+
       reader.onload = function (evt) {
         const [columns, rows] =
           (evt &&
@@ -236,6 +239,7 @@ export const Csv = {
             evt.target.result &&
             csvJSON(evt.target.result.toString())) ||
           [];
+
         setColumns(columns);
         setFile(rows);
         onFinish && onFinish({ file });

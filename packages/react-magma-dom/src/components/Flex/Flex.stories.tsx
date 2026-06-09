@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react-webpack5';
 
 import { Button, ButtonColor } from '../Button';
 import { ButtonGroup } from '../ButtonGroup';
@@ -22,34 +22,24 @@ export default {
   component: Flex,
   argTypes: {
     alignContent: {
-      control: {
-        type: 'select',
-        options: FlexAlignContent,
-      },
+      control: { type: 'select' },
+      options: Object.values(FlexAlignContent),
     },
     alignItems: {
-      control: {
-        type: 'select',
-        options: FlexAlignItems,
-      },
+      control: { type: 'select' },
+      options: Object.values(FlexAlignItems),
     },
     direction: {
-      control: {
-        type: 'select',
-        options: FlexDirection,
-      },
+      control: { type: 'select' },
+      options: Object.values(FlexDirection),
     },
     justify: {
-      control: {
-        type: 'select',
-        options: FlexJustify,
-      },
+      control: { type: 'select' },
+      options: Object.values(FlexJustify),
     },
     wrap: {
-      control: {
-        type: 'select',
-        options: FlexWrap,
-      },
+      control: { type: 'select' },
+      options: Object.values(FlexWrap),
     },
   },
 } as Meta;

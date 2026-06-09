@@ -2,7 +2,9 @@ import * as React from 'react';
 
 import { Theme } from '@emotion/react';
 import styled from '@emotion/styled';
+// eslint-disable-next-line import/no-duplicates
 import { isAfter, isBefore, isSameDay, isSameMonth } from 'date-fns';
+// eslint-disable-next-line import/no-duplicates
 import { enUS } from 'date-fns/locale';
 import { transparentize } from 'polished';
 
@@ -13,9 +15,6 @@ import { ThemeContext } from '../../theme/ThemeContext';
 
 interface CalendarDayProps {
   day: Date;
-  dayFocusable?: boolean;
-  isInverse?: boolean;
-  onDateChange?: (day: Date, event: React.SyntheticEvent) => void;
 }
 
 type CalendarDayState = {
@@ -33,6 +32,7 @@ function getCalendarDayBackground(
   if (isInverse) {
     return isChosen ? theme.colors.tertiary : theme.colors.primary;
   }
+
   return isChosen ? theme.colors.primary : theme.colors.neutral100;
 }
 
@@ -40,6 +40,7 @@ const getTodayColor = (isChosen: boolean, isInverse: boolean, theme: Theme) => {
   if (isInverse) {
     return isChosen ? theme.colors.primary600 : theme.colors.secondary500;
   }
+
   return isChosen ? theme.colors.neutral100 : theme.colors.primary500;
 };
 
@@ -81,6 +82,7 @@ const getCalendarDayColor = (
   if (state.isChosen) return getChosenDayColor(isInverse, theme);
   if (!state.isDayInCurrentMonth && !state.disabled)
     return getNotCurrentMonthColor(isInverse, theme);
+
   return getCurrentMonthColor(isInverse, theme);
 };
 
@@ -110,6 +112,7 @@ function getChosenDayHover(
 
 const getCalendarDayFontSize = (state: CalendarDayState) => {
   if (state.isToday) return 700;
+
   return !state.isDayInCurrentMonth || state.disabled ? 400 : 500;
 };
 
@@ -227,27 +230,26 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
     setFocusedDate,
     isInverse,
   } = React.useContext(CalendarContext);
-  const [focused, setFocused] = React.useState<boolean>(false);
   const { day } = props;
 
   React.useEffect(() => {
     if (dateFocused && isSameDay(day, focusedDate)) {
       dayRef.current.focus();
-      setFocused(true);
-    } else {
-      if (focused) {
-        setFocused(false);
-      }
     }
-  }, [focusedDate, dateFocused]);
+  }, [focusedDate, dateFocused, day]);
 
   function onCalendarDayFocus() {
     setDateFocused(true);
   }
 
+  const disabled: boolean =
+    (maxDate ? isAfter(day, maxDate) : false) ||
+    (minDate ? isBefore(day, minDate) : false);
+
   function onDayClick(event: React.SyntheticEvent) {
     if (disabled) {
       event.preventDefault();
+
       return;
     }
 
@@ -257,14 +259,11 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
   function onFocusDay(event: React.SyntheticEvent) {
     if (disabled || !isSameMonth(day, focusedDate)) {
       event.preventDefault();
+
       return;
     }
     setFocusedDate(day);
   }
-
-  const disabled: boolean =
-    (maxDate ? isAfter(props.day, maxDate) : false) ||
-    (minDate ? isBefore(props.day, minDate) : false);
 
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
@@ -297,7 +296,6 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
           aria-disabled={disabled}
           aria-label={ariaLabel}
           aria-current={sameDateAsToday ? 'date' : undefined}
-          aria-selected={sameDateAsChosenDate}
           data-testid="calendar-day"
           disabled={disabled}
           state={dayState}

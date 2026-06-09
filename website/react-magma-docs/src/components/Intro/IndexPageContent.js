@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import React from 'react';
 
 import styled from '@emotion/styled';
@@ -299,10 +298,10 @@ export function IndexPageContent() {
       <StyledGrid gridGap={magma.spaceScale.spacing06}>
         <CenterBlock>
           <Heading level={2}>Working smarter, not&nbsp;harder</Heading>
-          <p>
+          <div>
             Standardized components support collaboration, reinforce branding,
             and provide a consistent look and user experience.
-          </p>
+          </div>
         </CenterBlock>
 
         <StyledGridItem gridColumn="1">
@@ -385,7 +384,12 @@ export function IndexPageContent() {
             icon={<GithubIcon />}
             aria-label="Start Contributing"
             onClick={() => {
-              window.open('https://github.com/cengage/react-magma/', '_blank');
+              if (typeof window !== 'undefined') {
+                window.open(
+                  'https://github.com/cengage/react-magma/',
+                  '_blank'
+                );
+              }
             }}
           >
             Start Contributing

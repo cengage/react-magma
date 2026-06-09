@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta } from '@storybook/react/types-6-0';
+import { Meta } from '@storybook/react-webpack5';
 
 import { Card, CardBody } from '../Card';
 
@@ -16,10 +16,8 @@ export default {
       },
     },
     type: {
-      control: {
-        type: 'select',
-        options: LoadingIndicatorType,
-      },
+      control: { type: 'select' },
+      options: Object.values(LoadingIndicatorType),
     },
     isInverse: {
       defaultValue: false,

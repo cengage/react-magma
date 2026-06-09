@@ -58,6 +58,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
   (props, _ref) => {
     const {
       style,
+      drawerStyle: propDrawerStyle,
       containerStyle,
       position,
       isAnimated = false,
@@ -67,9 +68,11 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     const drawerStyle = {
       ...theme.drawer.default,
       ...theme.drawer[DrawerPosition[position]],
+      overflowY: 'auto',
     } as React.CSSProperties;
 
     let containerTransition: Omit<TransitionProps, 'isOpen'> | undefined;
+
     if (isAnimated) {
       containerTransition = position
         ? transitionPreset[DrawerPosition[position]]
@@ -84,7 +87,7 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
         }}
         containerTransition={containerTransition}
         hasDrawerAnimation={isAnimated}
-        style={{ ...drawerStyle, ...style }}
+        style={{ ...drawerStyle, ...style, ...propDrawerStyle }}
         {...rest}
       />
     );

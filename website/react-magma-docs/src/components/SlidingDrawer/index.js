@@ -28,8 +28,10 @@ export class SlidingDrawer extends React.Component {
 
   closeMenu = returnFocus => {
     if (this.state.isOpen) {
-      document.getElementsByTagName('html')[0].style.overflow = 'auto';
-      document.removeEventListener('keydown', this.handleKeypress, false);
+      if (typeof document !== 'undefined') {
+        document.getElementsByTagName('html')[0].style.overflow = 'auto';
+        document.removeEventListener('keydown', this.handleKeypress, false);
+      }
 
       this.setState({ isOpen: false }, () => {
         setTimeout(() => {
@@ -43,14 +45,17 @@ export class SlidingDrawer extends React.Component {
   };
 
   componentWillUnmount = () => {
-    document.removeEventListener('keydown', this.handleKeypress, false);
+    if (typeof document !== 'undefined') {
+      document.removeEventListener('keydown', this.handleKeypress, false);
+    }
   };
 
   openMenu = () => {
-    document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+    if (typeof document !== 'undefined') {
+      document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+      document.addEventListener('keydown', this.handleKeypress, false);
+    }
     this.setState({ isOpen: true, isActivated: true });
-
-    document.addEventListener('keydown', this.handleKeypress, false);
   };
 
   handleCloseMenu() {

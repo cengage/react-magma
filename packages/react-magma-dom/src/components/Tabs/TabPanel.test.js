@@ -6,7 +6,6 @@ import { TabPanel } from './TabPanel';
 import { TabPanelsContainer } from './TabPanelsContainer';
 import { TabsContainerContext } from './TabsContainer';
 import { axe } from '../../../axe-helper';
-import { magma } from '../../theme/magma';
 
 describe('TabPanel', () => {
   it('should correctly apply the testId', () => {
@@ -68,7 +67,7 @@ it('should render with inverse styles', () => {
 });
 
 describe('Test for accessibility', () => {
-  it('Does not violate accessibility standards', () => {
+  it('Does not violate accessibility standards', async () => {
     const testId = 'test-id';
 
     const { container } = render(
@@ -79,8 +78,25 @@ describe('Test for accessibility', () => {
       </TabsContainerContext.Provider>
     );
 
-    return axe(container.innerHTML).then(result => {
+    return await axe(container.innerHTML).then(result => {
       return expect(result).toHaveNoViolations();
     });
+  });
+
+  it('should have all necessary accessibility attributes', () => {
+    const testId = 'test-id';
+
+    const { getAllByRole } = render(
+      <TabsContainerContext.Provider value={{ activeTabIndex: 0 }}>
+        <TabPanelsContainer>
+          <TabPanel testId={testId}>Tab Panel Text</TabPanel>
+        </TabPanelsContainer>
+      </TabsContainerContext.Provider>
+    );
+
+    const tabPanel = getAllByRole('tabpanel')[0];
+    expect(tabPanel).toHaveAttribute('role', 'tabpanel');
+    expect(tabPanel).toHaveAttribute('aria-labelledby', 'tab-undefined-0');
+    expect(tabPanel).toHaveAttribute('id', 'tabpanel-undefined-0');
   });
 });

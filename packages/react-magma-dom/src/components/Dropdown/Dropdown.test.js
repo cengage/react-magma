@@ -1,17 +1,12 @@
 import React from 'react';
 
-import {
-  act,
-  fireEvent,
-  getByLabelText,
-  getByTestId,
-  render,
-} from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 import {
   AsteriskIcon,
   CheckIcon,
+  LibraryAddIcon,
   ReorderIcon,
   RestaurantMenuIcon,
   SettingsIcon,
@@ -40,7 +35,7 @@ import {
 } from '.';
 
 describe('Dropdown', () => {
-  it('should find element by testId', () => {
+  it('should find element by testId', async () => {
     const testId = 'test-id';
     const { getByTestId } = render(
       <Dropdown testId={testId}>
@@ -54,17 +49,18 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(getByTestId(testId)).toBeInTheDocument();
-    expect(getByTestId('dropdownContent')).toBeInTheDocument();
-    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
-
-    expect(getByTestId('dropdownContentWrapper')).toBeInTheDocument();
-    expect(getByTestId('dropdownContentWrapper')).toHaveStyle({
-      zIndex: '996',
+    await waitFor(() => {
+      expect(getByTestId(testId)).toBeInTheDocument();
+      expect(getByTestId('dropdownContent')).toBeInTheDocument();
+      expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(getByTestId('dropdownContentWrapper')).toBeInTheDocument();
+      expect(getByTestId('dropdownContentWrapper')).toHaveStyle({
+        zIndex: '996',
+      });
     });
   });
 
-  it('should render a custom wrapped dropdown item', () => {
+  it('should render a custom wrapped dropdown item', async () => {
     // eslint-disable-next-line react/prop-types
     const OptionalDropdownItem = ({ toggle, dropdownMenuItemProps }) => {
       return toggle ? (
@@ -89,11 +85,13 @@ describe('Dropdown', () => {
 
     const renderedOptionalTab = getByText('Hello There');
 
-    expect(renderedOptionalTab).toBeInTheDocument();
-    expect(getByText('FAQ')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(renderedOptionalTab).toBeInTheDocument();
+      expect(getByText('FAQ')).toBeInTheDocument();
+    });
   });
 
-  it('should render the dropdown component with aria-hidden', () => {
+  it('should render the dropdown component with aria-hidden', async () => {
     const { container } = render(
       <Dropdown>
         <DropdownButton>Toggle me</DropdownButton>
@@ -103,10 +101,12 @@ describe('Dropdown', () => {
 
     const svg = container.querySelector('svg');
 
-    expect(svg).toHaveAttribute('aria-hidden', 'true');
+    await waitFor(() => {
+      expect(svg).toHaveAttribute('aria-hidden', 'true');
+    });
   });
 
-  it('should render a dropup', () => {
+  it('should render a dropup', async () => {
     const { getByTestId, container } = render(
       <Dropdown dropDirection="up">
         <DropdownButton>Toggle me</DropdownButton>
@@ -114,14 +114,16 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(getByTestId('caretUp')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByTestId('caretUp')).toBeInTheDocument();
+    });
 
     const svg = container.querySelector('svg');
 
     expect(svg).toHaveAttribute('aria-hidden', 'true');
   });
 
-  it('should render a dropleft', () => {
+  it('should render a dropleft', async () => {
     const { getByTestId, container } = render(
       <Dropdown dropDirection="left">
         <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
@@ -137,10 +139,12 @@ describe('Dropdown', () => {
 
     const svg = container.querySelector('svg');
 
-    expect(svg).toHaveAttribute('aria-hidden', 'true');
+    await waitFor(() => {
+      expect(svg).toHaveAttribute('aria-hidden', 'true');
+    });
   });
 
-  it('should render a dropright', () => {
+  it('should render a dropright', async () => {
     const { getByTestId, container } = render(
       <Dropdown dropDirection="right">
         <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
@@ -156,10 +160,12 @@ describe('Dropdown', () => {
 
     const svg = container.querySelector('svg');
 
-    expect(svg).toHaveAttribute('aria-hidden', 'true');
+    await waitFor(() => {
+      expect(svg).toHaveAttribute('aria-hidden', 'true');
+    });
   });
 
-  it('should render a dropdown with a small button', () => {
+  it('should render a dropdown with a small button', async () => {
     const { getByTestId } = render(
       <Dropdown>
         <DropdownButton testId="dropdownButton" size="small">
@@ -169,13 +175,15 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(getByTestId('dropdownButton')).toHaveStyleRule(
-      'padding-right',
-      magma.spaceScale.spacing02
-    );
+    await waitFor(() => {
+      expect(getByTestId('dropdownButton')).toHaveStyleRule(
+        'padding-right',
+        magma.spaceScale.spacing02
+      );
+    });
   });
 
-  it('should render a dropdown with a large button', () => {
+  it('should render a dropdown with a large button', async () => {
     const { getByTestId } = render(
       <Dropdown>
         <DropdownButton testId="dropdownButton" size="large">
@@ -185,13 +193,15 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(getByTestId('dropdownButton')).toHaveStyleRule(
-      'padding-right',
-      magma.spaceScale.spacing05
-    );
+    await waitFor(() => {
+      expect(getByTestId('dropdownButton')).toHaveStyleRule(
+        'padding-right',
+        magma.spaceScale.spacing05
+      );
+    });
   });
 
-  it('should render a split dropdown', () => {
+  it('should render a split dropdown', async () => {
     const { getByTestId, container } = render(
       <Dropdown>
         <DropdownSplitButton>Toggle me</DropdownSplitButton>
@@ -199,15 +209,17 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(getByTestId('caretDown')).toBeInTheDocument();
-    expect(container.querySelectorAll('button').length).toBe(2);
+    await waitFor(() => {
+      expect(getByTestId('caretDown')).toBeInTheDocument();
+      expect(container.querySelectorAll('button').length).toBe(2);
+    });
 
     const svg = container.querySelector('svg');
 
     expect(svg).toHaveAttribute('aria-hidden', 'true');
   });
 
-  it('should render a split dropdown with custom label', () => {
+  it('should render a split dropdown with custom label', async () => {
     const { getByLabelText } = render(
       <Dropdown>
         <DropdownSplitButton aria-label="Custom label">
@@ -217,10 +229,41 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(getByLabelText('Custom label')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByLabelText('Custom label')).toBeInTheDocument();
+    });
   });
 
-  it('should render a split dropdown with margin left on solid variants', () => {
+  it('should render a split dropdown with leading icon', async () => {
+    const { getByTestId, container } = render(
+      <Dropdown>
+        <DropdownSplitButton leadingIcon={<LibraryAddIcon />}>
+          Toggle me
+        </DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    await waitFor(() => {
+      expect(getByTestId('caretDown')).toBeInTheDocument();
+      expect(container.querySelectorAll('button').length).toBe(2);
+      expect(container.querySelectorAll('svg').length).toBe(2);
+    });
+
+    const svgs = container.querySelectorAll('svg');
+
+    svgs.forEach(svg => {
+      expect(svg).toHaveAttribute('aria-hidden', 'true');
+    });
+
+    const leadingIconSvg = svgs[0];
+    expect(leadingIconSvg).toBeInTheDocument();
+
+    const caretSvg = svgs[1];
+    expect(caretSvg).toBeInTheDocument();
+  });
+
+  it('should render a split dropdown with margin left on solid variants', async () => {
     const { getByLabelText } = render(
       <Dropdown>
         <DropdownSplitButton>Toggle me</DropdownSplitButton>
@@ -228,13 +271,15 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(getByLabelText('Toggle menu')).toHaveAttribute(
-      'style',
-      'margin-left: 2px;'
-    );
+    await waitFor(() => {
+      expect(getByLabelText('Toggle menu')).toHaveAttribute(
+        'style',
+        'margin-left: 2px;'
+      );
+    });
   });
 
-  it('should render a split dropdown with no margin on solid variants', () => {
+  it('should render a split dropdown with no margin on solid variants', async () => {
     const { getByLabelText } = render(
       <Dropdown>
         <DropdownSplitButton variant="solid">Toggle me</DropdownSplitButton>
@@ -242,33 +287,40 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(getByLabelText('Toggle menu')).toHaveAttribute(
-      'style',
-      'margin-left: 2px;'
-    );
+    await waitFor(() => {
+      expect(getByLabelText('Toggle menu')).toHaveAttribute(
+        'style',
+        'margin-left: 2px;'
+      );
+    });
   });
 
-  it('should render a split dropup', () => {
+  it('should render a split dropup', async () => {
     const { getByTestId } = render(
       <Dropdown dropDirection="up">
         <DropdownSplitButton>Toggle me</DropdownSplitButton>
       </Dropdown>
     );
 
-    expect(getByTestId('caretUp')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByTestId('caretUp')).toBeInTheDocument();
+    });
   });
 
-  it('should render a button with custom icon', () => {
+  it('should render a button with custom icon', async () => {
     const { queryByTestId, getByText, container } = render(
       <Dropdown>
         <DropdownButton icon={<AsteriskIcon />}>Toggle me</DropdownButton>
         <DropdownContent />
       </Dropdown>
     );
-    expect(getByText('Toggle me')).toHaveStyleRule(
-      'padding-left',
-      magma.spaceScale.spacing03
-    );
+
+    await waitFor(() => {
+      expect(getByText('Toggle me')).toHaveStyleRule(
+        'padding-left',
+        magma.spaceScale.spacing03
+      );
+    });
 
     expect(queryByTestId('caretUp')).not.toBeInTheDocument();
     expect(queryByTestId('caretDown')).not.toBeInTheDocument();
@@ -278,7 +330,7 @@ describe('Dropdown', () => {
     expect(svg).toHaveAttribute('aria-hidden', 'true');
   });
 
-  it('should render a button with custom icon with specified icon position', () => {
+  it('should render a button with custom icon with specified icon position', async () => {
     const { getByText } = render(
       <Dropdown>
         <DropdownButton icon={<AsteriskIcon />} iconPosition="right">
@@ -288,13 +340,15 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(getByText('Toggle me')).toHaveStyleRule(
-      'padding-right',
-      magma.spaceScale.spacing03
-    );
+    await waitFor(() => {
+      expect(getByText('Toggle me')).toHaveStyleRule(
+        'padding-right',
+        magma.spaceScale.spacing03
+      );
+    });
   });
 
-  it('should toggle the menu when the button is clicked', () => {
+  it('should toggle the menu when the button is clicked', async () => {
     const toggleText = 'Toggle me';
 
     const { getByText, getByTestId } = render(
@@ -306,16 +360,16 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-    fireEvent.click(getByText(toggleText));
+    await userEvent.click(getByText(toggleText));
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
-    fireEvent.click(getByText(toggleText));
+    await userEvent.click(getByText(toggleText));
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
-  it('should toggle the menu when the button is clicked in a split dropdown', () => {
+  it('should toggle the menu when the button is clicked in a split dropdown', async () => {
     const toggleText = 'Toggle me';
     const labelText = 'Toggle menu';
 
@@ -328,16 +382,16 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-    fireEvent.click(getByLabelText(labelText));
+    await userEvent.click(getByLabelText(labelText));
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
-    fireEvent.click(getByLabelText(labelText));
+    await userEvent.click(getByLabelText(labelText));
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
-  it('should fire onOpen when the menu is opened', () => {
+  it('should fire onOpen when the menu is opened', async () => {
     const onOpen = jest.fn();
 
     const { getByText, getByTestId } = render(
@@ -351,13 +405,13 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-    fireEvent.click(getByText('Toggle me'));
+    await userEvent.click(getByText('Toggle me'));
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
     expect(onOpen).toHaveBeenCalled();
   });
 
-  it('should close the menu when menu is blurred', () => {
+  it('should close the menu when menu is blurred', async () => {
     const onClose = jest.fn();
 
     const { getByText, getByTestId } = render(
@@ -371,22 +425,20 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-    fireEvent.click(getByText('Toggle me'));
+    await userEvent.click(getByText('Toggle me'));
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
     const menuItem = getByText('Menu item');
 
-    fireEvent.click(menuItem);
+    await userEvent.click(menuItem);
 
     expect(onClose).toHaveBeenCalled();
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
-  it('should close the menu when button is blurred', () => {
-    jest.useFakeTimers();
-
+  it('should close the menu when button is blurred', async () => {
     const onClose = jest.fn();
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown" onClose={onClose}>
@@ -399,23 +451,17 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-    userEvent.click(getByText('Toggle me'));
+    await userEvent.click(getByText('Toggle me'));
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
-    fireEvent.blur(getByText('Toggle me'));
-
-    act(jest.runAllTimers);
+    await userEvent.click(document.body);
 
     expect(onClose).toHaveBeenCalled();
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
-
-    jest.useRealTimers();
   });
 
-  it('should open one dropdown at a time, close the previous one, and close when clicking outside', () => {
-    jest.useFakeTimers();
-
+  it('should open one dropdown at a time, close the previous one, and close when clicking outside', async () => {
     const onClose1 = jest.fn();
     const onClose2 = jest.fn();
     const { getByText, getByTestId } = render(
@@ -439,30 +485,26 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'none');
 
     // Open the first dropdown
-    userEvent.click(getByText('Toggle me 1'));
+    await userEvent.click(getByText('Toggle me 1'));
+
     expect(getByTestId('dropdown1Content')).toHaveStyleRule('display', 'block');
     expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'none');
 
     // Open the second dropdown, which should close the first one
-    userEvent.click(getByText('Toggle me 2'));
+    await userEvent.click(getByText('Toggle me 2'));
 
     expect(onClose1).toHaveBeenCalled();
     expect(getByTestId('dropdown1Content')).toHaveStyleRule('display', 'none');
     expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'block');
 
     // Close the second dropdown by clicking outside
-    fireEvent.mouseDown(document.body);
-    act(jest.runAllTimers);
+    await userEvent.click(document.body);
 
     expect(onClose2).toHaveBeenCalled();
     expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'none');
-
-    jest.useRealTimers();
   });
 
-  it('should open one splitdropdown at a time, close the previous one, and close when clicking outside', () => {
-    jest.useFakeTimers();
-
+  it('should open one splitdropdown at a time, close the previous one, and close when clicking outside', async () => {
     const onClose1 = jest.fn();
     const onClose2 = jest.fn();
     const { getAllByLabelText, getByTestId } = render(
@@ -490,31 +532,29 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'none');
 
     // Open the first dropdown
-    userEvent.click(getAllByLabelText('Split')[0]);
+    await userEvent.click(getAllByLabelText('Split')[0]);
+
     expect(getByTestId('dropdown1Content')).toHaveStyleRule('display', 'block');
     expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'none');
 
     // Open the second dropdown, which should close the first one
-    userEvent.click(getAllByLabelText('Split')[1]);
+    await userEvent.click(getAllByLabelText('Split')[1]);
 
     expect(onClose1).toHaveBeenCalled();
     expect(getByTestId('dropdown1Content')).toHaveStyleRule('display', 'none');
     expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'block');
 
     // Close the second dropdown by clicking outside
-    fireEvent.mouseDown(document.body);
-    act(jest.runAllTimers);
+    await userEvent.click(document.body);
 
     expect(onClose2).toHaveBeenCalled();
     expect(getByTestId('dropdown2Content')).toHaveStyleRule('display', 'none');
-
-    jest.useRealTimers();
   });
 
-  it('should close the menu when escape key is pressed', () => {
-    const { getByText, getByTestId } = render(
+  it('should close the menu when escape key is pressed', async () => {
+    const { getByTestId } = render(
       <Dropdown testId="dropdown">
-        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
         <DropdownContent>
           <DropdownMenuItem>Menu item</DropdownMenuItem>
         </DropdownContent>
@@ -523,23 +563,19 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-    fireEvent.click(getByText('Toggle me'));
+    const button = getByTestId('dropdownButton');
+    await userEvent.click(button);
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
-    fireEvent.keyDown(getByTestId('dropdown'), {
-      key: 'ArrowDown',
-    });
+    await userEvent.keyboard('{ArrowDown}');
+    await userEvent.keyboard('{Escape}');
 
-    fireEvent.keyDown(getByTestId('dropdown'), {
-      key: 'Escape',
-      code: 27,
-    });
-
+    expect(button).toHaveFocus();
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
-  it('go to the first or next item when the down arrow key is pressed', () => {
+  it('go to the first or next item when the down arrow key is pressed', async () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
         <DropdownButton>Toggle me</DropdownButton>
@@ -551,26 +587,17 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    fireEvent.click(getByText('Toggle me'));
+    await userEvent.click(getByText('Toggle me'));
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
-
-    fireEvent.keyDown(getByTestId('dropdown'), {
-      key: 'ArrowDown',
-      code: 40,
-    });
-
     expect(getByText('Menu item 1')).toHaveFocus();
 
-    fireEvent.keyDown(getByTestId('dropdown'), {
-      key: 'ArrowDown',
-      code: 40,
-    });
+    await userEvent.keyboard('{ArrowDown}');
 
     expect(getByText('Menu item 2')).toHaveFocus();
   });
 
-  it('go to the last or previous item when the up arrow key is pressed', () => {
+  it('go to the last or previous item when the up arrow key is pressed', async () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">
         <DropdownButton>Toggle me</DropdownButton>
@@ -582,21 +609,15 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    fireEvent.click(getByText('Toggle me'));
+    await userEvent.click(getByText('Toggle me'));
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
 
-    fireEvent.keyDown(getByTestId('dropdown'), {
-      key: 'ArrowUp',
-      code: 38,
-    });
+    await userEvent.keyboard('{ArrowUp}');
 
     expect(getByText('Menu item 2')).toHaveFocus();
 
-    fireEvent.keyDown(getByTestId('dropdown'), {
-      key: 'ArrowUp',
-      code: 38,
-    });
+    await userEvent.keyboard('{ArrowUp}');
 
     expect(getByText('Menu item 1')).toHaveFocus();
   });
@@ -611,7 +632,7 @@ describe('Dropdown', () => {
     expect(container.querySelector('svg')).toBeInTheDocument();
   });
 
-  it('should render a dropdown menu item with correct styles when fixed width', () => {
+  it('should render a dropdown menu item with correct styles when fixed width', async () => {
     const { getByText } = render(
       <Dropdown width="100px">
         <DropdownButton>Toggle me</DropdownButton>
@@ -621,10 +642,12 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(getByText('Menu item')).toHaveStyleRule('white-space', 'normal');
+    await waitFor(() => {
+      expect(getByText('Menu item')).toHaveStyleRule('white-space', 'normal');
+    });
   });
 
-  it('should render a dropdown menu item with correct styles with custom max-height', () => {
+  it('should render a dropdown menu item with correct styles with custom max-height', async () => {
     const { getByTestId } = render(
       <Dropdown maxHeight="100px">
         <DropdownButton>Toggle me</DropdownButton>
@@ -634,13 +657,15 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(getByTestId('dropdownContent')).toHaveStyleRule(
-      'max-height',
-      '100px'
-    );
+    await waitFor(() => {
+      expect(getByTestId('dropdownContent')).toHaveStyleRule(
+        'max-height',
+        '100px'
+      );
+    });
   });
 
-  it('should render a disabled dropdown item', () => {
+  it('should render a disabled dropdown item', async () => {
     const onClick = jest.fn();
     const text = 'menu item';
 
@@ -655,7 +680,8 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    fireEvent.click(getByText(text));
+    await userEvent.click(getByText(text));
+
     expect(onClick).not.toHaveBeenCalled();
     expect(getByText(text)).toHaveStyleRule('cursor', 'not-allowed');
     expect(getByText(text)).toHaveStyleRule(
@@ -664,7 +690,7 @@ describe('Dropdown', () => {
     );
   });
 
-  it('should render a dropdown header', () => {
+  it('should render a dropdown header', async () => {
     const text = 'header item';
     const onClick = jest.fn();
 
@@ -678,10 +704,12 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(getByText(text)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(text)).toBeInTheDocument();
+    });
   });
 
-  it('should render dropdown menu items in groups', () => {
+  it('should render dropdown menu items in groups', async () => {
     const headerText = 'header';
     const headerText2 = 'header2';
 
@@ -704,13 +732,15 @@ describe('Dropdown', () => {
     const group1 = getByLabelText(headerText);
     const group2 = getByLabelText(headerText2);
 
-    expect(group1).toHaveAttribute('role', 'group');
-    expect(getByText('Menu Item 1').closest('div[role="group"]')).toEqual(
-      group1
-    );
-    expect(getByText('Menu Item 3').closest('div[role="group"]')).toEqual(
-      group2
-    );
+    await waitFor(() => {
+      expect(group1).toHaveAttribute('role', 'group');
+      expect(getByText('Menu Item 1').closest('div[role="group"]')).toEqual(
+        group1
+      );
+      expect(getByText('Menu Item 3').closest('div[role="group"]')).toEqual(
+        group2
+      );
+    });
   });
 
   it('should render a dropdown menu divider', () => {
@@ -719,7 +749,7 @@ describe('Dropdown', () => {
     expect(container.querySelector('hr')).toBeInTheDocument();
   });
 
-  it('should fire the onclick event for an item when enter is pressed', () => {
+  it('should fire the onclick event for an item when enter is pressed', async () => {
     const onClick = jest.fn();
     const itemText = 'item';
 
@@ -732,15 +762,13 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    fireEvent.keyDown(getByText(itemText), {
-      key: 'Enter',
-      code: 13,
-    });
+    await userEvent.click(getByText('Toggle'));
+    await userEvent.keyboard('{Enter}');
 
     expect(onClick).toHaveBeenCalled();
   });
 
-  it('should fire the onclick event for an item when space bar is pressed', () => {
+  it('should fire the onclick event for an item when space bar is pressed', async () => {
     const onClick = jest.fn();
     const itemText = 'item';
 
@@ -753,10 +781,8 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    fireEvent.keyDown(getByText(itemText), {
-      key: ' ',
-      code: 32,
-    });
+    await userEvent.click(getByText('Toggle'));
+    await userEvent.keyboard(' ');
 
     expect(onClick).toHaveBeenCalled();
   });
@@ -783,11 +809,12 @@ describe('Dropdown', () => {
     );
 
     // Open the first dropdown
-    userEvent.click(getByText('Toggle Dropdown 1'));
+    await userEvent.click(getByText('Toggle Dropdown 1'));
+
     expect(onClose1).not.toHaveBeenCalled();
 
     // Open the second dropdown
-    userEvent.click(getByText('Toggle Dropdown 2'));
+    await userEvent.click(getByText('Toggle Dropdown 2'));
 
     // Verify that the first dropdown's onClose is called
     expect(onClose1).toHaveBeenCalled();
@@ -808,18 +835,19 @@ describe('Dropdown', () => {
     const activeStylePadding = `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05}`;
     const inActiveStylePadding = `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing11}`;
 
-    fireEvent.click(getByText('Toggle'));
+    await userEvent.click(getByText('Toggle'));
 
     expect(getByText('aaa')).toHaveStyleRule('padding', inActiveStylePadding);
     expect(getByText('bbb')).toHaveStyleRule('padding', activeStylePadding);
     expect(container.querySelector('svg')).toBeInTheDocument();
 
-    fireEvent.click(getByText('aaa'));
+    await userEvent.click(getByText('aaa'));
+
     expect(getByText('aaa')).toHaveStyleRule('padding', activeStylePadding);
     expect(getByText('bbb')).toHaveStyleRule('padding', inActiveStylePadding);
   });
 
-  it('should render a dropdown with links', () => {
+  it('should render a dropdown with links', async () => {
     const { getByText } = render(
       <Dropdown>
         <DropdownButton>Toggle me</DropdownButton>
@@ -831,13 +859,15 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(getByText('Google')).toHaveAttribute(
-      'href',
-      'http://www.google.com'
-    );
+    await waitFor(() => {
+      expect(getByText('Google')).toHaveAttribute(
+        'href',
+        'http://www.google.com'
+      );
+    });
   });
 
-  it('should render a dropdown with a link with an icon', () => {
+  it('should render a dropdown with a link with an icon', async () => {
     const { getByText } = render(
       <Dropdown>
         <DropdownButton>Toggle me</DropdownButton>
@@ -852,13 +882,13 @@ describe('Dropdown', () => {
       </Dropdown>
     );
 
-    expect(getByText('Google').querySelector('svg')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText('Google').querySelector('svg')).toBeInTheDocument();
+    });
   });
 
   describe('dropdown without items', () => {
-    it('should focus the entire container when button is clicked', () => {
-      jest.useFakeTimers();
-
+    it('should focus the entire container when button is clicked', async () => {
       const { getByText, getByTestId } = render(
         <Dropdown testId="dropdown">
           <DropdownButton>Toggle me</DropdownButton>
@@ -869,24 +899,19 @@ describe('Dropdown', () => {
         </Dropdown>
       );
 
-      fireEvent.click(getByText('Toggle me'));
-
-      act(jest.runAllTimers);
+      await userEvent.click(getByText('Toggle me'));
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule(
         'display',
         'block'
       );
-
       expect(getByTestId('dropdownContent')).toHaveFocus();
-
-      jest.useRealTimers();
     });
 
-    it('should close the menu when escape key is pressed', () => {
-      const { getByText, getByTestId } = render(
+    it('should close the menu when escape key is pressed', async () => {
+      const { getByTestId } = render(
         <Dropdown testId="dropdown">
-          <DropdownButton>Toggle me</DropdownButton>
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
           <DropdownContent>
             <p>test</p>
           </DropdownContent>
@@ -895,31 +920,27 @@ describe('Dropdown', () => {
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-      fireEvent.click(getByText('Toggle me'));
+      const button = getByTestId('dropdownButton');
+      await userEvent.click(button);
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule(
         'display',
         'block'
       );
 
-      fireEvent.keyDown(getByTestId('dropdown'), {
-        key: 'ArrowDown',
-      });
+      await userEvent.keyboard('{ArrowDown}');
+      await userEvent.keyboard('{Escape}');
 
-      fireEvent.keyDown(getByTestId('dropdown'), {
-        key: 'Escape',
-        code: 27,
-      });
-
+      expect(button).toHaveFocus();
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
     });
 
     //For Dropdowns in Modals
-    it('should close the menu when escape key is pressed, and retain the active modal', () => {
-      const { getByText, getByTestId } = render(
+    it('should close the menu when escape key is pressed, and retain the active modal', async () => {
+      const { getByTestId } = render(
         <Modal testId="modal" isOpen>
           <Dropdown testId="dropdown">
-            <DropdownButton>Toggle me</DropdownButton>
+            <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
             <DropdownContent>
               <p>test</p>
             </DropdownContent>
@@ -929,29 +950,23 @@ describe('Dropdown', () => {
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
 
-      fireEvent.click(getByText('Toggle me'));
+      const button = getByTestId('dropdownButton');
+      await userEvent.click(button);
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule(
         'display',
         'block'
       );
 
-      fireEvent.keyDown(getByTestId('dropdown'), {
-        key: 'ArrowDown',
-      });
-
-      fireEvent.keyDown(getByTestId('dropdown'), {
-        key: 'Escape',
-        code: 27,
-      });
+      await userEvent.keyboard('{ArrowDown}');
+      await userEvent.keyboard('{Escape}');
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+      expect(button).toHaveFocus();
       expect(getByTestId('modal')).toBeInTheDocument();
     });
 
-    it('should close the menu on blur', () => {
-      jest.useFakeTimers();
-
+    it('should close the menu on blur', async () => {
       const onClose = jest.fn();
       const { getByText, getByTestId } = render(
         <Dropdown testId="dropdown" onClose={onClose}>
@@ -963,18 +978,18 @@ describe('Dropdown', () => {
       );
 
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
-      userEvent.click(getByText('Toggle me'));
+
+      await userEvent.click(getByText('Toggle me'));
+
       expect(getByTestId('dropdownContent')).toHaveStyleRule(
         'display',
         'block'
       );
 
-      fireEvent.blur(getByText('Toggle me'));
-      act(jest.runAllTimers);
+      await userEvent.click(document.body);
 
       expect(onClose).toHaveBeenCalled();
       expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
-      jest.useRealTimers();
     });
   });
 
@@ -995,13 +1010,17 @@ describe('Dropdown', () => {
   });
 
   describe('dropdown with expandable menu', () => {
+    beforeAll(() => {
+      window.scrollTo = jest.fn();
+    });
+
     const expandableGroupId = 'expandable group';
     const expandableItemId = 'expandable item';
     const expandableButtonId = 'expandable button';
     const expandablePanelId = 'expandable panel';
     const expandablePanelTwoId = 'expandable panel two';
 
-    it('should render an expandable menu group', () => {
+    it('should render an expandable menu group', async () => {
       const { getByTestId } = render(
         <Dropdown>
           <DropdownButton>Expandable Items Dropdown</DropdownButton>
@@ -1016,12 +1035,15 @@ describe('Dropdown', () => {
           </DropdownContent>
         </Dropdown>
       );
-      expect(getByTestId(expandableGroupId)).toBeInTheDocument();
-      expect(getByTestId(expandableItemId)).toBeInTheDocument();
-      expect(getByTestId(expandableButtonId)).toBeInTheDocument();
+
+      await waitFor(() => {
+        expect(getByTestId(expandableGroupId)).toBeInTheDocument();
+        expect(getByTestId(expandableItemId)).toBeInTheDocument();
+        expect(getByTestId(expandableButtonId)).toBeInTheDocument();
+      });
     });
 
-    it('should render an expandable menu group with icons', () => {
+    it('should render an expandable menu group with icons', async () => {
       const { getByText } = render(
         <Dropdown>
           <DropdownButton>Expandable Items Dropdown</DropdownButton>
@@ -1036,10 +1058,13 @@ describe('Dropdown', () => {
           </DropdownContent>
         </Dropdown>
       );
-      expect(getByText('Pasta').querySelector('svg')).toBeInTheDocument();
+
+      await waitFor(() => {
+        expect(getByText('Pasta').querySelector('svg')).toBeInTheDocument();
+      });
     });
 
-    it('should render an expanded panel of menu items when the DropdownExpandableMenuButton is clicked', () => {
+    it('should render an expanded panel of menu items when the DropdownExpandableMenuButton is clicked', async () => {
       const { getByTestId, getByText } = render(
         <Dropdown>
           <DropdownButton>Expandable Items Dropdown</DropdownButton>
@@ -1063,12 +1088,12 @@ describe('Dropdown', () => {
         </Dropdown>
       );
 
-      fireEvent.click(getByText('Pasta'));
+      await userEvent.click(getByText('Pasta'));
 
       expect(getByTestId(expandablePanelId)).toBeInTheDocument();
     });
 
-    it('should close an expanded panel of menu items when the DropdownExpandableMenuButton is clicked', () => {
+    it('should close an expanded panel of menu items when the DropdownExpandableMenuButton is clicked', async () => {
       const { getByTestId, getByText } = render(
         <Dropdown>
           <DropdownButton>Expandable Items Dropdown</DropdownButton>
@@ -1092,16 +1117,16 @@ describe('Dropdown', () => {
         </Dropdown>
       );
 
-      fireEvent.click(getByText('Pasta'));
+      await userEvent.click(getByText('Pasta'));
 
       expect(getByTestId(expandablePanelId)).toBeInTheDocument();
 
-      fireEvent.click(getByText('Pasta'));
+      await userEvent.click(getByText('Pasta'));
 
       expect(getByText('Fresh')).not.toBeVisible();
     });
 
-    it('should have a default expanded item set by the user with defaultIndex', () => {
+    it('should have a default expanded item set by the user with defaultIndex', async () => {
       const { getByTestId, getByText, queryByTestId } = render(
         <Dropdown>
           <DropdownButton>Expandable Items Dropdown</DropdownButton>
@@ -1139,14 +1164,13 @@ describe('Dropdown', () => {
         </Dropdown>
       );
 
-      fireEvent.click(getByText('Expandable Items Dropdown'));
+      await userEvent.click(getByText('Expandable Items Dropdown'));
 
       expect(getByTestId(expandablePanelId)).toBeInTheDocument();
-
       expect(queryByTestId(expandablePanelTwoId)).not.toBeInTheDocument();
     });
 
-    it('should have multiple open menu items when isMulti is true', () => {
+    it('should have multiple open menu items when isMulti is true', async () => {
       const { getByTestId, getByText } = render(
         <Dropdown>
           <DropdownButton>Expandable Items Dropdown</DropdownButton>
@@ -1184,19 +1208,18 @@ describe('Dropdown', () => {
         </Dropdown>
       );
 
-      fireEvent.click(getByText('Expandable Items Dropdown'));
-
-      fireEvent.click(getByText('Pasta'));
+      await userEvent.click(getByText('Expandable Items Dropdown'));
+      await userEvent.click(getByText('Pasta'));
 
       expect(getByTestId(expandablePanelId)).toBeInTheDocument();
 
-      fireEvent.click(getByText('Bacon'));
+      await userEvent.click(getByText('Bacon'));
 
       expect(getByTestId(expandablePanelId)).toBeInTheDocument();
       expect(getByTestId(expandablePanelTwoId)).toBeInTheDocument();
     });
 
-    it('should only allow one open menu item when isMulti is false', () => {
+    it('should only allow one open menu item when isMulti is false', async () => {
       const { getByTestId, getByText, queryByTestId } = render(
         <Dropdown>
           <DropdownButton>Expandable Items Dropdown</DropdownButton>
@@ -1234,23 +1257,20 @@ describe('Dropdown', () => {
         </Dropdown>
       );
 
-      fireEvent.click(getByText('Expandable Items Dropdown'));
-
-      fireEvent.click(getByText('Pasta'));
+      await userEvent.click(getByText('Expandable Items Dropdown'));
+      await userEvent.click(getByText('Pasta'));
 
       expect(getByTestId(expandablePanelId)).toBeInTheDocument();
-
       expect(queryByTestId(expandablePanelTwoId)).not.toBeInTheDocument();
 
-      fireEvent.click(getByText('Bacon'));
+      await userEvent.click(getByText('Bacon'));
 
       expect(getByTestId(expandablePanelTwoId)).toBeInTheDocument();
-
       expect(queryByTestId(expandablePanelId)).not.toBeVisible();
     });
 
     describe('dropdown with expandable menu styling', () => {
-      it(`DropdownExpandableMenuPanel items should have additional padding if DropdownExpandableMenuButton has an icon`, () => {
+      it(`DropdownExpandableMenuPanel items should have additional padding if DropdownExpandableMenuButton has an icon`, async () => {
         const { getByText } = render(
           <Dropdown>
             <DropdownButton>Expandable Items Dropdown</DropdownButton>
@@ -1273,7 +1293,8 @@ describe('Dropdown', () => {
             </DropdownContent>
           </Dropdown>
         );
-        fireEvent.click(getByText('Pasta'));
+
+        await userEvent.click(getByText('Pasta'));
 
         expect(getByText('Fresh')).toHaveStyleRule(
           'padding',
@@ -1281,7 +1302,7 @@ describe('Dropdown', () => {
         );
       });
 
-      it(`DropdownExpandableMenuPanel items should have standard padding if DropdownExpandableMenuButton doesn't have an icon`, () => {
+      it(`DropdownExpandableMenuPanel items should have standard padding if DropdownExpandableMenuButton doesn't have an icon`, async () => {
         const { getByText } = render(
           <Dropdown>
             <DropdownButton>Expandable Items Dropdown</DropdownButton>
@@ -1304,7 +1325,8 @@ describe('Dropdown', () => {
             </DropdownContent>
           </Dropdown>
         );
-        fireEvent.click(getByText('Pasta'));
+
+        await userEvent.click(getByText('Pasta'));
 
         expect(getByText('Fresh')).toHaveStyleRule(
           'padding',
@@ -1312,7 +1334,7 @@ describe('Dropdown', () => {
         );
       });
 
-      it(`DropdownExpandableMenuListItem should support disabled`, () => {
+      it(`DropdownExpandableMenuListItem should support disabled`, async () => {
         const { getByText } = render(
           <Dropdown>
             <DropdownButton>Expandable Items Dropdown</DropdownButton>
@@ -1335,7 +1357,8 @@ describe('Dropdown', () => {
             </DropdownContent>
           </Dropdown>
         );
-        fireEvent.click(getByText('Pasta'));
+
+        await userEvent.click(getByText('Pasta'));
 
         expect(getByText('Fresh')).toHaveStyleRule('cursor', 'not-allowed');
         expect(getByText('Fresh')).toHaveStyleRule(
@@ -1344,7 +1367,7 @@ describe('Dropdown', () => {
         );
       });
 
-      it(`DropdownExpandableMenuPanel items should have additional padding if DropdownExpandableMenuButton has an icon and a text only menu item`, () => {
+      it(`DropdownExpandableMenuPanel items should have additional padding if DropdownExpandableMenuButton has an icon and a text only menu item`, async () => {
         const { getByTestId, getByText } = render(
           <Dropdown>
             <DropdownButton>Expandable Items Dropdown</DropdownButton>
@@ -1383,19 +1406,18 @@ describe('Dropdown', () => {
             </DropdownContent>
           </Dropdown>
         );
-        fireEvent.click(getByText('Pasta'));
-        fireEvent.click(getByText('Prosciutto'));
+
+        await userEvent.click(getByText('Pasta'));
+        await userEvent.click(getByText('Prosciutto'));
 
         expect(getByTestId(expandableButtonId)).toHaveStyleRule(
           'padding',
           `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} ${magma.spaceScale.spacing11}`
         );
-
         expect(getByTestId(`${expandableButtonId}-2`)).toHaveStyleRule(
           'padding',
           `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05}`
         );
-
         expect(getByText('Fresh')).toHaveStyleRule(
           'padding',
           `${magma.spaceScale.spacing03} ${magma.spaceScale.spacing05} ${magma.spaceScale.spacing03} 72px`
@@ -1406,7 +1428,7 @@ describe('Dropdown', () => {
         );
       });
 
-      it('should fire the customOnKeyDown function if used', () => {
+      it('should fire the customOnKeyDown function if used', async () => {
         const onChangeMock = jest.fn();
         const { getByTestId } = render(
           <Dropdown>
@@ -1436,12 +1458,14 @@ describe('Dropdown', () => {
 
         const dropdownExpandableButton = getByTestId(expandableButtonId);
 
-        fireEvent.keyDown(dropdownExpandableButton, { key: 'Enter' });
+        dropdownExpandableButton.focus();
+
+        await userEvent.keyboard('{Enter}');
 
         expect(onChangeMock).toHaveBeenCalledTimes(1);
       });
 
-      it(`should support isInverse mode`, () => {
+      it(`should support isInverse mode`, async () => {
         const { getByTestId } = render(
           <Dropdown isInverse>
             <DropdownButton>Expandable Items Dropdown</DropdownButton>
@@ -1451,14 +1475,16 @@ describe('Dropdown', () => {
           </Dropdown>
         );
 
-        expect(getByTestId(expandableGroupId)).toHaveStyleRule(
-          'background',
-          'transparent'
-        );
-        expect(getByTestId(expandableGroupId)).toHaveStyleRule(
-          'color',
-          magma.colors.neutral100
-        );
+        await waitFor(() => {
+          expect(getByTestId(expandableGroupId)).toHaveStyleRule(
+            'background',
+            'transparent'
+          );
+          expect(getByTestId(expandableGroupId)).toHaveStyleRule(
+            'color',
+            magma.colors.neutral100
+          );
+        });
       });
     });
   });

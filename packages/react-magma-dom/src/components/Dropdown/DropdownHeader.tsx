@@ -6,11 +6,12 @@ import { transparentize } from 'polished';
 import { DropdownContext } from './Dropdown';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-/**
- * @children required
- */
 export interface DropdownHeaderProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @internal
    */

@@ -7,12 +7,12 @@ import {
   UseSelectProps,
 } from 'downshift';
 
-import { useIsInverse } from '../../inverse';
-import { Omit, useGenerateId, XOR } from '../../utils';
-import { LabelPosition } from '../Label';
 import { SelectComponents } from './components';
 import { MultiSelect } from './MultiSelect';
 import { Select as InternalSelect } from './Select';
+import { useIsInverse } from '../../inverse';
+import { descriptionSuffix, Omit, useGenerateId, XOR } from '../../utils';
+import { LabelPosition } from '../Label';
 
 export type SelectOptions =
   | string
@@ -121,6 +121,10 @@ export interface SelectProps<T extends SelectOptions>
    * Id of the element that describes the select trigger button
    */
   ariaDescribedBy?: string;
+  /**
+   * Aria label for the select trigger button
+   */
+  ariaLabel?: string;
   /**
    * @internal
    */
@@ -238,7 +242,8 @@ export function Select<T>(props: XORSelectProps<T>) {
 
   const id = useGenerateId(defaultId);
 
-  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+  const descriptionId =
+    errorMessage || helperMessage ? `${id}${descriptionSuffix}` : null;
 
   const isInverse = useIsInverse(props.isInverse);
 

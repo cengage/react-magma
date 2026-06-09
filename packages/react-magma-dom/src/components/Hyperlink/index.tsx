@@ -3,6 +3,7 @@ import * as React from 'react';
 import { css, ClassNames } from '@emotion/react';
 import styled from '@emotion/styled';
 import { IconProps } from 'react-magma-icons';
+import { v4 as uuidv4 } from 'uuid';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
@@ -10,6 +11,7 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { omit, Omit } from '../../utils';
 import { ButtonSize, ButtonStyles } from '../Button';
 import { BaseStyledButton, buttonStyles } from '../StyledButton';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export enum HyperlinkIconPosition {
   left = 'left',
@@ -47,6 +49,11 @@ export interface HyperlinkProps
    * @default HyperlinkIconPosition.right
    */
   iconPosition?: HyperlinkIconPosition;
+  /**
+   * If true, the link will be opened in a new tab
+   * @default false
+   */
+  opensInNewTab?: boolean;
 }
 
 const linkStyles = props => css`
@@ -116,6 +123,7 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
       hasUnderline = true,
       icon,
       iconPosition = null,
+      opensInNewTab = false,
       ...rest
     } = props;
 
@@ -135,6 +143,7 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
         <ClassNames>
           {({ css: composedCss }) => {
             const className = composedCss(composedStyle);
+
             return (children as (props: object) => React.ReactNode)({
               to,
               className,
@@ -148,66 +157,83 @@ export const Hyperlink = React.forwardRef<HTMLAnchorElement, HyperlinkProps>(
       const HyperlinkComponent =
         styledAs === 'Button' ? LinkStyledAsButton : StyledLink;
 
-      if (icon && iconPosition !== null) {
-        return (
-          <HyperlinkComponent
-            {...other}
-            data-testid={testId}
-            hasUnderline={hasUnderline}
-            icon={icon}
-            iconPosition={iconPosition}
-            href={to}
-            isInverse={isInverse}
-            ref={ref}
-            theme={theme}
-          >
-            {iconPosition === HyperlinkIconPosition.right && <>{children}</>}
-            <IconWrapper
-              theme={theme}
-              size={props.size}
-              position={
-                iconPosition === HyperlinkIconPosition.both
-                  ? HyperlinkIconPosition.left
-                  : iconPosition
-              }
-            >
-              {hasMultiIcons ? icon[0] : icon}
-            </IconWrapper>
-            {iconPosition === HyperlinkIconPosition.left && <>{children}</>}
+      const hiddenTextId = props['aria-describedby'] ?? uuidv4();
 
-            {iconPosition === HyperlinkIconPosition.both && hasMultiIcons && (
-              <>
-                {children}
-                <IconWrapper
-                  theme={theme}
-                  size={props.size}
-                  position={
-                    iconPosition === HyperlinkIconPosition.both
-                      ? HyperlinkIconPosition.right
-                      : iconPosition
-                  }
-                >
-                  {icon[1]}
-                </IconWrapper>
-              </>
-            )}
-          </HyperlinkComponent>
-        );
-      } else {
-        return (
-          <HyperlinkComponent
-            {...other}
-            data-testid={testId}
-            hasUnderline={hasUnderline}
-            href={to}
-            isInverse={isInverse}
-            ref={ref}
-            theme={theme}
-          >
-            {children}
-          </HyperlinkComponent>
-        );
-      }
+      return (
+        <>
+          {icon && iconPosition !== null ? (
+            <HyperlinkComponent
+              {...other}
+              data-testid={testId}
+              hasUnderline={hasUnderline}
+              icon={icon}
+              iconPosition={iconPosition}
+              href={to}
+              isInverse={isInverse}
+              ref={ref}
+              theme={theme}
+              {...(opensInNewTab && {
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                'aria-describedby': hiddenTextId,
+              })}
+            >
+              {iconPosition === HyperlinkIconPosition.right && <>{children}</>}
+              <IconWrapper
+                theme={theme}
+                size={props.size}
+                position={
+                  iconPosition === HyperlinkIconPosition.both
+                    ? HyperlinkIconPosition.left
+                    : iconPosition
+                }
+              >
+                {hasMultiIcons ? icon[0] : icon}
+              </IconWrapper>
+              {iconPosition === HyperlinkIconPosition.left && <>{children}</>}
+
+              {iconPosition === HyperlinkIconPosition.both && hasMultiIcons && (
+                <>
+                  {children}
+                  <IconWrapper
+                    theme={theme}
+                    size={props.size}
+                    position={
+                      iconPosition === HyperlinkIconPosition.both
+                        ? HyperlinkIconPosition.right
+                        : iconPosition
+                    }
+                  >
+                    {icon[1]}
+                  </IconWrapper>
+                </>
+              )}
+            </HyperlinkComponent>
+          ) : (
+            <HyperlinkComponent
+              {...other}
+              data-testid={testId}
+              hasUnderline={hasUnderline}
+              href={to}
+              isInverse={isInverse}
+              ref={ref}
+              theme={theme}
+              {...(opensInNewTab && {
+                target: '_blank',
+                rel: 'noopener noreferrer',
+                'aria-describedby': hiddenTextId,
+              })}
+            >
+              {children}
+            </HyperlinkComponent>
+          )}
+          {opensInNewTab && (
+            <VisuallyHidden id={hiddenTextId}>
+              Opens in a new tab
+            </VisuallyHidden>
+          )}
+        </>
+      );
     }
   }
 );

@@ -1,18 +1,26 @@
 const { createFilePath } = require('gatsby-source-filesystem');
 const propertiesJson = require('react-magma-dom/dist/properties.json');
 
-exports.onCreateWebpackConfig = ({ actions, plugins }) => {
+exports.onCreateWebpackConfig = ({
+  actions,
+  plugins,
+  stage,
+  loaders,
+  getConfig,
+}) => {
   actions.setWebpackConfig({
-    node: {
-      fs: 'empty',
-    },
     resolve: {
       extensions: ['.*', '.mjs', '.js', '.json'],
+      mainFields: ['browser', 'main', 'module'],
       alias: {
         path: require.resolve('path-browserify'),
+        'react-magma-dom': require.resolve(
+          'react-magma-dom/dist/react-magma-dom.cjs.development.js'
+        ),
       },
       fallback: {
         'object.assign/polyfill': require.resolve('object.assign/polyfill.js'),
+        fs: false,
       },
     },
     module: {
@@ -27,48 +35,75 @@ exports.onCreateWebpackConfig = ({ actions, plugins }) => {
     plugins: [
       plugins.provide({ process: 'process', Buffer: ['buffer', 'Buffer'] }),
     ],
+    cache: false,
   });
-};
 
-const getPathPrefix = path => {
-  if (/design/.test(path)) {
-    if (/intro/.test(path)) {
-      return 'design-intro';
-    }
-    return 'design';
-  } else if (/api/.test(path)) {
-    if (/intro/.test(path)) {
-      return 'api-intro';
-    }
-    return 'api';
-  } else if (/patterns/.test(path)) {
-    if (/intro/.test(path)) {
-      return 'patterns-intro';
-    }
-    return 'patterns';
-  } else if (/data-visualization/.test(path)) {
-    return 'data-visualization';
+  // Disable ESLint plugin in development to avoid flowtype issues
+  if (stage === 'develop') {
+    const config = getConfig();
+
+    config.plugins = config.plugins.filter(
+      plugin => plugin.constructor.name !== 'ESLintWebpackPlugin'
+    );
+    actions.replaceWebpackConfig(config);
   }
-};
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions;
-  if (node.internal.type === 'Mdx') {
-    const prefix = getPathPrefix(node.fileAbsolutePath);
-    const filePath = createFilePath({ node, getNode });
-    const fullFilePath = `/${prefix}${filePath.toLowerCase()}`;
-    createNodeField({
-      name: 'slug',
-      node,
-      value: fullFilePath,
+  if (stage === 'build-html' || stage === 'develop-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /form-data/,
+            use: loaders.null(),
+          },
+        ],
+      },
     });
   }
 };
 
-exports.onCreatePage = async ({
-  page,
-  actions: { createPage, deletePage },
-}) => {
+exports.onCreateNode = async ({ node, actions, getNode }) => {
+  const { createNodeField } = actions;
+
+  if (node.internal.type === 'Mdx') {
+    const unified = (await import('unified')).unified;
+    const remarkParse = (await import('remark-parse')).default;
+    const remarkMdx = (await import('remark-mdx')).default;
+    const visit = (await import('unist-util-visit')).visit;
+
+    const slug = createFilePath({ node, getNode, basePath: `pages` });
+    const content = node.body;
+    const tree = unified().use(remarkParse).use(remarkMdx).parse(content);
+    const pageNavigationHeadings = [];
+
+    // Extracting headings navigation from the MDX content
+    visit(tree, 'heading', headingNode => {
+      if (headingNode.depth === 2) {
+        const heading = headingNode.children?.reduce((previous, current) => {
+          return current.type === 'text' ? previous + current.value : previous;
+        }, '');
+
+        if (heading) {
+          pageNavigationHeadings.push(heading);
+        }
+      }
+    });
+
+    createNodeField({
+      name: 'slug',
+      node,
+      value: slug,
+    });
+
+    createNodeField({
+      name: `headings`,
+      node,
+      value: pageNavigationHeadings,
+    });
+  }
+};
+
+exports.onCreatePage = ({ page, actions: { createPage, deletePage } }) => {
   const { frontmatter } = page.context;
 
   if (frontmatter) {

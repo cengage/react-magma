@@ -12,10 +12,11 @@ import { Heading } from '../Heading';
 import { Paragraph } from '../Paragraph';
 import { TypographyContextVariant, TypographyVisualStyle } from '../Typography';
 
-/**
- * @children required
- */
 export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * React Node containing the form action buttons; will appear under the form fields
    */

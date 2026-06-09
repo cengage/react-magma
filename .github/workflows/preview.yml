@@ -4,26 +4,33 @@ on:
     branches:
       - dev
       - main
-      - 'dev-patch*'
-      - 'patch-*'
+      - v4/dev
+      - v4/main
     types: [opened, synchronize]
+
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Setup
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           check-latest: true
       - name: Check Node version
         run: node -v
       - name: Update NPM version
-        run: npm install -g "npm@^7.6.3"
+        run: npm install -g "npm@^11.11.0"
+      - name: Check NPM version
+        run: npm -v
       - name: Install
-        run: npm ci
+        run: npm ci --legacy-peer-deps
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
       - name: Test
         run: npm test
       - name: Install Playwright Browsers
@@ -31,22 +38,35 @@ jobs:
       - name: Run Playwright tests
         run: npm run playwright:test
         timeout-minutes: 60
-      - name: Coverage
-        uses: codecov/codecov-action@v1
       - name: Build Docs
         run: npm run build:docs
       - name: Build Storybook
-        run: npm run build:storybook
+        run: npm run build-storybook
+      - name: Chromatic
+        if: github.base_ref == 'dev' || github.base_ref == 'main'
+        uses: chromaui/action@v16
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          storybookBuildDir: storybook-static
+          onlyChanged: true
+          exitZeroOnChanges: true
+      - name: Set version prefix
+        id: version
+        run: |
+          if [[ "${{ github.base_ref }}" == v4/* ]]; then
+            echo "prefix=v4" >> $GITHUB_OUTPUT
+          else
+            echo "prefix=v5" >> $GITHUB_OUTPUT
+          fi
       - name: Deploy Doc Preview to Netlify
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './website/react-magma-docs/public'
-          production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: false
-          alias: docs-preview-${{ github.event.number }}
+          alias: docs-preview-${{ steps.version.outputs.prefix }}-${{ github.event.number }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -54,12 +74,11 @@ jobs:
         uses: nwtgck/actions-netlify@v1.1
         with:
           publish-dir: './storybook-static'
-          production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
           enable-pull-request-comment: true
           enable-commit-comment: true
           overwrites-pull-request-comment: false
-          alias: storybook-preview-${{ github.event.number }}
+          alias: storybook-preview-${{ steps.version.outputs.prefix }}-${{ github.event.number }}
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

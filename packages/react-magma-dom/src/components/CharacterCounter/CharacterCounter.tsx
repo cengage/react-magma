@@ -50,6 +50,7 @@ function buildFontWeight(props: Omit<CharacterCounterProps, 'id'>) {
   ) {
     return magma.typographyVisualStyles.headingXSmall.fontWeight;
   }
+
   return 'inherit';
 }
 
@@ -81,6 +82,8 @@ export const CharacterCounter = React.forwardRef<
 
   const i18n = React.useContext(I18nContext);
 
+  const { isMacOS, isWindows, isChrome } = useDeviceDetect();
+
   // Temporary while both 'maxLength' and 'maxCount' are supported. To be removed in future iterations.
   const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
 
@@ -91,9 +94,14 @@ export const CharacterCounter = React.forwardRef<
 
   // Returns aria-live states based on percentage of characters within Input.
   function getAriaLiveState() {
+    if (isWindows && isChrome) {
+      return 'off';
+    }
+
     if (getPercentage > 100) {
       return 'assertive';
     }
+
     return 'polite';
   }
 
@@ -122,6 +130,7 @@ export const CharacterCounter = React.forwardRef<
         if (inputLength === maxCharacters + 1) {
           return `${characterLimit} ${i18n.characterCounter.characterOver}`;
         }
+
         return `${characterLimit} ${i18n.characterCounter.charactersOver}`;
       }
       if (inputLength === maxCharacters) {
@@ -131,6 +140,7 @@ export const CharacterCounter = React.forwardRef<
       if (maxCharacters === 1) {
         return `${maxCharacters} ${i18n.characterCounter.characterAllowed}`;
       }
+
       return `${maxCharacters} ${i18n.characterCounter.charactersAllowed}`;
     }
   }, [characterLimit, inputLength, i18n.characterCounter, maxCharacters]);
@@ -154,8 +164,6 @@ export const CharacterCounter = React.forwardRef<
       debouncedSetScreenReaderMessage.clear();
     };
   }, [inputLength, debouncedSetScreenReaderMessage, characterTitle]);
-
-  const { isMacOS } = useDeviceDetect();
 
   return (
     <>

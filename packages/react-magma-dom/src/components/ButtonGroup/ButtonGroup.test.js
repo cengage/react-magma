@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { CheckIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
@@ -11,6 +11,7 @@ import {
   DropdownButton,
   DropdownContent,
   DropdownMenuItem,
+  DropdownSplitButton,
 } from '../Dropdown';
 import { IconButton } from '../IconButton';
 
@@ -63,6 +64,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'start');
       });
+
       it('Center: aligns the buttons to the center', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -80,6 +82,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'center');
       });
+
       it('Right: aligns the buttons to the right', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -97,6 +100,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'end');
       });
+
       it('Fill: fills the space with the buttons', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -114,6 +118,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'row');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'stretch');
       });
+
       it('Apart: spreads out the buttons', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -132,6 +137,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('justify-content', 'space-between');
       });
     });
+
     describe('No Space', () => {
       it('Removes the border radius around the buttons', () => {
         const { container } = render(
@@ -170,6 +176,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'start');
       });
+
       it('Center: aligns the buttons to the center', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -187,6 +194,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'center');
       });
+
       it('Right: aligns the buttons to the right', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -204,6 +212,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'end');
       });
+
       it('Fill: fills the space with the buttons', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -221,6 +230,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('flex-direction', 'column');
         expect(buttonGroup).toHaveStyleRule('justify-content', 'stretch');
       });
+
       it('Apart: behaves like the left align', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -239,6 +249,7 @@ describe('ButtonGroup', () => {
         expect(buttonGroup).toHaveStyleRule('justify-content', 'start');
       });
     });
+
     describe('No Space', () => {
       it('Does NOT remove the border radius around the buttons', () => {
         const { container } = render(
@@ -286,6 +297,7 @@ describe('ButtonGroup', () => {
           magma.colors.danger
         );
       });
+
       it('sets the color of the children buttons, except if the button has a color set', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -332,6 +344,7 @@ describe('ButtonGroup', () => {
         expect(getByTestId(`${testId}-1`)).toHaveStyleRule('height', '56px');
         expect(getByTestId(`${testId}-2`)).toHaveStyleRule('height', '56px');
       });
+
       it('sets the size of the children buttons, except if the button has a size set', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -375,6 +388,7 @@ describe('ButtonGroup', () => {
           'none'
         );
       });
+
       it('sets the variant of the children buttons, except if the button has a variant set', () => {
         const { getByTestId } = render(
           <ButtonGroup
@@ -407,7 +421,7 @@ describe('ButtonGroup', () => {
   });
 
   describe('With dropdowns', () => {
-    it('Snapshot: Horizontal & center alignment', () => {
+    it('Snapshot: Horizontal & center alignment', async () => {
       const { container } = render(
         <ButtonGroup
           orientation={ButtonGroupOrientation.horizontal}
@@ -416,23 +430,25 @@ describe('ButtonGroup', () => {
           <Button>1</Button>
           <Dropdown>
             <DropdownButton id="2">Dropdown 2</DropdownButton>
-            <DropdownContent>
+            <DropdownContent id="2">
               <DropdownMenuItem>Menu item 2.1</DropdownMenuItem>
             </DropdownContent>
           </Dropdown>
           <Dropdown>
             <DropdownButton id="3">Dropdown 3</DropdownButton>
-            <DropdownContent>
+            <DropdownContent id="3">
               <DropdownMenuItem>Menu item 3.1</DropdownMenuItem>
             </DropdownContent>
           </Dropdown>
         </ButtonGroup>
       );
 
-      expect(container).toMatchSnapshot();
+      await waitFor(() => {
+        expect(container).toMatchSnapshot();
+      });
     });
 
-    it('Snapshot: noSpace', () => {
+    it('Snapshot: noSpace', async () => {
       const { container } = render(
         <ButtonGroup
           noSpace
@@ -442,23 +458,25 @@ describe('ButtonGroup', () => {
           <Button>1</Button>
           <Dropdown>
             <DropdownButton id="2">Dropdown 2</DropdownButton>
-            <DropdownContent>
+            <DropdownContent id="2">
               <DropdownMenuItem>Menu item 2.1</DropdownMenuItem>
             </DropdownContent>
           </Dropdown>
           <Dropdown>
             <DropdownButton id="3">Dropdown 3</DropdownButton>
-            <DropdownContent>
+            <DropdownContent id="3">
               <DropdownMenuItem>Menu item 3.1</DropdownMenuItem>
             </DropdownContent>
           </Dropdown>
         </ButtonGroup>
       );
 
-      expect(container).toMatchSnapshot();
+      await waitFor(() => {
+        expect(container).toMatchSnapshot();
+      });
     });
 
-    it('Snapshot: Vertical & fill alignment', () => {
+    it('Snapshot: Vertical & fill alignment', async () => {
       const { container } = render(
         <ButtonGroup
           orientation={ButtonGroupOrientation.vertical}
@@ -467,67 +485,178 @@ describe('ButtonGroup', () => {
           <Button>1</Button>
           <Dropdown>
             <DropdownButton id="2">Dropdown 2</DropdownButton>
-            <DropdownContent>
+            <DropdownContent id="2">
               <DropdownMenuItem>Menu item 2.1</DropdownMenuItem>
             </DropdownContent>
           </Dropdown>
           <Dropdown>
             <DropdownButton id="3">Dropdown 3</DropdownButton>
-            <DropdownContent>
+            <DropdownContent id="3">
               <DropdownMenuItem>Menu item 3.1</DropdownMenuItem>
             </DropdownContent>
           </Dropdown>
         </ButtonGroup>
       );
 
-      expect(container).toMatchSnapshot();
+      await waitFor(() => {
+        expect(container).toMatchSnapshot();
+      });
+    });
+
+    it('Snapshot: SplitButton', async () => {
+      const { container } = render(
+        <ButtonGroup
+          orientation={ButtonGroupOrientation.vertical}
+          alignment={ButtonGroupAlignment.fill}
+        >
+          <Dropdown>
+            <DropdownSplitButton id="1">
+              Dropdown SplitButton 1
+            </DropdownSplitButton>
+            <DropdownContent id="1">
+              <DropdownMenuItem>Menu item 2.1</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+          <Dropdown>
+            <DropdownSplitButton id="2">
+              Dropdown SplitButton 2
+            </DropdownSplitButton>
+            <DropdownContent id="2">
+              <DropdownMenuItem>Menu item 2.1</DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        </ButtonGroup>
+      );
+
+      await waitFor(() => {
+        expect(container).toMatchSnapshot();
+      });
     });
   });
-});
 
-describe('Size', () => {
-  const icon = <CheckIcon />;
+  describe('Size', () => {
+    const icon = <CheckIcon />;
 
-  it('Large', () => {
-    const { container } = render(
-      <ButtonGroup>
-        <IconButton icon={icon} size={ButtonSize.large}>
-          Large
-        </IconButton>
-      </ButtonGroup>
-    );
+    it('Large', () => {
+      const { container } = render(
+        <ButtonGroup>
+          <IconButton icon={icon} size={ButtonSize.large}>
+            Large
+          </IconButton>
+        </ButtonGroup>
+      );
 
-    const svg = container.querySelector('svg');
+      const svg = container.querySelector('svg');
 
-    expect(svg).toHaveAttribute('height', magma.iconSizes.medium.toString());
-    expect(svg).toHaveAttribute('width', magma.iconSizes.medium.toString());
+      expect(svg).toHaveAttribute('height', magma.iconSizes.medium.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.medium.toString());
+    });
+
+    it('Medium', () => {
+      const { container } = render(
+        <ButtonGroup>
+          <IconButton icon={icon} size={ButtonSize.medium}>
+            Medium
+          </IconButton>
+        </ButtonGroup>
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.small.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.small.toString());
+    });
+
+    it('Small', () => {
+      const { container } = render(
+        <ButtonGroup>
+          <IconButton icon={icon} size={ButtonSize.small}>
+            Small
+          </IconButton>
+        </ButtonGroup>
+      );
+
+      const svg = container.querySelector('svg');
+      expect(svg).toHaveAttribute('height', magma.iconSizes.xSmall.toString());
+      expect(svg).toHaveAttribute('width', magma.iconSizes.xSmall.toString());
+    });
   });
 
-  it('Medium', () => {
-    const { container } = render(
-      <ButtonGroup>
-        <IconButton icon={icon} size={ButtonSize.medium}>
-          Medium
-        </IconButton>
-      </ButtonGroup>
-    );
+  describe('isList', () => {
+    it('renders as a div by default (no isList)', () => {
+      const { getByTestId } = render(
+        <ButtonGroup testId={testId}>
+          <Button>1</Button>
+          <Button>2</Button>
+        </ButtonGroup>
+      );
 
-    const svg = container.querySelector('svg');
-    expect(svg).toHaveAttribute('height', magma.iconSizes.small.toString());
-    expect(svg).toHaveAttribute('width', magma.iconSizes.small.toString());
-  });
+      const el = getByTestId(testId);
+      expect(el.tagName).toBe('DIV');
+      expect(el).not.toHaveAttribute('role', 'list');
+      expect(el.querySelector('li')).not.toBeInTheDocument();
+    });
 
-  it('Small', () => {
-    const { container } = render(
-      <ButtonGroup>
-        <IconButton icon={icon} size={ButtonSize.small}>
-          Small
-        </IconButton>
-      </ButtonGroup>
-    );
+    it('renders as a ul with li children when isList is set', () => {
+      const { getByTestId } = render(
+        <ButtonGroup testId={testId} isList>
+          <Button>1</Button>
+          <Button>2</Button>
+        </ButtonGroup>
+      );
 
-    const svg = container.querySelector('svg');
-    expect(svg).toHaveAttribute('height', magma.iconSizes.xSmall.toString());
-    expect(svg).toHaveAttribute('width', magma.iconSizes.xSmall.toString());
+      const el = getByTestId(testId);
+      expect(el.tagName).toBe('UL');
+      expect(el).toHaveAttribute('role', 'list');
+
+      const listItems = el.querySelectorAll(':scope > li');
+      expect(listItems).toHaveLength(2);
+    });
+
+    it('renders buttons inside li items when isList is set', () => {
+      const { getByTestId } = render(
+        <ButtonGroup testId={testId} isList>
+          <Button testId={`${testId}-1`}>1</Button>
+          <Button testId={`${testId}-2`}>2</Button>
+        </ButtonGroup>
+      );
+
+      const btn1 = getByTestId(`${testId}-1`);
+      const btn2 = getByTestId(`${testId}-2`);
+
+      expect(btn1.closest('li')).toBeInTheDocument();
+      expect(btn2.closest('li')).toBeInTheDocument();
+    });
+
+    it('does not violate accessibility standards with isList', () => {
+      const { container } = render(
+        <ButtonGroup isList>
+          <Button>1</Button>
+          <Button>2</Button>
+          <Button>3</Button>
+        </ButtonGroup>
+      );
+
+      return axe(container.innerHTML).then(result => {
+        return expect(result).toHaveNoViolations();
+      });
+    });
+
+    it('Snapshot: isList with noSpace horizontal', () => {
+      const { container } = render(
+        <ButtonGroup
+          testId={testId}
+          isList
+          noSpace
+          orientation={ButtonGroupOrientation.horizontal}
+          alignment={ButtonGroupAlignment.left}
+        >
+          <Button testId={`${testId}-1`}>1</Button>
+          <Button testId={`${testId}-2`}>2</Button>
+          <Button testId={`${testId}-3`}>3</Button>
+        </ButtonGroup>
+      );
+
+      expect(container).toMatchSnapshot();
+    });
   });
 });

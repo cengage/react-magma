@@ -35,6 +35,7 @@ export const DropdownExpandableMenuGroup = React.forwardRef<
         if (c.type?.displayName === 'DropdownExpandableMenuButton') {
           if (c.props.icon) {
             expandableMenuButtonHasIcon = true;
+
             return;
           }
         }
@@ -54,7 +55,6 @@ export const DropdownExpandableMenuGroup = React.forwardRef<
         iconPosition={AccordionIconPosition.right}
         isInverse={context.isInverse}
         ref={ref}
-        role="group"
         testId={testId}
       >
         {children}

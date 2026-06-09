@@ -8,10 +8,11 @@ import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-/**
- * @children required
- */
 export interface CardProps extends React.LabelHTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Sets the alignment of the card content
    * @default CardAlignment.left

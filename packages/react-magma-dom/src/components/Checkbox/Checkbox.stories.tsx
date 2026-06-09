@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta } from '@storybook/react/types-6-0';
+import { Meta } from '@storybook/react-webpack5';
 
 import { magma } from '../../theme/magma';
 import { Card, CardBody } from '../Card';
@@ -15,6 +15,7 @@ export default {
 
 export const Default = () => {
   const [checked, updateChecked] = React.useState(false);
+
   return (
     <>
       <FormGroup labelText="Choose one or more">
@@ -87,6 +88,7 @@ export const Default = () => {
 
 export const Inverse = () => {
   const [checked, updateChecked] = React.useState(false);
+
   return (
     <Card isInverse>
       <CardBody>
@@ -157,4 +159,102 @@ export const Inverse = () => {
       </CardBody>
     </Card>
   );
+};
+
+/**
+ * Performance reproduction story.
+ *
+ * Renders N controlled Checkbox components and lets you flip their `checked`
+ * prop in bulk via the buttons. Measures time from setState to the next paint
+ * (via two requestAnimationFrame ticks) so we can see how heavy a mass update
+ * is for a large list.
+ */
+export const PerformanceLargeList = (args: { count: number }) => {
+  const { count } = args;
+
+  const [checkedArr, setCheckedArr] = React.useState<boolean[]>(() =>
+    Array.from({ length: count }, () => false)
+  );
+  const [lastMs, setLastMs] = React.useState<number | null>(null);
+  const [lastAction, setLastAction] = React.useState<string>('—');
+
+  React.useEffect(() => {
+    setCheckedArr(Array.from({ length: count }, () => false));
+  }, [count]);
+
+  const measure = React.useCallback((label: string, mutate: () => void) => {
+    const start = performance.now();
+
+    mutate();
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setLastAction(label);
+        setLastMs(performance.now() - start);
+      });
+    });
+  }, []);
+
+  const setAll = React.useCallback(
+    (value: boolean, label: string) => {
+      measure(label, () => {
+        setCheckedArr(prev => prev.map(() => value));
+      });
+    },
+    [measure]
+  );
+
+  const toggleAll = React.useCallback(() => {
+    measure('Toggle all', () => {
+      setCheckedArr(prev => prev.map(v => !v));
+    });
+  }, [measure]);
+
+  return (
+    <div>
+      <p>
+        Count: <strong>{count}</strong> · Last action:{' '}
+        <strong>{lastAction}</strong> · Time:{' '}
+        <strong>{lastMs == null ? '—' : `${lastMs.toFixed(0)} ms`}</strong>
+      </p>
+      <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+        <button type="button" onClick={() => setAll(true, 'Check all')}>
+          Check all
+        </button>
+        <button type="button" onClick={() => setAll(false, 'Uncheck all')}>
+          Uncheck all
+        </button>
+        <button type="button" onClick={toggleAll}>
+          Toggle all
+        </button>
+      </div>
+      <div
+        style={{
+          maxHeight: 600,
+          overflow: 'auto',
+          border: '1px solid #ccc',
+          padding: 8,
+        }}
+      >
+        {checkedArr.map((checked, i) => (
+          <Checkbox
+            key={i}
+            id={`perf-cb-${i}`}
+            labelText={`Checkbox ${i}`}
+            checked={checked}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+PerformanceLargeList.argTypes = {
+  count: {
+    control: { type: 'number', min: 100, max: 10000, step: 100 },
+  },
+};
+
+PerformanceLargeList.args = {
+  count: 1400,
 };

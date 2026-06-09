@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fireEvent, render } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
@@ -9,6 +9,7 @@ import { usePagination } from '../Pagination/usePagination';
 import { TableRowColor } from '../Table';
 
 import { Datagrid } from '.';
+import userEvent from '@testing-library/user-event';
 
 const columns = [
   { field: 'col1', header: 'Col 1' },
@@ -286,7 +287,7 @@ describe('Datagrid', () => {
       expect(selectableRowCheckbox).toBeDisabled();
     });
 
-    it('should call passed in onHeaderSelect function when header checkbox is clicked', () => {
+    it('should call passed in onHeaderSelect function when header checkbox is clicked', async () => {
       const onHeaderSelect = jest.fn();
       const { container } = render(
         <Datagrid
@@ -301,7 +302,9 @@ describe('Datagrid', () => {
         .querySelector('thead')
         .firstChild.querySelector('input');
 
-      headerCheckbox.click();
+      act(() => {
+        headerCheckbox.click();
+      });
 
       expect(onHeaderSelect).toHaveBeenCalled();
     });
@@ -321,7 +324,9 @@ describe('Datagrid', () => {
         .querySelector('tbody')
         .firstChild.querySelector('input');
 
-      selectableRowCheckbox.click();
+      act(() => {
+        selectableRowCheckbox.click();
+      });
 
       expect(onRowSelect).toHaveBeenCalledWith(rows[0].id, expect.any(Object));
     });
@@ -335,7 +340,9 @@ describe('Datagrid', () => {
         .querySelector('tbody')
         .firstChild.querySelector('input');
 
-      selectableRowCheckbox.click();
+      act(() => {
+        selectableRowCheckbox.click();
+      });
 
       expect(selectableRowCheckbox).toBeChecked();
     });
@@ -372,7 +379,9 @@ describe('Datagrid', () => {
         .querySelector('tbody')
         .firstChild.querySelector('input');
 
-      selectableRowCheckbox.click();
+      act(() => {
+        selectableRowCheckbox.click();
+      });
 
       const headerCheckbox = container
         .querySelector('thead')
@@ -426,7 +435,9 @@ describe('Datagrid', () => {
 
       expect(headerCheckbox).not.toBeChecked();
 
-      headerCheckbox.click();
+      act(() => {
+        headerCheckbox.click();
+      });
 
       const selectableRowCheckbox = container
         .querySelector('tbody')
@@ -451,7 +462,9 @@ describe('Datagrid', () => {
 
       expect(headerCheckbox).not.toBeChecked();
 
-      headerCheckbox.click();
+      act(() => {
+        headerCheckbox.click();
+      });
 
       const disabledRowCheckbox = container
         .querySelector('tbody')
@@ -484,7 +497,9 @@ describe('Datagrid', () => {
 
       expect(headerCheckbox).not.toBeChecked();
 
-      headerCheckbox.click();
+      act(() => {
+        headerCheckbox.click();
+      });
 
       expect(onSelectedRowsChange).toHaveBeenCalledWith([
         rows[0].id,
@@ -506,11 +521,15 @@ describe('Datagrid', () => {
         .querySelector('tbody')
         .firstChild.querySelector('input');
 
-      selectableRowCheckbox.click();
+      act(() => {
+        selectableRowCheckbox.click();
+      });
 
       expect(headerCheckbox).toHaveProperty('indeterminate');
 
-      headerCheckbox.click();
+      act(() => {
+        headerCheckbox.click();
+      });
 
       expect(headerCheckbox).not.toBeChecked();
       expect(selectableRowCheckbox).not.toBeChecked();
@@ -534,7 +553,9 @@ describe('Datagrid', () => {
 
       expect(headerCheckbox).toHaveProperty('indeterminate');
 
-      headerCheckbox.click();
+      act(() => {
+        headerCheckbox.click();
+      });
 
       expect(onSelectedRowsChange).toHaveBeenCalledWith([]);
     });
@@ -552,11 +573,15 @@ describe('Datagrid', () => {
         .querySelector('tbody')
         .firstChild.querySelector('input');
 
-      selectableRowCheckbox.click();
+      act(() => {
+        selectableRowCheckbox.click();
+      });
 
       expect(headerCheckbox).toBeChecked();
 
-      headerCheckbox.click();
+      act(() => {
+        headerCheckbox.click();
+      });
 
       expect(headerCheckbox).not.toBeChecked();
       expect(selectableRowCheckbox).not.toBeChecked();
@@ -580,7 +605,9 @@ describe('Datagrid', () => {
 
       expect(headerCheckbox).toBeChecked();
 
-      headerCheckbox.click();
+      act(() => {
+        headerCheckbox.click();
+      });
 
       expect(onSelectedRowsChange).toHaveBeenCalledWith([]);
     });
@@ -620,7 +647,9 @@ describe('Datagrid', () => {
         .querySelector('thead')
         .firstChild.querySelector('input');
 
-      headerCheckbox.click();
+      act(() => {
+        headerCheckbox.click();
+      });
 
       expect(onHeaderSelect).toHaveBeenCalled();
     });
@@ -641,7 +670,9 @@ describe('Datagrid', () => {
         .querySelector('tbody')
         .firstChild.querySelector('input');
 
-      selectableRowCheckbox.click();
+      act(() => {
+        selectableRowCheckbox.click();
+      });
 
       expect(onRowSelect).toHaveBeenCalledWith(rows[0].id, expect.any(Object));
     });
@@ -689,7 +720,7 @@ describe('Datagrid', () => {
       ).toBeInTheDocument();
       expect(
         getByText(
-          `1-${pagination.rowsPerPage.toString()} of ${pagination.itemCount}`
+          `Page ${pagination.page}: 1-${pagination.rowsPerPage.toString()} of ${pagination.itemCount}`
         )
       ).toBeInTheDocument();
       expect(getByTestId('previousBtn')).toBeInTheDocument();
@@ -708,7 +739,7 @@ describe('Datagrid', () => {
       expect(queryByTestId('nextBtn')).not.toBeInTheDocument();
     });
 
-    it('should call the on change the rows per page function', () => {
+    it('should call the on change the rows per page function', async () => {
       const onRowsPerPageChange = jest.fn();
       const pagination = {
         itemCount: rowsForPagination.length,
@@ -717,7 +748,8 @@ describe('Datagrid', () => {
         rowsPerPageValues: [10, 20, 50, 100],
         onRowsPerPageChange,
       };
-      const { getByText, getByTestId } = render(
+
+      const { getByTestId } = render(
         <Datagrid
           columns={columns}
           rows={rowsForPagination}
@@ -725,22 +757,19 @@ describe('Datagrid', () => {
         />
       );
 
-      fireEvent.change(getByTestId('rowPerPageSelect'), {
-        target: { value: 20 },
-      });
+      await userEvent.selectOptions(getByTestId('rowPerPageSelect'), '20');
 
       const appliedSelection = document.querySelector(
         'select[data-testid=rowPerPageSelect]'
       );
 
       expect(appliedSelection).toHaveDisplayValue('20');
-
-      expect(onRowsPerPageChange).toBeCalledWith(
+      expect(onRowsPerPageChange).toHaveBeenCalledWith(
         pagination.rowsPerPageValues[1]
       );
     });
 
-    it('should call the on change page function when clicking the next page button', () => {
+    it('should call the on change page function when clicking the next page button', async () => {
       const onPageChange = jest.fn();
       const pagination = {
         itemCount: rowsForPagination.length,
@@ -749,7 +778,8 @@ describe('Datagrid', () => {
         rowsPerPageValues: [10, 20, 50, 100],
         onPageChange,
       };
-      const { getByText, getByTestId } = render(
+
+      const { getByTestId } = render(
         <Datagrid
           columns={columns}
           rows={rowsForPagination}
@@ -757,15 +787,15 @@ describe('Datagrid', () => {
         />
       );
 
-      fireEvent.click(getByTestId('nextBtn'));
+      await userEvent.click(getByTestId('nextBtn'));
 
-      expect(onPageChange).toBeCalledWith(
+      expect(onPageChange).toHaveBeenCalledWith(
         expect.any(Object),
         pagination.page + 1
       );
     });
 
-    it('should call the on change page function when clicking the previous page button', () => {
+    it('should call the on change page function when clicking the previous page button', async () => {
       const onPageChange = jest.fn();
       const pagination = {
         itemCount: rowsForPagination.length,
@@ -782,9 +812,9 @@ describe('Datagrid', () => {
         />
       );
 
-      fireEvent.click(getByTestId('previousBtn'));
+      await userEvent.click(getByTestId('previousBtn'));
 
-      expect(onPageChange).toBeCalledWith(
+      expect(onPageChange).toHaveBeenCalledWith(
         expect.any(Object),
         pagination.page - 1
       );

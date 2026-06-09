@@ -1,13 +1,13 @@
 # Change Log
 
-## 12.0.1
 
-## 12.0.1-next.0
+## 12.0.5
 
 ### Patch Changes
 
-- Updated dependencies [10d3a7285]
-  - react-magma-dom@4.10.1-next.0
+- ff53255: chore: update @react-magma/dropzone peer dependencies
+- 56f2ed8: fix(Dropzone): Fix accessibility issues
+- e316bcb: Chore: update react-magma-icons version
 
 ## 12.0.0
 

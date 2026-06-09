@@ -7,11 +7,12 @@ import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { Hyperlink } from '../Hyperlink';
 
-/**
- * @children required
- */
 export interface BreadcrumbItemProps
   extends React.HTMLAttributes<HTMLLIElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @internal
    */
@@ -29,35 +30,13 @@ const StyledItem = styled.li`
   display: flex;
 `;
 
-const StyledLink = styled.a<{ isInverse?: boolean }>`
+const StyledSpan = styled.span<{ isInverse?: boolean }>`
   align-items: center;
   display: flex;
   color: ${props =>
     props.isInverse
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral700};
-  text-decoration: none;
-  cursor: default;
-  &:hover,
-  &:focus {
-    color: ${props =>
-      props.isInverse
-        ? props.theme.colors.neutral100
-        : props.theme.colors.neutral700};
-  }
-  &:focus {
-    outline: 2px solid
-      ${props =>
-        props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
-    outline-offset: 2px;
-  }
-`;
-
-const StyledSpan = styled.span<{ isInverse?: boolean }>`
-  align-items: center;
-  display: flex;
 
   svg {
     margin: 0 ${props => props.theme.spaceScale.spacing02};
@@ -89,15 +68,9 @@ export const BreadcrumbItem = React.forwardRef<
         </>
       ) : (
         <>
-          <StyledLink
-            href=""
-            aria-current="page"
-            isInverse={isInverse}
-            theme={theme}
-            onClick={e => e.preventDefault()}
-          >
+          <StyledSpan aria-current="page" isInverse={isInverse} theme={theme}>
             {children}
-          </StyledLink>
+          </StyledSpan>
         </>
       )}
     </StyledItem>

@@ -1,4 +1,5 @@
 const path = require('path');
+const { resolve } = require('path-browserify');
 
 module.exports = {
   pathPrefix: process.env.PATH_PREFIX || '/',
@@ -6,10 +7,18 @@ module.exports = {
     title: 'React Magma Docs',
   },
   flags: {
+    DEV_SSR: false,
     FAST_DEV: true,
-    FAST_REFRESH: false, //recommended for react >= 17.0.0
+    PARALLEL_QUERY_RUNNING: true,
   },
   plugins: [
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages`,
+      },
+    },
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
@@ -18,12 +27,11 @@ module.exports = {
         },
       },
     },
-    'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/static/images`,
       },
     },
     {
@@ -57,20 +65,6 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `patterns`,
-        path: `${__dirname}/src/pages/patterns`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `patterns-intro`,
-        path: `${__dirname}/src/pages/patterns-intro`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
         name: `data-visualization`,
         path: `${__dirname}/src/pages/data-visualization`,
       },
@@ -78,6 +72,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
+        extensions: [`.mdx`, `.md`],
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-images',
@@ -87,10 +82,15 @@ module.exports = {
             },
           },
         ],
+        mdxOptions: {
+          remarkPlugins: [],
+          rehypePlugins: [],
+        },
       },
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-image',
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -100,9 +100,8 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/react-magma-icon.svg', // This path is relative to the root of the site.
+        icon: 'static/images/react-magma-icon.svg',
       },
     },
-    'gatsby-plugin-offline',
   ],
 };

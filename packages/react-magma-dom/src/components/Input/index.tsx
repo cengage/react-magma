@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { omit, useGenerateId } from '../../utils';
+import { descriptionSuffix, omit, useGenerateId } from '../../utils';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
@@ -40,6 +40,7 @@ const getLabelStyles = (
         props.theme.spaceScale.spacing03
       })`;
   let minHeight: string;
+
   if (props.labelPosition === LabelPosition.left) {
     minHeight =
       props.InputSize === InputSize.large
@@ -64,6 +65,7 @@ const StyledFormFieldContainer = styled(FormFieldContainer)<{
     ${props => {
       const { marginBlock, marginInline, maxWidth, minHeight, justifyContent } =
         getLabelStyles(props);
+
       return `
         margin-block: ${marginBlock};
         margin-inline: ${marginInline};
@@ -108,12 +110,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const id = useGenerateId(defaultId);
 
-    const descriptionId =
-      errorMessage || helperMessage || maxCount || maxLength
-        ? `${id}__desc`
-        : null;
-
     const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
+    const counterDescriptionId =
+      typeof maxCharacters === 'number' && hasCharacterCounter
+        ? `${id}__counter`
+        : null;
+    const messageDescriptionId =
+      errorMessage || helperMessage ? `${id}${descriptionSuffix}` : null;
+    const descriptionId =
+      [counterDescriptionId, messageDescriptionId].filter(Boolean).join(' ') ||
+      null;
 
     const maxLengthNum =
       !hasCharacterCounter && maxLength ? maxLength : undefined;

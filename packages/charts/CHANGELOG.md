@@ -1,23 +1,32 @@
 # @react-magma/charts
 
-## 12.0.1
+## 13.1.1
 
 ### Patch Changes
 
-- 49d826503: fix(charts): migrate from microbundle to Rollup with automatic CSS injection
+- d368a9894: fix(charts): Show the tooltip on the focused data point when tabbing through chart dots.
 
-## 12.0.1-next.1
+## 13.1.0
+
+### Minor Changes
+
+- e316bcb: feat: Add accessible chart toolbar with "Show as table", fullscreen, and "More options" buttons
+
+  Adds a new `chartToolbar` prop to `CarbonChart` that renders a WCAG 2.2 compliant toolbar replacing Carbon's built-in navigation controls. When provided, Carbon's toolbar is automatically disabled and replaced with accessible Magma components featuring:
+
+  - **Show as table** button with `aria-haspopup="dialog"` and `aria-expanded`, opening a focus-trapped Magma Modal with semantic headings and an accessible data table
+  - **Fullscreen** button without `aria-haspopup` (fixing the previous WCAG violation)
+  - **More options** dropdown using Magma's Dropdown component with proper menu semantics
+
+  Also exports standalone composable components (`ChartTableButton`, `ChartFullscreenButton`, `ChartMoreOptionsButton`, `ChartTableModal`, `ChartDataTable`, `ChartToolbar`) for adopters who need granular control outside of `CarbonChart`.
 
 ### Patch Changes
 
-- f22efd08d: fix(charts): migrate from microbundle to Rollup with automatic CSS injection
-
-## 12.0.1-next.0
-
-### Patch Changes
-
-- Updated dependencies [10d3a7285]
-  - react-magma-dom@4.10.1-next.0
+- cb81479: chore: add optional `ariaLabel` property for SVG container
+- c00f190: fix(charts): trap focus in Carbon Charts "Show as table" modal
+- ff53255: chore: update charts peer dependencies
+- 7c8c1ea: fix(Charts): Fix magma styles not applied to carbon charts.
+- e316bcb: Chore: update react-magma-icons version
 
 ## 12.0.0
 
@@ -33,46 +42,6 @@
 ### Patch Changes
 
 - ef8a2740a: fix(charts): Add white outline to scatter points
-
-## 12.0.0-next.5
-
-### Major Changes
-
-- 7e66c38ec: chore: fix @react-magma/charts package to include styles and correct exports
-
-## 12.0.0-next.4
-
-### Minor Changes
-
-- f51613699: fix(charts): fix build
-
-## 12.0.0-next.3
-
-### Minor Changes
-
-- 4d04e84e8: feat (CarbonCharts): Add supporting custom colors.
-
-## 12.0.0-next.2
-
-### Patch Changes
-
-- Updated dependencies [22a0a5396]
-  - react-magma-dom@4.10.0-next.3
-
-## 12.0.0-next.1
-
-### Patch Changes
-
-- Updated dependencies [ed8a4eea7]
-  - react-magma-dom@4.10.0-next.1
-
-## 11.0.1-next.0
-
-### Patch Changes
-
-- Updated dependencies [31a4e0318]
-- Updated dependencies [77a8687f4]
-  - react-magma-dom@4.9.1-next.0
 
 ## 11.0.0
 

@@ -10,6 +10,7 @@ import { useIsInverse } from '../../inverse';
 import { magma, ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { XOR } from '../../utils';
+import { AnnouncePoliteness } from '../Announce';
 import { ButtonColor, ButtonVariant } from '../Button';
 import { ButtonGroup, ButtonGroupAlignment } from '../ButtonGroup';
 import { DropdownDropDirection } from '../Dropdown';
@@ -139,7 +140,11 @@ const StyledContainer = styled.div<{
 
 const PageCount = styled(Label)<{ theme: ThemeInterface }>`
   margin: 0 ${props => props.theme.spaceScale.spacing08};
-`;
+` as React.ComponentType<
+  React.ComponentProps<typeof Label> & {
+    'aria-live'?: 'polite' | 'assertive' | 'off';
+  }
+>;
 
 const RowsPerPageLabel = styled.span<{
   isInverse?: boolean;
@@ -180,7 +185,7 @@ const RowsPerPageController = (props: RowsPerPageControllerProps) => {
 
   return (
     <>
-      <RowsPerPageLabel isInverse={isInverse} theme={theme}>
+      <RowsPerPageLabel isInverse={isInverse} theme={theme} aria-hidden="true">
         {i18n.table.pagination.rowsPerPageLabel}:
       </RowsPerPageLabel>
       <NativeSelect
@@ -223,6 +228,8 @@ export const TablePagination = React.forwardRef<
 
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+  const previousButtonRef = React.useRef<HTMLButtonElement>(null);
+  const nextButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const hasRowPerPageChangeFunction =
     onRowsPerPageChange && typeof onRowsPerPageChange === 'function';
@@ -260,13 +267,15 @@ export const TablePagination = React.forwardRef<
   const displayPageEnd = isLastPage ? itemCount : page * rowsPerPage;
 
   function handleRowsPerPageChange(value) {
+    // Always reset page to 1 when rows per page changes
     if (!pageProp) {
       setPageState(1);
-
-      onPageChange &&
-        typeof onPageChange === 'function' &&
-        onPageChange({} as React.SyntheticEvent, 1);
     }
+
+    // Always notify parent to reset page, even if controlled
+    onPageChange &&
+      typeof onPageChange === 'function' &&
+      onPageChange({} as React.SyntheticEvent, 1);
 
     if (!rowsPerPageProp) {
       setRowsPerPageState(value);
@@ -277,6 +286,26 @@ export const TablePagination = React.forwardRef<
 
   const previousButton = pageButtons[0];
   const nextButton = pageButtons[pageButtons.length - 1];
+
+  const previousButtonClick = event => {
+    previousButton.onClick(event);
+
+    setTimeout(() => {
+      if (previousButtonRef.current?.disabled) {
+        nextButtonRef.current?.focus();
+      }
+    }, 0);
+  };
+
+  const nextButtonClick = event => {
+    nextButton.onClick(event);
+
+    setTimeout(() => {
+      if (nextButtonRef.current?.disabled) {
+        previousButtonRef.current?.focus();
+      }
+    }, 0);
+  };
 
   return (
     <StyledContainer
@@ -297,28 +326,35 @@ export const TablePagination = React.forwardRef<
         />
       )}
 
-      <PageCount isInverse={isInverse} theme={theme}>
-        {`${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount}`}
+      <PageCount
+        isInverse={isInverse}
+        theme={theme}
+        testId="page-count"
+        aria-live={AnnouncePoliteness.polite}
+        aria-atomic="true"
+      >
+        {`Page ${page}: ${displayPageStart}-${displayPageEnd} ${i18n.table.pagination.ofLabel} ${itemCount} `}
       </PageCount>
-
       <ButtonGroup alignment={ButtonGroupAlignment.center}>
         <IconButton
+          ref={previousButtonRef}
           aria-label={i18n.table.pagination.previousAriaLabel}
           color={ButtonColor.secondary}
           disabled={previousButton.disabled}
           icon={<WestIcon />}
           isInverse={isInverse}
-          onClick={previousButton.onClick}
+          onClick={previousButtonClick}
           testId="previousBtn"
           variant={ButtonVariant.link}
         />
         <IconButton
+          ref={nextButtonRef}
           aria-label={i18n.table.pagination.nextAriaLabel}
           color={ButtonColor.secondary}
           disabled={nextButton.disabled}
           icon={<EastIcon />}
           isInverse={isInverse}
-          onClick={nextButton.onClick}
+          onClick={nextButtonClick}
           testId="nextBtn"
           variant={ButtonVariant.link}
         />

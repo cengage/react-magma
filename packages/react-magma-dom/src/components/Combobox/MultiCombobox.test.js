@@ -1,17 +1,18 @@
 import React from 'react';
 
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, render, waitFor } from '@testing-library/react';
 
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
 
 import { Combobox as MultiCombobox } from '.';
+import userEvent from '@testing-library/user-event';
 
 describe('MultiCombobox', () => {
   const labelText = 'Label';
   const items = ['Red', 'Blue', 'Green'];
 
-  it('should render a multi-combobox with items', () => {
+  it('should render a multi-combobox with items', async () => {
     const { getByLabelText, getByText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} />
     );
@@ -20,17 +21,18 @@ describe('MultiCombobox', () => {
 
     expect(renderedCombobox).toBeInTheDocument();
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
-  it('should accept items in the default object format', () => {
+  it('should accept items in the default object format', async () => {
     const items = [
       { label: 'Red', value: 'red' },
       { label: 'Blue', value: 'blue' },
       { label: 'Green', value: 'green' },
     ];
+
     const { getByLabelText, getByText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} />
     );
@@ -39,12 +41,12 @@ describe('MultiCombobox', () => {
 
     expect(renderedCombobox).toBeInTheDocument();
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(getByText(items[0].label)).toBeInTheDocument();
   });
 
-  it('should accept items in a custom item format', () => {
+  it('should accept items in a custom item format', async () => {
     function itemToString(item) {
       return item ? item.representation : '';
     }
@@ -80,19 +82,19 @@ describe('MultiCombobox', () => {
 
     expect(renderedCombobox).toBeInTheDocument();
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(getByText(items[0].representation)).toBeInTheDocument();
   });
 
-  it('should render an items list with the default max height', () => {
+  it('should render an items list with the default max height', async () => {
     const { container, getByLabelText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(container.querySelector('ul')).toHaveStyleRule(
       'max-height',
@@ -100,8 +102,9 @@ describe('MultiCombobox', () => {
     );
   });
 
-  it('should render an items list with the passed in max height as a string', () => {
+  it('should render an items list with the passed in max height as a string', async () => {
     const maxHeight = '100px';
+
     const { container, getByLabelText } = render(
       <MultiCombobox
         isMulti
@@ -113,7 +116,7 @@ describe('MultiCombobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(container.querySelector('ul')).toHaveStyleRule(
       'max-height',
@@ -121,8 +124,9 @@ describe('MultiCombobox', () => {
     );
   });
 
-  it('should render an items list with the passed in max height as a number', () => {
+  it('should render an items list with the passed in max height as a number', async () => {
     const maxHeight = 50;
+
     const { container, getByLabelText } = render(
       <MultiCombobox
         isMulti
@@ -134,7 +138,7 @@ describe('MultiCombobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(container.querySelector('ul')).toHaveStyleRule(
       'max-height',
@@ -142,12 +146,13 @@ describe('MultiCombobox', () => {
     );
   });
 
-  it('should render custom item component', () => {
+  it('should render custom item component', async () => {
     const items = [
       { id: '0', label: 'Red', value: 'red' },
       { id: '1', label: 'Blue', value: 'blue' },
       { id: '2', label: 'Green', value: 'green' },
     ];
+
     const CustomItem = props => {
       const { itemRef, item, itemString } = props;
 
@@ -157,6 +162,7 @@ describe('MultiCombobox', () => {
         </li>
       );
     };
+
     const { getByLabelText, getByText, getByTestId } = render(
       <MultiCombobox
         isMulti
@@ -168,33 +174,31 @@ describe('MultiCombobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.click(renderedCombobox);
+    await userEvent.click(renderedCombobox);
 
     expect(getByText(items[0].label)).toBeInTheDocument();
     expect(getByTestId(items[0].id)).toBeInTheDocument();
   });
 
-  it('should allow for selection of multiple items', () => {
+  it('should allow for selection of multiple items', async () => {
     const { getByLabelText, getByText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.click(renderedCombobox);
-
-    fireEvent.click(getByText(items[0]));
-
-    fireEvent.click(renderedCombobox);
-
-    fireEvent.click(getByText(items[1]));
+    await userEvent.click(renderedCombobox);
+    await userEvent.click(getByText(items[0]));
+    await userEvent.click(renderedCombobox);
+    await userEvent.click(getByText(items[1]));
 
     expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
     expect(getByText(items[1], { selector: 'button' })).toBeInTheDocument();
   });
 
-  it('should allow for the removal of selected items with the keyboard', () => {
+  it('should allow for the removal of selected items with the keyboard', async () => {
     const selectedItems = ['Red', 'Blue', 'Green'];
+
     const { getByLabelText, getByText, queryByText } = render(
       <MultiCombobox
         isMulti
@@ -206,9 +210,11 @@ describe('MultiCombobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    renderedCombobox.focus();
+    act(() => {
+      renderedCombobox.focus();
+    });
 
-    fireEvent.keyDown(renderedCombobox, { key: 'Backspace' });
+    await userEvent.keyboard('{Backspace}');
 
     expect(
       queryByText(items[2], { selector: 'button' })
@@ -216,9 +222,11 @@ describe('MultiCombobox', () => {
 
     const selectedItem1 = getByText(items[1]);
 
-    selectedItem1.focus();
+    act(() => {
+      selectedItem1.focus();
+    });
 
-    fireEvent.keyDown(selectedItem1, { key: 'Backspace' });
+    await userEvent.keyboard('{Backspace}');
 
     expect(
       queryByText(items[1], { selector: 'button' })
@@ -226,17 +234,20 @@ describe('MultiCombobox', () => {
 
     const selectedItem2 = getByText(items[0]);
 
-    selectedItem2.focus();
+    act(() => {
+      selectedItem2.focus();
+    });
 
-    fireEvent.keyDown(selectedItem2, { key: 'Delete' });
+    await userEvent.keyboard('{Delete}');
 
     expect(
       queryByText(items[0], { selector: 'button' })
     ).not.toBeInTheDocument();
   });
 
-  it('should change the focused selected item using arrow keys', () => {
+  it('should change the focused selected item using arrow keys', async () => {
     const selectedItems = ['Red', 'Blue', 'Green'];
+
     const { getByLabelText, getByText } = render(
       <MultiCombobox
         isMulti
@@ -248,27 +259,30 @@ describe('MultiCombobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    renderedCombobox.focus();
+    act(() => {
+      renderedCombobox.focus();
+    });
 
-    fireEvent.keyDown(renderedCombobox, { key: 'ArrowLeft' });
+    await userEvent.keyboard('{ArrowLeft}');
 
     expect(document.activeElement).toEqual(getByText(items[2]));
 
-    fireEvent.keyDown(getByText(items[2]), { key: 'ArrowLeft' });
+    await userEvent.keyboard('{ArrowLeft}');
 
     expect(document.activeElement).toEqual(getByText(items[1]));
 
-    fireEvent.keyDown(getByText(items[2]), { key: 'ArrowRight' });
+    await userEvent.keyboard('{ArrowRight}');
 
     expect(document.activeElement).toEqual(getByText(items[2]));
 
-    fireEvent.keyDown(getByText(items[2]), { key: 'ArrowRight' });
+    await userEvent.keyboard('{ArrowRight}');
 
     expect(document.activeElement).toEqual(renderedCombobox);
   });
 
-  it('should allow for a controlled multi-combobox', () => {
+  it('should allow for a controlled multi-combobox', async () => {
     let [, ...selectedItems] = items;
+
     const { getByLabelText, getByText, queryByText, rerender } = render(
       <MultiCombobox
         isMulti
@@ -290,9 +304,8 @@ describe('MultiCombobox', () => {
       getByText(selectedItems[1], { selector: 'button' })
     ).toBeInTheDocument();
 
-    fireEvent.click(renderedCombobox);
-
-    fireEvent.click(getByText(items[0]));
+    await userEvent.click(renderedCombobox);
+    await userEvent.click(getByText(items[0]));
 
     expect(selectedItems[2]).toEqual(items[0]);
 
@@ -315,7 +328,7 @@ describe('MultiCombobox', () => {
       getByText(selectedItems[2], { selector: 'button' })
     ).toBeInTheDocument();
 
-    fireEvent.click(getByText(selectedItems[0], { selector: 'button' }));
+    await userEvent.click(getByText(selectedItems[0], { selector: 'button' }));
 
     expect(selectedItems.includes(items[1])).not.toBeTruthy();
 
@@ -339,8 +352,9 @@ describe('MultiCombobox', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('should call the passed in onIsOpenChange function on multi-combobox open', () => {
+  it('should call the passed in onIsOpenChange function on multi-combobox open', async () => {
     const onIsOpenChange = jest.fn();
+
     const { getByLabelText } = render(
       <MultiCombobox
         isMulti
@@ -350,12 +364,12 @@ describe('MultiCombobox', () => {
       />
     );
 
-    fireEvent.click(getByLabelText(labelText, { selector: 'input' }));
+    await userEvent.click(getByLabelText(labelText, { selector: 'input' }));
 
     expect(onIsOpenChange).toHaveBeenCalled();
   });
 
-  it('should allow for the creation of an item', () => {
+  it('should allow for the creation of an item', async () => {
     const { getByLabelText, getByText } = render(
       <MultiCombobox
         isMulti
@@ -367,17 +381,18 @@ describe('MultiCombobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'Yellow' } });
+    await userEvent.type(renderedCombobox, 'Yellow');
 
     const createItem = getByText('Create "Yellow"');
 
     expect(createItem).toBeInTheDocument();
-    fireEvent.click(createItem);
+
+    await userEvent.click(createItem);
 
     expect(getByText('Yellow', { selector: 'button' })).toBeInTheDocument();
   });
 
-  it('should allow for creation of a custom item', () => {
+  it('should allow for creation of a custom item', async () => {
     function itemToString(item) {
       return item ? item.representation : '';
     }
@@ -422,17 +437,18 @@ describe('MultiCombobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'Yellow' } });
+    await userEvent.type(renderedCombobox, 'Yellow');
 
     const createItem = getByText('Create "Yellow"');
 
     expect(createItem).toBeInTheDocument();
-    fireEvent.click(createItem);
+
+    await userEvent.click(createItem);
 
     expect(getByText('Yellow', { selector: 'button' })).toBeInTheDocument();
   });
 
-  it('should allow for creation of a custom item with controlled items', () => {
+  it('should allow for creation of a custom item with controlled items', async () => {
     let selectedItems = [];
     let items = [
       {
@@ -490,12 +506,13 @@ describe('MultiCombobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'Yellow' } });
+    await userEvent.type(renderedCombobox, 'Yellow');
 
     const createItem = getByText('Create "Yellow"');
 
     expect(createItem).toBeInTheDocument();
-    fireEvent.click(createItem);
+
+    await userEvent.click(createItem);
 
     expect(selectedItems[0].representation).toEqual('Yellow');
 
@@ -516,7 +533,8 @@ describe('MultiCombobox', () => {
     );
 
     expect(getByText('Yellow', { selector: 'button' })).toBeInTheDocument();
-    fireEvent.click(getByText('Yellow', { selector: 'button' }));
+
+    await userEvent.click(getByText('Yellow', { selector: 'button' }));
 
     rerender(
       <MultiCombobox
@@ -531,12 +549,12 @@ describe('MultiCombobox', () => {
       />
     );
 
-    fireEvent.change(renderedCombobox, { target: { value: 'Y' } });
+    await userEvent.type(renderedCombobox, 'Y');
 
     expect(getByText('Yellow', { selector: 'li' })).toBeInTheDocument();
   });
 
-  it('should have an initial selected item', () => {
+  it('should have an initial selected item', async () => {
     const { getByText } = render(
       <MultiCombobox
         isMulti
@@ -546,10 +564,12 @@ describe('MultiCombobox', () => {
       />
     );
 
-    expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+    });
   });
 
-  it('should render items with button type button', () => {
+  it('should render items with button type button', async () => {
     const { getByText } = render(
       <MultiCombobox
         isMulti
@@ -559,15 +579,45 @@ describe('MultiCombobox', () => {
       />
     );
 
-    expect(getByText('Red', { selector: 'button' })).toHaveAttribute(
-      'type',
-      'button'
+    await waitFor(() => {
+      expect(getByText('Red', { selector: 'button' })).toHaveAttribute(
+        'type',
+        'button'
+      );
+    });
+  });
+
+  it('should have aria-label with selected items', async () => {
+    const { getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red', 'Blue']}
+      />
     );
+
+    const label = getByText(labelText);
+
+    expect(label).toHaveAttribute(
+      'aria-label',
+      'Label Multi-select Selected: Red, Blue'
+    );
+  });
+
+  it('should have aria-label without selected items', async () => {
+    const { getByText } = render(
+      <MultiCombobox isMulti labelText={labelText} items={items} />
+    );
+
+    const label = getByText(labelText);
+
+    expect(label).toHaveAttribute('aria-label', 'Label Multi-select');
   });
 
   describe('isTypeahead', () => {
     describe('when isTypeahead is true,', () => {
-      it('should be able to select an item that is not in the items list', () => {
+      it('should be able to select an item that is not in the items list', async () => {
         const { getByText, queryByText } = render(
           <MultiCombobox
             isMulti
@@ -578,11 +628,15 @@ describe('MultiCombobox', () => {
           />
         );
 
-        expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
-        expect(queryByText('Pink', { selector: 'button' })).toBeInTheDocument();
+        await waitFor(() => {
+          expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+          expect(
+            queryByText('Pink', { selector: 'button' })
+          ).toBeInTheDocument();
+        });
       });
 
-      it('should be able to use the initial selected item even if it is not in the items list', () => {
+      it('should be able to use the initial selected item even if it is not in the items list', async () => {
         const { getByText, queryByText } = render(
           <MultiCombobox
             isMulti
@@ -593,11 +647,15 @@ describe('MultiCombobox', () => {
           />
         );
 
-        expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
-        expect(queryByText('Pink', { selector: 'button' })).toBeInTheDocument();
+        await waitFor(() => {
+          expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+          expect(
+            queryByText('Pink', { selector: 'button' })
+          ).toBeInTheDocument();
+        });
       });
 
-      it('and isLoading is true, list loading indicator is visible', () => {
+      it('and isLoading is true, list loading indicator is visible', async () => {
         const { getByText, queryByTestId } = render(
           <MultiCombobox
             isMulti
@@ -608,11 +666,14 @@ describe('MultiCombobox', () => {
             disableCreateItem
           />
         );
-        expect(getByText(/loading.../i)).toBeInTheDocument();
-        expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+
+        await waitFor(() => {
+          expect(getByText(/loading.../i)).toBeInTheDocument();
+          expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+        });
       });
 
-      it('and isLoading is false, no loading indicator is visible', () => {
+      it('and isLoading is false, no loading indicator is visible', async () => {
         const { queryByText, queryByTestId } = render(
           <MultiCombobox
             isMulti
@@ -622,13 +683,16 @@ describe('MultiCombobox', () => {
             isLoading={false}
           />
         );
-        expect(queryByText(/loading.../i)).not.toBeInTheDocument();
-        expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+
+        await waitFor(() => {
+          expect(queryByText(/loading.../i)).not.toBeInTheDocument();
+          expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+        });
       });
     });
 
     describe('when isTypeahead is false,', () => {
-      it('should not select an item that is not in the items list', () => {
+      it('should not select an item that is not in the items list', async () => {
         const { getByText, queryByText } = render(
           <MultiCombobox
             isMulti
@@ -639,13 +703,15 @@ describe('MultiCombobox', () => {
           />
         );
 
-        expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
-        expect(
-          queryByText('Pink', { selector: 'button' })
-        ).not.toBeInTheDocument();
+        await waitFor(() => {
+          expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+          expect(
+            queryByText('Pink', { selector: 'button' })
+          ).not.toBeInTheDocument();
+        });
       });
 
-      it('should not use the initial selected item if it is not in the items list', () => {
+      it('should not use the initial selected item if it is not in the items list', async () => {
         const { getByText, queryByText } = render(
           <MultiCombobox
             isMulti
@@ -656,13 +722,15 @@ describe('MultiCombobox', () => {
           />
         );
 
-        expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
-        expect(
-          queryByText('Pink', { selector: 'button' })
-        ).not.toBeInTheDocument();
+        await waitFor(() => {
+          expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
+          expect(
+            queryByText('Pink', { selector: 'button' })
+          ).not.toBeInTheDocument();
+        });
       });
 
-      it('and isLoading is true, input loading indicator is visible', () => {
+      it('and isLoading is true, input loading indicator is visible', async () => {
         const { queryByText, getByTestId } = render(
           <MultiCombobox
             isMulti
@@ -672,11 +740,14 @@ describe('MultiCombobox', () => {
             isLoading
           />
         );
-        expect(getByTestId('loadingIndicator')).toBeInTheDocument();
-        expect(queryByText(/loading.../i)).not.toBeInTheDocument();
+
+        await waitFor(() => {
+          expect(getByTestId('loadingIndicator')).toBeInTheDocument();
+          expect(queryByText(/loading.../i)).not.toBeInTheDocument();
+        });
       });
 
-      it('and isLoading is false, no loading indicator is visible', () => {
+      it('and isLoading is false, no loading indicator is visible', async () => {
         const { queryByText, queryByTestId } = render(
           <MultiCombobox
             isMulti
@@ -686,23 +757,28 @@ describe('MultiCombobox', () => {
             isLoading={false}
           />
         );
-        expect(queryByText(/loading.../i)).not.toBeInTheDocument();
-        expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+
+        await waitFor(() => {
+          expect(queryByText(/loading.../i)).not.toBeInTheDocument();
+          expect(queryByTestId('loadingIndicator')).not.toBeInTheDocument();
+        });
       });
     });
   });
 
-  it('should disable the combobox', () => {
+  it('should disable the combobox', async () => {
     const { getByLabelText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} disabled />
     );
 
-    expect(getByLabelText(labelText, { selector: 'input' })).toHaveAttribute(
-      'disabled'
-    );
+    await waitFor(() => {
+      expect(getByLabelText(labelText, { selector: 'input' })).toHaveAttribute(
+        'disabled'
+      );
+    });
   });
 
-  it('when disabled, selected items should not be removable', () => {
+  it('when disabled, selected items should not be removable', async () => {
     const { getByLabelText, getByText } = render(
       <MultiCombobox
         isMulti
@@ -716,14 +792,17 @@ describe('MultiCombobox', () => {
     expect(getByLabelText(labelText, { selector: 'input' })).toHaveAttribute(
       'disabled'
     );
+
     const selectedItem = getByText('Red', { selector: 'button' });
+
     expect(selectedItem).toBeInTheDocument();
-    fireEvent.click(selectedItem);
+
+    await userEvent.click(selectedItem);
 
     expect(selectedItem).toBeInTheDocument();
   });
 
-  it('when disabled, isClearable button should not be clickable', () => {
+  it('when disabled, isClearable button should not be clickable', async () => {
     const { getByLabelText, getByText } = render(
       <MultiCombobox
         isMulti
@@ -738,11 +817,13 @@ describe('MultiCombobox', () => {
     expect(getByLabelText(labelText, { selector: 'input' })).toHaveAttribute(
       'disabled'
     );
-    fireEvent.click(getByLabelText(/reset selection/i));
+
+    await userEvent.click(getByLabelText(/reset selection/i));
+
     expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
   });
 
-  it('should allow a selection to be cleared with isClearable prop', () => {
+  it('should allow a selection to be cleared with isClearable prop', async () => {
     const { getByLabelText, getByText, queryByText } = render(
       <MultiCombobox
         isMulti
@@ -754,11 +835,13 @@ describe('MultiCombobox', () => {
     );
 
     expect(getByText('Red', { selector: 'button' })).toBeInTheDocument();
-    fireEvent.click(getByLabelText(/reset selection/i));
+
+    await userEvent.click(getByLabelText(/reset selection/i));
+
     expect(queryByText('Red', { selector: 'button' })).not.toBeInTheDocument();
   });
 
-  it('should allow a selection to be removed by clicking on it', () => {
+  it('should allow a selection to be removed by clicking on it', async () => {
     const { getByText, queryByText } = render(
       <MultiCombobox
         isMulti
@@ -772,32 +855,32 @@ describe('MultiCombobox', () => {
 
     expect(selectedItem).toBeInTheDocument();
 
-    fireEvent.click(selectedItem);
+    await userEvent.click(selectedItem);
 
     expect(queryByText('Red', { selector: 'button' })).not.toBeInTheDocument();
   });
 
-  it('should filter items based on text in the combobox', () => {
+  it('should filter items based on text in the combobox', async () => {
     const { getByLabelText, getByText, queryByText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'R' } });
+    await userEvent.type(renderedCombobox, 'R');
 
     expect(getByText('Red')).toBeInTheDocument();
     expect(queryByText('Blue')).not.toBeInTheDocument();
     expect(queryByText('Green')).not.toBeInTheDocument();
 
-    fireEvent.change(renderedCombobox, { target: { value: '' } });
+    await userEvent.clear(renderedCombobox);
 
     expect(getByText('Red')).toBeInTheDocument();
     expect(getByText('Blue')).toBeInTheDocument();
     expect(getByText('Green')).toBeInTheDocument();
   });
 
-  it('should filter out selected items', () => {
+  it('should filter out selected items', async () => {
     const { getByLabelText, getByText, queryByText } = render(
       <MultiCombobox
         isMulti
@@ -809,46 +892,45 @@ describe('MultiCombobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'R' } });
+    await userEvent.type(renderedCombobox, 'R');
 
     expect(queryByText('Red', { selector: 'li' })).not.toBeInTheDocument();
     expect(queryByText('Blue')).not.toBeInTheDocument();
     expect(queryByText('Green')).not.toBeInTheDocument();
 
-    fireEvent.change(renderedCombobox, { target: { value: '' } });
+    await userEvent.clear(renderedCombobox);
 
     expect(queryByText('Red', { selector: 'li' })).not.toBeInTheDocument();
     expect(getByText('Blue')).toBeInTheDocument();
     expect(getByText('Green')).toBeInTheDocument();
   });
 
-  it('should highlight the first item in the list after typing', () => {
+  it('should highlight the first item in the list after typing', async () => {
     const { getByLabelText, getByText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'R' } });
+    await userEvent.type(renderedCombobox, 'R');
 
-    expect(getByText('Red')).toHaveAttribute('aria-selected', 'true');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
   });
 
-  it('should select the first item highlighted in items list', () => {
+  it('should select the first item highlighted in items list', async () => {
     const { getByText, getByLabelText } = render(
       <MultiCombobox isMulti labelText={labelText} items={items} />
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'R' } });
-
-    fireEvent.keyDown(renderedCombobox, { key: 'Enter' });
+    await userEvent.type(renderedCombobox, 'R');
+    await userEvent.keyboard('{Enter}');
 
     expect(getByText('Red')).toBeInTheDocument();
   });
 
-  it('should not change the selected item if no item list after filter', () => {
+  it('should not change the selected item if no item list after filter', async () => {
     const { getByText, getByLabelText } = render(
       <MultiCombobox
         isMulti
@@ -862,15 +944,15 @@ describe('MultiCombobox', () => {
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-    fireEvent.change(renderedCombobox, { target: { value: 'R' } });
-
-    fireEvent.keyDown(renderedCombobox, { key: 'Enter' });
+    await userEvent.type(renderedCombobox, 'R');
+    await userEvent.keyboard('{Enter}');
 
     expect(getByText('Red')).toBeInTheDocument();
   });
 
-  it('should show an error message', () => {
+  it('should show an error message', async () => {
     const errorMessage = 'This is an error';
+
     const { getByText } = render(
       <MultiCombobox
         isMulti
@@ -880,11 +962,14 @@ describe('MultiCombobox', () => {
       />
     );
 
-    expect(getByText(errorMessage)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(errorMessage)).toBeInTheDocument();
+    });
   });
 
-  it('should show an helper message', () => {
+  it('should show an helper message', async () => {
     const helperMessage = 'This is an error';
+
     const { getByText } = render(
       <MultiCombobox
         isMulti
@@ -894,10 +979,12 @@ describe('MultiCombobox', () => {
       />
     );
 
-    expect(getByText(helperMessage)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(helperMessage)).toBeInTheDocument();
+    });
   });
 
-  it('should allow you to send in your own components', () => {
+  it('should allow you to send in your own components', async () => {
     const LoadingIndicator = () => (
       <div data-testid="customLoadingIndicator">loading</div>
     );
@@ -916,12 +1003,14 @@ describe('MultiCombobox', () => {
       />
     );
 
-    expect(getByTestId('customLoadingIndicator')).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByTestId('customLoadingIndicator')).toBeInTheDocument();
+    });
   });
 
-  it('should show placeholder text until an item is selected', () => {
+  it('should show placeholder text until an item is selected', async () => {
     const placeholder = 'Select item';
-    const { getByText, queryByText, getByLabelText } = render(
+    const { getByText, getByLabelText } = render(
       <MultiCombobox
         isMulti
         labelText={labelText}
@@ -931,17 +1020,18 @@ describe('MultiCombobox', () => {
     );
 
     const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
     expect(renderedCombobox).toHaveAttribute('placeholder', placeholder);
 
-    fireEvent.click(renderedCombobox);
-    fireEvent.click(getByText(items[0]));
+    await userEvent.click(renderedCombobox);
+    await userEvent.click(getByText(items[0]));
 
     expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
     expect(renderedCombobox).not.toHaveAttribute('placeholder');
   });
 
   describe('hasPersistentMenu', () => {
-    it('should keep the items list open', () => {
+    it('should keep the items list open', async () => {
       const { getByLabelText, getByText } = render(
         <MultiCombobox
           isMulti
@@ -953,17 +1043,17 @@ describe('MultiCombobox', () => {
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-      fireEvent.click(renderedCombobox);
-
-      fireEvent.click(getByText(items[0]));
-      fireEvent.click(getByText(items[1]));
+      await userEvent.click(renderedCombobox);
+      await userEvent.click(getByText(items[0]));
+      await userEvent.click(getByText(items[1]));
 
       expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
       expect(getByText(items[1], { selector: 'button' })).toBeInTheDocument();
     });
 
-    it('should allow for the removal of selected items with the keyboard', () => {
+    it('should allow for the removal of selected items with the keyboard', async () => {
       const selectedItems = ['Red', 'Blue', 'Green'];
+
       const { getByLabelText, getByText, queryByText } = render(
         <MultiCombobox
           isMulti
@@ -978,32 +1068,144 @@ describe('MultiCombobox', () => {
       const selectedItem1 = getByText(items[1]);
       const selectedItem2 = getByText(items[0]);
 
-      renderedCombobox.focus();
-      fireEvent.keyDown(renderedCombobox, { key: 'Backspace' });
+      act(() => {
+        renderedCombobox.focus();
+      });
+
+      await userEvent.keyboard('{Backspace}');
+
       expect(
         queryByText(items[2], { selector: 'button' })
       ).not.toBeInTheDocument();
 
-      selectedItem1.focus();
-      fireEvent.keyDown(selectedItem1, { key: 'Backspace' });
+      act(() => {
+        selectedItem1.focus();
+      });
+
+      await userEvent.keyboard('{Backspace}');
+
       expect(
         queryByText(items[1], { selector: 'button' })
       ).not.toBeInTheDocument();
 
-      selectedItem2.focus();
-      fireEvent.keyDown(selectedItem2, { key: 'Delete' });
+      act(() => {
+        selectedItem2.focus();
+      });
+
+      await userEvent.keyboard('{Delete}');
+
       expect(
         queryByText(items[0], { selector: 'button' })
       ).not.toBeInTheDocument();
     });
   });
 
-  describe('events', () => {
-    it('onBlur', () => {
-      const onBlur = jest.fn();
-      ``;
+  it('should loop to the first item and last item when down arrow and up arrow is pressed', async () => {
+    const { getByLabelText, getByText } = render(
+      <MultiCombobox isMulti labelText={labelText} items={items} />
+    );
 
-      const { getByLabelText } = render(
+    const renderedCombobox = getByLabelText(labelText, {
+      selector: 'input',
+    });
+
+    await userEvent.click(renderedCombobox);
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
+
+    // Looping back to the first item
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
+
+    // Looping back to the last item
+    await userEvent.keyboard('{ArrowUp}');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
+  });
+
+  it('should skip disabled items and navigate to the next active item', async () => {
+    const customItems = [
+      {
+        label: 'Red',
+        value: 'red',
+        disabled: false,
+      },
+      {
+        label: 'Blue',
+        value: 'blue',
+        disabled: true,
+      },
+      {
+        label: 'Green',
+        value: 'green',
+        disabled: false,
+      },
+    ];
+
+    const { getByLabelText, getByText } = render(
+      <MultiCombobox isMulti labelText={labelText} items={customItems} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, {
+      selector: 'input',
+    });
+
+    act(() => {
+      renderedCombobox.focus();
+    });
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'false');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
+  });
+
+  it('should skip disabled items when typing to filter', async () => {
+    const customItems = [
+      {
+        label: 'Red',
+        value: 'red',
+        disabled: false,
+      },
+      {
+        label: 'Blue',
+        value: 'blue',
+        disabled: true,
+      },
+      {
+        label: 'Green',
+        value: 'green',
+        disabled: false,
+      },
+    ];
+
+    const { getByLabelText, getByText } = render(
+      <MultiCombobox isMulti labelText={labelText} items={customItems} />
+    );
+
+    const renderedCombobox = getByLabelText(labelText, {
+      selector: 'input',
+    });
+
+    await userEvent.clear(renderedCombobox);
+    await userEvent.type(renderedCombobox, 'Blue');
+
+    expect(getByText('Blue')).toHaveAttribute('aria-selected', 'false');
+    expect(getByText('Blue')).not.toHaveFocus();
+  });
+
+  describe('events', () => {
+    it('onBlur', async () => {
+      const onBlur = jest.fn();
+
+      const { findByLabelText } = render(
         <MultiCombobox
           isMulti
           labelText={labelText}
@@ -1012,34 +1214,42 @@ describe('MultiCombobox', () => {
         />
       );
 
-      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+      const renderedCombobox = await findByLabelText(labelText, {
+        selector: 'input',
+      });
 
-      renderedCombobox.focus();
-
-      fireEvent.blur(renderedCombobox);
+      act(() => {
+        renderedCombobox.focus();
+        renderedCombobox.blur();
+      });
 
       expect(onBlur).toHaveBeenCalled();
     });
 
-    it('onBlur should empty input if no selected item', () => {
+    it('onBlur should empty input if no selected item', async () => {
       const { getByLabelText } = render(
         <MultiCombobox isMulti labelText={labelText} items={items} />
       );
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-      renderedCombobox.focus();
-      fireEvent.change(renderedCombobox, { target: { value: 'yel' } });
+      act(() => {
+        renderedCombobox.focus();
+      });
 
-      fireEvent.blur(renderedCombobox);
+      await userEvent.type(renderedCombobox, 'yel');
+
+      act(() => {
+        renderedCombobox.blur();
+      });
 
       expect(renderedCombobox.value).toEqual('');
     });
 
-    it('onFocus', () => {
+    it('onFocus', async () => {
       const onFocus = jest.fn();
 
-      const { getByLabelText } = render(
+      const { findByLabelText } = render(
         <MultiCombobox
           isMulti
           labelText={labelText}
@@ -1048,14 +1258,18 @@ describe('MultiCombobox', () => {
         />
       );
 
-      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+      const renderedCombobox = await findByLabelText(labelText, {
+        selector: 'input',
+      });
 
-      renderedCombobox.focus();
+      act(() => {
+        renderedCombobox.focus();
+      });
 
       expect(onFocus).toHaveBeenCalled();
     });
 
-    it('onKeyDown', () => {
+    it('onKeyDown', async () => {
       const onKeyDown = jest.fn();
 
       const { getByLabelText } = render(
@@ -1069,12 +1283,12 @@ describe('MultiCombobox', () => {
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-      fireEvent.keyDown(renderedCombobox, { key: 'Enter' });
+      await userEvent.type(renderedCombobox, '{Enter}');
 
       expect(onKeyDown).toHaveBeenCalled();
     });
 
-    it('onKeyUp', () => {
+    it('onKeyUp', async () => {
       const onKeyUp = jest.fn();
 
       const { getByLabelText } = render(
@@ -1088,12 +1302,12 @@ describe('MultiCombobox', () => {
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-      fireEvent.keyUp(renderedCombobox, { key: 'Enter' });
+      await userEvent.type(renderedCombobox, '{Enter}');
 
       expect(onKeyUp).toHaveBeenCalled();
     });
 
-    it('onInputValueChange', () => {
+    it('onInputValueChange', async () => {
       const onInputValueChange = jest.fn();
 
       const { getByLabelText } = render(
@@ -1107,9 +1321,9 @@ describe('MultiCombobox', () => {
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-      fireEvent.change(renderedCombobox, { target: { value: 'Red' } });
+      await userEvent.type(renderedCombobox, 'Red');
 
-      expect(onInputValueChange).toBeCalledWith(
+      expect(onInputValueChange).toHaveBeenCalledWith(
         expect.objectContaining({
           inputValue: 'Red',
         }),
@@ -1117,7 +1331,7 @@ describe('MultiCombobox', () => {
       );
     });
 
-    it('onInputChange', () => {
+    it('onInputChange', async () => {
       const onInputChange = jest.fn();
 
       const { getByLabelText } = render(
@@ -1131,9 +1345,9 @@ describe('MultiCombobox', () => {
 
       const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
 
-      fireEvent.change(renderedCombobox, { target: { value: 'Red' } });
+      await userEvent.type(renderedCombobox, 'Red');
 
-      expect(onInputChange).toBeCalledWith(
+      expect(onInputChange).toHaveBeenCalledWith(
         expect.objectContaining({
           inputValue: 'Red',
         })
@@ -1148,16 +1362,7 @@ describe('MultiCombobox', () => {
       { label: 'Green', value: 'green' },
     ];
 
-    beforeEach(() => {
-      jest.useFakeTimers();
-    });
-
-    afterEach(() => {
-      jest.useRealTimers();
-      jest.resetAllMocks();
-    });
-
-    it('should close the menu when escape key is pressed, and retain the active modal', () => {
+    it('should close the menu when escape key is pressed, and retain the active modal', async () => {
       const { getByLabelText, queryByText, getByText } = render(
         <Modal testId="modal" isOpen>
           Modal Content
@@ -1171,40 +1376,37 @@ describe('MultiCombobox', () => {
 
       expect(renderedCombobox).toBeInTheDocument();
 
-      fireEvent.click(renderedCombobox);
+      await userEvent.click(renderedCombobox);
 
       expect(getByText(items[0].label)).toBeInTheDocument();
 
-      fireEvent.keyDown(getByLabelText(labelText, { selector: 'input' }), {
-        key: 'Escape',
-        code: 27,
-      });
+      await userEvent.keyboard('{Escape}');
 
       expect(
         queryByText(items[2], { selector: 'Red' })
       ).not.toBeInTheDocument();
-
       expect(getByText('Modal Content')).toBeInTheDocument();
     });
 
     it('should close the modal on escape after menu is closed on escape', async () => {
       const onEscKeyMock = jest.fn();
-      const { getByLabelText, queryByText, getByText, debug } = render(
+
+      const { getByLabelText, queryByText, getByText } = render(
         <Modal testId="modal" isOpen onEscKeyDown={onEscKeyMock}>
           Modal Content
           <MultiCombobox isMulti labelText={labelText} items={items} />
         </Modal>
       );
+
       const renderedCombobox = getByLabelText(labelText, {
         selector: 'input',
       });
-      fireEvent.click(renderedCombobox);
+
+      await userEvent.click(renderedCombobox);
+
       expect(getByText(items[0].label)).toBeInTheDocument();
 
-      fireEvent.keyDown(getByLabelText(labelText, { selector: 'input' }), {
-        key: 'Escape',
-        code: 27,
-      });
+      await userEvent.keyboard('{Escape}');
 
       expect(
         queryByText(items[2], { selector: 'Red' })
@@ -1212,17 +1414,122 @@ describe('MultiCombobox', () => {
 
       expect(getByText('Modal Content')).toBeInTheDocument();
 
-      fireEvent.keyDown(getByText('Modal Content'), {
-        key: 'Escape',
-        code: 27,
-      });
-
-      await act(async () => {
-        jest.runAllTimers();
-      });
+      await userEvent.keyboard('{Escape}');
 
       expect(onEscKeyMock).toHaveBeenCalled();
-      expect(queryByText('Modal Content')).not.toBeInTheDocument();
+      await waitFor(() => {
+        expect(queryByText('Modal Content')).not.toBeInTheDocument();
+      });
+    });
+  });
+
+  it('should announce the removal of a selected item', async () => {
+    const { getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+        isClearable
+      />
+    );
+
+    await userEvent.click(getByText('Red', { selector: 'button' }));
+
+    await waitFor(() => {
+      expect(getByText('Red has been removed')).toBeInTheDocument();
+    });
+  });
+
+  it('should announce clearing multiple selected items', async () => {
+    const { getByLabelText, getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red', 'Blue']}
+        isClearable
+      />
+    );
+
+    await userEvent.click(getByLabelText(/reset selection/i));
+
+    expect(
+      getByText('Label has been cleared. Red, Blue were removed')
+    ).toBeInTheDocument();
+  });
+
+  it('should announce clearing single selected item', async () => {
+    const { getByLabelText, getByText } = render(
+      <MultiCombobox
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+        isClearable
+      />
+    );
+
+    await userEvent.click(getByLabelText(/reset selection/i));
+
+    expect(getByText('Label has been cleared')).toBeInTheDocument();
+  });
+
+  describe('Accessibility - scrollIntoView', () => {
+    it('should call scrollIntoView on focused item when navigating with keyboard', async () => {
+      const mockScrollIntoView = jest.fn();
+      Element.prototype.scrollIntoView = mockScrollIntoView;
+
+      const { getByLabelText } = render(
+        <MultiCombobox isMulti labelText={labelText} items={items} />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, {
+        selector: 'input',
+      });
+
+      await userEvent.click(renderedCombobox);
+
+      await userEvent.keyboard('{ArrowDown}');
+
+      await waitFor(() => {
+        expect(mockScrollIntoView).toHaveBeenCalledWith({
+          behavior: 'smooth',
+          block: 'nearest',
+        });
+      });
+
+      await userEvent.keyboard('{ArrowDown}');
+
+      await waitFor(() => {
+        expect(mockScrollIntoView).toHaveBeenCalledTimes(2);
+      });
+
+      mockScrollIntoView.mockRestore();
+    });
+
+    it('should add data-highlighted attribute to focused item', async () => {
+      const { getByLabelText, getByText } = render(
+        <MultiCombobox isMulti labelText={labelText} items={items} />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, {
+        selector: 'input',
+      });
+
+      await userEvent.click(renderedCombobox);
+      await userEvent.keyboard('{ArrowDown}');
+
+      await waitFor(() => {
+        expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
+      });
+
+      await userEvent.keyboard('{ArrowDown}');
+
+      await waitFor(() => {
+        expect(getByText('Red')).toHaveAttribute('data-highlighted', 'false');
+        expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'true');
+      });
     });
   });
 });

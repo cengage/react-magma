@@ -39,7 +39,7 @@ import { Hyperlink } from 'react-magma-dom';
 
 export function Example() {
   return (
-    <Hyperlink target="_blank" to="https://www.google.com">
+    <Hyperlink opensInNewTab to="https://www.google.com">
       Google
     </Hyperlink>
   );
@@ -67,7 +67,7 @@ export function Example() {
       <Hyperlink
         textTransform={ButtonTextTransform.none}
         styledAs="Button"
-        target="_blank"
+        opensInNewTab
         to="https://www.google.com"
       >
         Google
@@ -77,7 +77,7 @@ export function Example() {
         color={ButtonColor.secondary}
         textTransform={ButtonTextTransform.none}
         styledAs="Button"
-        target="_blank"
+        opensInNewTab
         to="https://www.google.com"
       >
         Google
@@ -86,7 +86,7 @@ export function Example() {
       <Hyperlink
         color={ButtonColor.danger}
         styledAs="Button"
-        target="_blank"
+        opensInNewTab
         to="https://www.google.com"
       >
         Google
@@ -95,10 +95,36 @@ export function Example() {
       <Hyperlink
         color={ButtonColor.marketing}
         styledAs="Button"
-        target="_blank"
+        opensInNewTab
         to="https://www.google.com"
       >
         Google
+      </Hyperlink>
+    </>
+  );
+}
+```
+
+## Opens in New Tab
+
+Use the `opensInNewTab` prop to make links open in a new browser tab or window. This automatically adds the necessary accessibility attributes (`target="_blank"`, `rel="noopener noreferrer"`) and screen reader text ("Opens in a new tab") to ensure the link is secure and accessible.
+
+```tsx
+import React from 'react';
+
+import { Hyperlink, Spacer, SpacerAxis } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Hyperlink to="https://www.google.com">Same Tab Link</Hyperlink>
+      <Spacer size="12" axis={SpacerAxis.horizontal} />
+      <Hyperlink opensInNewTab to="https://www.google.com">
+        New Tab Link
+      </Hyperlink>
+      <Spacer size="12" axis={SpacerAxis.horizontal} />
+      <Hyperlink styledAs="Button" opensInNewTab to="https://www.google.com">
+        Button Style New Tab
       </Hyperlink>
     </>
   );
@@ -138,7 +164,7 @@ export function Example() {
       >
         <span style={{ flex: '0 0 auto' }}>
           <Hyperlink
-            target="_blank"
+            opensInNewTab
             to="./"
             hasUnderline={false}
             icon={<KeyboardArrowLeftIcon aria-hidden />}
@@ -149,7 +175,7 @@ export function Example() {
         </span>
         <span style={{ flex: '0 0 auto' }}>
           <Hyperlink
-            target="_blank"
+            opensInNewTab
             to="./"
             hasUnderline={false}
             icon={<KeyboardArrowRightIcon aria-hidden />}
@@ -162,7 +188,7 @@ export function Example() {
       <Spacer size={'8px'} axis={SpacerAxis.both} />
       <Hyperlink
         styledAs="Button"
-        target="_blank"
+        opensInNewTab
         to="./"
         icon={<KeyboardArrowLeftIcon aria-hidden />}
         iconPosition={HyperlinkIconPosition.left}
@@ -172,7 +198,7 @@ export function Example() {
       <Spacer size={'8px'} axis={SpacerAxis.horizontal} />
       <Hyperlink
         styledAs="Button"
-        target="_blank"
+        opensInNewTab
         to="./"
         icon={[
           <KeyboardArrowLeftIcon aria-hidden key={0} />,
@@ -185,7 +211,7 @@ export function Example() {
       <Spacer size={'8px'} axis={SpacerAxis.horizontal} />
       <Hyperlink
         styledAs="Button"
-        target="_blank"
+        opensInNewTab
         to="./"
         icon={<KeyboardArrowRightIcon aria-hidden />}
         iconPosition={HyperlinkIconPosition.right}
@@ -195,7 +221,7 @@ export function Example() {
       <Spacer size={'8px'} axis={SpacerAxis.both} />
       <Paragraph visualStyle={TypographyVisualStyle.headingSmall}>
         <Hyperlink
-          target="_blank"
+          opensInNewTab
           to="https://www.google.com"
           hasUnderline={false}
           icon={[
@@ -219,7 +245,7 @@ export function Example() {
       </Paragraph>
       <Paragraph visualStyle={TypographyVisualStyle.bodyLarge}>
         <Hyperlink
-          target="_blank"
+          opensInNewTab
           to="https://www.google.com"
           hasUnderline={false}
           icon={[
@@ -237,7 +263,7 @@ export function Example() {
       </Paragraph>
       <Paragraph visualStyle={TypographyVisualStyle.bodySmall}>
         <Hyperlink
-          target="_blank"
+          opensInNewTab
           to="https://www.google.com"
           hasUnderline={false}
           icon={[
@@ -255,7 +281,7 @@ export function Example() {
       </Paragraph>
       <Paragraph visualStyle={TypographyVisualStyle.bodyXSmall}>
         <Hyperlink
-          target="_blank"
+          opensInNewTab
           to="https://www.google.com"
           hasUnderline={false}
           icon={[
@@ -295,10 +321,12 @@ import { OpenInNewIcon } from 'react-magma-icons';
 export function Example() {
   return (
     <>
-      <Hyperlink
-        target="_blank"
-        to="https://www.google.com"
-        hasUnderline={false}
+      <Hyperlink 
+        opensInNewTab 
+        to="https://www.google.com" 
+        hasUnderline={false} 
+        icon={<OpenInNewIcon size={magma.iconSizes.small} aria-hidden />}
+        iconPosition={HyperlinkIconPosition.right}
       >
         Google
       </Hyperlink>
@@ -306,10 +334,8 @@ export function Example() {
       Cupcake ipsum dolor sit amet wafer biscuit toffee. Chocolate bar brownie
       lemon drops tootsie roll pudding muffin powder pudding.{' '}
       <Hyperlink
-        target="_blank"
+        opensInNewTab
         to="https://sallysbakingaddiction.com/triple-chocolate-layer-cake/"
-        icon={<OpenInNewIcon size={magma.iconSizes.small} aria-hidden />}
-        iconPosition={HyperlinkIconPosition.right}
       >
         I love chocolate cake
       </Hyperlink>{' '}
@@ -356,14 +382,14 @@ export function Example() {
     <Card isInverse>
       <CardBody>
         <Paragraph>
-          <Hyperlink isInverse target="_blank" to="https://www.google.com">
+          <Hyperlink isInverse opensInNewTab to="https://www.google.com">
             Google inverse link
           </Hyperlink>
         </Paragraph>
         <Hyperlink
           isInverse
           styledAs="Button"
-          target="_blank"
+          opensInNewTab
           to="https://www.google.com"
         >
           Inverse link styled as button

@@ -7,7 +7,12 @@ import { CheckBoxIcon, CheckBoxOutlineBlankIcon } from 'react-magma-icons';
 import { useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { omit, reactNodeToString, useGenerateId } from '../../utils';
+import {
+  descriptionSuffix,
+  omit,
+  reactNodeToString,
+  useGenerateId,
+} from '../../utils';
 import { HiddenStyles } from '../../utils/UtilityStyles';
 import { FormGroupContext } from '../FormGroup';
 import { InputMessage } from '../Input/InputMessage';
@@ -93,6 +98,10 @@ export interface CheckboxProps
    * @internal
    */
   hideFocus?: boolean;
+  /**
+   * Text for aria-label attribute for the checkbox.
+   */
+  ariaLabel?: string;
 }
 
 export const HiddenLabelText = styled.span`
@@ -108,6 +117,7 @@ function buildCheckIconColor(props) {
     if (props.isInverse) {
       return transparentize(0.6, props.theme.colors.neutral100);
     }
+
     return props.theme.colors.neutral300;
   }
   if (props.isInverse) {
@@ -116,6 +126,7 @@ function buildCheckIconColor(props) {
   if (props.isChecked || props.isIndeterminate) {
     return props.color;
   }
+
   return props.theme.colors.neutral700;
 }
 
@@ -160,29 +171,30 @@ export const StyledFakeInput = styled.span<{
   }
 `;
 
-export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
-  (props, ref) => {
+export const Checkbox = React.memo(
+  React.forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
     const { checked, id: defaultId, defaultChecked, onChange } = props;
-    const [isChecked, updateIsChecked] = React.useState(
-      Boolean(defaultChecked) || Boolean(checked)
+    const isControlled = typeof checked === 'boolean';
+
+    // Local state only for uncontrolled usage; controlled reads directly
+    // from the `checked` prop to avoid an extra render per change.
+    const [uncontrolledChecked, setUncontrolledChecked] = React.useState(
+      Boolean(defaultChecked)
     );
 
-    const id = useGenerateId(defaultId);
-    const isControlled = typeof checked === 'boolean' ? true : false;
+    const isChecked = isControlled ? (checked as boolean) : uncontrolledChecked;
 
-    React.useEffect(() => {
-      if (typeof checked === 'boolean') {
-        updateIsChecked(checked);
-      }
-    }, [checked]);
+    const id = useGenerateId(defaultId);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
       const { checked: targetChecked } = event.target;
 
-      onChange && typeof onChange === 'function' && onChange(event);
+      if (typeof onChange === 'function') {
+        onChange(event);
+      }
 
       if (!isControlled) {
-        updateIsChecked(targetChecked);
+        setUncontrolledChecked(targetChecked);
       }
     }
 
@@ -200,11 +212,12 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       isTextVisuallyHidden,
       testId,
       textPosition,
+      ariaLabel,
       ...rest
     } = props;
     const other = omit(['defaultChecked'], rest);
 
-    const descriptionId = errorMessage && `${id}__desc`;
+    const descriptionId = errorMessage && `${id}${descriptionSuffix}`;
     const groupDescriptionId = context.descriptionId;
 
     const describedBy =
@@ -225,7 +238,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         <StyledContainer style={containerStyle}>
           <HiddenInput
             {...other}
-            aria-label={reactNodeToString(labelText)}
+            aria-label={ariaLabel ?? reactNodeToString(labelText)}
             aria-describedby={describedBy}
             id={id}
             data-testid={testId}
@@ -275,5 +288,5 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         )}
       </>
     );
-  }
+  })
 );

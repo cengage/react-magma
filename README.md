@@ -22,7 +22,15 @@ This site has general usage information, as well as information on all of the av
 
 ### System Dependencies
 
-Node v18.20.4 or greater with npm v10.7.0 or greater
+**React Magma v4:**
+
+- React v17
+- Node v18.20.4 or greater with npm v10.7.0 or greater
+
+**React Magma v5:**
+
+- React v18
+- Node v20.10.0 or greater with npm v10.7.0 or greater
 
 ### Steps to Run Documentation locally
 
@@ -45,7 +53,7 @@ git clone git@github.com:cengage/react-magma.git
 npm ci
 ```
 
-3.  Run Storybook to view examples of each component with
+3. Run Storybook to view examples of each component with
 
 ```
 npm run storybook
@@ -113,15 +121,6 @@ npm run test-dom
 
 `npm run covg` to see the generated lcov coverage reports.
 
-#### Wallaby.js
-
-[![Wallaby.js](https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=for-the-badge&logo=github)](https://wallabyjs.com/oss/)
-
-This repository contributors are welcome to use
-[Wallaby.js OSS License](https://wallabyjs.com/oss/) to get
-test results immediately as you type, and see the results in
-your editor right next to your code.
-
 ### Updating the Docs
 
 The `react-magma-docs` is the project for the documentation site. Any changes to the public API of an existing component or the creation of a new component **must** be accurately captured documented here.
@@ -166,7 +165,6 @@ The heading for the docs page can be created by using markdown with the followin
 
 The URL following the name of the component is the link to respective Designs Docs page, and is optional. The `api` string indicates that the page is in the `Component API`.
 
-
 #### CodeSandbox Examples
 
 Create a basic usage example and an example for each of the different use cases of the component, using [CodeSandbox](https://https://codesandbox.io/).
@@ -187,11 +185,12 @@ export function Example() {
 The property tables that we use are generated automatically, but require some wiring up. The interface in the typescript file must be annotated with typedoc comments. You will also need to add the needed props to the frontmatter in the `mdx` file. This will allow for our props table component to match the props referenced in the frontmatter to build out the props table. For example:
 
 ```typescript
-/**
- * @children required
- */
 export interface SomeComponentProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * The description for a component prop.
    * @default "the default prop value"
@@ -252,7 +251,7 @@ All commits will have a topic and short description with an optional subject.
 
 There is a short version of the format that will pass the `commit-msg` check and a longer version for handling changes that need more explanation and for marking commits that contain breaking changes.
 
-#### Commit Message Components:
+#### Commit Message Components
 
 - type (required)
 - subject
@@ -326,30 +325,10 @@ More verbose description of what was added with the icon feature of the button.
 BREAKING CHANGE: description of what part of the API brakes with this commit"
 ```
 
-#### Commit Tooling
-
-To facilitate getting the commit format right, you can create your commit messages by adding the files you want to commit with `git add <files>` then by running `npm run cm`, which will step you through the individual parts of the commit message.
-
-##### Selecting a topic from the predefined list
-
-![running npm run cm shows the topic selector screen for commitizen](./readme_assets/commitizen_topic.png)
-
-##### Walking through the remaining questions
-
-![commitizen guides you through entering scope, description, optional body and footer by prompting yes or no for breaking changes](./readme_assets/commitizen_scope_thru_end.png)
-
-##### The resulting commit produced by the wizard
-
-![the resulting commit produced by commitizen](./readme_assets/commitizen_resulting_commit.png)
-
-##### Retry
-
-If the `pre-commit` scripts prevent your commit due to a test or linting failure, you can fix those items, `git add` those updates and rather than going through the commit message wizard again, you can retry with `npm run cm-retry`.
-
-
 </details>
 
 #### Playwright
+
 To install the required browsers (Chromium, Firefox, WebKit) used by Playwright: (should be run from the root of the project)
 
 ```
@@ -379,3 +358,16 @@ To see executing playwright tests in real time:
 ```sh
 npm run playwright:realtime
 ```
+
+## Thanks
+
+[![Wallaby.js](https://img.shields.io/badge/wallaby.js-powered-blue.svg?style=for-the-badge&logo=github)](https://wallabyjs.com/oss/)
+
+This repository contributors are welcome to use
+[Wallaby.js OSS License](https://wallabyjs.com/oss/) to get
+test results immediately as you type, and see the results in
+your editor right next to your code.
+
+<a href="https://www.chromatic.com/"><img src="https://user-images.githubusercontent.com/321738/84662277-e3db4f80-af1b-11ea-88f5-91d67a5e59f6.png" width="153" height="30" alt="Chromatic" /></a>
+
+Thanks to [Chromatic](https://www.chromatic.com/) for providing the visual testing platform that helps us review UI changes and catch visual regressions.

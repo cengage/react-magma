@@ -8,10 +8,11 @@ import { magma, ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { TypographyVisualStyle, TypographyComponent } from '../Typography';
 
-/**
- * @children required
- */
 export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Allows an ordered list to start at a determined value of a letter or number.
    */

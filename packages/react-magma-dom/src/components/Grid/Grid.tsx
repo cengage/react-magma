@@ -63,10 +63,11 @@ export enum GridAutoFlow {
   columnDense = 'column-dense',
 }
 
-/**
- * @children required
- */
 export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Defines the display style property. Sets grid or inline-grid.
    * @default GridDisplay.grid
@@ -110,16 +111,17 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   gridAutoFlow?: GridAutoFlow;
   /**
    * Semantic HTML tag to be used for the Grid
-   * Examples: `nav`, `footer`, `main`, `figure`, `aside`, etc.
-   * @default `div`
+   * Examples: \`nav\`, \`footer\`, \`main\`, \`figure\`, \`aside\`, etc.
+   * @default \`div\`
    */
   as?: string;
 }
 
-/**
- * @children required
- */
 export interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Defines the span of a column on a grid item.
    */
@@ -142,8 +144,8 @@ export interface GridItemProps extends React.HTMLAttributes<HTMLDivElement> {
   gridItemAlignSelf?: GridItemAlignSelf;
   /**
    * Semantic HTML tag to be used for the GridItem
-   * Examples: `nav`, `footer`, `main`, `figure`, `aside`, etc.
-   * @default `div`
+   * Examples: \`nav\`, \`footer\`, \`main\`, \`figure\`, \`aside\`, etc.
+   * @default \`div\`
    */
   as?: string;
 }

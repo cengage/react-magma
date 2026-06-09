@@ -12,10 +12,13 @@ import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import { ButtonShape, ButtonSize, ButtonType, ButtonVariant } from '../Button';
+import { ClearAnnouncer } from '../Select/ClearAnnouncer';
 import { defaultComponents } from '../Select/components';
+import { ItemListAnnouncer } from '../Select/ItemListAnnouncer';
 import { ItemsList } from '../Select/ItemsList';
 import { SelectContainer } from '../Select/SelectContainer';
 import { IconWrapper, SelectedItemButton } from '../Select/shared';
+import { setFocusedItem } from '../Select/utils';
 
 import { MultiComboboxProps } from '.';
 
@@ -64,15 +67,27 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   const theme = React.useContext(ThemeContext);
   const i18n = React.useContext(I18nContext);
+  const [clearAnnouncement, setClearAnnouncement] = React.useState('');
+  const clearAnnouncementTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
 
   const [allItems, displayItems, setDisplayItems, updateItemsRef] =
     useComboboxItems(defaultItems, items);
+
+  // Cleanup timeout on unmount
+  React.useEffect(() => {
+    return () => {
+      if (clearAnnouncementTimeoutRef.current) {
+        clearTimeout(clearAnnouncementTimeoutRef.current);
+      }
+    };
+  }, []);
 
   function checkSelectedItemValidity(itemToCheck) {
     // When using Typeahead, don't validate the items
     if (isTypeahead) {
       return allItems;
     }
+
     return (
       allItems.current.findIndex(
         i => itemToString(i) === itemToString(itemToCheck)
@@ -90,6 +105,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
     reset,
   } = useMultipleSelection({
     ...props,
+    // Disable downshift's built-in a11y removal message to use custom clearAnnounce
+    getA11yRemovalMessage: () => '',
     ...(props.initialSelectedItems && {
       initialSelectedItems: props.initialSelectedItems.filter(
         checkSelectedItemValidity
@@ -114,6 +131,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         typeof item === 'object' && item.react_magma__created_item
           ? item.value
           : itemToString(item);
+
       return (
         (selectedItems.findIndex(
           selectedItem => itemToString(selectedItem) === itemToString(item)
@@ -180,12 +198,15 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       onIsOpenChange(changes);
   }
 
+  const filteredItems = getFilteredItems(displayItems);
+
   function stateReducer(state, actionAndChanges) {
     const { type, changes } = actionAndChanges;
+
     switch (type) {
       case useCombobox.stateChangeTypes.InputKeyDownEnter: {
-        const newSelectedItem =
-          getFilteredItems(displayItems)[state.highlightedIndex];
+        const newSelectedItem = filteredItems[state.highlightedIndex];
+
         return {
           ...changes,
           ...(newSelectedItem && {
@@ -211,6 +232,14 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         return {
           ...changes,
           isOpen: changes.isOpen,
+        };
+      case useCombobox.stateChangeTypes.InputKeyDownArrowDown:
+      case useCombobox.stateChangeTypes.InputKeyDownArrowUp:
+        // Keep controlled navigation manually via handleOnKeyDown handler
+        return {
+          ...state,
+          highlightedIndex: state.highlightedIndex,
+          isOpen: true,
         };
       default:
         return {
@@ -242,7 +271,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   } = useCombobox({
     ...comboboxProps,
     itemToString,
-    items: getFilteredItems(displayItems),
+    items: filteredItems,
     onInputValueChange:
       onInputValueChange && typeof onInputValueChange === 'function'
         ? changes => onInputValueChange(changes, setDisplayItems)
@@ -265,6 +294,23 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
   function handleRemoveSelectedItem(event: React.SyntheticEvent, selectedItem) {
     event.stopPropagation();
 
+    // Announce the removal of the specific item
+    const itemName = itemToString(selectedItem);
+    const removeMessage = i18n.combobox.multi?.removeItemAnnounce?.replace(
+      /\{selectedItem\}/g,
+      itemName
+    );
+
+    setClearAnnouncement(removeMessage || '');
+
+    // Clear the announcement after a delay
+    if (clearAnnouncementTimeoutRef.current) {
+      clearTimeout(clearAnnouncementTimeoutRef.current);
+    }
+    clearAnnouncementTimeoutRef.current = setTimeout(() => {
+      setClearAnnouncement('');
+    }, 1000);
+
     onRemoveSelectedItem && typeof onRemoveSelectedItem === 'function'
       ? onRemoveSelectedItem(selectedItem)
       : removeSelectedItem(selectedItem);
@@ -282,6 +328,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   function itemsArrayToString(itemsArray: any[]) {
     const allItems = [];
+
     itemsArray.map(item => {
       if (typeof item === 'string') {
         allItems.push(item);
@@ -298,24 +345,56 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   const clearIndicatori18n =
     selectedItems.length > 1
-      ? i18n.combobox.multi.clearIndicatorAriaLabel
-      : i18n.combobox.clearIndicatorAriaLabel;
+      ? i18n.combobox.multi?.clearIndicatorAriaLabel
+      : i18n.combobox?.clearIndicatorAriaLabel;
 
   const clearIndicatorAriaLabel = clearIndicatori18n
-    .replace(/\{labelText\}/g, labelText)
-    .replace(/\{selectedItem\}/g, itemsArrayToString(selectedItems));
+    ?.replace(/\{labelText\}/g, labelText)
+    ?.replace(/\{selectedItem\}/g, itemsArrayToString(selectedItems));
+
+  const multiComboboxAriaLabel =
+    selectedItems.length > 0
+      ? i18n.combobox.multi?.ariaLabelWithSelectedItems
+          ?.replace(/\{labelText\}/g, labelText)
+          ?.replace(
+            /\{selectedItems\}/g,
+            selectedItems.map(item => itemToString(item)).join(', ')
+          )
+      : i18n.combobox.multi?.ariaLabelWithoutSelectedItems?.replace(
+          /\{labelText\}/g,
+          labelText
+        );
 
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
     event.stopPropagation();
 
     if (inputRef.current) {
       const inputElement = inputRef.current.querySelector('input');
+
       if (inputElement) {
         inputElement.focus();
       }
     }
 
     reset();
+
+    const selectedItemsText = itemsArrayToString(selectedItems);
+    const clearMessage =
+      selectedItems.length > 1
+        ? i18n.combobox.multi?.clearAnnounce
+            ?.replace(/\{labelText\}/g, labelText)
+            ?.replace(/\{selectedItems\}/g, selectedItemsText)
+        : i18n.combobox.clearAnnounce?.replace(/\{labelText\}/g, labelText);
+
+    setClearAnnouncement(clearMessage || '');
+
+    // Clear the announcement after a delay to allow for re-announcements
+    if (clearAnnouncementTimeoutRef.current) {
+      clearTimeout(clearAnnouncementTimeoutRef.current);
+    }
+    clearAnnouncementTimeoutRef.current = setTimeout(() => {
+      setClearAnnouncement('');
+    }, 1000);
   }
 
   const selectedItemsContent =
@@ -324,7 +403,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         {selectedItems.map((multiSelectedItem, index) => {
           return (
             <SelectedItemButton
-              aria-label={i18n.multiCombobox.selectedItemButtonAriaLabel.replace(
+              aria-label={i18n.multiCombobox.selectedItemButtonAriaLabel?.replace(
                 /\{selectedItem\}/g,
                 itemToString(multiSelectedItem)
               )}
@@ -352,14 +431,29 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
       </>
     ) : null;
 
-  function handleOnKeyDown(event: any) {
+  function handleOnKeyDown(event: React.KeyboardEvent) {
     const count = document.querySelectorAll('[aria-modal="true"]').length;
 
-    if (event.key === 'Escape') {
-      if (count >= 1 && inputRef.current) {
-        inputRef.current.focus();
-      }
-      event.nativeEvent.stopImmediatePropagation();
+    switch (event.key) {
+      case 'Escape':
+        if (count >= 1 && inputRef.current) {
+          inputRef.current.focus();
+        }
+        event.nativeEvent.stopImmediatePropagation();
+        break;
+      case 'ArrowDown':
+        setFocusedItem(1, highlightedIndex, filteredItems, setHighlightedIndex);
+        break;
+      case 'ArrowUp':
+        setFocusedItem(
+          -1,
+          highlightedIndex,
+          filteredItems,
+          setHighlightedIndex
+        );
+        break;
+      default:
+        break;
     }
 
     onInputKeyDown &&
@@ -382,6 +476,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
 
   return (
     <SelectContainer
+      ariaLabel={multiComboboxAriaLabel}
       descriptionId={ariaDescribedBy}
       errorMessage={errorMessage}
       getLabelProps={getLabelProps}
@@ -440,6 +535,7 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         )}
       </ComboboxInput>
       <ItemsList
+        aria-multiselectable="true"
         customComponents={customComponents}
         floatingElementStyles={floatingElementStyles}
         getItemProps={getItemProps}
@@ -454,6 +550,8 @@ export function MultiCombobox<T>(props: MultiComboboxProps<T>) {
         menuStyle={menuStyle}
         setFloating={refs.setFloating}
       />
+      <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
+      {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}
     </SelectContainer>
   );
 }

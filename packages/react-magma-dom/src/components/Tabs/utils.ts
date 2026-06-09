@@ -69,6 +69,7 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
         tabsWrapperRef.current,
         theme.direction
       );
+
       // use 1 for the potential rounding error with browser zooms.
       showStartScroll = isRtl
         ? scrollLeft < scrollWidth - clientWidth - 1
@@ -90,6 +91,7 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
     const handleResize = debounce(updateScrollButtonState, 100);
 
     window.addEventListener('resize', handleResize);
+
     return () => {
       handleResize.clear();
       window.removeEventListener('resize', handleResize);
@@ -116,18 +118,55 @@ export function useTabsMeta(theme, orientation, backgroundColor, isInverse) {
   ];
 }
 
+export function useScrollTabFocus(
+  tabsWrapperRef: React.RefObject<HTMLElement>,
+  orientation: TabsOrientation
+) {
+  const focusFirstVisibleTab = React.useCallback(() => {
+    const wrapper = tabsWrapperRef.current;
+
+    if (!wrapper) return;
+
+    const tabs = wrapper.querySelectorAll<HTMLElement>('[role="tab"]');
+
+    if (!tabs || tabs.length === 0) return;
+
+    const wrapperRect = wrapper.getBoundingClientRect();
+    const isVertical = orientation === TabsOrientation.vertical;
+    const tolerance = 2;
+
+    for (const tab of Array.from(tabs)) {
+      const tabRect = tab.getBoundingClientRect();
+      const isVisible = isVertical
+        ? tabRect.top >= wrapperRect.top - tolerance &&
+          tabRect.bottom <= wrapperRect.bottom + tolerance
+        : tabRect.left >= wrapperRect.left - tolerance &&
+          tabRect.right <= wrapperRect.right + tolerance;
+
+      if (isVisible) {
+        tab.focus();
+        break;
+      }
+    }
+  }, [tabsWrapperRef, orientation]);
+
+  return { focusFirstVisibleTab };
+}
+
 // ScrollSpy by Dewaun Ayers:
 // https://blog.devgenius.io/diy-scrollspy-4f1c270cafaf
 
 export const ScrollSpy = ({ handleScroll }) => {
   const isInViewPort = (entry, offset = 0) => {
     const rect = entry.boundingClientRect;
+
     return rect.top <= offset && rect.bottom >= offset;
   };
 
   useLayoutEffect(() => {
     const eachArea = document.querySelectorAll('[data-scrollspy]');
     const scrollables = [].slice.call(eachArea);
+
     for (const scrollable of scrollables) {
       //Fixes Jest
       if (!window.IntersectionObserver) return;
@@ -144,6 +183,7 @@ export const ScrollSpy = ({ handleScroll }) => {
           threshold: Array.from({ length: 1000 }, (_, i) => (i + 1) * 0.001),
         }
       );
+
       observer.observe(scrollable);
     }
   }, [handleScroll]);

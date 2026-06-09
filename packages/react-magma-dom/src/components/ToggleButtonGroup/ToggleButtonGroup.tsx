@@ -2,15 +2,16 @@ import * as React from 'react';
 
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId } from '../../utils';
+import { descriptionSuffix, useGenerateId } from '../../utils';
 import { ButtonColor, ButtonSize } from '../Button';
 import { ButtonGroup, ButtonGroupProps } from '../ButtonGroup';
 import { ToggleButton, ToggleButtonProps } from '../ToggleButton/ToggleButton';
 
-/**
- * @children required
- */
 export interface ToggleButtonGroupProps extends ButtonGroupProps {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Description for aria-describedby
    */
@@ -146,19 +147,21 @@ export const ToggleButtonGroup = React.forwardRef<
     const item = child as React.ReactElement<
       React.PropsWithChildren<ToggleButtonProps>
     >;
+
     if (item.type === ToggleButton && exclusive) {
       return React.cloneElement(item, {
         key: index,
         isChecked: selectedValues.includes(item.props.value?.toString()),
       });
     }
+
     return child;
   });
 
   const id = useGenerateId(defaultId);
   const descriptionId = props.descriptionId
     ? props.descriptionId
-    : `${id}__desc`;
+    : `${id}${descriptionSuffix}`;
 
   return (
     <ButtonGroup

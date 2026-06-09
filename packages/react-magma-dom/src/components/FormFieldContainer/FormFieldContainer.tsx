@@ -2,8 +2,11 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 
+import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { descriptionSuffix, labelSuffix } from '../../utils';
+import { Announce } from '../Announce';
 import { CharacterCounter } from '../CharacterCounter';
 import { InputMessage } from '../Input/InputMessage';
 import { InputIconPosition, InputSize } from '../InputBase';
@@ -100,6 +103,10 @@ export interface FormFieldContainerBaseProps {
    * @internal
    */
   testId?: string;
+  /**
+   * @internal
+   */
+  additionalContent?: React.ReactNode;
 }
 
 const StyledFormFieldContainer = styled.div<{
@@ -135,8 +142,23 @@ function InputPositionWrapper(props) {
   if (props.labelPosition === LabelPosition.left) {
     return <StyledInputWrapper>{props.children}</StyledInputWrapper>;
   }
+
   return props.children;
 }
+
+const UpperWrapper = styled.div<{ labelPosition?: LabelPosition }>`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: ${props =>
+    props.labelPosition === LabelPosition.left
+      ? `0 ${props.theme.spaceScale.spacing03} 0 0`
+      : `0 0 ${props.theme.spaceScale.spacing03} 0`};
+
+  & > label {
+    margin: 0;
+  }
+`;
 
 export const FormFieldContainer = React.forwardRef<
   HTMLDivElement,
@@ -163,15 +185,20 @@ export const FormFieldContainer = React.forwardRef<
     maxLength,
     messageStyle,
     testId,
+    additionalContent,
     ...rest
   } = props;
   const theme = React.useContext(ThemeContext);
   const isInverse = useIsInverse(isInverseProp);
+  const { isWindows, isChrome } = useDeviceDetect();
 
   const countProps = maxCount || maxLength;
-
-  const descriptionId =
-    errorMessage || helperMessage || countProps ? `${fieldId}__desc` : null;
+  const counterDescriptionId =
+    typeof countProps === 'number' && hasCharacterCounter
+      ? `${fieldId}__counter`
+      : null;
+  const messageDescriptionId =
+    errorMessage || helperMessage ? `${fieldId}${descriptionSuffix}` : null;
 
   return (
     <InverseContext.Provider value={{ isInverse }}>
@@ -187,20 +214,26 @@ export const FormFieldContainer = React.forwardRef<
         theme={theme}
       >
         {labelText && (
-          <Label
-            actionable={actionable}
-            htmlFor={fieldId}
-            iconPosition={iconPosition}
-            labelPosition={labelPosition}
-            size={inputSize}
-            style={labelStyle}
-          >
-            {isLabelVisuallyHidden ? (
-              <VisuallyHidden>{labelText}</VisuallyHidden>
-            ) : (
-              labelText
-            )}
-          </Label>
+          <UpperWrapper labelPosition={labelPosition} theme={theme}>
+            <Label
+              actionable={actionable}
+              htmlFor={fieldId}
+              id={`${fieldId}${labelSuffix}`}
+              iconPosition={iconPosition}
+              labelPosition={labelPosition}
+              size={inputSize}
+              style={labelStyle}
+            >
+              {isLabelVisuallyHidden ? (
+                <VisuallyHidden>{labelText}</VisuallyHidden>
+              ) : (
+                labelText
+              )}
+            </Label>
+            {additionalContent &&
+              labelPosition !== LabelPosition.left &&
+              additionalContent}
+          </UpperWrapper>
         )}
         <InputPositionWrapper
           labelPosition={labelPosition}
@@ -210,7 +243,7 @@ export const FormFieldContainer = React.forwardRef<
           {typeof countProps === 'number' && hasCharacterCounter && (
             <CharacterCounter
               hasCharacterCounter={hasCharacterCounter}
-              id={descriptionId}
+              id={counterDescriptionId}
               inputLength={inputLength}
               isInverse={isInverse}
               maxCount={maxCount}
@@ -221,11 +254,8 @@ export const FormFieldContainer = React.forwardRef<
 
           {(errorMessage || helperMessage) && (
             <InputMessage
-              aria-describedby={
-                errorMessage ? `${errorMessage}` : `${helperMessage}`
-              }
               hasError={!!errorMessage}
-              id={descriptionId}
+              id={messageDescriptionId}
               isInverse={isInverse}
               style={messageStyle}
             >
@@ -233,6 +263,16 @@ export const FormFieldContainer = React.forwardRef<
                 <>{errorMessage ? errorMessage : helperMessage}</>
               )}
             </InputMessage>
+          )}
+
+          {!(isWindows && isChrome) && (
+            <VisuallyHidden>
+              <Announce>
+                {(errorMessage || helperMessage) && (
+                  <>{errorMessage ? errorMessage : helperMessage}</>
+                )}
+              </Announce>
+            </VisuallyHidden>
           )}
         </InputPositionWrapper>
       </StyledFormFieldContainer>

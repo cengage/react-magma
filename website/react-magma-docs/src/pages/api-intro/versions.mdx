@@ -20,168 +20,161 @@ import { getVersions } from '../../utils';
 export const NextVersionTable = () => {
   const [tags, setTags] = React.useState([]);
   const [row, setRow] = React.useState();
-  React.useEffect(() => {
-    const getVersionsAndTags = new Promise(res => res(getVersions()));
+
+React.useEffect(() => {
+const getVersionsAndTags = new Promise(res => res(getVersions()));
+
     getVersionsAndTags.then(function (val) {
       setTags(val.tags);
     });
-  }, []);
-  React.useEffect(() => {
-    if (tags && tags.next) {
-      setRow(
-        <TableRow>
-          <TableCell>v{tags.next.version}</TableCell>
-          <TableCell>
-            <a href="https://next--upbeat-sinoussi-f675aa.netlify.app/">Docs</a>
-          </TableCell>
-        </TableRow>
-      );
-    } else {
-      setRow(<></>);
-    }
-  }, [tags]);
-  return (
-    <>
-      <Table minWidth={100}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell style={{ width: '250px' }}>
-              Version
-            </TableHeaderCell>
-            <TableHeaderCell>Docs link</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>{row}</TableBody>
-      </Table>
-    </>
-  );
-};
+
+}, []);
+React.useEffect(() => {
+if (tags && tags.next) {
+setRow(
+
+<TableRow>
+<TableCell>v{tags.next.version}</TableCell>
+<TableCell>
+<a href="https://next--upbeat-sinoussi-f675aa.netlify.app/">Docs</a>
+</TableCell>
+</TableRow>
+);
+} else {
+setRow(<></>);
+}
+}, [tags]);
+
+return (
+
+<>
+  <Table minWidth={100}>
+    <TableHead>
+      <TableRow>
+        <TableHeaderCell style={{ width: '250px' }}>Version</TableHeaderCell>
+        <TableHeaderCell>Docs link</TableHeaderCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>{row}</TableBody>
+  </Table>
+</>
+); };
 
 export const ReleasedVersionsTable = () => {
   const [allVersions, setAllVersions] = React.useState([]);
   const [rows, setRows] = React.useState();
-  React.useEffect(() => {
-    const getVersionsAndTags = new Promise(res => res(getVersions()));
+
+React.useEffect(() => {
+const getVersionsAndTags = new Promise(res => res(getVersions()));
+
     getVersionsAndTags.then(function (val) {
       setAllVersions(val.versions.reverse());
     });
-  }, []);
-  React.useEffect(() => {
-    if (allVersions) {
-      const tableRow = allVersions.map((row, i) => {
-        return (
-          <TableRow key={`row${i}`}>
-            <TableCell key={`row${i}-version`}>
-              v{row.version}
-              {row.tags.includes('latest') || i === 0 ? (
-                <span>&nbsp;✅&nbsp;</span>
-              ) : (
-                ''
-              )}
-              &nbsp;
-              {row.deprecated ? (
-                <Tag size={TagSize.small}>Deprecated</Tag>
-              ) : null}
-            </TableCell>
-            <TableCell key={`row${i}-date`}>{row.date}</TableCell>
-            <TableCell key={`row${i}-docs`}>
-              {semver.gte(row.version, '4.0.0') ||
-              row.version === '3.11.0' ||
-              row.version === '2.6.0' ? (
-                <a
-                  href={`https://react-magma.cengage.com/version/${row.version}`}
-                >
-                  Docs
-                </a>
-              ) : (
-                <></>
-              )}
-            </TableCell>
-            <TableCell key={`row${i}-react`}>
-              {row.peerDependencies?.react}
-            </TableCell>
-          </TableRow>
-        );
-      });
+
+}, []);
+React.useEffect(() => {
+if (allVersions) {
+const tableRow = allVersions.map((row, i) => {
+return (
+
+<TableRow key={`row${i}`}>
+  <TableCell key={`row${i}-version`}>
+    v{row.version}
+    {row.tags.includes('latest') || i === 0 ? <span>&nbsp;✅&nbsp;</span> : ''}
+    &nbsp;
+    {row.deprecated ? <Tag size={TagSize.small}>Deprecated</Tag> : null}
+  </TableCell>
+  <TableCell key={`row${i}-date`}>{row.date}</TableCell>
+  <TableCell key={`row${i}-docs`}>
+    {semver.gte(row.version, '4.0.0') ||
+    row.version === '3.11.0' ||
+    row.version === '2.6.0' ? (
+      <a href={`https://react-magma.cengage.com/version/${row.version}`}>
+        Docs
+      </a>
+    ) : (
+      <></>
+    )}
+  </TableCell>
+  <TableCell key={`row${i}-react`}>{row.peerDependencies?.react}</TableCell>
+</TableRow>
+); });
+
       setRows(tableRow);
     } else {
       setRows(<></>);
     }
-  }, [allVersions]);
-  return (
-    <>
-      <Table minWidth={100}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell style={{ width: '250px' }}>
-              Version
-            </TableHeaderCell>
-            <TableHeaderCell>Release date</TableHeaderCell>
-            <TableHeaderCell>Docs link</TableHeaderCell>
-            <TableHeaderCell>Supported React Version</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>{rows}</TableBody>
-      </Table>
-    </>
-  );
-};
+
+}, [allVersions]);
+
+return (
+
+<>
+  <Table minWidth={100}>
+    <TableHead>
+      <TableRow>
+        <TableHeaderCell style={{ width: '250px' }}>Version</TableHeaderCell>
+        <TableHeaderCell>Release date</TableHeaderCell>
+        <TableHeaderCell>Docs link</TableHeaderCell>
+        <TableHeaderCell>Supported React Version</TableHeaderCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>{rows}</TableBody>
+  </Table>
+</>
+); };
 
 export const IconsTable = () => {
   const [allVersions, setAllVersions] = React.useState([]);
   const [rows, setRows] = React.useState();
-  React.useEffect(() => {
-    const getVersionsAndTags = new Promise(res => res(getVersions('icons')));
+
+React.useEffect(() => {
+const getVersionsAndTags = new Promise(res => res(getVersions('icons')));
+
     getVersionsAndTags.then(function (val) {
       setAllVersions(val.versions.reverse());
     });
-  }, []);
-  React.useEffect(() => {
-    if (allVersions) {
-      const tableRow = allVersions.map((row, i) => {
-        return (
-          <TableRow key={`row${i}`}>
-            <TableCell key={`row${i}-version`}>
-              v{row.version}
-              {row.tags.includes('latest') || i === 0 ? (
-                <span>&nbsp;✅&nbsp;</span>
-              ) : (
-                ''
-              )}
-              &nbsp;
-              {row.deprecated ? (
-                <Tag size={TagSize.small}>Deprecated</Tag>
-              ) : null}
-            </TableCell>
-            <TableCell key={`row${i}-date`}>{row.date}</TableCell>
-            <TableCell key={`row${i}-react`}>
-              {row.peerDependencies?.react}
-            </TableCell>
-          </TableRow>
-        );
-      });
+
+}, []);
+React.useEffect(() => {
+if (allVersions) {
+const tableRow = allVersions.map((row, i) => {
+return (
+
+<TableRow key={`row${i}`}>
+  <TableCell key={`row${i}-version`}>
+    v{row.version}
+    {row.tags.includes('latest') || i === 0 ? <span>&nbsp;✅&nbsp;</span> : ''}
+    &nbsp;
+    {row.deprecated ? <Tag size={TagSize.small}>Deprecated</Tag> : null}
+  </TableCell>
+  <TableCell key={`row${i}-date`}>{row.date}</TableCell>
+  <TableCell key={`row${i}-react`}>{row.peerDependencies?.react}</TableCell>
+</TableRow>
+); });
+
       setRows(tableRow);
     } else {
       setRows(<></>);
     }
-  }, [allVersions]);
-  return (
-    <>
-      <Table minWidth={100}>
-        <TableHead>
-          <TableRow>
-            <TableHeaderCell style={{ width: '250px' }}>
-              Version
-            </TableHeaderCell>
-            <TableHeaderCell>Release date</TableHeaderCell>
-            <TableHeaderCell>Supported React Version</TableHeaderCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>{rows}</TableBody>
-      </Table>
-    </>
-  );
-};
+
+}, [allVersions]);
+
+return (
+
+<>
+  <Table minWidth={100}>
+    <TableHead>
+      <TableRow>
+        <TableHeaderCell style={{ width: '250px' }}>Version</TableHeaderCell>
+        <TableHeaderCell>Release date</TableHeaderCell>
+        <TableHeaderCell>Supported React Version</TableHeaderCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>{rows}</TableBody>
+  </Table>
+</>
+); };
 
 <PageContent componentName="react_magma_versions" type="api_intro">
 

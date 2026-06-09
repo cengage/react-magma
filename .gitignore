@@ -11,6 +11,9 @@ packages/react-magma-dom/README.md
 *_cache*
 .npmrc
 packages/react-magma-landing/dist
+.idea/
 
 .nx/cache
 .nx/workspace-data
+
+ed2go*

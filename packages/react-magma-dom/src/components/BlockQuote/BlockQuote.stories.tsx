@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react-webpack5';
 
 import { Card, CardBody } from '../Card';
 import {
@@ -25,22 +25,16 @@ export default {
   component: BlockQuote,
   argTypes: {
     contextVariant: {
-      control: {
-        type: 'select',
-        options: TypographyContextVariant,
-      },
+      control: { type: 'select' },
+      options: Object.values(TypographyContextVariant),
     },
     color: {
-      control: {
-        type: 'select',
-        options: TypographyColor,
-      },
+      control: { type: 'select' },
+      options: Object.values(TypographyColor),
     },
     visualStyle: {
-      control: {
-        type: 'select',
-        options: TypographyVisualStyle,
-      },
+      control: { type: 'select' },
+      options: Object.values(TypographyVisualStyle),
     },
   },
 } as Meta;

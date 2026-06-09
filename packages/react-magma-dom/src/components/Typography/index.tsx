@@ -75,6 +75,7 @@ export function getBaseFontColor(props, isHeading = false) {
   ) {
     return props.theme.colors.primary600;
   }
+
   return props.theme.colors.neutral700;
 }
 

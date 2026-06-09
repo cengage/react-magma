@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, render, fireEvent } from '@testing-library/react';
+import { act, render, fireEvent, waitFor } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
@@ -270,6 +270,82 @@ describe('i18n', () => {
     expect(getByText(shown.announce)).toBeInTheDocument();
     expect(getByLabelText(hidden.ariaLabel)).toBeInTheDocument();
     expect(getByText(hidden.buttonText)).toBeInTheDocument();
+  });
+});
+
+describe('custom button text width measurement', () => {
+  it('measures button width after mount and applies it to input style', async () => {
+    const labelText = 'test label';
+    const MOCKED_WIDTH = 90;
+
+    Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+      configurable: true,
+      get() {
+        return MOCKED_WIDTH;
+      },
+    });
+
+    const { getByLabelText } = render(
+      <PasswordInput
+        labelText={labelText}
+        showPasswordButtonText="Reveal"
+        hidePasswordButtonText="Conceal"
+      />
+    );
+
+    await waitFor(() => {
+      const input = getByLabelText(labelText);
+      expect(input).toHaveStyle(`width: calc(100% - ${MOCKED_WIDTH + 3}px)`);
+    });
+
+    Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+      configurable: true,
+      get() {
+        return 0;
+      },
+    });
+  });
+
+  it('re-measures button width after toggling password visibility', async () => {
+    const labelText = 'test label';
+    let mockedWidth = 60;
+
+    Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+      configurable: true,
+      get() {
+        return mockedWidth;
+      },
+    });
+
+    const { getByLabelText, getByText } = render(
+      <PasswordInput
+        labelText={labelText}
+        showPasswordButtonText="Reveal"
+        hidePasswordButtonText="Conceal longer"
+      />
+    );
+
+    await waitFor(() => {
+      expect(getByLabelText(labelText)).toHaveStyle(
+        `width: calc(100% - ${mockedWidth + 3}px)`
+      );
+    });
+
+    mockedWidth = 100;
+    fireEvent.click(getByText('Reveal').parentElement);
+
+    await waitFor(() => {
+      expect(getByLabelText(labelText)).toHaveStyle(
+        `width: calc(100% - ${mockedWidth + 3}px)`
+      );
+    });
+
+    Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+      configurable: true,
+      get() {
+        return 0;
+      },
+    });
   });
 });
 

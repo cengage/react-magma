@@ -77,15 +77,18 @@ export enum StepperOrientation {
 
 function buildSeparatorBackgroundColors(props) {
   const { isInverse, theme, stepStatus } = props;
+
   if (isInverse) {
     if (stepStatus === StepStatus.completed) {
       return theme.colors.tertiary500;
     }
+
     return theme.colors.primary400;
   } else {
     if (stepStatus === StepStatus.completed) {
       return theme.colors.primary500;
     }
+
     return theme.colors.neutral300;
   }
 }

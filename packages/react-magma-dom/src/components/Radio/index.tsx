@@ -85,6 +85,7 @@ function buildRadioIconColor(props) {
     if (props.isInverse) {
       return transparentize(0.6, props.theme.colors.neutral100);
     }
+
     return props.theme.colors.neutral300;
   }
   if (props.isInverse) {
@@ -93,6 +94,7 @@ function buildRadioIconColor(props) {
   if (props.isChecked) {
     return props.color;
   }
+
   return props.theme.colors.neutral700;
 }
 
@@ -101,8 +103,10 @@ export function buildErrorBorder(props) {
     if (props.isInverse) {
       return `0 0 0 2px ${props.theme.colors.danger300}`;
     }
+
     return `0 0 0 2px ${props.theme.colors.danger}`;
   }
+
   return `inherit`;
 }
 
@@ -170,7 +174,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
       <StyledContainer style={containerStyle}>
         <HiddenInput
           {...other}
-          aria-labelledby={context.descriptionId}
+          aria-describedby={context.descriptionId}
           id={id}
           ref={ref}
           checked={context.selectedValue === value}

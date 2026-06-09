@@ -4,17 +4,19 @@ import { autoUpdate } from '@floating-ui/react-dom';
 import { useMultipleSelection, useSelect } from 'downshift';
 import { CloseIcon } from 'react-magma-icons';
 
+import { ClearAnnouncer } from './ClearAnnouncer';
 import { defaultComponents } from './components';
+import { ItemListAnnouncer } from './ItemListAnnouncer';
 import { ItemsList } from './ItemsList';
 import { SelectContainer } from './SelectContainer';
 import { SelectTriggerButton } from './SelectTriggerButton';
 import { IconWrapper, SelectedItemButton, SelectText } from './shared';
+import { isItemDisabled } from './utils';
+import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { useForkedRef } from '../../utils';
 import { ButtonSize, ButtonVariant } from '../Button';
-import { isItemDisabled } from './utils';
-import { useMagmaFloating } from '../../hooks/useMagmaFloating';
 
 import { instanceOfDefaultItemObject, MultiSelectProps } from '.';
 
@@ -22,6 +24,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const {
     additionalContent,
     ariaDescribedBy,
+    ariaLabel,
     components: customComponents,
     errorMessage,
     hasError,
@@ -51,6 +54,21 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     initialHighlightedIndex,
   } = props;
 
+  const theme = React.useContext(ThemeContext);
+  const i18n = React.useContext(I18nContext);
+  const [clearAnnouncement, setClearAnnouncement] = React.useState('');
+  const [isItemFocused, setItemFocus] = React.useState(false);
+  const clearAnnouncementTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  // Cleanup timeout on unmount
+  React.useEffect(() => {
+    return () => {
+      if (clearAnnouncementTimeoutRef.current) {
+        clearTimeout(clearAnnouncementTimeoutRef.current);
+      }
+    };
+  }, []);
+
   function checkSelectedItemValidity(itemToCheck: T) {
     const itemIndex = items.findIndex(
       i => itemToString(i) === itemToString(itemToCheck)
@@ -71,6 +89,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     if (isItemDisabled(filteredItems[index])) {
       return -1;
     }
+
     return index;
   }
 
@@ -88,6 +107,10 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
           )
         );
       }
+    } else {
+      const index = filteredItems.findIndex(item => !isItemDisabled(item));
+
+      setHighlightedIndex(index);
     }
 
     onIsOpenChange &&
@@ -105,6 +128,8 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     reset,
   } = useMultipleSelection<T>({
     ...props,
+    // Disable downshift's built-in a11y removal message to use custom clearAnnounce
+    getA11yRemovalMessage: () => '',
     ...(props.initialSelectedItems && {
       initialSelectedItems: props.initialSelectedItems.filter(
         checkSelectedItemValidity
@@ -138,6 +163,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
 
   function stateReducer(state, actionAndChanges) {
     const { type, changes } = actionAndChanges;
+
     switch (type) {
       case useSelect.stateChangeTypes.ToggleButtonKeyDownCharacter:
         return {
@@ -152,6 +178,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
             selectedItem: state.selectedItem,
           };
         }
+
         return changes;
       default:
         return changes;
@@ -195,13 +222,27 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   function handleRemoveSelectedItem(event: React.SyntheticEvent, selectedItem) {
     event.stopPropagation();
 
+    // Announce the removal of the specific item
+    const itemName = itemToString(selectedItem);
+    const removeMessage = i18n.select.multi?.removeItemAnnounce?.replace(
+      /\{selectedItem\}/g,
+      itemName
+    );
+
+    setClearAnnouncement(removeMessage || '');
+
+    // Clear the announcement after a delay
+    if (clearAnnouncementTimeoutRef.current) {
+      clearTimeout(clearAnnouncementTimeoutRef.current);
+    }
+    clearAnnouncementTimeoutRef.current = setTimeout(() => {
+      setClearAnnouncement('');
+    }, 1000);
+
     onRemoveSelectedItem && typeof onRemoveSelectedItem === 'function'
       ? onRemoveSelectedItem(selectedItem)
       : removeSelectedItem(selectedItem);
   }
-
-  const theme = React.useContext(ThemeContext);
-  const i18n = React.useContext(I18nContext);
 
   const toggleButtonRef = React.useRef<HTMLButtonElement>();
   const forkedtoggleButtonRef = useForkedRef(innerRef || null, toggleButtonRef);
@@ -241,6 +282,7 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
 
   function itemsArrayToString(itemsArray: any[]) {
     const allItems = [];
+
     itemsArray.map(item => {
       if (typeof item === 'string') {
         allItems.push(item);
@@ -261,6 +303,19 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     .replace(/\{labelText\}/g, labelText)
     .replace(/\{selectedItem\}/g, itemsArrayToString(selectedItems));
 
+  const multiSelectAriaLabel =
+    selectedItems.length > 0
+      ? i18n.select.multi.ariaLabelWithSelectedItems
+          .replace(/\{labelText\}/g, labelText)
+          .replace(
+            /\{selectedItems\}/g,
+            selectedItems.map(item => itemToString(item)).join(', ')
+          )
+      : i18n.select.multi.ariaLabelWithoutSelectedItems.replace(
+          /\{labelText\}/g,
+          labelText
+        );
+
   function defaultHandleClearIndicatorClick(event: React.SyntheticEvent) {
     event.stopPropagation();
 
@@ -269,6 +324,24 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
     }
 
     reset();
+
+    const selectedItemsText = itemsArrayToString(selectedItems);
+    const clearMessage =
+      selectedItems.length > 1
+        ? i18n.select.multi?.clearAnnounce
+            ?.replace(/\{labelText\}/g, labelText)
+            ?.replace(/\{selectedItems\}/g, selectedItemsText)
+        : i18n.select.clearAnnounce?.replace(/\{labelText\}/g, labelText);
+
+    setClearAnnouncement(clearMessage || '');
+
+    // Clear the announcement after a delay to allow for re-announcements
+    if (clearAnnouncementTimeoutRef.current) {
+      clearTimeout(clearAnnouncementTimeoutRef.current);
+    }
+    clearAnnouncementTimeoutRef.current = setTimeout(() => {
+      setClearAnnouncement('');
+    }, 1000);
   }
 
   const { floatingStyles, refs, elements, update } = useMagmaFloating();
@@ -285,105 +358,121 @@ export function MultiSelect<T>(props: MultiSelectProps<T>) {
   const floatingElementStyles = { ...floatingStyles, width: '100%' };
 
   return (
-    <SelectContainer
-      additionalContent={additionalContent}
-      descriptionId={ariaDescribedBy}
-      errorMessage={errorMessage}
-      getLabelProps={getLabelProps}
-      helperMessage={helperMessage}
-      isLabelVisuallyHidden={isLabelVisuallyHidden}
-      labelPosition={labelPosition}
-      labelStyle={labelStyle}
-      labelText={labelText}
-      labelWidth={labelWidth}
-      isInverse={isInverse}
-      messageStyle={messageStyle}
-    >
-      <SelectTriggerButton
-        ariaDescribedBy={ariaDescribedBy}
-        toggleButtonProps={toggleButtonProps}
-        hasError={hasError}
-        disabled={disabled}
+    <>
+      <SelectContainer
+        additionalContent={additionalContent}
+        ariaLabel={ariaLabel ?? multiSelectAriaLabel}
+        descriptionId={ariaDescribedBy}
+        errorMessage={errorMessage}
+        getLabelProps={getLabelProps}
+        helperMessage={helperMessage}
+        isLabelVisuallyHidden={isLabelVisuallyHidden}
+        labelPosition={labelPosition}
+        labelStyle={labelStyle}
+        labelText={labelText}
+        labelWidth={labelWidth}
         isInverse={isInverse}
-        setReference={refs.setReference}
-        style={inputStyle}
+        messageStyle={messageStyle}
       >
-        {selectedItems && selectedItems.length > 0 ? (
-          selectedItems.map((multiSelectedItem, index) => {
-            const multiSelectedItemString = itemToString(multiSelectedItem);
-            return (
-              <SelectedItemButton
-                aria-label={i18n.multiSelect.selectedItemButtonAriaLabel.replace(
-                  /\{selectedItem\}/g,
-                  multiSelectedItemString
-                )}
-                key={`selected-item-${index}`}
-                {...getSelectedItemProps({
-                  selectedItem: multiSelectedItem,
-                  index,
-                })}
-                onClick={event =>
-                  handleRemoveSelectedItem(event, multiSelectedItem)
-                }
-                onFocus={() => setActiveIndex(index)}
-                theme={theme}
-                isInverse={isInverse}
-                disabled={disabled}
-              >
-                {multiSelectedItemString}
-                <IconWrapper>
-                  <CloseIcon size={theme.iconSizes.xSmall} />
-                </IconWrapper>
-              </SelectedItemButton>
-            );
-          })
-        ) : (
-          <SelectText
-            isShowPlaceholder
-            isInverse={isInverse}
-            isDisabled={disabled}
-            theme={theme}
-          >
-            {typeof placeholder === 'string'
-              ? placeholder
-              : i18n.multiSelect.placeholder}
-          </SelectText>
-        )}
-      </SelectTriggerButton>
-
-      {isClearable && selectedItems?.length > 0 && (
-        <ClearIndicator
-          aria-label={clearIndicatorAriaLabel}
-          icon={<CloseIcon size={theme.iconSizes.xSmall} />}
-          isInverse={isInverse}
-          onClick={defaultHandleClearIndicatorClick}
-          size={ButtonSize.small}
-          variant={ButtonVariant.link}
+        <SelectTriggerButton
+          ariaDescribedBy={ariaDescribedBy}
+          toggleButtonProps={toggleButtonProps}
+          hasError={hasError}
           disabled={disabled}
-          testId="clearIndicator"
-          style={{
-            position: 'absolute',
-            right: '3.25em',
-            top: '50%',
-            transform: 'translateY(-50%)',
-          }}
+          isInverse={isInverse}
+          setReference={refs.setReference}
+          style={inputStyle}
+        >
+          {selectedItems && selectedItems.length > 0 ? (
+            selectedItems.map((multiSelectedItem, index) => {
+              const multiSelectedItemString = itemToString(multiSelectedItem);
+
+              return (
+                <SelectedItemButton
+                  aria-hidden={!isItemFocused}
+                  aria-label={i18n.multiSelect.selectedItemButtonAriaLabel.replace(
+                    /\{selectedItem\}/g,
+                    multiSelectedItemString
+                  )}
+                  key={`selected-item-${index}`}
+                  {...getSelectedItemProps({
+                    selectedItem: multiSelectedItem,
+                    index,
+                  })}
+                  onClick={event =>
+                    handleRemoveSelectedItem(event, multiSelectedItem)
+                  }
+                  onFocus={event => {
+                    event.stopPropagation();
+                    setActiveIndex(index);
+                    setItemFocus(true);
+                  }}
+                  onBlur={() => {
+                    setItemFocus(false);
+                  }}
+                  theme={theme}
+                  isInverse={isInverse}
+                  disabled={disabled}
+                >
+                  {multiSelectedItemString}
+                  <IconWrapper>
+                    <CloseIcon size={theme.iconSizes.xSmall} />
+                  </IconWrapper>
+                </SelectedItemButton>
+              );
+            })
+          ) : (
+            <SelectText
+              isShowPlaceholder
+              isInverse={isInverse}
+              isDisabled={disabled}
+              theme={theme}
+            >
+              {typeof placeholder === 'string'
+                ? placeholder
+                : i18n.multiSelect.placeholder}
+            </SelectText>
+          )}
+        </SelectTriggerButton>
+
+        {isClearable && selectedItems?.length > 0 && (
+          <ClearIndicator
+            aria-label={clearIndicatorAriaLabel}
+            icon={<CloseIcon size={theme.iconSizes.xSmall} />}
+            isInverse={isInverse}
+            onClick={defaultHandleClearIndicatorClick}
+            size={ButtonSize.small}
+            variant={ButtonVariant.link}
+            disabled={disabled}
+            testId="clearIndicator"
+            style={{
+              position: 'absolute',
+              right: '3.25em',
+              top: '50%',
+              transform: 'translateY(-50%)',
+            }}
+          />
+        )}
+        <ItemsList
+          aria-multiselectable="true"
+          customComponents={customComponents}
+          floatingElementStyles={floatingElementStyles}
+          getItemProps={getItemProps}
+          getMenuProps={getMenuProps}
+          highlightedIndex={highlightedIndex}
+          isOpen={isOpen}
+          isInverse={isInverse}
+          items={filteredItems}
+          itemToString={itemToString}
+          maxHeight={itemListMaxHeight ?? theme.select.menu.maxHeight}
+          menuStyle={menuStyle}
+          setFloating={refs.setFloating}
+          setHighlightedIndex={setHighlightedIndex}
         />
-      )}
-      <ItemsList
-        customComponents={customComponents}
-        floatingElementStyles={floatingElementStyles}
-        getItemProps={getItemProps}
-        getMenuProps={getMenuProps}
-        highlightedIndex={highlightedIndex}
-        isOpen={isOpen}
-        isInverse={isInverse}
-        items={getFilteredItems(items)}
-        itemToString={itemToString}
-        maxHeight={itemListMaxHeight ?? theme.select.menu.maxHeight}
-        menuStyle={menuStyle}
-        setFloating={refs.setFloating}
-        setHighlightedIndex={setHighlightedIndex}
-      />
-    </SelectContainer>
+      </SelectContainer>
+
+      <ItemListAnnouncer isOpen={isOpen} labelText={labelText} />
+      {isClearable && <ClearAnnouncer clearAnnouncement={clearAnnouncement} />}
+    </>
   );
 }

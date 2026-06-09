@@ -6,12 +6,14 @@ import styled from '@emotion/styled';
 import { TabsOrientation, TabsTextTransform } from './shared';
 import { TabsContainerContext } from './TabsContainer';
 import { ButtonNext, ButtonPrev } from './TabsScrollButtons';
-import { useTabsMeta } from './utils';
+import { useTabsMeta, useScrollTabFocus } from './utils';
 import { useDescendants } from '../../hooks/useDescendants';
 import { I18nContext } from '../../i18n';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { omit, Omit, getNormalizedScrollLeft } from '../../utils';
+import { Announce } from '../Announce';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export enum TabsAlignment {
   center = 'center',
@@ -190,8 +192,12 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
 
     const theme = React.useContext(ThemeContext);
 
-    const { activeTabIndex, setActiveTabIndex, isInverseContainer } =
-      React.useContext(TabsContainerContext);
+    const {
+      activeTabIndex,
+      setActiveTabIndex,
+      isInverseContainer,
+      instanceId,
+    } = React.useContext(TabsContainerContext);
 
     const isInverse =
       typeof props.isInverse !== 'undefined'
@@ -220,12 +226,17 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
     const [buttonRefArray, registerTabButton] = useDescendants();
 
     const childrenWrapperRef = React.useRef<HTMLUListElement>();
+    const [scrollAnnouncement, setScrollAnnouncement] = React.useState('');
+    const [panelAnnouncement, setPanelAnnouncement] = React.useState('');
+    const isInitialMount = React.useRef(true);
 
     function getTabsMeta() {
       const tabsNode = tabsWrapperRef.current;
       let tabsMeta;
+
       if (tabsNode) {
         const rect = tabsNode.getBoundingClientRect();
+
         tabsMeta = {
           clientWidth: tabsNode.clientWidth,
           scrollLeft: tabsNode.scrollLeft,
@@ -243,13 +254,17 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       }
 
       let tabMeta;
+
       if (tabsNode) {
         const childrenArray = childrenWrapperRef.current.children;
+
         if (childrenArray.length > 0) {
           const tab = childrenArray[activeTabIndex];
+
           tabMeta = tab ? (tab as any).getBoundingClientRect() : null;
         }
       }
+
       return { tabsMeta, tabMeta };
     }
 
@@ -273,6 +288,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           Number(tabsMeta[scrollStart]) +
           (Number(tabMeta[start]) - Number(tabsMeta[start])) -
           prevButtonOffset;
+
         scroll(nextScrollStart);
       } else if (tabMeta[end] > Number(tabsMeta[end]) - nextButtonOffset) {
         // right side of button is out of view
@@ -280,6 +296,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           Number(tabsMeta[scrollStart]) +
           (Number(tabMeta[end]) - Number(tabsMeta[end])) +
           nextButtonOffset;
+
         scroll(nextScrollStart);
       }
     }
@@ -305,6 +322,32 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
 
     React.useEffect(scrollInitialActiveIndexIntoView, []);
 
+    const { focusFirstVisibleTab } = useScrollTabFocus(
+      tabsWrapperRef,
+      orientation
+    );
+
+    // Announce panel content when active tab changes (excluding initial mount)
+    React.useEffect(() => {
+      if (isInitialMount.current) {
+        isInitialMount.current = false;
+
+        return;
+      }
+
+      const panelId = `tabpanel-${instanceId}-${activeTabIndex}`;
+      const panelElement = document.getElementById(panelId);
+
+      if (panelElement) {
+        const panelText = panelElement.textContent || '';
+
+        setPanelAnnouncement(panelText.trim());
+        const timeout = setTimeout(() => setPanelAnnouncement(''), 1000);
+
+        return () => clearTimeout(timeout);
+      }
+    }, [activeTabIndex, instanceId]);
+
     function changeHandler(
       newActiveIndex: number,
       event?: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -314,14 +357,17 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
         (event.target as HTMLInputElement).children[0].hasAttribute('disabled')
       ) {
         event.preventDefault();
+
         return undefined;
       }
 
       onChange && typeof onChange === 'function' && onChange(newActiveIndex);
 
-      newActiveIndex === activeTabIndex
-        ? scrollSelectedIntoView()
-        : setActiveTabIndex(newActiveIndex);
+      if (newActiveIndex === activeTabIndex) {
+        scrollSelectedIntoView();
+      } else {
+        setActiveTabIndex(newActiveIndex);
+      }
     }
 
     function tabIsEnabled(tabIndex) {
@@ -370,6 +416,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       const target = event.target as HTMLButtonElement;
 
       const role = target.getAttribute('role');
+
       if (role !== 'tab') {
         return;
       }
@@ -421,6 +468,32 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
         : i18n.tabs.horizontalTabsInstructions
     }`;
 
+    const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+
+    const handlePrevScrollWithAnnouncement = () => {
+      handleStartScrollClick();
+      setScrollAnnouncement(i18n.tabs.scrolledBackAnnounce);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        setScrollAnnouncement('');
+        focusFirstVisibleTab();
+      }, 300);
+    };
+
+    const handleNextScrollWithAnnouncement = () => {
+      handleEndScrollClick();
+      setScrollAnnouncement(i18n.tabs.scrolledForwardAnnounce);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => {
+        setScrollAnnouncement('');
+        focusFirstVisibleTab();
+      }, 300);
+    };
+
     const other = omit(['aria-label'], rest);
 
     return (
@@ -437,7 +510,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           backgroundColor={background}
           buttonVisible={displayScroll.start}
           isInverse={isInverse}
-          onClick={handleStartScrollClick}
+          onClick={handlePrevScrollWithAnnouncement}
           orientation={orientation || TabsOrientation.horizontal}
           ref={prevButtonRef}
           theme={theme}
@@ -478,11 +551,17 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           backgroundColor={background}
           buttonVisible={displayScroll.end}
           isInverse={isInverse}
-          onClick={handleEndScrollClick}
+          onClick={handleNextScrollWithAnnouncement}
           orientation={orientation || TabsOrientation.horizontal}
           ref={nextButtonRef}
           theme={theme}
         />
+        <VisuallyHidden>
+          <Announce>{scrollAnnouncement}</Announce>
+        </VisuallyHidden>
+        <VisuallyHidden>
+          <Announce>{panelAnnouncement}</Announce>
+        </VisuallyHidden>
       </StyledContainer>
     );
   }

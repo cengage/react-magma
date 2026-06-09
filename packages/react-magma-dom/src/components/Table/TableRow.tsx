@@ -3,8 +3,8 @@ import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { NorthIcon, SortDoubleArrowIcon, SouthIcon } from 'react-magma-icons';
 
+import { getAriaSort, getAriaSortLabel, getTableSortIcon } from './utils';
 import { I18nContext } from '../../i18n';
 import { magma } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -18,17 +18,17 @@ import {
   TableContext,
   TableRowColor,
   TableCell,
-  TableHeaderCell,
   TableCellAlign,
   TableDensity,
   TableSortDirection,
 } from './';
 
-/**
- * @children required
- */
 export interface TableRowProps
   extends React.HTMLAttributes<HTMLTableRowElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * The color scheme of the table row, giving contextual meaning to the content
    */
@@ -182,6 +182,32 @@ const StyledTableRow = styled.tr<{
     `};
 `;
 
+const HeaderStyledCell = styled(TableCell)<{
+  density?: TableDensity;
+  hasSquareCorners?: boolean;
+  isInverse?: boolean;
+}>`
+  &&& {
+    background: ${props =>
+      props.isInverse
+        ? transparentize(0.93, props.theme.colors.neutral100)
+        : props.theme.colors.neutral200};
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: ${props =>
+      props.isInverse
+        ? transparentize(0.6, props.theme.colors.neutral100)
+        : props.theme.colors.neutral300};
+    font-weight: bold;
+    vertical-align: bottom;
+  }
+
+  &&&:first-child {
+    border-radius: ${props =>
+      props.hasSquareCorners ? '0' : `${props.theme.borderRadius} 0 0 0`};
+  }
+`;
+
 const SortButton = styled.button<{
   density?: TableDensity;
   isInverse?: boolean;
@@ -250,6 +276,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
     React.Children.forEach(children, (child: any) => {
       if (child.type.displayName === 'TableHeaderCell') {
         isHeaderRow = true;
+
         return;
       }
     });
@@ -279,38 +306,16 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
       onSort && typeof onSort === 'function' && onSort();
     }
 
-    const SortIcon =
-      sortDirection === TableSortDirection.ascending ? (
-        <NorthIcon
-          color={
-            tableContext.isInverse
-              ? theme.colors.neutral100
-              : theme.colors.neutral700
-          }
-          size={theme.iconSizes.small}
-          testId="sort-ascending"
-        />
-      ) : sortDirection === TableSortDirection.descending ? (
-        <SouthIcon
-          color={
-            tableContext.isInverse
-              ? theme.colors.neutral100
-              : theme.colors.neutral700
-          }
-          size={theme.iconSizes.small}
-          testId="sort-descending"
-        />
-      ) : (
-        <SortDoubleArrowIcon
-          color={
-            tableContext.isInverse
-              ? transparentize(0.3, theme.colors.neutral100)
-              : theme.colors.neutral500
-          }
-          size={theme.iconSizes.small}
-          testId="sort-none"
-        />
-      );
+    const SortIcon = getTableSortIcon({
+      sortDirection,
+      isInverse: tableContext.isInverse,
+      theme,
+    });
+
+    const sortButtonAriaLabel =
+      i18n.table.selectable.sortButtonAriaLabelBySelected +
+      ' ' +
+      getAriaSortLabel(sortDirection);
 
     return (
       <StyledTableRow
@@ -325,8 +330,17 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
         theme={theme}
       >
         {tableContext.isSelectable && isHeaderRow && (
-          <TableHeaderCell
+          <HeaderStyledCell
+            theme={theme}
             width={theme.spaceScale.spacing05}
+            density={tableContext.density}
+            hasSquareCorners={tableContext.hasSquareCorners}
+            isInverse={tableContext.isInverse}
+            aria-sort={
+              tableContext.isSortableBySelected
+                ? getAriaSort(sortDirection)
+                : undefined
+            }
             style={{
               background: isHovering
                 ? transparentize(0.93, theme.colors.neutral900)
@@ -338,16 +352,13 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
                 status={headerRowStatus}
                 isInverse={getIsCheckboxInverse()}
                 labelStyle={{ padding: 0 }}
-                labelText={
-                  headerRowStatus === IndeterminateCheckboxStatus.unchecked
-                    ? i18n.table.selectable.selectAllRowsAriaLabel
-                    : i18n.table.selectable.deselectAllRowsAriaLabel
-                }
+                labelText={i18n.table.selectable.selectAllRowsAriaLabel}
                 isTextVisuallyHidden
                 onChange={onHeaderRowSelect}
               />
               {tableContext.isSortableBySelected && (
                 <SortButton
+                  aria-label={sortButtonAriaLabel}
                   density={tableContext.density}
                   isInverse={tableContext.isInverse}
                   onClick={handleSort}
@@ -356,13 +367,12 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   data-testid={`${testId || ''}-sort-button`}
-                  aria-label={i18n.table.selectable.sortButtonAriaLabel}
                 >
                   <SortIconWrapper theme={theme}>{SortIcon}</SortIconWrapper>
                 </SortButton>
               )}
             </span>
-          </TableHeaderCell>
+          </HeaderStyledCell>
         )}
         {tableContext.isSelectable && !isHeaderRow && (
           <TableCell
@@ -373,15 +383,7 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
               checked={isSelected}
               disabled={isSelectableDisabled}
               labelStyle={{ padding: 0 }}
-              labelText={
-                isSelected
-                  ? `${i18n.table.selectable.deselectRowAriaLabel} ${
-                      rowName || ''
-                    }`
-                  : `${i18n.table.selectable.selectRowAriaLabel} ${
-                      rowName || ''
-                    }`
-              }
+              labelText={`${i18n.table.selectable.selectRowAriaLabel} ${rowName || ''}`}
               isTextVisuallyHidden
               isInverse={getIsCheckboxInverse()}
               onChange={onTableRowSelect}

@@ -37,6 +37,7 @@ export const CustomTopicsRow = ({
   const getTopicTitleError = (): string | undefined => {
     if (!topicTitle.length) return 'Enter a topic title';
     if (topicTitle.length >= 100) return 'Title is too long';
+
     return undefined;
   };
 
@@ -53,6 +54,7 @@ export const CustomTopicsRow = ({
     const selectedTopic = topicList.find(
       (topic: { reference: string }) => topic.reference === reference
     );
+
     return selectedTopic
       ? {
           label: selectedTopic.title,

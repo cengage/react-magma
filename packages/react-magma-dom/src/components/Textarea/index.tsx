@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId, Omit } from '../../utils';
+import { useGenerateId, Omit, descriptionSuffix } from '../../utils';
 import {
   FormFieldContainer,
   FormFieldContainerBaseProps,
@@ -76,8 +76,18 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const theme = React.useContext(ThemeContext);
 
     const id = useGenerateId(defaultId);
-    const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+
     const maxCharacters = typeof maxCount === 'number' ? maxCount : maxLength;
+
+    const counterDescriptionId =
+      typeof maxCharacters === 'number' && hasCharacterCounter
+        ? `${id}__counter`
+        : null;
+    const messageDescriptionId =
+      errorMessage || helperMessage ? `${id}${descriptionSuffix}` : null;
+    const descriptionId =
+      [counterDescriptionId, messageDescriptionId].filter(Boolean).join(' ') ||
+      null;
 
     const maxLengthNum =
       !hasCharacterCounter && maxLength ? maxLength : undefined;

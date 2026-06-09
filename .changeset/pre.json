@@ -1,0 +1,17 @@
+{
+  "mode": "pre",
+  "tag": "rc",
+  "initialVersions": {
+    "@react-magma/charts": "13.0.2-next.1",
+    "@react-magma/dropzone": "13.0.0",
+    "react-magma-dom": "4.14.0",
+    "playwright": "1.0.0",
+    "react-magma-docs": "5.2.0",
+    "react-magma-landing": "1.1.8"
+  },
+  "changesets": [
+    "major-charts-v13-release",
+    "major-dropzone-v13-release",
+    "major-v5-release"
+  ]
+}

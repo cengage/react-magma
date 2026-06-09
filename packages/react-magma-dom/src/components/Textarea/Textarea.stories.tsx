@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Meta, StoryFn } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react-webpack5';
 
 import { Button } from '../Button';
 import { Container } from '../Container';
@@ -30,10 +30,8 @@ export default {
       },
     },
     labelPosition: {
-      control: {
-        type: 'select',
-        options: LabelPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(LabelPosition),
     },
     labelWidth: {
       control: {
@@ -69,10 +67,12 @@ export const Default = {
 export const OnClear = {
   render: args => {
     const [fieldValue, setValue] = useState('');
+
     return (
       <>
         <Textarea
           {...args}
+          maxCount={4}
           labelText="Textarea"
           value={fieldValue}
           onChange={e => {

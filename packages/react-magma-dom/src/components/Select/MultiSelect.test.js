@@ -1,14 +1,15 @@
 import React from 'react';
 
-import { act, fireEvent, render } from '@testing-library/react';
+import { act, render, waitFor } from '@testing-library/react';
 
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { Modal } from '../Modal';
 
 import { Select as MultiSelect } from '.';
+import userEvent from '@testing-library/user-event';
 
-describe('Select', () => {
+describe('MultiSelect', () => {
   const items = ['Red', 'Blue', 'Green'];
   const labelText = 'Label';
 
@@ -18,7 +19,7 @@ describe('Select', () => {
     });
   });
 
-  it('should render a multi-select with items', () => {
+  it('should render a multi-select with items', async () => {
     const { getByLabelText, getByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
@@ -27,12 +28,12 @@ describe('Select', () => {
 
     expect(renderedSelect).toBeInTheDocument();
 
-    fireEvent.click(renderedSelect);
+    await userEvent.click(renderedSelect);
 
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
-  it('should render a select with a passed in placeholder', () => {
+  it('should render a select with a passed in placeholder', async () => {
     const placeholder = 'Test';
 
     const { getByText } = render(
@@ -44,18 +45,24 @@ describe('Select', () => {
       />
     );
 
-    expect(getByText(placeholder)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(placeholder)).toBeInTheDocument();
+    });
   });
 
-  it('should render a select with the default i18n placeholder', () => {
+  it('should render a select with the default i18n placeholder', async () => {
     const { getByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
-    expect(getByText(defaultI18n.multiSelect.placeholder)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        getByText(defaultI18n.multiSelect.placeholder)
+      ).toBeInTheDocument();
+    });
   });
 
-  it('should accept items in the default object format', () => {
+  it('should accept items in the default object format', async () => {
     const items = [
       { label: 'Red', value: 'red' },
       { label: 'Blue', value: 'blue' },
@@ -69,12 +76,12 @@ describe('Select', () => {
 
     expect(renderedSelect).toBeInTheDocument();
 
-    fireEvent.click(renderedSelect);
+    await userEvent.click(renderedSelect);
 
     expect(getByText(items[0].label)).toBeInTheDocument();
   });
 
-  it('should accept items in a custom item format', () => {
+  it('should accept items in a custom item format', async () => {
     function itemToString(item) {
       return item ? item.representation : '';
     }
@@ -110,19 +117,19 @@ describe('Select', () => {
 
     expect(renderedSelect).toBeInTheDocument();
 
-    fireEvent.click(renderedSelect);
+    await userEvent.click(renderedSelect);
 
     expect(getByText(items[0].representation)).toBeInTheDocument();
   });
 
-  it('should render an items list with the default max height', () => {
+  it('should render an items list with the default max height', async () => {
     const { container, getByLabelText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    fireEvent.click(renderedSelect);
+    await userEvent.click(renderedSelect);
 
     expect(container.querySelector('ul')).toHaveStyleRule(
       'max-height',
@@ -130,7 +137,7 @@ describe('Select', () => {
     );
   });
 
-  it('should render an items list with the passed in max height as a string', () => {
+  it('should render an items list with the passed in max height as a string', async () => {
     const maxHeight = '100px';
     const { container, getByLabelText } = render(
       <MultiSelect
@@ -143,7 +150,7 @@ describe('Select', () => {
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    fireEvent.click(renderedSelect);
+    await userEvent.click(renderedSelect);
 
     expect(container.querySelector('ul')).toHaveStyleRule(
       'max-height',
@@ -151,7 +158,7 @@ describe('Select', () => {
     );
   });
 
-  it('Should have a defined width for label when labelPosition is "left"', () => {
+  it('Should have a defined width for label when labelPosition is "left"', async () => {
     const { getByText } = render(
       <MultiSelect
         isMulti
@@ -161,10 +168,13 @@ describe('Select', () => {
         labelWidth={20}
       />
     );
-    expect(getByText(labelText)).toHaveStyle('flex-basis: 20%');
+
+    await waitFor(() => {
+      expect(getByText(labelText)).toHaveStyle('flex-basis: 20%');
+    });
   });
 
-  it('should render an items list with the passed in max height as a number', () => {
+  it('should render an items list with the passed in max height as a number', async () => {
     const maxHeight = 50;
     const { container, getByLabelText } = render(
       <MultiSelect
@@ -177,7 +187,7 @@ describe('Select', () => {
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    fireEvent.click(renderedSelect);
+    await userEvent.click(renderedSelect);
 
     expect(container.querySelector('ul')).toHaveStyleRule(
       'max-height',
@@ -185,7 +195,7 @@ describe('Select', () => {
     );
   });
 
-  it('should render custom item component', () => {
+  it('should render custom item component', async () => {
     const items = [
       { id: '0', label: 'Red', value: 'red' },
       { id: '1', label: 'Blue', value: 'blue' },
@@ -211,47 +221,39 @@ describe('Select', () => {
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    fireEvent.click(renderedSelect);
+    await userEvent.click(renderedSelect);
 
     expect(getByText(items[0].label)).toBeInTheDocument();
     expect(getByTestId(items[0].id)).toBeInTheDocument();
   });
 
-  it('should not select an item when typing and select is closed', () => {
-    // Use fake timers here for downshift's debounce on input change.
-    jest.useFakeTimers();
-
+  it('should not select an item when typing and select is closed', async () => {
     const { getByLabelText, queryByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    renderedSelect.focus();
+    act(() => {
+      renderedSelect.focus();
+    });
 
-    fireEvent.keyDown(renderedSelect, { key: 'r' });
-
-    act(() => jest.runAllTimers());
+    await userEvent.keyboard('r');
 
     expect(
       queryByText(items[0], { selector: 'button' })
     ).not.toBeInTheDocument();
-
-    jest.useRealTimers();
   });
 
-  it('should allow for selection of multiple items', () => {
+  it('should allow for selection of multiple items', async () => {
     const { getByLabelText, getByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
-    fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
-
-    fireEvent.click(getByText(items[0]));
-
-    fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
-
-    fireEvent.click(getByText(items[1]));
+    await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
+    await userEvent.click(getByText(items[0]));
+    await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
+    await userEvent.click(getByText(items[1]));
 
     expect(getByText(items[0], { selector: 'button' }).textContent).toEqual(
       items[0]
@@ -261,23 +263,73 @@ describe('Select', () => {
     );
   });
 
-  it('should allow for the removal of a selected item', () => {
+  it('should allow for the removal of a selected item', async () => {
     const { getByLabelText, getByText, queryByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
-    fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
-
-    fireEvent.click(getByText(items[0]));
-
-    fireEvent.click(getByText(items[0], { selector: 'button' }));
+    await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
+    await userEvent.click(getByText(items[0]));
+    await userEvent.click(getByText(items[0], { selector: 'button' }));
 
     expect(
       queryByText(items[0], { selector: 'button' })
     ).not.toBeInTheDocument();
   });
 
-  it('should allow for the removal of selected items with the keyboard', () => {
+  it('should announce the removal of a selected item', async () => {
+    const { getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+        isClearable
+      />
+    );
+
+    await userEvent.click(getByText('Red', { selector: 'button' }));
+
+    await waitFor(() => {
+      expect(getByText('Red has been removed')).toBeInTheDocument();
+    });
+  });
+
+  it('should announce clearing multiple selected items', async () => {
+    const { getByLabelText, getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red', 'Blue']}
+        isClearable
+      />
+    );
+
+    await userEvent.click(getByLabelText(/reset selection/i));
+
+    expect(
+      getByText('Label has been cleared. Red, Blue were removed')
+    ).toBeInTheDocument();
+  });
+
+  it('should announce clearing single selected item', async () => {
+    const { getByLabelText, getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red']}
+        isClearable
+      />
+    );
+
+    await userEvent.click(getByLabelText(/reset selection/i));
+
+    expect(getByText('Label has been cleared')).toBeInTheDocument();
+  });
+
+  it('should allow for the removal of selected items with the keyboard', async () => {
     const selectedItems = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText, queryByText } = render(
       <MultiSelect
@@ -290,9 +342,11 @@ describe('Select', () => {
 
     const renderedMultiSelect = getByLabelText(labelText, { selector: 'div' });
 
-    renderedMultiSelect.focus();
+    act(() => {
+      renderedMultiSelect.focus();
+    });
 
-    fireEvent.keyDown(renderedMultiSelect, { key: 'Backspace' });
+    await userEvent.keyboard('{Backspace}');
 
     expect(
       queryByText(items[2], { selector: 'button' })
@@ -300,9 +354,11 @@ describe('Select', () => {
 
     const selectedItem1 = getByText(items[1]);
 
-    selectedItem1.focus();
+    act(() => {
+      selectedItem1.focus();
+    });
 
-    fireEvent.keyDown(selectedItem1, { key: 'Backspace' });
+    await userEvent.keyboard('{Backspace}');
 
     expect(
       queryByText(items[1], { selector: 'button' })
@@ -310,16 +366,18 @@ describe('Select', () => {
 
     const selectedItem2 = getByText(items[0]);
 
-    selectedItem2.focus();
+    act(() => {
+      selectedItem2.focus();
+    });
 
-    fireEvent.keyDown(selectedItem2, { key: 'Delete' });
+    await userEvent.keyboard('{Delete}');
 
     expect(
       queryByText(items[0], { selector: 'button' })
     ).not.toBeInTheDocument();
   });
 
-  it('should change the focused selected item using arrow keys', () => {
+  it('should change the focused selected item using arrow keys', async () => {
     const selectedItems = ['Red', 'Blue', 'Green'];
     const { getByLabelText, getByText } = render(
       <MultiSelect
@@ -332,26 +390,28 @@ describe('Select', () => {
 
     const renderedMultiSelect = getByLabelText(labelText, { selector: 'div' });
 
-    renderedMultiSelect.focus();
+    act(() => {
+      renderedMultiSelect.focus();
+    });
 
-    fireEvent.keyDown(renderedMultiSelect, { key: 'ArrowLeft' });
+    await userEvent.keyboard('{ArrowLeft}');
 
     expect(document.activeElement).toEqual(getByText(items[2]));
 
-    fireEvent.keyDown(getByText(items[2]), { key: 'ArrowLeft' });
+    await userEvent.keyboard('{ArrowLeft}');
 
     expect(document.activeElement).toEqual(getByText(items[1]));
 
-    fireEvent.keyDown(getByText(items[1]), { key: 'ArrowRight' });
+    await userEvent.keyboard('{ArrowRight}');
 
     expect(document.activeElement).toEqual(getByText(items[2]));
 
-    fireEvent.keyDown(getByText(items[2]), { key: 'ArrowRight' });
+    await userEvent.keyboard('{ArrowRight}');
 
     expect(document.activeElement).toEqual(renderedMultiSelect);
   });
 
-  it('should allow for a controlled multi-select', () => {
+  it('should allow for a controlled multi-select', async () => {
     let selectedItems = ['Red', 'Blue'];
     const { getByLabelText, getByText, queryByText, rerender } = render(
       <MultiSelect
@@ -371,9 +431,8 @@ describe('Select', () => {
     expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
     expect(getByText(items[1], { selector: 'button' })).toBeInTheDocument();
 
-    fireEvent.click(getByLabelText(labelText, { selector: 'div' }));
-
-    fireEvent.click(getByText(items[2]));
+    await userEvent.click(getByLabelText(labelText, { selector: 'div' }));
+    await userEvent.click(getByText(items[2]));
 
     expect(selectedItems).toEqual(items);
 
@@ -394,7 +453,7 @@ describe('Select', () => {
 
     expect(getByText(items[2], { selector: 'button' })).toBeInTheDocument();
 
-    fireEvent.click(getByText(items[0], { selector: 'button' }));
+    await userEvent.click(getByText(items[0], { selector: 'button' }));
 
     const [, ...restOfItems] = items;
 
@@ -420,7 +479,7 @@ describe('Select', () => {
     ).not.toBeInTheDocument();
   });
 
-  it('should have an initial selected items', () => {
+  it('should have an initial selected items', async () => {
     const { getByText } = render(
       <MultiSelect
         isMulti
@@ -430,22 +489,27 @@ describe('Select', () => {
       />
     );
 
-    expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
-    expect(getByText(items[1], { selector: 'button' })).toBeInTheDocument();
-    expect(getByText(items[2], { selector: 'button' })).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(items[0], { selector: 'button' })).toBeInTheDocument();
+      expect(getByText(items[1], { selector: 'button' })).toBeInTheDocument();
+      expect(getByText(items[2], { selector: 'button' })).toBeInTheDocument();
+    });
   });
 
-  it('should disable the multi-select', () => {
+  it('should disable the multi-select', async () => {
     const { getByLabelText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} disabled />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    expect(renderedSelect).toHaveAttribute('disabled');
+    await waitFor(() => {
+      expect(renderedSelect).toHaveAttribute('disabled');
+      expect(renderedSelect).toHaveAttribute('aria-disabled', 'true');
+    });
   });
 
-  it('should disable selected items in the disabled multi-select and disabled items should not be removable', () => {
+  it('should disable selected items in the disabled multi-select and disabled items should not be removable', async () => {
     const { getByLabelText, getByText } = render(
       <MultiSelect
         isMulti
@@ -477,44 +541,44 @@ describe('Select', () => {
     );
 
     const selectedItem = getByText(items[0], { selector: 'button' });
-    fireEvent.click(selectedItem);
+    await userEvent.click(selectedItem);
 
     expect(selectedItem).toBeInTheDocument();
   });
 
-  it('should open select when clicking the enter key', () => {
+  it('should open select when clicking the enter key', async () => {
     const { getByLabelText, getByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    renderedSelect.focus();
-
-    fireEvent.keyDown(renderedSelect, {
-      key: 'Enter',
+    act(() => {
+      renderedSelect.focus();
     });
+
+    await userEvent.keyboard('{Enter}');
 
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
-  it('should open select when clicking the spacebar', () => {
+  it('should open select when clicking the spacebar', async () => {
     const { getByLabelText, getByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    renderedSelect.focus();
-
-    fireEvent.keyDown(renderedSelect, {
-      key: ' ',
+    act(() => {
+      renderedSelect.focus();
     });
+
+    await userEvent.keyboard(' ');
 
     expect(getByText(items[0])).toBeInTheDocument();
   });
 
-  it('should close the menu when escape key is pressed, and retain the active modal', () => {
+  it('should close the menu when escape key is pressed, and retain the active modal', async () => {
     const { getByLabelText, getByText, getByTestId, queryByText } = render(
       <Modal testId="modal" isOpen>
         <MultiSelect isMulti labelText={labelText} items={items} />
@@ -523,48 +587,37 @@ describe('Select', () => {
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    renderedSelect.focus();
-
-    fireEvent.keyDown(renderedSelect, {
-      key: ' ',
+    act(() => {
+      renderedSelect.focus();
     });
+
+    await userEvent.keyboard(' ');
 
     expect(getByText(items[0])).toBeInTheDocument();
 
-    fireEvent.keyDown(getByLabelText(labelText, { selector: 'div' }), {
-      key: 'Escape',
-      code: 27,
-    });
+    await userEvent.keyboard('{Escape}');
 
     expect(queryByText(items[0], { selector: 'Red' })).not.toBeInTheDocument();
-
     expect(getByTestId('modal')).toBeInTheDocument();
   });
 
-  it('should not open select when clicking another key other than the enter or spacebar', () => {
-    // Use fake timers here for downshift's debounce on input change.
-    jest.useFakeTimers();
-
+  it('should not open select when clicking another key other than the enter or spacebar', async () => {
     const { getByLabelText, queryByText } = render(
       <MultiSelect isMulti labelText={labelText} items={items} />
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-    renderedSelect.focus();
-
-    fireEvent.keyDown(renderedSelect, {
-      key: 'a',
+    act(() => {
+      renderedSelect.focus();
     });
 
-    act(() => jest.runAllTimers());
+    await userEvent.keyboard('a');
 
     expect(queryByText(items[0])).not.toBeInTheDocument();
-
-    jest.useRealTimers();
   });
 
-  it('should show an error message', () => {
+  it('should show an error message', async () => {
     const errorMessage = 'This is an error';
 
     const { getByText } = render(
@@ -576,10 +629,12 @@ describe('Select', () => {
       />
     );
 
-    expect(getByText(errorMessage)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(errorMessage)).toBeInTheDocument();
+    });
   });
 
-  it('should show an helper message', () => {
+  it('should show an helper message', async () => {
     const helperMessage = 'This is an error';
 
     const { getByText } = render(
@@ -591,10 +646,12 @@ describe('Select', () => {
       />
     );
 
-    expect(getByText(helperMessage)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByText(helperMessage)).toBeInTheDocument();
+    });
   });
 
-  it('should handle disabled items', () => {
+  it('should handle disabled items', async () => {
     const items = [
       { label: 'Red', value: 'red', disabled: true },
       { label: 'Blue', value: 'blue', disabled: false },
@@ -606,18 +663,108 @@ describe('Select', () => {
     );
 
     const renderedSelect = getByLabelText(labelText, { selector: 'div' });
-    fireEvent.click(renderedSelect);
+
+    await userEvent.click(renderedSelect);
 
     expect(getByText('Red')).toHaveAttribute('aria-disabled', 'true');
     expect(getByText('Blue')).toHaveAttribute('aria-disabled', 'false');
     expect(getByText('Green')).toHaveAttribute('aria-disabled', 'false');
   });
 
+  it('should loop to the first item and last item when down arrow and up arrow is pressed', async () => {
+    const { getByLabelText, getByText } = render(
+      <MultiSelect isMulti labelText={labelText} items={items} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    await userEvent.click(renderedSelect);
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
+
+    // Looping back to the first item
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
+
+    // Looping back to the last item
+    await userEvent.keyboard('{ArrowUp}');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
+  });
+
+  it('should skip disabled items and navigate to the next active item', async () => {
+    const customItems = [
+      {
+        label: 'Red',
+        value: 'red',
+        disabled: false,
+      },
+      {
+        label: 'Blue',
+        value: 'blue',
+        disabled: true,
+      },
+      {
+        label: 'Green',
+        value: 'green',
+        disabled: false,
+      },
+    ];
+
+    const { getByLabelText, getByText } = render(
+      <MultiSelect isMulti labelText={labelText} items={customItems} />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+
+    act(() => {
+      renderedSelect.focus();
+    });
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Red')).toHaveAttribute('data-highlighted', 'true');
+
+    await userEvent.keyboard('{ArrowDown}');
+    expect(getByText('Blue')).toHaveAttribute('data-highlighted', 'false');
+    expect(getByText('Green')).toHaveAttribute('data-highlighted', 'true');
+  });
+
+  it('should have aria-label with selected items', async () => {
+    const { getByText } = render(
+      <MultiSelect
+        isMulti
+        labelText={labelText}
+        items={items}
+        initialSelectedItems={['Red', 'Blue']}
+      />
+    );
+
+    const label = getByText(labelText);
+
+    expect(label).toHaveAttribute(
+      'aria-label',
+      'Label Multi-select Selected: Red, Blue'
+    );
+  });
+
+  it('should have aria-label without selected items', async () => {
+    const { getByText } = render(
+      <MultiSelect isMulti labelText={labelText} items={items} />
+    );
+
+    const label = getByText(labelText);
+
+    expect(label).toHaveAttribute('aria-label', 'Label Multi-select');
+  });
+
   describe('events', () => {
-    it('onBlur', () => {
+    it('onBlur', async () => {
       const onBlur = jest.fn();
 
-      const { getByLabelText } = render(
+      const { findByLabelText } = render(
         <MultiSelect
           isMulti
           labelText={labelText}
@@ -626,19 +773,22 @@ describe('Select', () => {
         />
       );
 
-      const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+      const renderedSelect = await findByLabelText(labelText, {
+        selector: 'div',
+      });
 
-      renderedSelect.focus();
-
-      fireEvent.blur(renderedSelect);
+      act(() => {
+        renderedSelect.focus();
+        renderedSelect.blur();
+      });
 
       expect(onBlur).toHaveBeenCalled();
     });
 
-    it('onFocus', () => {
+    it('onFocus', async () => {
       const onFocus = jest.fn();
 
-      const { getByLabelText } = render(
+      const { findByLabelText } = render(
         <MultiSelect
           isMulti
           labelText={labelText}
@@ -647,14 +797,18 @@ describe('Select', () => {
         />
       );
 
-      const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+      const renderedSelect = await findByLabelText(labelText, {
+        selector: 'div',
+      });
 
-      renderedSelect.focus();
+      act(() => {
+        renderedSelect.focus();
+      });
 
       expect(onFocus).toHaveBeenCalled();
     });
 
-    it('onKeyDown', () => {
+    it('onKeyDown', async () => {
       const onKeyDown = jest.fn();
 
       const { getByLabelText } = render(
@@ -668,12 +822,16 @@ describe('Select', () => {
 
       const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-      fireEvent.keyDown(renderedSelect, { key: 'Enter' });
+      act(() => {
+        renderedSelect.focus();
+      });
+
+      await userEvent.keyboard('{Enter}');
 
       expect(onKeyDown).toHaveBeenCalled();
     });
 
-    it('onKeyUp', () => {
+    it('onKeyUp', async () => {
       const onKeyUp = jest.fn();
 
       const { getByLabelText } = render(
@@ -687,7 +845,12 @@ describe('Select', () => {
 
       const renderedSelect = getByLabelText(labelText, { selector: 'div' });
 
-      fireEvent.keyUp(renderedSelect, { key: 'Enter' });
+      act(() => {
+        renderedSelect.focus();
+      });
+
+      await userEvent.keyboard('{Enter}');
+      await userEvent.keyboard('{Enter}');
 
       expect(onKeyUp).toHaveBeenCalled();
     });

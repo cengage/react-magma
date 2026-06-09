@@ -12,14 +12,19 @@ import {
   TabsContainerContext,
 } from '../Tabs';
 import { NavTabProps, NavTab } from './NavTab';
+import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { getNormalizedScrollLeft, Omit } from '../../utils';
+import { Announce } from '../Announce';
 import { TabsOrientation, TabsTextTransform } from '../Tabs/shared';
 import { ButtonNext, ButtonPrev } from '../Tabs/TabsScrollButtons';
-import { useTabsMeta } from '../Tabs/utils';
+import { useTabsMeta, useScrollTabFocus } from '../Tabs/utils';
+import { VisuallyHidden } from '../VisuallyHidden';
 
-export type NavTabsProps = Omit<TabsProps, 'onChange'>;
+export interface NavTabsProps extends Omit<TabsProps, 'onChange'> {
+  'aria-label'?: string;
+}
 
 interface NavTabsContextInterface {
   borderPosition?: TabsBorderPosition;
@@ -80,6 +85,9 @@ export const NavTabs = React.forwardRef<
 
   const navTabChildren = React.Children.toArray(children);
   const childrenWrapperRef = React.useRef<HTMLUListElement>();
+  const [scrollAnnouncement, setScrollAnnouncement] = React.useState('');
+  const i18n = React.useContext(I18nContext);
+  const isScrollFocusRef = React.useRef(false);
 
   const hasChildFocus = navTabChildren.some(child => {
     if (React.isValidElement(child)) {
@@ -87,24 +95,42 @@ export const NavTabs = React.forwardRef<
     }
   });
 
-  const navTabsChildren = React.Children.map(children, (child, i) => {
-    const item = child as React.ReactElement<
-      React.PropsWithChildren<NavTabProps>
-    >;
-
-    if (item.type === NavTab) {
-      if (!hasChildFocus && i === 0) {
-        return React.cloneElement(item, { isFocused: true });
-      }
+  const handleNavTabFocus = (event: React.FocusEvent<HTMLElement>) => {
+    if (isScrollFocusRef.current) {
+      return;
     }
+
+    const navTabElement = event.currentTarget;
+
+    navTabElement.scrollIntoView({
+      block: 'center',
+      inline: 'center',
+      behavior: 'smooth',
+    });
+  };
+
+  const navTabsChildren = React.Children.map(children, (child, i) => {
+    if (child && React.isValidElement(child) && child.type === NavTab) {
+      const item = child as React.ReactElement<
+        React.PropsWithChildren<NavTabProps>
+      >;
+
+      return React.cloneElement(item, {
+        onFocus: handleNavTabFocus,
+        isFocused: item.props.isFocused || (!hasChildFocus && i === 0),
+      });
+    }
+
     return child;
   });
 
   function getTabsMeta() {
     const tabsNode = tabsWrapperRef.current;
     let tabsMeta;
+
     if (tabsNode) {
       const rect = tabsNode.getBoundingClientRect();
+
       tabsMeta = {
         clientWidth: tabsNode.clientWidth,
         scrollLeft: tabsNode.scrollLeft,
@@ -122,13 +148,17 @@ export const NavTabs = React.forwardRef<
     }
 
     let tabMeta;
+
     if (tabsNode) {
       const childrenArray = childrenWrapperRef.current.children;
+
       if (childrenArray.length > 0) {
         const tab = childrenArray[activeTabIndex];
+
         tabMeta = tab ? (tab as any).getBoundingClientRect() : null;
       }
     }
+
     return { tabsMeta, tabMeta };
   }
 
@@ -152,6 +182,33 @@ export const NavTabs = React.forwardRef<
     scroll(nextScrollStart);
   };
 
+  const { focusFirstVisibleTab } = useScrollTabFocus(
+    tabsWrapperRef,
+    orientation
+  );
+
+  const handlePrevScrollWithAnnouncement = () => {
+    handleStartScrollClick();
+    setScrollAnnouncement(i18n.tabs.scrolledBackAnnounce);
+    setTimeout(() => {
+      setScrollAnnouncement('');
+      isScrollFocusRef.current = true;
+      focusFirstVisibleTab();
+      isScrollFocusRef.current = false;
+    }, 300);
+  };
+
+  const handleNextScrollWithAnnouncement = () => {
+    handleEndScrollClick();
+    setScrollAnnouncement(i18n.tabs.scrolledForwardAnnounce);
+    setTimeout(() => {
+      setScrollAnnouncement('');
+      isScrollFocusRef.current = true;
+      focusFirstVisibleTab();
+      isScrollFocusRef.current = false;
+    }, 300);
+  };
+
   React.useEffect(scrollInitialActiveIndexIntoView, []);
 
   return (
@@ -170,7 +227,7 @@ export const NavTabs = React.forwardRef<
         backgroundColor={background}
         buttonVisible={displayScroll.start}
         isInverse={isInverse}
-        onClick={handleStartScrollClick}
+        onClick={handlePrevScrollWithAnnouncement}
         orientation={orientation || TabsOrientation.horizontal}
         ref={prevButtonRef}
         theme={theme}
@@ -186,6 +243,7 @@ export const NavTabs = React.forwardRef<
           alignment={alignment ? alignment : TabsAlignment.left}
           orientation={orientation}
           ref={childrenWrapperRef}
+          role="tablist"
         >
           <NavTabsContext.Provider
             value={{
@@ -205,11 +263,14 @@ export const NavTabs = React.forwardRef<
         backgroundColor={background}
         buttonVisible={displayScroll.end}
         isInverse={isInverse}
-        onClick={handleEndScrollClick}
+        onClick={handleNextScrollWithAnnouncement}
         orientation={orientation || TabsOrientation.horizontal}
         ref={nextButtonRef}
         theme={theme}
       />
+      <VisuallyHidden>
+        <Announce>{scrollAnnouncement}</Announce>
+      </VisuallyHidden>
     </StyledContainer>
   );
 });

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Meta, StoryFn } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react-webpack5';
 import { CheckIcon } from 'react-magma-icons';
 
-import { ButtonSize } from '../Button';
+import { ButtonSize, ButtonTextTransform } from '../Button';
 import { Container } from '../Container';
 
 import { ToggleButton, ToggleButtonProps } from '.';
@@ -34,10 +34,12 @@ export default {
       },
     },
     size: {
-      control: {
-        type: 'select',
-        options: ButtonSize,
-      },
+      control: { type: 'select' },
+      options: Object.values(ButtonSize),
+    },
+    textTransform: {
+      control: { type: 'select' },
+      options: Object.values(ButtonTextTransform),
     },
   },
 } as Meta;

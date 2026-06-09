@@ -1,49 +1,387 @@
 # Change Log
 
-## 5.2.1
+## 7.0.0
 
 ### Patch Changes
 
-- 49d826503: fix: Update internalization for Date Picker.
-- 49d826503: chore: Manually sync main -> dev (4.10.0)
-- 49d826503: fix(Docs): revert-replace "GATSBY_EMPTY_ALT" as alt text for empty alts.
-- 49d826503: chore:migrate storybook to use Component Story Format 3 (CSF3) for all stories
-- Updated dependencies [49d826503]
-- Updated dependencies [49d826503]
-  - @react-magma/charts@12.0.1
-  - react-magma-dom@4.10.1
-  - @react-magma/dropzone@12.0.1
-  - @react-magma/schema-renderer@12.0.1
-  - @cengage-patterns/header@13.0.1
+- e316bcb: Chore: update react-magma-icons version
+- Updated dependencies [cb81479]
+- Updated dependencies [c00f190]
+- Updated dependencies [79b947a]
+- Updated dependencies [e316bcb]
+- Updated dependencies [f6a744f]
+- Updated dependencies [ff53255]
+- Updated dependencies [fa50907]
+- Updated dependencies [ff53255]
+- Updated dependencies [ff53255]
+- Updated dependencies [ee65147]
+- Updated dependencies [43ad69b]
+- Updated dependencies [7f133fd]
+- Updated dependencies [b3b6422]
+- Updated dependencies [7709c40]
+- Updated dependencies [16045e8]
+- Updated dependencies [f82988d]
+- Updated dependencies [d387875]
+- Updated dependencies [b1190a4]
+- Updated dependencies [b192a72]
+- Updated dependencies [a5f68a4]
+- Updated dependencies [92b1b12]
+- Updated dependencies [39546f5]
+- Updated dependencies [1fbd27e]
+- Updated dependencies [a997d8e]
+- Updated dependencies [ed37531]
+- Updated dependencies [02e0d3e]
+- Updated dependencies [9772fa8]
+- Updated dependencies [409d2a3]
+- Updated dependencies [cd401e0]
+- Updated dependencies [c48a806]
+- Updated dependencies [5de8d5f]
+- Updated dependencies [38da9ad]
+- Updated dependencies [81c50f6]
+- Updated dependencies [ac9e3ff]
+- Updated dependencies [3f28a17]
+- Updated dependencies [bf43aba]
+- Updated dependencies [f86720d]
+- Updated dependencies [6f1229f]
+- Updated dependencies [b74a6d4]
+- Updated dependencies [bfe0a86]
+- Updated dependencies [bac4f4a]
+- Updated dependencies [47085d5]
+- Updated dependencies [039e42e]
+- Updated dependencies [e7062bc]
+- Updated dependencies [9767b64]
+- Updated dependencies [6be25ab]
+- Updated dependencies [037f739]
+- Updated dependencies [1d3b633]
+- Updated dependencies [f169e3e]
+- Updated dependencies [d03006e]
+- Updated dependencies [13f34ba]
+- Updated dependencies [3c08bb2]
+- Updated dependencies [70feb95]
+- Updated dependencies [4bdabdc]
+- Updated dependencies [21f2a5f]
+- Updated dependencies [30a7da5]
+- Updated dependencies [d7872d7]
+- Updated dependencies [ccb95ae]
+- Updated dependencies [3494bf4]
+- Updated dependencies [4ddaecd]
+- Updated dependencies [134ba62]
+- Updated dependencies [365304c]
+- Updated dependencies [c9a0d84]
+- Updated dependencies [a365b9e]
+- Updated dependencies [c1023e8]
+- Updated dependencies [fb3b23a]
+- Updated dependencies [56f2ed8]
+- Updated dependencies [48e8a74]
+- Updated dependencies [ed803d6]
+- Updated dependencies [79082b4]
+- Updated dependencies [031c1a2]
+- Updated dependencies [43a6ce1]
+- Updated dependencies [ae600ef]
+- Updated dependencies [b6a333b]
+- Updated dependencies [d7322ac]
+- Updated dependencies [c5bf081]
+- Updated dependencies [3413ba0]
+- Updated dependencies [0c67f7f]
+- Updated dependencies [72073a2]
+- Updated dependencies [fa98316]
+- Updated dependencies [be89a2e]
+- Updated dependencies [1905265]
+- Updated dependencies [abee630]
+- Updated dependencies [34b7d19]
+- Updated dependencies [b8f03ee]
+- Updated dependencies [2eae51f]
+- Updated dependencies [0d50986]
+- Updated dependencies [8160393]
+- Updated dependencies [9804026]
+- Updated dependencies [edc04f5]
+- Updated dependencies [2ce6371]
+- Updated dependencies [54018e0]
+- Updated dependencies [d473442]
+- Updated dependencies [9642689]
+- Updated dependencies [e2a7c9c]
+- Updated dependencies [be245ef]
+- Updated dependencies [3bf7047]
+- Updated dependencies [2843afc]
+- Updated dependencies [abec578]
+- Updated dependencies [70a6688]
+- Updated dependencies [6bd1b65]
+- Updated dependencies [1e85bdd]
+- Updated dependencies [295d7df]
+- Updated dependencies [c8facd1]
+- Updated dependencies [6638f3a]
+- Updated dependencies [5ae4eaa]
+- Updated dependencies [e475b83]
+- Updated dependencies [a11b243]
+- Updated dependencies [c0c2903]
+- Updated dependencies [7c8c1ea]
+- Updated dependencies [006cc16]
+- Updated dependencies [844a2a3]
+- Updated dependencies [bf68b37]
+- Updated dependencies [c528ab6]
+- Updated dependencies [acbfd10]
+- Updated dependencies [35406a9]
+- Updated dependencies [50340c1]
+- Updated dependencies [889febe]
+- Updated dependencies [703a54d]
+- Updated dependencies [1c056fd]
+- Updated dependencies [c40071c]
+- Updated dependencies [e0e6ac5]
+- Updated dependencies [e2c8b57]
+- Updated dependencies [6dfd2dd]
+- Updated dependencies [e316bcb]
+- Updated dependencies [7563b3b]
+- Updated dependencies [7563b3b]
+- Updated dependencies [7563b3b]
+- Updated dependencies [e316bcb]
+- Updated dependencies [3de4dd6]
+  - @react-magma/charts@14.0.0
+  - react-magma-dom@5.0.0
+  - @react-magma/dropzone@14.0.0
 
-## 5.2.1-next.5
+## 7.0.0-rc.31
 
 ### Patch Changes
 
-- ce9950359: fix(Docs): revert-replace "GATSBY_EMPTY_ALT" as alt text for empty alts.
+- 0ae413f: chore: fix build in ci
 
-## 5.2.1-next.4
-
-### Patch Changes
-
-- Updated dependencies [10d3a7285]
-  - react-magma-dom@4.10.1-next.0
-  - @react-magma/charts@12.0.1-next.0
-  - @react-magma/dropzone@12.0.1-next.0
-  - @react-magma/schema-renderer@12.0.1-next.0
-  - @cengage-patterns/header@13.0.1-next.0
-
-## 5.2.1-next.3
+## 7.0.0-rc.30
 
 ### Patch Changes
 
-- de7919a1b: fix: Update internalization for Date Picker.
+- ec2eef1: chore(ci): Switch the publish and preview workflows to `ubuntu-latest` to fix Node out-of-memory errors
 
-## 5.2.1-next.2
+## 7.0.0-rc.29
 
 ### Patch Changes
 
-- b3c172c75: fix(Docs): replace "GATSBY_EMPTY_ALT" as alt text for empty alts.
+- f6a744f: chore: add Chromatic visual regression testing to CI workflows
+- f6a744f: chore: add Snyk security scanning workflows for PRs and monitoring
+- f6a744f: chore: bump chromaui/action from v11 to v16 in CI workflows to pick up Chromatic CLI 16.x
+- Updated dependencies [f6a744f]
+  - react-magma-dom@5.1.0-rc.98
+
+## 7.0.0-rc.28
+
+### Patch Changes
+
+- 1db6ef8: fix(CodeSandbox): Fix CodeSandbox launch issue in documentation
+
+## 7.0.0-rc.27
+
+### Patch Changes
+
+- e316bcb: Chore: update react-magma-icons version
+- Updated dependencies [e316bcb]
+- Updated dependencies [0c67f7f]
+- Updated dependencies [e316bcb]
+- Updated dependencies [e316bcb]
+  - @react-magma/charts@14.0.0-rc.5
+  - react-magma-dom@5.1.0-rc.87
+  - @react-magma/dropzone@14.0.0-rc.3
+
+## 7.0.0-rc.26
+
+### Patch Changes
+
+- e901432: fix(Accordion): Update doc example.
+
+## 7.0.0-rc.25
+
+### Patch Changes
+
+- d343a22: fix(Select): remove unused import.
+
+## 7.0.0-rc.24
+
+### Patch Changes
+
+- 3f28a17: fix(Checkbox): Update doc examples.
+
+## 7.0.0-rc.23
+
+### Patch Changes
+
+- ed803d6: fix(IconButton & Modal & Form & Accordion & Nav Tabs): Fix doc examples to enhance accessibility.
+
+## 7.0.0-rc.22
+
+### Patch Changes
+
+- efda2df: fix(Docs): Fix docs issues on the `Combobox` page.
+
+## 7.0.0-rc.21
+
+### Patch Changes
+
+- 05edd33: fix(Docs): Fix docs issues on the `Form` page.
+
+## 7.0.0-rc.20
+
+### Patch Changes
+
+- 37aa746: chore: update test configs
+
+## 7.0.0-rc.19
+
+### Patch Changes
+
+- 1f5af65: chore: fix build
+- 8ff839b: chore: fix Hyperlink docs issue
+- Updated dependencies [c00f190]
+- Updated dependencies [35406a9]
+  - @react-magma/charts@14.0.0-rc.4
+  - react-magma-dom@5.1.0-rc.70
+
+## 7.0.0-rc.18
+
+### Patch Changes
+
+- 816b4a3: chore: Update publish.yml files to fix publishing issues.
+
+## 7.0.0-rc.17
+
+### Patch Changes
+
+- f6cb809: fix(Tag & Button & Input & Combobox & Datagrid & RadioButton): Fix accessibility issues for examples.
+
+## 7.0.0-rc.16
+
+### Patch Changes
+
+- 7c8c1ea: chore: update storybook to v10
+- Updated dependencies [70feb95]
+- Updated dependencies [c0c2903]
+- Updated dependencies [7c8c1ea]
+  - react-magma-dom@5.1.0-rc.47
+  - @react-magma/charts@14.0.0-rc.2
+
+## 7.0.0-rc.15
+
+### Patch Changes
+
+- bf68b37: fix(Progress Bar & Radio Button & Native Select & Spinner): Fix various accessibility issues in example components.
+
+## 7.0.0-rc.14
+
+### Patch Changes
+
+- 0b50e70: fix(TimePicker): Fix issue accessibility issues for examples.
+
+## 7.0.0-rc.13
+
+### Patch Changes
+
+- 8020db9: fix(Docs): update error message for phone input and password input in stories and docs
+- 5a21976: chore: correct installation guide dependencies
+
+## 7.0.0-rc.12
+
+### Patch Changes
+
+- e30ddf7: fix(Banner): small fix for docs
+
+## 7.0.0-rc.11
+
+### Patch Changes
+
+- f2b1ce0: chore: Update React-magma-icons version to 3.2.4
+
+## 7.0.0-rc.10
+
+### Patch Changes
+
+- b14bb63: fix(Accordion): Fix bug with not-announced `Expand All/Collapse All` button
+
+## 7.0.0-rc.9
+
+### Patch Changes
+
+- 871d0f2: fix(Nav Tabs): Update documentation to include `aria-labelledby` attribute for multi-instance examples.
+
+## 7.0.0-rc.8
+
+### Patch Changes
+
+- ccb95ae: fix(NavTabs, Tabs, Toast): Fix different issues.
+- d473442: fix(Select): fix issue when scrollbar appears because of padding and negative margin.
+- Updated dependencies [ed37531]
+  - react-magma-dom@5.1.0-rc.13
+
+## 7.0.0-rc.7
+
+### Patch Changes
+
+- 998a3e3: chore: Update React-magma-icons version to 3.2.2
+
+## 7.0.0-rc.6
+
+### Patch Changes
+
+- ca15e5a: fix(Storybook): Fix issue with `type: 'select'`.
+
+## 7.0.0-rc.5
+
+### Patch Changes
+
+- 57a71d7: fix(Modal & Drawer): Added aria-haspopup="dialog" for trigger buttons and updated documentation.
+
+## 7.0.0-rc.4
+
+### Patch Changes
+
+- Updated dependencies [b3b6422]
+  - react-magma-dom@5.1.0-rc.3
+  - @react-magma/charts@14.0.0-rc.1
+  - @react-magma/dropzone@14.0.0-rc.1
+
+## 7.0.0-rc.3
+
+### Minor Changes
+
+- d387875: feat(Modal): New `headerLevel` prop. If not passed, header will default to level 2.
+
+## 7.0.0-rc.2
+
+### Patch Changes
+
+- ff53255: chore: update docs dependencies
+- Updated dependencies [ff53255]
+- Updated dependencies [ff53255]
+- Updated dependencies [ff53255]
+  - @react-magma/charts@13.0.1-rc.0
+  - react-magma-dom@5.0.1-rc.1
+  - @react-magma/dropzone@13.0.1-rc.0
+
+## 7.0.0-rc.1
+
+### Patch Changes
+
+- 9ac39c2: chore: safeguard prism-react-renderer type
+
+## 7.0.0-rc.0
+
+### Major Changes
+
+- aa68ddb: chore: upgrade react react-dom @types/react gatsby versions
+
+### Patch Changes
+
+- 46beb03: fix(Docs): replace "GATSBY_EMPTY_ALT" as alt text for empty alts.
+- fa50907: chore: remove all files from these deprecated packages: schema-renderer, patterns/header, linechart
+- 9a1f917: chore: disable docs formatting
+- d092d71: chore: fix images
+- ee65147: chore: fix storybook issue (Combobox) and terminal export errors and docs examples (Button).
+- b4481b9: chore: fix dropzone build errors
+- 0684582: chore: add publishing workflow for v4/v5 react-magma versions
+- ebd857f: chore: upgrade storybook and all addons to v9, update stories to match new CSF3 format
+- e74c613: chore: upgrade jest, babel-jest, @testing-library/\*, jest-axe, jest-extended to their latest stable versions and fix tests
+- 7388034: chore: Update docs and landing page with v5.
+- 1910535: chore: upgrade gatsby and react-helmet versions
+- 499ab0a: chore: upgrade minor/patch dependencies
+  chore: update publish-next-patch.yml to deploy react-18 preview builds
+- 9730ece: chore: upgrade typedoc
+- 134363d: chore: upgrade typescript, eslint
 
 ## 5.2.1-next.1
 

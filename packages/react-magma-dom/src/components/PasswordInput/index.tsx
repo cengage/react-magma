@@ -3,7 +3,7 @@ import * as React from 'react';
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../../theme/ThemeContext';
-import { useGenerateId } from '../../utils';
+import { descriptionSuffix, useGenerateId } from '../../utils';
 import { Announce } from '../Announce';
 import { Button, ButtonVariant, ButtonType, ButtonSize } from '../Button';
 import {
@@ -117,7 +117,8 @@ export const PasswordInput = React.forwardRef<
     ? showPasswordButtonText
     : i18n.password.shown.buttonText;
 
-  const descriptionId = errorMessage || helperMessage ? `${id}__desc` : null;
+  const descriptionId =
+    errorMessage || helperMessage ? `${id}${descriptionSuffix}` : null;
   const theme = React.useContext(ThemeContext);
 
   const isInverse = useIsInverse(props.isInverse);
@@ -126,16 +127,25 @@ export const PasswordInput = React.forwardRef<
     SHOW_PASSWORD_BUTTON_TEXT === i18n.password.shown.buttonText &&
     HIDE_PASSWORD_BUTTON_TEXT === i18n.password.hidden.buttonText;
 
-  const buttonRef = React.useRef<HTMLButtonElement>();
+  const buttonRef = React.useRef<HTMLButtonElement | null>(null);
+  const [buttonWidth, setButtonWidth] = React.useState<number>(0);
+
+  React.useLayoutEffect(() => {
+    if (buttonRef.current && !usesDefaultText) {
+      setButtonWidth(buttonRef.current.offsetWidth);
+    }
+  }, [
+    usesDefaultText,
+    passwordShown,
+    SHOW_PASSWORD_BUTTON_TEXT,
+    HIDE_PASSWORD_BUTTON_TEXT,
+  ]);
 
   const getButtonWidth = () => {
     if (usesDefaultText) {
-      if (inputSize === InputSize.large) {
-        return '64px';
-      }
-      return '54px';
-    } else {
-      return `${buttonRef?.current?.offsetWidth}px`;
+      return inputSize === InputSize.large ? '64px' : '54px';
+    } else if (buttonWidth !== 0) {
+      return `${buttonWidth}px`;
     }
   };
 
@@ -147,7 +157,8 @@ export const PasswordInput = React.forwardRef<
     } else if (inputSize === InputSize.large && usesDefaultText) {
       return { width: 'calc(100% - 64px)' };
     } else {
-      return { width: `calc(100% - ${buttonRef?.current?.offsetWidth}px)` };
+      // right margin (3px) so input doesn't overflow
+      return { width: `calc(100% - ${buttonWidth + 3}px)` };
     }
   };
 

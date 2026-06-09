@@ -11,11 +11,12 @@ export enum BreakpointScreenSize {
   xl = 'xl',
 }
 
-/**
- * @children required
- */
 export interface BreakpointsContainerProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Object that defines the pixel size of individual breakpoints
    * @default  {xs: 0, small: 600, medium: 768, large: 1024, xl: 1200}

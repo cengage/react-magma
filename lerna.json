@@ -1,8 +1,8 @@
 {
-  "packages": ["website/*", "packages/*", "patterns/*", "tests/*"],
+  "packages": ["website/*", "packages/*", "tests/*"],
   "command": {
     "publish": {
-      "allowBranch": ["dev", "hotfix/*", "main"],
+      "allowBranch": ["dev", "v4/dev", "hotfix/*", "main", "v4/main"],
       "preDistTag": "next",
       "message": "chore(release): publish",
       "ignoreChanges": ["**/*.stories.tsx", "**/*.tests.js"]

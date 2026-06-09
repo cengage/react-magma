@@ -2,11 +2,12 @@ import * as React from 'react';
 
 import styled from '@emotion/styled';
 
-/**
- * @children required
- */
 export interface HideAtBreakpointProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @default HideAtBreakpointDisplayType.block
    */

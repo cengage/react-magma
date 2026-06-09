@@ -23,6 +23,11 @@ const StyledButton = styled.div<InputBaseStylesProps & InputWrapperStylesProps>`
   padding: 0 ${props => props.theme.spaceScale.spacing03} 0
     ${props => props.theme.spaceScale.spacing02};
   text-align: left;
+
+  &:focus-within:not(:focus) {
+    outline: none;
+    box-shadow: none;
+  }
 `;
 
 const ChildrenContainer = styled.div`
@@ -72,11 +77,12 @@ export function SelectTriggerButton<T>(props: SelectTriggerButtonInterface<T>) {
       <StyledButton
         {...toggleButtonProps}
         aria-describedby={ariaDescribedBy}
+        aria-disabled={disabled}
         data-testid="selectTriggerButton"
         disabled={disabled}
         hasError={hasError}
         isInverse={isInverse}
-        role="button"
+        role="combobox"
         style={style}
         tabIndex={disabled ? undefined : 0}
         theme={theme}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Meta, StoryFn } from '@storybook/react/types-6-0';
+import { Meta, StoryFn } from '@storybook/react-webpack5';
 
 import { magma } from '../../theme/magma';
 import { Announce } from '../Announce';
@@ -82,10 +82,8 @@ export default {
   component: Table,
   argTypes: {
     density: {
-      control: {
-        type: 'select',
-        options: TableDensity,
-      },
+      control: { type: 'select' },
+      options: Object.values(TableDensity),
     },
     minWidth: {
       control: {
@@ -705,6 +703,7 @@ export const Sortable = {
 
     const sortedItems = React.useMemo(() => {
       const sortableItems = [...products];
+
       if (sortConfig !== null) {
         sortableItems.sort((a, b) => {
           if (a[sortConfig.key] < b[sortConfig.key]) {
@@ -717,14 +716,17 @@ export const Sortable = {
               ? 1
               : -1;
           }
+
           return 0;
         });
       }
+
       return sortableItems;
     }, [products, sortConfig]);
 
     const requestSort = key => {
       let direction = TableSortDirection.ascending;
+
       if (
         sortConfig &&
         sortConfig.key === key &&
@@ -733,6 +735,7 @@ export const Sortable = {
         direction = TableSortDirection.descending;
       }
       const message = `Table is sorted by ${key}, ${direction}`;
+
       setSortConfig({ key, direction, message });
     };
 
@@ -746,6 +749,7 @@ export const Sortable = {
                   onSort={() => {
                     requestSort('name');
                   }}
+                  header="Name"
                   isSortable
                   sortDirection={
                     sortConfig.key === 'name'
@@ -766,6 +770,7 @@ export const Sortable = {
                       ? sortConfig.direction
                       : TableSortDirection.none
                   }
+                  header="Price"
                 >
                   Price
                 </TableHeaderCell>
@@ -780,6 +785,7 @@ export const Sortable = {
                       ? sortConfig.direction
                       : TableSortDirection.none
                   }
+                  header="In Stock"
                 >
                   In Stock
                 </TableHeaderCell>
@@ -899,6 +905,7 @@ export const AdjustableRowNumber = {
   render: args => {
     function getTableRows() {
       const tableRows = [];
+
       for (let i = 0; i < args.numberRows; i++) {
         tableRows.push(
           <TableRow key={`row${i}`}>
@@ -912,6 +919,7 @@ export const AdjustableRowNumber = {
           </TableRow>
         );
       }
+
       return tableRows;
     }
 
@@ -1057,5 +1065,121 @@ export const CustomRowSpanAndColSpan = {
     hasVerticalBorders: true,
     hasZebraStripes: false,
     tableTitle: 'Custom Row Span and Col Span',
+  },
+};
+
+const scrollableRows = [
+  [
+    'Product A',
+    'Electronics',
+    '$1,299.99',
+    '150 units',
+    'In Stock',
+    'Premium Quality Brand',
+    'New York Warehouse',
+  ],
+  [
+    'Product B',
+    'Clothing',
+    '$89.99',
+    '500 units',
+    'In Stock',
+    'Fashion Collection',
+    'Los Angeles Warehouse',
+  ],
+  [
+    'Product C',
+    'Home & Garden',
+    '$249.99',
+    '75 units',
+    'Low Stock',
+    'Outdoor Living',
+    'Chicago Warehouse',
+  ],
+  [
+    'Product D',
+    'Sports',
+    '$449.99',
+    '200 units',
+    'In Stock',
+    'Professional Series',
+    'Miami Warehouse',
+  ],
+  [
+    'Product E',
+    'Books',
+    '$29.99',
+    '1000 units',
+    'In Stock',
+    'Bestseller Edition',
+    'Seattle Warehouse',
+  ],
+];
+
+export const ScrollableTable = {
+  render: args => {
+    return (
+      <div style={{ maxWidth: '500px' }}>
+        <p style={{ marginBottom: '8px', fontSize: '14px', color: '#666' }}>
+          This table is constrained to 500px width to demonstrate horizontal
+          scrolling. When focused, screen reader users can use arrow keys to
+          scroll.
+        </p>
+        <Table {...args}>
+          <TableHead>
+            <TableRow>
+              <TableHeaderCell style={{ minWidth: '120px' }}>
+                Product
+              </TableHeaderCell>
+              <TableHeaderCell style={{ minWidth: '120px' }}>
+                Category
+              </TableHeaderCell>
+              <TableHeaderCell style={{ minWidth: '100px' }}>
+                Price
+              </TableHeaderCell>
+              <TableHeaderCell style={{ minWidth: '100px' }}>
+                Quantity
+              </TableHeaderCell>
+              <TableHeaderCell style={{ minWidth: '100px' }}>
+                Status
+              </TableHeaderCell>
+              <TableHeaderCell style={{ minWidth: '180px' }}>
+                Brand
+              </TableHeaderCell>
+              <TableHeaderCell style={{ minWidth: '180px' }}>
+                Warehouse
+              </TableHeaderCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {scrollableRows.map((row, i) => (
+              <TableRow key={`row${i}`}>
+                {row.map((cell, j) => (
+                  <TableCell key={`cell${i}_${j}`}>{cell}</TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    );
+  },
+
+  args: {
+    hasHoverStyles: true,
+    hasOutsideBorder: true,
+    hasSquareCorners: false,
+    hasVerticalBorders: false,
+    hasZebraStripes: true,
+    isInverse: false,
+    tableTitle: 'Product Inventory',
+  },
+
+  parameters: {
+    docs: {
+      description: {
+        story: `When a table has horizontal overflow, it automatically becomes keyboard-focusable with \`tabindex="0"\` and receives \`role="region"\` with an accessible label indicating it is scrollable. This follows the USWDS pattern for accessible scrollable tables. Screen reader users will hear "Product Inventory (scrollable), region" when focusing the table, and can use arrow keys to scroll horizontally.`,
+      },
+    },
   },
 };

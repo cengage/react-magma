@@ -392,6 +392,8 @@ The `sortDirection` prop indicates the direction by which the column is sorted, 
 
 These props do not handle the actual sorting of the table, just the visual appearance.
 
+<Alert variant="warning">To improve accessibility, when using the <code>isSortable</code>{' '} prop, it is recommended to also include the <code>header</code>{' '}prop with a string value that indicates the name of the column. This will be used in the <code>aria-label</code> for the sort button to provide more context for screen reader users.</Alert>
+
 ```tsx
 import React from 'react';
 
@@ -429,6 +431,7 @@ export function Example() {
 
   const sortedItems = React.useMemo(() => {
     const sortableItems = [...products];
+
     if (sortConfig !== null) {
       sortableItems.sort((a, b) => {
         if (a[sortConfig.key] < b[sortConfig.key]) {
@@ -437,14 +440,17 @@ export function Example() {
         if (a[sortConfig.key] > b[sortConfig.key]) {
           return sortConfig.direction === TableSortDirection.ascending ? 1 : -1;
         }
+
         return 0;
       });
     }
+
     return sortableItems;
   }, [products, sortConfig]);
 
   const requestSort = key => {
     let direction = TableSortDirection.ascending;
+
     if (
       sortConfig &&
       sortConfig.key === key &&
@@ -453,6 +459,7 @@ export function Example() {
       direction = TableSortDirection.descending;
     }
     const message = `Table is sorted by ${key}, ${direction}`;
+
     setSortConfig({ key, direction, message });
   };
 
@@ -471,6 +478,7 @@ export function Example() {
                   ? sortConfig.direction
                   : TableSortDirection.none
               }
+              header="Name"
             >
               Name
             </TableHeaderCell>
@@ -485,6 +493,7 @@ export function Example() {
                   ? sortConfig.direction
                   : TableSortDirection.none
               }
+              header="Price"
             >
               Price
             </TableHeaderCell>
@@ -499,6 +508,7 @@ export function Example() {
                   ? sortConfig.direction
                   : TableSortDirection.none
               }
+              header="In Stock"
             >
               In Stock
             </TableHeaderCell>
@@ -840,7 +850,7 @@ export function Example() {
         <TableRow>
           <TableCell>Lorem ipsum dolor sit amet consectetur</TableCell>
           <TableCell>
-            <Input label="Table input" isLabelVisuallyHidden />
+            <Input aria-label="Table input row 1" isLabelVisuallyHidden />
           </TableCell>
           <TableCell>Lorem ipsum dolor</TableCell>
           <TableCell>
@@ -850,7 +860,7 @@ export function Example() {
         <TableRow>
           <TableCell>Lorem ipsum dolor sit amet</TableCell>
           <TableCell>
-            <Input label="Table input" isLabelVisuallyHidden />
+            <Input aria-label="Table input row 2" isLabelVisuallyHidden />
           </TableCell>
           <TableCell>Lorem ipsum dolor</TableCell>
           <TableCell>

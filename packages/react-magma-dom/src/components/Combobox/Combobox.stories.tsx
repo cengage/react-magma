@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { action } from '@storybook/addon-actions';
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { Meta } from '@storybook/react-webpack5';
+import { action } from 'storybook/actions';
 
 import { Button, ButtonType } from '../Button';
 import { Card } from '../Card';
@@ -12,17 +12,15 @@ import { LabelPosition } from '../Label';
 import { SelectOptions } from '../Select';
 import { Spacer } from '../Spacer';
 
-import { Combobox, ComboboxProps, MultiComboboxProps } from '.';
+import { Combobox, MultiComboboxProps } from '.';
 
 export default {
   title: 'Combobox',
   component: Combobox,
   argTypes: {
     labelPosition: {
-      control: {
-        type: 'select',
-        options: LabelPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(LabelPosition),
     },
     labelWidth: {
       control: {
@@ -42,7 +40,7 @@ export const Default = {
     labelText: 'Example',
     defaultItems: [
       { label: 'Red', value: 'red' },
-      { label: 'Blue', value: 'blue' },
+      { label: 'Blue', value: 'blue', disabled: `true` },
       { label: 'Green', value: 'green' },
     ],
     disableCreateItem: false,
@@ -63,10 +61,10 @@ export const Multi = {
         defaultItems={[
           { label: 'Red', value: 'red' },
           { label: 'Blue', value: 'blue' },
-          { label: 'Green', value: 'green' },
+          { label: 'Green', value: 'green', disabled: `true` },
           { label: 'Orange', value: 'orange' },
           { label: 'Aqua', value: 'aqua' },
-          { label: 'Gold', value: 'gold' },
+          { label: 'Gold', value: 'gold', disabled: `true` },
           { label: 'Periwinkle', value: 'periwinkle' },
           { label: 'Lavender', value: 'lavender' },
           { label: 'Marigold', value: 'marigold' },
@@ -1294,4 +1292,59 @@ export const FullPageExample = {
   },
 
   parameters: { controls: { exclude: ['labelPosition'] } },
+};
+
+export const ControlledSelectedItem = {
+  render: () => {
+    const items = [
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ];
+    const [selectedItem, setSelectedItem] = React.useState<
+      { label: string; value: string } | undefined
+    >(undefined);
+
+    return (
+      <Combobox
+        id="controlledSelectedItemId"
+        labelText="Controlled selectedItem"
+        items={items}
+        selectedItem={selectedItem}
+        onSelectedItemChange={changes => setSelectedItem(changes.selectedItem)}
+      />
+    );
+  },
+};
+
+export const ControlledItems = {
+  render: () => {
+    const defaultItems = [
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ];
+    const [items, updateItems] = React.useState(defaultItems);
+
+    function newItemTransform(item: { value: string }) {
+      return {
+        label: item.value,
+        value: item.value.toLowerCase(),
+      };
+    }
+
+    function onItemCreated(item: { label: string; value: string }) {
+      updateItems(prev => [...prev, item]);
+    }
+
+    return (
+      <Combobox
+        id="controlledItemsId"
+        labelText="Controlled items"
+        items={items}
+        newItemTransform={newItemTransform}
+        onItemCreated={onItemCreated}
+      />
+    );
+  },
 };

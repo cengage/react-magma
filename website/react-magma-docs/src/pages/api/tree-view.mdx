@@ -524,6 +524,85 @@ export function Example() {
 }
 ```
 
+## Select Parents
+
+In a TreeView with `TreeViewSelectable.single`, you can control whether parent items (folders) can be selected or if they should only expand/collapse when clicked. The `selectParents` prop allows you to configure this behavior based on your use case.
+
+By default, the `selectParents` prop is set to `true`, allowing parent items to be selected normally. When set to `false`, clicking on parent items will only expand/collapse them, while child items (leaves) can still be selected as usual.
+
+```tsx
+import React from 'react';
+
+import {
+  TreeView,
+  TreeItem,
+  TreeViewSelectable,
+  Toggle,
+} from 'react-magma-dom';
+import { FolderIcon, ArticleIcon } from 'react-magma-icons';
+
+export function Example() {
+  const [selectedItems, setSelectedItems] = React.useState<
+    TreeItemSelectedInterface[]
+  >([]);
+
+  function handleSelectedItemChange(items: TreeItemSelectedInterface[]) {
+    setSelectedItems(items);
+  }
+
+  return (
+    <TreeView
+      selectable={TreeViewSelectable.single}
+      selectParents={false}
+      onSelectedItemChange={handleSelectedItemChange}
+      ariaLabel="File browser example"
+      initialExpandedItems={['documents', 'projects', 'project-a']}
+    >
+      <TreeItem label="Documents" itemId="documents" icon={<FolderIcon />}>
+        <TreeItem label="Projects" itemId="projects" icon={<FolderIcon />}>
+          <TreeItem label="Project A" itemId="project-a" icon={<FolderIcon />}>
+            <TreeItem
+              label="README.md"
+              itemId="readme"
+              icon={<ArticleIcon />}
+            />
+            <TreeItem
+              label="package.json"
+              itemId="package"
+              icon={<ArticleIcon />}
+            />
+          </TreeItem>
+          <TreeItem label="Project B" itemId="project-b" icon={<FolderIcon />}>
+            <TreeItem
+              label="index.html"
+              itemId="index"
+              icon={<ArticleIcon />}
+            />
+            <TreeItem
+              label="styles.css"
+              itemId="styles"
+              icon={<ArticleIcon />}
+            />
+          </TreeItem>
+        </TreeItem>
+        <TreeItem label="Images" itemId="images" icon={<FolderIcon />}>
+          <TreeItem label="logo.png" itemId="logo" icon={<ArticleIcon />} />
+          <TreeItem label="banner.jpg" itemId="banner" icon={<ArticleIcon />} />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Downloads" itemId="downloads" icon={<FolderIcon />}>
+        <TreeItem
+          label="document.pdf"
+          itemId="document"
+          icon={<ArticleIcon />}
+        />
+        <TreeItem label="archive.zip" itemId="archive" icon={<ArticleIcon />} />
+      </TreeItem>
+    </TreeView>
+  );
+}
+```
+
 ## Update Selected Items From Outside
 
 Use the `apiRef` prop to change items selection from outside. It exposes these functions: `selectItem`, `selectAll`, `clearAll`.
@@ -1579,6 +1658,7 @@ export function Example() {
           ],
         };
       }
+
       return item;
     });
 
@@ -1845,6 +1925,70 @@ export function Example() {
   );
 }
 ```
+
+## Guide Lines
+
+When `hasGuideLines` is set to `true`, a vertical line is rendered alongside expanded parent items to visually connect them with their children. This helps users understand the hierarchy at a glance, especially in deep or complex trees.
+
+By default, `hasGuideLines` is set to `false`.
+
+```tsx
+import React from 'react';
+
+import { TreeView, TreeItem, TreeViewSelectable } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <TreeView
+      ariaLabel="guideline-example"
+      selectable={TreeViewSelectable.single}
+      initialExpandedItems={['divider-Mammals', 'divider-Dogs']}
+      hasGuideLines
+    >
+      <TreeItem label="Mammals" itemId="divider-Mammals">
+        <TreeItem label="Dogs" itemId="divider-Dogs">
+          <TreeItem label="German Shepherd" itemId="divider-German Shepherd" />
+          <TreeItem
+            label="Labrador Retriever"
+            itemId="divider-Labrador Retriever"
+          />
+          <TreeItem label="American Bully" itemId="divider-American Bully" />
+        </TreeItem>
+        <TreeItem label="Cats" itemId="divider-Cats">
+          <TreeItem label="Siamese" itemId="divider-Siamese" />
+          <TreeItem label="Persian" itemId="divider-Persian" />
+          <TreeItem label="Bengal" itemId="divider-Bengal" />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Birds" itemId="divider-Birds">
+        <TreeItem label="Parrots" itemId="divider-Parrots">
+          <TreeItem label="African Grey" itemId="divider-African Grey" />
+          <TreeItem label="Cockatiel" itemId="divider-Cockatiel" />
+          <TreeItem label="Budgerigar" itemId="divider-Budgerigar" />
+        </TreeItem>
+        <TreeItem label="Birds of Prey" itemId="divider-Birds of Prey">
+          <TreeItem label="Eagles" itemId="divider-Eagles" />
+          <TreeItem label="Hawks" itemId="divider-Hawks" />
+          <TreeItem label="Falcons" itemId="divider-Falcons" />
+        </TreeItem>
+      </TreeItem>
+      <TreeItem label="Amphibians" itemId="divider-Amphibians" />
+    </TreeView>
+  );
+}
+```
+
+## Virtualization
+
+For large trees with many items, you can enable virtualization to improve performance by only rendering visible items. This is especially useful for trees with hundreds or thousands of items.
+
+### Basic Virtualization
+
+Set `enableVirtualization={true}`. The `Treeview` height will be calculated based on the number of items and their heights.
+
+### Virtualization Props
+
+- `enableVirtualization`: Enable virtualization for better performance (default: `false`)
 
 ## TreeView Props
 

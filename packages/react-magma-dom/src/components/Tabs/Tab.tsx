@@ -121,6 +121,7 @@ function buildTabStylesColor(props) {
     if (props.isActive) {
       return props.theme.colors.neutral100;
     }
+
     return transparentize(0.3, props.theme.colors.neutral100);
   }
 
@@ -130,6 +131,7 @@ function buildTabStylesColor(props) {
   if (props.isActive) {
     return props.theme.colors.primary;
   }
+
   return props.theme.colors.neutral500;
 }
 
@@ -249,7 +251,8 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
     const resolvedProps = resolveProps(contextProps, props);
     const { children, icon, disabled, testId, unstyled, ...rest } =
       resolvedProps;
-    const { activeTabIndex } = React.useContext(TabsContainerContext);
+    const { activeTabIndex, instanceId } =
+      React.useContext(TabsContainerContext);
     const { buttonRefArray, registerTabButton } = React.useContext(TabsContext);
     const ownRef = React.useRef<HTMLDivElement>();
     const forceUpdate = useForceUpdate();
@@ -290,12 +293,16 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
     const isIconOnly = !children;
 
     let tabIconPosition = iconPosition;
+
     if (!tabIconPosition) {
       tabIconPosition =
         orientation === 'vertical'
           ? TabsIconPosition.left
           : TabsIconPosition.top;
     }
+
+    const tabId = `tab-${instanceId}-${index}`;
+    const panelId = `tabpanel-${instanceId}-${index}`;
 
     if (unstyled) {
       const child = React.Children.only(children) as React.ReactElement;
@@ -329,8 +336,10 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
         >
           {React.cloneElement(child, {
             ...clonedElProps,
+            'aria-controls': panelId,
             'aria-selected': isActive,
             disabled,
+            id: tabId,
             onClick: e => handleClick(index, e),
             ref,
             role: 'tab',
@@ -354,10 +363,12 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       >
         <StyledTab
           {...rest}
+          aria-controls={panelId}
           aria-selected={isActive}
           data-testid={testId}
           disabled={disabled}
           iconPosition={tabIconPosition}
+          id={tabId}
           isActive={isActive}
           isInverse={isInverse}
           isFullWidth={isFullWidth}

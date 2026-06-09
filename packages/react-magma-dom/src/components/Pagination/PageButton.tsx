@@ -13,6 +13,7 @@ export function pageButtonTypeSize(props) {
   if (props.size === 'large') {
     return `${props.theme.typeScale.size05.fontSize}`;
   }
+
   return `${props.theme.typeScale.size03.fontSize}`;
 }
 

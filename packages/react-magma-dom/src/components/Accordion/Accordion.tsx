@@ -12,12 +12,13 @@ import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
 
-/**
- * @children required
- */
 interface BaseAccordionProps
   extends UseAccordionProps,
     React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @internal
    */
@@ -99,6 +100,9 @@ export type AccordionProps =
   | AccordionSingleControlledProps;
 
 const StyledAccordion = styled.div<AccordionProps>`
+  list-style: none;
+  margin: 0;
+  padding: 0;
   background: transparent;
   border-bottom: 1px solid
     ${props =>
@@ -110,6 +114,12 @@ const StyledAccordion = styled.div<AccordionProps>`
       ? props.theme.colors.neutral100
       : props.theme.colors.neutral};
   font-family: ${props => props.theme.bodyFont};
+`;
+
+const StyledAccordionItem = styled.li`
+  list-style: none;
+  margin: 0;
+  padding: 0;
 `;
 
 export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
@@ -135,13 +145,16 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
             data-testid={testId}
             isInverse={isInverse}
             ref={ref}
+            as={'ul'}
             theme={theme}
           >
             {React.Children.map(
               children,
-              (child: React.ReactElement<any>, index) => {
-                return React.cloneElement(child, { index, key: index });
-              }
+              (child: React.ReactElement<any>, index) => (
+                <StyledAccordionItem key={index}>
+                  {React.cloneElement(child, { index, key: index })}
+                </StyledAccordionItem>
+              )
             )}
           </StyledAccordion>
         </AccordionContext.Provider>

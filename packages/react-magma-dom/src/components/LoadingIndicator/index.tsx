@@ -15,12 +15,12 @@ export interface LoadingIndicatorProps
    */
   css?: any; // Adding css prop to fix emotion error
   /**
-   * Message displayed for the first five seconds
+   * Message displayed for the first 5 seconds
    * @default "Loading..."
    */
   message1?: string;
   /**
-   * Message displayed for the first five seconds
+   * Message displayed after 5 seconds
    * @default "Thank you for your patience. Still loading..."
    */
   message2?: string;
@@ -30,7 +30,7 @@ export interface LoadingIndicatorProps
    */
   message3?: string;
   /**
-   * Message displayed for the first five seconds
+   * Value between 0 and 100 representing the percentage of progress
    * @default 0
    */
   percentage?: number;
@@ -139,7 +139,7 @@ export const LoadingIndicator = React.forwardRef<
           isLoadingIndicator
         />
       ) : (
-        <Spinner {...other} size={theme.spaceScale.spacing10} />
+        <Spinner {...other} size={theme.spaceScale.spacing10} hasMessage />
       )}
 
       <MessageContainer theme={theme}>

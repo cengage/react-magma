@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 import PropTypes from 'prop-types';
@@ -297,22 +297,21 @@ describe('Input', () => {
     expect(getByLabelText(labelText)).toHaveAttribute('value', value);
   });
 
-  it('should watch for input change and add the clear input button', () => {
+  it('should watch for input change and add the clear input button', async () => {
     const onChange = jest.fn();
     const labelText = 'Input Label';
+    const targetValue = 'new value';
     const { getByLabelText, getByTestId } = render(
       <Input labelText={labelText} onChange={onChange} isClearable />
     );
 
-    fireEvent.change(getByLabelText(labelText), {
-      target: { value: 'new value' },
-    });
+    await userEvent.type(getByLabelText(labelText), targetValue);
 
     expect(onChange).toHaveBeenCalled();
     expect(getByTestId('clear-button')).toHaveStyleRule('position', 'relative');
   });
 
-  it('should clear the input when the clear input button is clicked', () => {
+  it('should clear the input when the clear input button is clicked', async () => {
     const onClear = jest.fn();
     const labelText = 'Input Label';
     const value = 'Test Value';
@@ -325,9 +324,9 @@ describe('Input', () => {
       />
     );
 
-    fireEvent.click(getByTestId('clear-button'));
+    await userEvent.click(getByTestId('clear-button'));
 
-    expect(onClear).toBeCalled();
+    expect(onClear).toHaveBeenCalled();
     expect(getByLabelText(labelText)).toHaveAttribute('value', '');
   });
 
@@ -475,7 +474,7 @@ describe('Input', () => {
         expect(onBlurSpy).toHaveBeenCalledTimes(1);
       });
 
-      it('should trigger the passed in onChange when value of the input is changed', () => {
+      it('should trigger the passed in onChange when value of the input is changed', async () => {
         const targetValue = 'Change';
         const onChangeSpy = jest.fn();
         const labelText = 'test label';
@@ -483,11 +482,9 @@ describe('Input', () => {
           <Input labelText={labelText} onChange={onChangeSpy} value="" />
         );
 
-        fireEvent.change(getByLabelText(labelText), {
-          target: { value: targetValue },
-        });
+        await userEvent.type(getByLabelText(labelText), targetValue);
 
-        expect(onChangeSpy).toHaveBeenCalledTimes(1);
+        expect(onChangeSpy).toHaveBeenCalledTimes(6);
       });
 
       it('should trigger the passed in onFocus when focused', () => {
@@ -518,14 +515,12 @@ describe('Input', () => {
     const labelText = 'Character Counter';
     const initialValue = 'dddd';
 
-    it('should render an input with a correctly styled error message', () => {
+    it('should render an input with a correctly styled error message', async () => {
       const { getByTestId, getByLabelText } = render(
         <Input labelText={labelText} maxCount={2} />
       );
 
-      fireEvent.change(getByLabelText(labelText), {
-        target: { value: initialValue },
-      });
+      await userEvent.type(getByLabelText(labelText), initialValue);
 
       const errorMessage = getByTestId('inputMessage');
 
@@ -575,28 +570,24 @@ describe('Input', () => {
       expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
     });
 
-    it('Shows the label "characters allowed" equal to the maxCount if the user clears the input by backspacing', () => {
+    it('Shows the label "characters allowed" equal to the maxCount if the user clears the input by backspacing', async () => {
       const onChange = jest.fn();
       const { getByText, getByLabelText } = render(
         <Input labelText={labelText} maxCount={4} onChange={onChange} />
       );
 
-      fireEvent.change(getByLabelText(labelText), {
-        target: { value: initialValue },
-      });
+      await userEvent.type(getByLabelText(labelText), initialValue);
 
       expect(getByLabelText(labelText)).toHaveAttribute('value', initialValue);
       expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
 
-      fireEvent.change(getByLabelText(labelText), {
-        target: { value: '' },
-      });
+      await userEvent.clear(getByLabelText(labelText));
 
       expect(getByLabelText(labelText)).toHaveAttribute('value', '');
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
     });
 
-    it('Shows the label "characters allowed" equal to the maxCount if the user clears the input by clicking the onClear button', () => {
+    it('Shows the label "characters allowed" equal to the maxCount if the user clears the input by clicking the onClear button', async () => {
       const onClear = jest.fn();
       const { getByText, getByLabelText, getByTestId } = render(
         <Input
@@ -607,14 +598,12 @@ describe('Input', () => {
         />
       );
 
-      fireEvent.change(getByLabelText(labelText), {
-        target: { value: initialValue },
-      });
+      await userEvent.type(getByLabelText(labelText), initialValue);
 
       expect(getByLabelText(labelText)).toHaveAttribute('value', initialValue);
       expect(getByText('0 ' + charactersLeft)).toBeInTheDocument();
 
-      fireEvent.click(getByTestId('clear-button'));
+      await userEvent.click(getByTestId('clear-button'));
 
       expect(getByText('4 ' + charactersAllowed)).toBeInTheDocument();
       expect(onClear).toBeCalled();

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryFn, Meta } from '@storybook/react/types-6-0';
+import { StoryFn, Meta } from '@storybook/react-webpack5';
 
 import { Button } from '../Button';
 import { Card, CardBody } from '../Card';
@@ -28,10 +28,8 @@ export default {
       },
     },
     labelPosition: {
-      control: {
-        type: 'select',
-        options: LabelPosition,
-      },
+      control: { type: 'select' },
+      options: Object.values(LabelPosition),
     },
     labelWidth: {
       control: {
@@ -88,7 +86,11 @@ export const Events = () => {
       </Paragraph>
       <Paragraph>onChange called {onChangeCalledTimes} times</Paragraph>
 
-      <TimePicker labelText="Time Due" onChange={handleOnChange} />
+      <TimePicker
+        labelText="Time Due"
+        onChange={handleOnChange}
+        value={timeValue}
+      />
       <br />
       <Button onClick={() => setTimeValue(undefined)}>Clear Time</Button>
     </>

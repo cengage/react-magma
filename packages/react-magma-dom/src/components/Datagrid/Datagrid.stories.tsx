@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StoryObj, Meta, StoryFn } from '@storybook/react/types-6-0';
+import { StoryObj, Meta, StoryFn } from '@storybook/react-webpack5';
 
 import { DatagridProps } from './Datagrid';
 import { magma } from '../../theme/magma';
@@ -23,203 +23,203 @@ import { Datagrid } from '.';
 const rowsForPagination = [
   {
     id: 1,
-    col1: '1 Lorem ipsum dolor sit amet consectetur',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 1',
+    col1: '1 Emma Johnson',
+    col2: 'Software Engineer',
+    col3: 'Engineering',
+    col4: 'San Francisco, CA',
+    rowName: 'Emma Johnson',
   },
   {
     id: 2,
-    col1: '2 Lorem ipsum dolor sit amet',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 2',
+    col1: '2 Liam Chen',
+    col2: 'Product Manager',
+    col3: 'Product',
+    col4: 'New York, NY',
+    rowName: 'Liam Chen',
   },
   {
     id: 3,
-    col1: '3 Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 3',
+    col1: '3 Olivia Martinez',
+    col2: 'UX Designer',
+    col3: 'Design',
+    col4: 'Austin, TX',
+    rowName: 'Olivia Martinez',
   },
   {
     id: 4,
-    col1: '4 Lorem ipsum dolor sit amet consectetur',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 4',
+    col1: '4 Noah Williams',
+    col2: 'Data Analyst',
+    col3: 'Analytics',
+    col4: 'Seattle, WA',
+    rowName: 'Noah Williams',
   },
   {
     id: 5,
-    col1: '5 Lorem ipsum dolor sit amet',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 5',
+    col1: '5 Ava Davis',
+    col2: 'Marketing Manager',
+    col3: 'Marketing',
+    col4: 'Chicago, IL',
+    rowName: 'Ava Davis',
   },
   {
     id: 6,
-    col1: '6 Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 6',
+    col1: '6 Ethan Brown',
+    col2: 'DevOps Engineer',
+    col3: 'Engineering',
+    col4: 'Boston, MA',
+    rowName: 'Ethan Brown',
   },
   {
     id: 7,
-    col1: '7  Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 7',
+    col1: '7 Sophia Garcia',
+    col2: 'Sales Representative',
+    col3: 'Sales',
+    col4: 'Denver, CO',
+    rowName: 'Sophia Garcia',
   },
   {
     id: 8,
-    col1: '8 Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 8',
+    col1: '8 Mason Rodriguez',
+    col2: 'HR Specialist',
+    col3: 'Human Resources',
+    col4: 'Portland, OR',
+    rowName: 'Mason Rodriguez',
   },
   {
     id: 9,
-    col1: '9 Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 9',
+    col1: '9 Isabella Wilson',
+    col2: 'Frontend Developer',
+    col3: 'Engineering',
+    col4: 'Los Angeles, CA',
+    rowName: 'Isabella Wilson',
   },
   {
     id: 10,
-    col1: '10 Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 10',
+    col1: '10 Lucas Anderson',
+    col2: 'Business Analyst',
+    col3: 'Operations',
+    col4: 'Atlanta, GA',
+    rowName: 'Lucas Anderson',
   },
   {
     id: 11,
-    col1: '11 Lorem ipsum dolor sit amet consectetur',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 11',
+    col1: '11 Mia Thomas',
+    col2: 'Content Strategist',
+    col3: 'Marketing',
+    col4: 'Miami, FL',
+    rowName: 'Mia Thomas',
   },
   {
     id: 12,
-    col1: '12 Lorem ipsum dolor sit amet',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 12',
+    col1: '12 James Taylor',
+    col2: 'Backend Developer',
+    col3: 'Engineering',
+    col4: 'Phoenix, AZ',
+    rowName: 'James Taylor',
   },
   {
     id: 13,
-    col1: '13 Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 13',
+    col1: '13 Charlotte Moore',
+    col2: 'Quality Assurance',
+    col3: 'Engineering',
+    col4: 'Dallas, TX',
+    rowName: 'Charlotte Moore',
   },
   {
     id: 14,
-    col1: '14 Lorem ipsum dolor sit amet',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 14',
+    col1: '14 Benjamin Jackson',
+    col2: 'Account Executive',
+    col3: 'Sales',
+    col4: 'Philadelphia, PA',
+    rowName: 'Benjamin Jackson',
   },
   {
     id: 15,
-    col1: '15 Lorem ipsum dolor sit amet',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 15',
+    col1: '15 Amelia Martin',
+    col2: 'UI Designer',
+    col3: 'Design',
+    col4: 'San Diego, CA',
+    rowName: 'Amelia Martin',
   },
   {
     id: 16,
-    col1: '16 Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 16',
+    col1: '16 Elijah Lee',
+    col2: 'Systems Administrator',
+    col3: 'IT',
+    col4: 'Minneapolis, MN',
+    rowName: 'Elijah Lee',
   },
   {
     id: 17,
-    col1: '17 Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 17',
+    col1: '17 Harper White',
+    col2: 'Customer Success Manager',
+    col3: 'Customer Support',
+    col4: 'Nashville, TN',
+    rowName: 'Harper White',
   },
   {
     id: 18,
-    col1: '18 Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 18',
+    col1: '18 Alexander Harris',
+    col2: 'Financial Analyst',
+    col3: 'Finance',
+    col4: 'Charlotte, NC',
+    rowName: 'Alexander Harris',
   },
   {
     id: 19,
-    col1: '19 Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 19',
+    col1: '19 Evelyn Clark',
+    col2: 'Scrum Master',
+    col3: 'Engineering',
+    col4: 'Salt Lake City, UT',
+    rowName: 'Evelyn Clark',
   },
   {
     id: 20,
-    col1: '20 Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 20',
+    col1: '20 Michael Lewis',
+    col2: 'Technical Writer',
+    col3: 'Documentation',
+    col4: 'Raleigh, NC',
+    rowName: 'Michael Lewis',
   },
   {
     id: 21,
-    col1: '21 Lorem ipsum dolor sit amet consectetur',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 21',
+    col1: '21 Abigail Walker',
+    col2: 'Brand Manager',
+    col3: 'Marketing',
+    col4: 'Columbus, OH',
+    rowName: 'Abigail Walker',
   },
   {
     id: 22,
-    col1: '22 Lorem ipsum dolor sit amet',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 22',
+    col1: '22 Daniel Hall',
+    col2: 'Security Engineer',
+    col3: 'Engineering',
+    col4: 'Indianapolis, IN',
+    rowName: 'Daniel Hall',
   },
   {
     id: 23,
-    col1: '23 Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 23',
+    col1: '23 Emily Allen',
+    col2: 'Research Analyst',
+    col3: 'Analytics',
+    col4: 'San Jose, CA',
+    rowName: 'Emily Allen',
   },
   {
     id: 24,
-    col1: '24 Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 24',
+    col1: '24 Matthew Young',
+    col2: 'Operations Manager',
+    col3: 'Operations',
+    col4: 'Detroit, MI',
+    rowName: 'Matthew Young',
   },
   {
     id: 25,
-    col1: '25 Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
-    rowName: 'Row 25',
+    col1: '25 Elizabeth King',
+    col2: 'Training Coordinator',
+    col3: 'Human Resources',
+    col4: 'Milwaukee, WI',
+    rowName: 'Elizabeth King',
   },
 ];
 
@@ -316,38 +316,38 @@ export default {
 } as Meta;
 
 const columns = [
-  { field: 'col1', header: 'Col 1' },
-  { field: 'col2', header: 'Col 2' },
-  { field: 'col3', header: 'Col 3' },
-  { field: 'col4', header: 'Col 4' },
+  { field: 'col1', header: 'Name' },
+  { field: 'col2', header: 'Position' },
+  { field: 'col3', header: 'Department' },
+  { field: 'col4', header: 'Location' },
 ];
 
 const coloredRows = [
   {
     id: 1,
     color: TableRowColor.danger,
-    col1: 'Lorem ipsum dolor sit amet consectetur',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
+    col1: '1 Emily Allen',
+    col2: 'Research Analyst',
+    col3: 'Analytics',
+    col4: 'San Jose, CA',
     rowName: 'Row danger',
   },
   {
     id: 2,
     color: TableRowColor.info,
-    col1: 'Lorem ipsum dolor sit amet',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
+    col1: '2 Matthew Young',
+    col2: 'Operations Manager',
+    col3: 'Operations',
+    col4: 'Detroit, MI',
     rowName: 'Row info',
   },
   {
     id: 3,
     color: TableRowColor.success,
-    col1: 'Lorem ipsum dolor',
-    col2: 'Lorem ipsum dolor',
-    col3: 'Lorem ipsum dolor',
-    col4: 'Lorem ipsum',
+    col1: '3 Elizabeth King',
+    col2: 'Training Coordinator',
+    col3: 'Human Resources',
+    col4: 'Milwaukee, WI',
     rowName: 'Row success',
   },
 ];
@@ -414,7 +414,7 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
     const requestSort = (key: string) => {
       let direction = TableSortDirection.ascending;
 
-      if (key === 'name') {
+      if (key === 'selected') {
         if (
           sortConfig?.key === key &&
           selectedDirection === TableSortDirection.ascending
@@ -447,6 +447,7 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
       }
 
       const message = `Table is sorted by ${key}, ${direction}`;
+
       setSortConfig({ key, message });
     };
 
@@ -489,7 +490,7 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
     const [selectedItems, setSelectedItems] = React.useState([]);
 
     const sortedItems = React.useMemo(() => {
-      if (sortConfig.key === 'name') {
+      if (sortConfig.key === 'selected') {
         const selectedItemsToSort = products.filter(product =>
           selectedItems.includes(product.id)
         );
@@ -497,20 +498,22 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
           product => !selectedItems.includes(product.id)
         );
         let sortOrder = 0;
+
         if (sortConfig !== null) {
           if (selectedItemsToSort.length < 2) {
             sortOrder =
               selectedDirection === TableSortDirection.ascending ? -1 : 1;
           }
           selectedItemsToSort.sort((a, b) => {
-            if (a[sortConfig.key] < b[sortConfig.key]) {
+            if (a.name < b.name) {
               sortOrder =
                 selectedDirection === TableSortDirection.ascending ? -1 : 1;
             }
-            if (a[sortConfig.key] > b[sortConfig.key]) {
+            if (a.name > b.name) {
               sortOrder =
                 selectedDirection === TableSortDirection.ascending ? 1 : -1;
             }
+
             return sortOrder;
           });
         }
@@ -525,6 +528,7 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
         const sortableItems = [...products];
         const direction =
           sortConfig.key === 'price' ? priceDirection : stockDirection;
+
         sortableItems.sort((a, b) => {
           if (a[sortConfig.key] < b[sortConfig.key]) {
             return direction === TableSortDirection.ascending ? -1 : 1;
@@ -532,8 +536,10 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
           if (a[sortConfig.key] > b[sortConfig.key]) {
             return direction === TableSortDirection.ascending ? 1 : -1;
           }
+
           return 0;
         });
+
         return sortableItems;
       }
     }, [sortConfig]);
@@ -554,6 +560,7 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
     function handleHeaderSelect(ev: React.ChangeEvent<HTMLInputElement>) {
       if (ev.target.checked && selectedItems.length === 0) {
         const checkedIds = [];
+
         products.filter(prod => checkedIds.push(prod.id));
         setSelectedItems(checkedIds);
       } else {
@@ -569,7 +576,7 @@ export const SelectableAndSortable: StoryObj<DatagridProps> = {
             rows={sortedItems}
             columns={productColumns}
             onSortBySelected={() => {
-              requestSort('name');
+              requestSort('selected');
             }}
             onRowSelect={handleRowSelect}
             onHeaderSelect={handleHeaderSelect}
@@ -716,5 +723,114 @@ export const TitleTable = {
     hasOutsideBorder: true,
     hasSquareCorners: false,
     tableTitle: <h1>Title table</h1>,
+  },
+};
+
+const scrollableColumns = [
+  { field: 'product', header: 'Product', style: { minWidth: '120px' } },
+  { field: 'category', header: 'Category', style: { minWidth: '120px' } },
+  { field: 'price', header: 'Price', style: { minWidth: '100px' } },
+  { field: 'quantity', header: 'Quantity', style: { minWidth: '100px' } },
+  { field: 'status', header: 'Status', style: { minWidth: '100px' } },
+  { field: 'brand', header: 'Brand', style: { minWidth: '180px' } },
+  { field: 'warehouse', header: 'Warehouse', style: { minWidth: '180px' } },
+];
+
+const scrollableRows = [
+  {
+    id: 1,
+    product: 'Product A',
+    category: 'Electronics',
+    price: '$1,299.99',
+    quantity: '150 units',
+    status: 'In Stock',
+    brand: 'Premium Quality Brand',
+    warehouse: 'New York Warehouse',
+    rowName: 'Product A',
+  },
+  {
+    id: 2,
+    product: 'Product B',
+    category: 'Clothing',
+    price: '$89.99',
+    quantity: '500 units',
+    status: 'In Stock',
+    brand: 'Fashion Collection',
+    warehouse: 'Los Angeles Warehouse',
+    rowName: 'Product B',
+  },
+  {
+    id: 3,
+    product: 'Product C',
+    category: 'Home & Garden',
+    price: '$249.99',
+    quantity: '75 units',
+    status: 'Low Stock',
+    brand: 'Outdoor Living',
+    warehouse: 'Chicago Warehouse',
+    rowName: 'Product C',
+  },
+  {
+    id: 4,
+    product: 'Product D',
+    category: 'Sports',
+    price: '$449.99',
+    quantity: '200 units',
+    status: 'In Stock',
+    brand: 'Professional Series',
+    warehouse: 'Miami Warehouse',
+    rowName: 'Product D',
+  },
+  {
+    id: 5,
+    product: 'Product E',
+    category: 'Books',
+    price: '$29.99',
+    quantity: '1000 units',
+    status: 'In Stock',
+    brand: 'Bestseller Edition',
+    warehouse: 'Seattle Warehouse',
+    rowName: 'Product E',
+  },
+];
+
+export const ScrollableDatagrid = {
+  render: (
+    args: React.JSX.IntrinsicAttributes &
+      (DatagridProps & React.RefAttributes<HTMLTableElement>)
+  ) => {
+    return (
+      <div style={{ maxWidth: '500px' }}>
+        <p style={{ marginBottom: '8px', fontSize: '14px', color: '#666' }}>
+          This datagrid is constrained to 500px width to demonstrate horizontal
+          scrolling. When focused, screen reader users can use arrow keys to
+          scroll.
+        </p>
+        <Card>
+          <CardBody>
+            <Datagrid {...args} />
+          </CardBody>
+        </Card>
+      </div>
+    );
+  },
+
+  args: {
+    columns: scrollableColumns,
+    rows: scrollableRows,
+    tableTitle: 'Product Inventory',
+    hasHoverStyles: true,
+    hasOutsideBorder: true,
+    hasZebraStripes: true,
+    hasPagination: false,
+    isSelectable: false,
+  },
+
+  parameters: {
+    docs: {
+      description: {
+        story: `When a datagrid has horizontal overflow, it automatically becomes keyboard-focusable with \`tabindex="0"\` and receives \`role="region"\` with an accessible label indicating it is scrollable. This follows the USWDS pattern for accessible scrollable tables. Screen reader users will hear "Product Inventory (scrollable), region" when focusing the datagrid, and can use arrow keys to scroll horizontally.`,
+      },
+    },
   },
 };

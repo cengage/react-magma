@@ -5,11 +5,12 @@ import styled from '@emotion/styled';
 import { ThemeContext } from '../../theme/ThemeContext';
 import { CardProps } from '../Card';
 
-/**
- * @children required
- */
 export interface CardBodyProps
   extends React.LabelHTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * @internal
    */

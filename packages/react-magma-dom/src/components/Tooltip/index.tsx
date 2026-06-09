@@ -10,6 +10,11 @@ import {
   shift,
   useFloating,
   FloatingArrow,
+  useHover,
+  useFocus,
+  useDismiss,
+  useInteractions,
+  safePolygon,
 } from '@floating-ui/react';
 
 import { useIsInverse } from '../../inverse';
@@ -124,6 +129,7 @@ export const StyledTooltip = styled.div<{
 
 // Using any for the ref because it is put on the passed in children which does not have a specific type
 export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
+  const isOpen = props.open !== undefined;
   const [isVisible, setIsVisible] = React.useState<boolean>(props.open);
   const arrowElement = React.useRef(null);
 
@@ -153,6 +159,8 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
 
   const { refs, floatingStyles, placement, context, elements, update } =
     useFloating({
+      open: isVisible,
+      onOpenChange: setIsVisible,
       //flip() - Changes the placement of the floating element to keep it in view.
       //offset() - Translates the floating element along the specified axes. (Space between the Trigger and the Content).
       //shift() - Shifts the floating element along the specified axes to keep it in view within the clipping context or viewport.
@@ -163,9 +171,27 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
         offset(isArrowVisible ? 14 : 0),
         ...(isArrowVisible ? [arrow({ element: arrowElement })] : []),
       ],
-      placement: props.position || (TooltipPosition.top as AlignedPlacement),
+      placement: (position ??
+        TooltipPosition.top) as unknown as AlignedPlacement,
       whileElementsMounted: autoUpdate,
     });
+
+  const hover = useHover(context, {
+    enabled: !isOpen,
+    handleClose: safePolygon(),
+  });
+
+  const focus = useFocus(context, {
+    enabled: !isOpen,
+  });
+
+  const dismiss = useDismiss(context);
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    hover,
+    focus,
+    dismiss,
+  ]);
 
   React.useEffect(() => {
     const referenceElement = elements.reference;
@@ -179,34 +205,10 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   const combinedRef = useForkedRef(ref, refs.setReference);
 
   React.useEffect(() => {
-    const handleEsc = event => {
-      if (event.key === 'Escape') {
-        hideTooltip();
-      }
-    };
-    window.addEventListener('keydown', handleEsc);
-
-    return () => {
-      window.removeEventListener('keydown', handleEsc);
-    };
-  }, []);
-
-  function handleKeyDown(event: React.KeyboardEvent) {
-    if (event.key === 'Escape') {
-      if (isVisible) {
-        event.stopPropagation();
-      }
-      hideTooltip();
+    if (isOpen) {
+      setIsVisible(props.open);
     }
-  }
-
-  function showTooltip() {
-    setIsVisible(true);
-  }
-
-  function hideTooltip() {
-    setIsVisible(props.open);
-  }
+  }, [isOpen, props.open]);
 
   const id = useGenerateId(defaultId);
   const theme = React.useContext(ThemeContext);
@@ -215,12 +217,25 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
     throw new Error('Tooltip children can only be one element.');
   }
 
-  const tooltipTrigger = React.cloneElement(children, {
-    'aria-describedby': isVisible ? id : null,
-    onBlur: hideTooltip,
-    onFocus: showTooltip,
-    ref: combinedRef,
-  });
+  const tooltipTrigger = React.cloneElement(
+    children,
+    getReferenceProps({
+      'aria-describedby': isVisible ? id : null,
+      ref: combinedRef,
+      onFocus: event => {
+        children.props.onFocus?.(event);
+        if (!isOpen) {
+          setIsVisible(true);
+        }
+      },
+      onBlur: event => {
+        children.props.onBlur?.(event);
+        if (!isOpen) {
+          setIsVisible(false);
+        }
+      },
+    })
+  );
 
   const combinedTooltipStyles = {
     zIndex: theme.tooltip.zIndex,
@@ -233,15 +248,27 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
   return (
     <TooltipContainer
       {...other}
-      data-testid={testId || 'tooltip'}
-      onKeyDown={handleKeyDown}
-      onMouseLeave={hideTooltip}
-      onMouseEnter={showTooltip}
+      data-testid={testId ?? 'tooltip'}
       style={containerStyle}
     >
       {tooltipTrigger}
       {isVisible && (
-        <div ref={refs.setFloating} style={combinedTooltipStyles}>
+        <div
+          ref={refs.setFloating}
+          style={combinedTooltipStyles}
+          {...getFloatingProps({
+            onMouseEnter: () => {
+              if (!isOpen) {
+                setIsVisible(true);
+              }
+            },
+            onMouseLeave: () => {
+              if (!isOpen) {
+                setIsVisible(false);
+              }
+            },
+          })}
+        >
           <FloatingArrow
             ref={arrowElement}
             data-testid={testId ? `${testId}-arrow` : 'tooltip-arrow'}
@@ -259,7 +286,9 @@ export const Tooltip = React.forwardRef<any, TooltipProps>((props, ref) => {
             id={id}
             isInverse={isInverse}
             position={
-              placement ? (placement as AlignedPlacement) : TooltipPosition.top
+              (placement
+                ? (placement as unknown)
+                : TooltipPosition.top) as TooltipPosition
             }
             theme={theme}
             role="tooltip"

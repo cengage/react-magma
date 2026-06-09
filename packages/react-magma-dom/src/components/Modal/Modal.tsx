@@ -24,10 +24,11 @@ export enum ModalSize {
   small = 'small',
 }
 
-/**
- * @children required
- */
 export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @children required
+   */
+  children: React.ReactNode;
   /**
    * Custom aria label ONLY for modals that do not have a header
    */
@@ -85,6 +86,13 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   unmountOnExit?: boolean;
   /**
+   * DOM element to portal the modal into. Defaults to `document.body`.
+   * Useful when the modal must render inside a specific subtree, such as
+   * when the parent element has been put into the browser's fullscreen mode
+   * (only DOM within the fullscreen element is rendered by the browser).
+   */
+  portalContainer?: HTMLElement | null;
+  /**
    * @internal
    */
   containerTransition?: Omit<TransitionProps, 'isOpen'>;
@@ -119,6 +127,10 @@ export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
    * @internal
    */
   hasDrawerAnimation?: boolean;
+  /**
+   * Number to indicate which level heading will render (e.g. h1, h2 etc.)
+   */
+  headerLevel?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 const ModalContainer = styled(Transition)<{
@@ -157,11 +169,13 @@ const ModalContent = styled.div<ModalProps>`
     if (!props.showBackgroundOverlay && props.isInverse) {
       return `1px solid ${transparentize(0.5, props.theme.colors.tertiary)}`;
     }
+
     return 'none';
   }};
   border-radius: ${props => props.theme.borderRadius};
   box-shadow: ${props => {
     const amount = props.isInverse ? 0.82 : 0.6;
+
     return `0 2px 6px ${transparentize(amount, props.theme.colors.neutral900)}`;
   }};
   color: ${props =>
@@ -206,7 +220,7 @@ const ModalWrapper = styled.div<{ theme?: ThemeInterface }>`
   }
 `;
 
-const H1 = styled(Heading)<{ theme?: ThemeInterface; isInverse?: boolean }>`
+const H2 = styled(Heading)<{ theme?: ThemeInterface; isInverse?: boolean }>`
   font-size: ${props =>
     props.theme.typographyVisualStyles.headingSmall.desktop.fontSize};
   line-height: ${props =>
@@ -234,6 +248,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       children,
       closeAriaLabel,
       closeButtonSize,
+      portalContainer,
       containerStyle,
       containerTransition,
       isBackgroundClickDisabled,
@@ -248,6 +263,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       onClose,
       hasDrawerAnimation,
       showBackgroundOverlay = true,
+      headerLevel = 2,
       ...rest
     } = props;
 
@@ -288,6 +304,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       if (isModalOpen) {
         lastFocus.current = document.activeElement;
         const count = document.querySelectorAll('[aria-modal="true"]').length;
+
         setModalCount(count);
 
         if (!isEscKeyDownDisabled) {
@@ -302,11 +319,14 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           false
         );
       };
-    }, [isModalOpen]);
+    }, [isModalOpen, isEscKeyDownDisabled]);
 
     function handleModalClick(event: React.SyntheticEvent) {
+      const contentEl = document.getElementById(contentId);
+
       if (
-        !document.getElementById(contentId).contains(event.target as Node) &&
+        contentEl &&
+        !contentEl.contains(event.target as Node) &&
         event.target === currentTarget
       ) {
         handleClose(event);
@@ -330,13 +350,14 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         const modalsInDom = document.querySelectorAll(
           '[aria-modal="true"]'
         ).length;
+
         if (modalCount <= 1 && modalsInDom !== 1) {
-          if (
-            document.getElementById(id).contains(event.target as HTMLDivElement)
-          ) {
+          const modalEl = document.getElementById(id);
+
+          if (modalEl && modalEl.contains(event.target as HTMLDivElement)) {
             handleClose(event);
           } else {
-            headingRef.current.focus();
+            headingRef.current?.focus();
           }
         } else {
           handleClose(event);
@@ -374,97 +395,98 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       />
     );
 
-    // Fix for server-side rendering
-    if (typeof document === 'undefined') {
-      return null;
-    }
-
-    return ReactDOM.createPortal(
-      <div ref={focusTrapElement}>
-        <Global
-          styles={css`
-            html {
-              overflow: ${isOpen ? 'hidden' : 'auto'};
-            }
-          `}
-        />
-        <ModalContainer
-          aria-labelledby={header ? headingId : null}
-          aria-label={!header ? ariaLabel : null}
-          aria-modal
-          data-testid={testId}
-          id={id}
-          modalCount={modalCount}
-          onClick={isBackgroundClickDisabled ? null : handleModalClick}
-          onMouseDown={
-            isBackgroundClickDisabled ? null : handleModalOnMouseDown
-          }
-          role="dialog"
-          style={containerStyle}
-          theme={theme}
-          isOpen={isModalOpen}
-          {...containerTransition}
-          unmountOnExit={unmountOnExit}
-          hasDrawerAnimation={hasDrawerAnimation}
-        >
-          <ModalContent
-            {...other}
-            data-testid="modal-content"
-            id={contentId}
-            ref={ref}
-            showBackgroundOverlay={showBackgroundOverlay}
-            theme={theme}
-          >
-            {header && (
-              <ModalHeader theme={theme}>
+    return isModalOpen
+      ? ReactDOM.createPortal(
+          <div ref={focusTrapElement}>
+            <Global
+              styles={css`
+                html {
+                  overflow: ${isOpen ? 'hidden' : 'auto'};
+                }
+              `}
+            />
+            <ModalContainer
+              aria-labelledby={header ? headingId : null}
+              aria-label={!header ? ariaLabel : null}
+              aria-modal
+              data-testid={testId}
+              id={id}
+              modalCount={modalCount}
+              onClick={isBackgroundClickDisabled ? null : handleModalClick}
+              onMouseDown={
+                isBackgroundClickDisabled ? null : handleModalOnMouseDown
+              }
+              role="dialog"
+              style={containerStyle}
+              theme={theme}
+              isOpen={isModalOpen}
+              {...containerTransition}
+              unmountOnExit={unmountOnExit}
+              hasDrawerAnimation={hasDrawerAnimation}
+            >
+              <ModalContent
+                {...other}
+                data-testid="modal-content"
+                id={contentId}
+                ref={ref}
+                showBackgroundOverlay={showBackgroundOverlay}
+                theme={theme}
+              >
                 {header && (
-                  <H1
-                    id={headingId}
-                    isInverse={isInverse}
-                    level={1}
-                    ref={headingRef}
-                    visualStyle={TypographyVisualStyle.headingSmall}
-                    tabIndex={-1}
-                    theme={theme}
-                  >
-                    {header}
-                  </H1>
+                  <ModalHeader theme={theme}>
+                    {header && (
+                      <H2
+                        id={headingId}
+                        isInverse={isInverse}
+                        level={headerLevel}
+                        ref={headingRef}
+                        visualStyle={TypographyVisualStyle.headingSmall}
+                        tabIndex={-1}
+                        theme={theme}
+                      >
+                        {header}
+                      </H2>
+                    )}
+                  </ModalHeader>
                 )}
-              </ModalHeader>
+                {!isCloseButtonHidden && (
+                  <CloseBtn theme={theme}>
+                    <IconButton
+                      aria-label={
+                        closeAriaLabel
+                          ? closeAriaLabel
+                          : i18n.modal.closeAriaLabel
+                      }
+                      color={ButtonColor.primary}
+                      icon={CloseIconButton}
+                      isInverse={isInverse}
+                      onClick={handleClose}
+                      testId="modal-closebtn"
+                      variant={ButtonVariant.link}
+                    />
+                  </CloseBtn>
+                )}
+                <ModalWrapper ref={bodyRef} theme={theme}>
+                  {children}
+                </ModalWrapper>
+              </ModalContent>
+            </ModalContainer>
+            {showBackgroundOverlay && (
+              <ModalBackdrop
+                data-testid="modal-backdrop"
+                onMouseDown={
+                  isBackgroundClickDisabled ? undefined : handleClose
+                }
+                fade={hasDrawerAnimation}
+                isOpen={isModalOpen}
+                style={modalCount >= 2 && { zIndex: '998' }}
+                unmountOnExit
+                theme={theme}
+              />
             )}
-            <ModalWrapper ref={bodyRef} theme={theme}>
-              {children}
-            </ModalWrapper>
-            {!isCloseButtonHidden && (
-              <CloseBtn theme={theme}>
-                <IconButton
-                  aria-label={
-                    closeAriaLabel ? closeAriaLabel : i18n.modal.closeAriaLabel
-                  }
-                  color={ButtonColor.primary}
-                  icon={CloseIconButton}
-                  isInverse={isInverse}
-                  onClick={handleClose}
-                  testId="modal-closebtn"
-                  variant={ButtonVariant.link}
-                />
-              </CloseBtn>
-            )}
-          </ModalContent>
-        </ModalContainer>
-        {showBackgroundOverlay && (
-          <ModalBackdrop
-            data-testid="modal-backdrop"
-            onMouseDown={isBackgroundClickDisabled ? undefined : handleClose}
-            fade={hasDrawerAnimation}
-            isOpen={isModalOpen}
-            style={modalCount >= 2 && { zIndex: '998' }}
-            unmountOnExit
-            theme={theme}
-          />
-        )}
-      </div>,
-      document.getElementsByTagName('body')[0]
-    );
+          </div>,
+          portalContainer ?? document.getElementsByTagName('body')[0]
+        )
+      : null;
   }
 );
