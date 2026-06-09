@@ -157,6 +157,7 @@
   "devDependencies": {
     "@playwright/test": "^1.55.1",
     "babel-loader": "^10.0.0",
-    "chromatic": "^16.8.0"
+    "chromatic": "^16.8.0",
+    "webpack": "^5.104.1"
   }
 }
