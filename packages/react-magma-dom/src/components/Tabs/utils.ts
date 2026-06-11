@@ -124,9 +124,11 @@ export function useScrollTabFocus(
 ) {
   const focusFirstVisibleTab = React.useCallback(() => {
     const wrapper = tabsWrapperRef.current;
+
     if (!wrapper) return;
 
     const tabs = wrapper.querySelectorAll<HTMLElement>('[role="tab"]');
+
     if (!tabs || tabs.length === 0) return;
 
     const wrapperRect = wrapper.getBoundingClientRect();
@@ -140,6 +142,7 @@ export function useScrollTabFocus(
           tabRect.bottom <= wrapperRect.bottom + tolerance
         : tabRect.left >= wrapperRect.left - tolerance &&
           tabRect.right <= wrapperRect.right + tolerance;
+
       if (isVisible) {
         tab.focus();
         break;
