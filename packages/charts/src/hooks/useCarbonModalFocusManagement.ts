@@ -7,6 +7,7 @@ function getFocusableElements(container: HTMLElement): HTMLElement[] {
   return Array.from(container.querySelectorAll(FOCUSABLE_SELECTOR)).filter(
     (el): el is HTMLElement => {
       const style = window.getComputedStyle(el);
+
       return (
         style.display !== 'none' &&
         style.visibility !== 'hidden' &&
@@ -18,6 +19,7 @@ function getFocusableElements(container: HTMLElement): HTMLElement[] {
 
 function findVisibleModal(wrapper: HTMLElement): HTMLElement | null {
   const modal = wrapper.querySelector<HTMLElement>('.cds--modal');
+
   if (!modal) return null;
 
   const isVisible =
@@ -40,14 +42,17 @@ export function useCarbonModalFocusManagement(
 
   React.useEffect(() => {
     const wrapper = wrapperRef.current;
+
     if (!wrapper) return;
 
     function focusModalCloseButton(modal: HTMLElement) {
       const closeButton = modal.querySelector<HTMLElement>('.cds--modal-close');
+
       if (closeButton) {
         closeButton.focus();
       } else {
         const focusable = getFocusableElements(modal);
+
         if (focusable.length > 0) {
           focusable[0].focus();
         }
@@ -62,6 +67,7 @@ export function useCarbonModalFocusManagement(
       // (e.g. Carbon's overflow menu returning focus to its trigger).
       focusinHandler.current = (event: FocusEvent) => {
         const target = event.target as HTMLElement;
+
         if (!modal.contains(target)) {
           setTimeout(() => {
             if (currentModal.current === modal) {
@@ -78,11 +84,13 @@ export function useCarbonModalFocusManagement(
         if (modal.contains(document.activeElement)) return;
 
         const closeBtn = modal.querySelector<HTMLElement>('.cds--modal-close');
+
         if (
           closeBtn &&
           window.getComputedStyle(closeBtn).visibility !== 'hidden'
         ) {
           closeBtn.focus();
+
           return;
         }
 
@@ -90,14 +98,17 @@ export function useCarbonModalFocusManagement(
           requestAnimationFrame(pollAndFocus);
         }
       };
+
       requestAnimationFrame(pollAndFocus);
 
       keydownHandler.current = (event: KeyboardEvent) => {
         if (event.key !== 'Tab') return;
 
         const focusable = getFocusableElements(modal);
+
         if (focusable.length === 0) {
           event.preventDefault();
+
           return;
         }
 
@@ -106,6 +117,7 @@ export function useCarbonModalFocusManagement(
           if (focusable[0] !== document.activeElement) {
             focusable[0].focus();
           }
+
           return;
         }
 

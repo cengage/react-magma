@@ -1,6 +1,28 @@
 # @react-magma/charts
 
-## 14.0.0-rc.5
+## 14.0.0
+
+### Major Changes
+
+- 8ef29cd: Major version release v14.0.0 — React 18 support.
+
+  **Breaking Changes**
+
+  - **React 18 required.** The `react`/`react-dom` peer dependencies are now `^18.3.1`, and `react-magma-dom` is now `^5.0.0`. React 17 is no longer supported.
+  - **`LineChart` removed.** The deprecated `LineChart` component is no longer exported from `@react-magma/charts` — use `CarbonChart` instead.
+
+### Patch Changes
+
+- Updated dependencies [8ef29cd]
+  - react-magma-dom@5.0.0
+
+## 13.1.1
+
+### Patch Changes
+
+- d368a9894: fix(charts): Show the tooltip on the focused data point when tabbing through chart dots.
+
+## 13.1.0
 
 ### Minor Changes
 
@@ -16,38 +38,11 @@
 
 ### Patch Changes
 
-- e316bcb: Chore: update react-magma-icons version
-
-## 14.0.0-rc.4
-
-### Patch Changes
-
-- c00f190: fix(charts): trap focus in Carbon Charts "Show as table" modal
-
-## 14.0.0-rc.3
-
-### Patch Changes
-
 - cb81479: chore: add optional `ariaLabel` property for SVG container
-
-## 14.0.0-rc.2
-
-### Patch Changes
-
-- 7c8c1ea: fix(Charts): Fix magma styles not applied to carbon charts.
-
-## 14.0.0-rc.1
-
-### Patch Changes
-
-- Updated dependencies [b3b6422]
-  - react-magma-dom@5.1.0-rc.3
-
-## 13.0.1-rc.0
-
-### Patch Changes
-
+- c00f190: fix(charts): trap focus in Carbon Charts "Show as table" modal
 - ff53255: chore: update charts peer dependencies
+- 7c8c1ea: fix(Charts): Fix magma styles not applied to carbon charts.
+- e316bcb: Chore: update react-magma-icons version
 
 ## 12.0.0
 
@@ -63,46 +58,6 @@
 ### Patch Changes
 
 - ef8a2740a: fix(charts): Add white outline to scatter points
-
-## 12.0.0-next.5
-
-### Major Changes
-
-- 7e66c38ec: chore: fix @react-magma/charts package to include styles and correct exports
-
-## 12.0.0-next.4
-
-### Minor Changes
-
-- f51613699: fix(charts): fix build
-
-## 12.0.0-next.3
-
-### Minor Changes
-
-- 4d04e84e8: feat (CarbonCharts): Add supporting custom colors.
-
-## 12.0.0-next.2
-
-### Patch Changes
-
-- Updated dependencies [22a0a5396]
-  - react-magma-dom@4.10.0-next.3
-
-## 12.0.0-next.1
-
-### Patch Changes
-
-- Updated dependencies [ed8a4eea7]
-  - react-magma-dom@4.10.0-next.1
-
-## 11.0.1-next.0
-
-### Patch Changes
-
-- Updated dependencies [31a4e0318]
-- Updated dependencies [77a8687f4]
-  - react-magma-dom@4.9.1-next.0
 
 ## 11.0.0
 
