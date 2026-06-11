@@ -38,6 +38,7 @@ import {
 } from 'react-magma-icons';
 
 import { useCarbonModalFocusManagement } from '../../hooks/useCarbonModalFocusManagement';
+// @ts-ignore
 import './carbon-charts.css';
 import {
   ChartFullscreenButton,
@@ -1211,6 +1212,27 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         });
       }
     });
+
+    // Fix aria-prohibited-attr: add role to <g> elements that have aria-label (axes, ticks)
+    React.useEffect(() => {
+      const timer = setTimeout(() => {
+        if (internalRef.current) {
+          internalRef.current
+            .querySelectorAll<SVGGElement>('g[aria-label]')
+            .forEach(g => {
+              const role = g.getAttribute('role');
+
+              if (!role) {
+                g.setAttribute('role', 'img');
+              } else if (role === 'graphics-object group') {
+                g.setAttribute('role', 'graphics-object');
+              }
+            });
+        }
+      }, 0);
+
+      return () => clearTimeout(timer);
+    }, [type, dataSet]);
 
     const groupsLength = Object.keys(buildColors()).length;
 
