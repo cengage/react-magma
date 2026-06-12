@@ -1203,15 +1203,6 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     const ChartType = allCharts[type] as any;
 
-    // Adding aria-label to main SVG container
-    React.useEffect(() => {
-      if (ariaLabel) {
-        document.querySelectorAll('.graph-frame ').forEach(div => {
-          div.setAttribute('aria-label', ariaLabel);
-        });
-      }
-    });
-
     const groupsLength = Object.keys(buildColors()).length;
 
     const showTable = chartToolbar?.showAsTable !== false;
@@ -1224,6 +1215,9 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
           theme={theme}
           className={`carbon-chart-wrapper${chartToolbar ? ' has-magma-toolbar' : ''}`}
           groupsLength={groupsLength < 6 ? groupsLength : 14}
+          role="region"
+          aria-label={ariaLabel || chartTitle}
+          aria-roledescription="chart"
           {...rest}
         >
           <ChartContentWrapper>
