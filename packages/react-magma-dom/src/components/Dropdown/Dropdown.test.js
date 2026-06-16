@@ -1637,4 +1637,30 @@ describe('Dropdown', () => {
       expect(svg).toHaveAttribute('width', magma.iconSizes.xSmall.toString());
     });
   });
+
+  it('should stop Escape key propagation so parent containers do not receive it', async () => {
+    const parentKeyDownHandler = jest.fn();
+
+    const { getByTestId } = render(
+      <div onKeyDown={parentKeyDownHandler}>
+        <Dropdown testId="dropdown">
+          <DropdownButton testId="dropdownButton">Toggle me</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </div>
+    );
+
+    await userEvent.click(getByTestId('dropdownButton'));
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
+
+    await userEvent.keyboard('{ArrowDown}');
+    await userEvent.keyboard('{Escape}');
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+    expect(parentKeyDownHandler).not.toHaveBeenCalledWith(
+      expect.objectContaining({ key: 'Escape' })
+    );
+  });
 });
