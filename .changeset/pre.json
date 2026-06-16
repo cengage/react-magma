@@ -11,6 +11,7 @@
   },
   "changesets": [
     "feat-Charts-titleLevel",
+    "fix-Accordion-invalid-aria",
     "fix-CharacterCounter-double-announcement",
     "fix-PasswordInput-broken-styles",
     "remove-deprecated-packages"

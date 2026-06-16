@@ -1,5 +1,11 @@
 ## 4.14.0
 
+## 4.14.1-next.2
+
+### Patch Changes
+
+- d2bf46c90: fix(Accordion): fix invalid ARIA attribute
+
 ## 4.14.1-next.1
 
 ### Patch Changes
