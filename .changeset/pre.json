@@ -10,6 +10,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "chore-TreeView-additionalContent-props",
     "feat-Charts-titleLevel",
     "fix-Accordion-invalid-aria",
     "fix-CharacterCounter-double-announcement",
