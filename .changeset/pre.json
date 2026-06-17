@@ -16,6 +16,7 @@
     "a11y-docs-password-input-labels",
     "a11y-sortable-table-labels",
     "accessible-chart-toolbar",
+    "chore-TreeView-additionalContent-props",
     "chore-add-chromatic-ci",
     "chore-add-snyk-ci",
     "chore-bump-chromaui-action-v16",

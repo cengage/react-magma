@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-rc.1
+
+### Patch Changes
+
+- b6abe8b: chore(TreeView): add warning for additionalContent prop in TreeView to ensure it renders content (not null)
+
 ## 6.0.2-rc.0
 
 ### Patch Changes
