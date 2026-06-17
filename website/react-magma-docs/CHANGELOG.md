@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-rc.2
+
+### Patch Changes
+
+- 80535d3: Fix the "Edit in CodeSandbox" button on older documentation version sites. A single deploy workflow now rebuilds and redeploys the docs for old releases (v2/v3 latest and all v4 except the latest) with the durable client-side CodeSandbox fix applied, replacing the previous per-version deploy workflows.
+
 ## 6.0.2-rc.1
 
 ### Patch Changes
