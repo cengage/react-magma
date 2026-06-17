@@ -67,6 +67,8 @@ on:
 # (Netlify auth is via NETLIFY_* secrets, not GITHUB_TOKEN.)
 permissions:
   contents: write
+  deployments: write
+  statuses: write
 
 concurrency:
   group: deploy-old-docs
