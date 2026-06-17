@@ -1,5 +1,14 @@
 # Change Log
 
+## 6.0.2-rc.0
+
+### Patch Changes
+
+- Updated dependencies [88d933f]
+  - react-magma-dom@5.0.1-rc.0
+  - @react-magma/charts@14.0.1-rc.0
+  - @react-magma/dropzone@14.0.1-rc.0
+
 ## 6.0.1
 
 ### Patch Changes

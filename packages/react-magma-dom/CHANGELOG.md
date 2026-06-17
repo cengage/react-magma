@@ -1,5 +1,11 @@
 ## 5.0.0
 
+## 5.0.1-rc.0
+
+### Patch Changes
+
+- 88d933f: fix(Accordion): fix invalid ARIA attribute
+
 ### Major Changes
 
 - 8ef29cd: Major version release v5.0.0 — React 18 support.

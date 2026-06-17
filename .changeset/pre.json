@@ -64,6 +64,7 @@
     "fix-AIButton-box-shadow",
     "fix-Accordion-accessibility-render-issue",
     "fix-Accordion-docs-accessibility-issue",
+    "fix-Accordion-invalid-aria",
     "fix-Accordion-update-doc-example",
     "fix-Alert-docs-acessibility-issues",
     "fix-Alert-right-padding-missing",
