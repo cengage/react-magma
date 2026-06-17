@@ -8,7 +8,7 @@ const semver = require('semver');
 
 const english = new Intl.DateTimeFormat('en');
 
-const SUPPORTED_LEGACY_VERSIONS = ['2.6.1', '3.11.0'];
+const SUPPORTED_LEGACY_VERSIONS = ['2.6.2', '3.11.0'];
 
 const cleanVersions = ({ versions, time, tags }) => {
   return semver
