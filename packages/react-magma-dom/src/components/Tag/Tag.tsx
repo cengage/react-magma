@@ -390,7 +390,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
         {...rest}
       >
         {icon}
-        <LabelWrap size={size} theme={theme} {...rest}>
+        <LabelWrap size={size} theme={theme}>
           {children}
         </LabelWrap>
         {onDelete && <CancelIcon size={theme.iconSizes.small} />}
