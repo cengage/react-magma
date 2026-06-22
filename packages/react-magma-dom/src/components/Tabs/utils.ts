@@ -120,32 +120,42 @@ export function useScrollTabFocus(
   tabsWrapperRef: React.RefObject<HTMLElement>,
   orientation: TabsOrientation
 ) {
-  const focusFirstVisibleTab = React.useCallback(() => {
+  const getVisibleTabs = React.useCallback(() => {
     const wrapper = tabsWrapperRef.current;
-    if (!wrapper) return;
+    if (!wrapper) return [];
 
     const tabs = wrapper.querySelectorAll<HTMLElement>('[role="tab"]');
-    if (!tabs || tabs.length === 0) return;
+    if (!tabs || tabs.length === 0) return [];
 
     const wrapperRect = wrapper.getBoundingClientRect();
     const isVertical = orientation === TabsOrientation.vertical;
     const tolerance = 2;
 
-    for (const tab of Array.from(tabs)) {
+    return Array.from(tabs).filter(tab => {
       const tabRect = tab.getBoundingClientRect();
-      const isVisible = isVertical
+      return isVertical
         ? tabRect.top >= wrapperRect.top - tolerance &&
-          tabRect.bottom <= wrapperRect.bottom + tolerance
+            tabRect.bottom <= wrapperRect.bottom + tolerance
         : tabRect.left >= wrapperRect.left - tolerance &&
-          tabRect.right <= wrapperRect.right + tolerance;
-      if (isVisible) {
-        tab.focus();
-        break;
-      }
-    }
+            tabRect.right <= wrapperRect.right + tolerance;
+    });
   }, [tabsWrapperRef, orientation]);
 
-  return { focusFirstVisibleTab };
+  const focusFirstVisibleTab = React.useCallback(() => {
+    const visibleTabs = getVisibleTabs();
+    if (visibleTabs.length > 0) {
+      visibleTabs[0].focus();
+    }
+  }, [getVisibleTabs]);
+
+  const focusLastVisibleTab = React.useCallback(() => {
+    const visibleTabs = getVisibleTabs();
+    if (visibleTabs.length > 0) {
+      visibleTabs[visibleTabs.length - 1].focus();
+    }
+  }, [getVisibleTabs]);
+
+  return { focusFirstVisibleTab, focusLastVisibleTab };
 }
 
 // ScrollSpy by Dewaun Ayers:

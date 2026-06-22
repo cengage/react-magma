@@ -825,6 +825,81 @@ describe('Tabs', () => {
       expect(onChange).toHaveBeenCalledWith(1);
     });
   });
+
+  describe('Scroll button focus', () => {
+    it('moves focus into the tablist when pressing ArrowRight on the previous scroll button (horizontal)', () => {
+      const { getByText, getByTestId } = render(
+        <TabsContainer activeIndex={1}>
+          <Tabs>
+            <Tab>This is tab 1</Tab>
+            <Tab>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+        </TabsContainer>
+      );
+
+      getByTestId('buttonPrev').focus();
+
+      fireEvent.keyDown(getByTestId('buttonPrev'), { key: 'ArrowRight' });
+
+      expect(document.activeElement).toEqual(getByText('This is tab 1'));
+    });
+
+    it('moves focus into the tablist when pressing ArrowLeft on the next scroll button (horizontal)', () => {
+      const { getByText, getByTestId } = render(
+        <TabsContainer activeIndex={1}>
+          <Tabs>
+            <Tab>This is tab 1</Tab>
+            <Tab>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+        </TabsContainer>
+      );
+
+      getByTestId('buttonNext').focus();
+
+      fireEvent.keyDown(getByTestId('buttonNext'), { key: 'ArrowLeft' });
+
+      expect(document.activeElement).toEqual(getByText('This is tab 3'));
+    });
+
+    it('moves focus into the tablist with vertical arrow keys when orientation is vertical', () => {
+      const { getByText, getByTestId } = render(
+        <TabsContainer activeIndex={1}>
+          <Tabs orientation="vertical">
+            <Tab>This is tab 1</Tab>
+            <Tab>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+        </TabsContainer>
+      );
+
+      fireEvent.keyDown(getByTestId('buttonPrev'), { key: 'ArrowDown' });
+      expect(document.activeElement).toEqual(getByText('This is tab 1'));
+
+      fireEvent.keyDown(getByTestId('buttonNext'), { key: 'ArrowUp' });
+      expect(document.activeElement).toEqual(getByText('This is tab 3'));
+    });
+
+    it('does not move focus when pressing an arrow key that points away from the tabs', () => {
+      const { getByTestId } = render(
+        <TabsContainer activeIndex={1}>
+          <Tabs>
+            <Tab>This is tab 1</Tab>
+            <Tab>This is tab 2</Tab>
+            <Tab>This is tab 3</Tab>
+          </Tabs>
+        </TabsContainer>
+      );
+
+      const prevButton = getByTestId('buttonPrev');
+      prevButton.focus();
+
+      fireEvent.keyDown(prevButton, { key: 'ArrowLeft' });
+
+      expect(document.activeElement).toEqual(prevButton);
+    });
+  });
 });
 
 describe('Test for accessibility', () => {

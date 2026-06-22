@@ -314,7 +314,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
 
     React.useEffect(scrollInitialActiveIndexIntoView, []);
 
-    const { focusFirstVisibleTab } = useScrollTabFocus(
+    const { focusFirstVisibleTab, focusLastVisibleTab } = useScrollTabFocus(
       tabsWrapperRef,
       orientation
     );
@@ -482,6 +482,25 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
       }, 300);
     };
 
+    const intoTabsFromPrevKey =
+      orientation === TabsOrientation.vertical ? 'ArrowDown' : 'ArrowRight';
+    const intoTabsFromNextKey =
+      orientation === TabsOrientation.vertical ? 'ArrowUp' : 'ArrowLeft';
+
+    const handlePrevButtonKeyDown = (event: React.KeyboardEvent) => {
+      if (event.key === intoTabsFromPrevKey) {
+        event.preventDefault();
+        focusFirstVisibleTab();
+      }
+    };
+
+    const handleNextButtonKeyDown = (event: React.KeyboardEvent) => {
+      if (event.key === intoTabsFromNextKey) {
+        event.preventDefault();
+        focusLastVisibleTab();
+      }
+    };
+
     const other = omit(['aria-label'], rest);
 
     return (
@@ -499,6 +518,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           buttonVisible={displayScroll.start}
           isInverse={isInverse}
           onClick={handlePrevScrollWithAnnouncement}
+          onKeyDown={handlePrevButtonKeyDown}
           orientation={orientation || TabsOrientation.horizontal}
           ref={prevButtonRef}
           theme={theme}
@@ -540,6 +560,7 @@ export const Tabs = React.forwardRef<HTMLDivElement, TabsProps & Orientation>(
           buttonVisible={displayScroll.end}
           isInverse={isInverse}
           onClick={handleNextScrollWithAnnouncement}
+          onKeyDown={handleNextButtonKeyDown}
           orientation={orientation || TabsOrientation.horizontal}
           ref={nextButtonRef}
           theme={theme}

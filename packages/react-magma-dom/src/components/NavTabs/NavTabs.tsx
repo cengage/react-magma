@@ -176,10 +176,29 @@ export const NavTabs = React.forwardRef<
     scroll(nextScrollStart);
   };
 
-  const { focusFirstVisibleTab } = useScrollTabFocus(
+  const { focusFirstVisibleTab, focusLastVisibleTab } = useScrollTabFocus(
     tabsWrapperRef,
     orientation
   );
+
+  const intoTabsFromPrevKey =
+    orientation === TabsOrientation.vertical ? 'ArrowDown' : 'ArrowRight';
+  const intoTabsFromNextKey =
+    orientation === TabsOrientation.vertical ? 'ArrowUp' : 'ArrowLeft';
+
+  const handlePrevButtonKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === intoTabsFromPrevKey) {
+      event.preventDefault();
+      focusFirstVisibleTab();
+    }
+  };
+
+  const handleNextButtonKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === intoTabsFromNextKey) {
+      event.preventDefault();
+      focusLastVisibleTab();
+    }
+  };
 
   const handlePrevScrollWithAnnouncement = () => {
     handleStartScrollClick();
@@ -222,6 +241,7 @@ export const NavTabs = React.forwardRef<
         buttonVisible={displayScroll.start}
         isInverse={isInverse}
         onClick={handlePrevScrollWithAnnouncement}
+        onKeyDown={handlePrevButtonKeyDown}
         orientation={orientation || TabsOrientation.horizontal}
         ref={prevButtonRef}
         theme={theme}
@@ -258,6 +278,7 @@ export const NavTabs = React.forwardRef<
         buttonVisible={displayScroll.end}
         isInverse={isInverse}
         onClick={handleNextScrollWithAnnouncement}
+        onKeyDown={handleNextButtonKeyDown}
         orientation={orientation || TabsOrientation.horizontal}
         ref={nextButtonRef}
         theme={theme}

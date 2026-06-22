@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { render, fireEvent, within } from '@testing-library/react';
 import { CheckIcon } from 'react-magma-icons';
 
 import { NavTab } from './NavTab';
@@ -216,6 +216,73 @@ describe('NavTabs', () => {
       }).then(result => {
         return expect(result).toHaveNoViolations();
       });
+    });
+  });
+
+  describe('Scroll button focus', () => {
+    it('moves focus into the tablist when pressing ArrowRight on the previous scroll button (horizontal)', () => {
+      const { container } = render(
+        <NavTabs>
+          <NavTab>This is tab 1</NavTab>
+          <NavTab>This is tab 2</NavTab>
+          <NavTab>This is tab 3</NavTab>
+        </NavTabs>
+      );
+      const { getByText, getByTestId } = within(container);
+
+      fireEvent.keyDown(getByTestId('buttonPrev'), { key: 'ArrowRight' });
+
+      expect(document.activeElement).toEqual(getByText('This is tab 1'));
+    });
+
+    it('moves focus into the tablist when pressing ArrowLeft on the next scroll button (horizontal)', () => {
+      const { container } = render(
+        <NavTabs>
+          <NavTab>This is tab 1</NavTab>
+          <NavTab>This is tab 2</NavTab>
+          <NavTab>This is tab 3</NavTab>
+        </NavTabs>
+      );
+      const { getByText, getByTestId } = within(container);
+
+      fireEvent.keyDown(getByTestId('buttonNext'), { key: 'ArrowLeft' });
+
+      expect(document.activeElement).toEqual(getByText('This is tab 3'));
+    });
+
+    it('moves focus into the tablist with vertical arrow keys when orientation is vertical', () => {
+      const { container } = render(
+        <NavTabs orientation="vertical">
+          <NavTab>This is tab 1</NavTab>
+          <NavTab>This is tab 2</NavTab>
+          <NavTab>This is tab 3</NavTab>
+        </NavTabs>
+      );
+      const { getByText, getByTestId } = within(container);
+
+      fireEvent.keyDown(getByTestId('buttonPrev'), { key: 'ArrowDown' });
+      expect(document.activeElement).toEqual(getByText('This is tab 1'));
+
+      fireEvent.keyDown(getByTestId('buttonNext'), { key: 'ArrowUp' });
+      expect(document.activeElement).toEqual(getByText('This is tab 3'));
+    });
+
+    it('does not move focus when pressing an arrow key that points away from the tabs', () => {
+      const { container } = render(
+        <NavTabs>
+          <NavTab>This is tab 1</NavTab>
+          <NavTab>This is tab 2</NavTab>
+          <NavTab>This is tab 3</NavTab>
+        </NavTabs>
+      );
+      const { getByTestId } = within(container);
+
+      const nextButton = getByTestId('buttonNext');
+      nextButton.focus();
+
+      fireEvent.keyDown(nextButton, { key: 'ArrowRight' });
+
+      expect(document.activeElement).toEqual(nextButton);
     });
   });
 });
