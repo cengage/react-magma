@@ -228,14 +228,6 @@ function buildSvgOpacity(props) {
 }
 
 function buildTagPadding(props) {
-  if (props.icon) {
-    switch (props.size) {
-      case 'small':
-        return `0 ${props.theme.spaceScale.spacing02}`;
-      default:
-        return `${props.theme.spaceScale.spacing02} 6px`;
-    }
-  }
   switch (props.size) {
     case 'small':
       return `0 ${props.theme.spaceScale.spacing02}`;
@@ -245,14 +237,6 @@ function buildTagPadding(props) {
 }
 
 function buildLabelPadding(props) {
-  if (props.icon) {
-    switch (props.size) {
-      case 'small':
-        return `0 ${props.theme.spaceScale.spacing02}`;
-      default:
-        return `0 ${props.theme.spaceScale.spacing03}`;
-    }
-  }
   switch (props.size) {
     case 'small':
       return `0 ${props.theme.spaceScale.spacing02}`;
@@ -328,7 +312,6 @@ const StyledSpan = styled.span<{
 
 const LabelWrap = styled.span<{
   size: string;
-  icon?: any;
 }>`
   padding: ${buildLabelPadding};
 `;
