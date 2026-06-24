@@ -1,5 +1,11 @@
 ## 5.0.0
 
+## 5.0.1-rc.2
+
+### Patch Changes
+
+- c3424ae: Chart: add accessible chart role and aria-label
+
 ## 5.0.1-rc.1
 
 ### Patch Changes
