@@ -15,6 +15,7 @@
     "fix-Accordion-invalid-aria",
     "fix-CharacterCounter-double-announcement",
     "fix-PasswordInput-broken-styles",
+    "fix-Treeview-focus-trap",
     "remove-deprecated-packages"
   ]
 }

@@ -1,5 +1,11 @@
 ## 4.14.0
 
+## 4.14.1-next.3
+
+### Patch Changes
+
+- 7aba8ce08: fix(Treeview): fix keyboard focus trap after collapse
+
 ## 4.14.1-next.2
 
 ### Patch Changes
