@@ -161,6 +161,7 @@
     "fix-Tooltip-Loading-indicator-issues",
     "fix-TreeView-and-Checkbox-performance",
     "fix-Treeview-VO-doesn't-announce-state",
+    "fix-Treeview-focus-trap",
     "fix-Treeview-update-storybook-example",
     "fix-banner-additional-docs-fix",
     "fix-charts-styles",

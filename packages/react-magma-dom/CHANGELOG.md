@@ -1,5 +1,11 @@
 ## 5.0.0
 
+## 5.0.1-rc.3
+
+### Patch Changes
+
+- 3c978b2: fix(Treeview): fix keyboard focus trap after collapse
+
 ## 5.0.1-rc.2
 
 ### Patch Changes
