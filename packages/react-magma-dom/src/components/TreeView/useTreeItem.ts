@@ -247,14 +247,14 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
   let focusIndex = getFocusIndex(treeItemRefArray?.current);
 
   React.useEffect(() => {
-    treeItemRefArray?.current.map(itemRef => {
-      if (!itemRef.current) {
-        treeItemRefArray.current = treeItemRefArray.current.filter(
-          item => itemRef.current !== item.current
-        );
-      }
-    });
-  }, [treeItemRefArray]);
+    if (!treeItemRefArray?.current) {
+      return;
+    }
+
+    treeItemRefArray.current = treeItemRefArray.current.filter(
+      itemRef => itemRef.current !== null
+    );
+  }, [treeItemRefArray, expandedSet]);
 
   const focusFirst = () => {
     const filteredRefArray = filterNullEntries(treeItemRefArray);
@@ -362,6 +362,7 @@ export function useTreeItem(props: UseTreeItemProps, forwardedRef) {
     const filteredRefArray = filterNullEntries(treeItemRefArray);
     const curr = filteredRefArray['current'];
     const arrLength = curr.length;
+    const focusIndex = getFocusIndex(curr);
 
     if (
       [
