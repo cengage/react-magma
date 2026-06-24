@@ -1343,6 +1343,9 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
           theme={theme}
           className={`carbon-chart-wrapper${chartToolbar ? ' has-magma-toolbar' : ''}`}
           groupsLength={groupsLength < 6 ? groupsLength : 14}
+          role="region"
+          aria-label={ariaLabel || chartTitle}
+          aria-roledescription="chart"
           {...rest}
         >
           <ChartContentWrapper>
