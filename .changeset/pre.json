@@ -10,6 +10,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "chart-add-accessible-role",
     "chore-TreeView-additionalContent-props",
     "feat-Charts-titleLevel",
     "fix-Accordion-invalid-aria",

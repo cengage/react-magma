@@ -1,5 +1,11 @@
 ## 4.14.0
 
+## 4.14.1-next.5
+
+### Patch Changes
+
+- ded3b136c: Chart: add accessible chart role and aria-label
+
 ## 4.14.1-next.4
 
 ### Patch Changes
