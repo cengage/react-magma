@@ -1,5 +1,11 @@
 ## 5.0.0
 
+## 5.0.1-rc.1
+
+### Patch Changes
+
+- 108fc81: fix(Dropdown): Fix Escape key propagation in nested dropdown
+
 ## 5.0.1-rc.0
 
 ### Patch Changes
