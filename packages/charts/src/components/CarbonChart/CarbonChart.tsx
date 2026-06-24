@@ -1204,16 +1204,6 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     const ChartType = allCharts[type] as any;
 
-    // Adding aria-label to main SVG container
-    React.useEffect(() => {
-      if (ariaLabel) {
-        document.querySelectorAll('.graph-frame ').forEach(div => {
-          div.setAttribute('aria-label', ariaLabel);
-        });
-      }
-    });
-
-    // Fix aria-prohibited-attr: add role to <g> elements that have aria-label (axes, ticks)
     React.useEffect(() => {
       const timer = setTimeout(() => {
         if (internalRef.current) {
