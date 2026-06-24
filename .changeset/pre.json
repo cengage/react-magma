@@ -14,6 +14,7 @@
     "feat-Charts-titleLevel",
     "fix-Accordion-invalid-aria",
     "fix-CharacterCounter-double-announcement",
+    "fix-Dropdown-stop-propagation",
     "fix-PasswordInput-broken-styles",
     "fix-Treeview-focus-trap",
     "remove-deprecated-packages"

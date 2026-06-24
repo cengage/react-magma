@@ -1,5 +1,11 @@
 ## 4.14.0
 
+## 4.14.1-next.4
+
+### Patch Changes
+
+- 90e3020f8: fix(Dropdown): Fix Escape key propagation in nested dropdown
+
 ## 4.14.1-next.3
 
 ### Patch Changes
