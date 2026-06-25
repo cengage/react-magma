@@ -628,9 +628,6 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
         !selectParents &&
         hasOwnTreeItems
       ) {
-        event.preventDefault();
-        event.stopPropagation();
-
         onExpandedClicked(event);
 
         return;
@@ -638,9 +635,6 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
 
       // In selectable=off mode, clicking anywhere on a parent item toggles expand/collapse
       if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
-        event.preventDefault();
-        event.stopPropagation();
-
         onExpandedClicked(event);
 
         return;
