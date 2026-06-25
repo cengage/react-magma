@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 
-import { getAriaSort, getAriaSortLabel, getTableSortIcon } from './utils';
+import { getAriaSortLabel, getTableSortIcon } from './utils';
 import { I18nContext } from '../../i18n';
 import { magma } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
@@ -336,11 +336,6 @@ export const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
             density={tableContext.density}
             hasSquareCorners={tableContext.hasSquareCorners}
             isInverse={tableContext.isInverse}
-            aria-sort={
-              tableContext.isSortableBySelected
-                ? getAriaSort(sortDirection)
-                : undefined
-            }
             style={{
               background: isHovering
                 ? transparentize(0.93, theme.colors.neutral900)
