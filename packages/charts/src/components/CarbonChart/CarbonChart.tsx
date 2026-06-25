@@ -161,6 +161,22 @@ const CarbonChartWrapper = styled.div<{
   groupsLength: number;
   theme: ThemeInterface;
 }>`
+  .cds--cc--legend-fieldset {
+    border: 0;
+    margin: 0;
+    min-inline-size: 0;
+    padding: 0;
+  }
+
+  .cds--cc--legend-fieldset > legend {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
   &:fullscreen,
   &:-webkit-full-screen {
     background: ${props =>
@@ -1133,6 +1149,35 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     const chartTitle: string =
       (options as any).title || toolbarI18n.defaultTitle;
+
+    const legendLabel = `${chartTitle}. Checking these checkboxes will update the chart.`;
+
+    React.useEffect(() => {
+      const container = internalRef.current;
+
+      if (!container) return;
+
+      const wrapLegend = () => {
+        const legend = container.querySelector('.cds--cc--legend');
+
+        if (!legend || legend.parentElement?.tagName === 'FIELDSET') return;
+
+        const fieldset = document.createElement('fieldset');
+        const caption = document.createElement('legend');
+
+        fieldset.className = 'cds--cc--legend-fieldset';
+        caption.textContent = legendLabel;
+        legend.before(fieldset);
+        fieldset.append(caption, legend);
+      };
+
+      wrapLegend();
+      const observer = new MutationObserver(wrapLegend);
+
+      observer.observe(container, { childList: true, subtree: true });
+
+      return () => observer.disconnect();
+    }, [legendLabel]);
 
     const handleModalDownloadCsv = React.useCallback(() => {
       downloadCsv(dataSet as Array<Record<string, unknown>>, chartTitle);
