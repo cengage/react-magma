@@ -867,16 +867,16 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 );
               }
             )}
+            {isMacOS && (
+              <VisuallyHidden>
+                <Announce>
+                  {expanded
+                    ? i18n.expansionState.expanded
+                    : i18n.expansionState.collapsed}
+                </Announce>
+              </VisuallyHidden>
+            )}
           </StyledTreeItem>
-          {isMacOS && (
-            <VisuallyHidden>
-              <Announce>
-                {expanded
-                  ? i18n.expansionState.expanded
-                  : i18n.expansionState.collapsed}
-              </Announce>
-            </VisuallyHidden>
-          )}
         </div>
       </TreeItemContext.Provider>
     );
