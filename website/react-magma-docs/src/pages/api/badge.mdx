@@ -68,7 +68,7 @@ export function Example() {
 
 ## Colors
 
-Five colors of badges are available, `primary` (default), `secondary`, `light`, `danger`, and `success`.
+Seven colors of badges are available, `primary` (default), `secondary`, `light`, `danger`, `success`, `info`, and `warning`.
 
 ```tsx
 import React from 'react';
@@ -83,6 +83,72 @@ export function Example() {
       <Badge color={BadgeColor.light}>Light</Badge>
       <Badge color={BadgeColor.danger}>Danger</Badge>
       <Badge color={BadgeColor.success}>Success</Badge>
+      <Badge color={BadgeColor.info}>Info</Badge>
+      <Badge color={BadgeColor.warning}>Warning</Badge>
+    </>
+  );
+}
+```
+
+## Weights
+
+Badges have two weights, `default` and `light`. The `default` weight is used when no weight is specified.
+
+```tsx
+import React from 'react';
+
+import { Badge, BadgeColor, BadgeWeight } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Badge color={BadgeColor.primary}>Primary</Badge>
+      <Badge color={BadgeColor.primary} weight={BadgeWeight.light}>
+        Primary
+      </Badge>
+      <Badge color={BadgeColor.danger}>Danger</Badge>
+      <Badge color={BadgeColor.danger} weight={BadgeWeight.light}>
+        Danger
+      </Badge>
+      <Badge color={BadgeColor.info}>Info</Badge>
+      <Badge color={BadgeColor.info} weight={BadgeWeight.light}>
+        Info
+      </Badge>
+      <Badge color={BadgeColor.warning}>Warning</Badge>
+      <Badge color={BadgeColor.warning} weight={BadgeWeight.light}>
+        Warning
+      </Badge>
+    </>
+  );
+}
+```
+
+## Icons
+
+Use the `leftIcon` and `rightIcon` props to display Magma icons on either side of a badge.
+
+```tsx
+import React from 'react';
+
+import { CheckCircleIcon, InfoIcon } from 'react-magma-icons';
+import { Badge, BadgeColor } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Badge color={BadgeColor.primary} leftIcon={<CheckCircleIcon />}>
+        Left icon
+      </Badge>
+      <Badge color={BadgeColor.secondary} rightIcon={<InfoIcon />}>
+        Right icon
+      </Badge>
+      <Badge
+        color={BadgeColor.success}
+        leftIcon={<CheckCircleIcon />}
+        rightIcon={<InfoIcon />}
+      >
+        Both icons
+      </Badge>
     </>
   );
 }
@@ -127,7 +193,7 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Badge, BadgeColor, Container } from 'react-magma-dom';
+import { Badge, BadgeColor, BadgeWeight, Container } from 'react-magma-dom';
 
 export function Example() {
   return (
@@ -146,6 +212,23 @@ export function Example() {
       </Badge>
       <Badge color={BadgeColor.success} isInverse>
         Success
+      </Badge>
+      <Badge color={BadgeColor.info} isInverse>
+        Info
+      </Badge>
+      <Badge color={BadgeColor.warning} isInverse>
+        Warning
+      </Badge>
+      <br />
+      <br />
+      <Badge color={BadgeColor.primary} isInverse weight={BadgeWeight.light}>
+        Light Primary
+      </Badge>
+      <Badge color={BadgeColor.info} isInverse weight={BadgeWeight.light}>
+        Light Info
+      </Badge>
+      <Badge color={BadgeColor.warning} isInverse weight={BadgeWeight.light}>
+        Light Warning
       </Badge>
     </Container>
   );
