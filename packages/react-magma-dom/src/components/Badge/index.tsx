@@ -331,7 +331,7 @@ export const baseBadgeStyles = props => css`
     ? `1px ${props.theme.spaceScale.spacing02}`
     : `3px  ${props.theme.spaceScale.spacing02}`};
   text-align: ${props.variant === BadgeVariant.counter ? 'center' : 'inherit'};
-  vertical-align: middle;
+  ${props.hasIcon && `vertical-align: middle;`}
 `;
 
 const StyledIcon = styled.span<{ iconPosition: 'left' | 'right' }>`

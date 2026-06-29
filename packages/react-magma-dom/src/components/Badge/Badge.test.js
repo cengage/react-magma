@@ -20,9 +20,10 @@ describe('Badge', () => {
   });
 
   it('should render the badge component', () => {
-    const { container } = render(<Badge>{TEXT}</Badge>);
+    const { container, getByText } = render(<Badge>{TEXT}</Badge>);
 
     expect(container).toBeInTheDocument();
+    expect(getByText(TEXT)).not.toHaveStyleRule('vertical-align', 'middle');
   });
 
   it('should render a left icon on the left side of the badge', () => {
