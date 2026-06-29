@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-rc.3
+
+### Patch Changes
+
+- 62337dd: fix(FormGroup): fix small docs issues
+
 ## 6.0.2-rc.2
 
 ### Patch Changes
