@@ -16,6 +16,7 @@
     "fix-Accordion-invalid-aria",
     "fix-CharacterCounter-double-announcement",
     "fix-Dropdown-stop-propagation",
+    "fix-FormGroup-docs-issues",
     "fix-PasswordInput-broken-styles",
     "fix-Treeview-focus-trap",
     "remove-deprecated-packages"
