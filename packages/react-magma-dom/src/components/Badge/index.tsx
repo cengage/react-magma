@@ -18,10 +18,6 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLButtonElement> {
    */
   color?: BadgeColor;
   /**
-   * Icon to display on the left side of the badge. Alias for leftIcon.
-   */
-  icon?: React.ReactElement<IconProps>;
-  /**
    * Icon to display on the left side of the badge
    */
   leftIcon?: React.ReactElement<IconProps>;
@@ -382,7 +378,6 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   (props, ref) => {
     const {
       children,
-      icon,
       isInverse,
       leftIcon,
       onClick,
@@ -397,17 +392,13 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
 
     const theme = React.useContext(ThemeContext);
 
-    const badgeLeftIcon = leftIcon || icon;
-
     function renderBadgeIcon(badgeIcon: React.ReactElement<IconProps>) {
       return React.cloneElement(badgeIcon, {
         size: badgeIcon.props.size || theme.iconSizes.xSmall,
       });
     }
 
-    const renderedLeftIcon = badgeLeftIcon
-      ? renderBadgeIcon(badgeLeftIcon)
-      : null;
+    const renderedLeftIcon = leftIcon ? renderBadgeIcon(leftIcon) : null;
     const renderedRightIcon = rightIcon ? renderBadgeIcon(rightIcon) : null;
 
     const hasIcon = Boolean(renderedLeftIcon || renderedRightIcon);
