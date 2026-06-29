@@ -23,17 +23,7 @@ const config = {
   ],
 
   typescript: {
-    reactDocgen: 'react-docgen-typescript',
-    reactDocgenTypescriptOptions: {
-      shouldExtractLiteralValuesFromEnum: true,
-      propFilter: prop => {
-        if (prop.parent) {
-          return !/node_modules/.test(prop.parent.fileName);
-        }
-
-        return true;
-      },
-    },
+    reactDocgen: false,
   },
 
   webpackFinal: async config => {
