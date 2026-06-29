@@ -196,52 +196,99 @@ import React from 'react';
 import { Badge, BadgeColor, BadgeWeight, Container } from 'react-magma-dom';
 
 export function Example() {
+  const badgeRowStyles: React.CSSProperties = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '8px',
+  };
+
+  const badgeStyles: React.CSSProperties = {
+    margin: 0,
+  };
+
   return (
     <Container isInverse style={{ padding: '12px' }}>
-      <Badge color={BadgeColor.primary} isInverse>
-        Primary
-      </Badge>
-      <Badge color={BadgeColor.secondary} isInverse>
-        Secondary
-      </Badge>
-      <Badge color={BadgeColor.light} isInverse>
-        Light
-      </Badge>
-      <Badge color={BadgeColor.danger} isInverse>
-        Danger
-      </Badge>
-      <Badge color={BadgeColor.success} isInverse>
-        Success
-      </Badge>
-      <Badge color={BadgeColor.info} isInverse>
-        Info
-      </Badge>
-      <Badge color={BadgeColor.warning} isInverse>
-        Warning
-      </Badge>
-      <br />
-      <br />
-      <Badge color={BadgeColor.primary} isInverse weight={BadgeWeight.light}>
-        Light Primary
-      </Badge>
-      <Badge color={BadgeColor.secondary} isInverse weight={BadgeWeight.light}>
-        Light Secondary
-      </Badge>
-      <Badge color={BadgeColor.light} isInverse weight={BadgeWeight.light}>
-        Light
-      </Badge>
-      <Badge color={BadgeColor.danger} isInverse weight={BadgeWeight.light}>
-        Light Danger
-      </Badge>
-      <Badge color={BadgeColor.success} isInverse weight={BadgeWeight.light}>
-        Light Success
-      </Badge>
-      <Badge color={BadgeColor.info} isInverse weight={BadgeWeight.light}>
-        Light Info
-      </Badge>
-      <Badge color={BadgeColor.warning} isInverse weight={BadgeWeight.light}>
-        Light Warning
-      </Badge>
+      <div style={badgeRowStyles}>
+        <Badge color={BadgeColor.primary} isInverse style={badgeStyles}>
+          Primary
+        </Badge>
+        <Badge color={BadgeColor.secondary} isInverse style={badgeStyles}>
+          Secondary
+        </Badge>
+        <Badge color={BadgeColor.light} isInverse style={badgeStyles}>
+          Light
+        </Badge>
+        <Badge color={BadgeColor.danger} isInverse style={badgeStyles}>
+          Danger
+        </Badge>
+        <Badge color={BadgeColor.success} isInverse style={badgeStyles}>
+          Success
+        </Badge>
+        <Badge color={BadgeColor.info} isInverse style={badgeStyles}>
+          Info
+        </Badge>
+        <Badge color={BadgeColor.warning} isInverse style={badgeStyles}>
+          Warning
+        </Badge>
+      </div>
+      <div style={{ ...badgeRowStyles, marginTop: '8px' }}>
+        <Badge
+          color={BadgeColor.primary}
+          isInverse
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Primary
+        </Badge>
+        <Badge
+          color={BadgeColor.secondary}
+          isInverse
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Secondary
+        </Badge>
+        <Badge
+          color={BadgeColor.light}
+          isInverse
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light
+        </Badge>
+        <Badge
+          color={BadgeColor.danger}
+          isInverse
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Danger
+        </Badge>
+        <Badge
+          color={BadgeColor.success}
+          isInverse
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Success
+        </Badge>
+        <Badge
+          color={BadgeColor.info}
+          isInverse
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Info
+        </Badge>
+        <Badge
+          color={BadgeColor.warning}
+          isInverse
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Warning
+        </Badge>
+      </div>
     </Container>
   );
 }
