@@ -130,8 +130,8 @@ Use the `leftIcon` and `rightIcon` props to display Magma icons on either side o
 ```tsx
 import React from 'react';
 
-import { CheckCircleIcon, InfoIcon } from 'react-magma-icons';
 import { Badge, BadgeColor } from 'react-magma-dom';
+import { CheckCircleIcon, InfoIcon } from 'react-magma-icons';
 
 export function Example() {
   return (
@@ -223,6 +223,18 @@ export function Example() {
       <br />
       <Badge color={BadgeColor.primary} isInverse weight={BadgeWeight.light}>
         Light Primary
+      </Badge>
+      <Badge color={BadgeColor.secondary} isInverse weight={BadgeWeight.light}>
+        Light Secondary
+      </Badge>
+      <Badge color={BadgeColor.light} isInverse weight={BadgeWeight.light}>
+        Light
+      </Badge>
+      <Badge color={BadgeColor.danger} isInverse weight={BadgeWeight.light}>
+        Light Danger
+      </Badge>
+      <Badge color={BadgeColor.success} isInverse weight={BadgeWeight.light}>
+        Light Success
       </Badge>
       <Badge color={BadgeColor.info} isInverse weight={BadgeWeight.light}>
         Light Info
