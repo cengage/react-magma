@@ -8,6 +8,7 @@ export interface ChartToolbarI18n {
   downloadAsJpg: string;
   downloadAsPng: string;
   exitFullScreen: string;
+  legendInstructions: string;
   makeFullScreen: string;
   moreOptionsAriaLabel: string;
   showAsTableTooltip: string;
@@ -20,6 +21,7 @@ const defaults: ChartToolbarI18n = {
   downloadAsJpg: 'Download as JPG',
   downloadAsPng: 'Download as PNG',
   exitFullScreen: 'Exit full screen',
+  legendInstructions: 'Checking these checkboxes will update the chart.',
   makeFullScreen: 'Make full screen',
   moreOptionsAriaLabel: 'More options',
   showAsTableTooltip: 'Show as table',
@@ -44,6 +46,8 @@ export function useChartToolbarI18n(): ChartToolbarI18n {
     downloadAsJpg: toolbar.downloadAsJpg ?? defaults.downloadAsJpg,
     downloadAsPng: toolbar.downloadAsPng ?? defaults.downloadAsPng,
     exitFullScreen: toolbar.exitFullScreen ?? defaults.exitFullScreen,
+    legendInstructions:
+      toolbar.legendInstructions ?? defaults.legendInstructions,
     makeFullScreen: toolbar.makeFullScreen ?? defaults.makeFullScreen,
     moreOptionsAriaLabel:
       toolbar.moreOptionsAriaLabel ?? defaults.moreOptionsAriaLabel,

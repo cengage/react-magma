@@ -173,6 +173,7 @@ const CarbonChartWrapper = styled.div<{
     height: 1px;
     overflow: hidden;
     position: absolute;
+    top: auto;
     white-space: nowrap;
     width: 1px;
   }
@@ -1150,17 +1151,37 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     const chartTitle: string =
       (options as any).title || toolbarI18n.defaultTitle;
 
-    const legendLabel = `${chartTitle}. Checking these checkboxes will update the chart.`;
+    const legendLabel = `${ariaLabel || chartTitle}. ${toolbarI18n.legendInstructions}`;
 
     React.useEffect(() => {
       const container = internalRef.current;
 
       if (!container) return;
 
+      const applyListSemantics = (legend: Element) => {
+        legend.removeAttribute('aria-label');
+        legend.setAttribute('role', 'list');
+        legend
+          .querySelectorAll('.legend-item')
+          .forEach(item => item.setAttribute('role', 'listitem'));
+      };
+
       const wrapLegend = () => {
         const legend = container.querySelector('.cds--cc--legend');
 
-        if (!legend || legend.parentElement?.tagName === 'FIELDSET') return;
+        if (!legend) return;
+
+        applyListSemantics(legend);
+
+        const parent = legend.parentElement;
+
+        if (parent?.tagName === 'FIELDSET') {
+          const existingCaption = parent.querySelector('legend');
+
+          if (existingCaption) existingCaption.textContent = legendLabel;
+
+          return;
+        }
 
         const fieldset = document.createElement('fieldset');
         const caption = document.createElement('legend');

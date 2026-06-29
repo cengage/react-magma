@@ -2,4 +2,4 @@
 '@react-magma/charts': patch
 ---
 
-fix(charts): Wrap checkboxes into `fiesdset` + `legend`
+fix(charts): Wrap checkboxes into `fieldset` + `legend`

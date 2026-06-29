@@ -1,7 +1,13 @@
 import React from 'react';
 
 import { act, render, screen, fireEvent } from '@testing-library/react';
-import { ThemeContext, magma, DropdownMenuItem } from 'react-magma-dom';
+import {
+  ThemeContext,
+  magma,
+  DropdownMenuItem,
+  I18nContext,
+  defaultI18n,
+} from 'react-magma-dom';
 
 import { CarbonChart, CarbonChartType } from '.';
 
@@ -893,6 +899,133 @@ describe('CarbonChart', () => {
       expect(
         screen.getByRole('columnheader', { name: 'Count' })
       ).toBeInTheDocument();
+    });
+  });
+
+  describe('Legend accessibility wrap', () => {
+    const testId = 'legend-a11y';
+
+    it('wraps the Carbon legend in a fieldset with a legend caption derived from the chart title', () => {
+      const { getByTestId } = render(
+        <CarbonChart
+          testId={testId}
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.bar}
+        />
+      );
+      const wrapper = getByTestId(testId);
+
+      const fieldset = wrapper.querySelector('.cds--cc--legend-fieldset');
+      expect(fieldset).not.toBeNull();
+      expect(fieldset.tagName).toBe('FIELDSET');
+      expect(fieldset.querySelector('.cds--cc--legend')).not.toBeNull();
+
+      const caption = fieldset.querySelector('legend');
+      expect(caption).not.toBeNull();
+      expect(caption.textContent).toBe(
+        `${chartOptions.title}. Checking these checkboxes will update the chart.`
+      );
+    });
+
+    it('uses ariaLabel for the legend caption when provided', () => {
+      const ariaLabel = 'Quarterly sales chart';
+      const { getByTestId } = render(
+        <CarbonChart
+          testId={testId}
+          ariaLabel={ariaLabel}
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.bar}
+        />
+      );
+      const wrapper = getByTestId(testId);
+
+      const caption = wrapper.querySelector(
+        '.cds--cc--legend-fieldset > legend'
+      );
+      expect(caption).not.toBeNull();
+      expect(caption.textContent).toBe(
+        `${ariaLabel}. Checking these checkboxes will update the chart.`
+      );
+    });
+
+    it('does not duplicate the fieldset when the mutation observer fires again with no DOM changes', () => {
+      const { getByTestId } = render(
+        <CarbonChart
+          testId={testId}
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.bar}
+        />
+      );
+      const wrapper = getByTestId(testId);
+
+      const before = wrapper.querySelectorAll('.cds--cc--legend-fieldset');
+      expect(before).toHaveLength(1);
+
+      act(() => {
+        mutationObserverCallback?.();
+        mutationObserverCallback?.();
+      });
+
+      const after = wrapper.querySelectorAll('.cds--cc--legend-fieldset');
+      expect(after).toHaveLength(1);
+      expect(after[0]).toBe(before[0]);
+    });
+
+    it('replaces Carbon\'s generic "Data groups" aria-label with semantic list roles on the legend and its items', () => {
+      const { getByTestId } = render(
+        <CarbonChart
+          testId={testId}
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.bar}
+        />
+      );
+      const wrapper = getByTestId(testId);
+
+      const legend = wrapper.querySelector('.cds--cc--legend');
+      expect(legend).not.toBeNull();
+      expect(legend.getAttribute('aria-label')).toBeNull();
+      expect(legend.getAttribute('role')).toBe('list');
+
+      const items = legend.querySelectorAll('.legend-item');
+      expect(items.length).toBeGreaterThan(0);
+      items.forEach(item => {
+        expect(item.getAttribute('role')).toBe('listitem');
+      });
+    });
+
+    it('uses translated legend instructions from I18nContext', () => {
+      const translatedInstructions =
+        'Marquer ces cases mettra à jour le graphique.';
+      const i18nValue = {
+        ...defaultI18n,
+        charts: {
+          ...defaultI18n.charts,
+          toolbar: { legendInstructions: translatedInstructions },
+        },
+      };
+
+      const { getByTestId } = render(
+        <I18nContext.Provider value={i18nValue}>
+          <CarbonChart
+            testId={testId}
+            dataSet={dataSet}
+            options={chartOptions}
+            type={CarbonChartType.bar}
+          />
+        </I18nContext.Provider>
+      );
+      const wrapper = getByTestId(testId);
+
+      const caption = wrapper.querySelector(
+        '.cds--cc--legend-fieldset > legend'
+      );
+      expect(caption.textContent).toBe(
+        `${chartOptions.title}. ${translatedInstructions}`
+      );
     });
   });
 });
