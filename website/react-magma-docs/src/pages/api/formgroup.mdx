@@ -15,6 +15,8 @@ props:
   <Link to="/api/radio/#radio_group_props">Radio Group</Link> component.
 </LeadParagraph>
 
+`FormGroup` renders a `<div role="group">` with `aria-labelledby`, which is a lightweight ARIA grouping suitable for associating a single label with a small set of checkboxes or toggles. When you need stronger native semantic grouping for related form controls — for example, a section of a form that benefits from a native `<fieldset>` and `<legend>` (WCAG technique <Link to="https://www.w3.org/WAI/WCAG21/Techniques/html/H71">H71</Link>, <Link to="https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/">WAI-ARIA APG checkbox</Link> and <Link to="https://www.w3.org/WAI/ARIA/apg/patterns/radio/">radio group</Link> patterns) — use the <Link to="/api/fieldset">Fieldset component</Link> instead.
+
 ## Basic Usage
 
 Form groups are not necessary when displaying only a single checkbox or toggle. However, if more than one checkbox or toggle fit together to answer a single question,
@@ -94,13 +96,13 @@ Custom styles can be applied by using the `containerStyle` and `labelStyle` prop
 ```tsx
 import React from 'react';
 
-import { FormGroup, Checkbox } from 'react-magma-dom';
+import { FormGroup, Checkbox, magma } from 'react-magma-dom';
 
 export function Example() {
   return (
     <FormGroup
       containerStyle={{ border: '1px solid gray', padding: '10px' }}
-      labelStyle={{ fontWeight: '500', color: 'red' }}
+      labelStyle={{ fontWeight: '500', color: magma.colors.warning }}
       labelText="Group label"
     >
       <Checkbox labelText="Checkbox label" />
