@@ -60,6 +60,7 @@
     "feat-Popover-add-isFullWidth-prop",
     "feat-SplitDropdown-add-leading-icon",
     "feat-TreeView-GuideLines",
+    "feat-TreeView-click-anywhere-expand-selectable-off",
     "feat-TreeView-selectParents-prop",
     "feat-empty-state",
     "feat-treeview-performance",

@@ -1,5 +1,11 @@
 ## 5.0.0
 
+## 5.1.0-rc.4
+
+### Minor Changes
+
+- 5666475: feat(TreeView): support clicking anywhere on a folder to expand/collapse it for `selectable.off`
+
 ## 5.0.1-rc.3
 
 ### Patch Changes
