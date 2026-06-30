@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-rc.5
+
+### Patch Changes
+
+- 86b130d: docs: Remove the standalone `Accessible Chart Toolbar` page and integrate its content into Getting Started, Chart Types, and Chart Demos.
+
 ## 6.0.2-rc.4
 
 ### Patch Changes

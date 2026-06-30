@@ -51,6 +51,7 @@
     "chore-upgrade-typedoc",
     "chore-upgrade-typescript-eslint",
     "combobox-select-fix-floating-ref-stale",
+    "docs-remove-accessible-chart-toolbar-page",
     "feat-ButtonGroup-add-isList-prop",
     "feat-Checkbox-add-aria-label",
     "feat-Date-Picker-new-keyboard-controls",
