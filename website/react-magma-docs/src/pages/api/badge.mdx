@@ -50,7 +50,11 @@ export function Example() {
       <ButtonGroup>
         <Button>
           Messages
-          <Badge variant={BadgeVariant.counter} color={BadgeColor.light}>
+          <Badge
+            variant={BadgeVariant.counter}
+            color={BadgeColor.secondary}
+            isInverse
+          >
             99+
           </Badge>
         </Button>
@@ -100,24 +104,92 @@ import React from 'react';
 import { Badge, BadgeColor, BadgeWeight } from 'react-magma-dom';
 
 export function Example() {
+  const badgeRowStyles: React.CSSProperties = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '8px',
+  };
+
+  const badgeStyles: React.CSSProperties = {
+    margin: 0,
+  };
+
   return (
     <>
-      <Badge color={BadgeColor.primary}>Primary</Badge>
-      <Badge color={BadgeColor.primary} weight={BadgeWeight.light}>
-        Primary
-      </Badge>
-      <Badge color={BadgeColor.danger}>Danger</Badge>
-      <Badge color={BadgeColor.danger} weight={BadgeWeight.light}>
-        Danger
-      </Badge>
-      <Badge color={BadgeColor.info}>Info</Badge>
-      <Badge color={BadgeColor.info} weight={BadgeWeight.light}>
-        Info
-      </Badge>
-      <Badge color={BadgeColor.warning}>Warning</Badge>
-      <Badge color={BadgeColor.warning} weight={BadgeWeight.light}>
-        Warning
-      </Badge>
+      <div style={badgeRowStyles}>
+        <Badge color={BadgeColor.primary} style={badgeStyles}>
+          Primary
+        </Badge>
+        <Badge color={BadgeColor.secondary} style={badgeStyles}>
+          Secondary
+        </Badge>
+        <Badge color={BadgeColor.light} style={badgeStyles}>
+          Light
+        </Badge>
+        <Badge color={BadgeColor.danger} style={badgeStyles}>
+          Danger
+        </Badge>
+        <Badge color={BadgeColor.success} style={badgeStyles}>
+          Success
+        </Badge>
+        <Badge color={BadgeColor.info} style={badgeStyles}>
+          Info
+        </Badge>
+        <Badge color={BadgeColor.warning} style={badgeStyles}>
+          Warning
+        </Badge>
+      </div>
+      <div style={{ ...badgeRowStyles, marginTop: '8px' }}>
+        <Badge
+          color={BadgeColor.primary}
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Primary
+        </Badge>
+        <Badge
+          color={BadgeColor.secondary}
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Secondary
+        </Badge>
+        <Badge
+          color={BadgeColor.light}
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light
+        </Badge>
+        <Badge
+          color={BadgeColor.danger}
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Danger
+        </Badge>
+        <Badge
+          color={BadgeColor.success}
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Success
+        </Badge>
+        <Badge
+          color={BadgeColor.info}
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Info
+        </Badge>
+        <Badge
+          color={BadgeColor.warning}
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Warning
+        </Badge>
+      </div>
     </>
   );
 }
