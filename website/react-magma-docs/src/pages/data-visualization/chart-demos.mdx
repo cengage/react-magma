@@ -37,10 +37,13 @@ export const MoreDemosLink = ({ number, path }) => (
 <LeadParagraph>
   These charts provide an intuitive and easily understandable means of
   visualizing data sets. Each chart should convey a narrative and align with the
-  content on the page where it is located. 
+  content on the page where it is located.
 </LeadParagraph>
 
 <MagmaChartsSiteLink />
+<br />
+
+Every example below passes `chartToolbar={{}}` to `CarbonChart`. This opts the chart into the accessible Magma toolbar ("Show as table", fullscreen, and "More options" with CSV/PNG/JPG downloads), and replaces Carbon's inaccessible `<p role="heading">` chart title with a semantic `<h2>` read from `options.title`. See the [Toolbar customization](#toolbar_customization) section below for advanced options, and [Getting Started](../introduction#accessible_chart_toolbar) for the underlying accessibility rationale.
 
 ## Area (simple)
 
@@ -127,7 +130,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -140,7 +143,7 @@ export function Example() {
 
 ## Area (stacked)
 
-A stacked area chart is a graph that shows how the values of multiple groups change over time.
+A stacked area chart is a graph that shows how the values of multiple groups change over time.
 
 ```tsx
 import React from 'react';
@@ -251,7 +254,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -314,7 +317,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -382,7 +385,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -525,7 +528,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -669,7 +672,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -812,7 +815,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -930,7 +933,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -1013,7 +1016,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -1123,7 +1126,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -1192,7 +1195,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -1239,7 +1242,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -1403,7 +1406,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -1551,7 +1554,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -1615,7 +1618,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -1628,7 +1631,7 @@ export function Example() {
 
 ## Meter
 
-Meter charts are used to measure the rate of change of a quantity against pre-defined targets.
+Meter charts are used to measure the rate of change of a quantity against pre-defined targets.
 
 ```tsx
 import React from 'react';
@@ -1672,7 +1675,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -1736,7 +1739,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -1829,7 +1832,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -1920,7 +1923,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -2136,7 +2139,7 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
     </Card>
   );
 }
@@ -2298,7 +2301,180 @@ export function Example() {
 
   return (
     <Card style={{ padding: '12px' }}>
-      <CarbonChart {...args} />
+      <CarbonChart {...args} chartToolbar={{}} />
+    </Card>
+  );
+}
+```
+
+## Toolbar customization
+
+The demos above use the default toolbar (`chartToolbar={{}}`). The `chartToolbar` object accepts options for adding menu items, customizing the data table, hiding individual buttons, and theming. See [Getting Started](../introduction#chart_toolbar_props) for the full props reference and the list of standalone components exported from `@react-magma/charts`.
+
+### Additional "More options" items
+
+Pass extra `DropdownMenuItem` elements to `moreOptions` to append custom actions below the built-in download items.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card, DropdownMenuItem } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart
+        type={CarbonChartType.donut}
+        dataSet={[
+          { group: 'High performance', value: 50 },
+          { group: 'Average performance', value: 30 },
+          { group: 'Poor performance', value: 15 },
+          { group: 'Not attempted', value: 5 },
+        ]}
+        options={{
+          title: 'Overall Activity Performance',
+          resizable: true,
+          height: '400px',
+          donut: {
+            center: { label: 'Questions' },
+          },
+          legend: {
+            truncation: { type: 'none' },
+          },
+        }}
+        chartToolbar={{
+          moreOptions: (
+            <>
+              <DropdownMenuItem onClick={() => alert('Print')}>
+                Print chart
+              </DropdownMenuItem>
+            </>
+          ),
+        }}
+      />
+    </Card>
+  );
+}
+```
+
+### Custom table columns
+
+By default the table modal derives columns from the dataset keys (e.g. `{ group, value }` becomes "Group" and "Value"). Override with `tableColumns` for custom headers.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart
+        type={CarbonChartType.bar}
+        dataSet={[
+          { group: 'Chapter 1', value: 85 },
+          { group: 'Chapter 2', value: 72 },
+          { group: 'Chapter 3', value: 91 },
+          { group: 'Chapter 4', value: 64 },
+        ]}
+        options={{
+          title: 'Chapter Performance',
+          axes: {
+            left: { mapsTo: 'value' },
+            bottom: { mapsTo: 'group', scaleType: 'labels' },
+          },
+          height: '400px',
+        }}
+        chartToolbar={{
+          tableColumns: [
+            { header: 'Chapter', key: 'group' },
+            { header: 'Score (%)', key: 'value' },
+          ],
+        }}
+      />
+    </Card>
+  );
+}
+```
+
+### Selective button visibility
+
+Disable individual toolbar buttons by setting `showAsTable` or `fullscreen` to `false`.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart
+        type={CarbonChartType.donut}
+        dataSet={[
+          { group: 'High performance', value: 50 },
+          { group: 'Average performance', value: 30 },
+          { group: 'Poor performance', value: 15 },
+          { group: 'Not attempted', value: 5 },
+        ]}
+        options={{
+          title: 'Table Only (No Fullscreen)',
+          resizable: true,
+          height: '400px',
+          donut: {
+            center: { label: 'Questions' },
+          },
+          legend: {
+            truncation: { type: 'none' },
+          },
+        }}
+        chartToolbar={{
+          fullscreen: false,
+        }}
+      />
+    </Card>
+  );
+}
+```
+
+### Inverse theme
+
+The toolbar respects the `isInverse` prop on `CarbonChart`, applying inverse styling to the toolbar buttons, the modal, and the data table.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse style={{ padding: '12px' }}>
+      <CarbonChart
+        isInverse
+        type={CarbonChartType.donut}
+        dataSet={[
+          { group: 'High performance', value: 50 },
+          { group: 'Average performance', value: 30 },
+          { group: 'Poor performance', value: 15 },
+          { group: 'Not attempted', value: 5 },
+        ]}
+        options={{
+          title: 'Inverse Theme Demo',
+          resizable: true,
+          height: '400px',
+          donut: {
+            center: { label: 'Questions' },
+          },
+          legend: {
+            truncation: { type: 'none' },
+          },
+        }}
+        chartToolbar={{}}
+      />
     </Card>
   );
 }
