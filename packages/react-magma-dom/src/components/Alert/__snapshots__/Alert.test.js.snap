@@ -57,11 +57,11 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-align-self: stretch;
   -ms-flex-item-align: stretch;
   align-self: stretch;
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 var(--magma-border-radius, 8px) var(--magma-border-radius, 8px) 0;
   color: inherit;
   height: auto;
   margin: 0 -1px 0 0;
-  padding: 0 8px;
+  padding: 0 var(--magma-space-scale-spacing-03, 8px);
   width: auto;
 }
 
@@ -106,7 +106,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-1:focus:not(:disabled) {
   background: none;
   color: inherit;
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-color-focus, #0074B7);
   outline-offset: 0!important;
 }
 
@@ -183,11 +183,11 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-align-self: stretch;
   -ms-flex-item-align: stretch;
   align-self: stretch;
-  border-radius: 0 8px 8px 0;
+  border-radius: 0 var(--magma-border-radius, 8px) var(--magma-border-radius, 8px) 0;
   color: inherit;
   height: auto;
   margin: 0 -1px 0 0;
-  padding: 0 8px;
+  padding: 0 var(--magma-space-scale-spacing-03, 8px);
   width: auto;
 }
 
@@ -232,7 +232,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-1:focus:not(:disabled) {
   background: none;
   color: inherit;
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-color-focus, #0074B7);
   outline-offset: 0!important;
 }
 
@@ -301,10 +301,10 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--magma-type-scale-size-03-font-size, 16px);
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  line-height: var(--magma-type-scale-size-03-line-height, 24px);
+  margin-bottom: var(--magma-space-scale-spacing-06, 24px);
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -312,18 +312,18 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 @media (max-width: 600px) {
   .emotion-0 {
-    font-size: 14px;
-    letter-spacing: .16px;
-    line-height: 20px;
+    font-size: var(--magma-type-scale-size-02-font-size, 14px);
+    letter-spacing: var(--magma-type-scale-size-02-letter-spacing, .16px);
+    line-height: var(--magma-type-scale-size-02-line-height, 20px);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-color-focus, #0074B7);
 }
 
 .emotion-0 a {
-  color: #7F1714;
+  color: var(--magma-color-danger-700, #7F1714);
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -331,14 +331,14 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: #D32821;
+  color: var(--magma-color-danger, #D32821);
 }
 
 .emotion-2 {
-  background: #FDEFEE;
-  border: 1px solid #D32821;
-  border-radius: 8px;
-  color: #D32821;
+  background: var(--magma-color-danger-100, #FDEFEE);
+  border: 1px solid var(--magma-color-danger-500, #D32821);
+  border-radius: var(--magma-border-radius, 8px);
+  color: var(--magma-color-danger-500, #D32821);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -359,12 +359,12 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--magma-space-scale-spacing-03, 8px) 0 var(--magma-space-scale-spacing-04, 12px);
 }
 
 @media (max-width: 600px) {
   .emotion-4 {
-    padding: 0 8px;
+    padding: 0 var(--magma-space-scale-spacing-03, 8px);
   }
 
   .emotion-4 svg {
@@ -380,9 +380,9 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  padding: 12px 0;
-  margin-right: 8px;
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  padding: var(--magma-space-scale-spacing-04, 12px) 0;
+  margin-right: var(--magma-space-scale-spacing-03, 8px);
 }
 
 @media (max-width: 600px) {
@@ -409,10 +409,10 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--magma-type-scale-size-03-font-size, 16px);
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  line-height: var(--magma-type-scale-size-03-line-height, 24px);
+  margin-bottom: var(--magma-space-scale-spacing-06, 24px);
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -420,18 +420,18 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 @media (max-width: 600px) {
   .emotion-0 {
-    font-size: 14px;
-    letter-spacing: .16px;
-    line-height: 20px;
+    font-size: var(--magma-type-scale-size-02-font-size, 14px);
+    letter-spacing: var(--magma-type-scale-size-02-letter-spacing, .16px);
+    line-height: var(--magma-type-scale-size-02-line-height, 20px);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-color-focus, #0074B7);
 }
 
 .emotion-0 a {
-  color: #7F1714;
+  color: var(--magma-color-danger-700, #7F1714);
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -439,14 +439,14 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: #D32821;
+  color: var(--magma-color-danger, #D32821);
 }
 
 .emotion-2 {
-  background: #FDEFEE;
-  border: 1px solid #D32821;
-  border-radius: 8px;
-  color: #D32821;
+  background: var(--magma-color-danger-100, #FDEFEE);
+  border: 1px solid var(--magma-color-danger-500, #D32821);
+  border-radius: var(--magma-border-radius, 8px);
+  color: var(--magma-color-danger-500, #D32821);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -467,12 +467,12 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--magma-space-scale-spacing-03, 8px) 0 var(--magma-space-scale-spacing-04, 12px);
 }
 
 @media (max-width: 600px) {
   .emotion-4 {
-    padding: 0 8px;
+    padding: 0 var(--magma-space-scale-spacing-03, 8px);
   }
 
   .emotion-4 svg {
@@ -488,9 +488,9 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  padding: 12px 0;
-  margin-right: 8px;
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  padding: var(--magma-space-scale-spacing-04, 12px) 0;
+  margin-right: var(--magma-space-scale-spacing-03, 8px);
 }
 
 @media (max-width: 600px) {
@@ -562,10 +562,10 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--magma-type-scale-size-03-font-size, 16px);
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  line-height: var(--magma-type-scale-size-03-line-height, 24px);
+  margin-bottom: var(--magma-space-scale-spacing-06, 24px);
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -573,18 +573,18 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 @media (max-width: 600px) {
   .emotion-0 {
-    font-size: 14px;
-    letter-spacing: .16px;
-    line-height: 20px;
+    font-size: var(--magma-type-scale-size-02-font-size, 14px);
+    letter-spacing: var(--magma-type-scale-size-02-letter-spacing, .16px);
+    line-height: var(--magma-type-scale-size-02-line-height, 20px);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-color-focus, #0074B7);
 }
 
 .emotion-0 a {
-  color: #004A75;
+  color: var(--magma-color-info-700, #004A75);
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -592,14 +592,14 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: #0074B7;
+  color: var(--magma-color-info, #0074B7);
 }
 
 .emotion-2 {
-  background: #E8F5FC;
-  border: 1px solid #0074B7;
-  border-radius: 8px;
-  color: #0074B7;
+  background: var(--magma-color-info-100, #E8F5FC);
+  border: 1px solid var(--magma-color-info-500, #0074B7);
+  border-radius: var(--magma-border-radius, 8px);
+  color: var(--magma-color-info-500, #0074B7);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -620,12 +620,12 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--magma-space-scale-spacing-03, 8px) 0 var(--magma-space-scale-spacing-04, 12px);
 }
 
 @media (max-width: 600px) {
   .emotion-4 {
-    padding: 0 8px;
+    padding: 0 var(--magma-space-scale-spacing-03, 8px);
   }
 
   .emotion-4 svg {
@@ -641,9 +641,9 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  padding: 12px 0;
-  margin-right: 8px;
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  padding: var(--magma-space-scale-spacing-04, 12px) 0;
+  margin-right: var(--magma-space-scale-spacing-03, 8px);
 }
 
 @media (max-width: 600px) {
@@ -670,10 +670,10 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--magma-type-scale-size-03-font-size, 16px);
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  line-height: var(--magma-type-scale-size-03-line-height, 24px);
+  margin-bottom: var(--magma-space-scale-spacing-06, 24px);
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -681,18 +681,18 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 @media (max-width: 600px) {
   .emotion-0 {
-    font-size: 14px;
-    letter-spacing: .16px;
-    line-height: 20px;
+    font-size: var(--magma-type-scale-size-02-font-size, 14px);
+    letter-spacing: var(--magma-type-scale-size-02-letter-spacing, .16px);
+    line-height: var(--magma-type-scale-size-02-line-height, 20px);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-color-focus, #0074B7);
 }
 
 .emotion-0 a {
-  color: #004A75;
+  color: var(--magma-color-info-700, #004A75);
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -700,14 +700,14 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: #0074B7;
+  color: var(--magma-color-info, #0074B7);
 }
 
 .emotion-2 {
-  background: #E8F5FC;
-  border: 1px solid #0074B7;
-  border-radius: 8px;
-  color: #0074B7;
+  background: var(--magma-color-info-100, #E8F5FC);
+  border: 1px solid var(--magma-color-info-500, #0074B7);
+  border-radius: var(--magma-border-radius, 8px);
+  color: var(--magma-color-info-500, #0074B7);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -728,12 +728,12 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--magma-space-scale-spacing-03, 8px) 0 var(--magma-space-scale-spacing-04, 12px);
 }
 
 @media (max-width: 600px) {
   .emotion-4 {
-    padding: 0 8px;
+    padding: 0 var(--magma-space-scale-spacing-03, 8px);
   }
 
   .emotion-4 svg {
@@ -749,9 +749,9 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  padding: 12px 0;
-  margin-right: 8px;
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  padding: var(--magma-space-scale-spacing-04, 12px) 0;
+  margin-right: var(--magma-space-scale-spacing-03, 8px);
 }
 
 @media (max-width: 600px) {
@@ -823,10 +823,10 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--magma-type-scale-size-03-font-size, 16px);
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  line-height: var(--magma-type-scale-size-03-line-height, 24px);
+  margin-bottom: var(--magma-space-scale-spacing-06, 24px);
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -834,18 +834,18 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 @media (max-width: 600px) {
   .emotion-0 {
-    font-size: 14px;
-    letter-spacing: .16px;
-    line-height: 20px;
+    font-size: var(--magma-type-scale-size-02-font-size, 14px);
+    letter-spacing: var(--magma-type-scale-size-02-letter-spacing, .16px);
+    line-height: var(--magma-type-scale-size-02-line-height, 20px);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-color-focus, #0074B7);
 }
 
 .emotion-0 a {
-  color: #6E340E;
+  color: var(--magma-color-warning-700, #6E340E);
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -853,14 +853,14 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: #AD5115;
+  color: var(--magma-color-warning, #AD5115);
 }
 
 .emotion-2 {
-  background: #FCEEE5;
-  border: 1px solid #AD5115;
-  border-radius: 8px;
-  color: #AD5115;
+  background: var(--magma-color-warning-100, #FCEEE5);
+  border: 1px solid var(--magma-color-warning-500, #AD5115);
+  border-radius: var(--magma-border-radius, 8px);
+  color: var(--magma-color-warning-500, #AD5115);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -881,12 +881,12 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--magma-space-scale-spacing-03, 8px) 0 var(--magma-space-scale-spacing-04, 12px);
 }
 
 @media (max-width: 600px) {
   .emotion-4 {
-    padding: 0 8px;
+    padding: 0 var(--magma-space-scale-spacing-03, 8px);
   }
 
   .emotion-4 svg {
@@ -902,9 +902,9 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  padding: 12px 0;
-  margin-right: 8px;
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  padding: var(--magma-space-scale-spacing-04, 12px) 0;
+  margin-right: var(--magma-space-scale-spacing-03, 8px);
 }
 
 @media (max-width: 600px) {
@@ -931,10 +931,10 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--magma-type-scale-size-03-font-size, 16px);
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  line-height: var(--magma-type-scale-size-03-line-height, 24px);
+  margin-bottom: var(--magma-space-scale-spacing-06, 24px);
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -942,18 +942,18 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 @media (max-width: 600px) {
   .emotion-0 {
-    font-size: 14px;
-    letter-spacing: .16px;
-    line-height: 20px;
+    font-size: var(--magma-type-scale-size-02-font-size, 14px);
+    letter-spacing: var(--magma-type-scale-size-02-letter-spacing, .16px);
+    line-height: var(--magma-type-scale-size-02-line-height, 20px);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-color-focus, #0074B7);
 }
 
 .emotion-0 a {
-  color: #6E340E;
+  color: var(--magma-color-warning-700, #6E340E);
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -961,14 +961,14 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: #AD5115;
+  color: var(--magma-color-warning, #AD5115);
 }
 
 .emotion-2 {
-  background: #FCEEE5;
-  border: 1px solid #AD5115;
-  border-radius: 8px;
-  color: #AD5115;
+  background: var(--magma-color-warning-100, #FCEEE5);
+  border: 1px solid var(--magma-color-warning-500, #AD5115);
+  border-radius: var(--magma-border-radius, 8px);
+  color: var(--magma-color-warning-500, #AD5115);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -989,12 +989,12 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--magma-space-scale-spacing-03, 8px) 0 var(--magma-space-scale-spacing-04, 12px);
 }
 
 @media (max-width: 600px) {
   .emotion-4 {
-    padding: 0 8px;
+    padding: 0 var(--magma-space-scale-spacing-03, 8px);
   }
 
   .emotion-4 svg {
@@ -1010,9 +1010,9 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  padding: 12px 0;
-  margin-right: 8px;
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  padding: var(--magma-space-scale-spacing-04, 12px) 0;
+  margin-right: var(--magma-space-scale-spacing-03, 8px);
 }
 
 @media (max-width: 600px) {
@@ -1084,10 +1084,10 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--magma-type-scale-size-03-font-size, 16px);
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  line-height: var(--magma-type-scale-size-03-line-height, 24px);
+  margin-bottom: var(--magma-space-scale-spacing-06, 24px);
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -1095,18 +1095,18 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 @media (max-width: 600px) {
   .emotion-0 {
-    font-size: 14px;
-    letter-spacing: .16px;
-    line-height: 20px;
+    font-size: var(--magma-type-scale-size-02-font-size, 14px);
+    letter-spacing: var(--magma-type-scale-size-02-letter-spacing, .16px);
+    line-height: var(--magma-type-scale-size-02-line-height, 20px);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-color-focus, #0074B7);
 }
 
 .emotion-0 a {
-  color: #004A75;
+  color: var(--magma-color-info-700, #004A75);
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -1114,14 +1114,14 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: #0074B7;
+  color: var(--magma-color-info, #0074B7);
 }
 
 .emotion-2 {
-  background: #E8F5FC;
-  border: 1px solid #0074B7;
-  border-radius: 8px;
-  color: #0074B7;
+  background: var(--magma-color-info-100, #E8F5FC);
+  border: 1px solid var(--magma-color-info-500, #0074B7);
+  border-radius: var(--magma-border-radius, 8px);
+  color: var(--magma-color-info-500, #0074B7);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1142,12 +1142,12 @@ exports[`Alert should render an alert with default variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--magma-space-scale-spacing-03, 8px) 0 var(--magma-space-scale-spacing-04, 12px);
 }
 
 @media (max-width: 600px) {
   .emotion-4 {
-    padding: 0 8px;
+    padding: 0 var(--magma-space-scale-spacing-03, 8px);
   }
 
   .emotion-4 svg {
@@ -1163,9 +1163,9 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  padding: 12px 0;
-  margin-right: 8px;
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  padding: var(--magma-space-scale-spacing-04, 12px) 0;
+  margin-right: var(--magma-space-scale-spacing-03, 8px);
 }
 
 @media (max-width: 600px) {
@@ -1192,10 +1192,10 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  font-size: 16px;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  line-height: 24px;
-  margin-bottom: 24px;
+  font-size: var(--magma-type-scale-size-03-font-size, 16px);
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  line-height: var(--magma-type-scale-size-03-line-height, 24px);
+  margin-bottom: var(--magma-space-scale-spacing-06, 24px);
   max-width: 100%;
   padding: 0;
   position: relative;
@@ -1203,18 +1203,18 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 @media (max-width: 600px) {
   .emotion-0 {
-    font-size: 14px;
-    letter-spacing: .16px;
-    line-height: 20px;
+    font-size: var(--magma-type-scale-size-02-font-size, 14px);
+    letter-spacing: var(--magma-type-scale-size-02-letter-spacing, .16px);
+    line-height: var(--magma-type-scale-size-02-line-height, 20px);
   }
 }
 
 .emotion-0:focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-color-focus, #0074B7);
 }
 
 .emotion-0 a {
-  color: #004A75;
+  color: var(--magma-color-info-700, #004A75);
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -1222,14 +1222,14 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: #0074B7;
+  color: var(--magma-color-info, #0074B7);
 }
 
 .emotion-2 {
-  background: #E8F5FC;
-  border: 1px solid #0074B7;
-  border-radius: 8px;
-  color: #0074B7;
+  background: var(--magma-color-info-100, #E8F5FC);
+  border: 1px solid var(--magma-color-info-500, #0074B7);
+  border-radius: var(--magma-border-radius, 8px);
+  color: var(--magma-color-info-500, #0074B7);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1250,12 +1250,12 @@ exports[`Alert should render an alert with default variant 1`] = `
   -ms-flex-negative: 0;
   flex-shrink: 0;
   margin-right: 1px;
-  padding: 0 8px 0 12px;
+  padding: 0 var(--magma-space-scale-spacing-03, 8px) 0 var(--magma-space-scale-spacing-04, 12px);
 }
 
 @media (max-width: 600px) {
   .emotion-4 {
-    padding: 0 8px;
+    padding: 0 var(--magma-space-scale-spacing-03, 8px);
   }
 
   .emotion-4 svg {
@@ -1271,9 +1271,9 @@ exports[`Alert should render an alert with default variant 1`] = `
   -webkit-flex-grow: 1;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  padding: 12px 0;
-  margin-right: 8px;
+  font-family: var(--magma-body-font, "Work Sans",Helvetica,sans-serif);
+  padding: var(--magma-space-scale-spacing-04, 12px) 0;
+  margin-right: var(--magma-space-scale-spacing-03, 8px);
 }
 
 @media (max-width: 600px) {
