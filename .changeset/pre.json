@@ -13,6 +13,7 @@
     "chart-add-accessible-role",
     "chore-TreeView-additionalContent-props",
     "feat-Charts-titleLevel",
+    "feat-TreeView-click-anywhere-expand-selectable-off",
     "fix-Accordion-invalid-aria",
     "fix-CharacterCounter-double-announcement",
     "fix-Dropdown-stop-propagation",
