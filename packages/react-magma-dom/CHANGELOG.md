@@ -1,5 +1,11 @@
 ## 4.14.0
 
+## 4.15.0-next.7
+
+### Patch Changes
+
+- be11036f2: fix(DateTimePicker): prevent crash when entering invalid date in input
+
 ## 4.15.0-next.6
 
 ### Minor Changes
