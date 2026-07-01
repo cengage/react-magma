@@ -17,6 +17,7 @@
     "a11y-sortable-table-labels",
     "accessible-chart-toolbar",
     "chart-add-accessible-role",
+    "chart-fix-aria-prohibited-attr",
     "chore-TreeView-additionalContent-props",
     "chore-add-chromatic-ci",
     "chore-add-snyk-ci",

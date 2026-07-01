@@ -1,5 +1,11 @@
 ## 5.0.0
 
+## 5.1.0-rc.6
+
+### Patch Changes
+
+- 7f28b87: Chart: fix ARIA prohibited attribute usage in SVG elements
+
 ## 5.1.0-rc.5
 
 ### Patch Changes
