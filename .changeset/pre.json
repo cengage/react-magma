@@ -170,6 +170,7 @@
     "fix-charts-styles",
     "fix-datagrid-sortable-html",
     "fix-datepicker-canvas-issue-react-18",
+    "fix-datetimepicker-crash-invalid-date",
     "fix-doc-examples",
     "fix-drawer-scrollable-content",
     "fix-modal-trigger-button",

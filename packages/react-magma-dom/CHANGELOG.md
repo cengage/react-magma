@@ -1,5 +1,11 @@
 ## 5.0.0
 
+## 5.1.0-rc.5
+
+### Patch Changes
+
+- 76e7ab1: fix(DateTimePicker): prevent crash when entering invalid date in input
+
 ## 5.1.0-rc.4
 
 ### Minor Changes
