@@ -167,6 +167,23 @@ const CarbonChartWrapper = styled.div<{
   groupsLength: number;
   theme: ThemeInterface;
 }>`
+  .cds--cc--legend-fieldset {
+    border: 0;
+    margin: 0;
+    min-inline-size: 0;
+    padding: 0;
+  }
+
+  .cds--cc--legend-fieldset > legend {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    top: auto;
+    white-space: nowrap;
+    width: 1px;
+  }
+
   &:fullscreen,
   &:-webkit-full-screen {
     background: ${props =>
@@ -1184,6 +1201,55 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     const chartTitle: string =
       (options as ExtendedChartOptions).title || toolbarI18n.defaultTitle;
+
+    const legendLabel = `${ariaLabel || chartTitle}. ${toolbarI18n.legendInstructions}`;
+
+    React.useEffect(() => {
+      const container = internalRef.current;
+
+      if (!container) return;
+
+      const applyListSemantics = (legend: Element) => {
+        legend.removeAttribute('aria-label');
+        legend.setAttribute('role', 'list');
+        legend
+          .querySelectorAll('.legend-item')
+          .forEach(item => item.setAttribute('role', 'listitem'));
+      };
+
+      const wrapLegend = () => {
+        const legend = container.querySelector('.cds--cc--legend');
+
+        if (!legend) return;
+
+        applyListSemantics(legend);
+
+        const parent = legend.parentElement;
+
+        if (parent?.tagName === 'FIELDSET') {
+          const existingCaption = parent.querySelector('legend');
+
+          if (existingCaption) existingCaption.textContent = legendLabel;
+
+          return;
+        }
+
+        const fieldset = document.createElement('fieldset');
+        const caption = document.createElement('legend');
+
+        fieldset.className = 'cds--cc--legend-fieldset';
+        caption.textContent = legendLabel;
+        legend.before(fieldset);
+        fieldset.append(caption, legend);
+      };
+
+      wrapLegend();
+      const observer = new MutationObserver(wrapLegend);
+
+      observer.observe(container, { childList: true, subtree: true });
+
+      return () => observer.disconnect();
+    }, [legendLabel]);
 
     const handleModalDownloadCsv = React.useCallback(() => {
       downloadCsv(dataSet as Array<Record<string, unknown>>, chartTitle);

@@ -100,6 +100,7 @@ export interface I18nInterface {
       downloadAsJpg?: string;
       downloadAsPng?: string;
       exitFullScreen?: string;
+      legendInstructions?: string;
       makeFullScreen?: string;
       moreOptionsAriaLabel?: string;
       showAsTableTooltip?: string;
