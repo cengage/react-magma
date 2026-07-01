@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 15.0.0-rc.2
+
+### Patch Changes
+
+- ce0a5f5: fix(charts): Wrap checkboxes into `fieldset` + `legend`
+
 ## 15.0.0-rc.1
 
 ### Patch Changes
