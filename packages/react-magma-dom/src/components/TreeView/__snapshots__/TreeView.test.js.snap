@@ -1562,6 +1562,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
               <div>
                 <li
                   aria-checked="false"
+                  aria-disabled="true"
                   class="emotion-28 emotion-29"
                   data-testid="item-id-1"
                   id="item-id-1"
@@ -1703,6 +1704,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
               <div>
                 <li
                   aria-checked="false"
+                  aria-disabled="true"
                   class="emotion-28 emotion-29"
                   data-testid="item-id-3"
                   id="item-id-3"
@@ -3761,6 +3763,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
               <div>
                 <li
                   aria-checked="false"
+                  aria-disabled="true"
                   class="emotion-28 emotion-29"
                   data-testid="item-id-1"
                   id="item-id-1"
@@ -3903,6 +3906,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
               <div>
                 <li
                   aria-checked="false"
+                  aria-disabled="true"
                   aria-expanded="false"
                   class="emotion-60 emotion-29"
                   data-testid="item-id-3"
@@ -5877,6 +5881,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
               <div>
                 <li
                   aria-checked="false"
+                  aria-disabled="true"
                   class="emotion-28 emotion-29"
                   data-testid="item-id-1"
                   id="item-id-1"
@@ -6018,6 +6023,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
               <div>
                 <li
                   aria-checked="false"
+                  aria-disabled="true"
                   aria-expanded="false"
                   class="emotion-60 emotion-29"
                   data-testid="item-id-3"
@@ -7992,6 +7998,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
               <div>
                 <li
                   aria-checked="false"
+                  aria-disabled="true"
                   class="emotion-28 emotion-29"
                   data-testid="item-id-1"
                   id="item-id-1"
@@ -8133,6 +8140,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
               <div>
                 <li
                   aria-checked="false"
+                  aria-disabled="true"
                   aria-expanded="false"
                   class="emotion-60 emotion-29"
                   data-testid="item-id-3"
@@ -10237,6 +10245,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
               <div>
                 <li
                   aria-checked="false"
+                  aria-disabled="true"
                   class="emotion-28 emotion-29"
                   data-testid="item-id-1"
                   id="item-id-1"
@@ -10379,6 +10388,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
               <div>
                 <li
                   aria-checked="false"
+                  aria-disabled="true"
                   aria-expanded="false"
                   class="emotion-60 emotion-29"
                   data-testid="item-id-3"
@@ -12483,6 +12493,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
               <div>
                 <li
                   aria-checked="false"
+                  aria-disabled="true"
                   class="emotion-28 emotion-29"
                   data-testid="item-id-1"
                   id="item-id-1"
@@ -12625,6 +12636,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
               <div>
                 <li
                   aria-checked="false"
+                  aria-disabled="true"
                   aria-expanded="false"
                   class="emotion-60 emotion-29"
                   data-testid="item-id-3"
@@ -14599,6 +14611,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
               <div>
                 <li
                   aria-checked="false"
+                  aria-disabled="true"
                   class="emotion-28 emotion-29"
                   data-testid="item-id-1"
                   id="item-id-1"
@@ -14740,6 +14753,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
               <div>
                 <li
                   aria-checked="false"
+                  aria-disabled="true"
                   aria-expanded="false"
                   class="emotion-60 emotion-29"
                   data-testid="item-id-3"

@@ -10,3 +10,4 @@ fix(Storybook): Fix accessibility issues in stories:
 - ProgressBar: add visually hidden label to custom color input
 - ToggleButton: remove incorrect `id` assignment from button element
 - TreeView: move `aria-live` region inside `treeitem` to fix `aria-required-children` violation
+- TreeView: add `aria-disabled` to treeitem to fix `color-contrast` violation on disabled items

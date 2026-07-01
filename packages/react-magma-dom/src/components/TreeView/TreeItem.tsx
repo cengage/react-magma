@@ -726,6 +726,7 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
         <div style={treeItemStyles}>
           <StyledTreeItem
             {...rest}
+            aria-disabled={isDisabled || null}
             aria-expanded={hasOwnTreeItems ? expanded : null}
             aria-selected={selectedItem}
             aria-checked={shouldShowCheckbox ? ariaCheckedValue : null}
