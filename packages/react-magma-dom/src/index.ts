@@ -291,6 +291,8 @@ export type { DefinitionListProps } from './components/DefinitionList/Definition
 
 export { magma } from './theme/magma';
 export type { ThemeInterface } from './theme/magma';
+export { token } from './theme/tokens';
+export type { TokenPath, TokenVarOptions } from './theme/tokens';
 export { GlobalStyles } from './theme/GlobalStyles';
 export { ThemeContext } from './theme/ThemeContext';
 export { default as styled } from '@emotion/styled';

@@ -4,7 +4,7 @@ import { Global, SerializedStyles, css } from '@emotion/react';
 
 import { useIsInverse } from '../../inverse';
 import { ThemeContext } from '../ThemeContext';
-import { pathToCssVarName } from '../utils/cssVar';
+import { createCssVarDeclarations, token, TokenPath } from '../tokens';
 
 function getGlobalImports() {
   return css`
@@ -12,70 +12,58 @@ function getGlobalImports() {
   `;
 }
 
-const CSS_VAR_KEYS = [
-  'colors',
-  'spaceScale',
-  'iconSizes',
-  'typeScale',
-  'borderRadius',
-  'borderRadiusSmall',
-  'bodyFont',
-  'bodyExpressiveFont',
-  'bodyNarrativeFont',
-  'headingFont',
-  'headingExpressiveFont',
-  'headingNarrativeFont',
-] as const;
+const DEFAULT_CSS_VARS_ROOT = ':where(:root, :host)';
 
-function collectCssVarDeclarations(
-  value: unknown,
-  path: string[],
-  out: string[]
-): void {
-  if (value === null || value === undefined) return;
-  if (typeof value === 'string' || typeof value === 'number') {
-    out.push(`${pathToCssVarName(path.join('.'))}: ${value};`);
+const cssVarDefinitionsCache = new WeakMap<
+  object,
+  Map<string, SerializedStyles>
+>();
 
-    return;
+function getCssVarDefinitions({
+  cssVarsPrefix,
+  cssVarsRoot,
+  theme,
+}: {
+  cssVarsPrefix?: string;
+  cssVarsRoot: string;
+  theme: object;
+}): SerializedStyles {
+  let themeCache = cssVarDefinitionsCache.get(theme);
+
+  if (!themeCache) {
+    themeCache = new Map();
+    cssVarDefinitionsCache.set(theme, themeCache);
   }
-  if (typeof value === 'object') {
-    for (const key of Object.keys(value as Record<string, unknown>)) {
-      collectCssVarDeclarations(
-        (value as Record<string, unknown>)[key],
-        [...path, key],
-        out
-      );
-    }
-  }
-}
 
-const cssVarDefinitionsCache = new WeakMap<object, SerializedStyles>();
-
-function getCssVarDefinitions(
-  theme: Record<string, unknown>
-): SerializedStyles {
-  const cached = cssVarDefinitionsCache.get(theme);
+  const cacheKey = `${cssVarsRoot}|${cssVarsPrefix || ''}`;
+  const cached = themeCache.get(cacheKey);
 
   if (cached) return cached;
 
-  const declarations: string[] = [];
-
-  for (const key of CSS_VAR_KEYS) {
-    collectCssVarDeclarations(theme[key], [key], declarations);
-  }
+  const declarations = createCssVarDeclarations(theme, { cssVarsPrefix });
 
   const result = css`
-    :where(:root) {
+    ${cssVarsRoot} {
       ${declarations.join('\n      ')}
     }
   `;
 
-  cssVarDefinitionsCache.set(theme, result);
+  themeCache.set(cacheKey, result);
 
   return result;
 }
 
-function getStyles(theme, isInverse: boolean) {
+function themeToken(
+  theme: unknown,
+  path: TokenPath,
+  cssVarsPrefix?: string
+): string {
+  return token.var(path, { cssVarsPrefix, theme });
+}
+
+function getStyles(theme, isInverse: boolean, cssVarsPrefix?: string) {
+  const t = (path: TokenPath) => themeToken(theme, path, cssVarsPrefix);
+
   return css`
     *,
     *:before,
@@ -85,48 +73,58 @@ function getStyles(theme, isInverse: boolean) {
 
     *:focus {
       outline: 2px solid
-        ${isInverse ? theme.colors.focusInverse : theme.colors.focus};
+        ${isInverse
+          ? t('semanticColors.focus.inverse')
+          : t('semanticColors.focus.default')};
       outline-offset: -1px;
     }
 
     html {
       -ms-text-size-adjust: 100%;
       -webkit-text-size-adjust: 100%;
-      font-size: ${theme.typeScale.size03.fontSize};
-      line-height: ${theme.typeScale.size03.lineHeight};
+      font-size: ${t('typeScale.size03.fontSize')};
+      line-height: ${t('typeScale.size03.lineHeight')};
       scroll-behavior: smooth;
     }
 
     html,
     body {
       background: ${isInverse
-        ? theme.colors.primary600
-        : theme.colors.neutral100};
-      color: ${isInverse ? theme.colors.neutral100 : theme.colors.neutral};
+        ? t('semanticColors.surface.inverse')
+        : t('semanticColors.surface.default')};
+      color: ${isInverse
+        ? t('semanticColors.text.inverse')
+        : t('semanticColors.text.default')};
       margin: 0;
       padding: 0;
     }
 
     body {
-      font-family: ${theme.bodyFont};
+      font-family: ${t('bodyFont')};
       font-style: normal;
       font-weight: 400;
-      font-size: ${theme.typeScale.size03.fontSize};
-      line-height: ${theme.typeScale.size03.lineHeight};
+      font-size: ${t('typeScale.size03.fontSize')};
+      line-height: ${t('typeScale.size03.lineHeight')};
     }
 
     a {
-      color: ${isInverse ? theme.colors.tertiary : theme.colors.primary};
+      color: ${isInverse
+        ? t('semanticColors.text.inverseLink')
+        : t('semanticColors.text.link')};
       cursor: pointer;
       text-decoration: underline;
 
       &:hover,
       &:focus {
-        color: ${isInverse ? theme.colors.neutral100 : theme.colors.primary700};
+        color: ${isInverse
+          ? t('semanticColors.text.inverseLinkHover')
+          : t('semanticColors.text.linkHover')};
       }
       &:focus {
         outline: 2px solid
-          ${isInverse ? theme.colors.focusInverse : theme.colors.focus};
+          ${isInverse
+            ? t('semanticColors.focus.inverse')
+            : t('semanticColors.focus.default')};
         outline-offset: 2px;
       }
     }
@@ -148,15 +146,26 @@ function getStyles(theme, isInverse: boolean) {
 
 export interface GlobalStylesProps {
   /**
-   * Emit `--magma-*` CSS custom properties for the active theme under
-   * `:where(:root)`. Set to `false` if you manage these variables yourself
+   * Emit CSS custom properties for the active theme. Set to `false` if you manage these variables yourself
    * (e.g., via a static stylesheet or another design-token pipeline).
    * @default true
    */
   emitCssVariables?: boolean;
+  /**
+   * Prefix used for generated CSS custom properties.
+   * @default "magma"
+   */
+  cssVarsPrefix?: string;
+  /**
+   * Selector where generated CSS custom properties are scoped.
+   * @default ":where(:root, :host)"
+   */
+  cssVarsRoot?: string;
 }
 
 export const GlobalStyles: React.FunctionComponent<GlobalStylesProps> = ({
+  cssVarsPrefix,
+  cssVarsRoot = DEFAULT_CSS_VARS_ROOT,
   emitCssVariables = true,
 }) => {
   const isInverse = useIsInverse();
@@ -168,10 +177,14 @@ export const GlobalStyles: React.FunctionComponent<GlobalStylesProps> = ({
           <Global styles={getGlobalImports()} />
           {emitCssVariables && (
             <Global
-              styles={getCssVarDefinitions(theme as Record<string, unknown>)}
+              styles={getCssVarDefinitions({
+                cssVarsPrefix,
+                cssVarsRoot,
+                theme,
+              })}
             />
           )}
-          <Global styles={getStyles(theme, isInverse)} />
+          <Global styles={getStyles(theme, isInverse, cssVarsPrefix)} />
         </>
       )}
     </ThemeContext.Consumer>

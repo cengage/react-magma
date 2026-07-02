@@ -1,11 +1,21 @@
 import { magma } from '../magma';
-import { pathToCssVarName, tk } from './cssVar';
+import { pathToCssVarName } from './cssVar';
+import { createCssVarDeclarations, token } from '../tokens';
 
 describe('pathToCssVarName', () => {
   it('aliases "colors" to "color"', () => {
     expect(pathToCssVarName('colors.primary500')).toBe(
       '--magma-color-primary-500'
     );
+  });
+
+  it('uses a configurable prefix', () => {
+    expect(
+      pathToCssVarName('colors.primary500', { cssVarsPrefix: 'acme' })
+    ).toBe('--acme-color-primary-500');
+    expect(
+      pathToCssVarName('colors.primary500', { cssVarsPrefix: '--tenant' })
+    ).toBe('--tenant-color-primary-500');
   });
 
   it('splits letter-digit boundaries', () => {
@@ -36,41 +46,54 @@ describe('pathToCssVarName', () => {
   });
 });
 
-describe('tk', () => {
-  it('emits var() with primitive fallback', () => {
-    expect(tk(magma, 'colors.primary500')).toBe(
+describe('token', () => {
+  it('emits a typed var() reference with fallback', () => {
+    expect(token.var('colors.primary500')).toBe(
       `var(--magma-color-primary-500, ${magma.colors.primary500})`
     );
   });
 
-  it('emits var() with no fallback when value is missing', () => {
-    expect(tk(magma, 'colors.doesNotExist')).toBe(
-      'var(--magma-color-does-not-exist)'
+  it('emits a typed var() reference without a fallback when requested', () => {
+    expect(token.var('colors.primary500', { fallback: false })).toBe(
+      'var(--magma-color-primary-500)'
     );
   });
 
-  it('emits var() with no fallback when value is a non-primitive object', () => {
-    expect(tk(magma, 'colors')).toBe('var(--magma-color)');
-  });
-
-  it('resolves nested string leaves', () => {
-    expect(tk(magma, 'typeScale.size03.fontSize')).toBe(
-      `var(--magma-type-scale-size-03-font-size, ${magma.typeScale.size03.fontSize})`
+  it('supports direct function usage as a var() shorthand', () => {
+    expect(token('spaceScale.spacing04')).toBe(
+      `var(--magma-space-scale-spacing-04, ${magma.spaceScale.spacing04})`
     );
   });
 
-  it('resolves top-level string leaves', () => {
-    expect(tk(magma, 'bodyFont')).toBe(
-      `var(--magma-body-font, ${magma.bodyFont})`
+  it('can return raw token values', () => {
+    expect(token.raw('colors.info500')).toBe(magma.colors.info500);
+  });
+
+  it('derives semantic and component tokens from the active theme', () => {
+    const customTheme = {
+      ...magma,
+      colors: {
+        ...magma.colors,
+        info100: '#eefaff',
+      },
+    };
+
+    expect(token.raw('semanticColors.status.info.surface', customTheme)).toBe(
+      '#eefaff'
     );
-    expect(tk(magma, 'borderRadius')).toBe(
-      `var(--magma-border-radius, ${magma.borderRadius})`
+    expect(token.raw('components.alert.info.background', customTheme)).toBe(
+      '#eefaff'
     );
   });
 
-  it('resolves numeric leaves', () => {
-    expect(tk(magma, 'iconSizes.medium')).toBe(
-      `var(--magma-icon-sizes-medium, ${magma.iconSizes.medium})`
+  it('emits declarations for generated component and semantic tokens', () => {
+    const declarations = createCssVarDeclarations(magma);
+
+    expect(declarations).toContain(
+      `--magma-semantic-colors-status-info-surface: ${magma.colors.info100};`
+    );
+    expect(declarations).toContain(
+      `--magma-components-alert-info-background: ${magma.colors.info100};`
     );
   });
 });

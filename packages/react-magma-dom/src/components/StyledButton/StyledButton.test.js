@@ -5,6 +5,7 @@ import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import { token } from '../../theme/tokens';
 
 import { StyledButton } from '.';
 
@@ -49,7 +50,7 @@ describe('Styled Button', () => {
     expect(getByTestId('button-test')).toBeDisabled();
     expect(getByTestId('button-test')).toHaveStyleRule(
       'background',
-      magma.colors.neutral300
+      token.var('colors.neutral300')
     );
   });
 
@@ -63,15 +64,29 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.primary);
-        expect(button).toHaveStyleRule('background', magma.colors.primary600, {
-          target: ':hover',
-        });
-        expect(button).toHaveStyleRule('background', magma.colors.primary700, {
-          target: ':active',
-        });
-        expect(button).toHaveStyleRule('border-color', magma.colors.primary);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral100);
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.primary')
+        );
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.primary600'),
+          {
+            target: ':hover',
+          }
+        );
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.primary700'),
+          {
+            target: ':active',
+          }
+        );
+        expect(button).toHaveStyleRule(
+          'border-color',
+          token.var('colors.primary')
+        );
+        expect(button).toHaveStyleRule('color', token.var('colors.neutral100'));
       });
 
       it('link button', () => {
@@ -83,7 +98,7 @@ describe('Styled Button', () => {
         const button = getByTestId('button-test');
 
         expect(button).toHaveStyleRule('background', 'none');
-        expect(button).toHaveStyleRule('color', magma.colors.primary);
+        expect(button).toHaveStyleRule('color', token.var('colors.primary'));
       });
     });
 
@@ -101,15 +116,29 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.primary);
-        expect(button).toHaveStyleRule('background', magma.colors.primary600, {
-          target: ':hover',
-        });
-        expect(button).toHaveStyleRule('background', magma.colors.primary700, {
-          target: ':active',
-        });
-        expect(button).toHaveStyleRule('border-color', magma.colors.primary);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral100);
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.primary')
+        );
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.primary600'),
+          {
+            target: ':hover',
+          }
+        );
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.primary700'),
+          {
+            target: ':active',
+          }
+        );
+        expect(button).toHaveStyleRule(
+          'border-color',
+          token.var('colors.primary')
+        );
+        expect(button).toHaveStyleRule('color', token.var('colors.neutral100'));
       });
 
       it('secondary button', () => {
@@ -126,18 +155,28 @@ describe('Styled Button', () => {
 
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.neutral100')
+        );
         expect(button).toHaveStyleRule(
           'background',
 
-          magma.colors.primary100,
+          token.var('colors.primary100'),
           { target: ':hover' }
         );
-        expect(button).toHaveStyleRule('background', magma.colors.primary200, {
-          target: ':active',
-        });
-        expect(button).toHaveStyleRule('border-color', magma.colors.primary300);
-        expect(button).toHaveStyleRule('color', magma.colors.primary500);
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.primary200'),
+          {
+            target: ':active',
+          }
+        );
+        expect(button).toHaveStyleRule(
+          'border-color',
+          token.var('colors.primary300')
+        );
+        expect(button).toHaveStyleRule('color', token.var('colors.primary'));
       });
 
       it('danger button', () => {
@@ -153,15 +192,29 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.danger);
-        expect(button).toHaveStyleRule('background', magma.colors.danger600, {
-          target: ':hover',
-        });
-        expect(button).toHaveStyleRule('background', magma.colors.danger700, {
-          target: ':active',
-        });
-        expect(button).toHaveStyleRule('border-color', magma.colors.danger);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral100);
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.danger')
+        );
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.danger600'),
+          {
+            target: ':hover',
+          }
+        );
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.danger700'),
+          {
+            target: ':active',
+          }
+        );
+        expect(button).toHaveStyleRule(
+          'border-color',
+          token.var('colors.danger')
+        );
+        expect(button).toHaveStyleRule('color', token.var('colors.neutral100'));
       });
 
       it('marketing button', () => {
@@ -172,23 +225,26 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.secondary500);
         expect(button).toHaveStyleRule(
           'background',
-          magma.colors.secondary600,
+          token.var('colors.secondary500')
+        );
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.secondary600'),
           { target: ':hover' }
         );
         expect(button).toHaveStyleRule(
           'background',
-          magma.colors.secondary700,
+          token.var('colors.secondary700'),
 
           { target: ':active' }
         );
         expect(button).toHaveStyleRule(
           'border-color',
-          magma.colors.secondary500
+          token.var('colors.secondary500')
         );
-        expect(button).toHaveStyleRule('color', magma.colors.primary500);
+        expect(button).toHaveStyleRule('color', token.var('colors.primary'));
       });
 
       it('subtle button', () => {
@@ -204,7 +260,10 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.neutral100')
+        );
         expect(button).toHaveStyleRule(
           'background',
           transparentize(0.95, magma.colors.neutral900),
@@ -219,8 +278,11 @@ describe('Styled Button', () => {
             target: ':active',
           }
         );
-        expect(button).toHaveStyleRule('border-color', magma.colors.neutral300);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral700);
+        expect(button).toHaveStyleRule(
+          'border-color',
+          token.var('colors.neutral300')
+        );
+        expect(button).toHaveStyleRule('color', token.var('colors.neutral700'));
       });
     });
 
@@ -239,9 +301,15 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.tertiary500);
-        expect(button).toHaveStyleRule('border-color', magma.colors.neutral100);
-        expect(button).toHaveStyleRule('color', magma.colors.primary700);
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.tertiary500')
+        );
+        expect(button).toHaveStyleRule(
+          'border-color',
+          token.var('colors.neutral100')
+        );
+        expect(button).toHaveStyleRule('color', token.var('colors.primary700'));
       });
 
       it('secondary button', () => {
@@ -263,7 +331,10 @@ describe('Styled Button', () => {
           'border-color',
           transparentize(0.5, magma.colors.tertiary500)
         );
-        expect(button).toHaveStyleRule('color', magma.colors.tertiary500);
+        expect(button).toHaveStyleRule(
+          'color',
+          token.var('colors.tertiary500')
+        );
       });
 
       it('danger button', () => {
@@ -280,9 +351,15 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('background', magma.colors.danger);
-        expect(button).toHaveStyleRule('border-color', magma.colors.neutral100);
-        expect(button).toHaveStyleRule('color', magma.colors.neutral100);
+        expect(button).toHaveStyleRule(
+          'background',
+          token.var('colors.danger')
+        );
+        expect(button).toHaveStyleRule(
+          'border-color',
+          token.var('colors.neutral100')
+        );
+        expect(button).toHaveStyleRule('color', token.var('colors.neutral100'));
       });
 
       it('subtle button', () => {
@@ -304,7 +381,7 @@ describe('Styled Button', () => {
           'border-color',
           transparentize(0.8, magma.colors.neutral100)
         );
-        expect(button).toHaveStyleRule('color', magma.colors.neutral100);
+        expect(button).toHaveStyleRule('color', token.var('colors.neutral100'));
       });
     });
 
@@ -319,11 +396,11 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule(
           'font-size',
-          magma.typeScale.size03.fontSize
+          token.var('components.button.size.medium.fontSize')
         );
         expect(button).toHaveStyleRule(
           'padding',
-          `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing05}`
+          token.var('components.button.size.medium.padding')
         );
       });
 
@@ -337,11 +414,11 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule(
           'font-size',
-          magma.typeScale.size01.fontSize
+          token.var('components.button.size.small.fontSize')
         );
         expect(button).toHaveStyleRule(
           'padding',
-          `${magma.spaceScale.spacing02} ${magma.spaceScale.spacing03}`
+          token.var('components.button.size.small.padding')
         );
       });
 
@@ -355,11 +432,11 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule(
           'font-size',
-          magma.typeScale.size04.fontSize
+          token.var('components.button.size.large.fontSize')
         );
         expect(button).toHaveStyleRule(
           'padding',
-          `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing06}`
+          token.var('components.button.size.large.padding')
         );
       });
     });
@@ -373,7 +450,10 @@ describe('Styled Button', () => {
         );
         const button = getByTestId('button-test');
 
-        expect(button).toHaveStyleRule('border-radius', magma.borderRadius);
+        expect(button).toHaveStyleRule(
+          'border-radius',
+          token.var('components.button.borderRadius')
+        );
       });
 
       it('leftCap button', () => {
@@ -386,7 +466,9 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule(
           'border-radius',
-          `${magma.borderRadius} 0 0 ${magma.borderRadius}`
+          `${token.var('components.button.borderRadius')} 0 0 ${token.var(
+            'components.button.borderRadius'
+          )}`
         );
       });
 
@@ -400,7 +482,9 @@ describe('Styled Button', () => {
 
         expect(button).toHaveStyleRule(
           'border-radius',
-          `0 ${magma.borderRadius} ${magma.borderRadius} 0`
+          `0 ${token.var('components.button.borderRadius')} ${token.var(
+            'components.button.borderRadius'
+          )} 0`
         );
       });
 
@@ -449,8 +533,14 @@ describe('Styled Button', () => {
       const button = getByTestId('button-test');
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
-      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing07);
-      expect(button).toHaveStyleRule('width', magma.spaceScale.spacing07);
+      expect(button).toHaveStyleRule(
+        'height',
+        token.var('components.button.size.small.height')
+      );
+      expect(button).toHaveStyleRule(
+        'width',
+        token.var('components.button.size.small.height')
+      );
     });
 
     it('icon medium', () => {
@@ -462,8 +552,14 @@ describe('Styled Button', () => {
       const button = getByTestId('button-test');
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
-      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing09);
-      expect(button).toHaveStyleRule('width', magma.spaceScale.spacing09);
+      expect(button).toHaveStyleRule(
+        'height',
+        token.var('components.button.size.medium.height')
+      );
+      expect(button).toHaveStyleRule(
+        'width',
+        token.var('components.button.size.medium.height')
+      );
     });
 
     it('icon large', () => {
@@ -475,8 +571,14 @@ describe('Styled Button', () => {
       const button = getByTestId('button-test');
 
       expect(button).toHaveStyleRule('display', 'inline-flex');
-      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing11);
-      expect(button).toHaveStyleRule('width', magma.spaceScale.spacing11);
+      expect(button).toHaveStyleRule(
+        'height',
+        token.var('components.button.size.large.height')
+      );
+      expect(button).toHaveStyleRule(
+        'width',
+        token.var('components.button.size.large.height')
+      );
     });
   });
 
