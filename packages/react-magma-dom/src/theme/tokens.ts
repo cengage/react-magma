@@ -1,23 +1,8 @@
-import { magma, ThemeInterface, TypeScaleSize } from './magma';
+import { magma } from './magma';
+import type { TokenPath } from './tokenPaths';
 
 type PrimitiveTokenValue = string | number;
 type TokenObject = Record<string, unknown>;
-
-type JoinPath<Prefix extends string, Path extends string> = `${Prefix}.${Path}`;
-
-type PrimitiveLeafPath<T> = {
-  [Key in Extract<keyof T, string>]: NonNullable<
-    T[Key]
-  > extends PrimitiveTokenValue
-    ? Key
-    : NonNullable<T[Key]> extends readonly unknown[]
-      ? never
-      : NonNullable<T[Key]> extends (...args: unknown[]) => unknown
-        ? never
-        : NonNullable<T[Key]> extends object
-          ? JoinPath<Key, PrimitiveLeafPath<NonNullable<T[Key]>>>
-          : never;
-}[Extract<keyof T, string>];
 
 export interface SemanticStatusColorTokens {
   border: string;
@@ -111,50 +96,7 @@ export interface ComponentTokens {
   button: ComponentButtonTokens;
 }
 
-interface TooltipTokenContract {
-  arrowSize: string;
-  arrowSizeDoubled: string;
-  backgroundColor: string;
-  fontWeight: number | string;
-  inverse: {
-    backgroundColor: string;
-    textColor: string;
-  };
-  maxWidth: string;
-  textColor: string;
-  typeScale: TypeScaleSize;
-  zIndex: number;
-}
-
-interface ThemeCssTokenContract {
-  appBar: ThemeInterface['appBar'];
-  bodyExpressiveFont: string;
-  bodyFont: string;
-  bodyNarrativeFont: string;
-  borderRadius: string;
-  borderRadiusSmall: string;
-  colors: ThemeInterface['colors'];
-  combobox: ThemeInterface['combobox'];
-  components: ComponentTokens;
-  drawer: ThemeInterface['drawer'];
-  dropdown: ThemeInterface['dropdown'];
-  headingExpressiveFont: string;
-  headingFont: string;
-  headingNarrativeFont: string;
-  iconSizes: ThemeInterface['iconSizes'];
-  modal: ThemeInterface['modal'];
-  select: ThemeInterface['select'];
-  semanticColors: SemanticColorTokens;
-  spaceScale: ThemeInterface['spaceScale'];
-  tabs: ThemeInterface['tabs'];
-  tooltip: TooltipTokenContract;
-  typeScale: ThemeInterface['typeScale'];
-  typographyExpressiveVisualStyles: ThemeInterface['typographyExpressiveVisualStyles'];
-  typographyNarrativeVisualStyles: ThemeInterface['typographyNarrativeVisualStyles'];
-  typographyVisualStyles: ThemeInterface['typographyVisualStyles'];
-}
-
-export type TokenPath = PrimitiveLeafPath<ThemeCssTokenContract>;
+export type { TokenPath };
 
 export interface TokenVarOptions {
   cssVarsPrefix?: string;
