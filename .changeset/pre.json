@@ -23,6 +23,7 @@
     "fix-PasswordInput-broken-styles",
     "fix-Treeview-focus-trap",
     "fix-datetimepicker-crash-invalid-date",
-    "remove-deprecated-packages"
+    "remove-deprecated-packages",
+    "swift-schools-look"
   ]
 }

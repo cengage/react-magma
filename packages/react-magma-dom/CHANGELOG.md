@@ -1,5 +1,11 @@
 ## 4.14.0
 
+## 4.15.0-next.8
+
+### Minor Changes
+
+- 807aacba8: feat(Badge): Add Badge icon and weight options
+
 ## 4.15.0-next.7
 
 ### Patch Changes
