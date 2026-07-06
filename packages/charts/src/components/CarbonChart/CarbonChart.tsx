@@ -1183,7 +1183,9 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         if (parent?.tagName === 'FIELDSET') {
           const existingCaption = parent.querySelector('legend');
 
-          if (existingCaption) existingCaption.textContent = legendLabel;
+          if (existingCaption && existingCaption.textContent !== legendLabel) {
+            existingCaption.textContent = legendLabel;
+          }
 
           return;
         }
