@@ -1,5 +1,11 @@
 ## 5.0.0
 
+## 5.1.0-rc.7
+
+### Minor Changes
+
+- 2d73083: feat(Badge): Add Badge icon and weight options
+
 ## 5.1.0-rc.6
 
 ### Patch Changes
