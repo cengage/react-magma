@@ -14,7 +14,7 @@ Lerna + Nx npm workspace (`workspaces`: `packages/*`, `website/*`).
 - `plop-templates/` + `scripts/plopfile.ts` — scaffolding for new components.
 - `examples/` — standalone consumer demos (e.g. `token-demo`).
 
-Inside `packages/react-magma-dom/src/`: `components/` (one folder per component), `hooks/`, `i18n/`, `inverse/` (inverse/dark-surface theming), `theme/` (the Magma theme + tokens), `utils/`. Each component folder is `ComponentName/index.tsx`, with colocated `ComponentName.test.js`, `ComponentName.stories.tsx`, and `__snapshots__/`. Shared internal styled pieces live in their own folders (e.g. `StyledButton/`). Public surface is re-exported from `src/index.ts` (named `export { X }` + `export type { XProps }`).
+Inside `packages/react-magma-dom/src/`: `components/` (one folder per component), `hooks/`, `i18n/`, `inverse/` (inverse/dark-surface theming), `theme/` (the Magma theme + tokens), `utils/`. Component folders commonly use either `index.tsx` for a simple implementation or `ComponentName.tsx` plus `index.ts` re-exports for scaffolded/split components. Tests and stories are colocated as `ComponentName.test.js` and `ComponentName.stories.tsx` when that component has them, with snapshots under `__snapshots__/`. Shared internal styled pieces live in their own folders (e.g. `StyledButton/`). Public surface is re-exported from `src/index.ts`; many components use paired value/type exports, while some established areas use `export *` or selected nested exports.
 
 ## Build, Test, and Development Commands
 
@@ -38,8 +38,8 @@ Use Node `>=22.14.0` and npm `>=11.11.0` (`.nvmrc` pins `v22.14.0`); install wit
 
 Match existing components before introducing new patterns (`CONTRIBUTING.md`: stay consistent, stay focused, discuss API changes with the team first).
 
-- **TypeScript + React**, function components with `React.forwardRef`. PascalCase folders/components; component code in `index.tsx`; tests as `ComponentName.test.js`.
-- **Styling**: Emotion `@emotion/styled`. Never hard-code colors or reference the Magma theme directly — read from `ThemeContext` (default = Magma theme) and theme tokens. Support inverse surfaces via `useIsInverse` / the `inverse` module.
+- **TypeScript + React**, usually function components with `React.forwardRef` for DOM-backed public components. Generic wrappers such as `Select`/`Combobox` are plain functions where that pattern fits better. PascalCase folders/components; component code may be `index.tsx` or `ComponentName.tsx` with `index.ts` re-exports; tests as `ComponentName.test.js`.
+- **Styling**: Emotion `@emotion/styled`. Do not hard-code colors or use the default `magma` object as a styling source for new component styling; read from `ThemeContext` (default = Magma theme) and theme tokens so custom themes work. Existing code imports `magma` for type/key defaults and a few fallbacks; follow local patterns carefully. Support inverse surfaces via `useIsInverse` / the `inverse` module.
 - **Variants** as string `enum`s exported alongside the component (e.g. `ButtonColor`, `ButtonSize`); document defaults with `@default` JSDoc on the props interface.
 - **Ids**: use `useGenerateId` from `utils`; do not generate ids inline.
 - **i18n**: user-facing strings come through `I18nContext`, not literals.
@@ -53,7 +53,7 @@ Jest + Testing Library + `@testing-library/jest-dom` + Emotion snapshots + `jest
 ## Branching, Commits & Pull Requests
 
 - **Branch off `dev`** (the active integration branch) and target `dev` in PRs — not `main`.
-- **Conventional Commits**, scoped by component: `feat(TreeView): support folder expansion`, `fix(chart): add accessible chart role`. commitlint relaxes subject/scope casing; husky `commit-msg` validates and `pre-commit` runs lint-staged (eslint --fix + prettier).
+- **Conventional Commits**, scoped by component, package, or docs area: `feat(TreeView): support folder expansion`, `fix(chart): add accessible chart role`, `docs(OpenWiki): correct repository guidance`, `docs(AGENTS): clarify commit rules`. commitlint relaxes subject/scope casing; husky `commit-msg` validates and `pre-commit` runs lint-staged (eslint --fix + prettier).
 - **Changesets are always added manually**: create a file under `.changeset/<descriptive-name>.md` for every change, including code, docs, CI, dependency, and workflow-only changes. Format — YAML frontmatter mapping each changed package to a semver bump, then a one-line summary:
 
   ```md
@@ -79,3 +79,14 @@ Before considering a change complete:
 ## Documentation Notes
 
 New or changed public components need Storybook stories and an MDX page under `website/react-magma-docs/src/pages/api/`, plus design guidance under `src/pages/design/` when appropriate. Keep wording and structure consistent with existing docs pages.
+
+## OpenWiki
+
+This repository has documentation located in the /openwiki directory.
+
+Start here:
+- [OpenWiki quickstart](openwiki/quickstart.md)
+
+OpenWiki includes repository overview, architecture notes, workflows, domain concepts, operations, integrations, testing guidance, and source maps.
+
+When working in this repository, read the OpenWiki quickstart first, then follow its links to the relevant architecture, workflow, domain, operation, and testing notes.
