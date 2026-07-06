@@ -2,6 +2,7 @@ import React from 'react';
 
 import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
+import { navigate } from 'gatsby';
 import FocusLock from 'react-focus-lock';
 import { Container, IconButton, magma, Spacer } from 'react-magma-dom';
 import { MenuIcon, CloseIcon } from 'react-magma-icons';
@@ -9,7 +10,9 @@ import { MenuIcon, CloseIcon } from 'react-magma-icons';
 import { Logo } from '../Logo';
 import { MainNav } from '../MainNav';
 
-export const PANEL_WIDTH = 240;
+export const PANEL_WIDTH = 280;
+const DRAWER_TRANSITION_DURATION = 250;
+const DRAWER_NAVIGATION_DELAY = 180;
 
 export class SlidingDrawer extends React.Component {
   constructor(props) {
@@ -39,7 +42,7 @@ export class SlidingDrawer extends React.Component {
           if (returnFocus) {
             this.toggleButtonRef.current.focus();
           }
-        }, 250);
+        }, DRAWER_TRANSITION_DURATION);
       });
     }
   };
@@ -62,7 +65,29 @@ export class SlidingDrawer extends React.Component {
     this.closeMenu(true);
   }
 
-  handleCloseMenuFromNav() {
+  handleCloseMenuFromNav(event) {
+    const shouldDelayNavigation =
+      event &&
+      this.state.isOpen &&
+      typeof window !== 'undefined' &&
+      window.innerWidth <= 1024 &&
+      !event.defaultPrevented &&
+      !event.metaKey &&
+      !event.altKey &&
+      !event.ctrlKey &&
+      !event.shiftKey;
+    const targetPath = event?.currentTarget?.getAttribute('href');
+
+    if (shouldDelayNavigation && targetPath?.startsWith('/')) {
+      event.preventDefault();
+      this.closeMenu(false);
+      window.setTimeout(() => {
+        navigate(targetPath);
+      }, DRAWER_NAVIGATION_DELAY);
+
+      return;
+    }
+
     this.closeMenu(false);
   }
 
@@ -74,13 +99,13 @@ export class SlidingDrawer extends React.Component {
 
   render() {
     const slidein = keyframes`
-            from { transform: translateX(-300px); }
+            from { transform: translateX(-${PANEL_WIDTH}px); }
             to   { transform: translateX(0); }
         `;
 
     const slideout = keyframes`
             from { transform: translateX(0); }
-            to   { transform: translateX(-300px); }
+            to   { transform: translateX(-${PANEL_WIDTH}px); }
         `;
 
     const Panel = styled(Container)`
@@ -94,13 +119,14 @@ export class SlidingDrawer extends React.Component {
       padding: 0 0 24px;
       position: fixed;
       top: 0;
-      transform: translateX(-300px);
+      transform: translateX(-${PANEL_WIDTH}px);
       width: ${PANEL_WIDTH}px;
 
       ${props =>
         props.isActivated &&
         css`
           animation: 0.2s ${slideout};
+          z-index: 11;
         `}
 
       ${props =>
@@ -113,17 +139,17 @@ export class SlidingDrawer extends React.Component {
 
       @media (min-width: 1025px) {
         animation: none;
-        background: ${magma.colors.neutral200};
+        background: ${magma.colors.neutral100};
         top: 56px;
         transform: translateX(0);
       }
       @media (max-width: ${magma.breakpoints.large}px) {
-        width: 300px;
+        width: ${PANEL_WIDTH}px;
       }
     `;
 
     const PanelInner = styled.div`
-      display: ${props => (props.isOpen ? 'block' : 'none')};
+      display: ${props => (props.isActivated ? 'block' : 'none')};
       @media (min-width: 1025px) {
         display: block;
       }
@@ -140,8 +166,11 @@ export class SlidingDrawer extends React.Component {
     `;
 
     const MenuButton = styled.span`
+      align-items: center;
+      display: flex;
+      height: 56px;
       position: fixed;
-      top: 4px;
+      top: 0;
       left: 6px;
       z-index: 11;
       @media (min-width: 1025px) {
@@ -201,7 +230,7 @@ export class SlidingDrawer extends React.Component {
               isActivated={isActivated}
               isInverse={isInverse}
             >
-              <PanelInner isOpen={isOpen}>
+              <PanelInner isActivated={isActivated}>
                 <SmallLogoLink to="/">
                   <Spacer size={magma.spaceScale.spacing05} />
                   <Logo />
@@ -220,7 +249,7 @@ export class SlidingDrawer extends React.Component {
                 <MainNav handleClick={this.handleCloseMenuFromNav} />
               </PanelInner>
             </Panel>
-            {isOpen && <Overlay onClick={this.handleCloseMenu} />}
+            {isActivated && <Overlay onClick={this.handleCloseMenu} />}
           </nav>
         </Container>
       </FocusLock>

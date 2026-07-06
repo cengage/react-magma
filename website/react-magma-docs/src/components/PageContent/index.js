@@ -10,10 +10,11 @@ import {
   TabPanel,
   TabPanelsContainer,
   TabsContainer,
+  TabsTextTransform,
   useIsInverse,
 } from 'react-magma-dom';
 
-import { convertTextToId } from '../../utils';
+import { convertTextToId, getDocsPageSlug } from '../../utils';
 import { PANEL_WIDTH } from '../SlidingDrawer';
 import { SubPageTabs } from '../SubPageTabs';
 
@@ -31,13 +32,14 @@ const NAV_TABS = {
 const PAGES_NO_NAV = ['contribution_guidelines', 'select_migration'];
 
 const TabsWrapper = styled.div`
+  border-bottom: 1px solid ${magma.colors.neutral300};
   position: sticky;
   top: 56px;
   z-index: 8;
   background: ${magma.colors.neutral200};
 `;
 
-// Implementation & Design tabs
+// Code & Usage tabs
 const StyledTabs = styled(NavTabs)`
   background: ${magma.colors.neutral200};
   margin: 0 auto;
@@ -183,9 +185,9 @@ export const PageContent = ({ children, componentName, type }) => {
   const designIntro = getDataNode(data.designIntro, componentName);
   const apiIntro = getDataNode(data.apiIntro, componentName);
 
-  const designLink = designDocs?.node.fields.slug;
-  const apiLink = apiDocs?.node.fields.slug;
-  const dataVisualizationLink = dataVisualization?.node.fields.slug;
+  const designLink = getDocsPageSlug(designDocs?.node);
+  const apiLink = getDocsPageSlug(apiDocs?.node);
+  const dataVisualizationLink = getDocsPageSlug(dataVisualization?.node);
 
   const hasNavTabs = !!(apiDocs || designDocs);
   const hasDocs = !!(hasNavTabs || dataVisualization);
@@ -229,18 +231,19 @@ export const PageContent = ({ children, componentName, type }) => {
           <StyledTabsContainer isInverse={isInverse}>
             {hasNavTabs && (
               <TabsWrapper>
-                <StyledTabs aria-label="">
+                <StyledTabs
+                  aria-label=""
+                  textTransform={TabsTextTransform.none}
+                >
                   {apiDocs ? (
                     <NavTab
-                      component={
-                        <Link to={apiNavTabToLink}>Implementation</Link>
-                      }
+                      component={<Link to={apiNavTabToLink}>Code</Link>}
                       isActive={type === NAV_TABS.API}
                     />
                   ) : null}
                   {designDocs ? (
                     <NavTab
-                      component={<Link to={designNavTabToLink}>Design</Link>}
+                      component={<Link to={designNavTabToLink}>Usage</Link>}
                       isActive={type === NAV_TABS.DESIGN}
                     />
                   ) : null}
