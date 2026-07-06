@@ -207,4 +207,81 @@ describe('ToggleButtonGroup', () => {
     fireEvent.click(buttonOne);
     expect(onChangeMock).toHaveBeenCalledTimes(1);
   });
+
+  describe('Role configuration', () => {
+    it('Defaults the container to role="group"', () => {
+      const { getByTestId } = render(
+        <ToggleButtonGroup testId={testId}>
+          <ToggleButton value="one">{TEXT}</ToggleButton>
+        </ToggleButtonGroup>
+      );
+
+      expect(getByTestId(testId)).toHaveAttribute('role', 'group');
+    });
+
+    it('Honors a custom role on the container ("radiogroup")', () => {
+      const { getByTestId } = render(
+        <ToggleButtonGroup testId={testId} exclusive role="radiogroup">
+          <ToggleButton value="one" testId={`${testId}-btn`}>
+            {TEXT}
+          </ToggleButton>
+        </ToggleButtonGroup>
+      );
+
+      expect(getByTestId(testId)).toHaveAttribute('role', 'radiogroup');
+      // Children keep their existing semantics in radiogroup mode.
+      expect(getByTestId(`${testId}-btn`)).toHaveAttribute('role', 'radio');
+      expect(getByTestId(`${testId}-btn`)).toHaveAttribute(
+        'aria-checked',
+        'false'
+      );
+    });
+
+    it('Renders a tablist container with tab-roled children using aria-selected', () => {
+      const { getByTestId } = render(
+        <ToggleButtonGroup
+          testId={testId}
+          exclusive
+          enforced
+          role="tablist"
+          value="one"
+        >
+          <ToggleButton value="one" testId={`${testId}-btn-1`}>
+            Teacher View
+          </ToggleButton>
+          <ToggleButton value="two" testId={`${testId}-btn-2`}>
+            Student View
+          </ToggleButton>
+        </ToggleButtonGroup>
+      );
+
+      expect(getByTestId(testId)).toHaveAttribute('role', 'tablist');
+
+      const buttonOne = getByTestId(`${testId}-btn-1`);
+      const buttonTwo = getByTestId(`${testId}-btn-2`);
+
+      expect(buttonOne).toHaveAttribute('role', 'tab');
+      expect(buttonTwo).toHaveAttribute('role', 'tab');
+
+      expect(buttonOne).toHaveAttribute('aria-selected', 'true');
+      expect(buttonTwo).toHaveAttribute('aria-selected', 'false');
+      expect(buttonOne).not.toHaveAttribute('aria-checked');
+
+      fireEvent.click(buttonTwo);
+      expect(buttonOne).toHaveAttribute('aria-selected', 'false');
+      expect(buttonTwo).toHaveAttribute('aria-selected', 'true');
+    });
+
+    it('Allows a per-button role override', () => {
+      const { getByTestId } = render(
+        <ToggleButtonGroup exclusive>
+          <ToggleButton value="one" testId={testId} role="button">
+            {TEXT}
+          </ToggleButton>
+        </ToggleButtonGroup>
+      );
+
+      expect(getByTestId(testId)).toHaveAttribute('role', 'button');
+    });
+  });
 });
