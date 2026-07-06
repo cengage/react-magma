@@ -19,7 +19,12 @@ export { Announce } from './components/Announce';
 export type { AnnounceProps } from './components/Announce';
 export { AppBar, AppBarPosition } from './components/AppBar';
 export type { AppBarProps } from './components/AppBar';
-export { Badge, BadgeColor, BadgeVariant } from './components/Badge';
+export {
+  Badge,
+  BadgeColor,
+  BadgeVariant,
+  BadgeWeight,
+} from './components/Badge';
 export type { BadgeProps } from './components/Badge';
 export { Banner } from './components/Banner';
 export type { BannerProps } from './components/Banner';
