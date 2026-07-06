@@ -14,7 +14,11 @@ import { ButtonSize } from '../Button';
 import { Container } from '../Container';
 import { ToggleButton } from '../ToggleButton';
 
-import { ToggleButtonGroup, ToggleButtonGroupProps } from '.';
+import {
+  ToggleButtonGroup,
+  ToggleButtonGroupProps,
+  ToggleButtonGroupRole,
+} from '.';
 
 const Template: StoryFn<ToggleButtonGroupProps> = args => (
   <ToggleButtonGroup
@@ -97,6 +101,12 @@ export default {
       control: { type: 'select' },
       options: Object.values(ButtonSize),
     },
+    role: {
+      control: {
+        type: 'select',
+        options: ToggleButtonGroupRole,
+      },
+    },
   },
 } as Meta;
 
@@ -172,5 +182,39 @@ export const DifferentToggleButtons = {
   args: {
     noSpace: false,
     ...Default.args,
+  },
+};
+
+export const TablistPattern = {
+  render: args => {
+    const [view, setView] = React.useState('teacher');
+
+    return (
+      <>
+        <ToggleButtonGroup
+          {...args}
+          value={view}
+          onChange={(_event, value) => value && setView(value)}
+        >
+          <ToggleButton value="teacher" aria-controls="view-panel">
+            Teacher View
+          </ToggleButton>
+          <ToggleButton value="student" aria-controls="view-panel">
+            Student View
+          </ToggleButton>
+        </ToggleButtonGroup>
+        <div id="view-panel" role="tabpanel" style={{ padding: '16px 0' }}>
+          {view === 'teacher'
+            ? 'Showing the teacher view of the course.'
+            : 'Showing the student view of the course.'}
+        </div>
+      </>
+    );
+  },
+
+  args: {
+    enforced: true,
+    exclusive: true,
+    role: 'tablist',
   },
 };

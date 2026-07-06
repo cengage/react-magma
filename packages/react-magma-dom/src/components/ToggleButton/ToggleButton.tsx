@@ -12,6 +12,13 @@ import { Button, ButtonColor, ButtonProps, ButtonSize } from '../Button';
 import { IconButton } from '../IconButton';
 import { ToggleButtonGroupContext } from '../ToggleButtonGroup';
 
+export enum ToggleButtonRole {
+  radio = 'radio',
+  switch = 'switch',
+  tab = 'tab',
+  button = 'button',
+}
+
 export interface ToggleButtonTextProps extends ButtonProps {
   /**
    * Sets a disabled state for a button.
@@ -22,6 +29,12 @@ export interface ToggleButtonTextProps extends ButtonProps {
    */
   isChecked?: boolean;
   isInverse?: boolean;
+  /**
+   * ARIA role override for the button. When omitted, the role is derived from the
+   * surrounding `ToggleButtonGroup` (`tab` for `role="tablist"` groups, otherwise
+   * `radio` for exclusive groups and `switch` for non-exclusive groups).
+   */
+  role?: ToggleButtonRole;
   /**
    * Changes the button size: 'small', 'medium', and 'large'.
    */
@@ -54,6 +67,12 @@ export interface ToggleButtonIconProps extends ButtonProps {
    */
   isChecked?: boolean;
   isInverse?: boolean;
+  /**
+   * ARIA role override for the button. When omitted, the role is derived from the
+   * surrounding `ToggleButtonGroup` (`tab` for `role="tablist"` groups, otherwise
+   * `radio` for exclusive groups and `switch` for non-exclusive groups).
+   */
+  role?: ToggleButtonRole;
   /**
    * Changes the button size: 'small', 'medium', and 'large'.
    */
@@ -132,6 +151,7 @@ export const ToggleButton = React.forwardRef<
     isChecked = false,
     isInverse,
     onClick,
+    role: roleProp,
     testId,
     value,
     ...other
@@ -153,7 +173,14 @@ export const ToggleButton = React.forwardRef<
   }, [isChecked]);
 
   const inverseCheck = context.isInverse || isInverse;
-  const roleCheck = context.exclusive ? 'radio' : 'switch';
+  const isTablistGroup = context.role === 'tablist';
+  const defaultRole = isTablistGroup
+    ? 'tab'
+    : context.exclusive
+      ? 'radio'
+      : 'switch';
+  const roleCheck = roleProp ?? defaultRole;
+  const usesAriaSelected = roleCheck === 'tab';
 
   const handleClick = (event: any) => {
     if (
@@ -188,7 +215,9 @@ export const ToggleButton = React.forwardRef<
 
   const sharedToggleButtonProps = {
     ...other,
-    'aria-checked': isSelected,
+    ...(usesAriaSelected
+      ? { 'aria-selected': isSelected }
+      : { 'aria-checked': isSelected }),
     color: ButtonColor.subtle,
     disabled: disabled,
     theme: theme,
