@@ -10,7 +10,10 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { XOR } from '../../utils';
 import { Button, ButtonColor, ButtonProps, ButtonSize } from '../Button';
 import { IconButton } from '../IconButton';
-import { ToggleButtonGroupContext } from '../ToggleButtonGroup';
+import {
+  ToggleButtonGroupContext,
+  ToggleButtonGroupRole,
+} from '../ToggleButtonGroup';
 
 export enum ToggleButtonRole {
   radio = 'radio',
@@ -173,14 +176,14 @@ export const ToggleButton = React.forwardRef<
   }, [isChecked]);
 
   const inverseCheck = context.isInverse || isInverse;
-  const isTablistGroup = context.role === 'tablist';
+  const isTablistGroup = context.role === ToggleButtonGroupRole.tablist;
   const defaultRole = isTablistGroup
-    ? 'tab'
+    ? ToggleButtonRole.tab
     : context.exclusive
-      ? 'radio'
-      : 'switch';
+      ? ToggleButtonRole.radio
+      : ToggleButtonRole.switch;
   const roleCheck = roleProp ?? defaultRole;
-  const usesAriaSelected = roleCheck === 'tab';
+  const usesAriaSelected = roleCheck === ToggleButtonRole.tab;
 
   const handleClick = (event: any) => {
     if (

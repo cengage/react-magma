@@ -102,10 +102,8 @@ export default {
       options: Object.values(ButtonSize),
     },
     role: {
-      control: {
-        type: 'select',
-        options: ToggleButtonGroupRole,
-      },
+      control: { type: 'select' },
+      options: Object.values(ToggleButtonGroupRole),
     },
   },
 } as Meta;
