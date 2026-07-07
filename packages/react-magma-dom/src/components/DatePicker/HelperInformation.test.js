@@ -1,6 +1,6 @@
 import React, { act } from 'react';
 
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { HelperInformation } from './HelperInformation';
@@ -44,6 +44,10 @@ describe('Calendar Month', () => {
     const { getByLabelText } = render(<HelperInformation isOpen />);
 
     const button = getByLabelText('Close Calendar Widget');
+
+    await waitFor(() =>
+      expect(getByLabelText('Back to Calendar')).toHaveFocus()
+    );
 
     await userEvent.tab();
 

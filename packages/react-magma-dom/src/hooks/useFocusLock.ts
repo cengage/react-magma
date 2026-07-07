@@ -89,7 +89,8 @@ const activeFocusLockRoots = new Set<HTMLElement>();
 export function useFocusLock(
   active: boolean,
   header?: React.MutableRefObject<FocusableElement>,
-  body?: React.MutableRefObject<FocusableElement>
+  body?: React.MutableRefObject<FocusableElement>,
+  autoFocusOnActivate = true
 ): React.MutableRefObject<any> {
   const rootNode = React.useRef<HTMLElement>(null);
   const focusableItems = React.useRef<Array<HTMLElement>>([]);
@@ -135,15 +136,40 @@ export function useFocusLock(
         observer.observe(root, { childList: true, subtree: true });
       }
 
-      if (header && header.current) {
-        header.current.focus();
-      } else if (focusableItems.current && focusableItems.current.length > 0) {
-        const { 0: firstItem } = focusableItems.current;
+      // Defer the initial focus to the next frame so the browser can update
+      // the accessibility tree first (e.g. after a `display: none` toggle).
+      let focusFrame: number;
 
-        firstItem.focus();
-      } else if (body && body.current) {
-        (body.current.firstChild as HTMLElement).setAttribute('tabIndex', '-1');
-        (body.current.firstChild as HTMLElement).focus();
+      if (autoFocusOnActivate) {
+        const activeOnActivate = document.activeElement;
+
+        focusFrame = requestAnimationFrame(() => {
+          const activeElement = document.activeElement;
+
+          if (
+            activeElement !== activeOnActivate &&
+            activeElement !== document.body
+          ) {
+            return;
+          }
+
+          if (header && header.current) {
+            header.current.focus();
+          } else if (
+            focusableItems.current &&
+            focusableItems.current.length > 0
+          ) {
+            const { 0: firstItem } = focusableItems.current;
+
+            firstItem.focus();
+          } else if (body && body.current) {
+            (body.current.firstChild as HTMLElement).setAttribute(
+              'tabIndex',
+              '-1'
+            );
+            (body.current.firstChild as HTMLElement).focus();
+          }
+        });
       }
 
       return () => {
@@ -151,10 +177,11 @@ export function useFocusLock(
           activeFocusLockRoots.delete(root);
         }
 
+        cancelAnimationFrame(focusFrame);
         observer.disconnect();
       };
     }
-  }, [active, header, body]);
+  }, [active, header, body, autoFocusOnActivate]);
 
   React.useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {

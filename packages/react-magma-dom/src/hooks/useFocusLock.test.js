@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { useFocusLock } from './useFocusLock';
@@ -177,7 +177,7 @@ describe('useFocusLock', () => {
 
     expect(activeButtonInsideModal).toBeInTheDocument();
     expect(activeButtonInsideModal).not.toBeDisabled();
-    expect(activeButtonInsideModal).toHaveFocus();
+    await waitFor(() => expect(activeButtonInsideModal).toHaveFocus());
   });
 
   it('should stay inside the modal after pressing tab if there is one active element', async () => {
@@ -198,7 +198,7 @@ describe('useFocusLock', () => {
 
     expect(activeButtonInsideModal).toBeInTheDocument();
     expect(activeButtonInsideModal).not.toBeDisabled();
-    expect(activeButtonInsideModal).toHaveFocus();
+    await waitFor(() => expect(activeButtonInsideModal).toHaveFocus());
 
     await userEvent.tab();
 
@@ -225,7 +225,7 @@ describe('useFocusLock', () => {
 
     expect(activeButtonInsideModal).toBeInTheDocument();
     expect(activeButtonInsideModal).not.toBeDisabled();
-    expect(activeButtonInsideModal).toHaveFocus();
+    await waitFor(() => expect(activeButtonInsideModal).toHaveFocus());
   });
 
   it('should focus on last active element after shift + tab', async () => {
@@ -244,7 +244,7 @@ describe('useFocusLock', () => {
 
     expect(firstActiveButtonInsideModal).toBeInTheDocument();
     expect(firstActiveButtonInsideModal).not.toBeDisabled();
-    expect(firstActiveButtonInsideModal).toHaveFocus();
+    await waitFor(() => expect(firstActiveButtonInsideModal).toHaveFocus());
 
     await userEvent.tab({ shift: true });
 
@@ -275,7 +275,7 @@ describe('useFocusLock', () => {
 
     expect(firstActiveButtonInsideModal).toBeInTheDocument();
     expect(firstActiveButtonInsideModal).not.toBeDisabled();
-    expect(firstActiveButtonInsideModal).toHaveFocus();
+    await waitFor(() => expect(firstActiveButtonInsideModal).toHaveFocus());
 
     await userEvent.tab();
 
@@ -316,7 +316,7 @@ describe('useFocusLock', () => {
 
     expect(firstActiveButtonInsideModal).toBeInTheDocument();
     expect(firstActiveButtonInsideModal).not.toBeDisabled();
-    expect(firstActiveButtonInsideModal).toHaveFocus();
+    await waitFor(() => expect(firstActiveButtonInsideModal).toHaveFocus());
 
     await userEvent.tab();
 
@@ -360,7 +360,7 @@ describe('useFocusLock', () => {
     expect(disabledButtonInsideModal).toBeDisabled();
     expect(disabledButtonInsideModal).not.toHaveFocus();
 
-    expect(getByText('Test text')).toHaveFocus();
+    await waitFor(() => expect(getByText('Test text')).toHaveFocus());
 
     await userEvent.tab();
 

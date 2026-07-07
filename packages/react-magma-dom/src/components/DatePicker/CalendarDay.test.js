@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 import { format } from 'date-fns';
 
 import { CalendarContext } from './CalendarContext';
@@ -34,7 +34,7 @@ describe('Calendar Day', () => {
     expect(getByText(format(defaultDate, 'd'))).toBeInTheDocument();
   });
 
-  it('focuses if current day', () => {
+  it('focuses if current day', async () => {
     const defaultDate = new Date(2019, 0, 17);
     const { container } = render(
       <CalendarContext.Provider
@@ -56,9 +56,11 @@ describe('Calendar Day', () => {
       </CalendarContext.Provider>
     );
 
-    expect(container.querySelector(':focus')).toHaveAttribute(
-      'aria-label',
-      ` ${format(defaultDate, 'EEEE, MMMM do yyyy')}  (Selected)`
+    await waitFor(() =>
+      expect(container.querySelector(':focus')).toHaveAttribute(
+        'aria-label',
+        ` ${format(defaultDate, 'EEEE, MMMM do yyyy')}  (Selected)`
+      )
     );
   });
 

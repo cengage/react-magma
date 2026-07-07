@@ -225,7 +225,7 @@ describe('Date Picker', () => {
     });
 
     expect(selectedDateButton).toBeInTheDocument();
-    expect(selectedDateButton).toHaveFocus();
+    await waitFor(() => expect(selectedDateButton).toHaveFocus());
 
     await act(async () => {
       await userEvent.keyboard('[ArrowLeft]');
@@ -272,7 +272,7 @@ describe('Date Picker', () => {
     await userEvent.click(button);
 
     expect(selectedDateButton).toBeInTheDocument();
-    expect(selectedDateButton).toHaveFocus();
+    await waitFor(() => expect(selectedDateButton).toHaveFocus());
 
     for (let i = 0; i < 8; i++) {
       await userEvent.tab();
@@ -577,7 +577,7 @@ describe('Date Picker', () => {
 
     await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByText('17')).toBe(document.activeElement);
+    await waitFor(() => expect(getByText('17')).toBe(document.activeElement));
   });
 
   it('should focus on today when none valid date in input', async () => {
@@ -604,7 +604,7 @@ describe('Date Picker', () => {
     expect(getByText(year)).not.toBeNull();
 
     const todayElement = container.querySelector('[aria-current="date"]');
-    expect(todayElement).toHaveFocus();
+    await waitFor(() => expect(todayElement).toHaveFocus());
   });
 
   it('should focus on min date when it min date after today', async () => {
@@ -620,7 +620,7 @@ describe('Date Picker', () => {
 
     await userEvent.click(getByLabelText('Toggle Calendar Widget'));
 
-    expect(getByText(focusedDay)).toHaveFocus();
+    await waitFor(() => expect(getByText(focusedDay)).toHaveFocus());
   });
 
   it('should go to the previous month when the previous month button is clicked', async () => {
@@ -715,6 +715,12 @@ describe('Date Picker', () => {
     expect(getByTestId('calendarContainer')).toHaveStyleRule(
       'display',
       'block'
+    );
+
+    await waitFor(() =>
+      expect(getByTestId('calendarContainer')).toContainElement(
+        document.activeElement
+      )
     );
 
     await userEvent.keyboard('{Escape}');
