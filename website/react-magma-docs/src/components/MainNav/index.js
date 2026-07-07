@@ -291,6 +291,7 @@ const ComponentGroupLabel = styled.p`
 const StyledHyperlink = styled(Hyperlink)`
   ${LinkStyles}
   ${menuItemInsetStyles};
+  padding: ${magma.spaceScale.spacing03};
   &:hover {
     ${LinkHoverStyles}
   }

@@ -9,6 +9,12 @@ import { PANEL_WIDTH, SlidingDrawer } from '../SlidingDrawer';
 
 const StyledContainer = styled.div`
   background: ${magma.colors.neutral100};
+
+  > #gatsby-focus-wrapper {
+    grid-area: content;
+    min-width: 0;
+  }
+
   @media (min-width: 1025px) {
     display: grid;
     grid-template-columns: ${PANEL_WIDTH}px auto;

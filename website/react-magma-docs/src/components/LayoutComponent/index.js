@@ -11,6 +11,11 @@ const ContentSection = styled.section`
   grid-area: content;
 `;
 
+const StyledMain = styled.main`
+  grid-area: content;
+  min-width: 0;
+`;
+
 const StyledHeadingContainer = styled(Container)`
   background: ${magma.colors.neutral200};
   padding: 0;
@@ -47,7 +52,7 @@ export const LayoutComponent = props => {
       >
         <html lang="en" />
       </Helmet>
-      <main>
+      <StyledMain>
         {/* components have headings, main page doesn't */}
         {heading ? (
           <>
@@ -67,7 +72,7 @@ export const LayoutComponent = props => {
             </ContentSection>
           </Container>
         )}
-      </main>
+      </StyledMain>
     </>
   );
 };

@@ -37,15 +37,20 @@ const TabsWrapper = styled.div`
   top: 56px;
   z-index: 8;
   background: ${magma.colors.neutral200};
+  max-width: 100%;
+  min-width: 0;
+  width: 100%;
 `;
 
 // Code & Usage tabs
 const StyledTabs = styled(NavTabs)`
   background: ${magma.colors.neutral200};
+  box-sizing: border-box;
   margin: 0 auto;
   max-width: ${CONTENT_MAX_WIDTH}px;
   position: sticky;
   top: 56px;
+  width: 100%;
   z-index: 8;
 
   @media (max-width: ${CONTENT_MAX_WIDTH + PANEL_WIDTH}px) {
@@ -60,6 +65,7 @@ const StyledTabPanel = styled(TabPanel)`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  min-width: 0;
   padding: 0;
   &::before {
     content: '';
@@ -70,10 +76,14 @@ const StyledTabPanel = styled(TabPanel)`
 const StyledTabsContainer = styled(TabsContainer)`
   max-width: 100%;
   flex-direction: column;
+  min-width: 0;
 `;
 
 const StyledTabPanelsContainer = styled(TabPanelsContainer)`
   background: ${magma.colors.neutral100};
+  max-width: 100%;
+  min-width: 0;
+  width: 100%;
   @media (max-width: 1024px) {
     max-width: 100%;
   }
@@ -83,15 +93,14 @@ const Content = styled.div`
   flex: 1 1 auto;
   margin: 48px auto;
   max-width: 868px;
+  min-width: 0;
   padding: 0 24px;
   @media (max-width: ${magma.breakpoints.medium}px) {
     margin: 40px 24px;
-    min-width: 0;
     padding: 0;
   }
   @media (max-width: ${magma.breakpoints.small}px) {
     margin: 32px 16px;
-    min-width: 0;
     padding: 0;
   }
 `;
