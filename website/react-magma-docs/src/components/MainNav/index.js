@@ -398,7 +398,6 @@ const componentNavGroups = [
   {
     label: 'Inputs',
     titles: [
-      'Character Counter',
       'Checkbox',
       'Combobox',
       'Date Picker',
@@ -442,7 +441,6 @@ const componentNavGroups = [
     label: 'Feedback',
     titles: [
       'Alert',
-      'Announce',
       'Banner',
       'Empty State',
       'Loading Indicator',
@@ -486,6 +484,8 @@ const componentNavGroups = [
   {
     label: 'Utils',
     titles: [
+      'Announce',
+      'Character Counter',
       'Global Styles',
       'Internationalization',
       'Transition',
