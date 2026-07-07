@@ -12,6 +12,7 @@
   "changesets": [
     "a11y-charts-legend-fieldset",
     "chart-add-accessible-role",
+    "chart-fix-aria-prohibited-attr",
     "chore-TreeView-additionalContent-props",
     "docs-remove-accessible-chart-toolbar-page",
     "feat-Charts-titleLevel",

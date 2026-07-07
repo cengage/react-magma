@@ -1,5 +1,11 @@
 ## 4.14.0
 
+## 4.15.0-next.9
+
+### Patch Changes
+
+- d3e182993: Chart: fix ARIA prohibited attribute usage in SVG elements
+
 ## 4.15.0-next.8
 
 ### Minor Changes
