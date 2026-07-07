@@ -138,8 +138,9 @@ const headingStyles = `
   }
 `;
 
-const Heading2 = styled.h2`
+const TopLevelLabel = styled.span`
   ${headingStyles};
+  padding: 0;
 `;
 
 const StyledAccordionButton = styled(AccordionButton)`
@@ -623,7 +624,7 @@ const MainNavItems = ({
           <StyledAccordionButton
             data-open={isPanelOpen(PANEL_INDEX.design) ? 'true' : undefined}
           >
-            <Heading2>Design</Heading2>
+            <TopLevelLabel>Design</TopLevelLabel>
           </StyledAccordionButton>
           <MainNavAccordionPanel isOpen={isPanelOpen(PANEL_INDEX.design)}>
             <GuidedList>
@@ -646,7 +647,7 @@ const MainNavItems = ({
           <StyledAccordionButton
             data-open={isPanelOpen(PANEL_INDEX.develop) ? 'true' : undefined}
           >
-            <Heading2>Develop</Heading2>
+            <TopLevelLabel>Develop</TopLevelLabel>
           </StyledAccordionButton>
           <MainNavAccordionPanel isOpen={isPanelOpen(PANEL_INDEX.develop)}>
             <GuidedList>
@@ -682,7 +683,7 @@ const MainNavItems = ({
               isPanelOpen(PANEL_INDEX.foundations) ? 'true' : undefined
             }
           >
-            <Heading2>Foundations</Heading2>
+            <TopLevelLabel>Foundations</TopLevelLabel>
           </StyledAccordionButton>
           <MainNavAccordionPanel isOpen={isPanelOpen(PANEL_INDEX.foundations)}>
             <GuidedList>
@@ -705,7 +706,7 @@ const MainNavItems = ({
           <StyledAccordionButton
             data-open={isPanelOpen(PANEL_INDEX.components) ? 'true' : undefined}
           >
-            <Heading2>Components</Heading2>
+            <TopLevelLabel>Components</TopLevelLabel>
           </StyledAccordionButton>
           <MainNavAccordionPanel isOpen={isPanelOpen(PANEL_INDEX.components)}>
             <ComponentGroupsList>
@@ -725,6 +726,9 @@ const MainNavItems = ({
                         <ListItem key={apiSlug}>
                           <StyledLink2
                             activeStyle={activeStyle}
+                            aria-current={
+                              isCurrentComponent ? 'page' : undefined
+                            }
                             data-current={
                               isCurrentComponent ? 'true' : undefined
                             }
@@ -751,7 +755,7 @@ const MainNavItems = ({
               isPanelOpen(PANEL_INDEX.dataVisualization) ? 'true' : undefined
             }
           >
-            <Heading2>Data Visualization</Heading2>
+            <TopLevelLabel>Data Visualization</TopLevelLabel>
           </StyledAccordionButton>
           <MainNavAccordionPanel
             isOpen={isPanelOpen(PANEL_INDEX.dataVisualization)}
@@ -780,10 +784,10 @@ const MainNavItems = ({
         to="https://github.com/cengage/react-magma"
         opensInNewTab
       >
-        <Heading2>
+        <TopLevelLabel>
           <LaunchIcon size={magma.iconSizes.small} />
           GitHub
-        </Heading2>
+        </TopLevelLabel>
       </StyledHyperlink>
     </>
   );

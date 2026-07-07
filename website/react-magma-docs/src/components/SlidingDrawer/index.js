@@ -2,7 +2,7 @@ import React from 'react';
 
 import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
-import { navigate } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import FocusLock from 'react-focus-lock';
 import { Container, IconButton, magma, Spacer } from 'react-magma-dom';
 import { MenuIcon, CloseIcon } from 'react-magma-icons';
@@ -13,6 +13,7 @@ import { MainNav } from '../MainNav';
 export const PANEL_WIDTH = 280;
 const DRAWER_TRANSITION_DURATION = 250;
 const DRAWER_NAVIGATION_DELAY = 180;
+const NAV_PANEL_ID = 'main-site-navigation-panel';
 
 export class SlidingDrawer extends React.Component {
   constructor(props) {
@@ -22,11 +23,27 @@ export class SlidingDrawer extends React.Component {
       isActivated: false,
     };
     this.toggleButtonRef = React.createRef();
+    this.closeButtonRef = React.createRef();
     this.openMenu = this.openMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
     this.handleCloseMenu = this.handleCloseMenu.bind(this);
     this.handleCloseMenuFromNav = this.handleCloseMenuFromNav.bind(this);
     this.handleKeypress = this.handleKeypress.bind(this);
+  }
+
+  focusElement(ref, fallbackSelector) {
+    const fallbackElement =
+      typeof document !== 'undefined'
+        ? document.querySelector(fallbackSelector)
+        : null;
+    const element =
+      ref?.current && typeof ref.current.focus === 'function'
+        ? ref.current
+        : fallbackElement;
+
+    if (element && typeof element.focus === 'function') {
+      element.focus();
+    }
   }
 
   closeMenu = returnFocus => {
@@ -38,10 +55,14 @@ export class SlidingDrawer extends React.Component {
 
       this.setState({ isOpen: false }, () => {
         setTimeout(() => {
-          this.setState({ isActivated: false });
-          if (returnFocus) {
-            this.toggleButtonRef.current.focus();
-          }
+          this.setState({ isActivated: false }, () => {
+            if (returnFocus) {
+              this.focusElement(
+                this.toggleButtonRef,
+                '[aria-label="Open navigation menu"]'
+              );
+            }
+          });
         }, DRAWER_TRANSITION_DURATION);
       });
     }
@@ -58,7 +79,14 @@ export class SlidingDrawer extends React.Component {
       document.getElementsByTagName('html')[0].style.overflow = 'hidden';
       document.addEventListener('keydown', this.handleKeypress, false);
     }
-    this.setState({ isOpen: true, isActivated: true });
+    this.setState({ isOpen: true, isActivated: true }, () => {
+      window.requestAnimationFrame(() => {
+        this.focusElement(
+          this.closeButtonRef,
+          '[aria-label="Close navigation menu"]'
+        );
+      });
+    });
   };
 
   handleCloseMenu() {
@@ -178,20 +206,30 @@ export class SlidingDrawer extends React.Component {
       }
     `;
 
-    const SmallLogoLink = styled.div`
-      display: flex;
+    const MobileDrawerHeader = styled.div`
       align-items: center;
+      display: flex;
+      min-height: 48px;
+      padding: 0 ${magma.spaceScale.spacing04};
+      @media (min-width: ${magma.breakpoints.large}px) {
+        display: none;
+      }
+    `;
+
+    const SmallLogoLink = styled(Link)`
+      align-items: center;
+      display: flex;
       color: ${magma.colors.neutral700};
       font-size: ${magma.typeScale.size05.fontSize};
       font-weight: 500;
-      padding-top: 4px;
       text-decoration: none;
       text-transform: uppercase;
       svg {
         height: 24px;
       }
-      @media (min-width: ${magma.breakpoints.large}px) {
-        display: none;
+
+      &:focus {
+        outline: 2px solid ${magma.colors.focus};
       }
     `;
 
@@ -217,6 +255,7 @@ export class SlidingDrawer extends React.Component {
             <MenuButton>
               <IconButton
                 aria-label="Open navigation menu"
+                aria-controls={NAV_PANEL_ID}
                 aria-expanded={isOpen}
                 color="secondary"
                 icon={<MenuIcon />}
@@ -229,23 +268,26 @@ export class SlidingDrawer extends React.Component {
               isOpen={isOpen}
               isActivated={isActivated}
               isInverse={isInverse}
+              id={NAV_PANEL_ID}
             >
               <PanelInner isActivated={isActivated}>
-                <SmallLogoLink to="/">
-                  <Spacer size={magma.spaceScale.spacing05} />
-                  <Logo />
-                  <Spacer size={magma.spaceScale.spacing04} />
-                  React Magma
+                <MobileDrawerHeader>
+                  <SmallLogoLink to="/">
+                    <Logo />
+                    <Spacer size={magma.spaceScale.spacing04} />
+                    React Magma
+                  </SmallLogoLink>
                   <CloseButton>
                     <IconButton
                       aria-label="Close navigation menu"
                       color="secondary"
                       icon={<CloseIcon />}
                       onClick={this.handleCloseMenu}
+                      ref={this.closeButtonRef}
                       variant="link"
                     />
                   </CloseButton>
-                </SmallLogoLink>
+                </MobileDrawerHeader>
                 <MainNav handleClick={this.handleCloseMenuFromNav} />
               </PanelInner>
             </Panel>
