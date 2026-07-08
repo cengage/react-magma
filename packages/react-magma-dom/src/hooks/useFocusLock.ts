@@ -80,6 +80,30 @@ function deduplicateTabStops(allFocusable: HTMLElement[]): HTMLElement[] {
 }
 
 /**
+ * Checks that the element is actually visible, including being hidden
+ * by an ancestor.
+ */
+function isElementVisible(element: HTMLElement): boolean {
+  if (typeof element.checkVisibility === 'function') {
+    return element.checkVisibility();
+  }
+
+  for (
+    let node: HTMLElement | null = element;
+    node;
+    node = node.parentElement
+  ) {
+    const style = window.getComputedStyle(node);
+
+    if (style.display === 'none' || style.visibility === 'hidden') {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+/**
  * Module-level registry of currently active focus-lock root elements.
  * Used in Safari to prevent an outer lock from handling Tab for elements
  * that belong to an inner (descendant) lock.
@@ -104,14 +128,11 @@ export function useFocusLock(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
       ) || []
     ).filter((element): element is HTMLElement => {
-      const style = window.getComputedStyle(element);
-
       return (
         element instanceof HTMLElement &&
-        style.display !== 'none' &&
-        style.visibility !== 'hidden' &&
         !element.hasAttribute('disabled') &&
-        element.tabIndex >= 0
+        element.tabIndex >= 0 &&
+        isElementVisible(element)
       );
     });
 
@@ -181,6 +202,8 @@ export function useFocusLock(
         observer.disconnect();
       };
     }
+
+    return undefined;
   }, [active, header, body, autoFocusOnActivate]);
 
   React.useEffect(() => {
@@ -237,11 +260,14 @@ export function useFocusLock(
               lockRoot.contains(activeElement)
           );
 
+        if (isInsideNestedLock) {
+          return;
+        }
+
         if (
           length > 0 &&
           (isEventInsideCurrentLock || isSafari) &&
           !isActiveElementTracked &&
-          !isInsideNestedLock &&
           (isActiveElementInsideCurrentLock || activeElement === document.body)
         ) {
           event.preventDefault();
