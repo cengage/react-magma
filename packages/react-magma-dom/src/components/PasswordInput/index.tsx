@@ -129,10 +129,35 @@ export const PasswordInput = React.forwardRef<
 
   const buttonRef = React.useRef<HTMLButtonElement | null>(null);
   const [buttonWidth, setButtonWidth] = React.useState<number>(0);
+  const [maxButtonWidth, setMaxButtonWidth] = React.useState<number>(0);
 
   React.useLayoutEffect(() => {
-    if (buttonRef.current && !usesDefaultText) {
-      setButtonWidth(buttonRef.current.offsetWidth);
+    const button = buttonRef.current;
+
+    if (!button || usesDefaultText) {
+      return;
+    }
+
+    const container = button.closest('div');
+
+    const updateWidths = () => {
+      if (container) {
+        setMaxButtonWidth(Math.floor(container.offsetWidth / 2));
+      }
+      setButtonWidth(button.offsetWidth);
+    };
+
+    updateWidths();
+
+    if (typeof ResizeObserver !== 'undefined') {
+      const resizeObserver = new ResizeObserver(updateWidths);
+
+      resizeObserver.observe(button);
+      if (container) {
+        resizeObserver.observe(container);
+      }
+
+      return () => resizeObserver.disconnect();
     }
   }, [
     usesDefaultText,
@@ -144,9 +169,17 @@ export const PasswordInput = React.forwardRef<
   const getButtonWidth = () => {
     if (usesDefaultText) {
       return inputSize === InputSize.large ? '64px' : '54px';
-    } else if (buttonWidth !== 0) {
-      return `${buttonWidth}px`;
     }
+
+    return undefined;
+  };
+
+  const getButtonMaxWidth = () => {
+    if (usesDefaultText) {
+      return getButtonWidth();
+    }
+
+    return maxButtonWidth > 0 ? `${maxButtonWidth}px` : undefined;
   };
 
   const getInputStyle = () => {
@@ -216,7 +249,10 @@ export const PasswordInput = React.forwardRef<
                 margin: '0 3px 0 0',
                 width: getButtonWidth(),
                 minWidth: 0,
-                maxWidth: getButtonWidth(),
+                maxWidth: getButtonMaxWidth(),
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
               }}
               type={ButtonType.button}
               variant={ButtonVariant.link}
