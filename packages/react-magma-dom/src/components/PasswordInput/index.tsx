@@ -149,8 +149,8 @@ export const PasswordInput = React.forwardRef<
 
     updateWidths();
 
-    if (typeof ResizeObserver !== 'undefined') {
-      const resizeObserver = new ResizeObserver(updateWidths);
+    if (typeof window !== 'undefined' && 'ResizeObserver' in window) {
+      const resizeObserver = new (window as any).ResizeObserver(updateWidths);
 
       resizeObserver.observe(button);
       if (container) {
