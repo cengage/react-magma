@@ -84,8 +84,12 @@ function deduplicateTabStops(allFocusable: HTMLElement[]): HTMLElement[] {
  * by an ancestor.
  */
 function isElementVisible(element: HTMLElement): boolean {
-  if (typeof element.checkVisibility === 'function') {
-    return element.checkVisibility();
+  const elementWithVisibility = element as HTMLElement & {
+    checkVisibility?: () => boolean;
+  };
+
+  if (typeof elementWithVisibility.checkVisibility === 'function') {
+    return elementWithVisibility.checkVisibility();
   }
 
   for (
