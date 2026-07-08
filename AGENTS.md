@@ -54,7 +54,7 @@ Jest + Testing Library + `@testing-library/jest-dom` + Emotion snapshots + `jest
 
 - **Branch off `dev`** (the active integration branch) and target `dev` in PRs — not `main`.
 - **Conventional Commits**, scoped by component: `feat(TreeView): support folder expansion`, `fix(chart): add accessible chart role`. commitlint relaxes subject/scope casing; husky `commit-msg` validates and `pre-commit` runs lint-staged (eslint --fix + prettier).
-- **Changesets are added manually**: create a file under `.changeset/<descriptive-name>.md` for any user-facing package change. Format — YAML frontmatter mapping each changed package to a semver bump, then a one-line summary:
+- **Changesets are always added manually**: create a file under `.changeset/<descriptive-name>.md` for every change, including code, docs, CI, dependency, and workflow-only changes. Format — YAML frontmatter mapping each changed package to a semver bump, then a one-line summary:
 
   ```md
   ---
@@ -64,7 +64,7 @@ Jest + Testing Library + `@testing-library/jest-dom` + Emotion snapshots + `jest
   fix(Button): correct disabled focus ring
   ```
 
-  Use `patch` for fixes, `minor` for additive features, `major` for breaking changes; list every affected package (`react-magma-dom`, `@react-magma/charts`, `@react-magma/dropzone`). Do not rely on `npm run changeset`'s prompts — write the file directly.
+  Use `patch` for fixes, docs, CI, dependency, and workflow-only changes; `minor` for additive features; and `major` for breaking changes. List every affected package (`react-magma-dom`, `@react-magma/charts`, `@react-magma/dropzone`, `react-magma-docs`); for repo infrastructure that primarily affects docs, Storybook, previews, or publishing workflows, use `react-magma-docs`. Do not rely on `npm run changeset`'s prompts — write the file directly.
 - **PRs**: link the issue, describe the change, include UI screenshots/GIFs for visual changes, list test steps and edge cases, update docs for public-API changes. Expect thorough review — keep PRs focused; raise unrelated fixes with the team rather than bundling them.
 
 ## Definition of Done
@@ -72,7 +72,7 @@ Jest + Testing Library + `@testing-library/jest-dom` + Emotion snapshots + `jest
 Before considering a change complete:
 
 1. `npm run compiler-checks`, `npm run lint`, `npm test`, and `npm run build` all pass clean. A change is not done until tests and the build are green.
-2. A changeset file exists for any user-facing change.
+2. A changeset file exists for every change.
 3. Docs/stories are updated for public-API changes.
 4. **Breaking-change review**: this library is consumed by many downstream products, so a backward-incompatible change is high-cost. Before finalizing, launch an expert review agent (e.g. via the `Agent` tool / `general-purpose` subagent) to audit the diff specifically for changes that break adopters — removed/renamed exports or props, changed prop types or defaults, altered DOM structure or class/`data-*` hooks, accessibility regressions, theme-token removals, and changed runtime behavior of existing public APIs. If any are found, flag them, bump the changeset to `major`, and document a migration path; prefer an additive, deprecation-first approach over a hard break.
 
