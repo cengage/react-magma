@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 15.0.0-rc.3
+
+### Patch Changes
+
+- b06dacb: fix(Chart): announce legend isolation state to screen readers
+
 ## 15.0.0-rc.2
 
 ### Patch Changes

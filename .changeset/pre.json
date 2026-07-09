@@ -11,6 +11,7 @@
   },
   "changesets": [
     "a11y-charts-add-optional-ariaLabel-prop",
+    "a11y-charts-legend-announcement",
     "a11y-charts-legend-fieldset",
     "a11y-charts-manage-focus",
     "a11y-docs-img-empty-alts",
