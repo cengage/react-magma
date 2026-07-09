@@ -17,10 +17,14 @@ global.ResizeObserver = jest.fn().mockImplementation(() => ({
   disconnect: jest.fn(),
 }));
 
-// Capture MutationObserver callbacks so we can trigger them manually
-let mutationObserverCallback;
+// Capture MutationObserver callbacks so we can trigger them manually.
+// Multiple observers may be created per component; we collect all of them and
+// call each one so that no observer is silently skipped.
+let mutationObserverCallbacks = [];
+const mutationObserverCallback = mutations =>
+  mutationObserverCallbacks.forEach(cb => cb(mutations));
 global.MutationObserver = jest.fn().mockImplementation(callback => {
-  mutationObserverCallback = callback;
+  mutationObserverCallbacks.push(callback);
   return {
     observe: jest.fn(),
     disconnect: jest.fn(),
@@ -603,6 +607,7 @@ describe('CarbonChart', () => {
     let otherButton;
 
     beforeEach(() => {
+      mutationObserverCallbacks = [];
       jest.useFakeTimers();
       jest.spyOn(window, 'requestAnimationFrame').mockImplementation(cb => {
         cb(0);

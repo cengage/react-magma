@@ -24,11 +24,13 @@ import {
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 import {
+  Announce,
   DropdownDivider,
   DropdownMenuItem,
   ThemeInterface,
   ThemeContext,
   useIsInverse,
+  VisuallyHidden,
 } from 'react-magma-dom';
 import {
   FullscreenExitIcon,
@@ -1075,7 +1077,9 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     const [isTableOpen, setIsTableOpen] = React.useState(false);
     const [isFullscreen, setIsFullscreen] = React.useState(false);
+    const [legendAnnouncement, setLegendAnnouncement] = React.useState('');
     const lastTableTriggerRef = React.useRef<HTMLButtonElement | null>(null);
+    const legendAnnouncedRef = React.useRef(false);
 
     const mergedRef = React.useCallback(
       (node: HTMLDivElement | null) => {
@@ -1179,7 +1183,9 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         if (parent?.tagName === 'FIELDSET') {
           const existingCaption = parent.querySelector('legend');
 
-          if (existingCaption) existingCaption.textContent = legendLabel;
+          if (existingCaption && existingCaption.textContent !== legendLabel) {
+            existingCaption.textContent = legendLabel;
+          }
 
           return;
         }
@@ -1290,12 +1296,61 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       return () => clearTimeout(timer);
     }, [type, dataSet]);
 
+    React.useEffect(() => {
+      const wrapper = internalRef.current;
+
+      if (!wrapper) return;
+
+      const observer = new MutationObserver(() => {
+        const allItems = wrapper.querySelectorAll<HTMLElement>(
+          '.legend-item:not(.additional)'
+        );
+
+        if (allItems.length <= 1) return;
+
+        const activeLabels: string[] = [];
+
+        allItems.forEach(el => {
+          const checkbox = el.querySelector<HTMLElement>('.checkbox');
+          const label = el.querySelector('p');
+
+          if (checkbox?.getAttribute('aria-checked') === 'true' && label) {
+            activeLabels.push(label.textContent?.trim() || '');
+          }
+        });
+
+        if (activeLabels.length === 1) {
+          if (!legendAnnouncedRef.current) {
+            legendAnnouncedRef.current = true;
+            setLegendAnnouncement(`Only ${activeLabels[0]} is selected`);
+          }
+        } else if (activeLabels.length === allItems.length) {
+          legendAnnouncedRef.current = false;
+          setLegendAnnouncement('All items selected');
+        } else {
+          legendAnnouncedRef.current = false;
+          setLegendAnnouncement('');
+        }
+      });
+
+      observer.observe(wrapper, {
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['aria-checked'],
+      });
+
+      return () => observer.disconnect();
+    }, [type, dataSet]);
+
     const groupsLength = Object.keys(buildColors()).length;
 
     const showTable = chartToolbar?.showAsTable !== false;
 
     return (
       <FullscreenRoot ref={mergedRef} isInverse={isInverse} theme={theme}>
+        <VisuallyHidden>
+          <Announce>{legendAnnouncement}</Announce>
+        </VisuallyHidden>
         <CarbonChartWrapper
           data-testid={testId}
           isInverse={isInverse}
