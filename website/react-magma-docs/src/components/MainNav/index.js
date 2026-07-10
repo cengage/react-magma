@@ -11,10 +11,11 @@ import {
   AccordionItem,
   AccordionItemContext,
   Hyperlink,
+  HyperlinkIconPosition,
   magma,
   useIsInverse,
 } from 'react-magma-dom';
-import { LaunchIcon } from 'react-magma-icons';
+import { GithubIcon } from 'react-magma-icons';
 
 import { getDocsPageSlug } from '../../utils';
 
@@ -91,10 +92,11 @@ MainNavAccordionPanel.propTypes = {
 
 const LinkStyles = () => `
   align-items: center;
-  display:block;
+  display: flex;
   color: ${magma.colors.neutral700};
-  font-size: ${magma.typeScale.size03.fontSize};
-  line-height: ${magma.typeScale.size03.lineHeight};
+  font-size: ${magma.typeScale.size02.fontSize};
+  font-weight: 500;
+  line-height: ${magma.typeScale.size02.lineHeight};
   padding: 0;
   text-decoration: none;
   &:focus{
@@ -149,32 +151,19 @@ const StyledAccordionButton = styled(AccordionButton)`
   }
   ${headingStyles};
   ${menuItemInsetStyles};
-  gap: 0;
+  gap: ${magma.spaceScale.spacing03};
+  justify-content: space-between;
 
   svg {
     height: ${magma.iconSizes.small}px;
     width: ${magma.iconSizes.small}px;
   }
 
-  > div:first-of-type {
+  > div:last-of-type {
     align-items: center;
     display: flex;
     height: auto !important;
     line-height: 0;
-    transform: none !important;
-  }
-
-  > div + span {
-    min-width: ${magma.spaceScale.spacing03};
-    width: ${magma.spaceScale.spacing03};
-  }
-
-  &[aria-expanded='false']:not([data-open='true']) > div:first-of-type {
-    transform: rotate(-90deg) !important;
-  }
-
-  &[data-open='true'] > div:first-of-type {
-    transform: none !important;
   }
 
   &:focus {
@@ -292,11 +281,14 @@ const StyledHyperlink = styled(Hyperlink)`
   ${LinkStyles}
   ${menuItemInsetStyles};
   padding: ${magma.spaceScale.spacing03};
+  text-decoration: none;
   &:hover {
     ${LinkHoverStyles}
+    text-decoration: none;
   }
   &:not([disabled]):hover {
     ${LinkHoverStyles}
+    text-decoration: none;
   }
   &:not([disabled]):focus {
     color: inherit;
@@ -617,7 +609,7 @@ const MainNavItems = ({
   return (
     <>
       <StyledAccordion
-        iconPosition={AccordionIconPosition.left}
+        iconPosition={AccordionIconPosition.right}
         index={expandedIndex}
         onExpandedChange={handleExpandedChange}
       >
@@ -782,13 +774,13 @@ const MainNavItems = ({
 
       <StyledHyperlink
         aria-label="View project on GitHub"
+        hasUnderline={false}
+        icon={<GithubIcon size={magma.iconSizes.small} />}
+        iconPosition={HyperlinkIconPosition.left}
         to="https://github.com/cengage/react-magma"
         opensInNewTab
       >
-        <TopLevelLabel>
-          <LaunchIcon size={magma.iconSizes.small} />
-          GitHub
-        </TopLevelLabel>
+        GitHub
       </StyledHyperlink>
     </>
   );
