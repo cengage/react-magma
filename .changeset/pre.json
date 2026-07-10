@@ -10,6 +10,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "a11y-charts-legend-announcement",
     "a11y-charts-legend-fieldset",
     "chart-add-accessible-role",
     "chart-fix-aria-prohibited-attr",
