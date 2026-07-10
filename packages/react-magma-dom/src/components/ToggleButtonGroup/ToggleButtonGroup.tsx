@@ -41,8 +41,11 @@ export interface ToggleButtonGroupProps extends Omit<ButtonGroupProps, 'role'> {
     value?: string
   ) => void;
   /**
-   * ARIA role for the group container. `tablist` renders child `ToggleButton`s as tabs;
-   * `radiogroup` renders the container as a radio group.
+   * ARIA role for the group container. `tablist` renders children as tabs
+   * (`aria-selected`); `radiogroup` renders them as radios (`aria-checked`);
+   * `group` renders radios or switches based on `exclusive`. `tablist` and
+   * `radiogroup` are single-select patterns, so pair them with `exclusive`
+   * (and `enforced` for tabs, to keep one selected at all times).
    * @default ToggleButtonGroupRole.group
    */
   role?: ToggleButtonGroupRole;

@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(ToggleButtonGroup, ToggleButton): add `role` props
+fix(ToggleButtonGroup): add `role` prop

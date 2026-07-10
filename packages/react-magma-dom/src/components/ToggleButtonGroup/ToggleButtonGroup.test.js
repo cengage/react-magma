@@ -272,16 +272,46 @@ describe('ToggleButtonGroup', () => {
       expect(buttonTwo).toHaveAttribute('aria-selected', 'true');
     });
 
-    it('Allows a per-button role override', () => {
+    it('Renders radios for a radiogroup role', () => {
       const { getByTestId } = render(
-        <ToggleButtonGroup exclusive>
-          <ToggleButton value="one" testId={testId} role="button">
+        <ToggleButtonGroup testId={testId} exclusive role="radiogroup">
+          <ToggleButton value="one" testId={`${testId}-1`}>
+            {TEXT}
+          </ToggleButton>
+          <ToggleButton value="two" testId={`${testId}-2`}>
             {TEXT}
           </ToggleButton>
         </ToggleButtonGroup>
       );
 
-      expect(getByTestId(testId)).toHaveAttribute('role', 'button');
+      const buttonOne = getByTestId(`${testId}-1`);
+      const buttonTwo = getByTestId(`${testId}-2`);
+
+      // radiogroup always renders radios, never switches.
+      expect(buttonOne).toHaveAttribute('role', 'radio');
+      expect(buttonTwo).toHaveAttribute('role', 'radio');
+      expect(buttonOne).toHaveAttribute('aria-checked', 'false');
+    });
+
+    it('Renders tabs with aria-selected for a tablist role', () => {
+      const { getByTestId } = render(
+        <ToggleButtonGroup testId={testId} exclusive enforced role="tablist">
+          <ToggleButton value="one" testId={`${testId}-1`}>
+            {TEXT}
+          </ToggleButton>
+          <ToggleButton value="two" testId={`${testId}-2`}>
+            {TEXT}
+          </ToggleButton>
+        </ToggleButtonGroup>
+      );
+
+      const buttonOne = getByTestId(`${testId}-1`);
+      const buttonTwo = getByTestId(`${testId}-2`);
+
+      expect(buttonOne).toHaveAttribute('role', 'tab');
+      expect(buttonTwo).toHaveAttribute('role', 'tab');
+      expect(buttonOne).toHaveAttribute('aria-selected', 'false');
+      expect(buttonOne).not.toHaveAttribute('aria-checked');
     });
   });
 });

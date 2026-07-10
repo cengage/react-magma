@@ -6,7 +6,7 @@ import { CheckIcon } from 'react-magma-icons';
 import { ButtonSize, ButtonTextTransform } from '../Button';
 import { Container } from '../Container';
 
-import { ToggleButton, ToggleButtonProps, ToggleButtonRole } from '.';
+import { ToggleButton, ToggleButtonProps } from '.';
 
 const Template: StoryFn<ToggleButtonProps> = args => (
   <ToggleButton {...args} isChecked={args.isChecked} icon={<CheckIcon />} />
@@ -40,10 +40,6 @@ export default {
     textTransform: {
       control: { type: 'select' },
       options: Object.values(ButtonTextTransform),
-    },
-    role: {
-      control: { type: 'select' },
-      options: Object.values(ToggleButtonRole),
     },
   },
 } as Meta;
