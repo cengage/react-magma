@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-rc.6
+
+### Patch Changes
+
+- 80ef8b2: chore: allow Chromatic workflow failures temporarily
+
 ## 6.0.2-rc.5
 
 ### Patch Changes

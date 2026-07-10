@@ -23,6 +23,7 @@
     "chore-TreeView-additionalContent-props",
     "chore-add-chromatic-ci",
     "chore-add-snyk-ci",
+    "chore-allow-chromatic-failures",
     "chore-bump-chromaui-action-v16",
     "chore-bump-uuid-security",
     "chore-charts-peer-deps",
