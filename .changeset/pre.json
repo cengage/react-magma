@@ -178,6 +178,7 @@
     "fix-doc-examples",
     "fix-drawer-scrollable-content",
     "fix-modal-trigger-button",
+    "fix-openwiki-agent-docs",
     "fix-package-runtime-deps",
     "fix-publish-repository-url",
     "fix-select-aria-label",

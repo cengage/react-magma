@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-rc.7
+
+### Patch Changes
+
+- fcf26c6: docs: correct OpenWiki and agent guidance.
+
 ## 6.0.2-rc.6
 
 ### Patch Changes
