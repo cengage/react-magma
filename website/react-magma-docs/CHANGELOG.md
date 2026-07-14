@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.2-rc.8
+
+### Patch Changes
+
+- 583a189: docs(charts): document chart toolbar titleLevel option
+
 ## 6.0.2-rc.7
 
 ### Patch Changes

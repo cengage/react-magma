@@ -55,6 +55,7 @@
     "chore-upgrade-typedoc",
     "chore-upgrade-typescript-eslint",
     "combobox-select-fix-floating-ref-stale",
+    "docs-chart-toolbar-title-level",
     "docs-remove-accessible-chart-toolbar-page",
     "feat-ButtonGroup-add-isList-prop",
     "feat-Charts-titleLevel",
