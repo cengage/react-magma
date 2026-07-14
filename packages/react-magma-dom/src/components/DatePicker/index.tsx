@@ -425,7 +425,7 @@ export const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
         const pattern = /^\d{2}\/\d{2}\/\d{4}$/;
 
-        if (pattern.test(splitValue)) {
+        if (pattern.test(splitValue) && isValid(validDay)) {
           setChosenDate(validDay);
         }
 

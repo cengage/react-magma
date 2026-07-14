@@ -50,7 +50,11 @@ export function Example() {
       <ButtonGroup>
         <Button>
           Messages
-          <Badge variant={BadgeVariant.counter} color={BadgeColor.light}>
+          <Badge
+            variant={BadgeVariant.counter}
+            color={BadgeColor.secondary}
+            isInverse
+          >
             99+
           </Badge>
         </Button>
@@ -68,7 +72,7 @@ export function Example() {
 
 ## Colors
 
-Five colors of badges are available, `primary` (default), `secondary`, `light`, `danger`, and `success`.
+Seven colors of badges are available, `primary` (default), `secondary`, `light`, `danger`, `success`, `info`, and `warning`.
 
 ```tsx
 import React from 'react';
@@ -83,6 +87,140 @@ export function Example() {
       <Badge color={BadgeColor.light}>Light</Badge>
       <Badge color={BadgeColor.danger}>Danger</Badge>
       <Badge color={BadgeColor.success}>Success</Badge>
+      <Badge color={BadgeColor.info}>Info</Badge>
+      <Badge color={BadgeColor.warning}>Warning</Badge>
+    </>
+  );
+}
+```
+
+## Weights
+
+Badges have two weights, `default` and `light`. The `default` weight is used when no weight is specified.
+
+```tsx
+import React from 'react';
+
+import { Badge, BadgeColor, BadgeWeight } from 'react-magma-dom';
+
+export function Example() {
+  const badgeRowStyles: React.CSSProperties = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '8px',
+  };
+
+  const badgeStyles: React.CSSProperties = {
+    margin: 0,
+  };
+
+  return (
+    <>
+      <div style={badgeRowStyles}>
+        <Badge color={BadgeColor.primary} style={badgeStyles}>
+          Primary
+        </Badge>
+        <Badge color={BadgeColor.secondary} style={badgeStyles}>
+          Secondary
+        </Badge>
+        <Badge color={BadgeColor.light} style={badgeStyles}>
+          Light
+        </Badge>
+        <Badge color={BadgeColor.danger} style={badgeStyles}>
+          Danger
+        </Badge>
+        <Badge color={BadgeColor.success} style={badgeStyles}>
+          Success
+        </Badge>
+        <Badge color={BadgeColor.info} style={badgeStyles}>
+          Info
+        </Badge>
+        <Badge color={BadgeColor.warning} style={badgeStyles}>
+          Warning
+        </Badge>
+      </div>
+      <div style={{ ...badgeRowStyles, marginTop: '8px' }}>
+        <Badge
+          color={BadgeColor.primary}
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Primary
+        </Badge>
+        <Badge
+          color={BadgeColor.secondary}
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Secondary
+        </Badge>
+        <Badge
+          color={BadgeColor.light}
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light
+        </Badge>
+        <Badge
+          color={BadgeColor.danger}
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Danger
+        </Badge>
+        <Badge
+          color={BadgeColor.success}
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Success
+        </Badge>
+        <Badge
+          color={BadgeColor.info}
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Info
+        </Badge>
+        <Badge
+          color={BadgeColor.warning}
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Warning
+        </Badge>
+      </div>
+    </>
+  );
+}
+```
+
+## Icons
+
+Use the `leftIcon` and `rightIcon` props to display Magma icons on either side of a badge.
+
+```tsx
+import React from 'react';
+
+import { Badge, BadgeColor } from 'react-magma-dom';
+import { CheckCircleIcon, InfoIcon } from 'react-magma-icons';
+
+export function Example() {
+  return (
+    <>
+      <Badge color={BadgeColor.primary} leftIcon={<CheckCircleIcon />}>
+        Left icon
+      </Badge>
+      <Badge color={BadgeColor.secondary} rightIcon={<InfoIcon />}>
+        Right icon
+      </Badge>
+      <Badge
+        color={BadgeColor.success}
+        leftIcon={<CheckCircleIcon />}
+        rightIcon={<InfoIcon />}
+      >
+        Both icons
+      </Badge>
     </>
   );
 }
@@ -127,26 +265,102 @@ export function Example() {
 ```tsx
 import React from 'react';
 
-import { Badge, BadgeColor, Container } from 'react-magma-dom';
+import { Badge, BadgeColor, BadgeWeight, Container } from 'react-magma-dom';
 
 export function Example() {
+  const badgeRowStyles: React.CSSProperties = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '8px',
+  };
+
+  const badgeStyles: React.CSSProperties = {
+    margin: 0,
+  };
+
   return (
     <Container isInverse style={{ padding: '12px' }}>
-      <Badge color={BadgeColor.primary} isInverse>
-        Primary
-      </Badge>
-      <Badge color={BadgeColor.secondary} isInverse>
-        Secondary
-      </Badge>
-      <Badge color={BadgeColor.light} isInverse>
-        Light
-      </Badge>
-      <Badge color={BadgeColor.danger} isInverse>
-        Danger
-      </Badge>
-      <Badge color={BadgeColor.success} isInverse>
-        Success
-      </Badge>
+      <div style={badgeRowStyles}>
+        <Badge color={BadgeColor.primary} isInverse style={badgeStyles}>
+          Primary
+        </Badge>
+        <Badge color={BadgeColor.secondary} isInverse style={badgeStyles}>
+          Secondary
+        </Badge>
+        <Badge color={BadgeColor.light} isInverse style={badgeStyles}>
+          Light
+        </Badge>
+        <Badge color={BadgeColor.danger} isInverse style={badgeStyles}>
+          Danger
+        </Badge>
+        <Badge color={BadgeColor.success} isInverse style={badgeStyles}>
+          Success
+        </Badge>
+        <Badge color={BadgeColor.info} isInverse style={badgeStyles}>
+          Info
+        </Badge>
+        <Badge color={BadgeColor.warning} isInverse style={badgeStyles}>
+          Warning
+        </Badge>
+      </div>
+      <div style={{ ...badgeRowStyles, marginTop: '8px' }}>
+        <Badge
+          color={BadgeColor.primary}
+          isInverse
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Primary
+        </Badge>
+        <Badge
+          color={BadgeColor.secondary}
+          isInverse
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Secondary
+        </Badge>
+        <Badge
+          color={BadgeColor.light}
+          isInverse
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light
+        </Badge>
+        <Badge
+          color={BadgeColor.danger}
+          isInverse
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Danger
+        </Badge>
+        <Badge
+          color={BadgeColor.success}
+          isInverse
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Success
+        </Badge>
+        <Badge
+          color={BadgeColor.info}
+          isInverse
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Info
+        </Badge>
+        <Badge
+          color={BadgeColor.warning}
+          isInverse
+          style={badgeStyles}
+          weight={BadgeWeight.light}
+        >
+          Light Warning
+        </Badge>
+      </div>
     </Container>
   );
 }

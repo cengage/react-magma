@@ -1,5 +1,37 @@
 # @react-magma/charts
 
+## 15.0.0-rc.4
+
+### Minor Changes
+
+- 359dfef: feat(charts): Add `titleLevel` to `chartToolbar` config to control the heading level (1–6) of the chart title rendered by `CarbonChart`. Defaults to `2`.
+
+## 15.0.0-rc.3
+
+### Patch Changes
+
+- b06dacb: fix(Chart): announce legend isolation state to screen readers
+
+## 15.0.0-rc.2
+
+### Patch Changes
+
+- ce0a5f5: fix(charts): Wrap checkboxes into `fieldset` + `legend`
+
+## 15.0.0-rc.1
+
+### Patch Changes
+
+- Updated dependencies [5666475]
+  - react-magma-dom@5.1.0-rc.4
+
+## 14.0.1-rc.0
+
+### Patch Changes
+
+- Updated dependencies [88d933f]
+  - react-magma-dom@5.0.1-rc.0
+
 ## 14.0.0
 
 ### Major Changes
