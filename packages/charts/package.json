@@ -1,6 +1,6 @@
 {
   "name": "@react-magma/charts",
-  "version": "15.0.0-rc.4",
+  "version": "14.1.0-rc.0",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -50,7 +50,7 @@
     "identity-obj-proxy": "3.0.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "react-magma-dom": "^5.1.0-rc.4",
+    "react-magma-dom": "^5.1.0",
     "react-magma-icons": "^3.2.5",
     "rollup": "^4.52.4",
     "rollup-plugin-postcss": "^4.0.2"
@@ -60,7 +60,7 @@
     "@emotion/styled": "^11.14.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-magma-dom": "^5.1.0-rc.4",
+    "react-magma-dom": "^5.1.0",
     "react-magma-icons": "^3.2.5"
   },
   "engines": {

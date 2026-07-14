@@ -1,64 +1,11 @@
 # Change Log
 
-## 6.0.2-rc.8
+## 6.0.2
 
 ### Patch Changes
 
-- 583a189: docs(charts): document chart toolbar titleLevel option
-
-## 6.0.2-rc.7
-
-### Patch Changes
-
-- fcf26c6: docs: correct OpenWiki and agent guidance.
-
-## 6.0.2-rc.6
-
-### Patch Changes
-
-- 80ef8b2: chore: allow Chromatic workflow failures temporarily
-
-## 6.0.2-rc.5
-
-### Patch Changes
-
-- 86b130d: docs: Remove the standalone `Accessible Chart Toolbar` page and integrate its content into Getting Started, Chart Types, and Chart Demos.
-
-## 6.0.2-rc.4
-
-### Patch Changes
-
-- Updated dependencies [5666475]
-  - react-magma-dom@5.1.0-rc.4
-  - @react-magma/charts@15.0.0-rc.1
-  - @react-magma/dropzone@15.0.0-rc.1
-
-## 6.0.2-rc.3
-
-### Patch Changes
-
-- 62337dd: fix(FormGroup): fix small docs issues
-
-## 6.0.2-rc.2
-
-### Patch Changes
-
-- 80535d3: Fix the "Edit in CodeSandbox" button on older documentation version sites. A single deploy workflow now rebuilds and redeploys the docs for old releases (v2/v3 latest and all v4 except the latest) with the durable client-side CodeSandbox fix applied, replacing the previous per-version deploy workflows.
-
-## 6.0.2-rc.1
-
-### Patch Changes
-
-- b6abe8b: chore(TreeView): add warning for additionalContent prop in TreeView to ensure it renders content (not null)
-
-## 6.0.2-rc.0
-
-### Patch Changes
-
-- Updated dependencies [88d933f]
-  - react-magma-dom@5.0.1-rc.0
-  - @react-magma/charts@14.0.1-rc.0
-  - @react-magma/dropzone@14.0.1-rc.0
+- f065941: Redeploy landing + docs so the v2 link bump to 2.6.2 (/version/2.6.2 routing) takes effect.
+- 1839dfc: Point the v2 documentation link to 2.6.2 in the landing version list (and generated \_redirects) and the previous-versions table, so /version/2.6.2 resolves.
 
 ## 6.0.1
 

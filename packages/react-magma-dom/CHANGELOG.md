@@ -1,52 +1,6 @@
+# Change Log
+
 ## 5.0.0
-
-## 5.1.0-rc.7
-
-### Minor Changes
-
-- 2d73083: feat(Badge): Add Badge icon and weight options
-
-## 5.1.0-rc.6
-
-### Patch Changes
-
-- 7f28b87: Chart: fix ARIA prohibited attribute usage in SVG elements
-
-## 5.1.0-rc.5
-
-### Patch Changes
-
-- 76e7ab1: fix(DateTimePicker): prevent crash when entering invalid date in input
-
-## 5.1.0-rc.4
-
-### Minor Changes
-
-- 5666475: feat(TreeView): support clicking anywhere on a folder to expand/collapse it for `selectable.off`
-
-## 5.0.1-rc.3
-
-### Patch Changes
-
-- 3c978b2: fix(Treeview): fix keyboard focus trap after collapse
-
-## 5.0.1-rc.2
-
-### Patch Changes
-
-- c3424ae: Chart: add accessible chart role and aria-label
-
-## 5.0.1-rc.1
-
-### Patch Changes
-
-- 108fc81: fix(Dropdown): Fix Escape key propagation in nested dropdown
-
-## 5.0.1-rc.0
-
-### Patch Changes
-
-- 88d933f: fix(Accordion): fix invalid ARIA attribute
 
 ### Major Changes
 
