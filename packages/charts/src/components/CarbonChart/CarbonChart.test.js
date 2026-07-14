@@ -1000,6 +1000,37 @@ describe('CarbonChart', () => {
       expect(after[0]).toBe(before[0]);
     });
 
+    it('unwraps the stale fieldset when Carbon re-renders the legend deeper inside it', () => {
+      const { getByTestId } = render(
+        <CarbonChart
+          testId={testId}
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.bar}
+        />
+      );
+      const wrapper = getByTestId(testId);
+
+      const staleFieldset = wrapper.querySelector('.cds--cc--legend-fieldset');
+      const legend = staleFieldset.querySelector('.cds--cc--legend');
+
+      act(() => {
+        const layoutChild = document.createElement('div');
+        layoutChild.className = 'layout-child legend';
+        staleFieldset.append(layoutChild);
+        layoutChild.append(legend);
+        mutationObserverCallback?.();
+      });
+
+      const fieldsets = wrapper.querySelectorAll('.cds--cc--legend-fieldset');
+      expect(fieldsets).toHaveLength(1);
+      expect(
+        fieldsets[0].querySelector('.cds--cc--legend-fieldset')
+      ).toBeNull();
+      expect(fieldsets[0].contains(legend)).toBe(true);
+      expect(fieldsets[0].querySelectorAll(':scope > legend')).toHaveLength(1);
+    });
+
     it('replaces Carbon\'s generic "Data groups" aria-label with semantic list roles on the legend and its items', () => {
       const { getByTestId } = render(
         <CarbonChart
@@ -1013,14 +1044,51 @@ describe('CarbonChart', () => {
 
       const legend = wrapper.querySelector('.cds--cc--legend');
       expect(legend).not.toBeNull();
-      expect(legend.getAttribute('aria-label')).toBeNull();
-      expect(legend.getAttribute('role')).toBe('list');
 
-      const items = legend.querySelectorAll('.legend-item');
+      const itemsHost = legend.matches('[data-name="legend-items"]')
+        ? legend
+        : legend.querySelector('[data-name="legend-items"]') || legend;
+      expect(itemsHost.getAttribute('aria-label')).toBeNull();
+      expect(itemsHost.getAttribute('role')).toBe('list');
+
+      if (itemsHost !== legend) {
+        expect(legend.getAttribute('role')).toBeNull();
+        expect(legend.getAttribute('aria-label')).toBeNull();
+      }
+
+      const items = itemsHost.querySelectorAll('.legend-item');
       expect(items.length).toBeGreaterThan(0);
       items.forEach(item => {
         expect(item.getAttribute('role')).toBe('listitem');
       });
+    });
+
+    it('restores list semantics when Carbon re-applies role="group" and aria-label on the items container', () => {
+      const { getByTestId } = render(
+        <CarbonChart
+          testId={testId}
+          dataSet={dataSet}
+          options={chartOptions}
+          type={CarbonChartType.bar}
+        />
+      );
+      const wrapper = getByTestId(testId);
+
+      const itemsHost = wrapper.querySelector('[data-name="legend-items"]');
+      expect(itemsHost).not.toBeNull();
+      expect(itemsHost.getAttribute('role')).toBe('list');
+
+      act(() => {
+        itemsHost.setAttribute('role', 'group');
+        itemsHost.setAttribute('aria-label', 'Data groups');
+        mutationObserverCallback();
+      });
+      act(() => {
+        mutationObserverCallback();
+      });
+
+      expect(itemsHost.getAttribute('role')).toBe('list');
+      expect(itemsHost.getAttribute('aria-label')).toBeNull();
     });
 
     it('uses translated legend instructions from I18nContext', () => {
