@@ -43,7 +43,7 @@ export const MoreDemosLink = ({ number, path }) => (
 <MagmaChartsSiteLink />
 <br />
 
-Every example below passes `chartToolbar={{}}` to `CarbonChart`. This opts the chart into the accessible Magma toolbar ("Show as table", fullscreen, and "More options" with CSV/PNG/JPG downloads), and replaces Carbon's inaccessible `<p role="heading">` chart title with a semantic `<h2>` read from `options.title`. See the [Toolbar customization](#toolbar_customization) section below for advanced options, and [Getting Started](../introduction#accessible_chart_toolbar) for the underlying accessibility rationale.
+Every example below passes `chartToolbar={{}}` to `CarbonChart`. This opts the chart into the accessible Magma toolbar ("Show as table", fullscreen, and "More options" with CSV/PNG/JPG downloads), and replaces Carbon's inaccessible `<p role="heading">` chart title with a semantic heading read from `options.title`. The default heading level is `<h2>`. See the [Toolbar customization](#toolbar_customization) section below for advanced options, and [Getting Started](../introduction#accessible_chart_toolbar) for the underlying accessibility rationale.
 
 ## Area (simple)
 
@@ -2309,7 +2309,7 @@ export function Example() {
 
 ## Toolbar customization
 
-The demos above use the default toolbar (`chartToolbar={{}}`). The `chartToolbar` object accepts options for adding menu items, customizing the data table, hiding individual buttons, and theming. See [Getting Started](../introduction#chart_toolbar_props) for the full props reference and the list of standalone components exported from `@react-magma/charts`.
+The demos above use the default toolbar (`chartToolbar={{}}`). The `chartToolbar` object accepts options for adding menu items, customizing the data table, setting the chart title heading level, hiding individual buttons, and theming. See [Getting Started](../introduction#chart_toolbar_props) for the full props reference and the list of standalone components exported from `@react-magma/charts`.
 
 ### Additional "More options" items
 
@@ -2392,6 +2392,44 @@ export function Example() {
             { header: 'Chapter', key: 'group' },
             { header: 'Score (%)', key: 'value' },
           ],
+        }}
+      />
+    </Card>
+  );
+}
+```
+
+### Chart title heading level
+
+By default, the accessible toolbar renders the chart title as an `<h2>`. Pass `titleLevel` when the chart needs to fit a different page heading hierarchy.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart
+        type={CarbonChartType.bar}
+        dataSet={[
+          { group: 'Chapter 1', value: 85 },
+          { group: 'Chapter 2', value: 72 },
+          { group: 'Chapter 3', value: 91 },
+          { group: 'Chapter 4', value: 64 },
+        ]}
+        options={{
+          title: 'Chapter Performance',
+          axes: {
+            left: { mapsTo: 'value' },
+            bottom: { mapsTo: 'group', scaleType: 'labels' },
+          },
+          height: '400px',
+        }}
+        chartToolbar={{
+          titleLevel: 3,
         }}
       />
     </Card>
