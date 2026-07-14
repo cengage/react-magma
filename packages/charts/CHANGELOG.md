@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 15.0.0-rc.5
+
+### Patch Changes
+
+- 432eeeb: fix(charts): dedupe legend fieldset and announce legend context for VoiceOver
+
 ## 15.0.0-rc.4
 
 ### Minor Changes
