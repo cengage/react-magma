@@ -1,0 +1,323 @@
+---
+pageTitle: Skeleton API
+title: Skeleton
+props:
+  - SkeletonProps
+---
+
+<PageContent componentName="skeleton" type="api">
+
+<LeadParagraph>
+  Skeletons display a placeholder preview of content before the data loads,
+  reducing load-time frustration and communicating the shape of the UI that is
+  about to appear.
+</LeadParagraph>
+
+<Alert variant="info">Use a Skeleton when a load is expected to be brief and you can approximate the final layout. If a load is expected to take a long time, or could fail, use the <Link to="/api/loading-indicator">Loading Indicator</Link> instead (or fall back to it when a Skeleton has been displayed for too long).</Alert>
+
+## Basic Usage
+
+By default, the Skeleton renders as a single line of `text`. Wrap it in a
+container to constrain its width.
+
+```tsx
+import React from 'react';
+
+import { Skeleton } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div style={{ width: 400 }}>
+      <Skeleton />
+    </div>
+  );
+}
+```
+
+## Variants
+
+The `variant` prop controls the shape of the skeleton. It accepts `text` (the
+default), `rectangle`, `rounded`, and `circle`. The `text` variant derives its
+height from the current font size, so it scales with typography; the other
+variants use the `width` and `height` props.
+
+```tsx
+import React from 'react';
+
+import { Skeleton, SkeletonVariant } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div style={{ alignItems: 'center', display: 'flex', gap: 24, width: 500 }}>
+      <Skeleton variant={SkeletonVariant.circle} width={48} height={48} />
+      <div style={{ flex: 1 }}>
+        <Skeleton variant={SkeletonVariant.text} />
+        <Skeleton variant={SkeletonVariant.text} width="80%" />
+        <Skeleton variant={SkeletonVariant.rounded} height={80} />
+      </div>
+    </div>
+  );
+}
+```
+
+## Width and Height
+
+The `width` and `height` props accept a number or a string. If a number is
+provided, the value is treated as pixels. Strings are used as-is, so you can
+pass percentages or any other CSS unit. The `text` variant ignores `height`
+because its height comes from the font size.
+
+```tsx
+import React from 'react';
+
+import { Skeleton, SkeletonVariant } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <>
+      <Skeleton variant={SkeletonVariant.rectangle} width={300} height={40} />
+      <br />
+      <Skeleton variant={SkeletonVariant.rounded} width="50%" height="2rem" />
+    </>
+  );
+}
+```
+
+## Text Lines
+
+Combine multiple `text` skeletons to approximate a paragraph. Vary the width of
+the last line to make the placeholder feel more natural.
+
+```tsx
+import React from 'react';
+
+import { Skeleton, SkeletonVariant } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div style={{ width: 400 }}>
+      <Skeleton variant={SkeletonVariant.text} />
+      <Skeleton variant={SkeletonVariant.text} />
+      <Skeleton variant={SkeletonVariant.text} width="60%" />
+    </div>
+  );
+}
+```
+
+## Animation
+
+By default the Skeleton plays a subtle `shimmer` animation that sweeps a sheen
+from left to right. The `animation` prop can switch it to `pulse`, which gently
+blinks the whole shape by fading its opacity in and out.
+
+```tsx
+import React from 'react';
+
+import { Skeleton, SkeletonVariant, SkeletonAnimation } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div style={{ width: 400 }}>
+      <Skeleton
+        variant={SkeletonVariant.text}
+        animation={SkeletonAnimation.shimmer}
+      />
+      <Skeleton
+        variant={SkeletonVariant.text}
+        animation={SkeletonAnimation.pulse}
+      />
+    </div>
+  );
+}
+```
+
+The animation can be turned off entirely with `hasAnimation={false}`. It is also
+always disabled for users who have the `prefers-reduced-motion` setting enabled,
+regardless of the `animation` or `hasAnimation` values.
+
+```tsx
+import React from 'react';
+
+import { Skeleton, SkeletonVariant } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div style={{ width: 400 }}>
+      <Skeleton variant={SkeletonVariant.text} hasAnimation={false} />
+      <Skeleton
+        variant={SkeletonVariant.text}
+        width="70%"
+        hasAnimation={false}
+      />
+    </div>
+  );
+}
+```
+
+## Inferring Dimensions from Children
+
+Rather than repeating a component's dimensions, you can pass the component as
+`children` and the Skeleton will shrink to fit them. The children are visually
+hidden but still reserve their space, preventing layout shift when the real
+content loads. This works with any element or Magma component, and is best for
+fixed-size pieces such as avatars, buttons, icons, and tags.
+
+```tsx
+import React from 'react';
+
+import { Skeleton, SkeletonVariant, Button } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div style={{ alignItems: 'center', display: 'flex', gap: 16 }}>
+      <Skeleton variant={SkeletonVariant.rounded}>
+        <Button>Loading button</Button>
+      </Skeleton>
+    </div>
+  );
+}
+```
+
+<Alert variant="info">
+  Wrapping children is intended for elements with a fixed, known size. For
+  dynamic or complex components whose dimensions vary (for example a form that
+  can grow or shrink), don't wrap the component — compose skeleton primitives to
+  approximate the layout instead, as shown in the examples below. This keeps you
+  in control of the placeholder's dimensions regardless of the real content.
+</Alert>
+
+## Example: Card
+
+Compose skeletons to mirror the layout of a real UI while it loads.
+
+```tsx
+import React from 'react';
+
+import { Skeleton, SkeletonVariant, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card style={{ width: 320 }}>
+      <CardBody>
+        <Skeleton variant={SkeletonVariant.rectangle} height={160} />
+        <div style={{ marginTop: 16 }}>
+          <Skeleton variant={SkeletonVariant.text} />
+          <Skeleton variant={SkeletonVariant.text} width="90%" />
+          <Skeleton variant={SkeletonVariant.text} width="60%" />
+        </div>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Example: List
+
+```tsx
+import React from 'react';
+
+import { Skeleton, SkeletonVariant, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card style={{ width: 360 }}>
+      <CardBody>
+        {[0, 1, 2].map(index => (
+          <div
+            key={index}
+            style={{
+              alignItems: 'center',
+              display: 'flex',
+              gap: 16,
+              marginBottom: index < 2 ? 24 : 0,
+            }}
+          >
+            <Skeleton variant={SkeletonVariant.circle} width={40} height={40} />
+            <div style={{ flex: 1 }}>
+              <Skeleton variant={SkeletonVariant.text} />
+              <Skeleton variant={SkeletonVariant.text} width="70%" />
+            </div>
+          </div>
+        ))}
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Inverse
+
+The `isInverse` prop renders the skeleton with colors suited to a dark
+background.
+
+```tsx
+import React from 'react';
+
+import { Skeleton, SkeletonVariant, Card, CardBody } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card isInverse style={{ width: 360 }}>
+      <CardBody>
+        <div style={{ alignItems: 'center', display: 'flex', gap: 16 }}>
+          <Skeleton
+            isInverse
+            variant={SkeletonVariant.circle}
+            width={40}
+            height={40}
+          />
+          <div style={{ flex: 1 }}>
+            <Skeleton isInverse variant={SkeletonVariant.text} />
+            <Skeleton isInverse variant={SkeletonVariant.text} width="70%" />
+          </div>
+        </div>
+      </CardBody>
+    </Card>
+  );
+}
+```
+
+## Accessibility
+
+Each Skeleton is a purely decorative placeholder, so by default it is hidden
+from assistive technology with `aria-hidden` and is not focusable. This is
+intentional: if every shape announced itself, a screen reader would repeat
+"loading" many times for a single loading area.
+
+Communicate the loading state once, at the region level, rather than on each
+skeleton. Two common approaches:
+
+- Set `aria-busy="true"` on the container while it is loading, then render the
+  real content (with `aria-busy="false"`) when the data arrives.
+- Wrap the loading area in a live region (for example the <Link to="/api/announce">Announce</Link> component) and update its message when loading finishes.
+
+If you want a single skeleton to announce itself, pass an `aria-label`. When a
+label is present, the Skeleton is exposed as a `role="status"` live region
+(instead of being hidden) and announces the label. Only label one skeleton per
+loading area to avoid repeated announcements.
+
+```tsx
+import React from 'react';
+
+import { Skeleton, SkeletonVariant } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <div aria-busy="true">
+      <Skeleton variant={SkeletonVariant.text} aria-label="Loading article" />
+      <Skeleton variant={SkeletonVariant.text} />
+      <Skeleton variant={SkeletonVariant.text} width="60%" />
+    </div>
+  );
+}
+```
+
+## Skeleton Props
+
+**This component uses `forwardRef`. The ref is applied to the wrapping `span` element.**
+
+**Any other props supplied will be provided to the wrapping `span` element.**
+
+<SkeletonProps />
+
+</PageContent>
