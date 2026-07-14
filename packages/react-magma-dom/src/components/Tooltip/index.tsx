@@ -111,6 +111,7 @@ export const StyledTooltip = styled.div<{
       ? props.theme.tooltip.inverse.backgroundColor
       : props.theme.tooltip.backgroundColor};
   border-radius: ${props => props.theme.borderRadius};
+  box-sizing: border-box;
   color: ${props =>
     props.isInverse
       ? props.theme.tooltip.inverse.textColor
@@ -124,6 +125,7 @@ export const StyledTooltip = styled.div<{
   min-height: 2.5em;
   padding: ${props => props.theme.spaceScale.spacing03}
     ${props => props.theme.spaceScale.spacing04};
+  width: max-content;
   z-index: ${props => props.theme.tooltip.zIndex};
 `;
 
