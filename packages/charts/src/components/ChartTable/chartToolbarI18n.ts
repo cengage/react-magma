@@ -8,7 +8,9 @@ export interface ChartToolbarI18n {
   downloadAsJpg: string;
   downloadAsPng: string;
   exitFullScreen: string;
+  legendAllSelected: string;
   legendInstructions: string;
+  legendOnlySelected: string;
   makeFullScreen: string;
   moreOptionsAriaLabel: string;
   showAsTableTooltip: string;
@@ -21,7 +23,9 @@ const defaults: ChartToolbarI18n = {
   downloadAsJpg: 'Download as JPG',
   downloadAsPng: 'Download as PNG',
   exitFullScreen: 'Exit full screen',
+  legendAllSelected: 'All items selected',
   legendInstructions: 'Checking these checkboxes will update the chart.',
+  legendOnlySelected: 'Only {label} is selected',
   makeFullScreen: 'Make full screen',
   moreOptionsAriaLabel: 'More options',
   showAsTableTooltip: 'Show as table',
@@ -46,8 +50,11 @@ export function useChartToolbarI18n(): ChartToolbarI18n {
     downloadAsJpg: toolbar.downloadAsJpg ?? defaults.downloadAsJpg,
     downloadAsPng: toolbar.downloadAsPng ?? defaults.downloadAsPng,
     exitFullScreen: toolbar.exitFullScreen ?? defaults.exitFullScreen,
+    legendAllSelected: toolbar.legendAllSelected ?? defaults.legendAllSelected,
     legendInstructions:
       toolbar.legendInstructions ?? defaults.legendInstructions,
+    legendOnlySelected:
+      toolbar.legendOnlySelected ?? defaults.legendOnlySelected,
     makeFullScreen: toolbar.makeFullScreen ?? defaults.makeFullScreen,
     moreOptionsAriaLabel:
       toolbar.moreOptionsAriaLabel ?? defaults.moreOptionsAriaLabel,

@@ -1091,6 +1091,7 @@ describe('Dropdown', () => {
       await userEvent.click(getByText('Pasta'));
 
       expect(getByTestId(expandablePanelId)).toBeInTheDocument();
+      expect(getByTestId(expandablePanelId)).toHaveAttribute('role', 'menu');
     });
 
     it('should close an expanded panel of menu items when the DropdownExpandableMenuButton is clicked', async () => {

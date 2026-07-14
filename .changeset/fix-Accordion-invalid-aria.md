@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Accordion): fix invalid ARIA attribute
+fix(Accordion): correct panel ARIA attributes while preserving custom roles
