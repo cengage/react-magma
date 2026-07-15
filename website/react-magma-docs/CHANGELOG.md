@@ -1,5 +1,32 @@
 # Change Log
 
+## 6.0.3
+
+### Patch Changes
+
+- 4aebca4: docs(TreeView): clarify that `additionalContent` must render content instead of `null`
+- 4aebca4: chore(ci): temporarily allow Chromatic visual regression checks to fail without blocking CI
+- 4aebca4: docs(CarbonChart): document the `chartToolbar.titleLevel` option
+- 4aebca4: docs(CarbonChart): consolidate accessible chart toolbar guidance into the getting started, chart types, and chart demos pages
+- 4aebca4: docs(FormGroup): clarify when to use FormGroup versus Fieldset and correct the custom styling example
+- 4aebca4: docs(OpenWiki): correct repository guidance for contributors and coding agents
+- 4aebca4: fix(release): synchronize `package-lock.json` with workspace manifests so `npm ci` succeeds
+- 4aebca4: fix(docs): restore Edit in CodeSandbox for older documentation versions and consolidate their deployment workflow
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+- Updated dependencies [4aebca4]
+  - @react-magma/charts@14.1.0
+  - react-magma-dom@5.1.0
+
 ## 6.0.2
 
 ### Patch Changes

@@ -1,5 +1,19 @@
 # @react-magma/charts
 
+## 14.1.0
+
+### Minor Changes
+
+- 4aebca4: feat(CarbonChart): add `chartToolbar.titleLevel` to set the chart title heading level from 1 to 6; defaults to 2
+
+### Patch Changes
+
+- 4aebca4: fix(CarbonChart): announce legend item isolation and restoration to screen readers
+- 4aebca4: fix(CarbonChart): prevent duplicate legend fieldsets and announce legend context in VoiceOver
+- 4aebca4: fix(CarbonChart): group legend checkboxes in a semantic fieldset with an accessible legend
+- 4aebca4: fix(CarbonChart): expose each chart as a labeled region to assistive technology
+- 4aebca4: fix(CarbonChart): assign valid roles to labeled SVG groups to prevent prohibited ARIA attribute combinations
+
 ## 14.0.0
 
 ### Major Changes

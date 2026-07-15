@@ -1,5 +1,19 @@
 # Change Log
 
+## 5.1.0
+
+### Minor Changes
+
+- 4aebca4: feat(TreeView): allow clicking anywhere on a folder row to expand or collapse it with `TreeViewSelectable.off`
+- 4aebca4: feat(Badge): add `leftIcon`, `rightIcon`, and `weight` customization options
+
+### Patch Changes
+
+- 4aebca4: fix(Accordion): give panels region semantics and generate accordion-specific panel and button IDs
+- 4aebca4: fix(Dropdown): prevent Escape key events from propagating beyond nested dropdowns
+- 4aebca4: fix(TreeView): prevent keyboard focus from becoming trapped after collapsing a node
+- 4aebca4: fix(DateTimePicker): prevent crashes when the input contains an invalid date
+
 ## 5.0.0
 
 ### Major Changes
