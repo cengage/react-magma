@@ -2,4 +2,4 @@
 '@react-magma/charts': patch
 ---
 
-Chart: fix ARIA prohibited attribute usage in SVG elements
+fix(CarbonChart): assign valid roles to labeled SVG groups to prevent prohibited ARIA attribute combinations

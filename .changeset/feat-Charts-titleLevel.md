@@ -2,4 +2,4 @@
 '@react-magma/charts': minor
 ---
 
-feat(charts): Add `titleLevel` to `chartToolbar` config to control the heading level (1–6) of the chart title rendered by `CarbonChart`. Defaults to `2`.
+feat(CarbonChart): add `chartToolbar.titleLevel` to set the chart title heading level from 1 to 6; defaults to 2

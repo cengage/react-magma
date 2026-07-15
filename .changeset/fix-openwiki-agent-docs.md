@@ -2,4 +2,4 @@
 'react-magma-docs': patch
 ---
 
-docs: correct OpenWiki and agent guidance.
+docs(OpenWiki): correct repository guidance for contributors and coding agents

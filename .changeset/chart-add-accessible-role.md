@@ -2,4 +2,4 @@
 '@react-magma/charts': patch
 ---
 
-Chart: add accessible chart role and aria-label
+fix(CarbonChart): expose each chart as a labeled region to assistive technology

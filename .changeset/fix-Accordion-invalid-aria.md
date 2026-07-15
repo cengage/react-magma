@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Accordion): fix invalid ARIA attribute
+fix(Accordion): give panels region semantics and generate accordion-specific panel and button IDs

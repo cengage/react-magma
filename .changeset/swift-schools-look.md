@@ -2,4 +2,4 @@
 "react-magma-dom": minor
 ---
 
-feat(Badge): Add Badge icon and weight options
+feat(Badge): add `leftIcon`, `rightIcon`, and `weight` customization options

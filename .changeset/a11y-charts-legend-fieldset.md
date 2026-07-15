@@ -2,4 +2,4 @@
 '@react-magma/charts': patch
 ---
 
-fix(charts): Wrap checkboxes into `fieldset` + `legend`
+fix(CarbonChart): group legend checkboxes in a semantic fieldset with an accessible legend

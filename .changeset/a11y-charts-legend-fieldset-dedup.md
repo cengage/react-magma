@@ -2,4 +2,4 @@
 '@react-magma/charts': patch
 ---
 
-fix(charts): dedupe legend fieldset and announce legend context for VoiceOver
+fix(CarbonChart): prevent duplicate legend fieldsets and announce legend context in VoiceOver

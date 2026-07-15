@@ -2,4 +2,4 @@
 'react-magma-docs': patch
 ---
 
-chore: allow Chromatic workflow failures temporarily
+chore(ci): temporarily allow Chromatic visual regression checks to fail without blocking CI

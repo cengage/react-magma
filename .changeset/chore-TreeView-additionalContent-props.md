@@ -2,4 +2,4 @@
 'react-magma-docs': patch
 ---
 
-chore(TreeView): add warning for additionalContent prop in TreeView to ensure it renders content (not null)
+docs(TreeView): clarify that `additionalContent` must render content instead of `null`

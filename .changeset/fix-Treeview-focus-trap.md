@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Treeview): fix keyboard focus trap after collapse
+fix(TreeView): prevent keyboard focus from becoming trapped after collapsing a node

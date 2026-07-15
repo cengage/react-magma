@@ -2,4 +2,4 @@
 'react-magma-docs': patch
 ---
 
-fix(FormGroup): fix small docs issues
+docs(FormGroup): clarify when to use FormGroup versus Fieldset and correct the custom styling example

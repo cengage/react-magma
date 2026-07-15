@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(TreeView): support clicking anywhere on a folder to expand/collapse it for `selectable.off`
+feat(TreeView): allow clicking anywhere on a folder row to expand or collapse it with `TreeViewSelectable.off`
