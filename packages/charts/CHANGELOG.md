@@ -1,42 +1,18 @@
 # @react-magma/charts
 
-## 15.0.0-rc.5
-
-### Patch Changes
-
-- 432eeeb: fix(charts): dedupe legend fieldset and announce legend context for VoiceOver
-
-## 15.0.0-rc.4
+## 14.1.0
 
 ### Minor Changes
 
-- 359dfef: feat(charts): Add `titleLevel` to `chartToolbar` config to control the heading level (1–6) of the chart title rendered by `CarbonChart`. Defaults to `2`.
-
-## 15.0.0-rc.3
+- 4aebca4: feat(CarbonChart): add `chartToolbar.titleLevel` to set the chart title heading level from 1 to 6; defaults to 2
 
 ### Patch Changes
 
-- b06dacb: fix(Chart): announce legend isolation state to screen readers
-
-## 15.0.0-rc.2
-
-### Patch Changes
-
-- ce0a5f5: fix(charts): Wrap checkboxes into `fieldset` + `legend`
-
-## 15.0.0-rc.1
-
-### Patch Changes
-
-- Updated dependencies [5666475]
-  - react-magma-dom@5.1.0-rc.4
-
-## 14.0.1-rc.0
-
-### Patch Changes
-
-- Updated dependencies [88d933f]
-  - react-magma-dom@5.0.1-rc.0
+- 4aebca4: fix(CarbonChart): announce legend item isolation and restoration to screen readers
+- 4aebca4: fix(CarbonChart): prevent duplicate legend fieldsets and announce legend context in VoiceOver
+- 4aebca4: fix(CarbonChart): group legend checkboxes in a semantic fieldset with an accessible legend
+- 4aebca4: fix(CarbonChart): expose each chart as a labeled region to assistive technology
+- 4aebca4: fix(CarbonChart): assign valid roles to labeled SVG groups to prevent prohibited ARIA attribute combinations
 
 ## 14.0.0
 
