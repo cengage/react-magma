@@ -1,5 +1,12 @@
 # Change Log
 
+## 1.1.9
+
+### Patch Changes
+
+- f065941: Redeploy landing + docs so the v2 link bump to 2.6.2 (/version/2.6.2 routing) takes effect.
+- 1839dfc: Point the v2 documentation link to 2.6.2 in the landing version list (and generated \_redirects) and the previous-versions table, so /version/2.6.2 resolves.
+
 ## 1.1.8
 
 ### Patch Changes
