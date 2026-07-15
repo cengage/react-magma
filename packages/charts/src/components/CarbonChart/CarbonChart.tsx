@@ -1446,13 +1446,11 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         if (activeLabels.length === 1) {
           if (!legendAnnouncedRef.current) {
             legendAnnouncedRef.current = true;
-            setLegendAnnouncement(
-              toolbarI18n.legendOnlySelected.replace('{label}', activeLabels[0])
-            );
+            setLegendAnnouncement(`Only ${activeLabels[0]} is selected`);
           }
         } else if (activeLabels.length === allItems.length) {
           legendAnnouncedRef.current = false;
-          setLegendAnnouncement(toolbarI18n.legendAllSelected);
+          setLegendAnnouncement('All items selected');
         } else {
           legendAnnouncedRef.current = false;
           setLegendAnnouncement('');
@@ -1467,12 +1465,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       });
 
       return () => observer.disconnect();
-    }, [
-      type,
-      dataSet,
-      toolbarI18n.legendAllSelected,
-      toolbarI18n.legendOnlySelected,
-    ]);
+    }, [type, dataSet]);
 
     const groupsLength = Object.keys(buildColors()).length;
 
