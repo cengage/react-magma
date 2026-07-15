@@ -1,0 +1,32 @@
+{
+  "mode": "pre",
+  "tag": "rc",
+  "initialVersions": {
+    "@react-magma/charts": "14.0.0",
+    "@react-magma/dropzone": "14.0.0",
+    "react-magma-dom": "5.0.0",
+    "playwright": "1.0.0",
+    "react-magma-docs": "6.0.2",
+    "react-magma-landing": "1.1.9"
+  },
+  "changesets": [
+    "a11y-charts-legend-announcement",
+    "a11y-charts-legend-fieldset",
+    "chart-add-accessible-role",
+    "chart-fix-aria-prohibited-attr",
+    "chore-TreeView-additionalContent-props",
+    "chore-allow-chromatic-failures",
+    "docs-chart-toolbar-title-level",
+    "docs-remove-accessible-chart-toolbar-page",
+    "feat-Charts-titleLevel",
+    "feat-TreeView-click-anywhere-expand-selectable-off",
+    "fix-Accordion-invalid-aria",
+    "fix-Dropdown-stop-propagation",
+    "fix-FormGroup-docs-issues",
+    "fix-Treeview-focus-trap",
+    "fix-datetimepicker-crash-invalid-date",
+    "fix-openwiki-agent-docs",
+    "old-docs-codesandbox-deploy",
+    "swift-schools-look"
+  ]
+}

@@ -530,6 +530,8 @@ In a TreeView with `TreeViewSelectable.single`, you can control whether parent i
 
 By default, the `selectParents` prop is set to `true`, allowing parent items to be selected normally. When set to `false`, clicking on parent items will only expand/collapse them, while child items (leaves) can still be selected as usual.
 
+In `TreeViewSelectable.off` mode, there is nothing to select, so clicking anywhere on a folder row toggles its expanded/collapsed state by default.
+
 ```tsx
 import React from 'react';
 
@@ -1700,6 +1702,7 @@ export function Example() {
 
 The `additionalContent` prop allows the adopter to render additional custom content below the label.
 This can include any valid React node, such as text, icons, buttons, tooltips, or other components.
+Passing a React element `<Component />` is always treated as `true`. This means you need to ensure that component you provide for `additionalContent` actually renders something and does not return `null`.
 
 ```tsx
 import React from 'react';

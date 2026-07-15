@@ -76,4 +76,137 @@ npm install --save \
     "@react-magma/charts@^14.0.0"
 ```
 
+## Accessible chart toolbar
+
+Carbon Charts ships with built-in toolbar buttons (Show as Table, Fullscreen, More Options) that have several WCAG 2.2 violations:
+
+- `aria-haspopup="true"` is used incorrectly (it should be `"dialog"` for the table button and absent on the fullscreen button)
+- Focus does not move into the modal when "Show as Table" is activated
+- The table dialog lacks a semantic heading
+- The chart title uses `<p role="heading">` instead of a proper `<h2>`
+- Screen readers announce button labels redundantly
+- The "Show as table" label is not descriptive enough
+
+The `chartToolbar` prop on `CarbonChart` replaces Carbon's toolbar with accessible Magma components. When provided, Carbon's built-in toolbar is **automatically disabled** and the chart title is rendered as a semantic heading. The default heading level is `<h2>`, and can be changed with `chartToolbar.titleLevel`.
+
+### Basic usage
+
+Pass a `chartToolbar` object to `CarbonChart`. The title is read from `options.title`. This renders the accessible toolbar with "Show as table", "Fullscreen", and "More options" buttons. The "More options" dropdown includes built-in "Download as CSV", "Download as PNG", and "Download as JPG" items.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart
+        type={CarbonChartType.donut}
+        dataSet={[
+          { group: 'High performance', value: 50 },
+          { group: 'Average performance', value: 30 },
+          { group: 'Poor performance', value: 15 },
+          { group: 'Not attempted', value: 5 },
+        ]}
+        options={{
+          title: 'Overall Activity Performance',
+          resizable: true,
+          height: '400px',
+          donut: {
+            center: { label: 'Questions' },
+          },
+          legend: {
+            truncation: { type: 'none' },
+          },
+        }}
+        chartToolbar={{}}
+      />
+    </Card>
+  );
+}
+```
+
+See [Chart Demos](../chart-demos) for examples of every chart type with the accessible toolbar enabled, and the [Toolbar customization](../chart-demos#toolbar_customization) section for advanced configurations (custom menu items, table columns, chart title heading level, button visibility, inverse theme).
+
+### Chart toolbar props
+
+The chart title is read from `options.title` (the standard Carbon Charts title option) and rendered as a semantic heading element, replacing Carbon's inaccessible `<p role="heading">`. It renders as an `<h2>` by default.
+
+<SimplePropsTable
+  propertyValues={{
+    showAsTable: {
+      type: { name: 'boolean' },
+      required: false,
+      description: 'Renders the "Show as table" button and modal.',
+      defaultValue: 'true',
+    },
+    fullscreen: {
+      type: { name: 'boolean' },
+      required: false,
+      description: 'Renders the fullscreen toggle button.',
+      defaultValue: 'true',
+    },
+    moreOptions: {
+      type: { name: 'ReactNode' },
+      required: false,
+      description:
+        'Additional DropdownMenuItem elements appended below the built-in CSV/PNG/JPG download items.',
+      defaultValue: 'undefined',
+    },
+    tableColumns: {
+      type: { name: 'ChartDataTableColumn[]' },
+      required: false,
+      description:
+        'Column definitions for the data table. If omitted, columns are auto-derived from the dataset object keys.',
+      defaultValue: 'undefined',
+    },
+    tableHeaderLabel: {
+      type: { name: 'string' },
+      required: false,
+      description: 'First line of the modal heading.',
+      defaultValue: "'Tabular representation'",
+    },
+    tableHeaderLevel: {
+      type: {
+        name: '1 | 2 | 3 | 4 | 5 | 6',
+      },
+      required: false,
+      description:
+        'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
+      defaultValue: '2',
+    },
+    titleLevel: {
+      type: {
+        name: '1 | 2 | 3 | 4 | 5 | 6',
+      },
+      required: false,
+      description:
+        'Number to indicate which heading level will render for the chart title (e.g. h1, h2 etc.)',
+      defaultValue: '2',
+    },
+  }}
+/>
+
+### Standalone components
+
+For adopters who need more granular control outside of `CarbonChart`, the following components are also exported from `@react-magma/charts`:
+
+- `ChartTableButton` — Accessible "Show as table" trigger with `aria-haspopup="dialog"`
+- `ChartFullscreenButton` — Fullscreen toggle (no `aria-haspopup`)
+- `ChartMoreOptionsButton` — Dropdown wrapper with `MoreVertIcon`
+- `ChartTableModal` — Focus-trapped modal with semantic heading, data table, and "Download as CSV" button
+- `ChartDataTable` — Renders chart data in a Magma `Table` with auto-derived columns
+- `ChartToolbar` — Flex layout wrapper with heading and action slot
+
+### Accessibility
+
+The toolbar addresses the following WCAG 2.2 guidelines:
+
+- **1.3.1 Info and Relationships (Level A)** — Chart title uses a semantic heading instead of `<p role="heading">`. Modal has a semantic heading. Table uses `<th>` elements.
+- **2.4.3 Focus Order (Level A)** — Focus moves into the modal when it opens, and returns to the trigger button when it closes.
+- **2.4.6 Headings and Labels (Level AA)** — "Show as table" button uses the chart title as its accessible label. Button labels are descriptive and unique.
+- **4.1.2 Name, Role, Value (Level A)** — Correct `aria-haspopup="dialog"` on the table button. No `aria-haspopup` on the fullscreen button. `aria-expanded` reflects modal state.
+
 </PageContent>
