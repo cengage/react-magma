@@ -99,6 +99,15 @@ changelogs, package ownership, and npm dist-tags are approved.
 After merge, wait for publishing to complete and verify npm versions/tags,
 GitHub tags, generated changelogs, and docs deployment.
 
+## Draft The Slack Announcement
+
+After publish verification, read `references/slack-message.md` and return a
+copy-ready team-channel announcement to the user. Build it from the published
+package versions and final adopter-facing changelogs. If the user supplies a
+previous announcement, match its structure and tone. Do not claim the release is
+available before publish verification, and do not send the message unless the
+user explicitly requests that action.
+
 ## Synchronize Stable Back
 
 Block new integration PRs until synchronization finishes:
