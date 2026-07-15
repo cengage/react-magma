@@ -177,6 +177,10 @@ Verify:
 - Versioned docs and Storybook deployment.
 - No second workflow run is unintentionally publishing duplicate versions.
 
+After verification, generate the copy-ready team-channel message using
+`references/slack-message.md`. Derive versions and highlights from the published
+artifacts, not from prerelease package files.
+
 ## 9. Sync Stable Back To Integration
 
 Do this manually before new integration PRs merge. Do not wait for or rely on the
