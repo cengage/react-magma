@@ -16,34 +16,37 @@ team channel. Do not send it unless explicitly requested.
   take action because of it.
 - For v4, label the release as the v4/React 17 maintenance line and include the
   verified v4 npm dist-tag.
-- Match a supplied prior announcement's format and tone. Otherwise use the
-  concise template below without adding decorative emoji.
+- Match a supplied prior announcement's format and tone. React Magma's preferred
+  team-channel style uses the `:magma3:` emoji and the structure below.
 
 ## Verified Release Template
 
 ```text
-*React Magma {DOM_VERSION} is now available*
+:magma3: react-magma-dom@{DOM_VERSION} has been released!
 
-This release includes updates to {PUBLISHED_PACKAGE_LIST}.
+Here's a quick summary of what's new:
+New features
 
-*Highlights*
-- {ADOPTER_VISIBLE_CHANGE}
-- {ADOPTER_VISIBLE_CHANGE}
-- {ADOPTER_VISIBLE_CHANGE}
+{COMPONENT}: {ADOPTER_VISIBLE_FEATURE}
+{COMPONENT}: {ADOPTER_VISIBLE_FEATURE}
 
-*Published packages*
-- `react-magma-dom@{DOM_VERSION}`
-- `@react-magma/charts@{CHARTS_VERSION}`
-- {OTHER_PUBLISHED_PACKAGES}
 
-*Links*
-- <{GITHUB_RELEASE_URL}|Release notes>
-- <{DOCS_URL}|Documentation>
+Fixes & improvements
 
-Questions or issues can be shared in #react-magma.
+Accessibility: {ACCESSIBILITY_IMPROVEMENTS}
+Behavior: {BEHAVIOR_FIXES}
+Performance: {PERFORMANCE_IMPROVEMENTS}
+Dependencies: {DEPENDENCY_CHANGES}
 ```
 
-Remove unused package lines and placeholders. If only a draft is requested
-before publishing, title it `Draft: React Magma {VERSION} release` and replace
-"is now available" with "is planned for release."
+Remove empty categories instead of inventing content. When multiple adopter
+packages publish, include them in the headline, for example:
 
+```text
+:magma3: react-magma-dom@{DOM_VERSION} and @react-magma/charts@{CHARTS_VERSION} have been released!
+```
+
+Add release-note or documentation links only when they are useful and available;
+place them after the improvements section. If only a draft is requested before
+publishing, prefix the headline with `Draft:` and replace "has been released"
+with "is planned for release."
