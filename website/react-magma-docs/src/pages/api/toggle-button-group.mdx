@@ -218,7 +218,7 @@ By default, a Toggle Button Group renders with `role="group"`, and its buttons u
 Choose the role based on what selecting a button actually does:
 
 - **`group`** (default) — a set of related toggles that act on other content (for example, text alignment). Use `exclusive` for a single-choice set of radios, or leave it off for independent on/off switches.
-- **`radiogroup`** — a single-choice selection that is semantically a radio group. Pair with `exclusive`. Announced as a radio group containing radio buttons.
+- **`radiogroup`** — a single-choice selection that is semantically a radio group. The buttons are always announced as radios; pair the role with `exclusive` so the single-select behavior matches the radio group semantics.
 - **`tablist`** — buttons that switch between different views or sections of the page. Each button is rendered as a `tab` with `aria-selected`, following the [WAI-ARIA Tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/). Pair with `exclusive` and `enforced` so exactly one tab is always selected, and connect each button to its panel with `aria-controls` and `role="tabpanel"`.
 
 ### Tablist
@@ -269,7 +269,7 @@ export function Example() {
 
 ### Radio Group
 
-Use `role="radiogroup"` with `exclusive` for a single-choice selection that should be announced as a radio group.
+Use `role="radiogroup"` for a single-choice selection that should be announced as a radio group. The buttons render as radios regardless, so pair the role with `exclusive` to keep the single-select behavior consistent with the radio group semantics.
 
 ```tsx
 import React from 'react';

@@ -76,18 +76,24 @@ export type ToggleButtonProps = XOR<
   ToggleButtonIconProps
 >;
 
+export enum ToggleButtonRole {
+  radio = 'radio',
+  switch = 'switch',
+  tab = 'tab',
+}
+
 export function getToggleButtonRole(
   groupRole?: ToggleButtonGroupRole,
   exclusive?: boolean
-): 'tab' | 'radio' | 'switch' {
+): ToggleButtonRole {
   if (groupRole === ToggleButtonGroupRole.tablist) {
-    return 'tab';
+    return ToggleButtonRole.tab;
   }
   if (groupRole === ToggleButtonGroupRole.radiogroup) {
-    return 'radio';
+    return ToggleButtonRole.radio;
   }
 
-  return exclusive ? 'radio' : 'switch';
+  return exclusive ? ToggleButtonRole.radio : ToggleButtonRole.switch;
 }
 
 //Sets the icon width for icon only Toggle Buttons
@@ -171,7 +177,7 @@ export const ToggleButton = React.forwardRef<
 
   const inverseCheck = context.isInverse || isInverse;
   const roleCheck = getToggleButtonRole(context.role, context.exclusive);
-  const usesAriaSelected = roleCheck === 'tab';
+  const usesAriaSelected = roleCheck === ToggleButtonRole.tab;
 
   const handleClick = (event: any) => {
     if (
