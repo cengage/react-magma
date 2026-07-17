@@ -13,6 +13,7 @@
     "a11y-charts-legend-announcement",
     "a11y-charts-legend-fieldset-dedup",
     "a11y-charts-legend-fieldset",
+    "add-release-codex-skill",
     "chart-add-accessible-role",
     "chart-fix-aria-prohibited-attr",
     "chore-TreeView-additionalContent-props",

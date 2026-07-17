@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.6-next.10
+
+### Patch Changes
+
+- 1a6637362: docs(release): add a Codex skill for auditing cross-track fixes and preparing, validating, announcing, and synchronizing v5 and v4 releases
+
 ## 5.3.6-next.9
 
 ### Patch Changes
