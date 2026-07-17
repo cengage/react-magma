@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(TimePicker): Fix issue with `minutesStep` prop.
+TimePicker: apply `minutesStep` when using ArrowUp or ArrowDown in the minutes field.

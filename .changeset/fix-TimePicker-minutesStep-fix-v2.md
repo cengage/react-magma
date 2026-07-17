@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(TimePicker): Update logic for `minutesStep` prop
+TimePicker: snap arrow-key minute changes to valid `minutesStep` intervals.

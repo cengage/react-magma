@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(TimePicker): Fix issue with auto fill.
+TimePicker: accept browser autofill and numeric keyboard input without breaking controlled values.
