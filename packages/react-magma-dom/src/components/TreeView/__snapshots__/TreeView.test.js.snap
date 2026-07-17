@@ -18,12 +18,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   padding: 0;
 }
 
-.emotion-4 h1,
-.emotion-4 h2,
-.emotion-4 h3,
-.emotion-4 h4,
-.emotion-4 h5,
-.emotion-4 h6 {
+.emotion-4>h1,
+.emotion-4>h2,
+.emotion-4>h3,
+.emotion-4>h4,
+.emotion-4>h5,
+.emotion-4>h6 {
   background: none;
   color: inherit;
   font: inherit;
@@ -749,12 +749,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   padding: 0;
 }
 
-.emotion-4 h1,
-.emotion-4 h2,
-.emotion-4 h3,
-.emotion-4 h4,
-.emotion-4 h5,
-.emotion-4 h6 {
+.emotion-4>h1,
+.emotion-4>h2,
+.emotion-4>h3,
+.emotion-4>h4,
+.emotion-4>h5,
+.emotion-4>h6 {
   background: none;
   color: inherit;
   font: inherit;
@@ -1999,12 +1999,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   padding: 0;
 }
 
-.emotion-4 h1,
-.emotion-4 h2,
-.emotion-4 h3,
-.emotion-4 h4,
-.emotion-4 h5,
-.emotion-4 h6 {
+.emotion-4>h1,
+.emotion-4>h2,
+.emotion-4>h3,
+.emotion-4>h4,
+.emotion-4>h5,
+.emotion-4>h6 {
   background: none;
   color: inherit;
   font: inherit;
@@ -2840,12 +2840,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   padding: 0;
 }
 
-.emotion-4 h1,
-.emotion-4 h2,
-.emotion-4 h3,
-.emotion-4 h4,
-.emotion-4 h5,
-.emotion-4 h6 {
+.emotion-4>h1,
+.emotion-4>h2,
+.emotion-4>h3,
+.emotion-4>h4,
+.emotion-4>h5,
+.emotion-4>h6 {
   background: none;
   color: inherit;
   font: inherit;
@@ -4247,12 +4247,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   padding: 0;
 }
 
-.emotion-4 h1,
-.emotion-4 h2,
-.emotion-4 h3,
-.emotion-4 h4,
-.emotion-4 h5,
-.emotion-4 h6 {
+.emotion-4>h1,
+.emotion-4>h2,
+.emotion-4>h3,
+.emotion-4>h4,
+.emotion-4>h5,
+.emotion-4>h6 {
   background: none;
   color: inherit;
   font: inherit;
@@ -5023,12 +5023,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   padding: 0;
 }
 
-.emotion-4 h1,
-.emotion-4 h2,
-.emotion-4 h3,
-.emotion-4 h4,
-.emotion-4 h5,
-.emotion-4 h6 {
+.emotion-4>h1,
+.emotion-4>h2,
+.emotion-4>h3,
+.emotion-4>h4,
+.emotion-4>h5,
+.emotion-4>h6 {
   background: none;
   color: inherit;
   font: inherit;
@@ -6364,12 +6364,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   padding: 0;
 }
 
-.emotion-4 h1,
-.emotion-4 h2,
-.emotion-4 h3,
-.emotion-4 h4,
-.emotion-4 h5,
-.emotion-4 h6 {
+.emotion-4>h1,
+.emotion-4>h2,
+.emotion-4>h3,
+.emotion-4>h4,
+.emotion-4>h5,
+.emotion-4>h6 {
   background: none;
   color: inherit;
   font: inherit;
@@ -7140,12 +7140,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   padding: 0;
 }
 
-.emotion-4 h1,
-.emotion-4 h2,
-.emotion-4 h3,
-.emotion-4 h4,
-.emotion-4 h5,
-.emotion-4 h6 {
+.emotion-4>h1,
+.emotion-4>h2,
+.emotion-4>h3,
+.emotion-4>h4,
+.emotion-4>h5,
+.emotion-4>h6 {
   background: none;
   color: inherit;
   font: inherit;
@@ -8481,12 +8481,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   padding: 0;
 }
 
-.emotion-4 h1,
-.emotion-4 h2,
-.emotion-4 h3,
-.emotion-4 h4,
-.emotion-4 h5,
-.emotion-4 h6 {
+.emotion-4>h1,
+.emotion-4>h2,
+.emotion-4>h3,
+.emotion-4>h4,
+.emotion-4>h5,
+.emotion-4>h6 {
   background: none;
   color: inherit;
   font: inherit;
@@ -9322,12 +9322,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   padding: 0;
 }
 
-.emotion-4 h1,
-.emotion-4 h2,
-.emotion-4 h3,
-.emotion-4 h4,
-.emotion-4 h5,
-.emotion-4 h6 {
+.emotion-4>h1,
+.emotion-4>h2,
+.emotion-4>h3,
+.emotion-4>h4,
+.emotion-4>h5,
+.emotion-4>h6 {
   background: none;
   color: inherit;
   font: inherit;
@@ -10729,12 +10729,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   padding: 0;
 }
 
-.emotion-4 h1,
-.emotion-4 h2,
-.emotion-4 h3,
-.emotion-4 h4,
-.emotion-4 h5,
-.emotion-4 h6 {
+.emotion-4>h1,
+.emotion-4>h2,
+.emotion-4>h3,
+.emotion-4>h4,
+.emotion-4>h5,
+.emotion-4>h6 {
   background: none;
   color: inherit;
   font: inherit;
@@ -11570,12 +11570,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   padding: 0;
 }
 
-.emotion-4 h1,
-.emotion-4 h2,
-.emotion-4 h3,
-.emotion-4 h4,
-.emotion-4 h5,
-.emotion-4 h6 {
+.emotion-4>h1,
+.emotion-4>h2,
+.emotion-4>h3,
+.emotion-4>h4,
+.emotion-4>h5,
+.emotion-4>h6 {
   background: none;
   color: inherit;
   font: inherit;
@@ -12977,12 +12977,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   padding: 0;
 }
 
-.emotion-4 h1,
-.emotion-4 h2,
-.emotion-4 h3,
-.emotion-4 h4,
-.emotion-4 h5,
-.emotion-4 h6 {
+.emotion-4>h1,
+.emotion-4>h2,
+.emotion-4>h3,
+.emotion-4>h4,
+.emotion-4>h5,
+.emotion-4>h6 {
   background: none;
   color: inherit;
   font: inherit;
@@ -13753,12 +13753,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   padding: 0;
 }
 
-.emotion-4 h1,
-.emotion-4 h2,
-.emotion-4 h3,
-.emotion-4 h4,
-.emotion-4 h5,
-.emotion-4 h6 {
+.emotion-4>h1,
+.emotion-4>h2,
+.emotion-4>h3,
+.emotion-4>h4,
+.emotion-4>h5,
+.emotion-4>h6 {
   background: none;
   color: inherit;
   font: inherit;
