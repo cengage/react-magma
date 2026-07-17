@@ -1219,10 +1219,10 @@ describe('CarbonChart', () => {
       expect(itemsHost.getAttribute('aria-label')).toBeNull();
       expect(itemsHost.getAttribute('role')).toBe('list');
 
-      if (itemsHost !== legend) {
-        expect(legend.getAttribute('role')).toBeNull();
-        expect(legend.getAttribute('aria-label')).toBeNull();
-      }
+      expect(legend.getAttribute('role')).toBe(
+        itemsHost === legend ? 'list' : null
+      );
+      expect(legend.getAttribute('aria-label')).toBeNull();
 
       const items = itemsHost.querySelectorAll('.legend-item');
       expect(items.length).toBeGreaterThan(0);

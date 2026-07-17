@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-Accordion: remove invalid ARIA attributes from accordion content.
+Accordion: expose expanded panels as labelled regions while preserving existing generated button and panel IDs.

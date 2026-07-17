@@ -1475,10 +1475,10 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
         class="emotion-4 emotion-5"
       >
         <button
-          aria-controls="accordion_0_panel"
+          aria-controls="0_panel"
           aria-expanded="true"
           class="emotion-6 emotion-7"
-          id="accordion_0_btn"
+          id="0_btn"
         >
           <span
             class="emotion-8 emotion-9"
@@ -1514,9 +1514,9 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
         >
           <div
             aria-hidden="false"
-            aria-labelledby="accordion_0_btn"
+            aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
-            id="accordion_0_panel"
+            id="0_panel"
             role="region"
           >
             <div
@@ -3674,10 +3674,10 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
         class="emotion-4 emotion-5"
       >
         <button
-          aria-controls="accordion_0_panel"
+          aria-controls="0_panel"
           aria-expanded="true"
           class="emotion-6 emotion-7"
-          id="accordion_0_btn"
+          id="0_btn"
         >
           <span
             class="emotion-8 emotion-9"
@@ -3713,9 +3713,9 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
         >
           <div
             aria-hidden="false"
-            aria-labelledby="accordion_0_btn"
+            aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
-            id="accordion_0_panel"
+            id="0_panel"
             role="region"
           >
             <div
@@ -5790,10 +5790,10 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
         class="emotion-4 emotion-5"
       >
         <button
-          aria-controls="accordion_0_panel"
+          aria-controls="0_panel"
           aria-expanded="true"
           class="emotion-6 emotion-7"
-          id="accordion_0_btn"
+          id="0_btn"
         >
           <span
             class="emotion-8 emotion-9"
@@ -5829,9 +5829,9 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
         >
           <div
             aria-hidden="false"
-            aria-labelledby="accordion_0_btn"
+            aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
-            id="accordion_0_panel"
+            id="0_panel"
             role="region"
           >
             <div
@@ -7905,10 +7905,10 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
         class="emotion-4 emotion-5"
       >
         <button
-          aria-controls="accordion_0_panel"
+          aria-controls="0_panel"
           aria-expanded="true"
           class="emotion-6 emotion-7"
-          id="accordion_0_btn"
+          id="0_btn"
         >
           <span
             class="emotion-8 emotion-9"
@@ -7944,9 +7944,9 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
         >
           <div
             aria-hidden="false"
-            aria-labelledby="accordion_0_btn"
+            aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
-            id="accordion_0_panel"
+            id="0_panel"
             role="region"
           >
             <div
@@ -10150,10 +10150,10 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
         class="emotion-4 emotion-5"
       >
         <button
-          aria-controls="accordion_0_panel"
+          aria-controls="0_panel"
           aria-expanded="true"
           class="emotion-6 emotion-7"
-          id="accordion_0_btn"
+          id="0_btn"
         >
           <span
             class="emotion-8 emotion-9"
@@ -10189,9 +10189,9 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
         >
           <div
             aria-hidden="false"
-            aria-labelledby="accordion_0_btn"
+            aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
-            id="accordion_0_panel"
+            id="0_panel"
             role="region"
           >
             <div
@@ -12396,10 +12396,10 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
         class="emotion-4 emotion-5"
       >
         <button
-          aria-controls="accordion_0_panel"
+          aria-controls="0_panel"
           aria-expanded="true"
           class="emotion-6 emotion-7"
-          id="accordion_0_btn"
+          id="0_btn"
         >
           <span
             class="emotion-8 emotion-9"
@@ -12435,9 +12435,9 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
         >
           <div
             aria-hidden="false"
-            aria-labelledby="accordion_0_btn"
+            aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
-            id="accordion_0_panel"
+            id="0_panel"
             role="region"
           >
             <div
@@ -14512,10 +14512,10 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
         class="emotion-4 emotion-5"
       >
         <button
-          aria-controls="accordion_0_panel"
+          aria-controls="0_panel"
           aria-expanded="true"
           class="emotion-6 emotion-7"
-          id="accordion_0_btn"
+          id="0_btn"
         >
           <span
             class="emotion-8 emotion-9"
@@ -14551,9 +14551,9 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
         >
           <div
             aria-hidden="false"
-            aria-labelledby="accordion_0_btn"
+            aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
-            id="accordion_0_panel"
+            id="0_panel"
             role="region"
           >
             <div
