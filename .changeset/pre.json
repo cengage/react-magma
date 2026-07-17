@@ -25,6 +25,7 @@
     "fix-Dropdown-stop-propagation",
     "fix-FormGroup-docs-issues",
     "fix-PasswordInput-broken-styles",
+    "fix-Treeview-collapse-state-icon",
     "fix-Treeview-focus-trap",
     "fix-datetimepicker-crash-invalid-date",
     "remove-deprecated-packages",

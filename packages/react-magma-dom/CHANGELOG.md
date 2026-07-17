@@ -1,5 +1,11 @@
 ## 4.14.0
 
+## 4.15.0-next.10
+
+### Patch Changes
+
+- 7a7b4490b: fix(TreeView): Add missing useCallback dependencies for folder collapse.
+
 ## 4.15.0-next.9
 
 ### Patch Changes
