@@ -453,6 +453,16 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       [getInteractiveElements, interactiveElements, isInsideTreeItem]
     );
 
+    const onExpandedClicked = React.useCallback(
+      (event: React.SyntheticEvent) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        handleExpandedChange(event, itemId);
+      },
+      [handleExpandedChange, itemId]
+    );
+
     const handleOnClick = React.useCallback(
       (event: React.MouseEvent) => {
         if (isDisabled) {
@@ -495,7 +505,15 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
           handleClick(event, itemId);
         }
       },
-      [isDisabled, selectable, handleClick, itemId]
+      [
+        isDisabled,
+        selectable,
+        handleClick,
+        itemId,
+        onExpandedClicked,
+        hasOwnTreeItems,
+        selectParents,
+      ]
     );
 
     const defaultIcon = React.useMemo(
@@ -619,16 +637,6 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
         labelText,
         checkboxChangeHandler,
       ]
-    );
-
-    const onExpandedClicked = React.useCallback(
-      (event: React.SyntheticEvent) => {
-        event.preventDefault();
-        event.stopPropagation();
-
-        handleExpandedChange(event, itemId);
-      },
-      [handleExpandedChange, itemId]
     );
 
     const handleExpandClick = React.useCallback(
