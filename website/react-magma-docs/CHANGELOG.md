@@ -4044,16 +4044,6 @@
   - @cengage-patterns/header@0.1.1
   - react-magma-icons@2.0.4
 
-## 2.1.10
-
-### Patch Changes
-
-- chore: init changeset
-- Updated dependencies [undefined]
-  - @cengage-patterns/header@0.1.1
-  - react-magma-dom@2.3.11
-  - react-magma-icons@2.0.4
-
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 

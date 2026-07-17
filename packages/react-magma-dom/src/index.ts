@@ -23,6 +23,7 @@ export {
   BadgeColor,
   BadgeProps,
   BadgeVariant,
+  BadgeWeight,
 } from './components/Badge';
 export { Banner, BannerProps } from './components/Banner';
 export {
