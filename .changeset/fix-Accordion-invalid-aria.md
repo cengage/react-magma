@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Accordion): fix invalid ARIA attribute
+Accordion: expose expanded panels as labelled regions while preserving existing generated button and panel IDs.

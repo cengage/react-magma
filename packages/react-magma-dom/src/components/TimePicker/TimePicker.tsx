@@ -228,6 +228,9 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             <StyledNumInput
               aria-label={hoursLabel}
               aria-describedby={descriptionId}
+              aria-valuemax={12}
+              aria-valuemin={1}
+              aria-valuenow={hour ? Number(hour) : undefined}
               data-testid="hoursTimeInput"
               id={hourId}
               isInverse={isInverse}
@@ -243,6 +246,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
               value={hour}
               inputMode="numeric"
               pattern="[0-9]*"
+              role="spinbutton"
               onFocus={e => {
                 e.target.select();
                 setIsFocused(true);
@@ -258,6 +262,9 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             </Divider>
             <StyledNumInput
               aria-label={minutesLabel}
+              aria-valuemax={59}
+              aria-valuemin={0}
+              aria-valuenow={minute ? Number(minute) : undefined}
               data-testid="minutesTimeInput"
               id={minuteId}
               isInverse={isInverse}
@@ -274,6 +281,7 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
               value={minute}
               inputMode="numeric"
               pattern="[0-9]*"
+              role="spinbutton"
               onFocus={e => {
                 e.target.select();
                 setIsFocused(true);

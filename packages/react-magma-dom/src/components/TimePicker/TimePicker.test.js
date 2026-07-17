@@ -17,6 +17,27 @@ describe('TimePicker', () => {
     expect(container).toBeInTheDocument();
   });
 
+  it('should preserve numeric spinbutton semantics for the time fields', () => {
+    const { getByTestId } = render(<TimePicker labelText="Time" />);
+    const hoursInput = getByTestId('hoursTimeInput');
+    const minutesInput = getByTestId('minutesTimeInput');
+
+    expect(hoursInput).toHaveAttribute('role', 'spinbutton');
+    expect(hoursInput).toHaveAttribute('aria-valuemin', '1');
+    expect(hoursInput).toHaveAttribute('aria-valuemax', '12');
+    expect(hoursInput).not.toHaveAttribute('aria-valuenow');
+    expect(minutesInput).toHaveAttribute('role', 'spinbutton');
+    expect(minutesInput).toHaveAttribute('aria-valuemin', '0');
+    expect(minutesInput).toHaveAttribute('aria-valuemax', '59');
+    expect(minutesInput).not.toHaveAttribute('aria-valuenow');
+
+    fireEvent.change(hoursInput, { target: { value: '9' } });
+    fireEvent.change(minutesInput, { target: { value: '30' } });
+
+    expect(hoursInput).toHaveAttribute('aria-valuenow', '9');
+    expect(minutesInput).toHaveAttribute('aria-valuenow', '30');
+  });
+
   describe('Hour Input', () => {
     it('should allow for a single digit hour to be entered', () => {
       const { getByTestId } = render(<TimePicker label="label" />);
