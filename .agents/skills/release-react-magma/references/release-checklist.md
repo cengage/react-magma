@@ -9,7 +9,9 @@ When instructions disagree, use this order:
 
 1. Current `.github/workflows/publish.yml`, package scripts, Changesets config,
    and branch contents.
-2. `AGENTS.md` and checked-in OpenWiki documentation.
+2. `AGENTS.md` and checked-in OpenWiki documentation. When the selected track
+   does not contain these files, read them from `origin/dev` as policy context,
+   then verify commands and configuration against the selected track.
 3. GitHub wiki pages `Releasing React Magma` and
    `React Magma V5 Branching Strategy`.
 
@@ -48,7 +50,38 @@ For v4, replace `origin/main`/`origin/dev` with
 
 Never push the stable branch while resolving a release. A push triggers publish.
 
-## 2. Prove Branch Completeness
+## 2. Audit Fix Parity Across V5 And V4
+
+Run the two-way audit after fetching both integration branches:
+
+```bash
+.agents/skills/release-react-magma/scripts/audit-cross-track-fixes.sh
+```
+
+The script scans fix commits on both sides of the v5/v4 branch divergence. It
+recognizes exact patch equivalents, shared PR numbers, and normalized matching
+subjects. These are heuristics: an unmatched commit is a review candidate, not
+proof that a fix is missing, and a heuristic match still needs a quick
+applicability check.
+
+For every unmatched candidate in both directions:
+
+1. Read the source diff, changeset or changelog entry, tests, and linked PR.
+2. Check whether the affected package and behavior exist on the target track.
+3. Record exactly one disposition in the release PR:
+   - required: port it in a focused PR to the target integration branch;
+   - already ported: cite the target commit or PR the heuristic missed;
+   - superseded: cite the target change that replaced it;
+   - track-specific: explain the React, dependency, or architecture difference.
+4. For required ports, preserve adopter behavior rather than copying code
+   mechanically, add the target track's changeset and tests, and rerun the audit.
+
+Use `--since YYYY-MM-DD` only as a supplementary focused view; the release gate
+uses the default full-divergence audit. Use `--include-matched` when validating
+why the script considered a fix present. Do not proceed with an unclassified
+candidate or a required fix that has not reached its integration branch.
+
+## 3. Prove Branch Completeness
 
 Verify the stable and integration refs are ancestors of the release branch. A
 successful command has exit code zero:
@@ -68,7 +101,7 @@ Expected differences are versions, changelog cleanup, lockfile-related package
 metadata, or explicitly approved release fixes. If exact integration source is
 required, all source and test files must match integration byte-for-byte.
 
-## 3. Reconcile Changesets And Adopter Copy
+## 4. Reconcile Changesets And Adopter Copy
 
 List and read every changeset:
 
@@ -95,7 +128,7 @@ release; verify history before deleting them. Do not delete a file merely becaus
 it is absent from `pre.json.changesets`: it may have been added after the latest
 prerelease and still needs release.
 
-## 4. Validate Prerelease State
+## 5. Validate Prerelease State
 
 Require `.changeset/pre.json` with `mode: pre`. Compare every
 `initialVersions` entry to the corresponding package version on the stable ref.
@@ -108,7 +141,7 @@ can release as `5.1.0` and `14.1.0` while Dropzone remains unchanged.
 Do not commit the output of `version:exit` or `version:pkgs` to the release
 branch. The stable publish workflow performs those steps after merge.
 
-## 5. Clean Changelogs
+## 6. Clean Changelogs
 
 Before the dry run, each package changelog should begin with the latest stable
 release. Remove accumulated RC/next sections for the pending release, but retain
@@ -128,7 +161,7 @@ missing prior stable history, or entries scoped to the wrong package.
 Read the complete generated section as an adopter. Rewrite any vague, redundant,
 misleading, or overly internal entry and rerun the dry run before approval.
 
-## 6. Lockfile And Tests
+## 7. Lockfile And Tests
 
 Use the repository-pinned Node and npm versions. Run:
 
@@ -147,7 +180,7 @@ npm ci --legacy-peer-deps
 Do not accept unrelated dependency churn. Then run the complete checks required
 by `AGENTS.md`, including compiler checks, lint, tests, and build.
 
-## 7. Stable Dry Run
+## 8. Stable Dry Run
 
 Commit release-preparation changes first, then run:
 
@@ -164,7 +197,7 @@ Changesets may print prerelease peer-range warnings that disappear for the stabl
 version; confirm the final stable range actually satisfies the dependency before
 accepting such a warning.
 
-## 8. Merge And Verify Publish
+## 9. Merge And Verify Publish
 
 Open the PR from the release branch to the selected stable branch. After approval
 and green CI, merge once. Wait for the publish workflow to finish before syncing.
@@ -181,7 +214,7 @@ After verification, generate the copy-ready team-channel message using
 `references/slack-message.md`. Derive versions and highlights from the published
 artifacts, not from prerelease package files.
 
-## 9. Sync Stable Back To Integration
+## 10. Sync Stable Back To Integration
 
 Do this manually before new integration PRs merge. Do not wait for or rely on the
 repository's sync automation; it is known to fail.

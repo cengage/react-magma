@@ -1,6 +1,6 @@
 ---
 name: release-react-magma
-description: Prepare, audit, dry-run, and complete React Magma stable releases for the v5 (`dev` to `main`) or v4 (`v4/dev` to `v4/main`) tracks. Use when Codex is asked to open or review a release branch, reconcile Changesets prerelease state, predict package versions and changelogs, fix release lockfiles, validate publishing readiness, or synchronize stable branches back into their development branches after release.
+description: Prepare, audit, dry-run, and complete React Magma stable releases for the v5 (`dev` to `main`) or v4 (`v4/dev` to `v4/main`) tracks. Use when Codex is asked to compare fixes across v5 and v4, identify backport or forward-port candidates, open or review a release branch, reconcile Changesets prerelease state, predict package versions and changelogs, fix release lockfiles, validate publishing readiness, or synchronize stable branches back into their development branches after release.
 ---
 
 # Release React Magma
@@ -11,7 +11,9 @@ Prepare releases without pushing directly to a stable branch. Treat a push to
 ## Establish The Track
 
 1. Read `AGENTS.md`, `openwiki/quickstart.md`, and the release section in
-   `openwiki/workflows/contributing-and-tooling.md`.
+   `openwiki/workflows/contributing-and-tooling.md`. If the selected branch does
+   not contain them, read them from `origin/dev` as policy context and verify
+   every command and configuration claim against the selected branch.
 2. Read `references/release-checklist.md` in this skill.
 3. Fetch `origin` before comparing branches.
 4. Select exactly one track:
@@ -20,7 +22,10 @@ Prepare releases without pushing directly to a stable branch. Treat a push to
 5. Inspect `.github/workflows/publish.yml`, root `package.json`,
    `.changeset/config.json`, `.changeset/pre.json`, and `lerna.json` on the
    selected refs. Repository configuration overrides stale wiki descriptions.
-6. For v4, block release until the intended npm stable dist-tag is confirmed.
+6. Run `scripts/audit-cross-track-fixes.sh` and classify every unmatched fix in
+   both directions as required, already ported, superseded, or track-specific.
+   Block the release on unclassified or required-but-unported fixes.
+7. For v4, block release until the intended npm stable dist-tag is confirmed.
    The wiki names `v4-latest`, but the unified workflow may not configure it.
 
 ## Prepare The Release Branch
