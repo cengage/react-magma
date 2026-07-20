@@ -603,47 +603,58 @@ export const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
       [isDisabled, onExpandedClicked]
     );
 
-    const handleOnClick = (event: React.MouseEvent) => {
-      if (isDisabled) {
-        event.stopPropagation();
+    const handleOnClick = React.useCallback(
+      (event: React.MouseEvent) => {
+        if (isDisabled) {
+          event.stopPropagation();
 
-        return;
-      }
+          return;
+        }
 
-      const currentElement = event.target as HTMLElement;
-      const interactiveElement = currentElement.closest<HTMLElement>(
-        'button, [role="button"], a[href], input, select, textarea, [role="menuitem"]'
-      );
+        const currentElement = event.target as HTMLElement;
+        const interactiveElement = currentElement.closest<HTMLElement>(
+          'button, [role="button"], a[href], input, select, textarea, [role="menuitem"]'
+        );
 
-      // Preventing selecting the item when clicking on interactive elements when `selectable` is `single`
-      if (interactiveElement) {
-        event.stopPropagation();
+        // Preventing selecting the item when clicking on interactive elements when `selectable` is `single`
+        if (interactiveElement) {
+          event.stopPropagation();
 
-        return;
-      }
+          return;
+        }
 
-      // If selectParents is false and this is a parent item, handle expand/collapse instead of selection
-      if (
-        selectable === TreeViewSelectable.single &&
-        !selectParents &&
-        hasOwnTreeItems
-      ) {
-        onExpandedClicked(event);
+        // If selectParents is false and this is a parent item, handle expand/collapse instead of selection
+        if (
+          selectable === TreeViewSelectable.single &&
+          !selectParents &&
+          hasOwnTreeItems
+        ) {
+          onExpandedClicked(event);
 
-        return;
-      }
+          return;
+        }
 
-      // In selectable=off mode, clicking anywhere on a parent item toggles expand/collapse
-      if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
-        onExpandedClicked(event);
+        // In selectable=off mode, clicking anywhere on a parent item toggles expand/collapse
+        if (selectable === TreeViewSelectable.off && hasOwnTreeItems) {
+          onExpandedClicked(event);
 
-        return;
-      }
+          return;
+        }
 
-      if (selectable === TreeViewSelectable.single) {
-        handleClick(event, itemId);
-      }
-    };
+        if (selectable === TreeViewSelectable.single) {
+          handleClick(event, itemId);
+        }
+      },
+      [
+        isDisabled,
+        selectable,
+        handleClick,
+        itemId,
+        onExpandedClicked,
+        hasOwnTreeItems,
+        selectParents,
+      ]
+    );
 
     const tabIndex = React.useMemo(() => {
       if (isDisabled) {
