@@ -1,5 +1,11 @@
 # Change Log
 
+## 13.0.0
+
+### Patch Changes
+
+- 3f22c5b3e: Dropzone: update the react-magma-dom peer dependency range for compatibility with react-magma-dom 4.15.0.
+
 ## 12.0.5
 
 ### Patch Changes

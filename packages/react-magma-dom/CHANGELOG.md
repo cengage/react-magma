@@ -1,5 +1,27 @@
 # react-magma-dom
 
+## 4.15.0
+
+### Minor Changes
+
+- 3f22c5b3e: TreeView: allow clicking anywhere on a folder row to expand or collapse it when `selectable="off"`.
+- 3f22c5b3e: Badge: add icon support and configurable font weight.
+
+### Patch Changes
+
+- 3f22c5b3e: Chart: expose SVG charts with an accessible role and label.
+- 3f22c5b3e: Chart: remove ARIA attributes that are prohibited on SVG elements.
+- 3f22c5b3e: Accordion: expose expanded panels as labelled regions while preserving existing generated button and panel IDs.
+- 3f22c5b3e: CharacterCounter: prevent duplicate character-count announcements in screen readers on Windows with Chrome.
+- 3f22c5b3e: Dropdown: stop Escape key events from propagating beyond nested dropdowns.
+- 3f22c5b3e: PasswordInput: restore styling for custom visibility buttons.
+- 3f22c5b3e: TimePicker: apply `minutesStep` when using ArrowUp or ArrowDown in the minutes field.
+- 3f22c5b3e: TimePicker: snap arrow-key minute changes to valid `minutesStep` intervals.
+- 3f22c5b3e: TreeView: keep folder expansion behavior and collapse-state icons synchronized when item state changes.
+- 3f22c5b3e: TreeView: prevent keyboard focus from becoming trapped after collapsing a folder.
+- 3f22c5b3e: DateTimePicker: prevent invalid date input from causing a runtime error.
+- 3f22c5b3e: TimePicker: accept browser autofill and numeric keyboard input while preserving numeric spinbutton semantics and controlled values.
+
 ## 4.14.0
 
 ### Minor Changes
