@@ -1345,6 +1345,15 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   white-space: nowrap;
 }
 
+.emotion-18:visited,
+.emotion-18:hover,
+.emotion-18:focus,
+.emotion-18:active {
+  color: #454545;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
 .emotion-18:hover,
 .emotion-18:focus {
   background: #F5F5F5;
@@ -1673,6 +1682,15 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   margin: 0;
   padding: 8px 16px;
   white-space: nowrap;
+}
+
+.emotion-18:visited,
+.emotion-18:hover,
+.emotion-18:focus,
+.emotion-18:active {
+  color: #454545;
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
 .emotion-18:hover,
@@ -2217,6 +2235,15 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   white-space: nowrap;
 }
 
+.emotion-15:visited,
+.emotion-15:hover,
+.emotion-15:focus,
+.emotion-15:active {
+  color: #454545;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
 .emotion-15:hover,
 .emotion-15:focus {
   background: #F5F5F5;
@@ -2599,6 +2626,15 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   margin: 0;
   padding: 8px 16px;
   white-space: nowrap;
+}
+
+.emotion-15:visited,
+.emotion-15:hover,
+.emotion-15:focus,
+.emotion-15:active {
+  color: #454545;
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
 .emotion-15:hover,
@@ -3148,6 +3184,15 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   white-space: nowrap;
 }
 
+.emotion-18:visited,
+.emotion-18:hover,
+.emotion-18:focus,
+.emotion-18:active {
+  color: #454545;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
 .emotion-18:hover,
 .emotion-18:focus {
   background: #F5F5F5;
@@ -3525,6 +3570,15 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   margin: 0;
   padding: 8px 16px;
   white-space: nowrap;
+}
+
+.emotion-18:visited,
+.emotion-18:hover,
+.emotion-18:focus,
+.emotion-18:active {
+  color: #454545;
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
 .emotion-18:hover,
@@ -4130,6 +4184,15 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   white-space: nowrap;
 }
 
+.emotion-18:visited,
+.emotion-18:hover,
+.emotion-18:focus,
+.emotion-18:active {
+  color: #454545;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
 .emotion-18:hover,
 .emotion-18:focus {
   background: #F5F5F5;
@@ -4573,6 +4636,15 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   margin: 0;
   padding: 8px 16px;
   white-space: nowrap;
+}
+
+.emotion-18:visited,
+.emotion-18:hover,
+.emotion-18:focus,
+.emotion-18:active {
+  color: #454545;
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
 .emotion-18:hover,

@@ -14,6 +14,8 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   max-width: 300px;
   min-height: 2.5em;
   padding: 8px 12px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   z-index: 999;
 }
@@ -31,6 +33,8 @@ exports[`Tooltip should render the tooltip component, positioned top by default 
   max-width: 300px;
   min-height: 2.5em;
   padding: 8px 12px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   z-index: 999;
 }
