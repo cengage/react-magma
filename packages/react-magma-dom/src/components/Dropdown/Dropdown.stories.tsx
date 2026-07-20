@@ -32,6 +32,7 @@ import {
   ButtonGroupOrientation,
 } from '../ButtonGroup';
 import { Card, CardBody } from '../Card';
+import { Popover, PopoverContent, PopoverTrigger } from '../Popover';
 
 import {
   Dropdown,
@@ -1088,4 +1089,27 @@ export const DropdownExpandableMenuWithSorting = {
       </div>
     );
   },
+};
+
+export const DropdownInsidePopover = {
+  render: args => (
+    <div style={{ margin: '200px auto', textAlign: 'center' }}>
+      <Popover>
+        <PopoverTrigger>
+          <Button>Open Popover</Button>
+        </PopoverTrigger>
+        <PopoverContent>
+          <div style={{ padding: '16px', minHeight: '150px' }}>
+            <Dropdown {...args}>
+              <DropdownButton>Open Dropdown</DropdownButton>
+              <DropdownContent>
+                <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+                <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+              </DropdownContent>
+            </Dropdown>
+          </div>
+        </PopoverContent>
+      </Popover>
+    </div>
+  ),
 };

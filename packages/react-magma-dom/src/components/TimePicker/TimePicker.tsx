@@ -145,6 +145,14 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
     const i18n = React.useContext(I18nContext);
     const [isFocused, setIsFocused] = React.useState(false);
 
+    const handleNumericBeforeInput = (e: React.FormEvent<HTMLInputElement>) => {
+      const native = e.nativeEvent as InputEvent;
+
+      if (typeof native.data === 'string' && /\D/.test(native.data)) {
+        e.preventDefault();
+      }
+    };
+
     const {
       containerStyle,
       errorMessage,
@@ -220,20 +228,24 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             <StyledNumInput
               aria-label={hoursLabel}
               aria-describedby={descriptionId}
+              aria-valuemax={12}
+              aria-valuemin={1}
+              aria-valuenow={hour ? Number(hour) : undefined}
               data-testid="hoursTimeInput"
               id={hourId}
               isInverse={isInverse}
-              maxLength={2}
-              max="12"
-              min="1"
               isFocused={hasTime || isFocused}
               onChange={handleHourChange}
+              onBeforeInput={handleNumericBeforeInput}
               onKeyDown={e => handleHourKeyDown(e, handleHourChange)}
               placeholder="--"
               ref={hourRef}
               theme={theme}
-              type="number"
+              type="text"
               value={hour}
+              inputMode="numeric"
+              pattern="[0-9]*"
+              role="spinbutton"
               onFocus={e => {
                 e.target.select();
                 setIsFocused(true);
@@ -249,21 +261,25 @@ export const TimePicker = React.forwardRef<HTMLInputElement, TimePickerProps>(
             </Divider>
             <StyledNumInput
               aria-label={minutesLabel}
+              aria-valuemax={59}
+              aria-valuemin={0}
+              aria-valuenow={minute ? Number(minute) : undefined}
               data-testid="minutesTimeInput"
               id={minuteId}
               isInverse={isInverse}
-              maxLength={2}
-              max="59"
-              min="0"
               isFocused={hasTime || isFocused}
               onChange={handleMinuteChange}
+              onBeforeInput={handleNumericBeforeInput}
               onKeyDown={e => handleMinuteKeyDown(e, handleMinuteChange)}
               placeholder="--"
               ref={minuteRef}
               step={minutesStep || 1}
               theme={theme}
-              type="number"
+              type="text"
               value={minute}
+              inputMode="numeric"
+              pattern="[0-9]*"
+              role="spinbutton"
               onFocus={e => {
                 e.target.select();
                 setIsFocused(true);

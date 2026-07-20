@@ -4404,6 +4404,186 @@ describe('TreeView', () => {
     });
   });
 
+  describe('click anywhere on a folder toggles expand/collapse in selectable.off', () => {
+    it('expands a folder when clicking the label in selectable=off mode', () => {
+      const { getByTestId } = render(
+        <TreeView ariaLabel="TreeView" selectable={TreeViewSelectable.off}>
+          <TreeItem label="Parent" itemId="parent" testId="parent">
+            <TreeItem label="Child" itemId="child" testId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const parent = getByTestId('parent');
+      expect(parent).toHaveAttribute('aria-expanded', 'false');
+
+      userEvent.click(getByTestId('parent-label'));
+
+      expect(parent).toHaveAttribute('aria-expanded', 'true');
+    });
+
+    it('collapses a folder when clicking the label again in selectable=off mode', () => {
+      const { getByTestId } = render(
+        <TreeView
+          ariaLabel="TreeView"
+          selectable={TreeViewSelectable.off}
+          initialExpandedItems={['parent']}
+        >
+          <TreeItem label="Parent" itemId="parent" testId="parent">
+            <TreeItem label="Child" itemId="child" testId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const parent = getByTestId('parent');
+      expect(parent).toHaveAttribute('aria-expanded', 'true');
+
+      userEvent.click(getByTestId('parent-label'));
+
+      expect(parent).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    it('expands a folder when clicking the item wrapper in selectable=off mode', () => {
+      const { getByTestId } = render(
+        <TreeView ariaLabel="TreeView" selectable={TreeViewSelectable.off}>
+          <TreeItem label="Parent" itemId="parent" testId="parent">
+            <TreeItem label="Child" itemId="child" testId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const parent = getByTestId('parent');
+      expect(parent).toHaveAttribute('aria-expanded', 'false');
+
+      userEvent.click(getByTestId('parent-itemwrapper'));
+
+      expect(parent).toHaveAttribute('aria-expanded', 'true');
+    });
+
+    it('fires onExpandedChange when clicking a folder in selectable=off mode', () => {
+      const onExpandedChange = jest.fn();
+
+      const { getByTestId } = render(
+        <TreeView
+          ariaLabel="TreeView"
+          selectable={TreeViewSelectable.off}
+          onExpandedChange={onExpandedChange}
+        >
+          <TreeItem label="Parent" itemId="parent" testId="parent">
+            <TreeItem label="Child" itemId="child" testId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      userEvent.click(getByTestId('parent-label'));
+
+      expect(onExpandedChange).toHaveBeenCalled();
+      const lastCallArgs = onExpandedChange.mock.calls.pop();
+      expect(lastCallArgs[1]).toEqual(['parent']);
+    });
+
+    it('does nothing when clicking a leaf item in selectable=off mode', () => {
+      const onExpandedChange = jest.fn();
+
+      const { getByTestId } = render(
+        <TreeView
+          ariaLabel="TreeView"
+          selectable={TreeViewSelectable.off}
+          onExpandedChange={onExpandedChange}
+        >
+          <TreeItem label="Leaf" itemId="leaf" testId="leaf" />
+        </TreeView>
+      );
+
+      const leaf = getByTestId('leaf');
+      expect(leaf).not.toHaveAttribute('aria-expanded');
+
+      userEvent.click(getByTestId('leaf-label'));
+
+      expect(leaf).not.toHaveAttribute('aria-expanded');
+      expect(onExpandedChange).not.toHaveBeenCalled();
+    });
+
+    it('does not expand a disabled folder when clicked in selectable=off mode', () => {
+      const onExpandedChange = jest.fn();
+
+      const { getByTestId } = render(
+        <TreeView
+          ariaLabel="TreeView"
+          selectable={TreeViewSelectable.off}
+          onExpandedChange={onExpandedChange}
+        >
+          <TreeItem label="Parent" itemId="parent" testId="parent" isDisabled>
+            <TreeItem label="Child" itemId="child" testId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const parent = getByTestId('parent');
+      expect(parent).toHaveAttribute('aria-expanded', 'false');
+
+      userEvent.click(getByTestId('parent-label'));
+
+      expect(parent).toHaveAttribute('aria-expanded', 'false');
+      expect(onExpandedChange).not.toHaveBeenCalled();
+    });
+
+    it('does not toggle expansion when clicking a folder in single-select mode with selectParents=true (default)', () => {
+      const onExpandedChange = jest.fn();
+      const onSelectedItemChange = jest.fn();
+
+      const { getByTestId } = render(
+        <TreeView
+          ariaLabel="TreeView"
+          selectable={TreeViewSelectable.single}
+          onExpandedChange={onExpandedChange}
+          onSelectedItemChange={onSelectedItemChange}
+        >
+          <TreeItem label="Parent" itemId="parent" testId="parent">
+            <TreeItem label="Child" itemId="child" testId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const parent = getByTestId('parent');
+      expect(parent).toHaveAttribute('aria-expanded', 'false');
+
+      userEvent.click(getByTestId('parent-label'));
+
+      // Selection happens, but expansion does NOT toggle on row click.
+      expect(parent).toHaveAttribute('aria-selected', 'true');
+      expect(parent).toHaveAttribute('aria-expanded', 'false');
+      expect(onSelectedItemChange).toHaveBeenCalled();
+      expect(onExpandedChange).not.toHaveBeenCalled();
+    });
+
+    it('does not toggle expansion when clicking a folder row in multi-select mode', () => {
+      const onExpandedChange = jest.fn();
+
+      const { getByTestId } = render(
+        <TreeView
+          ariaLabel="TreeView"
+          selectable={TreeViewSelectable.multi}
+          onExpandedChange={onExpandedChange}
+        >
+          <TreeItem label="Parent" itemId="parent" testId="parent">
+            <TreeItem label="Child" itemId="child" testId="child" />
+          </TreeItem>
+        </TreeView>
+      );
+
+      const parent = getByTestId('parent');
+      expect(parent).toHaveAttribute('aria-expanded', 'false');
+
+      // Clicking the row wrapper should NOT toggle expansion in multi mode;
+      // the dedicated expand button is the only way to expand/collapse here.
+      userEvent.click(getByTestId('parent-itemwrapper'));
+
+      expect(parent).toHaveAttribute('aria-expanded', 'false');
+      expect(onExpandedChange).not.toHaveBeenCalled();
+    });
+  });
+
   describe('Dynamically updating tree', () => {
     it('should update when children are dynamically rendered inside an empty parent', () => {
       const DynamicChildrenTest = () => {

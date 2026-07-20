@@ -25,11 +25,14 @@ import {
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 import {
+  Announce,
   DropdownDivider,
   DropdownMenuItem,
   ThemeInterface,
   ThemeContext,
+  useDeviceDetect,
   useIsInverse,
+  VisuallyHidden,
 } from 'react-magma-dom';
 import {
   FullscreenExitIcon,
@@ -39,6 +42,7 @@ import {
 } from 'react-magma-icons';
 
 import { useCarbonModalFocusManagement } from '../../hooks/useCarbonModalFocusManagement';
+// @ts-ignore
 import './carbon-charts.css';
 import {
   ChartFullscreenButton,
@@ -103,6 +107,11 @@ export interface ChartToolbarConfig {
    * @default 2
    */
   tableHeaderLevel?: 1 | 2 | 3 | 4 | 5 | 6;
+  /**
+   * Heading level for the chart title.
+   * @default 2
+   */
+  titleLevel?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
 export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -162,6 +171,23 @@ const CarbonChartWrapper = styled.div<{
   groupsLength: number;
   theme: ThemeInterface;
 }>`
+  .cds--cc--legend-fieldset {
+    border: 0;
+    margin: 0;
+    min-inline-size: 0;
+    padding: 0;
+  }
+
+  .cds--cc--legend-fieldset > legend {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    top: auto;
+    white-space: nowrap;
+    width: 1px;
+  }
+
   &:fullscreen,
   &:-webkit-full-screen {
     background: ${props =>
@@ -1043,7 +1069,11 @@ function CarbonChartToolbar({
       isInverse={isInverse}
       theme={theme}
     >
-      <ChartTitle isInverse={isInverse} theme={theme}>
+      <ChartTitle
+        as={`h${config.titleLevel ?? 2}` as keyof JSX.IntrinsicElements}
+        isInverse={isInverse}
+        theme={theme}
+      >
         {resolvedTitle}
       </ChartTitle>
       <ToolbarActions theme={theme}>
@@ -1096,7 +1126,12 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     const [isTableOpen, setIsTableOpen] = React.useState(false);
     const [isFullscreen, setIsFullscreen] = React.useState(false);
+    const [legendAnnouncement, setLegendAnnouncement] = React.useState('');
+    const legendGroupAnnounceRef = React.useRef<HTMLDivElement | null>(null);
     const lastTableTriggerRef = React.useRef<HTMLButtonElement | null>(null);
+    const legendAnnouncedRef = React.useRef(false);
+    const selectionSignatureRef = React.useRef<string | undefined>(undefined);
+    const { isMacOS, isChrome } = useDeviceDetect();
 
     const mergedRef = React.useCallback(
       (node: HTMLDivElement | null) => {
@@ -1175,6 +1210,154 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     const chartTitle: string =
       (options as ExtendedChartOptions).title || toolbarI18n.defaultTitle;
+
+    const legendLabel = `${ariaLabel || chartTitle}. ${toolbarI18n.legendInstructions}`;
+
+    React.useEffect(() => {
+      const container = internalRef.current;
+
+      if (!container) return;
+
+      const applyListSemantics = (legend: Element) => {
+        const itemsHost = legend.matches('[data-name="legend-items"]')
+          ? legend
+          : legend.querySelector('[data-name="legend-items"]') || legend;
+
+        itemsHost.removeAttribute('aria-label');
+
+        if (itemsHost.getAttribute('role') !== 'list') {
+          itemsHost.setAttribute('role', 'list');
+        }
+
+        legend.querySelectorAll('.legend-item').forEach(item => {
+          if (item.getAttribute('role') !== 'listitem') {
+            item.setAttribute('role', 'listitem');
+          }
+        });
+
+        container.querySelectorAll('[role="list"]').forEach(el => {
+          if (el !== itemsHost && el.contains(itemsHost)) {
+            el.removeAttribute('role');
+          }
+        });
+        container.querySelectorAll('[aria-label="Data groups"]').forEach(el => {
+          if (el !== itemsHost && el.contains(itemsHost)) {
+            el.removeAttribute('aria-label');
+          }
+        });
+      };
+
+      const unwrapFieldset = (fieldset: Element) => {
+        fieldset.querySelector(':scope > legend')?.remove();
+        fieldset.replaceWith(...Array.from(fieldset.childNodes));
+      };
+
+      const wrapLegend = () => {
+        const legend = container.querySelector('.cds--cc--legend');
+
+        if (!legend) return;
+
+        applyListSemantics(legend);
+
+        const closestFieldset = legend.closest(
+          'fieldset.cds--cc--legend-fieldset'
+        );
+
+        container
+          .querySelectorAll('fieldset.cds--cc--legend-fieldset')
+          .forEach(fieldset => {
+            if (fieldset !== closestFieldset) {
+              unwrapFieldset(fieldset);
+            }
+          });
+
+        if (closestFieldset) {
+          const existingCaption =
+            closestFieldset.querySelector(':scope > legend');
+
+          if (existingCaption && existingCaption.textContent !== legendLabel) {
+            existingCaption.textContent = legendLabel;
+          }
+
+          return;
+        }
+
+        const fieldset = document.createElement('fieldset');
+        const caption = document.createElement('legend');
+
+        fieldset.className = 'cds--cc--legend-fieldset';
+        caption.textContent = legendLabel;
+        legend.before(fieldset);
+        fieldset.append(caption, legend);
+      };
+
+      wrapLegend();
+      const observer = new MutationObserver(wrapLegend);
+
+      observer.observe(container, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['role', 'aria-label'],
+      });
+
+      return () => observer.disconnect();
+    }, [legendLabel]);
+
+    React.useEffect(() => {
+      const container = internalRef.current;
+
+      if (!container || !isMacOS || !isChrome) return;
+
+      let announceTimer: ReturnType<typeof setTimeout>;
+      let alternateSuffix = false;
+
+      const closestLegend = (node: EventTarget | null) =>
+        node instanceof Element ? node.closest('.cds--cc--legend') : null;
+
+      const handleFocusIn = (event: FocusEvent) => {
+        const enteredLegend = closestLegend(event.target);
+        const cameFromLegend = closestLegend(event.relatedTarget);
+
+        if (enteredLegend && !cameFromLegend) {
+          if (legendGroupAnnounceRef.current) {
+            legendGroupAnnounceRef.current.textContent = '';
+          }
+
+          clearTimeout(announceTimer);
+          announceTimer = setTimeout(() => {
+            if (legendGroupAnnounceRef.current) {
+              alternateSuffix = !alternateSuffix;
+              legendGroupAnnounceRef.current.textContent =
+                legendLabel + (alternateSuffix ? ' ' : '');
+            }
+          }, 250);
+        }
+      };
+
+      const handleFocusOut = (event: FocusEvent) => {
+        const leftLegend =
+          closestLegend(event.target) && !closestLegend(event.relatedTarget);
+
+        // Reset once focus leaves the legend so re-entering announces again.
+        if (leftLegend) {
+          clearTimeout(announceTimer);
+
+          if (legendGroupAnnounceRef.current) {
+            legendGroupAnnounceRef.current.textContent = '';
+          }
+        }
+      };
+
+      container.addEventListener('focusin', handleFocusIn);
+      container.addEventListener('focusout', handleFocusOut);
+
+      return () => {
+        clearTimeout(announceTimer);
+        container.removeEventListener('focusin', handleFocusIn);
+        container.removeEventListener('focusout', handleFocusOut);
+      };
+    }, [isMacOS, isChrome, legendLabel]);
 
     const handleModalDownloadCsv = React.useCallback(() => {
       downloadCsv(dataSet as Array<Record<string, unknown>>, chartTitle);
@@ -1320,6 +1503,87 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       };
     }, [type]);
 
+    React.useEffect(() => {
+      const timer = setTimeout(() => {
+        if (internalRef.current) {
+          internalRef.current
+            .querySelectorAll<SVGGElement>('g[aria-label]')
+            .forEach(g => {
+              const role = g.getAttribute('role');
+
+              if (!role) {
+                g.setAttribute('role', 'img');
+              } else if (role === 'graphics-object group') {
+                g.setAttribute('role', 'graphics-object');
+              }
+            });
+        }
+      }, 0);
+
+      return () => clearTimeout(timer);
+    }, [type, dataSet]);
+
+    React.useEffect(() => {
+      const wrapper = internalRef.current;
+
+      if (!wrapper) return;
+
+      const observer = new MutationObserver(() => {
+        const allItems = wrapper.querySelectorAll<HTMLElement>(
+          '.legend-item:not(.additional)'
+        );
+
+        if (allItems.length <= 1) return;
+
+        const activeLabels: string[] = [];
+
+        allItems.forEach(el => {
+          const checkbox = el.querySelector<HTMLElement>('.checkbox');
+          const label = el.querySelector('p');
+
+          if (checkbox?.getAttribute('aria-checked') === 'true' && label) {
+            activeLabels.push(label.textContent?.trim() || '');
+          }
+        });
+
+        // Carbon re-applies aria-checked (with the same values) on every
+        // render, which still triggers this observer. Only announce when the
+        // selection actually changed, otherwise unrelated re-renders (e.g.
+        // the legend group announcement) cause phantom announcements.
+        const selectionSignature = `${activeLabels.join('|')}::${allItems.length}`;
+
+        if (selectionSignatureRef.current === selectionSignature) return;
+
+        const isFirstRun = selectionSignatureRef.current === undefined;
+
+        selectionSignatureRef.current = selectionSignature;
+
+        if (isFirstRun) return;
+
+        if (activeLabels.length === 1) {
+          if (!legendAnnouncedRef.current) {
+            legendAnnouncedRef.current = true;
+            setLegendAnnouncement(`Only ${activeLabels[0]} is selected`);
+          }
+        } else if (activeLabels.length === allItems.length) {
+          legendAnnouncedRef.current = false;
+          setLegendAnnouncement('All items selected');
+        } else {
+          legendAnnouncedRef.current = false;
+          setLegendAnnouncement('');
+        }
+      });
+
+      observer.observe(wrapper, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['aria-checked'],
+      });
+
+      return () => observer.disconnect();
+    }, [type, dataSet]);
+
     const groupsLength = Object.keys(colorScale).length;
 
     const showTable = chartToolbar?.showAsTable !== false;
@@ -1328,12 +1592,21 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
     return (
       <FullscreenRoot ref={mergedRef} isInverse={isInverse} theme={theme}>
+        <VisuallyHidden>
+          <Announce>{legendAnnouncement}</Announce>
+        </VisuallyHidden>
+        <VisuallyHidden>
+          <div aria-live="polite" ref={legendGroupAnnounceRef} />
+        </VisuallyHidden>
         <CarbonChartWrapper
           data-testid={testId}
           isInverse={isInverse}
           theme={theme}
           className={`carbon-chart-wrapper${chartToolbar ? ' has-magma-toolbar' : ''}`}
           groupsLength={groupsLength < 6 ? groupsLength : 14}
+          role="region"
+          aria-label={ariaLabel || chartTitle}
+          aria-roledescription="chart"
           {...rest}
         >
           <ChartContentWrapper>

@@ -33,15 +33,6 @@
         }
       }
     },
-    "schema-renderer": {
-      "targets": {
-        "build": {
-          "cache": true,
-          "dependsOn": ["react-magma-dom:build"],
-          "outputs": ["{projectRoot}/packages/schema-renderer/dist"]
-        }
-      }
-    },
     "website/react-magma-docs": {
       "targets": {
         "build": {
@@ -57,15 +48,6 @@
           "cache": true,
           "dependsOn": ["react-magma-dom:build"],
           "outputs": ["{projectRoot}/website/react-magma-landing/dist"]
-        }
-      }
-    },
-    "patterns/header": {
-      "targets": {
-        "build": {
-          "cache": true,
-          "dependsOn": ["react-magma-dom:build"],
-          "outputs": ["{projectRoot}/patterns/header/dist"]
         }
       }
     }

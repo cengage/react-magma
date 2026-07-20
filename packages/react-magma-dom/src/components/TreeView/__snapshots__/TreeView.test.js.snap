@@ -1517,6 +1517,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
             aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
             id="0_panel"
+            role="region"
           >
             <div
               class="emotion-14 emotion-15"
@@ -3715,6 +3716,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
             aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
             id="0_panel"
+            role="region"
           >
             <div
               class="emotion-14 emotion-15"
@@ -5830,6 +5832,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
             aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
             id="0_panel"
+            role="region"
           >
             <div
               class="emotion-14 emotion-15"
@@ -7944,6 +7947,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
             aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
             id="0_panel"
+            role="region"
           >
             <div
               class="emotion-14 emotion-15"
@@ -10188,6 +10192,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
             aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
             id="0_panel"
+            role="region"
           >
             <div
               class="emotion-14 emotion-15"
@@ -12433,6 +12438,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
             aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
             id="0_panel"
+            role="region"
           >
             <div
               class="emotion-14 emotion-15"
@@ -14548,6 +14554,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
             aria-labelledby="0_btn"
             class="emotion-12 emotion-13"
             id="0_panel"
+            role="region"
           >
             <div
               class="emotion-14 emotion-15"

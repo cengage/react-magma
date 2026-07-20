@@ -14,12 +14,6 @@
 
 ## 13.1.0
 
-### Patch Changes
-
-- 1aef43f36: fix(charts): Show the tooltip on the focused data point when tabbing through chart dots.
-
-## 13.1.0
-
 ### Minor Changes
 
 - 3fa7c5753: feat: Add accessible chart toolbar with "Show as table", fullscreen, and "More options" buttons
@@ -32,26 +26,9 @@
 
   Also exports standalone composable components (`ChartTableButton`, `ChartFullscreenButton`, `ChartMoreOptionsButton`, `ChartTableModal`, `ChartDataTable`, `ChartToolbar`) for adopters who need granular control outside of `CarbonChart`.
 
-## 14.0.0-next.0
-
-### Minor Changes
-
-- cab09c2ad: feat: Add accessible chart toolbar with "Show as table", fullscreen, and "More options" buttons
-
-  Adds a new `chartToolbar` prop to `CarbonChart` that renders a WCAG 2.2 compliant toolbar replacing Carbon's built-in navigation controls. When provided, Carbon's toolbar is automatically disabled and replaced with accessible Magma components featuring:
-
-  - **Show as table** button with `aria-haspopup="dialog"` and `aria-expanded`, opening a focus-trapped Magma Modal with semantic headings and an accessible data table
-  - **Fullscreen** button without `aria-haspopup` (fixing the previous WCAG violation)
-  - **More options** dropdown using Magma's Dropdown component with proper menu semantics
-
-  Also exports standalone composable components (`ChartTableButton`, `ChartFullscreenButton`, `ChartMoreOptionsButton`, `ChartTableModal`, `ChartDataTable`, `ChartToolbar`) for adopters who need granular control outside of `CarbonChart`.
-
 ### Patch Changes
 
-- Updated dependencies [cab09c2ad]
-- Updated dependencies [cab09c2ad]
-- Updated dependencies [cab09c2ad]
-  - react-magma-dom@4.13.0-next.2
+- 1aef43f36: fix(charts): Show the tooltip on the focused data point when tabbing through chart dots.
 
 ## 13.0.4-next.0
 
@@ -74,23 +51,6 @@
 
 - e23b1a2f9: fix(Charts): Add optional `ariaLabel` property for SVG container. The default "Interactive chart" label is no longer applied when `ariaLabel` is not provided.
 - e23b1a2f9: fix(Charts): Trap focus in "Show as table" modal
-
-## 14.0.0-next.3
-
-### Patch Changes
-
-- 55782f9e0: fix(charts): trap focus in Carbon Charts "Show as table" modal
-
-## 14.0.0-next.2
-
-### Patch Changes
-
-- de8db8f39: fix(publish): Add missing repository.url to package.json for npm provenance verification.
-- Updated dependencies [0223aac78]
-- Updated dependencies [6009a5824]
-- Updated dependencies [a939d4eea]
-- Updated dependencies [de8db8f39]
-  - react-magma-dom@4.12.0-next.3
 
 ## 13.0.2-next.1
 

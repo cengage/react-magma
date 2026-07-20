@@ -20,12 +20,19 @@ export default {
         options: CarbonChartType,
       },
     },
+    titleLevel: {
+      control: { type: 'select' },
+      options: [1, 2, 3, 4, 5, 6],
+      description: 'Heading level for the chart title (h1–h6).',
+    },
   },
 } as Meta;
 
-const Template: StoryFn<CarbonChartProps> = args => (
+const Template: StoryFn<
+  CarbonChartProps & { titleLevel?: 1 | 2 | 3 | 4 | 5 | 6 }
+> = ({ titleLevel, ...args }) => (
   <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
-    <CarbonChart {...args} chartToolbar={{}} />
+    <CarbonChart {...args} chartToolbar={{ titleLevel }} />
   </Card>
 );
 
