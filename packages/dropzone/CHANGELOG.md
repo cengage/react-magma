@@ -1,18 +1,10 @@
 # Change Log
 
-## 13.0.0-next.1
+## 13.0.0
 
 ### Patch Changes
 
-- Updated dependencies [37cc8e9b3]
-  - react-magma-dom@4.15.0-next.6
-
-## 12.0.6-next.0
-
-### Patch Changes
-
-- Updated dependencies [9ae682ce8]
-  - react-magma-dom@4.14.1-next.0
+- 3f22c5b3e: Dropzone: update the react-magma-dom peer dependency range for compatibility with react-magma-dom 4.15.0.
 
 ## 12.0.5
 
@@ -25,8 +17,6 @@
 ### Patch Changes
 
 - ff5c7c9c7: chore(deps): Republish to align the `react-magma-dom` peer dependency with the 4.14.0 release.
-
-## 12.0.4
 
 ## 12.0.4
 
@@ -72,45 +62,6 @@
   - Return focus to the "Browse files" button after file actions.
   - Delete and remove button labels now include the file name.
   - Add `aria-describedby` linking the browse button to the helper message.
-
-## 14.0.0-next.3
-
-### Patch Changes
-
-- 347359010: fix(Dropzone): Fix docs example
-
-## 14.0.0-next.2
-
-### Patch Changes
-
-- 6cd334279: fix(Dropzone): Fix accessibility issues
-
-## 14.0.0-next.1
-
-### Patch Changes
-
-- de8db8f39: fix(publish): Add missing repository.url to package.json for npm provenance verification.
-- Updated dependencies [0223aac78]
-- Updated dependencies [6009a5824]
-- Updated dependencies [a939d4eea]
-- Updated dependencies [de8db8f39]
-  - react-magma-dom@4.12.0-next.3
-
-## 13.0.1-next.0
-
-### Patch Changes
-
-- Updated dependencies [aa87f4460]
-  - react-magma-dom@4.11.1-next.0
-
-## 13.0.0
-
-## 13.0.0-next.1
-
-### Patch Changes
-
-- Updated dependencies [2e6c1e441]
-  - react-magma-dom@4.11.0-next.3
 
 ## 12.0.2-next.0
 

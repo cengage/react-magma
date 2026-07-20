@@ -36,7 +36,9 @@ export interface UseTimePickerProps
 }
 
 export function useTimePicker(props: UseTimePickerProps) {
-  const { errorMessage, helperMessage, onChange } = props;
+  const { errorMessage, helperMessage, minutesStep, onChange } = props;
+  const parsedStep = Number(minutesStep);
+  const step = parsedStep > 0 ? parsedStep : 1;
   const i18n = React.useContext(I18nContext);
 
   const locale = i18n.locale || enUS;
@@ -192,6 +194,34 @@ export function useTimePicker(props: UseTimePickerProps) {
     if (event.key === 'ArrowRight') {
       minuteRef.current.focus();
     }
+
+    if (event.key === 'ArrowUp') {
+      const next = Number(hour || '0') + 1;
+
+      if (next > 12) return;
+
+      const newHour = calculateHour(next);
+
+      setHour(newHour);
+      setMinute(minute || '00');
+      updateTime(`${newHour}:${minute || '00'} ${amPm}`);
+
+      event.preventDefault();
+    }
+
+    if (event.key === 'ArrowDown') {
+      const prev = hour ? Number(hour) - 1 : 1;
+
+      if (prev < 1) return;
+
+      const newHour = calculateHour(prev);
+
+      setHour(newHour);
+      setMinute(minute || '00');
+      updateTime(`${newHour}:${minute || '00'} ${amPm}`);
+
+      event.preventDefault();
+    }
   }
 
   function handleMinuteKeyDown(event: React.KeyboardEvent, minChangeFunc) {
@@ -207,6 +237,34 @@ export function useTimePicker(props: UseTimePickerProps) {
 
     if (event.key === 'ArrowRight') {
       amPmRef.current.focus();
+    }
+
+    const applyMinute = (value: number) => {
+      const newMinute = calculateMinute(value);
+
+      setMinute(newMinute);
+      setHour(hour || '12');
+      updateTime(`${hour || '12'}:${newMinute} ${amPm}`);
+      event.preventDefault();
+    };
+
+    if (event.key === 'ArrowUp') {
+      const current = Number(minute || '0');
+      const next = (Math.floor(current / step) + 1) * step;
+
+      if (next > 59) return;
+
+      applyMinute(next);
+    }
+
+    if (event.key === 'ArrowDown') {
+      const current = minute ? Number(minute) : 0;
+
+      if (minute && current === 0) return;
+
+      const prev = (Math.ceil(current / step) - 1) * step;
+
+      applyMinute(Math.max(prev, 0));
     }
   }
 

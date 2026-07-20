@@ -85,11 +85,11 @@ Carbon Charts ships with built-in toolbar buttons (Show as Table, Fullscreen, Mo
 - `aria-haspopup="true"` is used incorrectly (it should be `"dialog"` for the table button and absent on the fullscreen button)
 - Focus does not move into the modal when "Show as Table" is activated
 - The table dialog lacks a semantic heading
-- The chart title uses `<p role="heading">` instead of a proper `<h2>`
+- The chart title uses `<p role="heading">` instead of a semantic heading element
 - Screen readers announce button labels redundantly
 - The "Show as table" label is not descriptive enough
 
-The `chartToolbar` prop on `CarbonChart` replaces Carbon's toolbar with accessible Magma components. When provided, Carbon's built-in toolbar is **automatically disabled** and the chart title is rendered as a semantic `<h2>`.
+The `chartToolbar` prop on `CarbonChart` replaces Carbon's toolbar with accessible Magma components. When provided, Carbon's built-in toolbar is **automatically disabled** and the chart title is rendered as a semantic heading. It defaults to `<h2>` and can be configured from `<h1>` through `<h6>` with `chartToolbar.titleLevel`.
 
 ### Basic usage
 
@@ -134,7 +134,7 @@ See [Chart Demos](../chart-demos) for examples of every chart type with the acce
 
 ### Chart toolbar props
 
-The chart title is read from `options.title` (the standard Carbon Charts title option) and rendered as a semantic `<h2>` element, replacing Carbon's inaccessible `<p role="heading">`.
+The chart title is read from `options.title` (the standard Carbon Charts title option) and rendered as a semantic heading element, replacing Carbon's inaccessible `<p role="heading">`. It defaults to `<h2>`; set `titleLevel` to match the surrounding page hierarchy.
 
 <SimplePropsTable
   propertyValues={{
@@ -156,6 +156,15 @@ The chart title is read from `options.title` (the standard Carbon Charts title o
       description:
         'Additional DropdownMenuItem elements appended below the built-in CSV/PNG/JPG download items.',
       defaultValue: 'undefined',
+    },
+    titleLevel: {
+      type: {
+        name: '1 | 2 | 3 | 4 | 5 | 6',
+      },
+      required: false,
+      description:
+        'Heading level used for the chart title rendered from options.title.',
+      defaultValue: '2',
     },
     tableColumns: {
       type: { name: 'ChartDataTableColumn[]' },
@@ -197,7 +206,7 @@ For adopters who need more granular control outside of `CarbonChart`, the follow
 
 The toolbar addresses the following WCAG 2.2 guidelines:
 
-- **1.3.1 Info and Relationships (Level A)** — Chart title uses a semantic `<h2>` instead of `<p role="heading">`. Modal has a semantic heading. Table uses `<th>` elements.
+- **1.3.1 Info and Relationships (Level A)** — Chart title uses a semantic `<h1>`–`<h6>` (default `<h2>`) instead of `<p role="heading">`. Modal has a semantic heading. Table uses `<th>` elements.
 - **2.4.3 Focus Order (Level A)** — Focus moves into the modal when it opens, and returns to the trigger button when it closes.
 - **2.4.6 Headings and Labels (Level AA)** — "Show as table" button uses the chart title as its accessible label. Button labels are descriptive and unique.
 - **4.1.2 Name, Role, Value (Level A)** — Correct `aria-haspopup="dialog"` on the table button. No `aria-haspopup` on the fullscreen button. `aria-expanded` reflects modal state.

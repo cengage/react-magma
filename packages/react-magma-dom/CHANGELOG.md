@@ -1,70 +1,28 @@
+# react-magma-dom
+
+## 4.15.0
+
+### Minor Changes
+
+- 3f22c5b3e: TreeView: allow clicking anywhere on a folder row to expand or collapse it when `selectable="off"`.
+- 3f22c5b3e: Badge: add icon support and configurable font weight.
+
+### Patch Changes
+
+- 3f22c5b3e: Chart: expose SVG charts with an accessible role and label.
+- 3f22c5b3e: Chart: remove ARIA attributes that are prohibited on SVG elements.
+- 3f22c5b3e: Accordion: expose expanded panels as labelled regions while preserving existing generated button and panel IDs.
+- 3f22c5b3e: CharacterCounter: prevent duplicate character-count announcements in screen readers on Windows with Chrome.
+- 3f22c5b3e: Dropdown: stop Escape key events from propagating beyond nested dropdowns.
+- 3f22c5b3e: PasswordInput: restore styling for custom visibility buttons.
+- 3f22c5b3e: TimePicker: apply `minutesStep` when using ArrowUp or ArrowDown in the minutes field.
+- 3f22c5b3e: TimePicker: snap arrow-key minute changes to valid `minutesStep` intervals.
+- 3f22c5b3e: TreeView: keep folder expansion behavior and collapse-state icons synchronized when item state changes.
+- 3f22c5b3e: TreeView: prevent keyboard focus from becoming trapped after collapsing a folder.
+- 3f22c5b3e: DateTimePicker: prevent invalid date input from causing a runtime error.
+- 3f22c5b3e: TimePicker: accept browser autofill and numeric keyboard input while preserving numeric spinbutton semantics and controlled values.
+
 ## 4.14.0
-
-## 4.15.0-next.10
-
-### Patch Changes
-
-- 7a7b4490b: fix(TreeView): Add missing useCallback dependencies for folder collapse.
-
-## 4.15.0-next.9
-
-### Patch Changes
-
-- d3e182993: Chart: fix ARIA prohibited attribute usage in SVG elements
-
-## 4.15.0-next.8
-
-### Minor Changes
-
-- 807aacba8: feat(Badge): Add Badge icon and weight options
-
-## 4.15.0-next.7
-
-### Patch Changes
-
-- be11036f2: fix(DateTimePicker): prevent crash when entering invalid date in input
-
-## 4.15.0-next.6
-
-### Minor Changes
-
-- 37cc8e9b3: feat(TreeView): support clicking anywhere on a folder to expand/collapse it for `selectable.off`
-
-## 4.14.1-next.5
-
-### Patch Changes
-
-- ded3b136c: Chart: add accessible chart role and aria-label
-
-## 4.14.1-next.4
-
-### Patch Changes
-
-- 90e3020f8: fix(Dropdown): Fix Escape key propagation in nested dropdown
-
-## 4.14.1-next.3
-
-### Patch Changes
-
-- 7aba8ce08: fix(Treeview): fix keyboard focus trap after collapse
-
-## 4.14.1-next.2
-
-### Patch Changes
-
-- d2bf46c90: fix(Accordion): fix invalid ARIA attribute
-
-## 4.14.1-next.1
-
-### Patch Changes
-
-- be9d33690: fix(CharacterCounter): Prevent the character count from being announced twice by screen readers on Windows + Chrome.
-
-## 4.14.1-next.0
-
-### Patch Changes
-
-- 9ae682ce8: fix(PasswordInput): Fix styles for the custom button
 
 ### Minor Changes
 
