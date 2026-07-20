@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.1-rc.0
+
+### Patch Changes
+
+- 48fdaf3: fix(TreeView): Add missing useCallback dependencies for folder collapse.
+
 ## 5.1.0
 
 ### Minor Changes
