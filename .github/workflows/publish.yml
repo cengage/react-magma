@@ -68,7 +68,11 @@ jobs:
               git commit -am "chore: exit prerelease mode"
             fi
           fi
-          npm run release
+          if [[ "${GITHUB_REF_NAME}" == "v4/main" ]]; then
+            npm run release -- --tag v4-latest
+          else
+            npm run release
+          fi
           git push --follow-tags
       - name: Get Alias
         id: info

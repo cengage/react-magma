@@ -1,80 +1,38 @@
 # Change Log
 
-## 5.3.6-next.10
+## 5.3.6
 
 ### Patch Changes
 
-- 1a6637362: docs(release): add a Codex skill for auditing cross-track fixes and preparing, validating, announcing, and synchronizing v5 and v4 releases
-
-## 5.3.6-next.9
-
-### Patch Changes
-
-- Updated dependencies [6b24e419c]
-  - @react-magma/charts@14.0.0-next.5
-
-## 5.3.6-next.8
-
-### Patch Changes
-
-- Updated dependencies [a0bcb1c8b]
-  - @react-magma/charts@14.0.0-next.4
-
-## 5.3.6-next.7
-
-### Patch Changes
-
-- Updated dependencies [289aa436a]
-  - @react-magma/charts@14.0.0-next.3
-
-## 5.3.6-next.6
-
-### Patch Changes
-
-- 074a76dcf: docs: Remove the standalone `Accessible Chart Toolbar` page and integrate its content into Getting Started, Chart Types, and Chart Demos.
-
-## 5.3.6-next.5
-
-### Patch Changes
-
-- Updated dependencies [37cc8e9b3]
-  - react-magma-dom@4.15.0-next.6
-  - @react-magma/charts@14.0.0-next.2
-  - @react-magma/dropzone@13.0.0-next.1
-
-## 5.3.6-next.4
-
-### Patch Changes
-
-- 634cb9da1: fix(FormGroup): fix small docs issues
-
-## 5.3.6-next.3
-
-### Patch Changes
-
-- dc55a33fd: chore(TreeView): add warning for additionalContent prop in TreeView to ensure it renders content (not null)
-
-## 5.3.6-next.2
-
-### Patch Changes
-
-- Updated dependencies [9ae682ce8]
-  - react-magma-dom@4.14.1-next.0
-  - @react-magma/charts@13.2.0-next.1
-  - @react-magma/dropzone@12.0.6-next.0
-
-## 5.3.6-next.1
-
-### Patch Changes
-
-- Updated dependencies [0302454e6]
-  - @react-magma/charts@13.2.0-next.0
-
-## 5.3.6-next.0
-
-### Patch Changes
-
-- 94a214be9: chore: Remove the deprecated `@react-magma/schema-renderer` and `@cengage-patterns/header` packages.
+- 3f22c5b3e: Release tooling: add a Codex workflow for cross-track fix audits and v4/v5 stable releases.
+- 3f22c5b3e: TreeView documentation: clarify that `additionalContent` must render content rather than `null`.
+- 3f22c5b3e: Charts documentation: consolidate accessible chart toolbar guidance into Getting Started, Chart Types, and Chart Demos.
+- 3f22c5b3e: FormGroup documentation: correct component examples and guidance.
+- 3f22c5b3e: Documentation tooling: add v4-specific React 17 architecture, testing, release, and contribution guidance, and document the configurable Charts toolbar heading level.
+- 3f22c5b3e: Release workflow: publish v4 stable packages under `v4-latest` and keep release lock metadata aligned so v5 remains on npm's `latest` tag.
+- 3f22c5b3e: Documentation: remove the deprecated `@react-magma/schema-renderer` and `@cengage-patterns/header` packages and their pages.
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+- Updated dependencies [3f22c5b3e]
+  - @react-magma/charts@13.2.0
+  - react-magma-dom@4.15.0
+  - @react-magma/dropzone@13.0.0
 
 ## 5.3.5
 
@@ -4118,16 +4076,6 @@
 - Updated dependencies [d306c99e]
   - react-magma-dom@2.3.11
   - @cengage-patterns/header@0.1.1
-  - react-magma-icons@2.0.4
-
-## 2.1.10
-
-### Patch Changes
-
-- chore: init changeset
-- Updated dependencies [undefined]
-  - @cengage-patterns/header@0.1.1
-  - react-magma-dom@2.3.11
   - react-magma-icons@2.0.4
 
 All notable changes to this project will be documented in this file.

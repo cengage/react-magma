@@ -24,6 +24,24 @@ describe('Accordion', () => {
     expect(getByTestId(testId)).toBeInTheDocument();
   });
 
+  it('should expose the panel as a labelled region without changing generated IDs', () => {
+    const { getByRole } = render(
+      <Accordion defaultIndex={[0]}>
+        <AccordionItem>
+          <AccordionButton>Section 1</AccordionButton>
+          <AccordionPanel>Panel 1</AccordionPanel>
+        </AccordionItem>
+      </Accordion>
+    );
+    const button = getByRole('button', { name: 'Section 1' });
+    const panel = getByRole('region');
+
+    expect(button).toHaveAttribute('id', '0_btn');
+    expect(button).toHaveAttribute('aria-controls', '0_panel');
+    expect(panel).toHaveAttribute('id', '0_panel');
+    expect(panel).toHaveAttribute('aria-labelledby', '0_btn');
+  });
+
   it('should render the component with the correct styles', () => {
     const testId = 'test-id';
 

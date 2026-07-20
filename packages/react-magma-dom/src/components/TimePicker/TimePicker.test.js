@@ -17,6 +17,27 @@ describe('TimePicker', () => {
     expect(container).toBeInTheDocument();
   });
 
+  it('should preserve numeric spinbutton semantics for the time fields', () => {
+    const { getByTestId } = render(<TimePicker labelText="Time" />);
+    const hoursInput = getByTestId('hoursTimeInput');
+    const minutesInput = getByTestId('minutesTimeInput');
+
+    expect(hoursInput).toHaveAttribute('role', 'spinbutton');
+    expect(hoursInput).toHaveAttribute('aria-valuemin', '1');
+    expect(hoursInput).toHaveAttribute('aria-valuemax', '12');
+    expect(hoursInput).not.toHaveAttribute('aria-valuenow');
+    expect(minutesInput).toHaveAttribute('role', 'spinbutton');
+    expect(minutesInput).toHaveAttribute('aria-valuemin', '0');
+    expect(minutesInput).toHaveAttribute('aria-valuemax', '59');
+    expect(minutesInput).not.toHaveAttribute('aria-valuenow');
+
+    fireEvent.change(hoursInput, { target: { value: '9' } });
+    fireEvent.change(minutesInput, { target: { value: '30' } });
+
+    expect(hoursInput).toHaveAttribute('aria-valuenow', '9');
+    expect(minutesInput).toHaveAttribute('aria-valuenow', '30');
+  });
+
   describe('Hour Input', () => {
     it('should allow for a single digit hour to be entered', () => {
       const { getByTestId } = render(<TimePicker label="label" />);
@@ -109,6 +130,52 @@ describe('TimePicker', () => {
       fireEvent.keyDown(hoursInput, { key: 'ArrowRight' });
 
       expect(getByTestId('minutesTimeInput')).toHaveFocus();
+    });
+
+    it('should change the hour input if the up arrow key is clicked', () => {
+      const { getByTestId } = render(<TimePicker label="label" />);
+
+      const hoursInput = getByTestId('hoursTimeInput');
+      hoursInput.focus();
+
+      fireEvent.keyDown(hoursInput, { key: 'ArrowUp' });
+
+      expect(hoursInput.value).toEqual('01');
+
+      fireEvent.keyDown(hoursInput, { key: 'ArrowUp' });
+
+      expect(hoursInput.value).toEqual('02');
+
+      fireEvent.change(hoursInput, { target: { value: '12' } });
+
+      expect(hoursInput.value).toEqual('12');
+
+      fireEvent.keyDown(hoursInput, { key: 'ArrowUp' });
+
+      expect(hoursInput.value).toEqual('12');
+    });
+
+    it('should change the hour input if the down arrow key is clicked', () => {
+      const { getByTestId } = render(<TimePicker label="label" />);
+
+      const hoursInput = getByTestId('hoursTimeInput');
+      hoursInput.focus();
+
+      fireEvent.keyDown(hoursInput, { key: 'ArrowDown' });
+
+      expect(hoursInput.value).toEqual('01');
+
+      fireEvent.keyDown(hoursInput, { key: 'ArrowDown' });
+
+      expect(hoursInput.value).toEqual('01');
+
+      fireEvent.change(hoursInput, { target: { value: '12' } });
+
+      expect(hoursInput.value).toEqual('12');
+
+      fireEvent.keyDown(hoursInput, { key: 'ArrowDown' });
+
+      expect(hoursInput.value).toEqual('11');
     });
 
     it('should call the onChange for a valid hour entered', () => {
@@ -243,6 +310,48 @@ describe('TimePicker', () => {
       expect(onChange).toHaveBeenCalledWith('');
     });
 
+    it('should change the minute input if the up arrow key is clicked', () => {
+      const { getByTestId } = render(<TimePicker label="label" />);
+
+      const minutesInput = getByTestId('minutesTimeInput');
+      minutesInput.focus();
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+
+      expect(minutesInput.value).toEqual('01');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+
+      expect(minutesInput.value).toEqual('02');
+
+      fireEvent.change(minutesInput, { target: { value: '59' } });
+
+      expect(minutesInput.value).toEqual('59');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+
+      expect(minutesInput.value).toEqual('59');
+    });
+
+    it('should change the minute input if the down arrow key is clicked', () => {
+      const { getByTestId } = render(<TimePicker label="label" />);
+
+      const minutesInput = getByTestId('minutesTimeInput');
+      minutesInput.focus();
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowDown' });
+
+      expect(minutesInput.value).toEqual('00');
+
+      fireEvent.change(minutesInput, { target: { value: '59' } });
+
+      expect(minutesInput.value).toEqual('59');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowDown' });
+
+      expect(minutesInput.value).toEqual('58');
+    });
+
     it('should call the onChange for a valid minute entered', () => {
       const onChange = jest.fn();
       const { getByTestId } = render(
@@ -264,6 +373,132 @@ describe('TimePicker', () => {
       const minutesInput = getByTestId('minutesTimeInput');
 
       expect(minutesInput).toHaveAttribute('step', '5');
+    });
+
+    it('should increment minutes by minutesStep on arrow up', () => {
+      const { getByTestId } = render(
+        <TimePicker label="label" minutesStep={15} />
+      );
+
+      const minutesInput = getByTestId('minutesTimeInput');
+
+      act(() => {
+        minutesInput.focus();
+      });
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+      expect(minutesInput.value).toEqual('15');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+      expect(minutesInput.value).toEqual('30');
+    });
+
+    it('should snap down to the previous multiple of minutesStep on arrow down', () => {
+      const { getByTestId } = render(
+        <TimePicker label="label" minutesStep={3} />
+      );
+
+      const minutesInput = getByTestId('minutesTimeInput');
+
+      act(() => {
+        minutesInput.focus();
+      });
+
+      fireEvent.change(minutesInput, { target: { value: '10' } });
+      expect(minutesInput.value).toEqual('10');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowDown' });
+      expect(minutesInput.value).toEqual('09');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowDown' });
+      expect(minutesInput.value).toEqual('06');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowDown' });
+      expect(minutesInput.value).toEqual('03');
+    });
+
+    it('should snap up to the next multiple of minutesStep on arrow up', () => {
+      const { getByTestId } = render(
+        <TimePicker label="label" minutesStep={10} />
+      );
+
+      const minutesInput = getByTestId('minutesTimeInput');
+
+      act(() => {
+        minutesInput.focus();
+      });
+
+      fireEvent.change(minutesInput, { target: { value: '04' } });
+      expect(minutesInput.value).toEqual('04');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+      expect(minutesInput.value).toEqual('10');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+      expect(minutesInput.value).toEqual('20');
+    });
+
+    it('should not go past the last valid step on arrow up', () => {
+      const { getByTestId } = render(
+        <TimePicker label="label" minutesStep={15} />
+      );
+
+      const minutesInput = getByTestId('minutesTimeInput');
+
+      act(() => {
+        minutesInput.focus();
+      });
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+      expect(minutesInput.value).toEqual('15');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+      expect(minutesInput.value).toEqual('30');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+      expect(minutesInput.value).toEqual('45');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+      expect(minutesInput.value).toEqual('45');
+    });
+
+    it('should not change on arrow up when current value is past the last valid step', () => {
+      const { getByTestId } = render(
+        <TimePicker label="label" minutesStep={15} />
+      );
+
+      const minutesInput = getByTestId('minutesTimeInput');
+
+      fireEvent.change(minutesInput, { target: { value: '50' } });
+      expect(minutesInput.value).toEqual('50');
+
+      act(() => {
+        minutesInput.focus();
+      });
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowUp' });
+      expect(minutesInput.value).toEqual('50');
+    });
+
+    it('should clamp to 0 on arrow down when minutesStep would underflow', () => {
+      const { getByTestId } = render(
+        <TimePicker label="label" minutesStep={3} />
+      );
+
+      const minutesInput = getByTestId('minutesTimeInput');
+
+      act(() => {
+        minutesInput.focus();
+      });
+
+      fireEvent.change(minutesInput, { target: { value: '01' } });
+      expect(minutesInput.value).toEqual('01');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowDown' });
+      expect(minutesInput.value).toEqual('00');
+
+      fireEvent.keyDown(minutesInput, { key: 'ArrowDown' });
+      expect(minutesInput.value).toEqual('00');
     });
   });
 
