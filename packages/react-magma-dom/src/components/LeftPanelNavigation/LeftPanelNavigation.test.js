@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fireEvent, render } from '@testing-library/react';
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { InsertDriveFileIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
@@ -51,9 +51,19 @@ const items = [
   },
 ];
 
+function renderLeftPanelNavigation(ui) {
+  const container = document.createElement('div');
+  document.body.appendChild(container);
+
+  return render(ui, { baseElement: container, container });
+}
+
 describe('LeftPanelNavigation', () => {
+  beforeEach(cleanup);
+  afterEach(cleanup);
+
   it('renders the navigation landmark', () => {
-    const { getByRole } = render(
+    const { getByRole } = renderLeftPanelNavigation(
       <LeftPanelNavigation aria-label="Primary" items={items} />
     );
 
@@ -61,7 +71,7 @@ describe('LeftPanelNavigation', () => {
   });
 
   it('is compliant with accessibility standards', () => {
-    const { container } = render(
+    const { container } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         activeItemId="button"
         defaultExpandedIds={['components']}
@@ -75,7 +85,7 @@ describe('LeftPanelNavigation', () => {
   });
 
   it('expands a section when the top-level button is clicked', () => {
-    const { getByRole, queryByText } = render(
+    const { getByRole, queryByText } = renderLeftPanelNavigation(
       <LeftPanelNavigation items={items} />
     );
 
@@ -88,7 +98,7 @@ describe('LeftPanelNavigation', () => {
 
   it('supports controlled expanded ids', () => {
     const handleExpandedChange = jest.fn();
-    const { getByRole } = render(
+    const { getByRole } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         expandedIds={['components']}
         items={items}
@@ -102,7 +112,7 @@ describe('LeftPanelNavigation', () => {
   });
 
   it('sets aria-current on the active item', () => {
-    const { getByRole } = render(
+    const { getByRole } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         activeItemId="badge"
         defaultExpandedIds={['components']}
@@ -117,7 +127,7 @@ describe('LeftPanelNavigation', () => {
   });
 
   it('uses current item styling', () => {
-    const { getByRole } = render(
+    const { getByRole } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         activeItemId="badge"
         defaultExpandedIds={['components']}
@@ -135,7 +145,7 @@ describe('LeftPanelNavigation', () => {
   });
 
   it('uses inverse current item styling', () => {
-    const { getByRole } = render(
+    const { getByRole } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         activeItemId="home"
         iconColor="neutral400"
@@ -149,16 +159,12 @@ describe('LeftPanelNavigation', () => {
     expect(currentItem).toHaveStyleRule('background', magma.colors.primary500, {
       target: "[aria-current='page']",
     });
-    expect(currentItem).toHaveStyleRule('color', magma.colors.neutral100, {
-      target: "[aria-current='page']",
-    });
-    expect(icon).toHaveStyleRule('color', 'inherit', {
-      target: "[aria-current='page'] &",
-    });
+    expect(currentItem).toHaveStyleRule('color', magma.colors.neutral100);
+    expect(icon).toHaveStyleRule('color', magma.colors.neutral100);
   });
 
   it('supports an optional right border', () => {
-    const { getByTestId, rerender } = render(
+    const { getByTestId, rerender } = renderLeftPanelNavigation(
       <LeftPanelNavigation items={items} testId="left-panel-navigation" />
     );
 
@@ -182,7 +188,7 @@ describe('LeftPanelNavigation', () => {
   });
 
   it('supports a fixed height with vertical scrolling', () => {
-    const { getByTestId } = render(
+    const { getByTestId } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         height="100vh"
         items={items}
@@ -201,7 +207,7 @@ describe('LeftPanelNavigation', () => {
   });
 
   it('renders an optional sticky footer', () => {
-    const { getByText } = render(
+    const { getByText } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         footer={<button type="button">Account menu</button>}
         items={items}
@@ -234,7 +240,7 @@ describe('LeftPanelNavigation', () => {
       </span>
     ));
 
-    const { getByText } = render(
+    const { getByText } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         defaultIsCollapsed
         footer={renderFooter}
@@ -252,7 +258,7 @@ describe('LeftPanelNavigation', () => {
   });
 
   it('renders optional top content inside the scrollable item area', () => {
-    const { getByTestId, getByText } = render(
+    const { getByTestId, getByText } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         items={items}
         testId="left-panel-navigation"
@@ -273,7 +279,7 @@ describe('LeftPanelNavigation', () => {
       </span>
     ));
 
-    const { getByText } = render(
+    const { getByText } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         defaultIsCollapsed
         isCollapsible
@@ -291,7 +297,7 @@ describe('LeftPanelNavigation', () => {
   });
 
   it('collapses to an icon-only view', () => {
-    const { getByRole, getByTestId, queryByRole } = render(
+    const { getByRole, getByTestId, queryByRole } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         defaultExpandedIds={['components']}
         isCollapsible
@@ -323,7 +329,7 @@ describe('LeftPanelNavigation', () => {
 
   it('calls onCollapsedChange when collapsed state changes', () => {
     const handleCollapsedChange = jest.fn();
-    const { getByRole } = render(
+    const { getByRole } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         isCollapsible
         items={items}
@@ -336,8 +342,8 @@ describe('LeftPanelNavigation', () => {
     expect(handleCollapsedChange).toHaveBeenCalledWith(true);
   });
 
-  it('shows children in a dropdown when an expandable item is clicked while collapsed', () => {
-    const { getByRole, queryByRole } = render(
+  it('shows children in a dropdown when an expandable item is clicked while collapsed', async () => {
+    const { getByRole, queryByRole } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         defaultIsCollapsed
         isCollapsible
@@ -353,14 +359,23 @@ describe('LeftPanelNavigation', () => {
 
     expect(queryByRole('menuitem', { name: 'Button' })).not.toBeInTheDocument();
 
+    await waitFor(() => {
+      expect(getByRole('button', { name: 'Components' })).toHaveAttribute(
+        'aria-haspopup',
+        'true'
+      );
+    });
+
     fireEvent.click(getByRole('button', { name: 'Components' }));
 
-    expect(getByRole('menuitem', { name: 'Button' })).toBeInTheDocument();
+    await waitFor(() => {
+      expect(getByRole('menuitem', { name: 'Button' })).toBeInTheDocument();
+    });
     expect(getByRole('menuitem', { name: 'Badge' })).toBeInTheDocument();
   });
 
   it('hides top-level items without icons while collapsed', () => {
-    const { getByRole, queryByRole } = render(
+    const { getByRole, queryByRole } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         defaultIsCollapsed
         isCollapsible
@@ -393,7 +408,7 @@ describe('LeftPanelNavigation', () => {
   });
 
   it('renders an optional logo', () => {
-    const { getByText } = render(
+    const { getByText } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         items={items}
         logo={<span>Cengage</span>}
@@ -409,7 +424,7 @@ describe('LeftPanelNavigation', () => {
   });
 
   it('renders an item badge with the selected color', () => {
-    const { getByTestId } = render(
+    const { getByTestId } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         items={[
           {
@@ -432,7 +447,7 @@ describe('LeftPanelNavigation', () => {
   });
 
   it('renders nested group labels', () => {
-    const { getByRole, getByText } = render(
+    const { getByRole, getByText } = renderLeftPanelNavigation(
       <LeftPanelNavigation defaultExpandedIds={['grouped']} items={items} />
     );
 
@@ -442,7 +457,7 @@ describe('LeftPanelNavigation', () => {
 
   it('calls onItemClick for link items', () => {
     const handleItemClick = jest.fn(event => event.preventDefault());
-    const { getByRole } = render(
+    const { getByRole } = renderLeftPanelNavigation(
       <LeftPanelNavigation items={items} onItemClick={handleItemClick} />
     );
 
@@ -455,7 +470,7 @@ describe('LeftPanelNavigation', () => {
   });
 
   it('applies iconColor to item icons', () => {
-    const { getByRole } = render(
+    const { getByRole } = renderLeftPanelNavigation(
       <LeftPanelNavigation iconColor="neutral400" items={items} />
     );
     const icon = getByRole('link', { name: 'Home' }).querySelector(
@@ -466,7 +481,7 @@ describe('LeftPanelNavigation', () => {
   });
 
   it('allows item iconColor to override the navigation iconColor', () => {
-    const { getByRole } = render(
+    const { getByRole } = renderLeftPanelNavigation(
       <LeftPanelNavigation
         iconColor="neutral400"
         items={[
@@ -488,7 +503,7 @@ describe('LeftPanelNavigation', () => {
     const CustomLink = React.forwardRef(({ to, ...rest }, ref) => (
       <a {...rest} href={to} ref={ref} />
     ));
-    const { getByRole } = render(
+    const { getByRole } = renderLeftPanelNavigation(
       <LeftPanelNavigation items={items} linkComponent={CustomLink} />
     );
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import isPropValid from '@emotion/is-prop-valid';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
 import { ExpandLessIcon, ExpandMoreIcon, IconProps } from 'react-magma-icons';
@@ -535,6 +536,11 @@ const topLevelItemStyles = props => `
     };
     color: ${props.isInverse ? props.theme.colors.neutral100 : props.theme.colors.primary500};
   }
+
+  &[aria-current='page'] [aria-hidden='true'],
+  &[data-current='true'] [aria-hidden='true'] {
+    color: inherit;
+  }
 `;
 
 const TopLevelButton = styled.button<{
@@ -545,7 +551,9 @@ const TopLevelButton = styled.button<{
   ${topLevelItemStyles}
 `;
 
-const TopLevelLink = styled.a<{
+const TopLevelLink = styled('a', {
+  shouldForwardProp: isPropValid,
+})<{
   isCollapsed?: boolean;
   isInverse?: boolean;
   theme: ThemeInterface;
@@ -654,10 +662,6 @@ const IconWrapper = styled.span<{
     width: ${props => props.theme.iconSizes.small}px;
   }
 
-  [aria-current='page'] &,
-  [data-current='true'] & {
-    color: inherit;
-  }
 `;
 
 const ChevronWrapper = styled.span<{
@@ -815,7 +819,9 @@ const GroupLabel = styled.p<{
   z-index: 3;
 `;
 
-const NestedLink = styled.a<{
+const NestedLink = styled('a', {
+  shouldForwardProp: isPropValid,
+})<{
   isCollapsed?: boolean;
   isInverse?: boolean;
   theme: ThemeInterface;
@@ -876,6 +882,11 @@ const NestedLink = styled.a<{
       props.isInverse
         ? props.theme.colors.neutral100
         : props.theme.colors.primary500};
+  }
+
+  &[aria-current='page'] [aria-hidden='true'],
+  &[data-current='true'] [aria-hidden='true'] {
+    color: inherit;
   }
 
   &[aria-current='page']::before,
@@ -1341,6 +1352,7 @@ export const LeftPanelNavigation = React.forwardRef<
         dropDirection={DropdownDropDirection.right}
         isInverse={isInverse}
         theme={theme}
+        width={250}
       >
         {renderCollapsedTooltip(
           item,
