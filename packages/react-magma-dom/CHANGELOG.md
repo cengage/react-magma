@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.1-rc.2
+
+### Patch Changes
+
+- 661cf8d: fix(Accordion): stop overriding Heading styles inside AccordionPanel
+
 ## 5.1.1-rc.1
 
 ### Patch Changes
