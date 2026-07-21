@@ -10,6 +10,7 @@
   },
   "changesets": [
     "fix-Treeview-collapse-state-icon",
+    "password-input-dynamic-button-width",
     "sync-main-to-dev-5-1-0"
   ]
 }

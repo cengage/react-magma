@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.1-rc.1
+
+### Patch Changes
+
+- 7638a7b: fix(PasswordInput): resize toggle button to fit custom text and cap its width at half the input
+
 ## 5.1.1-rc.0
 
 ### Patch Changes
