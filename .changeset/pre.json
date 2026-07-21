@@ -9,6 +9,8 @@
     "react-magma-landing": "1.1.9"
   },
   "changesets": [
+    "fix-Treeview-collapse-state-icon",
+    "password-input-dynamic-button-width",
     "sync-main-to-dev-5-1-0"
   ]
 }
