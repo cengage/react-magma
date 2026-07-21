@@ -9,6 +9,8 @@
     "react-magma-landing": "1.1.9"
   },
   "changesets": [
+    "accordion-panel-heading-styles",
+    "add-release-codex-skill",
     "fix-Treeview-collapse-state-icon",
     "password-input-dynamic-button-width",
     "sync-main-to-dev-5-1-0"

@@ -1,5 +1,13 @@
 # Change Log
 
+## 6.0.4-rc.2
+
+### Patch Changes
+
+- 3116584: Release tooling: add a Codex workflow for cross-track fix audits and for preparing, validating, announcing, and synchronizing v5 and v4 releases.
+- Updated dependencies [661cf8d]
+  - react-magma-dom@5.1.1-rc.2
+
 ## 6.0.4-rc.1
 
 ### Patch Changes
