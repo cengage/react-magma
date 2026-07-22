@@ -733,6 +733,7 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
         <div style={treeItemStyles}>
           <StyledTreeItem
             {...rest}
+            aria-disabled={isDisabled || null}
             aria-expanded={hasOwnTreeItems ? expanded : null}
             aria-selected={selectedItem}
             aria-checked={shouldShowCheckbox ? ariaCheckedValue : null}
@@ -874,16 +875,16 @@ const TreeItemComponent = React.forwardRef<HTMLLIElement, TreeItemProps>(
                 );
               }
             )}
+            {isMacOS && (
+              <VisuallyHidden>
+                <Announce>
+                  {expanded
+                    ? i18n.expansionState.expanded
+                    : i18n.expansionState.collapsed}
+                </Announce>
+              </VisuallyHidden>
+            )}
           </StyledTreeItem>
-          {isMacOS && (
-            <VisuallyHidden>
-              <Announce>
-                {expanded
-                  ? i18n.expansionState.expanded
-                  : i18n.expansionState.collapsed}
-              </Announce>
-            </VisuallyHidden>
-          )}
         </div>
       </TreeItemContext.Provider>
     );
