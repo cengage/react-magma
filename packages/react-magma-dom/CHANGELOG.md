@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.1-rc.4
+
+### Patch Changes
+
+- a76daa4: fix(DatePicker): return focus to the calendar toggle button, not the clear button
+
 ## 5.1.1-rc.3
 
 ### Patch Changes
