@@ -822,7 +822,6 @@ export const InputBase = React.forwardRef<HTMLInputElement, InputBaseProps>(
                 isInverse={props.isInverse}
                 onClick={handleClearInput}
                 onKeyDown={onIconKeyDown}
-                ref={iconRef}
                 shape={ButtonShape.fill}
                 size={
                   inputSize === InputSize.large
