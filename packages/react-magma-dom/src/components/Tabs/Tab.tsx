@@ -363,7 +363,7 @@ export const Tab = React.forwardRef<HTMLButtonElement, TabProps>(
       >
         <StyledTab
           {...rest}
-          aria-controls={panelId}
+          aria-controls={rest['aria-controls'] ?? panelId}
           aria-selected={isActive}
           data-testid={testId}
           disabled={disabled}
