@@ -85,6 +85,14 @@ export const MenuItemStyles = props => {
     padding: ${menuItemPadding(props)};
     white-space: ${props.isFixedWidth ? 'normal' : 'nowrap'};
 
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      color: ${menuColors(props)};
+      text-decoration: none;
+    }
+
     &:hover,
     &:focus {
       background: ${menuBackground(props)};
