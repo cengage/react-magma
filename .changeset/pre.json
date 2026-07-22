@@ -12,6 +12,7 @@
     "accordion-panel-heading-styles",
     "add-release-codex-skill",
     "fix-Treeview-collapse-state-icon",
+    "fix-storybook-a11y-issues",
     "password-input-dynamic-button-width",
     "sync-main-to-dev-5-1-0"
   ]
