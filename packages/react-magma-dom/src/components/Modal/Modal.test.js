@@ -12,6 +12,21 @@ import { Button } from '../Button';
 import { Modal } from '.';
 
 describe('Modal', () => {
+  let requestAnimationFrameSpy;
+
+  beforeEach(() => {
+    requestAnimationFrameSpy = jest
+      .spyOn(window, 'requestAnimationFrame')
+      .mockImplementation(callback => {
+        callback(0);
+        return 0;
+      });
+  });
+
+  afterEach(() => {
+    requestAnimationFrameSpy.mockRestore();
+  });
+
   describe('a11y', () => {
     it('With header, does not violate accessibility standards', async () => {
       const { baseElement } = render(

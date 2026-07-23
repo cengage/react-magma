@@ -80,6 +80,34 @@ function deduplicateTabStops(allFocusable: HTMLElement[]): HTMLElement[] {
 }
 
 /**
+ * Checks that the element is actually visible, including being hidden
+ * by an ancestor.
+ */
+function isElementVisible(element: HTMLElement): boolean {
+  const elementWithVisibility = element as HTMLElement & {
+    checkVisibility?: () => boolean;
+  };
+
+  if (typeof elementWithVisibility.checkVisibility === 'function') {
+    return elementWithVisibility.checkVisibility();
+  }
+
+  for (
+    let node: HTMLElement | null = element;
+    node;
+    node = node.parentElement
+  ) {
+    const style = window.getComputedStyle(node);
+
+    if (style.display === 'none' || style.visibility === 'hidden') {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+/**
  * Module-level registry of currently active focus-lock root elements.
  * Used in Safari to prevent an outer lock from handling Tab for elements
  * that belong to an inner (descendant) lock.
@@ -89,7 +117,8 @@ const activeFocusLockRoots = new Set<HTMLElement>();
 export function useFocusLock(
   active: boolean,
   header?: React.MutableRefObject<FocusableElement>,
-  body?: React.MutableRefObject<FocusableElement>
+  body?: React.MutableRefObject<FocusableElement>,
+  autoFocusOnActivate = true
 ): React.MutableRefObject<any> {
   const rootNode = React.useRef<HTMLElement>(null);
   const focusableItems = React.useRef<Array<HTMLElement>>([]);
@@ -106,10 +135,9 @@ export function useFocusLock(
       const style = window.getComputedStyle(element);
       return (
         element instanceof HTMLElement &&
-        style.display !== 'none' &&
-        style.visibility !== 'hidden' &&
         !element.hasAttribute('disabled') &&
-        element.tabIndex >= 0
+        element.tabIndex >= 0 &&
+        isElementVisible(element)
       );
     });
 
@@ -134,25 +162,53 @@ export function useFocusLock(
         observer.observe(root, { childList: true, subtree: true });
       }
 
-      if (header && header.current) {
-        header.current.focus();
-      } else if (focusableItems.current && focusableItems.current.length > 0) {
-        const { 0: firstItem } = focusableItems.current;
+      // Defer the initial focus to the next frame so the browser can update
+      // the accessibility tree first (e.g. after a `display: none` toggle).
+      let focusFrame: number;
 
-        firstItem.focus();
-      } else if (body && body.current) {
-        (body.current.firstChild as HTMLElement).setAttribute('tabIndex', '-1');
-        (body.current.firstChild as HTMLElement).focus();
+      if (autoFocusOnActivate) {
+        const activeOnActivate = document.activeElement;
+
+        focusFrame = requestAnimationFrame(() => {
+          const activeElement = document.activeElement;
+
+          if (
+            activeElement !== activeOnActivate &&
+            activeElement !== document.body
+          ) {
+            return;
+          }
+
+          if (header && header.current) {
+            header.current.focus();
+          } else if (
+            focusableItems.current &&
+            focusableItems.current.length > 0
+          ) {
+            const { 0: firstItem } = focusableItems.current;
+
+            firstItem.focus();
+          } else if (body && body.current) {
+            (body.current.firstChild as HTMLElement).setAttribute(
+              'tabIndex',
+              '-1'
+            );
+            (body.current.firstChild as HTMLElement).focus();
+          }
+        });
       }
       return () => {
         if (root) {
           activeFocusLockRoots.delete(root);
         }
 
+        cancelAnimationFrame(focusFrame);
         observer.disconnect();
       };
     }
-  }, [active, header, body]);
+
+    return undefined;
+  }, [active, header, body, autoFocusOnActivate]);
 
   React.useEffect(() => {
     const handleKeyPress = (event: KeyboardEvent) => {
@@ -208,11 +264,14 @@ export function useFocusLock(
               lockRoot.contains(activeElement)
           );
 
+        if (isInsideNestedLock) {
+          return;
+        }
+
         if (
           length > 0 &&
           (isEventInsideCurrentLock || isSafari) &&
           !isActiveElementTracked &&
-          !isInsideNestedLock &&
           (isActiveElementInsideCurrentLock || activeElement === document.body)
         ) {
           event.preventDefault();
