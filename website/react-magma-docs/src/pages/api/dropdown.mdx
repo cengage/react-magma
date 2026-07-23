@@ -1060,6 +1060,52 @@ export function Example() {
 }
 ```
 
+## Controlled Dropdown with API Ref
+
+You can programmatically control the dropdown by providing an `apiRef`. The Dropdown API exposes `openDropdownManually` and `closeDropdownManually` to open and close the dropdown when needed.
+
+```tsx
+import React from 'react';
+
+import {
+  Dropdown,
+  DropdownButton,
+  DropdownContent,
+  DropdownMenuItem,
+  DropdownApi,
+  Button,
+  ButtonGroup,
+} from 'react-magma-dom';
+
+export function Example() {
+  const dropdownApiRef = React.useRef<DropdownApi>();
+
+  function handleOpen(event: React.SyntheticEvent) {
+    dropdownApiRef.current?.openDropdownManually(event);
+  }
+
+  function handleClose(event: React.SyntheticEvent) {
+    dropdownApiRef.current?.closeDropdownManually(event);
+  }
+
+  return (
+    <>
+      <ButtonGroup>
+        <Button onClick={handleOpen}>Open</Button>
+        <Button onClick={handleClose}>Close</Button>
+      </ButtonGroup>
+      <Dropdown apiRef={dropdownApiRef}>
+        <DropdownButton>Dropdown</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </>
+  );
+}
+```
+
 ## Dropdown Props
 
 **Any other props supplied will be provided to the wrapping `div` element.**

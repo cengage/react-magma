@@ -72,7 +72,7 @@ export {
   DropdownAlignment,
   DropdownDropDirection,
 } from './components/Dropdown';
-export type { DropdownProps } from './components/Dropdown';
+export type { DropdownProps, DropdownApi } from './components/Dropdown';
 export { DropdownContent } from './components/Dropdown/DropdownContent';
 export type { DropdownContentProps } from './components/Dropdown/DropdownContent';
 export { DropdownDivider } from './components/Dropdown/DropdownDivider';
