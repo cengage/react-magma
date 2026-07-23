@@ -9,11 +9,13 @@
     "react-magma-landing": "1.1.9"
   },
   "changesets": [
+    "a11y-datepicker-dialog-role",
     "accordion-panel-heading-styles",
     "add-release-codex-skill",
     "fix-Treeview-collapse-state-icon",
     "fix-datepicker-focus-return",
     "fix-storybook-a11y-issues",
+    "fix-useFocusLock",
     "password-input-dynamic-button-width",
     "sync-main-to-dev-5-1-0"
   ]

@@ -1,5 +1,12 @@
 # Change Log
 
+## 5.1.1-rc.5
+
+### Patch Changes
+
+- ed4bc72: fix(DatePicker): add role="dialog" and aria-modal="true" to calendar container
+- ed4bc72: fix(useFocusLock): fix focus trap for modal and date picker, including nested DatePicker focus order.
+
 ## 5.1.1-rc.4
 
 ### Patch Changes
