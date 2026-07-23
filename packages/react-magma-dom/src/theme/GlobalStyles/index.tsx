@@ -20,11 +20,9 @@ const cssVarDefinitionsCache = new WeakMap<
 >();
 
 function getCssVarDefinitions({
-  cssVarsPrefix,
   cssVarsRoot,
   theme,
 }: {
-  cssVarsPrefix?: string;
   cssVarsRoot: string;
   theme: object;
 }): SerializedStyles {
@@ -35,12 +33,11 @@ function getCssVarDefinitions({
     cssVarDefinitionsCache.set(theme, themeCache);
   }
 
-  const cacheKey = `${cssVarsRoot}|${cssVarsPrefix || ''}`;
-  const cached = themeCache.get(cacheKey);
+  const cached = themeCache.get(cssVarsRoot);
 
   if (cached) return cached;
 
-  const declarations = createCssVarDeclarations(theme, { cssVarsPrefix });
+  const declarations = createCssVarDeclarations(theme);
 
   const result = css`
     ${cssVarsRoot} {
@@ -48,21 +45,17 @@ function getCssVarDefinitions({
     }
   `;
 
-  themeCache.set(cacheKey, result);
+  themeCache.set(cssVarsRoot, result);
 
   return result;
 }
 
-function themeToken(
-  theme: unknown,
-  path: TokenPath,
-  cssVarsPrefix?: string
-): string {
-  return token.var(path, { cssVarsPrefix, theme });
+function themeToken(theme: unknown, path: TokenPath): string {
+  return token.var(path, { theme });
 }
 
-function getStyles(theme, isInverse: boolean, cssVarsPrefix?: string) {
-  const t = (path: TokenPath) => themeToken(theme, path, cssVarsPrefix);
+function getStyles(theme, isInverse: boolean) {
+  const t = (path: TokenPath) => themeToken(theme, path);
 
   return css`
     *,
@@ -146,16 +139,11 @@ function getStyles(theme, isInverse: boolean, cssVarsPrefix?: string) {
 
 export interface GlobalStylesProps {
   /**
-   * Emit CSS custom properties for the active theme. Set to `false` if you manage these variables yourself
-   * (e.g., via a static stylesheet or another design-token pipeline).
-   * @default true
+   * Emit CSS custom properties for the active theme. This is opt-in so nested
+   * legacy ThemeContext providers continue to use token fallbacks correctly.
+   * @default false
    */
   emitCssVariables?: boolean;
-  /**
-   * Prefix used for generated CSS custom properties.
-   * @default "magma"
-   */
-  cssVarsPrefix?: string;
   /**
    * Selector where generated CSS custom properties are scoped.
    * @default ":where(:root, :host)"
@@ -164,9 +152,8 @@ export interface GlobalStylesProps {
 }
 
 export const GlobalStyles: React.FunctionComponent<GlobalStylesProps> = ({
-  cssVarsPrefix,
   cssVarsRoot = DEFAULT_CSS_VARS_ROOT,
-  emitCssVariables = true,
+  emitCssVariables = false,
 }) => {
   const isInverse = useIsInverse();
 
@@ -178,13 +165,12 @@ export const GlobalStyles: React.FunctionComponent<GlobalStylesProps> = ({
           {emitCssVariables && (
             <Global
               styles={getCssVarDefinitions({
-                cssVarsPrefix,
                 cssVarsRoot,
                 theme,
               })}
             />
           )}
-          <Global styles={getStyles(theme, isInverse, cssVarsPrefix)} />
+          <Global styles={getStyles(theme, isInverse)} />
         </>
       )}
     </ThemeContext.Consumer>

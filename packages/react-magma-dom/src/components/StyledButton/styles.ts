@@ -75,15 +75,24 @@ export function buildButtonSize(props) {
 }
 
 export function buildButtonPadding(props) {
+  let size = 'medium';
+
   switch (props.size) {
     case 'small':
-      return cssToken(props, 'components.button.size.small.padding');
+      size = 'small';
+      break;
     case 'large':
-      return cssToken(props, 'components.button.size.large.padding');
-    default:
-      //medium
-      return cssToken(props, 'components.button.size.medium.padding');
+      size = 'large';
+      break;
   }
+
+  return `${cssToken(
+    props,
+    `components.button.size.${size}.paddingBlock` as TokenPath
+  )} ${cssToken(
+    props,
+    `components.button.size.${size}.paddingInline` as TokenPath
+  )}`;
 }
 
 export function buildButtonBackground(props) {

@@ -400,7 +400,9 @@ describe('Styled Button', () => {
         );
         expect(button).toHaveStyleRule(
           'padding',
-          token.var('components.button.size.medium.padding')
+          `${token.var(
+            'components.button.size.medium.paddingBlock'
+          )} ${token.var('components.button.size.medium.paddingInline')}`
         );
       });
 
@@ -418,7 +420,9 @@ describe('Styled Button', () => {
         );
         expect(button).toHaveStyleRule(
           'padding',
-          token.var('components.button.size.small.padding')
+          `${token.var(
+            'components.button.size.small.paddingBlock'
+          )} ${token.var('components.button.size.small.paddingInline')}`
         );
       });
 
@@ -436,7 +440,9 @@ describe('Styled Button', () => {
         );
         expect(button).toHaveStyleRule(
           'padding',
-          token.var('components.button.size.large.padding')
+          `${token.var(
+            'components.button.size.large.paddingBlock'
+          )} ${token.var('components.button.size.large.paddingInline')}`
         );
       });
     });

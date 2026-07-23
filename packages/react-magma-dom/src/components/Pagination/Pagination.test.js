@@ -5,6 +5,7 @@ import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import { token } from '../../theme/tokens';
 
 import { Pagination, PaginationType } from '.';
 import userEvent from '@testing-library/user-event';
@@ -21,38 +22,38 @@ describe('Pagination', () => {
     const { getByText } = render(<Pagination count={4} />);
     const button = getByText('2').parentElement;
 
-    expect(button).toHaveStyleRule('background', magma.colors.neutral100);
-    expect(button).toHaveStyleRule('color', magma.colors.primary);
+    expect(button).toHaveStyleRule('background', token('colors.neutral100'));
+    expect(button).toHaveStyleRule('color', token('colors.primary'));
   });
 
   it('Should render an unselected inverse button with no background', () => {
     const { getByText } = render(<Pagination count={4} isInverse />);
     const button = getByText('2').parentElement;
 
-    expect(button).toHaveStyleRule('color', magma.colors.tertiary500);
+    expect(button).toHaveStyleRule('color', token('colors.tertiary500'));
   });
 
   it('Should render a selected button with a primary background', () => {
     const { getByText } = render(<Pagination count={4} />);
     const button = getByText('1').parentElement;
 
-    expect(button).toHaveStyleRule('background', magma.colors.primary);
-    expect(button).toHaveStyleRule('color', magma.colors.neutral100);
+    expect(button).toHaveStyleRule('background', token('colors.primary'));
+    expect(button).toHaveStyleRule('color', token('colors.neutral100'));
   });
 
   it('Should render a selected inverse button with a tertiary background', () => {
     const { getByText } = render(<Pagination count={4} isInverse />);
     const button = getByText('1').parentElement;
 
-    expect(button).toHaveStyleRule('background', magma.colors.tertiary500);
-    expect(button).toHaveStyleRule('color', magma.colors.primary700);
+    expect(button).toHaveStyleRule('background', token('colors.tertiary500'));
+    expect(button).toHaveStyleRule('color', token('colors.primary700'));
   });
 
   it('Should render a disabled pagination icon or text color', () => {
     const { getByLabelText } = render(<Pagination count={4} disabled />);
     const button = getByLabelText('Previous Page');
 
-    expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+    expect(button).toHaveStyleRule('background', token('colors.neutral100'));
 
     expect(button).toHaveStyleRule(
       'color',
@@ -83,11 +84,11 @@ describe('Pagination', () => {
     const { getByText } = render(<Pagination count={4} />);
     const button = getByText('2').parentElement;
 
-    expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+    expect(button).toHaveStyleRule('background', token('colors.neutral100'));
 
     await userEvent.click(button);
 
-    expect(button).toHaveStyleRule('background', magma.colors.primary);
+    expect(button).toHaveStyleRule('background', token('colors.primary'));
   });
 
   it('Should change the active page when clicking the previous button', async () => {
@@ -96,14 +97,14 @@ describe('Pagination', () => {
 
     expect(previousButton).toHaveStyleRule(
       'background',
-      magma.colors.neutral100
+      token('colors.neutral100')
     );
 
     await userEvent.click(previousButton);
 
     expect(previousButton).toHaveStyleRule(
       'background',
-      magma.colors.neutral100
+      token('colors.neutral100')
     );
   });
 
@@ -111,11 +112,17 @@ describe('Pagination', () => {
     const { getByLabelText } = render(<Pagination count={4} defaultPage={3} />);
     const nextButton = getByLabelText('Next Page');
 
-    expect(nextButton).toHaveStyleRule('background', magma.colors.neutral100);
+    expect(nextButton).toHaveStyleRule(
+      'background',
+      token('colors.neutral100')
+    );
 
     await userEvent.click(nextButton);
 
-    expect(nextButton).toHaveStyleRule('background', magma.colors.neutral100);
+    expect(nextButton).toHaveStyleRule(
+      'background',
+      token('colors.neutral100')
+    );
   });
 
   it('Should change the active page number', async () => {

@@ -5,6 +5,7 @@ import { CheckIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import { token } from '../../theme/tokens';
 import { Button, ButtonColor, ButtonSize, ButtonVariant } from '../Button';
 import {
   Dropdown,
@@ -286,15 +287,15 @@ describe('ButtonGroup', () => {
 
         expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
           'background',
-          magma.colors.danger
+          token('colors.danger')
         );
         expect(getByTestId(`${testId}-2`)).toHaveStyleRule(
           'background',
-          magma.colors.danger
+          token('colors.danger')
         );
         expect(getByTestId(`${testId}-3`)).toHaveStyleRule(
           'background',
-          magma.colors.danger
+          token('colors.danger')
         );
       });
 
@@ -315,15 +316,15 @@ describe('ButtonGroup', () => {
 
         expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
           'background',
-          magma.colors.danger
+          token('colors.danger')
         );
         expect(getByTestId(`${testId}-2`)).toHaveStyleRule(
           'background',
-          magma.colors.danger
+          token('colors.danger')
         );
         expect(getByTestId(`${testId}-3`)).toHaveStyleRule(
           'background',
-          magma.colors.secondary
+          token('colors.secondary500')
         );
       });
     });
@@ -341,8 +342,14 @@ describe('ButtonGroup', () => {
           </ButtonGroup>
         );
 
-        expect(getByTestId(`${testId}-1`)).toHaveStyleRule('height', '56px');
-        expect(getByTestId(`${testId}-2`)).toHaveStyleRule('height', '56px');
+        expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
+          'height',
+          token('components.button.size.large.height')
+        );
+        expect(getByTestId(`${testId}-2`)).toHaveStyleRule(
+          'height',
+          token('components.button.size.large.height')
+        );
       });
 
       it('sets the size of the children buttons, except if the button has a size set', () => {
@@ -360,9 +367,18 @@ describe('ButtonGroup', () => {
           </ButtonGroup>
         );
 
-        expect(getByTestId(`${testId}-1`)).toHaveStyleRule('height', '56px');
-        expect(getByTestId(`${testId}-2`)).toHaveStyleRule('height', '56px');
-        expect(getByTestId(`${testId}-3`)).toHaveStyleRule('height', '28px');
+        expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
+          'height',
+          token('components.button.size.large.height')
+        );
+        expect(getByTestId(`${testId}-2`)).toHaveStyleRule(
+          'height',
+          token('components.button.size.large.height')
+        );
+        expect(getByTestId(`${testId}-3`)).toHaveStyleRule(
+          'height',
+          token('components.button.size.small.height')
+        );
       });
     });
 
@@ -414,7 +430,7 @@ describe('ButtonGroup', () => {
         );
         expect(getByTestId(`${testId}-3`)).toHaveStyleRule(
           'background',
-          magma.colors.primary
+          token('colors.primary')
         );
       });
     });

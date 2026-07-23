@@ -9,15 +9,6 @@ describe('pathToCssVarName', () => {
     );
   });
 
-  it('uses a configurable prefix', () => {
-    expect(
-      pathToCssVarName('colors.primary500', { cssVarsPrefix: 'acme' })
-    ).toBe('--acme-color-primary-500');
-    expect(
-      pathToCssVarName('colors.primary500', { cssVarsPrefix: '--tenant' })
-    ).toBe('--tenant-color-primary-500');
-  });
-
   it('splits letter-digit boundaries', () => {
     expect(pathToCssVarName('colors.primary')).toBe('--magma-color-primary');
     expect(pathToCssVarName('colors.neutral100')).toBe(
@@ -69,6 +60,18 @@ describe('token', () => {
     expect(token.raw('colors.info500')).toBe(magma.colors.info500);
   });
 
+  it('resolves raw aliases through an overridden primitive', () => {
+    const customTheme = {
+      ...magma,
+      colors: {
+        ...magma.colors,
+        primary500: '#6543ff',
+      },
+    };
+
+    expect(token.raw('colors.primary', customTheme)).toBe('#6543ff');
+  });
+
   it('derives semantic and component tokens from the active theme', () => {
     const customTheme = {
       ...magma,
@@ -84,16 +87,21 @@ describe('token', () => {
     expect(token.raw('components.alert.info.background', customTheme)).toBe(
       '#eefaff'
     );
+    expect(
+      token.var('components.alert.info.background', { theme: customTheme })
+    ).toBe(
+      'var(--magma-components-alert-info-background, var(--magma-semantic-colors-status-info-surface, var(--magma-color-info-100, #eefaff)))'
+    );
   });
 
-  it('emits declarations for generated component and semantic tokens', () => {
+  it('preserves aliases in generated component and semantic declarations', () => {
     const declarations = createCssVarDeclarations(magma);
 
     expect(declarations).toContain(
-      `--magma-semantic-colors-status-info-surface: ${magma.colors.info100};`
+      `--magma-semantic-colors-status-info-surface: var(--magma-color-info-100, ${magma.colors.info100});`
     );
     expect(declarations).toContain(
-      `--magma-components-alert-info-background: ${magma.colors.info100};`
+      `--magma-components-alert-info-background: var(--magma-semantic-colors-status-info-surface, ${magma.colors.info100});`
     );
   });
 });

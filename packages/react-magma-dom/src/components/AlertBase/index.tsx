@@ -471,19 +471,9 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
     const i18n = React.useContext(I18nContext);
 
     function progressRingColor() {
-      if (isInverse) {
-        return theme.colors.neutral100;
-      }
-      switch (props.variant) {
-        case 'success':
-          return theme.colors.success500;
-        case 'warning':
-          return theme.colors.warning500;
-        case 'danger':
-          return theme.colors.danger500;
-        default:
-          return theme.colors.info500;
-      }
+      const paths = getAlertVariantTokenPaths(variant);
+
+      return token.var(isInverse ? paths.inverseIcon : paths.icon, { theme });
     }
 
     return (

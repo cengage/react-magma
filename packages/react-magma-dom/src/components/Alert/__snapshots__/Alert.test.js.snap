@@ -9,7 +9,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   background: none;
   border: 0;
   border-radius: 100%;
-  color: var(--magma-color-primary, #3942B0);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -18,20 +18,20 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: var(--magma-components-button-font-family, "Work Sans",Helvetica,sans-serif);
-  font-size: var(--magma-components-button-size-medium-font-size, 16px);
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: var(--magma-components-button-size-medium-height, 40px);
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: var(--magma-components-button-size-medium-line-height, 24px);
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: var(--magma-components-button-size-medium-min-width, 96px);
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: var(--magma-components-button-size-medium-padding, 12px 16px);
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -42,7 +42,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: var(--magma-components-button-size-medium-height, 40px);
+  width: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -66,7 +66,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 }
 
 .emotion-1:not(:disabled):focus {
-  outline: 2px solid var(--magma-components-button-focus-outline-color, #0074B7);
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -74,7 +74,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-1:not(:disabled):hover,
 .emotion-1:not(:disabled):focus {
   background: var(--magma-color-primary-100, #E8E9F8);
-  color: var(--magma-color-primary, #3942B0);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-1:not(:disabled):active {
@@ -106,7 +106,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-1:focus:not(:disabled) {
   background: none;
   color: inherit;
-  outline: 2px solid var(--magma-semantic-colors-focus-default, #0074B7);
+  outline: 2px solid var(--magma-semantic-colors-focus-default, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 0!important;
 }
 
@@ -135,7 +135,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   background: none;
   border: 0;
   border-radius: 100%;
-  color: var(--magma-color-primary, #3942B0);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -144,20 +144,20 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: var(--magma-components-button-font-family, "Work Sans",Helvetica,sans-serif);
-  font-size: var(--magma-components-button-size-medium-font-size, 16px);
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: var(--magma-components-button-size-medium-height, 40px);
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: var(--magma-components-button-size-medium-line-height, 24px);
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: var(--magma-components-button-size-medium-min-width, 96px);
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: var(--magma-components-button-size-medium-padding, 12px 16px);
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -168,7 +168,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: var(--magma-components-button-size-medium-height, 40px);
+  width: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -192,7 +192,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 }
 
 .emotion-1:not(:disabled):focus {
-  outline: 2px solid var(--magma-components-button-focus-outline-color, #0074B7);
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -200,7 +200,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-1:not(:disabled):hover,
 .emotion-1:not(:disabled):focus {
   background: var(--magma-color-primary-100, #E8E9F8);
-  color: var(--magma-color-primary, #3942B0);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-1:not(:disabled):active {
@@ -232,7 +232,7 @@ exports[`Alert Dismissible should render a dismissible icon button with the warn
 .emotion-1:focus:not(:disabled) {
   background: none;
   color: inherit;
-  outline: 2px solid var(--magma-semantic-colors-focus-default, #0074B7);
+  outline: 2px solid var(--magma-semantic-colors-focus-default, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 0!important;
 }
 
@@ -319,11 +319,11 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 }
 
 .emotion-0:focus {
-  outline: 2px solid var(--magma-semantic-colors-focus-default, #0074B7);
+  outline: 2px solid var(--magma-semantic-colors-focus-default, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
 }
 
 .emotion-0 a {
-  color: var(--magma-components-alert-danger-link, #7F1714);
+  color: var(--magma-components-alert-danger-link, var(--magma-semantic-colors-status-danger-link, var(--magma-color-danger-700, #7F1714)));
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -331,14 +331,14 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: var(--magma-components-alert-danger-link-hover, #D32821);
+  color: var(--magma-components-alert-danger-link-hover, var(--magma-semantic-colors-status-danger-link-hover, var(--magma-color-danger, var(--magma-color-danger-500, #D32821))));
 }
 
 .emotion-2 {
-  background: var(--magma-components-alert-danger-background, #FDEFEE);
-  border: 1px solid var(--magma-components-alert-danger-border, #D32821);
+  background: var(--magma-components-alert-danger-background, var(--magma-semantic-colors-status-danger-surface, var(--magma-color-danger-100, #FDEFEE)));
+  border: 1px solid var(--magma-components-alert-danger-border, var(--magma-semantic-colors-status-danger-border, var(--magma-color-danger-500, #D32821)));
   border-radius: var(--magma-border-radius, 8px);
-  color: var(--magma-components-alert-danger-icon, #D32821);
+  color: var(--magma-components-alert-danger-icon, var(--magma-semantic-colors-status-danger-icon, var(--magma-color-danger-500, #D32821)));
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -427,11 +427,11 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 }
 
 .emotion-0:focus {
-  outline: 2px solid var(--magma-semantic-colors-focus-default, #0074B7);
+  outline: 2px solid var(--magma-semantic-colors-focus-default, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
 }
 
 .emotion-0 a {
-  color: var(--magma-components-alert-danger-link, #7F1714);
+  color: var(--magma-components-alert-danger-link, var(--magma-semantic-colors-status-danger-link, var(--magma-color-danger-700, #7F1714)));
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -439,14 +439,14 @@ exports[`Alert Variants should render an alert with danger variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: var(--magma-components-alert-danger-link-hover, #D32821);
+  color: var(--magma-components-alert-danger-link-hover, var(--magma-semantic-colors-status-danger-link-hover, var(--magma-color-danger, var(--magma-color-danger-500, #D32821))));
 }
 
 .emotion-2 {
-  background: var(--magma-components-alert-danger-background, #FDEFEE);
-  border: 1px solid var(--magma-components-alert-danger-border, #D32821);
+  background: var(--magma-components-alert-danger-background, var(--magma-semantic-colors-status-danger-surface, var(--magma-color-danger-100, #FDEFEE)));
+  border: 1px solid var(--magma-components-alert-danger-border, var(--magma-semantic-colors-status-danger-border, var(--magma-color-danger-500, #D32821)));
   border-radius: var(--magma-border-radius, 8px);
-  color: var(--magma-components-alert-danger-icon, #D32821);
+  color: var(--magma-components-alert-danger-icon, var(--magma-semantic-colors-status-danger-icon, var(--magma-color-danger-500, #D32821)));
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -580,11 +580,11 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 }
 
 .emotion-0:focus {
-  outline: 2px solid var(--magma-semantic-colors-focus-default, #0074B7);
+  outline: 2px solid var(--magma-semantic-colors-focus-default, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
 }
 
 .emotion-0 a {
-  color: var(--magma-components-alert-info-link, #004A75);
+  color: var(--magma-components-alert-info-link, var(--magma-semantic-colors-status-info-link, var(--magma-color-info-700, #004A75)));
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -592,14 +592,14 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: var(--magma-components-alert-info-link-hover, #0074B7);
+  color: var(--magma-components-alert-info-link-hover, var(--magma-semantic-colors-status-info-link-hover, var(--magma-color-info, var(--magma-color-info-500, #0074B7))));
 }
 
 .emotion-2 {
-  background: var(--magma-components-alert-info-background, #E8F5FC);
-  border: 1px solid var(--magma-components-alert-info-border, #0074B7);
+  background: var(--magma-components-alert-info-background, var(--magma-semantic-colors-status-info-surface, var(--magma-color-info-100, #E8F5FC)));
+  border: 1px solid var(--magma-components-alert-info-border, var(--magma-semantic-colors-status-info-border, var(--magma-color-info-500, #0074B7)));
   border-radius: var(--magma-border-radius, 8px);
-  color: var(--magma-components-alert-info-icon, #0074B7);
+  color: var(--magma-components-alert-info-icon, var(--magma-semantic-colors-status-info-icon, var(--magma-color-info-500, #0074B7)));
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -688,11 +688,11 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 }
 
 .emotion-0:focus {
-  outline: 2px solid var(--magma-semantic-colors-focus-default, #0074B7);
+  outline: 2px solid var(--magma-semantic-colors-focus-default, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
 }
 
 .emotion-0 a {
-  color: var(--magma-components-alert-info-link, #004A75);
+  color: var(--magma-components-alert-info-link, var(--magma-semantic-colors-status-info-link, var(--magma-color-info-700, #004A75)));
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -700,14 +700,14 @@ exports[`Alert Variants should render an alert with info variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: var(--magma-components-alert-info-link-hover, #0074B7);
+  color: var(--magma-components-alert-info-link-hover, var(--magma-semantic-colors-status-info-link-hover, var(--magma-color-info, var(--magma-color-info-500, #0074B7))));
 }
 
 .emotion-2 {
-  background: var(--magma-components-alert-info-background, #E8F5FC);
-  border: 1px solid var(--magma-components-alert-info-border, #0074B7);
+  background: var(--magma-components-alert-info-background, var(--magma-semantic-colors-status-info-surface, var(--magma-color-info-100, #E8F5FC)));
+  border: 1px solid var(--magma-components-alert-info-border, var(--magma-semantic-colors-status-info-border, var(--magma-color-info-500, #0074B7)));
   border-radius: var(--magma-border-radius, 8px);
-  color: var(--magma-components-alert-info-icon, #0074B7);
+  color: var(--magma-components-alert-info-icon, var(--magma-semantic-colors-status-info-icon, var(--magma-color-info-500, #0074B7)));
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -841,11 +841,11 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 }
 
 .emotion-0:focus {
-  outline: 2px solid var(--magma-semantic-colors-focus-default, #0074B7);
+  outline: 2px solid var(--magma-semantic-colors-focus-default, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
 }
 
 .emotion-0 a {
-  color: var(--magma-components-alert-warning-link, #6E340E);
+  color: var(--magma-components-alert-warning-link, var(--magma-semantic-colors-status-warning-link, var(--magma-color-warning-700, #6E340E)));
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -853,14 +853,14 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: var(--magma-components-alert-warning-link-hover, #AD5115);
+  color: var(--magma-components-alert-warning-link-hover, var(--magma-semantic-colors-status-warning-link-hover, var(--magma-color-warning, var(--magma-color-warning-500, #AD5115))));
 }
 
 .emotion-2 {
-  background: var(--magma-components-alert-warning-background, #FCEEE5);
-  border: 1px solid var(--magma-components-alert-warning-border, #AD5115);
+  background: var(--magma-components-alert-warning-background, var(--magma-semantic-colors-status-warning-surface, var(--magma-color-warning-100, #FCEEE5)));
+  border: 1px solid var(--magma-components-alert-warning-border, var(--magma-semantic-colors-status-warning-border, var(--magma-color-warning-500, #AD5115)));
   border-radius: var(--magma-border-radius, 8px);
-  color: var(--magma-components-alert-warning-icon, #AD5115);
+  color: var(--magma-components-alert-warning-icon, var(--magma-semantic-colors-status-warning-icon, var(--magma-color-warning-500, #AD5115)));
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -949,11 +949,11 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 }
 
 .emotion-0:focus {
-  outline: 2px solid var(--magma-semantic-colors-focus-default, #0074B7);
+  outline: 2px solid var(--magma-semantic-colors-focus-default, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
 }
 
 .emotion-0 a {
-  color: var(--magma-components-alert-warning-link, #6E340E);
+  color: var(--magma-components-alert-warning-link, var(--magma-semantic-colors-status-warning-link, var(--magma-color-warning-700, #6E340E)));
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -961,14 +961,14 @@ exports[`Alert Variants should render an alert with warning variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: var(--magma-components-alert-warning-link-hover, #AD5115);
+  color: var(--magma-components-alert-warning-link-hover, var(--magma-semantic-colors-status-warning-link-hover, var(--magma-color-warning, var(--magma-color-warning-500, #AD5115))));
 }
 
 .emotion-2 {
-  background: var(--magma-components-alert-warning-background, #FCEEE5);
-  border: 1px solid var(--magma-components-alert-warning-border, #AD5115);
+  background: var(--magma-components-alert-warning-background, var(--magma-semantic-colors-status-warning-surface, var(--magma-color-warning-100, #FCEEE5)));
+  border: 1px solid var(--magma-components-alert-warning-border, var(--magma-semantic-colors-status-warning-border, var(--magma-color-warning-500, #AD5115)));
   border-radius: var(--magma-border-radius, 8px);
-  color: var(--magma-components-alert-warning-icon, #AD5115);
+  color: var(--magma-components-alert-warning-icon, var(--magma-semantic-colors-status-warning-icon, var(--magma-color-warning-500, #AD5115)));
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1102,11 +1102,11 @@ exports[`Alert should render an alert with default variant 1`] = `
 }
 
 .emotion-0:focus {
-  outline: 2px solid var(--magma-semantic-colors-focus-default, #0074B7);
+  outline: 2px solid var(--magma-semantic-colors-focus-default, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
 }
 
 .emotion-0 a {
-  color: var(--magma-components-alert-info-link, #004A75);
+  color: var(--magma-components-alert-info-link, var(--magma-semantic-colors-status-info-link, var(--magma-color-info-700, #004A75)));
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -1114,14 +1114,14 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: var(--magma-components-alert-info-link-hover, #0074B7);
+  color: var(--magma-components-alert-info-link-hover, var(--magma-semantic-colors-status-info-link-hover, var(--magma-color-info, var(--magma-color-info-500, #0074B7))));
 }
 
 .emotion-2 {
-  background: var(--magma-components-alert-info-background, #E8F5FC);
-  border: 1px solid var(--magma-components-alert-info-border, #0074B7);
+  background: var(--magma-components-alert-info-background, var(--magma-semantic-colors-status-info-surface, var(--magma-color-info-100, #E8F5FC)));
+  border: 1px solid var(--magma-components-alert-info-border, var(--magma-semantic-colors-status-info-border, var(--magma-color-info-500, #0074B7)));
   border-radius: var(--magma-border-radius, 8px);
-  color: var(--magma-components-alert-info-icon, #0074B7);
+  color: var(--magma-components-alert-info-icon, var(--magma-semantic-colors-status-info-icon, var(--magma-color-info-500, #0074B7)));
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1210,11 +1210,11 @@ exports[`Alert should render an alert with default variant 1`] = `
 }
 
 .emotion-0:focus {
-  outline: 2px solid var(--magma-semantic-colors-focus-default, #0074B7);
+  outline: 2px solid var(--magma-semantic-colors-focus-default, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
 }
 
 .emotion-0 a {
-  color: var(--magma-components-alert-info-link, #004A75);
+  color: var(--magma-components-alert-info-link, var(--magma-semantic-colors-status-info-link, var(--magma-color-info-700, #004A75)));
   font-weight: 400;
   -webkit-text-decoration: underline;
   text-decoration: underline;
@@ -1222,14 +1222,14 @@ exports[`Alert should render an alert with default variant 1`] = `
 
 .emotion-0 a:not([disabled]):focus,
 .emotion-0 a:not([disabled]):hover {
-  color: var(--magma-components-alert-info-link-hover, #0074B7);
+  color: var(--magma-components-alert-info-link-hover, var(--magma-semantic-colors-status-info-link-hover, var(--magma-color-info, var(--magma-color-info-500, #0074B7))));
 }
 
 .emotion-2 {
-  background: var(--magma-components-alert-info-background, #E8F5FC);
-  border: 1px solid var(--magma-components-alert-info-border, #0074B7);
+  background: var(--magma-components-alert-info-background, var(--magma-semantic-colors-status-info-surface, var(--magma-color-info-100, #E8F5FC)));
+  border: 1px solid var(--magma-components-alert-info-border, var(--magma-semantic-colors-status-info-border, var(--magma-color-info-500, #0074B7)));
   border-radius: var(--magma-border-radius, 8px);
-  color: var(--magma-components-alert-info-icon, #0074B7);
+  color: var(--magma-components-alert-info-icon, var(--magma-semantic-colors-status-info-icon, var(--magma-color-info-500, #0074B7)));
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

@@ -12,7 +12,6 @@ import { v4 as uuid } from 'uuid';
 import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
-import { magma } from '../../theme/magma';
 import { token } from '../../theme/tokens';
 import { AlertVariant } from '../AlertBase';
 import { Badge } from '../Badge';
@@ -66,7 +65,7 @@ describe('Alert', () => {
     expect(container.querySelector('circle')).toBeInTheDocument();
     expect(container.querySelector('circle')).toHaveAttribute(
       'stroke',
-      magma.colors.info500
+      token('components.alert.info.icon')
     );
   });
 
@@ -80,7 +79,7 @@ describe('Alert', () => {
     expect(container.querySelector('circle')).toBeInTheDocument();
     expect(container.querySelector('circle')).toHaveAttribute(
       'stroke',
-      magma.colors.warning500
+      token('components.alert.warning.icon')
     );
   });
 

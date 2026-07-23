@@ -5,6 +5,7 @@ import { transparentize } from 'polished';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import { token } from '../../theme/tokens';
 import { ToggleButton } from '../ToggleButton';
 
 import { ToggleButtonGroup } from '.';
@@ -41,7 +42,9 @@ describe('ToggleButtonGroup', () => {
     expect(wrapper).toHaveStyleRule('row-gap', magma.spaceScale.spacing03);
     expect(getByTestId(`${testId}-1`)).toHaveStyleRule(
       'padding',
-      `${magma.spaceScale.spacing04} ${magma.spaceScale.spacing05}`
+      `${token('components.button.size.medium.paddingBlock')} ${token(
+        'components.button.size.medium.paddingInline'
+      )}`
     );
   });
 
