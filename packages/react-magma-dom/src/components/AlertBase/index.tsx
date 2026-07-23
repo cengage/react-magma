@@ -17,6 +17,7 @@ import { I18nContext, I18nInterface } from '../..';
 import { InverseContext, useIsInverse } from '../../inverse';
 import { ThemeInterface } from '../../theme/magma';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { token, TokenPath } from '../../theme/tokens';
 import { useGenerateId } from '../../utils';
 import { ButtonVariant } from '../Button';
 import { IconButton } from '../IconButton';
@@ -36,6 +37,78 @@ export enum AlertVariant {
   success = 'success',
   warning = 'warning',
   danger = 'danger',
+}
+
+interface AlertVariantTokenPaths {
+  background: TokenPath;
+  border: TokenPath;
+  icon: TokenPath;
+  inverseBackground: TokenPath;
+  inverseBorder: TokenPath;
+  inverseIcon: TokenPath;
+  inverseLink: TokenPath;
+  inverseLinkHover: TokenPath;
+  link: TokenPath;
+  linkHover: TokenPath;
+}
+
+const ALERT_TOKEN_PATHS: Record<AlertVariant, AlertVariantTokenPaths> = {
+  [AlertVariant.danger]: {
+    background: 'components.alert.danger.background',
+    border: 'components.alert.danger.border',
+    icon: 'components.alert.danger.icon',
+    inverseBackground: 'components.alert.danger.inverse.background',
+    inverseBorder: 'components.alert.danger.inverse.border',
+    inverseIcon: 'components.alert.danger.inverse.icon',
+    inverseLink: 'components.alert.danger.inverse.link',
+    inverseLinkHover: 'components.alert.danger.inverse.linkHover',
+    link: 'components.alert.danger.link',
+    linkHover: 'components.alert.danger.linkHover',
+  },
+  [AlertVariant.info]: {
+    background: 'components.alert.info.background',
+    border: 'components.alert.info.border',
+    icon: 'components.alert.info.icon',
+    inverseBackground: 'components.alert.info.inverse.background',
+    inverseBorder: 'components.alert.info.inverse.border',
+    inverseIcon: 'components.alert.info.inverse.icon',
+    inverseLink: 'components.alert.info.inverse.link',
+    inverseLinkHover: 'components.alert.info.inverse.linkHover',
+    link: 'components.alert.info.link',
+    linkHover: 'components.alert.info.linkHover',
+  },
+  [AlertVariant.success]: {
+    background: 'components.alert.success.background',
+    border: 'components.alert.success.border',
+    icon: 'components.alert.success.icon',
+    inverseBackground: 'components.alert.success.inverse.background',
+    inverseBorder: 'components.alert.success.inverse.border',
+    inverseIcon: 'components.alert.success.inverse.icon',
+    inverseLink: 'components.alert.success.inverse.link',
+    inverseLinkHover: 'components.alert.success.inverse.linkHover',
+    link: 'components.alert.success.link',
+    linkHover: 'components.alert.success.linkHover',
+  },
+  [AlertVariant.warning]: {
+    background: 'components.alert.warning.background',
+    border: 'components.alert.warning.border',
+    icon: 'components.alert.warning.icon',
+    inverseBackground: 'components.alert.warning.inverse.background',
+    inverseBorder: 'components.alert.warning.inverse.border',
+    inverseIcon: 'components.alert.warning.inverse.icon',
+    inverseLink: 'components.alert.warning.inverse.link',
+    inverseLinkHover: 'components.alert.warning.inverse.linkHover',
+    link: 'components.alert.warning.link',
+    linkHover: 'components.alert.warning.linkHover',
+  },
+};
+
+function getAlertVariantTokenPaths(variant?: AlertVariant) {
+  return ALERT_TOKEN_PATHS[variant || AlertVariant.info];
+}
+
+function cssToken(props: { theme?: unknown }, path: TokenPath): string {
+  return token.var(path, { theme: props.theme });
 }
 
 export interface AlertBaseProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -63,110 +136,39 @@ export interface AlertBaseProps extends React.HTMLAttributes<HTMLDivElement> {
 export const transitionDuration = 500;
 
 export function buildAlertBackground(props) {
-  if (props.isInverse) {
-    switch (props.variant) {
-      case 'success':
-        return props.theme.colors.success700;
-      case 'warning':
-        return props.theme.colors.warning700;
-      case 'danger':
-        return props.theme.colors.danger700;
-      default:
-        return props.theme.colors.info700;
-    }
-  }
-  switch (props.variant) {
-    case 'success':
-      return props.theme.colors.success100;
-    case 'warning':
-      return props.theme.colors.warning100;
-    case 'danger':
-      return props.theme.colors.danger100;
-    default:
-      return props.theme.colors.info100;
-  }
+  const paths = getAlertVariantTokenPaths(props.variant);
+
+  return cssToken(
+    props,
+    props.isInverse ? paths.inverseBackground : paths.background
+  );
 }
 
 export function buildAlertBorder(props) {
-  if (props.isInverse) {
-    switch (props.variant) {
-      case 'success':
-        return props.theme.colors.success300;
-      case 'warning':
-        return props.theme.colors.warning300;
-      case 'danger':
-        return props.theme.colors.danger200;
-      default:
-        return props.theme.colors.info300;
-    }
-  }
-  switch (props.variant) {
-    case 'success':
-      return props.theme.colors.success500;
-    case 'warning':
-      return props.theme.colors.warning500;
-    case 'danger':
-      return props.theme.colors.danger500;
-    default:
-      return props.theme.colors.info500;
-  }
+  const paths = getAlertVariantTokenPaths(props.variant);
+
+  return cssToken(props, props.isInverse ? paths.inverseBorder : paths.border);
 }
 
 export function buildAlertColor(props) {
-  if (props.isInverse) {
-    return props.theme.colors.neutral100;
-  }
-  switch (props.variant) {
-    case 'success':
-      return props.theme.colors.success500;
-    case 'warning':
-      return props.theme.colors.warning500;
-    case 'danger':
-      return props.theme.colors.danger500;
-    default:
-      return props.theme.colors.info500;
-  }
+  const paths = getAlertVariantTokenPaths(props.variant);
+
+  return cssToken(props, props.isInverse ? paths.inverseIcon : paths.icon);
 }
 
 export function buildLinkColor(props) {
-  if (props.isInverse) {
-    switch (props.variant) {
-      case 'success':
-        return props.theme.colors.success200;
-      case 'warning':
-        return props.theme.colors.warning200;
-      case 'danger':
-        return props.theme.colors.danger200;
-      default:
-        return props.theme.colors.info200;
-    }
-  }
-  switch (props.variant) {
-    case 'success':
-      return props.theme.colors.success700;
-    case 'warning':
-      return props.theme.colors.warning700;
-    case 'danger':
-      return props.theme.colors.danger700;
-    default:
-      return props.theme.colors.info700;
-  }
+  const paths = getAlertVariantTokenPaths(props.variant);
+
+  return cssToken(props, props.isInverse ? paths.inverseLink : paths.link);
 }
 
 export function buildLinkHoverColor(props) {
-  if (props.isInverse) {
-    return props.theme.colors.neutral100;
-  }
-  switch (props.variant) {
-    case 'success':
-      return props.theme.colors.success;
-    case 'warning':
-      return props.theme.colors.warning;
-    case 'danger':
-      return props.theme.colors.danger;
-    default:
-      return props.theme.colors.info;
-  }
+  const paths = getAlertVariantTokenPaths(props.variant);
+
+  return cssToken(
+    props,
+    props.isInverse ? paths.inverseLinkHover : paths.linkHover
+  );
 }
 
 const StyledAlert = styled.div<AlertBaseProps>`
@@ -177,26 +179,27 @@ const StyledAlert = styled.div<AlertBaseProps>`
       : `fadein ${transitionDuration}ms`};
   display: flex;
   flex-direction: column;
-  font-size: ${props => props.theme.typeScale.size03.fontSize};
-  font-family: ${props => props.theme.bodyFont};
-  line-height: ${props => props.theme.typeScale.size03.lineHeight};
-  margin-bottom: ${props => props.theme.spaceScale.spacing06};
+  font-size: ${props => cssToken(props, 'typeScale.size03.fontSize')};
+  font-family: ${props => cssToken(props, 'bodyFont')};
+  line-height: ${props => cssToken(props, 'typeScale.size03.lineHeight')};
+  margin-bottom: ${props => cssToken(props, 'spaceScale.spacing06')};
   max-width: 100%;
   padding: 0;
   position: relative;
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
-    font-size: ${props => props.theme.typeScale.size02.fontSize};
-    letter-spacing: ${props => props.theme.typeScale.size02.letterSpacing};
-    line-height: ${props => props.theme.typeScale.size02.lineHeight};
+    font-size: ${props => cssToken(props, 'typeScale.size02.fontSize')};
+    letter-spacing: ${props =>
+      cssToken(props, 'typeScale.size02.letterSpacing')};
+    line-height: ${props => cssToken(props, 'typeScale.size02.lineHeight')};
   }
 
   &:focus {
     outline: 2px solid
       ${props =>
         props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+          ? cssToken(props, 'semanticColors.focus.inverse')
+          : cssToken(props, 'semanticColors.focus.default')};
   }
 
   ${props =>
@@ -266,7 +269,7 @@ const StyledAlert = styled.div<AlertBaseProps>`
 const StyledAlertInner = styled.div<AlertBaseProps>`
   background: ${buildAlertBackground};
   border: 1px solid ${buildAlertBorder};
-  border-radius: ${props => props.theme.borderRadius};
+  border-radius: ${props => cssToken(props, 'borderRadius')};
   color: ${buildAlertColor};
   display: flex;
   position: relative;
@@ -278,7 +281,7 @@ const StyledAlertInner = styled.div<AlertBaseProps>`
         ? `0 2px 8px 0 ${transparentize(0.3, props.theme.colors.neutral900)}`
         : `0 2px 8px 0 ${transparentize(0.6, props.theme.colors.neutral900)}`};
       padding-right: 0;
-      height: ${props.theme.spaceScale.spacing11};
+      height: ${cssToken(props, 'spaceScale.spacing11')};
     `}
 `;
 
@@ -289,11 +292,11 @@ const AlertContents = styled.div<{
   align-items: ${props => (props.additionalContent ? 'center' : '')};
   align-self: center;
   flex-grow: 1;
-  font-family: ${props => props.theme.bodyFont};
-  padding: ${props => props.theme.spaceScale.spacing04} 0;
+  font-family: ${props => cssToken(props, 'bodyFont')};
+  padding: ${props => cssToken(props, 'spaceScale.spacing04')} 0;
   display: ${props => (props.additionalContent ? 'flex' : '')};
   margin-right: ${props =>
-    !props.isDismissible ? props.theme.spaceScale.spacing03 : ''};
+    !props.isDismissible ? cssToken(props, 'spaceScale.spacing03') : ''};
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
     padding-left: 0;
   }
@@ -303,7 +306,7 @@ export const AdditionalContentWrapper = styled.div`
   flex: 1 0 auto;
   justify-content: flex-end;
   display: flex;
-  margin-left: ${props => props.theme.spaceScale.spacing05};
+  margin-left: ${props => cssToken(props, 'spaceScale.spacing05')};
 `;
 
 const IconWrapperStyles = css`
@@ -315,11 +318,11 @@ const IconWrapperStyles = css`
 
 const IconWrapper = styled.span<{ isToast?: boolean; theme: ThemeInterface }>`
   ${IconWrapperStyles}
-  padding: 0 ${props => props.theme.spaceScale.spacing03} 0 ${props =>
-    props.theme.spaceScale.spacing04};
+  padding: 0 ${props => cssToken(props, 'spaceScale.spacing03')} 0 ${props =>
+    cssToken(props, 'spaceScale.spacing04')};
 
   @media (max-width: ${props => props.theme.breakpoints.small}px) {
-    padding: 0 ${props => props.theme.spaceScale.spacing03};
+    padding: 0 ${props => cssToken(props, 'spaceScale.spacing03')};
     svg {
       width: 20px;
     }
@@ -330,13 +333,13 @@ const ProgressRingWrapper = styled.div`
   margin-top: 6px;
   position: absolute;
   top: auto;
-  right: ${props => props.theme.spaceScale.spacing02};
+  right: ${props => cssToken(props, 'spaceScale.spacing02')};
 `;
 
 const DismissibleIconWrapper = styled.span<AlertBaseProps>`
   ${IconWrapperStyles}
   margin-left: ${props =>
-    props.additionalContent ? props.theme.spaceScale.spacing03 : ''};
+    props.additionalContent ? cssToken(props, 'spaceScale.spacing03') : ''};
 `;
 
 const whitelistProps = ['icon', 'isInverse', 'theme', 'variant'];
@@ -351,15 +354,15 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
   isToast?: boolean;
 }>`
   align-self: stretch;
-  border-radius: 0 ${props => props.theme.borderRadius}
-    ${props => props.theme.borderRadius} 0;
+  border-radius: 0 ${props => cssToken(props, 'borderRadius')}
+    ${props => cssToken(props, 'borderRadius')} 0;
   color: inherit;
   height: auto;
   margin: ${props => (props.isToast ? '4px' : '0 -1px 0 0')};
   padding: ${props =>
     props.isToast
-      ? `0 ${props.theme.spaceScale.spacing04}`
-      : `0 ${props.theme.spaceScale.spacing03}`};
+      ? `0 ${cssToken(props, 'spaceScale.spacing04')}`
+      : `0 ${cssToken(props, 'spaceScale.spacing03')}`};
   width: auto;
   &:not(:disabled):hover {
     background: none;
@@ -371,8 +374,8 @@ const DismissButton = styled(IconButton, { shouldForwardProp })<{
     outline: 2px solid
       ${props =>
         props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+          ? cssToken(props, 'semanticColors.focus.inverse')
+          : cssToken(props, 'semanticColors.focus.default')};
     outline-offset: 0 !important;
   }
   &:not(:disabled):active {
@@ -468,19 +471,9 @@ export const AlertBase = React.forwardRef<HTMLDivElement, AlertBaseProps>(
     const i18n = React.useContext(I18nContext);
 
     function progressRingColor() {
-      if (isInverse) {
-        return theme.colors.neutral100;
-      }
-      switch (props.variant) {
-        case 'success':
-          return theme.colors.success500;
-        case 'warning':
-          return theme.colors.warning500;
-        case 'danger':
-          return theme.colors.danger500;
-        default:
-          return theme.colors.info500;
-      }
+      const paths = getAlertVariantTokenPaths(variant);
+
+      return token.var(isInverse ? paths.inverseIcon : paths.icon, { theme });
     }
 
     return (

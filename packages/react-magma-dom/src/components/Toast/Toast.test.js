@@ -3,7 +3,7 @@ import React from 'react';
 import { act, render, fireEvent, waitFor } from '@testing-library/react';
 
 import { ToastsContainer } from './ToastsContainer';
-import { magma } from '../../theme/magma';
+import { token } from '../../theme/tokens';
 
 import { Toast } from '.';
 
@@ -246,7 +246,7 @@ describe('Toast', () => {
 
     expect(getByTestId('test').firstChild.firstChild).toHaveStyleRule(
       'background',
-      magma.colors.success100
+      token.var('components.alert.success.background')
     );
   });
 

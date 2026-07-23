@@ -5,6 +5,7 @@ import { KeyboardArrowRightIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import { token } from '../../theme/tokens';
 import { ButtonSize } from '../Button';
 
 import { Hyperlink, HyperlinkIconPosition } from '.';
@@ -93,10 +94,16 @@ describe('Hyperlink', () => {
 
     expect(element).toHaveStyleRule(
       'font-size',
-      magma.typeScale.size03.fontSize
+      token('components.button.size.medium.fontSize')
     );
-    expect(element).toHaveStyleRule('border-radius', magma.borderRadius);
-    expect(element).toHaveStyleRule('height', magma.spaceScale.spacing09);
+    expect(element).toHaveStyleRule(
+      'border-radius',
+      token('components.button.borderRadius')
+    );
+    expect(element).toHaveStyleRule(
+      'height',
+      token('components.button.size.medium.height')
+    );
   });
 
   it('should render an anchor element with passed in button styles', () => {
@@ -117,10 +124,13 @@ describe('Hyperlink', () => {
 
     expect(element).toHaveStyleRule(
       'font-size',
-      magma.typeScale.size04.fontSize
+      token('components.button.size.large.fontSize')
     );
     expect(element).toHaveStyleRule('border-radius', '2rem');
-    expect(element).toHaveStyleRule('height', magma.spaceScale.spacing11);
+    expect(element).toHaveStyleRule(
+      'height',
+      token('components.button.size.large.height')
+    );
   });
 
   it('should send back values when passed children as a function', () => {

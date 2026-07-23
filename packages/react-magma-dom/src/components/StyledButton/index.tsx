@@ -20,6 +20,7 @@ import {
 } from './styles';
 import { I18nContext } from '../../i18n';
 import { ThemeContext } from '../../theme/ThemeContext';
+import { token, TokenPath } from '../../theme/tokens';
 import { ButtonType, ButtonProps, ButtonSize, ButtonVariant } from '../Button';
 import { Spinner } from '../Spinner';
 import { VisuallyHidden } from '../VisuallyHidden';
@@ -27,6 +28,22 @@ import { VisuallyHidden } from '../VisuallyHidden';
 export interface StyledButtonProps extends ButtonProps {
   href?: string;
   iconOnly?: boolean;
+}
+
+function cssToken(props, path: TokenPath): string {
+  return token.var(path, { theme: props.theme });
+}
+
+function buildButtonMinWidth(props) {
+  if (props.size === 'small') {
+    return cssToken(props, 'components.button.size.small.minWidth');
+  }
+
+  if (props.size === 'large') {
+    return cssToken(props, 'components.button.size.large.minWidth');
+  }
+
+  return cssToken(props, 'components.button.size.medium.minWidth');
 }
 
 export const buttonStyles = props => css`
@@ -39,17 +56,17 @@ export const buttonStyles = props => css`
   cursor: ${props.disabled ? 'not-allowed' : 'pointer'};
   display: ${props.isFullWidth ? 'flex' : 'inline-flex'};
   flex-shrink: 0;
-  font-family: ${props.theme.bodyFont};
+  font-family: ${cssToken(props, 'components.button.fontFamily')};
   font-size: ${buildButtonFontSize(props)};
   font-weight: 500;
   height: ${buildButtonSize(props)};
   justify-content: center;
   letter-spacing: ${props.size === 'small'
-    ? props.theme.typeScale.size01.letterSpacing
+    ? cssToken(props, 'components.button.size.small.letterSpacing')
     : 'inherit'};
   line-height: ${buildButtonLineHeight(props)};
   margin: 0;
-  min-width: ${props.size === 'small' ? '0' : props.theme.spaceScale.spacing13};
+  min-width: ${buildButtonMinWidth(props)};
   overflow: hidden;
   padding: ${buildButtonPadding(props)};
   position: relative;
@@ -74,8 +91,8 @@ export const buttonStyles = props => css`
     &:focus {
       outline: 2px solid
         ${props.isInverse
-          ? props.theme.colors.focusInverse
-          : props.theme.colors.focus};
+          ? cssToken(props, 'components.button.focus.inverseOutlineColor')
+          : cssToken(props, 'components.button.focus.outlineColor')};
       outline-offset: 2px;
       z-index: 1;
     }
@@ -147,8 +164,8 @@ export const StyledButton = React.forwardRef<
 
   const spinnerColor =
     isInverse && variant === ButtonVariant.link
-      ? theme.colors.neutral100
-      : theme.colors.neutral500;
+      ? token.var('colors.neutral100', { theme })
+      : token.var('colors.neutral500', { theme });
 
   const spinnerSize =
     size === ButtonSize.small

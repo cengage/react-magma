@@ -126,6 +126,88 @@ export function Example() {
 }
 ```
 
+## CSS Design Tokens
+
+React Magma is progressively adopting design tokens backed by CSS custom
+properties. Token names use the fixed `--magma-` prefix and can be overridden
+on any ancestor to scope a brand, tenant, page, or component customization.
+The source token package implements a validated proof-of-concept profile of the
+stable
+[DTCG Format Module 2025.10](https://www.designtokens.org/TR/2025.10/format/)
+and maps source names to React Magma's compatibility contract. Once the actual
+UX export is available, its aliases, naming, and supported token types will
+finalize that importer profile without coupling React components to
+Figma-specific metadata.
+
+Tokens are layered from primitives to semantic decisions and then component
+slots. Overriding a primitive flows through its aliases unless a more specific
+semantic or component token is also overridden.
+
+```tsx
+import React from 'react';
+
+import { Alert } from 'react-magma-dom';
+
+const tenantTokens = {
+  '--magma-color-info-100': '#F3E8FF',
+  '--magma-color-info-500': '#9333EA',
+  '--magma-color-info-700': '#581C87',
+} as React.CSSProperties;
+
+export function Example() {
+  return (
+    <div style={tenantTokens}>
+      <Alert>This Alert uses tenant-scoped token values.</Alert>
+    </div>
+  );
+}
+```
+
+The typed `token` helper exposes the same contract to TypeScript:
+
+```tsx
+import { token } from 'react-magma-dom';
+
+token.var('semanticColors.text.link');
+// var(--magma-semantic-colors-text-link, ...)
+
+token.cssVarName('components.alert.info.background');
+// --magma-components-alert-info-background
+
+token.raw('colors.info500');
+// #0074B7
+```
+
+Token references include fallbacks derived from the active `ThemeContext`.
+Consequently, CSS variable declarations are not required for components to
+render correctly and nested legacy themes continue to work.
+
+`GlobalStyles` can optionally emit the complete active token set. Use this when
+an application needs inspectable declarations or manages a single root theme:
+
+```tsx
+<GlobalStyles emitCssVariables />
+```
+
+Declarations can also be scoped to an application or tenant boundary:
+
+```tsx
+<section data-site="acme">
+  <GlobalStyles emitCssVariables cssVarsRoot='[data-site="acme"]' />
+  {/* application content */}
+</section>
+```
+
+When using nested `ThemeContext.Provider` values, prefer token fallbacks and
+scoped CSS overrides. Root-level emitted declarations represent one root theme
+and take precedence over fallback values through the CSS cascade.
+
+This POC covers Alert color slots and selected Button palette and structure
+styles. Legacy translucent effects, including toast shadows and some Button
+interaction states, continue to derive from `ThemeContext`. These should become
+explicit Magma-owned semantic or component tokens after the UX export clarifies
+which decisions Figma owns.
+
 ## Using Themes
 
 By default, all components in the React Magma library use the Magma theme. You can use the ThemeContext to pass in a custom theme.

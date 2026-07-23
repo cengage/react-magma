@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import { token } from '../../theme/tokens';
 import { Badge } from '../Badge';
 
 import { Banner } from '.';
@@ -29,7 +30,7 @@ describe('Banner', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.warning100
+        token.var('components.alert.warning.background')
       );
 
       const closeBtn = getByLabelText('Close this message');
@@ -52,7 +53,7 @@ describe('Banner', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.success100
+        token.var('components.alert.success.background')
       );
 
       const closeBtn = getByLabelText('Close this message');
@@ -75,7 +76,7 @@ describe('Banner', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.info100
+        token.var('components.alert.info.background')
       );
 
       const closeBtn = getByLabelText('Close this message');
@@ -98,7 +99,7 @@ describe('Banner', () => {
 
       expect(getByTestId(testId)).toHaveStyleRule(
         'background',
-        magma.colors.danger100
+        token.var('components.alert.danger.background')
       );
 
       const closeBtn = getByLabelText('Close this message');
@@ -122,7 +123,7 @@ describe('Banner', () => {
 
         expect(getByTestId(testId)).toHaveStyleRule(
           'background',
-          magma.colors.warning700
+          token.var('components.alert.warning.inverse.background')
         );
 
         const closeBtn = getByLabelText('Close this message');
@@ -145,7 +146,7 @@ describe('Banner', () => {
 
         expect(getByTestId(testId)).toHaveStyleRule(
           'background',
-          magma.colors.success700
+          token.var('components.alert.success.inverse.background')
         );
 
         const closeBtn = getByLabelText('Close this message');
@@ -168,7 +169,7 @@ describe('Banner', () => {
 
         expect(getByTestId(testId)).toHaveStyleRule(
           'background',
-          magma.colors.info700
+          token.var('components.alert.info.inverse.background')
         );
 
         const closeBtn = getByLabelText('Close this message');
@@ -191,7 +192,7 @@ describe('Banner', () => {
 
         expect(getByTestId(testId)).toHaveStyleRule(
           'background',
-          magma.colors.danger700
+          token.var('components.alert.danger.inverse.background')
         );
 
         const closeBtn = getByLabelText('Close this message');
@@ -241,8 +242,8 @@ describe('Banner', () => {
 
       const btn = getByText('btn text').parentElement;
 
-      expect(btn).toHaveStyleRule('color', magma.colors.neutral100);
-      expect(btn).toHaveStyleRule('background', magma.colors.primary500);
+      expect(btn).toHaveStyleRule('color', token.var('colors.neutral100'));
+      expect(btn).toHaveStyleRule('background', token.var('colors.primary'));
 
       await userEvent.click(btn);
       expect(actionBtnClick).toHaveBeenCalled();
@@ -260,7 +261,7 @@ describe('Banner', () => {
       );
       expect(getByText('btn text').parentElement).toHaveStyleRule(
         'color',
-        magma.colors.neutral100
+        token.var('colors.neutral100')
       );
     });
 
@@ -277,8 +278,8 @@ describe('Banner', () => {
 
       const btn = getByText('btn text').parentElement;
 
-      expect(btn).toHaveStyleRule('color', magma.colors.neutral100);
-      expect(btn).toHaveStyleRule('background', magma.colors.primary500);
+      expect(btn).toHaveStyleRule('color', token.var('colors.neutral100'));
+      expect(btn).toHaveStyleRule('background', token.var('colors.primary'));
     });
   });
 

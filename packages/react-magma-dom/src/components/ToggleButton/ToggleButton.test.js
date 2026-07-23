@@ -6,6 +6,7 @@ import { CheckIcon, SettingsIcon } from 'react-magma-icons';
 
 import { axe } from '../../../axe-helper';
 import { magma } from '../../theme/magma';
+import { token } from '../../theme/tokens';
 import { ButtonSize, ButtonTextTransform } from '../Button';
 
 import { ToggleButton } from '.';
@@ -51,13 +52,19 @@ describe('ToggleButton', () => {
       );
       const button = getByTestId(testId);
 
-      expect(button).toHaveStyleRule('border-color', magma.colors.neutral300);
+      expect(button).toHaveStyleRule(
+        'border-color',
+        token('colors.neutral300')
+      );
       expect(button).toHaveStyleRule('border', '1px solid');
       expect(button).toHaveStyleRule(
         'border-radius',
-        magma.spaceScale.spacing03
+        token('components.button.borderRadius')
       );
-      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing09);
+      expect(button).toHaveStyleRule(
+        'height',
+        token('components.button.size.medium.height')
+      );
       expect(button).toHaveStyleRule('width', magma.spaceScale.spacing09);
     });
 
@@ -70,7 +77,10 @@ describe('ToggleButton', () => {
       const button = getByTestId(testId);
 
       expect(getByTestId(testId).querySelector('svg')).not.toBeInTheDocument();
-      expect(button).toHaveStyleRule('min-width', magma.spaceScale.spacing13);
+      expect(button).toHaveStyleRule(
+        'min-width',
+        token('components.button.size.medium.minWidth')
+      );
       expect(button).toHaveStyleRule('width', 'auto');
     });
 
@@ -99,7 +109,10 @@ describe('ToggleButton', () => {
       const button = getByTestId(testId);
 
       expect(button).toHaveStyleRule('border', '1px solid');
-      expect(button).toHaveStyleRule('border-color', magma.colors.neutral300);
+      expect(button).toHaveStyleRule(
+        'border-color',
+        token('colors.neutral300')
+      );
 
       rerender(
         <ToggleButton value={value} testId={testId} disabled>
@@ -108,7 +121,10 @@ describe('ToggleButton', () => {
       );
 
       expect(button).toHaveStyleRule('border', '1px solid');
-      expect(button).toHaveStyleRule('border-color', magma.colors.neutral300);
+      expect(button).toHaveStyleRule(
+        'border-color',
+        token('colors.neutral300')
+      );
     });
 
     it('Supports small icon sizes', () => {
@@ -123,7 +139,10 @@ describe('ToggleButton', () => {
       const button = getByTestId(testId);
 
       expect(button).toHaveStyleRule('width', magma.spaceScale.spacing07);
-      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing07);
+      expect(button).toHaveStyleRule(
+        'height',
+        token('components.button.size.small.height')
+      );
     });
 
     it('Supports medium icon sizes', () => {
@@ -138,7 +157,10 @@ describe('ToggleButton', () => {
       const button = getByTestId(testId);
 
       expect(button).toHaveStyleRule('width', magma.spaceScale.spacing09);
-      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing09);
+      expect(button).toHaveStyleRule(
+        'height',
+        token('components.button.size.medium.height')
+      );
     });
 
     it('Supports large icon sizes', () => {
@@ -153,7 +175,10 @@ describe('ToggleButton', () => {
       const button = getByTestId(testId);
 
       expect(button).toHaveStyleRule('width', magma.spaceScale.spacing11);
-      expect(button).toHaveStyleRule('height', magma.spaceScale.spacing11);
+      expect(button).toHaveStyleRule(
+        'height',
+        token('components.button.size.large.height')
+      );
     });
 
     it('Has a disabled state', () => {
@@ -203,7 +228,7 @@ describe('ToggleButton', () => {
         <ToggleButton value={value} testId={testId} icon={icon} />
       );
       const button = getByTestId(testId);
-      expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+      expect(button).toHaveStyleRule('background', token('colors.neutral100'));
       fireEvent.click(getByTestId(testId));
 
       expect(button).toHaveStyleRule(
@@ -219,7 +244,7 @@ describe('ToggleButton', () => {
       );
       const button = getByTestId(testId);
 
-      expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+      expect(button).toHaveStyleRule('background', token('colors.neutral100'));
       expect(button).toHaveAttribute('aria-checked', 'false');
     });
 
@@ -251,7 +276,7 @@ describe('ToggleButton', () => {
       );
       fireEvent.click(button);
 
-      expect(button).toHaveStyleRule('background', magma.colors.neutral100);
+      expect(button).toHaveStyleRule('background', token('colors.neutral100'));
 
       expect(button).toHaveAttribute('aria-checked', 'false');
     });
