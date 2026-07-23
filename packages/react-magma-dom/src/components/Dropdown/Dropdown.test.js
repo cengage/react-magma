@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { transparentize } from 'polished';
 import {
@@ -409,6 +409,33 @@ describe('Dropdown', () => {
 
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
     expect(onOpen).toHaveBeenCalled();
+  });
+
+  it('should open and close the dropdown manually with an api ref', async () => {
+    const dropdownApiRef = React.createRef();
+
+    const { getByTestId } = render(
+      <Dropdown apiRef={dropdownApiRef} testId="dropdown">
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
+
+    await act(async () => {
+      dropdownApiRef.current.openDropdownManually();
+    });
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'block');
+
+    await act(async () => {
+      dropdownApiRef.current.closeDropdownManually();
+    });
+
+    expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
   it('should close the menu when menu is blurred', async () => {

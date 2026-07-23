@@ -39,6 +39,7 @@ import { PopoverTrigger } from '../Popover/PopoverTrigger';
 import {
   Dropdown,
   DropdownAlignment,
+  DropdownApi,
   DropdownDropDirection,
   DropdownProps,
 } from './index';
@@ -1110,4 +1111,35 @@ export const DropdownInsidePopover = {
       </Popover>
     </div>
   ),
+};
+
+export const ProgrammaticControl = {
+  render: args => {
+    const dropdownApiRef = React.useRef<DropdownApi>();
+
+    function handleOpen(event: React.SyntheticEvent) {
+      dropdownApiRef.current?.openDropdownManually(event);
+    }
+
+    function handleClose(event: React.SyntheticEvent) {
+      dropdownApiRef.current?.closeDropdownManually(event);
+    }
+
+    return (
+      <div style={{ margin: '150px auto', textAlign: 'center' }}>
+        <ButtonGroup>
+          <Button onClick={handleOpen}>Open</Button>
+          <Button onClick={handleClose}>Close</Button>
+        </ButtonGroup>
+        <Spacer size={12} />
+        <Dropdown {...args} apiRef={dropdownApiRef}>
+          <DropdownButton>Dropdown</DropdownButton>
+          <DropdownContent>
+            <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+            <DropdownMenuItem>Menu item 2</DropdownMenuItem>
+          </DropdownContent>
+        </Dropdown>
+      </div>
+    );
+  },
 };

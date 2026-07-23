@@ -46,6 +46,13 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   alignment?: DropdownAlignment;
   /**
+   * The ref object that allows Dropdown manipulation.
+   * Actions available:
+   * openDropdownManually(event): void - Opens the dropdown manually.
+   * closeDropdownManually(event): void - Closes the dropdown manually.
+   */
+  apiRef?: React.MutableRefObject<DropdownApi | undefined>;
+  /**
    * Position of the dropdown content
    * @default DropdownDropDirection.down
    * @deprecated = true
@@ -78,6 +85,11 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
    * @default Width of longest menu item
    */
   width?: string | number;
+}
+
+export interface DropdownApi {
+  openDropdownManually(event): void;
+  closeDropdownManually(event): void;
 }
 
 const Container = styled.div`
@@ -128,6 +140,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const {
       activeIndex,
       alignment,
+      apiRef,
       children,
       dropDirection,
       maxHeight,
@@ -190,6 +203,19 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
       onClose && typeof onClose === 'function' && onClose(event);
     }
+
+    React.useEffect(() => {
+      if (apiRef) {
+        apiRef.current = {
+          openDropdownManually(event) {
+            openDropdown();
+          },
+          closeDropdownManually(event) {
+            closeDropdown(event);
+          },
+        };
+      }
+    }, []);
 
     function getFilteredItem(): [any, number] {
       const filteredItems = itemRefArray.current.filter(
