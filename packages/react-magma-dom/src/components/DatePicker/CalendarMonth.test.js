@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, act } from '@testing-library/react';
+import { render, act, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { CalendarContext } from './CalendarContext';
@@ -46,7 +46,7 @@ describe('Calendar Month', () => {
         </CalendarContext.Provider>
       );
 
-      expect(getByTestId('month-picker')).toHaveFocus();
+      await waitFor(() => expect(getByTestId('month-picker')).toHaveFocus());
       await userEvent.tab();
       expect(getByTestId('year-picker')).toHaveFocus();
       await userEvent.tab();
@@ -129,7 +129,7 @@ describe('Calendar Month', () => {
         </CalendarContext.Provider>
       );
 
-      expect(getByTestId('month-picker')).toHaveFocus();
+      await waitFor(() => expect(getByTestId('month-picker')).toHaveFocus());
 
       await userEvent.tab({ shift: true });
       expect(getByLabelText(/close calendar/i)).toHaveFocus();
