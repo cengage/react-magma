@@ -527,6 +527,25 @@ export function Example() {
 }
 ```
 
+## Performance With Large Lists
+
+`Checkbox` is optimized to render efficiently, including when many appear on a
+single page. If you need to render very large lists (in the thousands), render
+only the checkboxes that are visible in the viewport using a windowing library
+such as [`@tanstack/react-virtual`](https://tanstack.com/virtual) or
+`react-window`, rather than mounting every checkbox at once.
+
+Two things are required for a virtualized list of checkboxes to behave
+correctly:
+
+- **Keep the checked state controlled and stored outside the DOM** (for example
+  in a `Set` of selected ids). Off-screen rows are unmounted while scrolling, so
+  any state kept only on the DOM element would be lost.
+- **Expose the full list size to assistive technology** with `aria-setsize` and
+  `aria-posinset` on each `Checkbox`, since screen readers cannot traverse rows
+  that are not currently in the DOM. "Select all" actions should operate on your
+  data rather than the rendered nodes.
+
 ## Testing
 
 Passing in the `testId` prop will add the `data-testid` attribute to the input element for easier querying in tests.

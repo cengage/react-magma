@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Meta } from '@storybook/react-webpack5';
+import { useVirtualizer } from '@tanstack/react-virtual';
 
 import { magma } from '../../theme/magma';
 import { Card, CardBody } from '../Card';
@@ -257,4 +258,121 @@ PerformanceLargeList.argTypes = {
 
 PerformanceLargeList.args = {
   count: 1400,
+};
+
+export const Lots = (args: { numberRows: number }) => {
+  function getCheckboxes() {
+    const boxes = [];
+
+    for (let i = 0; i < args.numberRows; i++) {
+      boxes.push(<Checkbox key={i} checked labelText="Checked checkbox" />);
+    }
+
+    return boxes;
+  }
+
+  return <>{getCheckboxes()}</>;
+};
+Lots.args = {
+  numberRows: 2000,
+};
+
+/**
+ * Recommended approach for very large lists (thousands of checkboxes).
+ *
+ * Only the checkboxes visible in the scroll viewport are mounted (windowing
+ * via `@tanstack/react-virtual`), so render cost stays flat regardless of the
+ * total count. Two things are required to make this work correctly:
+ *
+ * 1. Checked state must be controlled and stored OUTSIDE the DOM (here a
+ *    `Set` of checked ids). Off-screen rows are unmounted, so any state kept
+ *    only in the DOM would be lost while scrolling.
+ * 2. For assistive technology, expose the full list size on each control via
+ *    `aria-setsize` / `aria-posinset`, since screen readers cannot traverse
+ *    rows that are not in the DOM. "Select all" style actions should operate
+ *    on the data, not the rendered nodes.
+ */
+export const VirtualizedList = (args: { count: number }) => {
+  const { count } = args;
+  const parentRef = React.useRef<HTMLDivElement>(null);
+  const [checkedIds, setCheckedIds] = React.useState<Set<number>>(
+    () => new Set()
+  );
+
+  const rowVirtualizer = useVirtualizer({
+    count,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 40,
+    overscan: 8,
+  });
+
+  const toggle = React.useCallback((index: number) => {
+    setCheckedIds(prev => {
+      const next = new Set(prev);
+
+      if (next.has(index)) {
+        next.delete(index);
+      } else {
+        next.add(index);
+      }
+
+      return next;
+    });
+  }, []);
+
+  return (
+    <>
+      <p>
+        Rendering <strong>{count.toLocaleString()}</strong> checkboxes, but only
+        the visible rows are mounted. Checked state lives in a <code>Set</code>{' '}
+        outside the DOM so it survives scrolling.
+      </p>
+      <div
+        ref={parentRef}
+        style={{ height: 400, overflow: 'auto', border: '1px solid #ccc' }}
+      >
+        <div
+          style={{
+            height: rowVirtualizer.getTotalSize(),
+            position: 'relative',
+            width: '100%',
+          }}
+        >
+          {rowVirtualizer.getVirtualItems().map(virtualRow => (
+            <div
+              key={virtualRow.key}
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: virtualRow.size,
+                transform: `translateY(${virtualRow.start}px)`,
+                display: 'flex',
+                alignItems: 'center',
+                padding: '0 8px',
+              }}
+            >
+              <Checkbox
+                id={`virtual-cb-${virtualRow.index}`}
+                labelText={`Checkbox ${virtualRow.index}`}
+                checked={checkedIds.has(virtualRow.index)}
+                onChange={() => toggle(virtualRow.index)}
+                aria-setsize={count}
+                aria-posinset={virtualRow.index + 1}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
+VirtualizedList.args = {
+  count: 10000,
+};
+VirtualizedList.argTypes = {
+  count: {
+    control: { type: 'number', min: 1000, max: 100000, step: 1000 },
+  },
 };
