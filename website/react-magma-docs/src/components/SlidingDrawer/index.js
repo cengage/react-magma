@@ -2,6 +2,7 @@ import React from 'react';
 
 import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
+import { Link, navigate } from 'gatsby';
 import FocusLock from 'react-focus-lock';
 import { Container, IconButton, magma, Spacer } from 'react-magma-dom';
 import { MenuIcon, CloseIcon } from 'react-magma-icons';
@@ -9,7 +10,10 @@ import { MenuIcon, CloseIcon } from 'react-magma-icons';
 import { Logo } from '../Logo';
 import { MainNav } from '../MainNav';
 
-export const PANEL_WIDTH = 240;
+export const PANEL_WIDTH = 280;
+const DRAWER_TRANSITION_DURATION = 250;
+const DRAWER_NAVIGATION_DELAY = 180;
+const NAV_PANEL_ID = 'main-site-navigation-panel';
 
 export class SlidingDrawer extends React.Component {
   constructor(props) {
@@ -19,11 +23,27 @@ export class SlidingDrawer extends React.Component {
       isActivated: false,
     };
     this.toggleButtonRef = React.createRef();
+    this.closeButtonRef = React.createRef();
     this.openMenu = this.openMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
     this.handleCloseMenu = this.handleCloseMenu.bind(this);
     this.handleCloseMenuFromNav = this.handleCloseMenuFromNav.bind(this);
     this.handleKeypress = this.handleKeypress.bind(this);
+  }
+
+  focusElement(ref, fallbackSelector) {
+    const fallbackElement =
+      typeof document !== 'undefined'
+        ? document.querySelector(fallbackSelector)
+        : null;
+    const element =
+      ref?.current && typeof ref.current.focus === 'function'
+        ? ref.current
+        : fallbackElement;
+
+    if (element && typeof element.focus === 'function') {
+      element.focus();
+    }
   }
 
   closeMenu = returnFocus => {
@@ -35,11 +55,15 @@ export class SlidingDrawer extends React.Component {
 
       this.setState({ isOpen: false }, () => {
         setTimeout(() => {
-          this.setState({ isActivated: false });
-          if (returnFocus) {
-            this.toggleButtonRef.current.focus();
-          }
-        }, 250);
+          this.setState({ isActivated: false }, () => {
+            if (returnFocus) {
+              this.focusElement(
+                this.toggleButtonRef,
+                '[aria-label="Open navigation menu"]'
+              );
+            }
+          });
+        }, DRAWER_TRANSITION_DURATION);
       });
     }
   };
@@ -55,14 +79,43 @@ export class SlidingDrawer extends React.Component {
       document.getElementsByTagName('html')[0].style.overflow = 'hidden';
       document.addEventListener('keydown', this.handleKeypress, false);
     }
-    this.setState({ isOpen: true, isActivated: true });
+    this.setState({ isOpen: true, isActivated: true }, () => {
+      window.requestAnimationFrame(() => {
+        this.focusElement(
+          this.closeButtonRef,
+          '[aria-label="Close navigation menu"]'
+        );
+      });
+    });
   };
 
   handleCloseMenu() {
     this.closeMenu(true);
   }
 
-  handleCloseMenuFromNav() {
+  handleCloseMenuFromNav(event) {
+    const shouldDelayNavigation =
+      event &&
+      this.state.isOpen &&
+      typeof window !== 'undefined' &&
+      window.innerWidth <= 1024 &&
+      !event.defaultPrevented &&
+      !event.metaKey &&
+      !event.altKey &&
+      !event.ctrlKey &&
+      !event.shiftKey;
+    const targetPath = event?.currentTarget?.getAttribute('href');
+
+    if (shouldDelayNavigation && targetPath?.startsWith('/')) {
+      event.preventDefault();
+      this.closeMenu(false);
+      window.setTimeout(() => {
+        navigate(targetPath);
+      }, DRAWER_NAVIGATION_DELAY);
+
+      return;
+    }
+
     this.closeMenu(false);
   }
 
@@ -74,13 +127,13 @@ export class SlidingDrawer extends React.Component {
 
   render() {
     const slidein = keyframes`
-            from { transform: translateX(-300px); }
+            from { transform: translateX(-${PANEL_WIDTH}px); }
             to   { transform: translateX(0); }
         `;
 
     const slideout = keyframes`
             from { transform: translateX(0); }
-            to   { transform: translateX(-300px); }
+            to   { transform: translateX(-${PANEL_WIDTH}px); }
         `;
 
     const Panel = styled(Container)`
@@ -94,13 +147,14 @@ export class SlidingDrawer extends React.Component {
       padding: 0 0 24px;
       position: fixed;
       top: 0;
-      transform: translateX(-300px);
+      transform: translateX(-${PANEL_WIDTH}px);
       width: ${PANEL_WIDTH}px;
 
       ${props =>
         props.isActivated &&
         css`
           animation: 0.2s ${slideout};
+          z-index: 11;
         `}
 
       ${props =>
@@ -113,17 +167,17 @@ export class SlidingDrawer extends React.Component {
 
       @media (min-width: 1025px) {
         animation: none;
-        background: ${magma.colors.neutral200};
+        background: ${magma.colors.neutral100};
         top: 56px;
         transform: translateX(0);
       }
       @media (max-width: ${magma.breakpoints.large}px) {
-        width: 300px;
+        width: ${PANEL_WIDTH}px;
       }
     `;
 
     const PanelInner = styled.div`
-      display: ${props => (props.isOpen ? 'block' : 'none')};
+      display: ${props => (props.isActivated ? 'block' : 'none')};
       @media (min-width: 1025px) {
         display: block;
       }
@@ -140,8 +194,11 @@ export class SlidingDrawer extends React.Component {
     `;
 
     const MenuButton = styled.span`
+      align-items: center;
+      display: flex;
+      height: 56px;
       position: fixed;
-      top: 4px;
+      top: 0;
       left: 6px;
       z-index: 11;
       @media (min-width: 1025px) {
@@ -149,20 +206,30 @@ export class SlidingDrawer extends React.Component {
       }
     `;
 
-    const SmallLogoLink = styled.div`
-      display: flex;
+    const MobileDrawerHeader = styled.div`
       align-items: center;
+      display: flex;
+      min-height: 48px;
+      padding: 0 ${magma.spaceScale.spacing04};
+      @media (min-width: ${magma.breakpoints.large}px) {
+        display: none;
+      }
+    `;
+
+    const SmallLogoLink = styled(Link)`
+      align-items: center;
+      display: flex;
       color: ${magma.colors.neutral700};
       font-size: ${magma.typeScale.size05.fontSize};
       font-weight: 500;
-      padding-top: 4px;
       text-decoration: none;
       text-transform: uppercase;
       svg {
         height: 24px;
       }
-      @media (min-width: ${magma.breakpoints.large}px) {
-        display: none;
+
+      &:focus {
+        outline: 2px solid ${magma.colors.focus};
       }
     `;
 
@@ -188,6 +255,7 @@ export class SlidingDrawer extends React.Component {
             <MenuButton>
               <IconButton
                 aria-label="Open navigation menu"
+                aria-controls={NAV_PANEL_ID}
                 aria-expanded={isOpen}
                 color="secondary"
                 icon={<MenuIcon />}
@@ -200,27 +268,30 @@ export class SlidingDrawer extends React.Component {
               isOpen={isOpen}
               isActivated={isActivated}
               isInverse={isInverse}
+              id={NAV_PANEL_ID}
             >
-              <PanelInner isOpen={isOpen}>
-                <SmallLogoLink to="/">
-                  <Spacer size={magma.spaceScale.spacing05} />
-                  <Logo />
-                  <Spacer size={magma.spaceScale.spacing04} />
-                  React Magma
+              <PanelInner isActivated={isActivated}>
+                <MobileDrawerHeader>
+                  <SmallLogoLink to="/">
+                    <Logo />
+                    <Spacer size={magma.spaceScale.spacing04} />
+                    React Magma
+                  </SmallLogoLink>
                   <CloseButton>
                     <IconButton
                       aria-label="Close navigation menu"
                       color="secondary"
                       icon={<CloseIcon />}
                       onClick={this.handleCloseMenu}
+                      ref={this.closeButtonRef}
                       variant="link"
                     />
                   </CloseButton>
-                </SmallLogoLink>
+                </MobileDrawerHeader>
                 <MainNav handleClick={this.handleCloseMenuFromNav} />
               </PanelInner>
             </Panel>
-            {isOpen && <Overlay onClick={this.handleCloseMenu} />}
+            {isActivated && <Overlay onClick={this.handleCloseMenu} />}
           </nav>
         </Container>
       </FocusLock>

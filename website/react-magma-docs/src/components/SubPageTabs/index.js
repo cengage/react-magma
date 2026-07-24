@@ -16,22 +16,22 @@ export const StyledTabHeading = styled.p`
   font-size: ${magma.typeScale.size01.fontSize};
   line-height: ${magma.typeScale.size01.lineHeight};
   letter-spacing: ${magma.typeScale.size01.letterSpacing};
-  font-weight: 700;
   text-transform: uppercase;
   margin: 0;
   margin-top: 44px;
   color: ${props =>
-    props.isInverse ? magma.colors.neutral100 : magma.colors.neutral700};
+    props.isInverse ? magma.colors.neutral100 : magma.colors.neutral500};
+  font-weight: 500;
   padding: 12px 16px;
 `;
 
 // Side navigation
 export const StyledNavTabs = styled(NavTabs)`
-  width: 272px;
-  height: calc(100vh - 150px);
+  width: 240px;
+  max-height: calc(100vh - 150px);
   margin-right: 24px;
   align-items: stretch;
-  overflow-y: hidden;
+  overflow-y: auto;
 
   > div ul {
     align-items: flex-start;
@@ -40,10 +40,24 @@ export const StyledNavTabs = styled(NavTabs)`
       width: 100%;
     }
   }
+
+  > div ul > li::after {
+    width: 2px;
+  }
 `;
 
 export const StyledNavTab = styled(NavTab)`
+  font-size: ${magma.typeScale.size02.fontSize};
+  font-weight: 400;
+  line-height: ${magma.typeScale.size02.lineHeight};
+  padding-bottom: ${magma.spaceScale.spacing03};
+  padding-top: ${magma.spaceScale.spacing03};
   text-transform: none;
+
+  &&:not([aria-current='page']) {
+    color: ${props =>
+      props.isInverse ? magma.colors.neutral100 : magma.colors.neutral700};
+  }
 `;
 
 export const StyledNavTabWrapper = styled.div`
@@ -61,7 +75,6 @@ const Wrapper = styled.div`
 export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
   const [activeTab, setActiveTab] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
-  const [initialScrollApplied, setInitialScrollApplied] = useState(false);
 
   const isInverse = useIsInverse();
 
@@ -73,22 +86,19 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
   const hasHeadings = headings.length > 0;
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && !window.location.hash) {
-      const timeout = setTimeout(() => {
-        window.scrollTo(0, 0);
-      }, 100);
-
-      return () => clearTimeout(timeout);
-    }
-  }, []);
-
-  const initialSectionId = useMemo(() => {
-    if (typeof window !== 'undefined') {
-      return window.location.hash ? window.location.hash.substring(1) : null;
+    if (typeof window === 'undefined' || !window.location.hash) {
+      return;
     }
 
-    return null;
-  }, []);
+    const initialSectionId = window.location.hash.substring(1);
+    const index = headings.findIndex(
+      heading => convertTextToId(heading) === initialSectionId
+    );
+
+    if (index !== -1) {
+      setActiveTab(index);
+    }
+  }, [headings]);
 
   const scrollToElement = useCallback(
     elementId => {
@@ -104,8 +114,18 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
         const offset = -40;
         const elementPosition =
           element.getBoundingClientRect().top + window.pageYOffset;
+        const html = document.querySelector('html');
+        const previousScrollBehavior = html?.style.scrollBehavior;
 
+        if (html) {
+          html.style.scrollBehavior = 'auto';
+        }
         window.scrollTo(0, elementPosition + offset);
+        window.requestAnimationFrame(() => {
+          if (html) {
+            html.style.scrollBehavior = previousScrollBehavior;
+          }
+        });
 
         if (window.history && window.history.pushState) {
           window.history.pushState(null, null, `#${elementId}`);
@@ -145,54 +165,8 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
 
   useEffect(() => {
     if (
-      initialSectionId &&
-      hasHeadings &&
-      !initialScrollApplied &&
-      !isScrolling
-    ) {
-      if (typeof window !== 'undefined') {
-        window.scrollTo(0, 0);
-      }
-
-      const timer = setTimeout(() => {
-        let success = scrollToElement(initialSectionId);
-
-        setInitialScrollApplied(true);
-
-        if (!success) {
-          const retry1 = setTimeout(() => {
-            success = scrollToElement(initialSectionId);
-
-            if (!success) {
-              const retry2 = setTimeout(() => {
-                scrollToElement(initialSectionId);
-              }, 800);
-
-              return () => clearTimeout(retry2);
-            }
-          }, 400);
-
-          return () => clearTimeout(retry1);
-        }
-      }, 500);
-
-      return () => clearTimeout(timer);
-    } else {
-      setInitialScrollApplied(true);
-    }
-  }, [
-    initialSectionId,
-    hasHeadings,
-    initialScrollApplied,
-    scrollToElement,
-    isScrolling,
-  ]);
-
-  useEffect(() => {
-    if (
       typeof window === 'undefined' ||
       !window.IntersectionObserver ||
-      !initialScrollApplied ||
       isScrolling
     ) {
       return;
@@ -227,7 +201,7 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
     });
 
     return () => observer.disconnect();
-  }, [headings, initialScrollApplied, isScrolling]);
+  }, [headings, isScrolling]);
 
   const renderPageNavTabs = useCallback(() => {
     if (!hasHeadings) return null;
@@ -253,13 +227,15 @@ export const SubPageTabs = ({ pageData, hasHorizontalNav }) => {
 
   return (
     <Wrapper hasHorizontalNav={hasHorizontalNav}>
-      <StyledTabHeading isInverse={isInverse}>On this page</StyledTabHeading>
-      <StyledNavTabs
-        isInverse={isInverse}
-        orientation={TabsOrientation.vertical}
-      >
-        {renderPageNavTabs()}
-      </StyledNavTabs>
+      <StyledNavTabWrapper isInverse={isInverse}>
+        <StyledTabHeading isInverse={isInverse}>On this page</StyledTabHeading>
+        <StyledNavTabs
+          isInverse={isInverse}
+          orientation={TabsOrientation.vertical}
+        >
+          {renderPageNavTabs()}
+        </StyledNavTabs>
+      </StyledNavTabWrapper>
     </Wrapper>
   );
 };
