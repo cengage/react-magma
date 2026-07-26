@@ -42,17 +42,17 @@
   "devDependencies": {
     "@emotion/react": "11.14.0",
     "@emotion/styled": "11.14.0",
-    "dom-to-image-more": "3.6.0",
     "@rollup/plugin-commonjs": "^28.0.8",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.1.4",
+    "dom-to-image-more": "3.6.0",
     "framer-motion": "^12.23.22",
     "identity-obj-proxy": "3.0.0",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-magma-dom": "^5.1.1-rc.0",
     "react-magma-icons": "^3.2.5",
-    "rollup": "^4.52.4",
+    "rollup": "^4.59.0",
     "rollup-plugin-postcss": "^4.0.2"
   },
   "peerDependencies": {
