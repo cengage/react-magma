@@ -122,6 +122,7 @@ const StyledList = styled.ul`
 
 const StyledListItem = styled.li`
   list-style-type: none;
+  position: relative;
   &:last-child {
     button {
       border-left: none;
