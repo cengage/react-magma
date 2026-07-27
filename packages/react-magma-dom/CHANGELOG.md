@@ -1,5 +1,42 @@
 # Change Log
 
+## 5.1.1-rc.5
+
+### Patch Changes
+
+- ed4bc72: fix(DatePicker): add role="dialog" and aria-modal="true" to calendar container
+- ed4bc72: fix(useFocusLock): fix focus trap for modal and date picker, including nested DatePicker focus order.
+
+## 5.1.1-rc.4
+
+### Patch Changes
+
+- a76daa4: fix(DatePicker): return focus to the calendar toggle button, not the clear button
+
+## 5.1.1-rc.3
+
+### Patch Changes
+
+- 298b21b: fix(a11y): Fix accessibility violations:
+
+  - Input: hide decorative icons from screen readers
+  - Table: remove invalid `aria-sort` from checkbox header cell
+  - Tabs: fix `aria-controls` pointing to correct ScrollSpy panel id
+  - ToggleButton: remove incorrect `id` assignment from button element
+  - TreeView: Fix `aria-required-children` and `color-contrast` accessibility violations
+
+## 5.1.1-rc.2
+
+### Patch Changes
+
+- 661cf8d: fix(Accordion): stop overriding Heading styles inside AccordionPanel
+
+## 5.1.1-rc.1
+
+### Patch Changes
+
+- 7638a7b: fix(PasswordInput): resize toggle button to fit custom text and cap its width at half the input
+
 ## 5.1.1-rc.0
 
 ### Patch Changes
