@@ -234,6 +234,43 @@ describe('Dropdown', () => {
     });
   });
 
+  it('should attach forwarded ref to the dropdown toggle button', async () => {
+    const splitButtonRef = React.createRef();
+    const { getByLabelText } = render(
+      <Dropdown>
+        <DropdownSplitButton aria-label="Split" ref={splitButtonRef}>
+          Toggle me
+        </DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    await waitFor(() => {
+      expect(splitButtonRef.current).toBe(getByLabelText('Split'));
+    });
+  });
+
+  it('should attach primaryButtonRef to the left action button', async () => {
+    const primaryButtonRef = React.createRef();
+    const { getByText } = render(
+      <Dropdown>
+        <DropdownSplitButton
+          aria-label="Split"
+          primaryButtonRef={primaryButtonRef}
+        >
+          Toggle me
+        </DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    await waitFor(() => {
+      expect(primaryButtonRef.current).toBe(
+        getByText('Toggle me').closest('button')
+      );
+    });
+  });
+
   it('should render a split dropdown with leading icon', async () => {
     const { getByTestId, container } = render(
       <Dropdown>

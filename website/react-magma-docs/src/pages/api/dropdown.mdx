@@ -1000,6 +1000,8 @@ By default the consumer is expected to handle the focusing of elements when item
 you should focus the trigger button on closing of the dropdown. For this you can use a `ref` passed to the `DropdownButton` or `DropdownSplitButton` and focus that ref in
 the `onClose` function passed to the `Dropdown` component.
 
+For `DropdownSplitButton`, the forwarded `ref` targets the dropdown toggle button (right side). Use `primaryButtonRef` to target the left action button.
+
 ```tsx
 import React from 'react';
 
