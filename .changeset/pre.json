@@ -11,6 +11,7 @@
   },
   "changesets": [
     "chore-update-docs-and-landing-page",
+    "fix-Tag-invalid-aria-on-label-span",
     "fix-ToggleButtonGroup-ToggleButton-add-role-prop",
     "sync-v4-dev-deployment"
   ]

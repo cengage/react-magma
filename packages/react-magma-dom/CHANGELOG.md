@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 4.15.1-next.1
+
+### Patch Changes
+
+- e672bb1f7: fix(Tag): prevent spreading ARIA attributes onto the inner label `span` to resolve `aria-allowed-attr` violation.
+
 ## 4.15.1-next.0
 
 ### Patch Changes
