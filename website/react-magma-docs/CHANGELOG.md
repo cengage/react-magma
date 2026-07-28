@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.7
+
+### Patch Changes
+
+- 4eef42a02: chore: Update landing page with v5
+
 ## 5.3.6
 
 ### Patch Changes
