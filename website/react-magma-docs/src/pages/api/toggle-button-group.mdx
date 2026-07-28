@@ -211,6 +211,82 @@ export function Example() {
 }
 ```
 
+## Role and Accessibility
+
+By default, a Toggle Button Group renders with `role="group"`, and its buttons use `role="radio"` (when `exclusive`) or `role="switch"` (otherwise). Use the `role` prop to expose the correct semantics to assistive technology when the group does something other than toggle independent options.
+
+Choose the role based on what selecting a button actually does:
+
+- **`group`** (default) — a set of related toggles that act on other content (for example, text alignment). Use `exclusive` for a single-choice set of radios, or leave it off for independent on/off switches.
+- **`radiogroup`** — a single-choice selection that is semantically a radio group. The buttons are always announced as radios; pair the role with `exclusive` so the single-select behavior matches the radio group semantics.
+- **`tablist`** — buttons that switch between different views or sections of the page. Each button is rendered as a `tab` with `aria-selected`, following the [WAI-ARIA Tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/). Pair with `exclusive` and `enforced` so exactly one tab is always selected, and connect each button to its panel with `aria-controls` and `role="tabpanel"`.
+
+### Tablist
+
+Use `role="tablist"` when selecting a button switches the visible content, such as a "Teacher view" / "Student view" toggle. This announces the control as a set of tabs rather than radio buttons, matching its behavior.
+
+```tsx
+import React from 'react';
+
+import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  const [view, setView] = React.useState('teacher');
+
+  return (
+    <>
+      <ToggleButtonGroup
+        role="tablist"
+        exclusive
+        enforced
+        value={view}
+        onChange={(_event, value) => {
+          if (value) {
+            setView(value);
+          }
+        }}
+      >
+        <ToggleButton value="teacher" aria-controls="course-view-panel">
+          Teacher view
+        </ToggleButton>
+        <ToggleButton value="student" aria-controls="course-view-panel">
+          Student view
+        </ToggleButton>
+      </ToggleButtonGroup>
+      <div
+        id="course-view-panel"
+        role="tabpanel"
+        style={{ paddingTop: '12px' }}
+      >
+        {view === 'teacher'
+          ? 'Showing the teacher view of the course.'
+          : 'Showing the student view of the course.'}
+      </div>
+    </>
+  );
+}
+```
+
+### Radio Group
+
+Use `role="radiogroup"` for a single-choice selection that should be announced as a radio group. The buttons render as radios regardless, so pair the role with `exclusive` to keep the single-select behavior consistent with the radio group semantics.
+
+```tsx
+import React from 'react';
+
+import { ToggleButton, ToggleButtonGroup } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <ToggleButtonGroup role="radiogroup" exclusive value="medium">
+      <ToggleButton value="low">Low</ToggleButton>
+      <ToggleButton value="medium">Medium</ToggleButton>
+      <ToggleButton value="high">High</ToggleButton>
+    </ToggleButtonGroup>
+  );
+}
+```
+
 ## No Space
 
 Removes margins and border radius on each button then applies the border-radius around the container.
