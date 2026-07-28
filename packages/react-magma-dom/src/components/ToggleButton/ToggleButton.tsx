@@ -10,7 +10,10 @@ import { ThemeContext } from '../../theme/ThemeContext';
 import { XOR } from '../../utils';
 import { Button, ButtonColor, ButtonProps, ButtonSize } from '../Button';
 import { IconButton } from '../IconButton';
-import { ToggleButtonGroupContext } from '../ToggleButtonGroup';
+import {
+  ToggleButtonGroupContext,
+  ToggleButtonGroupRole,
+} from '../ToggleButtonGroup';
 
 export interface ToggleButtonTextProps extends ButtonProps {
   /**
@@ -72,6 +75,26 @@ export type ToggleButtonProps = XOR<
   ToggleButtonTextProps,
   ToggleButtonIconProps
 >;
+
+export enum ToggleButtonRole {
+  radio = 'radio',
+  switch = 'switch',
+  tab = 'tab',
+}
+
+export function getToggleButtonRole(
+  groupRole?: ToggleButtonGroupRole,
+  exclusive?: boolean
+): ToggleButtonRole {
+  if (groupRole === ToggleButtonGroupRole.tablist) {
+    return ToggleButtonRole.tab;
+  }
+  if (groupRole === ToggleButtonGroupRole.radiogroup) {
+    return ToggleButtonRole.radio;
+  }
+
+  return exclusive ? ToggleButtonRole.radio : ToggleButtonRole.switch;
+}
 
 //Sets the icon width for icon only Toggle Buttons
 export function setIconWidth(props: ToggleButtonIconProps) {
@@ -153,7 +176,8 @@ export const ToggleButton = React.forwardRef<
   }, [isChecked]);
 
   const inverseCheck = context.isInverse || isInverse;
-  const roleCheck = context.exclusive ? 'radio' : 'switch';
+  const roleCheck = getToggleButtonRole(context.role, context.exclusive);
+  const usesAriaSelected = roleCheck === ToggleButtonRole.tab;
 
   const handleClick = (event: any) => {
     if (
@@ -188,7 +212,9 @@ export const ToggleButton = React.forwardRef<
 
   const sharedToggleButtonProps = {
     ...other,
-    'aria-checked': isSelected,
+    ...(usesAriaSelected
+      ? { 'aria-selected': isSelected }
+      : { 'aria-checked': isSelected }),
     color: ButtonColor.subtle,
     disabled: disabled,
     theme: theme,
