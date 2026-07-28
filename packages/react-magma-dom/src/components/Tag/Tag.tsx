@@ -3,7 +3,7 @@ import * as React from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { transparentize } from 'polished';
-import { CancelIcon, IconProps } from 'react-magma-icons';
+import { CloseIcon, IconProps } from 'react-magma-icons';
 
 import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
@@ -16,6 +16,10 @@ export enum TagColor {
   primary = 'primary',
   lowContrast = 'lowContrast',
   highContrast = 'highContrast',
+  blue = 'blue',
+  teal = 'teal',
+  pink = 'pink',
+  purple = 'purple',
 }
 
 export enum TagSize {
@@ -84,27 +88,122 @@ export interface ClickableTagProps extends BaseTagProps {
 
 export type TagProps = XOR<DeletableTagProps, ClickableTagProps>;
 
-function buildBoxShadow(props) {
-  if (props.color === 'lowContrast') {
-    if (props.isInverse) {
-      if (props.disabled) {
-        return `0 0 0 1px ${transparentize(
+function getDataVizTagColor(props) {
+  switch (props.color) {
+    case TagColor.blue:
+      return {
+        background: props.theme.colors.dataVizBlue200,
+        border: props.theme.colors.dataVizBlue700,
+        text: props.theme.colors.dataVizBlue700,
+        inverseBackground: props.theme.colors.dataVizBlue700,
+        inverseBorder: props.theme.colors.dataVizBlue500,
+        inverseBorderTransparency: 0.5,
+        inverseText: props.theme.colors.dataVizBlue200,
+      };
+    case TagColor.teal:
+      return {
+        background: props.theme.colors.dataVizTeal400,
+        backgroundTransparency: 0.85,
+        border: props.theme.colors.dataVizTeal700,
+        text: props.theme.colors.dataVizTeal700,
+        inverseBackground: props.theme.colors.dataVizTeal700,
+        inverseBorder: props.theme.colors.dataVizTeal500,
+        inverseBorderTransparency: 0.3,
+        inverseText: props.theme.colors.dataVizTeal200,
+      };
+    case TagColor.pink:
+      return {
+        background: props.theme.colors.dataVizPink200,
+        border: props.theme.colors.dataVizPink700,
+        text: props.theme.colors.dataVizPink700,
+        inverseBackground: props.theme.colors.dataVizPink700,
+        inverseBorder: props.theme.colors.dataVizPink500,
+        inverseBorderTransparency: 0.3,
+        inverseText: props.theme.colors.dataVizPink200,
+      };
+    case TagColor.purple:
+      return {
+        background: props.theme.colors.dataVizPurple200,
+        border: props.theme.colors.dataVizPurple700,
+        text: props.theme.colors.dataVizPurple700,
+        inverseBackground: props.theme.colors.dataVizPurple700,
+        inverseBorder: props.theme.colors.dataVizPurple500,
+        inverseBorderTransparency: 0.3,
+        inverseText: props.theme.colors.dataVizPurple200,
+      };
+    default:
+      return null;
+  }
+}
+
+function buildBorder(props) {
+  const dataVizColor = getDataVizTagColor(props);
+  const isDefaultColor = !props.color || props.color === TagColor.default;
+
+  if (props.disabled) {
+    if (props.color === TagColor.lowContrast) {
+      if (props.isInverse) {
+        return `1px solid ${transparentize(
           0.8,
           props.theme.colors.neutral100
         )}`;
       }
 
-      return `0 0 0 1px ${transparentize(0.5, props.theme.colors.neutral100)}`;
-    }
-    if (props.disabled) {
-      return `0 0 0 1px ${props.theme.colors.neutral300}`;
+      return `1px solid ${props.theme.colors.neutral300}`;
     }
 
-    return `inset 0 0 0  1px ${props.theme.colors.neutral400}`;
+    if (isDefaultColor) {
+      if (props.isInverse) {
+        return `1px solid ${transparentize(0.8, props.theme.colors.neutral100)}`;
+      }
+
+      return `1px solid ${props.theme.colors.neutral300}`;
+    }
+
+    return `1px solid transparent`;
   }
+
+  if (dataVizColor) {
+    if (props.isInverse) {
+      return `1px solid ${transparentize(
+        dataVizColor.inverseBorderTransparency,
+        dataVizColor.inverseBorder
+      )}`;
+    }
+
+    return `1px solid ${transparentize(0.85, dataVizColor.border)}`;
+  }
+
+  if (props.color === TagColor.primary) {
+    if (props.isInverse) {
+      return `1px solid ${props.theme.colors.primary400}`;
+    }
+
+    return `1px solid ${transparentize(0.85, props.theme.colors.primary500)}`;
+  }
+
+  if (isDefaultColor) {
+    if (props.isInverse) {
+      return `1px solid ${transparentize(0.7, props.theme.colors.neutral100)}`;
+    }
+
+    return `1px solid ${props.theme.colors.neutral300}`;
+  }
+
+  if (props.color === TagColor.lowContrast) {
+    if (props.isInverse) {
+      return `1px solid ${transparentize(0.7, props.theme.colors.neutral100)}`;
+    }
+
+    return `1px solid ${props.theme.colors.neutral300}`;
+  }
+
+  return `1px solid transparent`;
 }
 
 function buildButtonBackground(props) {
+  const dataVizColor = getDataVizTagColor(props);
+
   if (props.isInverse) {
     if (props.disabled) {
       // Disabled inverse state background colors
@@ -119,15 +218,19 @@ function buildButtonBackground(props) {
       }
     }
     // Inverse background colors
+    if (dataVizColor) {
+      return transparentize(0.5, dataVizColor.inverseBackground);
+    }
+
     switch (props.color) {
       case 'primary':
-        return props.theme.colors.tertiary500;
+        return transparentize(0.2, props.theme.colors.primary500);
       case 'lowContrast':
         return `none;`;
       case 'highContrast':
         return props.theme.colors.neutral100;
       default:
-        return props.theme.colors.neutral500;
+        return transparentize(0.5, props.theme.colors.neutral900);
     }
   } else if (props.disabled && !props.isInverse) {
     // Disabled state background colors
@@ -142,19 +245,28 @@ function buildButtonBackground(props) {
     }
   }
   // Default state background colors
+  if (dataVizColor) {
+    return transparentize(
+      dataVizColor.backgroundTransparency || 0.6,
+      dataVizColor.background
+    );
+  }
+
   switch (props.color) {
     case 'primary':
-      return props.theme.colors.primary;
+      return props.theme.colors.primary100;
     case 'lowContrast':
       return props.theme.colors.neutral100;
     case 'highContrast':
       return props.theme.colors.neutral700;
     default:
-      return props.theme.colors.neutral300;
+      return transparentize(0.6, props.theme.colors.neutral300);
   }
 }
 
 function buildButtonTextColor(props) {
+  const dataVizColor = getDataVizTagColor(props);
+
   if (props.isInverse) {
     if (props.disabled) {
       // Disabled inverse state text colors
@@ -171,11 +283,15 @@ function buildButtonTextColor(props) {
       }
     }
     // Inverse text colors
+    if (dataVizColor) {
+      return dataVizColor.inverseText;
+    }
+
     switch (props.color) {
       case 'primary':
-        return props.theme.colors.primary600;
+        return props.theme.colors.primary100;
       case 'lowContrast':
-        return props.theme.colors.tertiary500;
+        return props.theme.colors.neutral100;
       case 'highContrast':
         return props.theme.colors.neutral700;
       default:
@@ -186,9 +302,13 @@ function buildButtonTextColor(props) {
     return transparentize(0.4, props.theme.colors.neutral500);
   }
   // Default state text colors
+  if (dataVizColor) {
+    return dataVizColor.text;
+  }
+
   switch (props.color) {
     case 'primary':
-      return props.theme.colors.neutral100;
+      return props.theme.colors.primary500;
     case 'highContrast':
       return props.theme.colors.neutral100;
     case 'lowContrast':
@@ -262,11 +382,11 @@ function buildLabelPadding(props) {
 }
 
 const TagStyling = props => css`
-  border: ${props.theme.tag.border};
+  border: ${buildBorder(props)};
   border-radius: ${props.theme.spaceScale.spacing05};
+  box-sizing: border-box;
   background: ${buildButtonBackground(props)};
   color: ${buildButtonTextColor(props)};
-  box-shadow: ${buildBoxShadow(props)};
   font-family: ${props.theme.bodyFont};
   display: ${props.theme.tag.display};
   align-items: ${props.theme.tag.alignItems};
@@ -274,10 +394,13 @@ const TagStyling = props => css`
   font-size: ${props.size === 'small'
     ? `${props.theme.typeScale.size01.fontSize}`
     : `${props.theme.typeScale.size02.fontSize}`};
-  font-weight: ${props.size === 'small' ? `500` : `inherit`};
+  font-weight: 500;
   letter-spacing: ${props.size === 'small'
     ? `${props.theme.typeScale.size01.letterSpacing}`
     : `${props.theme.typeScale.size02.letterSpacing}`};
+  height: ${props.size === 'small'
+    ? props.theme.spaceScale.spacing06
+    : props.theme.spaceScale.spacing08};
   min-width: ${props.size === 'small'
     ? props.theme.spaceScale.spacing10
     : props.theme.spaceScale.spacing12};
@@ -292,7 +415,8 @@ const TagStyling = props => css`
       : `${props.theme.iconSizes.small}px`};
   }
   svg:last-child {
-    opacity: ${buildSvgOpacity(props)};
+    color: currentColor;
+    opacity: inherit;
     width: ${props.size === 'small'
       ? `${props.theme.iconSizes.xSmall}px`
       : `${props.theme.iconSizes.small}px`};
@@ -393,7 +517,7 @@ export const Tag = React.forwardRef<HTMLButtonElement, TagProps>(
         <LabelWrap size={size} theme={theme} {...rest}>
           {children}
         </LabelWrap>
-        {onDelete && <CancelIcon size={theme.iconSizes.small} />}
+        {onDelete && <CloseIcon size={theme.iconSizes.small} />}
       </StyledTag>
     );
   }
