@@ -2,4 +2,4 @@
 'react-magma-dom': minor
 ---
 
-feat(Select): render disabled preselected items as selected values
+feat(Select, MultiSelect): render disabled preselected items as selected values
