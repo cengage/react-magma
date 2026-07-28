@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 4.15.1-next.0
+
+### Patch Changes
+
+- 264c59e21: fix(ToggleButtonGroup): add `role` prop
+
 ## 4.15.0
 
 ### Minor Changes
