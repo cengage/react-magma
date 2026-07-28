@@ -12,6 +12,7 @@
     "a11y-datepicker-dialog-role",
     "accordion-panel-heading-styles",
     "add-release-codex-skill",
+    "fix-ToggleButtonGroup-ToggleButton-add-role-prop",
     "fix-Treeview-collapse-state-icon",
     "fix-datepicker-focus-return",
     "fix-storybook-a11y-issues",

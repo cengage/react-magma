@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.1-rc.6
+
+### Patch Changes
+
+- 5c51f29: fix(ToggleButtonGroup): add `role` prop
+
 ## 5.1.1-rc.5
 
 ### Patch Changes
