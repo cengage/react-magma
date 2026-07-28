@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.1-rc.7
+
+### Patch Changes
+
+- 64e2ece: fix(Tag): prevent spreading ARIA attributes onto the inner label `span` to resolve `aria-allowed-attr` violation.
+
 ## 5.1.1-rc.6
 
 ### Patch Changes
