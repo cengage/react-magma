@@ -10,6 +10,7 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "chore-update-docs-and-landing-page",
     "sync-v4-dev-deployment"
   ]
 }
