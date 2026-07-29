@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 4.15.1-next.2
+
+### Patch Changes
+
+- b05cb50e6: fix(PasswordInput): resize toggle button to fit custom text and cap its width at half the input
+
 ## 4.15.1-next.1
 
 ### Patch Changes
