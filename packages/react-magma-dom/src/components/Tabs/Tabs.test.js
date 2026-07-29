@@ -299,6 +299,29 @@ describe('Tabs', () => {
     );
   });
 
+  it('should inset the scroll button focus outline so it is not clipped', () => {
+    const { getByTestId } = render(
+      <Tabs>
+        <Tab>Tab 1</Tab>
+      </Tabs>
+    );
+
+    expect(getByTestId('buttonPrev')).toHaveStyleRule(
+      'outline-offset',
+      '-2px',
+      {
+        target: ':focus',
+      }
+    );
+    expect(getByTestId('buttonNext')).toHaveStyleRule(
+      'outline-offset',
+      '-2px',
+      {
+        target: ':focus',
+      }
+    );
+  });
+
   it('should change panels on tab button click', () => {
     const { getAllByText, queryByText } = render(
       <TabsContainer activeIndex={0}>
