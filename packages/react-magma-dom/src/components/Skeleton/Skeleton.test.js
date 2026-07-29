@@ -130,13 +130,28 @@ describe('Skeleton', () => {
     expect(getByTestId(testId)).toHaveStyleRule('height', '2rem');
   });
 
+  it('should default the text variant height to the theme body line height', () => {
+    const testId = 'test-id';
+    const { getByTestId } = render(
+      <Skeleton testId={testId} variant={SkeletonVariant.text} />
+    );
+
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'height',
+      magma.typeScale.size03.lineHeight
+    );
+  });
+
   it('should ignore the height for the text variant', () => {
     const testId = 'test-id';
     const { getByTestId } = render(
       <Skeleton testId={testId} variant={SkeletonVariant.text} height={40} />
     );
 
-    expect(getByTestId(testId)).toHaveStyleRule('height', '1.2em');
+    expect(getByTestId(testId)).toHaveStyleRule(
+      'height',
+      magma.typeScale.size03.lineHeight
+    );
   });
 
   it('should render children and infer its width from them', () => {

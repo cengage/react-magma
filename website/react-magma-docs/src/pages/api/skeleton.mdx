@@ -37,9 +37,9 @@ export function Example() {
 ## Variants
 
 The `variant` prop controls the shape of the skeleton. It accepts `text` (the
-default), `rectangle`, `rounded`, and `circle`. The `text` variant derives its
-height from the current font size, so it scales with typography; the other
-variants use the `width` and `height` props.
+default), `rectangle`, `rounded`, and `circle`. The `text` variant has a fixed
+height matching the theme's body line height so it resembles a line of text; the
+other variants use the `width` and `height` props.
 
 ```tsx
 import React from 'react';
@@ -65,7 +65,8 @@ export function Example() {
 The `width` and `height` props accept a number or a string. If a number is
 provided, the value is treated as pixels. Strings are used as-is, so you can
 pass percentages or any other CSS unit. The `text` variant ignores `height`
-because its height comes from the font size.
+(its height is fixed to one line of text), but its `width` can still be adjusted
+to vary line lengths.
 
 ```tsx
 import React from 'react';

@@ -31,7 +31,8 @@ export interface SkeletonProps extends React.HTMLAttributes<HTMLSpanElement> {
   /**
    * The height of the skeleton. Can be a string or number; if a number is
    * provided the height is in px. Ignored for the `text` variant, whose height
-   * is derived from the current font size.
+   * is fixed to the theme's body line height so it stays the size of one line
+   * of text.
    */
   height?: number | string;
   isInverse?: boolean;
@@ -223,7 +224,7 @@ export const Skeleton = React.forwardRef<HTMLSpanElement, SkeletonProps>(
 
     function getHeightString() {
       if (variant === SkeletonVariant.text && !hasChildren) {
-        return '1.2em';
+        return theme.typeScale.size03.lineHeight;
       }
 
       if (height) {
