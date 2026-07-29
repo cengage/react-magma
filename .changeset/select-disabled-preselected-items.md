@@ -1,5 +1,5 @@
 ---
-'react-magma-dom': minor
+'react-magma-dom': patch
 ---
 
-feat(Select, MultiSelect): render disabled preselected items as selected values
+fix(Select, MultiSelect): render disabled preselected items as selected values
