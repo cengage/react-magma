@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 4.15.1-next.3
+
+### Patch Changes
+
+- 635e0c329: fix(DatePicker): return focus to the calendar toggle button, not the clear button
+
 ## 4.15.1-next.2
 
 ### Patch Changes
