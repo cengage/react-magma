@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.4-rc.4
+
+### Patch Changes
+
+- cd627cf: fix(IconButton): remove redundant `aria-label` from examples
+
 ## 6.0.4-rc.3
 
 ### Patch Changes
