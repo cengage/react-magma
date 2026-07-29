@@ -216,7 +216,6 @@ export const ToggleButton = React.forwardRef<
     color: ButtonColor.subtle,
     disabled: disabled,
     theme: theme,
-    id: context.descriptionId,
     isInverse: inverseCheck,
     onClick: context.exclusive ? handleClickExclusive : handleClick,
     ref: ref,
