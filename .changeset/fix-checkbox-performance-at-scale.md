@@ -2,4 +2,4 @@
 'react-magma-dom': patch
 ---
 
-fix(Checkbox): improve render performance 
+fix(Checkbox): improve render performance
