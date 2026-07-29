@@ -19,6 +19,7 @@
     "fix-storybook-a11y-issues",
     "fix-useFocusLock",
     "password-input-dynamic-button-width",
+    "radio-example-style-prop",
     "sync-main-to-dev-5-1-0"
   ]
 }

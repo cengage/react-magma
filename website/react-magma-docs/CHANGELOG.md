@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.4-rc.3
+
+### Patch Changes
+
+- 25fe202: fix(RadioGroup): use `containerStyle` in docs example
+
 ## 6.0.4-rc.2
 
 ### Patch Changes
