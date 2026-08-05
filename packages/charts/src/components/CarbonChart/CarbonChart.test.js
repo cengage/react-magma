@@ -1,12 +1,14 @@
 import React from 'react';
 
 import { act, render, screen, fireEvent } from '@testing-library/react';
+import { axe } from 'jest-axe';
 import {
   ThemeContext,
   magma,
   DropdownMenuItem,
   I18nContext,
   defaultI18n,
+  useIsInverse,
 } from 'react-magma-dom';
 
 import { CarbonChart, CarbonChartType } from '.';
@@ -925,6 +927,147 @@ describe('CarbonChart', () => {
       expect(
         screen.getByRole('columnheader', { name: 'Count' })
       ).toBeInTheDocument();
+    });
+  });
+
+  describe('custom content slots', () => {
+    const toolbarProps = {
+      dataSet,
+      options: chartOptions,
+      type: CarbonChartType.bar,
+      chartToolbar: {},
+    };
+
+    it('should render beforeTitle and afterTitle around the title', () => {
+      render(
+        <CarbonChart
+          {...toolbarProps}
+          chartToolbar={{
+            beforeTitle: <span data-testid="before">Badge</span>,
+            afterTitle: <button type="button">About this chart</button>,
+          }}
+        />
+      );
+
+      const before = screen.getByTestId('before');
+      const heading = screen.getByRole('heading', {
+        level: 2,
+        name: chartOptions.title,
+      });
+      const after = screen.getByRole('button', { name: 'About this chart' });
+
+      expect(
+        before.compareDocumentPosition(heading) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      ).toBeTruthy();
+      expect(
+        heading.compareDocumentPosition(after) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      ).toBeTruthy();
+    });
+
+    it('should place title slots before the toolbar actions in focus order', () => {
+      render(
+        <CarbonChart
+          {...toolbarProps}
+          chartToolbar={{
+            afterTitle: <button type="button">About this chart</button>,
+          }}
+        />
+      );
+
+      const after = screen.getByRole('button', { name: 'About this chart' });
+      const tableButton = screen.getByRole('button', {
+        name: chartOptions.title,
+      });
+
+      expect(
+        after.compareDocumentPosition(tableButton) &
+          Node.DOCUMENT_POSITION_FOLLOWING
+      ).toBeTruthy();
+    });
+
+    it('should keep the title as the accessible name when afterTitle is used', () => {
+      render(
+        <CarbonChart
+          {...toolbarProps}
+          chartToolbar={{
+            afterTitle: <button type="button">About this chart</button>,
+          }}
+        />
+      );
+
+      // The heading, the chart region and the table modal must all stay
+      // anchored to options.title, which is also the exported file name.
+      expect(
+        screen.getByRole('heading', { level: 2, name: chartOptions.title })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole('region', { name: chartOptions.title })
+      ).toBeInTheDocument();
+
+      fireEvent.click(screen.getByRole('button', { name: chartOptions.title }));
+
+      expect(
+        screen.getByRole('heading', {
+          level: 2,
+          name: `Tabular representation ${chartOptions.title}`,
+        })
+      ).toBeInTheDocument();
+    });
+
+    it('should render no slot markup by default', () => {
+      render(<CarbonChart {...toolbarProps} />);
+
+      expect(screen.queryByTestId('before')).not.toBeInTheDocument();
+      expect(
+        screen.getByRole('heading', { level: 2, name: chartOptions.title })
+      ).toBeInTheDocument();
+    });
+
+    it('should expose the resolved inverse value to slot content', () => {
+      // Slot content is the adopter's, so it reads isInverse from context
+      // rather than from our prop.
+      function InverseProbe() {
+        return <span>{useIsInverse() ? 'inverse' : 'default'}</span>;
+      }
+
+      render(
+        <CarbonChart
+          {...toolbarProps}
+          isInverse
+          chartToolbar={{
+            beforeTitle: <InverseProbe />,
+            afterTitle: <InverseProbe />,
+          }}
+        />
+      );
+
+      expect(screen.getAllByText('inverse')).toHaveLength(2);
+    });
+
+    it('should not introduce accessibility violations with both slots', async () => {
+      const { container } = render(
+        <CarbonChart
+          {...toolbarProps}
+          chartToolbar={{
+            beforeTitle: <span>Badge</span>,
+            afterTitle: <button type="button">About this chart</button>,
+          }}
+        />
+      );
+
+      // aria-prohibited-attr and aria-tooltip-name come from Carbon's own SVG
+      // output and are present on a chart with no slots at all, so they are
+      // excluded here rather than being attributed to the slots.
+      const results = await axe(container, {
+        rules: {
+          'aria-prohibited-attr': { enabled: false },
+          'aria-tooltip-name': { enabled: false },
+        },
+      });
+
+      expect(results).toHaveNoViolations();
     });
   });
 

@@ -128,7 +128,7 @@ export function Example() {
 }
 ```
 
-See [Chart Demos](../chart-demos) for examples of every chart type with the accessible toolbar enabled, and the [Toolbar customization](../chart-demos#toolbar_customization) section for advanced configurations (custom menu items, table columns, chart title heading level, button visibility, inverse theme).
+See [Chart Demos](../chart-demos) for examples of every chart type with the accessible toolbar enabled, and the [Toolbar customization](../chart-demos#toolbar_customization) section for advanced configurations (custom menu items, table columns, chart title heading level, custom content around the title, button visibility, inverse theme).
 
 ### Chart toolbar props
 
@@ -185,6 +185,20 @@ The chart title is read from `options.title` (the standard Carbon Charts title o
       description:
         'Number to indicate which heading level will render for the chart title (e.g. h1, h2 etc.)',
       defaultValue: '2',
+    },
+    beforeTitle: {
+      type: { name: 'ReactNode' },
+      required: false,
+      description:
+        'Custom content rendered inline immediately before the chart title.',
+      defaultValue: 'undefined',
+    },
+    afterTitle: {
+      type: { name: 'ReactNode' },
+      required: false,
+      description:
+        'Custom content rendered inline between the chart title and the toolbar actions. The chart equivalent of the additionalContent prop on Input and Select.',
+      defaultValue: 'undefined',
     },
   }}
 />

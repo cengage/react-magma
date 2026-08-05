@@ -27,6 +27,7 @@ import {
   Announce,
   DropdownDivider,
   DropdownMenuItem,
+  InverseContext,
   ThemeInterface,
   ThemeContext,
   useDeviceDetect,
@@ -111,6 +112,22 @@ export interface ChartToolbarConfig {
    * @default 2
    */
   titleLevel?: 1 | 2 | 3 | 4 | 5 | 6;
+  /**
+   * Custom content rendered before the chart title.
+   *
+   * The content is placed inline in the title row and follows the same
+   * accessibility rules as `afterTitle`.
+   */
+  beforeTitle?: React.ReactNode;
+
+  /**
+   * Custom content rendered after the chart title and before toolbar actions.
+   *
+   * The content is placed inline in the title row and renders outside the
+   * heading element to preserve `options.title` as the heading's accessible name.
+   * Useful for patterns like Tooltip + IconButton.
+   */
+  afterTitle?: React.ReactNode;
 }
 
 export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -710,6 +727,19 @@ const ChartTitle = styled.h2<{
       : props.theme.colors.neutral700} !important;
 `;
 
+const TitleGroup = styled.div<{ theme: ThemeInterface }>`
+  align-items: center;
+  display: flex;
+  gap: ${props => props.theme.spaceScale.spacing02};
+  min-width: 0;
+
+  [role='tooltip'] {
+    padding: ${props => props.theme.spaceScale.spacing03}
+      ${props => props.theme.spaceScale.spacing04};
+    text-align: center;
+  }
+`;
+
 const ToolbarActions = styled.div<{ theme: ThemeInterface }>`
   align-items: center;
   display: flex;
@@ -1030,13 +1060,17 @@ function CarbonChartToolbar({
       isInverse={isInverse}
       theme={theme}
     >
-      <ChartTitle
-        as={`h${config.titleLevel ?? 2}` as keyof JSX.IntrinsicElements}
-        isInverse={isInverse}
-        theme={theme}
-      >
-        {resolvedTitle}
-      </ChartTitle>
+      <TitleGroup theme={theme}>
+        {config.beforeTitle}
+        <ChartTitle
+          as={`h${config.titleLevel ?? 2}` as keyof JSX.IntrinsicElements}
+          isInverse={isInverse}
+          theme={theme}
+        >
+          {resolvedTitle}
+        </ChartTitle>
+        {config.afterTitle}
+      </TitleGroup>
       <ToolbarActions theme={theme}>
         {showTable && (
           <ChartTableButton
@@ -1492,18 +1526,26 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         >
           <ChartContentWrapper>
             {chartToolbar && (
-              <CarbonChartToolbar
-                config={chartToolbar}
-                dataSet={dataSet as Array<Record<string, unknown>>}
-                isInverse={isInverse}
-                isTableOpen={isTableOpen}
-                isFullscreen={isFullscreen}
-                onOpenTable={openTableModal}
-                onToggleFullscreen={toggleFullscreen}
-                theme={theme}
-                title={chartTitle}
-                wrapperRef={internalRef}
-              />
+              /*
+               * Slot content comes from the adopter, so it resolves
+               * `isInverse` from context rather than from our prop. Without
+               * this provider a Magma component in a title slot would stay
+               * light on an inverse chart.
+               */
+              <InverseContext.Provider value={{ isInverse }}>
+                <CarbonChartToolbar
+                  config={chartToolbar}
+                  dataSet={dataSet as Array<Record<string, unknown>>}
+                  isInverse={isInverse}
+                  isTableOpen={isTableOpen}
+                  isFullscreen={isFullscreen}
+                  onOpenTable={openTableModal}
+                  onToggleFullscreen={toggleFullscreen}
+                  theme={theme}
+                  title={chartTitle}
+                  wrapperRef={internalRef}
+                />
+              </InverseContext.Provider>
             )}
             <ChartType data={dataSet} options={newOptions} />
           </ChartContentWrapper>

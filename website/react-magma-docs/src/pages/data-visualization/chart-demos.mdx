@@ -2437,6 +2437,64 @@ export function Example() {
 }
 ```
 
+### Custom content around the title
+
+`beforeTitle` and `afterTitle` let you render custom content inline with the built-in chart title. They are the chart equivalent of the `additionalContent` prop on [Input](../../api/input#help_link), and the same guidance applies: they are best used with a `Tooltip` wrapping an `IconButton`, with the button's `aria-label` matching the tooltip text.
+
+Keep slot content inline-sized, as it shares the title row with the chart title. Interactive controls such as filters or comboboxes should be placed outside the chart. Content taller than the title row will overflow the chart, and controls with their own intrinsic width will squeeze the title instead of shrinking themselves.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import {
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+  Card,
+  IconButton,
+  Tooltip,
+} from 'react-magma-dom';
+import { InfoIcon } from 'react-magma-icons';
+
+export function Example() {
+  const infoLabel = 'Scores are averaged across all attempts in the term.';
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart
+        type={CarbonChartType.bar}
+        dataSet={[
+          { group: 'Chapter 1', value: 85 },
+          { group: 'Chapter 2', value: 72 },
+        ]}
+        options={{
+          title: 'Chapter Performance',
+          axes: {
+            left: { mapsTo: 'value' },
+            bottom: { mapsTo: 'group', scaleType: 'labels' },
+          },
+          height: '400px',
+        }}
+        chartToolbar={{
+          afterTitle: (
+            <Tooltip content={infoLabel}>
+              <IconButton
+                aria-label={infoLabel}
+                icon={<InfoIcon />}
+                size={ButtonSize.small}
+                type={ButtonType.button}
+                variant={ButtonVariant.link}
+              />
+            </Tooltip>
+          ),
+        }}
+      />
+    </Card>
+  );
+}
+```
+
 ### Selective button visibility
 
 Disable individual toolbar buttons by setting `showAsTable` or `fullscreen` to `false`.
