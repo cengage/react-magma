@@ -1,5 +1,12 @@
 # react-magma-dom
 
+## 4.15.1-next.5
+
+### Patch Changes
+
+- 13e5754a0: fix(DatePicker): add role="dialog" and aria-modal="true" to calendar container
+- 13e5754a0: fix(useFocusLock): fix focus trap for modal and date picker, including nested DatePicker focus order
+
 ## 4.15.1-next.4
 
 ### Patch Changes
