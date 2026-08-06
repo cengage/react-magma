@@ -14,7 +14,9 @@
     "fix-Tag-invalid-aria-on-label-span",
     "fix-ToggleButtonGroup-ToggleButton-add-role-prop",
     "fix-datepicker-focus-return",
+    "fix-storybook-a11y-issues",
     "password-input-dynamic-button-width",
+    "radio-example-style-prop",
     "sync-v4-dev-deployment"
   ]
 }

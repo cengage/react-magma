@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.3.7-next.3
+
+### Patch Changes
+
+- 4a8d51154: fix(RadioGroup): use `containerStyle` in docs example
+- Updated dependencies [304f4fed7]
+  - react-magma-dom@4.15.1-next.4
+
 ## 5.3.7-next.2
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # react-magma-dom
 
+## 4.15.1-next.4
+
+### Patch Changes
+
+- 304f4fed7: fix(a11y): Fix accessibility violations:
+
+  - Input: hide decorative icons from screen readers
+  - Table: remove invalid `aria-sort` from checkbox header cell
+  - Tabs: fix `aria-controls` pointing to correct ScrollSpy panel id
+  - ToggleButton: remove incorrect `id` assignment from button element
+  - TreeView: Fix `aria-required-children` and `color-contrast` accessibility violations
+
 ## 4.15.1-next.3
 
 ### Patch Changes
