@@ -132,7 +132,6 @@ export function useFocusLock(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), video'
       ) || []
     ).filter((element): element is HTMLElement => {
-      const style = window.getComputedStyle(element);
       return (
         element instanceof HTMLElement &&
         !element.hasAttribute('disabled') &&
