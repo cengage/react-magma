@@ -2439,7 +2439,7 @@ export function Example() {
 
 ### Custom content around the title
 
-`beforeTitle` and `afterTitle` let you render custom content inline with the built-in chart title. They are the chart equivalent of the `additionalContent` prop on [Input](../../api/input#help_link), and the same guidance applies: they are best used with a `Tooltip` wrapping an `IconButton`, with the button's `aria-label` matching the tooltip text.
+`beforeTitle` and `afterTitle` let you render custom content inline with the built-in chart title. They are the chart equivalent of the `additionalContent` prop on [Input](../../api/input#help_link), and the same guidance applies: they work best with compact inline elements such as a `Badge` or a `Tooltip` wrapping an `IconButton`, with the button's `aria-label` matching the tooltip text.
 
 Keep slot content inline-sized, as it shares the title row with the chart title. Interactive controls such as filters or comboboxes should be placed outside the chart. Content taller than the title row will overflow the chart, and controls with their own intrinsic width will squeeze the title instead of shrinking themselves.
 
@@ -2448,6 +2448,7 @@ import React from 'react';
 
 import { CarbonChart, CarbonChartType } from '@react-magma/charts';
 import {
+  Badge,
   ButtonSize,
   ButtonType,
   ButtonVariant,
@@ -2477,6 +2478,7 @@ export function Example() {
           height: '400px',
         }}
         chartToolbar={{
+          beforeTitle: <Badge>Main</Badge>,
           afterTitle: (
             <Tooltip content={infoLabel}>
               <IconButton

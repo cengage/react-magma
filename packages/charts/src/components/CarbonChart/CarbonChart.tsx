@@ -732,11 +732,21 @@ const TitleGroup = styled.div<{ theme: ThemeInterface }>`
   display: flex;
   gap: ${props => props.theme.spaceScale.spacing02};
   min-width: 0;
+`;
 
+const TitleSlot = styled.div<{ theme: ThemeInterface }>`
   [role='tooltip'] {
     padding: ${props => props.theme.spaceScale.spacing03}
       ${props => props.theme.spaceScale.spacing04};
     text-align: center;
+  }
+
+  > span {
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 0.32px;
+    padding: 0px ${props => props.theme.spaceScale.spacing02};
+    text-align: inherit;
   }
 `;
 
@@ -1061,7 +1071,9 @@ function CarbonChartToolbar({
       theme={theme}
     >
       <TitleGroup theme={theme}>
-        {config.beforeTitle}
+        {config.beforeTitle ? (
+          <TitleSlot theme={theme}>{config.beforeTitle}</TitleSlot>
+        ) : null}
         <ChartTitle
           as={`h${config.titleLevel ?? 2}` as keyof JSX.IntrinsicElements}
           isInverse={isInverse}
@@ -1069,7 +1081,9 @@ function CarbonChartToolbar({
         >
           {resolvedTitle}
         </ChartTitle>
-        {config.afterTitle}
+        {config.afterTitle ? (
+          <TitleSlot theme={theme}>{config.afterTitle}</TitleSlot>
+        ) : null}
       </TitleGroup>
       <ToolbarActions theme={theme}>
         {showTable && (
