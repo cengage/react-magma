@@ -9,12 +9,22 @@ import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 
 describe('Calendar Month', () => {
+  let requestAnimationFrameSpy;
+
   beforeEach(() => {
     jest.useFakeTimers();
+
+    requestAnimationFrameSpy = jest
+      .spyOn(window, 'requestAnimationFrame')
+      .mockImplementation(callback => {
+        callback(0);
+        return 0;
+      });
   });
 
   afterEach(() => {
     jest.useRealTimers();
+    requestAnimationFrameSpy.mockRestore();
   });
 
   it('helper information should be visible when open', async () => {

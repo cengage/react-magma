@@ -9,6 +9,7 @@ import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
 import { Button } from '../Button';
 import { LabelPosition } from '../Label';
+import { Modal } from '../Modal';
 
 import { DatePicker } from '.';
 
@@ -304,6 +305,41 @@ export const DateFieldDefault = {
           onChange={handleChange}
           errorMessage={hasErrorMessage()}
         />
+      </>
+    );
+  },
+
+  args: {
+    ...Default.args,
+  },
+};
+
+export const InsideModal = {
+  render: args => {
+    const [modalOpen, setModalOpen] = React.useState(false);
+    const [chosenDate, setChosenDate] = React.useState<Date | undefined>();
+
+    return (
+      <>
+        <Button onClick={() => setModalOpen(true)}>Open Modal</Button>
+        <Modal
+          isOpen={modalOpen}
+          onClose={() => setModalOpen(false)}
+          header="DatePicker inside Modal"
+        >
+          <DatePicker
+            {...args}
+            labelText="Date"
+            onDateChange={d => setChosenDate(d)}
+            value={chosenDate}
+            isClearable
+          />
+          {chosenDate && (
+            <p>
+              <strong>Chosen date:</strong> {chosenDate.toLocaleDateString()}
+            </p>
+          )}
+        </Modal>
       </>
     );
   },
