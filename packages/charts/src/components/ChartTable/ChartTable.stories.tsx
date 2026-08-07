@@ -3,6 +3,8 @@ import React from 'react';
 import { ScaleTypes } from '@carbon/charts-react';
 import { StoryFn, Meta } from '@storybook/react/types-6-0';
 import {
+  Badge,
+  BadgeColor,
   ButtonSize,
   ButtonType,
   ButtonVariant,
@@ -179,13 +181,20 @@ const ChartInfoTooltip = () => (
   </Tooltip>
 );
 
+const slotContent = {
+  tooltip: <ChartInfoTooltip />,
+  badge: <Badge color={BadgeColor.success}>Live</Badge>,
+  none: undefined,
+};
+
 interface TitleSlotsArgs extends Omit<CarbonChartProps, 'options'> {
-  slotPosition: 'afterTitle' | 'beforeTitle' | 'none';
+  content: keyof typeof slotContent;
+  slotPosition: 'afterTitle' | 'beforeTitle';
   title: string;
 }
 
 export const TitleSlots = {
-  render: ({ slotPosition, title, ...args }: TitleSlotsArgs) => (
+  render: ({ content, slotPosition, title, ...args }: TitleSlotsArgs) => (
     <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
       <CarbonChart
         {...args}
@@ -199,21 +208,26 @@ export const TitleSlots = {
         }}
         chartToolbar={{
           beforeTitle:
-            slotPosition === 'beforeTitle' ? <ChartInfoTooltip /> : undefined,
+            slotPosition === 'beforeTitle' ? slotContent[content] : undefined,
           afterTitle:
-            slotPosition === 'afterTitle' ? <ChartInfoTooltip /> : undefined,
+            slotPosition === 'afterTitle' ? slotContent[content] : undefined,
         }}
       />
     </Card>
   ),
   argTypes: {
+    content: {
+      control: { type: 'radio' },
+      options: ['tooltip', 'badge', 'none'],
+    },
     slotPosition: {
       control: { type: 'radio' },
-      options: ['afterTitle', 'beforeTitle', 'none'],
+      options: ['afterTitle', 'beforeTitle'],
     },
     title: { control: { type: 'text' } },
   },
   args: {
+    content: 'tooltip',
     isInverse: false,
     slotPosition: 'afterTitle',
     title: 'Chapter Performance',
