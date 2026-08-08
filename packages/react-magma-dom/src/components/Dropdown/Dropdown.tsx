@@ -34,8 +34,8 @@ export enum DropdownAlignment {
 }
 
 export interface DropdownApi {
-  closeDropdownManually(event?: React.SyntheticEvent): void;
-  openDropdownManually(): void;
+  closeDropdownManually(event: React.SyntheticEvent): void;
+  openDropdownManually(event: React.SyntheticEvent): void;
 }
 
 export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -53,8 +53,8 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The ref object that allows Dropdown manipulation.
    * Actions available:
-   * closeDropdownManually(event?): void - Closes the dropdown manually.
-   * openDropdownManually(): void - Opens the dropdown manually.
+   * closeDropdownManually(event: React.SyntheticEvent): void - Closes the dropdown manually.
+   * openDropdownManually(event: React.SyntheticEvent): void - Opens the dropdown manually.
    */
   apiRef?: React.MutableRefObject<DropdownApi | undefined>;
   /**
@@ -218,7 +218,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
               toggleRef.current?.focus();
             }
           },
-          openDropdownManually() {
+          openDropdownManually(event) {
             openDropdown();
           },
         };
