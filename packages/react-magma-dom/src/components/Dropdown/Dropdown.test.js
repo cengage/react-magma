@@ -575,6 +575,60 @@ describe('Dropdown', () => {
     expect(getByTestId('dropdownContent')).toHaveStyleRule('display', 'none');
   });
 
+  it('should announce expanded and collapsed states on macOS only', async () => {
+    const originalUserAgent = navigator.userAgent;
+
+    Object.defineProperty(navigator, 'userAgent', {
+      configurable: true,
+      value:
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15',
+    });
+
+    const { getByText, unmount } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    expect(getByText('Dropdown menu collapsed')).toBeInTheDocument();
+
+    await userEvent.click(getByText('Toggle me'));
+
+    expect(getByText('Dropdown menu expanded')).toBeInTheDocument();
+
+    await userEvent.click(getByText('Toggle me'));
+
+    expect(getByText('Dropdown menu collapsed')).toBeInTheDocument();
+
+    Object.defineProperty(navigator, 'userAgent', {
+      configurable: true,
+      value:
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36',
+    });
+
+    unmount();
+
+    const { queryByText } = render(
+      <Dropdown>
+        <DropdownButton>Toggle me</DropdownButton>
+        <DropdownContent>
+          <DropdownMenuItem>Menu item</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    );
+
+    expect(queryByText('Dropdown menu collapsed')).toBeNull();
+    expect(queryByText('Dropdown menu expanded')).toBeNull();
+
+    Object.defineProperty(navigator, 'userAgent', {
+      configurable: true,
+      value: originalUserAgent,
+    });
+  });
+
   it('go to the first or next item when the down arrow key is pressed', async () => {
     const { getByText, getByTestId } = render(
       <Dropdown testId="dropdown">

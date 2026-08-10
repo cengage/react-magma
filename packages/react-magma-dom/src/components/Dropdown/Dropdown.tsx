@@ -12,6 +12,8 @@ import {
 import { ReferenceType } from '@floating-ui/react-dom/dist/floating-ui.react-dom';
 
 import { useDescendants } from '../../hooks/useDescendants';
+import { useDeviceDetect } from '../../hooks/useDeviceDetect';
+import { I18nContext } from '../../i18n';
 import { useIsInverse } from '../../inverse';
 import {
   isElementInteractive,
@@ -19,7 +21,9 @@ import {
   useForkedRef,
   useGenerateId,
 } from '../../utils';
+import { Announce } from '../Announce';
 import { ButtonGroupContext } from '../ButtonGroup';
+import { VisuallyHidden } from '../VisuallyHidden';
 
 export enum DropdownDropDirection {
   down = 'down', //default
@@ -150,6 +154,8 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const dropdownButtonId = React.useRef<string>('');
 
     const ref = useForkedRef(forwardedRef, ownRef);
+    const i18n = React.useContext(I18nContext);
+    const { isMacOS } = useDeviceDetect();
 
     const [itemRefArray, registerDropdownMenuItem] = useDescendants();
 
@@ -371,6 +377,15 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
           onKeyDown={isOpen ? handleKeyDown : null}
           onBlur={handleDropdownBlur}
         >
+          {isMacOS && (
+            <VisuallyHidden>
+              <Announce>
+                {isOpen
+                  ? i18n.dropdown.expandedAnnounce
+                  : i18n.dropdown.collapsedAnnounce}
+              </Announce>
+            </VisuallyHidden>
+          )}
           {children}
         </Container>
       </DropdownContext.Provider>
