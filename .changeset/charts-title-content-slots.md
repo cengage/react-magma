@@ -3,4 +3,4 @@
 'react-magma-docs': patch
 ---
 
-feat(charts): add `beforeTitle` and `afterTitle` props to the chart toolbar
+feat(charts): add `titlePrefix` and `titleSuffix` props to the chart toolbar

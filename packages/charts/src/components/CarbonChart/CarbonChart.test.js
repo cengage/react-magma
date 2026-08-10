@@ -938,13 +938,13 @@ describe('CarbonChart', () => {
       chartToolbar: {},
     };
 
-    it('should render beforeTitle and afterTitle around the title', () => {
+    it('should render titlePrefix and titleSuffix around the title', () => {
       render(
         <CarbonChart
           {...toolbarProps}
           chartToolbar={{
-            beforeTitle: <span data-testid="before">Badge</span>,
-            afterTitle: <button type="button">About this chart</button>,
+            titlePrefix: <span data-testid="before">Badge</span>,
+            titleSuffix: <button type="button">About this chart</button>,
           }}
         />
       );
@@ -971,7 +971,7 @@ describe('CarbonChart', () => {
         <CarbonChart
           {...toolbarProps}
           chartToolbar={{
-            afterTitle: <button type="button">About this chart</button>,
+            titleSuffix: <button type="button">About this chart</button>,
           }}
         />
       );
@@ -987,12 +987,12 @@ describe('CarbonChart', () => {
       ).toBeTruthy();
     });
 
-    it('should keep the title as the accessible name when afterTitle is used', () => {
+    it('should keep the title as the accessible name when titleSuffix is used', () => {
       render(
         <CarbonChart
           {...toolbarProps}
           chartToolbar={{
-            afterTitle: <button type="button">About this chart</button>,
+            titleSuffix: <button type="button">About this chart</button>,
           }}
         />
       );
@@ -1037,8 +1037,8 @@ describe('CarbonChart', () => {
           {...toolbarProps}
           isInverse
           chartToolbar={{
-            beforeTitle: <InverseProbe />,
-            afterTitle: <InverseProbe />,
+            titlePrefix: <InverseProbe />,
+            titleSuffix: <InverseProbe />,
           }}
         />
       );
@@ -1051,8 +1051,8 @@ describe('CarbonChart', () => {
         <CarbonChart
           {...toolbarProps}
           chartToolbar={{
-            beforeTitle: <span>Badge</span>,
-            afterTitle: <button type="button">About this chart</button>,
+            titlePrefix: <span>Badge</span>,
+            titleSuffix: <button type="button">About this chart</button>,
           }}
         />
       );

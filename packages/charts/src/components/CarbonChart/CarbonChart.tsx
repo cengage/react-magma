@@ -116,9 +116,9 @@ export interface ChartToolbarConfig {
    * Custom content rendered before the chart title.
    *
    * The content is placed inline in the title row and follows the same
-   * accessibility rules as `afterTitle`.
+   * accessibility rules as `titleSuffix`.
    */
-  beforeTitle?: React.ReactNode;
+  titlePrefix?: React.ReactNode;
 
   /**
    * Custom content rendered after the chart title and before toolbar actions.
@@ -127,7 +127,7 @@ export interface ChartToolbarConfig {
    * heading element to preserve `options.title` as the heading's accessible name.
    * Useful for patterns like Tooltip + IconButton.
    */
-  afterTitle?: React.ReactNode;
+  titleSuffix?: React.ReactNode;
 }
 
 export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -1065,9 +1065,9 @@ function CarbonChartToolbar({
       theme={theme}
     >
       <TitleGroup theme={theme}>
-        {config.beforeTitle ? (
+        {config.titlePrefix ? (
           <TitleSlot className="magma-chart-slot">
-            {config.beforeTitle}
+            {config.titlePrefix}
           </TitleSlot>
         ) : null}
         <ChartTitle
@@ -1077,9 +1077,9 @@ function CarbonChartToolbar({
         >
           {resolvedTitle}
         </ChartTitle>
-        {config.afterTitle ? (
+        {config.titleSuffix ? (
           <TitleSlot className="magma-chart-slot">
-            {config.afterTitle}
+            {config.titleSuffix}
           </TitleSlot>
         ) : null}
       </TitleGroup>

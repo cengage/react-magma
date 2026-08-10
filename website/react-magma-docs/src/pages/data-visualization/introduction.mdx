@@ -186,14 +186,14 @@ The chart title is read from `options.title` (the standard Carbon Charts title o
         'Number to indicate which heading level will render for the chart title (e.g. h1, h2 etc.)',
       defaultValue: '2',
     },
-    beforeTitle: {
+    titlePrefix: {
       type: { name: 'ReactNode' },
       required: false,
       description:
         'Custom content rendered inline immediately before the chart title.',
       defaultValue: 'undefined',
     },
-    afterTitle: {
+    titleSuffix: {
       type: { name: 'ReactNode' },
       required: false,
       description:

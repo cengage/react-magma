@@ -189,7 +189,7 @@ const slotContent = {
 
 interface TitleSlotsArgs extends Omit<CarbonChartProps, 'options'> {
   content: keyof typeof slotContent;
-  slotPosition: 'afterTitle' | 'beforeTitle';
+  slotPosition: 'titleSuffix' | 'titlePrefix';
   title: string;
 }
 
@@ -207,10 +207,10 @@ export const TitleSlots = {
           height: '400px',
         }}
         chartToolbar={{
-          beforeTitle:
-            slotPosition === 'beforeTitle' ? slotContent[content] : undefined,
-          afterTitle:
-            slotPosition === 'afterTitle' ? slotContent[content] : undefined,
+          titlePrefix:
+            slotPosition === 'titlePrefix' ? slotContent[content] : undefined,
+          titleSuffix:
+            slotPosition === 'titleSuffix' ? slotContent[content] : undefined,
         }}
       />
     </Card>
@@ -222,14 +222,14 @@ export const TitleSlots = {
     },
     slotPosition: {
       control: { type: 'radio' },
-      options: ['afterTitle', 'beforeTitle'],
+      options: ['titleSuffix', 'titlePrefix'],
     },
     title: { control: { type: 'text' } },
   },
   args: {
     content: 'tooltip',
     isInverse: false,
-    slotPosition: 'afterTitle',
+    slotPosition: 'titleSuffix',
     title: 'Chapter Performance',
     type: CarbonChartType.bar,
     dataSet: barDataSet,
