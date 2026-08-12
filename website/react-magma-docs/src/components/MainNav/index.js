@@ -103,6 +103,20 @@ const Heading2 = styled.h2`
 const StyledAccordionButton = styled(AccordionButton)`
   border-top: 0;
   ${headingStyles};
+  /* Button owns the padding; strip the nested Heading's box so it doesn't double. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    background: none;
+    color: inherit;
+    font: inherit;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+  }
   &:hover {
     ${LinkHoverStyles};
   }
