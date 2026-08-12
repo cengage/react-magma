@@ -1,5 +1,11 @@
 # Change Log
 
+## 6.0.4-rc.6
+
+### Patch Changes
+
+- 23ca4ee: fix(docs): prevent doubled padding on MainNav accordion trigger headings
+
 ## 6.0.4-rc.5
 
 ### Patch Changes
