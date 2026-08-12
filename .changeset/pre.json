@@ -11,6 +11,7 @@
   },
   "changesets": [
     "a11y-datepicker-dialog-role",
+    "accordion-panel-heading-styles",
     "charts-title-content-slots",
     "chore-update-docs-and-landing-page",
     "fix-Tag-invalid-aria-on-label-span",
@@ -18,6 +19,7 @@
     "fix-datepicker-focus-return",
     "fix-storybook-a11y-issues",
     "fix-useFocusLock",
+    "mainnav-accordion-trigger-heading-padding",
     "password-input-dynamic-button-width",
     "radio-example-style-prop",
     "sync-v4-dev-deployment"

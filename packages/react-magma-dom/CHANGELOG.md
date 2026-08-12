@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 4.15.1-next.6
+
+### Patch Changes
+
+- e32c5655c: fix(Accordion): stop overriding Heading styles inside AccordionPanel
+
 ## 4.15.1-next.5
 
 ### Patch Changes

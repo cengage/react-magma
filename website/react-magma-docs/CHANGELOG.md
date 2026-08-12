@@ -1,5 +1,13 @@
 # Change Log
 
+## 5.3.7-next.5
+
+### Patch Changes
+
+- e32c5655c: fix(docs): prevent doubled padding on MainNav accordion trigger headings
+- Updated dependencies [e32c5655c]
+  - react-magma-dom@4.15.1-next.6
+
 ## 5.3.7-next.4
 
 ### Patch Changes
