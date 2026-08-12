@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 13.3.0-next.1
+
+### Minor Changes
+
+- 619ea44f8: feat(charts): add `titlePrefix` and `titleSuffix` props to the chart toolbar
+
 ## 13.2.1-next.0
 
 ### Patch Changes
