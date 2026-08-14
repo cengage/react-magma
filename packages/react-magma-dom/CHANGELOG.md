@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 4.15.1-next.7
+
+### Patch Changes
+
+- 62a7d9e42: fix(Pagination): fix styles to prevent an unwanted vertical scroll
+
 ## 4.15.1-next.6
 
 ### Patch Changes

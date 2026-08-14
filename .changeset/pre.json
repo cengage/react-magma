@@ -17,6 +17,7 @@
     "fix-Tag-invalid-aria-on-label-span",
     "fix-ToggleButtonGroup-ToggleButton-add-role-prop",
     "fix-datepicker-focus-return",
+    "fix-pagination-style-position",
     "fix-storybook-a11y-issues",
     "fix-useFocusLock",
     "iconButton-example-aria",
