@@ -786,7 +786,7 @@ export const FlippedItems = {
 const CustomRefTemplate: StoryFn<DropdownProps> = args => {
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const splitButtonRef = React.useRef<HTMLButtonElement>(null);
-  const primaryButtonRef = React.useRef<HTMLButtonElement>(null);
+  const mainButtonRef = React.useRef<HTMLButtonElement>(null);
 
   function handleClose(event: React.SyntheticEvent) {
     buttonRef.current?.focus();
@@ -796,8 +796,8 @@ const CustomRefTemplate: StoryFn<DropdownProps> = args => {
     splitButtonRef.current?.focus();
   }
 
-  function handleSplitPrimaryClose() {
-    primaryButtonRef.current?.focus();
+  function handleSplitMainClose() {
+    mainButtonRef.current?.focus();
   }
 
   return (
@@ -826,12 +826,9 @@ const CustomRefTemplate: StoryFn<DropdownProps> = args => {
           <DropdownMenuItem>Menu item number two</DropdownMenuItem>
         </DropdownContent>
       </Dropdown>
-      <Dropdown {...args} onClose={handleSplitPrimaryClose}>
-        <DropdownSplitButton
-          aria-label="Split"
-          primaryButtonRef={primaryButtonRef}
-        >
-          Split Primary Ref
+      <Dropdown {...args} onClose={handleSplitMainClose}>
+        <DropdownSplitButton aria-label="Split" mainButtonRef={mainButtonRef}>
+          Split Main Ref
         </DropdownSplitButton>
         <DropdownContent>
           <DropdownMenuItem>Menu item 1</DropdownMenuItem>

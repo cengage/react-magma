@@ -250,14 +250,11 @@ describe('Dropdown', () => {
     });
   });
 
-  it('should attach primaryButtonRef to the left action button', async () => {
-    const primaryButtonRef = React.createRef();
+  it('should attach mainButtonRef to the left action button', async () => {
+    const mainButtonRef = React.createRef();
     const { getByText } = render(
       <Dropdown>
-        <DropdownSplitButton
-          aria-label="Split"
-          primaryButtonRef={primaryButtonRef}
-        >
+        <DropdownSplitButton aria-label="Split" mainButtonRef={mainButtonRef}>
           Toggle me
         </DropdownSplitButton>
         <DropdownContent />
@@ -265,7 +262,7 @@ describe('Dropdown', () => {
     );
 
     await waitFor(() => {
-      expect(primaryButtonRef.current).toBe(
+      expect(mainButtonRef.current).toBe(
         getByText('Toggle me').closest('button')
       );
     });

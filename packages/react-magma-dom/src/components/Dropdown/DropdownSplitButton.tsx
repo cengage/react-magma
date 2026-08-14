@@ -46,9 +46,9 @@ export interface DropdownSplitButtonProps extends ButtonStyles {
    */
   onClick?: () => void;
   /**
-   * Ref for the primary action button (left side).
+   * Ref for the main action button (left side).
    */
-  primaryButtonRef?: React.Ref<HTMLButtonElement>;
+  mainButtonRef?: React.Ref<HTMLButtonElement>;
 }
 
 export const DropdownSplitButton = React.forwardRef<
@@ -66,7 +66,7 @@ export const DropdownSplitButton = React.forwardRef<
     'aria-label': ariaLabel,
     children,
     id,
-    primaryButtonRef,
+    mainButtonRef,
     variant = ButtonVariant.solid,
     onClick,
     leadingIcon,
@@ -75,7 +75,7 @@ export const DropdownSplitButton = React.forwardRef<
 
   const ref = useForkedRef(forwardedRef, resolvedContext.toggleRef);
   const splitButtonRef = React.useRef<HTMLButtonElement>(null);
-  const primaryRef = useForkedRef(splitButtonRef, primaryButtonRef ?? null);
+  const mainRef = useForkedRef(splitButtonRef, mainButtonRef ?? null);
 
   resolvedContext.dropdownButtonId.current = useGenerateId(id);
 
@@ -133,7 +133,7 @@ export const DropdownSplitButton = React.forwardRef<
     style: { borderRight: 0, marginRight: 0 },
     variant,
     tabIndex: 0,
-    ref: primaryRef,
+    ref: mainRef,
   };
 
   return (
