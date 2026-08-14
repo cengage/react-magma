@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.3.7-next.6
+
+### Patch Changes
+
+- 2aaaa5f3b: fix(IconButton): remove redundant `aria-label` from examples
+
 ## 5.3.7-next.5
 
 ### Patch Changes
