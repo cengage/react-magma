@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.1.1-rc.8
+
+### Patch Changes
+
+- c802c92: fix(Pagination): fix styles to prevent an unwanted vertical scroll
+
 ## 5.1.1-rc.7
 
 ### Patch Changes
