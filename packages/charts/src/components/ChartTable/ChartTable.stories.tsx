@@ -10,6 +10,7 @@ import {
   ButtonVariant,
   Card,
   IconButton,
+  Select,
   Tooltip,
 } from 'react-magma-dom';
 import { InfoIcon } from 'react-magma-icons';
@@ -233,5 +234,36 @@ export const TitleSlots = {
     title: 'Chapter Performance',
     type: CarbonChartType.bar,
     dataSet: barDataSet,
+  },
+};
+
+export const AdditionalContent = {
+  render: FullToolbarTemplate,
+  args: {
+    isInverse: false,
+    type: CarbonChartType.bar,
+    dataSet: barDataSet,
+    options: {
+      title: 'Chapter Performance',
+      axes: {
+        left: { mapsTo: 'value' },
+        bottom: { mapsTo: 'group', scaleType: ScaleTypes.LABELS },
+      },
+      height: '400px',
+    },
+    chartToolbar: {
+      titleSuffix: <ChartInfoTooltip />,
+    },
+    additionalContent: (
+      <Select
+        items={[
+          { label: 'All Chapters', value: 'all' },
+          { label: 'Chapters 1-2', value: 'ch-1-2' },
+          { label: 'Chapters 3-4', value: 'ch-3-4' },
+        ]}
+        labelText="Filter by"
+        initialSelectedItem={{ label: 'All Chapters', value: 'all' }}
+      />
+    ),
   },
 };

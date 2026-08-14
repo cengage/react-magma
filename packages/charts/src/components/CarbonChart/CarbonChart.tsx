@@ -156,6 +156,16 @@ export interface CarbonChartProps extends React.HTMLAttributes<HTMLDivElement> {
    * toolbar is automatically disabled.
    */
   chartToolbar?: ChartToolbarConfig;
+  /**
+   * Custom content rendered below the toolbar row and above the chart itself,
+   * for example a filter. Requires `chartToolbar`; ignored without it.
+   *
+   * Providing this lays the toolbar out in normal flow instead of overlaying
+   * the single row Carbon reserves for its title, so the rendered height
+   * becomes toolbar + content + chart rather than the chart box alone. Set
+   * `options.height` so the chart still has a definite height of its own.
+   */
+  additionalContent?: React.ReactNode;
 }
 
 const ChartContentWrapper = styled.div`
@@ -164,6 +174,7 @@ const ChartContentWrapper = styled.div`
 `;
 
 const FullscreenRoot = styled.div<{
+  isFlowLayout?: boolean;
   isInverse?: boolean;
   theme: ThemeInterface;
 }>`
@@ -176,9 +187,34 @@ const FullscreenRoot = styled.div<{
       props.isInverse
         ? props.theme.colors.primary700
         : props.theme.colors.neutral100};
+
+    ${props =>
+      props.isFlowLayout
+        ? `
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+
+    .carbon-chart-wrapper,
+    .carbon-chart-content {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .cds--chart-holder {
+      flex: 1 1 auto;
+      height: auto !important;
+      min-height: 0;
+    }
+    `
+        : `
     .cds--chart-holder {
       height: 100vh !important;
     }
+    `}
   }
 `;
 
@@ -681,6 +717,7 @@ interface ColorsObject {
 }
 
 const ToolbarWrapper = styled.div<{
+  isFlowLayout?: boolean;
   isFullscreen?: boolean;
   isInverse?: boolean;
   theme: ThemeInterface;
@@ -688,11 +725,19 @@ const ToolbarWrapper = styled.div<{
   align-items: center;
   display: flex;
   justify-content: space-between;
-  left: ${props => (props.isFullscreen ? '2em' : '0')};
-  position: absolute;
-  right: ${props => (props.isFullscreen ? '2em' : '0')};
-  top: ${props => (props.isFullscreen ? '2em' : '0')};
   z-index: 2;
+
+  ${props =>
+    props.isFlowLayout
+      ? `
+  position: relative;
+  `
+      : `
+  left: ${props.isFullscreen ? '2em' : '0'};
+  position: absolute;
+  right: ${props.isFullscreen ? '2em' : '0'};
+  top: ${props.isFullscreen ? '2em' : '0'};
+  `}
 
   button {
     color: ${props =>
@@ -734,14 +779,14 @@ const TitleGroup = styled.div<{ theme: ThemeInterface }>`
   min-width: 0;
 `;
 
-/*
- * The `magma-chart-slot` class is what keeps the tag reset in
- * carbon-charts.css out of this subtree, so adopter components keep their own
- * styling. Renaming it means updating the `:not()` selectors in that file.
- */
 const TitleSlot = styled.div`
   align-items: center;
   display: flex;
+`;
+
+const ChartSlot = styled.div<{ theme: ThemeInterface }>`
+  margin: ${props => props.theme.spaceScale.spacing05} 0
+    ${props => props.theme.spaceScale.spacing06};
 `;
 
 const ToolbarActions = styled.div<{ theme: ThemeInterface }>`
@@ -999,6 +1044,7 @@ function downloadImage(
 interface InternalToolbarProps {
   config: ChartToolbarConfig;
   dataSet: Array<Record<string, unknown>>;
+  isFlowLayout: boolean;
   isInverse: boolean;
   isTableOpen: boolean;
   isFullscreen: boolean;
@@ -1012,6 +1058,7 @@ interface InternalToolbarProps {
 function CarbonChartToolbar({
   config,
   dataSet,
+  isFlowLayout,
   isInverse,
   isTableOpen,
   isFullscreen,
@@ -1060,15 +1107,14 @@ function CarbonChartToolbar({
 
   return (
     <ToolbarWrapper
+      isFlowLayout={isFlowLayout}
       isFullscreen={isFullscreen}
       isInverse={isInverse}
       theme={theme}
     >
       <TitleGroup theme={theme}>
         {config.titlePrefix ? (
-          <TitleSlot className="magma-chart-slot">
-            {config.titlePrefix}
-          </TitleSlot>
+          <TitleSlot>{config.titlePrefix}</TitleSlot>
         ) : null}
         <ChartTitle
           as={`h${config.titleLevel ?? 2}` as keyof JSX.IntrinsicElements}
@@ -1078,9 +1124,7 @@ function CarbonChartToolbar({
           {resolvedTitle}
         </ChartTitle>
         {config.titleSuffix ? (
-          <TitleSlot className="magma-chart-slot">
-            {config.titleSuffix}
-          </TitleSlot>
+          <TitleSlot>{config.titleSuffix}</TitleSlot>
         ) : null}
       </TitleGroup>
       <ToolbarActions theme={theme}>
@@ -1122,6 +1166,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       type,
       dataSet,
       options,
+      additionalContent,
       ariaLabel,
       chartToolbar,
       ...rest
@@ -1156,6 +1201,8 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       ? chartToolbar.fullscreen !== false
       : false;
 
+    const isFlowLayout = Boolean(chartToolbar && additionalContent);
+
     const savedHeightRef = React.useRef<string>('');
 
     React.useEffect(() => {
@@ -1169,7 +1216,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
         const chartHolder =
           internalRef.current?.querySelector<HTMLElement>('.cds--chart-holder');
 
-        if (chartHolder) {
+        if (chartHolder && !isFlowLayout) {
           if (isFs) {
             savedHeightRef.current = chartHolder.style.height;
             chartHolder.style.height = '100vh';
@@ -1183,7 +1230,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
 
       return () =>
         document.removeEventListener('fullscreenchange', onFullscreenChange);
-    }, [fullscreenEnabled]);
+    }, [fullscreenEnabled, isFlowLayout]);
 
     const openTableModal = React.useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -1415,8 +1462,13 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
       return scaleColorsObj;
     }
 
+    const { title: _title, ...optionsWithoutTitle } = options as Record<
+      string,
+      unknown
+    >;
+
     const newOptions = {
-      ...options,
+      ...(isFlowLayout ? optionsWithoutTitle : options),
       theme: isInverse ? ChartTheme.G100 : ChartTheme.WHITE,
       color: {
         scale: buildColors(),
@@ -1518,7 +1570,12 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
     const showTable = chartToolbar?.showAsTable !== false;
 
     return (
-      <FullscreenRoot ref={mergedRef} isInverse={isInverse} theme={theme}>
+      <FullscreenRoot
+        ref={mergedRef}
+        isFlowLayout={isFlowLayout}
+        isInverse={isInverse}
+        theme={theme}
+      >
         <VisuallyHidden>
           <Announce>{legendAnnouncement}</Announce>
         </VisuallyHidden>
@@ -1529,14 +1586,16 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
           data-testid={testId}
           isInverse={isInverse}
           theme={theme}
-          className={`carbon-chart-wrapper${chartToolbar ? ' has-magma-toolbar' : ''}`}
+          className={`carbon-chart-wrapper${
+            chartToolbar && !isFlowLayout ? ' has-magma-toolbar' : ''
+          }`}
           groupsLength={groupsLength < 6 ? groupsLength : 14}
           role="region"
           aria-label={ariaLabel || chartTitle}
           aria-roledescription="chart"
           {...rest}
         >
-          <ChartContentWrapper>
+          <ChartContentWrapper className="carbon-chart-content">
             {chartToolbar && (
               /*
                * Slot content comes from the adopter, so it resolves
@@ -1548,6 +1607,7 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
                 <CarbonChartToolbar
                   config={chartToolbar}
                   dataSet={dataSet as Array<Record<string, unknown>>}
+                  isFlowLayout={isFlowLayout}
                   isInverse={isInverse}
                   isTableOpen={isTableOpen}
                   isFullscreen={isFullscreen}
@@ -1557,6 +1617,9 @@ export const CarbonChart = React.forwardRef<HTMLDivElement, CarbonChartProps>(
                   title={chartTitle}
                   wrapperRef={internalRef}
                 />
+                {isFlowLayout && (
+                  <ChartSlot theme={theme}>{additionalContent}</ChartSlot>
+                )}
               </InverseContext.Provider>
             )}
             <ChartType data={dataSet} options={newOptions} />
