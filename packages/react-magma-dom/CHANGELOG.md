@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-rc.9
+
+### Minor Changes
+
+- b3669bf: feat(Skeleton): Add `Skeleton` component for skeleton loading placeholders
+
 ## 5.1.1-rc.8
 
 ### Patch Changes

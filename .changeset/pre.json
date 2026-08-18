@@ -13,6 +13,7 @@
     "accordion-panel-heading-styles",
     "add-release-codex-skill",
     "charts-title-content-slots",
+    "feat-Skeleton",
     "fix-Tag-invalid-aria-on-label-span",
     "fix-ToggleButtonGroup-ToggleButton-add-role-prop",
     "fix-Treeview-collapse-state-icon",
