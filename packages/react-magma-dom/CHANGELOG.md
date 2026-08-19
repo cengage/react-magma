@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 4.16.0-next.8
+
+### Minor Changes
+
+- 3055423b0: feat(Skeleton): Add `Skeleton` component for skeleton loading placeholders
+
 ## 4.15.1-next.7
 
 ### Patch Changes

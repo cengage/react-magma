@@ -1,5 +1,14 @@
 # Change Log
 
+## 5.3.7-next.7
+
+### Patch Changes
+
+- Updated dependencies [3055423b0]
+  - react-magma-dom@4.16.0-next.8
+  - @react-magma/charts@14.0.0-next.2
+  - @react-magma/dropzone@14.0.0-next.1
+
 ## 5.3.7-next.6
 
 ### Patch Changes

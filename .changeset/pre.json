@@ -14,6 +14,7 @@
     "accordion-panel-heading-styles",
     "charts-title-content-slots",
     "chore-update-docs-and-landing-page",
+    "feat-Skeleton",
     "fix-Tag-invalid-aria-on-label-span",
     "fix-ToggleButtonGroup-ToggleButton-add-role-prop",
     "fix-datepicker-focus-return",
