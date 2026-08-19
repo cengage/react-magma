@@ -193,6 +193,12 @@ export {
 } from './components/Select';
 export { Combobox, ComboboxStateChangeTypes } from './components/Combobox';
 
+export {
+  Skeleton,
+  SkeletonAnimation,
+  SkeletonVariant,
+  SkeletonProps,
+} from './components/Skeleton';
 export { SkipLink, SkipLinkProps } from './components/SkipLink';
 export {
   SkipLinkContent,
