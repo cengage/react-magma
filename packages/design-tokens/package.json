@@ -1,0 +1,19 @@
+{
+  "name": "@react-magma/design-tokens",
+  "version": "0.1.0",
+  "description": "Canonical DTCG-style design token source for React Magma themes.",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "node scripts/generate.mjs",
+    "check": "node scripts/generate.mjs --check",
+    "generate": "node scripts/generate.mjs"
+  }
+}

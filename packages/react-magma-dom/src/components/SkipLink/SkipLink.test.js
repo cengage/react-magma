@@ -6,6 +6,7 @@ import { axe } from '../../../axe-helper';
 import { I18nContext } from '../../i18n';
 import { defaultI18n } from '../../i18n/default';
 import { magma } from '../../theme/magma';
+import { token } from '../../theme/tokens';
 import { SkipLinkContent } from '../SkipLinkContent';
 
 import { SkipLink } from '.';
@@ -24,8 +25,8 @@ describe('SkipLink', () => {
 
     expect(link).toBeInTheDocument();
     expect(link.innerHTML).toEqual('Skip Navigation');
-    expect(link).toHaveStyleRule('background', '#3942B0');
-    expect(link).toHaveStyleRule('color', '#FFFFFF');
+    expect(link).toHaveStyleRule('background', token('colors.primary'));
+    expect(link).toHaveStyleRule('color', token('colors.neutral100'));
     expect(link).toMatchSnapshot();
   });
 
@@ -83,8 +84,8 @@ describe('SkipLink', () => {
     const { container } = render(<SkipLink isInverse />);
     const link = container.querySelector('a');
 
-    expect(link).toHaveStyleRule('background', magma.colors.tertiary500);
-    expect(link).toHaveStyleRule('color', magma.colors.primary700);
+    expect(link).toHaveStyleRule('background', token('colors.tertiary500'));
+    expect(link).toHaveStyleRule('color', token('colors.primary700'));
   });
 
   it('should render the skip link specified position top and left attributes', () => {

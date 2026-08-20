@@ -64,6 +64,33 @@ export const Default = () => {
   );
 };
 
+const purpleTokenOverride = {
+  '--magma-color-info': '#9333EA',
+  '--magma-color-info-100': '#F3E8FF',
+  '--magma-color-info-200': '#DDD6FE',
+  '--magma-color-info-300': '#C4B5FD',
+  '--magma-color-info-500': '#9333EA',
+  '--magma-color-info-700': '#581C87',
+} as React.CSSProperties;
+
+export const TokenOverride = () => {
+  return (
+    <>
+      <Alert>
+        Default info Alert — uses magma&apos;s <code>--magma-color-info-*</code>{' '}
+        tokens.
+      </Alert>
+      <div style={purpleTokenOverride}>
+        <Alert>
+          Same Alert component, recolored by overriding{' '}
+          <code>--magma-color-info-*</code> on this wrapper. No props changed;
+          no theme provider remount.
+        </Alert>
+      </div>
+    </>
+  );
+};
+
 export const Inverse = () => {
   return (
     <Card isInverse>

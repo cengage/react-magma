@@ -1,5 +1,7 @@
 import { transparentize } from 'polished';
 
+import { token, TokenPath } from '../../theme/tokens';
+
 const DEFAULT_STYLE_PROPS = {
   color: 'primary',
   shape: 'fill',
@@ -12,66 +14,85 @@ export function buildPropsWithDefaultButtonStyles(props) {
   return { ...DEFAULT_STYLE_PROPS, ...props };
 }
 
+function cssToken(props, path: TokenPath): string {
+  return token.var(path, { theme: props.theme });
+}
+
 export function buildButtonBorderRadius(props) {
   switch (props.shape) {
     case 'round':
       return props.iconOnly ? '100%' : '2rem';
     case 'leftCap':
-      return `${props.theme.borderRadius} 0 0 ${props.theme.borderRadius}`;
+      return `${cssToken(props, 'components.button.borderRadius')} 0 0 ${cssToken(
+        props,
+        'components.button.borderRadius'
+      )}`;
     case 'rightCap':
-      return `0 ${props.theme.borderRadius} ${props.theme.borderRadius} 0`;
+      return `0 ${cssToken(props, 'components.button.borderRadius')} ${cssToken(
+        props,
+        'components.button.borderRadius'
+      )} 0`;
     default:
       //fill
-      return props.theme.borderRadius;
+      return cssToken(props, 'components.button.borderRadius');
   }
 }
 
 export function buildButtonFontSize(props) {
   switch (props.size) {
     case 'small':
-      return props.theme.typeScale.size01.fontSize;
+      return cssToken(props, 'components.button.size.small.fontSize');
     case 'large':
-      return props.theme.typeScale.size04.fontSize;
+      return cssToken(props, 'components.button.size.large.fontSize');
     default:
       //medium
-      return props.theme.typeScale.size03.fontSize;
+      return cssToken(props, 'components.button.size.medium.fontSize');
   }
 }
 
 export function buildButtonLineHeight(props) {
   switch (props.size) {
     case 'small':
-      return props.theme.typeScale.size01.lineHeight;
+      return cssToken(props, 'components.button.size.small.lineHeight');
     case 'large':
-      return props.theme.typeScale.size04.lineHeight;
+      return cssToken(props, 'components.button.size.large.lineHeight');
     default:
       //medium
-      return props.theme.typeScale.size03.lineHeight;
+      return cssToken(props, 'components.button.size.medium.lineHeight');
   }
 }
 
 export function buildButtonSize(props) {
   switch (props.size) {
     case 'small':
-      return props.theme.spaceScale.spacing07;
+      return cssToken(props, 'components.button.size.small.height');
     case 'large':
-      return props.theme.spaceScale.spacing11;
+      return cssToken(props, 'components.button.size.large.height');
     default:
       //medium
-      return props.theme.spaceScale.spacing09;
+      return cssToken(props, 'components.button.size.medium.height');
   }
 }
 
 export function buildButtonPadding(props) {
+  let size = 'medium';
+
   switch (props.size) {
     case 'small':
-      return `${props.theme.spaceScale.spacing02} ${props.theme.spaceScale.spacing03}`;
+      size = 'small';
+      break;
     case 'large':
-      return `${props.theme.spaceScale.spacing04} ${props.theme.spaceScale.spacing06}`;
-    default:
-      //medium
-      return `${props.theme.spaceScale.spacing04} ${props.theme.spaceScale.spacing05}`;
+      size = 'large';
+      break;
   }
+
+  return `${cssToken(
+    props,
+    `components.button.size.${size}.paddingBlock` as TokenPath
+  )} ${cssToken(
+    props,
+    `components.button.size.${size}.paddingInline` as TokenPath
+  )}`;
 }
 
 export function buildButtonBackground(props) {
@@ -93,10 +114,10 @@ export function buildButtonBackground(props) {
       return 'none';
     }
     if (props.color === 'secondary' || props.color === 'subtle') {
-      return props.theme.colors.neutral100;
+      return cssToken(props, 'colors.neutral100');
     }
 
-    return props.theme.colors.neutral300;
+    return cssToken(props, 'colors.neutral300');
   }
 
   if (props.isInverse) {
@@ -107,19 +128,19 @@ export function buildButtonBackground(props) {
       return 'none';
     }
     if (props.color === 'marketing') {
-      return props.theme.colors.secondary500;
+      return cssToken(props, 'colors.secondary500');
     }
     if (props.color === 'danger') {
-      return props.theme.colors.danger;
+      return cssToken(props, 'colors.danger');
     }
     if (props.color === 'subtle') {
       return 'none';
     }
     if (props.color === 'success') {
-      return props.theme.colors.success500;
+      return cssToken(props, 'colors.success500');
     }
 
-    return props.theme.colors.tertiary500;
+    return cssToken(props, 'colors.tertiary500');
   }
 
   if (props.variant === 'link') {
@@ -128,17 +149,17 @@ export function buildButtonBackground(props) {
 
   switch (props.color) {
     case 'secondary':
-      return props.theme.colors.neutral100;
+      return cssToken(props, 'colors.neutral100');
     case 'marketing':
-      return props.theme.colors.secondary500;
+      return cssToken(props, 'colors.secondary500');
     case 'danger':
-      return props.theme.colors.danger;
+      return cssToken(props, 'colors.danger');
     case 'subtle':
-      return props.theme.colors.neutral100;
+      return cssToken(props, 'colors.neutral100');
     case 'success':
-      return props.theme.colors.success500;
+      return cssToken(props, 'colors.success500');
     default:
-      return props.theme.colors.primary;
+      return cssToken(props, 'colors.primary');
   }
 }
 
@@ -166,7 +187,7 @@ export function buildBorderColor(props) {
       return 'none';
     }
 
-    return props.theme.colors.neutral300;
+    return cssToken(props, 'colors.neutral300');
   }
 
   if (props.isInverse) {
@@ -177,24 +198,24 @@ export function buildBorderColor(props) {
       return transparentize(0.8, props.theme.colors.neutral100);
     }
 
-    return props.theme.colors.neutral100;
+    return cssToken(props, 'colors.neutral100');
   }
 
   if (props.color === 'marketing') {
-    return props.theme.colors.secondary500;
+    return cssToken(props, 'colors.secondary500');
   }
   if (props.color === 'secondary') {
-    return props.theme.colors.primary300;
+    return cssToken(props, 'colors.primary300');
   }
   if (props.color === 'subtle') {
-    return props.theme.colors.neutral300;
+    return cssToken(props, 'colors.neutral300');
   }
   if (props.variant === 'solid') {
     switch (props.color) {
       case 'danger':
-        return props.theme.colors.danger;
+        return cssToken(props, 'colors.danger');
       default:
-        return props.theme.colors.primary;
+        return cssToken(props, 'colors.primary');
     }
   }
 }
@@ -220,57 +241,57 @@ export function buildColor(props) {
 
   if (props.isInverse) {
     if (props.color === 'subtle') {
-      return props.theme.colors.neutral100;
+      return cssToken(props, 'colors.neutral100');
     }
     if (props.color === 'success') {
       if (props.variant === 'link') {
-        return props.theme.colors.success300;
+        return cssToken(props, 'colors.success300');
       }
 
-      return props.theme.colors.neutral100;
+      return cssToken(props, 'colors.neutral100');
     }
     if (props.variant === 'link') {
       if (props.color === 'danger') {
-        return props.theme.colors.danger200;
+        return cssToken(props, 'colors.danger200');
       }
 
-      return props.theme.colors.tertiary500;
+      return cssToken(props, 'colors.tertiary500');
     }
     if (props.color === 'secondary') {
-      return props.theme.colors.tertiary500;
+      return cssToken(props, 'colors.tertiary500');
     }
     if (props.color === 'marketing') {
-      return props.theme.colors.primary500;
+      return cssToken(props, 'colors.primary500');
     }
     if (props.color === 'danger') {
-      return props.theme.colors.neutral100;
+      return cssToken(props, 'colors.neutral100');
     }
 
-    return props.theme.colors.primary700;
+    return cssToken(props, 'colors.primary700');
   }
 
   if (props.variant === 'link') {
     switch (props.color) {
       case 'danger':
-        return props.theme.colors.danger500;
+        return cssToken(props, 'colors.danger500');
       case 'subtle':
-        return props.theme.colors.neutral700;
+        return cssToken(props, 'colors.neutral700');
       case 'success':
-        return props.theme.colors.success500;
+        return cssToken(props, 'colors.success500');
       default:
-        return props.theme.colors.primary;
+        return cssToken(props, 'colors.primary');
     }
   }
 
   switch (props.color) {
     case 'secondary':
-      return props.theme.colors.primary;
+      return cssToken(props, 'colors.primary');
     case 'marketing':
-      return props.theme.colors.primary;
+      return cssToken(props, 'colors.primary');
     case 'subtle':
-      return props.theme.colors.neutral700;
+      return cssToken(props, 'colors.neutral700');
     default:
-      return props.theme.colors.neutral100;
+      return cssToken(props, 'colors.neutral100');
   }
 }
 
@@ -282,21 +303,21 @@ export function buildFocusBackground(props) {
     return transparentize(0.7, props.theme.colors.neutral900);
   }
   if (props.color === 'marketing') {
-    return props.theme.colors.secondary600;
+    return cssToken(props, 'colors.secondary600');
   }
   if (props.color === 'danger') {
     if (props.variant === 'link') {
-      return props.theme.colors.danger100;
+      return cssToken(props, 'colors.danger100');
     }
 
-    return props.theme.colors.danger600;
+    return cssToken(props, 'colors.danger600');
   }
   if (props.color === 'success') {
     if (props.variant === 'link') {
-      return props.theme.colors.success100;
+      return cssToken(props, 'colors.success100');
     }
 
-    return props.theme.colors.success600;
+    return cssToken(props, 'colors.success600');
   }
   if (props.color === 'secondary') {
     if (props.isInverse) {
@@ -304,7 +325,7 @@ export function buildFocusBackground(props) {
       return transparentize(0.7, props.theme.colors.neutral900);
     }
 
-    return props.theme.colors.primary100;
+    return cssToken(props, 'colors.primary100');
   }
   if (props.color === 'subtle') {
     if (props.isInverse) {
@@ -315,13 +336,13 @@ export function buildFocusBackground(props) {
   }
   // primary
   if (props.variant === 'solid' && props.isInverse) {
-    return props.theme.colors.tertiary600;
+    return cssToken(props, 'colors.tertiary600');
   }
   if (props.variant === 'link') {
-    return props.theme.colors.primary100;
+    return cssToken(props, 'colors.primary100');
   }
 
-  return props.theme.colors.primary600;
+  return cssToken(props, 'colors.primary600');
 }
 
 // Same styles for hover and focus
@@ -330,67 +351,67 @@ export function buildFocusColor(props) {
 
   if (props.color === 'marketing') {
     if (!props.isInverse || props.variant === 'solid') {
-      return props.theme.colors.primary;
+      return cssToken(props, 'colors.primary');
     }
   }
 
   if (props.color === 'danger') {
     if (props.variant !== 'solid' && !props.isInverse) {
-      return props.theme.colors.danger600;
+      return cssToken(props, 'colors.danger600');
     }
     if (props.variant === 'solid' && props.isInverse) {
-      return props.theme.colors.neutral100;
+      return cssToken(props, 'colors.neutral100');
     }
   }
 
   if (props.color === 'secondary') {
     if (props.isInverse) {
-      return props.theme.colors.tertiary500;
+      return cssToken(props, 'colors.tertiary500');
     }
 
-    return props.theme.colors.primary;
+    return cssToken(props, 'colors.primary');
   }
 
   if (props.color === 'subtle') {
     if (props.isInverse) {
-      return props.theme.colors.neutral100;
+      return cssToken(props, 'colors.neutral100');
     }
 
-    return props.theme.colors.neutral700;
+    return cssToken(props, 'colors.neutral700');
   }
 
   if (props.variant === 'link' && !props.isInverse) {
     if (props.color === 'success') {
-      return props.theme.colors.success600;
+      return cssToken(props, 'colors.success600');
     }
 
-    return props.theme.colors.primary;
+    return cssToken(props, 'colors.primary');
   }
 
   if (props.variant === 'link' && props.isInverse) {
     switch (props.color) {
       case 'primary':
-        return props.theme.colors.tertiary500;
+        return cssToken(props, 'colors.tertiary500');
       case 'marketing':
-        return props.theme.colors.tertiary500;
+        return cssToken(props, 'colors.tertiary500');
       case 'success':
-        return props.theme.colors.success300;
+        return cssToken(props, 'colors.success300');
       case 'danger':
-        return props.theme.colors.danger200;
+        return cssToken(props, 'colors.danger200');
       default:
-        return props.theme.colors.tertiary500;
+        return cssToken(props, 'colors.tertiary500');
     }
   }
 
   if (props.variant === 'solid' && props.isInverse) {
     if (props.color === 'success') {
-      return props.theme.colors.neutral100;
+      return cssToken(props, 'colors.neutral100');
     }
 
-    return props.theme.colors.primary700;
+    return cssToken(props, 'colors.primary700');
   }
 
-  return props.theme.colors.neutral100;
+  return cssToken(props, 'colors.neutral100');
 }
 
 export function buildActiveBackground(props) {
@@ -401,7 +422,7 @@ export function buildActiveBackground(props) {
       return transparentize(0.7, props.theme.colors.neutral900);
     }
 
-    return props.theme.colors.secondary700;
+    return cssToken(props, 'colors.secondary700');
   }
   if (props.color === 'danger') {
     if (props.isInverse) {
@@ -409,10 +430,10 @@ export function buildActiveBackground(props) {
         return transparentize(0.5, props.theme.colors.neutral900);
       }
 
-      return props.theme.colors.danger700;
+      return cssToken(props, 'colors.danger700');
     }
     if (props.variant !== 'solid') {
-      return props.theme.colors.danger200;
+      return cssToken(props, 'colors.danger200');
     }
   }
   if (props.color === 'success') {
@@ -421,10 +442,10 @@ export function buildActiveBackground(props) {
         return transparentize(0.5, props.theme.colors.neutral900);
       }
 
-      return props.theme.colors.success200;
+      return cssToken(props, 'colors.success200');
     }
 
-    return props.theme.colors.success700;
+    return cssToken(props, 'colors.success700');
   }
   if (props.color === 'secondary') {
     if ((props.variant === 'link' && props.isInverse) || props.isInverse) {
@@ -439,7 +460,7 @@ export function buildActiveBackground(props) {
     return transparentize(0.9, props.theme.colors.neutral900);
   }
   if (props.variant === 'solid' && props.isInverse) {
-    return props.theme.colors.tertiary700;
+    return cssToken(props, 'colors.tertiary700');
   }
 
   if (props.variant === 'link') {
@@ -447,16 +468,16 @@ export function buildActiveBackground(props) {
       return transparentize(0.5, props.theme.colors.neutral900);
     }
 
-    return props.theme.colors.primary200;
+    return cssToken(props, 'colors.primary200');
   }
 
   switch (props.color) {
     case 'secondary':
-      return props.theme.colors.primary200;
+      return cssToken(props, 'colors.primary200');
     case 'danger':
-      return props.theme.colors.danger700;
+      return cssToken(props, 'colors.danger700');
     default:
-      return props.theme.colors.primary700;
+      return cssToken(props, 'colors.primary700');
   }
 }
 
@@ -466,33 +487,33 @@ export function buildActiveColor(props) {
   if (props.color === 'danger') {
     if (props.variant !== 'solid') {
       if (props.isInverse) {
-        return props.theme.colors.danger200;
+        return cssToken(props, 'colors.danger200');
       }
 
-      return props.theme.colors.danger700;
+      return cssToken(props, 'colors.danger700');
     }
   }
   if (props.color === 'success' && props.variant === 'link') {
     if (props.isInverse) {
-      return props.theme.colors.success300;
+      return cssToken(props, 'colors.success300');
     }
 
-    return props.theme.colors.success700;
+    return cssToken(props, 'colors.success700');
   }
 
   if (props.color === 'secondary' && props.variant === 'solid') {
     if (props.isInverse) {
-      return props.theme.colors.tertiary500;
+      return cssToken(props, 'colors.tertiary500');
     }
 
-    return props.theme.colors.primary600;
+    return cssToken(props, 'colors.primary600');
   }
   if (props.color === 'subtle') {
     if (props.isInverse) {
-      return props.theme.colors.neutral100;
+      return cssToken(props, 'colors.neutral100');
     }
 
-    return props.theme.colors.neutral700;
+    return cssToken(props, 'colors.neutral700');
   }
   if (
     (props.variant !== 'solid' && !props.isInverse) ||
@@ -500,29 +521,29 @@ export function buildActiveColor(props) {
   ) {
     switch (props.color) {
       case 'danger':
-        return props.theme.colors.neutral100;
+        return cssToken(props, 'colors.neutral100');
       case 'success':
-        return props.theme.colors.neutral100;
+        return cssToken(props, 'colors.neutral100');
       default:
-        return props.theme.colors.primary600;
+        return cssToken(props, 'colors.primary600');
     }
   }
   if (props.variant !== 'solid' && props.isInverse) {
     switch (props.color) {
       case 'primary':
-        return props.theme.colors.tertiary500;
+        return cssToken(props, 'colors.tertiary500');
       case 'secondary':
-        return props.theme.colors.tertiary500;
+        return cssToken(props, 'colors.tertiary500');
       case 'marketing':
-        return props.theme.colors.tertiary500;
+        return cssToken(props, 'colors.tertiary500');
       default:
-        return props.theme.colors.neutral100;
+        return cssToken(props, 'colors.neutral100');
     }
   }
 
   if (props.color === 'marketing' && !props.isInverse) {
-    return props.theme.colors.primary600;
+    return cssToken(props, 'colors.primary600');
   }
 
-  return props.theme.colors.neutral100;
+  return cssToken(props, 'colors.neutral100');
 }

@@ -203,11 +203,11 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -216,20 +216,20 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -244,20 +244,20 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -490,11 +490,11 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -503,20 +503,20 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -531,20 +531,20 @@ exports[`ButtonGroup Horizontal No Space Removes the border radius around the bu
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -717,11 +717,11 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -730,20 +730,20 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -758,20 +758,20 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -892,11 +892,11 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -905,20 +905,20 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -933,20 +933,20 @@ exports[`ButtonGroup Vertical No Space Does NOT remove the border radius around 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -1116,11 +1116,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1129,20 +1129,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1157,20 +1157,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -1211,11 +1211,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1224,20 +1224,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1253,20 +1253,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-9:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-9:not(:disabled):hover,
 .emotion-9:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-9:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-9:not(:disabled):active:after {
@@ -1446,11 +1446,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1459,20 +1459,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1487,20 +1487,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -1541,11 +1541,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1554,20 +1554,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1583,20 +1583,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Horizontal & center alignment 1`] 
 }
 
 .emotion-9:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-9:not(:disabled):hover,
 .emotion-9:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-9:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-9:not(:disabled):active:after {
@@ -1988,11 +1988,11 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px 0 0 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px)) 0 0 var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2001,20 +2001,20 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -2029,20 +2029,20 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 }
 
 .emotion-4:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-4:not(:disabled):hover,
 .emotion-4:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-4:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-4:not(:disabled):active:after {
@@ -2078,11 +2078,11 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 0 8px 8px 0;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: 0 var(--magma-components-button-border-radius, var(--magma-border-radius, 8px)) var(--magma-components-button-border-radius, var(--magma-border-radius, 8px)) 0;
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2091,20 +2091,20 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -2115,7 +2115,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 40px;
+  width: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -2130,20 +2130,20 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 }
 
 .emotion-8:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-8:not(:disabled):hover,
 .emotion-8:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-8:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-8:not(:disabled):active:after {
@@ -2372,11 +2372,11 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px 0 0 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px)) 0 0 var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2385,20 +2385,20 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -2413,20 +2413,20 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 }
 
 .emotion-4:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-4:not(:disabled):hover,
 .emotion-4:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-4:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-4:not(:disabled):active:after {
@@ -2462,11 +2462,11 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 0 8px 8px 0;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: 0 var(--magma-components-button-border-radius, var(--magma-border-radius, 8px)) var(--magma-components-button-border-radius, var(--magma-border-radius, 8px)) 0;
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2475,20 +2475,20 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -2499,7 +2499,7 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 40px;
+  width: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -2514,20 +2514,20 @@ exports[`ButtonGroup With dropdowns Snapshot: SplitButton 1`] = `
 }
 
 .emotion-8:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-8:not(:disabled):hover,
 .emotion-8:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-8:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-8:not(:disabled):active:after {
@@ -2919,11 +2919,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2932,20 +2932,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -2960,20 +2960,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -3014,11 +3014,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -3027,20 +3027,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -3056,20 +3056,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-9:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-9:not(:disabled):hover,
 .emotion-9:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-9:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-9:not(:disabled):active:after {
@@ -3298,11 +3298,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -3311,20 +3311,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -3339,20 +3339,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -3393,11 +3393,11 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -3406,20 +3406,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -3435,20 +3435,20 @@ exports[`ButtonGroup With dropdowns Snapshot: Vertical & fill alignment 1`] = `
 }
 
 .emotion-9:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-9:not(:disabled):hover,
 .emotion-9:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-9:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-9:not(:disabled):active:after {
@@ -3901,11 +3901,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -3914,20 +3914,20 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -3942,20 +3942,20 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -3996,11 +3996,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -4009,20 +4009,20 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -4038,20 +4038,20 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-9:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-9:not(:disabled):hover,
 .emotion-9:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-9:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-9:not(:disabled):active:after {
@@ -4346,11 +4346,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -4359,20 +4359,20 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -4387,20 +4387,20 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-2:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-2:not(:disabled):hover,
 .emotion-2:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-2:not(:disabled):active:after {
@@ -4441,11 +4441,11 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -4454,20 +4454,20 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -4483,20 +4483,20 @@ exports[`ButtonGroup With dropdowns Snapshot: noSpace 1`] = `
 }
 
 .emotion-9:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-9:not(:disabled):hover,
 .emotion-9:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-9:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-9:not(:disabled):active:after {
@@ -4979,11 +4979,11 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -4992,20 +4992,20 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -5020,20 +5020,20 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
 }
 
 .emotion-4:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-4:not(:disabled):hover,
 .emotion-4:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-4:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-4:not(:disabled):active:after {
@@ -5296,11 +5296,11 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -5309,20 +5309,20 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -5337,20 +5337,20 @@ exports[`ButtonGroup isList Snapshot: isList with noSpace horizontal 1`] = `
 }
 
 .emotion-4:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-4:not(:disabled):hover,
 .emotion-4:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-4:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-4:not(:disabled):active:after {

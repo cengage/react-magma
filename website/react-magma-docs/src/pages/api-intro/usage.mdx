@@ -49,6 +49,14 @@ to insure consistency across products.
 To use the `GlobalStyles` object, simply import it from `react-magma-dom` and include it in your App.
 
 The `GlobalStyles` component can be nested inside the <Link to="/api-intro/styles-and-themes/#using_themes">ThemeContext.Provider</Link> to inherit styles from the theme.
+It uses token fallbacks by default. Set `emitCssVariables` when the application
+needs the complete active token set emitted under `:root`, or provide
+`cssVarsRoot` to scope those declarations to a selector. See the
+
+<Link to="/api-intro/styles-and-themes/#css_design_tokens">
+  CSS design tokens documentation
+</Link>
+for override and scoping examples.
 
 ```jsx-noRender-startExpanded
 import React from 'react';

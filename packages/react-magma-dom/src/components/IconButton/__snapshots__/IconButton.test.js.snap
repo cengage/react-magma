@@ -6,11 +6,11 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border-radius: 100%;
-  color: #FFFFFF;
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -19,20 +19,20 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 18px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-large-font-size, var(--magma-type-scale-size-04-font-size, 18px));
   font-weight: 500;
-  height: 56px;
+  height: var(--magma-components-button-size-large-height, var(--magma-space-scale-spacing-11, 56px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-large-line-height, var(--magma-type-scale-size-04-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-large-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 24px;
+  padding: var(--magma-components-button-size-large-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-large-padding-inline, var(--magma-space-scale-spacing-06, 24px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -43,7 +43,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 56px;
+  width: var(--magma-components-button-size-large-height, var(--magma-space-scale-spacing-11, 56px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -58,20 +58,20 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -107,11 +107,11 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border-radius: 100%;
-  color: #FFFFFF;
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -120,20 +120,20 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 18px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-large-font-size, var(--magma-type-scale-size-04-font-size, 18px));
   font-weight: 500;
-  height: 56px;
+  height: var(--magma-components-button-size-large-height, var(--magma-space-scale-spacing-11, 56px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-large-line-height, var(--magma-type-scale-size-04-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-large-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 24px;
+  padding: var(--magma-components-button-size-large-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-large-padding-inline, var(--magma-space-scale-spacing-06, 24px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -144,7 +144,7 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 56px;
+  width: var(--magma-components-button-size-large-height, var(--magma-space-scale-spacing-11, 56px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -159,20 +159,20 @@ exports[`IconButton Icon Only Button Snapshot should render with large size 1`] 
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -241,11 +241,11 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border-radius: 100%;
-  color: #FFFFFF;
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -254,20 +254,20 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -278,7 +278,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 28px;
+  width: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -293,20 +293,20 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -342,11 +342,11 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border-radius: 100%;
-  color: #FFFFFF;
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -355,20 +355,20 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -379,7 +379,7 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 28px;
+  width: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -394,20 +394,20 @@ exports[`IconButton Icon Only Button Snapshot should render with small size 1`] 
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -476,11 +476,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #8B91DA;
+  border-color: var(--magma-color-primary-300, #8B91DA);
   border-radius: 100%;
-  color: #3942B0;
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -489,20 +489,20 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -513,7 +513,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 40px;
+  width: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -528,20 +528,20 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-0:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -577,11 +577,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #8B91DA;
+  border-color: var(--magma-color-primary-300, #8B91DA);
   border-radius: 100%;
-  color: #3942B0;
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -590,20 +590,20 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -614,7 +614,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 40px;
+  width: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -629,20 +629,20 @@ exports[`IconButton Icon Only Button Snapshot should render with updated color 1
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-0:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -711,11 +711,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -724,20 +724,20 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -748,7 +748,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 40px;
+  width: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -763,20 +763,20 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -812,11 +812,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -825,20 +825,20 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -849,7 +849,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 40px;
+  width: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -864,20 +864,20 @@ exports[`IconButton Icon Only Button Snapshot should render with updated shape 1
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -946,11 +946,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border-radius: 100%;
-  color: #FFFFFF;
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -959,20 +959,20 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -983,7 +983,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 40px;
+  width: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -998,20 +998,20 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -1047,11 +1047,11 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border-radius: 100%;
-  color: #FFFFFF;
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1060,20 +1060,20 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1084,7 +1084,7 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
   transition: background 0.35s,border-color 0.35s,box-shadow 0.35s,color 0.35s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 40px;
+  width: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
   display: -ms-inline-flexbox;
@@ -1099,20 +1099,20 @@ exports[`IconButton Icon Only Button Snapshot should render with updated variant
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -1181,11 +1181,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1194,20 +1194,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 18px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-large-font-size, var(--magma-type-scale-size-04-font-size, 18px));
   font-weight: 500;
-  height: 56px;
+  height: var(--magma-components-button-size-large-height, var(--magma-space-scale-spacing-11, 56px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-large-line-height, var(--magma-type-scale-size-04-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-large-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 24px;
+  padding: var(--magma-components-button-size-large-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-large-padding-inline, var(--magma-space-scale-spacing-06, 24px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1222,20 +1222,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -1276,11 +1276,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1289,20 +1289,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 18px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-large-font-size, var(--magma-type-scale-size-04-font-size, 18px));
   font-weight: 500;
-  height: 56px;
+  height: var(--magma-components-button-size-large-height, var(--magma-space-scale-spacing-11, 56px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-large-line-height, var(--magma-type-scale-size-04-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-large-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 24px;
+  padding: var(--magma-components-button-size-large-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-large-padding-inline, var(--magma-space-scale-spacing-06, 24px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1317,20 +1317,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with large size
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -1409,11 +1409,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1422,20 +1422,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1450,20 +1450,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -1504,11 +1504,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1517,20 +1517,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1545,20 +1545,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with medium siz
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -1637,11 +1637,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1650,20 +1650,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1678,20 +1678,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -1732,11 +1732,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1745,20 +1745,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1773,20 +1773,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with small size
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -1865,11 +1865,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #8B91DA;
-  border-radius: 8px;
-  color: #3942B0;
+  border-color: var(--magma-color-primary-300, #8B91DA);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1878,20 +1878,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1906,20 +1906,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-0:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -1960,11 +1960,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #8B91DA;
-  border-radius: 8px;
-  color: #3942B0;
+  border-color: var(--magma-color-primary-300, #8B91DA);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1973,20 +1973,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -2001,20 +2001,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated co
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-0:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -2093,11 +2093,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2106,20 +2106,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -2134,20 +2134,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -2188,11 +2188,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2201,20 +2201,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -2229,20 +2229,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated sh
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -2321,11 +2321,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2334,20 +2334,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -2362,20 +2362,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -2416,11 +2416,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2429,20 +2429,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -2457,20 +2457,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated te
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -2549,11 +2549,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2562,20 +2562,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -2590,20 +2590,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {
@@ -2644,11 +2644,11 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #3942B0;
+  background: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   border: 0;
-  border-color: #3942B0;
-  border-radius: 8px;
-  color: #FFFFFF;
+  border-color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-100, #FFFFFF);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2657,20 +2657,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 16px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-medium-font-size, var(--magma-type-scale-size-03-font-size, 16px));
   font-weight: 500;
-  height: 40px;
+  height: var(--magma-components-button-size-medium-height, var(--magma-space-scale-spacing-09, 40px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
   letter-spacing: inherit;
-  line-height: 24px;
+  line-height: var(--magma-components-button-size-medium-line-height, var(--magma-type-scale-size-03-line-height, 24px));
   margin: 0;
-  min-width: 96px;
+  min-width: var(--magma-components-button-size-medium-min-width, var(--magma-space-scale-spacing-13, 96px));
   overflow: hidden;
-  padding: 12px 16px;
+  padding: var(--magma-components-button-size-medium-padding-block, var(--magma-space-scale-spacing-04, 12px)) var(--magma-components-button-size-medium-padding-inline, var(--magma-space-scale-spacing-05, 16px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -2685,20 +2685,20 @@ exports[`IconButton Icon With Text Button Snapshot should render with updated va
 }
 
 .emotion-0:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-0:not(:disabled):hover,
 .emotion-0:not(:disabled):focus {
-  background: #292F7C;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-600, #292F7C);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active {
-  background: #1A1E51;
-  color: #FFFFFF;
+  background: var(--magma-color-primary-700, #1A1E51);
+  color: var(--magma-color-neutral-100, #FFFFFF);
 }
 
 .emotion-0:not(:disabled):active:after {

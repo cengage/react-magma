@@ -178,11 +178,11 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #D4D4D4;
-  border-radius: 8px;
-  color: #454545;
+  border-color: var(--magma-color-neutral-300, #D4D4D4);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-700, #454545);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -191,20 +191,20 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -219,7 +219,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-16:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -227,12 +227,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 .emotion-16:not(:disabled):hover,
 .emotion-16:not(:disabled):focus {
   background: rgba(0,0,0,0.05);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active {
   background: rgba(0,0,0,0.1);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active:after {
@@ -659,8 +659,8 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   align-items: center;
   background: none;
   border: 0;
-  border-radius: 8px;
-  color: #3942B0;
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -669,20 +669,20 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -697,20 +697,20 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-112:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-112:not(:disabled):hover,
 .emotion-112:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-112:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-112:not(:disabled):active:after {
@@ -909,11 +909,11 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #D4D4D4;
-  border-radius: 8px;
-  color: #454545;
+  border-color: var(--magma-color-neutral-300, #D4D4D4);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-700, #454545);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -922,20 +922,20 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -950,7 +950,7 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-16:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -958,12 +958,12 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 .emotion-16:not(:disabled):hover,
 .emotion-16:not(:disabled):focus {
   background: rgba(0,0,0,0.05);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active {
   background: rgba(0,0,0,0.1);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active:after {
@@ -1390,8 +1390,8 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   align-items: center;
   background: none;
   border: 0;
-  border-radius: 8px;
-  color: #3942B0;
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -1400,20 +1400,20 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -1428,20 +1428,20 @@ exports[`TreeView tree with hidden items can uncheck all items by clicking on th
 }
 
 .emotion-112:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-112:not(:disabled):hover,
 .emotion-112:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-112:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-112:not(:disabled):active:after {
@@ -2159,11 +2159,11 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #D4D4D4;
-  border-radius: 8px;
-  color: #454545;
+  border-color: var(--magma-color-neutral-300, #D4D4D4);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-700, #454545);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2172,20 +2172,20 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -2200,7 +2200,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-16:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -2208,12 +2208,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 .emotion-16:not(:disabled):hover,
 .emotion-16:not(:disabled):focus {
   background: rgba(0,0,0,0.05);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active {
   background: rgba(0,0,0,0.1);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active:after {
@@ -2750,8 +2750,8 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   align-items: center;
   background: none;
   border: 0;
-  border-radius: 8px;
-  color: #3942B0;
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -2760,20 +2760,20 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -2788,20 +2788,20 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-116:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-116:not(:disabled):hover,
 .emotion-116:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-116:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-116:not(:disabled):active:after {
@@ -3000,11 +3000,11 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #D4D4D4;
-  border-radius: 8px;
-  color: #454545;
+  border-color: var(--magma-color-neutral-300, #D4D4D4);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-700, #454545);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -3013,20 +3013,20 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -3041,7 +3041,7 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-16:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -3049,12 +3049,12 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 .emotion-16:not(:disabled):hover,
 .emotion-16:not(:disabled):focus {
   background: rgba(0,0,0,0.05);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active {
   background: rgba(0,0,0,0.1);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active:after {
@@ -3591,8 +3591,8 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   align-items: center;
   background: none;
   border: 0;
-  border-radius: 8px;
-  color: #3942B0;
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -3601,20 +3601,20 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -3629,20 +3629,20 @@ exports[`TreeView tree with hidden items clicking show all displays the rest of 
 }
 
 .emotion-116:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-116:not(:disabled):hover,
 .emotion-116:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-116:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-116:not(:disabled):active:after {
@@ -4407,11 +4407,11 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #D4D4D4;
-  border-radius: 8px;
-  color: #454545;
+  border-color: var(--magma-color-neutral-300, #D4D4D4);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-700, #454545);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -4420,20 +4420,20 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -4448,7 +4448,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-16:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -4456,12 +4456,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 .emotion-16:not(:disabled):hover,
 .emotion-16:not(:disabled):focus {
   background: rgba(0,0,0,0.05);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active {
   background: rgba(0,0,0,0.1);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active:after {
@@ -4933,8 +4933,8 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   align-items: center;
   background: none;
   border: 0;
-  border-radius: 8px;
-  color: #3942B0;
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -4943,20 +4943,20 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -4971,20 +4971,20 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-116:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-116:not(:disabled):hover,
 .emotion-116:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-116:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-116:not(:disabled):active:after {
@@ -5183,11 +5183,11 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #D4D4D4;
-  border-radius: 8px;
-  color: #454545;
+  border-color: var(--magma-color-neutral-300, #D4D4D4);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-700, #454545);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -5196,20 +5196,20 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -5224,7 +5224,7 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-16:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -5232,12 +5232,12 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 .emotion-16:not(:disabled):hover,
 .emotion-16:not(:disabled):focus {
   background: rgba(0,0,0,0.05);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active {
   background: rgba(0,0,0,0.1);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active:after {
@@ -5709,8 +5709,8 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   align-items: center;
   background: none;
   border: 0;
-  border-radius: 8px;
-  color: #3942B0;
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -5719,20 +5719,20 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -5747,20 +5747,20 @@ exports[`TreeView tree with hidden items expand all and collapse all should work
 }
 
 .emotion-116:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-116:not(:disabled):hover,
 .emotion-116:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-116:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-116:not(:disabled):active:after {
@@ -6524,11 +6524,11 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #D4D4D4;
-  border-radius: 8px;
-  color: #454545;
+  border-color: var(--magma-color-neutral-300, #D4D4D4);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-700, #454545);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -6537,20 +6537,20 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -6565,7 +6565,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-16:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -6573,12 +6573,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 .emotion-16:not(:disabled):hover,
 .emotion-16:not(:disabled):focus {
   background: rgba(0,0,0,0.05);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active {
   background: rgba(0,0,0,0.1);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active:after {
@@ -7050,8 +7050,8 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   align-items: center;
   background: none;
   border: 0;
-  border-radius: 8px;
-  color: #3942B0;
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -7060,20 +7060,20 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -7088,20 +7088,20 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-116:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-116:not(:disabled):hover,
 .emotion-116:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-116:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-116:not(:disabled):active:after {
@@ -7300,11 +7300,11 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #D4D4D4;
-  border-radius: 8px;
-  color: #454545;
+  border-color: var(--magma-color-neutral-300, #D4D4D4);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-700, #454545);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -7313,20 +7313,20 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -7341,7 +7341,7 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-16:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -7349,12 +7349,12 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 .emotion-16:not(:disabled):hover,
 .emotion-16:not(:disabled):focus {
   background: rgba(0,0,0,0.05);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active {
   background: rgba(0,0,0,0.1);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active:after {
@@ -7826,8 +7826,8 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   align-items: center;
   background: none;
   border: 0;
-  border-radius: 8px;
-  color: #3942B0;
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -7836,20 +7836,20 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -7864,20 +7864,20 @@ exports[`TreeView tree with hidden items expand all should work correctly with d
 }
 
 .emotion-116:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-116:not(:disabled):hover,
 .emotion-116:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-116:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-116:not(:disabled):active:after {
@@ -8641,11 +8641,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #D4D4D4;
-  border-radius: 8px;
-  color: #454545;
+  border-color: var(--magma-color-neutral-300, #D4D4D4);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-700, #454545);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -8654,20 +8654,20 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -8682,7 +8682,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-16:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -8690,12 +8690,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 .emotion-16:not(:disabled):hover,
 .emotion-16:not(:disabled):focus {
   background: rgba(0,0,0,0.05);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active {
   background: rgba(0,0,0,0.1);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active:after {
@@ -9232,8 +9232,8 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   align-items: center;
   background: none;
   border: 0;
-  border-radius: 8px;
-  color: #3942B0;
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -9242,20 +9242,20 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -9270,20 +9270,20 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-116:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-116:not(:disabled):hover,
 .emotion-116:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-116:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-116:not(:disabled):active:after {
@@ -9482,11 +9482,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #D4D4D4;
-  border-radius: 8px;
-  color: #454545;
+  border-color: var(--magma-color-neutral-300, #D4D4D4);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-700, #454545);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -9495,20 +9495,20 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -9523,7 +9523,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-16:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -9531,12 +9531,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 .emotion-16:not(:disabled):hover,
 .emotion-16:not(:disabled):focus {
   background: rgba(0,0,0,0.05);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active {
   background: rgba(0,0,0,0.1);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active:after {
@@ -10073,8 +10073,8 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   align-items: center;
   background: none;
   border: 0;
-  border-radius: 8px;
-  color: #3942B0;
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -10083,20 +10083,20 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -10111,20 +10111,20 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-116:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-116:not(:disabled):hover,
 .emotion-116:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-116:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-116:not(:disabled):active:after {
@@ -10889,11 +10889,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #D4D4D4;
-  border-radius: 8px;
-  color: #454545;
+  border-color: var(--magma-color-neutral-300, #D4D4D4);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-700, #454545);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -10902,20 +10902,20 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -10930,7 +10930,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-16:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -10938,12 +10938,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 .emotion-16:not(:disabled):hover,
 .emotion-16:not(:disabled):focus {
   background: rgba(0,0,0,0.05);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active {
   background: rgba(0,0,0,0.1);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active:after {
@@ -11480,8 +11480,8 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   align-items: center;
   background: none;
   border: 0;
-  border-radius: 8px;
-  color: #3942B0;
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -11490,20 +11490,20 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -11518,20 +11518,20 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-116:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-116:not(:disabled):hover,
 .emotion-116:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-116:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-116:not(:disabled):active:after {
@@ -11730,11 +11730,11 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #D4D4D4;
-  border-radius: 8px;
-  color: #454545;
+  border-color: var(--magma-color-neutral-300, #D4D4D4);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-700, #454545);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -11743,20 +11743,20 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -11771,7 +11771,7 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-16:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -11779,12 +11779,12 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 .emotion-16:not(:disabled):hover,
 .emotion-16:not(:disabled):focus {
   background: rgba(0,0,0,0.05);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active {
   background: rgba(0,0,0,0.1);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active:after {
@@ -12321,8 +12321,8 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   align-items: center;
   background: none;
   border: 0;
-  border-radius: 8px;
-  color: #3942B0;
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -12331,20 +12331,20 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -12359,20 +12359,20 @@ exports[`TreeView tree with hidden items renders tree with some items preselecte
 }
 
 .emotion-116:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-116:not(:disabled):hover,
 .emotion-116:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-116:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-116:not(:disabled):active:after {
@@ -13137,11 +13137,11 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #D4D4D4;
-  border-radius: 8px;
-  color: #454545;
+  border-color: var(--magma-color-neutral-300, #D4D4D4);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-700, #454545);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -13150,20 +13150,20 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -13178,7 +13178,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-16:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -13186,12 +13186,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 .emotion-16:not(:disabled):hover,
 .emotion-16:not(:disabled):focus {
   background: rgba(0,0,0,0.05);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active {
   background: rgba(0,0,0,0.1);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active:after {
@@ -13663,8 +13663,8 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   align-items: center;
   background: none;
   border: 0;
-  border-radius: 8px;
-  color: #3942B0;
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -13673,20 +13673,20 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -13701,20 +13701,20 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-116:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-116:not(:disabled):hover,
 .emotion-116:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-116:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-116:not(:disabled):active:after {
@@ -13913,11 +13913,11 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--magma-color-neutral-100, #FFFFFF);
   border: 1px solid;
-  border-color: #D4D4D4;
-  border-radius: 8px;
-  color: #454545;
+  border-color: var(--magma-color-neutral-300, #D4D4D4);
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-neutral-700, #454545);
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -13926,20 +13926,20 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -13954,7 +13954,7 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-16:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
@@ -13962,12 +13962,12 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 .emotion-16:not(:disabled):hover,
 .emotion-16:not(:disabled):focus {
   background: rgba(0,0,0,0.05);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active {
   background: rgba(0,0,0,0.1);
-  color: #454545;
+  color: var(--magma-color-neutral-700, #454545);
 }
 
 .emotion-16:not(:disabled):active:after {
@@ -14439,8 +14439,8 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   align-items: center;
   background: none;
   border: 0;
-  border-radius: 8px;
-  color: #3942B0;
+  border-radius: var(--magma-components-button-border-radius, var(--magma-border-radius, 8px));
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
   cursor: pointer;
   display: -webkit-inline-box;
   display: -webkit-inline-flex;
@@ -14449,20 +14449,20 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
   flex-shrink: 0;
-  font-family: "Work Sans",Helvetica,sans-serif;
-  font-size: 12px;
+  font-family: var(--magma-components-button-font-family, var(--magma-body-font, "Work Sans",Helvetica,sans-serif));
+  font-size: var(--magma-components-button-size-small-font-size, var(--magma-type-scale-size-01-font-size, 12px));
   font-weight: 500;
-  height: 28px;
+  height: var(--magma-components-button-size-small-height, var(--magma-space-scale-spacing-07, 28px));
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
-  letter-spacing: .32px;
-  line-height: 16px;
+  letter-spacing: var(--magma-components-button-size-small-letter-spacing, var(--magma-type-scale-size-01-letter-spacing, .32px));
+  line-height: var(--magma-components-button-size-small-line-height, var(--magma-type-scale-size-01-line-height, 16px));
   margin: 0;
-  min-width: 0;
+  min-width: var(--magma-components-button-size-small-min-width, 0px);
   overflow: hidden;
-  padding: 4px 8px;
+  padding: var(--magma-components-button-size-small-padding-block, var(--magma-space-scale-spacing-02, 4px)) var(--magma-components-button-size-small-padding-inline, var(--magma-space-scale-spacing-03, 8px));
   position: relative;
   text-align: center;
   -webkit-text-decoration: none;
@@ -14477,20 +14477,20 @@ exports[`TreeView tree with hidden items renders tree with some items, and click
 }
 
 .emotion-116:not(:disabled):focus {
-  outline: 2px solid #0074B7;
+  outline: 2px solid var(--magma-components-button-focus-outline-color, var(--magma-color-focus, var(--magma-color-info-500, #0074B7)));
   outline-offset: 2px;
   z-index: 1;
 }
 
 .emotion-116:not(:disabled):hover,
 .emotion-116:not(:disabled):focus {
-  background: #E8E9F8;
-  color: #3942B0;
+  background: var(--magma-color-primary-100, #E8E9F8);
+  color: var(--magma-color-primary, var(--magma-color-primary-500, #3942B0));
 }
 
 .emotion-116:not(:disabled):active {
-  background: #BABDE9;
-  color: #292F7C;
+  background: var(--magma-color-primary-200, #BABDE9);
+  color: var(--magma-color-primary-600, #292F7C);
 }
 
 .emotion-116:not(:disabled):active:after {
