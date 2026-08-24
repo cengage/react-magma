@@ -75,6 +75,7 @@ export {
   DropdownAlignment,
   DropdownDropDirection,
   DropdownProps,
+  DropdownApi,
 } from './components/Dropdown';
 export {
   DropdownContent,

@@ -33,6 +33,11 @@ export enum DropdownAlignment {
   end = 'end',
 }
 
+export interface DropdownApi {
+  closeDropdownManually(event: React.SyntheticEvent): void;
+  openDropdownManually(event: React.SyntheticEvent): void;
+}
+
 export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Index of the item that will active/selected. If none is provided, no item will appear active
@@ -45,6 +50,13 @@ export interface DropdownProps extends React.HTMLAttributes<HTMLDivElement> {
    * @deprecated = true
    */
   alignment?: DropdownAlignment;
+  /**
+   * The ref object that allows Dropdown manipulation.
+   * Actions available:
+   * closeDropdownManually(event: React.SyntheticEvent): void - Closes the dropdown manually.
+   * openDropdownManually(event: React.SyntheticEvent): void - Opens the dropdown manually.
+   */
+  apiRef?: React.MutableRefObject<DropdownApi | undefined>;
   /**
    * Position of the dropdown content
    * @default DropdownDropDirection.down
@@ -128,6 +140,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
     const {
       activeIndex,
       alignment,
+      apiRef,
       children,
       dropDirection,
       maxHeight,
@@ -190,6 +203,27 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
       onClose && typeof onClose === 'function' && onClose(event);
     }
+
+    React.useEffect(() => {
+      if (apiRef) {
+        apiRef.current = {
+          closeDropdownManually(event) {
+            const hasFocusInside = ownRef.current?.contains(
+              document.activeElement
+            );
+
+            closeDropdown(event);
+
+            if (hasFocusInside) {
+              toggleRef.current?.focus();
+            }
+          },
+          openDropdownManually(event) {
+            openDropdown();
+          },
+        };
+      }
+    });
 
     function getFilteredItem(): [any, number] {
       const filteredItems = itemRefArray.current.filter(
