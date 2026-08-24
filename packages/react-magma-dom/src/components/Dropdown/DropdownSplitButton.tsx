@@ -75,7 +75,11 @@ export const DropdownSplitButton = React.forwardRef<
 
   const ref = useForkedRef(forwardedRef, resolvedContext.toggleRef);
   const splitButtonRef = React.useRef<HTMLButtonElement>(null);
-  const mainRef = useForkedRef(splitButtonRef, mainButtonRef ?? null);
+  const mainRef = useForkedRef(
+    splitButtonRef,
+    mainButtonRef ? resolvedContext.leftButtonRef : null,
+    mainButtonRef ?? null
+  );
 
   resolvedContext.dropdownButtonId.current = useGenerateId(id);
 

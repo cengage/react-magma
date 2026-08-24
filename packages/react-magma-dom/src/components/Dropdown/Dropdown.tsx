@@ -109,6 +109,7 @@ interface DropdownContextInterface {
   setFloating?: (node: ReferenceType) => void;
   setReference?: (node: ReferenceType) => void;
   toggleRef?: any;
+  leftButtonRef?: React.MutableRefObject<HTMLButtonElement>;
   width?: string;
 }
 
@@ -146,6 +147,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
 
     const ownRef = React.useRef<any>();
     const toggleRef = React.useRef<HTMLButtonElement>(null);
+    const leftButtonRef = React.useRef<HTMLButtonElement>(null);
     const menuRef = React.useRef<any>([]);
     const dropdownButtonId = React.useRef<string>('');
 
@@ -184,7 +186,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         const relatedTarget = event.relatedTarget;
 
         if (!isElementInteractive(relatedTarget)) {
-          toggleRef.current?.focus();
+          (leftButtonRef.current ?? toggleRef.current)?.focus();
         }
       }
 
@@ -207,7 +209,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         event.nativeEvent.stopImmediatePropagation();
         event.stopPropagation();
         closeDropdown(event);
-        toggleRef.current?.focus();
+        (leftButtonRef.current ?? toggleRef.current)?.focus();
       }
 
       if (event.key === 'ArrowDown') {
@@ -335,6 +337,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         setReference: refs.setReference,
         setFloating: refs.setFloating,
         toggleRef,
+        leftButtonRef,
         width: widthString,
       }),
       [
@@ -358,6 +361,7 @@ export const Dropdown = React.forwardRef<HTMLDivElement, DropdownProps>(
         refs.setReference,
         refs.setFloating,
         toggleRef,
+        leftButtonRef,
         widthString,
       ]
     );
