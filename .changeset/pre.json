@@ -15,6 +15,7 @@
     "charts-title-content-slots",
     "chore-update-docs-and-landing-page",
     "feat-Skeleton",
+    "feat-dropdown-api-ref",
     "fix-Tag-invalid-aria-on-label-span",
     "fix-ToggleButtonGroup-ToggleButton-add-role-prop",
     "fix-datepicker-focus-return",

@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 4.16.0-next.9
+
+### Patch Changes
+
+- 0ed85030c: feat(Dropdown): add `apiRef` prop to open and close the dropdown programmatically
+
 ## 4.16.0-next.8
 
 ### Minor Changes
