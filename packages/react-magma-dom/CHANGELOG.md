@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-rc.10
+
+### Patch Changes
+
+- 4993cb8: feat(Dropdown): add `apiRef` prop to open and close the dropdown programmatically
+
 ## 5.2.0-rc.9
 
 ### Minor Changes
