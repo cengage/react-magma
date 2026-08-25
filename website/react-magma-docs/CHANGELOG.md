@@ -1,5 +1,44 @@
 # Change Log
 
+## 5.3.7-next.7
+
+### Patch Changes
+
+- Updated dependencies [3055423b0]
+  - react-magma-dom@4.16.0-next.8
+  - @react-magma/charts@14.0.0-next.2
+  - @react-magma/dropzone@14.0.0-next.1
+
+## 5.3.7-next.6
+
+### Patch Changes
+
+- 2aaaa5f3b: fix(IconButton): remove redundant `aria-label` from examples
+
+## 5.3.7-next.5
+
+### Patch Changes
+
+- e32c5655c: fix(docs): prevent doubled padding on MainNav accordion trigger headings
+- Updated dependencies [e32c5655c]
+  - react-magma-dom@4.15.1-next.6
+
+## 5.3.7-next.4
+
+### Patch Changes
+
+- 619ea44f8: feat(charts): add `titlePrefix` and `titleSuffix` props to the chart toolbar
+- Updated dependencies [619ea44f8]
+  - @react-magma/charts@13.3.0-next.1
+
+## 5.3.7-next.3
+
+### Patch Changes
+
+- 4a8d51154: fix(RadioGroup): use `containerStyle` in docs example
+- Updated dependencies [304f4fed7]
+  - react-magma-dom@4.15.1-next.4
+
 ## 5.3.7-next.2
 
 ### Patch Changes

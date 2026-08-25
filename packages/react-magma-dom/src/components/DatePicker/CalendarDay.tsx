@@ -232,7 +232,22 @@ export const CalendarDay: React.FunctionComponent<CalendarDayProps> = (
 
   React.useEffect(() => {
     if (dateFocused && isSameDay(day, focusedDate)) {
-      dayRef.current.focus();
+      const calendarDialog = dayRef.current?.closest('[role="dialog"]');
+
+      if (calendarDialog?.contains(document.activeElement)) {
+        dayRef.current.focus();
+
+        return;
+      }
+
+      const activeOnSchedule = document.activeElement;
+      const focusFrame = requestAnimationFrame(() => {
+        if (document.activeElement === activeOnSchedule) {
+          dayRef.current?.focus();
+        }
+      });
+
+      return () => cancelAnimationFrame(focusFrame);
     }
   }, [focusedDate, dateFocused, day]);
 

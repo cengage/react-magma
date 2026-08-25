@@ -10,6 +10,21 @@ import { magma } from '../../theme/magma';
 import { DateTimePicker } from '.';
 
 describe('DateTimePicker', () => {
+  let requestAnimationFrameSpy;
+
+  beforeEach(() => {
+    requestAnimationFrameSpy = jest
+      .spyOn(window, 'requestAnimationFrame')
+      .mockImplementation(callback => {
+        callback(0);
+        return 0;
+      });
+  });
+
+  afterEach(() => {
+    requestAnimationFrameSpy.mockRestore();
+  });
+
   it('should find element by testId', () => {
     const testId = 'test-id';
     const { getByTestId } = render(

@@ -130,7 +130,7 @@ export function Example() {
 }
 ```
 
-See [Chart Demos](../chart-demos) for examples of every chart type with the accessible toolbar enabled, and the [Toolbar customization](../chart-demos#toolbar_customization) section for advanced configurations (custom menu items, table columns, button visibility, inverse theme).
+See [Chart Demos](../chart-demos) for examples of every chart type with the accessible toolbar enabled, and the [Toolbar customization](../chart-demos#toolbar_customization) section for advanced configurations (custom menu items, table columns, chart title heading level, custom content around the title, button visibility, inverse theme).
 
 ### Chart toolbar props
 
@@ -157,15 +157,6 @@ The chart title is read from `options.title` (the standard Carbon Charts title o
         'Additional DropdownMenuItem elements appended below the built-in CSV/PNG/JPG download items.',
       defaultValue: 'undefined',
     },
-    titleLevel: {
-      type: {
-        name: '1 | 2 | 3 | 4 | 5 | 6',
-      },
-      required: false,
-      description:
-        'Heading level used for the chart title rendered from options.title.',
-      defaultValue: '2',
-    },
     tableColumns: {
       type: { name: 'ChartDataTableColumn[]' },
       required: false,
@@ -187,6 +178,29 @@ The chart title is read from `options.title` (the standard Carbon Charts title o
       description:
         'Number to indicate which level heading will render (e.g. h1, h2 etc.)',
       defaultValue: '2',
+    },
+    titleLevel: {
+      type: {
+        name: '1 | 2 | 3 | 4 | 5 | 6',
+      },
+      required: false,
+      description:
+        'Number to indicate which heading level will render for the chart title (e.g. h1, h2 etc.)',
+      defaultValue: '2',
+    },
+    titlePrefix: {
+      type: { name: 'ReactNode' },
+      required: false,
+      description:
+        'Custom content rendered inline immediately before the chart title.',
+      defaultValue: 'undefined',
+    },
+    titleSuffix: {
+      type: { name: 'ReactNode' },
+      required: false,
+      description:
+        'Custom content rendered inline between the chart title and the toolbar actions. The chart equivalent of the additionalContent prop on Input and Select.',
+      defaultValue: 'undefined',
     },
   }}
 />

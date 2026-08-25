@@ -10,10 +10,22 @@
     "react-magma-landing": "1.1.8"
   },
   "changesets": [
+    "a11y-datepicker-dialog-role",
+    "accordion-panel-heading-styles",
+    "charts-title-content-slots",
     "chore-update-docs-and-landing-page",
+    "feat-Skeleton",
+    "feat-dropdown-api-ref",
     "fix-Tag-invalid-aria-on-label-span",
     "fix-ToggleButtonGroup-ToggleButton-add-role-prop",
+    "fix-datepicker-focus-return",
+    "fix-pagination-style-position",
+    "fix-storybook-a11y-issues",
+    "fix-useFocusLock",
+    "iconButton-example-aria",
+    "mainnav-accordion-trigger-heading-padding",
     "password-input-dynamic-button-width",
+    "radio-example-style-prop",
     "sync-v4-dev-deployment"
   ]
 }

@@ -2491,7 +2491,12 @@ describe('TreeView', () => {
     });
 
     describe('inside and outside TreeView', () => {
-      it('should trap focus inside TreeView, then restore and move focus outside TreeView component', () => {
+      const nextAnimationFrame = () =>
+        act(async () => {
+          await new Promise(resolve => requestAnimationFrame(resolve));
+        });
+
+      it('should trap focus inside TreeView, then restore and move focus outside TreeView component', async () => {
         const { getByTestId, getByText } = render(
           <>
             <TreeView testId="treeview" initialExpandedItems={['item']}>
@@ -2528,6 +2533,7 @@ describe('TreeView', () => {
           code: 'Enter',
           ctrlKey: true,
         });
+        await nextAnimationFrame();
         expect(button1).toHaveFocus();
 
         userEvent.tab();
@@ -2552,7 +2558,7 @@ describe('TreeView', () => {
         expect(outsideButton).toHaveFocus();
       });
 
-      it('should trap focus inside parent TreeItem', () => {
+      it('should trap focus inside parent TreeItem', async () => {
         const { getByTestId, getByText } = render(
           <TreeView testId="treeview" initialExpandedItems={['item']}>
             <TreeItem
@@ -2584,6 +2590,7 @@ describe('TreeView', () => {
           code: 'Enter',
           ctrlKey: true,
         });
+        await nextAnimationFrame();
         expect(parentButton).toHaveFocus();
 
         userEvent.tab();
