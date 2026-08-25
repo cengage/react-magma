@@ -27,6 +27,7 @@
     "password-input-dynamic-button-width",
     "radio-example-style-prop",
     "select-disabled-preselected-items",
-    "sync-v4-dev-deployment"
+    "sync-v4-dev-deployment",
+    "tabs-scroll-button-focus"
   ]
 }
