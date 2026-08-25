@@ -104,6 +104,34 @@ export function Example() {
 }
 ```
 
+## Disabled Items
+
+Add the `disabled` attribute to an individual `<option>` to disable it. A disabled option cannot be chosen from the list and is skipped by keyboard navigation.
+
+A disabled option may still be displayed as the current value when it represents an existing value, such as an archived or no-longer-available option. Preselect it with `value` (controlled) or `defaultValue` (uncontrolled) and it remains shown as selected while staying non-selectable in the list.
+
+```tsx
+import React from 'react';
+
+import { NativeSelect } from 'react-magma-dom';
+
+export function Example() {
+  return (
+    <NativeSelect
+      labelText="Select with disabled preselected item"
+      defaultValue="red"
+      fieldId="example-disabled-items"
+    >
+      <option value="red" disabled>
+        Red-Disabled
+      </option>
+      <option value="green">Green</option>
+      <option value="blue">Blue</option>
+    </NativeSelect>
+  );
+}
+```
+
 ## Error
 
 ```tsx
