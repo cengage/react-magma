@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 4.16.0-next.10
+
+### Patch Changes
+
+- 31de8f076: fix(Select, MultiSelect): render disabled preselected items as selected values
+
 ## 4.16.0-next.9
 
 ### Patch Changes
