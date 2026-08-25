@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-rc.11
+
+### Patch Changes
+
+- 351588a: fix(Select, MultiSelect): render disabled preselected items as selected values
+
 ## 5.2.0-rc.10
 
 ### Patch Changes
