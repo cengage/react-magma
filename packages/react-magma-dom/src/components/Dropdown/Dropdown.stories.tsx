@@ -39,6 +39,7 @@ import { PopoverTrigger } from '../Popover/PopoverTrigger';
 import {
   Dropdown,
   DropdownAlignment,
+  DropdownApi,
   DropdownDropDirection,
   DropdownProps,
 } from './index';
@@ -1086,6 +1087,43 @@ export const DropdownExpandableMenuWithSorting = {
         ))}
       </div>
     );
+  },
+};
+
+const ApiRefTemplate: StoryFn<DropdownProps> = args => {
+  const dropdownApiRef = React.useRef<DropdownApi>();
+
+  function handleContentKeyDown(event: React.KeyboardEvent) {
+    const isCloseCombo = event.altKey && event.key === 'ArrowUp';
+
+    if (!isCloseCombo) {
+      return;
+    }
+
+    event.stopPropagation();
+    dropdownApiRef.current?.closeDropdownManually(event);
+  }
+
+  return (
+    <div style={{ margin: '150px auto', textAlign: 'center' }}>
+      <Paragraph>Open the dropdown, then press Alt + ArrowUp.</Paragraph>
+      <Spacer size={16} />
+      <Dropdown {...args} apiRef={dropdownApiRef}>
+        <DropdownButton>Dropdown with apiRef</DropdownButton>
+        <DropdownContent onKeyDown={handleContentKeyDown}>
+          <DropdownMenuItem>Menu item 1</DropdownMenuItem>
+          <DropdownMenuItem>Menu item number two</DropdownMenuItem>
+        </DropdownContent>
+      </Dropdown>
+    </div>
+  );
+};
+
+export const ApiRef = {
+  render: ApiRefTemplate,
+
+  args: {
+    ...Default.args,
   },
 };
 

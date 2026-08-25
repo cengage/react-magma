@@ -1,5 +1,35 @@
 # Change Log
 
+## 5.2.0-rc.10
+
+### Patch Changes
+
+- 4993cb8: feat(Dropdown): add `apiRef` prop to open and close the dropdown programmatically
+
+## 5.2.0-rc.9
+
+### Minor Changes
+
+- b3669bf: feat(Skeleton): Add `Skeleton` component for skeleton loading placeholders
+
+## 5.1.1-rc.8
+
+### Patch Changes
+
+- c802c92: fix(Pagination): fix styles to prevent an unwanted vertical scroll
+
+## 5.1.1-rc.7
+
+### Patch Changes
+
+- 64e2ece: fix(Tag): prevent spreading ARIA attributes onto the inner label `span` to resolve `aria-allowed-attr` violation.
+
+## 5.1.1-rc.6
+
+### Patch Changes
+
+- 5c51f29: fix(ToggleButtonGroup): add `role` prop
+
 ## 5.1.1-rc.5
 
 ### Patch Changes

@@ -1,7 +1,18 @@
 import React from 'react';
 
+import { ScaleTypes } from '@carbon/charts-react';
 import { StoryFn, Meta } from '@storybook/react/types-6-0';
-import { Card } from 'react-magma-dom';
+import {
+  Badge,
+  BadgeColor,
+  ButtonSize,
+  ButtonType,
+  ButtonVariant,
+  Card,
+  IconButton,
+  Tooltip,
+} from 'react-magma-dom';
+import { InfoIcon } from 'react-magma-icons';
 
 import { CarbonChart, CarbonChartProps, CarbonChartType } from '../CarbonChart';
 
@@ -148,5 +159,79 @@ export const TableOnly = {
     chartToolbar: {
       fullscreen: false,
     },
+  },
+};
+
+// ---------------------------------------------------------------------------
+// Custom content slots
+// ---------------------------------------------------------------------------
+
+const chartInfoLabel =
+  'Scores are averaged across all attempts in the selected term.';
+
+const ChartInfoTooltip = () => (
+  <Tooltip content={chartInfoLabel}>
+    <IconButton
+      aria-label={chartInfoLabel}
+      icon={<InfoIcon />}
+      size={ButtonSize.small}
+      type={ButtonType.button}
+      variant={ButtonVariant.link}
+    />
+  </Tooltip>
+);
+
+const slotContent = {
+  tooltip: <ChartInfoTooltip />,
+  badge: <Badge color={BadgeColor.success}>Live</Badge>,
+  none: undefined,
+};
+
+interface TitleSlotsArgs extends Omit<CarbonChartProps, 'options'> {
+  content: keyof typeof slotContent;
+  slotPosition: 'titleSuffix' | 'titlePrefix';
+  title: string;
+}
+
+export const TitleSlots = {
+  render: ({ content, slotPosition, title, ...args }: TitleSlotsArgs) => (
+    <Card isInverse={args.isInverse} style={{ padding: '12px' }}>
+      <CarbonChart
+        {...args}
+        options={{
+          title,
+          axes: {
+            left: { mapsTo: 'value' },
+            bottom: { mapsTo: 'group', scaleType: ScaleTypes.LABELS },
+          },
+          height: '400px',
+        }}
+        chartToolbar={{
+          titlePrefix:
+            slotPosition === 'titlePrefix' ? slotContent[content] : undefined,
+          titleSuffix:
+            slotPosition === 'titleSuffix' ? slotContent[content] : undefined,
+        }}
+      />
+    </Card>
+  ),
+  argTypes: {
+    content: {
+      control: { type: 'radio' },
+      options: ['tooltip', 'badge', 'none'],
+    },
+    slotPosition: {
+      control: { type: 'radio' },
+      options: ['titleSuffix', 'titlePrefix'],
+    },
+    title: { control: { type: 'text' } },
+  },
+  args: {
+    content: 'tooltip',
+    isInverse: false,
+    slotPosition: 'titleSuffix',
+    title: 'Chapter Performance',
+    type: CarbonChartType.bar,
+    dataSet: barDataSet,
   },
 };
