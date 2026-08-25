@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-rc.12
+
+### Patch Changes
+
+- 0747750: fix(Tabs): prevent scroll button focus outline from being clipped
+
 ## 5.2.0-rc.11
 
 ### Patch Changes
