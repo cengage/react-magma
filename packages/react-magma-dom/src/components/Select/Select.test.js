@@ -304,6 +304,92 @@ describe('Select', () => {
     });
   });
 
+  it('should render a disabled item preselected via initialSelectedItem', async () => {
+    const disabledItems = [
+      { label: 'Red', value: 'red', disabled: true },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ];
+
+    const { getByTestId } = render(
+      <Select
+        labelText={labelText}
+        items={disabledItems}
+        initialSelectedItem={disabledItems[0]}
+      />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
+  });
+
+  it('should render a disabled item preselected via selectedItem (controlled)', async () => {
+    const disabledItems = [
+      { label: 'Red', value: 'red', disabled: true },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ];
+
+    const { getByTestId } = render(
+      <Select
+        labelText={labelText}
+        items={disabledItems}
+        selectedItem={disabledItems[0]}
+        onSelectedItemChange={() => {}}
+      />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
+  });
+
+  it('should restore a disabled defaultSelectedItem when cleared', async () => {
+    const disabledItems = [
+      { label: 'Red', value: 'red' },
+      { label: 'Blue', value: 'blue', disabled: true },
+      { label: 'Green', value: 'green' },
+    ];
+
+    const { getByTestId } = render(
+      <Select
+        labelText={labelText}
+        items={disabledItems}
+        initialSelectedItem={disabledItems[0]}
+        defaultSelectedItem={disabledItems[1]}
+        isClearable
+      />
+    );
+
+    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
+
+    await userEvent.click(getByTestId('clearIndicator'));
+
+    expect(getByTestId('selectedItemText').textContent).toEqual('Blue');
+  });
+
+  it('should not allow a disabled preselected item to be reselected from the menu', async () => {
+    const disabledItems = [
+      { label: 'Red', value: 'red', disabled: true },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Green', value: 'green' },
+    ];
+
+    const { getByLabelText, getByText, getByTestId } = render(
+      <Select
+        labelText={labelText}
+        items={disabledItems}
+        initialSelectedItem={disabledItems[0]}
+      />
+    );
+
+    const renderedSelect = getByLabelText(labelText, { selector: 'div' });
+    await userEvent.click(renderedSelect);
+
+    expect(getByText('Red', { selector: 'li' })).toHaveAttribute(
+      'aria-disabled',
+      'true'
+    );
+    expect(getByTestId('selectedItemText').textContent).toEqual('Red');
+  });
+
   it('should disable the select', async () => {
     const { getByLabelText } = render(
       <Select labelText={labelText} items={items} disabled />
