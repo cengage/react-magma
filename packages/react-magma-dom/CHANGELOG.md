@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-rc.13
+
+### Patch Changes
+
+- 35fe74a: fix(Checkbox): improve render performance
+
 ## 5.2.0-rc.12
 
 ### Patch Changes

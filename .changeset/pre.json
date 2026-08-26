@@ -18,6 +18,7 @@
     "fix-Tag-invalid-aria-on-label-span",
     "fix-ToggleButtonGroup-ToggleButton-add-role-prop",
     "fix-Treeview-collapse-state-icon",
+    "fix-checkbox-performance-at-scale",
     "fix-datepicker-focus-return",
     "fix-pagination-style-position",
     "fix-storybook-a11y-issues",
