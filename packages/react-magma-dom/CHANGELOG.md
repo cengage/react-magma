@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 4.16.0-next.12
+
+### Patch Changes
+
+- 1def83aa8: fix(Checkbox): improve render performance
+
 ## 4.16.0-next.11
 
 ### Patch Changes
