@@ -32,8 +32,10 @@
     "test-watch": "tsdx test --watch"
   },
   "dependencies": {
+    "@emotion/is-prop-valid": "1.4.0",
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
+    "@emotion/utils": "1.4.2",
     "@floating-ui/react": "^0.26.28",
     "@floating-ui/react-dom": "^2.1.2",
     "react-virtual": "^2.10.4",
