@@ -23,8 +23,13 @@ If you do not want to have your checkbox be in a controlled state, but need the 
 
 <Alert variant="warning">When rendering a list of checkboxes, wrap them in a `<List>` element with each checkbox inside a `<ListItem>` element. This ensures proper semantic HTML structure and improves accessibility.</Alert>
 
-<Link to="/api/indeterminate">Indeterminate Checkboxes</Link> are similar to standard checkboxes but with three available statuses.<br />
-See also: <Link to="/api/radio">Radio Buttons</Link> and <Link to="/api/toggle">Toggle Switches</Link>.
+<Link to="/api/indeterminate">Indeterminate Checkboxes</Link> are similar to
+
+standard checkboxes but with three available statuses.
+
+<br />
+See also: <Link to="/api/radio">Radio Buttons</Link> and
+<Link to="/api/toggle">Toggle Switches</Link>.
 
 ```tsx
 import React from 'react';
@@ -374,7 +379,14 @@ export function Example() {
 
 Adding the `isTextVisuallyHidden` prop will make the label text available to screen readers, but will hide it visually.
 
-<Alert variant="warning">Use caution when using the <code>isTextVisuallyHidden</code> prop; it should only be used in rare circumstances when the purpose of the checkboxis conveyed in another way. While screen readers will announce the label when the checkbox gains focus, it is still best to have a visual label. This is especially helpful for individuals with cognitive disabilities and users who have fine motor control limitations.</Alert>
+<Alert variant="warning">
+  Use caution when using the <code>isTextVisuallyHidden</code> prop; it should
+  only be used in rare circumstances when the purpose of the checkboxis conveyed
+  in another way. While screen readers will announce the label when the checkbox
+  gains focus, it is still best to have a visual label. This is especially
+  helpful for individuals with cognitive disabilities and users who have fine
+  motor control limitations.
+</Alert>
 
 ```tsx
 import React from 'react';
@@ -526,6 +538,26 @@ export function Example() {
   );
 }
 ```
+
+## Performance With Large Lists
+
+`Checkbox` is optimized to render efficiently, including when many appear on a
+single page. If you need to render very large lists (in the thousands), render
+only the checkboxes that are visible in the viewport using a windowing library
+such as [`@tanstack/react-virtual`](https://tanstack.com/virtual) or
+`react-window`, rather than mounting every checkbox at once.
+
+Two things are required for a virtualized list of checkboxes to behave
+correctly:
+
+- **Keep the checked state controlled and stored outside the DOM** (for example
+  in a `Set` of selected ids). Off-screen rows are unmounted while scrolling, so
+  any state kept only on the DOM element would be lost.
+- **Mind accessibility:** virtualization removes off-screen checkboxes from the
+  DOM, so screen readers can't reach them — a real trade-off for selectable
+  fields. If you virtualize, convey the full set with
+  `aria-setsize`/`aria-posinset` on the list-role row elements (not the
+  checkbox), or state the total count in text.
 
 ## Testing
 
