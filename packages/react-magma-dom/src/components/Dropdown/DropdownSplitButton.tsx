@@ -6,6 +6,10 @@ import {
   IconProps,
 } from 'react-magma-icons';
 
+import { DropdownContext, DropdownDropDirection } from './Dropdown';
+import { I18nContext } from '../../i18n';
+import { ThemeContext } from '../../theme/ThemeContext';
+import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
 import {
   Button,
   ButtonColor,
@@ -13,12 +17,8 @@ import {
   ButtonStyles,
   ButtonVariant,
 } from '../Button';
-import { getIconSize, IconButton } from '../IconButton';
-import { DropdownContext, DropdownDropDirection } from './Dropdown';
-import { I18nContext } from '../../i18n';
-import { ThemeContext } from '../../theme/ThemeContext';
-import { resolveProps, useForkedRef, useGenerateId } from '../../utils';
 import { ButtonGroupContext } from '../ButtonGroup';
+import { getIconSize, IconButton } from '../IconButton';
 
 export interface DropdownSplitButtonProps extends ButtonStyles {
   /**
@@ -45,6 +45,10 @@ export interface DropdownSplitButtonProps extends ButtonStyles {
    * Function that fires when the button is clicked
    */
   onClick?: () => void;
+  /**
+   * Ref for the main action button (left side).
+   */
+  mainButtonRef?: React.Ref<HTMLButtonElement>;
 }
 
 export const DropdownSplitButton = React.forwardRef<
@@ -62,6 +66,7 @@ export const DropdownSplitButton = React.forwardRef<
     'aria-label': ariaLabel,
     children,
     id,
+    mainButtonRef,
     variant = ButtonVariant.solid,
     onClick,
     leadingIcon,
@@ -70,6 +75,11 @@ export const DropdownSplitButton = React.forwardRef<
 
   const ref = useForkedRef(forwardedRef, resolvedContext.toggleRef);
   const splitButtonRef = React.useRef<HTMLButtonElement>(null);
+  const mainRef = useForkedRef(
+    splitButtonRef,
+    mainButtonRef ? resolvedContext.leftButtonRef : null,
+    mainButtonRef ?? null
+  );
 
   resolvedContext.dropdownButtonId.current = useGenerateId(id);
 
@@ -117,20 +127,17 @@ export const DropdownSplitButton = React.forwardRef<
     return theme.spaceScale.spacing01;
   }
 
-  const sharedButtonProps = React.useMemo(
-    () => ({
-      ...other,
-      id: resolvedContext.dropdownButtonId.current,
-      isInverse: resolvedContext.isInverse,
-      onClick: handleButtonClick,
-      shape: ButtonShape.leftCap,
-      style: { borderRight: 0, marginRight: 0 },
-      variant,
-      tabIndex: 0,
-      ref: splitButtonRef,
-    }),
-    [props]
-  );
+  const sharedButtonProps = {
+    ...other,
+    id: resolvedContext.dropdownButtonId.current,
+    isInverse: resolvedContext.isInverse,
+    onClick: handleButtonClick,
+    shape: ButtonShape.leftCap,
+    style: { borderRight: 0, marginRight: 0 },
+    variant,
+    tabIndex: 0,
+    ref: mainRef,
+  };
 
   return (
     <div ref={context.setReference}>
