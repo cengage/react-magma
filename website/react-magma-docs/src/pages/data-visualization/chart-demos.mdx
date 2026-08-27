@@ -2494,6 +2494,73 @@ export function Example() {
 }
 ```
 
+### Custom content between the title and the chart
+
+The `additionalContent` prop renders custom controls below the toolbar and above the chart. It requires `chartToolbar` and is ignored without it. In the example below the `Select` is wired to component state, so choosing a range re-renders the chart with the matching bars.
+
+**Always set `options.height`** when using this prop. The toolbar switches from overlay to normal flow, so toolbar + content + chart stack together. Without a fixed chart height, when your content expands (dropdown opens, validation error shows), the container shrinks and Carbon redraws the chart, causing layout thrashing. A fixed height lets your content expand freely without affecting the chart.
+
+```tsx
+import React from 'react';
+
+import { CarbonChart, CarbonChartType } from '@react-magma/charts';
+import { Card, Select } from 'react-magma-dom';
+
+const barDataSet = [
+  { group: 'Chapter 1', value: 85 },
+  { group: 'Chapter 2', value: 72 },
+  { group: 'Chapter 3', value: 91 },
+  { group: 'Chapter 4', value: 64 },
+];
+
+const chapterFilters = [
+  { label: 'All Chapters', value: 'all' },
+  { label: 'Chapters 1-2', value: 'ch-1-2' },
+  { label: 'Chapters 3-4', value: 'ch-3-4' },
+];
+
+const chaptersByFilter = {
+  'ch-1-2': ['Chapter 1', 'Chapter 2'],
+  'ch-3-4': ['Chapter 3', 'Chapter 4'],
+};
+
+export function Example() {
+  const [filter, setFilter] = React.useState(chapterFilters[0]);
+  const chapters = chaptersByFilter[filter.value];
+  const dataSet = chapters
+    ? barDataSet.filter(row => chapters.includes(row.group))
+    : barDataSet;
+
+  return (
+    <Card style={{ padding: '12px' }}>
+      <CarbonChart
+        type={CarbonChartType.bar}
+        dataSet={dataSet}
+        options={{
+          title: 'Chapter Performance',
+          axes: {
+            left: { mapsTo: 'value' },
+            bottom: { mapsTo: 'group', scaleType: 'labels' },
+          },
+          height: '400px',
+        }}
+        chartToolbar={{}}
+        additionalContent={
+          <Select
+            items={chapterFilters}
+            labelText="Filter by"
+            selectedItem={filter}
+            onSelectedItemChange={changes =>
+              setFilter(changes.selectedItem || chapterFilters[0])
+            }
+          />
+        }
+      />
+    </Card>
+  );
+}
+```
+
 ### Selective button visibility
 
 Disable individual toolbar buttons by setting `showAsTable` or `fullscreen` to `false`.

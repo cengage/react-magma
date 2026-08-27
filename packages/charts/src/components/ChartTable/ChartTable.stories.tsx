@@ -10,6 +10,7 @@ import {
   ButtonVariant,
   Card,
   IconButton,
+  Select,
   Tooltip,
 } from 'react-magma-dom';
 import { InfoIcon } from 'react-magma-icons';
@@ -233,5 +234,58 @@ export const TitleSlots = {
     title: 'Chapter Performance',
     type: CarbonChartType.bar,
     dataSet: barDataSet,
+  },
+};
+
+const chapterFilters = [
+  { label: 'All Chapters', value: 'all' },
+  { label: 'Chapters 1-2', value: 'ch-1-2' },
+  { label: 'Chapters 3-4', value: 'ch-3-4' },
+];
+
+const chaptersByFilter: Record<string, string[]> = {
+  'ch-1-2': ['Chapter 1', 'Chapter 2'],
+  'ch-3-4': ['Chapter 3', 'Chapter 4'],
+};
+
+export const AdditionalContent = {
+  render: ({ isInverse }: Pick<CarbonChartProps, 'isInverse'>) => {
+    const [filter, setFilter] = React.useState(chapterFilters[0]);
+    const chapters = chaptersByFilter[filter.value];
+    const dataSet = chapters
+      ? barDataSet.filter(row => chapters.includes(row.group))
+      : barDataSet;
+
+    return (
+      <Card isInverse={isInverse} style={{ padding: '12px' }}>
+        <CarbonChart
+          isInverse={isInverse}
+          type={CarbonChartType.bar}
+          dataSet={dataSet}
+          options={{
+            title: 'Chapter Performance',
+            axes: {
+              left: { mapsTo: 'value' },
+              bottom: { mapsTo: 'group', scaleType: ScaleTypes.LABELS },
+            },
+            height: '400px',
+          }}
+          chartToolbar={{ titleSuffix: <ChartInfoTooltip /> }}
+          additionalContent={
+            <Select
+              items={chapterFilters}
+              labelText="Filter by"
+              selectedItem={filter}
+              onSelectedItemChange={changes =>
+                setFilter(changes.selectedItem ?? chapterFilters[0])
+              }
+            />
+          }
+        />
+      </Card>
+    );
+  },
+  args: {
+    isInverse: false,
   },
 };
