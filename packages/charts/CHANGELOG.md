@@ -1,5 +1,11 @@
 # @react-magma/charts
 
+## 14.0.0-next.3
+
+### Minor Changes
+
+- b39c32447: feat(charts): add `additionalContent` prop for additional content between toolbar and chart
+
 ## 14.0.0-next.2
 
 ### Patch Changes

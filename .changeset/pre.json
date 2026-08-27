@@ -12,6 +12,7 @@
   "changesets": [
     "a11y-datepicker-dialog-role",
     "accordion-panel-heading-styles",
+    "charts-additional-content",
     "charts-title-content-slots",
     "chore-update-docs-and-landing-page",
     "feat-Skeleton",
