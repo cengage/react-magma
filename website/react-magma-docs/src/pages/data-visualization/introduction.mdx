@@ -128,7 +128,13 @@ export function Example() {
 }
 ```
 
-See [Chart Demos](../chart-demos) for examples of every chart type with the accessible toolbar enabled, and the [Toolbar customization](../chart-demos#toolbar_customization) section for advanced configurations (custom menu items, table columns, chart title heading level, custom content around the title, button visibility, inverse theme).
+See [Chart Demos](../chart-demos) for examples of every chart type with the accessible toolbar enabled, and the [Toolbar customization](../chart-demos#toolbar_customization) section for advanced configurations (custom menu items, table columns, chart title heading level, custom content around the title and between the title and the chart, button visibility, inverse theme).
+
+### Content between the title and the chart
+
+`additionalContent` is a prop on `CarbonChart` itself rather than on `chartToolbar`. It renders below the toolbar row and above the chart, which is where interactive controls such as filters belong — the title row only has space for inline content the height of an icon.
+
+It requires `chartToolbar`, changes how the chart's total height is composed, and needs `options.height` set. See [Custom content between the title and the chart](../chart-demos#custom_content_between_the_title_and_the_chart) for the reasoning and a working example.
 
 ### Chart toolbar props
 
