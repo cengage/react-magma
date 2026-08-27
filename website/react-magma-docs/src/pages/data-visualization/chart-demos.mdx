@@ -2551,7 +2551,7 @@ export function Example() {
             labelText="Filter by"
             selectedItem={filter}
             onSelectedItemChange={changes =>
-              setFilter(changes.selectedItem ?? chapterFilters[0])
+              setFilter(changes.selectedItem || chapterFilters[0])
             }
           />
         }
