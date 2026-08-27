@@ -21,6 +21,7 @@
     "fix-Treeview-collapse-state-icon",
     "fix-checkbox-performance-at-scale",
     "fix-datepicker-focus-return",
+    "fix-dropdown-split-button-refs",
     "fix-pagination-style-position",
     "fix-storybook-a11y-issues",
     "fix-useFocusLock",
