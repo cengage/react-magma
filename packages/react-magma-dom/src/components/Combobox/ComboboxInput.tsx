@@ -219,7 +219,7 @@ interface ComboboxInputProps<T> {
   isLoading?: boolean;
   isOpen?: boolean;
   isTypeahead?: boolean;
-  itemToString?: (item: T) => string;
+  itemToString?: (item: T | null) => string;
   onInputBlur?: (event: React.FocusEvent) => void;
   onInputFocus?: (event: React.FocusEvent) => void;
   onInputKeyDown?: (event: any) => void;
