@@ -1,5 +1,11 @@
 # Change Log
 
+## 5.2.0-rc.14
+
+### Patch Changes
+
+- b7ec2cc: feat(Dropdown): add `mainButtonRef` prop to pass a ref to the split button's left action button
+
 ## 5.2.0-rc.13
 
 ### Patch Changes
