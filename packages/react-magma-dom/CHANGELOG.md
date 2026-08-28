@@ -1,5 +1,11 @@
 # react-magma-dom
 
+## 4.16.0-next.13
+
+### Patch Changes
+
+- 6384a0131: feat(Dropdown): add `mainButtonRef` prop to pass a ref to the split button's left action button
+
 ## 4.16.0-next.12
 
 ### Patch Changes
