@@ -1304,4 +1304,167 @@ describe('Combobox', () => {
       expect(getByText('Blue')).toHaveAttribute('aria-selected', 'true');
     });
   });
+
+  describe('hasSelectedItemContent', () => {
+    const contentItems = [
+      {
+        label: 'Surface Area and Volume',
+        value: 'surface-area',
+        secondaryText: 'Intervention Library > Surface Area and Volume',
+        leadingIcon: <svg data-testid="leading-icon" />,
+      },
+      {
+        label: 'Top level',
+        value: 'top-level',
+        secondaryText: 'Not inside any folder',
+      },
+    ];
+
+    it('shows the selected item leading icon and secondary text inside the input', () => {
+      const { getByText, getByTestId } = render(
+        <Combobox
+          labelText={labelText}
+          items={contentItems}
+          hasSelectedItemContent
+          initialSelectedItem={contentItems[0]}
+        />
+      );
+
+      expect(
+        getByText('Intervention Library > Surface Area and Volume')
+      ).toBeInTheDocument();
+      expect(getByTestId('leading-icon')).toBeInTheDocument();
+    });
+
+    it('keeps the input value in sync with the selected item', () => {
+      const { getByLabelText } = render(
+        <Combobox
+          labelText={labelText}
+          items={contentItems}
+          hasSelectedItemContent
+          initialSelectedItem={contentItems[0]}
+        />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+      expect(renderedCombobox.value).toEqual('Surface Area and Volume');
+    });
+
+    it('marks the selected item preview as aria-hidden so it is not announced twice', () => {
+      const { getByText } = render(
+        <Combobox
+          labelText={labelText}
+          items={contentItems}
+          hasSelectedItemContent
+          initialSelectedItem={contentItems[0]}
+        />
+      );
+
+      const secondaryText = getByText(
+        'Intervention Library > Surface Area and Volume'
+      );
+
+      expect(secondaryText.closest('[aria-hidden="true"]')).toBeInTheDocument();
+    });
+
+    it('does not render the secondary text inside the input without the prop', () => {
+      const { queryByText } = render(
+        <Combobox
+          labelText={labelText}
+          items={contentItems}
+          initialSelectedItem={contentItems[0]}
+        />
+      );
+
+      expect(
+        queryByText('Intervention Library > Surface Area and Volume')
+      ).not.toBeInTheDocument();
+    });
+
+    it('hides the selected item preview while the menu is open', async () => {
+      const { getByLabelText, getByText, queryByText } = render(
+        <Combobox
+          labelText={labelText}
+          items={contentItems}
+          hasSelectedItemContent
+          initialSelectedItem={contentItems[0]}
+        />
+      );
+
+      expect(
+        getByText('Intervention Library > Surface Area and Volume')
+      ).toBeInTheDocument();
+
+      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+      await userEvent.click(renderedCombobox);
+
+      await waitFor(() => {
+        expect(
+          queryByText('Intervention Library > Surface Area and Volume')
+        ).not.toBeInTheDocument();
+      });
+    });
+
+    it('hides the selected item preview when the input is focused', async () => {
+      const { getByLabelText, getByText, queryByText } = render(
+        <Combobox
+          labelText={labelText}
+          items={contentItems}
+          hasSelectedItemContent
+          initialSelectedItem={contentItems[0]}
+        />
+      );
+
+      expect(
+        getByText('Intervention Library > Surface Area and Volume')
+      ).toBeInTheDocument();
+
+      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+      act(() => {
+        renderedCombobox.focus();
+      });
+
+      await waitFor(() => {
+        expect(
+          queryByText('Intervention Library > Surface Area and Volume')
+        ).not.toBeInTheDocument();
+      });
+    });
+
+    it('restores the selected item preview after the input is blurred', async () => {
+      const { getByLabelText, getByText, queryByText } = render(
+        <Combobox
+          labelText={labelText}
+          items={contentItems}
+          hasSelectedItemContent
+          initialSelectedItem={contentItems[0]}
+        />
+      );
+
+      const renderedCombobox = getByLabelText(labelText, { selector: 'input' });
+
+      act(() => {
+        renderedCombobox.focus();
+      });
+
+      await waitFor(() => {
+        expect(
+          queryByText('Intervention Library > Surface Area and Volume')
+        ).not.toBeInTheDocument();
+      });
+
+      act(() => {
+        renderedCombobox.blur();
+      });
+
+      await waitFor(() => {
+        expect(
+          getByText('Intervention Library > Surface Area and Volume')
+        ).toBeInTheDocument();
+      });
+    });
+  });
 });

@@ -44,6 +44,11 @@ export interface ComboboxProps<T extends SelectOptions>
    */
   hasError?: boolean;
   /**
+   * If true, the selected item's `leadingIcon` and `secondaryText` are shown inside the input, in addition to its label
+   * @default false
+   */
+  hasSelectedItemContent?: boolean;
+  /**
    * Position of text label relative to form field
    * @default LabelPosition.top
    */
