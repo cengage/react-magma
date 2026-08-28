@@ -215,6 +215,36 @@ describe('Dropdown', () => {
     expect(getByLabelText('Custom label')).toBeInTheDocument();
   });
 
+  it('should attach forwarded ref to the dropdown toggle button', () => {
+    const splitButtonRef = React.createRef();
+    const { getByLabelText } = render(
+      <Dropdown>
+        <DropdownSplitButton aria-label="Split" ref={splitButtonRef}>
+          Toggle me
+        </DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(splitButtonRef.current).toBe(getByLabelText('Split'));
+  });
+
+  it('should attach mainButtonRef to the left action button', () => {
+    const mainButtonRef = React.createRef();
+    const { getByText } = render(
+      <Dropdown>
+        <DropdownSplitButton aria-label="Split" mainButtonRef={mainButtonRef}>
+          Toggle me
+        </DropdownSplitButton>
+        <DropdownContent />
+      </Dropdown>
+    );
+
+    expect(mainButtonRef.current).toBe(
+      getByText('Toggle me').closest('button')
+    );
+  });
+
   it('should render a split dropdown with leading icon', () => {
     const { getByTestId, container } = render(
       <Dropdown>
