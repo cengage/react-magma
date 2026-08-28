@@ -41,6 +41,7 @@ export function ChartMoreOptionsButton({
         aria-label={resolvedAriaLabel}
         icon={icon}
         variant={ButtonVariant.link}
+        testId="chart-more-options-button"
       />
       <DropdownContent>{children}</DropdownContent>
     </Dropdown>
