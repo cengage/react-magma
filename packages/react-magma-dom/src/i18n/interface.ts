@@ -183,6 +183,8 @@ export interface I18nInterface {
   };
   dateTimePickerLabel: string;
   dropdown: {
+    expandedAnnounce: string;
+    collapsedAnnounce: string;
     toggleMenuAriaLabel: string;
   };
   dropzone: {
