@@ -8,15 +8,30 @@ import { Card, CardBody } from '../Card';
 
 import { Tag, TagColor, TagProps, TagSize } from '.';
 
+const dataVizTagColors = [
+  { color: TagColor.blue, label: 'Blue' },
+  { color: TagColor.teal, label: 'Teal' },
+  { color: TagColor.pink, label: 'Pink' },
+  { color: TagColor.purple, label: 'Purple' },
+];
+
+const tagColorExamples = [
+  { color: TagColor.primary, label: 'Primary' },
+  ...dataVizTagColors,
+];
+
+const tagGroupStyles: React.CSSProperties = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '8px',
+};
+
 const Template: StoryFn<TagProps> = args => {
   return (
     <Card isInverse={args.isInverse}>
       <CardBody>
-        <p>
+        <p style={tagGroupStyles}>
           <Tag {...args}>Default</Tag>
-          <Tag {...args} color={TagColor.primary}>
-            Primary
-          </Tag>
           <Tag {...args} color={TagColor.highContrast}>
             High Contrast
           </Tag>
@@ -24,7 +39,14 @@ const Template: StoryFn<TagProps> = args => {
             Low Contrast
           </Tag>
         </p>
-        <p>
+        <p style={tagGroupStyles}>
+          {tagColorExamples.map(({ color, label }) => (
+            <Tag {...args} color={color} key={color}>
+              {label}
+            </Tag>
+          ))}
+        </p>
+        <p style={tagGroupStyles}>
           <Tag {...args} icon={<AccountCircleIcon />}>
             Default Icon
           </Tag>
@@ -46,7 +68,14 @@ const Template: StoryFn<TagProps> = args => {
             Low Contrast Icon
           </Tag>
         </p>
-        <p>
+        <p style={tagGroupStyles}>
+          {dataVizTagColors.map(({ color, label }) => (
+            <Tag {...args} color={color} icon={<AccountCircleIcon />} key={color}>
+              {label} Icon
+            </Tag>
+          ))}
+        </p>
+        <p style={tagGroupStyles}>
           <Tag {...args} size={TagSize.small}>
             Default Small
           </Tag>
@@ -60,7 +89,14 @@ const Template: StoryFn<TagProps> = args => {
             Low Contrast Small
           </Tag>
         </p>
-        <p>
+        <p style={tagGroupStyles}>
+          {dataVizTagColors.map(({ color, label }) => (
+            <Tag {...args} color={color} key={color} size={TagSize.small}>
+              {label} Small
+            </Tag>
+          ))}
+        </p>
+        <p style={tagGroupStyles}>
           <Tag {...args} icon={<AccountCircleIcon />} size={TagSize.small}>
             Default Small Icon
           </Tag>
@@ -89,7 +125,7 @@ const Template: StoryFn<TagProps> = args => {
             Low Contrast Small Icon
           </Tag>
         </p>
-        <p>
+        <p style={tagGroupStyles}>
           <Tag
             size={args.size}
             color={args.color}
@@ -112,6 +148,38 @@ const Template: StoryFn<TagProps> = args => {
           >
             Deletetable
           </Tag>
+        </p>
+        <p style={tagGroupStyles}>
+          {dataVizTagColors.map(({ color, label }) => (
+            <Tag
+              color={color}
+              disabled={args.disabled}
+              isInverse={args.isInverse}
+              key={color}
+              onDelete={() => {
+                console.log('clicked');
+              }}
+              size={args.size}
+            >
+              {label} Deletable
+            </Tag>
+          ))}
+        </p>
+        <p style={tagGroupStyles}>
+          {dataVizTagColors.map(({ color, label }) => (
+            <Tag
+              color={color}
+              disabled={args.disabled}
+              isInverse={args.isInverse}
+              key={color}
+              onDelete={() => {
+                console.log('clicked');
+              }}
+              size={TagSize.small}
+            >
+              {label} Small Deletable
+            </Tag>
+          ))}
         </p>
       </CardBody>
     </Card>
